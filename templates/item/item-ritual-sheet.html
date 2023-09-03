@@ -1,0 +1,209 @@
+<form class="{{cssClass}} backgroundstyle" autocomplete="off">
+  {{> "systems/fabulaultima/templates/item/parts/item-header.html" dtypes=dtypes}}
+  
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+      <a class="item" data-tab="description">Description</a>
+      <a class="item" data-tab="attributes">Attributes</a>
+    </nav>
+  
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+      {{!-- Description Tab --}}
+      <div class="tab" data-group="primary" data-tab="description">
+        {{editor system.description target="system.description" rollData=rollData
+        button=true owner=owner editable=editable}}
+      </div>
+      {{!-- Attributes Tab --}}
+      <div class="tab attributes" data-group="primary" data-tab="attributes">
+        <div>
+          <label class="checkbox">
+            <span>Favorite?</span
+            ><input
+              type="checkbox"
+              name="system.isFavored.value"
+              {{
+              checked
+              system.isFavored.value
+              }}
+            />
+          </label>
+          {{!-- NPC Relevent Option --}}
+          {{#if (eq actor.type "npc")}}
+          <label class="checkbox">
+            <span>Add to behavior roll?</span
+            ><input
+              type="checkbox"
+              name="system.isBehavior.value"
+              {{
+              checked
+              system.isBehavior.value
+              }}
+            />
+          {{/if}}
+        </div>
+        {{!-- As you add new fields, add them in here! --}}
+        <div class="row-resource flex-group-center grid-3col">
+
+          <div class="tri-row-resource">
+            <label class="row-resource-label">Potency</label>
+            <select value="{{system.potency.value}}" name="system.potency.value">
+              {{#select system.potency.value}}
+              <option value="minor">Minor</option>
+              <option value="medium">Medium</option>
+              <option value="major">Major</option>
+              <option value="extreme">Extreme</option>
+              {{/select}}
+            </select>
+          </div>
+          <div class="tri-row-resource">
+            <label class="row-resource-label">Area</label>
+            <select value="{{system.area.value}}" name="system.area.value">
+              {{#select system.area.value}}
+              <option value="individual">Individual</option>
+              <option value="small">Small</option>
+              <option value="large">Large</option>
+              <option value="huge">Huge</option>
+              {{/select}}
+            </select>
+          </div>
+        </div>
+        
+        <div class="row-resource flex-group-center grid-3col">
+          <div class="tri-row-resource">
+            <label class="row-resource-label">MP Cost</label>
+            <input
+              type="text"
+              name="system.mpCost.value"
+              value="{{system.mpCost.value}}"
+              disabled
+            />
+          </div>
+          <div class="tri-row-resource">
+            <label class="row-resource-label">Difficulty Level</label>
+            <input
+              type="text"
+              name="system.dLevel.value"
+              value="{{system.dLevel.value}}"
+              disabled
+            />
+          </div>
+          <div class="tri-row-resource">
+            <label class="row-resource-label">Clock</label>
+            <input
+              type="text"
+              name="system.clock.value"
+              value="{{system.clock.value}}"
+              disabled
+            />
+          </div>
+        </div>
+        
+        <label class="checkbox">
+          <span>Has Roll?</span
+          ><input
+            type="checkbox"
+            name="system.hasRoll.value"
+            {{
+            checked
+            system.hasRoll.value
+            }}
+          />
+        </label>
+        <label
+          for="system.rollInfo.attributes.primary.value"
+          class="resource-label flexlarge align-left"
+          >primary</label
+        >
+        <select
+          value="{{system.rollInfo.attributes.primary.value}}"
+          name="system.rollInfo.attributes.primary.value"
+        >
+          {{#select system.rollInfo.attributes.primary.value}}
+          <option value="dex">DEX</option>
+          <option value="ins">INS</option>
+          <option value="mig">MIG</option>
+          <option value="wlp">WLP</option>
+          {{/select}}
+        </select>
+        <label
+          for="system.rollInfo.attributes.secondary.value"
+          class="resource-label flexlarge align-left"
+          >secondary</label
+        >
+        <select
+          value="{{system.rollInfo.attributes.secondary.value}}"
+          name="system.rollInfo.attributes.secondary.value"
+        >
+          {{#select system.rollInfo.attributes.secondary.value}}
+          <option value="dex">DEX</option>
+          <option value="ins">INS</option>
+          <option value="mig">MIG</option>
+          <option value="wlp">WLP</option>
+          {{/select}}
+        </select>
+        <div class="resource">
+          <!-- <label class="resource-label">Bonus Accuracy</label> -->
+          <input
+            type="text"
+            name="system.rollInfo.accuracy.value"
+            value="{{system.rollInfo.accuracy.value}}"
+            data-dtype="Number"
+            hidden
+          />
+        </div>
+        <div class="resource">      
+        <label class="checkbox">
+            <span>Has Collateral Damage?</span
+            ><input
+                type="checkbox"
+                name="system.rollInfo.impdamage.hasImpDamage.value"
+                {{
+                checked
+                system.rollInfo.impdamage.hasImpDamage.value
+                }}
+            />
+            </label>
+            <label
+            for="system.rollInfo.impdamage.impType.value"
+            class="resource-label flexlarge align-left"
+            >collateral type</label
+          >
+          <select
+            value="{{system.rollInfo.impdamage.impType.value}}"
+            name="system.rollInfo.impdamage.impType.value"
+          >
+            {{#select system.rollInfo.impdamage.impType.value}}
+            <option value="minor">minor</option>
+            <option value="heavy">heavy</option>
+            <option value="massive">massive</option>
+            {{/select}}
+          </select>
+
+          <label
+            for="system.rollInfo.impdamage.type.value"
+            class="resource-label flexlarge align-left"
+            >damage type</label
+          >
+          <select
+            value="{{system.rollInfo.impdamage.type.value}}"
+            name="system.rollInfo.impdamage.type.value"
+          >
+            {{#select system.rollInfo.impdamage.type.value}}
+            <option value="physical">physical</option>
+            <option value="air">air</option>
+            <option value="bolt">bolt</option>
+            <option value="dark">dark</option>
+            <option value="earth">earth</option>
+            <option value="fire">fire</option>
+            <option value="ice">ice</option>
+            <option value="light">light</option>
+            <option value="poison">poison</option>
+            <option value="">untyped</option>
+            {{/select}}
+          </select>
+          </div>
+        </div>
+    </section>
+  </form>
+  

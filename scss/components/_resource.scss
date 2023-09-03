@@ -1,0 +1,189 @@
+/* Temp Fixes */
+.auto-shrink {
+	width: 100%;
+	box-sizing: border-box;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+/* Space after icon */
+.icon::after {
+	content: "\00a0";
+}
+  
+/* Space before icon */
+.icon-r::before {
+	content: "\00a0";
+}
+
+/* Labels */
+.resource-label {
+  color: $color-secondary;
+  font-weight: bold;
+  font-size: 16px;
+  border: transparent;
+
+  input.resource-label{
+    color: $color-secondary;
+    font-weight: bold;
+    font-size: 16px;
+    border: transparent;
+	}
+
+  &.summary {
+	padding: 1em 0 0 1em;
+	margin: 0.5em 0 0 0.5em;
+	}
+
+}
+
+.resource-label-sm {
+  color: $color-secondary;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0 2px;
+  
+  input.resource-label{
+    color: $color-secondary;
+    font-size: 14px;
+    border: transparent;
+  }
+}
+
+.levelup {
+	background: linear-gradient(#{$color-transparent-gradient});
+	margin: 10px 0 5px 0;
+	border-radius: 10%;
+  
+	& input.resource-input-charname {
+	  color: $color-primary;
+	  font-size: 16px;
+	  background-color: $color-secondary;
+	  margin: 1px;
+	}
+  
+	& .side-bar {
+	  width: 5em !important;
+	}
+  
+	&.creature {
+	  padding: 0.5em;
+	}
+  }
+
+.npc-border-col{
+	background: linear-gradient(#{$color-transparent-gradient});
+}
+
+.resource-content {
+	color: $color-secondary;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: transparent;
+	&.ab {
+		width: 3.5em;
+	}
+}
+
+.resource-input {
+	color: $color-primary;
+	font-size: 16px;
+	background-color: $color-secondary;
+	width: 3.5em;
+	margin: 1px;
+
+	select & {
+	appearance: none;
+	background-size: 16px 16px;
+	text-align: center;
+	width: 3.5em;
+	padding: 0;
+	}
+
+	select.creature-input & {
+	appearance: none;
+	background-size: 16px 16px;
+	text-align-last: center;
+	width: 6em;
+	margin: 0;
+	}
+
+	input.charname-resource-input {
+	color: $color-primary;
+	font-size: 24px;
+	background-color: transparent;
+	border: transparent;
+	}
+
+	&.summary {
+	width: 95%;
+	padding: 1.4em;
+	margin: 0.5em 1em;
+	}
+
+	&.select-dropdown {
+	appearance: none;
+	background-size: 16px 16px;
+	width: 4em;
+	}
+}
+
+.input-container {
+	flex-basis: calc(20% - 10px); /* Adjust this value and the margin as needed */
+	margin-right: 10px; /* Adjust this margin as needed */
+}
+  
+.resource-input-traits {
+	color: $color-primary;
+	font-size: 16px;
+	background-color: $color-secondary;
+	height: 25px;
+	width: 100%;
+
+	.select-dropdown {
+		appearance: none;
+		background-size: 16px 16px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+.resource-input-bonds {
+	color: ivory;
+	font-size: 16px;
+	background-color: #2a4a41;
+	margin: 0 2px;
+	height: 25px;
+	width: 100%;
+	padding: 0;
+
+	.select-dropdown {
+		appearance: none;
+		background-size: 16px 16px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+.input-with-buttons input.resource-input {
+	color: ivory;
+	font-size: 16px;
+	background-color: $color-secondary;
+	border: transparent;
+	padding: 5px;
+}
+
+input.inputdesc {
+	color: $color-primary;
+	font-size: 16px;
+	background-color: $color-secondary;
+	border: transparent;
+}
+
+input.traitdesc {
+	color: $color-primary;
+	font-size: 14px;
+	background-color: $color-secondary;
+	border: transparent;
+	min-height: 0em;
+	max-height: 100%;
+}

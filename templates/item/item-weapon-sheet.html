@@ -1,0 +1,213 @@
+<form class="{{cssClass}} backgroundstyle" autocomplete="off">
+  {{> "systems/fabulaultima/templates/item/parts/item-header.html" dtypes=dtypes}}
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
+    <a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    {{!-- Description Tab --}}
+    <div class="tab desc" data-group="primary" data-tab="description">
+      {{editor system.description target="system.description" rollData=rollData
+      button=true owner=owner editable=editable}}
+    </div>
+    {{!-- Attributes Tab --}}
+    <div class="tab attributes" data-group="primary" data-tab="attributes">
+      {{!-- As you add new fields, add them in here! --}}
+      <div>
+        <!-- item-weapon-sheet.html -->
+        <label class="checkbox">
+          <span>{{localize 'FU.FavoriteStatus'}}</span
+          ><input
+            type="checkbox"
+            name="system.isFavored.value"
+            {{
+            checked
+            system.isFavored.value
+            }}
+          />
+        </label>
+        {{!-- NPC Relevent Option --}}
+        {{#if (eq actor.type "npc")}}
+        <label class="checkbox">
+          <span>{{localize 'FU.BehaviorAdd'}}</span
+          ><input
+            type="checkbox"
+            name="system.isBehavior.value"
+            {{
+            checked
+            system.isBehavior.value
+            }}
+          />
+          <label class="resource-label">{{localize 'FU.Weight'}}</label>
+          <input
+            type="text"
+            name="system.weight.value"
+            value="{{system.weight.value}}"
+            data-dtype="Number"
+          />
+        {{/if}}
+        <label class="checkbox">
+          <span>{{localize 'FU.IsMartial'}}</span
+          ><input
+            type="checkbox"
+            name="system.isMartial.value"
+            {{
+            checked
+            system.isMartial.value
+            }}
+          />
+        </label>
+        <label class="checkbox">
+          <span>{{localize 'FU.CustomWeapon'}}</span
+          ><input
+            type="checkbox"
+            name="system.isCustomWeapon.value"
+            {{
+            checked
+            system.isCustomWeapon.value
+            }}  
+          />
+        </label>
+      </div> 
+      <div class="resource">
+        <label
+          for="system.attributes.primary.value"
+          class="resource-label flexlarge align-left"
+      style="margin: 10px;"
+          >{{localize 'FU.Primary'}}</label
+        >
+        <select
+          value="{{system.attributes.primary.value}}"
+          name="system.attributes.primary.value"
+        >
+          {{#select system.attributes.primary.value}}
+          <option value="dex">DEX</option>
+          <option value="ins">INS</option>
+          <option value="mig">MIG</option>
+          <option value="wlp">WLP</option>
+          {{/select}}
+        </select>
+        <label
+          for="system.attributes.secondary.value"
+          class="resource-label flexlarge align-left"
+      style="margin: 10px;"
+          >Secondary</label
+        >
+        <select
+          value="{{system.attributes.secondary.value}}"
+          name="system.attributes.secondary.value"
+        >
+          {{#select system.attributes.secondary.value}}
+          <option value="dex">DEX</option>
+          <option value="ins">INS</option>
+          <option value="mig">MIG</option>
+          <option value="wlp">WLP</option>
+          {{/select}}
+        </select>
+      </div>
+
+
+      <div class="resource">
+      <label for="system.type.value" class="resource-label flexlarge align-left" style="margin: 10px;"
+        >Type</label
+      >
+      <select value="{{system.type.value}}" name="system.type.value">
+        {{#select system.type.value}}
+        <option value="Melee">Melee</option>
+        <option value="Ranged">Ranged</option>
+        {{/select}}
+      </select>
+
+
+      <label for="system.type.value" class="resource-label flexlarge align-left" style="margin: 10px;"
+        >Catagory</label
+      >
+      <select value="{{system.catagory.value}}" name="system.catagory.value">
+        {{#select system.catagory.value}}
+        <option value="Sword">Sword</option>
+        <option value="Thrown">Thrown</option>
+        <option value="Spear">Spear</option>
+        <option value="Heavy">Heavy</option>
+        <option value="Flail">Flail</option>
+        <option value="Firearm">Firearm</option>
+        <option value="Dagger">Dagger</option>
+        <option value="Brawling">Brawling</option>
+        <option value="Bow">Bow</option>
+        <option value="Arcane">Arcane</option>
+        {{/select}}
+      </select>
+
+      <label for="system.hands.value" class="resource-label flexlarge align-left" style="margin: 10px;"
+        >Hands</label
+      >
+      <select value="{{system.hands.value}}" name="system.hands.value">
+        {{#select system.hands.value}}
+        <option value="One-Handed">One-Handed</option>
+        <option value="Two-Handed">Two-Handed</option>
+        {{/select}}
+      </select>
+    </div>
+    <div class="resource">
+      <label class="resource-label" style="margin: 10px;">Quality</label>
+      <input
+        type="text"
+        name="system.quality.value"
+        value="{{system.quality.value}}"
+      />
+    </div>
+      <div class="resource">
+        <label class="resource-label">Cost</label>
+        <input
+          type="text"
+          name="system.cost.value"
+          value="{{system.cost.value}}"
+          data-dtype="Number"
+        />
+      </div>
+      <div class="resource">
+        <label class="resource-label">Accuracy</label>
+        <input
+          type="text"
+          name="system.accuracy.value"
+          value="{{system.accuracy.value}}"
+          data-dtype="Number"
+        />
+      </div>
+      <div class="resource">
+        <label class="resource-label">Damage</label>
+        <input
+          type="text"
+          name="system.damage.value"
+          value="{{system.damage.value}}"
+          data-dtype="Number"
+        />
+      </div>
+      <label
+        for="system.damageType.value"
+        class="resource-label flexlarge align-left"
+		style="margin: 10px;"
+        >Damage type</label
+      >
+      <select
+        value="{{system.damageType.value}}"
+        name="system.damageType.value"
+      >
+        {{#select system.damageType.value}}
+        <option value="physical">physical</option>
+        <option value="air">air</option>
+        <option value="bolt">bolt</option>
+        <option value="dark">dark</option>
+        <option value="earth">earth</option>
+        <option value="fire">fire</option>
+        <option value="ice">ice</option>
+        <option value="light">light</option>
+        <option value="poison">poison</option>
+        {{/select}}
+      </select>
+    </div>
+  </section>
+</form>

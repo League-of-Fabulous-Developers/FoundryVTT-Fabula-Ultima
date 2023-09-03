@@ -1,0 +1,104 @@
+<form class="{{cssClass}} backgroundstyle" autocomplete="off">
+  {{> "systems/fabulaultima/templates/item/parts/item-header.html" dtypes=dtypes}}
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">Description</a>
+    <a class="item" data-tab="attributes">Attributes</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    {{!-- Description Tab --}}
+    <div class="tab" data-group="primary" data-tab="description">
+      {{editor system.description target="system.description" rollData=rollData
+      button=true owner=owner editable=editable}}
+    </div>
+
+    {{!-- Attributes Tab --}}
+    <div class="tab attributes" data-group="primary" data-tab="attributes">
+      {{!-- As you add new fields, add them in here! --}}
+      <div class="resource">
+        <div>
+          <label class="checkbox">
+            <span>Favorite?</span
+            ><input
+              type="checkbox"
+              name="system.isFavored.value"
+              {{
+              checked
+              system.isFavored.value
+              }}
+            />
+          </label>
+          {{!-- NPC Relevent Option --}}
+          {{#if (eq actor.type "npc")}}
+          <label class="checkbox">
+            <span>Add to behavior roll?</span
+            ><input
+              type="checkbox"
+              name="system.isBehavior.value"
+              {{
+              checked
+              system.isBehavior.value
+              }}
+            />
+          {{/if}}
+        </div>
+        <label class="resource-label">Cost</label>
+        <input
+          type="text"
+          name="system.cost.value"
+          value="{{system.cost.value}}"
+          data-dtype="Number"
+        />
+      </div>
+      <label class="checkbox">
+        <span>Martial?</span
+        ><input
+          type="checkbox"
+          name="system.isMartial.value"
+          {{
+          checked
+          system.isMartial.value
+          }}
+        />
+      </label>
+      <div class="resource">
+        <label class="resource-label">Def</label>
+        <input
+          type="text"
+          name="system.def.value"
+          value="{{system.def.value}}"
+          data-dtype="Number"
+        />
+      </div>
+      <div class="resource">
+        <label class="resource-label">MDef</label>
+        <input
+          type="text"
+          name="system.mdef.value"
+          value="{{system.mdef.value}}"
+          data-dtype="Number"
+        />
+      </div>
+      <div class="resource">
+        <label class="resource-label">Init</label>
+        <input
+          type="text"
+          name="system.init.value"
+          value="{{system.init.value}}"
+          data-dtype="Number"
+        />
+      </div>
+      <div class="resource">
+        <label class="resource-label">Quality</label>
+        <input
+          type="text"
+          name="system.quality.value"
+          value="{{system.quality.value}}"
+        />
+      </div>
+    </div>
+  </section>
+</form>

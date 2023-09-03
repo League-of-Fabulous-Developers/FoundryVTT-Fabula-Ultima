@@ -1,0 +1,15 @@
+ $font-primary: 'Signika', sans-serif;
+ $font-secondary: 'Signika', sans-serif;
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.chat-message {
+    .message-header {
+        .flavor-text {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    }
+}

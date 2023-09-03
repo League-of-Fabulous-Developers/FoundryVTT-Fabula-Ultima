@@ -1,0 +1,47 @@
+.window-app {
+  font-family: $font-primary;
+}
+
+.window-app .window-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: 0;
+  color: var(--color-text-dark-primary);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.selectable {
+  &:hover,
+  &:focus {
+    color: #000;
+    text-shadow: 0 0 10px $color-danger;
+    cursor: pointer;
+  }
+}
+
+.rollable {
+  &:hover,
+  &:focus {
+    color: #000;
+    text-shadow: 0 0 10px $color-danger;
+    cursor: pointer;
+  }
+}
+
+.notification.fabulaultima-spellname {
+  background-color: #17a2b8;
+  border: 5px solid #2b4b42;
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: 2rem;
+  text-align: center;
+
+  .close {
+    display: none;
+  }
+}
+
+

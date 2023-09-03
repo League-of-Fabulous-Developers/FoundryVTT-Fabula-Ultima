@@ -1,0 +1,79 @@
+// Color Scheme
+
+// Primary colors
+$color-primary: #ffffff;
+$color-secondary: #2a4a41;
+$color-ternary: #3d665a;
+$color-quaternary: #cccbbb;
+
+// Inverted primary colors
+$color-primary-inverted: #000000;
+$color-secondary-inverted: #412a3a;
+
+// Semantic colors
+$color-success: #28a745;
+$color-danger: #dc3545;
+$color-warning: #c78f31;
+$color-info: #17a2b8;
+
+// Neutral colors
+$color-white: #ffffff;
+$color-black: #000000;
+$color-faint: #c9c7b8;
+$color-beige: #f5f5dc;
+$color-tan: #444;
+
+
+// Tab Hover
+$color-shadow: #e74c3c;
+$color-shadow-inverted: #2a4a41;
+
+// More color variants here...
+
+// Text and background colors
+$color-text: $color-primary;
+$color-text-inverted: $color-secondary-inverted;
+$color-text-alt: $color-secondary;
+
+$color-text-shadow: $color-quaternary;
+$color-text-shadow: $color-secondary;
+
+$color-background: $color-secondary;
+$color-background-inverted: $color-secondary-inverted;
+$color-background-alt: $color-primary;
+
+$color-box-shadow: darken($color-secondary, 10%);
+$color-box-shadow-inverted: darken($color-primary-inverted, 10%);
+
+// Gradient colors
+
+// Background for Actor Name & Levels
+$color-charname-gradient: to right, rgba(83, 40, 83, 0.8), rgba(100, 43, 93, 0.8), rgba(117, 49, 104, 0.8), rgba(134, 54, 113, 0.8), rgba(151, 60, 122, 0.8), rgba(168, 65, 132, 0.8), rgba(185, 74, 142, 0.8), rgba(202, 82, 152, 0.8), rgba(219, 89, 161, 0.8), rgba(236, 96, 171, 0.8), rgba(252, 104, 181, 0.8), rgba(237, 244, 228, 0.8);
+$color-charname-gradient-alt: to right, rgba(42, 74, 65, 0.8), rgba(51, 164, 50, 0.8), rgba(60, 191, 77, 0.8), rgba(77, 168, 77, 0.8), rgba(94, 180, 77, 0.8), rgba(111, 176, 77, 0.8), rgba(128, 172, 77, 0.8), rgba(145, 168, 77, 0.8), rgba(196, 156, 77, 0.8), rgba(213, 152, 77, 0.8), rgba(230, 148, 77, 0.8), rgba(255, 255, 255, 0.8);
+$color-level-exp-gradient: to right, rgba(237, 233, 224, 0.8), rgba(226, 237, 213, 0.8);
+
+// Background for Tabs
+$color-tabStyle-gradient: to bottom, rgba(30, 62, 53), rgba(42, 74, 65), rgba(53, 86, 77), rgba(64, 98, 89), rgba(75, 110, 101), rgba(87, 123, 112), rgba(98, 135, 122), rgba(109, 136, 136), rgba(121, 149, 148), rgba(132, 157, 163), rgba(144, 177, 171), rgba(156, 202, 183), rgba(168, 210, 195), rgba(168, 210, 195);
+
+// Determine a suitable threshold for brightness to switch text color
+$dark-background-threshold: 150; // Adjust as needed
+
+// Adjust text color based on background brightness
+//$color-tabStyle-text: if(lightness(nth($color-tabStyle-gradient, 1)) > $dark-background-threshold, $color-secondary, $color-primary);
+
+// Other
+$color-transparent-gradient: to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5);
+
+// Icons colors
+$color-outline: black;
+$color-icon-sword: #dddddd;
+$color-icon-wind: #cfd600;
+$color-icon-bolt: #ffef26;
+$color-icon-moon: #e40134;
+$color-icon-hill-rockslide: #d29d3e;
+$color-icon-fire: #f59a00;
+$color-icon-snowflake: #9cbccd;
+$color-icon-sun: #fff7b2;
+$color-icon-skull-crossbones: #d679a2;
+
+

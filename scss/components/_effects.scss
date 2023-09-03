@@ -1,0 +1,14 @@
+.effects .item {
+  .effect-source,
+  .effect-duration,
+  .effect-controls {
+    text-align: center;
+    border-left: 1px solid $color-beige;
+    border-right: 1px solid $color-beige;
+    font-size: 12px;
+  }
+
+  .effect-controls {
+    border: none;
+  }
+}

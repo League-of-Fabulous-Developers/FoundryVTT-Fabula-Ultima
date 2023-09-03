@@ -1,0 +1,30 @@
+// Add custom fonts by visiting and search https://fonts.google.com
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
+
+
+// Import utilities.
+@import 'utils/colors';
+@import 'utils/mixins';
+@import 'utils/typography';
+@import 'utils/variables';
+
+/* Global styles */
+@import 'global/flex';
+@import 'global/grid';
+@import 'global/window';
+
+/* Styles limited to fabulaultima sheets */
+.fabulaultima {
+  @import 'components/affinity';
+  @import 'components/barmeter';
+  @import 'components/buttons';
+  @import 'components/crafting';
+  @import 'components/divider';
+  @import 'components/effects';
+  @import 'components/forms';
+  @import 'components/items';
+  @import 'components/resource';
+  @import 'components/rollcard';
+  @import 'components/test.scss';
+}

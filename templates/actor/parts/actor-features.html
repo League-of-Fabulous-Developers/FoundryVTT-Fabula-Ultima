@@ -1,0 +1,169 @@
+<div class="header-container">
+  <header class="items-main">Classes</header>
+  <header class="items-levels">
+    <span class="total-class-levels">{{system.derived.classmax.value}} / {{system.level.value}}</span> 
+  </header>
+</div>
+<ol class="items-list">
+  <li class="item flexrow items-header">
+    <div class="item-name">Name</div>
+    <div class="item-level">Level</div>
+    <div class="item-controls">
+      <a class="item-control item-create" title="Create class" data-type="class"
+        ><i class="fas fa-plus"></i> Add</a
+      >
+    </div>
+  </li>
+  {{#each classes as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <div class="item-name">
+      <div class="item-image">
+        <a class="rollable" data-roll-type="item">
+          <div class="item-image-wrap">
+            <img
+              src="{{item.img}}"
+              title="{{item.name}}"
+              class="item-image-res"
+            />
+          </div>
+        </a>
+      </div>
+      <h4>{{item.name}}</h4>
+    </div>
+    <div class="item-level">{{item.level}}</div>
+    <div class="item-controls">
+      <a class="item-control item-favored"
+        {{#if item.system.isFavored.value}}
+          title="{{localize 'FABULAULTIMA.Unfavorite'}}"
+        {{else}}
+          title="{{localize 'FABULAULTIMA.Favorite'}}"
+        {{/if}}
+      >
+        {{#if item.system.isFavored.value}}
+          <i class="fas fa-star"></i>
+        {{else}}
+          <i class="far fa-star"></i>
+        {{/if}}
+      </a>
+      <a class="item-control item-edit" title="Edit class"
+        ><i class="fas fa-edit"></i
+      ></a>
+      <a class="item-control item-delete" title="Delete class"
+        ><i class="fas fa-trash"></i
+      ></a>
+    </div>
+  </li>
+  {{/each}}
+</ol>
+
+<div class="header-container">
+  <header class="items-main">Skills</header>
+  <header class="items-levels">
+    <span class="total-class-levels"></span> {{system.derived.skillmax.value}}/ {{system.level.value}}
+  </header>
+</div>
+<ol class="items-list">
+  <li class="item flexrow items-header">
+    <div class="item-name">Name</div>
+    <div class="item-class">Class</div>
+    <div class="item-level">Level</div>
+    <div class="item-controls">
+      <a class="item-control item-create" title="Create skill" data-type="skill"
+        ><i class="fas fa-plus"></i> Add</a
+      >
+    </div>
+  </li>
+  {{#each skills as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <div class="item-name">
+      <div class="item-image">
+        <a class="rollable" data-roll-type="item">
+          <div class="item-image-wrap">
+            <img
+              src="{{item.img}}"
+              title="{{item.name}}"
+              class="item-image-res"
+            />
+          </div>
+        </a>
+      </div>
+      <h4>{{item.name}}</h4>
+    </div>
+    <div class="item-class">{{item.class}}</div>
+    <div class="item-level">{{item.level}}</div>
+    <div class="item-controls">
+      <a class="item-control item-favored"
+        {{#if item.system.isFavored.value}}
+          title="{{localize 'FABULAULTIMA.Unfavorite'}}"
+        {{else}}
+          title="{{localize 'FABULAULTIMA.Favorite'}}"
+        {{/if}}
+      >
+        {{#if item.system.isFavored.value}}
+          <i class="fas fa-star"></i>
+        {{else}}
+          <i class="far fa-star"></i>
+        {{/if}}
+      </a>
+      <a class="item-control item-edit" title="Edit class"
+        ><i class="fas fa-edit"></i
+      ></a>
+      <a class="item-control item-delete" title="Delete class"
+        ><i class="fas fa-trash"></i
+      ></a>
+    </div>
+  </li>
+  {{/each}}
+</ol>
+
+<div class="header-container">
+  <header class="items-main">Heroic Skills</header>
+  <header class="items-levels">
+    <span class="total-class-levels"></span>{{heroicSkills.length}} / {{system.derived.heroicmax.value}}
+  </header>
+</div>
+<ol class="items-list">
+  <li class="item flexrow items-header">
+    <div class="item-name">Name</div>
+    <div class="item-class">Class</div>
+    <div class="item-controls">
+      <a class="item-control item-create" title="Create Heroic Skill" data-type="heroicSkill"
+        ><i class="fas fa-plus"></i> Add</a
+      >
+    </div>
+  </li>
+  {{#each heroicSkills as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <div class="item-name">
+      <div class="item-image">
+        <a class="rollable" data-roll-type="item"
+          ><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"
+        /></a>
+      </div>
+      <h4>{{item.name}}</h4>
+    </div>
+    <div class="item-class">{{item.class}}</div>
+    <div class="item-controls">
+      <a class="item-control item-favored"
+        {{#if item.system.isFavored.value}}
+          title="{{localize 'FABULAULTIMA.Unfavorite'}}"
+        {{else}}
+          title="{{localize 'FABULAULTIMA.Favorite'}}"
+        {{/if}}
+      >
+        {{#if item.system.isFavored.value}}
+          <i class="fas fa-star"></i>
+        {{else}}
+          <i class="far fa-star"></i>
+        {{/if}}
+      </a>
+      <a class="item-control item-edit" title="Edit class"
+        ><i class="fas fa-edit"></i
+      ></a>
+      <a class="item-control item-delete" title="Delete class"
+        ><i class="fas fa-trash"></i
+      ></a>
+    </div>
+  </li>
+  {{/each}}
+</ol>

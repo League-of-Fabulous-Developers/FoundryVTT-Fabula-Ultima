@@ -1,0 +1,155 @@
+/* Increment/Decrement Buttons */
+.buttons-inc {
+  display: flex;
+  align-items: center;
+  color: $color-secondary;
+  text-shadow: 3px 3px $color-primary;
+  input.fp-resource-input, input.up-resource-input {
+    color: $color-secondary;
+    text-shadow: 1px 2px $color-quaternary;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: transparent;
+    border-color: transparent;
+    vertical-align: middle;
+    height: auto;
+    padding: 5px;
+  }
+  &.roll-check {
+    margin: 6px 0;
+  }
+
+  .increment-button,
+  .decrement-button,
+  .roll-check-option {
+    // Common styles for all buttons
+    color: $color-secondary;
+    text-shadow: 1px 2px $color-quaternary;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    margin: 1%;
+    visibility: hidden;
+
+    &:hover {
+      background-color: rgba(0, 128, 128, 0.1); /* Light teal background on hover */
+    }
+  }
+
+  &:hover .increment-button,
+  &:hover .decrement-button,
+  &:hover .roll-check-option {
+    visibility: visible; /* Show the buttons on hover over the .buttons-inc div */
+  }
+
+  .roll-check-option {
+    // Additional style for roll-check-option button
+    visibility: visible; /* Ensure visibility is not hidden */
+  }
+}
+
+.tab-style {
+  color: $color-primary;
+  font-size: 17px;
+  box-shadow: 3px 6px $color-secondary;
+  border-radius: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  background-color: $color-secondary;
+  background-image: linear-gradient($color-tabStyle-gradient);
+  margin-right: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add box-shadow transition */
+
+  &:hover {
+    transform: translateY(-2px);
+    z-index: 1; /* Ensure the hovered button is on top */
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 1px 2px $color-secondary;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 3px 6px $color-success;
+  }
+}
+
+
+.slot-style {
+  color: $color-primary;
+  font-size: 18px;
+  box-shadow: 3px 6px $color-secondary;
+  border-radius: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  background-color: $color-secondary;
+  background-image: linear-gradient($color-tabStyle-gradient);
+  margin-right: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    z-index: 1; /* Ensure the hovered button is on top */
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 1px 2px $color-secondary;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 3px 6px $color-success;
+  }
+}
+
+
+
+/* Apply consistent styles to buttons */
+.item-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // margin-left: 6px;
+
+  i {
+    font-size: 12px;
+    // margin-right: 1em;
+  }
+}
+.item-equip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // margin-left: 6px;
+
+  i {
+    font-size: 16px;
+    // margin-right: 1em;
+  }
+}
+
+.item-create-bond {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+  height: 1em;
+  width: 3em;
+
+  i {
+    border-radius: 20%;
+    font-size: 16px;
+    margin-right: 1em;
+  }
+}
+  
+label.elite{
+  line-height: 0;
+  font-size: 14px;
+}

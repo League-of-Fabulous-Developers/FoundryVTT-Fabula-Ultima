@@ -1,0 +1,37 @@
+<header class="sheet-header">
+    <img
+      class="profile-img"
+      src="{{item.img}}"
+      data-edit="img"
+      title="{{item.name}}"
+    />
+    <div class="header-fields">
+      <div class="grid grid-6col">
+        <h1 class="charname grid-span-4 flex-between">
+          <input name="name" type="text" value="{{item.name}}" placeholder="Name" class="resource-input-charname" />
+        </h1>
+
+        <!-- Item Type -->
+        <span class="levelup">
+          <label class="resource-label-sm" for="item.type">
+            <i class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.ItemType'}}
+            <input type="text" name="item.type" value="{{item.type}}" data-dtype="Number" class="resource-input side-bar" disabled/>
+          </label>
+        </span>
+
+        <!-- Source -->
+        <span for="system.source.value" class="levelup">
+          <label class="resource-label-sm">
+            <i class="fa-solid fa-book"></i></i>{{localize 'FU.Source'}}
+            <input type="text" name="system.source.value" value="" data-dtype="Number" class="resource-input side-bar" disabled/>
+          </label>
+        </span>
+      </div>
+      <span>
+        <div class="resource">
+          <label for="system.summary.value" class="resource-label summary">{{localize 'FU.Summary'}}</label>
+          <input type="text" name="system.summary.value" value="{{system.summary.value}}" data-dtype="String" class="resource-input summary" />
+        </div>
+      </span>
+    </div>
+  </header>

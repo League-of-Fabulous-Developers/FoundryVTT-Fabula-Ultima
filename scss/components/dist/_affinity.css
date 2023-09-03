@@ -1,0 +1,34 @@
+.icon-aff {
+  display: inline-block;
+  padding: 2px;
+}
+.icon-aff.fa-sword {
+  color: #dddddd;
+}
+.icon-aff.fa-wind {
+  color: #cfd600;
+}
+.icon-aff.fa-bolt {
+  color: #ffef26;
+}
+.icon-aff.fa-moon {
+  color: #e40134;
+}
+.icon-aff.fa-hill-rockslide {
+  color: #d29d3e;
+}
+.icon-aff.fa-fire {
+  color: #f59a00;
+}
+.icon-aff.fa-snowflake {
+  color: #9cbccd;
+}
+.icon-aff.fa-sun {
+  color: #fff7b2;
+}
+.icon-aff.fa-skull-crossbones {
+  color: #d679a2;
+}
+.icon-aff:before {
+  text-shadow: 2px 2px 1px black;
+}
