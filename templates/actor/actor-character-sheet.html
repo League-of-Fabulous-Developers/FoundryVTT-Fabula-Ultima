@@ -114,7 +114,7 @@
 
     <!-- DEF -->
     <div class="resource-content  flex-group-center">
-      <label for="system.derived.def.value" class="resource-label rollable roll-init" data-label="{{localize 'FU.Defense'}}" data-type="def"></label>
+      <label for="system.derived.def.value" class="resource-label rollable" data-label="{{localize 'FU.Defense'}}" data-type="def"></label>
         <span class="rollable resource-label">
           <i class="fa-solid fa-shield icon"></i>{{localize 'FU.DefenseAbbr'}}
         </span>
@@ -126,7 +126,7 @@
 
     <!-- MDEF -->
     <div class="resource-content  flex-group-center">
-      <label for="system.derived.mdef.value" class="resource-label rollable roll-init" data-label="{{localize 'FU.MagicDefense'}}" data-type="mdef"></label>
+      <label for="system.derived.mdef.value" class="resource-label rollable" data-label="{{localize 'FU.MagicDefense'}}" data-type="mdef"></label>
         <span class="rollable resource-label">
           <i class="fa-solid fa-shield-halved icon"></i>{{localize 'FU.MagicDefenseAbbr'}}
         </span>
@@ -138,8 +138,8 @@
 
     <!-- Initiative -->
     <div class="resource-content  flex-group-center">
-      <div class="resource-label rollable" data-label="Initiative" data-type="initiative" data-roll="1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value">
-        <span class="rollable resource-label">
+      <div class="resource-label" data-label="Initiative">
+        <span class="rollable resource-label rollinit" data-type="rollinit" data-roll-type="rollinit" data-roll="1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value">
           <i class="fa-solid fa-clock icon"></i>{{localize 'FU.IsInitiative'}}
         </span>
       </div>
@@ -186,15 +186,14 @@
 
     <!-- Roll Check -->
     <div class="resource flex-group-center">
-      <span class="rollable rollcheck" data-type="rollcheck" data-label="Roll Checks" data-roll="1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value">
-        <!-- -->
+      <span class="rollable rollcheck" data-type="rollcheck" data-roll-type="rollcheck" data-roll="1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value">
         <label for="system.derived.init.value" class="resource-label">
           <span class="rollable resource-label">
             <i class="fa-solid fa-dice icon"></i>{{localize 'FU.RollCheck'}}
           </span>
         </label>
       </span>
-      <div class="resource-content flexrow flex-center flex-between buttons-inc roll-check">
+      <div class="resource-content flexrow flex-center flex-between buttons-inc">
         <div class="">
           <select value="{{system.rollInfo.attributes.primary.value}}" name="system.rollInfo.attributes.primary.value" class="resource-input">
             {{#select system.rollInfo.attributes.primary.value}}
@@ -392,20 +391,21 @@
           </div>
         </div>
 
-        {{!-- Bond Section --}}
-        <section class="grid-start-4">
-          <div class="resource-content grid grid-5col">
-            {{!-- New Bonds Here--}}
-            {{> "systems/fabulaultima/templates/actor/parts/actor-bonds.html" groups=systemData.bond dtypes=dtypes}}
-          </div>
+      {{!-- Bond Section --}}
+      <section class="grid-start-4">
+        <div class="resource-content grid grid-5col">
+          {{!-- New Bonds Here--}}
+          {{> "systems/fabulaultima/templates/actor/parts/actor-bonds.html" groups=systemData.bond dtypes=dtypes}}
+        </div>
 
-          <div class="buttons-inc">
-            <a class="align-center buttons-container-inc" data-tooltip="Add Bond" data-type="bond">
-              <button class="increment-button" data-resource="" data-tooltip="{{localize 'FU.Add'}}" data-action=""><i class="fas fa-plus"></i></button>
-            </a>
-          </div>
-
+        {{!-- Delete Bonds Here--}}
+        <div class="buttons-inc">
+          <a class="align-center buttons-container-inc" data-tooltip="Add Bond" data-type="bond">
+            <button class="increment-button" data-resource="" data-tooltip="{{localize 'FU.Add'}}" data-action=""><i class="fas fa-plus"></i></button>
+          </a>
+        </div>
       </section>
+
     </section>
     <!-- End Bonds here-->
 

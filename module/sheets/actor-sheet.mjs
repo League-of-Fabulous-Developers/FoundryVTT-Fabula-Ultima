@@ -388,6 +388,9 @@ export class FUActorSheet extends ActorSheet {
     // Rollable abilities.
     html.find(".rollable").click(this._onRoll.bind(this));
 
+    // html.find(".rollcheck").click((ev) => {
+    //   ChatMessage.create({content: "<h3>Bloo</h3>"})
+    // });
 
     // Roll Check Options
     html.find(".roll-check-option").click((ev) => {
@@ -506,6 +509,62 @@ export class FUActorSheet extends ActorSheet {
 
 
   /**
+   * Performs a initiative check based and displays the result in a chat message.
+   */
+  _initCheck() {
+    let content = "Testing Roll Initiative";
+    //todo: roll initiative and display results
+
+    // Prepare chat data for displaying the message
+    const speaker = ChatMessage.getSpeaker({ actor: this.actor });
+    const rollMode = game.settings.get("core", "rollMode");
+    const title = game.i18n.localize("FU.IsInitiative");
+    const label = `
+        <div class="flex-group-center" style="">
+            <img style="border: 0px; -webkit-filter: drop-shadow(2px 2px 4px #000000); filter: drop-shadow(2px 2px 4px #000000); position: relative; margin-bottom: 0px;" />
+            <p style="line-height: 1.2; color: Ivory; font-size: 24px; text-shadow: 2px 2px 4px #000000; box-shadow: 3px 6px darkslategrey; padding: 10px; border-style: solid; border-width: thin; border-color: #fbfced; ; border-radius: 12px; background-color: #3d6243;">${title}</p>
+        </div>
+    `;
+      // Create a chat message.
+      ChatMessage.create({
+        speaker: speaker,
+        rollMode: game.settings.get("core", "rollMode"),
+        flavor: label,
+        content,
+        flags: {
+        },
+      });
+    }
+
+  /**
+   * Performs a rollcheck based on selected primary/secondary selection displays the result in a chat message.
+   */
+  _rollCheck() {
+    let content = "Testing Roll Check";
+    //todo: roll primary/secondary selection and display results
+
+    // Prepare chat data for displaying the message
+    const speaker = ChatMessage.getSpeaker({ actor: this.actor });
+    const rollMode = game.settings.get("core", "rollMode");
+    const title = game.i18n.localize("FU.RollCheck");
+    const label = `
+        <div class="flex-group-center" style="">
+            <img style="border: 0px; -webkit-filter: drop-shadow(2px 2px 4px #000000); filter: drop-shadow(2px 2px 4px #000000); position: relative; margin-bottom: 0px;" />
+            <p style="line-height: 1.2; color: Ivory; font-size: 24px; text-shadow: 2px 2px 4px #000000; box-shadow: 3px 6px darkslategrey; padding: 10px; border-style: solid; border-width: thin; border-color: #fbfced; ; border-radius: 12px; background-color: #3d6243;">${title}</p>
+        </div>
+    `;
+      // Create a chat message.
+      ChatMessage.create({
+        speaker: speaker,
+        rollMode: game.settings.get("core", "rollMode"),
+        flavor: label,
+        content,
+        flags: {
+        },
+      });
+    }
+
+  /**
    * Handles clickable rolls based on different roll types.
    * @param {Event} event   The originating click event
    * @private
@@ -514,7 +573,7 @@ export class FUActorSheet extends ActorSheet {
       event.preventDefault();
       const element = event.currentTarget;
       const dataset = element.dataset;
-
+      console.log("Datatype=", dataset.rollType)
       // Handle item rolls.
       if (dataset.rollType) {
         if (dataset.rollType === "item") {
@@ -522,9 +581,14 @@ export class FUActorSheet extends ActorSheet {
           const item = this.actor.items.get(itemId);
           if (item) return item.roll();
         }
-
         if (dataset.rollType === "behavior") {
           return this._rollBehavior();
+        }
+        if (dataset.rollType === "rollcheck") {
+          return this._rollCheck();
+        }
+        if (dataset.rollType === "rollinit") {
+          return this._initCheck();
         }
       }
       // Handle item-slot rolls.

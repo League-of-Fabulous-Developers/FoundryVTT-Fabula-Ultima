@@ -5,6 +5,7 @@
 export class FUItem extends Item {
   /**
    * Augment the basic Item data model with additional dynamic data.
+   * This method is automatically called when an item is created or updated.
    */
   prepareData() {
     // As with the actor class, items are documents that can have their data
@@ -13,22 +14,32 @@ export class FUItem extends Item {
   }
 
   /**
-   * Prepare a data object which is passed to any Roll formulas which are created related to this Item
+   * Prepare a data object which is passed to any Roll formulas that are created related to this Item.
    * @private
+   * @returns {object|null} The roll data object, or null if no actor is associated with this item.
    */
   getRollData() {
     // If present, return the actor's roll data.
     if (!this.actor) return null;
     const rollData = this.actor.getRollData();
+    
     // Grab the item's system data as well.
     rollData.item = foundry.utils.deepClone(this.system);
 
     return rollData;
   }
-
+  /**
+   * Get the display data for a weapon item.
+   *
+   * @returns {object|boolean} An object containing weapon display information, or false if this is not a weapon.
+   * @property {string} attackString - The weapon's attack description.
+   * @property {string} damageString - The weapon's damage description.
+   * @property {string} qualityString - The weapon's quality description.
+   */
   getWeaponDisplayData() {
+    // Check if this item is a weapon
     if (this.type !== "weapon") {
-      return false;
+        return false;
     }
     
     const qualText = this.system.quality?.value
@@ -261,17 +272,26 @@ export class FUItem extends Item {
 
   getQualityString() {
     const item = this;
-    return item.system.quality?.value
-      ? `<div class="detail-desc flex-group-center grid grid-3col style="padding:0 2px 0 2px;">
+    if (item.type === "weapon") {
+      return `
+        <div class="detail-desc flex-group-center grid grid-3col" style="padding: 0 2px;">
           <p>${item.system.type.value}</p>
           <p>${item.system.hands.value}</p>
-          <p>${item.system.catagory.value}</p>
+          <p>${item.system.category.value}</p>
         </div>
-        <div class="detail-desc" style="padding: 0 2px 0 2px;">
+        <div class="detail-desc" style="padding: 0 2px;">
           <p>${item.system.quality.value}</p>
-        </div>`
-      : "";
+        </div>`;
+    } else if (["shield", "armor", "accessory"].includes(item.type)) {
+      return `
+        <div class="detail-desc" style="padding: 0 2px;">
+          <p>${item.system.quality.value}</p>
+        </div>`;
+    } else {
+      return "";
+    }
   }
+  
   
   getSpellDataString() {
     const item = this;
@@ -322,7 +342,7 @@ export class FUItem extends Item {
   getZeroDataString() {
     const item = this;
     return item.type === "zeroPower"
-      ?  `<div class="spelldesc flex-group-center grid grid-3col"> <p>${item.system.zeroTrigger.value}</p> <p>${item.system.zeroEffect.value}</p> <p>${item.system.trigger.current} / {item.system.trigger.max} </p> </div>`
+      ?  `<div class="spelldesc flex-group-center grid grid-3col"> <p>${item.system.zeroTrigger.value}</p> <p>${item.system.zeroEffect.value}</p> <p>Clock <br> ${item.system.trigger.current} / ${item.system.trigger.max} </p> </div>`
       : "";
   }
   

@@ -29,17 +29,17 @@ export class FUActor extends Actor {
    */
   prepareDerivedData () {
     const actorData = this
-    //const systemData = actorData.system;
-    //const flags = actorData.flags.fabulaultima || {};
+    const systemData = actorData.system;
+    const flags = actorData.flags.fabulaultima || {};
 
-/*     const disableAutomation = game.settings.get(
+    const disableAutomation = game.settings.get(
       'fabulaultima',
       'disableAutomation'
     )
 
     if (disableAutomation) {
       return // Exit early
-    } */
+    } 
 
     this._calculateResources(actorData)
     this._calculateTotalLevels(actorData)
@@ -55,7 +55,7 @@ export class FUActor extends Actor {
   }
 
   /**
-   * Calculate and update the defenses (defensive attributes) of an actor based on equipped items and attributes.
+   * Calculate and update the defenses/magical defenses of an actor based on equipped items and attributes.
    *
    * @param {Object} actorData
    */
@@ -201,101 +201,122 @@ export class FUActor extends Actor {
     }
   }
 
-  _calculateTotalLevels (actorData) {
+  /**
+   * Calculate the total levels for classes, skills, and heroic max levels,
+   * and update the derived values in the actor's system data.
+   *
+   * @param {object} actorData - The actor's data object.
+   */
+  _calculateTotalLevels(actorData) {
     const systemData = actorData.system;
 
-    // Calculate total class levels and total skill levels
-    const classes = actorData.items.filter(item => item.type === 'class')
-    const totalClassLevels = classes.reduce((sum, item) => {
-      return sum + parseInt(item.system.level.value)
-    }, 0)
+    /**
+     * Calculate the total levels for a specific type of items.
+     *
+     * @param {object[]} items - An array of items to calculate levels from.
+     * @param {string} itemType - The type of items to calculate levels for (e.g., 'class' or 'skill').
+     * @returns {number} The total levels for the specified item type.
+     */
+    const calculateTotal = (items, itemType) => {
+        return items.reduce((sum, item) => {
+            // Validate the data before using parseInt
+            const level = parseInt(item.system?.level?.value || 0);
+            return sum + level;
+        }, 0);
+    };
 
-    const skills = actorData.items.filter(item => item.type === 'skill')
-    const totalSkillLevels = skills.reduce((sum, item) => {
-      return sum + parseInt(item.system.level.value)
-    }, 0)
+    // Filter class and skill items from the actor's items
+    const classes = actorData.items.filter(item => item.type === 'class');
+    const skills = actorData.items.filter(item => item.type === 'skill');
 
-    // Calculate totalHeroicMax based on individual item class levels reaching 10
-    let totalHeroicMax = 0
-    classes.forEach(item => {
-      if (parseInt(item.system.level.value) >= 10) {
-        totalHeroicMax++
-      }
-    })
+    // Calculate total levels for classes and skills
+    const totalClassLevels = calculateTotal(classes, 'class');
+    const totalSkillLevels = calculateTotal(skills, 'skill');
 
-    // Stores it in it's derived data
-    systemData.derived.classmax.value = totalClassLevels
-    systemData.derived.skillmax.value = totalSkillLevels
-    systemData.derived.heroicmax.value = totalHeroicMax
+    // Calculate the total count of classes with level >= 10 (heroic max)
+    const totalHeroicMax = classes.reduce((count, item) => {
+        if (parseInt(item.system?.level?.value || 0) >= 10) {
+            return count + 1;
+        }
+        return count;
+    }, 0);
+
+    // Update the derived values in the system data
+    systemData.derived.classmax.value = totalClassLevels;
+    systemData.derived.skillmax.value = totalSkillLevels;
+    systemData.derived.heroicmax.value = totalHeroicMax;
   }
 
   /**
    * Calculate and update ritual and project data based on certain factors.
    * @param {object} actorData - The actor's data object containing items to be processed.
    */
-  _calculateCrafting (actorData) {
-    const potencyMPs = { minor: 20, medium: 30, major: 40, extreme: 50 }
-    const potencyDLs = { minor: 7, medium: 10, major: 13, extreme: 16 }
-    const potencyClocks = { minor: 4, medium: 6, major: 6, extreme: 8 }
-    const areaMPs = { individual: 1, small: 2, large: 3, huge: 4 }
-    const potencyCosts = { minor: 100, medium: 200, major: 400, extreme: 800 }
-    const areaCosts = { individual: 1, small: 2, large: 3, huge: 4 }
-    const usesCosts = { consumable: 1, permanent: 5 }
+  _calculateCrafting(actorData) {
+    // Define constant objects for various factors
+    const constants = {
+        potencyMPs: { minor: 20, medium: 30, major: 40, extreme: 50 },
+        potencyDLs: { minor: 7, medium: 10, major: 13, extreme: 16 },
+        potencyClocks: { minor: 4, medium: 6, major: 6, extreme: 8 },
+        areaMPs: { individual: 1, small: 2, large: 3, huge: 4 },
+        potencyCosts: { minor: 100, medium: 200, major: 400, extreme: 800 },
+        areaCosts: { individual: 1, small: 2, large: 3, huge: 4 },
+        usesCosts: { consumable: 1, permanent: 5 },
+    };
 
-    const rituals = actorData.items.filter(item => item.type === 'ritual')
-    const projects = actorData.items.filter(item => item.type === 'project')
+    // Filter rituals and projects
+    const rituals = actorData.items.filter(item => item.type === 'ritual');
+    const projects = actorData.items.filter(item => item.type === 'project');
 
+    // Function to calculate and update an item's system values
+    function calculateAndUpdateItem(item, constants) {
+        const { potency, area, mpCost, dLevel, clock } = item.system;
+
+        const potencyVal = potency.value;
+        const areaVal = area.value;
+
+        const calcMP = constants.potencyMPs[potencyVal] * constants.areaMPs[areaVal];
+        const calcDL = constants.potencyDLs[potencyVal];
+        const calcClock = constants.potencyClocks[potencyVal];
+
+        mpCost.value = calcMP;
+        dLevel.value = calcDL;
+        clock.value = calcClock;
+    }
+
+    // Process rituals
     rituals.forEach(ritual => {
-      const potencyVal = ritual.system.potency.value
-      const areaVal = ritual.system.area.value
-      let mpCostVal = ritual.system.mpCost.value
-      let dLevelVal = ritual.system.dLevel.value
-      let clockVal = ritual.system.clock.value
-      let calcMP = potencyMPs[potencyVal] * areaMPs[areaVal]
-      let calcDL = potencyDLs[potencyVal]
-      let calcClock = potencyClocks[potencyVal]
+        calculateAndUpdateItem(ritual, constants);
+    });
 
-      mpCostVal = calcMP
-      dLevelVal = calcDL
-      clockVal = calcClock
-
-      ritual.system.mpCost.value = mpCostVal
-      ritual.system.dLevel.value = dLevelVal
-      ritual.system.clock.value = clockVal
-    })
-
+    // Process projects
     projects.forEach(project => {
-      const potencyVal = project.system.potency.value
-      const areaVal = project.system.area.value
-      const usesVal = project.system.use.value
-      let numTinkerVal = project.system.numTinker.value
-      let numHelperVal = project.system.numHelper.value
-      let lvlVisionVal = project.system.lvlVision.value
-      let costVal = project.system.cost.value
-      let progressVal = project.system.progress.value
-      let progPDayVal = project.system.progressPerDay.value
-      let daysVal = project.system.days.value
-      let isFlawedVal = project.system.isFlawed.value
+        const { potency, area, use, numTinker, numHelper, lvlVision, cost, progress, progressPerDay, days, isFlawed, discount } = project.system;
 
-      /* Autocalculations */
-      let discounteVal = lvlVisionVal * 100
-      const flawedMod = isFlawedVal ? 0.75 : 1
-      costVal =
-        potencyCosts[potencyVal] *
-        areaCosts[areaVal] *
-        usesCosts[usesVal] *
-        flawedMod
-      progressVal = Math.ceil(costVal / 100 > 1 ? costVal / 100 : 1)
-      progPDayVal = numTinkerVal * 2 + numHelperVal + lvlVisionVal
-      daysVal = progressVal / progPDayVal
-      lvlVisionVal = Math.min(Math.max(lvlVisionVal, 0), 5)
-      project.system.discount.value = discounteVal
-      project.system.cost.value = costVal
-      project.system.progress.value = progressVal
-      project.system.progressPerDay.value = progPDayVal
-      project.system.days.value = Math.ceil(daysVal)
-      project.system.discount.value = discounteVal
-    })
+        const potencyVal = potency.value;
+        const areaVal = area.value;
+        const usesVal = use.value;
+
+        // Autocalculations
+        let discountValue = lvlVision.value * 100;
+        const flawedMod = isFlawed.value ? 0.75 : 1;
+        const costValue = constants.potencyCosts[potencyVal] * constants.areaCosts[areaVal] * constants.usesCosts[usesVal] * flawedMod;
+        const progressValue = Math.max(Math.ceil(costValue / 100), 1);
+        const progPDayValue = numTinker.value * 2 + numHelper.value + lvlVision.value;
+        const daysValue = Math.ceil(progressValue / progPDayValue);
+
+        // Ensure lvlVision is within the range [0, 5]
+        lvlVision.value = Math.min(Math.max(lvlVision.value, 0), 5);
+
+        // Calculate discount.value within the range [0, 500]
+        discountValue = Math.min(Math.max(discountValue, 0), 500);
+
+        // Update system values
+        discount.value = discountValue;
+        cost.value = costValue;
+        progress.value = progressValue;
+        progressPerDay.value = progPDayValue;
+        days.value = daysValue;
+    });
   }
 
   /**
@@ -471,6 +492,8 @@ export class FUActor extends Actor {
 
   async showFloatyText (input) {
     let scrollingTextArgs
+
+    if (!canvas.scene) return;
 
     const gridSize = canvas.scene.grid.size
 

@@ -2,7 +2,7 @@
   "id": "fabulaultima",
   "title": "Fabula Ultima (Dev Build)",
   "description": "The Fabula Ultima system for FoundryVTT!",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "compatibility": {
     "minimum": "10",
     "verified": "10.303",
@@ -46,14 +46,6 @@
           {
           "id": "socketlib",
           "type": "module"
-          },
-          {
-          "id": "lib-wrapper",
-          "type": "module"
-          },
-          {
-            "id": "lib-themer",
-            "type": "module"
           }
       ]
   },

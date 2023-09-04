@@ -141,17 +141,16 @@
     </div>
 
     <!-- Initiative -->
-    <div class="resource flex-group-center">
-      <div class="resource-label rollable" data-label="Initiative" data-type="initiative" data-roll="1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value">
-        <span class="rollable resource-label">
+    <div class="resource-content  flex-group-center">
+      <div class="resource-label" data-label="Initiative">
+        <span class="rollable resource-label rollinit" data-type="rollinit" data-roll-type="rollinit" data-roll="1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value">
           <i class="fa-solid fa-clock icon"></i>{{localize 'FU.IsInitiative'}}
         </span>
       </div>
-      <div class="resource-content  flex-center">
+      <div class="resource-content flex-center">
         <input class="resource-input" id="init-input" type="text" name="system.derived.init.value" value="{{system.derived.init.value}}" data-dtype="Number" data-tooltip="{{localize 'FU.Initiative'}}<br>Current: {{system.derived.init.value}}<br>Bonus: {{system.derived.init.bonus}}" aria-describedby="tooltip"  disabled>
       </div>
     </div>
-
 
     <!-- Resource 1 -->
     <div class="resource-content flex-group-center">
@@ -192,15 +191,14 @@
 
     <!-- Roll Check -->
     <div class="resource flex-group-center">
-      <span class="rollable rollcheck" data-type="rollcheck" data-label="Roll Checks" data-roll="1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value">
-        <!-- -->
+      <span class="rollable rollcheck" data-type="rollcheck" data-roll-type="rollcheck" data-roll="1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value">
         <label for="system.derived.init.value" class="resource-label">
           <span class="rollable resource-label">
             <i class="fa-solid fa-dice icon"></i>{{localize 'FU.RollCheck'}}
           </span>
         </label>
       </span>
-      <div class="resource-content flexrow flex-center flex-between buttons-inc roll-check">
+      <div class="resource-content flexrow flex-center flex-between buttons-inc">
         <div class="">
           <select value="{{system.rollInfo.attributes.primary.value}}" name="system.rollInfo.attributes.primary.value" class="resource-input">
             {{#select system.rollInfo.attributes.primary.value}}
