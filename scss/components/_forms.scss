@@ -59,10 +59,6 @@
   }
 }
 
-// Better readability for description
-.npc-border-col {
-  border: 4px double $color-secondary;
-}
 
 .tabs .item.active {
   text-shadow: 0 0 10px $color-shadow;
@@ -72,10 +68,36 @@
   flex: 0;
 }
 
+
+
+// Better readability for description
+.npc-border-col {
+  border: 4px double $color-secondary;
+  max-height: 20em;
+}
+
+.npc-desc-sec {
+  margin: 0.5em;
+}
+.npc-desc {
+  max-height: 20em;
+  height: 100%;
+  .editor{
+    height: 86%;
+    min-height: 34px;
+  }
+  .tox-tinymce {
+    height: 50%;
+    min-height: 85px;
+  }
+  
+}
+
+
 /* Edit */
 .sheet-body,
 .sheet-body .tab {
-  height: 50%;
+
   min-height: 50%;
   max-height: 100%;
 
@@ -85,14 +107,16 @@
   }
 }
 
-.npc-desc {
-  margin: 0.5em;
+.editor{
+  height: 100%;
+  min-height: 34px;
 }
 
-.sheet-body .tab .editor {
+.tox-tinymce {
   height: 100%;
-  max-height: 100%;
+  min-height: 85px;
 }
+
 
 .tox .tox-editor-container {
   background: #fff;
