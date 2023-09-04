@@ -1,8 +1,8 @@
-<div class="input-container">
-    <input type="text" data-tooltip="Bond Name" name="system.resources.bond.name" value="{{system.resources.bond.name}}" data-dtype="String" class="resource-input-bonds">
+<div class="resource-content">
+    <input type="text" data-tooltip="Bond Name" name="system.resources.bond.name" value="{{system.resources.bond.name}}" data-dtype="String" class="resource-input select-bonds">
 </div>
-<div class="input-container">
-    <select value="{{system.resources.bond.admInf}}" name="system.resources.bond.admInf" class="resource-input-bonds">
+<div class="resource-content">
+    <select value="{{system.resources.bond.admInf}}" name="system.resources.bond.admInf" class="resource-input select-bonds">
         {{#select system.resources.bond.admInf}}
         <option value=""></option>
         <option value="Admiration">{{localize 'FU.Admiration'}}</option>
@@ -10,8 +10,8 @@
         {{/select}}
     </select>
 </div>
-<div class="input-container">
-    <select value="{{system.resources.bond.loyMis}}" name="system.resources.bond.loyMis" class="resource-input-bonds">
+<div class="resource-content">
+    <select value="{{system.resources.bond.loyMis}}" name="system.resources.bond.loyMis" class="resource-input select-bonds">
         {{#select system.resources.bond.loyMis}}
         <option value=""></option>
         <option value="Loyalty">{{localize 'FU.Loyalty'}}</option>
@@ -19,8 +19,8 @@
         {{/select}}
     </select>
 </div>
-<div class="input-container">
-    <select value="{{system.resources.bond.affHat}}" name="system.resources.bond.affHat" class="resource-input-bonds">
+<div class="resource-content">
+    <select value="{{system.resources.bond.affHat}}" name="system.resources.bond.affHat" class="resource-input select-bonds">
         {{#select system.resources.bond.affHat}}
         <option value=""></option>
         <option value="Affection">{{localize 'FU.Affection'}}</option>
@@ -28,9 +28,9 @@
         {{/select}}
     </select>
 </div>
-<div class="input-container flexrow">
-    <input type="number" data-tooltip="Bond Strength" name="system.resources.bond.strength" value="{{system.resources.bond.strength}}" data-dtype="Number" class="resource-input">
-    <a class="item-control item-delete resource-input-bonds" data-tooltip="{{localize 'FU.Delete'}}" data-type="bond" style="border-radius: 10%; margin: 0 5px 0 7px;">
+<div class="resource-content flexrow">
+    <input type="number" data-tooltip="Bond Strength" name="system.resources.bond.strength" value="{{system.resources.bond.strength}}" data-dtype="Number" class="resource-input select-bonds">
+    <a class="item-control item-delete resource-input select-bonds" data-tooltip="{{localize 'FU.Delete'}}" data-type="bond" style="border-radius: 10%;">
         <i class="fas fa-trash" ></i>
     </a>
 </div>

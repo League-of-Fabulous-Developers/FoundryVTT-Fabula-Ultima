@@ -393,19 +393,18 @@
 
       {{!-- Bond Section --}}
       <section class="grid-start-4">
-        <div class="resource-content grid grid-5col">
+        <div class="resource-content grid grid-5col flexrow flex-between">
           {{!-- New Bonds Here--}}
           {{> "systems/fabulaultima/templates/actor/parts/actor-bonds.html" groups=systemData.bond dtypes=dtypes}}
         </div>
 
-        {{!-- Delete Bonds Here--}}
-        <div class="buttons-inc">
-          <a class="align-center buttons-container-inc" data-tooltip="Add Bond" data-type="bond">
-            <button class="increment-button" data-resource="" data-tooltip="{{localize 'FU.Add'}}" data-action=""><i class="fas fa-plus"></i></button>
+        {{!-- Add New Bonds Here--}}
+        <div class="buttons-inc flex-group-center">
+          <a class="buttons-container-inc" data-tooltip="Add Bond" data-type="bond">
+            <button class="increment-button" style="visibility: visible;" data-resource="" data-tooltip="{{localize 'FU.Add'}}" data-action=""><i class="fas fa-plus"></i></button>
           </a>
         </div>
       </section>
-
     </section>
     <!-- End Bonds here-->
 
