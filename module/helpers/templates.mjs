@@ -8,6 +8,7 @@
 
     // Actor partials.
     "systems/fabulaultima/templates/actor/parts/actor-bonds.html",
+    "systems/fabulaultima/templates/actor/parts/actor-favorite.html",
     "systems/fabulaultima/templates/actor/parts/actor-features.html",
     "systems/fabulaultima/templates/actor/parts/actor-items.html",
     "systems/fabulaultima/templates/actor/parts/actor-spells.html",

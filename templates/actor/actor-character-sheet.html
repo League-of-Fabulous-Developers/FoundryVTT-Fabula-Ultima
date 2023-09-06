@@ -99,7 +99,7 @@
   <div class="grid grid-4col" style="align-items: baseline;">
 
     <!-- Fabula Points -->
-    <div class="resource-content  flex-group-center">
+    <div class="resource-content flex-group-center">
       <label for="system.resources.fp.value">
         <span class="resource-label">
           <i class="fa-solid fa-crystal-ball icon"></i>{{localize 'FU.FabulaPoints'}}
@@ -113,31 +113,31 @@
     </div>
 
     <!-- DEF -->
-    <div class="resource-content  flex-group-center">
+    <div class="resource-content flex-group-center">
       <label for="system.derived.def.value" class="resource-label rollable" data-label="{{localize 'FU.Defense'}}" data-type="def"></label>
         <span class="rollable resource-label">
           <i class="fa-solid fa-shield icon"></i>{{localize 'FU.DefenseAbbr'}}
         </span>
       </label>
-      <div class="resource-content  flex-center">
+      <div class="resource-content flex-center">
         <input class="resource-input" id="def-input"type="text" name="system.derived.def.value" value="{{system.derived.def.value}}" data-dtype="Number" data-tooltip="{{localize 'FU.Defense'}}<br>Current: {{system.derived.def.value}}<br>Mod: {{system.derived.def.bonus}}" aria-describedby="tooltip" disabled>
       </div>
     </div>
 
     <!-- MDEF -->
-    <div class="resource-content  flex-group-center">
+    <div class="resource-content flex-group-center">
       <label for="system.derived.mdef.value" class="resource-label rollable" data-label="{{localize 'FU.MagicDefense'}}" data-type="mdef"></label>
         <span class="rollable resource-label">
           <i class="fa-solid fa-shield-halved icon"></i>{{localize 'FU.MagicDefenseAbbr'}}
         </span>
       </label>
-      <div class="resource-content  flex-center">
+      <div class="resource-content flex-center">
         <input class="resource-input" id="mdef-input" type="text" name="system.derived.mdef.value" value="{{system.derived.mdef.value}}" data-dtype="Number" data-tooltip="{{localize 'FU.MagicDefense'}}<br>Current: {{system.derived.mdef.value}}<br>Mod: {{system.derived.mdef.bonus}}" aria-describedby="tooltip" disabled>
       </div>
     </div>
 
     <!-- Initiative -->
-    <div class="resource-content  flex-group-center">
+    <div class="resource-content flex-group-center">
       <div class="resource-label" data-label="Initiative">
         <span class="rollable resource-label rollinit" data-type="rollinit" data-roll-type="rollinit" data-roll="1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value">
           <i class="fa-solid fa-clock icon"></i>{{localize 'FU.IsInitiative'}}
@@ -290,65 +290,7 @@
         
         <!-- Favorite Section -->
         <section class="grid-start-2 grid-span-2 align-right">
-          <ol class="items-list">
-            <li class="item flexrow items-header">
-              <div class="item-name">{{localize 'FU.Name'}}</div>
-              <div class="item-equipped">{{localize 'FU.FavoriteStatus'}}</div>
-              <div class="item-controls">
-                <a
-                  class="item-control"
-                  data-tooltip="{{localize 'FU.isFavored'}}"
-                  data-type="weapon"
-                  ><i class="fa-solid fa-sort"></i>{{localize 'FU.Sort'}}</a
-                >
-              </div>
-            </li>
-            {{#each items as |item id|}}
-              {{#if (and item.system.isFavored.value)}}
-                  <li class="item" data-item-id="{{item._id}}">
-                    <div class="flexrow">
-                      <div class="item-name click-item individual-trapping-and-description">
-                        <div class="item-image">
-                          <a class="rollable" data-roll-type="item">
-                            <div class="item-image-wrap">
-                              <img src="{{item.img}}" data-tooltip="{{item.name}}" class="item-image-res" />
-                            </div>
-                          </a>
-                        </div>
-                        <h4>
-                          {{item.name}} {{#if item.isMartial.value}}
-                          <span class="is-martial">✦</span>
-                          {{/if}}
-                        </h4>
-                      </div>
-                      <div class="item-equipped">
-  
-                      </div>
-                      <div class="item-controls">
-                        <a
-                        class="item-control item-favored"
-                        {{#if item.system.isFavored.value}}
-                        data-tooltip="{{localize 'FU.Unfavorite'}}"
-                        {{else}}
-                        data-tooltip="{{localize 'FU.Favorite'}}"
-                        {{/if}}
-                      >
-                        {{#if item.system.isFavored.value}}
-                        <i class="fa-solid fa-star"></i>
-                        {{else}}
-                        <i class="fa-regular fa-star"></i>
-                        {{/if}}
-                      </a>
-                        <a class="item-control item-edit" data-tooltip="{{localize 'FU.WeaponEdit'}}"
-                          ><i class="fas fa-edit"></i
-                        ></a>
-                      </div>
-                    </div>
-                    <div class="individual-description">{{ item.quality.value }}</div>
-                  </li>
-                {{/if}}
-            {{/each}}
-          </ol>
+          {{> "systems/fabulaultima/templates/actor/parts/actor-favorite.html" groups=systemData.bond dtypes=dtypes}}
         </section>
       
       <!-- Start Trait Border Label here-->

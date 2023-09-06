@@ -1,0 +1,88 @@
+<ol class="items-list">
+    <li class="item flexrow items-header">
+      <div class="item-name">{{localize 'FU.Name'}}</div>
+      <div class="item-equipped">{{localize 'FU.ItemType'}}</div>
+      <div class="item-controls">
+
+        <a
+          class="item-control sort"
+          data-tooltip="{{localize 'FU.Sort'}}"
+          data-type="sort"
+          >
+
+        <!-- TODO: Dynamically change icon/tooltip based on sorting type 
+
+            Item Type
+            <i class="fa-solid fa-sort"></i>
+            data-tooltip="{{localize 'FU.SortItemType'}}"
+
+            Alphabetical (asc)
+            <i class="fa-solid fa-arrow-down-a-z"></i>
+            data-tooltip="{{localize 'FU.SortAlphaAsc'}}"
+
+            Alphabetical (desc)
+            <i class="fa-solid fa-arrow-down-z-a"></i>
+            data-tooltip="{{localize 'FU.SortAlphaDesc'}}"
+
+            Ordered List
+            <i class="fa-solid fa-arrow-down-short-wide"></i>
+            data-tooltip="{{localize 'FU.SortOrderList'}}"
+        
+        -->
+          <i class="fa-solid fa-sort icon"></i>
+          {{localize 'FU.Sort'}}
+
+        <!-- TODO: This button will open filter sorting type dialog box  -->
+        <a class="item-control sort-edit" data-tooltip="{{localize 'FU.SortEdit'}}">
+        	<i class="fa-solid fa-filter"></i>
+        </a>
+
+        </a>
+      </div>
+    </li>
+    {{#each items as |item id|}}
+      {{#if (and item.system.isFavored.value)}}
+          <li class="item" data-item-id="{{item._id}}">
+            <div class="flexrow">
+              <div class="item-name click-item individual-trapping-and-description">
+                <div class="item-image">
+                  <a class="rollable" data-roll-type="item">
+                    <div class="item-image-wrap">
+                      <img src="{{item.img}}" data-tooltip="{{item.name}}" class="item-image-res" />
+                    </div>
+                  </a>
+                </div>
+                <h4>
+                  {{item.name}} {{#if item.isMartial.value}}
+                  <span class="is-martial">✦</span>
+                  {{/if}}
+                </h4>
+              </div>
+              <div class="item-equipped">
+                {{ item.type }}
+              </div>
+              <div class="item-controls">
+                <a
+                class="item-control item-favored"
+                {{#if item.system.isFavored.value}}
+                data-tooltip="{{localize 'FU.Unfavorite'}}"
+                {{else}}
+                data-tooltip="{{localize 'FU.Favorite'}}"
+                {{/if}}
+              >
+                {{#if item.system.isFavored.value}}
+                <i class="fa-solid fa-star"></i>
+                {{else}}
+                <i class="fa-regular fa-star"></i>
+                {{/if}}
+              </a>
+                <a class="item-control item-edit" data-tooltip="{{localize 'FU.WeaponEdit'}}"
+                  ><i class="fas fa-edit"></i
+                ></a>
+              </div>
+            </div>
+            <div class="individual-description">{{ item.quality.value }}</div>
+          </li>
+        {{/if}}
+    {{/each}}
+  </ol>
