@@ -29,6 +29,15 @@
               }}
             />
           </label>
+          <label class="checkbox">
+            <span>Flawed?</span>
+            <input
+              type="checkbox"
+              name="system.isFlawed.value"
+              {{ checked system.isFlawed.value }}
+            />
+          </label>  
+
           {{!-- NPC Relevent Option --}}
           {{#if (eq actor.type "npc")}}
           <label class="checkbox">
@@ -43,10 +52,11 @@
             />
           {{/if}}
         </div>
-        <div class="row-resource flex-group-center grid-3col">
-          <div class="tri-row-resource">
-            <label class="row-resource-label">Potency</label>
-            <select value="{{system.potency.value}}" name="system.potency.value">
+
+        <div class="grid grid-3col">
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label">{{localize 'FU.Potency'}}</label>
+            <select class="resource-input select-dropdown-m" value="{{system.potency.value}}" name="system.potency.value">
               {{#select system.potency.value}}
               <option value="minor">Minor</option>
               <option value="medium">Medium</option>
@@ -55,10 +65,9 @@
               {{/select}}
             </select>
           </div>
-        
-          <div class="tri-row-resource">
-            <label class="row-resource-label">Area</label>
-            <select value="{{system.area.value}}" name="system.area.value">
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label">{{localize 'FU.Area'}}</label>
+            <select class="resource-input select-dropdown-m" value="{{system.area.value}}" name="system.area.value">
               {{#select system.area.value}}
               <option value="individual">Individual</option>
               <option value="small">Small</option>
@@ -67,10 +76,9 @@
               {{/select}}
             </select>
           </div>
-        
-          <div class="tri-row-resource">
-            <label class="row-resource-label">Uses</label>
-            <select value="{{system.use.value}}" name="system.use.value">
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label">{{localize 'FU.Uses'}}</label>
+            <select class="resource-input select-dropdown-m" value="{{system.use.value}}" name="system.use.value">
               {{#select system.use.value}}
               <option value="consumable">Consumable</option>
               <option value="permanent">Permanent</option>
@@ -78,103 +86,96 @@
             </select>
           </div>
         </div>
-        
-        <div class="row-resource flex-group-center grid-3col">
-          <div class="tri-row-resource">
-            <label class="row-resource-label"># of Tinkerers</label>
+
+        <div class="grid grid-3col">
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label">{{localize 'FU.NumTinker'}}</label>
             <input
+              class="resource-input"
               type="text"
               name="system.numTinker.value"
               value="{{system.numTinker.value}}"
               data-dtype="Number"
             />
-          </div>
-        
-          <div class="tri-row-resource">
-            <label class="row-resource-label"># of Hired Helpers</label>
-            <input
+          </div>       
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label">{{localize 'FU.NumHelper'}}</label>
+            <input 
+              class="resource-input"
               type="text"
               name="system.numHelper.value"
               value="{{system.numHelper.value}}"
               data-dtype="Number"
             />
           </div>
-        
-          <div class="tri-row-resource">
-            <label class="row-resource-label">Level in Visionary</label>
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label">{{localize 'FU.LvlVision'}}</label>
             <input
+              class="resource-input"
               type="text"
               name="system.lvlVision.value"
               value="{{system.lvlVision.value}}"
               data-dtype="Number"
             />
           </div>
-        </div>        
-          
-        <div class="row-resource grid-4col">
-          <div class="quad-row-resource">
-            <label class="row-resource-label">Cost</label>
-            <input
-              type="text"
-              name="system.cost.value"
-              value="{{system.cost.value}}"
-              data-dtype="Number"
+        </div>
 
-            />
-          </div>
-        
-          <div class="quad-row-resource">
-            <label class="row-resource-label">Progress</label>
+        <div class="grid grid-3col">
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label">{{localize 'FU.Progress'}}</label>
             <input
               type="text"
               name="system.progress.value"
               value="{{system.progress.value}}"
               data-dtype="Number"
-              
+              disabled
             />
           </div>
         
-          <div class="quad-row-resource">
-            <label class="row-resource-label">Progress Per Days</label>
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label">{{localize 'FU.ProgressPerDay'}}</label>
             <input
               type="text"
               name="system.progressPerDay.value"
               value="{{system.progressPerDay.value}}"
               data-dtype="Number"
-              
+              disabled
             />
           </div>
-        
-          <div class="quad-row-resource">
-            <label class="row-resource-label">Days</label>
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label">{{localize 'FU.Days'}}</label>
             <input
               type="text"
               name="system.days.value"
               value="{{system.days.value}}"
               data-dtype="Number"
+              disabled
               
             />
           </div>
-        </div>        
-        
-        <div class="quad-row-resource">
-          <label class="row-resource-label">Cost Covered</label>
-          <input
-            type="text"
-            name="system.discount.value"
-            value="{{system.discount.value}}"
-            data-dtype="Number"
-          />
         </div>
 
-        <label class="checkbox">
-          <span>Flawed?</span>
-          <input
-            type="checkbox"
-            name="system.isFlawed.value"
-            {{ checked system.isFlawed.value }}
-          />
-        </label>        
-
+        <div class="grid grid-2col">
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label">{{localize 'FU.Cost'}}</label>
+            <input
+              type="text"
+              name="system.cost.value"
+              value="{{system.cost.value}}"
+              data-dtype="Number"
+              disabled
+            />
+          </div>
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label">{{localize 'FU.Discount'}}</label>
+            <input
+              type="text"
+              name="system.discount.value"
+              value="{{system.discount.value}}"
+              data-dtype="Number"
+              disabled
+            />
+          </div>
+        </div>
     </section>
   </form>

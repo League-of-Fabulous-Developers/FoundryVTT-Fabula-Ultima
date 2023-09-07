@@ -61,6 +61,7 @@
     "SortEdit": "Edit Sorting Types",
     "Zenit": "Zenit",
     "Cost": "Cost",
+    "Discount": "Discount",
     "Condition": "Condition",
     "Stat": "Stat",
     "Stats": "Stats",
@@ -319,6 +320,18 @@
     "Monster": "Monster",
     "Plant": "Plant",
     "Undead": "Undead",
-    "Humanoid": "Humanoid"
+    "Humanoid": "Humanoid",
+
+    "Potency": "Potency",
+    "Area": "Area",
+    "Use": "Use",
+    "Uses": "Uses",
+    "NumTinker": "# of Tinkerers",
+    "NumHelper": "# of Hired Helpers",
+    "LvlVision": "Level in Visionary",
+    "Progress": "Progress",
+    "ProgressPerDay": "Progress Per Day",
+    "Day": "Day",
+    "Days": "Days"
   }
 }
