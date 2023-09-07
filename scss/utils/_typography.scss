@@ -5,6 +5,27 @@
     text-transform: uppercase;
 }
 
+.quote {
+    border-left: 3px solid #999;
+    padding-left: 10px;
+    font-style: italic; 
+}
+.chat-desc {
+    .summary {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 20px;
+    }
+}
+
+.charname {
+    .resource-input-charname {
+        font-family: alice;
+    }
+}
+
+
 .chat-message {
     .message-header {
         .flavor-text {
@@ -13,3 +34,4 @@
         }
     }
 }
+

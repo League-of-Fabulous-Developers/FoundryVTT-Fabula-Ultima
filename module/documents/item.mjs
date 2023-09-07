@@ -266,40 +266,70 @@ export class FUItem extends Item {
         content = await this.getSingleRollForItem();
       }
     }
-
     return content;
   }
 
+  getDescriptionString() {
+    const item = this;
+    const summary = item.system.summary.value;
+    const hasSummary = summary && summary.trim() !== '';
+    const description = item.system.description;
+    const hasDescription = description && description.trim() !== '';
+  
+    if (hasSummary || hasDescription) {
+      return `<div class="chat-desc">
+        ${hasSummary ? `<blockquote class="summary quote">${summary}</blockquote>` : ''}
+        ${hasDescription ? `<span>${description}</span>` : ''}
+      </div>`;
+    } else {
+      return ''; // Return an empty string if both are empty
+    }
+  }
+  
   getQualityString() {
     const item = this;
     if (item.type === "weapon") {
-      return `
-        <div class="detail-desc flex-group-center grid grid-3col" style="padding: 0 2px;">
-          <p>${item.system.type.value}</p>
-          <p>${item.system.hands.value}</p>
-          <p>${item.system.category.value}</p>
-        </div>
-        <div class="detail-desc" style="padding: 0 2px;">
-          <p>${item.system.quality.value}</p>
-        </div>`;
+      const qualityValue = item.system.quality.value;
+      if (qualityValue.trim() !== "") {
+        return `
+          <div class="detail-desc flex-group-center grid grid-3col" style="padding: 0 2px;">
+            <span class="summary">${item.system.type.value}</span>
+            <span class="summary">${item.system.hands.value}</span>
+            <span class="summary">${item.system.category.value}</span>
+          </div>
+          <div class="detail-desc flexrow" style="padding: 0 2px;">
+            <span class="summary">Quality: ${qualityValue}</span>
+          </div>`;
+      } else {
+        return `
+          <div class="detail-desc flex-group-center grid grid-3col" style="padding: 0 2px;">
+            <span class="summary">${item.system.type.value}</span>
+            <span class="summary">${item.system.hands.value}</span>
+            <span class="summary">${item.system.category.value}</span>
+          </div>`;
+      }
     } else if (["shield", "armor", "accessory"].includes(item.type)) {
-      return `
-        <div class="detail-desc" style="padding: 0 2px;">
-          <p>${item.system.quality.value}</p>
-        </div>`;
+      const qualityValue = item.system.quality.value;
+      if (qualityValue.trim() !== "") {
+        return `
+          <div class="detail-desc flexrow" style="padding: 0 2px;">
+            <span class="summary">Quality: ${qualityValue}</span>
+          </div>`;
+      } else {
+        return "";
+      }
     } else {
       return "";
     }
   }
   
-  
   getSpellDataString() {
     const item = this;
     return item.type === "spell"
       ? `<div class="spell-desc flex-group-center grid grid-3col">
-          <p>${item.system.mpCost.value} MP</p>
-          <p>${item.system.target.value}</p>
-          <p>${item.system.duration.value}</p>
+          <span>${item.system.mpCost.value} MP</span>
+          <span>${item.system.target.value}</span>
+          <span>${item.system.duration.value}</span>
         </div>`
       : "";
   }
@@ -308,9 +338,9 @@ export class FUItem extends Item {
     const item = this;
     return item.type === "ritual"
       ? `<div class="spell-desc flex-group-center grid grid-3col">
-          <p>${item.system.mpCost.value} MP</p>
-          <p>${item.system.dLevel.value} DL</p>
-          <p>Clock ${item.system.clock.value}</p>
+          <span>${item.system.mpCost.value} MP</span>
+          <span>${item.system.dLevel.value} DL</span>
+          <span>Clock ${item.system.clock.value}</span>
         </div>`
       : "";
   }
@@ -321,7 +351,7 @@ export class FUItem extends Item {
       ? `<div class="spell-desc flex-group-center grid grid-3col">
           <div>
             <span>${item.system.cost.value} Zenith</span>
-            <span>${item.system.discount.value ? `<br>-${item.system.discount.value} Covered` : ''}</span>
+            <span>${item.system.discount.value ? `<br>-${item.system.discount.value} Discount` : ''}</span>
           </div>
           <div>${item.system.progress.value} Progress</div>
           <div>${item.system.progressPerDay.value} progress per day / ${item.system.days.value} days</div>
@@ -333,8 +363,8 @@ export class FUItem extends Item {
     const item = this;
     return item.type === "heroicSkill"
       ? `<div class="spell-desc flex-group-center">
-          <p>Class: ${item.system.class.value}</p>
-          <p>Requirements: ${item.system.requirement.value}</p>
+          <span>Class: ${item.system.class.value}</span>
+          <span>Requirements: ${item.system.requirement.value}</span>
         </div>`
       : "";
   }
@@ -342,7 +372,11 @@ export class FUItem extends Item {
   getZeroDataString() {
     const item = this;
     return item.type === "zeroPower"
-      ?  `<div class="spelldesc flex-group-center grid grid-3col"> <p>${item.system.zeroTrigger.value}</p> <p>${item.system.zeroEffect.value}</p> <p>Clock <br> ${item.system.trigger.current} / ${item.system.trigger.max} </p> </div>`
+      ?  `<div class="spell-desc flex-group-center grid grid-3col"> 
+      <span class="summary">${item.system.zeroTrigger.value}</span>
+      <span class="summary">${item.system.zeroEffect.value}</span>
+      <span class="summary">Clock <br> ${item.system.trigger.current} / ${item.system.trigger.max} </span>
+      </div>`
       : "";
   }
   
@@ -544,14 +578,14 @@ export class FUItem extends Item {
     // Initialize chat data.
     const speaker = ChatMessage.getSpeaker({ actor: this.actor });
     const rollMode = game.settings.get("core", "rollMode");
-    const label = `<div class="flex-group-center backgroundstyle">
+    const label = `<div class="flex-group-center backgroundstyle" style="margin: 22px 0 0 0;">
     <img style="border: 0px; -webkit-filter: drop-shadow(2px 2px 4px #000000); filter: drop-shadow(2px 2px 4px #000000); position: relative; bottom: 195px; margin-bottom: -200px;" src="${item.img}" width="48" height="48" />
-    <p style="line-height: 1.2; color: Ivory; font-size: 24px; text-shadow: 2px 2px 4px #000000; box-shadow: 3px 6px darkslategrey; border-style: solid; border-width: thin; border-color: #fbfced; padding: 10px; border-radius: 12px; background-color: #3d6243;">${item.name}</p>
+    <p style="font-family: alice; line-height: 1.2; color: Ivory; font-size: 26px; text-shadow: 2px 2px 4px #000000; box-shadow: 3px 6px darkslategrey; border-style: solid; border-width: thin; border-color: #fbfced; padding: 10px; border-radius: 12px; background-color: #3d6243;">${item.name}</p>
   </div>`;
 
     // If there's no roll data, send a chat message.
     if (!this.system.formula) {
-      const chatdesc = `<div class="chat-desc"><p>${item.system.description}</p></div>`;
+      const chatdesc = this.getDescriptionString();
       const attackData = await this.getRollString();
       const spellString = this.getSpellDataString();
       const ritualString = this.getRitualDataString();

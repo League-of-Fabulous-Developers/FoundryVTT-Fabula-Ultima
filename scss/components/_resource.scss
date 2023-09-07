@@ -116,14 +116,21 @@
 
 	&.summary {
 	width: 95%;
-	padding: 1.4em;
+		padding: 1.5em;
 	margin: 0.5em 1em;
+		font-style: italic;
 	}
 
 	&.select-dropdown {
 	appearance: none;
 	background-size: 16px 16px;
 	width: 4em;
+	}
+
+	&.select-dropdown-m {
+		appearance: none;
+		background-size: 16px 16px;
+		width: 7em;
 	}
 
 	&.select-bonds {

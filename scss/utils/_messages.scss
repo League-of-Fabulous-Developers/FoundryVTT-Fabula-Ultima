@@ -44,7 +44,7 @@
   .chat-desc {
     text-align: left;
     font-size: 14px;
-    padding: 0px 5px 0 5px;
+    padding: 0.5em;
     margin-top: 15px;
     margin-bottom: 15px;
     color: #272a2a;
@@ -54,61 +54,89 @@
     border-width: thin;
     border-color: #272a2a;
     border-radius: 8px;
-  
     strong {
       color: #272a2a;
     }
   }
   
-  /* Spell Chat Description */
-  .spell-desc {
+  .spell-desc, .detail-desc {
     color: $color-black;
     box-shadow: 3px 6px darkslategrey;
-    background-image: linear-gradient(to right, rgba(211, 229, 230, 0.7), rgba(195, 219, 214, 0.8));
-    border-style: solid;
+    background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));    border-style: solid;
     border-width: thin;
     border-color: $color-background-inverted;
     border-radius: 8px;
     font-size: 14px;
     font-weight: bold;
     font-family: 'Signika', sans-serif;
-  }
-  
-  .detail-desc {
-    color: $color-black;
-    box-shadow: 3px 6px $color-background-inverted;
-    background-image: linear-gradient(to right, rgba(211, 229, 230, 0.7), rgba(195, 219, 214, 0.8));
-    border-style: solid;
-    border-width: thin;
-    border-color: $color-background-inverted;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    font-family: 'Signika', sans-serif;
-    position: relative;
-    overflow: hidden;
-  
-    &:before {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      background: linear-gradient(45deg, #f06, #e43);
-      z-index: -1;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    .summary {
+      font-size: 14px;
     }
-  
-    p {
+    span {
+      padding: 5px;
       margin: 0;
-      padding: 2px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       text-align: center;
+      position: relative;
+      height: 100%;
   
-      &:last-child {
-        background: rgba(211, 229, 230, 0.7);
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 1px;
+        background-color: $color-background-inverted;
+      }
+      
+      &:last-child::before {
+        display: none;
       }
     }
   }
+  
+  //   .detail-desc {
+  //   color: $color-black;
+  //   box-shadow: 3px 6px $color-background-inverted;
+  //   background-image: linear-gradient(to right, rgba(211, 229, 230, 0.7), rgba(195, 219, 214, 0.8));
+  //   border-style: solid;
+  //   border-width: thin;
+  //   border-color: $color-background-inverted;
+  //   border-radius: 8px;
+  //   font-size: 14px;
+  //   font-weight: bold;
+  //   font-family: 'Signika', sans-serif;
+  //   position: relative;
+  //   overflow: hidden;
+  
+  //   &:before {
+  //     content: "";
+  //     position: absolute;
+  //     top: -10px;
+  //     left: -10px;
+  //     right: -10px;
+  //     bottom: -10px;
+  //     background: linear-gradient(45deg, #f06, #e43);
+  //     z-index: -1;
+  //   }
+  
+  //   p {
+  //     margin: 0;
+  //     padding: 2px;
+  //     text-align: center;
+  
+  //     &:last-child {
+  //       background: rgba(211, 229, 230, 0.7);
+  //       border-top-left-radius: 8px;
+  //       border-top-right-radius: 8px;
+  //     }
+  //   }
+  // }
   

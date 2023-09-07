@@ -5,6 +5,23 @@
   text-transform: uppercase;
 }
 
+.quote {
+  border-left: 3px solid #999;
+  padding-left: 10px;
+  font-style: italic;
+}
+
+.chat-desc .summary {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.charname .resource-input-charname {
+  font-family: alice;
+}
+
 .chat-message .message-header .flavor-text {
   font-size: 20px;
   margin-top: 10px;
@@ -55,7 +72,7 @@
 .chat-desc {
   text-align: left;
   font-size: 14px;
-  padding: 0px 5px 0 5px;
+  padding: 0.5em;
   margin-top: 15px;
   margin-bottom: 15px;
   color: #272a2a;
@@ -72,13 +89,12 @@
   color: #272a2a;
 }
 
-/* Spell Chat Description */
-.spell-desc {
+.spell-desc, .detail-desc {
   color: #000000;
   -webkit-box-shadow: 3px 6px darkslategrey;
   box-shadow: 3px 6px darkslategrey;
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(211, 229, 230, 0.7)), to(rgba(195, 219, 214, 0.8)));
-  background-image: linear-gradient(to right, rgba(211, 229, 230, 0.7), rgba(195, 219, 214, 0.8));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(212, 231, 232)), to(rgba(195, 219, 214, 0.7)));
+  background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
   border-style: solid;
   border-width: thin;
   border-color: #412a3a;
@@ -86,43 +102,51 @@
   font-size: 14px;
   font-weight: bold;
   font-family: "Signika", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
 }
-
-.detail-desc {
-  color: #000000;
-  -webkit-box-shadow: 3px 6px #412a3a;
-  box-shadow: 3px 6px #412a3a;
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(211, 229, 230, 0.7)), to(rgba(195, 219, 214, 0.8)));
-  background-image: linear-gradient(to right, rgba(211, 229, 230, 0.7), rgba(195, 219, 214, 0.8));
-  border-style: solid;
-  border-width: thin;
-  border-color: #412a3a;
-  border-radius: 8px;
+.spell-desc .summary, .detail-desc .summary {
   font-size: 14px;
-  font-weight: bold;
-  font-family: "Signika", sans-serif;
+}
+.spell-desc span, .detail-desc span {
+  padding: 5px;
+  margin: 0;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
   position: relative;
-  overflow: hidden;
+  height: 100%;
 }
-.detail-desc:before {
+.spell-desc span::before, .detail-desc span::before {
   content: "";
   position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  background: linear-gradient(45deg, #f06, #e43);
-  z-index: -1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background-color: #412a3a;
 }
-.detail-desc p {
-  margin: 0;
-  padding: 2px;
-  text-align: center;
-}
-.detail-desc p:last-child {
-  background: rgba(211, 229, 230, 0.7);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+.spell-desc span:last-child::before, .detail-desc span:last-child::before {
+  display: none;
 }
 
 /* Global styles */
@@ -1310,8 +1334,9 @@ select.creature-input .fabulaultima .resource-input {
 }
 .fabulaultima .resource-input.summary {
   width: 95%;
-  padding: 1.4em;
+  padding: 1.5em;
   margin: 0.5em 1em;
+  font-style: italic;
 }
 .fabulaultima .resource-input.select-dropdown {
   -webkit-appearance: none;
