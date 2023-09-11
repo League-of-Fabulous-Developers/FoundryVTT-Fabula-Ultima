@@ -6,21 +6,39 @@
         "level": { "value": 5 },
         "resources": {
           "hp": { "value": 10, "min": 0, "max": 10, "bonus": 0 },
-          "mp": { "value": 10, "min": 0, "max": 10, "bonus": 0 }
-        },
+          "mp": { "value": 10, "min": 0, "max": 10, "bonus": 0 },
+          "rp1": { "name": "", "value": 0 },
+          "rp2": { "name": "", "value": 0 },
+          "rp3": { "name": "", "value": 0 },
+
+          "affinity": {
+            "phys": { "value": "" },
+            "air": { "value": "" },
+            "bolt": { "value": "" },
+            "dark": { "value": "" },
+            "earth": { "value": "" },
+            "fire": { "value": "" },
+            "ice": { "value": "" },
+            "light": { "value": "" },
+            "poison": { "value": "" }
+          },
+          "bonds": [
+            {
+              "name": "",
+              "admInf": "",
+              "loyMis": "",
+              "affHat": "",
+              "strength": 0
+            }
+          ]
+        }, 
         "attributes": {
           "dex": { "base": 6, "current": 6 },
           "ins": { "base": 6, "current": 6 },
           "mig": { "base": 6, "current": 6 },
           "wlp": { "base": 6, "current": 6 }
         },
-        "bond": {
-          "name": { "value": "" },
-          "admInf": { "value": "" },
-          "loyMis": { "value": "" },
-          "affHat": { "value": "" },
-          "strength": { "value": 0 }
-        },
+
         "derived": {
           "crisis": { "value": 5 },
           "init": { "value": 0, "bonus": 0 },
@@ -33,27 +51,13 @@
         "castingAttributes": {
           "primary": { "value": "ins" },
           "secondary": { "value": "wlp" }
-        },
-        "affinity": {
-          "phys": { "value": "" },
-          "air": { "value": "" },
-          "bolt": { "value": "" },
-          "dark": { "value": "" },
-          "earth": { "value": "" },
-          "fire": { "value": "" },
-          "ice": { "value": "" },
-          "light": { "value": "" },
-          "poison": { "value": "" }
         }
       }
     },
     "character": {
-      "templates": ["base", "bond"],
+      "templates": ["base"],
       "resources": {
         "ip": { "value": 6, "min": 0, "max": 6 },
-        "rp1": { "name": "", "value": 0 },
-        "rp2": { "name": "", "value": 0 },
-        "rp3": { "name": "", "value": 0 },
         "fp": { "value": 3 }
       }
     },
@@ -61,9 +65,6 @@
       "templates": ["base"],
       "resources": {
         "ip": { "value": 6, "min": 0, "max": 6 },
-        "rp1": { "name": "", "value": 0 },
-        "rp2": { "name": "", "value": 0 },
-        "rp3": { "name": "", "value": 0 },
         "fp": { "value": 3 }
       },
       "traits": { "value": "" },
@@ -73,7 +74,7 @@
     }
   },
   "Item": {
-    "types": ["weapon", "shield", "armor", "accessory", "class", "skill", "heroicSkill", "spell", "miscAbility", "behavior", "consumable", "ritual", "project", "zeroPower"],
+    "types": ["weapon", "shield", "armor", "accessory", "class", "skill", "heroic", "spell", "miscAbility", "behavior", "consumable", "ritual", "project", "zeroPower"],
     "templates": {
       "base": { "summary": "", "description": "", "isFavored": { "value": false } },
       "item": { "cost": { "value": 0 } },
@@ -125,7 +126,7 @@
         "shields": { "value": false }
       }
     },
-    "heroicSkill": {
+    "heroic": {
       "templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"],
       "requirement": { "value": "" },
       "benefits": {

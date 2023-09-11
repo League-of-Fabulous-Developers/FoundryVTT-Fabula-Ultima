@@ -361,7 +361,7 @@ export class FUItem extends Item {
   
   getHeroicDataString() {
     const item = this;
-    return item.type === "heroicSkill"
+    return item.type === "heroic"
       ? `<div class="spell-desc flex-group-center">
           <span>Class: ${item.system.class.value}</span>
           <span>Requirements: ${item.system.requirement.value}</span>

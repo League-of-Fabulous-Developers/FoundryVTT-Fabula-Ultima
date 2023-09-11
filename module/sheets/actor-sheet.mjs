@@ -106,7 +106,7 @@ export class FUActorSheet extends ActorSheet {
     const accessories = [];
     const classes = [];
     const skills = [];
-    const heroicSkills = [];
+    const heroics = [];
     const spells = [];
     const abilities = [];
     const behaviors = [];
@@ -180,8 +180,8 @@ export class FUActorSheet extends ActorSheet {
         classes.push(i);
       } else if (i.type === "skill") {
         skills.push(i);
-      } else if (i.type === "heroicSkill") {
-        heroicSkills.push(i);
+      } else if (i.type === "heroic") {
+        heroics.push(i);
       } else if (i.type === "spell") {
         spells.push(i);
       } else if (i.type === "miscAbility") {
@@ -206,7 +206,7 @@ export class FUActorSheet extends ActorSheet {
     context.accessories = accessories;
     context.classes = classes;
     context.skills = skills;
-    context.heroicSkills = heroicSkills;
+    context.heroics = heroics;
     context.spells = spells;
     context.abilities = abilities;
     context.behaviors = behaviors;

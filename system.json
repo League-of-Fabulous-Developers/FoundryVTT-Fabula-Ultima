@@ -6,7 +6,7 @@
   "compatibility": {
     "minimum": "10",
     "verified": "10.303",
-    "maximum": "10"
+    "maximum": "11"
   },
   "authors": [
       {
@@ -52,7 +52,14 @@
 
   "flags": {
     "hotReload": {
-        "extensions": ["css", "hbs", "json"]
+        "extensions": [
+            "css", "hbs", "json"
+        ],
+        "paths": [
+            "css",
+            "lang",
+            "templates"
+        ]
     }
 },
   "socket": true,

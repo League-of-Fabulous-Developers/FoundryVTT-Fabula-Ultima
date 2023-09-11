@@ -333,22 +333,57 @@
           </div>
         </div>
 
-      {{!-- Bond Section --}}
+    {{!-- Start Bond Section --}}
       <section class="grid-start-4">
         <div class="resource-content grid grid-5col flexrow flex-between">
-          {{!-- New Bonds Here--}}
-          {{> "systems/fabulaultima/templates/actor/parts/actor-bonds.html" groups=systemData.bond dtypes=dtypes}}
+        {{#each system.resources.bonds as |bond|}}
+          <div class="resource-content">
+              <input type="text" data-tooltip="Bond Name" name="bond.name" value="{{bond.name}}" data-dtype="String" class="resource-input select-bonds"  data-bond-index="{{index}}">
+          </div>
+          <div class="resource-content">
+              <select value="{{bond.admInf}}" name="bond.admInf" class="resource-input select-bonds" data-bond-index="{{index}}">
+                  {{#select bond.admInf}}
+                  <option value=""></option>
+                  <option value="Admiration">{{localize 'FU.Admiration'}}</option>
+                  <option value="Inferiority">{{localize 'FU.Inferiority'}}</option>
+                  {{/select}}
+              </select>
+          </div>
+          <div class="resource-content">
+              <select value="{{bond.loyMis}}" name="bond.loyMis" class="resource-input select-bonds" data-bond-index="{{index}}">
+                  {{#select bond.loyMis}}
+                  <option value=""></option>
+                  <option value="Loyalty">{{localize 'FU.Loyalty'}}</option>
+                  <option value="Mistrust">{{localize 'FU.Mistrust'}}</option>
+                  {{/select}}
+              </select>
+          </div>
+          <div class="resource-content">
+              <select value="{{bond.affHat}}" name="bond.affHat" class="resource-input select-bonds" data-bond-index="{{index}}">
+                  {{#select bond.affHat}}
+                  <option value=""></option>
+                  <option value="Affection">{{localize 'FU.Affection'}}</option>
+                  <option value="Hatred">{{localize 'FU.Hatred'}}</option>
+                  {{/select}}
+              </select>
+          </div>
+          <div class="resource-content flexrow flex-between">
+              <input type="number" data-tooltip="{{localize 'FU.BondStrength'}}" name="bond.strength" value="{{bond.strength}}" data-dtype="Number" class="resource-input select-bonds" data-bond-index="{{index}}">
+              <a class="buttons-container-inc bond-delete" data-tooltip="{{localize 'FU.BondDelete'}}" data-bond-index="{{index}}">
+                  <button class="resource-input select-bonds" style="visibility: visible;" data-action=""><i class="fas fa-minus"></i></button>
+              </a>
+          </div>
+        {{/each}}
         </div>
 
-        {{!-- Add New Bonds Here--}}
+      {{!-- Add Bonds--}}
         <div class="buttons-inc flex-group-center">
-          <a class="buttons-container-inc" data-tooltip="Add Bond" data-type="bond">
-            <button class="increment-button" style="visibility: visible;" data-resource="" data-tooltip="{{localize 'FU.Add'}}" data-action=""><i class="fas fa-plus"></i></button>
+        <a class="buttons-container-inc bond-add" data-tooltip="{{localize 'FU.BondAdd'}}">
+          <button class="resource-input select-bonds" style="visibility: visible;" data-tooltip="{{localize 'FU.Add'}}"><i class="fas fa-plus"></i></button>
           </a>
         </div>
       </section>
-    </section>
-    <!-- End Bonds here-->
+    {{!-- End Bond Section --}}
 
       <div class="breakline-border">
         <div class="center-label">
@@ -361,8 +396,7 @@
       </div>
     </div>
 
-    <!-- Handlebar partial template inclusion-->
-
+    {{!-- Handlebar Partials --}}
     {{!-- Skills Tab --}}
     <div class="tab skills" data-group="primary" data-tab="skills">
       {{> "systems/fabulaultima/templates/actor/parts/actor-features.html"}}
