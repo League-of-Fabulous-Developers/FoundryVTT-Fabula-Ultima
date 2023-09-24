@@ -1,0 +1,23 @@
+$ful-sl-star: url("/systems/fabulaultima/styles/static/icons/ful-sl-star.svg");
+$fus-sl-star: url("/systems/fabulaultima/styles/static/icons/fus-sl-star.svg");
+
+.fun {
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  margin: 1px;
+}
+.fusl {
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  margin: 1px;
+}
+
+.ful-sl-star {
+  background-image: $ful-sl-star;
+}
+
+.fus-sl-star {
+  background-image: $fus-sl-star;
+}

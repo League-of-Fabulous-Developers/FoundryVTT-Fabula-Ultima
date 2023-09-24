@@ -1,7 +1,6 @@
 <form class="{{cssClass}} backgroundstyle" autocomplete="off">
-  {{> "systems/fabulaultima/templates/item/parts/item-header.html" dtypes=dtypes}}
-
-  {{!-- Sheet Tab Navigation --}}
+  {{> "systems/fabulaultima/templates/item/parts/item-header.html"
+  dtypes=dtypes}} {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="description">Description</a>
     <a class="item" data-tab="attributes">Attributes</a>
@@ -17,10 +16,10 @@
 
     {{!-- Attributes Tab --}}
     <div class="tab attributes" data-group="primary" data-tab="attributes">
-      <div>
-        <label class="checkbox">
-          <span>Favorite?</span
-          ><input
+      <div class="item-settings">
+        <label class="checkbox resource-label">
+          <span>{{localize 'FU.FavoriteStatus'}}</span>
+          <input
             type="checkbox"
             name="system.isFavored.value"
             {{
@@ -29,10 +28,9 @@
             }}
           />
         </label>
-        {{!-- NPC Relevent Option --}}
-        {{#if (eq actor.type "npc")}}
-        <label class="checkbox">
-          <span>Add to behavior roll?</span
+        {{!-- NPC Relevent Option --}} {{#if (eq actor.type "npc")}}
+        <label class="checkbox resource-label">
+          <span>{{localize "FU.BehaviorStatus"}}</span
           ><input
             type="checkbox"
             name="system.isBehavior.value"
@@ -41,146 +39,216 @@
             system.isBehavior.value
             }}
           />
+        </label>
         {{/if}}
+        <label class="checkbox resource-label">
+          <span>{{localize 'FU.IsOffensive'}}</span
+          ><input
+            type="checkbox"
+            name="system.isOffensive.value"
+            {{
+            checked
+            system.isOffensive.value
+            }}
+          />
+        </label>
+        <label class="checkbox resource-label">
+          <span>HR 0?</span
+          ><input
+            type="checkbox"
+            name="system.rollInfo.useWeapon.hrZero.value"
+            {{
+            checked
+            system.rollInfo.useWeapon.hrZero.value
+            }}
+          />
+        </label>
       </div>
-      <label class="checkbox">
-        <span>Has Roll?</span
-        ><input
-          type="checkbox"
-          name="system.hasRoll.value"
-          {{
-          checked
-          system.hasRoll.value
-          }}
-        />
-      </label>
-      <label class="checkbox">
-        <span>Use Weapon Accuracy?</span
-        ><input
-          type="checkbox"
-          name="system.rollInfo.useWeapon.accuracy.value"
-          {{
-          checked
-          system.rollInfo.useWeapon.accuracy.value
-          }}
-        />
-      </label>
-      <label
-        for="system.rollInfo.attributes.primary.value"
-        class="resource-label flexlarge align-left"
-        >primary</label
-      >
-      <select
-        value="{{system.rollInfo.attributes.primary.value}}"
-        name="system.rollInfo.attributes.primary.value"
-      >
-        {{#select system.rollInfo.attributes.primary.value}}
-        <option value="dex">DEX</option>
-        <option value="ins">INS</option>
-        <option value="mig">MIG</option>
-        <option value="wlp">WLP</option>
-        {{/select}}
-      </select>
-      <label
-        for="system.rollInfo.attributes.secondary.value"
-        class="resource-label flexlarge align-left"
-        >secondary</label
-      >
-      <select
-        value="{{system.rollInfo.attributes.secondary.value}}"
-        name="system.rollInfo.attributes.secondary.value"
-      >
-        {{#select system.rollInfo.attributes.secondary.value}}
-        <option value="dex">DEX</option>
-        <option value="ins">INS</option>
-        <option value="mig">MIG</option>
-        <option value="wlp">WLP</option>
-        {{/select}}
-      </select>
-      <div class="resource">
-        <label class="resource-label">Bonus Accuracy</label>
-        <input
-          type="text"
-          name="system.rollInfo.accuracy.value"
-          value="{{system.rollInfo.accuracy.value}}"
-          data-dtype="Number"
-        />
-      </div>
-      <label class="checkbox">
-        <span>Has Damage?</span
-        ><input
-          type="checkbox"
-          name="system.rollInfo.damage.hasDamage.value"
-          {{
-          checked
-          system.rollInfo.damage.hasDamage.value
-          }}
-        />
-      </label>
-      <label class="checkbox">
-        <span>Use Weapon Damage?</span
-        ><input
-          type="checkbox"
-          name="system.rollInfo.useWeapon.damage.value"
-          {{
-          checked
-          system.rollInfo.useWeapon.damage.value
-          }}
-        />
-      </label>
-      <label class="checkbox">
-        <span>HR 0?</span
-        ><input
-          type="checkbox"
-          name="system.rollInfo.useWeapon.hrZero.value"
-          {{
-          checked
-          system.rollInfo.useWeapon.hrZero.value
-          }}
-        />
-      </label>
-      <label
-        for="system.rollInfo.damage.type.value"
-        class="resource-label flexlarge align-left"
-        >damage type</label
-      >
-      <select
-        value="{{system.rollInfo.damage.type.value}}"
-        name="system.rollInfo.damage.type.value"
-      >
-        {{#select system.rollInfo.damage.type.value}}
-        <option value="physical">physical</option>
-        <option value="air">air</option>
-        <option value="bolt">bolt</option>
-        <option value="dark">dark</option>
-        <option value="earth">earth</option>
-        <option value="fire">fire</option>
-        <option value="ice">ice</option>
-        <option value="light">light</option>
-        <option value="poison">poison</option>
-        <option value="">untyped</option>
-        {{/select}}
-      </select>
-      <div class="resource">
-        <label class="resource-label">Bonus Damage</label>
-        <input
-          type="text"
-          name="system.rollInfo.damage.value"
-          value="{{system.rollInfo.damage.value}}"
-          data-dtype="Number"
-        />
-      </div>
-      <label class="checkbox">
-        <span>Show Title Card?</span
-        ><input
-          type="checkbox"
-          name="system.showTitleCard.value"
-          {{
-          checked
-          system.showTitleCard.value
-          }}
-        />
-      </label>
+
+      <section class="flex1 flex-group-center desc">
+        <div class="desc-header">
+          <label class="resource-label">{{localize 'FU.GeneralInfo'}}</label>
+        </div>
+      </section>
+
+      <section class="grid grid-2col">
+        <section class="flex1 flex-group-center desc flex-row">
+          <div class="desc-header">
+            <label class="resource-label"
+              ><i class="ra ra-perspective-dice-four icon"></i>{{localize
+              'FU.Accuracy'}}</label
+            >
+            |
+            <label class="checkbox resource-label">
+              <span>{{localize 'FU.HasAccuracy'}}</span
+              ><input
+                type="checkbox"
+                name="system.hasRoll.value"
+                {{
+                checked
+                system.hasRoll.value
+                }}
+              />
+            </label>
+            |
+            <label class="checkbox resource-label">
+              <span>{{localize 'FU.UseWeaponAccuracy'}}</span
+              ><input
+                type="checkbox"
+                name="system.rollInfo.useWeapon.accuracy.value"
+                {{
+                checked
+                system.rollInfo.useWeapon.accuracy.value
+                }}
+              />
+            </label>
+          </div>
+          <div class="grid grid-3col card-style">
+            <div class="resource-content flexcol flex-group-center">
+              <label
+                for="system.rollInfo.attributes.primary.value"
+                class="resource-label"
+                >{{localize 'FU.Primary'}}
+              </label>
+              <select
+                value="{{system.rollInfo.attributes.primary.value}}"
+                name="system.rollInfo.attributes.primary.value"
+                class="resource-input select-dropdown"
+              >
+                {{#select system.rollInfo.attributes.primary.value}}
+                <option value="dex">DEX</option>
+                <option value="ins">INS</option>
+                <option value="mig">MIG</option>
+                <option value="wlp">WLP</option>
+                {{/select}}
+              </select>
+            </div>
+            <div class="resource-content flexcol flex-group-center">
+              <label
+                for="system.rollInfo.attributes.secondary.value"
+                class="resource-label"
+                >{{localize 'FU.Secondary'}}
+              </label>
+              <select
+                value="{{system.rollInfo.attributes.secondary.value}}"
+                name="system.rollInfo.attributes.secondary.value"
+                class="resource-input select-dropdown"
+              >
+                {{#select system.rollInfo.attributes.secondary.value}}
+                <option value="dex">DEX</option>
+                <option value="ins">INS</option>
+                <option value="mig">MIG</option>
+                <option value="wlp">WLP</option>
+                {{/select}}
+              </select>
+            </div>
+            <div class="resource-content flexcol flex-group-center">
+              <label class="resource-label">{{localize 'FU.Bonus'}}</label>
+              <input
+                type="number"
+                name="system.rollInfo.accuracy.value"
+                value="{{system.rollInfo.accuracy.value}}"
+                class="resource-input"
+                data-dtype="Number"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="flex2 flex-group-center desc">
+          <div class="desc-header">
+            <label class="resource-label"
+              ><i class="ra ra-targeted icon"></i>{{localize 'FU.Damage'}} {{#if
+              system.isOffensive.value}}
+              <span class="is-martial">&#x1f5f2;</span>
+              {{/if}}
+            </label>
+            |
+            <label class="checkbox resource-label">
+              <span>{{localize 'FU.HasDamage'}}</span
+              ><input
+                type="checkbox"
+                name="system.rollInfo.damage.hasDamage.value"
+                {{
+                checked
+                system.rollInfo.damage.hasDamage.value
+                }}
+              />
+            </label>
+            |
+            <label class="checkbox resource-label">
+              <span>{{localize 'FU.UseWeaponDamage'}}</span
+              ><input
+                type="checkbox"
+                name="system.rollInfo.useWeapon.damage.value"
+                {{
+                checked
+                system.rollInfo.useWeapon.damage.value
+                }}
+              />
+            </label>
+          </div>
+          <div class="grid grid-2col card-style">
+            <div class="resource-content flexcol flex-group-center">
+              <label
+                for="system.rollInfo.impdamage.type.value"
+                class="resource-label flexlarge"
+                >{{localize 'FU.DamageType'}}
+              </label>
+              <select
+                value="{{system.rollInfo.damage.type.value}}"
+                name="system.rollInfo.damage.type.value"
+                class="resource-input select-dropdown-m"
+              >
+                {{#select system.rollInfo.damage.type.value}}
+                <option value="">Untyped</option>
+                <option value="physical">Physical</option>
+                <option value="air">Air</option>
+                <option value="bolt">Bolt</option>
+                <option value="dark">Dark</option>
+                <option value="earth">Earth</option>
+                <option value="fire">Fire</option>
+                <option value="ice">Ice</option>
+                <option value="light">Light</option>
+                <option value="poison">Poison</option>
+                {{/select}}
+              </select>
+            </div>
+            <div class="resource-content flexcol flex-group-center">
+              <label class="resource-label">{{localize 'FU.Bonus'}}</label>
+              <input
+                type="number"
+                name="system.rollInfo.damage.value"
+                value="{{system.rollInfo.damage.value}}"
+                class="resource-input"
+                data-dtype="Number"
+              />
+            </div>
+          </div>
+        </section>
+      </section>
+
+      {{#if (and (eq actor.type "npc") system.isBehavior.value)}}
+      <section class="flex1 flex-group-center desc">
+        <div class="desc-header">
+          <label class="resource-label">{{localize 'FU.OptionalFeats'}}</label>
+        </div>
+        <div class="grid grid-4col card-style">
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label"
+              >{{localize 'FU.BehaviorWeight'}}</label
+            >
+            <input
+              type="number"
+              name="system.weight.value"
+              value="{{system.weight.value}}"
+              data-dtype="Number"
+              class="resource-input select-dropdown-m"
+            />
+          </div>
+        </div>
+      </section>
+      {{/if}}
     </div>
   </section>
 </form>

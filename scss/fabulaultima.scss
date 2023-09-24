@@ -1,29 +1,29 @@
 // Add custom fonts by visiting and search https://fonts.google.com
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap");
+@import "node_modules/rpg-awesome/scss/rpg-awesome";
 
 // Import utilities.
-@import 'utils/colors';
-@import 'utils/mixins';
-@import 'utils/typography';
-@import 'utils/variables';
-@import 'utils/messages';
+@import "utils/colors";
+@import "utils/mixins";
+@import "utils/typography";
+@import "utils/variables";
+@import "utils/messages";
+@import "utils/icons";
 
 /* Global styles */
-@import 'global/flex';
-@import 'global/grid';
-@import 'global/window';
+@import "global/flex";
+@import "global/grid";
+@import "global/window";
 
 /* Styles limited to fabulaultima sheets */
 .fabulaultima {
-  @import 'components/affinity';
-  @import 'components/barmeter';
-  @import 'components/buttons';
-  @import 'components/divider';
-  @import 'components/effects';
-  @import 'components/forms';
-  @import 'components/items';
-  @import 'components/resource';
-  @import 'components/test.scss';
+  @import "components/affinity";
+  @import "components/barmeter";
+  @import "components/buttons";
+  @import "components/divider";
+  @import "components/effects";
+  @import "components/forms";
+  @import "components/items";
+  @import "components/resource";
 }

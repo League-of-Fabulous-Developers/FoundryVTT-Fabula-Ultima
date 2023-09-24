@@ -1,25 +1,13 @@
 /* ----------------------------------------- */
 /*  Items Header                             */
 /* ----------------------------------------- */
-// 
-.header-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  .items-levels {
-    height: 36px;
-    width: 100px;
-    font-weight: bold;
-    color: Ivory;
-    font-size: 24px;
-    box-shadow: 2px 5px $color-secondary;
-    border: thin solid $color-shadow-inverted;
-    background: linear-gradient($color-tabStyle-gradient);
-    border-radius: 30px 8px 0px 4px;
-    padding: 4px;
-    margin-bottom: 2px;
-    text-align: right;
+
+.individual-description {
+  display: none;
+  .editor {
+    height: fit-content;
+    min-height: fit-content;
+    padding: 0 1px;
   }
 }
 
@@ -27,7 +15,7 @@
   font-size: 14px;
   background: linear-gradient($color-tabStyle-gradient);
   border-radius: 4px;
-  box-shadow:2px 4px $color-secondary;
+  box-shadow: 2px 4px $color-secondary;
   text-align: center;
 }
 
@@ -35,86 +23,179 @@
   font-weight: bold;
   padding-left: 5px;
   text-align: left;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
+  align-items: center;
 }
 
-.items-main {
-  height: 40px;
-  width: 140px;
-  font-weight: bold;
-  color: $color-primary;
-  font-size: 22px; 
-  border-width: thin;
-  box-shadow:3px 6px $color-secondary;
-  border: thin solid $color-shadow-inverted;
-  background: linear-gradient($color-tabStyle-gradient); 
-  border-radius: 8px 30px 4px 0px;
-  padding: 5px 0 5px 3px;
-  margin: 0 0 0 2px;
-
-  &.zennit {
+.items-main-header {
+  height: 34px;
+  margin: 5px 2px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  .items-levels {
+    height: inherit;
+    width: 100px;
+    font-weight: bold;
+    color: Ivory;
+    font-size: 22px;
+    box-shadow: 2px 5px $color-secondary;
+    border: thin solid $color-shadow-inverted;
+    background: linear-gradient($color-tabStyle-gradient);
     border-radius: 30px 8px 0px 4px;
-    font-size: 20px; 
-    width: 6em;
-    .fa-coin {
-      margin: 6px 0 6px 6px;
-    }
-    input {
-      font-size: 16px;
-      background: transparent;
-      color: $color-primary;
-      height: inherit;
-      background-color: transparent;
-      border-color: transparent;
-      vertical-align: middle;
-      margin: -3px 0px 0px -8px;
-      padding: 4px 4px 7px;
-    }
+    text-align: right;
   }
-  &.armor-hand, &.acc-hand {
-    width: 12em;
-    border-radius: 40px 0 0px 4px;
+}
+
+/* ----------------------------------------- */
+/*  Items Main                              */
+/* ----------------------------------------- */
+
+.items-main {
+  height: inherit;
+  width: 180px;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px $color-black;
+  color: $color-primary;
+  font-size: 24px;
+  box-shadow: 3px 6px $color-secondary;
+  border: thin $color-shadow-inverted;
+  background: linear-gradient($color-tabStyle-gradient);
+  border-radius: 8px 30px 4px 0px;
+  padding: 5px 0 0 5px;
+
+  &.items-label {
+    margin: 5em;
+  }
+
+  &.zenit-container {
+    width: 10.5em;
+    border-radius: 40px 8px 0px 4px;
     font-size: 14px;
     box-sizing: border-box;
     white-space: normal;
     text-overflow: ellipsis;
-    padding: 4px 4px 4px 24px;
-    margin: 0;
-    .equipped-item{
-      text-overflow: ellipsis;
+    padding: 4px 4px 0px 0;
+    .zenit-content {
+      white-space: nowrap;
+      max-width: 100%;
+      margin-left: 10px;
+      .fas:hover {
+        color: blanchedalmond;
+        cursor: pointer;
+      }
+      input {
+        font-size: 16px;
+        font-weight: bold;
+        text-shadow: 1px 1px 1px $color-black;
+        background: transparent;
+        color: $color-primary;
+        height: inherit;
+        background-color: transparent;
+        border-color: transparent;
+        vertical-align: middle;
+        text-align: right;
+        margin: 5px 0 10px;
+        max-width: 68%;
+      }
+    }
+  }
+
+  &.sl {
+    border-radius: 30px 8px 0px 4px;
+    text-align: right;
+    width: 5em;
+    .fas:hover {
+      color: blanchedalmond;
+      cursor: pointer;
+    }
+    input {
+      font-size: 16px;
+      font-weight: bold;
+      background: transparent;
+      color: $color-primary;
+      height: inherit;
+      background-color: transparent;
+      border: none; /* Use 'border' to remove borders */
+      vertical-align: middle;
+    }
+  }
+  .total-class-levels {
+    margin-right: 15px;
+  }
+
+  &.armor-hand,
+  &.acc-hand {
+    width: 10.5em;
+    border-radius: 40px 8px 0px 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    white-space: normal;
+    text-overflow: ellipsis;
+    padding: 4px 4px 0px 0;
+    .equipped-item {
+      white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      margin-left: 10px;
     }
   }
 
   &.left-hand {
-    width: 12em;
+    height: inherit;
+    width: 11em;
     border-radius: 0 0 4px 40px;
     font-size: 14px;
-    box-sizing: border-box;
     white-space: normal;
-
-    padding: 4px 4px 4px 24px;
+    padding: 5px;
     margin: 0;
-    .equipped-item{
+    .equipped-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      justify-content: flex-end;
+    }
+    .equipped-item-content {
       text-overflow: ellipsis;
       overflow: hidden;
+      max-width: 79%;
+      margin-left: 10px;
     }
   }
 
   &.right-hand {
-    width: 12em;
+    height: inherit;
+    width: 11em;
     border-radius: 0 0 40px 0px;
     font-size: 14px;
-    box-sizing: border-box;
     white-space: normal;
-    padding: 4px 24px 4px 4px;
+    padding: 5px;
     margin: 0;
-    .equipped-item{
-      text-overflow: ellipsis;
-      overflow: hidden;
+    .equipped-item {
+      position: relative;
+      display: flex;
+      align-items: center; /* Vertically center the icon and text */
+      white-space: nowrap; /* Prevent text from wrapping */
     }
+    .equipped-item-content {
+      text-overflow: ellipsis; /* Show ellipsis for overflowing text */
+      overflow: hidden; /* Hide overflowing text */
+      max-width: 70%;
+      margin: 0 2px;
+    }
+  }
+
+  .icon-letter {
+    position: sticky;
+    background-color: $color-secondary;
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin: 0 3px;
   }
 }
 
@@ -124,10 +205,10 @@
 /* Responsive Image */
 .item-image-wrap {
   height: 24px;
-  width: 24px; 
+  width: 24px;
   overflow: hidden;
-  // display: inline-block;
 }
+
 .item-image-res {
   max-width: 100%;
   height: auto;
@@ -146,181 +227,190 @@
   scrollbar-width: thin;
   color: #444;
 }
-.items-list .item-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+
 .items-list .item-name {
-  -webkit-box-flex: 2;
-  -ms-flex: 2;
   flex: 2;
   margin: 0;
-  overflow: visible;
+  overflow: hidden;
   font-size: 13px;
   text-align: left;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
+  align-items: center;
 }
-.items-list .item-name h3, .items-list .item-name h4 {
+
+.items-list .item-name h3,
+.items-list .item-name h4 {
   margin: 0;
-  white-space: nowrap;
-  overflow-x: visible;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: clip;
+  transition: white-space 0.3s ease;
 }
 
 .items-list .item-controls {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 70px;
-  flex: 0 0 70px;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
+  flex: 0 0 78px;
   justify-content: flex-end;
+  align-items: inherit;
 }
+
 .items-list .item-controls a {
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
-  margin: 0 6px;
+  margin: 0 3px;
 }
+
 .items-list .item {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  padding: 0 2px 5px;
-  //border-bottom: 1px solid #c9c7b8;
+  padding: 1px;
   margin-bottom: 5px;
+  transition:
+    background-color 0.5s ease,
+    border-color 0.5s ease,
+    border-radius 0.5s ease,
+    color 0.5s ease;
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  color: $color-secondary;
+
+  .item-name {
+    color: #191813;
+    font-weight: bold;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: $color-secondary;
+    color: darken($color-secondary, 20%);
+  }
 }
-.items-list .item:last-child {
-  border-bottom: none;
-}
-.items-list .item .item-name {
-  color: #191813;
-  font-weight: bold;
-}
+
 .items-list .item .item-name .item-image {
   border: none;
   margin-right: 5px;
 }
-.items-list .item-prop {
-  text-align: center;
-  border-left: 1px solid #c9c7b8;
-  border-right: 1px solid #c9c7b8;
-  font-size: 12px;
-}
+
 .items-list .items-header {
-  height: 28px;
-  margin: 2px 0;
-  padding: 0;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+  //height: 28px;
+  margin: 10px 2px;
   align-items: center;
   border: transparent;
   background-color: transparent;
   font-weight: bold;
 }
+
 .items-list .items-header > * {
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
-  color:ivory;
+  color: ivory;
+  text-shadow: 1px 1px 1px $color-black;
 }
+
 .items-list .items-header .item-name {
   padding-left: 5px;
   text-align: left;
-  color:ivory;
+  color: ivory;
 }
 
-.item-formula {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 200px;
-  flex: 0 0 200px;
-  padding: 0 8px;
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2px); /* Adjust the downward distance as needed */
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
+
+.is-martial {
+  color: red !important;
+  &.float-text {
+    display: inline-block;
+    animation: floating 3s infinite ease-in-out; /* Adjust the animation duration and easing here */
+  }
+}
+
+
+
+.item-formula {
+  flex: 0 0 200px;
+}
+
 .item-def,
 .item-mdef,
 .item-init,
-.item-level {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 50px;
-  flex: 0 0 50px;
-  padding: 0 8px;
-  text-align: center;
-}
-.item-progress,
-.item-progressPerDay {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 120px;
-  flex: 0 0 120px;
-  padding: 0 8px;
-  text-align: center;
-}
-.item-progressPerDays,
-.item-days {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 60px;
-  flex: 0 0 60px;
-  padding: 0 8px;
-  text-align: center;
-}
 .item-equipped,
 .item-mpcost,
 .item-ip-cost,
 .item-cost,
-.item-clock{
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 66px;
-  flex: 0 0 66px;
-  padding: 0 8px;
+.item-progressPerDays,
+.item-days,
+.item-level,
+.item-clock {
+  flex: 0 0 63px;
+  align-items: center;
   text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  span {
+    font-size: 16px;
+    transform: skew(-15deg);
+  }
 }
-.is-martial {
-  color: red;
+
+.item-sl {
+  flex: 0 0 130px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .item-sl-stars {
+    height: 32px;
+    width: 32px;
+  }
 }
+
+.item-progress,
+.item-progressPerDay,
 .item-attack,
-.item-class,
-.item-target,
-.item-duration{
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 120px;
-  flex: 0 0 120px;
-  padding: 0 8px;
-  text-align: center;
-}
 .item-target,
 .item-damage,
 .item-dlevel {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 150px;
-  flex: 0 0 150px;
-  padding: 0 8px;
+  flex: 0 0 120px;
+  align-items: center;
   text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.item-class,
+.item-target,
+.item-duration,
+.item-zero {
+  flex: 0 0 100px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .item-attack,
 .item-class,
 .item-damage {
   font-weight: bold;
 }
+
 span[data-tooltip] {
   display: inline-block;
-  // padding: 5px;
-  // background-color: #fff;
-  // border: 1px solid #aaa;
 }
-.effects .item .effect-source,
-.effects .item .effect-duration,
-.effects .item .effect-controls {
-  text-align: center;
-  // border-left: 1px solid #c9c7b8;
-  // border-right: 1px solid #c9c7b8;
-  font-size: 12px;
-}
-.effects .item .effect-controls {
-  border: none;
-}
-
-

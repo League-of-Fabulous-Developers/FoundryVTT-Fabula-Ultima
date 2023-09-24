@@ -1,11 +1,21 @@
 .effects .item {
+  .effect-name {
+    border-bottom: none;
+    text-align: left;
+    justify-content: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
   .effect-source,
   .effect-duration,
   .effect-controls {
+    border-bottom: none;
     text-align: center;
-    border-left: 1px solid $color-beige;
-    border-right: 1px solid $color-beige;
-    font-size: 12px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .effect-controls {

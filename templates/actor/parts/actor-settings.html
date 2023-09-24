@@ -1,67 +1,63 @@
-{{!-- Character Relevent Bonuses --}}
-{{#if (eq actor.type "character")}}
+{{!-- Character Relevent Bonuses --}} {{#if (eq actor.type "character")}}
 <section class="align-right npc-border-col">
   <div class="flex-group-center">
     <div class="resource flex-group-center">
-    <label for="system.health.value" class="resource-label">Bonus HP</label>
-    <input
-      type="text"
-      name="system.resources.hp.bonus"
-      value="{{system.resources.hp.bonus}}"
-      data-dtype="Number"
-      class="inputdesc"
-    />
+      <label class="resource-label">Bonus HP</label>
+      <input
+        type="text"
+        name="system.resources.hp.bonus"
+        value="{{system.resources.hp.bonus}}"
+        data-dtype="Number"
+        class="inputdesc"
+      />
     </div>
-  <div class="resource flex-group-center">
-    <label for="system.health.value" class="resource-label">Bonus MP</label>
-    <input
-      type="text"
-      name="system.resources.mp.bonus"
-      value="{{system.resources.mp.bonus}}"
-      data-dtype="Number"
-      class="inputdesc"
-    />
+    <div class="resource flex-group-center">
+      <label class="resource-label">Bonus MP</label>
+      <input
+        type="text"
+        name="system.resources.mp.bonus"
+        value="{{system.resources.mp.bonus}}"
+        data-dtype="Number"
+        class="inputdesc"
+      />
+    </div>
+    <div class="resource flex-group-center">
+      <label class="resource-label">Bonus Def</label>
+      <input
+        type="text"
+        name="system.derived.def.bonus"
+        value="{{system.derived.def.bonus}}"
+        data-dtype="Number"
+        class="inputdesc"
+      />
+    </div>
+    <div class="resource flex-group-center">
+      <label class="resource-label">Bonus MDef</label>
+      <input
+        type="text"
+        name="system.derived.mdef.bonus"
+        value="{{system.derived.mdef.bonus}}"
+        data-dtype="Number"
+        class="inputdesc"
+      />
+    </div>
+    <div class="resource flex-group-center">
+      <label class="resource-label">Bonus Init</label>
+      <input
+        type="text"
+        name="system.derived.init.bonus"
+        value="{{system.derived.init.bonus}}"
+        data-dtype="Number"
+        class="inputdesc"
+      />
+    </div>
   </div>
-  <div class="resource flex-group-center">
-    <label for="system.health.value" class="resource-label">Bonus Def</label>
-    <input
-      type="text"
-      name="system.derived.def.bonus"
-      value="{{system.derived.def.bonus}}"
-      data-dtype="Number"
-      class="inputdesc"
-    />
-  </div>
-  <div class="resource flex-group-center">
-    <label for="system.health.value" class="resource-label">Bonus MDef</label>
-    <input
-      type="text"
-      name="system.derived.mdef.bonus"
-      value="{{system.derived.mdef.bonus}}"
-      data-dtype="Number"
-      class="inputdesc"
-    />
-  </div>
-  <div class="resource flex-group-center">
-    <label for="system.health.value" class="resource-label">Bonus Init</label>
-    <input
-      type="text"
-      name="system.derived.init.bonus"
-      value="{{system.derived.init.bonus}}"
-      data-dtype="Number"
-      class="inputdesc"
-    />
-  </div>
-</div>
 </section>
-{{/if}}
-
-{{!-- NPC Relevent Bonuses --}}
-{{#if (eq actor.type "npc")}}
+{{/if}} {{!-- NPC Relevent Bonuses --}} {{#if (eq actor.type "npc")}}
 <section class="align-right npc-border-col">
   <div class="flex-group-center">
     <div class="resource flex-group-center">
-      <label for="system.resources.hp.bonus" class="resource-label">Bonus HP</label>
+      <label class="resource-label">Bonus HP</label>
       <input
         class="inputdesc"
         type="text"
@@ -71,7 +67,7 @@
       />
     </div>
     <div class="resource flex-group-center">
-      <label for="system.resources.mp.bonus" class="resource-label">Bonus MP</label>
+      <label class="resource-label">Bonus MP</label>
       <input
         class="inputdesc"
         type="text"
@@ -81,7 +77,7 @@
       />
     </div>
     <div class="resource flex-group-center">
-      <label for="system.derived.def.bonus" class="resource-label">Bonus Def</label>
+      <label class="resource-label">Bonus Def</label>
       <input
         class="inputdesc"
         type="text"
@@ -91,7 +87,7 @@
       />
     </div>
     <div class="resource flex-group-center">
-      <label for="system.derived.mdef.bonus" class="resource-label">Bonus MDef</label>
+      <label class="resource-label">Bonus MDef</label>
       <input
         class="inputdesc"
         type="text"
@@ -101,7 +97,7 @@
       />
     </div>
     <div class="resource flex-group-center">
-      <label for="system.derived.init.bonus" class="resource-label">Bonus Init</label>
+      <label class="resource-label">Bonus Init</label>
       <input
         class="inputdesc"
         type="text"
@@ -110,7 +106,6 @@
         data-dtype="Number"
       />
     </div>
-
   </div>
 </section>
 {{/if}}

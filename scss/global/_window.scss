@@ -1,7 +1,3 @@
-.window-app {
-  font-family: $font-primary;
-}
-
 .window-app .window-content {
   display: flex;
   flex-direction: column;
@@ -26,22 +22,72 @@
   &:hover,
   &:focus {
     color: #000;
-    text-shadow: 0 0 10px $color-danger;
+    text-shadow: 2px 2px 12px $color-info;
     cursor: pointer;
   }
 }
 
-.notification.fabulaultima-spellname {
-  background-color: #17a2b8;
-  border: 5px solid #2b4b42;
-  padding: 1rem;
-  border-radius: 5px;
-  font-size: 2rem;
-  text-align: center;
+.tabs .item.active {
+  text-shadow: 2px 2px 12px $color-info !important;
+}
 
-  .close {
-    display: none;
+/* Apply focus style to checkboxes */
+input[type="checkbox"]:focus {
+  box-shadow: 0 0 5px $color-danger;
+  outline: none;
+}
+
+@keyframes zoomOutUp {
+  40% {
+    opacity: 1;
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   }
 }
 
+.zoomOutUp {
+  animation-name: zoomOutUp;
+  transform-origin: center bottom;
+}
 
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 6px);
+  }
+  100% {
+    transform: translate(0, -0px);
+  }
+}
+
+.notification.fabulaultima-spellname {
+  animation: zoomOutUp;
+  animation-delay: 4s;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 45px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.3);
+  background-image: linear-gradient($color-charname-gradient);
+  border-style: solid;
+  border-width: thin;
+  border-color: $color-secondary;
+  padding: 24px;
+  margin: auto;
+  border-radius: 24px;
+}
+
+.notification.fabulaultima-spellname .close {
+  opacity: 0; /* Hide the notification by reducing opacity */
+  pointer-events: none; /* Disable interactions with hidden notifications */
+}

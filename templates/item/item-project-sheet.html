@@ -1,62 +1,70 @@
 <form class="{{cssClass}} backgroundstyle" autocomplete="off">
-  {{> "systems/fabulaultima/templates/item/parts/item-header.html" dtypes=dtypes}}
-  
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-      <a class="item" data-tab="description">Description</a>
-      <a class="item" data-tab="attributes">Attributes</a>
-    </nav>
-  
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-      {{!-- Description Tab --}}
-      <div class="tab desc" data-group="primary" data-tab="description">
-        {{editor system.description target="system.description" rollData=rollData
-        button=true owner=owner editable=editable}}
+  {{> "systems/fabulaultima/templates/item/parts/item-header.html"
+  dtypes=dtypes}} {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">Description</a>
+    <a class="item" data-tab="attributes">Attributes</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    {{!-- Description Tab --}}
+    <div class="tab desc" data-group="primary" data-tab="description">
+      {{editor system.description target="system.description" rollData=rollData
+      button=true owner=owner editable=editable}}
+    </div>
+    {{!-- Attributes Tab --}}
+    <div class="tab attributes" data-group="primary" data-tab="attributes">
+      {{!-- As you add new fields, add them in here! --}}
+      <div class="item-settings">
+        <label class="checkbox resource-label">
+          <span>{{localize 'FU.FavoriteStatus'}}</span
+          ><input
+            type="checkbox"
+            name="system.isFavored.value"
+            {{
+            checked
+            system.isFavored.value
+            }}
+          />
+        </label>
+        {{!-- NPC Relevent Option --}} {{#if (eq actor.type "npc")}}
+        <label class="checkbox resource-label">
+          <span>{{localize "FU.BehaviorStatus"}}</span
+          ><input
+            type="checkbox"
+            name="system.isBehavior.value"
+            {{
+            checked
+            system.isBehavior.value
+            }}
+          />
+        </label>
+        {{/if}}
+        <label class="checkbox resource-label">
+          <span>Flawed?</span>
+          <input
+            type="checkbox"
+            name="system.isFlawed.value"
+            {{
+            checked
+            system.isFlawed.value
+            }}
+          />
+        </label>
       </div>
-      {{!-- Attributes Tab --}}
-      <div class="tab attributes" data-group="primary" data-tab="attributes">
-        {{!-- As you add new fields, add them in here! --}}
-        <div>
-          <label class="checkbox">
-            <span>Favorite?</span
-            ><input
-              type="checkbox"
-              name="system.isFavored.value"
-              {{
-              checked
-              system.isFavored.value
-              }}
-            />
-          </label>
-          <label class="checkbox">
-            <span>Flawed?</span>
-            <input
-              type="checkbox"
-              name="system.isFlawed.value"
-              {{ checked system.isFlawed.value }}
-            />
-          </label>  
-
-          {{!-- NPC Relevent Option --}}
-          {{#if (eq actor.type "npc")}}
-          <label class="checkbox">
-            <span>Add to behavior roll?</span
-            ><input
-              type="checkbox"
-              name="system.isBehavior.value"
-              {{
-              checked
-              system.isBehavior.value
-              }}
-            />
-          {{/if}}
+      <div class="flex1 flex-group-center desc">
+        <div class="desc-header">
+          <label class="resource-label">{{localize 'FU.GeneralInfo'}}</label>
         </div>
-
-        <div class="grid grid-3col">
+        <div class="grid grid-3col card-style">
           <div class="resource-content flexcol flex-group-center">
             <label class="resource-label">{{localize 'FU.Potency'}}</label>
-            <select class="resource-input select-dropdown-m" value="{{system.potency.value}}" name="system.potency.value">
+            <select
+              class="resource-input select-dropdown-m"
+              value="{{system.potency.value}}"
+              name="system.potency.value"
+            >
               {{#select system.potency.value}}
               <option value="minor">Minor</option>
               <option value="medium">Medium</option>
@@ -67,7 +75,11 @@
           </div>
           <div class="resource-content flexcol flex-group-center">
             <label class="resource-label">{{localize 'FU.Area'}}</label>
-            <select class="resource-input select-dropdown-m" value="{{system.area.value}}" name="system.area.value">
+            <select
+              class="resource-input select-dropdown-m"
+              value="{{system.area.value}}"
+              name="system.area.value"
+            >
               {{#select system.area.value}}
               <option value="individual">Individual</option>
               <option value="small">Small</option>
@@ -78,7 +90,11 @@
           </div>
           <div class="resource-content flexcol flex-group-center">
             <label class="resource-label">{{localize 'FU.Uses'}}</label>
-            <select class="resource-input select-dropdown-m" value="{{system.use.value}}" name="system.use.value">
+            <select
+              class="resource-input select-dropdown-m"
+              value="{{system.use.value}}"
+              name="system.use.value"
+            >
               {{#select system.use.value}}
               <option value="consumable">Consumable</option>
               <option value="permanent">Permanent</option>
@@ -97,10 +113,10 @@
               value="{{system.numTinker.value}}"
               data-dtype="Number"
             />
-          </div>       
+          </div>
           <div class="resource-content flexcol flex-group-center">
             <label class="resource-label">{{localize 'FU.NumHelper'}}</label>
-            <input 
+            <input
               class="resource-input"
               type="text"
               name="system.numHelper.value"
@@ -131,9 +147,11 @@
               disabled
             />
           </div>
-        
+
           <div class="resource-content flexcol flex-group-center">
-            <label class="resource-label">{{localize 'FU.ProgressPerDay'}}</label>
+            <label class="resource-label"
+              >{{localize 'FU.ProgressPerDay'}}</label
+            >
             <input
               type="text"
               name="system.progressPerDay.value"
@@ -150,7 +168,6 @@
               value="{{system.days.value}}"
               data-dtype="Number"
               disabled
-              
             />
           </div>
         </div>
@@ -177,5 +194,7 @@
             />
           </div>
         </div>
-    </section>
-  </form>
+      </div>
+    </div>
+  </section>
+</form>

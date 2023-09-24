@@ -5,15 +5,15 @@ export const FU = {};
  * @type {Object}
  */
 FU.attributes = {
-  "mig": "FU.AttributeMig",
-  "dex": "FU.AttributeDex",
-  "ins": "FU.AttributeIns",
-  "wlp": "FU.AttributeWlp"
+  mig: "FU.AttributeMig",
+  dex: "FU.AttributeDex",
+  ins: "FU.AttributeIns",
+  wlp: "FU.AttributeWlp",
 };
 
 FU.attributeAbbreviations = {
-  "mig": "FU.AttributeMigAbbr",
-  "dex": "FU.AttributeDexAbbr",
-  "ins": "FU.AttributeInsAbbr",
-  "wlp": "FU.AttributeWlpAbbr"
+  mig: "FU.AttributeMigAbbr",
+  dex: "FU.AttributeDexAbbr",
+  ins: "FU.AttributeInsAbbr",
+  wlp: "FU.AttributeWlpAbbr",
 };

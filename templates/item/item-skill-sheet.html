@@ -1,10 +1,10 @@
 <form class="{{cssClass}} backgroundstyle" autocomplete="off">
-  {{> "systems/fabulaultima/templates/item/parts/item-header.html" dtypes=dtypes}}
-
-  {{!-- Sheet Tab Navigation --}}
+  {{> "systems/fabulaultima/templates/item/parts/item-header.html"
+  dtypes=dtypes}} {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="description">Description</a>
     <a class="item" data-tab="attributes">Attributes</a>
+    <a class="item" data-tab="effects">Effects</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -13,6 +13,12 @@
     <div class="tab desc" data-group="primary" data-tab="description">
       {{editor system.description target="system.description" rollData=rollData
       button=true owner=owner editable=editable}}
+    </div>
+
+    {{!-- Active Effects Tab --}}
+    <div class="tab effects" data-group="primary" data-tab="effects">
+      {{> "systems/fabulaultima/templates/item/parts/item-effects.html"
+      dtypes=dtypes item=item actor=actor}}
     </div>
 
     {{!-- Attributes Tab --}}
@@ -29,10 +35,9 @@
             }}
           />
         </label>
-        {{!-- NPC Relevent Option --}}
-        {{#if (eq actor.type "npc")}}
+        {{!-- NPC Relevent Option --}} {{#if (eq actor.type "npc")}}
         <label class="checkbox">
-          <span>Add to behavior roll?</span
+          <span>{{localize "FU.BehaviorStatus"}}</span
           ><input
             type="checkbox"
             name="system.isBehavior.value"
@@ -41,7 +46,8 @@
             system.isBehavior.value
             }}
           />
-        {{/if}}
+          {{/if}}
+        </label>
       </div>
 
       <div class="resource">
@@ -53,11 +59,20 @@
         />
       </div>
       <div class="resource">
-        <label class="resource-label">Level</label>
+        <label class="resource-label">Skill Level</label>
         <input
           type="text"
           name="system.level.value"
           value="{{system.level.value}}"
+          data-dtype="Number"
+        />
+      </div>
+      <div class="resource">
+        <label class="resource-label">Max Skill Level</label>
+        <input
+          type="text"
+          name="system.level.max"
+          value="{{system.level.max}}"
           data-dtype="Number"
         />
       </div>

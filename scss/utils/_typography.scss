@@ -1,37 +1,65 @@
- $font-primary: 'Signika', sans-serif;
- $font-secondary: 'Signika', sans-serif;
+$font-primary: "PT Sans", sans-serif;
+$font-secondary: "PT Sans", sans-serif;
+
+.window-app {
+  font-family: $font-primary;
+  .item,
+  .resource-label,
+  zennit {
+    font-weight: bold;
+  }
+  .editor {
+    font-weight: normal;
+  }
+}
+input.resource-input {
+  &.summary {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 18px;
+  }
+}
 
 .uppercase {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .quote {
-    border-left: 3px solid #999;
-    padding-left: 10px;
-    font-style: italic; 
+  border-left: 3px solid #999;
+  padding-left: 10px;
+  font-style: italic;
 }
+
 .chat-desc {
-    .summary {
-        font-family: 'Cormorant Garamond', serif;
-        font-weight: 700;
-        font-style: italic;
-        font-size: 20px;
-    }
+  .summary {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 20px;
+  }
 }
 
 .charname {
-    .resource-input-charname {
-        font-family: alice;
-    }
+  .resource-input-charname {
+    font-family: "Alice";
+  }
 }
-
 
 .chat-message {
-    .message-header {
-        .flavor-text {
-            font-size: 20px;
-            margin-top: 10px;
-        }
+  .message-header {
+    .flavor-text {
+      font-size: 20px;
+      margin-top: 10px;
     }
+  }
 }
-
+.spell-desc,
+.detail-desc {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: $font-primary;
+  .summary {
+    font-size: 14px;
+  }
+}

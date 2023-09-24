@@ -1,6 +1,6 @@
 {
   "name": "fabulaultima",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "CSS compiler for the FabulaUltima system",
   "scripts": {
     "build": "gulp build",
@@ -21,5 +21,9 @@
     "gulp-sourcemaps": "^3.0.0",
     "prettier": "^3.0.3",
     "sass": "^1.53.0"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "rpg-awesome": "^0.2.0"
   }
 }

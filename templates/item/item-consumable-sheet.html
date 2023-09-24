@@ -1,27 +1,26 @@
 <form class="{{cssClass}} backgroundstyle" autocomplete="off">
-  {{> "systems/fabulaultima/templates/item/parts/item-header.html" dtypes=dtypes}}
-
-  {{!-- Sheet Tab Navigation --}}
+  {{> "systems/fabulaultima/templates/item/parts/item-header.html"
+  dtypes=dtypes}} {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="description">Description</a>
+    <!-- <a class="item" data-tab="description">Description</a> -->
     <a class="item" data-tab="attributes">Attributes</a>
   </nav>
 
   {{!-- Sheet Body --}}
   <section class="sheet-body">
     {{!-- Description Tab --}}
-    <div class="tab desc" data-group="primary" data-tab="description">
+    <!-- <div class="tab desc" data-group="primary" data-tab="description">
       {{editor system.description target="system.description" rollData=rollData
       button=true owner=owner editable=editable}}
-    </div>
+    </div> -->
 
     {{!-- Attributes Tab --}}
     <div class="tab attributes" data-group="primary" data-tab="attributes">
       {{!-- As you add new fields, add them in here! --}}
-      <div>
-        <label class="checkbox">
-          <span>Favorite?</span
-          ><input
+      <div class="item-settings">
+        <label class="checkbox resource-label">
+          <span>{{localize 'FU.FavoriteStatus'}}</span>
+          <input
             type="checkbox"
             name="system.isFavored.value"
             {{
@@ -30,10 +29,9 @@
             }}
           />
         </label>
-        {{!-- NPC Relevent Option --}}
-        {{#if (eq actor.type "npc")}}
-        <label class="checkbox">
-          <span>Add to behavior roll?</span
+        {{!-- NPC Relevent Option --}} {{#if (eq actor.type "npc")}}
+        <label class="checkbox resource-label">
+          <span>{{localize 'FU.BehaviorStatus'}}</span
           ><input
             type="checkbox"
             name="system.isBehavior.value"
@@ -42,17 +40,56 @@
             system.isBehavior.value
             }}
           />
-        {{/if}}
+          {{/if}}
+        </label>
       </div>
-      <div class="resource">
-        <label class="resource-label">IP Cost</label>
-        <input
-          type="text"
-          name="system.ipCost.value"
-          value="{{system.ipCost.value}}"
-          data-dtype="Number"
-        />
+
+      <section class="flex1 flex-group-center desc">
+        <div class="desc-header">
+          <label class="resource-label">{{localize 'FU.GeneralInfo'}}</label>
+        </div>
+
+        <div class="grid grid-4col card-style">
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label"
+              >{{localize "FU.InventoryCost"}}</label
+            >
+            <input
+              type="number"
+              name="system.ipCost.value"
+              value="{{system.ipCost.value}}"
+              data-dtype="Number"
+              class="resource-input select-dropdown-m"
+            />
+          </div>
+          {{#if (and (eq actor.type "npc") system.isBehavior.value)}}
+
+          <div class="resource-content flexcol flex-group-center">
+            <label class="resource-label"
+              >{{localize 'FU.BehaviorWeight'}}</label
+            >
+            <input
+              type="number"
+              name="system.weight.value"
+              value="{{system.weight.value}}"
+              data-dtype="Number"
+              class="resource-input select-dropdown-m"
+            />
+          </div>
+  
+          {{/if}}
+        </div>
+
+      </section>
+
+      <div class="grid-span-2 desc flex-between">
+        <div class="quarter-desc">
+          {{editor system.description target="system.description" rollData=rollData
+          button=true owner=owner editable=editable}}
+        </div>
       </div>
+
+
     </div>
   </section>
 </form>

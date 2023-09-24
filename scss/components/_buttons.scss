@@ -4,7 +4,9 @@
   align-items: center;
   color: $color-secondary;
   text-shadow: 3px 3px $color-primary;
-  input.fp-resource-input, input.up-resource-input {
+
+  input.fp-resource-input,
+  input.up-resource-input {
     color: $color-secondary;
     text-shadow: 1px 2px $color-quaternary;
     font-size: 24px;
@@ -15,6 +17,7 @@
     height: auto;
     padding: 5px;
   }
+
   &.roll-check {
     margin: 6px 0;
   }
@@ -22,7 +25,6 @@
   .increment-button,
   .decrement-button,
   .roll-check-option {
-    // Common styles for all buttons
     color: $color-secondary;
     text-shadow: 1px 2px $color-quaternary;
     font-size: 16px;
@@ -35,41 +37,41 @@
     visibility: hidden;
 
     &:hover {
-      background-color: rgba(0, 128, 128, 0.1); /* Light teal background on hover */
+      background-color: rgba(0, 128, 128, 0.1);
     }
   }
-
   &:hover .increment-button,
   &:hover .decrement-button,
   &:hover .roll-check-option {
-    visibility: visible; /* Show the buttons on hover over the .buttons-inc div */
+    visibility: visible;
   }
-
   .roll-check-option {
-    // Additional style for roll-check-option button
-    visibility: visible; /* Ensure visibility is not hidden */
+    visibility: visible;
+    width: 26px;
   }
 }
+/* Action Buttons */
+.action-button {
+  width: 100%;
+  appearance: none;
+  border: none;
 
-.tab-style {
   color: $color-primary;
-  font-size: 17px;
+  font-size: 18px;
+
+  text-shadow: 1px 1px 1px $color-black;
   box-shadow: 3px 6px $color-secondary;
   border-radius: 8px;
-  margin-top: 12px;
-  margin-bottom: 12px;
+
   background-color: $color-secondary;
   background-image: linear-gradient($color-tabStyle-gradient);
-  margin-right: 8px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add box-shadow transition */
 
-  &:hover {
-    transform: translateY(-2px);
-    z-index: 1; /* Ensure the hovered button is on top */
-  }
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 
   &:active {
-    transform: translateY(0);
+    transform: translateY(3px);
     box-shadow: 1px 2px $color-secondary;
   }
 
@@ -79,6 +81,34 @@
   }
 }
 
+.tab-style {
+  color: $color-primary;
+  font-size: 17px;
+  text-shadow: 1px 1px 1px $color-black;
+  box-shadow: 3px 6px $color-secondary;
+  border-radius: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  background-color: $color-secondary;
+  background-image: linear-gradient($color-tabStyle-gradient);
+  margin-right: 8px;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+  &:hover {
+    transform: translateY(-2px);
+    z-index: 1;
+    text-shadow: $color-info;
+  }
+  &:active {
+    transform: translateY(2px); /* Move button down when pressed */
+    box-shadow: 1px 2px $color-secondary;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 3px 6px $color-info;
+  }
+}
 
 .slot-style {
   color: $color-primary;
@@ -89,16 +119,17 @@
   margin-bottom: 12px;
   background-color: $color-secondary;
   background-image: linear-gradient($color-tabStyle-gradient);
-  margin-right: 8px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 
   &:hover {
-    transform: translateY(-1px);
-    z-index: 1; /* Ensure the hovered button is on top */
+    // transform: translateY(0);
+    // z-index: 1;
   }
 
   &:active {
-    transform: translateY(0);
+    transform: translateY(3px);
     box-shadow: 1px 2px $color-secondary;
   }
 
@@ -108,31 +139,32 @@
   }
 }
 
-
-
-/* Apply consistent styles to buttons */
 .item-control {
   display: flex;
   align-items: center;
   justify-content: center;
-  // margin-left: 6px;
 
   i {
-    font-size: 12px;
-    // margin-right: 1em;
+    font-size: 13px;
   }
 }
 .item-equip {
+  $size-outline: 2px; // Adjust the size of the outline
+  $color-outline: #000; // Define the color of the outline (change it to your desired color)
+  $color-text-shadow: #333; // Define the color of the text shadow (change it to your desired color)
   display: flex;
   align-items: center;
   justify-content: center;
-  // margin-left: 6px;
 
   i {
-    font-size: 16px;
-    // margin-right: 1em;
+    font-size: 20px;
+  }
+  &:before {
+    z-index: -1;
+    text-shadow: $size-outline $size-outline 1px $color-outline;
   }
 }
+
 
 .item-create-bond {
   display: flex;
@@ -148,8 +180,22 @@
     margin-right: 1em;
   }
 }
-  
-label.elite{
+
+label.elite {
   line-height: 0;
   font-size: 14px;
+}
+
+.info-circle {
+  width: 16px;
+  height: 16px;
+  background-color: $color-secondary;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-style: italic;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
 }

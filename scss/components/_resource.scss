@@ -1,18 +1,31 @@
 /* Temp Fixes */
 .auto-shrink {
-	width: 100%;
-	box-sizing: border-box;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+  width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 /* Space after icon */
 .icon::after {
-	content: "\00a0";
+  content: "\00a0";
 }
-  
+
 /* Space before icon */
 .icon-r::before {
-	content: "\00a0";
+  content: "\00a0";
+}
+
+.ra.ral {
+  text-shadow:
+    -0.5px -0.5px 0 rgba(0, 0, 0, 0.5),
+    /* Top-left */ 0.5px -0.5px 0 rgba(0, 0, 0, 0.5),
+    /* Top-right */ -0.5px 0.5px 0 rgba(0, 0, 0, 0.5),
+    /* Bottom-left */ 0.5px 0.5px 0 rgba(0, 0, 0, 0.5); /* Bottom-right */
+}
+
+/* Target the Clock section */
+.resource.grid-start-3.grid-span-1.flexrow {
+  grid-row: span 2;
 }
 
 /* Labels */
@@ -21,19 +34,20 @@
   font-weight: bold;
   font-size: 16px;
   border: transparent;
+  background: none;
 
-  input.resource-label{
+  input.resource-label {
     color: $color-secondary;
-    font-weight: bold;
-    font-size: 16px;
     border: transparent;
-	}
+  }
 
+  &.section-title {
+    font-size: 18px;
+  }
   &.summary {
-	padding: 1em 0 0 1em;
-	margin: 0.5em 0 0 0.5em;
-	}
-
+    padding: 1em 0 0 1em;
+    margin: 0.5em 0 0 0.5em;
+  }
 }
 
 .resource-label-sm {
@@ -41,157 +55,215 @@
   font-weight: bold;
   font-size: 14px;
   padding: 0 2px;
-  
-  input.resource-label{
+
+  input.resource-label {
     color: $color-secondary;
     font-size: 14px;
     border: transparent;
   }
 }
 
-.levelup {
-	background: linear-gradient(#{$color-transparent-gradient});
-	margin: 10px 0 5px 0;
-	border-radius: 10%;
-  
-	& input.resource-input-charname {
-	  color: $color-primary;
-	  font-size: 16px;
-	  background-color: $color-secondary;
-	  margin: 1px;
-	}
-  
-	& .side-bar {
-	  width: 5em !important;
-	}
-  
-	&.creature {
-	  padding: 0.5em;
-	}
-  }
-
-.npc-border-col{
-	background: linear-gradient(#{$color-transparent-gradient});
+.npc-border-col {
+  background: linear-gradient(#{$color-transparent-gradient});
 }
 
 .resource-content {
-	color: $color-secondary;
-	font-size: 16px;
-	font-weight: bold;
-	background-color: transparent;
-	&.ab {
-		width: 3.5em;
-	}
-}
+  color: $color-secondary;
+  font-weight: bold;
+  background-color: transparent;
 
-.resource-input {
-	color: $color-primary;
-	font-size: 16px;
-	background-color: $color-secondary;
-	width: 3.5em;
-	margin: 1px;
+  &.traits {
+    margin: 0 5px;
+  }
+  &.ab {
+    width: 3.5em;
+  }
+  &.bond-container {
+    margin: 0 5px;
+    .resource-input {
+      color: $color-primary;
+      font-size: 16px;
+      background-color: $color-secondary;
+      width: 100%;
+      margin: 0 5px;
+      justify-content: center;
+      text-align: center;
+      appearance: none;
+      &.select-bonds {
+        appearance: none;
+        background-size: 16px 16px;
+        height: 80%;
+        width: 90%;
+        border: thin solid $color-secondary;
+      }
+    }
+  }
+  .bond-add {
+    .resource-input.select-bonds {
+      color: ivory;
+      font-size: 16px;
+      background-color: $color-secondary;
+      padding: 0;
+      border-radius: 5px;
+      border: none;
+    }
+  }
 
-	select & {
-	appearance: none;
-	background-size: 16px 16px;
-	text-align: center;
-	width: 3.5em;
-	padding: 0;
-	}
+  &.levelup-container {
+    background: linear-gradient(#{$color-transparent-gradient});
+    margin: 5px 0 5px 0;
+    border-radius: 10%;
 
-	select.creature-input & {
-	appearance: none;
-	background-size: 16px 16px;
-	text-align-last: center;
-	width: 6em;
-	margin: 0;
-	}
+    & input.resource-input-charname {
+      color: $color-primary;
+      font-size: 16px;
+      background-color: $color-secondary;
+      margin: 1px;
+    }
+    & .resource-input {
+      width: 80%;
+      font-size: 13px;
+      margin: 0 5px 0 5px;
+      appearance: none;
+      border: none;
+    }
+    & .side-bar {
+      width: 85%;
+    }
 
-	input.charname-resource-input {
-	color: $color-primary;
-	font-size: 24px;
-	background-color: transparent;
-	border: transparent;
-	}
+    &.creature {
+      padding: 0.5em;
+      .resource-input {
+        color: $color-primary;
+        font-size: 16px;
+        background-color: $color-secondary;
+        width: 3.5em;
+        justify-content: center;
+        text-align: center;
+        appearance: none;
+        border-radius: 5px;
+        &select.creature-input & {
+          appearance: none;
+          background-size: 16px 16px;
+          text-align-last: center;
+          width: 6em;
+          margin: 0;
+        }
+      }
+    }
+    .combineBar {
+      background: #2a4a41;
+      border-radius: 5px;
+      #isCompanionCheckbox {
+        flex: 0;
+      }
+    }
+  }
+  .name-input {
+    .resource-label {
+      height: 16px;
+    }
+  }
+  .resource-input {
+    color: $color-primary;
+    font-size: 16px;
+    background-color: $color-secondary;
+    border: thin solid $color-secondary;
+    width: 3.5em;
+    height: 26px;
+    justify-content: center;
+    text-align: center;
+    appearance: none;
 
-	&.summary {
-	width: 95%;
-		padding: 1.5em;
-	margin: 0.5em 1em;
-		font-style: italic;
-	}
+    select & {
+      appearance: none;
+      background-size: 16px 16px;
+      width: 3.5em;
+      padding: 0;
+    }
 
-	&.select-dropdown {
-	appearance: none;
-	background-size: 16px 16px;
-	width: 4em;
-	}
+    input.charname-resource-input {
+      color: $color-primary;
+      font-size: 24px;
+      background-color: transparent;
+      border: transparent;
+    }
 
-	&.select-dropdown-m {
-		appearance: none;
-		background-size: 16px 16px;
-		width: 7em;
-	}
+    &.summary {
+      width: 95%;
+      padding: 1.5em;
+      margin: 0.5em;
+      font-style: italic;
+      text-align: left;
+    }
 
-	&.select-bonds {
-		appearance: none;
-		background-size: 16px 16px;
-		width: 100%;
-		height: 100%;
-		}
+    &.select-dropdown {
+      appearance: none;
+      background-size: 16px 16px;
+      width: 3em;
+    }
 
+    &.select-dropdown-m {
+      appearance: none;
+      background-size: 16px 16px;
+      width: 7em;
+    }
+    &.select-dropdown-l {
+      appearance: none;
+      background-size: 16px 16px;
+      width: 10em;
+    }
+    &.select-dropdown-xl {
+      appearance: none;
+      background-size: 16px 16px;
+      width: 24em;
+    }
+
+  }
 }
 
 .resource-input-traits {
-	color: $color-primary;
-	font-size: 16px;
-	background-color: $color-secondary;
-	height: 25px;
-	width: 100%;
+  color: $color-primary;
+  font-size: 16px;
+  background-color: $color-secondary;
+  height: 25px;
+  width: 100%;
+  border: thin solid $color-secondary;
 
-	.select-dropdown {
-		appearance: none;
-		background-size: 16px 16px;
-		padding-left: 20px;
-		padding-right: 20px;
-	}
-}
-
-.resource-input-bonds {
-	color: ivory;
-	font-size: 16px;
-	background-color: #2a4a41;
-	width: 100%;
-	padding: 0;
-
-	.select-dropdown {
-		appearance: none;
-		background-size: 16px 16px;
-		padding-left: 20px;
-		padding-right: 20px;
-	}
+  .select-dropdown {
+    appearance: none;
+    background-size: 16px 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .input-with-buttons input.resource-input {
-	color: ivory;
-	font-size: 16px;
-	background-color: $color-secondary;
-	border: transparent;
-	padding: 5px;
+  color: ivory;
+  font-size: 16px;
+  background-color: $color-secondary;
+  border: transparent;
+  padding: 5px;
 }
 
 input.inputdesc {
-	color: $color-primary;
-	font-size: 16px;
-	background-color: $color-secondary;
-	border: transparent;
+  color: $color-primary;
+  font-size: 16px;
+  background-color: $color-secondary;
+  border: transparent;
 }
 
 input.traitdesc {
-	color: $color-primary;
-	font-size: 14px;
-	background-color: $color-secondary;
-	border: transparent;
-	min-height: 0em;
-	max-height: 100%;
+  color: $color-primary;
+  font-size: 14px;
+  background-color: $color-secondary;
+  border: transparent;
+  height: 20px;
+  min-height: 0em;
+  max-height: 100%;
+  border-radius: 0 5px 0 0;
+}
+
+.checkbox {
+  font-size: 1em;
 }

@@ -34,14 +34,14 @@ Hooks.once("init", async () => {
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: "1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value",
+    formula:
+      "1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value",
     decimals: 2,
   };
 
   // Define custom Document classes
   CONFIG.Actor.documentClass = FUActor;
   CONFIG.Item.documentClass = FUItem;
-
 
   // todo: selective options for choosing which automation to disable
   game.settings.register("fabulaultima", "disableAutomation", {
@@ -58,22 +58,22 @@ Hooks.once("init", async () => {
       id: "accelerated",
       label: "Accelerated",
       icon: "systems/fabulaultima/styles/static/statuses/Accelerated.webp",
-	  stats: ["ins"],
-	  mod: 0,
+      stats: ["ins"],
+      mod: 0,
     },
     {
       id: "aura",
       label: "Aura",
       icon: "systems/fabulaultima/styles/static/statuses/Aura.webp",
-	  stats: ["ins"],
-	  mod: 0,
+      stats: ["ins"],
+      mod: 0,
     },
     {
       id: "barrier",
       label: "Barrier",
       icon: "systems/fabulaultima/styles/static/statuses/Barrier.webp",
-	  stats: ["ins"],
-	  mod: 0,
+      stats: ["ins"],
+      mod: 0,
     },
     {
       id: "dazed",
@@ -150,12 +150,12 @@ Hooks.once("init", async () => {
       stats: ["wlp"],
       mod: 2,
     },
-	{
+    {
       id: "crisis",
       label: "Crisis",
       icon: "systems/fabulaultima/styles/static/statuses/Status_Bleeding.png",
-	  stats: ["ins"],
-	  mod: 0,
+      stats: ["ins"],
+      mod: 0,
     },
   ];
 
@@ -203,11 +203,27 @@ Hooks.once("ready", async function () {
 
 Hooks.once("socketlib.ready", () => {
   const socket = socketlib.registerSystem("fabulaultima");
-  socket.register("floatingText", displayFloatingText);
+  socket.register("cast", displayCastingText);
+  socket.register("use", displayUsingText);
 });
 
 Hooks.once("mmo-hud.ready", () => {
   // Do this
+});
+
+Hooks.on("renderSheet", (app, html, data) => {
+  if (app.document.type === "Actor" && app.document.isCharacter) {
+    const linkActorDataSetting = game.settings.get(
+      "fabulaultima",
+      "linkActorData"
+    );
+
+    // Check if the "Link Actor Data" setting is enabled (true or false)
+    if (linkActorDataSetting) {
+      // Modify the character sheet HTML to set "Link Actor Data" as default
+      html.find(".link-actor-data").prop("checked", true);
+    }
+  }
 });
 
 /* -------------------------------------------- */
@@ -276,7 +292,24 @@ function rollItemMacro(itemUuid) {
   });
 }
 
-function displayFloatingText(text) {
+function displayCastingText(text) {
+  const user = this.actor;
+  text = `${user} casts ${text}`;
+
+  ui.notifications.queue.push({
+    message: text,
+    type: "fabulaultima-spellname",
+    timestamp: new Date().getTime(),
+    permanent: false,
+    console: false,
+  });
+  if (ui.notifications.rendered) ui.notifications.fetch();
+}
+
+function displayUsingText(text) {
+  const user = this.actor;
+  text = `${user} uses ${text}`;
+
   ui.notifications.queue.push({
     message: text,
     type: "fabulaultima-spellname",
