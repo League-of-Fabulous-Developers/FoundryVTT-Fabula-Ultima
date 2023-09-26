@@ -55,6 +55,21 @@ Handlebars.registerHelper('calculatePercentage', function (currentValue, maxValu
   return percentage.toFixed(2) + '%';
 });
 
+// Define a Handlebars helper to get the non-abbreviated label based on the value
+Handlebars.registerHelper("localizeFull", function (value) {
+  // Define an object that maps values to non-abbreviated labels
+  var affinityLabels = {
+    0: "FU.AffinityVulnurable",
+    1: "FU.AffinityNormal",
+    2: "FU.AffinityResistance",
+    3: "FU.AffinityImmune",
+    4: "FU.AffinityAbsorption",
+    5: "FU.AffinityRepulsion",
+  };
+  
+  // Return the non-abbreviated label based on the value
+  return affinityLabels[value];
+});
 
 Handlebars.registerHelper("affinity", function (affinity, options) {
   // Define an array of objects with the icon and label for each damage type
@@ -79,7 +94,7 @@ Handlebars.registerHelper("affinity", function (affinity, options) {
     var key = Object.keys(affinity)[i];
     var value = affinity[key];
 
-    // Create a new context object with the icon, label, name and value
+    // Create a new context object with the icon, label, name, and value
     var context = {
       icon: damageTypes[i].icon,
       label: damageTypes[i].label,
@@ -123,6 +138,18 @@ Handlebars.registerHelper("getIconClass", function (item) {
       item.system.isEquipped.slot === "mainHand"
     ) {
       return "ra ra-shield";
+    }
+  } else if (item.type === "armor") {
+    if (
+      item.system.isEquipped.slot === "armor"
+    ) {
+      return "ra ra-helmet ra-2x";
+    }
+  } else if (item.type === "accessory") {
+    if (
+      item.system.isEquipped.slot === "accessory"
+    ) {
+      return "fas fa-hat-wizard ra-2x";
     }
   }
   return "fas fa-toolbox";

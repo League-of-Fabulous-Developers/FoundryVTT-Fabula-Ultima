@@ -123,11 +123,6 @@
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
 
-  &:hover {
-    // transform: translateY(0);
-    // z-index: 1;
-  }
-
   &:active {
     transform: translateY(3px);
     box-shadow: 1px 2px $color-secondary;
@@ -157,7 +152,7 @@
   justify-content: center;
 
   i {
-    font-size: 20px;
+    font-size: 24px
   }
   &:before {
     z-index: -1;

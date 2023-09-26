@@ -496,7 +496,7 @@
         </div>
       </div>
     </div>
-    {{!-- End Second Section Header --}} {{!-- Start Affinity Section --}}
+    {{!-- Start Affinity Section --}}
     <div class="header-fields grid grid-9col">
       {{#affinity system.resources.affinity}}
       <div class="resource-content flex-group-center">
@@ -510,19 +510,22 @@
           value="{{value}}"
           name="{{name}}"
           class="resource-input select-dropdown"
+          data-tooltip="{{localizeFull value}}"
         >
-          {{#select value}}
-          <option value="NA">-</option>
-          <option value="VU">VU</option>
-          <option value="RS">RS</option>
-          <option value="IM">IM</option>
-          <option value="AB">AB</option>
+        {{#select value}}
+          <option value="1">{{localize "FU.AffinityNormalAbbr"}}</option>
+          <option value="0">{{localize "FU.AffinityVulnurableAbbr"}}</option>
+          <option value="2">{{localize "FU.AffinityResistanceAbbr"}}</option>
+          <option value="3">{{localize "FU.AffinityImmuneAbbr"}}</option>
+          <option value="4">{{localize "FU.AffinityAbsorptionAbbr"}}</option>
+          <option value="5">{{localize "FU.AffinityRepulsionAbbr"}}</option>
           {{/select}}
         </select>
       </div>
       {{/affinity}}
     </div>
-    {{!-- End Affinity Section --}}
+    {{!-- End Affinity Section --}}    
+    
   </header>
 
   {{!-- Start Sheet Tab Navigation --}}
