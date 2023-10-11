@@ -1,6 +1,7 @@
 .item-form {
   font-family: $font-primary;
 }
+
 /* Sheet Background */
 .backgroundstyle {
   background-image: url("/systems/fabulaultima/styles/static/ui/bg.png"),
@@ -32,6 +33,7 @@ img.clock-img {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-bottom: 0.5em;
+
   .combine-header {
     flex: 0;
     margin: 0px 2px 5px;
@@ -41,18 +43,18 @@ img.clock-img {
     justify-content: flex-start;
     display: flex;
   }
+
   .profile-img {
     flex: 0 0 150px;
     height: 150px;
+    width: 150px;
     margin-right: 0;
     margin-top: 15px;
     padding: 2px;
     align-self: start;
-    background-image: linear-gradient(
-      to right,
-      $color-secondary,
-      $color-ternary
-    );
+    background-image: linear-gradient(to right,
+        $color-secondary,
+        $color-ternary);
     background-clip: content-box;
     border-color: #9a9a9a;
     margin: 0.5em 0 0 0.5em;
@@ -62,7 +64,6 @@ img.clock-img {
   /* Character Name Input Tag */
   input.resource-input-charname {
     color: $color-primary;
-    font-size: 24px;
     text-shadow: 1px 1px 1px $color-black;
     background: linear-gradient($color-charname-gradient);
     border-color: transparent;
@@ -70,9 +71,21 @@ img.clock-img {
 
   .header-fields {
     flex: 1;
-    margin: 5px 0;
+    margin: 3px 0;
+
     .header-center {
-      margin: 12px 0px;
+      margin: 12px 0 0;
+    }
+  }
+
+  select {
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    option {
+      background-color: $color-secondary;
+      color: $color-primary;
     }
   }
 
@@ -84,6 +97,7 @@ img.clock-img {
     padding: 0px;
     margin: 5px 0;
     border-bottom: 0;
+
     input {
       width: 100%;
       height: 100%;
@@ -104,14 +118,17 @@ img.clock-img {
   margin: 2px 10px;
   float: left;
 }
+
 .card-style {
   margin: 0.5em;
 }
+
 .item-border-col {
   border: 4px double $color-secondary;
 }
 
 .npc-border-col {
+  background: linear-gradient(#{$color-transparent-gradient});
   border: 4px double $color-secondary;
   border-radius: 10px;
   min-height: 18em;
@@ -132,8 +149,7 @@ img.clock-img {
   }
 
   .tox-tinymce {
-    min-height: 15em !important;
-    max-height: 17em;
+    min-height: 17em;
   }
 }
 
@@ -145,17 +161,17 @@ img.clock-img {
   .sidebar {
     margin: 0 0.5em;
   }
+
   // .desc:not(:last-child) {
   //   margin-bottom: 5px;
   // }
   .desc {
-    background: linear-gradient(
-      to right,
-      rgba(238, 244, 228, 0.5),
-      rgba(226, 237, 213, 0.5)
-    );
+    background: linear-gradient(to right,
+        rgba(238, 244, 228, 0.5),
+        rgba(226, 237, 213, 0.5));
     border-radius: 10px;
     border: 4px double $color-secondary;
+
     .desc-header {
       background: none;
       border-radius: 10px 10px 0 0;
@@ -164,21 +180,23 @@ img.clock-img {
 
     &.abilities {
       margin: 5px 0;
-      background: linear-gradient(
-        to right,
-        rgba(238, 244, 228, 0.5),
-        rgba(226, 237, 213, 0.5)
-      );
+      background: linear-gradient(to right,
+          rgba(238, 244, 228, 0.5),
+          rgba(226, 237, 213, 0.5));
+
       span.action-container {
         margin: -3px 5px 5px 3px;
         padding: 2px 0;
       }
+
       .ability {
         padding: 1px 3px;
         border-bottom: 1px solid $color-secondary;
+
         .desc-body {
           font-size: 12px;
         }
+
         &:last-child {
           border-bottom: 0;
         }
@@ -197,29 +215,32 @@ img.clock-img {
 .half-desc {
   .editor {
     height: 100%;
-    min-height: 10em;
+    min-height: 13em;
   }
+
   .tox-tinymce {
     height: 100%;
-    min-height: 10em;
+    min-height: 12em;
     max-height: 12em;
   }
 }
+
 .quarter-desc {
   .editor {
     height: 100%;
-    min-height: 17em;
+    min-height: 23em;
   }
+
   .tox-tinymce {
     height: 100%;
-    min-height: 15em;
-    max-height: 15em;
+    min-height: 20em;
+    max-height: 20em;
   }
 }
 
 .editor {
   height: 100%;
-  min-height: 23em;
+  min-height: 30em;
 }
 
 .editor-content {
@@ -229,13 +250,14 @@ img.clock-img {
 
 .tox-tinymce {
   height: 100%;
-  min-height: 20em;
-  max-height: 22em;
+  min-height: 26em;
+  max-height: 26em;
 }
 
 .tox .tox-editor-container {
   background: $color-white;
 }
+
 .tox .tox-edit-area {
   padding: 0 8px;
 }

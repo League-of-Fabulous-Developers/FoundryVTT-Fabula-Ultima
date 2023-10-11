@@ -4,6 +4,7 @@
 
 .individual-description {
   display: none;
+
   .editor {
     height: fit-content;
     min-height: fit-content;
@@ -11,7 +12,7 @@
   }
 }
 
-.items-header > * {
+.items-header>* {
   font-size: 14px;
   background: linear-gradient($color-tabStyle-gradient);
   border-radius: 4px;
@@ -34,6 +35,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
   .items-levels {
     height: inherit;
     width: 100px;
@@ -77,15 +79,19 @@
     white-space: normal;
     text-overflow: ellipsis;
     padding: 4px 4px 0px 0;
+
     .zenit-content {
       white-space: nowrap;
       max-width: 100%;
       margin-left: 10px;
+
       .fas:hover {
         color: blanchedalmond;
         cursor: pointer;
       }
-      input {
+
+      input,
+      .zenit-text {
         font-size: 16px;
         font-weight: bold;
         text-shadow: 1px 1px 1px $color-black;
@@ -95,7 +101,7 @@
         background-color: transparent;
         border-color: transparent;
         vertical-align: middle;
-        text-align: right;
+        text-align: left;
         margin: 5px 0 10px;
         max-width: 68%;
       }
@@ -106,10 +112,12 @@
     border-radius: 30px 8px 0px 4px;
     text-align: right;
     width: 5em;
+
     .fas:hover {
       color: blanchedalmond;
       cursor: pointer;
     }
+
     input {
       font-size: 16px;
       font-weight: bold;
@@ -117,12 +125,14 @@
       color: $color-primary;
       height: inherit;
       background-color: transparent;
-      border: none; /* Use 'border' to remove borders */
+      border: none;
+      /* Use 'border' to remove borders */
       vertical-align: middle;
     }
   }
+
   .total-class-levels {
-    margin-right: 15px;
+    margin-right: 5px;
   }
 
   &.armor-hand,
@@ -134,6 +144,7 @@
     white-space: normal;
     text-overflow: ellipsis;
     padding: 4px 4px 0px 0;
+
     .equipped-item {
       white-space: nowrap;
       overflow: hidden;
@@ -151,6 +162,7 @@
     white-space: normal;
     padding: 5px;
     margin: 0;
+
     .equipped-item {
       position: relative;
       display: flex;
@@ -158,6 +170,7 @@
       white-space: nowrap;
       justify-content: flex-end;
     }
+
     .equipped-item-content {
       text-overflow: ellipsis;
       overflow: hidden;
@@ -174,15 +187,21 @@
     white-space: normal;
     padding: 5px;
     margin: 0;
+
     .equipped-item {
       position: relative;
       display: flex;
-      align-items: center; /* Vertically center the icon and text */
-      white-space: nowrap; /* Prevent text from wrapping */
+      align-items: center;
+      /* Vertically center the icon and text */
+      white-space: nowrap;
+      /* Prevent text from wrapping */
     }
+
     .equipped-item-content {
-      text-overflow: ellipsis; /* Show ellipsis for overflowing text */
-      overflow: hidden; /* Hide overflowing text */
+      text-overflow: ellipsis;
+      /* Show ellipsis for overflowing text */
+      overflow: hidden;
+      /* Hide overflowing text */
       max-width: 70%;
       margin: 0 2px;
     }
@@ -232,7 +251,6 @@
   flex: 2;
   margin: 0;
   overflow: hidden;
-  font-size: 13px;
   text-align: left;
   display: flex;
   align-items: center;
@@ -275,8 +293,7 @@
   color: $color-secondary;
 
   .item-name {
-    color: #191813;
-    font-weight: bold;
+    color: $color-secondary;
   }
 
   &:hover {
@@ -297,10 +314,9 @@
   align-items: center;
   border: transparent;
   background-color: transparent;
-  font-weight: bold;
 }
 
-.items-list .items-header > * {
+.items-list .items-header>* {
   font-size: 14px;
   text-align: center;
   color: ivory;
@@ -317,9 +333,12 @@
   0% {
     transform: translateY(0);
   }
+
   50% {
-    transform: translateY(2px); /* Adjust the downward distance as needed */
+    transform: translateY(2px);
+    /* Adjust the downward distance as needed */
   }
+
   100% {
     transform: translateY(0);
   }
@@ -327,9 +346,11 @@
 
 .is-martial {
   color: red !important;
+
   &.float-text {
     display: inline-block;
-    animation: floating 3s infinite ease-in-out; /* Adjust the animation duration and easing here */
+    animation: floating 3s infinite ease-in-out;
+    /* Adjust the animation duration and easing here */
   }
 }
 
@@ -405,6 +426,7 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .item-attack,
 .item-class,
 .item-damage {

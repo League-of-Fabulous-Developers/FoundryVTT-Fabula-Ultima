@@ -40,16 +40,19 @@
       background-color: rgba(0, 128, 128, 0.1);
     }
   }
+
   &:hover .increment-button,
   &:hover .decrement-button,
   &:hover .roll-check-option {
     visibility: visible;
   }
+
   .roll-check-option {
     visibility: visible;
     width: 26px;
   }
 }
+
 /* Action Buttons */
 .action-button {
   width: 100%;
@@ -95,15 +98,19 @@
   transition:
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
+
   &:hover {
     transform: translateY(-2px);
     z-index: 1;
     text-shadow: $color-info;
   }
+
   &:active {
-    transform: translateY(2px); /* Move button down when pressed */
+    transform: translateY(2px);
+    /* Move button down when pressed */
     box-shadow: 1px 2px $color-secondary;
   }
+
   &:focus {
     outline: none;
     box-shadow: 3px 6px $color-info;
@@ -143,6 +150,7 @@
     font-size: 13px;
   }
 }
+
 .item-equip {
   $size-outline: 2px; // Adjust the size of the outline
   $color-outline: #000; // Define the color of the outline (change it to your desired color)
@@ -154,6 +162,7 @@
   i {
     font-size: 24px
   }
+
   &:before {
     z-index: -1;
     text-shadow: $size-outline $size-outline 1px $color-outline;

@@ -45,9 +45,10 @@ $color-text-shadow: #333; // Define the color of the text shadow (change it to y
   }
 
   &:before {
-    z-index: -1;
-    text-shadow: $size-outline $size-outline 1px $color-outline;
+    text-shadow:
+      $size-outline $size-outline 1px $color-outline;
   }
+
   &:after {
     z-index: 2;
     outline: $size-outline solid $color-outline;

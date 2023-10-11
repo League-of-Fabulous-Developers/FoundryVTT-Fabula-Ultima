@@ -27,11 +27,6 @@
   }
 }
 
-select option {
-background-color: $color-secondary;
-color: $color-primary;
-}
-
 .tabs .item.active {
   text-shadow: 2px 2px 12px $color-info !important;
 }

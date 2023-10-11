@@ -1,17 +1,17 @@
-<form class="{{cssClass}} backgroundstyle" autocomplete="off">
+<form class="{{ cssClass }} backgroundstyle" autocomplete="off">
   <header class="sheet-header">
     <img
       class="profile-img"
-      src="{{item.img}}"
+      src="{{ item.img }}"
       data-edit="img"
-      title="{{item.name}}"
+      title="{{ item.name }}"
     />
     <div class="header-fields">
       <h1 class="charname">
         <input
           name="name555"
           type="text"
-          value="{{item.name}}"
+          value="{{ item.name }}"
           placeholder="Name"
         />
       </h1>
@@ -21,7 +21,7 @@
           <input
             type="text"
             name="system.quantity"
-            value="{{system.quantity}}"
+            value="{{ system.quantity }}"
             data-dtype="Number"
           />
         </div>
@@ -30,7 +30,7 @@
           <input
             type="text"
             name="system.weight"
-            value="{{system.weight}}"
+            value="{{ system.weight }}"
             data-dtype="Number"
           />
         </div>
@@ -40,8 +40,9 @@
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="attributes">Attributes</a>
+    <a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
+    <a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
+    <a class="item" data-tab="effects">{{localize 'FU.Effects'}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -60,7 +61,7 @@
         <input
           type="text"
           name="system.formula"
-          value="{{system.formula}}"
+          value="{{ system.formula }}"
           data-dtype="String"
         />
       </div>

@@ -1,43 +1,9 @@
 /* ----------------------------------------- */
 /* Item Card Structure                       */
 /* ----------------------------------------- */
-.title-desc {
-}
-
-.title-desc .backgroundstyle {
-  margin: 22px 0 0 0;
-}
-
-.title-desc img {
-  // Styles for the img element within title-desc
-  border: 0px;
-  filter: drop-shadow(2px 2px 4px $color-black);
-  position: relative;
-  bottom: 195px;
-  margin-bottom: -200px;
-  width: 48px;
-  height: 48px;
-}
-
-.title-desc p {
-  // Styles for the p element within title-desc
-  font-family: alice;
-  line-height: 1.2;
-  color: $color-primary;
-  font-size: 26px;
-  text-shadow: 2px 2px 4px $color-black;
-  box-shadow: 3px 6px $color-secondary;
-  border-style: solid;
-  border-width: thin;
-  border-color: $color-beige;
-  padding: 10px;
-  border-radius: 12px;
-  background-color: $color-ternary;
-  overflow-wrap: anywhere;
-}
-
 .chat-message,
 .chat-message.whisper {
+  // Styles for the chat card message
   background-image: url("/systems/fabulaultima/styles/static/ui/bg.png"),
     linear-gradient(to right, $color-beige, $color-faint) !important;
   background-blend-mode: multiply !important;
@@ -49,80 +15,89 @@
   border: 2px solid #6f6c66;
   background-size: cover;
   border-radius: 5px;
-}
 
-/* For editing chat icon and item label */
-.chat-header {
-  img {
-    border: 0;
-    -webkit-filter: drop-shadow(2px 2px 4px $color-shadow);
-    filter: drop-shadow(2px 2px 4px $color-shadow);
-    position: relative;
-    bottom: 195px;
-    margin-bottom: -200px;
-    width: 48px;
-    height: 48px;
+  .message-header {
+
+    // Styles for the header
+    .title-desc .backgroundstyle {
+      margin: 22px 0 0 0;
+    }
+
+    .title-desc img {
+      // Styles for the img element within title-desc
+      border: 0px;
+      filter: drop-shadow(2px 2px 4px $color-black);
+      position: relative;
+      bottom: 195px;
+      margin-bottom: -200px;
+      width: 48px;
+      height: 48px;
+    }
+
+    .title-desc p {
+      // Styles for the p element within title-desc
+      font-family: alice;
+      line-height: 1.2;
+      color: $color-primary;
+      font-size: 26px;
+      text-shadow: 2px 2px 4px $color-black;
+      box-shadow: 3px 6px $color-secondary;
+      border-style: solid;
+      border-width: thin;
+      border-color: $color-beige;
+      padding: 10px;
+      border-radius: 12px;
+      background-color: $color-ternary;
+      overflow-wrap: anywhere;
+    }
   }
-  p {
-    line-height: 1.2;
-    color: $color-primary;
-    font-size: 24px;
-    box-shadow: 3px 6px $color-box-shadow-inverted;
+
+  // Styles for editing chat description
+  .chat-desc {
+    text-align: left;
+    font-size: 14px;
+    padding: 0.5em;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #272a2a;
+    box-shadow: 3px 6px $color-background-inverted;
+    background-image: linear-gradient(to right,
+        rgba(211, 229, 230, 0.3),
+        rgba(195, 219, 214, 0.8));
     border-style: solid;
     border-width: thin;
-    border-color: $color-black;
-    padding: 10px;
-    border-radius: 12px;
-    background-color: $color-background-inverted;
+    border-color: #272a2a;
+    border-radius: 8px;
+
+    strong {
+      color: #272a2a;
+    }
+
+    .resource-label {
+      color: $color-secondary;
+      font-weight: bold;
+      font-size: 16px;
+      border: transparent;
+    }
   }
 }
 
-.chat-desc {
-  text-align: left;
-  font-size: 14px;
-  padding: 0.5em;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  color: #272a2a;
-  box-shadow: 3px 6px $color-background-inverted;
-  background-image: linear-gradient(
-    to right,
-    rgba(211, 229, 230, 0.3),
-    rgba(195, 219, 214, 0.8)
-  );
-  border-style: solid;
-  border-width: thin;
-  border-color: #272a2a;
-  border-radius: 8px;
-  strong {
-    color: #272a2a;
-  }
-  .resource-label {
-    color: $color-secondary;
-    font-weight: bold;
-    font-size: 16px;
-    border: transparent;
-  }
-}
 
-.spell-desc,
+
+// Styles for editing chat's item detail description
 .detail-desc {
   color: $color-black;
   box-shadow: 3px 6px $color-secondary;
-  background-image: linear-gradient(
-    to bottom,
-    rgb(212, 231, 232),
-    rgba(195, 219, 214, 0.7)
-  );
-  border-style: solid;
-  border-width: thin;
-  border-color: $color-background-inverted;
+  background-image: linear-gradient(to bottom,
+      rgb(212, 231, 232),
+      rgba(195, 219, 214, 0.7));
+  border: thin solid $color-background-inverted;
   border-radius: 8px;
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  div {
-    padding: 5px;
+
+  >div {
     margin: 0;
     height: 100% !important;
     flex-grow: 1;
@@ -142,15 +117,39 @@
       background-color: $color-background-inverted;
     }
 
-    &:nth-child(3)::before {
-      display: none; // Show the border for all divs except the third child
-    }
-
+    &:nth-child(3)::before,
     &:last-child::before {
-      display: none; // Hide the border for the last child
+      display: none; // Show the border for all divs except the third child and the last child
     }
   }
 }
+
+
+// Styles for editing chat icon and item label
+// .chat-header {
+//   img {
+//     border: 0;
+//     filter: drop-shadow(2px 2px 4px $color-shadow);
+//     position: relative;
+//     bottom: 195px;
+//     margin-bottom: -200px;
+//     width: 48px;
+//     height: 48px;
+//   }
+
+//   p {
+//     line-height: 1.2;
+//     color: $color-primary;
+//     font-size: 24px;
+//     box-shadow: 3px 6px $color-box-shadow-inverted;
+//     border-style: solid;
+//     border-width: thin;
+//     border-color: $color-black;
+//     padding: 10px;
+//     border-radius: 12px;
+//     background-color: $color-background-inverted;
+//   }
+// }
 
 .mainhand-header {
   font-family: alice;
@@ -215,6 +214,7 @@
 
     .accuracy-details {
       margin: 7px 0;
+
       span.accuracy-detail-text {
         color: $color-primary;
         font-size: 16px;
@@ -240,12 +240,12 @@
       background-color: rgba(225, 239, 227, 0.5);
       border-style: solid;
       border-width: thin;
+
       &.acc-float {
         margin: 13px 0 5px;
+        padding: 0 5px;
       }
-      &.dam-float {
-        margin-top: 8px;
-      }
+
       .float-text {
         display: inline-block;
         font-size: 38px;
@@ -286,6 +286,7 @@
 
     .damage-details {
       margin: 7px 0;
+
       span.damage-detail-text {
         color: $color-white;
         font-size: 16px;
@@ -313,9 +314,12 @@
       background-color: rgba(225, 239, 227, 0.5);
       border-style: solid;
       border-width: thin;
+
       &.dam-float {
         margin-top: -5px;
+        padding: 0 5px;
       }
+
       .float-text {
         display: inline-block;
         font-size: 38px;

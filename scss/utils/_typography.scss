@@ -1,23 +1,111 @@
-$font-primary: "PT Sans", sans-serif;
-$font-secondary: "PT Sans", sans-serif;
+$font-primary: "PT Sans",
+sans-serif;
+$font-secondary: "PT Sans",
+sans-serif;
 
 .window-app {
   font-family: $font-primary;
+
   .item,
-  .resource-label,
-  zennit {
+
+  .zenit-content {
+    font-size: 16px;
     font-weight: bold;
+
+    .item-name {
+      font-size: 16px;
+    }
   }
-  .editor {
-    font-weight: normal;
+
+
+  // Item Summary Font Style
+  input.resource-input {
+    font-size: 16px;
+
+    &.summary {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 18px;
+    }
+  }
+
+  .resource-content {
+    &.affinity {
+      label {
+        font-family: 'Modesto Condensed';
+      }
+    }
+
+    .center-label {
+      font-size:18px;
+    }
+
+    .name-input {
+      input {
+        font-size: 18px;
+        height: 22px;
+      }
+    }
+
+    .resource-label-t {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .resource-label-sm {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .resource-label-m {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .resource-label-l {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .resource-label-xl {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  .resource-label {
+    input.resource-input {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .item-name {
+      font-size: 16px;
+    }
+  }
+
+  .desc {
+    .editor {
+      font-weight: normal;
+    }
+  }
+
+  .charname {
+    input {
+      font-family: "Alice", serif;
+      font-size: 24px;
+    }
   }
 }
-input.resource-input {
-  &.summary {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 700;
-    font-style: italic;
-    font-size: 18px;
+
+.detail-desc {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: $font-primary;
+
+  .summary {
+    font-size: 14px;
   }
 }
 
@@ -40,26 +128,11 @@ input.resource-input {
   }
 }
 
-.charname {
-  .resource-input-charname {
-    font-family: "Alice";
-  }
-}
-
 .chat-message {
   .message-header {
     .flavor-text {
       font-size: 20px;
       margin-top: 10px;
     }
-  }
-}
-.spell-desc,
-.detail-desc {
-  font-size: 14px;
-  font-weight: bold;
-  font-family: $font-primary;
-  .summary {
-    font-size: 14px;
   }
 }

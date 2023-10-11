@@ -41,16 +41,17 @@
       </a>
     </div>
   </li>
-  {{#each items as |item id|}} {{#if (and item.system.isFavored.value)}}
-  <li class="item" data-item-id="{{item._id}}">
+  {{#each items as |item id|}}
+  {{#if (and item.system.isFavored.value)}}
+  <li class="item" data-item-id="{{ item._id }}">
     <div class="flexrow">
       <div class="item-name">
         <div class="item-image">
           <a class="rollable" data-roll-type="item">
             <div class="item-image-wrap">
               <img
-                src="{{item.img}}"
-                data-tooltip="{{item.name}}"
+                src="{{ item.img }}"
+                data-tooltip="{{ item.name }}"
                 class="item-image-res"
               />
             </div>
@@ -59,23 +60,34 @@
         <h4 class="click-item">
           <i class="fas fa-chevron-down" style="display: none"></i>
           <i class="fas fa-chevron-up" style="display: none"></i>
-          {{item.name}} {{#if item.isMartial.value}}
+          {{ item.name }} {{#if item.isMartial.value}}
           <span class="is-martial">✦</span>
           {{/if}}
         </h4>
       </div>
       <div class="item-equipped">
-        {{#if (eq item.type "miscAbility")}}{{capitalize item.system.subtype.value}}{{else}}{{capitalize item.type }}{{/if}}
+        {{#if (eq item.type "miscAbility")
+
+
+        }}{{capitalize item.system.subtype.value
+
+        }}{{else
+
+
+        }}{{capitalize item.type }}{{/if}}
       </div>
       {{> "systems/fabulaultima/templates/actor/parts/actor-control.html"
       item=item}}
     </div>
     <span>{{ item.quality.value }}</span>
     <div class="individual-description align-left">
-      {{#if item.system.description}} {{editor item.system.description
+      {{#if item.system.description}}
+      {{editor item.system.description
       target="item.system.description" rollData=rollData button=false
-      owner=owner editable=false}} {{/if}}
+      owner=owner editable=false}}
+      {{/if}}
     </div>
   </li>
-  {{/if}} {{/each}}
+  {{/if}}
+  {{/each}}
 </ol>

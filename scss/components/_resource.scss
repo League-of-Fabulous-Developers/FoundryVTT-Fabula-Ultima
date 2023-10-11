@@ -5,68 +5,45 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-/* Space after icon */
+
+/* Add space after icon */
 .icon::after {
   content: "\00a0";
+  /* Non-breaking space */
 }
 
-/* Space before icon */
+/* Add space before icon */
 .icon-r::before {
   content: "\00a0";
-}
-
-.ra.ral {
-  text-shadow:
-    -0.5px -0.5px 0 rgba(0, 0, 0, 0.5),
-    /* Top-left */ 0.5px -0.5px 0 rgba(0, 0, 0, 0.5),
-    /* Top-right */ -0.5px 0.5px 0 rgba(0, 0, 0, 0.5),
-    /* Bottom-left */ 0.5px 0.5px 0 rgba(0, 0, 0, 0.5); /* Bottom-right */
-}
-
-/* Target the Clock section */
-.resource.grid-start-3.grid-span-1.flexrow {
-  grid-row: span 2;
+  /* Non-breaking space */
 }
 
 /* Labels */
-.resource-label {
+.resource-content {
   color: $color-secondary;
-  font-weight: bold;
-  font-size: 16px;
-  border: transparent;
-  background: none;
 
-  input.resource-label {
-    color: $color-secondary;
+  .resource-label {
+    font-weight: bold;
     border: transparent;
+    background: none;
+
+    &.section-title {
+      font-size: 18px;
+    }
+
+    &.summary {
+      padding: 1em 0 0 1em;
+      margin: 0.5em 0 0 0.5em;
+    }
   }
 
-  &.section-title {
-    font-size: 18px;
-  }
-  &.summary {
-    padding: 1em 0 0 1em;
-    margin: 0.5em 0 0 0.5em;
-  }
-}
-
-.resource-label-sm {
-  color: $color-secondary;
-  font-weight: bold;
-  font-size: 14px;
-  padding: 0 2px;
-
-  input.resource-label {
-    color: $color-secondary;
-    font-size: 14px;
-    border: transparent;
+  .resource-label-sm {
+    font-weight: bold;
+    padding: 0 2px;
   }
 }
 
-.npc-border-col {
-  background: linear-gradient(#{$color-transparent-gradient});
-}
-
+// Style for Traits Section
 .resource-content {
   color: $color-secondary;
   font-weight: bold;
@@ -74,41 +51,65 @@
 
   &.traits {
     margin: 0 5px;
+
+    input {
+      color: $color-primary;
+      background-color: $color-secondary;
+      border: thin solid $color-secondary;
+      height: 25px;
+      width: 100%;
+    }
   }
-  &.ab {
-    width: 3.5em;
-  }
+
+  // Style for Bonds Section
   &.bond-container {
     margin: 0 5px;
+
     .resource-input {
       color: $color-primary;
-      font-size: 16px;
       background-color: $color-secondary;
+      border: thin solid $color-secondary;
       width: 100%;
       margin: 0 5px;
       justify-content: center;
       text-align: center;
       appearance: none;
+
+      select & {
+        appearance: none;
+        background-size: 16px 16px;
+        width: 3.5em;
+        padding: 0;
+
+        option {
+          background-color: $color-secondary;
+          color: $color-primary;
+        }
+      }
+
       &.select-bonds {
         appearance: none;
         background-size: 16px 16px;
         height: 80%;
         width: 90%;
+        margin: 3px;
         border: thin solid $color-secondary;
       }
     }
   }
+
   .bond-add {
     .resource-input.select-bonds {
-      color: ivory;
-      font-size: 16px;
+      color: $color-primary;
       background-color: $color-secondary;
+      border: thin solid $color-secondary;
       padding: 0;
       border-radius: 5px;
       border: none;
     }
   }
 
+  // Style for Sidebar Section
   &.levelup-container {
     background: linear-gradient(#{$color-transparent-gradient});
     margin: 5px 0 5px 0;
@@ -116,57 +117,49 @@
 
     & input.resource-input-charname {
       color: $color-primary;
-      font-size: 16px;
+
       background-color: $color-secondary;
       margin: 1px;
     }
+
     & .resource-input {
       width: 80%;
-      font-size: 13px;
       margin: 0 5px 0 5px;
       appearance: none;
       border: none;
     }
+
     & .side-bar {
       width: 85%;
     }
 
     &.creature {
       padding: 0.5em;
+
       .resource-input {
         color: $color-primary;
-        font-size: 16px;
         background-color: $color-secondary;
         width: 3.5em;
         justify-content: center;
         text-align: center;
         appearance: none;
         border-radius: 5px;
-        &select.creature-input & {
-          appearance: none;
-          background-size: 16px 16px;
-          text-align-last: center;
-          width: 6em;
-          margin: 0;
-        }
       }
     }
+
     .combineBar {
-      background: #2a4a41;
+      background: $color-secondary;
       border-radius: 5px;
+
       #isCompanionCheckbox {
         flex: 0;
       }
     }
   }
-  .name-input {
-    .resource-label {
-      height: 16px;
-    }
-  }
+
+  // Style for Inputs
   .resource-input {
     color: $color-primary;
-    font-size: 16px;
     background-color: $color-secondary;
     border: thin solid $color-secondary;
     width: 3.5em;
@@ -180,11 +173,15 @@
       background-size: 16px 16px;
       width: 3.5em;
       padding: 0;
+
+      option {
+        background-color: $color-secondary;
+        color: $color-primary;
+      }
     }
 
     input.charname-resource-input {
       color: $color-primary;
-      font-size: 24px;
       background-color: transparent;
       border: transparent;
     }
@@ -200,70 +197,48 @@
     &.select-dropdown {
       appearance: none;
       background-size: 16px 16px;
-      width: 3em;
+      width: 4em;
+      margin: 2px 5px;
+      padding: 2px;
     }
 
     &.select-dropdown-m {
       appearance: none;
       background-size: 16px 16px;
       width: 7em;
+      margin: 2px 5px;
     }
+
     &.select-dropdown-l {
       appearance: none;
       background-size: 16px 16px;
       width: 10em;
+      margin: 2px 5px;
     }
+
     &.select-dropdown-xl {
       appearance: none;
       background-size: 16px 16px;
       width: 24em;
+      margin: 2px 5px;
     }
-
   }
-}
-
-.resource-input-traits {
-  color: $color-primary;
-  font-size: 16px;
-  background-color: $color-secondary;
-  height: 25px;
-  width: 100%;
-  border: thin solid $color-secondary;
-
-  .select-dropdown {
-    appearance: none;
-    background-size: 16px 16px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
-.input-with-buttons input.resource-input {
-  color: ivory;
-  font-size: 16px;
-  background-color: $color-secondary;
-  border: transparent;
-  padding: 5px;
 }
 
 input.inputdesc {
   color: $color-primary;
-  font-size: 16px;
   background-color: $color-secondary;
   border: transparent;
 }
 
 input.traitdesc {
   color: $color-primary;
-  font-size: 14px;
   background-color: $color-secondary;
   border: transparent;
-  height: 20px;
-  min-height: 0em;
-  max-height: 100%;
   border-radius: 0 5px 0 0;
 }
 
-.checkbox {
-  font-size: 1em;
+/* Target the Clock section */
+.resource.grid-start-3.grid-span-1.flexrow {
+  grid-row: span 2;
 }

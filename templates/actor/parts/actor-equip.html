@@ -1,17 +1,17 @@
 <div class="item-equipped equipped-icon-container">
-    <a
-      class="item-control item-equip"
-      {{#if item.system.isEquipped.value}}
-      data-tooltip="{{localize 'FU.UnequipItem'}}"
-      {{else}}
-      data-tooltip="{{localize 'FU.EquipItem'}}"
-      {{/if}}
-      data-slot="{{item.system.isEquipped.slot}}"
-    >
+  <a
+    class="item-control item-equip"
+    data-slot="{{ item.system.isEquipped.slot }}"
     {{#if item.system.isEquipped.value}}
-    <i class="{{getIconClass item}}"></i>
+      data-tooltip="{{localize 'FU.UnequipItem'}}"
+    {{else}}
+      data-tooltip="{{localize 'FU.EquipItem'}}"
+    {{/if}}
+  >
+    {{#if item.system.isEquipped.value}}
+      <i class="{{getIconClass item}}"></i>
     {{else}}
       <i class="far fa-toolbox"></i>
     {{/if}}
-    </a>
-  </div>
+  </a>
+</div>

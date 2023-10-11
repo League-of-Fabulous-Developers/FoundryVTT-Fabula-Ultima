@@ -8,10 +8,11 @@
     class="items-main left-hand slot-style rollable"
     data-roll-type="item-slot"
   >
-    {{#each items as |item id|}} {{#if (and item.system.isEquipped.value (eq
+    {{#each items as |item id|}}
+    {{#if (and item.system.isEquipped.value (eq
     item.system.isEquipped.slot "mainHand"))}}
     <div class="equipped-item">
-      <span class="equipped-item-content">{{item.name}}</span>
+      <span class="equipped-item-content">{{ item.name }}</span>
       <span class="icon-letter" data-tooltip="{{localize 'FU.MainHand'}}"
         >M</span
       >
@@ -23,13 +24,14 @@
     class="items-main right-hand slot-style rollable"
     data-roll-type="item-slot"
   >
-    {{#each items as |item id|}} {{#if (and item.system.isEquipped.value (eq
+    {{#each items as |item id|}}
+    {{#if (and item.system.isEquipped.value (eq
     item.system.isEquipped.slot "offHand"))}}
     <div class="equipped-item">
       <span class="icon-letter" data-tooltip="{{localize 'FU.OffHand'}}"
         >O</span
       >
-      <span class="equipped-item-content">{{item.name}}</span>
+      <span class="equipped-item-content">{{ item.name }}</span>
     </div>
     {{/if}} {{/each}}
   </span>
@@ -39,10 +41,9 @@
     <div class="zenit-content">
       <i class="fas fa-coin rollable ra-2x"></i>
       <input
-        class="align-right"
         type="text"
         name="system.resources.zenit.value"
-        value="{{system.resources.zenit.value}}"
+        value="{{ system.resources.zenit.value }}"
         data-dtype="Number"
       />z
     </div>
@@ -60,20 +61,20 @@
         class="item-control item-create"
         data-tooltip="{{localize 'FU.WeaponCreate'}}"
         data-type="weapon"
-        ><i class="fas fa-plus"></i>{{localize "FU.Add"}}</a
+        ><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a
       >
     </div>
   </li>
   {{#each weapons as |item id|}}
-  <li class="item" data-item-id="{{item._id}}">
+  <li class="item" data-item-id="{{ item._id }}">
     <div class="flexrow">
       <div class="item-name">
         <div class="item-image">
           <a class="rollable" data-roll-type="item">
             <div class="item-image-wrap">
               <img
-                src="{{item.img}}"
-                data-tooltip="{{item.name}}"
+                src="{{ item.img }}"
+                data-tooltip="{{ item.name }}"
                 class="item-image-res"
               />
             </div>
@@ -86,24 +87,27 @@
         >
           <i class="fas fa-chevron-down" style="display: none"></i>
           <i class="fas fa-chevron-up" style="display: none"></i>
-          {{item.name}} {{#if item.isMartial}}
+          {{ item.name }} {{#if item.isMartial}}
           <span class="is-martial">&#x2726;</span>
           <!-- &#x2726; -->
           {{/if}}
         </h4>
       </div>
-      <div class="item-attack">{{item.attackString}}</div>
-      <div class="item-damage">{{item.damageString}}</div>
+      <div class="item-attack">{{ item.attackString }}</div>
+      <div class="item-damage">{{ item.damageString }}</div>
       {{> "systems/fabulaultima/templates/actor/parts/actor-equip.html"
-      item=item}} {{>
+      item=item}}
+      {{>
       "systems/fabulaultima/templates/actor/parts/actor-control.html"
       item=item}}
     </div>
     <span>{{ item.quality }}</span>
     <div class="individual-description">
-      {{#if item.system.description}} {{editor item.system.description
+      {{#if item.system.description}}
+      {{editor item.system.description
       target="item.system.description" rollData=rollData button=false
-      owner=owner editable=false}} {{/if}}
+      owner=owner editable=false}}
+      {{/if}}
     </div>
   </li>
   {{/each}}
@@ -124,20 +128,20 @@
         class="item-control item-create"
         data-tooltip="{{localize 'FU.ShieldCreate'}}"
         data-type="shield"
-        ><i class="fas fa-plus"></i>{{localize "FU.Add"}}</a
+        ><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a
       >
     </div>
   </li>
   {{#each shields as |item id|}}
-  <li class="item" data-item-id="{{item._id}}">
+  <li class="item" data-item-id="{{ item._id }}">
     <div class="flexrow">
       <div class="item-name">
         <div class="item-image">
           <a class="rollable" data-roll-type="item">
             <div class="item-image-wrap">
               <img
-                src="{{item.img}}"
-                data-tooltip="{{item.name}}"
+                src="{{ item.img }}"
+                data-tooltip="{{ item.name }}"
                 class="item-image-res"
               />
             </div>
@@ -151,25 +155,28 @@
           <i class="fas fa-chevron-down" style="display: none"></i>
           <i class="fas fa-chevron-up" style="display: none"></i>
           <span class="item-name-content"
-            >{{item.name}} {{#if item.isMartial}}</span
+            >{{ item.name }} {{#if item.isMartial}}</span
           >
           <span class="is-martial">&#x2726;</span>
           {{/if}}
         </h4>
       </div>
-      <div class="item-def">{{item.def}}</div>
-      <div class="item-mdef">{{item.mdef}}</div>
-      <div class="item-init">{{item.init}}</div>
+      <div class="item-def">{{ item.def }}</div>
+      <div class="item-mdef">{{ item.mdef }}</div>
+      <div class="item-init">{{ item.init }}</div>
       {{> "systems/fabulaultima/templates/actor/parts/actor-equip.html"
-      item=item}} {{>
+      item=item}}
+      {{>
       "systems/fabulaultima/templates/actor/parts/actor-control.html"
       item=item}}
     </div>
     <span>{{ item.quality }}</span>
     <div class="individual-description">
-      {{#if item.system.description}} {{editor item.system.description
+      {{#if item.system.description}}
+      {{editor item.system.description
       target="item.system.description" rollData=rollData button=false
-      owner=owner editable=false}} {{/if}}
+      owner=owner editable=false}}
+      {{/if}}
     </div>
   </li>
   {{/each}}
@@ -186,11 +193,12 @@
     class="items-main armor-hand slot-style rollable"
     data-roll-type="item-slot"
   >
-    {{#each armor as |item id|}} {{#if (and item.system.isEquipped.value (eq
+    {{#each armor as |item id|}}
+    {{#if (and item.system.isEquipped.value (eq
     item.system.isEquipped.slot "armor"))}}
     <div class="equipped-item">
       <i class="ra ra-helmet ra-2x"></i>
-      {{item.name}}
+      {{ item.name }}
     </div>
     {{/if}} {{/each}}
   </span>
@@ -208,20 +216,20 @@
         class="item-control item-create"
         data-tooltip="{{localize 'FU.ArmorCreate'}}"
         data-type="armor"
-        ><i class="fas fa-plus"></i>{{localize "FU.Add"}}</a
+        ><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a
       >
     </div>
   </li>
   {{#each armor as |item id|}}
-  <li class="item" data-item-id="{{item._id}}">
+  <li class="item" data-item-id="{{ item._id }}">
     <div class="flexrow">
       <div class="item-name">
         <div class="item-image">
           <a class="rollable" data-roll-type="item">
             <div class="item-image-wrap">
               <img
-                src="{{item.img}}"
-                data-tooltip="{{item.name}}"
+                src="{{ item.img }}"
+                data-tooltip="{{ item.name }}"
                 class="item-image-res"
               />
             </div>
@@ -234,24 +242,27 @@
         >
           <i class="fas fa-chevron-down" style="display: none"></i>
           <i class="fas fa-chevron-up" style="display: none"></i>
-          {{item.name}} {{#if item.isMartial}}
+          {{ item.name }} {{#if item.isMartial}}
           <span class="is-martial">&#x2726;</span>
           {{/if}}
         </h4>
       </div>
-      <div class="item-def">{{item.def}}</div>
-      <div class="item-mdef">{{item.mdef}}</div>
-      <div class="item-init">{{item.init}}</div>
+      <div class="item-def">{{ item.def }}</div>
+      <div class="item-mdef">{{ item.mdef }}</div>
+      <div class="item-init">{{ item.init }}</div>
       {{> "systems/fabulaultima/templates/actor/parts/actor-equip.html"
-      item=item}} {{>
+      item=item}}
+      {{>
       "systems/fabulaultima/templates/actor/parts/actor-control.html"
       item=item}}
     </div>
     <span>{{ item.quality }}</span>
     <div class="individual-description">
-      {{#if item.system.description}} {{editor item.system.description
+      {{#if item.system.description}}
+      {{editor item.system.description
       target="item.system.description" rollData=rollData button=false
-      owner=owner editable=false}} {{/if}}
+      owner=owner editable=false}}
+      {{/if}}
     </div>
   </li>
   {{/each}}
@@ -268,11 +279,12 @@
     class="items-main acc-hand slot-style rollable"
     data-roll-type="item-slot"
   >
-    {{#each accessories as |item id|}} {{#if (and item.system.isEquipped.value
+    {{#each accessories as |item id|}}
+    {{#if (and item.system.isEquipped.value
     (eq item.system.isEquipped.slot "accessory"))}}
     <div class="equipped-item">
       <i class="fas fa-hat-wizard ra-2x"></i>
-      {{item.name}}
+      {{ item.name }}
     </div>
     {{/if}} {{/each}}
   </span>
@@ -289,20 +301,20 @@
         class="item-control item-create"
         data-tooltip="{{localize 'FU.AccessoryCreate'}}"
         data-type="accessory"
-        ><i class="fas fa-plus"></i>{{localize "FU.Add"}}</a
+        ><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a
       >
     </div>
   </li>
   {{#each accessories as |item id|}}
-  <li class="item" data-item-id="{{item._id}}">
+  <li class="item" data-item-id="{{ item._id }}">
     <div class="flexrow">
       <div class="item-name">
         <div class="item-image">
           <a class="rollable" data-roll-type="item">
             <div class="item-image-wrap">
               <img
-                src="{{item.img}}"
-                data-tooltip="{{item.name}}"
+                src="{{ item.img }}"
+                data-tooltip="{{ item.name }}"
                 class="item-image-res"
               />
             </div>
@@ -315,22 +327,25 @@
         >
           <i class="fas fa-chevron-down" style="display: none"></i>
           <i class="fas fa-chevron-up" style="display: none"></i>
-          {{item.name}}
+          {{ item.name }}
         </h4>
       </div>
-      <div class="item-def">{{item.def}}</div>
-      <div class="item-mdef">{{item.mdef}}</div>
-      <div class="item-init">{{item.init}}</div>
+      <div class="item-def">{{ item.def }}</div>
+      <div class="item-mdef">{{ item.mdef }}</div>
+      <div class="item-init">{{ item.init }}</div>
       {{> "systems/fabulaultima/templates/actor/parts/actor-equip.html"
-      item=item}} {{>
+      item=item}}
+      {{>
       "systems/fabulaultima/templates/actor/parts/actor-control.html"
       item=item}}
     </div>
     <span>{{ item.quality }}</span>
-    <div class="individual-description" data-item-id="{{item._id}}">
-      {{#if item.system.description}} {{editor item.system.description
+    <div class="individual-description" data-item-id="{{ item._id }}">
+      {{#if item.system.description}}
+      {{editor item.system.description
       target="item.system.description" rollData=rollData button=false
-      owner=owner editable=false}} {{/if}}
+      owner=owner editable=false}}
+      {{/if}}
     </div>
   </li>
   {{/each}}
@@ -348,20 +363,20 @@
         class="item-control item-create"
         data-tooltip="{{localize 'FU.ConsumableCreate'}}"
         data-type="consumable"
-        ><i class="fas fa-plus"></i>{{localize "FU.Add"}}</a
+        ><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a
       >
     </div>
   </li>
   {{#each consumables as |item id|}}
-  <li class="item" data-item-id="{{item._id}}">
+  <li class="item" data-item-id="{{ item._id }}">
     <div class="flexrow">
       <div class="item-name">
         <div class="item-image">
           <a class="rollable" data-roll-type="item">
             <div class="item-image-wrap">
               <img
-                src="{{item.img}}"
-                data-tooltip="{{item.name}}"
+                src="{{ item.img }}"
+                data-tooltip="{{ item.name }}"
                 class="item-image-res"
               />
             </div>
@@ -374,19 +389,21 @@
         >
           <i class="fas fa-chevron-down" style="display: none"></i>
           <i class="fas fa-chevron-up" style="display: none"></i>
-          {{item.name}}
+          {{ item.name }}
         </h4>
       </div>
       <div class="item-ip-cost">
-        <span>{{item.system.ipCost.value}}</span>
+        <span>{{ item.system.ipCost.value }}</span>
       </div>
       {{> "systems/fabulaultima/templates/actor/parts/actor-control.html"
       item=item}}
     </div>
     <div class="individual-description">
-      {{#if item.system.description}} {{editor item.system.description
+      {{#if item.system.description}}
+      {{editor item.system.description
       target="item.system.description" rollData=rollData button=false
-      owner=owner editable=false}} {{/if}}
+      owner=owner editable=false}}
+      {{/if}}
     </div>
   </li>
   {{/each}}

@@ -1,52 +1,58 @@
 {{!-- Character Relevent Bonuses --}} {{#if (eq actor.type "character")}}
 <section class="align-right npc-border-col">
-  <div class="flex-group-center">
-    <div class="resource flex-group-center">
-      <label class="resource-label">Bonus HP</label>
+  <div class="flex1 flex-group-center">
+    <div class="desc-header resource-content">
+      <label class="resource-label-m">{{localize 'FU.GlobalBonuses'}}</label>
+    </div>
+    <div class="resource-content flex-group-center">
+      <label class="resource-label-sm">{{localize 'FU.HealthBonus'}}</label>
       <input
         type="text"
         name="system.resources.hp.bonus"
-        value="{{system.resources.hp.bonus}}"
+        value="{{ system.resources.hp.bonus }}"
         data-dtype="Number"
         class="inputdesc"
       />
     </div>
-    <div class="resource flex-group-center">
-      <label class="resource-label">Bonus MP</label>
+    <div class="resource-content flex-group-center">
+      <label class="resource-label-sm">{{localize 'FU.MindBonus'}}</label>
       <input
         type="text"
         name="system.resources.mp.bonus"
-        value="{{system.resources.mp.bonus}}"
+        value="{{ system.resources.mp.bonus }}"
         data-dtype="Number"
         class="inputdesc"
       />
     </div>
-    <div class="resource flex-group-center">
-      <label class="resource-label">Bonus Def</label>
+    <div class="resource-content flex-group-center">
+      <label class="resource-label-sm">{{localize 'FU.DefenseBonus'}}</label>
       <input
         type="text"
         name="system.derived.def.bonus"
-        value="{{system.derived.def.bonus}}"
+        value="{{ system.derived.def.bonus }}"
         data-dtype="Number"
         class="inputdesc"
       />
     </div>
-    <div class="resource flex-group-center">
-      <label class="resource-label">Bonus MDef</label>
+    <div class="resource-content flex-group-center">
+      <label
+        class="resource-label-sm"
+        >{{localize 'FU.MagicDefenseBonus'}}</label
+      >
       <input
         type="text"
         name="system.derived.mdef.bonus"
-        value="{{system.derived.mdef.bonus}}"
+        value="{{ system.derived.mdef.bonus }}"
         data-dtype="Number"
         class="inputdesc"
       />
     </div>
-    <div class="resource flex-group-center">
-      <label class="resource-label">Bonus Init</label>
+    <div class="resource-content flex-group-center">
+      <label class="resource-label-sm">{{localize 'FU.InitiativeBonus'}}</label>
       <input
         type="text"
         name="system.derived.init.bonus"
-        value="{{system.derived.init.bonus}}"
+        value="{{ system.derived.init.bonus }}"
         data-dtype="Number"
         class="inputdesc"
       />
@@ -55,55 +61,61 @@
 </section>
 {{/if}} {{!-- NPC Relevent Bonuses --}} {{#if (eq actor.type "npc")}}
 <section class="align-right npc-border-col">
-  <div class="flex-group-center">
-    <div class="resource flex-group-center">
-      <label class="resource-label">Bonus HP</label>
+  <div class="flex1 flex-group-center">
+    <div class="desc-header resource-content">
+      <label class="resource-label-m">{{localize 'FU.GlobalBonuses'}}</label>
+    </div>
+    <div class="resource-content flex-group-center">
+      <label class="resource-label-sm">{{localize 'FU.HealthBonus'}}</label>
       <input
-        class="inputdesc"
         type="text"
         name="system.resources.hp.bonus"
-        value="{{system.resources.hp.bonus}}"
+        value="{{ system.resources.hp.bonus }}"
         data-dtype="Number"
+        class="inputdesc"
       />
     </div>
-    <div class="resource flex-group-center">
-      <label class="resource-label">Bonus MP</label>
+    <div class="resource-content flex-group-center">
+      <label class="resource-label-sm">{{localize 'FU.MindBonus'}}</label>
       <input
-        class="inputdesc"
         type="text"
         name="system.resources.mp.bonus"
-        value="{{system.resources.mp.bonus}}"
+        value="{{ system.resources.mp.bonus }}"
         data-dtype="Number"
+        class="inputdesc"
       />
     </div>
-    <div class="resource flex-group-center">
-      <label class="resource-label">Bonus Def</label>
+    <div class="resource-content flex-group-center">
+      <label class="resource-label-sm">{{localize 'FU.DefenseBonus'}}</label>
       <input
-        class="inputdesc"
         type="text"
         name="system.derived.def.bonus"
-        value="{{system.derived.def.bonus}}"
+        value="{{ system.derived.def.bonus }}"
         data-dtype="Number"
+        class="inputdesc"
       />
     </div>
-    <div class="resource flex-group-center">
-      <label class="resource-label">Bonus MDef</label>
+    <div class="resource-content flex-group-center">
+      <label
+        class="resource-label-sm"
+        >{{localize 'FU.MagicDefenseBonus'}}</label
+      >
       <input
-        class="inputdesc"
         type="text"
         name="system.derived.mdef.bonus"
-        value="{{system.derived.mdef.bonus}}"
+        value="{{ system.derived.mdef.bonus }}"
         data-dtype="Number"
+        class="inputdesc"
       />
     </div>
-    <div class="resource flex-group-center">
-      <label class="resource-label">Bonus Init</label>
+    <div class="resource-content flex-group-center">
+      <label class="resource-label-sm">{{localize 'FU.InitiativeBonus'}}</label>
       <input
-        class="inputdesc"
         type="text"
         name="system.derived.init.bonus"
-        value="{{system.derived.init.bonus}}"
+        value="{{ system.derived.init.bonus }}"
         data-dtype="Number"
+        class="inputdesc"
       />
     </div>
   </div>

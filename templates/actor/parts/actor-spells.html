@@ -19,14 +19,14 @@
     </div>
   </li>
   {{#each zeroPowers as |item id|}}
-  <li class="item" data-item-id="{{item._id}}">
+  <li class="item" data-item-id="{{ item._id }}">
     <div class="flexrow">
       <div class="item-name">
         <div class="item-image">
           <a class="rollable" data-roll-type="item"
             ><img
-              src="{{item.img}}"
-              title="{{item.name}}"
+              src="{{ item.img }}"
+              title="{{ item.name }}"
               width="24"
               height="24"
           /></a>
@@ -34,30 +34,36 @@
         <h4 class="click-item">
           <i class="fas fa-chevron-down icon" style="display: none"></i>
           <i class="fas fa-chevron-up icon" style="display: none"></i>
-          {{item.name}}
+          {{ item.name }}
         </h4>
       </div>
       <div class="item-zero">{{ item.zeroTrigger }}</div>
       <div class="item-zero">{{ item.zeroEffect }}</div>
       <div class="item-clock addable">
-        <span data-resource="item.system.trigger.current">{{item.system.trigger.current}}</span>
+        <span data-resource="item.system.trigger.current">{{
+          item.system.trigger.current
+        }}</span>
         <span>/</span>
-        <span>{{item.system.trigger.max}}</span>
+        <span>{{ item.system.trigger.max }}</span>
       </div>
       {{> "systems/fabulaultima/templates/actor/parts/actor-control.html"
       item=item}}
     </div>
     <div class="individual-description align-left">
       <div class="resource-label">{{ item.zeroTrigger }}</div>
-      {{#if item.system.zeroTrigger.description}} {{editor
+      {{#if item.system.zeroTrigger.description}}
+      {{editor
       item.system.zeroTrigger.description
       target="item.system.zeroTrigger.description" rollData=rollData
-      button=false owner=owner editable=false}} {{/if}}
+      button=false owner=owner editable=false}}
+      {{/if}}
       <div class="resource-label">{{ item.zeroEffect }}</div>
-      {{#if item.system.zeroEffect.description}} {{editor
+      {{#if item.system.zeroEffect.description}}
+      {{editor
       item.system.zeroEffect.description
       target="item.system.zeroEffect.description" rollData=rollData button=false
-      owner=owner editable=false}} {{/if}}
+      owner=owner editable=false}}
+      {{/if}}
     </div>
   </li>
   {{/each}}
@@ -82,15 +88,15 @@
     </div>
   </li>
   {{#each spells as |item id|}}
-  <li class="item" data-item-id="{{item._id}}">
+  <li class="item" data-item-id="{{ item._id }}">
     <div class="flexrow">
       <div class="item-name">
         <div class="item-image">
           <a class="rollable" data-roll-type="item">
             <div class="item-image-wrap">
               <img
-                src="{{item.img}}"
-                title="{{item.name}}"
+                src="{{ item.img }}"
+                title="{{ item.name }}"
                 class="responsive-img"
               />
             </div>
@@ -99,7 +105,7 @@
         <h4 class="click-item">
           <i class="fas fa-chevron-down icon" style="display: none"></i>
           <i class="fas fa-chevron-up icon" style="display: none"></i>
-          {{item.name}} {{#if item.isOffensive}}
+          {{ item.name }} {{#if item.isOffensive}}
           <span class="is-martial">&#x1F5F2;</span>
           <!-- 🗲 -->
           {{/if}}
@@ -114,9 +120,11 @@
       item=item}}
     </div>
     <div class="individual-description align-left">
-      {{#if item.system.description}} {{editor item.system.description
+      {{#if item.system.description}}
+      {{editor item.system.description
       target="item.system.description" rollData=rollData button=false
-      owner=owner editable=false}} {{/if}}
+      owner=owner editable=false}}
+      {{/if}}
     </div>
   </li>
   {{/each}}
@@ -140,15 +148,15 @@
     </div>
   </li>
   {{#each abilities as |item id|}}
-  <li class="item" data-item-id="{{item._id}}">
+  <li class="item" data-item-id="{{ item._id }}">
     <div class="flexrow">
       <div class="item-name">
         <div class="item-image">
           <a class="rollable" data-roll-type="item"
             ><img
-              src="{{item.img}}"
+              src="{{ item.img }}"
               aria-describedby="tooltip"
-              data-tooltip="{{item.name}}"
+              data-tooltip="{{ item.name }}"
               width="24"
               height="24"
           /></a>
@@ -156,7 +164,7 @@
         <h4 class="click-item">
           <i class="fas fa-chevron-down" style="display: none"></i>
           <i class="fas fa-chevron-up" style="display: none"></i>
-          {{item.name}}
+          {{ item.name }}
         </h4>
       </div>
       <div class="item-class">
@@ -166,9 +174,11 @@
       item=item}}
     </div>
     <div class="individual-description align-left">
-      {{#if item.system.description}} {{editor item.system.description
+      {{#if item.system.description}}
+      {{editor item.system.description
       target="item.system.description" rollData=rollData button=false
-      owner=owner editable=false}} {{/if}}
+      owner=owner editable=false}}
+      {{/if}}
     </div>
   </li>
   {{/each}}

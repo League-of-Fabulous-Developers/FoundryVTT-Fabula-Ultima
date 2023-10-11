@@ -1,9 +1,11 @@
-<form class="{{cssClass}} backgroundstyle" autocomplete="off">
+<form class="{{ cssClass }} backgroundstyle" autocomplete="off">
   {{> "systems/fabulaultima/templates/item/parts/item-header.html"
-  dtypes=dtypes}} {{!-- Sheet Tab Navigation --}}
+  dtypes=dtypes}}
+  {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
     <a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
+    <a class="item" data-tab="effects">{{localize 'FU.Effects'}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -17,9 +19,9 @@
             <input
               type="text"
               name="system.zeroTrigger.value"
-              value="{{system.zeroTrigger.value}}"
+              value="{{ system.zeroTrigger.value }}"
               data-dtype="String"
-              placeholder="Zero Trigger"
+              placeholder="{{localize 'FU.LimitTrigger'}}"
               class="resource-label"
             />
             {{editor system.zeroTrigger.description
@@ -32,35 +34,39 @@
         <div class="resource grid-start-3 grid-span-1 flexrow">
           <div class="flex-group-center resource-content">
             <label>
-              <span class="resource-label"> <br />Current </span>
+              <span class="resource-label-m">
+                <br />{{localize 'FU.Current'}}</span
+              >
             </label>
             <input
               class="resource-input"
               type="text"
               name="system.trigger.current"
-              value="{{system.trigger.current}}"
+              value="{{ system.trigger.current }}"
             />
           </div>
           <div class="flex-group-center resource-content">
             <label>
-              <span class="resource-label"> <br />Step </span>
+              <span class="resource-label-m">
+                <br />{{localize 'FU.Step'}}</span
+              >
             </label>
             <input
               class="resource-input"
               type="text"
               name="system.trigger.step"
-              value="{{system.trigger.step}}"
+              value="{{ system.trigger.step }}"
             />
           </div>
           <div class="flex-group-center resource-content">
             <label>
-              <span class="resource-label"> <br />Max </span>
+              <span class="resource-label-m"> <br />{{localize 'FU.Max'}}</span>
             </label>
             <input
               class="resource-input"
               type="text"
-              name="{{system.trigger.max}}"
-              value="{{system.trigger.max}}"
+              name="{{ system.trigger.max }}"
+              value="{{ system.trigger.max }}"
               disabled
             />
           </div>
@@ -69,7 +75,7 @@
             class="clock-img"
             src="icons/svg/clockwork.svg"
             data-edit="img"
-            data-tooltip="Clock"
+            data-tooltip="{{localize 'FU.Clock'}}"
             aria-describedby="tooltip"
           />
         </div>
@@ -80,7 +86,7 @@
             <input
               type="text"
               name="system.zeroEffect.value"
-              value="{{system.zeroEffect.value}}"
+              value="{{ system.zeroEffect.value }}"
               data-dtype="String"
               placeholder="Zero Effect"
               class="resource-label"

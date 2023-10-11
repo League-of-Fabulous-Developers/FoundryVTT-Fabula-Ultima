@@ -1,9 +1,11 @@
-<form class="{{cssClass}} backgroundstyle" autocomplete="off">
+<form class="{{ cssClass }} backgroundstyle" autocomplete="off">
   {{> "systems/fabulaultima/templates/item/parts/item-header.html"
-  dtypes=dtypes}} {{!-- Sheet Tab Navigation --}}
+  dtypes=dtypes}}
+  {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="attributes">Attributes</a>
+    <a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
+    <a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
+    <a class="item" data-tab="effects">{{localize 'FU.Effects'}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -16,8 +18,8 @@
 
     {{!-- Attributes Tab --}}
     <div class="tab attributes" data-group="primary" data-tab="attributes">
-      <div class="item-settings">
-        <label class="checkbox resource-label">
+      <div class="item-settings resource-content">
+        <label class="checkbox resource-label-sm">
           <span>{{localize 'FU.FavoriteStatus'}}</span>
           <input
             type="checkbox"
@@ -29,7 +31,7 @@
           />
         </label>
         {{!-- NPC Relevent Option --}} {{#if (eq actor.type "npc")}}
-        <label class="checkbox resource-label">
+        <label class="checkbox resource-label-sm">
           <span>{{localize "FU.BehaviorStatus"}}</span
           ><input
             type="checkbox"
@@ -41,7 +43,18 @@
           />
         </label>
         {{/if}}
-        <label class="checkbox resource-label">
+        <label class="checkbox resource-label-sm">
+          <span>{{localize 'FU.HRZeroStatus'}}</span
+          ><input
+            type="checkbox"
+            name="system.rollInfo.useWeapon.hrZero.value"
+            {{
+            checked
+            system.rollInfo.useWeapon.hrZero.value
+            }}
+          />
+        </label>
+        <label class="checkbox resource-label-sm">
           <span>{{localize 'FU.IsOffensive'}}</span
           ><input
             type="checkbox"
@@ -52,34 +65,24 @@
             }}
           />
         </label>
-        <label class="checkbox resource-label">
-          <span>HR 0?</span
-          ><input
-            type="checkbox"
-            name="system.rollInfo.useWeapon.hrZero.value"
-            {{
-            checked
-            system.rollInfo.useWeapon.hrZero.value
-            }}
-          />
-        </label>
       </div>
 
       <section class="flex1 flex-group-center desc">
-        <div class="desc-header">
-          <label class="resource-label">{{localize 'FU.GeneralInfo'}}</label>
+        <div class="desc-header resource-content">
+          <label class="resource-label-m">{{localize 'FU.GeneralInfo'}}</label>
         </div>
       </section>
 
       <section class="grid grid-2col">
         <section class="flex1 flex-group-center desc flex-row">
-          <div class="desc-header">
-            <label class="resource-label"
-              ><i class="ra ra-perspective-dice-four icon"></i>{{localize
+          <div class="desc-header resource-content">
+            <label class="resource-label-m"
+              ><i class="fas fa-dice icon"></i
+              >{{localize
               'FU.Accuracy'}}</label
             >
             |
-            <label class="checkbox resource-label">
+            <label class="checkbox resource-label-sm">
               <span>{{localize 'FU.HasAccuracy'}}</span
               ><input
                 type="checkbox"
@@ -91,7 +94,7 @@
               />
             </label>
             |
-            <label class="checkbox resource-label">
+            <label class="checkbox resource-label-sm">
               <span>{{localize 'FU.UseWeaponAccuracy'}}</span
               ><input
                 type="checkbox"
@@ -107,11 +110,11 @@
             <div class="resource-content flexcol flex-group-center">
               <label
                 for="system.rollInfo.attributes.primary.value"
-                class="resource-label"
+                class="resource-label-m"
                 >{{localize 'FU.Primary'}}
               </label>
               <select
-                value="{{system.rollInfo.attributes.primary.value}}"
+                value="{{ system.rollInfo.attributes.primary.value }}"
                 name="system.rollInfo.attributes.primary.value"
                 class="resource-input select-dropdown"
               >
@@ -126,11 +129,11 @@
             <div class="resource-content flexcol flex-group-center">
               <label
                 for="system.rollInfo.attributes.secondary.value"
-                class="resource-label"
+                class="resource-label-m"
                 >{{localize 'FU.Secondary'}}
               </label>
               <select
-                value="{{system.rollInfo.attributes.secondary.value}}"
+                value="{{ system.rollInfo.attributes.secondary.value }}"
                 name="system.rollInfo.attributes.secondary.value"
                 class="resource-input select-dropdown"
               >
@@ -143,11 +146,11 @@
               </select>
             </div>
             <div class="resource-content flexcol flex-group-center">
-              <label class="resource-label">{{localize 'FU.Bonus'}}</label>
+              <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
               <input
                 type="number"
                 name="system.rollInfo.accuracy.value"
-                value="{{system.rollInfo.accuracy.value}}"
+                value="{{ system.rollInfo.accuracy.value }}"
                 class="resource-input"
                 data-dtype="Number"
               />
@@ -156,15 +159,16 @@
         </section>
 
         <section class="flex2 flex-group-center desc">
-          <div class="desc-header">
-            <label class="resource-label"
-              ><i class="ra ra-targeted icon"></i>{{localize 'FU.Damage'}} {{#if
+          <div class="desc-header resource-content">
+            <label class="resource-label-m"
+              ><i class="fas fa-bullseye icon"></i>{{localize 'FU.Damage'}}
+              {{#if
               system.isOffensive.value}}
               <span class="is-martial">&#x1f5f2;</span>
               {{/if}}
             </label>
             |
-            <label class="checkbox resource-label">
+            <label class="checkbox resource-label-sm">
               <span>{{localize 'FU.HasDamage'}}</span
               ><input
                 type="checkbox"
@@ -176,7 +180,7 @@
               />
             </label>
             |
-            <label class="checkbox resource-label">
+            <label class="checkbox resource-label-sm">
               <span>{{localize 'FU.UseWeaponDamage'}}</span
               ><input
                 type="checkbox"
@@ -196,7 +200,7 @@
                 >{{localize 'FU.DamageType'}}
               </label>
               <select
-                value="{{system.rollInfo.damage.type.value}}"
+                value="{{ system.rollInfo.damage.type.value }}"
                 name="system.rollInfo.damage.type.value"
                 class="resource-input select-dropdown-m"
               >
@@ -215,11 +219,11 @@
               </select>
             </div>
             <div class="resource-content flexcol flex-group-center">
-              <label class="resource-label">{{localize 'FU.Bonus'}}</label>
+              <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
               <input
                 type="number"
                 name="system.rollInfo.damage.value"
-                value="{{system.rollInfo.damage.value}}"
+                value="{{ system.rollInfo.damage.value }}"
                 class="resource-input"
                 data-dtype="Number"
               />
@@ -230,18 +234,22 @@
 
       {{#if (and (eq actor.type "npc") system.isBehavior.value)}}
       <section class="flex1 flex-group-center desc">
-        <div class="desc-header">
-          <label class="resource-label">{{localize 'FU.OptionalFeats'}}</label>
+        <div class="desc-header resource-content">
+          <label
+            class="resource-label-m"
+            >{{localize 'FU.OptionalFeats'}}</label
+          >
         </div>
         <div class="grid grid-4col card-style">
           <div class="resource-content flexcol flex-group-center">
-            <label class="resource-label"
+            <label
+              class="resource-label-m"
               >{{localize 'FU.BehaviorWeight'}}</label
             >
             <input
               type="number"
               name="system.weight.value"
-              value="{{system.weight.value}}"
+              value="{{ system.weight.value }}"
               data-dtype="Number"
               class="resource-input select-dropdown-m"
             />

@@ -2,9 +2,9 @@
   <div class="combine-header">
     <img
       class="profile-img"
-      src="{{item.img}}"
+      src="{{ item.img }}"
       data-edit="img"
-      title="{{item.name}}"
+      title="{{ item.name }}"
     />
     <div class="header-fields">
       <div class="header-center grid grid-6col">
@@ -12,7 +12,7 @@
           <input
             name="name"
             type="text"
-            value="{{item.name}}"
+            value="{{ item.name }}"
             placeholder="Name"
             class="resource-input-charname auto-shrink"
           />
@@ -21,7 +21,8 @@
         <!-- Item Type -->
         <span class="resource-content levelup-container flex-group-center">
           <label class="resource-label-sm" for="item.type">
-            <i class="fa-solid fa-chart-simple icon"></i>{{localize
+            <i class="fa-solid fa-chart-simple icon"></i
+            >{{localize
             'FU.ItemType'}}
           </label>
           {{#if (eq item.type "miscAbility")}}
@@ -35,10 +36,10 @@
             >
               {{#select system.subtype.value}}
               <option value="custom">Custom</option>
-              <option value="arcana">Arcana</option>x
-              <option value="deck">Deck</option>x
-              <option value="verse">Verse</option>x
-              <option value="dance">Dance</option>x
+              <option value="arcana">Arcana</option>
+              <option value="deck">Deck</option>
+              <option value="verse">Verse</option>
+              <option value="dance">Dance</option>
               <option value="gift">Gift</option>
               <option value="magiseed">Magiseed</option>
               <option value="invention">Invention</option>
@@ -72,7 +73,7 @@
           <input
             type="text"
             name="system.source.value"
-            value="{{system.source.value}}"
+            value="{{ system.source.value }}"
             data-dtype="String"
             class="resource-input side-bar"
           />
@@ -83,7 +84,7 @@
           <input
             type="text"
             name="system.summary.value"
-            value="{{system.summary.value}}"
+            value="{{ system.summary.value }}"
             data-dtype="String"
             class="resource-input summary"
           />

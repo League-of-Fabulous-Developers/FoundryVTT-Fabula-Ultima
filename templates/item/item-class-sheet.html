@@ -1,9 +1,11 @@
-<form class="{{cssClass}} backgroundstyle" autocomplete="off">
+<form class="{{ cssClass }} backgroundstyle" autocomplete="off">
   {{> "systems/fabulaultima/templates/item/parts/item-header.html"
-  dtypes=dtypes}} {{!-- Sheet Tab Navigation --}}
+  dtypes=dtypes}}
+  {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="attributes">Attributes</a>
+    <a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
+    <a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
+    <a class="item" data-tab="effects">{{localize 'FU.Effects'}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -16,11 +18,10 @@
 
     {{!-- Attributes Tab --}}
     <div class="tab attributes" data-group="primary" data-tab="attributes">
-      {{!-- As you add new fields, add them in here! --}}
-      <div>
-        <label class="checkbox">
-          <span>{{localize "FU.FavoriteStatus"}}</span
-          ><input
+      <div class="item-settings resource-content">
+        <label class="checkbox resource-label-sm">
+          <span>{{localize 'FU.FavoriteStatus'}}</span>
+          <input
             type="checkbox"
             name="system.isFavored.value"
             {{
@@ -30,8 +31,8 @@
           />
         </label>
         {{!-- NPC Relevent Option --}} {{#if (eq actor.type "npc")}}
-        <label class="checkbox resource-label">
-          <span>{{localize "FU.BehaviorStatus"}}</span
+        <label class="checkbox resource-label-sm">
+          <span>{{localize 'FU.BehaviorStatus'}}</span
           ><input
             type="checkbox"
             name="system.isBehavior.value"
@@ -40,32 +41,42 @@
             system.isBehavior.value
             }}
           />
+          {{/if}}
         </label>
-        {{/if}}
-        <div class="resource">
-          <label class="resource-label">Level</label>
-          <input
-            type="text"
-            name="system.level.value"
-            value="{{system.level.value}}"
-            data-dtype="Number"
-          />
-        </div>
-        <p>Benefits</p>
-        {{#each system.benefits as |benefit key|}}
-        <label class="checkbox">
-          <span>{{capitalize key }}</span
-          ><input
-            type="checkbox"
-            name="system.benefits.{{key}}.value"
-            {{
-            checked
-            benefit.value
-            }}
-          />
-        </label>
-        {{/each}}
       </div>
+      <section class="flex1 flex-group-center desc">
+        <div class="desc-header resource-content">
+          <label class="resource-label-m">{{localize 'FU.GeneralInfo'}}</label>
+        </div>
+        <div class="resource-content card-style">
+          <div class="resource-label-sm">
+            <label class="resource-label-m">{{localize 'FU.Level'}}</label>
+            <input
+              type="number"
+              name="system.level.value"
+              value="{{ system.level.value }}"
+              data-dtype="Number"
+              class="resource-input select-dropdown-l"
+            />
+          </div>
+          <div class="resource-content flexrow">
+            <label class="resource-label-m">{{localize 'FU.Benefits'}}</label>
+            {{#each system.benefits as |benefit key|}}
+            <label class="checkbox">
+              <span class="resource-label-sm">{{capitalize key}}</span
+              ><input
+                type="checkbox"
+                name="system.benefits.{{ key }}.value"
+                {{
+                checked
+                benefit.value
+                }}
+              />
+            </label>
+            {{/each}}
+          </div>
+        </div>
+      </section>
     </div>
   </section>
 </form>
