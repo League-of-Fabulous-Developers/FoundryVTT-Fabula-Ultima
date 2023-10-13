@@ -533,7 +533,7 @@ export class FUActor extends Actor {
       calcAvailableSkillsFromVulnerabilities () {
         let sum = 0
         Object.entries(systemData.resources.affinity).forEach(el => {
-          if (el[1] === 'VU') {
+          if (el[1] === 0) {
             sum++
           }
         })
@@ -541,7 +541,7 @@ export class FUActor extends Actor {
         // Undeads are vulnerable to light
         if (
           systemData.species.value === 'undead' &&
-          systemData.resources.affinity.light.value === 'VU'
+          systemData.resources.affinity.light.value === 0
         ) {
           sum = sum - 1
         }
@@ -601,7 +601,7 @@ export class FUActor extends Actor {
       calcUsedSkillsFromImmunities () {
         let sum = 0
         Object.entries(systemData.resources.affinity).forEach(el => {
-          if (el[1] === 'IM') {
+          if (el[1] === 3) {
             // Don't count poison for construct, elemental, undead
             if (
               (systemData.species.value === 'construct' ||
@@ -633,25 +633,27 @@ export class FUActor extends Actor {
         return Math.ceil(sum)
       },
 
-      calcUsedSkillsFromAbsorbs () {
-        let sum = 0
-
+      calcUsedSkillsFromAbsorbs() {
+        let sum = 0;
+      
         // Loop through the affinity object
         for (const key in systemData.resources.affinity) {
-          if (systemData.resources.affinity[key].value === 'AB') {
-            sum++
-            console.log(
-              `sp maybe Key: ${key}, Value: ${systemData.resources.affinity[key].value}`
-            )
+          const value = systemData.resources.affinity[key];
+      
+          // In the new data model, the values are already plain numbers
+          if (value === 4) {
+            sum++;
+            console.log(`sp maybe Key: ${key}, Value: ${value}`);
           }
         }
-
+      
         if (sum < 0) {
-          sum = 0
+          sum = 0;
         }
-
-        return Math.ceil(sum) * 2
+      
+        return Math.ceil(sum) * 2;
       },
+      
       calcUsedSkillsFromSpecial (actorData) {
         const miscAbility = actorData.items.filter(
           item => item.type === 'miscAbility'

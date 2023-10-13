@@ -11,16 +11,16 @@
           "rp2": { "name": "", "value": 0 },
           "rp3": { "name": "", "value": 0 },
           "affinity": {
-            "phys": { "value": 1 },
-            "air": { "value": 1 },
-            "bolt": { "value": 1 },
-            "dark": { "value": 1 },
-            "earth": { "value": 1 },
-            "fire": { "value": 1 },
-            "ice": { "value": 1 },
-            "light": { "value": 1 },
-            "poison": { "value": 1 }
-          }
+            "phys": 1,
+            "air": 1,
+            "bolt": 1,
+            "dark": 1,
+            "earth": 1,
+            "fire": 1,
+            "ice": 1,
+            "light": 1,
+            "poison": 1
+          }          
         },
         "attributes": {
           "dex": { "base": 6, "current": 6 },
