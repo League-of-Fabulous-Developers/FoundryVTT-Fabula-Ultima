@@ -6,7 +6,7 @@
 
 ![foundry-v11-green](https://img.shields.io/badge/foundry-v11-green)
 
-Welcome to the Fabula Ultima System for the Foundry Virtual Tabletop. This system is designed to enhance your experience of playing Fabula Ultima. Please note that licensed Fabula Ultima content is not provided with this system. We respect RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
+Welcome to the Fabula Ultima System for the Foundry Virtual Tabletop. This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
 
 **Disclaimer:** This system is currently in an experimental phase. We recommend refraining from using it for your games until further notice.
 
