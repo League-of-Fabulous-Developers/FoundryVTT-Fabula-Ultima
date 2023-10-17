@@ -6,21 +6,15 @@
   text-overflow: ellipsis;
 }
 
-/* Add space after icon */
 .icon::after {
-  content: "\00a0";
-  /* Non-breaking space */
+  content: "\00a0"; /* Non-breaking space */
 }
 
-/* Add space before icon */
-.icon-r::before {
-  content: "\00a0";
-  /* Non-breaking space */
-}
-
-/* Labels */
+/* Resource Content Styles */
 .resource-content {
   color: $color-secondary;
+  font-weight: bold;
+  background-color: transparent;
 
   .resource-label {
     font-weight: bold;
@@ -40,14 +34,19 @@
   .resource-label-sm {
     font-weight: bold;
     padding: 0 2px;
+
+    &.summary {
+      margin: 0 0.5em;
+    }
   }
-}
 
 // Style for Traits Section
-.resource-content {
-  color: $color-secondary;
-  font-weight: bold;
-  background-color: transparent;
+  input.traitdesc {
+    color: $color-primary;
+    background-color: $color-secondary;
+    border: transparent;
+    border-radius: 0 5px 0 0;
+  }
 
   &.traits {
     margin: 0 5px;
@@ -61,7 +60,7 @@
     }
   }
 
-  // Style for Bonds Section
+  /* Style for Bonds Section */
   &.bond-container {
     margin: 0 5px;
 
@@ -104,12 +103,12 @@
       background-color: $color-secondary;
       border: thin solid $color-secondary;
       padding: 0;
-      border-radius: 5px;
+      border-radius: 3px;
       border: none;
     }
   }
 
-  // Style for Sidebar Section
+  /* Style for Sidebar Section */
   &.levelup-container {
     background: linear-gradient(#{$color-transparent-gradient});
     margin: 5px 0 5px 0;
@@ -157,7 +156,7 @@
     }
   }
 
-  // Style for Inputs
+  /* Style for Inputs */
   .resource-input {
     color: $color-primary;
     background-color: $color-secondary;
@@ -186,10 +185,14 @@
       border: transparent;
     }
 
+    &.bonus {
+      width: calc(100% - 2px);
+    }
+
     &.summary {
       width: 95%;
       padding: 1.5em;
-      margin: 0.5em;
+      margin: 0 0.5em;
       font-style: italic;
       text-align: left;
     }
@@ -223,19 +226,7 @@
       margin: 2px 5px;
     }
   }
-}
 
-input.inputdesc {
-  color: $color-primary;
-  background-color: $color-secondary;
-  border: transparent;
-}
-
-input.traitdesc {
-  color: $color-primary;
-  background-color: $color-secondary;
-  border: transparent;
-  border-radius: 0 5px 0 0;
 }
 
 /* Target the Clock section */
