@@ -12,6 +12,15 @@ export class FUActor extends Actor {
     super.prepareData()
   }
 
+  async getData (options = {}) {
+    const data = await super.getData(options)
+
+    // Add the spTracker data to the actor's data
+    data.spTracker = this.spTracker
+
+    return data
+  }
+
   /** @override */
   prepareBaseData () {
     // Data modifications in this step occur before processing embedded
@@ -29,8 +38,8 @@ export class FUActor extends Actor {
    */
   prepareDerivedData () {
     const actorData = this
-    const systemData = actorData.system;
-    const flags = actorData.flags.fabulaultima || {};
+    const systemData = actorData.system
+    const flags = actorData.flags.fabulaultima || {}
 
     const disableAutomation = game.settings.get(
       'fabulaultima',
@@ -39,7 +48,7 @@ export class FUActor extends Actor {
 
     if (disableAutomation) {
       return // Exit early
-    } 
+    }
 
     this._calculateResources(actorData)
     this._calculateTotalLevels(actorData)
@@ -138,16 +147,14 @@ export class FUActor extends Actor {
     const classesWithHp = classes.filter(item => item.system.benefits.hp.value)
     const classesWithMp = classes.filter(item => item.system.benefits.mp.value)
     const classesWithIp = classes.filter(item => item.system.benefits.ip.value)
-    const heroicSkills = actorData.items.filter(
-      item => item.type === 'heroicSkill'
-    )
-    const heroicSkillWithHp = heroicSkills.filter(
+    const heroics = actorData.items.filter(item => item.type === 'heroic')
+    const heroicSkillWithHp = heroics.filter(
       item => item.system.benefits.hp.value
     )
-    const heroicSkillWithMp = heroicSkills.filter(
+    const heroicSkillWithMp = heroics.filter(
       item => item.system.benefits.mp.value
     )
-    const heroicSkillWithIp = heroicSkills.filter(
+    const heroicSkillWithIp = heroics.filter(
       item => item.system.benefits.ip.value
     )
 
@@ -167,13 +174,24 @@ export class FUActor extends Actor {
         ? systemData.level.value * 2
         : systemData.level.value
 
-    // Calculate maximum health points (hp) based on various factors.
-    systemData.resources.hp.max =
-      (systemData.attributes.mig.base * 5 +
-        levelVal +
-        classesWithHp.length * 5 +
-        systemData.resources.hp.bonus) *
-      hpMultiplier
+    if (
+      actorData.type === 'character' ||
+      (actorData.type === 'npc' && !systemData.isCompanion.value)
+    ) {
+      // Calculate maximum health points (hp) based on various factors.
+      systemData.resources.hp.max =
+        (systemData.attributes.mig.base * 5 +
+          levelVal +
+          classesWithHp.length * 5 +
+          systemData.resources.hp.bonus) *
+        hpMultiplier
+    } else if (systemData.isCompanion.value) {
+      // Calculate maximum health points (hp) for Companion with rounding down
+      systemData.resources.hp.max =
+        Math.floor(
+          systemData.attributes.mig.base * systemData.resources.rp3.value
+        ) + Math.floor(systemData.resources.rp2.value / 2)
+    }
 
     // Calculate maximum mind points (mp) based on various factors.
     systemData.resources.mp.max =
@@ -207,8 +225,8 @@ export class FUActor extends Actor {
    *
    * @param {object} actorData - The actor's data object.
    */
-  _calculateTotalLevels(actorData) {
-    const systemData = actorData.system;
+  _calculateTotalLevels (actorData) {
+    const systemData = actorData.system
 
     /**
      * Calculate the total levels for a specific type of items.
@@ -218,105 +236,124 @@ export class FUActor extends Actor {
      * @returns {number} The total levels for the specified item type.
      */
     const calculateTotal = (items, itemType) => {
-        return items.reduce((sum, item) => {
-            // Validate the data before using parseInt
-            const level = parseInt(item.system?.level?.value || 0);
-            return sum + level;
-        }, 0);
-    };
+      return items.reduce((sum, item) => {
+        // Validate the data before using parseInt
+        const level = parseInt(item.system?.level?.value || 0)
+        return sum + level
+      }, 0)
+    }
 
     // Filter class and skill items from the actor's items
-    const classes = actorData.items.filter(item => item.type === 'class');
-    const skills = actorData.items.filter(item => item.type === 'skill');
+    const classes = actorData.items.filter(item => item.type === 'class')
+    const skills = actorData.items.filter(item => item.type === 'skill')
 
     // Calculate total levels for classes and skills
-    const totalClassLevels = calculateTotal(classes, 'class');
-    const totalSkillLevels = calculateTotal(skills, 'skill');
+    const totalClassLevels = calculateTotal(classes, 'class')
+    const totalSkillLevels = calculateTotal(skills, 'skill')
 
     // Calculate the total count of classes with level >= 10 (heroic max)
     const totalHeroicMax = classes.reduce((count, item) => {
-        if (parseInt(item.system?.level?.value || 0) >= 10) {
-            return count + 1;
-        }
-        return count;
-    }, 0);
+      if (parseInt(item.system?.level?.value || 0) >= 10) {
+        return count + 1
+      }
+      return count
+    }, 0)
 
     // Update the derived values in the system data
-    systemData.derived.classmax.value = totalClassLevels;
-    systemData.derived.skillmax.value = totalSkillLevels;
-    systemData.derived.heroicmax.value = totalHeroicMax;
+    systemData.derived.classmax.value = totalClassLevels
+    systemData.derived.skillmax.value = totalSkillLevels
+    systemData.derived.heroicmax.value = totalHeroicMax
   }
 
   /**
    * Calculate and update ritual and project data based on certain factors.
    * @param {object} actorData - The actor's data object containing items to be processed.
    */
-  _calculateCrafting(actorData) {
+  _calculateCrafting (actorData) {
     // Define constant objects for various factors
     const constants = {
-        potencyMPs: { minor: 20, medium: 30, major: 40, extreme: 50 },
-        potencyDLs: { minor: 7, medium: 10, major: 13, extreme: 16 },
-        potencyClocks: { minor: 4, medium: 6, major: 6, extreme: 8 },
-        areaMPs: { individual: 1, small: 2, large: 3, huge: 4 },
-        potencyCosts: { minor: 100, medium: 200, major: 400, extreme: 800 },
-        areaCosts: { individual: 1, small: 2, large: 3, huge: 4 },
-        usesCosts: { consumable: 1, permanent: 5 },
-    };
+      potencyMPs: { minor: 20, medium: 30, major: 40, extreme: 50 },
+      potencyDLs: { minor: 7, medium: 10, major: 13, extreme: 16 },
+      potencyClocks: { minor: 4, medium: 6, major: 6, extreme: 8 },
+      areaMPs: { individual: 1, small: 2, large: 3, huge: 4 },
+      potencyCosts: { minor: 100, medium: 200, major: 400, extreme: 800 },
+      areaCosts: { individual: 1, small: 2, large: 3, huge: 4 },
+      usesCosts: { consumable: 1, permanent: 5 }
+    }
 
     // Filter rituals and projects
-    const rituals = actorData.items.filter(item => item.type === 'ritual');
-    const projects = actorData.items.filter(item => item.type === 'project');
+    const rituals = actorData.items.filter(item => item.type === 'ritual')
+    const projects = actorData.items.filter(item => item.type === 'project')
 
     // Function to calculate and update an item's system values
-    function calculateAndUpdateItem(item, constants) {
-        const { potency, area, mpCost, dLevel, clock } = item.system;
+    function calculateAndUpdateItem (item, constants) {
+      const { potency, area, mpCost, dLevel, clock } = item.system
 
-        const potencyVal = potency.value;
-        const areaVal = area.value;
+      const potencyVal = potency.value
+      const areaVal = area.value
 
-        const calcMP = constants.potencyMPs[potencyVal] * constants.areaMPs[areaVal];
-        const calcDL = constants.potencyDLs[potencyVal];
-        const calcClock = constants.potencyClocks[potencyVal];
+      const calcMP =
+        constants.potencyMPs[potencyVal] * constants.areaMPs[areaVal]
+      const calcDL = constants.potencyDLs[potencyVal]
+      const calcClock = constants.potencyClocks[potencyVal]
 
-        mpCost.value = calcMP;
-        dLevel.value = calcDL;
-        clock.value = calcClock;
+      mpCost.value = calcMP
+      dLevel.value = calcDL
+      clock.value = calcClock
     }
 
     // Process rituals
     rituals.forEach(ritual => {
-        calculateAndUpdateItem(ritual, constants);
-    });
+      calculateAndUpdateItem(ritual, constants)
+    })
 
     // Process projects
     projects.forEach(project => {
-        const { potency, area, use, numTinker, numHelper, lvlVision, cost, progress, progressPerDay, days, isFlawed, discount } = project.system;
+      const {
+        potency,
+        area,
+        use,
+        numTinker,
+        numHelper,
+        lvlVision,
+        cost,
+        progress,
+        progressPerDay,
+        days,
+        isFlawed,
+        discount
+      } = project.system
 
-        const potencyVal = potency.value;
-        const areaVal = area.value;
-        const usesVal = use.value;
+      const potencyVal = potency.value
+      const areaVal = area.value
+      const usesVal = use.value
 
-        // Autocalculations
-        let discountValue = lvlVision.value * 100;
-        const flawedMod = isFlawed.value ? 0.75 : 1;
-        const costValue = constants.potencyCosts[potencyVal] * constants.areaCosts[areaVal] * constants.usesCosts[usesVal] * flawedMod;
-        const progressValue = Math.max(Math.ceil(costValue / 100), 1);
-        const progPDayValue = numTinker.value * 2 + numHelper.value + lvlVision.value;
-        const daysValue = Math.ceil(progressValue / progPDayValue);
+      // Autocalculations
+      let discountValue = lvlVision.value * 100
+      const flawedMod = isFlawed.value ? 0.75 : 1
+      const costValue =
+        constants.potencyCosts[potencyVal] *
+        constants.areaCosts[areaVal] *
+        constants.usesCosts[usesVal] *
+        flawedMod
+      const progressValue = Math.max(Math.ceil(costValue / 100), 1)
+      const progPDayValue =
+        numTinker.value * 2 + numHelper.value + lvlVision.value
+      const daysValue = Math.ceil(progressValue / progPDayValue)
 
-        // Ensure lvlVision is within the range [0, 5]
-        lvlVision.value = Math.min(Math.max(lvlVision.value, 0), 5);
+      // Ensure lvlVision is within the range [0, 5]
+      lvlVision.value = Math.min(Math.max(lvlVision.value, 0), 5)
 
-        // Calculate discount.value within the range [0, 500]
-        discountValue = Math.min(Math.max(discountValue, 0), 500);
+      // Calculate discount.value within the range [0, 500]
+      discountValue = Math.min(Math.max(discountValue, 0), 500)
 
-        // Update system values
-        discount.value = discountValue;
-        cost.value = costValue;
-        progress.value = progressValue;
-        progressPerDay.value = progPDayValue;
-        days.value = daysValue;
-    });
+      // Update system values
+      discount.value = discountValue
+      cost.value = costValue
+      progress.value = progressValue
+      progressPerDay.value = progPDayValue
+      days.value = daysValue
+    })
   }
 
   /**
@@ -401,6 +438,256 @@ export class FUActor extends Actor {
   }
 
   /**
+   * Create the SP tracker
+   * @private
+   */
+  _createSPTracker (actorData, systemData) {
+    const spTracker = {
+      spAvailable: 0,
+      availableSkills: {
+        level: 0,
+        species: 0,
+        vulnerabilities: 0,
+        rank: 0
+      },
+      spUsed: 0,
+      usedSkills: {
+        specialAttacks: 0,
+        spells: 0,
+        extraDefense: 0,
+        extraHP: 0,
+        extraMP: 0,
+        initiativeBonus: 0,
+        accuracyCheck: 0,
+        magicCheck: 0,
+        resistances: 0,
+        immunities: 0,
+        absorption: 0,
+        specialRules: 0,
+        equipment: 0
+      },
+
+      calculateSP (actorData, systemData) {
+        this.availableSkills.species =
+          this.calcAvailableSkillsFromSpecies(systemData)
+        this.availableSkills.level = Math.floor(systemData.level.value / 10)
+        this.availableSkills.vulnerabilities =
+          this.calcAvailableSkillsFromVulnerabilities(systemData)
+        this.availableSkills.rank = this.calcAvailableSkillsFromRank(systemData)
+        this.spAvailable = Object.values(this.availableSkills).reduce(
+          (total, value) => total + value,
+          0
+        )
+
+        this.usedSkills.specialAttacks = 0
+        this.usedSkills.spells = this.calcUsedSkillsFromSpells(actorData)
+        this.usedSkills.extraDefense =
+          this.calcUsedSkillsFromExtraDefs(systemData)
+        this.usedSkills.extraHP = this.calcUsedSkillsFromExtraHP(systemData)
+        this.usedSkills.extraMP = this.calcUsedSkillsFromExtraMP(systemData)
+        this.usedSkills.initiativeBonus =
+          this.calcUsedSkillsFromExtraInit(systemData)
+        this.usedSkills.accuracyCheck = 0
+        this.usedSkills.magicCheck = 0
+        this.usedSkills.resistances = 0
+        this.usedSkills.immunities =
+          this.calcUsedSkillsFromImmunities(systemData)
+        this.usedSkills.absorption = this.calcUsedSkillsFromAbsorbs(systemData)
+        this.usedSkills.specialRules = this.calcUsedSkillsFromSpecial(actorData)
+        this.usedSkills.equipment = 0
+        this.spUsed = Object.values(this.usedSkills).reduce(
+          (total, value) => total + value,
+          0
+        )
+      },
+
+      calcAvailableSkillsFromSpecies () {
+        let number = 4
+        if (
+          systemData.species.value === 'construct' ||
+          systemData.species.value === 'elemental' ||
+          systemData.species.value === 'undead'
+        ) {
+          number = 2
+        }
+        if (
+          systemData.species.value === 'demon' ||
+          systemData.species.value === 'plant' ||
+          systemData.species.value === 'humanoid'
+        ) {
+          number = 3
+        }
+        return number
+      },
+
+      calcAvailableSkillsFromRank () {
+        if (systemData.isChampion.value > 1) {
+          return systemData.isChampion.value
+        } else if (systemData.isElite.value) {
+          return 1
+        }
+
+        return 0
+      },
+
+      calcAvailableSkillsFromVulnerabilities () {
+        let sum = 0
+        Object.entries(systemData.resources.affinity).forEach(el => {
+          if (el[1] === 0) {
+            sum++
+          }
+        })
+
+        // Undeads are vulnerable to light
+        if (
+          systemData.species.value === 'undead' &&
+          systemData.resources.affinity.light.value === 0
+        ) {
+          sum = sum - 1
+        }
+
+        // Plants have a free vulnerability
+        if (
+          systemData.species.value === 'plant' &&
+          (systemData.resources.affinity.fire.value ||
+            systemData.resources.affinity.air.value ||
+            systemData.resources.affinity.ice.value ||
+            systemData.resources.affinity.bolt.value)
+        ) {
+          sum = sum - 1
+        }
+        if (sum < 0) {
+          sum = 0
+        }
+
+        return sum
+      },
+
+      calcUsedSkillsFromSpells (actorData) {
+        const spells = actorData.items.filter(item => item.type === 'spell')
+        return spells.length / 2 || 0
+      },
+
+      calcUsedSkillsFromExtraDefs () {
+        if (!systemData.derived.def?.bonus || !systemData.derived.mdef?.bonus) {
+          return 0
+        }
+        return (
+          (systemData.derived.def.bonus + systemData.derived.mdef.bonus) / 3
+        )
+      },
+
+      calcUsedSkillsFromExtraHP () {
+        if (!systemData.resources.hp?.bonus) {
+          return 0
+        }
+        return systemData.resources.hp.bonus / 10
+      },
+
+      calcUsedSkillsFromExtraMP () {
+        if (!systemData.resources.mp?.bonus) {
+          return 0
+        }
+        return systemData.resources.mp.bonus / 10 / 2
+      },
+
+      calcUsedSkillsFromExtraInit () {
+        if (!systemData.derived.init.bonus) {
+          return 0
+        }
+        return Math.floor(systemData.derived.init.bonus / 4)
+      },
+
+      calcUsedSkillsFromImmunities () {
+        let sum = 0
+        Object.entries(systemData.resources.affinity).forEach(el => {
+          if (el[1] === 3) {
+            // Don't count poison for construct, elemental, undead
+            if (
+              (systemData.species.value === 'construct' ||
+                systemData.species.value === 'elemental' ||
+                systemData.species.value === 'undead') &&
+              el[0] === 'poison'
+            ) {
+              return
+            }
+
+            // Don't count dark for undead
+            if (systemData.species.value === 'undead' && el[0] === 'dark') {
+              return
+            }
+
+            sum++
+          }
+        })
+
+        // Elementals have a free immunity
+        if (systemData.species.value === 'elemental') {
+          sum = sum - 1
+        }
+
+        if (sum < 0) {
+          sum = 0
+        }
+
+        return Math.ceil(sum)
+      },
+
+      calcUsedSkillsFromAbsorbs() {
+        let sum = 0;
+      
+        // Loop through the affinity object
+        for (const key in systemData.resources.affinity) {
+          const value = systemData.resources.affinity[key];
+      
+          // In the new data model, the values are already plain numbers
+          if (value === 4) {
+            sum++;
+            console.log(`sp maybe Key: ${key}, Value: ${value}`);
+          }
+        }
+      
+        if (sum < 0) {
+          sum = 0;
+        }
+      
+        return Math.ceil(sum) * 2;
+      },
+      
+      calcUsedSkillsFromSpecial (actorData) {
+        const miscAbility = actorData.items.filter(
+          item => item.type === 'miscAbility'
+        )
+        return miscAbility.length || 0
+      },
+
+      // handleFieldChange() {
+      //   // Simulated field changes for demonstration
+      //   //this.availableSkills.species = 4;
+      //   //this.usedSkills.specialAttacks = 3;
+
+      //   // Recalculate SP based on the changes
+      //   this.calculateSP(systemData);
+      //   // Log SP tracker data to the console
+      //   this.logSPData();
+      // },
+
+      logSPData () {
+        console.log('SP Available:', this.spAvailable)
+        console.log('Available Skills:', this.availableSkills)
+        console.log('SP Used:', this.spUsed)
+        console.log('Used Skills:', this.usedSkills)
+      }
+    }
+
+    // Initial calculation and logging
+    spTracker.calculateSP(actorData, systemData)
+    spTracker.logSPData()
+
+    return spTracker
+  }
+
+  /**
    * Prepare Character type specific data
    */
   _prepareCharacterData (actorData) {
@@ -424,6 +711,12 @@ export class FUActor extends Actor {
 
     // Make modifications to data here. For example:
     const systemData = actorData.system
+
+    // Move the SP tracker creation logic here
+    this.spTracker = this._createSPTracker(actorData, systemData)
+
+    // Calculate SP and its associated skills
+    this.spTracker.calculateSP(actorData, systemData)
   }
 
   /**
@@ -471,6 +764,9 @@ export class FUActor extends Actor {
   async _preUpdate (changed, options, user) {
     const changedHP = changed.system?.resources?.hp
     const currentHP = this.system.resources.hp
+    const maxHP = this.system.resources.hp.max
+    const crisis = maxHP / 2
+
     if (typeof changedHP?.value === 'number' && currentHP) {
       const hpChange = changedHP.value - currentHP.value
       const levelChanged = !!changed.system && 'level' in changed.system
@@ -493,7 +789,7 @@ export class FUActor extends Actor {
   async showFloatyText (input) {
     let scrollingTextArgs
 
-    if (!canvas.scene) return;
+    if (!canvas.scene) return
 
     const gridSize = canvas.scene.grid.size
 

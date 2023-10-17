@@ -2,11 +2,11 @@
   position: relative;
   width: 100%;
   height: 3px;
-  background-image: linear-gradient(to left, transparent, #1e3e35, #1e3e35, transparent);
+  background-image: linear-gradient(to left, transparent, $color-secondary 50%, transparent);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
-  margin: 2em 0;
+  margin: 25px 0;
 }
 
 .center-label {
@@ -21,6 +21,6 @@
   justify-content: center;
   color: $color-secondary;
   font-weight: bold;
-  text-align:center; 
-  margin: 10px 0;
+  text-align: center;
+  margin: 14px 0;
 }

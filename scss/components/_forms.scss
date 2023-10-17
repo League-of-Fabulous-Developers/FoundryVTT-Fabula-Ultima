@@ -1,56 +1,103 @@
 .item-form {
   font-family: $font-primary;
 }
- /* Sheet Background */
+
+/* Sheet Background */
 .backgroundstyle {
-  background-image: url("/systems/fabulaultima/styles/static/ui/bg.png"), linear-gradient(to right, $color-beige, $color-faint);
+  background-image: url("/systems/fabulaultima/styles/static/ui/bg.png"),
+    linear-gradient(to right, $color-beige, $color-faint);
   background-blend-mode: multiply;
   background-repeat: repeat-y;
-  background-position: right top; 
-  padding: 1em 0.5em;
+  background-position: right top;
+  padding: 0.5em 1em;
+}
+
+img.clock-img {
+  flex: 0 0 220px;
+  height: fit-content;
+  margin-right: 0;
+  margin-top: 15px;
+  padding: 2px;
+  align-self: start;
+  background-clip: content-box;
+  margin: 0;
+  border: 0;
 }
 
 .sheet-header {
   flex: 0 auto;
+  margin: 0px 2px;
   overflow: visible;
   display: flex;
-  flex-direction: row;
+  flex-direction: column !important;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 0.5em;
+
+  .combine-header {
+    flex: 0;
+    margin: 0px 2px 5px;
+    overflow: visible;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    display: flex;
+  }
+
   .profile-img {
     flex: 0 0 150px;
     height: 150px;
+    width: 150px;
     margin-right: 0;
     margin-top: 15px;
     padding: 2px;
     align-self: start;
-    background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+    background-image: linear-gradient(to right,
+        $color-secondary,
+        $color-ternary);
     background-clip: content-box;
     border-color: #9a9a9a;
     margin: 0.5em 0 0 0.5em;
+    border-radius: 10px;
   }
 
   /* Character Name Input Tag */
   input.resource-input-charname {
-  color: $color-primary;
-  font-size: 24x;
-  background: linear-gradient($color-charname-gradient);
-  border-color: transparent;
+    color: $color-primary;
+    text-shadow: 1px 1px 1px $color-black;
+    background: linear-gradient($color-charname-gradient);
+    border-color: transparent;
   }
 
   .header-fields {
     flex: 1;
+    margin: 3px 0;
+
+    .header-center {
+      margin: 12px 0 0;
+    }
+  }
+
+  select {
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    option {
+      background-color: $color-secondary;
+      color: $color-primary;
+    }
   }
 
   h1.charname {
-    background-color: transparent; 
+    background-color: transparent;
     border-color: transparent;
     color: $color-black;
     height: 50px;
     padding: 0px;
     margin: 5px 0;
     border-bottom: 0;
+
     input {
       width: 100%;
       height: 100%;
@@ -59,69 +106,158 @@
   }
 }
 
-
-.tabs .item.active {
-  text-shadow: 0 0 10px $color-shadow;
-}
-
 .sheet-tabs {
   flex: 0;
 }
 
+.section-container {
+  padding: 10px 0;
+}
 
+.item-settings {
+  margin: 2px 10px;
+  float: left;
+}
 
-// Better readability for description
-.npc-border-col {
+.card-style {
+  margin: 0.5em;
+}
+
+.item-border-col {
   border: 4px double $color-secondary;
-  max-height: 20em;
+}
+
+.npc-border-col {
+  background: linear-gradient(#{$color-transparent-gradient});
+  border: 4px double $color-secondary;
+  border-radius: 10px;
+  min-height: 18em;
+  max-height: 22em;
 }
 
 .npc-desc-sec {
   margin: 0.5em;
 }
+
 .npc-desc {
-  max-height: 20em;
+  max-height: 17em;
   height: 100%;
-  .editor{
-    height: 86%;
-    min-height: 34px;
+
+  .editor {
+    height: 100%;
+    min-height: 17em;
   }
+
   .tox-tinymce {
-    height: 50%;
-    min-height: 85px;
+    min-height: 17em;
   }
-  
 }
 
-
-/* Edit */
 .sheet-body,
 .sheet-body .tab {
-
   min-height: 50%;
   max-height: 100%;
 
-  .desc, .gm-desc{
-    background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
-    margin: 10px 0 5px 0;
-    border-radius: 1em;
+  .sidebar {
+    margin: 0 0.5em;
+  }
+
+  // .desc:not(:last-child) {
+  //   margin-bottom: 5px;
+  // }
+  .desc {
+    background: linear-gradient(to right,
+        rgba(238, 244, 228, 0.5),
+        rgba(226, 237, 213, 0.5));
+    border-radius: 10px;
+    border: 4px double $color-secondary;
+
+    .desc-header {
+      background: none;
+      border-radius: 10px 10px 0 0;
+      border-bottom: 4px double $color-secondary;
+    }
+
+    &.abilities {
+      margin: 5px 0;
+      background: linear-gradient(to right,
+          rgba(238, 244, 228, 0.5),
+          rgba(226, 237, 213, 0.5));
+
+      span.action-container {
+        margin: -3px 5px 5px 3px;
+        padding: 2px 0;
+      }
+
+      .ability {
+        padding: 1px 3px;
+        border-bottom: 1px solid $color-secondary;
+
+        .desc-body {
+          font-size: 12px;
+        }
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
   }
 }
 
-.editor{
+.stats-container {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  min-height: 34px;
+  margin: 5px 0;
+}
+
+.half-desc {
+  .editor {
+    height: 100%;
+    min-height: 13em;
+  }
+
+  .tox-tinymce {
+    height: 100%;
+    min-height: 12em;
+    max-height: 12em;
+  }
+}
+
+.quarter-desc {
+  .editor {
+    height: 100%;
+    min-height: 23em;
+  }
+
+  .tox-tinymce {
+    height: 100%;
+    min-height: 20em;
+    max-height: 20em;
+  }
+}
+
+.editor {
+  height: 100%;
+  min-height: 30em;
+}
+
+.editor-content {
+  height: fit-content;
+  padding: 0 0.5em;
 }
 
 .tox-tinymce {
   height: 100%;
-  min-height: 85px;
+  min-height: 26em;
+  max-height: 26em;
 }
-
 
 .tox .tox-editor-container {
-  background: #fff;
+  background: $color-white;
 }
+
 .tox .tox-edit-area {
   padding: 0 8px;
 }

@@ -1,10 +1,11 @@
-<form class="{{cssClass}} backgroundstyle" autocomplete="off">
-  {{> "systems/fabulaultima/templates/item/parts/item-header.html" dtypes=dtypes}}
-
+<form class="{{ cssClass }} backgroundstyle" autocomplete="off">
+  {{> "systems/fabulaultima/templates/item/parts/item-header.html"
+  dtypes=dtypes}}
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="attributes">Attributes</a>
+    <a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
+    <a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
+    <a class="item" data-tab="effects">{{localize 'FU.Effects'}}</a>
   </nav>
 
   {{!-- Sheet Body --}}

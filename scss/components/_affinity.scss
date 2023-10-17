@@ -1,8 +1,12 @@
 $size-outline: 2px; // Adjust the size of the outline
+$color-outline: #000; // Define the color of the outline (change it to your desired color)
+$color-text-shadow: #333; // Define the color of the text shadow (change it to your desired color)
 
 .icon-aff {
   display: inline-block;
   padding: 2px;
+  position: relative;
+  z-index: 1;
 
   &.fa-sword {
     color: $color-icon-sword;
@@ -12,8 +16,8 @@ $size-outline: 2px; // Adjust the size of the outline
     color: $color-icon-wind;
   }
 
-  &.fa-bolt {
-    color: $color-icon-bolt;
+  &.fa-bolt-lightning {
+    color: $color-icon-bolt-lightning;
   }
 
   &.fa-moon {
@@ -41,7 +45,12 @@ $size-outline: 2px; // Adjust the size of the outline
   }
 
   &:before {
-    text-shadow: 
+    text-shadow:
       $size-outline $size-outline 1px $color-outline;
+  }
+
+  &:after {
+    z-index: 2;
+    outline: $size-outline solid $color-outline;
   }
 }

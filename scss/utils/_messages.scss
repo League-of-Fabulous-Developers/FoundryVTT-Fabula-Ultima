@@ -1,46 +1,58 @@
 /* ----------------------------------------- */
 /* Item Card Structure                       */
 /* ----------------------------------------- */
+.chat-message,
+.chat-message.whisper {
+  // Styles for the chat card message
+  background-image: url("/systems/fabulaultima/styles/static/ui/bg.png"),
+    linear-gradient(to right, $color-beige, $color-faint) !important;
+  background-blend-mode: multiply !important;
+  background-repeat: repeat-y;
+  background-position: right top;
+  margin: 3px;
+  padding: 1em 0.5em;
+  font-size: var(--font-size-14);
+  border: 2px solid #6f6c66;
+  background-size: cover;
+  border-radius: 5px;
 
-.chat-message {
-    background-image: url("/systems/fabulaultima/styles/static/ui/bg.png"), linear-gradient(to right, $color-beige, $color-faint) !important;
-    background-blend-mode: multiply !important;
-    background-repeat: repeat-y;
-    background-position: right top;
-    margin: 3px;
-    padding: 5px;
-    font-size: var(--font-size-14);
-    border: 2px solid #6f6c66;
-    background-size: cover;
-    border-radius: 5px;
-  }
-  
-  /* For editing chat icon and item label */
-  .chat-header {
-    img {
-      border: 0;
-      -webkit-filter: drop-shadow(2px 2px 4px $color-shadow);
-      filter: drop-shadow(2px 2px 4px $color-shadow);
+  .message-header {
+
+    // Styles for the header
+    .title-desc .backgroundstyle {
+      margin: 22px 0 0 0;
+    }
+
+    .title-desc img {
+      // Styles for the img element within title-desc
+      border: 0px;
+      filter: drop-shadow(2px 2px 4px $color-black);
       position: relative;
       bottom: 195px;
       margin-bottom: -200px;
       width: 48px;
       height: 48px;
     }
-    p {
+
+    .title-desc p {
+      // Styles for the p element within title-desc
+      font-family: alice;
       line-height: 1.2;
       color: $color-primary;
-      font-size: 24px;
-      box-shadow: 3px 6px $color-box-shadow-inverted;
+      font-size: 26px;
+      text-shadow: 2px 2px 4px $color-black;
+      box-shadow: 3px 6px $color-secondary;
       border-style: solid;
       border-width: thin;
-      border-color: $color-black;
+      border-color: $color-beige;
       padding: 10px;
       border-radius: 12px;
-      background-color: $color-background-inverted;
+      background-color: $color-ternary;
+      overflow-wrap: anywhere;
     }
   }
-  
+
+  // Styles for editing chat description
   .chat-desc {
     text-align: left;
     font-size: 14px;
@@ -49,94 +61,270 @@
     margin-bottom: 15px;
     color: #272a2a;
     box-shadow: 3px 6px $color-background-inverted;
-    background-image: linear-gradient(to right, rgba(211, 229, 230, 0.3), rgba(195, 219, 214, 0.8));
+    background-image: linear-gradient(to right,
+        rgba(211, 229, 230, 0.3),
+        rgba(195, 219, 214, 0.8));
     border-style: solid;
     border-width: thin;
     border-color: #272a2a;
     border-radius: 8px;
+
     strong {
       color: #272a2a;
     }
+
+    .resource-label {
+      color: $color-secondary;
+      font-weight: bold;
+      font-size: 16px;
+      border: transparent;
+    }
   }
-  
-  .spell-desc, .detail-desc {
-    color: $color-black;
-    box-shadow: 3px 6px darkslategrey;
-    background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));    border-style: solid;
-    border-width: thin;
-    border-color: $color-background-inverted;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    font-family: 'Signika', sans-serif;
+}
+
+
+
+// Styles for editing chat's item detail description
+.detail-desc {
+  color: $color-black;
+  box-shadow: 3px 6px $color-secondary;
+  background-image: linear-gradient(to bottom,
+      rgb(212, 231, 232),
+      rgba(195, 219, 214, 0.7));
+  border: thin solid $color-background-inverted;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  >div {
+    margin: 0;
+    height: 100% !important;
+    flex-grow: 1;
     display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    .summary {
-      font-size: 14px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 1px;
+      background-color: $color-background-inverted;
     }
-    span {
-      padding: 5px;
-      margin: 0;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      height: 100%;
-  
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        width: 1px;
-        background-color: $color-background-inverted;
+
+    &:nth-child(3)::before,
+    &:last-child::before {
+      display: none; // Show the border for all divs except the third child and the last child
+    }
+  }
+}
+
+
+// Styles for editing chat icon and item label
+// .chat-header {
+//   img {
+//     border: 0;
+//     filter: drop-shadow(2px 2px 4px $color-shadow);
+//     position: relative;
+//     bottom: 195px;
+//     margin-bottom: -200px;
+//     width: 48px;
+//     height: 48px;
+//   }
+
+//   p {
+//     line-height: 1.2;
+//     color: $color-primary;
+//     font-size: 24px;
+//     box-shadow: 3px 6px $color-box-shadow-inverted;
+//     border-style: solid;
+//     border-width: thin;
+//     border-color: $color-black;
+//     padding: 10px;
+//     border-radius: 12px;
+//     background-color: $color-background-inverted;
+//   }
+// }
+
+.mainhand-header {
+  font-family: alice;
+  line-height: 0.5em;
+  color: $color-primary;
+  font-size: 16px;
+  text-shadow: 2px 2px 4px $color-black;
+  box-shadow: 3px 6px $color-secondary;
+  border-style: solid;
+  border-width: thin;
+  border-color: $color-beige;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: $color-ternary;
+  margin: 1em 0em;
+}
+
+.offhand-header {
+  font-family: alice;
+  line-height: 0.5em;
+  color: $color-primary;
+  font-size: 16px;
+  text-shadow: 2px 2px 4px $color-black;
+  box-shadow: 3px 6px $color-secondary;
+  border-style: solid;
+  border-width: thin;
+  border-color: $color-beige;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: $color-ternary;
+  margin: 2em 0 0;
+}
+
+.accuracy-desc {
+  &.align-left {
+    margin-top: 24px;
+    margin-bottom: 24px;
+
+    .result-text {
+      text-align: right;
+      color: $color-primary;
+      font-size: 18px;
+      margin-bottom: 10px;
+      background-image: linear-gradient(DarkRed, Crimson);
+    }
+
+    .accuracy-box {
+      span.accuracy-title {
+        color: $color-primary;
+        font-size: 28px;
+        text-shadow: 1px 2px 4px $color-black;
+        box-shadow: 3px 7px $color-secondary;
+        border-radius: 8px 8px 0px 0px;
+        padding: 4px 14px 7px 14px;
+        background-color: $color-ternary;
+        font-family: "alice";
+        border-width: 1px 1px 0 1px;
+        border-color: $color-beige;
+        border-style: solid;
       }
-      
-      &:last-child::before {
-        display: none;
+    }
+
+    .accuracy-details {
+      margin: 7px 0;
+
+      span.accuracy-detail-text {
+        color: $color-primary;
+        font-size: 16px;
+        text-shadow: 1px 2px 4px $color-black;
+        box-shadow: 3px 6px #2a4a41;
+        border-radius: 0px 8px 8px 8px;
+        padding: 0px 14px 4px 14px;
+        background-color: $color-ternary;
+        font-family: "alice";
+        border-width: 1px;
+        border-color: $color-beige;
+        border-style: solid;
+      }
+    }
+
+    .float-box {
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 8px;
+      color: $color-secondary;
+      box-shadow: 3px 6px $color-secondary;
+      background-color: rgba(225, 239, 227, 0.5);
+      border-style: solid;
+      border-width: thin;
+
+      &.acc-float {
+        margin: 13px 0 5px;
+        padding: 0 5px;
+      }
+
+      .float-text {
+        display: inline-block;
+        font-size: 38px;
+        animation: floating 3s infinite ease-in-out;
       }
     }
   }
-  
-  //   .detail-desc {
-  //   color: $color-black;
-  //   box-shadow: 3px 6px $color-background-inverted;
-  //   background-image: linear-gradient(to right, rgba(211, 229, 230, 0.7), rgba(195, 219, 214, 0.8));
-  //   border-style: solid;
-  //   border-width: thin;
-  //   border-color: $color-background-inverted;
-  //   border-radius: 8px;
-  //   font-size: 14px;
-  //   font-weight: bold;
-  //   font-family: 'Signika', sans-serif;
-  //   position: relative;
-  //   overflow: hidden;
-  
-  //   &:before {
-  //     content: "";
-  //     position: absolute;
-  //     top: -10px;
-  //     left: -10px;
-  //     right: -10px;
-  //     bottom: -10px;
-  //     background: linear-gradient(45deg, #f06, #e43);
-  //     z-index: -1;
-  //   }
-  
-  //   p {
-  //     margin: 0;
-  //     padding: 2px;
-  //     text-align: center;
-  
-  //     &:last-child {
-  //       background: rgba(211, 229, 230, 0.7);
-  //       border-top-left-radius: 8px;
-  //       border-top-right-radius: 8px;
-  //     }
-  //   }
-  // }
-  
+}
+
+.damage-desc {
+  &.align-left {
+    margin-top: 24px;
+    margin-bottom: 24px;
+
+    .result-text {
+      text-align: right;
+      color: $color-primary;
+      font-size: 18px;
+      margin-bottom: 10px;
+      background-image: linear-gradient($color-danger);
+    }
+
+    .damage-box {
+      span.damage-title {
+        color: $color-white;
+        font-size: 28px;
+        text-shadow: 1px 2px 4px $color-black;
+        box-shadow: 3px 7px $color-secondary;
+        border-radius: 8px 8px 8px 0px;
+        padding: 4px 14px 7px 14px;
+        background-color: $color-ternary;
+        font-family: "alice";
+        border-width: 1px;
+        border-color: $color-beige;
+        border-style: solid;
+      }
+    }
+
+    .damage-details {
+      margin: 7px 0;
+
+      span.damage-detail-text {
+        color: $color-white;
+        font-size: 16px;
+        text-shadow: 1px 2px 4px $color-black;
+        box-shadow: 3px 6px $color-secondary;
+        border-radius: 0px 0px 8px 8px;
+        padding: 0px 14px 4px 14px;
+        background-color: $color-ternary;
+        font-family: "alice";
+        z-index: 100;
+        position: relative;
+        border-width: 0 1px 1px 1px;
+        border-color: $color-beige;
+        border-style: solid;
+      }
+    }
+
+    .float-box {
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 8px;
+      color: $color-secondary;
+      box-shadow: 3px 6px $color-secondary;
+      background-color: rgba(225, 239, 227, 0.5);
+      border-style: solid;
+      border-width: thin;
+
+      &.dam-float {
+        margin-top: -5px;
+        padding: 0 5px;
+      }
+
+      .float-text {
+        display: inline-block;
+        font-size: 38px;
+        animation: floating 3s infinite ease-in-out;
+      }
+    }
+  }
+}

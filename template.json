@@ -10,35 +10,24 @@
           "rp1": { "name": "", "value": 0 },
           "rp2": { "name": "", "value": 0 },
           "rp3": { "name": "", "value": 0 },
-
           "affinity": {
-            "phys": { "value": "" },
-            "air": { "value": "" },
-            "bolt": { "value": "" },
-            "dark": { "value": "" },
-            "earth": { "value": "" },
-            "fire": { "value": "" },
-            "ice": { "value": "" },
-            "light": { "value": "" },
-            "poison": { "value": "" }
-          },
-          "bonds": [
-            {
-              "name": "",
-              "admInf": "",
-              "loyMis": "",
-              "affHat": "",
-              "strength": 0
-            }
-          ]
-        }, 
+            "phys": 1,
+            "air": 1,
+            "bolt": 1,
+            "dark": 1,
+            "earth": 1,
+            "fire": 1,
+            "ice": 1,
+            "light": 1,
+            "poison": 1
+          }          
+        },
         "attributes": {
           "dex": { "base": 6, "current": 6 },
           "ins": { "base": 6, "current": 6 },
           "mig": { "base": 6, "current": 6 },
           "wlp": { "base": 6, "current": 6 }
         },
-
         "derived": {
           "crisis": { "value": 5 },
           "init": { "value": 0, "bonus": 0 },
@@ -58,7 +47,16 @@
       "templates": ["base"],
       "resources": {
         "ip": { "value": 6, "min": 0, "max": 6 },
-        "fp": { "value": 3 }
+        "fp": { "value": 3 },
+        "bonds": [
+          {
+            "name": "",
+            "admInf": "",
+            "loyMis": "",
+            "affHat": "",
+            "strength": 0
+          }
+        ]
       }
     },
     "npc": {
@@ -68,18 +66,46 @@
         "fp": { "value": 3 }
       },
       "traits": { "value": "" },
-      "creature": { "value": "" },
+      "species": { "value": "" },
       "isElite": { "value": false },
-      "isChampion": { "value": 1 }
+      "isChampion": { "value": 1 },
+      "isCompanion": { "value": false }
     }
   },
   "Item": {
-    "types": ["weapon", "shield", "armor", "accessory", "class", "skill", "heroic", "spell", "miscAbility", "behavior", "consumable", "ritual", "project", "zeroPower"],
+    "types": [
+      "weapon",
+      "shield",
+      "armor",
+      "accessory",
+      "class",
+      "skill",
+      "heroic",
+      "spell",
+      "miscAbility",
+      "behavior",
+      "consumable",
+      "ritual",
+      "project",
+      "zeroPower"
+    ],
     "templates": {
-      "base": { "summary": "", "description": "", "isFavored": { "value": false } },
+      "base": {
+        "summary": "",
+        "description": "",
+        "isFavored": { "value": false }
+      },
       "item": { "cost": { "value": 0 } },
-      "equippable": { "isMartial": { "value": false }, "quality": { "value": "" }, "isEquipped": { "value": false, "slot": "" } },
-      "defensive": { "def": { "value": 0 }, "mdef": { "value": 0 }, "init": { "value": 0 } },
+      "equippable": {
+        "isMartial": { "value": false },
+        "quality": { "value": "" },
+        "isEquipped": { "value": false, "slot": "" }
+      },
+      "defensive": {
+        "def": { "value": 0 },
+        "mdef": { "value": 0 },
+        "init": { "value": 0 }
+      },
       "hasBehavior": { "isBehavior": false, "weight": { "value": 1 } },
       "hasLevel": { "level": { "value": 1, "max": 10, "min": 0 } },
       "hasClass": { "class": { "value": "" } },
@@ -90,28 +116,60 @@
           "damage": { "value": false },
           "hrZero": { "value": false }
         },
-        "attributes": { "primary": { "value": "mig" }, "secondary": { "value": "mig" } },
+        "attributes": {
+          "primary": { "value": "mig" },
+          "secondary": { "value": "mig" }
+        },
         "accuracy": { "value": 0 },
-        "damage": { "hasDamage": { "value": false }, "value": 0, "type": { "value": "physical" } },
-        "impdamage": { "hasImpDamage": { "value": false }, "value": 0, "impType": { "value": "minor" }, "type": { "value": "physical" } }
+        "damage": {
+          "hasDamage": { "value": false },
+          "value": 0,
+          "type": { "value": "physical" }
+        },
+        "impdamage": {
+          "hasImpDamage": { "value": false },
+          "value": 0,
+          "impType": { "value": "minor" },
+          "type": { "value": "physical" }
+        }
+      },
+      "weaponize": {
+        "attributes": {
+          "primary": { "value": "mig" },
+          "secondary": { "value": "mig" }
+        },
+        "accuracy": { "value": 0 },
+        "damage": { "value": 5 },
+        "type": { "value": "melee" },
+        "category": { "value": "sword" },
+        "hands": { "value": "one-handed" },
+        "impType": { "value": "minor" },
+        "damageType": { "value": "physical" }
       },
       "showTitleCard": { "showTitleCard": { "value": false } }
     },
     "weapon": {
-      "templates": ["base", "item", "equippable", "hasBehavior"],
-      "attributes": { "primary": { "value": "mig" }, "secondary": { "value": "dex" } },
-      "accuracy": { "value": 0 },
-      "damage": { "value": 6 },
-      "hands": { "value": "One-Handed" },
-      "type": { "value": "Melee" },
-      "category": { "value": "Sword" },
-      "impType": { "value": "minor" },
-      "damageType": { "value": "physical" },
+      "templates": ["base", "item", "equippable", "hasBehavior", "weaponize"],
       "isCustomWeapon": { "value": false }
     },
-    "shield": { "templates": ["base", "item", "equippable", "defensive", "hasBehavior"] },
-    "armor": { "templates": ["base", "item", "equippable", "defensive", "hasBehavior"] },
-    "accessory": { "templates": ["base", "item", "equippable", "defensive", "hasBehavior"] },
+    "shield": {
+      "templates": [
+        "base",
+        "item",
+        "equippable",
+        "defensive",
+        "hasBehavior",
+        "weaponize"
+      ],
+      "isDualShield": { "value": false },
+      "category": { "value": "brawling" }
+    },
+    "armor": {
+      "templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
+    },
+    "accessory": {
+      "templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
+    },
     "class": {
       "templates": ["base", "hasLevel"],
       "benefits": {
@@ -127,7 +185,13 @@
       }
     },
     "heroic": {
-      "templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"],
+      "templates": [
+        "base",
+        "hasLevel",
+        "hasClass",
+        "rollInfo",
+        "showTitleCard"
+      ],
       "requirement": { "value": "" },
       "benefits": {
         "hp": { "value": false },
@@ -135,7 +199,9 @@
         "ip": { "value": false }
       }
     },
-    "skill": { "templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"] },
+    "skill": {
+      "templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"]
+    },
     "spell": {
       "templates": ["base", "hasClass", "rollInfo", "hasBehavior"],
       "mpCost": { "value": "" },
@@ -143,8 +209,15 @@
       "duration": { "value": "" },
       "isOffensive": { "value": false }
     },
-    "miscAbility": { "templates": ["base", "rollInfo", "showTitleCard", "hasBehavior"] },
-    "behavior": { "templates": ["base"], "isBehavior": true, "weight": { "value": 1 } },
+    "miscAbility": {
+      "templates": ["base", "rollInfo", "showTitleCard", "hasBehavior"],
+      "subtype": { "value": "Custom"}
+    },
+    "behavior": {
+      "templates": ["base"],
+      "isBehavior": true,
+      "weight": { "value": 1 }
+    },
     "consumable": { "templates": ["base"], "ipCost": { "value": 3 } },
     "project": {
       "templates": ["base"],
@@ -175,7 +248,7 @@
       "templates": ["base"],
       "zeroTrigger": { "value": "" },
       "zeroEffect": { "value": "" },
-      "trigger": { "current": 0, "step": 1, "max": 6 } 
+      "trigger": { "current": 0, "step": 1, "max": 6 }
     }
   }
 }
