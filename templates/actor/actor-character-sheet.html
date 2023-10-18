@@ -22,7 +22,7 @@
               type="text"
               value="{{ actor.name }}"
               placeholder="Name"
-              class="resource-input-charname auto-shrink"
+              class="resource-inputs-charname auto-shrink"
             />
           </h1>
 
@@ -42,7 +42,7 @@
               name="system.level.value"
               value="{{ system.level.value }}"
               data-dtype="Number"
-              class="resource-input"
+              class="resource-inputs"
             />
           </span>
 
@@ -68,7 +68,7 @@
               name="system.resources.exp.value"
               value="{{ system.resources.exp.value }}"
               data-dtype="Number"
-              class="resource-input"
+              class="resource-inputs"
             />
           </span>
         </div>
@@ -163,7 +163,7 @@
                 name="system.resources.mp.value"
                 value="{{ system.resources.mp.value }}"
                 data-dtype="Number"
-                class="resource-input bar-start"
+                class="resource-inputs bar-start"
               />
               <span
                 class="resource-middle-input bar-middle"
@@ -262,7 +262,7 @@
             value="{{ system.resources.fp.value }}"
             data-dtype="Number"
             id="fp-input"
-            class="fp-resource-input"
+            class="fp-resource-inputs"
           />
           <button
             class="increment-button"
@@ -281,7 +281,7 @@
         </label>
         <div class="resource-content flex-center">
           <input
-            class="resource-input"
+            class="resource-inputs"
             id="def-input"
             type="number"
             name="system.derived.def.value"
@@ -305,7 +305,7 @@
         </label>
         <div class="resource-content flex-center">
           <input
-            class="resource-input"
+            class="resource-inputs"
             id="mdef-input"
             type="number"
             name="system.derived.mdef.value"
@@ -327,7 +327,7 @@
         </label>
         <div class="resource-content flex-center">
           <input
-            class="resource-input"
+            class="resource-inputs"
             id="init-input"
             type="number"
             name="system.derived.init.value"
@@ -372,7 +372,7 @@
             value="{{ system.resources.rp1.value }}"
             data-dtype="Number"
             id="rp1-input"
-            class="resource-input"
+            class="resource-inputs"
           />
           <button
             class="increment-button"
@@ -414,7 +414,7 @@
             value="{{ system.resources.rp2.value }}"
             data-dtype="Number"
             id="rp2-input"
-            class="resource-input"
+            class="resource-inputs"
           />
           <button
             class="increment-button"
@@ -456,7 +456,7 @@
             value="{{ system.resources.rp3.value }}"
             data-dtype="Number"
             id="rp3-input"
-            class="resource-input"
+            class="resource-inputs"
           />
           <button
             class="increment-button"
@@ -481,7 +481,7 @@
             <select
               value="{{ system.rollInfo.attributes.primary.value }}"
               name="system.rollInfo.attributes.primary.value"
-              class="resource-input"
+              class="resource-inputs"
             >
               {{#select system.rollInfo.attributes.primary.value}}
               <option value="attributes.dex.current">
@@ -514,7 +514,7 @@
             <select
               value="{{ system.rollInfo.attributes.secondary.value }}"
               name="system.rollInfo.attributes.secondary.value"
-              class="resource-input"
+              class="resource-inputs"
             >
               {{#select system.rollInfo.attributes.secondary.value}}
               <option value="attributes.dex.current">
@@ -550,7 +550,7 @@
         <select
           value="{{ value }}"
           name="{{ name }}"
-          class="resource-input select-dropdown"
+          class="resource-inputs select-dropdown"
           data-tooltip="{{localizeFull value}}"
           data-dtype="Number"
         >
@@ -641,7 +641,7 @@
                 <span class="resource-label">{{ attribute.label }}</span>
               </label>
               <select
-                class="resource-input"
+                class="resource-inputs"
                 data-dtype="Number"
                 value="{{ attribute.base }}"
                 name="system.attributes.{{ key }}.base"

@@ -80,7 +80,7 @@
             <select
               value="{{ system.rollInfo.attributes.primary.value }}"
               name="system.rollInfo.attributes.primary.value"
-              class="resource-input select-dropdown"
+              class="resource-inputs select-dropdown"
             >
               {{#select system.rollInfo.attributes.primary.value}}
               <option value="dex">DEX</option>
@@ -99,7 +99,7 @@
             <select
               value="{{ system.rollInfo.attributes.secondary.value }}"
               name="system.rollInfo.attributes.secondary.value"
-              class="resource-input select-dropdown"
+              class="resource-inputs select-dropdown"
             >
               {{#select system.rollInfo.attributes.secondary.value}}
               <option value="dex">DEX</option>
@@ -118,7 +118,7 @@
               type="text"
               name="system.rollInfo.accuracy.value"
               value="{{ system.rollInfo.accuracy.value }}"
-              class="resource-input"
+              class="resource-inputs"
               data-dtype="Number"
             />
           </div>
@@ -134,7 +134,7 @@
             <select
               value="{{ system.rollInfo.impdamage.impType.value }}"
               name="system.rollInfo.impdamage.impType.value"
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
             >
               {{#select system.rollInfo.impdamage.impType.value}}
               <option value="minor">Minor</option>
@@ -152,7 +152,7 @@
             <select
               value="{{ system.rollInfo.impdamage.type.value }}"
               name="system.rollInfo.impdamage.type.value"
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
             >
               {{#select system.rollInfo.impdamage.type.value}}
               <option value="physical">Physical</option>
@@ -177,7 +177,7 @@
               type="text"
               name="system.rollInfo.damage.value"
               value="{{ system.rollInfo.damage.value }}"
-              class="resource-input"
+              class="resource-inputs"
               data-dtype="Number"
               disabled
             />
@@ -188,7 +188,7 @@
           <div class="resource-content flexcol flex-group-center">
             <label class="resource-label-sm">{{localize 'FU.Potency'}}</label>
             <select
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
               value="{{ system.potency.value }}"
               name="system.potency.value"
             >
@@ -203,7 +203,7 @@
           <div class="resource-content flexcol flex-group-center">
             <label class="resource-label-sm">{{localize 'FU.Area'}}</label>
             <select
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
               value="{{ system.area.value }}"
               name="system.area.value"
             >

@@ -14,7 +14,7 @@
             type="text"
             value="{{ item.name }}"
             placeholder="Name"
-            class="resource-input-charname auto-shrink"
+            class="resource-inputs-charname auto-shrink"
           />
         </h1>
 
@@ -32,7 +32,7 @@
               value=""
               name="system.subtype.value"
               data-dtype="String"
-              class="resource-input side-bar"
+              class="resource-inputs side-bar"
             >
               {{#select system.subtype.value}}
               <option value="custom">Custom</option>
@@ -58,7 +58,7 @@
               name="item.type"
               value="{{capitalize item.type}}"
               data-dtype="String"
-              class="resource-input side-bar"
+              class="resource-inputs side-bar"
               disabled
             />
           </span>
@@ -75,7 +75,7 @@
             name="system.source.value"
             value="{{ system.source.value }}"
             data-dtype="String"
-            class="resource-input side-bar"
+            class="resource-inputs side-bar"
           />
         </span>
       </div>
@@ -89,7 +89,7 @@
             name="system.summary.value"
             value="{{ system.summary.value }}"
             data-dtype="String"
-            class="resource-input summary"
+            class="resource-inputs summary"
           />
         </div>
       </span>

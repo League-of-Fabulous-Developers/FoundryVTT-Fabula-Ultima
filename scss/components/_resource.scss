@@ -64,7 +64,7 @@
   &.bond-container {
     margin: 0 5px;
 
-    .resource-input {
+    .resource-inputs {
       color: $color-primary;
       background-color: $color-secondary;
       border: thin solid $color-secondary;
@@ -98,7 +98,7 @@
   }
 
   .bond-add {
-    .resource-input.select-bonds {
+    .resource-inputs.select-bonds {
       color: $color-primary;
       background-color: $color-secondary;
       border: thin solid $color-secondary;
@@ -114,14 +114,14 @@
     margin: 5px 0 5px 0;
     border-radius: 10%;
 
-    & input.resource-input-charname {
+    & input.resource-inputs-charname {
       color: $color-primary;
 
       background-color: $color-secondary;
       margin: 1px;
     }
 
-    & .resource-input {
+    & .resource-inputs {
       width: 80%;
       margin: 0 5px 0 5px;
       appearance: none;
@@ -135,7 +135,7 @@
     &.creature {
       padding: 0.5em;
 
-      .resource-input {
+      .resource-inputs {
         color: $color-primary;
         background-color: $color-secondary;
         width: 3.5em;
@@ -157,7 +157,7 @@
   }
 
   /* Style for Inputs */
-  .resource-input {
+  .resource-inputs {
     color: $color-primary;
     background-color: $color-secondary;
     border: thin solid $color-secondary;
@@ -179,7 +179,7 @@
       }
     }
 
-    input.charname-resource-input {
+    input.charname-resource-inputs {
       color: $color-primary;
       background-color: transparent;
       border: transparent;

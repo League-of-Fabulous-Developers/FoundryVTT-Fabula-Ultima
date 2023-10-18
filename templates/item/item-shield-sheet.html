@@ -98,7 +98,7 @@
               name="system.def.value"
               value="{{ system.def.value }}"
               data-dtype="Number"
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
             />
           </div>
           <div class="resource-content flexcol flex-group-center">
@@ -112,7 +112,7 @@
               name="system.mdef.value"
               value="{{ system.mdef.value }}"
               data-dtype="Number"
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
             />
           </div>
           <div class="resource-content flexcol flex-group-center">
@@ -126,7 +126,7 @@
               name="system.init.value"
               value="{{ system.init.value }}"
               data-dtype="Number"
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
             />
           </div>
           <div class="resource-content flexcol flex-group-center">
@@ -136,7 +136,7 @@
               name="system.cost.value"
               value="{{ system.cost.value }}"
               data-dtype="Number"
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
             />
           </div>
         </div>
@@ -149,7 +149,7 @@
             type="text"
             name="system.quality.value"
             value="{{ system.quality.value }}"
-            class="resource-input select-dropdown grid-span-4"
+            class="resource-inputs select-dropdown grid-span-4"
             style="width: 100%"
           />
         </div>
@@ -174,7 +174,7 @@
               name="system.weight.value"
               value="{{ system.weight.value }}"
               data-dtype="Number"
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
             />
           </div>
           {{/if}} {{#if system.isDualShield.value}}
@@ -187,7 +187,7 @@
             <select
               value="{{ system.type.value }}"
               name="system.type.value"
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
             >
               <option value="melee">Melee</option>
               <option value="ranged">Ranged</option>
@@ -201,7 +201,7 @@
             >
             <select
               name="system.category.value"
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
             >
               <option value="brawling">Brawling</option>
               <option value="sword">Sword</option>
@@ -222,7 +222,7 @@
             <select
               value="{{ system.hands.value }}"
               name="system.hands.value"
-              class="resource-input select-dropdown-m"
+              class="resource-inputs select-dropdown-m"
             >
               <option value="one-handed">One-Handed</option>
               <option value="two-handed">Two-Handed</option>
@@ -249,7 +249,7 @@
               <select
                 value="{{ system.attributes.primary.value }}"
                 name="system.attributes.primary.value"
-                class="resource-input select-dropdown"
+                class="resource-inputs select-dropdown"
               >
                 {{#select system.attributes.primary.value}}
                 <option value="dex">DEX</option>
@@ -268,7 +268,7 @@
               <select
                 value="{{ system.attributes.secondary.value }}"
                 name="system.attributes.secondary.value"
-                class="resource-input select-dropdown"
+                class="resource-inputs select-dropdown"
               >
                 {{#select system.attributes.secondary.value}}
                 <option value="dex">DEX</option>
@@ -284,7 +284,7 @@
                 type="number"
                 name="system.accuracy.value"
                 value="{{ system.accuracy.value }}"
-                class="resource-input"
+                class="resource-inputs"
                 data-dtype="Number"
               />
             </div>
@@ -307,7 +307,7 @@
               <select
                 value="{{ system.damageType.value }}"
                 name="system.damageType.value"
-                class="resource-input select-dropdown-m"
+                class="resource-inputs select-dropdown-m"
               >
                 {{#select system.damageType.value}}
                 <option value="">Untyped</option>
@@ -329,7 +329,7 @@
                 type="number"
                 name="system.damage.value"
                 value="{{ system.damage.value }}"
-                class="resource-input"
+                class="resource-inputs"
                 data-dtype="Number"
               />
             </div>
