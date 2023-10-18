@@ -712,11 +712,8 @@ export class FUActor extends Actor {
     // Make modifications to data here. For example:
     const systemData = actorData.system
 
-    // Move the SP tracker creation logic here
-    this.spTracker = this._createSPTracker(actorData, systemData)
-
-    // Calculate SP and its associated skills
-    this.spTracker.calculateSP(actorData, systemData)
+    // Initialize the SP tracker
+    this.spTracker = this._createSPTracker(actorData, systemData);
   }
 
   /**
