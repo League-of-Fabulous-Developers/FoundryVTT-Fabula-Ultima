@@ -61,9 +61,9 @@ export class FUItem extends Item {
     const qualText = this.system.quality?.value || 'No Quality'
 
     const qualityString = [
-      capitalizeFirst(this.system.type.value),
       capitalizeFirst(this.system.category.value),
       capitalizeFirst(this.system.hands.value),
+      capitalizeFirst(this.system.type.value),
       qualText
     ]
       .filter(Boolean)

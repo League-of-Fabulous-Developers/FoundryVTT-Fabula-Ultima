@@ -89,23 +89,6 @@
             <label
               for="system.type.value"
               class="resource-label-m flexlarge align-left"
-              >{{localize 'FU.ItemType'}}</label
-            >
-            <select
-              value="{{ system.type.value }}"
-              name="system.type.value"
-              class="resource-inputs select-dropdown-m"
-            >
-              {{#select system.type.value}}
-              <option value="melee">Melee</option>
-              <option value="ranged">Ranged</option>
-              {{/select}}
-            </select>
-          </div>
-          <div class="resource-content flexcol flex-group-center">
-            <label
-              for="system.type.value"
-              class="resource-label-m flexlarge align-left"
               >{{localize 'FU.Category'}}</label
             >
             <select
@@ -142,6 +125,23 @@
               {{#select system.hands.value}}
               <option value="one-handed">One-Handed</option>
               <option value="two-handed">Two-Handed</option>
+              {{/select}}
+            </select>
+          </div>
+          <div class="resource-content flexcol flex-group-center">
+            <label
+              for="system.type.value"
+              class="resource-label-m flexlarge align-left"
+              >{{localize 'FU.ItemType'}}</label
+            >
+            <select
+              value="{{ system.type.value }}"
+              name="system.type.value"
+              class="resource-inputs select-dropdown-m"
+            >
+              {{#select system.type.value}}
+              <option value="melee">Melee</option>
+              <option value="ranged">Ranged</option>
               {{/select}}
             </select>
           </div>
