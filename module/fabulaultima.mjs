@@ -283,9 +283,9 @@ function rollItemMacro(itemUuid) {
 }
 
 function displayCastingText(text) {
-	const user = this.actor;
-	text = `${user} casts ${text}`;
-
+	// const user = this.actor
+	// text = `${user} casts ${text}`
+	text = `${text}`;
 	ui.notifications.queue.push({
 		message: text,
 		type: 'fabulaultima-spellname',
@@ -297,9 +297,9 @@ function displayCastingText(text) {
 }
 
 function displayUsingText(text) {
-	const user = this.actor;
-	text = `${user} uses ${text}`;
-
+	// const user = this.actor
+	// text = `${user} uses ${text}`
+	text = `${text}`;
 	ui.notifications.queue.push({
 		message: text,
 		type: 'fabulaultima-spellname',

@@ -299,9 +299,9 @@ export class FUItem extends Item {
 		if (['weapon', 'shield', 'armor', 'accessory'].includes(this.type)) {
 			content += `
         <div class="detail-desc flex-group-center grid grid-3col">
-          ${['weapon', 'shield'].includes(this.type) && this.system.type ? `<div class="summary">${capitalizeFirst(this.system.type.value)}</div>` : ''}
-          ${['weapon', 'shield'].includes(this.type) ? `<div class="summary">${capitalizeFirst(this.system.hands.value)}</div>` : ''}
-          ${['weapon', 'shield'].includes(this.type) && this.system.category ? `<div class="summary">${capitalizeFirst(this.system.category.value)}</div>` : ''}
+          ${['weapon'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.type) ? `<div class="summary">${capitalizeFirst(this.system.type.value)}</div>` : ''}
+          ${['weapon'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.hands) ? `<div class="summary">${capitalizeFirst(this.system.hands.value)}</div>` : ''}
+          ${['weapon'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.category) ? `<div class="summary">${capitalizeFirst(this.system.category.value)}</div>` : ''}
           ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div class="summary">${DEF} ${this.system.def.value}</div>` : ''}
           ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div class="summary">${MDEF} ${this.system.mdef.value}</div>` : ''}
           ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div class="summary">${INIT} ${this.system.init.value}</div>` : ''}
