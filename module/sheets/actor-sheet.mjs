@@ -467,11 +467,18 @@ export class FUActorSheet extends ActorSheet {
 		}
 
 		async function addBond(actor) {
-			// Get the current bonds object
 			const bondsObject = actor.system.resources.bonds || {};
+
+			// Check if the maximum number of bonds (6) has been reached
+			if (Object.keys(bondsObject).length >= 6) {
+				ui.notifications.warn('Maximum number of bonds (6) reached.');
+				return;
+			}
 
 			// Find the next available index for the new bond
 			let newIndex = 0;
+
+			// Find the next available index for the new bond
 			while (bondsObject[newIndex]) {
 				newIndex++;
 			}
@@ -498,13 +505,17 @@ export class FUActorSheet extends ActorSheet {
 		}
 
 		async function deleteBond(actor, index) {
-			// Get the current bonds object
 			const bondsObject = actor.system.resources.bonds || {};
 
-			// Check if the bond object exists at the specified index
 			if (bondsObject[index]) {
-				// Delete the bond object using the specified index
-				delete bondsObject[index];
+				// Clear all the fields of the bond at the specified index
+				bondsObject[index] = {
+					name: '',
+					admInf: '',
+					loyMis: '',
+					affHat: '',
+					strength: 0,
+				};
 
 				// Update the actor's data with the modified bonds object
 				await actor.update({ 'system.resources.bonds': bondsObject });
@@ -512,7 +523,7 @@ export class FUActorSheet extends ActorSheet {
 				// Trigger a sheet re-render
 				actor.sheet.render();
 
-				console.log('Bonds after deleting:', bondsObject);
+				console.log('Bonds after clearing:', bondsObject);
 			}
 		}
 
