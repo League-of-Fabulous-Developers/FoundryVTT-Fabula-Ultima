@@ -1,65 +1,65 @@
 {
-  "id": "fabulaultima",
-  "title": "Fabula Ultima (Dev Build)",
-  "description": "The Fabula Ultima system for FoundryVTT!",
-  "version": "0.2.0",
-  "compatibility": {
-    "minimum": "10",
-    "verified": "10.312",
-    "maximum": "11"
-  },
-  "authors": [
-    {
-      "name": "zarick1342",
-      "url": "https://github.com/zarick1342"
-    },
-    {
-      "name": "serpuss"
-    },
-    {
-      "name": "spyrella",
-      "url": "https://github.com/spyrella"
-    }
-  ],
-  "scripts": [],
-  "esmodules": ["module/fabulaultima.mjs"],
-  "styles": ["css/fabulaultima.css", "css/rpg-awesome.css"],
-  "packs": [],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    },
-    {
-      "lang": "it",
-      "name": "Italian",
-      "path": "lang/it.json"
-    }
-  ],
-  "relationships": {
-    "requires": [
-      {
-        "id": "socketlib",
-        "type": "module"
-      }
-    ]
-  },
+	"id": "fabulaultima",
+	"title": "Fabula Ultima (Dev Build)",
+	"description": "The Fabula Ultima system for FoundryVTT!",
+	"version": "0.2.0",
+	"compatibility": {
+		"minimum": "10",
+		"verified": "10.312",
+		"maximum": "11"
+	},
+	"authors": [
+		{
+			"name": "zarick1342",
+			"url": "https://github.com/zarick1342"
+		},
+		{
+			"name": "serpuss"
+		},
+		{
+			"name": "spyrella",
+			"url": "https://github.com/spyrella"
+		}
+	],
+	"scripts": [],
+	"esmodules": ["module/fabulaultima.mjs"],
+	"styles": ["css/fabulaultima.css", "css/rpg-awesome.css"],
+	"packs": [],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json"
+		},
+		{
+			"lang": "it",
+			"name": "Italian",
+			"path": "lang/it.json"
+		}
+	],
+	"relationships": {
+		"requires": [
+			{
+				"id": "socketlib",
+				"type": "module"
+			}
+		]
+	},
 
-  "flags": {
-    "hotReload": {
-      "extensions": ["css", "hbs", "json"],
-      "paths": ["css", "lang", "templates"]
-    }
-  },
-  "socket": true,
-  "gridDistance": 5,
-  "gridUnits": "ft",
-  "primaryTokenAttribute": "resources.hp",
-  "secondaryTokenAttribute": "resources.mp",
-  "license": "LICENSE.txt",
-  "changelog": "CHANGELOG.md",
-  "url": "This is auto replaced",
-  "manifest": "This is auto replaced",
-  "download": "This is auto replaced"
+	"flags": {
+		"hotReload": {
+			"extensions": ["css", "hbs", "json"],
+			"paths": ["css", "lang", "templates"]
+		}
+	},
+	"socket": true,
+	"gridDistance": 5,
+	"gridUnits": "ft",
+	"primaryTokenAttribute": "resources.hp",
+	"secondaryTokenAttribute": "resources.mp",
+	"license": "LICENSE.txt",
+	"changelog": "CHANGELOG.md",
+	"url": "This is auto replaced",
+	"manifest": "This is auto replaced",
+	"download": "This is auto replaced"
 }

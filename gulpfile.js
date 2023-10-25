@@ -1,7 +1,7 @@
-const gulp = require("gulp");
-const prefix = require("gulp-autoprefixer");
-const sourcemaps = require("gulp-sourcemaps");
-const sass = require("gulp-sass")(require("sass"));
+const gulp = require('gulp');
+const prefix = require('gulp-autoprefixer');
+const sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass')(require('sass'));
 
 /* ----------------------------------------- */
 /*  Compile Sass
@@ -9,27 +9,27 @@ const sass = require("gulp-sass")(require("sass"));
 
 // Small error handler helper function.
 function handleError(err) {
-  console.log(err.toString());
-  this.emit("end");
+	console.log(err.toString());
+	this.emit('end');
 }
 
-const SYSTEM_SCSS = ["scss/**/*.scss"];
+const SYSTEM_SCSS = ['scss/**/*.scss'];
 function compileScss() {
-  // Configure options for sass output. For example, 'expanded' or 'nested'
-  let options = {
-    outputStyle: "expanded",
-  };
-  return gulp
-    .src(SYSTEM_SCSS)
-    .pipe(sourcemaps.init())
-    .pipe(sass(options).on("error", handleError))
-    .pipe(
-      prefix({
-        cascade: false,
-      })
-    )
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest("./css"));
+	// Configure options for sass output. For example, 'expanded' or 'nested'
+	let options = {
+		outputStyle: 'expanded',
+	};
+	return gulp
+		.src(SYSTEM_SCSS)
+		.pipe(sourcemaps.init())
+		.pipe(sass(options).on('error', handleError))
+		.pipe(
+			prefix({
+				cascade: false,
+			}),
+		)
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest('./css'));
 }
 const css = gulp.series(compileScss);
 
@@ -38,7 +38,7 @@ const css = gulp.series(compileScss);
 /* ----------------------------------------- */
 
 function watchUpdates() {
-  gulp.watch(SYSTEM_SCSS, css);
+	gulp.watch(SYSTEM_SCSS, css);
 }
 
 /* ----------------------------------------- */

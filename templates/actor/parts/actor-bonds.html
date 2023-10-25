@@ -1,92 +1,54 @@
 {{!-- Start Bond Section --}}
 <section class="section-container grid-start-4">
-  <div class="resource-content grid grid-5col bond-container">
-    {{#each system.resources.bonds as |bond bondIndex|}}
-    <div class="resource-content buttons-inc">
-      <input
-        type="text"
-        data-tooltip="{{ bond.name }}"
-        name="system.resources.bonds.{{ bondIndex }}.name"
-        value="{{ bond.name }}"
-        data-dtype="String"
-        class="resource-inputs select-bonds"
-      />
-    </div>
-    <div class="resource-content">
-      <select
-        value="{{ bond.admInf }}"
-        name="system.resources.bonds.{{ bondIndex }}.admInf"
-        class="resource-inputs select-bonds"
-      >
-        {{#select bond.admInf}}
-        <option value=""></option>
-        <option value="Admiration">{{localize 'FU.Admiration'}}</option>
-        <option value="Inferiority">{{localize 'FU.Inferiority'}}</option>
-        {{/select}}
-      </select>
-    </div>
-    <div class="resource-content">
-      <select
-        value="{{ bond.loyMis }}"
-        name="system.resources.bonds.{{ bondIndex }}.loyMis"
-        class="resource-inputs select-bonds"
-      >
-        {{#select bond.loyMis}}
-        <option value=""></option>
-        <option value="Loyalty">{{localize 'FU.Loyalty'}}</option>
-        <option value="Mistrust">{{localize 'FU.Mistrust'}}</option>
-        {{/select}}
-      </select>
-    </div>
-    <div class="resource-content">
-      <select
-        value="{{ bond.affHat }}"
-        name="system.resources.bonds.{{ bondIndex }}.affHat"
-        class="resource-inputs select-bonds"
-      >
-        {{#select bond.affHat}}
-        <option value=""></option>
-        <option value="Affection">{{localize 'FU.Affection'}}</option>
-        <option value="Hatred">{{localize 'FU.Hatred'}}</option>
-        {{/select}}
-      </select>
-    </div>
-    <div class="resource-content flexrow flex-between">
-      <input
-        class="resource-inputs select-bonds"
-        type="number"
-        data-tooltip="{{localize 'FU.BondStrength'}}"
-        name="system.resources.bonds.{{ bondIndex }}.strength"
-        value="{{ bond.strength }}"
-        data-dtype="Number"
-      />
-      <a
-        class="bond-delete"
-        data-tooltip="{{localize 'FU.BondDelete'}}"
-        data-bond-index="{{ bondIndex }}"
-      >
-        <button
-          class="resource-inputs select-bonds"
-          style="visibility: visible"
-          data-action=""
-        >
-          <i class="fas fa-minus"></i>
-        </button>
-      </a>
-    </div>
-    {{/each}}
-  </div>
+	<div class="resource-content grid grid-5col bond-container">
+		{{#each system.resources.bonds as |bond bondIndex|}}
+		<div class="resource-content buttons-inc">
+			<input type="text" data-tooltip="{{ bond.name }}" name="system.resources.bonds.{{ bondIndex }}.name" value="{{ bond.name }}" data-dtype="String" class="resource-inputs select-bonds" />
+		</div>
+		<div class="resource-content">
+			<select value="{{ bond.admInf }}" name="system.resources.bonds.{{ bondIndex }}.admInf" class="resource-inputs select-bonds">
+				{{#select bond.admInf}}
+				<option value=""></option>
+				<option value="Admiration">{{localize 'FU.Admiration'}}</option>
+				<option value="Inferiority">{{localize 'FU.Inferiority'}}</option>
+				{{/select}}
+			</select>
+		</div>
+		<div class="resource-content">
+			<select value="{{ bond.loyMis }}" name="system.resources.bonds.{{ bondIndex }}.loyMis" class="resource-inputs select-bonds">
+				{{#select bond.loyMis}}
+				<option value=""></option>
+				<option value="Loyalty">{{localize 'FU.Loyalty'}}</option>
+				<option value="Mistrust">{{localize 'FU.Mistrust'}}</option>
+				{{/select}}
+			</select>
+		</div>
+		<div class="resource-content">
+			<select value="{{ bond.affHat }}" name="system.resources.bonds.{{ bondIndex }}.affHat" class="resource-inputs select-bonds">
+				{{#select bond.affHat}}
+				<option value=""></option>
+				<option value="Affection">{{localize 'FU.Affection'}}</option>
+				<option value="Hatred">{{localize 'FU.Hatred'}}</option>
+				{{/select}}
+			</select>
+		</div>
+		<div class="resource-content flexrow flex-between">
+			<input class="resource-inputs select-bonds" type="number" data-tooltip="{{localize 'FU.BondStrength'}}" name="system.resources.bonds.{{ bondIndex }}.strength" value="{{ bond.strength }}" data-dtype="Number" />
+			<a class="bond-delete" data-tooltip="{{localize 'FU.BondDelete'}}" data-bond-index="{{ bondIndex }}">
+				<button class="resource-inputs select-bonds" style="visibility: visible" data-action="">
+					<i class="fas fa-minus"></i>
+				</button>
+			</a>
+		</div>
+		{{/each}}
+	</div>
 
-  <div class="resource-content flex-group-center">
-    <a class="bond-add" data-tooltip="{{localize 'FU.BondAdd'}}">
-      <button
-        class="resource-inputs select-bonds"
-        style="visibility: visible"
-        data-tooltip="{{localize 'FU.Add'}}"
-      >
-        <i class="fas fa-plus"></i>
-      </button>
-    </a>
-  </div>
+	<div class="resource-content flex-group-center">
+		<a class="bond-add" data-tooltip="{{localize 'FU.BondAdd'}}">
+			<button class="resource-inputs select-bonds" style="visibility: visible" data-tooltip="{{localize 'FU.Add'}}">
+				<i class="fas fa-plus"></i>
+			</button>
+		</a>
+	</div>
 </section>
 {{!-- End Bond Section --}}

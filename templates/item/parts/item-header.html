@@ -1,99 +1,54 @@
 <header class="sheet-header">
-  <div class="combine-header">
-    <img
-      class="profile-img"
-      src="{{ item.img }}"
-      data-edit="img"
-      title="{{ item.name }}"
-    />
-    <div class="header-fields">
-      <div class="header-center grid grid-6col">
-        <h1 class="charname grid-span-4 flex-between">
-          <input
-            name="name"
-            type="text"
-            value="{{ item.name }}"
-            placeholder="Name"
-            class="resource-inputs-charname auto-shrink"
-          />
-        </h1>
+	<div class="combine-header">
+		<img class="profile-img" src="{{ item.img }}" data-edit="img" title="{{ item.name }}" />
+		<div class="header-fields">
+			<div class="header-center grid grid-6col">
+				<h1 class="charname grid-span-4 flex-between">
+					<input name="name" type="text" value="{{ item.name }}" placeholder="Name" class="resource-inputs-charname auto-shrink" />
+				</h1>
 
-        <!-- Item Type -->
-        <span class="resource-content levelup-container flex-group-center">
-          <label class="resource-label-sm" for="item.type">
-            <i class="fa-solid fa-chart-simple icon"></i
-            >{{localize
-            'FU.ItemType'}}
-          </label>
-          {{#if (eq item.type "miscAbility")}}
-          <span>
-            <select
-              type="select"
-              value=""
-              name="system.subtype.value"
-              data-dtype="String"
-              class="resource-inputs side-bar"
-            >
-              {{#select system.subtype.value}}
-              <option value="custom">Custom</option>
-              <option value="arcana">Arcana</option>
-              <option value="deck">Deck</option>
-              <option value="verse">Verse</option>
-              <option value="dance">Dance</option>
-              <option value="gift">Gift</option>
-              <option value="magiseed">Magiseed</option>
-              <option value="invention">Invention</option>
-              <option value="invocation">Invocation</option>
-              <option value="therioform">Therioform</option>
-              <option value="symbol">Symbol</option>
-              <option value="infusion">Infusion</option>
-              <option value="quirk">Quirk</option>
-              {{/select}}
-            </select>
-          </span>
-          {{else}}
-          <span>
-            <input
-              type="text"
-              name="item.type"
-              value="{{capitalize item.type}}"
-              data-dtype="String"
-              class="resource-inputs side-bar"
-              disabled
-            />
-          </span>
-          {{/if}}
-        </span>
+				<!-- Item Type -->
+				<span class="resource-content levelup-container flex-group-center">
+					<label class="resource-label-sm" for="item.type"> <i class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.ItemType'}} </label>
+					{{#if (eq item.type "miscAbility")}}
+					<span>
+						<select type="select" value="" name="system.subtype.value" data-dtype="String" class="resource-inputs side-bar">
+							{{#select system.subtype.value}}
+							<option value="custom">Custom</option>
+							<option value="arcana">Arcana</option>
+							<option value="deck">Deck</option>
+							<option value="verse">Verse</option>
+							<option value="dance">Dance</option>
+							<option value="gift">Gift</option>
+							<option value="magiseed">Magiseed</option>
+							<option value="invention">Invention</option>
+							<option value="invocation">Invocation</option>
+							<option value="therioform">Therioform</option>
+							<option value="symbol">Symbol</option>
+							<option value="infusion">Infusion</option>
+							<option value="quirk">Quirk</option>
+							{{/select}}
+						</select>
+					</span>
+					{{else}}
+					<span>
+						<input type="text" name="item.type" value="{{capitalize item.type}}" data-dtype="String" class="resource-inputs side-bar" disabled />
+					</span>
+					{{/if}}
+				</span>
 
-        <!-- Source -->
-        <span class="resource-content levelup-container flex-group-center">
-          <label class="resource-label-sm rollable" id="pdfLink">
-            <i class="fa-solid fa-book icon"></i>{{localize 'FU.Source'}}
-          </label>
-          <input
-            type="text"
-            name="system.source.value"
-            value="{{ system.source.value }}"
-            data-dtype="String"
-            class="resource-inputs side-bar"
-          />
-        </span>
-      </div>
-      <span>
-        <div class="resource-content summary">
-          <label class="resource-label-sm summary" for="system.summary.value">
-            <i class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.Summary'}}
-          </label>
-          <input
-            type="text"
-            name="system.summary.value"
-            value="{{ system.summary.value }}"
-            data-dtype="String"
-            class="resource-inputs summary"
-          />
-        </div>
-      </span>
-      
-    </div>
-  </div>
+				<!-- Source -->
+				<span class="resource-content levelup-container flex-group-center">
+					<label class="resource-label-sm rollable" id="pdfLink"> <i class="fa-solid fa-book icon"></i>{{localize 'FU.Source'}} </label>
+					<input type="text" name="system.source.value" value="{{ system.source.value }}" data-dtype="String" class="resource-inputs side-bar" />
+				</span>
+			</div>
+			<span>
+				<div class="resource-content summary">
+					<label class="resource-label-sm summary" for="system.summary.value"> <i class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
+					<input type="text" name="system.summary.value" value="{{ system.summary.value }}" data-dtype="String" class="resource-inputs summary" />
+				</div>
+			</span>
+		</div>
+	</div>
 </header>
