@@ -826,7 +826,7 @@ export class FUActorSheet extends ActorSheet {
 		const primaryRollResult = await new Roll(`1d${primaryAttributeValue}`).evaluate({ async: true });
 		const secondaryRollResult = await new Roll(`1d${secondaryAttributeValue}`).evaluate({ async: true });
 
-		let bonuses = +actorData.derived.init.bonus;
+		let bonuses = +actorData.derived.init.value;
 
 		// Calculate the total result
 		const totalResult = primaryRollResult.total + secondaryRollResult.total + bonuses;
