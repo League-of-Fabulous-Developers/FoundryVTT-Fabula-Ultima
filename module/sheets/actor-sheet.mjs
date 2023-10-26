@@ -454,6 +454,24 @@ export class FUActorSheet extends ActorSheet {
 			});
 		}
 
+		async function onRest(actor) {
+			const maxHP = actor.system.resources.hp.max;
+			const maxMP = actor.system.resources.mp.max;
+
+			await actor.update({
+				'system.resources.hp.value': maxHP,
+				'system.resources.mp.value': maxMP,
+			});
+
+			actor.sheet.render(true);
+		}
+
+		// Rest
+		html.find('.rest').click(async (ev) => {
+			ev.preventDefault();
+			await onRest(this.actor);
+		});
+
 		// Check if bonds object exists, if not, initialize
 		if (!this.actor.system.resources.bonds) {
 			initializeBonds(this.actor);
