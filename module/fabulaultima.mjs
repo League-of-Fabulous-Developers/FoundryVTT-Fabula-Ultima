@@ -57,28 +57,44 @@ Hooks.once('init', async () => {
 			id: 'accelerated',
 			label: 'Accelerated',
 			icon: 'systems/fabulaultima/styles/static/statuses/Accelerated.webp',
-			stats: ['ins'],
-			mod: 0,
 		},
 		{
 			id: 'aura',
 			label: 'Aura',
 			icon: 'systems/fabulaultima/styles/static/statuses/Aura.webp',
-			stats: ['ins'],
-			mod: 0,
 		},
 		{
 			id: 'barrier',
 			label: 'Barrier',
 			icon: 'systems/fabulaultima/styles/static/statuses/Barrier.webp',
-			stats: ['ins'],
-			mod: 0,
+		},
+		{
+			id: 'beserk',
+			label: 'Beserk',
+			icon: 'systems/fabulaultima/styles/static/statuses/Beserk.webp',
+		},
+		{
+			id: 'blinded',
+			label: 'Blinded',
+			icon: 'systems/fabulaultima/styles/static/statuses/Blinded.webp',
+		},
+		{
+			id: 'death',
+			label: 'Death',
+			icon: 'systems/fabulaultima/styles/static/statuses/Death.webp',
 		},
 		{
 			id: 'dazed',
 			label: 'Dazed',
 			icon: 'systems/fabulaultima/styles/static/statuses/Dazed.webp',
 			stats: ['ins'],
+			mod: -2,
+		},
+		{
+			id: 'dex-down',
+			label: 'DEX Down',
+			icon: 'systems/fabulaultima/styles/static/statuses/DexDown.webp',
+			stats: ['dex'],
 			mod: -2,
 		},
 		{
@@ -96,6 +112,13 @@ Hooks.once('init', async () => {
 			mod: -2,
 		},
 		{
+			id: 'ins-down',
+			label: 'INS Down',
+			icon: 'systems/fabulaultima/styles/static/statuses/InsDown.webp',
+			stats: ['ins'],
+			mod: -2,
+		},
+		{
 			id: 'ins-up',
 			label: 'INS Up',
 			icon: 'systems/fabulaultima/styles/static/statuses/InsUp.webp',
@@ -108,6 +131,13 @@ Hooks.once('init', async () => {
 			icon: 'systems/fabulaultima/styles/static/statuses/KO.webp',
 		},
 		{
+			id: 'mig-down',
+			label: 'MIG Down',
+			icon: 'systems/fabulaultima/styles/static/statuses/MigDown.webp',
+			stats: ['mig'],
+			mod: -2,
+		},
+		{
 			id: 'mig-up',
 			label: 'MIG Up',
 			icon: 'systems/fabulaultima/styles/static/statuses/MigUp.webp',
@@ -115,11 +145,26 @@ Hooks.once('init', async () => {
 			mod: 2,
 		},
 		{
+			id: 'reflect',
+			label: 'Reflect',
+			icon: 'systems/fabulaultima/styles/static/statuses/Reflect.webp',
+		},
+		{
+			id: 'regen',
+			label: 'Regen',
+			icon: 'systems/fabulaultima/styles/static/statuses/Regen.webp',
+		},
+		{
 			id: 'shaken',
 			label: 'Shaken',
 			icon: 'systems/fabulaultima/styles/static/statuses/Shaken.webp',
 			stats: ['wlp'],
 			mod: -2,
+		},
+		{
+			id: 'sleep',
+			label: 'Sleep',
+			icon: 'systems/fabulaultima/styles/static/statuses/Sleep.webp',
 		},
 		{
 			id: 'slow',
@@ -143,6 +188,13 @@ Hooks.once('init', async () => {
 			mod: -2,
 		},
 		{
+			id: 'wlp-down',
+			label: 'WLP Down',
+			icon: 'systems/fabulaultima/styles/static/statuses/WlpDown.webp',
+			stats: ['wlp'],
+			mod: -2,
+		},
+		{
 			id: 'wlp-up',
 			label: 'WLP Up',
 			icon: 'systems/fabulaultima/styles/static/statuses/WlpUp.webp',
@@ -153,8 +205,6 @@ Hooks.once('init', async () => {
 			id: 'crisis',
 			label: 'Crisis',
 			icon: 'systems/fabulaultima/styles/static/statuses/Status_Bleeding.png',
-			stats: ['ins'],
-			mod: 0,
 		},
 	];
 
