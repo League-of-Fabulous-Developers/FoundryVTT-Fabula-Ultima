@@ -815,6 +815,8 @@ export class FUActorSheet extends ActorSheet {
 		let primaryAttributeRef = '';
 		let secondaryAttributeRef = '';
 		let title = '';
+		let bonuses = '';
+		const actorData = this.actor.system;
 
 		// Use a switch statement to handle different cases based on rollType
 		switch (rollType) {
@@ -823,6 +825,7 @@ export class FUActorSheet extends ActorSheet {
 				primaryAttributeRef = $('select[name="system.rollInfo.attributes.primary.value"]').val();
 				secondaryAttributeRef = $('select[name="system.rollInfo.attributes.secondary.value"]').val();
 				title = game.i18n.localize('FU.RollCheck');
+				bonuses = 0;
 				break;
 
 			case 'roll-init':
@@ -830,6 +833,7 @@ export class FUActorSheet extends ActorSheet {
 				primaryAttributeRef = 'attributes.dex.current';
 				secondaryAttributeRef = 'attributes.ins.current';
 				title = game.i18n.localize('FU.InitiativeCheck');
+				bonuses = +actorData.derived.init.value;
 				break;
 
 			default:
@@ -838,7 +842,6 @@ export class FUActorSheet extends ActorSheet {
 		}
 
 		// Extract the attribute values from the actor's data
-		const actorData = this.actor.system;
 		const primaryAttributeValue = getProperty(actorData, primaryAttributeRef);
 		const secondaryAttributeValue = getProperty(actorData, secondaryAttributeRef);
 
@@ -858,8 +861,6 @@ export class FUActorSheet extends ActorSheet {
 		const primaryRollResult = await new Roll(`1d${primaryAttributeValue}`).evaluate({ async: true });
 		const secondaryRollResult = await new Roll(`1d${secondaryAttributeValue}`).evaluate({ async: true });
 
-		let bonuses = +actorData.derived.init.value;
-
 		// Calculate the total result
 		const totalResult = primaryRollResult.total + secondaryRollResult.total + bonuses;
 
@@ -875,15 +876,6 @@ export class FUActorSheet extends ActorSheet {
 
 		// Check if Dice So Nice is enabled
 		if (game.modules.get('dice-so-nice')?.active) {
-			// Create a chat message
-			ChatMessage.create({
-				speaker: speaker,
-				rollMode: game.settings.get('core', 'rollMode'),
-				flavor: label,
-				content: `${primaryRollResult.total} (${primaryAttributeName}) + ${secondaryRollResult.total} (${secondaryAttributeName}) + ${bonuses} <br> Total Result: ${totalResult}`,
-				flags: {},
-			});
-
 			// Prepare data for 3D animation
 			const diceData = {
 				throws: [
@@ -910,8 +902,20 @@ export class FUActorSheet extends ActorSheet {
 
 			// Show the 3D animation
 			await game.dice3d.show(diceData, game.user, false, null, false);
+		}
+
+		// Create a chat message
+		if (bonuses == 0) { 
+			//"attr + attr" if bonus is 0
+			ChatMessage.create({
+				speaker: speaker,
+				rollMode: game.settings.get('core', 'rollMode'),
+				flavor: label,
+				content: `${primaryRollResult.total} (${primaryAttributeName}) + ${secondaryRollResult.total} (${secondaryAttributeName}) <br> Total Result: ${totalResult}`,
+				flags: {},
+			});
 		} else {
-			// Fallback: If Dice So Nice is not enabled, create a regular chat message
+			//"attr + attr + bonus" if bonus is not 0 	
 			ChatMessage.create({
 				speaker: speaker,
 				rollMode: game.settings.get('core', 'rollMode'),
