@@ -60,14 +60,108 @@ export class FUItem extends Item {
 
 		const attackAttributes = [this.system.attributes.primary.value.toUpperCase(), this.system.attributes.secondary.value.toUpperCase()].join(' + ');
 
-		const attackString = `[${attackAttributes}]${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}`;
+		const attackString = `【${attackAttributes}】${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}`;
 
-		const damageString = `[${hrZeroText} + ${this.system.damage.value}] ${this.system.damageType.value}`;
+		const damageString = `【${hrZeroText} + ${this.system.damage.value}】 ${this.system.damageType.value}`;
 
 		return {
 			attackString,
 			damageString,
-			qualityString: `[${qualityString}]`,
+			qualityString: `【${qualityString}】`,
+		};
+	}
+
+	/**
+	 * Get the display data for an item.
+	 *
+	 * @returns {object|boolean} An object containing item display information, or false if this is not an item.
+	 * @property {string} qualityString - The item's description.
+	 */
+	getItemDisplayData() {
+		// Check if this item is not consumable
+		if (this.type !== 'consumable') {
+			return false;
+		}
+
+		const description = this.system.description;
+		const hasDescription = description && description.trim() !== '';
+
+		let qualityString = 'No Description';
+
+		if (hasDescription) {
+			const parser = new DOMParser();
+			const doc = parser.parseFromString(description, 'text/html');
+			qualityString = doc.body.textContent || 'No Description';
+		}
+
+		return {
+			qualityString: `【${qualityString}】`,
+		};
+	}
+
+	/**
+	 * Get the display data for an item.
+	 *
+	 * @returns {object|boolean} An object containing skill display information, or false if this is not a skill.
+	 * @property {string} qualityString - The skill's description.
+	 */
+	getSkillDisplayData() {
+		// Check if this item is not a skill
+		if (this.type !== 'skill' && this.type !== 'miscAbility') {
+			return false;
+		}
+
+		function capitalizeFirst(string) {
+			if (typeof string !== 'string') {
+				return string;
+			}
+			return string.charAt(0).toUpperCase() + string.slice(1);
+		}
+
+		let weaponMain = null;
+		const equippedWeapons = this.actor.items.filter((singleItem) => (singleItem.type === 'weapon' || (singleItem.type === 'shield' && singleItem.system.isDualShield?.value)) && singleItem.system.isEquipped?.value);
+		for (const equippedWeapon of equippedWeapons) {
+			if (equippedWeapon.system.isEquipped.slot === 'mainHand') {
+				weaponMain = equippedWeapon;
+			}
+		}
+		const hasRoll = this.system.hasRoll?.value;
+		const hasDamage = this.system.rollInfo?.damage?.hasDamage.value;
+		const usesWeapons = this.system.rollInfo?.useWeapon?.accuracy.value;
+		const usesWeaponsDamage = this.system.rollInfo?.useWeapon?.damage.value;
+		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero.value ? 'HR0 +' : 'HR +';
+
+		let attackWeaponAttributes, attackAttributes;
+		if (usesWeapons && weaponMain) {
+			attackWeaponAttributes = [weaponMain?.system?.attributes?.primary.value.toUpperCase(), weaponMain?.system?.attributes?.secondary.value.toUpperCase()].join(' + ');
+		} else {
+			attackWeaponAttributes = '';
+		}
+
+		if (hasRoll) {
+			attackAttributes = [this.system?.rollInfo?.attributes?.primary.value.toUpperCase(), this.system?.rollInfo?.attributes?.secondary.value.toUpperCase()].join(' + ');
+		}
+
+		const weaponString = usesWeapons ? (weaponMain ? weaponMain?.name : 'No weapon equipped!') : '';
+
+		let attackString = '';
+		if (hasRoll || usesWeapons) {
+			attackString = usesWeapons
+				? `【${attackWeaponAttributes}】${weaponMain ? (weaponMain?.system?.accuracy?.value > 0 ? ` + ${weaponMain?.system?.accuracy?.value}` : '') : ''}`
+				: `【${attackAttributes}】${this.system?.rollInfo?.accuracy?.value > 0 ? ` + ${this.system?.rollInfo?.accuracy?.value}` : ''}`;
+		}
+
+		let damageString = '';
+		if (hasDamage || usesWeaponsDamage) {
+			damageString = usesWeapons
+				? `【${hrZeroText} ${weaponMain ? `${weaponMain?.system?.damage.value}】 ${weaponMain?.system?.damageType.value}` : ''}`
+				: `【${hrZeroText} ${this.system?.rollInfo?.damage?.value > 0 ? ` ${this.system?.rollInfo?.damage?.value}` : '0'} 】${this.system?.rollInfo?.damage.type.value}`;
+		}
+
+		const qualityString = [capitalizeFirst(this.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬩ ');
+
+		return {
+			qualityString: `${qualityString}`,
 		};
 	}
 

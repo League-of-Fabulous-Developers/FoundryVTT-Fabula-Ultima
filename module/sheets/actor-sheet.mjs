@@ -145,35 +145,48 @@ export class FUActorSheet extends ActorSheet {
 				i.mdef = `+${i.system.mdef.value}`;
 				i.init = i.system.init.value > 0 ? `+${i.system.init.value}` : i.system.init.value;
 			}
-
 			if (i.type === 'weapon') {
 				const itemObj = context.actor.items.get(i._id);
 				const weapData = itemObj.getWeaponDisplayData();
-
 				i.quality = weapData.qualityString;
 				i.attackString = weapData.attackString;
 				i.damageString = weapData.damageString;
-
 				weapons.push(i);
 			} else if (i.type === 'armor') {
 				armor.push(i);
 			} else if (i.type === 'shield') {
+				const itemObj = context.actor.items.get(i._id);
+				const weapData = itemObj.getWeaponDisplayData();
+				i.quality = weapData.qualityString;
+				i.attackString = weapData.attackString;
+				i.damageString = weapData.damageString;
 				shields.push(i);
 			} else if (i.type === 'accessory') {
 				accessories.push(i);
 			} else if (i.type === 'class') {
 				classes.push(i);
 			} else if (i.type === 'skill') {
+				const itemObj = context.actor.items.get(i._id);
+				const skillData = itemObj.getSkillDisplayData();
+				i.quality = skillData.qualityString;
+				i.starCurrent = skillData.starCurrent;
+				i.starMax = skillData.starMax;
 				skills.push(i);
 			} else if (i.type === 'heroic') {
 				heroics.push(i);
 			} else if (i.type === 'spell') {
 				spells.push(i);
 			} else if (i.type === 'miscAbility') {
+				const itemObj = context.actor.items.get(i._id);
+				const skillData = itemObj.getSkillDisplayData();
+				i.quality = skillData.qualityString;
 				abilities.push(i);
 			} else if (i.type === 'behavior') {
 				behaviors.push(i);
 			} else if (i.type === 'consumable') {
+				const itemObj = context.actor.items.get(i._id);
+				const itemData = itemObj.getItemDisplayData();
+				i.quality = itemData.qualityString;
 				consumables.push(i);
 			} else if (i.type === 'project') {
 				projects.push(i);
