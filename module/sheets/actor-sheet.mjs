@@ -386,51 +386,52 @@ export class FUActorSheet extends ActorSheet {
 		});
 
 		// Addable
-		// TODO: Persist Data
-		/*     html.find(".addable").on("click contextmenu", function (ev) {
-      const spanElement = $(this).find("span[data-resource]");
+		// html.find('.addable').on('click contextmenu', function (ev) {
+		// 	// Prevent the default behavior of the context menu
+		// 	if (ev.type === 'contextmenu') {
+		// 		ev.preventDefault();
+		// 	}
 
-      if (spanElement.length === 0) {
-        console.error("Span element with data-resource not found.");
-        return;
-      }
+		// 	const li = $(ev.currentTarget).parents('.item');
+		// 	const itemId = li.data('itemId');
+		// 	const spanElement = $(this).find('span[data-resource]');
 
-      const targetResource = spanElement.data("resource");
+		// 	if (spanElement.length === 0) {
+		// 		console.error('Span element with data-resource not found.');
+		// 		return;
+		// 	}
 
-      const isRightClick = ev.type === "contextmenu";
+		// 	const targetResource = spanElement.data('resource');
+		// 	console.log('Resource: ', targetResource);
 
-      let currentValue = parseInt(spanElement.text()) || 0;
+		// 	const isRightClick = ev.type === 'contextmenu';
+		// 	console.log('Rightclick: ', isRightClick);
 
-      if (isRightClick) {
-        currentValue -= 1;
-      } else {
-        // Left-click: Increment
-        currentValue += 1;
-      }
+		// 	let currentValue = parseInt(spanElement.text()) || 0;
 
-      // Update the displayed value within the span element
-      spanElement.text(currentValue);
+		// 	if (isRightClick) {
+		// 		currentValue -= 1;
+		// 	} else {
+		// 		currentValue += 1;
+		// 	}
 
-      // Update the item's data based on the targetResource
-      const li = $(this).parents(".item");
-      const itemId = li.data("itemId");
+		// 	// Update the displayed value within the span element
+		// 	spanElement.text(currentValue);
+		// 	console.log(currentValue);
 
-      // If an item ID is available, prepare the update object
-      if (itemId) {
-        const updateObject = {
-          _id: itemId,
-        };
-        updateObject[targetResource] = currentValue;
-
-        // Use this.actor.updateEmbeddedDocuments to update an embedded document
-        this.actor.updateEmbeddedDocuments("Item", [updateObject]);
-      }
-
-      // Prevent the context menu from appearing on right-click
-      if (isRightClick) {
-        ev.preventDefault();
-      }
-    }); */
+		// 	// Now, you can update the actual data of the item in Foundry VTT
+		// 	// For example, you can use Foundry's updateObject function
+		// 	const updateObject = {
+		// 		_id: itemId,
+		// 		data: {
+		// 			// Update the property you want to change (e.g., value)
+		// 			value: currentValue,
+		// 		},
+		// 	};
+		// 	console.log('Update Object: ', updateObject);
+		// 	console.log(game.user._id);
+		// 	console.log(game.actors.get(actorID));
+		// });
 
 		// Active Effect management
 		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor));
