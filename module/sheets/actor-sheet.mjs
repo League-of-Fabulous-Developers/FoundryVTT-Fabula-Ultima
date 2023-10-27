@@ -905,25 +905,16 @@ export class FUActorSheet extends ActorSheet {
 		}
 
 		// Create a chat message
-		if (bonuses == 0) { 
-			//"attr + attr" if bonus is 0
-			ChatMessage.create({
-				speaker: speaker,
-				rollMode: game.settings.get('core', 'rollMode'),
-				flavor: label,
-				content: `${primaryRollResult.total} (${primaryAttributeName}) + ${secondaryRollResult.total} (${secondaryAttributeName}) <br> Total Result: ${totalResult}`,
-				flags: {},
-			});
-		} else {
-			//"attr + attr + bonus" if bonus is not 0 	
-			ChatMessage.create({
-				speaker: speaker,
-				rollMode: game.settings.get('core', 'rollMode'),
-				flavor: label,
-				content: `${primaryRollResult.total} (${primaryAttributeName}) + ${secondaryRollResult.total} (${secondaryAttributeName}) + ${bonuses} <br> Total Result: ${totalResult}`,
-				flags: {},
-			});
-		}
+		const bonusString = bonuses === 0 ? '' : ` + ${bonuses}`;
+		const content = `${primaryRollResult.total} (${primaryAttributeName}) + ${secondaryRollResult.total} (${secondaryAttributeName})${bonusString} <br> Total Result: ${totalResult}`;
+
+		ChatMessage.create({
+			speaker: speaker,
+			rollMode: game.settings.get('core', 'rollMode'),
+			flavor: label,
+			content: content,
+			flags: {},
+		});
 	}
 
 	_onRollCheckOption(event) {
