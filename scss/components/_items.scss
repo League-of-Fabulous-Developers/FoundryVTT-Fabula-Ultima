@@ -263,6 +263,7 @@
   overflow: hidden;
   text-overflow: clip;
   transition: white-space 0.3s ease;
+  flex: 1;
 }
 
 .items-list .item-controls {
@@ -306,10 +307,10 @@
 .items-list .item .item-name .item-image {
   border: none;
   margin-right: 5px;
+  flex: 0 0 auto;
 }
 
 .items-list .items-header {
-  //height: 28px;
   margin: 10px 2px;
   align-items: center;
   border: transparent;
@@ -350,7 +351,6 @@
   &.float-text {
     display: inline-block;
     animation: floating 3s infinite ease-in-out;
-    /* Adjust the animation duration and easing here */
   }
 }
 
