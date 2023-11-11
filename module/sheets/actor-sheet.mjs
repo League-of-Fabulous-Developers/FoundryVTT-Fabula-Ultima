@@ -905,8 +905,18 @@ export class FUActorSheet extends ActorSheet {
 		}
 
 		// Create a chat message
-		const bonusString = bonuses === 0 ? '' : ` + ${bonuses}`;
-		const content = `${primaryRollResult.total} (${primaryAttributeName}) + ${secondaryRollResult.total} (${secondaryAttributeName})${bonusString} <br> Total Result: ${totalResult}`;
+		const bonusString = bonuses === 0 ? '' : `Bonus: ${bonuses} <br>`;
+		const content = `
+		
+		<div class="detail-desc flex-group-center grid grid-2col">
+          <div class="summary">${primaryRollResult.total} (${primaryAttributeName})</div>
+          <div class="summary">${secondaryRollResult.total} (${secondaryAttributeName})</div> 
+        </div>
+		<div class="detail-desc flexrow" style="padding:0 2px">
+            <div class="summary">${bonusString}Total Result: ${totalResult}</div>
+        </div>
+	
+		`;
 
 		ChatMessage.create({
 			speaker: speaker,
@@ -921,16 +931,20 @@ export class FUActorSheet extends ActorSheet {
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;
+		const rollCheck = game.i18n.localize('FU.RollCheck');
+		const rollCheckOption = game.i18n.localize('FU.RollCheckOptions');
 
-		// Define the dialog content
 		const dialogContent = `
-      <p>This is your dialog content.</p>
-      <button id="close-dialog">Close</button>
-    `;
+			<p>Dialog for customizing Roll Check.</p>
+			<button id="roll-check-button">${rollCheck}</button>
+		`;
+
+		const bonusBond = 0;
+		const bonusExtra = 0;
 
 		// Create the dialog
 		const dialog = new Dialog({
-			title: 'Dialog Title',
+			title: `${rollCheckOption}`,
 			content: dialogContent,
 			buttons: {
 				close: {
@@ -951,6 +965,16 @@ export class FUActorSheet extends ActorSheet {
 		closeDialogButton.on('click', (event) => {
 			event.preventDefault();
 			dialog.close();
+		});
+
+		// Add event listener to the "Customize Roll Check" button
+		const rollCheckButton = dialog.element.find('#roll-check-button');
+		rollCheckButton.on('click', (event) => {
+			event.preventDefault();
+			dialog.close();
+
+			// Call the _openCheck function and pass the bonusBond and bonusExtra variables
+			this._openCheck('roll-check', bonusBond, bonusExtra);
 		});
 	}
 
