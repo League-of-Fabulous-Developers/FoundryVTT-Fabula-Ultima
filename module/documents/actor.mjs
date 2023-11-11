@@ -287,7 +287,7 @@ export class FUActor extends Actor {
 			// Update system values
 			discount.value = discountValue;
 			cost.value = costValue;
-			progress.value = progressValue;
+			progress.max = progressValue;
 			progressPerDay.value = progPDayValue;
 			days.value = daysValue;
 		});

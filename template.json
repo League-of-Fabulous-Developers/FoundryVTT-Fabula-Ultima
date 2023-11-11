@@ -202,7 +202,7 @@
 			"numHelper": { "value": 0 },
 			"lvlVision": { "value": 0 },
 			"cost": { "value": 0 },
-			"progress": { "value": 0 },
+			"progress": { "current": 0, "max": 6 },
 			"progressPerDay": { "value": 0 },
 			"days": { "value": 0 },
 			"clock": { "value": 0 },
