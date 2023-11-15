@@ -216,9 +216,14 @@ export class FUActor extends Actor {
 		}, 0);
 
 		// Update the derived values in the system data
+		// return {
+		// 	classMax: `${totalClassLevels}`,
+		// 	skillMax: `${totalSkillLevels}`,
+		// 	heroicMax: `${totalHeroicMax}`,
 		systemData.derived.classmax.value = totalClassLevels;
 		systemData.derived.skillmax.value = totalSkillLevels;
 		systemData.derived.heroicmax.value = totalHeroicMax;
+		// };
 	}
 
 	/**

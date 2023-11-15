@@ -611,8 +611,7 @@ export class FUActorSheet extends ActorSheet {
 		});
 
 		// Event listener for editing skill value
-		$('.items-list').on('change', '.item-level span', async (ev) => {
-			console.log('Whoopsie Poopsie!');
+		$('.items-list').on('input', '.editable-skill-level', async (ev) => {
 			const newValue = parseInt($(ev.target).text());
 			const skillItem = $(ev.target).closest('.item');
 
