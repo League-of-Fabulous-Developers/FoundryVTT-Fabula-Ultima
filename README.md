@@ -3,10 +3,9 @@
 ![fu-sitecover.jpg](https://trello.com/1/cards/64db0994c4a8791322c8b2e2/attachments/64f476a7f1dc332714f44c8c/download/fu-sitecover.jpg)
 
 ![foundry-v10-green](https://img.shields.io/badge/foundry-v10-green)
+![foundry-v11-green](https://img.shields.io/badge/foundry-v11-yellow)
 
-![foundry-v11-green](https://img.shields.io/badge/foundry-v11-green)
-
-Welcome to the Fabula Ultima System for the Foundry Virtual Tabletop. This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
+Welcome to the Unofficial Fabula Ultima System for the Foundry Virtual Tabletop. This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
 
 **Disclaimer:** This system is currently in an experimental phase. We recommend refraining from using it for your games until further notice.
 
@@ -16,12 +15,12 @@ Welcome to the Fabula Ultima System for the Foundry Virtual Tabletop. This syste
 
 1. Open the Foundry Setup screen and navigate to the Game Systems tab.
 2. Click the "Install System" button.
-3. Use the following Manifest URL: **TBA** `[https://raw.githubusercontent.com/spyrella/fabulaultima/main/system.json](https://raw.githubusercontent.com/spyrella/fabulaultima/main/system.json)`
+3. Use the following Manifest URL: `https://raw.githubusercontent.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/main/system.json`
 4. Click "Install."
 
 ### Manual Installation
 
-1. Visit the [Release](https://github.com/spyrella/fabulaultima/releases "‌") page to find your desired version.
+1. Visit the [Release](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/releases "‌") page to find your desired version.
 2. Download the `fabulaultima-release-x.x.x.zip` file for your chosen version.
 3. Unzip the downloaded file to your FoundryVTT Data systems folder. (For more details, refer to the [FoundryVTT Configuration Guide](https://foundryvtt.com/article/configuration/#where-user-data "‌")).
 4. [Mandatory] Ensure that you have the `socketLib` module installed.
