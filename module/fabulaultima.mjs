@@ -43,7 +43,7 @@ Hooks.once('init', async () => {
 	CONFIG.Item.documentClass = FUItem;
 
 	// todo: selective options for choosing which automation to disable
-	game.settings.register('fabulaultima', 'disableAutomation', {
+	/* 	game.settings.register('fabulaultima', 'disableAutomation', {
 		name: 'Disable Automation',
 		hint: 'Toggle to disable automatic calculations for certain fields.',
 		scope: 'world', // or "client" if it's a client-specific setting
@@ -51,7 +51,7 @@ Hooks.once('init', async () => {
 		default: false, // Initial value
 		type: Boolean,
 	});
-
+ */
 	CONFIG.statusEffects = [
 		{
 			id: 'accelerated',
@@ -333,8 +333,6 @@ function rollItemMacro(itemUuid) {
 }
 
 function displayCastingText(text) {
-	// const user = this.actor
-	// text = `${user} casts ${text}`
 	text = `${text}`;
 	ui.notifications.queue.push({
 		message: text,
@@ -347,8 +345,6 @@ function displayCastingText(text) {
 }
 
 function displayUsingText(text) {
-	// const user = this.actor
-	// text = `${user} uses ${text}`
 	text = `${text}`;
 	ui.notifications.queue.push({
 		message: text,

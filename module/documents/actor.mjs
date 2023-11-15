@@ -41,11 +41,12 @@ export class FUActor extends Actor {
 		const systemData = actorData.system;
 		const flags = actorData.flags.fabulaultima || {};
 
+		/* 
 		const disableAutomation = game.settings.get('fabulaultima', 'disableAutomation');
 
 		if (disableAutomation) {
 			return; // Exit early
-		}
+		} */
 
 		this._calculateResources(actorData);
 		this._calculateTotalLevels(actorData);
