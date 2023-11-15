@@ -386,6 +386,8 @@
     "PaidVision": "Paid by Visionary",
     "Progress": "Progress",
     "ProgressPerDay": "Progress Per Day",
+    "ProjectStatus": "Project Status",
+    "CurrentProgress": "Current Progress",
     "Day": "Day",
     "Days": "Days",
     "Clock": "Clock",

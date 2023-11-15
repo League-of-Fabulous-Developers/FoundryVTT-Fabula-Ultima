@@ -1,8 +1,7 @@
 # IDE
 .idea/
 .vs/
-GUIDE.md
-TEMP.md
+.vscode/
 
 # Node Modules
 node_modules/

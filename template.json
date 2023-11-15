@@ -1,254 +1,225 @@
 {
-  "Actor": {
-    "types": ["character", "npc"],
-    "templates": {
-      "base": {
-        "level": { "value": 5 },
-        "resources": {
-          "hp": { "value": 10, "min": 0, "max": 10, "bonus": 0 },
-          "mp": { "value": 10, "min": 0, "max": 10, "bonus": 0 },
-          "rp1": { "name": "", "value": 0 },
-          "rp2": { "name": "", "value": 0 },
-          "rp3": { "name": "", "value": 0 },
-          "affinity": {
-            "phys": 1,
-            "air": 1,
-            "bolt": 1,
-            "dark": 1,
-            "earth": 1,
-            "fire": 1,
-            "ice": 1,
-            "light": 1,
-            "poison": 1
-          }          
-        },
-        "attributes": {
-          "dex": { "base": 6, "current": 6 },
-          "ins": { "base": 6, "current": 6 },
-          "mig": { "base": 6, "current": 6 },
-          "wlp": { "base": 6, "current": 6 }
-        },
-        "derived": {
-          "crisis": { "value": 5 },
-          "init": { "value": 0, "bonus": 0 },
-          "def": { "value": 0, "bonus": 0 },
-          "mdef": { "value": 0, "bonus": 0 },
-          "skillmax": { "value": 0, "bonus": 0 },
-          "classmax": { "value": 0, "bonus": 0 },
-          "heroicmax": { "value": 0, "bonus": 0 }
-        },
-        "castingAttributes": {
-          "primary": { "value": "ins" },
-          "secondary": { "value": "wlp" }
-        }
-      }
-    },
-    "character": {
-      "templates": ["base"],
-      "resources": {
-        "ip": { "value": 6, "min": 0, "max": 6 },
-        "fp": { "value": 3 },
-        "bonds": [
-          {
-            "name": "",
-            "admInf": "",
-            "loyMis": "",
-            "affHat": "",
-            "strength": 0
-          }
-        ]
-      }
-    },
-    "npc": {
-      "templates": ["base"],
-      "resources": {
-        "ip": { "value": 6, "min": 0, "max": 6 },
-        "fp": { "value": 3 }
-      },
-      "traits": { "value": "" },
-      "species": { "value": "" },
-      "isElite": { "value": false },
-      "isChampion": { "value": 1 },
-      "isCompanion": { "value": false }
-    }
-  },
-  "Item": {
-    "types": [
-      "weapon",
-      "shield",
-      "armor",
-      "accessory",
-      "class",
-      "skill",
-      "heroic",
-      "spell",
-      "miscAbility",
-      "behavior",
-      "consumable",
-      "ritual",
-      "project",
-      "zeroPower"
-    ],
-    "templates": {
-      "base": {
-        "summary": "",
-        "description": "",
-        "isFavored": { "value": false }
-      },
-      "item": { "cost": { "value": 0 } },
-      "equippable": {
-        "isMartial": { "value": false },
-        "quality": { "value": "" },
-        "isEquipped": { "value": false, "slot": "" }
-      },
-      "defensive": {
-        "def": { "value": 0 },
-        "mdef": { "value": 0 },
-        "init": { "value": 0 }
-      },
-      "hasBehavior": { "isBehavior": false, "weight": { "value": 1 } },
-      "hasLevel": { "level": { "value": 1, "max": 10, "min": 0 } },
-      "hasClass": { "class": { "value": "" } },
-      "hasRoll": { "class": { "value": false } },
-      "rollInfo": {
-        "useWeapon": {
-          "accuracy": { "value": false },
-          "damage": { "value": false },
-          "hrZero": { "value": false }
-        },
-        "attributes": {
-          "primary": { "value": "mig" },
-          "secondary": { "value": "mig" }
-        },
-        "accuracy": { "value": 0 },
-        "damage": {
-          "hasDamage": { "value": false },
-          "value": 0,
-          "type": { "value": "physical" }
-        },
-        "impdamage": {
-          "hasImpDamage": { "value": false },
-          "value": 0,
-          "impType": { "value": "minor" },
-          "type": { "value": "physical" }
-        }
-      },
-      "weaponize": {
-        "attributes": {
-          "primary": { "value": "mig" },
-          "secondary": { "value": "mig" }
-        },
-        "accuracy": { "value": 0 },
-        "damage": { "value": 5 },
-        "type": { "value": "melee" },
-        "category": { "value": "sword" },
-        "hands": { "value": "one-handed" },
-        "impType": { "value": "minor" },
-        "damageType": { "value": "physical" }
-      },
-      "showTitleCard": { "showTitleCard": { "value": false } }
-    },
-    "weapon": {
-      "templates": ["base", "item", "equippable", "hasBehavior", "weaponize"],
-      "isCustomWeapon": { "value": false }
-    },
-    "shield": {
-      "templates": [
-        "base",
-        "item",
-        "equippable",
-        "defensive",
-        "hasBehavior",
-        "weaponize"
-      ],
-      "isDualShield": { "value": false },
-      "category": { "value": "brawling" }
-    },
-    "armor": {
-      "templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
-    },
-    "accessory": {
-      "templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
-    },
-    "class": {
-      "templates": ["base", "hasLevel"],
-      "benefits": {
-        "hp": { "value": false },
-        "mp": { "value": false },
-        "ip": { "value": false },
-        "proj": { "value": false },
-        "ritual": { "value": false },
-        "melee": { "value": false },
-        "ranged": { "value": false },
-        "armor": { "value": false },
-        "shields": { "value": false }
-      }
-    },
-    "heroic": {
-      "templates": [
-        "base",
-        "hasLevel",
-        "hasClass",
-        "rollInfo",
-        "showTitleCard"
-      ],
-      "requirement": { "value": "" },
-      "benefits": {
-        "hp": { "value": false },
-        "mp": { "value": false },
-        "ip": { "value": false }
-      }
-    },
-    "skill": {
-      "templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"]
-    },
-    "spell": {
-      "templates": ["base", "hasClass", "rollInfo", "hasBehavior"],
-      "mpCost": { "value": "" },
-      "target": { "value": "" },
-      "duration": { "value": "" },
-      "isOffensive": { "value": false }
-    },
-    "miscAbility": {
-      "templates": ["base", "rollInfo", "showTitleCard", "hasBehavior"],
-      "subtype": { "value": "Custom"}
-    },
-    "behavior": {
-      "templates": ["base"],
-      "isBehavior": true,
-      "weight": { "value": 1 }
-    },
-    "consumable": { "templates": ["base"], "ipCost": { "value": 3 } },
-    "project": {
-      "templates": ["base"],
-      "potency": { "value": "minor" },
-      "area": { "value": "individual" },
-      "use": { "value": "consumable" },
-      "isFlawed": { "value": false },
-      "defectMod": { "value": 0 },
-      "numTinker": { "value": 1 },
-      "numHelper": { "value": 0 },
-      "lvlVision": { "value": 0 },
-      "cost": { "value": 0 },
-      "progress": { "value": 0 },
-      "progressPerDay": { "value": 0 },
-      "days": { "value": 0 },
-      "clock": { "value": 0 },
-      "discount": { "value": 0 }
-    },
-    "ritual": {
-      "templates": ["base", "hasClass", "rollInfo"],
-      "potency": { "value": "minor" },
-      "area": { "value": "individual" },
-      "mpCost": { "value": 0 },
-      "dLevel": { "value": 0 },
-      "clock": { "value": 0 }
-    },
-    "zeroPower": {
-      "templates": ["base"],
-      "zeroTrigger": { "value": "" },
-      "zeroEffect": { "value": "" },
-      "trigger": { "current": 0, "step": 1, "max": 6 }
-    }
-  }
+	"Actor": {
+		"types": ["character", "npc"],
+		"templates": {
+			"base": {
+				"level": { "value": 5 },
+				"resources": {
+					"hp": { "value": 10, "min": 0, "max": 10, "bonus": 0 },
+					"mp": { "value": 10, "min": 0, "max": 10, "bonus": 0 },
+					"rp1": { "name": "", "value": 0 },
+					"rp2": { "name": "", "value": 0 },
+					"rp3": { "name": "", "value": 0 },
+					"affinity": {
+						"phys": 1,
+						"air": 1,
+						"bolt": 1,
+						"dark": 1,
+						"earth": 1,
+						"fire": 1,
+						"ice": 1,
+						"light": 1,
+						"poison": 1
+					}
+				},
+				"attributes": {
+					"dex": { "base": 6, "current": 6 },
+					"ins": { "base": 6, "current": 6 },
+					"mig": { "base": 6, "current": 6 },
+					"wlp": { "base": 6, "current": 6 }
+				},
+				"derived": {
+					"init": { "value": 0, "bonus": 0 },
+					"def": { "value": 0, "bonus": 0 },
+					"mdef": { "value": 0, "bonus": 0 },
+					"skillmax": { "value": 0, "bonus": 0 },
+					"classmax": { "value": 0, "bonus": 0 },
+					"heroicmax": { "value": 0, "bonus": 0 }
+				},
+				"castingAttributes": {
+					"primary": { "value": "ins" },
+					"secondary": { "value": "wlp" }
+				}
+			}
+		},
+		"character": {
+			"templates": ["base"],
+			"resources": {
+				"ip": { "value": 6, "min": 0, "max": 6 },
+				"fp": { "value": 3 },
+				"bonds": [
+					{
+						"name": "",
+						"admInf": "",
+						"loyMis": "",
+						"affHat": "",
+						"strength": 0
+					}
+				]
+			}
+		},
+		"npc": {
+			"templates": ["base"],
+			"resources": {
+				"ip": { "value": 6, "min": 0, "max": 6 },
+				"fp": { "value": 3 }
+			},
+			"traits": { "value": "" },
+			"species": { "value": "" },
+			"isElite": { "value": false },
+			"isChampion": { "value": 1 },
+			"isCompanion": { "value": false }
+		}
+	},
+	"Item": {
+		"types": ["weapon", "shield", "armor", "accessory", "class", "skill", "heroic", "spell", "miscAbility", "behavior", "consumable", "ritual", "project", "zeroPower"],
+		"templates": {
+			"base": {
+				"summary": "",
+				"description": "",
+				"isFavored": { "value": false }
+			},
+			"item": { "cost": { "value": 0 } },
+			"equippable": {
+				"isMartial": { "value": false },
+				"quality": { "value": "" },
+				"isEquipped": { "value": false, "slot": "" }
+			},
+			"defensive": {
+				"def": { "value": 0 },
+				"mdef": { "value": 0 },
+				"init": { "value": 0 }
+			},
+			"hasBehavior": { "isBehavior": false, "weight": { "value": 1 } },
+			"hasLevel": { "level": { "value": 1, "max": 10, "min": 0 } },
+			"hasClass": { "class": { "value": "" } },
+			"hasRoll": { "class": { "value": false } },
+			"rollInfo": {
+				"useWeapon": {
+					"accuracy": { "value": false },
+					"damage": { "value": false },
+					"hrZero": { "value": false }
+				},
+				"attributes": {
+					"primary": { "value": "mig" },
+					"secondary": { "value": "mig" }
+				},
+				"accuracy": { "value": 0 },
+				"damage": {
+					"hasDamage": { "value": false },
+					"value": 0,
+					"type": { "value": "physical" }
+				},
+				"impdamage": {
+					"hasImpDamage": { "value": false },
+					"value": 0,
+					"impType": { "value": "minor" },
+					"type": { "value": "physical" }
+				}
+			},
+			"weaponize": {
+				"attributes": {
+					"primary": { "value": "mig" },
+					"secondary": { "value": "mig" }
+				},
+				"accuracy": { "value": 0 },
+				"damage": { "value": 5 },
+				"type": { "value": "melee" },
+				"category": { "value": "sword" },
+				"hands": { "value": "one-handed" },
+				"impType": { "value": "minor" },
+				"damageType": { "value": "physical" }
+			},
+			"showTitleCard": { "showTitleCard": { "value": false } }
+		},
+		"weapon": {
+			"templates": ["base", "item", "equippable", "hasBehavior", "weaponize"],
+			"isCustomWeapon": { "value": false }
+		},
+		"shield": {
+			"templates": ["base", "item", "equippable", "defensive", "hasBehavior", "weaponize"],
+			"isDualShield": { "value": false },
+			"category": { "value": "brawling" }
+		},
+		"armor": {
+			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
+		},
+		"accessory": {
+			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
+		},
+		"class": {
+			"templates": ["base", "hasLevel"],
+			"benefits": {
+				"hp": { "value": false },
+				"mp": { "value": false },
+				"ip": { "value": false },
+				"proj": { "value": false },
+				"ritual": { "value": false },
+				"melee": { "value": false },
+				"ranged": { "value": false },
+				"armor": { "value": false },
+				"shields": { "value": false }
+			}
+		},
+		"heroic": {
+			"templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"],
+			"requirement": { "value": "" },
+			"benefits": {
+				"hp": { "value": false },
+				"mp": { "value": false },
+				"ip": { "value": false }
+			}
+		},
+		"skill": {
+			"templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"]
+		},
+		"spell": {
+			"templates": ["base", "hasClass", "rollInfo", "hasBehavior"],
+			"mpCost": { "value": "" },
+			"target": { "value": "" },
+			"duration": { "value": "" },
+			"isOffensive": { "value": false }
+		},
+		"miscAbility": {
+			"templates": ["base", "rollInfo", "showTitleCard", "hasBehavior"],
+			"subtype": { "value": "Custom" }
+		},
+		"behavior": {
+			"templates": ["base"],
+			"isBehavior": true,
+			"weight": { "value": 1 }
+		},
+		"consumable": { "templates": ["base"], "ipCost": { "value": 3 } },
+		"project": {
+			"templates": ["base"],
+			"potency": { "value": "minor" },
+			"area": { "value": "individual" },
+			"use": { "value": "consumable" },
+			"isFlawed": { "value": false },
+			"defectMod": { "value": 0 },
+			"numTinker": { "value": 1 },
+			"numHelper": { "value": 0 },
+			"lvlVision": { "value": 0 },
+			"cost": { "value": 0 },
+			"progress": { "current": 0, "max": 6 },
+			"progressPerDay": { "value": 0 },
+			"days": { "value": 0 },
+			"clock": { "value": 0 },
+			"discount": { "value": 0 }
+		},
+		"ritual": {
+			"templates": ["base", "hasClass", "rollInfo"],
+			"potency": { "value": "minor" },
+			"area": { "value": "individual" },
+			"mpCost": { "value": 0 },
+			"dLevel": { "value": 0 },
+			"clock": { "value": 0 }
+		},
+		"zeroPower": {
+			"templates": ["base"],
+			"zeroTrigger": { "value": "" },
+			"zeroEffect": { "value": "" },
+			"trigger": { "current": 0, "step": 1, "max": 6 }
+		}
+	}
 }

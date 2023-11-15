@@ -82,8 +82,6 @@
   }
 }
 
-
-
 // Styles for editing chat's item detail description
 .detail-desc {
   color: $color-black;
@@ -123,33 +121,6 @@
     }
   }
 }
-
-
-// Styles for editing chat icon and item label
-// .chat-header {
-//   img {
-//     border: 0;
-//     filter: drop-shadow(2px 2px 4px $color-shadow);
-//     position: relative;
-//     bottom: 195px;
-//     margin-bottom: -200px;
-//     width: 48px;
-//     height: 48px;
-//   }
-
-//   p {
-//     line-height: 1.2;
-//     color: $color-primary;
-//     font-size: 24px;
-//     box-shadow: 3px 6px $color-box-shadow-inverted;
-//     border-style: solid;
-//     border-width: thin;
-//     border-color: $color-black;
-//     padding: 10px;
-//     border-radius: 12px;
-//     background-color: $color-background-inverted;
-//   }
-// }
 
 .mainhand-header {
   font-family: alice;

@@ -17,9 +17,8 @@ sans-serif;
     }
   }
 
-
   // Item Summary Font Style
-  input.resource-input {
+  input.resource-inputs {
     font-size: 16px;
 
     &.summary {
@@ -75,7 +74,7 @@ sans-serif;
   }
 
   .resource-label {
-    input.resource-input {
+    input.resource-inputs {
       font-size: 16px;
       font-weight: bold;
     }
@@ -88,6 +87,9 @@ sans-serif;
   .desc {
     .editor {
       font-weight: normal;
+      .editor-content{
+        font-size: 16px;
+      }
     }
   }
 
@@ -106,6 +108,7 @@ sans-serif;
 
   .summary {
     font-size: 14px;
+    padding: 5px 0;
   }
 }
 

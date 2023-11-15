@@ -1,207 +1,145 @@
 <!-- Classes Section -->
 <header class="items-main-header">
-  <span class="items-main">{{localize "FU.Classes"}}</span>
-  <span class="items-main sl grid grid-3col">
-    <i class="fas fa-question-circle"></i>
-    <span class="total-class-levels grid-span-2 flex-between">
-      {{ system.derived.classmax.value }} / {{ system.level.value }}
-    </span>
-  </span>
+	<span class="items-main">{{localize "FU.Classes"}}</span>
+	<span class="items-main sl grid grid-3col">
+		<i class="fas fa-question-circle"></i>
+		<span class="total-class-levels grid-span-2 flex-between"> {{ system.derived.classmax.value }} / {{ system.level.value }} </span>
+	</span>
 </header>
 <ol class="items-list">
-  <li class="item flexrow items-header">
-    <div class="item-name">{{localize "FU.Name"}}</div>
-    <div class="item-level">{{localize "FU.Level"}}</div>
-    <div class="item-controls">
-      <a
-        class="item-control item-create"
-        aria-describedby="tooltip"
-        data-tooltip="Create class"
-        data-type="class"
-      >
-        <i class="fas fa-plus icon"></i>{{localize "FU.Add"}}
-      </a>
-    </div>
-  </li>
-  {{#each classes as |item id|}}
-  <li class="item" data-item-id="{{ item._id }}">
-    <div class="flexrow">
-      <div class="item-name">
-        <div class="item-image">
-          <a class="rollable" data-roll-type="item">
-            <div class="item-image-wrap">
-              <img
-                src="{{ item.img }}"
-                aria-describedby="tooltip"
-                data-tooltip="{{ item.name }}"
-                class="item-image-res"
-              />
-            </div>
-          </a>
-        </div>
-        <h4 class="click-item">
-          <i class="fas fa-chevron-down" style="display: none"></i>
-          <i class="fas fa-chevron-up" style="display: none"></i>
-          {{ item.name }}
-        </h4>
-      </div>
+	<li class="item flexrow items-header">
+		<div class="item-name">{{localize "FU.Name"}}</div>
+		<div class="item-level">{{localize "FU.Level"}}</div>
+		<div class="item-controls">
+			<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="Create class" data-type="class"> <i class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
+		</div>
+	</li>
+	{{#each classes as |item id|}}
+	<li class="item" data-item-id="{{ item._id }}">
+		<div class="flexrow">
+			<div class="item-name">
+				<div class="item-image">
+					<a class="rollable" data-roll-type="item">
+						<div class="item-image-wrap">
+							<img src="{{ item.img }}" aria-describedby="tooltip" data-tooltip="{{ item.name }}" class="item-image-res" />
+						</div>
+					</a>
+				</div>
+				<h4 class="click-item">
+					<i class="fas fa-chevron-down" style="display: none"></i>
+					<i class="fas fa-chevron-up" style="display: none"></i>
+					{{ item.name }}
+				</h4>
+			</div>
 
-      <div class="item-level addable">
-        <span data-resource="item.level">{{ item.level }}</span>
-        <span>/</span>
-        <span>{{ item.system.level.max }}</span>
-      </div>
-      {{> "systems/fabulaultima/templates/actor/parts/actor-control.html"
-      item=item}}
-    </div>
-    <div class="individual-description">
-      {{#if item.system.description}}
-      {{editor item.system.description
-      target="item.system.description" rollData=rollData button=false
-      owner=owner editable=false}}
-      {{/if}}
-    </div>
-  </li>
-  {{/each}}
+			<div class="item-level addable">
+				<span data-resource="item.level">{{ item.level }}</span>
+				<span>/</span>
+				<span>{{ item.system.level.max }}</span>
+			</div>
+			{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
+		</div>
+		<div class="individual-description">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+	</li>
+	{{/each}}
 </ol>
 <!-- Skills Section -->
 <header class="items-main-header">
-  <span class="items-main">{{localize "FU.Skills"}}</span>
-  <span class="items-main sl grid grid-3col">
-    <i class="fas fa-question-circle"></i>
-    <span class="total-class-levels grid-span-2 flex-between">
-      {{ system.derived.skillmax.value }} / {{ system.level.value }}
-    </span>
-  </span>
+	<span class="items-main">{{localize "FU.Skills"}}</span>
+	<span class="items-main sl grid grid-3col">
+		<i class="fas fa-question-circle"></i>
+		<span class="total-class-levels grid-span-2 flex-between"> {{ system.derived.skillmax.value }} / {{ system.level.value }} </span>
+	</span>
 </header>
 <ol class="items-list">
-  <li class="item flexrow items-header">
-    <div class="item-name">{{localize 'FU.Name'}}</div>
-    <div class="item-sl">{{localize 'FU.SkillLevel'}}</div>
-    <div class="item-level">{{localize 'FU.SkillLevelAbbr'}}</div>
-    <div class="item-controls">
-      <a
-        class="item-control item-create"
-        aria-describedby="tooltip"
-        data-tooltip="{{localize 'FU.SkillCreate'}}"
-        data-type="skill"
-      >
-        <i class="fas fa-plus icon"></i>
-        {{localize 'FU.Add'}}
-      </a>
-    </div>
-  </li>
-  {{#each skills as |item id|}}
-  <li class="item" data-item-id="{{ item._id }}">
-    <div class="flexrow" style="height: 26px">
-      <div class="item-name" style="height: 24px">
-        <div class="item-image">
-          <a class="rollable" data-roll-type="item">
-            <div class="item-image-wrap">
-              <img
-                src="{{ item.img }}"
-                aria-describedby="tooltip"
-                data-tooltip="{{ item.name }}"
-                class="item-image-res"
-              />
-            </div>
-          </a>
-        </div>
-        <h4 class="click-item">
-          <i class="fas fa-chevron-down" style="display: none"></i>
-          <i class="fas fa-chevron-up" style="display: none"></i>
-          {{ item.name }}
-        </h4>
-      </div>
+	<li class="item flexrow items-header">
+		<div class="item-name">{{localize 'FU.Name'}}</div>
+		<div class="item-sl">{{localize 'FU.SkillLevel'}}</div>
+		<div class="item-level">{{localize 'FU.SkillLevelAbbr'}}</div>
+		<div class="item-controls">
+			<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="{{localize 'FU.SkillCreate'}}" data-type="skill">
+				<i class="fas fa-plus icon"></i>
+				{{localize 'FU.Add'}}
+			</a>
+		</div>
+	</li>
+	{{#each skills as |item id|}}
+	<li class="item" data-item-id="{{ item._id }}">
+		<div class="flexrow" style="height: 26px">
+			<div class="item-name" style="height: 24px">
+				<div class="item-image">
+					<a class="rollable" data-roll-type="item">
+						<div class="item-image-wrap">
+							<img src="{{ item.img }}" aria-describedby="tooltip" data-tooltip="{{ item.name }}" class="item-image-res" />
+						</div>
+					</a>
+				</div>
+				<h4 class="click-item">
+					<i class="fas fa-chevron-down" style="display: none"></i>
+					<i class="fas fa-chevron-up" style="display: none"></i>
+					{{ item.name }}
+				</h4>
+			</div>
 
-      <div class="item-sl item-sl-stars">
-        <div class="rollable fusl fus-sl-star"></div>
-        <div class="rollable fusl fus-sl-star"></div>
-        <div class="rollable fusl fus-sl-star"></div>
-        <div class="rollable fusl ful-sl-star"></div>
-        <div class="rollable fusl ful-sl-star"></div>
-      </div>
-
-      <div class="item-level addable">
-        <span data-resource="item.system.level.value"
-          >{{ item.system.level.value }}
-        </span>
-        <span>/</span>
-        <span>{{ item.system.level.max }} </span>
-      </div>
-      {{> "systems/fabulaultima/templates/actor/parts/actor-control.html"
-      item=item}}
-    </div>
-    <span>{{ item.class }}</span>
-    <div class="individual-description">
-      {{#if item.system.description}}
-      {{editor item.system.description
-      target="item.system.description" rollData=rollData button=false
-      owner=owner editable=false}}
-      {{/if}}
-    </div>
-  </li>
-  {{/each}}
+			<div class="item-sl item-sl-stars star-container">
+				<!-- <div class="rollable fusl fus-sl-star"></div>
+				<div class="rollable fusl fus-sl-star"></div>
+				<div class="rollable fusl fus-sl-star"></div>
+				<div class="rollable fusl ful-sl-star"></div>
+				<div class="rollable fusl ful-sl-star"></div> -->
+				{{!--This will be populated dynamically --}}
+			</div>
+	
+			<div class="item-level addable">
+				<span class="editable-skill-level" data-resource="item.system.level.value">{{ item.system.level.value }} </span>
+				<span>/</span>
+				<span>{{ item.system.level.max }} </span>
+			</div>
+			{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
+		</div>
+		<span>{{ item.quality }}</span>
+		<div class="individual-description">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+	</li>
+	{{/each}}
 </ol>
 <!-- Heroic Skill Section-->
 <header class="items-main-header">
-  <span class="items-main">{{localize 'FU.Heroics'}}</span>
-  <span class="items-main sl grid grid-3col">
-    <i class="fas fa-question-circle"></i>
-    <span class="total-class-levels grid-span-2 flex-between">
-      {{ heroics.length }} / {{ system.derived.heroicmax.value }}
-    </span>
-  </span>
+	<span class="items-main">{{localize 'FU.Heroics'}}</span>
+	<span class="items-main sl grid grid-3col">
+		<i class="fas fa-question-circle"></i>
+		<span class="total-class-levels grid-span-2 flex-between"> {{ heroics.length }} / {{ system.derived.heroicmax.value }} </span>
+	</span>
 </header>
 <ol class="items-list">
-  <li class="item flexrow items-header">
-    <div class="item-name">{{localize 'FU.Name'}}</div>
-    <div class="item-class">{{localize 'FU.Class'}}</div>
-    <div class="item-controls">
-      <a
-        class="item-control item-create"
-        aria-describedby="tooltip"
-        data-tooltip="{{localize 'FU.HeroicCreate'}}"
-        data-type="heroic"
-      >
-        <i class="fas fa-plus icon"></i>
-        {{localize 'FU.Add'}}
-      </a>
-    </div>
-  </li>
-  {{#each heroics as |item id|}}
-  <li class="item" data-item-id="{{ item._id }}">
-    <div class="flexrow">
-      <div class="item-name">
-        <div class="item-image">
-          <a class="rollable" data-roll-type="item"
-            ><img
-              src="{{ item.img }}"
-              aria-describedby="tooltip"
-              data-tooltip="{{ item.name }}"
-              width="24"
-              height="24"
-          /></a>
-        </div>
-        <h4 class="click-item">
-          <i class="fas fa-chevron-down" style="display: none"></i>
-          <i class="fas fa-chevron-up" style="display: none"></i>
-          {{ item.name }}
-        </h4>
-      </div>
-      <div class="item-class">
-        <span>{{ item.class }}</span>
-      </div>
-      {{> "systems/fabulaultima/templates/actor/parts/actor-control.html"
-      item=item}}
-    </div>
-    <div class="individual-description align-left">
-      {{#if item.system.description}}
-      {{editor item.system.description
-      target="item.system.description" rollData=rollData button=false
-      owner=owner editable=false}}
-      {{/if}}
-    </div>
-  </li>
-  {{/each}}
+	<li class="item flexrow items-header">
+		<div class="item-name">{{localize 'FU.Name'}}</div>
+		<div class="item-class">{{localize 'FU.Class'}}</div>
+		<div class="item-controls">
+			<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="{{localize 'FU.HeroicCreate'}}" data-type="heroic">
+				<i class="fas fa-plus icon"></i>
+				{{localize 'FU.Add'}}
+			</a>
+		</div>
+	</li>
+	{{#each heroics as |item id|}}
+	<li class="item" data-item-id="{{ item._id }}">
+		<div class="flexrow">
+			<div class="item-name">
+				<div class="item-image">
+					<a class="rollable" data-roll-type="item"><img src="{{ item.img }}" aria-describedby="tooltip" data-tooltip="{{ item.name }}" width="24" height="24" /></a>
+				</div>
+				<h4 class="click-item">
+					<i class="fas fa-chevron-down" style="display: none"></i>
+					<i class="fas fa-chevron-up" style="display: none"></i>
+					{{ item.name }}
+				</h4>
+			</div>
+			<div class="item-class">
+				<span>{{ item.class }}</span>
+			</div>
+			{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
+		</div>
+		<div class="individual-description align-left">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+	</li>
+	{{/each}}
 </ol>

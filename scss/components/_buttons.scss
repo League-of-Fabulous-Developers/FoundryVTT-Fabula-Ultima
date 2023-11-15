@@ -5,8 +5,8 @@
   color: $color-secondary;
   text-shadow: 3px 3px $color-primary;
 
-  input.fp-resource-input,
-  input.up-resource-input {
+  input.fp-resource-inputs,
+  input.up-resource-inputs {
     color: $color-secondary;
     text-shadow: 1px 2px $color-quaternary;
     font-size: 24px;
@@ -152,9 +152,9 @@
 }
 
 .item-equip {
-  $size-outline: 2px; // Adjust the size of the outline
-  $color-outline: #000; // Define the color of the outline (change it to your desired color)
-  $color-text-shadow: #333; // Define the color of the text shadow (change it to your desired color)
+  $size-outline: 2px; 
+  $color-outline: #000;
+  $color-text-shadow: #333;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -168,7 +168,6 @@
     text-shadow: $size-outline $size-outline 1px $color-outline;
   }
 }
-
 
 .item-create-bond {
   display: flex;
