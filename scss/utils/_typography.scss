@@ -106,7 +106,7 @@ sans-serif;
   font-weight: bold;
   font-family: $font-primary;
 
-  .summary {
+  div {
     font-size: 14px;
     padding: 5px 0;
   }
@@ -135,7 +135,6 @@ sans-serif;
   .message-header {
     .flavor-text {
       font-size: 20px;
-      margin-top: 10px;
     }
   }
 }

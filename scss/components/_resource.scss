@@ -73,6 +73,7 @@
       justify-content: center;
       text-align: center;
       appearance: none;
+      
 
       select & {
         appearance: none;
@@ -165,7 +166,10 @@
     height: 26px;
     justify-content: center;
     text-align: center;
+    
     appearance: none;
+    -webkit-appearance: none; /* For WebKit browsers */
+    -moz-appearance: textfield; /* For Firefox */
 
     select & {
       appearance: none;

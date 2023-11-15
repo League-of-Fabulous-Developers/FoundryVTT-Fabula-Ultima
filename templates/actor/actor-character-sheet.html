@@ -37,15 +37,15 @@
 				<div class="grid grid-3col">
 					<!-- HP -->
 					<div class="resource-content flex-group-center">
-						<div class="grid grid-3col" style="padding: 0 3px">
-							<label class="resource-label-m align-left grid-span-2" data-tooltip="{{localize 'FU.HealthPoints'}}" aria-describedby="tooltip">
+						<div class="grid grid-2col" style="padding: 0 3px">
+							<label class="resource-label-m align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}" aria-describedby="tooltip">
 								{{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
 								<i class="fa-solid fa-heart-crack"></i>
 								{{else}}
 								<i class="fa-solid fa-heart"></i>
 								{{/if}} {{localize 'FU.HealthAbbr'}}
 							</label>
-							<span class="resource-label-m grid-start-3 align-right">
+							<span class="resource-label-m grid-start-2 align-right">
 								{{half system.resources.hp.max}}
 								<i class="fa-solid fa-heart-crack"></i>
 							</span>
@@ -78,8 +78,8 @@
 
 					<!-- MP -->
 					<div class="resource-content flex-group-center">
-						<div class="grid grid-3col" style="padding: 0 3px">
-							<label class="resource-label-m align-left grid-span-2" data-tooltip="Mind Points" aria-describedby="tooltip"> <i class="fa-solid fa-wand-magic-sparkles icon"></i>{{localize 'FU.MindAbbr'}} </label>
+						<div class="grid grid-2col" style="padding: 0 3px">
+							<label class="resource-label-m align-left grid-span-1" data-tooltip="Mind Points" aria-describedby="tooltip"> <i class="fa-solid fa-wand-magic-sparkles icon"></i>{{localize 'FU.MindAbbr'}} </label>
 							<label class="resource-label-m align-center rollable" data-tooltip="Rest" aria-describedby="tooltip"> <i class="fa-solid fa-bed rest"></i></label>
 						</div>
 						<div class="bar bar-progress">
