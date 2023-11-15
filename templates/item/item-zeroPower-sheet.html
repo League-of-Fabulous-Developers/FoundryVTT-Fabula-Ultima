@@ -13,8 +13,8 @@
 			<div class="grid grid-3col">
 				<!-- Zero Trigger (2 columns) -->
 				<div class="grid-span-2 flex-between">
-					<div class="half-desc">
-						<input type="text" name="system.zeroTrigger.value" value="{{ system.zeroTrigger.value }}" data-dtype="String" placeholder="{{localize 'FU.LimitTrigger'}}" class="resource-label" />
+					<div class="half-desc resource-content">
+						<input type="text" name="system.zeroTrigger.value" value="{{ system.zeroTrigger.value }}" data-dtype="String" placeholder="{{localize 'FU.LimitTrigger'}}" class="resource-inputs select-dropdown-full" />
 						{{editor system.zeroTrigger.description target="system.zeroTrigger.description" rollData=rollData button=true owner=owner editable=editable}}
 					</div>
 				</div>
@@ -45,8 +45,8 @@
 
 				<!-- Zero Effect (2 columns) -->
 				<div class="grid-span-2 flex-between">
-					<div class="half-desc">
-						<input type="text" name="system.zeroEffect.value" value="{{ system.zeroEffect.value }}" data-dtype="String" placeholder="Zero Effect" class="resource-label" />
+					<div class="half-desc resource-content">
+						<input type="text" name="system.zeroEffect.value" value="{{ system.zeroEffect.value }}" data-dtype="String" placeholder="Zero Effect" class="resource-inputs select-dropdown-full" />
 						{{editor system.zeroEffect.description target="system.zeroEffect.description" rollData=rollData button=true owner=owner editable=editable}}
 					</div>
 				</div>

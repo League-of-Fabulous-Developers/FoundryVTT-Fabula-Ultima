@@ -225,6 +225,13 @@
       width: 24em;
       margin: 2px 5px;
     }
+    
+    &.select-dropdown-full {
+      appearance: none;
+      background-size: 16px 16px;
+      width: 100%;
+      margin: 2px 5px;
+    }
   }
 
 }
