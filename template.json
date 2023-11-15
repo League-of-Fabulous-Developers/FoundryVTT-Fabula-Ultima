@@ -29,7 +29,6 @@
 					"wlp": { "base": 6, "current": 6 }
 				},
 				"derived": {
-					"crisis": { "value": 5 },
 					"init": { "value": 0, "bonus": 0 },
 					"def": { "value": 0, "bonus": 0 },
 					"mdef": { "value": 0, "bonus": 0 },
