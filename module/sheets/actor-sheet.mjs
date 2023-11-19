@@ -54,6 +54,10 @@ export class FUActorSheet extends ActorSheet {
 
 		// Prepare NPC data and items.
 		if (actorData.type == 'npc') {
+			const spTracker = this.actor.getSPTracker();
+
+			// Add spTracker to the context
+			context.spTracker = spTracker;
 		}
 
 		// Add roll data for TinyMCE editors.

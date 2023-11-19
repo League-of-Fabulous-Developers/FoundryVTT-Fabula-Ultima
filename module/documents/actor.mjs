@@ -402,11 +402,11 @@ export class FUActor extends Actor {
 				this.usedSkills.initiativeBonus = this.calcUsedSkillsFromExtraInit(systemData);
 				this.usedSkills.accuracyCheck = 0;
 				this.usedSkills.magicCheck = 0;
-				this.usedSkills.resistances = 0;
+				this.usedSkills.resistances = this.calcUsedSkillsFromResistances(systemData);
 				this.usedSkills.immunities = this.calcUsedSkillsFromImmunities(systemData);
 				this.usedSkills.absorption = this.calcUsedSkillsFromAbsorbs(systemData);
 				this.usedSkills.specialRules = this.calcUsedSkillsFromSpecial(actorData);
-				this.usedSkills.equipment = 0;
+				this.usedSkills.equipment = this.calcUsedSkillsFromEquipment(actorData);
 				this.spUsed = Object.values(this.usedSkills).reduce((total, value) => total + value, 0);
 			},
 
@@ -430,27 +430,32 @@ export class FUActor extends Actor {
 
 				return 0;
 			},
-
 			calcAvailableSkillsFromVulnerabilities() {
 				let sum = 0;
-				Object.entries(systemData.resources.affinity).forEach((el) => {
-					if (el[1] === 0) {
+
+				Object.entries(systemData.resources.affinity).forEach(([affinity, value]) => {
+					// If physical vulnerable, increment sum twice
+					if (affinity === 'phys' && value === 0) {
+						sum += 2;
+					}
+					// If affinity is vulnerable (except 'phys'), increment sum
+					else if (value === 0 && affinity !== 'phys') {
 						sum++;
 					}
 				});
 
 				// Undeads are vulnerable to light
 				if (systemData.species.value === 'undead' && systemData.resources.affinity.light.value === 0) {
-					sum = sum - 1;
+					sum--;
 				}
 
 				// Plants have a free vulnerability
 				if (systemData.species.value === 'plant' && (systemData.resources.affinity.fire.value || systemData.resources.affinity.air.value || systemData.resources.affinity.ice.value || systemData.resources.affinity.bolt.value)) {
-					sum = sum - 1;
+					sum--;
 				}
-				if (sum < 0) {
-					sum = 0;
-				}
+
+				// Ensure the sum is non-negative
+				sum = Math.max(0, sum);
 
 				return sum;
 			},
@@ -486,6 +491,27 @@ export class FUActor extends Actor {
 					return 0;
 				}
 				return Math.floor(systemData.derived.init.bonus / 4);
+			},
+
+			calcUsedSkillsFromResistances() {
+				let sum = 0;
+
+				Object.entries(systemData.resources.affinity).forEach((el) => {
+					const isConstructWithEarth = systemData.species.value === 'construct' && el[0] === 'earth';
+
+					if (el[1] === 2 && !isConstructWithEarth) {
+						sum++;
+					}
+				});
+				// Demons have two free resistances
+				if (systemData.species.value === 'demon') {
+					sum -= 2;
+				}
+
+				// Ensure the sum is non-negative
+				sum = Math.max(0, sum);
+
+				return Math.ceil(sum);
 			},
 
 			calcUsedSkillsFromImmunities() {
@@ -544,6 +570,16 @@ export class FUActor extends Actor {
 				return miscAbility.length || 0;
 			},
 
+			calcUsedSkillsFromEquipment(actorData) {
+				const weapon = actorData.items.filter((item) => item.type === 'weapon');
+				const shield = actorData.items.filter((item) => item.type === 'shield');
+				const armor = actorData.items.filter((item) => item.type === 'armor');
+
+				const sum = weapon.length + shield.length + armor.length;
+
+				return sum > 0 ? 1 : 0;
+			},
+
 			// handleFieldChange() {
 			//   // Simulated field changes for demonstration
 			//   //this.availableSkills.species = 4;
@@ -555,17 +591,17 @@ export class FUActor extends Actor {
 			//   this.logSPData();
 			// },
 
-			logSPData() {
-				console.log('SP Available:', this.spAvailable);
-				console.log('Available Skills:', this.availableSkills);
-				console.log('SP Used:', this.spUsed);
-				console.log('Used Skills:', this.usedSkills);
-			},
+			// logSPData() {
+			// 	console.log('SP Available:', this.spAvailable);
+			// 	console.log('Available Skills:', this.availableSkills);
+			// 	console.log('SP Used:', this.spUsed);
+			// 	console.log('Used Skills:', this.usedSkills);
+			// },
 		};
 
 		// Initial calculation and logging
 		spTracker.calculateSP(actorData, systemData);
-		spTracker.logSPData();
+		//spTracker.logSPData();
 
 		return spTracker;
 	}
@@ -597,6 +633,10 @@ export class FUActor extends Actor {
 
 		// Initialize the SP tracker
 		this.spTracker = this._createSPTracker(actorData, systemData);
+	}
+
+	getSPTracker() {
+		return this.spTracker;
 	}
 
 	/**

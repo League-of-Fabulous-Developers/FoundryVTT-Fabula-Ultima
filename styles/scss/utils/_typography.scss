@@ -6,14 +6,20 @@ sans-serif;
 .window-app {
   font-family: $font-primary;
 
+  nav,a.item{
+    font-weight: bold;
+  }
+  [class^="item-"] {
+    font-weight: bold;
+  }
+  
   .item,
-
   .zenit-content {
     font-size: 16px;
-    font-weight: bold;
 
     .item-name {
       font-size: 16px;
+      font-weight: bold;
     }
   }
 
@@ -76,7 +82,7 @@ sans-serif;
   .resource-label {
     input.resource-inputs {
       font-size: 16px;
-      font-weight: bold;
+
     }
 
     .item-name {
