@@ -65,7 +65,7 @@
 	</li>
 	{{#each skills as |item id|}}
 	<li class="item" data-item-id="{{ item._id }}">
-		<div class="flexrow" style="height: 26px">
+		<div class="flexrow" style="height: fit-content">
 			<div class="item-name" style="height: 24px">
 				<div class="item-image">
 					<a class="rollable" data-roll-type="item">
@@ -82,13 +82,8 @@
 			</div>
 
 			<div class="item-sl item-sl-stars star-container">
-				<!-- <div class="rollable fusl fus-sl-star"></div>
-				<div class="rollable fusl fus-sl-star"></div>
-				<div class="rollable fusl fus-sl-star"></div>
-				<div class="rollable fusl ful-sl-star"></div>
-				<div class="rollable fusl ful-sl-star"></div> -->
-				{{!--This will be populated dynamically --}}
-			</div>
+				{{ generateStars item.starCurrent item.starMax }}
+			</div>  
 	
 			<div class="item-level addable">
 				<span class="editable-skill-level" data-resource="item.system.level.value">{{ item.system.level.value }} </span>

@@ -160,8 +160,13 @@ export class FUItem extends Item {
 
 		const qualityString = [capitalizeFirst(this.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬩ ');
 
+		const starCurrent = this.system?.level?.value;
+		const starMax = this.system?.level?.max;
+
 		return {
 			qualityString: `${qualityString}`,
+			starCurrent: `${starCurrent}`,
+			starMax: `${starMax}`,
 		};
 	}
 

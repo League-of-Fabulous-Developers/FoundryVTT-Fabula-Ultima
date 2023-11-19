@@ -420,8 +420,10 @@ export class FUActorSheet extends ActorSheet {
 		// 	const isRightClick = ev.type === 'contextmenu';
 		// 	console.log('Rightclick: ', isRightClick);
 
-		// 	let currentValue = parseInt(spanElement.text()) || 0;
+		// 	// Convert the span element text to a number
+		// 	let currentValue = Number(spanElement.text()) || 0;
 
+		// 	// Increment or decrement the current value by 1
 		// 	if (isRightClick) {
 		// 		currentValue -= 1;
 		// 	} else {
@@ -435,15 +437,25 @@ export class FUActorSheet extends ActorSheet {
 		// 	// Now, you can update the actual data of the item in Foundry VTT
 		// 	// For example, you can use Foundry's updateObject function
 		// 	const updateObject = {
-		// 		_id: itemId,
+		// 		id: itemId,
 		// 		data: {
 		// 			// Update the property you want to change (e.g., value)
-		// 			value: currentValue,
+		// 			[targetResource]: currentValue,
 		// 		},
 		// 	};
 		// 	console.log('Update Object: ', updateObject);
-		// 	console.log(game.user._id);
-		// 	console.log(game.actors.get(actorID));
+
+		// 	// Retrieve the item using the item ID
+		// 	console.log('Item ID: ', itemId);
+		// 	let item = game.items.get(itemId);
+
+		// 	// Check if the item is found before attempting to update
+		// 	if (item) {
+		// 		// Update the item with the new value of the target resource
+		// 		item.update(updateObject);
+		// 	} else {
+		// 		console.error('Item not found with ID: ', itemId);
+		// 	}
 		// });
 
 		// Active Effect management
