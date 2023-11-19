@@ -116,14 +116,16 @@ jobs:
             `# The name of the output file`      \
              ./fabulaultima.zip                  \
             `# The files that will be included.` \
+            template.json                        \
             system.json                          \
             README.md                            \
-            LICENSE                              \
-            module                               \
+            LICENSE.md                           \
+            CHANGELOG.md                         \
             templates                            \
             scripts/                             \
             styles/                              \
             packs/                               \
+            module                               \
             language/                            \
             lang/
           # Don't forget to add a backslash at the end of the line for any
