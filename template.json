@@ -182,7 +182,7 @@
 			"isOffensive": { "value": false }
 		},
 		"miscAbility": {
-			"templates": ["base", "rollInfo", "showTitleCard", "hasBehavior"],
+			"templates": ["base", "equippable", "rollInfo", "showTitleCard", "hasBehavior"],
 			"subtype": { "value": "custom" }
 		},
 		"behavior": {

@@ -394,7 +394,7 @@ export class FUActor extends Actor {
 				this.availableSkills.rank = this.calcAvailableSkillsFromRank(systemData);
 				this.spAvailable = Object.values(this.availableSkills).reduce((total, value) => total + value, 0);
 
-				this.usedSkills.specialAttacks = 0;
+				this.usedSkills.specialAttacks = this.calcUsedSpecialAttacks(actorData);
 				this.usedSkills.spells = this.calcUsedSkillsFromSpells(actorData);
 				this.usedSkills.extraDefense = this.calcUsedSkillsFromExtraDefs(systemData);
 				this.usedSkills.extraHP = this.calcUsedSkillsFromExtraHP(systemData);
@@ -460,6 +460,20 @@ export class FUActor extends Actor {
 				return sum;
 			},
 
+			calcUsedSpecialAttacks(actorData) {
+				let sum = 0;
+
+				actorData.items.forEach((item) => {
+					// Check if the item has a non-null quality value or an empty quality
+					const hasQuality = item.system.quality?.value !== undefined && item.system.quality.value !== '';
+					const isNotSkill = item.type !== 'miscAbility';
+					if (hasQuality && isNotSkill) {
+						sum++;
+					}
+				});
+				return sum;
+			},
+
 			calcUsedSkillsFromSpells(actorData) {
 				const spells = actorData.items.filter((item) => item.type === 'spell');
 				return spells.length / 2 || 0;
@@ -500,15 +514,14 @@ export class FUActor extends Actor {
 					const isConstructWithEarth = systemData.species.value === 'construct' && el[0] === 'earth';
 
 					if (el[1] === 2 && !isConstructWithEarth) {
-						sum++;
+						sum += 0.5;
 					}
 				});
 				// Demons have two free resistances
 				if (systemData.species.value === 'demon') {
-					sum -= 2;
+					sum -= 1;
 				}
 
-				// Ensure the sum is non-negative
 				sum = Math.max(0, sum);
 
 				return Math.ceil(sum);
@@ -527,7 +540,6 @@ export class FUActor extends Actor {
 						if (systemData.species.value === 'undead' && el[0] === 'dark') {
 							return;
 						}
-
 						sum++;
 					}
 				});
@@ -571,37 +583,16 @@ export class FUActor extends Actor {
 			},
 
 			calcUsedSkillsFromEquipment(actorData) {
-				const weapon = actorData.items.filter((item) => item.type === 'weapon');
-				const shield = actorData.items.filter((item) => item.type === 'shield');
-				const armor = actorData.items.filter((item) => item.type === 'armor');
-
-				const sum = weapon.length + shield.length + armor.length;
+				const equipmentTypes = ['weapon', 'shield', 'armor'];
+				const sum = equipmentTypes.reduce((total, type) => {
+					return total + actorData.items.filter((item) => item.type === type).length;
+				}, 0);
 
 				return sum > 0 ? 1 : 0;
 			},
-
-			// handleFieldChange() {
-			//   // Simulated field changes for demonstration
-			//   //this.availableSkills.species = 4;
-			//   //this.usedSkills.specialAttacks = 3;
-
-			//   // Recalculate SP based on the changes
-			//   this.calculateSP(systemData);
-			//   // Log SP tracker data to the console
-			//   this.logSPData();
-			// },
-
-			// logSPData() {
-			// 	console.log('SP Available:', this.spAvailable);
-			// 	console.log('Available Skills:', this.availableSkills);
-			// 	console.log('SP Used:', this.spUsed);
-			// 	console.log('Used Skills:', this.usedSkills);
-			// },
 		};
-
-		// Initial calculation and logging
+		// Initial calculation
 		spTracker.calculateSP(actorData, systemData);
-		//spTracker.logSPData();
 
 		return spTracker;
 	}
