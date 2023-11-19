@@ -549,10 +549,7 @@ export class FUItem extends Item {
 			// Prepare the content by filtering and joining various parts.
 			const content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
 
-			if (['spell'].includes(type)) {
-				socketlib.system.executeForEveryone('cast', name);
-			}
-			if (['consumable', 'skill', 'weapon'].includes(type) || system.showTitleCard?.value) {
+			if (['consumable', 'skill'].includes(type) || system.showTitleCard?.value) {
 				socketlib.system.executeForEveryone('use', name);
 			}
 

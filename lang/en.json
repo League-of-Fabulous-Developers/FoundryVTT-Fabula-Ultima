@@ -47,6 +47,8 @@
     "MessagePlaceholder": "",
     "DC": "Difficulty Level",
     "Title": "Title",
+    "TitleCardInfo": "Show title notification on roll?",
+    "TitleCardStatus": "Show Title?",
     "RollerIntro": "Perform a Group Roll!",
     "Reason": "Reason:",
     "Exp": "Experience",

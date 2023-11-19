@@ -47,6 +47,8 @@
     "MessagePlaceholder": "",
     "DC": "Livello Difficoltà",
     "Title": "Titolo",
+    "TitleCardInfo":  "Mostrare titolo al rollio?",
+    "TitleCardStatus": "Mostra Titolo?",
     "RollerIntro": "Esegui un Lancio di Gruppo!",
     "Reason": "Motivo:",
     "Exp": "Esperienza",

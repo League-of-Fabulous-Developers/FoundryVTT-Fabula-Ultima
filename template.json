@@ -133,19 +133,19 @@
 			"showTitleCard": { "showTitleCard": { "value": false } }
 		},
 		"weapon": {
-			"templates": ["base", "item", "equippable", "hasBehavior", "weaponize"],
+			"templates": ["base", "item", "equippable", "weaponize", "hasBehavior", "showTitleCard"],
 			"isCustomWeapon": { "value": false }
 		},
 		"shield": {
-			"templates": ["base", "item", "equippable", "defensive", "hasBehavior", "weaponize"],
+			"templates": ["base", "item", "equippable", "defensive", "weaponize", "hasBehavior", "showTitleCard"],
 			"isDualShield": { "value": false },
 			"category": { "value": "brawling" }
 		},
 		"armor": {
-			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
+			"templates": ["base", "item", "equippable", "defensive", "hasBehavior", "showTitleCard"]
 		},
 		"accessory": {
-			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
+			"templates": ["base", "item", "equippable", "defensive", "hasBehavior", "showTitleCard"]
 		},
 		"class": {
 			"templates": ["base", "hasLevel"],
@@ -175,14 +175,14 @@
 			"templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"]
 		},
 		"spell": {
-			"templates": ["base", "hasClass", "rollInfo", "hasBehavior"],
+			"templates": ["base", "hasClass", "rollInfo", "hasBehavior", "showTitleCard"],
 			"mpCost": { "value": "" },
 			"target": { "value": "" },
 			"duration": { "value": "" },
 			"isOffensive": { "value": false }
 		},
 		"miscAbility": {
-			"templates": ["base", "equippable", "rollInfo", "showTitleCard", "hasBehavior"],
+			"templates": ["base", "equippable", "rollInfo", "hasBehavior", "showTitleCard"],
 			"subtype": { "value": "custom" }
 		},
 		"behavior": {
@@ -190,7 +190,7 @@
 			"isBehavior": true,
 			"weight": { "value": 1 }
 		},
-		"consumable": { "templates": ["base"], "ipCost": { "value": 3 } },
+		"consumable": { "templates": ["base", "showTitleCard"], "ipCost": { "value": 3 } },
 		"project": {
 			"templates": ["base"],
 			"potency": { "value": "minor" },
