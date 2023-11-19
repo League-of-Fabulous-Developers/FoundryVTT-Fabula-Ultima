@@ -162,7 +162,7 @@ export class FUActor extends Actor {
 
 		// Calculate maximum inventory points (ip) for characters.
 		if (actorData.type === 'character') {
-			systemData.resources.ip.max = 6 + classesWithIp.length * 2;
+			systemData.resources.ip.max = 6 + classesWithIp.length * 2 + systemData.resources.ip.bonus;
 		}
 
 		// Apply heroic benefits to maximum hp and mp.

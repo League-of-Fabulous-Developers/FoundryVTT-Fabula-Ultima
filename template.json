@@ -45,7 +45,7 @@
 		"character": {
 			"templates": ["base"],
 			"resources": {
-				"ip": { "value": 6, "min": 0, "max": 6 },
+				"ip": { "value": 6, "min": 0, "max": 6, "bonus": 0 },
 				"fp": { "value": 3 },
 				"bonds": [
 					{
