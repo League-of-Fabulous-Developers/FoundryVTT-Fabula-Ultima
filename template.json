@@ -163,6 +163,7 @@
 		},
 		"heroic": {
 			"templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"],
+			"subtype": { "value": "skill" },
 			"requirement": { "value": "" },
 			"benefits": {
 				"hp": { "value": false },
@@ -182,7 +183,7 @@
 		},
 		"miscAbility": {
 			"templates": ["base", "rollInfo", "showTitleCard", "hasBehavior"],
-			"subtype": { "value": "Custom" }
+			"subtype": { "value": "custom" }
 		},
 		"behavior": {
 			"templates": ["base"],

@@ -108,7 +108,7 @@
 <ol class="items-list">
 	<li class="item flexrow items-header">
 		<div class="item-name">{{localize 'FU.Name'}}</div>
-		<div class="item-class">{{localize 'FU.Class'}}</div>
+		<div class="item-class">{{localize 'FU.ItemType'}}</div>
 		<div class="item-controls">
 			<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="{{localize 'FU.HeroicCreate'}}" data-type="heroic">
 				<i class="fas fa-plus icon"></i>
@@ -130,7 +130,7 @@
 				</h4>
 			</div>
 			<div class="item-class">
-				<span>{{ item.class }}</span>
+				<span>{{capitalize item.type }} {{capitalize item.system.subtype.value }}</span>
 			</div>
 			{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
 		</div>

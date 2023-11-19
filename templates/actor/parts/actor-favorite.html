@@ -52,7 +52,15 @@
 					{{/if}}
 				</h4>
 			</div>
-			<div class="item-equipped">{{#if (eq item.type "miscAbility") }}{{capitalize item.system.subtype.value }}{{else }}{{capitalize item.type }}{{/if}}</div>
+			<div class="item-equipped">
+				{{#if (eq item.type "heroic") }}
+					{{capitalize item.type}} {{capitalize item.system.subtype.value}}
+				{{else if (eq item.type "miscAbility") }}
+					{{capitalize item.system.subtype.value}}
+				{{else }}
+					{{capitalize item.type}}
+				{{/if}}
+			</div>			
 			{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
 		</div>
 		<span>{{ item.quality.value }}</span>
