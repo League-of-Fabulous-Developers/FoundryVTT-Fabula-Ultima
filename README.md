@@ -7,7 +7,7 @@
 
 Welcome to the Unofficial Fabula Ultima System for the Foundry Virtual Tabletop. This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
 
-**Disclaimer:** This system is currently in an experimental phase. We recommend refraining from using it for your games until further notice.
+**Disclaimer:** This system is currently in it's testing phase. We recommend backing up your world before trying it.
 
 ## Installation
 
@@ -15,7 +15,7 @@ Welcome to the Unofficial Fabula Ultima System for the Foundry Virtual Tabletop.
 
 1. Open the Foundry Setup screen and navigate to the Game Systems tab.
 2. Click the "Install System" button.
-3. Use the following Manifest URL: `https://raw.githubusercontent.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/main/system.json`
+3. Use the following Manifest URL: `https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/releases/latest/download/system.json`
 4. Click "Install."
 
 ### Manual Installation
