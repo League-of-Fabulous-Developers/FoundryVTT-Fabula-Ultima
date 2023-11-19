@@ -10,7 +10,17 @@
 				<!-- Item Type -->
 				<span class="resource-content levelup-container flex-group-center">
 					<label class="resource-label-sm" for="item.type"> <i class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.ItemType'}} </label>
-					{{#if (eq item.type "miscAbility")}}
+
+					{{#if (eq item.type "heroic")}}
+						<span>
+							<select type="select" value="" name="system.subtype.value" data-dtype="String" class="resource-inputs side-bar">
+								{{#select system.subtype.value}}
+									<option value="skill">Heroic Skill</option>
+									<option value="style">Heroic Style</option>
+								{{/select}}
+							</select>
+						</span>
+					{{else if (eq item.type "miscAbility")}}
 					<span>
 						<select type="select" value="" name="system.subtype.value" data-dtype="String" class="resource-inputs side-bar">
 							{{#select system.subtype.value}}

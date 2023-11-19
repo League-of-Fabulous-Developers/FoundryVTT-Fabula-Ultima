@@ -6,14 +6,20 @@ sans-serif;
 .window-app {
   font-family: $font-primary;
 
+  nav,a.item{
+    font-weight: bold;
+  }
+  [class^="item-"] {
+    font-weight: bold;
+  }
+  
   .item,
-
   .zenit-content {
     font-size: 16px;
-    font-weight: bold;
 
     .item-name {
       font-size: 16px;
+      font-weight: bold;
     }
   }
 
@@ -76,7 +82,7 @@ sans-serif;
   .resource-label {
     input.resource-inputs {
       font-size: 16px;
-      font-weight: bold;
+
     }
 
     .item-name {
@@ -106,7 +112,7 @@ sans-serif;
   font-weight: bold;
   font-family: $font-primary;
 
-  .summary {
+  div {
     font-size: 14px;
     padding: 5px 0;
   }
@@ -135,7 +141,6 @@ sans-serif;
   .message-header {
     .flavor-text {
       font-size: 20px;
-      margin-top: 10px;
     }
   }
 }

@@ -162,7 +162,7 @@ export class FUActor extends Actor {
 
 		// Calculate maximum inventory points (ip) for characters.
 		if (actorData.type === 'character') {
-			systemData.resources.ip.max = 6 + classesWithIp.length * 2;
+			systemData.resources.ip.max = 6 + classesWithIp.length * 2 + systemData.resources.ip.bonus;
 		}
 
 		// Apply heroic benefits to maximum hp and mp.
@@ -394,7 +394,7 @@ export class FUActor extends Actor {
 				this.availableSkills.rank = this.calcAvailableSkillsFromRank(systemData);
 				this.spAvailable = Object.values(this.availableSkills).reduce((total, value) => total + value, 0);
 
-				this.usedSkills.specialAttacks = 0;
+				this.usedSkills.specialAttacks = this.calcUsedSpecialAttacks(actorData);
 				this.usedSkills.spells = this.calcUsedSkillsFromSpells(actorData);
 				this.usedSkills.extraDefense = this.calcUsedSkillsFromExtraDefs(systemData);
 				this.usedSkills.extraHP = this.calcUsedSkillsFromExtraHP(systemData);
@@ -402,11 +402,11 @@ export class FUActor extends Actor {
 				this.usedSkills.initiativeBonus = this.calcUsedSkillsFromExtraInit(systemData);
 				this.usedSkills.accuracyCheck = 0;
 				this.usedSkills.magicCheck = 0;
-				this.usedSkills.resistances = 0;
+				this.usedSkills.resistances = this.calcUsedSkillsFromResistances(systemData);
 				this.usedSkills.immunities = this.calcUsedSkillsFromImmunities(systemData);
 				this.usedSkills.absorption = this.calcUsedSkillsFromAbsorbs(systemData);
 				this.usedSkills.specialRules = this.calcUsedSkillsFromSpecial(actorData);
-				this.usedSkills.equipment = 0;
+				this.usedSkills.equipment = this.calcUsedSkillsFromEquipment(actorData);
 				this.spUsed = Object.values(this.usedSkills).reduce((total, value) => total + value, 0);
 			},
 
@@ -430,28 +430,47 @@ export class FUActor extends Actor {
 
 				return 0;
 			},
-
 			calcAvailableSkillsFromVulnerabilities() {
 				let sum = 0;
-				Object.entries(systemData.resources.affinity).forEach((el) => {
-					if (el[1] === 0) {
+
+				Object.entries(systemData.resources.affinity).forEach(([affinity, value]) => {
+					// If physical vulnerable, increment sum twice
+					if (affinity === 'phys' && value === 0) {
+						sum += 2;
+					}
+					// If affinity is vulnerable (except 'phys'), increment sum
+					else if (value === 0 && affinity !== 'phys') {
 						sum++;
 					}
 				});
 
 				// Undeads are vulnerable to light
 				if (systemData.species.value === 'undead' && systemData.resources.affinity.light.value === 0) {
-					sum = sum - 1;
+					sum--;
 				}
 
 				// Plants have a free vulnerability
 				if (systemData.species.value === 'plant' && (systemData.resources.affinity.fire.value || systemData.resources.affinity.air.value || systemData.resources.affinity.ice.value || systemData.resources.affinity.bolt.value)) {
-					sum = sum - 1;
-				}
-				if (sum < 0) {
-					sum = 0;
+					sum--;
 				}
 
+				// Ensure the sum is non-negative
+				sum = Math.max(0, sum);
+
+				return sum;
+			},
+
+			calcUsedSpecialAttacks(actorData) {
+				let sum = 0;
+
+				actorData.items.forEach((item) => {
+					// Check if the item has a non-null quality value or an empty quality
+					const hasQuality = item.system.quality?.value !== undefined && item.system.quality.value !== '';
+					const isNotSkill = item.type !== 'miscAbility';
+					if (hasQuality && isNotSkill) {
+						sum++;
+					}
+				});
 				return sum;
 			},
 
@@ -488,6 +507,26 @@ export class FUActor extends Actor {
 				return Math.floor(systemData.derived.init.bonus / 4);
 			},
 
+			calcUsedSkillsFromResistances() {
+				let sum = 0;
+
+				Object.entries(systemData.resources.affinity).forEach((el) => {
+					const isConstructWithEarth = systemData.species.value === 'construct' && el[0] === 'earth';
+
+					if (el[1] === 2 && !isConstructWithEarth) {
+						sum += 0.5;
+					}
+				});
+				// Demons have two free resistances
+				if (systemData.species.value === 'demon') {
+					sum -= 1;
+				}
+
+				sum = Math.max(0, sum);
+
+				return Math.ceil(sum);
+			},
+
 			calcUsedSkillsFromImmunities() {
 				let sum = 0;
 				Object.entries(systemData.resources.affinity).forEach((el) => {
@@ -501,7 +540,6 @@ export class FUActor extends Actor {
 						if (systemData.species.value === 'undead' && el[0] === 'dark') {
 							return;
 						}
-
 						sum++;
 					}
 				});
@@ -544,28 +582,17 @@ export class FUActor extends Actor {
 				return miscAbility.length || 0;
 			},
 
-			// handleFieldChange() {
-			//   // Simulated field changes for demonstration
-			//   //this.availableSkills.species = 4;
-			//   //this.usedSkills.specialAttacks = 3;
+			calcUsedSkillsFromEquipment(actorData) {
+				const equipmentTypes = ['weapon', 'shield', 'armor'];
+				const sum = equipmentTypes.reduce((total, type) => {
+					return total + actorData.items.filter((item) => item.type === type).length;
+				}, 0);
 
-			//   // Recalculate SP based on the changes
-			//   this.calculateSP(systemData);
-			//   // Log SP tracker data to the console
-			//   this.logSPData();
-			// },
-
-			logSPData() {
-				console.log('SP Available:', this.spAvailable);
-				console.log('Available Skills:', this.availableSkills);
-				console.log('SP Used:', this.spUsed);
-				console.log('Used Skills:', this.usedSkills);
+				return sum > 0 ? 1 : 0;
 			},
 		};
-
-		// Initial calculation and logging
+		// Initial calculation
 		spTracker.calculateSP(actorData, systemData);
-		spTracker.logSPData();
 
 		return spTracker;
 	}
@@ -597,6 +624,10 @@ export class FUActor extends Actor {
 
 		// Initialize the SP tracker
 		this.spTracker = this._createSPTracker(actorData, systemData);
+	}
+
+	getSPTracker() {
+		return this.spTracker;
 	}
 
 	/**

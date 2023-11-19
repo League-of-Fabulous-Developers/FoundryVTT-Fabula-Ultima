@@ -13,7 +13,7 @@ function handleError(err) {
 	this.emit('end');
 }
 
-const SYSTEM_SCSS = ['scss/**/*.scss'];
+const SYSTEM_SCSS = ['styles/scss/**/*.scss'];
 function compileScss() {
 	// Configure options for sass output. For example, 'expanded' or 'nested'
 	let options = {
@@ -29,7 +29,7 @@ function compileScss() {
 			}),
 		)
 		.pipe(sourcemaps.write())
-		.pipe(gulp.dest('./css'));
+		.pipe(gulp.dest('./styles/css'));
 }
 const css = gulp.series(compileScss);
 

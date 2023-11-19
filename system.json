@@ -2,7 +2,7 @@
 	"id": "fabulaultima",
 	"title": "Fabula Ultima (Dev Build)",
 	"description": "The Fabula Ultima system for FoundryVTT!",
-	"version": "0.2.0",
+	"version": "#{VERSION}#",
 	"compatibility": {
 		"minimum": "10",
 		"verified": "10.312",
@@ -23,7 +23,7 @@
 	],
 	"scripts": [],
 	"esmodules": ["module/fabulaultima.mjs"],
-	"styles": ["css/fabulaultima.css", "css/rpg-awesome.css"],
+	"styles": ["styles/css/fabulaultima.css", "styles/css/rpg-awesome.css"],
 	"packs": [],
 	"languages": [
 		{
@@ -59,7 +59,7 @@
 	"secondaryTokenAttribute": "resources.mp",
 	"license": "LICENSE.txt",
 	"changelog": "CHANGELOG.md",
-	"url": "This is auto replaced",
-	"manifest": "This is auto replaced",
-	"download": "This is auto replaced"
+	"url": "#{URL}#",
+	"manifest": "#{MANIFEST}#",
+	"download": "#{DOWNLOAD}#"
 }

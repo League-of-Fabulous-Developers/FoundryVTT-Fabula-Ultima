@@ -65,7 +65,7 @@
 	</li>
 	{{#each skills as |item id|}}
 	<li class="item" data-item-id="{{ item._id }}">
-		<div class="flexrow" style="height: 26px">
+		<div class="flexrow" style="height: fit-content">
 			<div class="item-name" style="height: 24px">
 				<div class="item-image">
 					<a class="rollable" data-roll-type="item">
@@ -82,13 +82,8 @@
 			</div>
 
 			<div class="item-sl item-sl-stars star-container">
-				<!-- <div class="rollable fusl fus-sl-star"></div>
-				<div class="rollable fusl fus-sl-star"></div>
-				<div class="rollable fusl fus-sl-star"></div>
-				<div class="rollable fusl ful-sl-star"></div>
-				<div class="rollable fusl ful-sl-star"></div> -->
-				{{!--This will be populated dynamically --}}
-			</div>
+				{{ generateStars item.starCurrent item.starMax }}
+			</div>  
 	
 			<div class="item-level addable">
 				<span class="editable-skill-level" data-resource="item.system.level.value">{{ item.system.level.value }} </span>
@@ -97,7 +92,7 @@
 			</div>
 			{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
 		</div>
-		<span>{{ item.quality }}</span>
+		<span class="item-quality">{{ item.quality }}</span>
 		<div class="individual-description">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
 	</li>
 	{{/each}}
@@ -108,12 +103,12 @@
 	<span class="items-main sl grid grid-3col">
 		<i class="fas fa-question-circle"></i>
 		<span class="total-class-levels grid-span-2 flex-between"> {{ heroics.length }} / {{ system.derived.heroicmax.value }} </span>
-	</span>
+	</span> 
 </header>
 <ol class="items-list">
 	<li class="item flexrow items-header">
 		<div class="item-name">{{localize 'FU.Name'}}</div>
-		<div class="item-class">{{localize 'FU.Class'}}</div>
+		<div class="item-class">{{localize 'FU.ItemType'}}</div>
 		<div class="item-controls">
 			<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="{{localize 'FU.HeroicCreate'}}" data-type="heroic">
 				<i class="fas fa-plus icon"></i>
@@ -135,7 +130,7 @@
 				</h4>
 			</div>
 			<div class="item-class">
-				<span>{{ item.class }}</span>
+				<span>{{capitalize item.type }} {{capitalize item.system.subtype.value }}</span>
 			</div>
 			{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
 		</div>

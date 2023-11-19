@@ -21,7 +21,7 @@ Welcome to the Unofficial Fabula Ultima System for the Foundry Virtual Tabletop.
 ### Manual Installation
 
 1. Visit the [Release](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/releases "‌") page to find your desired version.
-2. Download the `fabulaultima-release-x.x.x.zip` file for your chosen version.
+2. Download the `fabulaultima.zip` file for your chosen version.
 3. Unzip the downloaded file to your FoundryVTT Data systems folder. (For more details, refer to the [FoundryVTT Configuration Guide](https://foundryvtt.com/article/configuration/#where-user-data "‌")).
 4. [Mandatory] Ensure that you have the `socketLib` module installed.
 5. Restart FoundryVTT if necessary.
