@@ -456,10 +456,20 @@
 
 					<!-- Action Buttons -->
 					<div class="action-container grid grid-2col">
-						<span class="action-button left-hand rollable" id="attackAction" data-action="attackAction" data-roll-type="item-slot"> <i class="fas fa-sword"></i>Main </span>
-						<span class="action-button right-hand rollable" id="defenseAction" data-action="defenseAction" data-roll-type="item-slot"> <i class="fas fa-shield"></i>Off </span>
+						{{#each items as |item id|}}
+						{{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "mainHand"))}}
+							<span class="action-button left-hand rollable" id="attackAction" data-action="attackAction" data-roll-type="item-slot">
+							<span class="icon-letter">M</span>{{ item.name }}
+							</span>
+						{{/if}}
+						{{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "offHand"))}}
+							<span class="action-button right-hand rollable" id="defenseAction" data-action="defenseAction" data-roll-type="item-slot">
+							<span class="icon-letter">O</span>{{ item.name }}
+							</span>
+						{{/if}}
+						{{/each}}
 					</div>
-
+	
 					<!-- NPC Skills -->
 					<div class="abilities desc flexcol">{{> "systems/fabulaultima/templates/actor/parts/actor-npc-skills.html" spTracker=spTracker}}</div>
 				</aside>
