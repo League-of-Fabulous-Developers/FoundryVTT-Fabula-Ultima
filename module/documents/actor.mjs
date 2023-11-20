@@ -54,6 +54,7 @@ export class FUActor extends Actor {
 		this._handleStatusEffects(actorData);
 		this._calculateDefenses(actorData);
 		this._calculateInitOrInitMod(actorData);
+		this._handleCustomWeapon(actorData);
 
 		// Make separate methods for each Actor type (character, npc, etc.) to keep
 		// things organized.
@@ -355,6 +356,14 @@ export class FUActor extends Actor {
 		const eliteOrChampBonus = actorData.type !== 'npc' ? 0 : actorData.system.isChampion.value !== 1 ? actorData.system.isChampion.value : actorData.system.isElite.value ? 2 : 0;
 
 		actorData.system.derived.init.value = actorData.type === 'npc' ? initMod + (actorData.system.attributes.dex.base + actorData.system.attributes.ins.base) / 2 + initBonus + eliteOrChampBonus : initMod + initBonus;
+	}
+
+	_handleCustomWeapon(actorData) {
+		// Filter and collect custom weapons
+		const customized = actorData.items.filter((item) => item.type === 'weapon' && item.system.isCustomWeapon?.value);
+		// Update hands.value property for each custom weapon to 'two-handed'
+		customized.forEach((customWeapon) => (customWeapon.system.hands.value = 'two-handed'));
+		customized.forEach((customWeapon) => (customWeapon.system.cost.value = 300));
 	}
 
 	/**
