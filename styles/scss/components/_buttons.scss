@@ -56,12 +56,17 @@
 /* Action Buttons */
 .action-button {
   width: 100%;
-  margin: 5px 0;
+  height: 36px;
   appearance: none;
   border: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  white-space: normal;
 
   color: $color-primary;
-  font-size: 18px;
 
   text-shadow: 1px 1px 1px $color-black;
   box-shadow: 3px 6px $color-secondary;
