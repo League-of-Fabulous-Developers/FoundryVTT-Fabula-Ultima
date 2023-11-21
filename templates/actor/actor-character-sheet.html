@@ -414,13 +414,19 @@
 
 			{{> systems/fabulaultima/templates/actor/parts/actor-divider.html customLabel=(localize 'FU.Traits')}} {{!-- Traits Section --}}
 			<section class="section-container">
-				<div class="traits resource-content flex-group-center">
-					<label>
-						<span class="resource-label-l">{{localize 'FU.Identity'}}</span>
-					</label>
-					<input type="text" name="system.resources.identity.name" value="{{ system.resources.identity.name }}" data-dtype="String" />
-				</div>
 				<div class="grid grid-2col">
+					<div class="traits resource-content flex-group-center">
+						<label>
+							<span class="resource-label-l">{{localize 'FU.Identity'}}</span>
+						</label>
+						<input type="text" name="system.resources.identity.name" value="{{ system.resources.identity.name }}" data-dtype="String" />
+					</div>
+					<div class="traits resource-content flex-group-center">
+						<label>
+							<span class="resource-label-l">{{localize 'FU.Pronouns'}}</span>
+						</label>
+						<input type="text" name="system.resources.pronouns.name" value="{{ system.resources.pronouns.name }}" data-dtype="String" />
+					</div>
 					<div class="traits resource-content flex-group-center">
 						<label>
 							<span class="resource-label-l">{{localize 'FU.Theme'}}</span>
