@@ -23,10 +23,10 @@
 					}
 				},
 				"attributes": {
-					"dex": { "base": 6, "current": 6 },
-					"ins": { "base": 6, "current": 6 },
-					"mig": { "base": 6, "current": 6 },
-					"wlp": { "base": 6, "current": 6 }
+					"dex": { "base": 6, "current": 6, "bonus": 0 },
+					"ins": { "base": 6, "current": 6, "bonus": 0 },
+					"mig": { "base": 6, "current": 6, "bonus": 0 },
+					"wlp": { "base": 6, "current": 6, "bonus": 0 }
 				},
 				"derived": {
 					"init": { "value": 0, "bonus": 0 },
