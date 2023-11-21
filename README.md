@@ -42,7 +42,8 @@ Major thanks to the following contributors:
 - **Design and CSS Improvements**: Various upgrades and CSS design improvements by [\@serpuss/quake](https://github.com/serpuss).
 - **Current Maintainer**: [spyrella](https://github.com/spyrella) - for ongoing updates to the system.
 
-A few assets were used from the following projects:
+A few assets/code were used from the following projects:
 
+- **fultimator**: [fultimator](https://github.com/codeclysm/fultimator) by codeclysm, specifically project/ritual/sp counter code, licensed under the [MIT License](https://github.com/codeclysm/fultimator/blob/main/LICENSE.md)
 - **animate.css**: [animate.css](https://animate.style/) by Daniel Eden, licensed under the [Hippocratic License](https://github.com/animate-css/animate.css/blob/main/LICENSE-HIPPOCRATIC).
 - **RPG-Awesome**: [RPG-Awesome](https://nagoshiashumari.github.io/Rpg-Awesome/) by Daniela Howe and Ivan Montiel, licensed under the [BSD 2-Clause "Simplified" License](https://github.com/NagoshiAshumari/Rpg-Awesome/blob/master/LICENSE).
