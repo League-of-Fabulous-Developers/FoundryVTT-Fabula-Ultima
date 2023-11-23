@@ -67,7 +67,7 @@ export class FUItem extends Item {
 		return {
 			attackString,
 			damageString,
-			qualityString: `【${qualityString}】`,
+			qualityString: `${qualityString}`,
 		};
 	}
 
@@ -95,7 +95,7 @@ export class FUItem extends Item {
 		}
 
 		return {
-			qualityString: `【${qualityString}】`,
+			qualityString: `${qualityString}`,
 		};
 	}
 

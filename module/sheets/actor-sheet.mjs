@@ -10,7 +10,7 @@ export class FUActorSheet extends ActorSheet {
 		return mergeObject(super.defaultOptions, {
 			classes: ['fabulaultima', 'sheet', 'actor'],
 			template: 'systems/fabulaultima/templates/actor/actor-character-sheet.html',
-			width: 600,
+			width: 620,
 			height: 1150,
 			tabs: [
 				{
@@ -50,6 +50,10 @@ export class FUActorSheet extends ActorSheet {
 		this._expanded = new Set();
 		// Prepare character data and items.
 		if (actorData.type == 'character') {
+			const tlTracker = this.actor.getTLTracker();
+
+			// Add tlTracker to the context
+			context.tlTracker = tlTracker;
 		}
 
 		// Prepare NPC data and items.
@@ -80,9 +84,25 @@ export class FUActorSheet extends ActorSheet {
 	 * @return {undefined}
 	 */
 	_prepareCharacterData(context) {
+		if (!context || !context.system || !context.system.attributes || !context.system.affinities) {
+			console.error('Invalid context or context.system');
+			return;
+		}
+
 		// Handle ability scores.
 		for (let [k, v] of Object.entries(context.system.attributes)) {
 			v.label = game.i18n.localize(CONFIG.FU.attributes[k]) ?? k;
+			v.abbr = game.i18n.localize(CONFIG.FU.attributeAbbreviations[k]) ?? k;
+		}
+
+		// Handle affinity
+		for (let [k, v] of Object.entries(context.system.affinities)) {
+			v.label = game.i18n.localize(CONFIG.FU.affinities[k]) ?? k;
+			v.affTypeBase = game.i18n.localize(CONFIG.FU.affType[v.base]) ?? v.base;
+			v.affTypeBaseAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.base]) ?? v.base;
+			v.affTypeCurr = game.i18n.localize(CONFIG.FU.affType[v.current]) ?? v.current;
+			v.affTypeCurrAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.current]) ?? v.current;
+			v.icon = CONFIG.FU.affIcon[k];
 		}
 	}
 

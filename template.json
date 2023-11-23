@@ -9,18 +9,18 @@
 					"mp": { "value": 10, "min": 0, "max": 10, "bonus": 0 },
 					"rp1": { "name": "", "value": 0 },
 					"rp2": { "name": "", "value": 0 },
-					"rp3": { "name": "", "value": 0 },
-					"affinity": {
-						"phys": 1,
-						"air": 1,
-						"bolt": 1,
-						"dark": 1,
-						"earth": 1,
-						"fire": 1,
-						"ice": 1,
-						"light": 1,
-						"poison": 1
-					}
+					"rp3": { "name": "", "value": 0 }
+				},
+				"affinities": {
+					"phys": { "base": 0, "current": 0, "bonus": 0 },
+					"air": { "base": 0, "current": 0, "bonus": 0 },
+					"bolt": { "base": 0, "current": 0, "bonus": 0 },
+					"dark": { "base": 0, "current": 0, "bonus": 0 },
+					"earth": { "base": 0, "current": 0, "bonus": 0 },
+					"fire": { "base": 0, "current": 0, "bonus": 0 },
+					"ice": { "base": 0, "current": 0, "bonus": 0 },
+					"light": { "base": 0, "current": 0, "bonus": 0 },
+					"poison": { "base": 0, "current": 0, "bonus": 0 }
 				},
 				"attributes": {
 					"dex": { "base": 6, "current": 6, "bonus": 0 },
@@ -31,10 +31,7 @@
 				"derived": {
 					"init": { "value": 0, "bonus": 0 },
 					"def": { "value": 0, "bonus": 0 },
-					"mdef": { "value": 0, "bonus": 0 },
-					"skillmax": { "value": 0, "bonus": 0 },
-					"classmax": { "value": 0, "bonus": 0 },
-					"heroicmax": { "value": 0, "bonus": 0 }
+					"mdef": { "value": 0, "bonus": 0 }
 				},
 				"castingAttributes": {
 					"primary": { "value": "ins" },

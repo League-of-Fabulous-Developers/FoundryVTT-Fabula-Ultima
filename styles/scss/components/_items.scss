@@ -30,7 +30,8 @@
 
 .items-main-header {
   height: 34px;
-  margin: 5px 2px;
+  margin: 2px 2px 5px 2px;
+  padding-right: 2px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -56,8 +57,9 @@
 
 .items-main {
   height: inherit;
-  width: 180px;
+  width: 174px;
   font-weight: bold;
+  text-align: left;
   text-shadow: 1px 1px 1px $color-black;
   color: $color-primary;
   font-size: 24px;
@@ -232,6 +234,10 @@
   max-width: 100%;
   height: auto;
   display: block;
+  border-radius: 5px;
+  background-image: linear-gradient(to right,
+  $color-secondary,
+  $color-ternary);
 }
 
 /* ----------------------------------------- */
@@ -281,7 +287,7 @@
 
 .items-list .item {
   align-items: center;
-  padding: 1px;
+  padding: 2px;
   transition:
     background-color 0.5s ease,
     border-color 0.5s ease,
@@ -289,7 +295,7 @@
     color 0.5s ease;
   background-color: transparent;
   border: 2px solid transparent;
-  border-radius: 5px;
+  border-radius: 7px;
   color: $color-secondary;
 
   .item-name {
@@ -310,7 +316,7 @@
 }
 
 .items-list .items-header {
-  margin: 10px 2px;
+  margin: 7px 2px 5px 0;
   align-items: center;
   border: transparent;
   background-color: transparent;
@@ -404,10 +410,29 @@
 .item-target,
 .item-damage,
 .item-dlevel {
-  flex: 0 0 120px;
+  flex: 0 0 126px;
   align-items: center;
   text-align: center;
   justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.item-effect {
+  flex: 0 0 300px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.item-effects {
+  flex: 0 0 300px;
+  align-items: center;
+  text-align: left;
+  justify-content: left;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
