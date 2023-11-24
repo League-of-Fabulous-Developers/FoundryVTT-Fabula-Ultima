@@ -18,10 +18,6 @@ FU.attributeAbbreviations = {
 	wlp: 'FU.AttributeWlpAbbr',
 };
 
-/**
- * The set of Affinities used within the sytem.
- * @type {Object}
- */
 FU.affinities = {
 	phys: 'FU.DamageNormal',
 	air: 'FU.DamageWind',

@@ -6,23 +6,23 @@
 export const preloadHandlebarsTemplates = async function () {
 	return loadTemplates([
 		// Actor partials.
-		'systems/fabulaultima/templates/actor/parts/actor-divider.html',
-		'systems/fabulaultima/templates/actor/parts/actor-npc-skills.html',
-		'systems/fabulaultima/templates/actor/parts/actor-equip.html',
-		'systems/fabulaultima/templates/actor/parts/actor-control.html',
-		'systems/fabulaultima/templates/actor/parts/actor-bonds.html',
-		'systems/fabulaultima/templates/actor/parts/actor-favorite.html',
-		'systems/fabulaultima/templates/actor/parts/actor-skills.html',
-		'systems/fabulaultima/templates/actor/parts/actor-items.html',
-		'systems/fabulaultima/templates/actor/parts/actor-spells.html',
-		'systems/fabulaultima/templates/actor/parts/actor-effects.html',
-		'systems/fabulaultima/templates/actor/parts/actor-behavior.html',
-		'systems/fabulaultima/templates/actor/parts/actor-feats.html',
-		'systems/fabulaultima/templates/actor/parts/actor-settings.html',
+		'systems/fabulaultima/templates/actor/parts/actor-divider.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-npc-skills.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-equip.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-control.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-bonds.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-favorite.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-skills.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-items.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-spells.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-effects.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-behavior.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-feats.hbs',
+		'systems/fabulaultima/templates/actor/parts/actor-settings.hbs',
 
 		// Item partials
-		'systems/fabulaultima/templates/item/parts/item-header.html',
-		'systems/fabulaultima/templates/item/parts/item-effects.html',
+		'systems/fabulaultima/templates/item/parts/item-header.hbs',
+		'systems/fabulaultima/templates/item/parts/item-effects.hbs',
 	]);
 };
 
@@ -48,14 +48,24 @@ Handlebars.registerHelper('half', function (value) {
 	return Math.floor(num / 2);
 });
 
-Handlebars.registerHelper('calculatePercentage', function (currentValue, maxValue) {
-	// Calculate the percentage
-	const percentage = (currentValue / maxValue) * 100;
-
-	// Return the percentage as a string with two decimal places
+Handlebars.registerHelper('calculatePercentage', function (value, max) {
+	value = parseFloat(value);
+	max = parseFloat(max);
+	const percentage = (value / max) * 100;
 	return percentage.toFixed(2) + '%';
 });
 
+// Register a Handlebars helper for generating stars
+Handlebars.registerHelper('generateStars', function (current, max) {
+	let stars = '';
+	for (let i = 0; i < current; i++) {
+		stars += '<div class="rollable fusl fus-sl-star"></div>';
+	}
+	for (let i = 0; i < max - current; i++) {
+		stars += '<div class="rollable fusl ful-sl-star"></div>';
+	}
+	return new Handlebars.SafeString(stars);
+});
 
 // Define a Handlebars helper to get the icon class based on item properties
 Handlebars.registerHelper('getIconClass', function (item) {
@@ -86,34 +96,19 @@ Handlebars.registerHelper('getIconClass', function (item) {
 });
 
 // Example layout for equipment slot handler
-const itemData = {
-	item: {
-		system: {
-			isEquipped: {
-				value: true,
-				slot: 'mainHand',
-			},
-		},
-		type: 'weapon',
-		system: {
-			hands: {
-				value: 'two-handed',
-			},
-		},
-	},
-};
-
-// Register a Handlebars helper for generating stars
-Handlebars.registerHelper('generateStars', function (current, max) {
-	let stars = '';
-
-	for (let i = 0; i < current; i++) {
-		stars += '<div class="rollable fusl fus-sl-star"></div>';
-	}
-
-	for (let i = 0; i < max - current; i++) {
-		stars += '<div class="rollable fusl ful-sl-star"></div>';
-	}
-
-	return new Handlebars.SafeString(stars);
-});
+// const itemData = {
+// 	item: {
+// 		system: {
+// 			isEquipped: {
+// 				value: true,
+// 				slot: 'mainHand',
+// 			},
+// 		},
+// 		type: 'weapon',
+// 		system: {
+// 			hands: {
+// 				value: 'two-handed',
+// 			},
+// 		},
+// 	},
+// };

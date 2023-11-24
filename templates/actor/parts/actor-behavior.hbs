@@ -23,7 +23,7 @@
 			<div class="item-level">
 				<span>{{ item.system.weight.value }}</span>
 			</div>
-			{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
+			{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
 		</li>
 		{{/if}} {{/each}}
 		<ol class="items-list">
@@ -45,7 +45,7 @@
 				<div class="item-level">
 					<span>{{ item.system.weight.value }}</span>
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
+				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
 			</li>
 			{{/if}} {{/each}}
 		</ol>

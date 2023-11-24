@@ -50,6 +50,7 @@ sans-serif;
       input, input.disabled {
         font-size: 18px;
         height: 22px;
+        color: inherit;
       }
     }
 
@@ -94,7 +95,6 @@ sans-serif;
     font-weight: bold;
     font-size: 14px;
   }
-
 
   .desc {
     .editor {

@@ -9,7 +9,7 @@ export class FUActorSheet extends ActorSheet {
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
 			classes: ['fabulaultima', 'sheet', 'actor'],
-			template: 'systems/fabulaultima/templates/actor/actor-character-sheet.html',
+			template: 'systems/fabulaultima/templates/actor/actor-character-sheet.hbs',
 			width: 620,
 			height: 1150,
 			tabs: [
@@ -24,7 +24,7 @@ export class FUActorSheet extends ActorSheet {
 
 	/** @override */
 	get template() {
-		return `systems/fabulaultima/templates/actor/actor-${this.actor.type}-sheet.html`;
+		return `systems/fabulaultima/templates/actor/actor-${this.actor.type}-sheet.hbs`;
 	}
 
 	/* -------------------------------------------- */
@@ -1023,16 +1023,14 @@ export class FUActorSheet extends ActorSheet {
 		const element = event.currentTarget;
 		const dataset = element.dataset;
 
-		// Check if Shift key is pressed
-		const isShiftPressed = event.shiftKey;
+		const isShift = event.shiftKey;
 
 		// Handle item rolls.
 		if (dataset.rollType) {
 			if (dataset.rollType === 'item') {
 				const itemId = element.closest('.item').dataset.itemId;
 				const item = this.actor.items.get(itemId);
-				console.log(itemId, item);
-				if (item) return item.roll(isShiftPressed); // Pass isShiftPressed as an argument
+				if (item) return item.roll(isShift);
 			}
 			if (dataset.rollType === 'behavior') {
 				return this._rollBehavior();

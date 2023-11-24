@@ -176,11 +176,11 @@ export class FUItem extends Item {
 	 *
 	 * @param {Item|null} usedItem - The item to be used for the roll, or null to use the current item.
 	 * @param {boolean} addName - Whether to add the item's name to the output.
-	 * @param {boolean} isShiftPressed - Whether the Shift key is pressed.
+	 * @param {boolean} isShift - Whether the Shift key is pressed.
 	 * @returns {Promise<string>} A formatted HTML string containing the roll information.
 	 * @throws {Error} Throws an error if the roll cannot be evaluated.
 	 */
-	async getSingleRollForItem(usedItem = null, addName = false, isShiftPressed = false) {
+	async getSingleRollForItem(usedItem = null, addName = false, isShift = false) {
 		const item = usedItem || this;
 		let content = '';
 
@@ -213,7 +213,11 @@ export class FUItem extends Item {
 		const originalHrZero = item.system.rollInfo?.useWeapon?.hrZero?.value;
 
 		// Temporarily set hrZero to true if Shift is pressed
-		if (isShiftPressed) {
+		if (isShift) {
+			item.system.rollInfo ??= {};
+			item.system.rollInfo.useWeapon ??= {};
+			item.system.rollInfo.useWeapon.hrZero ??= {};
+
 			item.system.rollInfo.useWeapon.hrZero.value = true;
 		}
 
@@ -302,14 +306,14 @@ export class FUItem extends Item {
 		}
 
 		// Restore the original value of hrZero if it was changed
-		if (isShiftPressed) {
+		if (isShift) {
 			item.system.rollInfo.useWeapon.hrZero.value = originalHrZero;
 		}
 
 		return content;
 	}
 
-	async getRollString(isShiftPressed) {
+	async getRollString(isShift) {
 		const isSpellOrSkill = ['spell', 'skill', 'miscAbility', 'ritual'].includes(this.type);
 
 		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
@@ -327,7 +331,7 @@ export class FUItem extends Item {
 				const equippedWeapons = this.actor.items.filter((singleItem) => (singleItem.type === 'weapon' || (singleItem.type === 'shield' && singleItem.system.isDualShield?.value)) && singleItem.system.isEquipped?.value);
 
 				for (const equippedWeapon of equippedWeapons) {
-					const data = await this.getSingleRollForItem(equippedWeapon, true, isShiftPressed);
+					const data = await this.getSingleRollForItem(equippedWeapon, true, isShift);
 					if (equippedWeapon.system.isEquipped.slot === 'mainHand') {
 						mainHandContent += data;
 					} else if (equippedWeapon.system.isEquipped.slot === 'offHand') {
@@ -346,7 +350,7 @@ export class FUItem extends Item {
 				mainHandContent = `<p class="mainhand-header">Main: ${mainHandContent}</p>`;
 				offHandContent = `<p class="offhand-header">Off: ${offHandContent}</p>`;
 			} else {
-				otherContent = await this.getSingleRollForItem(null, false, isShiftPressed);
+				otherContent = await this.getSingleRollForItem(null, false, isShift);
 			}
 		}
 
@@ -517,7 +521,7 @@ export class FUItem extends Item {
 	 * @param {Event} event The originating click event.
 	 * @private
 	 */
-	async roll(isShiftPressed) {
+	async roll(isShift) {
 		const item = this;
 		const { system, img, name, type } = item;
 		// Initialize chat data.
@@ -536,7 +540,7 @@ export class FUItem extends Item {
 		// Check if there's no roll data
 		if (!system.formula) {
 			const chatdesc = item.getDescriptionString();
-			const attackData = await item.getRollString(isShiftPressed);
+			const attackData = await item.getRollString(isShift);
 			const spellString = item.getSpellDataString();
 			const ritualString = item.getRitualDataString();
 			const projectString = item.getProjectDataString();

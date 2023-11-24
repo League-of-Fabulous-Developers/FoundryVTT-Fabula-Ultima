@@ -282,7 +282,7 @@ export class FUActor extends Actor {
 			let baseVal = attr.base;
 			let newVal = baseVal;
 
-			console.log('Key:', key, ' ModVal:', modVal, ' BaseVal:', baseVal, ' Current:', attr.current);
+			// console.log('Key:', key, ' ModVal:', modVal, ' BaseVal:', baseVal, ' Current:', attr.current);
 
 			if (baseVal === -1 && modVal === 1) {
 				newVal = 0;

@@ -40,7 +40,7 @@
 					<span>/</span>
 					<span>{{ item.system.level.max }}</span>
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
+				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
 			</div>
 			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
 		</li>
@@ -98,7 +98,7 @@
 						<span>{{ item.system.level.max }}</span>
 					{{/if}}
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
+				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
 			</div>
 			<span class="item-quality">{{ item.quality }}</span>
 			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
@@ -145,7 +145,7 @@
 				<div class="item-class">
 					<span>{{capitalize item.type }} {{capitalize item.system.subtype.value }}</span>
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
+				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
 			</div>
 			<div class="individual-description align-left">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
 		</li>

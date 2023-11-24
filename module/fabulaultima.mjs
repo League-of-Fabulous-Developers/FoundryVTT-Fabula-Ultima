@@ -42,7 +42,7 @@ Hooks.once('init', async () => {
 	CONFIG.Actor.documentClass = FUActor;
 	CONFIG.Item.documentClass = FUItem;
 
-	// todo: selective options for choosing which automation to disable
+	// TODO: selective options for choosing which automation to disable
 	/* 	game.settings.register('fabulaultima', 'disableAutomation', {
 		name: 'Disable Automation',
 		hint: 'Toggle to disable automatic calculations for certain fields.',
