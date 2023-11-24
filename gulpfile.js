@@ -29,7 +29,7 @@ function compileScss() {
 			}),
 		)
 		.pipe(sourcemaps.write())
-		.pipe(gulp.dest('./styles'));
+		.pipe(gulp.dest('./styles/css'));
 }
 const css = gulp.series(compileScss);
 
