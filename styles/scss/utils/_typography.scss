@@ -47,7 +47,7 @@ sans-serif;
     }
 
     .name-input {
-      input {
+      input, input.disabled {
         font-size: 18px;
         height: 22px;
       }

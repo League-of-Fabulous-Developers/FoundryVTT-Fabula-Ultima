@@ -155,11 +155,11 @@
     color: $color-primary;
     background-color: $color-secondary;
     border: thin solid $color-secondary;
-    width: 3.5em;
+    width: 4em;
     height: 26px;
     justify-content: center;
     text-align: center;
-    appearance: textfield;
+    appearance: none;
 
     option {
       background-color: $color-secondary;
