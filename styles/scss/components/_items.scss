@@ -352,14 +352,16 @@
 
 .is-martial {
   color: red !important;
+}
+
+.is-crisis {
+  color: $color-white !important;
 
   &.float-text {
     display: inline-block;
-    animation: floating 3s infinite ease-in-out;
+    animation: floating 1s infinite ease-in-out;
   }
 }
-
-
 
 .item-formula {
   flex: 0 0 200px;
