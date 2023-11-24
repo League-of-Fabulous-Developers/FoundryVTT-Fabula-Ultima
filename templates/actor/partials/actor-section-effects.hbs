@@ -11,7 +11,8 @@
 			<div class="effect-source">{{localize 'FU.Source'}}</div>
 			<div class="effect-source">{{localize 'FU.Duration'}}</div>
 			<div class="item-controls effect-controls flexrow">
-				<a class="effect-control" data-action="create" title="{{localize 'FU.EffectCreate'}}"> <i class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
+				<a class="effect-control" data-action="create" title="{{localize 'FU.EffectCreate'}}"> <i
+						class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
 			</div>
 		</li>
 
@@ -47,7 +48,9 @@
 						</a>
 					</div>
 				</div>
-				<div class="individual-description">{{#if effect.description}} {{editor effect.description target=".effect.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+				<div class="individual-description">{{#if effect.description}} {{editor effect.description
+					target=".effect.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+				</div>
 			</li>
 			{{/each}}
 		</ol>

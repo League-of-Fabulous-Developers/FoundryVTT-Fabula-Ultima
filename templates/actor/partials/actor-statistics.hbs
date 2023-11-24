@@ -1,0 +1,139 @@
+<div class="combine-header">
+    <img class="profile-img" src="{{ actor.img }}" data-edit="img" data-tooltip="{{ actor.name }}" />
+
+    <div class="header-fields">
+        <div class="header-center grid grid-6col">
+            <h1 class="charname grid-span-4">
+                <input name="name" type="text" value="{{ actor.name }}" placeholder="Name"
+                    class="resource-inputs-charname auto-shrink" />
+            </h1>
+
+            <!-- Level -->
+            <span class="resource-content levelup-container flex-group-center">
+                <label class="resource-label-sm" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip"> <i
+                        class="fa-solid fa-chart-simple icon"></i>{{localize
+                    'FU.LevelAbbr'}} </label>
+                <input type="number" name="system.level.value" value="{{ system.level.value }}" data-dtype="Number"
+                    class="resource-inputs" />
+            </span>
+
+            <!-- Experience -->
+            <span class="resource-content levelup-container flex-group-center">
+                <label class="resource-label-sm" data-tooltip="{{localize 'FU.Exp'}}" aria-describedby="tooltip">
+                    <i class="fa-solid fa-feather-pointed icon"></i>
+                    {{localize 'FU.ExpAbbr'}} {{#if (gte system.resources.exp.value 10)}}
+                    <i class="fas fa-level-up" data-tooltip="{{localize 'FU.LevelUp'}}" aria-describedby="tooltip"></i>
+                    {{/if}}
+                </label>
+                <input type="number" name="system.resources.exp.value" value="{{ system.resources.exp.value }}"
+                    data-dtype="Number" class="resource-inputs" />
+            </span>
+
+        </div>
+
+        <!-- Point Bars -->
+        <div class="grid grid-3col">
+            <!-- HP -->
+            <div class="resource-content flex-group-center">
+                <div class="grid grid-2col" style="padding: 0 3px">
+                    <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
+                        aria-describedby="tooltip">
+                        {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
+                        <i class="fa-solid fa-heart-crack is-martial"></i>
+                        {{else}}
+                        <i class="fa-solid fa-heart"></i>
+                        {{/if}} {{localize 'FU.HealthAbbr'}}
+                    </label>
+                    <span class="resource-label-l grid-start-2 align-right">
+                        {{half system.resources.hp.max}}
+                        <i class="fa-solid fa-heart-crack"></i>
+                    </span>
+                </div>
+                <div class="bar bar-progress">
+                    <div class="bar-progress-bar bar-hp"
+                        style="width: {{calculatePercentage system.resources.hp.value system.resources.hp.max}};">
+                    </div>
+                    <span class="bar-value"></span>
+                </div>
+                <div class="resource-content flexrow flex-center flex-between align-center">
+                    <input class="resource-current-input bar-start" type="number" name="system.resources.hp.value"
+                        value="{{ system.resources.hp.value }}" data-dtype="Number" />
+                    <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.HealthPoints'}}<br>Current: {{
+                  system.resources.hp.value
+                }}<br>Crisis: {{half system.resources.hp.max}}
+              <br>Bonus: {{ system.resources.hp.bonus }} <br>Max: {{
+                  system.resources.hp.max
+                }}" aria-describedby="tooltip">
+                        {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
+                        <i class="fa-solid fa-caret-up is-crisis float-text"></i>
+                        {{else}}
+                        <i class="fa-solid fa-caret-up"></i>
+                        {{/if}}
+                    </span>
+                    <input class="resource-max-input bar-end" type="number" name="system.resources.hp.max"
+                        value="{{ system.resources.hp.max }}" data-dtype="Number"
+                        disabled="{{ system.resources.hp.max }}" />
+                </div>
+            </div>
+
+            <!-- MP -->
+            <div class="resource-content flex-group-center">
+                <div class="grid grid-2col" style="padding: 0 3px">
+                    <label class="resource-label-l align-left grid-span-1" data-tooltip="Mind Points"
+                        aria-describedby="tooltip"> <i class="fa-solid fa-wand-magic-sparkles icon"></i>{{localize
+                        'FU.MindAbbr'}} </label>
+                    <label class="resource-label-l align-right rollable" data-tooltip="Rest" aria-describedby="tooltip">
+                        <i class="fa-solid fa-bed rest"></i></label>
+                </div>
+                <div class="bar bar-progress">
+                    <div class="bar-progress-bar bar-mp"
+                        style="width: {{calculatePercentage system.resources.mp.value system.resources.mp.max}};">
+                    </div>
+                    <span class="bar-value"></span>
+                </div>
+                <div class="resource-content flexrow flex-center flex-between align-center">
+                    <input class="resource-current-input bar-start" type="number" name="system.resources.mp.value"
+                        value="{{ system.resources.mp.value }}" data-dtype="Number" class="resource-inputs bar-start" />
+                    <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.MindPoints'}}<br>Current: {{
+                  system.resources.mp.value
+                }}<br>Bonus: {{ system.resources.mp.bonus }} <br>Max: {{
+                  system.resources.mp.max
+                }}" aria-describedby="tooltip">
+                        <i class="fa-solid fa-caret-up"></i>
+                    </span>
+                    <input class="resource-max-input bar-end" type="number" name="system.resources.mp.max"
+                        value="{{ system.resources.mp.max }}" data-dtype="Number"
+                        disabled="{{ system.resources.mp.max }}" />
+                </div>
+            </div>
+
+            <!-- IP -->
+            <div class="resource-content flex-group-center align-left">
+                <div class="grid grid-3col" style="padding: 0 5px">
+                    <label class="resource-label-l align-left grid-span-2" data-tooltip="Inventory Points"
+                        aria-describedby="tooltip"> <i class="fa-solid fa-backpack icon"></i>{{localize
+                        'FU.InventoryAbbr'}} </label>
+                </div>
+                <div class="bar bar-progress">
+                    <div class="bar-progress-bar bar-ip"
+                        style="width: {{calculatePercentage system.resources.ip.value system.resources.ip.max}};">
+                    </div>
+                    <span class="bar-value"></span>
+                </div>
+                <div class="resource-content flexrow flex-center flex-between align-center">
+                    <input class="resource-current-input bar-start" type="number" name="system.resources.ip.value"
+                        value="{{ system.resources.ip.value }}" data-dtype="Number" />
+                    <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.InventoryPoints'}}<br>Current: {{
+                  system.resources.ip.value
+                }}<br>Bonus: {{ system.resources.ip.bonus }} <br>Max: {{ system.resources.ip.max }}"
+                        aria-describedby="tooltip">
+                        <i class="fa-solid fa-caret-up"></i>
+                    </span>
+                    <input class="resource-max-input bar-end" type="number" name="system.resources.ip.max"
+                        value="{{ system.resources.ip.max }}" data-dtype="Number"
+                        disabled="{{ system.resources.ip.max }}" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

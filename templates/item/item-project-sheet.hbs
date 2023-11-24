@@ -1,5 +1,6 @@
 <form class="{{ cssClass }} backgroundstyle" autocomplete="off">
-	{{> "systems/fabulaultima/templates/item/parts/item-header.hbs" dtypes=dtypes}} {{!-- Sheet Tab Navigation --}}
+	{{> "systems/fabulaultima/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+	{{!-- Sheet Tab Navigation --}}
 	<nav class="sheet-tabs tabs" data-group="primary">
 		<a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
 		<a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
@@ -9,7 +10,8 @@
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
 		{{!-- Description Tab --}}
-		<div class="tab desc" data-group="primary" data-tab="description">{{editor system.description target="system.description" rollData=rollData button=true owner=owner editable=editable}}</div>
+		<div class="tab desc" data-group="primary" data-tab="description">{{editor system.description
+			target="system.description" rollData=rollData button=true owner=owner editable=editable}}</div>
 
 		{{!-- Attributes Tab --}}
 		<div class="tab attributes" data-group="primary" data-tab="attributes">
@@ -20,7 +22,8 @@
 				</label>
 				{{!-- NPC Relevent Option --}} {{#if (eq actor.type "npc")}}
 				<label class="checkbox resource-label-sm">
-					<span>{{localize 'FU.BehaviorStatus'}}</span><input type="checkbox" name="system.isBehavior.value" {{ checked system.isBehavior.value }} />
+					<span>{{localize 'FU.BehaviorStatus'}}</span><input type="checkbox" name="system.isBehavior.value"
+						{{ checked system.isBehavior.value }} />
 					{{/if}}
 				</label>
 				<label class="checkbox resource-label-sm">
@@ -35,7 +38,8 @@
 				<div class="grid grid-3col card-style">
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.Potency'}}</label>
-						<select class="resource-inputs select-dropdown-m" value="{{ system.potency.value }}" name="system.potency.value">
+						<select class="resource-inputs select-dropdown-m" value="{{ system.potency.value }}"
+							name="system.potency.value">
 							{{#select system.potency.value}}
 							<option value="minor">Minor</option>
 							<option value="medium">Medium</option>
@@ -46,7 +50,8 @@
 					</div>
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.Area'}}</label>
-						<select class="resource-inputs select-dropdown-m" value="{{ system.area.value }}" name="system.area.value">
+						<select class="resource-inputs select-dropdown-m" value="{{ system.area.value }}"
+							name="system.area.value">
 							{{#select system.area.value}}
 							<option value="individual">Individual</option>
 							<option value="small">Small</option>
@@ -57,7 +62,8 @@
 					</div>
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.Uses'}}</label>
-						<select class="resource-inputs select-dropdown-m" value="{{ system.use.value }}" name="system.use.value">
+						<select class="resource-inputs select-dropdown-m" value="{{ system.use.value }}"
+							name="system.use.value">
 							{{#select system.use.value}}
 							<option value="consumable">{{localize 'FU.Consumable'}}</option>
 							<option value="permanent">{{localize 'FU.Permanent'}}</option>
@@ -69,42 +75,50 @@
 				<div class="grid grid-3col">
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.NumTinker'}}</label>
-						<input class="resource-inputs" type="text" name="system.numTinker.value" value="{{ system.numTinker.value }}" data-dtype="Number" />
+						<input class="resource-inputs" type="text" name="system.numTinker.value"
+							value="{{ system.numTinker.value }}" data-dtype="Number" />
 					</div>
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.NumHelper'}}</label>
-						<input class="resource-inputs" type="text" name="system.numHelper.value" value="{{ system.numHelper.value }}" data-dtype="Number" />
+						<input class="resource-inputs" type="text" name="system.numHelper.value"
+							value="{{ system.numHelper.value }}" data-dtype="Number" />
 					</div>
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.LvlVision'}}</label>
-						<input class="resource-inputs" type="text" name="system.lvlVision.value" value="{{ system.lvlVision.value }}" data-dtype="Number" />
+						<input class="resource-inputs" type="text" name="system.lvlVision.value"
+							value="{{ system.lvlVision.value }}" data-dtype="Number" />
 					</div>
 				</div>
 
 				<div class="grid grid-3col">
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.Progress'}}</label>
-						<input type="text" name="system.progress.max" value="{{ system.progress.max }}" data-dtype="Number" disabled />
+						<input type="text" name="system.progress.max" value="{{ system.progress.max }}"
+							data-dtype="Number" disabled />
 					</div>
 
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.ProgressPerDay'}}</label>
-						<input type="text" name="system.progressPerDay.value" value="{{ system.progressPerDay.value }}" data-dtype="Number" disabled />
+						<input type="text" name="system.progressPerDay.value" value="{{ system.progressPerDay.value }}"
+							data-dtype="Number" disabled />
 					</div>
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.Days'}}</label>
-						<input type="text" name="system.days.value" value="{{ system.days.value }}" data-dtype="Number" disabled />
+						<input type="text" name="system.days.value" value="{{ system.days.value }}" data-dtype="Number"
+							disabled />
 					</div>
 				</div>
 
 				<div class="grid grid-2col">
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.Cost'}}</label>
-						<input type="text" name="system.cost.value" value="{{ system.cost.value }}" data-dtype="Number" disabled />
+						<input type="text" name="system.cost.value" value="{{ system.cost.value }}" data-dtype="Number"
+							disabled />
 					</div>
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.Discount'}}</label>
-						<input type="text" name="system.discount.value" value="{{ system.discount.value }}" data-dtype="Number" disabled />
+						<input type="text" name="system.discount.value" value="{{ system.discount.value }}"
+							data-dtype="Number" disabled />
 					</div>
 				</div>
 			</div>
@@ -116,7 +130,8 @@
 				<div class="grid grid-4col card-style">
 					<div class="resource-content flexrow flex-center flex-between buttons-inc combineBar">
 						<label class="resource-label-sm">{{localize 'FU.CurrentProgress'}}</label>
-						<input type="number" class="resource-inputs select-dropdown-m" name="system.progress.current" value="{{ system.progress.current }}" data-dtype="Number" />
+						<input type="number" class="resource-inputs select-dropdown-m" name="system.progress.current"
+							value="{{ system.progress.current }}" data-dtype="Number" />
 						/
 						<label for="system.progress.max" data-dtype="Number">{{ system.progress.max }}</label>
 					</div>

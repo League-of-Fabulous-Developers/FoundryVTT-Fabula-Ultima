@@ -7,6 +7,7 @@ import { FUItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU } from './helpers/config.mjs';
+import { registerSystemSettings } from './settings.js';
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -42,16 +43,9 @@ Hooks.once('init', async () => {
 	CONFIG.Actor.documentClass = FUActor;
 	CONFIG.Item.documentClass = FUItem;
 
-	// TODO: selective options for choosing which automation to disable
-	/* 	game.settings.register('fabulaultima', 'disableAutomation', {
-		name: 'Disable Automation',
-		hint: 'Toggle to disable automatic calculations for certain fields.',
-		scope: 'world', // or "client" if it's a client-specific setting
-		config: true,
-		default: false, // Initial value
-		type: Boolean,
-	});
- */
+	// Register system settings
+	registerSystemSettings();
+
 	CONFIG.statusEffects = [
 		{
 			id: 'accelerated',

@@ -5,13 +5,14 @@
 			<label class="items-label">{{localize "FU.Features"}}</label>
 		</span>
 	</header>
-	
+
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize 'FU.Name'}}</div>
 			<div class="item-class">{{localize 'FU.ItemType'}}</div>
 			<div class="item-controls">
-				<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="{{localize 'FU.MiscCreate'}}" data-type="miscAbility">
+				<a class="item-control item-create" aria-describedby="tooltip"
+					data-tooltip="{{localize 'FU.MiscCreate'}}" data-type="miscAbility">
 					<i class="fas fa-plus icon"></i>
 					{{localize 'FU.Add'}}
 				</a>
@@ -37,13 +38,14 @@
 				<div class="item-class">
 					<span>{{capitalize item.system.subtype.value}}</span>
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span class="item-quality">{{ item.quality }}</span>
-			<div class="individual-description align-left">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+			<div class="individual-description align-left">{{#if item.system.description}} {{editor
+				item.system.description target="item.system.description" rollData=rollData button=false owner=owner
+				editable=false}} {{/if}}</div>
 		</li>
 		{{/each}}
-		
 	</ol>
 </section>
 {{/if}}
@@ -62,7 +64,8 @@
 			<div class="item-clock">{{localize 'FU.Clock'}}</div>
 			<div class="item-controls">
 				<div class="item-controls">
-					<a class="item-control item-create" title="{{localize 'FU.LimitCreate'}}" data-type="zeroPower"> <i class="fas fa-plus icon"></i>{{localize 'FU.Add'}}</a>
+					<a class="item-control item-create" title="{{localize 'FU.LimitCreate'}}" data-type="zeroPower"> <i
+							class="fas fa-plus icon"></i>{{localize 'FU.Add'}}</a>
 				</div>
 			</div>
 		</li>
@@ -90,13 +93,17 @@
 					<span>/</span>
 					<span>{{ item.system.trigger.max }}</span>
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<div class="individual-description align-left">
 				<div class="resource-label">{{ item.zeroTrigger }}</div>
-				{{#if item.system.zeroTrigger.description}} {{editor item.system.zeroTrigger.description target="item.system.zeroTrigger.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+				{{#if item.system.zeroTrigger.description}} {{editor item.system.zeroTrigger.description
+				target="item.system.zeroTrigger.description" rollData=rollData button=false owner=owner editable=false}}
+				{{/if}}
 				<div class="resource-label">{{ item.zeroEffect }}</div>
-				{{#if item.system.zeroEffect.description}} {{editor item.system.zeroEffect.description target="item.system.zeroEffect.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+				{{#if item.system.zeroEffect.description}} {{editor item.system.zeroEffect.description
+				target="item.system.zeroEffect.description" rollData=rollData button=false owner=owner editable=false}}
+				{{/if}}
 			</div>
 		</li>
 		{{/each}}
@@ -127,7 +134,8 @@
 			<div class="item-attack">{{localize "FU.ProgressPerDay"}}</div>
 			<div class="item-cost">{{localize "FU.Cost"}}</div>
 			<div class="item-controls">
-				<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="{{localize 'FU.ProjectCreate'}}" data-type="project">
+				<a class="item-control item-create" aria-describedby="tooltip"
+					data-tooltip="{{localize 'FU.ProjectCreate'}}" data-type="project">
 					<i class="fas fa-plus icon"></i>
 					{{localize 'FU.Add'}}
 				</a>
@@ -158,11 +166,13 @@
 				<div class="item-cost">
 					<span>{{ item.system.cost.value }}z</span>
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span>{{ item.quality }}</span>
-			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
+				target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+			</div>
 		</li>
 		{{/each}}
 	</ol>
-</ol>
+	</ol>

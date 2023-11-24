@@ -6,7 +6,8 @@
 		</span>
 		<span class="items-main sl grid grid-3col">
 			<i class="fas fa-question-circle"></i>
-			<span class="total-class-levels grid-span-2 flex-between">  {{ tlTracker.totalClass.current }}  / {{ tlTracker.totalClass.max }} </span>
+			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalClass.current }} / {{
+				tlTracker.totalClass.max }} </span>
 		</span>
 	</header>
 	<ol class="items-list">
@@ -14,7 +15,8 @@
 			<div class="item-name">{{localize "FU.Name"}}</div>
 			<div class="item-level">{{localize "FU.Level"}}</div>
 			<div class="item-controls">
-				<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="Create class" data-type="class"> <i class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
+				<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="Create class"
+					data-type="class"> <i class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
 			</div>
 		</li>
 		{{#each classes as |item id|}}
@@ -24,7 +26,8 @@
 					<div class="item-image">
 						<a class="rollable" data-roll-type="item">
 							<div class="item-image-wrap">
-								<img src="{{ item.img }}" aria-describedby="tooltip" data-tooltip="{{ item.name }}" class="item-image-res" />
+								<img src="{{ item.img }}" aria-describedby="tooltip" data-tooltip="{{ item.name }}"
+									class="item-image-res" />
 							</div>
 						</a>
 					</div>
@@ -40,9 +43,11 @@
 					<span>/</span>
 					<span>{{ item.system.level.max }}</span>
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
-			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
+				target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+			</div>
 		</li>
 		{{/each}}
 	</ol>
@@ -56,7 +61,8 @@
 		</span>
 		<span class="items-main sl grid grid-3col">
 			<i class="fas fa-question-circle"></i>
-			<span class="total-class-levels grid-span-2 flex-between">  {{ tlTracker.totalSkill.current }}  / {{ tlTracker.totalSkill.max }} </span>
+			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalSkill.current }} / {{
+				tlTracker.totalSkill.max }} </span>
 		</span>
 	</header>
 	<ol class="items-list">
@@ -65,7 +71,8 @@
 			<div class="item-sl">{{localize 'FU.SkillLevel'}}</div>
 			<div class="item-level">{{localize 'FU.SkillLevelAbbr'}}</div>
 			<div class="item-controls">
-				<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="{{localize 'FU.SkillCreate'}}" data-type="skill">
+				<a class="item-control item-create" aria-describedby="tooltip"
+					data-tooltip="{{localize 'FU.SkillCreate'}}" data-type="skill">
 					<i class="fas fa-plus icon"></i>
 					{{localize 'FU.Add'}}
 				</a>
@@ -78,7 +85,8 @@
 					<div class="item-image">
 						<a class="rollable" data-roll-type="item">
 							<div class="item-image-wrap">
-								<img src="{{ item.img }}" aria-describedby="tooltip" data-tooltip="{{ item.name }}" class="item-image-res" />
+								<img src="{{ item.img }}" aria-describedby="tooltip" data-tooltip="{{ item.name }}"
+									class="item-image-res" />
 							</div>
 						</a>
 					</div>
@@ -90,18 +98,21 @@
 				</div>
 				<div class="item-sl item-sl-stars star-container">
 					{{ generateStars item.starCurrent item.starMax }}
-				</div>  
+				</div>
 				<div class="item-level addable">
-					<span class="editable-skill-level" data-resource="item.system.level.value">{{ item.system.level.value }}</span>
+					<span class="editable-skill-level" data-resource="item.system.level.value">{{
+						item.system.level.value }}</span>
 					{{#if (gt item.system.level.max 0)}}
-						<span>/</span>
-						<span>{{ item.system.level.max }}</span>
+					<span>/</span>
+					<span>{{ item.system.level.max }}</span>
 					{{/if}}
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span class="item-quality">{{ item.quality }}</span>
-			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
+				target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+			</div>
 		</li>
 		{{/each}}
 	</ol>
@@ -115,15 +126,17 @@
 		</span>
 		<span class="items-main sl grid grid-3col">
 			<i class="fas fa-question-circle"></i>
-			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalHeroic.current }} / {{ tlTracker.totalHeroic.max }} </span>
-		</span> 
+			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalHeroic.current }} / {{
+				tlTracker.totalHeroic.max }} </span>
+		</span>
 	</header>
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize 'FU.Name'}}</div>
 			<div class="item-class">{{localize 'FU.ItemType'}}</div>
 			<div class="item-controls">
-				<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="{{localize 'FU.HeroicCreate'}}" data-type="heroic">
+				<a class="item-control item-create" aria-describedby="tooltip"
+					data-tooltip="{{localize 'FU.HeroicCreate'}}" data-type="heroic">
 					<i class="fas fa-plus icon"></i>
 					{{localize 'FU.Add'}}
 				</a>
@@ -134,7 +147,8 @@
 			<div class="flexrow">
 				<div class="item-name">
 					<div class="item-image">
-						<a class="rollable" data-roll-type="item"><img src="{{ item.img }}" aria-describedby="tooltip" data-tooltip="{{ item.name }}" width="24" height="24" /></a>
+						<a class="rollable" data-roll-type="item"><img src="{{ item.img }}" aria-describedby="tooltip"
+								data-tooltip="{{ item.name }}" width="24" height="24" /></a>
 					</div>
 					<h4 class="click-item">
 						<i class="fas fa-chevron-down" style="display: none"></i>
@@ -145,9 +159,11 @@
 				<div class="item-class">
 					<span>{{capitalize item.type }} {{capitalize item.system.subtype.value }}</span>
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
-			<div class="individual-description align-left">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+			<div class="individual-description align-left">{{#if item.system.description}} {{editor
+				item.system.description target="item.system.description" rollData=rollData button=false owner=owner
+				editable=false}} {{/if}}</div>
 		</li>
 		{{/each}}
 	</ol>

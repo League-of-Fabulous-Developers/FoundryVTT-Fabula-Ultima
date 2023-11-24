@@ -23,7 +23,7 @@
 	],
 	"scripts": [],
 	"esmodules": ["module/fabulaultima.mjs"],
-	"styles": ["styles/css/fabulaultima.css"],
+	"styles": ["styles/fabulaultima.css"],
 	"packs": [],
 	"languages": [
 		{

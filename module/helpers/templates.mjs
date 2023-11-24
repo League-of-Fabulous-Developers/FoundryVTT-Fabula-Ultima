@@ -5,24 +5,31 @@
  */
 export const preloadHandlebarsTemplates = async function () {
 	return loadTemplates([
-		// Actor partials.
-		'systems/fabulaultima/templates/actor/parts/actor-divider.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-npc-skills.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-equip.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-control.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-bonds.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-favorite.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-skills.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-items.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-spells.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-effects.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-behavior.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-feats.hbs',
-		'systems/fabulaultima/templates/actor/parts/actor-settings.hbs',
+		// Actor Section partials.
+		'systems/fabulaultima/templates/actor/partials/actor-section-classes.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-section-features.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-section-spells.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-section-items.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-section-effects.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-section-behavior.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-section-settings.hbs',
+
+		// Actor Component partials.
+		'systems/fabulaultima/templates/actor/partials/actor-statistics.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-resources.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-affinities.hbs',
+
+		'systems/fabulaultima/templates/actor/partials/actor-npc-skills.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-favorite.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-bonds.hbs',
+
+		'systems/fabulaultima/templates/actor/partials/actor-divider.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-equip.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-control.hbs',
 
 		// Item partials
-		'systems/fabulaultima/templates/item/parts/item-header.hbs',
-		'systems/fabulaultima/templates/item/parts/item-effects.hbs',
+		'systems/fabulaultima/templates/item/partials/item-header.hbs',
+		'systems/fabulaultima/templates/item/partials/item-effects.hbs',
 	]);
 };
 

@@ -1,0 +1,203 @@
+<div class="header-fields desc grid grid-4col" style="align-items: flex-start">
+    {{!-- FU Points --}}
+    <div class="resource-content flex-group-center">
+        <label>
+            {{#if (eq actor.type "npc")}}
+            <span class="resource-label-l"> <i class="fa-solid fa-crystal-ball icon"></i>{{localize
+                'FU.UltimaPoints'}} </span>
+            {{/if}} {{#if (eq actor.type "character")}}
+            <span class="resource-label-l"> <i class="fa-solid fa-crystal-ball icon"></i>{{localize
+                'FU.FabulaPoints'}} </span>
+            {{/if}}
+        </label>
+        <div class="buttons-inc">
+            <button class="decrement-button" data-resource="fp" data-action="decrease">
+                <i class="fas fa-minus"></i>
+            </button>
+            <input type="number" name="system.resources.fp.value" value="{{ system.resources.fp.value }}"
+                data-dtype="Number" id="fp-input" class="fp-resource-inputs" />
+            <button class="increment-button" data-resource="fp" data-action="increase">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+
+    {{!-- DEF --}}
+    <div class="resource-content flex-group-center">
+        <label class="resource-label-l"> <i class="fa-solid fa-shield icon"></i>{{localize 'FU.DefenseAbbr'}}
+        </label>
+        <div class="resource-content flex-center">
+            <input class="resource-inputs" id="def-input" type="number" name="system.derived.def.value"
+                value="{{ system.derived.def.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.Defense'}}<br>Current: {{
+              system.derived.def.value
+            }}<br>Bonus: {{ system.derived.def.bonus }}" aria-describedby="tooltip" disabled />
+        </div>
+    </div>
+
+    {{!-- MDEF --}}
+    <div class="resource-content flex-group-center">
+        <label class="resource-label-l"> <i class="fa-solid fa-shield-halved icon"></i>{{localize
+            'FU.MagicDefenseAbbr'}} </label>
+        <div class="resource-content flex-center">
+            <input class="resource-inputs" id="mdef-input" type="number" name="system.derived.mdef.value"
+                value="{{ system.derived.mdef.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.MagicDefense'}}<br>Current: {{
+              system.derived.mdef.value
+            }}<br>Bonus: {{ system.derived.mdef.bonus }}" aria-describedby="tooltip" disabled />
+        </div>
+    </div>
+
+    {{!-- Initiative --}}
+    <div class="resource-content flex-group-center">
+        <label class="rollable resource-label-l" data-roll-type="roll-init"> <i
+                class="fa-solid fa-clock icon"></i>{{localize 'FU.Initiative'}} </label>
+        <div class="resource-content flex-center">
+            <input class="resource-inputs" id="init-input" type="number" name="system.derived.init.value"
+                value="{{ system.derived.init.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.Initiative'}}<br>Current: {{
+              system.derived.init.value
+            }}<br>Bonus: {{ system.derived.init.bonus }}" aria-describedby="tooltip" disabled />
+        </div>
+    </div>
+
+    {{!-- RP1 --}}
+    <div class="resource-content flex-group-center">
+        <div class="name-input">
+            <input type="text" name="system.resources.rp1.name" title="{{localize 'FU.ResourcePoints'}}"
+                value="{{ system.resources.rp1.name }}" data-dtype="String" placeholder="Resource 1"
+                class="resource-label" />
+        </div>
+        <div class="buttons-inc">
+            <button class="increment-button" data-resource="rp1" data-action="decrease">
+                <i class="fas fa-minus"></i>
+            </button>
+            <input type="number" name="system.resources.rp1.value" data-tooltip="Current: {{
+              system.resources.rp1.value
+            }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp1.value }}"
+                data-dtype="Number" id="rp1-input" class="resource-inputs" />
+            <button class="increment-button" data-resource="rp1" data-action="increase">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+
+    {{#if system.isCompanion.value}}{{#if (eq actor.type "npc")}}
+    {{!-- [Companian] PC Level Replace RP2 --}}
+    <div class="resource-content flex-group-center">
+        <div class="name-input">
+            <input type="text" name="system.resources.rp2.name" data-tooltip="{{localize 'FU.PlayerLevel'}}"
+                value="{{localize 'FU.PlayerLevel'}}" data-dtype="String" class="resource-label" disabled />
+        </div>
+        <div class="buttons-inc">
+            <button class="increment-button" data-resource="rp2" data-action="decrease">
+                <i class="fas fa-minus"></i>
+            </button>
+            <input type="number" name="system.resources.rp2.value" data-tooltip="Current: {{
+              system.resources.rp2.value
+            }}<br>Max: 50<br>" aria-describedby="tooltip" value="{{ system.resources.rp2.value }}" data-dtype="Number"
+                id="rp2-input" class="resource-inputs" />
+            <button class="increment-button" data-resource="rp2" data-action="increase">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+
+    {{!-- [Companian] Skill Level Replace RP3 --}}
+    <div class="resource-content flex-group-center">
+        <div class="name-input">
+            <input type="text" name="system.resources.rp3.name" data-tooltip="{{localize 'FU.SkillLevel'}}"
+                value="{{localize 'FU.SkillLevel'}}" data-dtype="String" class="resource-label" disabled />
+        </div>
+        <div class="buttons-inc">
+            <button class="increment-button" data-resource="rp3" data-action="decrease">
+                <i class="fas fa-minus"></i>
+            </button>
+            <input type="number" name="system.resources.rp3.value" data-tooltip="Current: {{
+              system.resources.rp3.value
+            }}<br>Max: 5<br>" aria-describedby="tooltip" value="{{ system.resources.rp3.value }}" data-dtype="Number"
+                id="rp3-input" class="resource-inputs" />
+            <button class="increment-button" data-resource="rp3" data-action="increase">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    {{/if}}
+    {{else}}
+
+    {{!-- RP2 --}}
+    <div class="resource-content flex-group-center">
+        <div class="name-input">
+            <input type="text" name="system.resources.rp2.name" title="{{localize 'FU.ResourcePoints'}}"
+                value="{{ system.resources.rp2.name }}" data-dtype="String" placeholder="Resource 2"
+                class="resource-label" />
+        </div>
+        <div class="buttons-inc">
+            <button class="increment-button" data-resource="rp2" data-action="decrease">
+                <i class="fas fa-minus"></i>
+            </button>
+            <input type="number" name="system.resources.rp2.value" data-tooltip="Current: {{
+              system.resources.rp2.value
+            }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp2.value }}"
+                data-dtype="Number" id="rp2-input" class="resource-inputs" />
+            <button class="increment-button" data-resource="rp2" data-action="increase">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+
+    {{!-- RP3 --}}
+    <div class="resource-content flex-group-center">
+        <div class="name-input">
+            <input type="text" name="system.resources.rp3.name" title="{{localize 'FU.ResourcePoints'}}"
+                value="{{ system.resources.rp3.name }}" data-dtype="String" placeholder="Resource 3"
+                class="resource-label" />
+        </div>
+        <div class="buttons-inc">
+            <button class="increment-button" data-resource="rp3" data-action="decrease">
+                <i class="fas fa-minus"></i>
+            </button>
+            <input type="number" name="system.resources.rp3.value" data-tooltip="Current: {{
+              system.resources.rp3.value
+            }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp3.value }}"
+                data-dtype="Number" id="rp3-input" class="resource-inputs" />
+            <button class="increment-button" data-resource="rp3" data-action="increase">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    {{/if}}
+
+    {{!-- Roll Check --}}
+    <div class="resource-content flex-group-center">
+        <label class="resource-label-l rollable flex-center" data-roll-type="roll-check"> <i
+                class="fa-solid fa-dice icon"></i>{{localize 'FU.RollCheck'}} </label>
+        <div class="buttons-inc flex-group-center">
+            <span class="buttons-inc">
+                <select value="{{ system.rollInfo.attributes.primary.value }}"
+                    name="system.rollInfo.attributes.primary.value" class="resource-inputs">
+                    {{#select system.rollInfo.attributes.primary.value}}
+                    <option value="attributes.dex.current">{{localize 'FU.AttributeDexAbbr'}}</option>
+                    <option value="attributes.ins.current">{{localize 'FU.AttributeInsAbbr'}}</option>
+                    <option value="attributes.mig.current">{{localize 'FU.AttributeMigAbbr'}}</option>
+                    <option value="attributes.wlp.current">{{localize 'FU.AttributeWlpAbbr'}}</option>
+                    {{/select}}
+                </select>
+            </span>
+            <span class="buttons-inc rollable" data-tooltip="{{localize 'FU.RollCheckOptions'}}"
+                aria-describedby="tooltip" data-type="roll-check-option" data-roll-type="roll-check-option">
+                <button class="roll-check-option">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </span>
+            <span class="buttons-inc">
+                <select value="{{ system.rollInfo.attributes.secondary.value }}"
+                    name="system.rollInfo.attributes.secondary.value" class="resource-inputs">
+                    {{#select system.rollInfo.attributes.secondary.value}}
+                    <option value="attributes.dex.current">{{localize 'FU.AttributeDexAbbr'}}</option>
+                    <option value="attributes.ins.current">{{localize 'FU.AttributeInsAbbr'}}</option>
+                    <option value="attributes.mig.current">{{localize 'FU.AttributeMigAbbr'}}</option>
+                    <option value="attributes.wlp.current">{{localize 'FU.AttributeWlpAbbr'}}</option>
+                    {{/select}}
+                </select>
+            </span>
+        </div>
+    </div>
+</div>

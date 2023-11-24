@@ -1,3 +1,4 @@
+{{#if (eq actor.type "character")}}
 <section class="desc">
 	<header class="items-main-header">
 		<span class="items-main">
@@ -11,7 +12,8 @@
 			<div class="item-dlevel">{{localize "FU.DC"}}</div>
 			<div class="item-clock">{{localize "FU.Clock"}}</div>
 			<div class="item-controls">
-				<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="{{localize 'FU.RitualCreate'}}" data-type="ritual">
+				<a class="item-control item-create" aria-describedby="tooltip"
+					data-tooltip="{{localize 'FU.RitualCreate'}}" data-type="ritual">
 					<i class="fas fa-plus icon"></i>
 					{{localize 'FU.Add'}}
 				</a>
@@ -39,14 +41,17 @@
 				<div class="item-clock">
 					<span>{{ item.clock }}</span>
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span>{{ item.quality }}</span>
-			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
+				target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+			</div>
 		</li>
 		{{/each}}
 	</ol>
 </section>
+{{/if}}
 
 <section class="desc">
 	<header class="items-main-header">
@@ -61,7 +66,8 @@
 			<div class="item-target">{{localize 'FU.Target'}}</div>
 			<div class="item-mpcost">{{localize 'FU.MindPointCost'}}</div>
 			<div class="item-controls">
-				<a class="item-control item-create" title="Create Spell" data-type="spell"> <i class="fas fa-plus icon"></i>{{localize 'FU.Add'}} </a>
+				<a class="item-control item-create" title="Create Spell" data-type="spell"> <i
+						class="fas fa-plus icon"></i>{{localize 'FU.Add'}} </a>
 			</div>
 		</li>
 		{{#each spells as |item id|}}
@@ -89,9 +95,11 @@
 				<div class="item-mpcost">
 					<span>{{ item.mpCost }}</span>
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
-			<div class="individual-description align-left">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+			<div class="individual-description align-left">{{#if item.system.description}} {{editor
+				item.system.description target="item.system.description" rollData=rollData button=false owner=owner
+				editable=false}} {{/if}}</div>
 		</li>
 		{{/each}}
 	</ol>
@@ -109,7 +117,8 @@
 			<div class="item-name">{{localize 'FU.Name'}}</div>
 			<div class="item-class">{{localize 'FU.ItemType'}}</div>
 			<div class="item-controls">
-				<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="{{localize 'FU.MiscCreate'}}" data-type="miscAbility">
+				<a class="item-control item-create" aria-describedby="tooltip"
+					data-tooltip="{{localize 'FU.MiscCreate'}}" data-type="miscAbility">
 					<i class="fas fa-plus icon"></i>
 					{{localize 'FU.Add'}}
 				</a>
@@ -135,10 +144,12 @@
 				<div class="item-class">
 					<span>{{capitalize item.system.subtype.value}}</span>
 				</div>
-				{{> "systems/fabulaultima/templates/actor/parts/actor-control.hbs" item=item}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span class="item-quality">{{ item.quality }}</span>
-			<div class="individual-description align-left">{{#if item.system.description}} {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
+			<div class="individual-description align-left">{{#if item.system.description}} {{editor
+				item.system.description target="item.system.description" rollData=rollData button=false owner=owner
+				editable=false}} {{/if}}</div>
 		</li>
 		{{/each}}
 	</ol>

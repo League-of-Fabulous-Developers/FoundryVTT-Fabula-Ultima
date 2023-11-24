@@ -40,9 +40,9 @@
 					</span>
 				</div>
 
-				<!-- Point Bars -->
+				{{!-- Point Bars --}}
 				<div class="grid grid-3col">
-					<!-- HP -->
+					{{!-- HP--}}
 					<div class="resource-content flex-group-center">
 						<div class="grid grid-2col" style="padding: 0 3px">
 							<label class="resource-label-l align-left grid-span-1"
@@ -86,7 +86,7 @@
 						</div>
 					</div>
 
-					<!-- MP -->
+					{{!-- MP --}}
 					<div class="resource-content flex-group-center">
 						<div class="grid grid-2col" style="padding: 0 3px">
 							<label class="resource-label-l align-left grid-span-1" data-tooltip="Mind Points"
@@ -118,7 +118,7 @@
 						</div>
 					</div>
 
-					<!-- Creature Rank -->
+					{{!-- Creature Rank --}}
 					<div class="resource-content levelup-container creature flex-group-center">
 						<label class="resource-label-l" data-tooltip="Species Type" aria-describedby="tooltip">
 							<div class="resource-label-l"><i class="fa-solid fa-chart-simple icon"></i>{{localize
@@ -128,14 +128,14 @@
 							<select value="{{ system.species.value }}" name="system.species.value"
 								class="resource-inputs">
 								{{#select system.species.value}} {{#if system.isCompanion.value}}
-								<!-- Altered options for companions -->
+								{{!-- Companion Options --}}
 								<option value="beast">{{localize 'FU.Beast'}}</option>
 								<option value="construct">{{localize 'FU.Construct'}}</option>
 								<option value="elemental">{{localize 'FU.Elemental'}}</option>
 								<option value="plant">{{localize 'FU.Plant'}}</option>
 								<option value="custom">{{localize 'FU.Custom'}}</option>
 								{{else}}
-								<!-- Default options for non-companions -->
+								{{!-- Creature Options --}}
 								<option value="beast">{{localize 'FU.Beast'}}</option>
 								<option value="construct">{{localize 'FU.Construct'}}</option>
 								<option value="demon">{{localize 'FU.Demon'}}</option>
@@ -159,224 +159,10 @@
 			{{!-- End First Section Header --}}
 		</div>
 
-		{{!-- Start Second Section Header --}}
-		<div class="header-fields desc grid grid-4col" style="align-items: flex-start">
-			<!-- Ultima Points -->
-			<div class="resource-content flex-group-center">
-				<label>
-					<span class="resource-label-l"> <i class="fa-solid fa-crystal-ball icon"></i>{{localize
-						'FU.UltimaPoints'}} </span>
-				</label>
-				<div class="buttons-inc">
-					<button class="decrement-button" data-resource="fp" data-action="decrease">
-						<i class="fas fa-minus"></i>
-					</button>
-					<input type="number" name="system.resources.fp.value" value="{{ system.resources.fp.value }}"
-						data-dtype="Number" id="fp-input" class="fp-resource-inputs" />
-					<button class="increment-button" data-resource="fp" data-action="increase">
-						<i class="fas fa-plus"></i>
-					</button>
-				</div>
-			</div>
-
-			<!-- DEF -->
-			<div class="resource-content flex-group-center">
-				<label class="resource-label-l"> <i class="fa-solid fa-shield icon"></i>{{localize 'FU.DefenseAbbr'}}
-				</label>
-				<div class="resource-content flex-center">
-					<input class="resource-inputs" id="def-input" type="number" name="system.derived.def.value"
-						value="{{ system.derived.def.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.Defense'}}<br>Current: {{
-              system.derived.def.value
-            }}<br>Bonus: {{ system.derived.def.bonus }}" aria-describedby="tooltip" disabled />
-				</div>
-			</div>
-
-			<!-- MDEF -->
-			<div class="resource-content flex-group-center">
-				<label class="resource-label-l"> <i class="fa-solid fa-shield-halved icon"></i>{{localize
-					'FU.MagicDefenseAbbr'}} </label>
-				<div class="resource-content flex-center">
-					<input class="resource-inputs" id="mdef-input" type="number" name="system.derived.mdef.value"
-						value="{{ system.derived.mdef.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.MagicDefense'}}<br>Current: {{
-              system.derived.mdef.value
-            }}<br>Bonus: {{ system.derived.mdef.bonus }}" aria-describedby="tooltip" disabled />
-				</div>
-			</div>
-
-			<!-- Initiative -->
-			<div class="resource-content flex-group-center">
-				<label class="rollable resource-label-l" data-roll-type="roll-init"> <i
-						class="fa-solid fa-clock icon"></i>{{localize 'FU.Initiative'}} </label>
-				<div class="resource-content flex-center">
-					<input class="resource-inputs" id="init-input" type="number" name="system.derived.init.value"
-						value="{{ system.derived.init.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.Initiative'}}<br>Current: {{
-              system.derived.init.value
-            }}<br>Bonus: {{ system.derived.init.bonus }}" aria-describedby="tooltip" disabled />
-				</div>
-			</div>
-
-			<!-- Resource 1 -->
-			<div class="resource-content flex-group-center">
-				<div class="name-input">
-					<input type="text" name="system.resources.rp1.name" title="{{localize 'FU.ResourcePoints'}}"
-						value="{{ system.resources.rp1.name }}" data-dtype="String" placeholder="Resource 1"
-						class="resource-label" />
-				</div>
-				<div class="buttons-inc">
-					<button class="increment-button" data-resource="rp1" data-action="decrease">
-						<i class="fas fa-minus"></i>
-					</button>
-					<input type="number" name="system.resources.rp1.value" data-tooltip="Current: {{
-              system.resources.rp1.value
-            }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp1.value }}"
-						data-dtype="Number" id="rp1-input" class="resource-inputs" />
-					<button class="increment-button" data-resource="rp1" data-action="increase">
-						<i class="fas fa-plus"></i>
-					</button>
-				</div>
-			</div>
-
-			{{#if system.isCompanion.value}}
-			<!-- [Companion] PC Level Replace Resource 2 -->
-			<div class="resource-content flex-group-center">
-				<div class="name-input">
-					<input type="text" name="system.resources.rp2.name" data-tooltip="{{localize 'FU.PlayerLevel'}}"
-						value="{{localize 'FU.PlayerLevel'}}" data-dtype="String" class="resource-label" disabled />
-				</div>
-				<div class="buttons-inc">
-					<button class="increment-button" data-resource="rp2" data-action="decrease">
-						<i class="fas fa-minus"></i>
-					</button>
-					<input type="number" name="system.resources.rp2.value" data-tooltip="Current: {{
-              system.resources.rp2.value
-            }}<br>Max: 50<br>" aria-describedby="tooltip" value="{{ system.resources.rp2.value }}" data-dtype="Number"
-						id="rp2-input" class="resource-inputs" />
-					<button class="increment-button" data-resource="rp2" data-action="increase">
-						<i class="fas fa-plus"></i>
-					</button>
-				</div>
-			</div>
-
-			<!-- [Companion] Skill Level Replace Resource 3 -->
-			<div class="resource-content flex-group-center">
-				<div class="name-input">
-					<input type="text" name="system.resources.rp3.name" data-tooltip="{{localize 'FU.SkillLevel'}}"
-						value="{{localize 'FU.SkillLevel'}}" data-dtype="String" class="resource-label" disabled />
-				</div>
-				<div class="buttons-inc">
-					<button class="increment-button" data-resource="rp3" data-action="decrease">
-						<i class="fas fa-minus"></i>
-					</button>
-					<input type="number" name="system.resources.rp3.value" data-tooltip="Current: {{
-              system.resources.rp3.value
-            }}<br>Max: 5<br>" aria-describedby="tooltip" value="{{ system.resources.rp3.value }}" data-dtype="Number"
-						id="rp3-input" class="resource-inputs" />
-					<button class="increment-button" data-resource="rp3" data-action="increase">
-						<i class="fas fa-plus"></i>
-					</button>
-				</div>
-			</div>
-			{{else}}
-			<!-- Resource 2 -->
-			<div class="resource-content flex-group-center">
-				<div class="name-input">
-					<input type="text" name="system.resources.rp2.name" title="{{localize 'FU.ResourcePoints'}}"
-						value="{{ system.resources.rp2.name }}" data-dtype="String" placeholder="Resource 2"
-						class="resource-label" />
-				</div>
-				<div class="buttons-inc">
-					<button class="increment-button" data-resource="rp2" data-action="decrease">
-						<i class="fas fa-minus"></i>
-					</button>
-					<input type="number" name="system.resources.rp2.value" data-tooltip="Current: {{
-              system.resources.rp2.value
-            }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp2.value }}"
-						data-dtype="Number" id="rp2-input" class="resource-inputs" />
-					<button class="increment-button" data-resource="rp2" data-action="increase">
-						<i class="fas fa-plus"></i>
-					</button>
-				</div>
-			</div>
-
-			<!-- Resource 3 -->
-			<div class="resource-content flex-group-center">
-				<div class="name-input">
-					<input type="text" name="system.resources.rp3.name" title="{{localize 'FU.ResourcePoints'}}"
-						value="{{ system.resources.rp3.name }}" data-dtype="String" placeholder="Resource 3"
-						class="resource-label" />
-				</div>
-				<div class="buttons-inc">
-					<button class="increment-button" data-resource="rp3" data-action="decrease">
-						<i class="fas fa-minus"></i>
-					</button>
-					<input type="number" name="system.resources.rp3.value" data-tooltip="Current: {{
-              system.resources.rp3.value
-            }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp3.value }}"
-						data-dtype="Number" id="rp3-input" class="resource-inputs" />
-					<button class="increment-button" data-resource="rp3" data-action="increase">
-						<i class="fas fa-plus"></i>
-					</button>
-				</div>
-			</div>
-			{{/if}}
-
-			<!-- Roll Check -->
-			<div class="resource-content flex-group-center">
-				<label class="resource-label-l rollable flex-center" data-roll-type="roll-check"> <i
-						class="fa-solid fa-dice icon"></i>{{localize 'FU.RollCheck'}} </label>
-				<div class="buttons-inc flex-group-center">
-					<span class="buttons-inc">
-						<select value="{{ system.rollInfo.attributes.primary.value }}"
-							name="system.rollInfo.attributes.primary.value" class="resource-inputs">
-							{{#select system.rollInfo.attributes.primary.value}}
-							<option value="attributes.dex.current">{{localize 'FU.AttributeDexAbbr'}}</option>
-							<option value="attributes.ins.current">{{localize 'FU.AttributeInsAbbr'}}</option>
-							<option value="attributes.mig.current">{{localize 'FU.AttributeMigAbbr'}}</option>
-							<option value="attributes.wlp.current">{{localize 'FU.AttributeWlpAbbr'}}</option>
-							{{/select}}
-						</select>
-					</span>
-					<span class="buttons-inc rollable" data-tooltip="{{localize 'FU.RollCheckOptions'}}"
-						aria-describedby="tooltip" data-type="roll-check-option" data-roll-type="roll-check-option">
-						<button class="roll-check-option">
-							<i class="fas fa-plus"></i>
-						</button>
-					</span>
-					<span class="buttons-inc">
-						<select value="{{ system.rollInfo.attributes.secondary.value }}"
-							name="system.rollInfo.attributes.secondary.value" class="resource-inputs">
-							{{#select system.rollInfo.attributes.secondary.value}}
-							<option value="attributes.dex.current">{{localize 'FU.AttributeDexAbbr'}}</option>
-							<option value="attributes.ins.current">{{localize 'FU.AttributeInsAbbr'}}</option>
-							<option value="attributes.mig.current">{{localize 'FU.AttributeMigAbbr'}}</option>
-							<option value="attributes.wlp.current">{{localize 'FU.AttributeWlpAbbr'}}</option>
-							{{/select}}
-						</select>
-					</span>
-				</div>
-			</div>
-		</div>
-		{{!-- End Extra Section --}}
-		<div class="affinities header-fields desc">
-			{{!-- Start Affinity Section --}}
-			<div class=" grid grid-9col">
-				{{#if system.affinities}}
-				{{#each system.affinities as |affinity key|}}
-				<div class="affinity resource-content flex-group-center flexrow">
-					<label data-label="{{ affinity.label }}"
-						data-tooltip="{{ affinity.label }} <br> {{ affinity.affTypeCurr }}">
-						<span class="resource-label-xl">
-							<i class="{{ affinity.icon }} icon-aff"></i>
-							{{ affinity.affTypeCurrAbbr }}
-							<br />
-						</span>
-					</label>
-				</div>
-				{{/each}}
-				{{/if}}
-			</div>
-			{{!-- End Affinity Section --}}
-		</div>
+		{{!-- Resources Header --}}
+		{{>"systems/fabulaultima/templates/actor/partials/actor-resources.hbs" actor=actor}}
+		{{!-- Current Affinities Header --}}
+		{{>"systems/fabulaultima/templates/actor/partials/actor-affinities.hbs" actor=actor}}
 	</header>
 
 	{{!-- Sheet Tab Navigation --}}
@@ -442,9 +228,9 @@
 						{{/each}}
 					</div>
 
-					<!-- NPC Skills -->
+					{{!-- NPC Skills --}}
 					<div class="abilities desc flexcol">{{>
-						"systems/fabulaultima/templates/actor/parts/actor-npc-skills.hbs" actor=actor}}</div>
+						"systems/fabulaultima/templates/actor/partials/actor-npc-skills.hbs" actor=actor}}</div>
 				</aside>
 				<div class="stats-container grid-span-2">
 					<section class="npc-border-col desc">
@@ -457,26 +243,24 @@
 							rollData=rollData button=true owner=owner editable=editable }}</section>
 					</section>
 					<!-- Favorite Section -->
-					<section class="desc">{{> "systems/fabulaultima/templates/actor/parts/actor-favorite.hbs"
+					<section class="desc">{{> "systems/fabulaultima/templates/actor/partials/actor-favorite.hbs"
 						groups=systemData.bond dtypes=dtypes}}</section>
 				</div>
 			</section>
 		</div>
-
-		{{!-- Handlebar Partials --}} {{!-- Owned Items Tab --}}
 		<div class="tab items" data-group="primary" data-tab="items">{{>
-			"systems/fabulaultima/templates/actor/parts/actor-items.hbs" actor=actor}}</div>
+			"systems/fabulaultima/templates/actor/partials/actor-section-items.hbs" actor=actor}}</div>
 		{{!-- Owned Spells Tab --}}
 		<div class="tab spells" data-group="primary" data-tab="spells">{{>
-			"systems/fabulaultima/templates/actor/parts/actor-spells.hbs" actor=actor}}</div>
+			"systems/fabulaultima/templates/actor/partials/actor-section-spells.hbs" actor=actor}}</div>
 		{{!-- Behavior Tab --}}
 		<div class="tab behavior" data-group="primary" data-tab="behavior">{{>
-			"systems/fabulaultima/templates/actor/parts/actor-behavior.hbs" actor=actor}}</div>
+			"systems/fabulaultima/templates/actor/partials/actor-section-behavior.hbs" actor=actor}}</div>
 		{{!-- Active Effects Tab --}}
 		<div class="tab effects flexcol" data-group="primary" data-tab="effects">{{>
-			"systems/fabulaultima/templates/actor/parts/actor-effects.hbs" actor=actor}}</div>
+			"systems/fabulaultima/templates/actor/partials/actor-section-effects.hbs" actor=actor}}</div>
 		{{!-- Settings Tab --}}
 		<div class="tab effects flexcol" data-group="primary" data-tab="settings">{{>
-			"systems/fabulaultima/templates/actor/parts/actor-settings.hbs" actor=actor}}</div>
+			"systems/fabulaultima/templates/actor/partials/actor-section-settings.hbs" actor=actor}}</div>
 	</section>
 </form>

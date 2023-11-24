@@ -1,5 +1,6 @@
 <form class="{{ cssClass }} backgroundstyle" autocomplete="off">
-	{{> "systems/fabulaultima/templates/item/parts/item-header.hbs" dtypes=dtypes}} {{!-- Sheet Tab Navigation --}}
+	{{> "systems/fabulaultima/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+	{{!-- Sheet Tab Navigation --}}
 	<nav class="sheet-tabs tabs" data-group="primary">
 		<a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
 		<a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
@@ -9,7 +10,8 @@
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
 		{{!-- Description Tab --}}
-		<div class="tab desc" data-group="primary" data-tab="description">{{editor system.description target="system.description" rollData=rollData button=true owner=owner editable=editable}}</div>
+		<div class="tab desc" data-group="primary" data-tab="description">{{editor system.description
+			target="system.description" rollData=rollData button=true owner=owner editable=editable}}</div>
 
 		{{!-- Attributes Tab --}}
 		<div class="tab attributes" data-group="primary" data-tab="attributes">
@@ -20,13 +22,19 @@
 				</label>
 				{{!-- NPC Relevent Option --}} {{#if (eq actor.type "npc")}}
 				<label class="checkbox resource-label-sm">
-					<span>{{localize 'FU.BehaviorStatus'}}</span><input type="checkbox" name="system.isBehavior.value" {{ checked system.isBehavior.value }} />
+					<span>{{localize 'FU.BehaviorStatus'}}</span><input type="checkbox" name="system.isBehavior.value"
+						{{ checked system.isBehavior.value }} />
 					{{/if}}
 				</label>
 
-				<label class="checkbox resource-label-sm"> <span>{{localize "FU.HRZeroStatus"}}</span><input type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked system.rollInfo.useWeapon.hrZero.value }} /> </label>
-				<label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsMartial'}}</span><input type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} /> </label>
-				<label class="checkbox resource-label-sm" data-tooltip="{{localize 'FU.TitleCardInfo'}}"> <span>{{localize 'FU.TitleCardStatus'}}</span><input type="checkbox" name="system.showTitleCard.value" {{ checked system.showTitleCard.value }} /> </label>
+				<label class="checkbox resource-label-sm"> <span>{{localize "FU.HRZeroStatus"}}</span><input
+						type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
+						system.rollInfo.useWeapon.hrZero.value }} /> </label>
+				<label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsMartial'}}</span><input
+						type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} /> </label>
+				<label class="checkbox resource-label-sm" data-tooltip="{{localize 'FU.TitleCardInfo'}}">
+					<span>{{localize 'FU.TitleCardStatus'}}</span><input type="checkbox"
+						name="system.showTitleCard.value" {{ checked system.showTitleCard.value }} /> </label>
 			</div>
 
 			<section class="flex1 flex-group-center desc">
@@ -36,29 +44,36 @@
 
 				<div class="grid grid-4col card-style">
 					<div class="resource-content flexcol flex-group-center">
-						<label for="system.type.value" class="resource-label-m flexlarge align-left"
-							>{{localize 'FU.DefenseAbbr'}} {{#if system.isMartial.value}}
+						<label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+							'FU.DefenseAbbr'}} {{#if system.isMartial.value}}
 							<span class="is-martial">✦</span>
 							{{/if}}
 						</label>
-						<input type="number" name="system.def.value" value="{{ system.def.value }}" data-dtype="Number" class="resource-inputs select-dropdown-m" />
+						<input type="number" name="system.def.value" value="{{ system.def.value }}" data-dtype="Number"
+							class="resource-inputs select-dropdown-m" />
 					</div>
 					<div class="resource-content flexcol flex-group-center">
-						<label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize 'FU.MagicDefenseAbbr'}}</label>
-						<input type="number" name="system.mdef.value" value="{{ system.mdef.value }}" data-dtype="Number" class="resource-inputs select-dropdown-m" />
+						<label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+							'FU.MagicDefenseAbbr'}}</label>
+						<input type="number" name="system.mdef.value" value="{{ system.mdef.value }}"
+							data-dtype="Number" class="resource-inputs select-dropdown-m" />
 					</div>
 					<div class="resource-content flexcol flex-group-center">
-						<label for="system.hands.value" class="resource-label-m flexlarge align-left">{{localize 'FU.InitiativeAbbr'}}</label>
-						<input type="number" name="system.init.value" value="{{ system.init.value }}" data-dtype="Number" class="resource-inputs select-dropdown-m" />
+						<label for="system.hands.value" class="resource-label-m flexlarge align-left">{{localize
+							'FU.InitiativeAbbr'}}</label>
+						<input type="number" name="system.init.value" value="{{ system.init.value }}"
+							data-dtype="Number" class="resource-inputs select-dropdown-m" />
 					</div>
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.Cost'}}</label>
-						<input type="number" name="system.cost.value" value="{{ system.cost.value }}" data-dtype="Number" class="resource-inputs select-dropdown-m" />
+						<input type="number" name="system.cost.value" value="{{ system.cost.value }}"
+							data-dtype="Number" class="resource-inputs select-dropdown-m" />
 					</div>
 				</div>
 				<div class="resource-content flexcol flex-group-center card-style" style="padding: 0 2em">
 					<label class="resource-label-m">{{localize 'FU.Quality'}}</label>
-					<input type="text" name="system.quality.value" value="{{ system.quality.value }}" class="resource-inputs select-dropdown grid-span-4" style="width: 100%" />
+					<input type="text" name="system.quality.value" value="{{ system.quality.value }}"
+						class="resource-inputs select-dropdown grid-span-4" style="width: 100%" />
 				</div>
 			</section>
 
@@ -70,7 +85,8 @@
 				<div class="grid grid-4col card-style">
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.BehaviorWeight'}}</label>
-						<input type="number" name="system.weight.value" value="{{ system.weight.value }}" data-dtype="Number" class="resource-inputs select-dropdown-m" />
+						<input type="number" name="system.weight.value" value="{{ system.weight.value }}"
+							data-dtype="Number" class="resource-inputs select-dropdown-m" />
 					</div>
 				</div>
 			</section>

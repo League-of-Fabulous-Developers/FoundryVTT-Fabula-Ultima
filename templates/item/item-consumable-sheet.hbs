@@ -1,18 +1,12 @@
 <form class="{{ cssClass }} backgroundstyle" autocomplete="off">
-	{{> "systems/fabulaultima/templates/item/parts/item-header.hbs" dtypes=dtypes}} {{!-- Sheet Tab Navigation --}}
+	{{> "systems/fabulaultima/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+	{{!-- Sheet Tab Navigation --}}
 	<nav class="sheet-tabs tabs" data-group="primary">
-		<!-- <a class="item" data-tab="description">Description</a> -->
-		<a class="item" data-tab="attributes">Attributes</a>
+		<a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
 	</nav>
 
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
-		{{!-- Description Tab --}}
-		<!-- <div class="tab desc" data-group="primary" data-tab="description">
-      {{editor system.description target="system.description" rollData=rollData
-      button=true owner=owner editable=editable}}
-    </div> -->
-
 		{{!-- Attributes Tab --}}
 		<div class="tab attributes" data-group="primary" data-tab="attributes">
 			<div class="item-settings resource-content">
@@ -22,7 +16,8 @@
 				</label>
 				{{!-- NPC Relevent Option --}} {{#if (eq actor.type "npc")}}
 				<label class="checkbox resource-label-sm">
-					<span>{{localize 'FU.BehaviorStatus'}}</span><input type="checkbox" name="system.isBehavior.value" {{ checked system.isBehavior.value }} />
+					<span>{{localize 'FU.BehaviorStatus'}}</span><input type="checkbox" name="system.isBehavior.value"
+						{{ checked system.isBehavior.value }} />
 					{{/if}}
 				</label>
 			</div>
@@ -35,13 +30,15 @@
 				<div class="grid grid-4col card-style">
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize "FU.InventoryCost"}}</label>
-						<input type="number" name="system.ipCost.value" value="{{ system.ipCost.value }}" data-dtype="Number" class="resource-inputs select-dropdown-m" />
+						<input type="number" name="system.ipCost.value" value="{{ system.ipCost.value }}"
+							data-dtype="Number" class="resource-inputs select-dropdown-m" />
 					</div>
 					{{#if (and (eq actor.type "npc") system.isBehavior.value)}}
 
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.BehaviorWeight'}}</label>
-						<input type="number" name="system.weight.value" value="{{ system.weight.value }}" data-dtype="Number" class="resource-inputs select-dropdown-m" />
+						<input type="number" name="system.weight.value" value="{{ system.weight.value }}"
+							data-dtype="Number" class="resource-inputs select-dropdown-m" />
 					</div>
 
 					{{/if}}
@@ -49,7 +46,8 @@
 			</section>
 
 			<div class="grid-span-2 desc flex-between">
-				<div class="quarter-desc">{{editor system.description target="system.description" rollData=rollData button=true owner=owner editable=editable}}</div>
+				<div class="quarter-desc">{{editor system.description target="system.description" rollData=rollData
+					button=true owner=owner editable=editable}}</div>
 			</div>
 		</div>
 	</section>
