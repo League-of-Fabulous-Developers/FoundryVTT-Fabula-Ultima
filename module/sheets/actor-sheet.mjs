@@ -255,6 +255,9 @@ export class FUActorSheet extends ActorSheet {
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
 
+		// Duplicate Inventory Item
+		html.find('.item-duplicate').click(this._onItemDuplicate.bind(this));
+
 		// Add Inventory Item
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 
@@ -735,6 +738,28 @@ export class FUActorSheet extends ActorSheet {
 			// Trigger a sheet re-render
 			this.actor.sheet.render(true);
 		});
+	}
+	async _onItemDuplicate(event) {
+		event.preventDefault();
+		const header = event.currentTarget;
+		const itemElement = header.closest('.item');
+
+		if (!itemElement) return;
+
+		// Get the item data
+		const itemId = itemElement.dataset.itemId;
+		const item = this.actor.items.get(itemId);
+
+		if (!item) return;
+
+		// Duplicate the item
+		const duplicatedItemData = duplicate(item.data);
+
+		// Modify the duplicated item's name
+		duplicatedItemData.name = `Copy of ${item.data.name || item.name}`;
+
+		// Add the duplicated item to the actor
+		await this.actor.createEmbeddedDocuments('Item', [duplicatedItemData]);
 	}
 
 	/**
