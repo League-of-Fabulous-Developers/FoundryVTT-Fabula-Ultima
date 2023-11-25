@@ -37,47 +37,36 @@
 }
 
 .bar-start {
-  border-radius: 0 0 40% 0;
-  border: inset;
+  border-radius: 0 0 100% 100%;
 }
 
 .bar-middle {
   border-radius: 0 0 100% 100%;
-  border: inset;
 }
 
 .bar-end {
-  border-radius: 0 0 0 40%;
-  border: inset;
+  border-radius: 0 0 100% 100%;
 }
 
 /* HP/MP/IP Input Bar */
 .resource-current-input {
   color: $color-primary;
-  border-color: $color-primary;
   background: $color-secondary;
+  border: 2px solid #c7c7c7;
 }
 
 .resource-middle-input {
   background: $color-ternary;
-  border-color: $color-primary;
+  border: 2px solid #c7c7c7;
 }
 
 .resource-max-input {
   background: $color-secondary;
-  border-color: $color-primary;
-}
-
-.resource-max-input:disabled {
-  color: $color-primary;
-  background-color: $color-secondary;
-  font-size: 16px;
-  cursor: not-allowed;
-  opacity: 0.8;
-  border-color: $color-primary;
-
-  &:hover {
-    border-color: $color-primary;
-    border: inset;
+  border: 2px solid #c7c7c7;
+  &:disabled,&:hover:disabled{
+    color: $color-primary;
+    background-color: $color-secondary;
+    font-size: 16px;
+    opacity: 0.8;
   }
 }

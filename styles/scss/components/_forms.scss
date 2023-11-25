@@ -36,7 +36,7 @@ img.clock-img {
 
   .combine-header {
     flex: 0;
-    margin: 0px 2px 5px;
+    margin: 0;
     overflow: visible;
     flex-direction: row;
     flex-wrap: wrap;
@@ -57,7 +57,6 @@ img.clock-img {
         $color-ternary);
     background-clip: content-box;
     border-color: #9a9a9a;
-    margin: 0.5em 0 0 0.5em;
     border-radius: 10px;
   }
 
@@ -164,7 +163,7 @@ img.clock-img {
       rgba(238, 244, 228, 0.5),
       rgba(226, 237, 213, 0.5));
   border-radius: 10px;
-  border: 1px solid $color-secondary;
+  border: 1px solid #2c4a4254;
   margin: 3px;
 
   .desc-header {
@@ -172,12 +171,12 @@ img.clock-img {
     border-radius: 10px 10px 0 0;
     border-bottom: 4px double $color-secondary;
   }
-  &.abilities {
+  &.attributes {
     background: linear-gradient(to right,
         rgba(238, 244, 228, 0.5),
         rgba(226, 237, 213, 0.5));
 
-    .ability {
+    .attribute {
       padding: 1px 5px;
       border-bottom: 1px solid $color-secondary;
 
