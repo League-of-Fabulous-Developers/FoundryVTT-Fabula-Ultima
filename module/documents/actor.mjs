@@ -489,12 +489,9 @@ export class FUActor extends Actor {
 			},
 
 			calcUsedSkillsFromExtraDefs() {
-				if (!systemData.derived.def?.bonus || !systemData.derived.mdef?.bonus) {
-					return 0;
-				}
-				return (systemData.derived.def.bonus + systemData.derived.mdef.bonus) / 3;
+				const { def, mdef } = systemData.derived;
+				return def?.bonus && mdef?.bonus ? Math.floor((def.bonus + mdef.bonus) / 3) : 0;
 			},
-
 			calcUsedSkillsFromExtraHP() {
 				if (!systemData.resources.hp?.bonus) {
 					return 0;
