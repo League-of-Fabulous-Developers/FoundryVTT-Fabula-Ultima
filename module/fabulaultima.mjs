@@ -246,7 +246,6 @@ Hooks.once('ready', async function () {
 
 Hooks.once('socketlib.ready', () => {
 	const socket = socketlib.registerSystem('fabulaultima');
-	socket.register('cast', displayCastingText);
 	socket.register('use', displayUsingText);
 });
 
@@ -324,18 +323,6 @@ function rollItemMacro(itemUuid) {
 		// Trigger the item roll
 		item.roll();
 	});
-}
-
-function displayCastingText(text) {
-	text = `${text}`;
-	ui.notifications.queue.push({
-		message: text,
-		type: 'fabulaultima-spellname',
-		timestamp: new Date().getTime(),
-		permanent: false,
-		console: false,
-	});
-	if (ui.notifications.rendered) ui.notifications.fetch();
 }
 
 function displayUsingText(text) {
