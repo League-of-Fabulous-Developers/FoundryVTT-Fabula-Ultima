@@ -11,7 +11,7 @@
 			<div class="item-lg">{{localize 'FU.Source'}}</div>
 			<div class="item-lg">{{localize 'FU.Duration'}}</div>
 			<div class="item-m end flexrow">
-				<a class="item-m end" data-action="create" title="{{localize 'FU.EffectCreate'}}"> <i
+				<a class="item-m end" data-action="create" data-tooltip="{{localize 'FU.EffectCreate'}}"> <i
 						class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
 			</div>
 		</li>
@@ -22,13 +22,11 @@
 				<div class="flexrow">
 					<div class="item-name">
 						<div class="item-image">
-							<a class="rollable" data-roll-type="item">
-								<div class="item-image-wrap">
-									<img src="{{ effect.icon }}" title="{{ effect.label }}" class="responsive-img" />
-								</div>
-							</a>
+							<div class="rollable" data-roll-type="item">
+								<img src="{{ effect.icon }}" data-tooltip="{{ effect.label }}" />
+							</div>
 						</div>
-						<h4 class="click-item" data-chevron-state="hidden" data-item-id="desc-expand">
+						<h4 class="click-item">
 							{{ effect.label }}
 						</h4>
 					</div>

@@ -264,8 +264,8 @@ export class FUActor extends Actor {
 		// Iterate through each temporary effect applied to the actor.
 		actorData.effects.forEach((effect) => {
 			// Get the status associated with the effect, if it exists.
-			if (effect.data.flags.core) {
-				const statusId = effect.data.flags.core.statusId;
+			if (effect.flags.core) {
+				const statusId = effect.flags.core.statusId;
 				const status = CONFIG.statusEffects.find((status) => status.id === statusId);
 
 				// If a valid status is found, apply its modifiers to the corresponding attributes.
