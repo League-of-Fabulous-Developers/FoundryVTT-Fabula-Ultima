@@ -8,10 +8,10 @@
 		{{#each effects as |section sid|}}
 		<li class="item items-header flexrow" data-effect-type="{{ section.type }}">
 			<h3 class="item-name effect-name flexrow">{{localize section.label}}</h3>
-			<div class="effect-source">{{localize 'FU.Source'}}</div>
-			<div class="effect-source">{{localize 'FU.Duration'}}</div>
-			<div class="item-controls effect-controls flexrow">
-				<a class="effect-control" data-action="create" title="{{localize 'FU.EffectCreate'}}"> <i
+			<div class="item-lg">{{localize 'FU.Source'}}</div>
+			<div class="item-lg">{{localize 'FU.Duration'}}</div>
+			<div class="item-m end flexrow">
+				<a class="item-m end" data-action="create" title="{{localize 'FU.EffectCreate'}}"> <i
 						class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
 			</div>
 		</li>
@@ -29,14 +29,12 @@
 							</a>
 						</div>
 						<h4 class="click-item" data-chevron-state="hidden" data-item-id="desc-expand">
-							<i class="fas fa-chevron-down" style="display: none"></i>
-							<i class="fas fa-chevron-up" style="display: none"></i>
 							{{ effect.label }}
 						</h4>
 					</div>
-					<div class="effect-source">{{ effect.sourceName }}</div>
-					<div class="effect-duration">{{ effect.duration.label }}</div>
-					<div class="item-controls effect-controls flexrow">
+					<div class="item-lg">{{ effect.sourceName }}</div>
+					<div class="item-lg">{{ effect.duration.label }}</div>
+					<div class="item-m end flexrow">
 						<a class="effect-control" data-action="toggle" title="{{localize 'FU.EffectToggle'}}">
 							<i class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
 						</a>
