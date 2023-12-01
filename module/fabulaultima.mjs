@@ -2,7 +2,7 @@
 import { FUActor } from './documents/actor.mjs';
 import { FUItem } from './documents/item.mjs';
 // Import sheet classes.
-import { FUActorSheet } from './sheets/actor-sheet.mjs';
+import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
 import { FUItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
@@ -204,7 +204,7 @@ Hooks.once('init', async () => {
 
 	// Register sheet application classes
 	Actors.unregisterSheet('core', ActorSheet);
-	Actors.registerSheet('fabulaultima', FUActorSheet, {
+	Actors.registerSheet('fabulaultima', FUStandardActorSheet, {
 		makeDefault: true,
 	});
 	Items.unregisterSheet('core', ItemSheet);

@@ -4,19 +4,19 @@ import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class FUActorSheet extends ActorSheet {
+export class FUStandardActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
 			classes: ['fabulaultima', 'sheet', 'actor'],
 			template: 'systems/fabulaultima/templates/actor/actor-character-sheet.hbs',
-			width: 620,
+			width: 700,
 			height: 1150,
 			tabs: [
 				{
 					navSelector: '.sheet-tabs',
 					contentSelector: '.sheet-body',
-					initial: 'features',
+					initial: 'stats',
 				},
 			],
 		});
@@ -51,16 +51,12 @@ export class FUActorSheet extends ActorSheet {
 		// Prepare character data and items.
 		if (actorData.type == 'character') {
 			const tlTracker = this.actor.getTLTracker();
-
-			// Add tlTracker to the context
 			context.tlTracker = tlTracker;
 		}
 
 		// Prepare NPC data and items.
 		if (actorData.type == 'npc') {
 			const spTracker = this.actor.getSPTracker();
-
-			// Add spTracker to the context
 			context.spTracker = spTracker;
 		}
 
@@ -104,6 +100,8 @@ export class FUActorSheet extends ActorSheet {
 			v.affTypeCurrAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.current]) ?? v.current;
 			v.icon = CONFIG.FU.affIcon[k];
 		}
+
+		// Handle item types
 	}
 
 	/**
@@ -115,6 +113,7 @@ export class FUActorSheet extends ActorSheet {
 	 */
 	_prepareItems(context) {
 		// Initialize containers.
+		const basics = [];
 		const weapons = [];
 		const armor = [];
 		const shields = [];
@@ -126,6 +125,7 @@ export class FUActorSheet extends ActorSheet {
 		const abilities = [];
 		const behaviors = [];
 		const consumables = [];
+		const treasures = [];
 		const projects = [];
 		const rituals = [];
 		const zeroPowers = [];
@@ -169,7 +169,14 @@ export class FUActorSheet extends ActorSheet {
 				i.mdef = `+${i.system.mdef.value}`;
 				i.init = i.system.init.value > 0 ? `+${i.system.init.value}` : i.system.init.value;
 			}
-			if (i.type === 'weapon') {
+			if (i.type === 'basic') {
+				const itemObj = context.actor.items.get(i._id);
+				const weapData = itemObj.getWeaponDisplayData();
+				i.quality = weapData.qualityString;
+				i.attackString = weapData.attackString;
+				i.damageString = weapData.damageString;
+				basics.push(i);
+			} else if (i.type === 'weapon') {
 				const itemObj = context.actor.items.get(i._id);
 				const weapData = itemObj.getWeaponDisplayData();
 				i.quality = weapData.qualityString;
@@ -212,6 +219,11 @@ export class FUActorSheet extends ActorSheet {
 				const itemData = itemObj.getItemDisplayData();
 				i.quality = itemData.qualityString;
 				consumables.push(i);
+			} else if (i.type === 'treasure') {
+				const itemObj = context.actor.items.get(i._id);
+				const itemData = itemObj.getItemDisplayData();
+				i.quality = itemData.qualityString;
+				treasures.push(i);
 			} else if (i.type === 'project') {
 				projects.push(i);
 			} else if (i.type === 'ritual') {
@@ -222,6 +234,7 @@ export class FUActorSheet extends ActorSheet {
 		}
 
 		// Assign and return
+		context.basics = basics;
 		context.weapons = weapons;
 		context.armor = armor;
 		context.shields = shields;
@@ -233,6 +246,7 @@ export class FUActorSheet extends ActorSheet {
 		context.abilities = abilities;
 		context.behaviors = behaviors;
 		context.consumables = consumables;
+		context.treasures = treasures;
 		context.projects = projects;
 		context.rituals = rituals;
 		context.zeroPowers = zeroPowers;
@@ -243,6 +257,48 @@ export class FUActorSheet extends ActorSheet {
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
+
+		// Add an event listener to the document that listens for clicks on elements with the class 'action-button'
+		html.find('#action-button').click((event) => {
+			const element = event.target;
+
+			// Check if the clicked element has the required data attributes
+			const rollType = element.dataset.rollType;
+			const actionType = element.dataset.action;
+
+			if (rollType === 'action-type' && actionType) {
+				// Handle action-type rolls.
+				const actor = this.actor;
+
+				// Determine the type based on the data-action attribute
+				let type = '';
+				switch (actionType) {
+					case 'EquipmentAction':
+						type = 'equipment';
+						break;
+					case 'guardAction':
+						type = 'guard';
+						break;
+					case 'hinderAction':
+						type = 'hinder';
+						break;
+					case 'inventoryAction':
+						type = 'inventory';
+						break;
+					// Add more cases for other actions
+
+					default:
+						type = 'default';
+						break;
+				}
+
+				// Check if the item exists and call its roll method
+				if (type) {
+					// Assuming that item is accessible in this context
+					item.roll(type);
+				}
+			}
+		});
 
 		// Render the item sheet for viewing/editing prior to the editable check.
 		html.find('.item-edit').click((ev) => {
@@ -275,6 +331,7 @@ export class FUActorSheet extends ActorSheet {
 			const item = this.actor.items.get(itemId);
 			const currentEquipped = item.system.isEquipped.value;
 			const itemType = item.system.type;
+			const handType = item.system.hands;
 
 			// Determine the slot based on item type
 			const slotLookup = {
@@ -304,7 +361,7 @@ export class FUActorSheet extends ActorSheet {
 
 			// Update the HTML icon based on the equipped item
 			const icon = li.find('.item-icon');
-			icon.removeClass('fa-toolbox').addClass(getIconClassForEquippedItem(item, itemType));
+			icon.removeClass('fa-toolbox').addClass(getIconClassForEquippedItem(item, itemType, handType));
 
 			// Prevent the default right-click context menu if it's a right-click event
 			if (isRightClick) {
@@ -312,24 +369,24 @@ export class FUActorSheet extends ActorSheet {
 			}
 
 			// Log information
-			console.log('Item ID:', itemId);
-			console.log('Item Type:', itemType);
-			console.log('Equipped Slot:', slot);
-			console.log('Current Equipped:', currentEquipped);
-			console.log(
-				`${slot} Equipped Items:`,
-				this.actor.items.filter((i) => i.system.isEquipped && i.system.isEquipped.slot === slot).map((i) => i.name),
-			);
+			// console.log('Item ID:', itemId);
+			// console.log('Item Type:', itemType);
+			// console.log('Equipped Slot:', slot);
+			// console.log('Current Equipped:', currentEquipped);
+			// console.log(
+			// 	`${slot} Equipped Items:`,
+			// 	this.actor.items.filter((i) => i.system.isEquipped && i.system.isEquipped.slot === slot).map((i) => i.name),
+			// );
 		}
 
 		// Helper function to get the icon class for an equipped item
-		function getIconClassForEquippedItem(item, itemType) {
-			if (item.system.isEquipped.slot === 'mainHand' && itemType === 'weapon' && item.system.hands.value === 'two-handed') {
+		function getIconClassForEquippedItem(item, itemType, handType) {
+			if (item.system.isEquipped.slot === 'mainHand' && itemType === 'weapon' && handType === 'two-handed') {
+				return 'ra ra-relic-blade ra-2x';
+			} else if (item.system.isEquipped.slot === 'mainHand' && itemType === 'weapon' && handType === 'one-handed') {
 				return 'ra ra-sword ra-2x';
-			} else if (item.system.isEquipped.slot === 'mainHand' && itemType === 'weapon' && item.system.hands.value === 'one-handed') {
-				return 'ra ra-plain-dagger ra-2x';
 			} else if (item.system.isEquipped.slot === 'offHand' && itemType === 'weapon') {
-				return 'ra ra-crossed-swords ra-2x';
+				return 'ra ra-sword ra-flip-horizontal ra-2x';
 			} else if (item.system.isEquipped.slot === 'mainHand') {
 				return item.type === 'shield' && item.system.isDualShield && item.system.isDualShield.value ? 'ra ra-heavy-shield' : 'ra ra-shield';
 			} else if (item.system.isEquipped.slot === 'offHand') {
@@ -355,21 +412,16 @@ export class FUActorSheet extends ActorSheet {
 			const parentEl = el.closest('li');
 			const itemId = parentEl.data('item-id');
 			const desc = parentEl.find('.individual-description');
-			const up = parentEl.find('.fa-chevron-up');
-			const down = parentEl.find('.fa-chevron-down');
 
 			if (this._expanded.has(itemId)) {
 				desc.slideUp(animDuration, () => desc.css('display', 'none'));
-				up.css('display', 'inline');
-				down.css('display', 'none');
+
 				this._expanded.delete(itemId);
 			} else {
 				desc.slideDown(animDuration, () => {
 					desc.css('display', 'block');
 					desc.css('height', 'auto');
 				});
-				down.css('display', 'inline');
-				up.css('display', 'none');
 				this._expanded.add(itemId);
 			}
 
@@ -425,66 +477,6 @@ export class FUActorSheet extends ActorSheet {
 			inputElement.val(currentValue);
 		});
 
-		// Addable
-		// html.find('.addable').on('click contextmenu', function (ev) {
-		// 	// Prevent the default behavior of the context menu
-		// 	if (ev.type === 'contextmenu') {
-		// 		ev.preventDefault();
-		// 	}
-
-		// 	const li = $(ev.currentTarget).parents('.item');
-		// 	const itemId = li.data('itemId');
-		// 	const spanElement = $(this).find('span[data-resource]');
-
-		// 	if (spanElement.length === 0) {
-		// 		console.error('Span element with data-resource not found.');
-		// 		return;
-		// 	}
-
-		// 	const targetResource = spanElement.data('resource');
-		// 	console.log('Resource: ', targetResource);
-
-		// 	const isRightClick = ev.type === 'contextmenu';
-		// 	console.log('Rightclick: ', isRightClick);
-
-		// 	// Convert the span element text to a number
-		// 	let currentValue = Number(spanElement.text()) || 0;
-
-		// 	// Increment or decrement the current value by 1
-		// 	if (isRightClick) {
-		// 		currentValue -= 1;
-		// 	} else {
-		// 		currentValue += 1;
-		// 	}
-
-		// 	// Update the displayed value within the span element
-		// 	spanElement.text(currentValue);
-		// 	console.log(currentValue);
-
-		// 	// Now, you can update the actual data of the item in Foundry VTT
-		// 	// For example, you can use Foundry's updateObject function
-		// 	const updateObject = {
-		// 		id: itemId,
-		// 		data: {
-		// 			// Update the property you want to change (e.g., value)
-		// 			[targetResource]: currentValue,
-		// 		},
-		// 	};
-		// 	console.log('Update Object: ', updateObject);
-
-		// 	// Retrieve the item using the item ID
-		// 	console.log('Item ID: ', itemId);
-		// 	let item = game.items.get(itemId);
-
-		// 	// Check if the item is found before attempting to update
-		// 	if (item) {
-		// 		// Update the item with the new value of the target resource
-		// 		item.update(updateObject);
-		// 	} else {
-		// 		console.error('Item not found with ID: ', itemId);
-		// 	}
-		// });
-
 		// Active Effect management
 		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor));
 
@@ -507,22 +499,31 @@ export class FUActorSheet extends ActorSheet {
 			});
 		}
 
-		async function onRest(actor) {
+		async function onRest(actor, isRightClick) {
 			const maxHP = actor.system.resources.hp.max;
 			const maxMP = actor.system.resources.mp.max;
+			const maxIP = actor.system.resources.ip.max;
 
-			await actor.update({
+			const updateData = {
 				'system.resources.hp.value': maxHP,
 				'system.resources.mp.value': maxMP,
-			});
+			};
 
-			actor.sheet.render(true);
+			if (isRightClick) {
+				updateData['system.resources.ip.value'] = maxIP;
+			}
+
+			await actor.update(updateData);
+			if (updateData['system.resources.ip.value'] || !isRightClick) {
+				actor.sheet.render(true);
+			}
 		}
 
-		// Rest
-		html.find('.rest').click(async (ev) => {
+		// Rest on left-click, different behavior on right-click
+		html.find('.rest').on('click contextmenu', async (ev) => {
 			ev.preventDefault();
-			await onRest(this.actor);
+			const isRightClick = ev.type === 'contextmenu';
+			await onRest(this.actor, isRightClick);
 		});
 
 		// Check if bonds object exists, if not, initialize
@@ -534,7 +535,7 @@ export class FUActorSheet extends ActorSheet {
 			const initialBonds = [];
 			actor.system.resources.bonds = initialBonds;
 			await actor.update({ 'system.resources.bonds': initialBonds });
-			console.log('Bonds initialized:', initialBonds);
+			// console.log('Bonds initialized:', initialBonds);
 		}
 
 		async function addBond(actor) {
@@ -572,7 +573,7 @@ export class FUActorSheet extends ActorSheet {
 			// Trigger a sheet re-render
 			actor.sheet.render();
 
-			console.log('Bonds after adding:', bondsObject);
+			// console.log('Bonds after adding:', bondsObject);
 		}
 
 		async function deleteBond(actor, index) {
@@ -594,7 +595,7 @@ export class FUActorSheet extends ActorSheet {
 				// Trigger a sheet re-render
 				actor.sheet.render();
 
-				console.log('Bonds after clearing:', bondsObject);
+				// console.log('Bonds after clearing:', bondsObject);
 			}
 		}
 
@@ -634,60 +635,6 @@ export class FUActorSheet extends ActorSheet {
 				await this.actor.update({ 'system.resources.bonds': bonds });
 			}
 		});
-
-		document.addEventListener('click', function (event) {
-			if (event.target.dataset.action === 'toggleVisibility') {
-				const targetId = event.target.dataset.target;
-				const targetElement = document.querySelector(`[data-target="${targetId}"]`);
-
-				// Check your condition here and toggle visibility accordingly
-				if (targetElement) {
-					targetElement.style.display = 'block'; // Show the element
-				} else {
-					targetElement.style.display = 'none'; // Hide the element
-				}
-			}
-		});
-
-		// Event listener for editing skill value
-		$('.items-list').on('input', '.editable-skill-level', async (ev) => {
-			const newValue = parseInt($(ev.target).text());
-			const skillItem = $(ev.target).closest('.item');
-
-			// Find the corresponding skill ID from the data-item-id attribute
-			const skillId = skillItem.data('item-id');
-
-			// Get the item object corresponding to the skill using the skill ID
-			const item = this.actor.items.get(skillId);
-
-			console.log('Test:', newValue, skillItem, skillId, item);
-
-			if (item) {
-				// Update the skill value
-				item.system.level.value = newValue;
-
-				// Update the stars based on the updated value
-				const starsContainer = skillItem.find('.star-container');
-				if (starsContainer.length > 0) {
-					const starsHTML = generateStarsHTML(item.system.level.value, item.system.level.max);
-					starsContainer.html(starsHTML);
-				}
-
-				// Update the actor's item with the modified skill data
-				await item.update({ 'system.level.value': newValue });
-			}
-		});
-
-		// Function to generate the HTML for stars
-		function generateStarsHTML(value, max) {
-			let starsHTML = '';
-
-			for (let i = 0; i < max; i++) {
-				starsHTML += `<div class="star ${i < value ? 'fus-sl-star' : 'ful-sl-star'}"></div>`;
-			}
-
-			return starsHTML;
-		}
 
 		function _sortAlphaList(array, html) {
 			// Sort the array alphabetically by the "name" property
@@ -739,6 +686,7 @@ export class FUActorSheet extends ActorSheet {
 			this.actor.sheet.render(true);
 		});
 	}
+
 	async _onItemDuplicate(event) {
 		event.preventDefault();
 		const header = event.currentTarget;
@@ -794,7 +742,7 @@ export class FUActorSheet extends ActorSheet {
 	 */
 	_rollBehavior() {
 		// Filter items in the actor's inventory to find behaviors
-		const behaviors = this.actor.items.filter((item) => ['weapon', 'shield', 'armor', 'accessory', 'spell', 'miscAbility', 'behavior'].includes(item.type) && item.system.isBehavior?.value);
+		const behaviors = this.actor.items.filter((item) => ['basic', 'weapon', 'shield', 'armor', 'accessory', 'spell', 'miscAbility', 'behavior'].includes(item.type) && item.system.isBehavior?.value);
 
 		// Prepare an array to map behaviors with their weights
 		const behaviorMap = [];
@@ -969,11 +917,11 @@ export class FUActorSheet extends ActorSheet {
 		const content = `
 		
 		<div class="detail-desc flex-group-center grid grid-2col">
-          <div class="summary">${primaryRollResult.total} (${primaryAttributeName})</div>
-          <div class="summary">${secondaryRollResult.total} (${secondaryAttributeName})</div> 
+          <div class="spin2win"><i class="fas fa-dice-d20 ra-2x rollable"></i>${primaryRollResult.total} (${primaryAttributeName})</div>
+          <div class="spin2win"><i class="fas fa-dice-d20 ra-2x rollable"></i>${secondaryRollResult.total} (${secondaryAttributeName})</div> 
         </div>
 		<div class="detail-desc flexrow" style="padding:0 2px">
-            <div class="summary">${bonusString}Total Result: ${totalResult}</div>
+            <div class="spin2win"><i class="fas fa-dice-d20 ra-2x rollable"></i>${bonusString}Total Result: ${totalResult}</div>
         </div>
 	
 		`;
@@ -1090,7 +1038,48 @@ export class FUActorSheet extends ActorSheet {
 			const item = sameSlotItems.find((i) => true);
 
 			// Check if the item exists and call its roll method
-			if (item) return item.roll();
+			if (item) return item.roll(isShift);
+		}
+
+		// Handle action-type rolls.
+		if (dataset.rollType === 'action-type') {
+			// Get the actor that owns the item
+			const actor = this.actor;
+			// Determine the type based on the data-action attribute
+			let action = '';
+			switch (dataset.action) {
+				case 'equipmentAction':
+					action = 'equipment';
+					break;
+				case 'guardAction':
+					action = 'guard';
+					break;
+				case 'hinderAction':
+					action = 'hinder';
+					break;
+				case 'inventoryAction':
+					action = 'inventory';
+					break;
+				case 'objectiveAction':
+					action = 'objective';
+					break;
+				case 'spellAction':
+					action = 'spell';
+					break;
+				case 'studyAction':
+					action = 'study';
+					break;
+				case 'skillAction':
+					action = 'skill';
+					break;
+				default:
+					action = 'default';
+					break;
+			}
+			console.log('Action Type: ', action);
+
+			// Call the roll method with the determined action type
+			// this.roll(action);
 		}
 
 		// Handle rolls that supply the formula directly.
