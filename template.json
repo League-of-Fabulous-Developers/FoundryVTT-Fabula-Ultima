@@ -24,18 +24,14 @@
 				},
 				"attributes": {
 					"dex": { "base": 6, "current": 6, "bonus": 0 },
-					"ins": { "base": 6, "current": 6, "bonus": 0 },
 					"mig": { "base": 6, "current": 6, "bonus": 0 },
+					"ins": { "base": 6, "current": 6, "bonus": 0 },
 					"wlp": { "base": 6, "current": 6, "bonus": 0 }
 				},
 				"derived": {
 					"init": { "value": 0, "bonus": 0 },
 					"def": { "value": 0, "bonus": 0 },
 					"mdef": { "value": 0, "bonus": 0 }
-				},
-				"castingAttributes": {
-					"primary": { "value": "ins" },
-					"secondary": { "value": "wlp" }
 				}
 			}
 		},
@@ -69,12 +65,14 @@
 		}
 	},
 	"Item": {
-		"types": ["weapon", "shield", "armor", "accessory", "class", "skill", "heroic", "spell", "miscAbility", "behavior", "consumable", "ritual", "project", "zeroPower"],
+		"types": ["basic", "weapon", "shield", "armor", "accessory", "consumable", "treasure", "class", "skill", "heroic", "spell", "miscAbility", "behavior", "ritual", "project", "zeroPower"],
 		"templates": {
 			"base": {
+				"subtype": { "value": "" },
 				"summary": "",
 				"description": "",
-				"isFavored": { "value": false }
+				"isFavored": { "value": false },
+				"hasNotification": { "showTitleCard": { "value": false } }
 			},
 			"item": { "cost": { "value": 0 } },
 			"equippable": {
@@ -87,6 +85,7 @@
 				"mdef": { "value": 0 },
 				"init": { "value": 0 }
 			},
+			"hasProgress": { "progress": { "current": 0, "step": 1, "max": 6 } },
 			"hasBehavior": { "isBehavior": false, "weight": { "value": 1 } },
 			"hasLevel": { "level": { "value": 1, "max": 10, "min": 0 } },
 			"hasClass": { "class": { "value": "" } },
@@ -126,70 +125,84 @@
 				"hands": { "value": "one-handed" },
 				"impType": { "value": "minor" },
 				"damageType": { "value": "physical" }
-			},
-			"showTitleCard": { "showTitleCard": { "value": false } }
+			}
+		},
+		"basic": {
+			"templates": ["base", "item", "equippable", "weaponize", "hasBehavior"],
+			"isCustomWeapon": { "value": false }
 		},
 		"weapon": {
-			"templates": ["base", "item", "equippable", "weaponize", "hasBehavior", "showTitleCard"],
+			"templates": ["base", "item", "equippable", "weaponize", "hasBehavior"],
 			"isCustomWeapon": { "value": false }
 		},
 		"shield": {
-			"templates": ["base", "item", "equippable", "defensive", "weaponize", "hasBehavior", "showTitleCard"],
+			"templates": ["base", "item", "equippable", "defensive", "weaponize", "hasBehavior"],
 			"isDualShield": { "value": false },
 			"category": { "value": "brawling" }
 		},
 		"armor": {
-			"templates": ["base", "item", "equippable", "defensive", "hasBehavior", "showTitleCard"]
+			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
 		},
 		"accessory": {
-			"templates": ["base", "item", "equippable", "defensive", "hasBehavior", "showTitleCard"]
+			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
 		},
 		"class": {
 			"templates": ["base", "hasLevel"],
 			"benefits": {
-				"hp": { "value": false },
-				"mp": { "value": false },
-				"ip": { "value": false },
-				"proj": { "value": false },
-				"ritual": { "value": false },
-				"melee": { "value": false },
-				"ranged": { "value": false },
-				"armor": { "value": false },
-				"shields": { "value": false }
+				"resources": {
+					"hp": { "value": false },
+					"mp": { "value": false },
+					"ip": { "value": false }
+				},
+				"martials": {
+					"melee": { "value": false },
+					"ranged": { "value": false },
+					"armor": { "value": false },
+					"shields": { "value": false }
+				},
+				"rituals": {
+					"arcanism": { "value": false },
+					"chimerism": { "value": false },
+					"elementalism": { "value": false },
+					"entropism": { "value": false },
+					"ritualism": { "value": false },
+					"spiritism": { "value": false }
+				}
 			}
 		},
 		"heroic": {
-			"templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"],
-			"subtype": { "value": "skill" },
+			"templates": ["base", "hasLevel", "hasClass", "rollInfo"],
 			"requirement": { "value": "" },
 			"benefits": {
-				"hp": { "value": false },
-				"mp": { "value": false },
-				"ip": { "value": false }
+				"resources": {
+					"hp": { "value": false },
+					"mp": { "value": false },
+					"ip": { "value": false }
+				}
 			}
 		},
 		"skill": {
-			"templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"]
+			"templates": ["base", "hasLevel", "hasClass", "rollInfo"]
 		},
 		"spell": {
-			"templates": ["base", "hasClass", "rollInfo", "hasBehavior", "showTitleCard"],
+			"templates": ["base", "hasClass", "rollInfo", "hasBehavior"],
 			"mpCost": { "value": "" },
 			"target": { "value": "" },
 			"duration": { "value": "" },
 			"isOffensive": { "value": false }
 		},
 		"miscAbility": {
-			"templates": ["base", "equippable", "rollInfo", "hasBehavior", "showTitleCard"],
-			"subtype": { "value": "custom" }
+			"templates": ["base", "equippable", "rollInfo", "hasBehavior"]
 		},
 		"behavior": {
 			"templates": ["base"],
 			"isBehavior": true,
 			"weight": { "value": 1 }
 		},
-		"consumable": { "templates": ["base", "showTitleCard"], "ipCost": { "value": 3 } },
+		"consumable": { "templates": ["base"], "ipCost": { "value": 3 } },
+		"treasure": { "templates": ["base", "item"], "quantity": { "value": 1 } },
 		"project": {
-			"templates": ["base"],
+			"templates": ["base", "hasProgress"],
 			"potency": { "value": "minor" },
 			"area": { "value": "individual" },
 			"use": { "value": "consumable" },
@@ -199,14 +212,13 @@
 			"numHelper": { "value": 0 },
 			"lvlVision": { "value": 0 },
 			"cost": { "value": 0 },
-			"progress": { "current": 0, "max": 6 },
 			"progressPerDay": { "value": 0 },
 			"days": { "value": 0 },
-			"clock": { "value": 0 },
-			"discount": { "value": 0 }
+			"discount": { "value": 0 },
+			"clock": { "value": 0 }
 		},
 		"ritual": {
-			"templates": ["base", "hasClass", "rollInfo"],
+			"templates": ["base", "hasClass", "rollInfo", "hasProgress"],
 			"potency": { "value": "minor" },
 			"area": { "value": "individual" },
 			"mpCost": { "value": 0 },
@@ -214,10 +226,9 @@
 			"clock": { "value": 0 }
 		},
 		"zeroPower": {
-			"templates": ["base"],
+			"templates": ["base", "hasProgress"],
 			"zeroTrigger": { "value": "" },
-			"zeroEffect": { "value": "" },
-			"trigger": { "current": 0, "step": 1, "max": 6 }
+			"zeroEffect": { "value": "" }
 		}
 	}
 }
