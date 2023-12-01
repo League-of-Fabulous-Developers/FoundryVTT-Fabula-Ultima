@@ -2,11 +2,12 @@
 import { FUActor } from './documents/actor.mjs';
 import { FUItem } from './documents/item.mjs';
 // Import sheet classes.
-import { FUActorSheet } from './sheets/actor-sheet.mjs';
+import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
 import { FUItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU } from './helpers/config.mjs';
+import { registerSystemSettings } from './settings.js';
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -42,16 +43,9 @@ Hooks.once('init', async () => {
 	CONFIG.Actor.documentClass = FUActor;
 	CONFIG.Item.documentClass = FUItem;
 
-	// todo: selective options for choosing which automation to disable
-	/* 	game.settings.register('fabulaultima', 'disableAutomation', {
-		name: 'Disable Automation',
-		hint: 'Toggle to disable automatic calculations for certain fields.',
-		scope: 'world', // or "client" if it's a client-specific setting
-		config: true,
-		default: false, // Initial value
-		type: Boolean,
-	});
- */
+	// Register system settings
+	registerSystemSettings();
+
 	CONFIG.statusEffects = [
 		{
 			id: 'accelerated',
@@ -210,7 +204,7 @@ Hooks.once('init', async () => {
 
 	// Register sheet application classes
 	Actors.unregisterSheet('core', ActorSheet);
-	Actors.registerSheet('fabulaultima', FUActorSheet, {
+	Actors.registerSheet('fabulaultima', FUStandardActorSheet, {
 		makeDefault: true,
 	});
 	Items.unregisterSheet('core', ItemSheet);
@@ -252,7 +246,6 @@ Hooks.once('ready', async function () {
 
 Hooks.once('socketlib.ready', () => {
 	const socket = socketlib.registerSystem('fabulaultima');
-	socket.register('cast', displayCastingText);
 	socket.register('use', displayUsingText);
 });
 
@@ -330,18 +323,6 @@ function rollItemMacro(itemUuid) {
 		// Trigger the item roll
 		item.roll();
 	});
-}
-
-function displayCastingText(text) {
-	text = `${text}`;
-	ui.notifications.queue.push({
-		message: text,
-		type: 'fabulaultima-spellname',
-		timestamp: new Date().getTime(),
-		permanent: false,
-		console: false,
-	});
-	if (ui.notifications.rendered) ui.notifications.fetch();
 }
 
 function displayUsingText(text) {

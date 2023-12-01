@@ -1,0 +1,141 @@
+<!-- Classes Section -->
+<section class="desc">
+	<header class="items-main-header">
+		<span class="items-main">
+			<label class="items-label">{{localize "FU.Classes"}}</label>
+		</span>
+		<span class="items-main total-level grid grid-3col">
+			<i class="fas fa-question-circle"></i>
+			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalClass.current }} / {{
+				tlTracker.totalClass.max }} </span>
+		</span>
+	</header>
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			<div class="item-name">{{localize "FU.Name"}}</div>
+			<div class="item-m">{{localize "FU.Level"}}</div>
+			<div class="item-m end">
+				<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="Create class"
+					data-type="class"> <i class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
+			</div>
+		</li>
+		{{#each classes as |item id|}}
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow">
+				{{!-- Item Name--}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				<div class="item-m">
+					<span data-resource="item.level">{{ item.level }}</span>
+					<span>/</span>
+					<span>{{ item.system.level.max }}</span>
+				</div>
+				{{!-- Item Control--}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+			</div>
+			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
+				target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+			</div>
+		</li>
+		{{/each}}
+	</ol>
+</section>
+
+<!-- Skills Section -->
+<section class="desc">
+	<header class="items-main-header">
+		<span class="items-main">
+			<label class="items-label">{{localize "FU.Skills"}}</label>
+		</span>
+		<span class="items-main total-level grid grid-3col">
+			<i class="fas fa-question-circle"></i>
+			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalSkill.current }} / {{
+				tlTracker.totalSkill.max }} </span>
+		</span>
+	</header>
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			<div class="item-name">{{localize 'FU.Name'}}</div>
+			<div class="item-lg">{{localize 'FU.SkillLevel'}}</div>
+			<div class="item-m">{{localize 'FU.SkillLevelAbbr'}}</div>
+			<div class="item-m end">
+				<a class="item-control item-create" aria-describedby="tooltip"
+					data-tooltip="{{localize 'FU.SkillCreate'}}" data-type="skill">
+					<i class="fas fa-plus icon"></i>
+					{{localize 'FU.Add'}}
+				</a>
+			</div>
+		</li>
+		{{#each skills as |item id|}}
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow" style="height: fit-content;align-items: baseline;">
+				<div class="flexcol">
+					{{!-- Item Name--}}
+					{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+					{{#if item.quality}}
+					<div class="item-quality">{{ item.quality }}</div>
+					{{/if}}
+				</div>
+				<div class="item-lg sl-stars">
+					{{ generateStars item.starCurrent item.starMax }}
+				</div>
+				<div class="item-m">
+					<span class="editable-skill-level" data-resource="item.system.level.value">{{
+						item.system.level.value }}</span>
+					{{#if (gt item.system.level.max 0)}}
+					<span>/</span>
+					<span>{{ item.system.level.max }}</span>
+					{{/if}}
+				</div>
+				{{!-- Item Control--}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+			</div>
+			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
+				target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+			</div>
+		</li>
+		{{/each}}
+	</ol>
+</section>
+
+<!-- Heroic Skill Section-->
+<section class="desc">
+	<header class="items-main-header">
+		<span class="items-main">
+			<label class="items-label">{{localize "FU.Heroics"}}</label>
+		</span>
+		<span class="items-main total-level grid grid-3col">
+			<i class="fas fa-question-circle"></i>
+			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalHeroic.current }} / {{
+				tlTracker.totalHeroic.max }} </span>
+		</span>
+	</header>
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			<div class="item-name">{{localize 'FU.Name'}}</div>
+			<div class="item-m">{{localize 'FU.ItemType'}}</div>
+			<div class="item-m end">
+				<a class="item-control item-create" aria-describedby="tooltip"
+					data-tooltip="{{localize 'FU.HeroicCreate'}}" data-type="heroic">
+					<i class="fas fa-plus icon"></i>
+					{{localize 'FU.Add'}}
+				</a>
+			</div>
+		</li>
+		{{#each heroics as |item id|}}
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow">
+				{{!-- Item Name--}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				<div class="item-m">
+					<span>{{capitalize item.type }} {{capitalize item.system.subtype.value }}</span>
+				</div>
+				{{!-- Item Control--}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+			</div>
+			<div class="individual-description align-left">{{#if item.system.description}} {{editor
+				item.system.description target="item.system.description" rollData=rollData button=false owner=owner
+				editable=false}} {{/if}}</div>
+		</li>
+		{{/each}}
+	</ol>
+</section>

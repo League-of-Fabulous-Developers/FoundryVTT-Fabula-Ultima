@@ -1,0 +1,128 @@
+<div class="header-fields flexrow" style="align-self: stretch;">
+    <div class="resource-content flex-group-center desc">
+        {{!-- Key Statuses --}}
+        <div class="resource-content flex-group-center flexrow">
+            <span class="grid grid-4col">
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Status_Bleeding.png" data-tooltip="Crisis"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Slow.webp" data-tooltip="Slow"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Dazed.webp" data-tooltip="Dazed"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Enraged.webp" data-tooltip="Enraged"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/KO.webp" data-tooltip="KO"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Weak.webp" data-tooltip="Weak"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Shaken.webp" data-tooltip="Shaken"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Poisoned.webp" data-tooltip="Poisoned"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+            </span>
+            <span class="grid grid-4col">
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/DexUp.webp" data-tooltip="Dexterity Up"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/MigUp.webp" data-tooltip="Might UP"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/InsUp.webp" data-tooltip="Insight Up"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/WlpUp.webp" data-tooltip="Willpower Up"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/DexDown.webp" data-tooltip="Dexterity Down"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/MigDown.webp" data-tooltip="Might Down"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/InsDown.webp" data-tooltip="Insight Down"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/WlpDown.webp" data-tooltip="Willpower Down"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+            </span>
+        </div>
+    </div>
+
+    <div class="resource-content flex-group-center desc">
+        <!-- Attribute Section -->
+        {{>"systems/fabulaultima/templates/actor/partials/actor-attributes.hbs"}}
+    </div>
+
+    {{!-- Roll Check --}}
+    <div class="resource-content flex-group-center desc">
+        <label class="resource-label-xl spin2win rollable flex-center" data-roll-type="roll-check">
+            <i class="fas fa-dice-d20 spin2win ra-1x rollable"></i> {{localize 'FU.RollCheck'}}
+        </label>
+        <div class="buttons-inc flex-group-center">
+            <span class="buttons-inc">
+                <select value="{{ system.rollInfo.attributes.primary.value }}"
+                    name="system.rollInfo.attributes.primary.value" class="resource-inputs" style="width:70px">
+                    {{#select system.rollInfo.attributes.primary.value}}
+                    <option value="attributes.dex.current">{{localize 'FU.AttributeDexAbbr'}}</option>
+                    <option value="attributes.ins.current">{{localize 'FU.AttributeInsAbbr'}}</option>
+                    <option value="attributes.mig.current">{{localize 'FU.AttributeMigAbbr'}}</option>
+                    <option value="attributes.wlp.current">{{localize 'FU.AttributeWlpAbbr'}}</option>
+                    {{/select}}
+                </select>
+            </span>
+            <span class="buttons-inc rollable" data-tooltip="{{localize 'FU.RollCheckOptions'}}"
+                aria-describedby="tooltip" data-type="roll-check-option" data-roll-type="roll-check-option">
+                <button class="roll-check-option">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </span>
+            <span class="buttons-inc">
+                <select value="{{ system.rollInfo.attributes.secondary.value }}"
+                    name="system.rollInfo.attributes.secondary.value" class="resource-inputs" style="width:70px">
+                    {{#select system.rollInfo.attributes.secondary.value}}
+                    <option value="attributes.dex.current">{{localize 'FU.AttributeDexAbbr'}}</option>
+                    <option value="attributes.ins.current">{{localize 'FU.AttributeInsAbbr'}}</option>
+                    <option value="attributes.mig.current">{{localize 'FU.AttributeMigAbbr'}}</option>
+                    <option value="attributes.wlp.current">{{localize 'FU.AttributeWlpAbbr'}}</option>
+                    {{/select}}
+                </select>
+            </span>
+        </div>
+    </div>
+</div>

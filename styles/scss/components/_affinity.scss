@@ -2,9 +2,13 @@ $size-outline: 2px;
 $color-outline: #000;
 $color-text-shadow: #333;
 
+.affinities {
+  padding: 7px;
+  width: 100%;
+}
+
 .icon-aff {
   display: inline-block;
-  padding: 2px;
   position: relative;
   z-index: 1;
 

@@ -1,0 +1,64 @@
+<form class="{{ cssClass }} backgroundstyle" autocomplete="off">
+	{{> "systems/fabulaultima/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+
+	{{!-- Sheet Body --}}
+	<section class="sheet-body">
+		{{!-- Description Tab --}}
+		<div class="tab desc" data-group="primary" data-tab="description">
+			<div class="grid grid-3col">
+				{{!-- Zero Trigger --}}
+				<div class="grid-span-2 flex-between">
+					<div class="half-desc resource-content">
+						<input type="text" name="system.zeroTrigger.value" value="{{ system.zeroTrigger.value }}"
+							data-dtype="String" placeholder="{{localize 'FU.LimitTrigger'}}"
+							class="resource-inputs select-dropdown-full" />
+						{{editor system.zeroTrigger.description target="system.zeroTrigger.description"
+						rollData=rollData button=true owner=owner editable=editable}}
+					</div>
+				</div>
+
+				{{!-- Clock (1 column, spanning 2 rows) --}}
+				<div class="resource grid-start-3 grid-span-1 flexrow">
+					<div class="flex-group-center resource-content">
+						<label>
+							<span class="resource-label-m"> <br />{{localize 'FU.Current'}}</span>
+						</label>
+						<input class="resource-inputs" type="number" name="system.progress.current"
+							value="{{ system.progress.current }}" />
+					</div>
+					<div class="flex-group-center resource-content">
+						<label>
+							<span class="resource-label-m"> <br />{{localize 'FU.Step'}}</span>
+						</label>
+						<input class="resource-inputs" type="number" name="system.progress.step"
+							value="{{ system.progress.step }}" />
+					</div>
+					<div class="flex-group-center resource-content">
+						<label>
+							<span class="resource-label-m"> <br />{{localize 'FU.Max'}}</span>
+						</label>
+						<input class="resource-inputs" type="number" name="{{ system.progress.max }}"
+							value="{{ system.progress.max }}" disabled />
+					</div>
+					<!-- TODO: implement clocks into zero power, using progress-clocks as placeholder to visualize what it'd look like-->
+					<img class="clock-img" src="icons/svg/clockwork.svg" data-edit="img"
+						data-tooltip="{{localize 'FU.Clock'}}" aria-describedby="tooltip" />
+				</div>
+
+				{{!-- Zero Effect (2 columns) --}}
+				<div class="grid-span-2 flex-between">
+					<div class="half-desc resource-content">
+						<input type="text" name="system.zeroEffect.value" value="{{ system.zeroEffect.value }}"
+							data-dtype="String" placeholder="Zero Effect"
+							class="resource-inputs select-dropdown-full" />
+						{{editor system.zeroEffect.description target="system.zeroEffect.description" rollData=rollData
+						button=true owner=owner editable=editable}}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{{!-- Attributes Tab --}}
+		<div class="tab attributes" data-group="primary" data-tab="attributes"></div>
+	</section>
+</form>

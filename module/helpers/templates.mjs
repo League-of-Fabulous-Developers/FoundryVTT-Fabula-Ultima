@@ -5,24 +5,39 @@
  */
 export const preloadHandlebarsTemplates = async function () {
 	return loadTemplates([
-		// Actor partials.
-		'systems/fabulaultima/templates/actor/parts/actor-divider.html',
-		'systems/fabulaultima/templates/actor/parts/actor-npc-skills.html',
-		'systems/fabulaultima/templates/actor/parts/actor-equip.html',
-		'systems/fabulaultima/templates/actor/parts/actor-control.html',
-		'systems/fabulaultima/templates/actor/parts/actor-bonds.html',
-		'systems/fabulaultima/templates/actor/parts/actor-favorite.html',
-		'systems/fabulaultima/templates/actor/parts/actor-features.html',
-		'systems/fabulaultima/templates/actor/parts/actor-items.html',
-		'systems/fabulaultima/templates/actor/parts/actor-spells.html',
-		'systems/fabulaultima/templates/actor/parts/actor-effects.html',
-		'systems/fabulaultima/templates/actor/parts/actor-behavior.html',
-		'systems/fabulaultima/templates/actor/parts/actor-crafts.html',
-		'systems/fabulaultima/templates/actor/parts/actor-settings.html',
+		// Actor Section partials.
+		'systems/fabulaultima/templates/actor/sections/actor-section-classes.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-features.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-spells.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-items.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-combat.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-effects.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-behavior.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-settings.hbs',
+
+		// Actor Component partials.
+		'systems/fabulaultima/templates/actor/partials/actor-actions.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-affinities.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-attributes.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-statistics.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-resources.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-resource-points.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-traits.hbs',
+
+		'systems/fabulaultima/templates/actor/partials/actor-item-name.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-actions.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-npc-skills.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-favorite.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-bonds.hbs',
+
+		'systems/fabulaultima/templates/actor/partials/actor-divider.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-equip.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-control.hbs',
 
 		// Item partials
-		'systems/fabulaultima/templates/item/parts/item-header.html',
-		'systems/fabulaultima/templates/item/parts/item-effects.html',
+		'systems/fabulaultima/templates/item/partials/item-header.hbs',
+		'systems/fabulaultima/templates/item/partials/item-effects.hbs',
+		'systems/fabulaultima/templates/item/partials/item-controls.hbs',
 	]);
 };
 
@@ -48,84 +63,40 @@ Handlebars.registerHelper('half', function (value) {
 	return Math.floor(num / 2);
 });
 
-Handlebars.registerHelper('calculatePercentage', function (currentValue, maxValue) {
-	// Calculate the percentage
-	const percentage = (currentValue / maxValue) * 100;
-
-	// Return the percentage as a string with two decimal places
+Handlebars.registerHelper('calculatePercentage', function (value, max) {
+	value = parseFloat(value);
+	max = parseFloat(max);
+	const percentage = (value / max) * 100;
 	return percentage.toFixed(2) + '%';
 });
 
-// Define a Handlebars helper to get the non-abbreviated label based on the value
-Handlebars.registerHelper('localizeFull', function (value) {
-	// Define an object that maps values to non-abbreviated labels
-	var affinityLabels = {
-		0: 'FU.AffinityVulnurable',
-		1: 'FU.AffinityNormal',
-		2: 'FU.AffinityResistance',
-		3: 'FU.AffinityImmune',
-		4: 'FU.AffinityAbsorption',
-		5: 'FU.AffinityRepulsion',
-	};
-
-	// Return the non-abbreviated label based on the value
-	return affinityLabels[value];
-});
-
-Handlebars.registerHelper('affinity', function (affinity, options) {
-	// Define an array of objects with the icon and label for each damage type
-	var damageTypes = [
-		{ icon: 'fas fa-sword', label: 'FU.DamageNormal' },
-		{ icon: 'fas fa-wind', label: 'FU.DamageWind' },
-		{ icon: 'fas fa-bolt-lightning', label: 'FU.DamageLightning' },
-		{ icon: 'fas fa-moon', label: 'FU.DamageDark' },
-		{ icon: 'fas fa-hill-rockslide', label: 'FU.DamageEarth' },
-		{ icon: 'fas fa-fire icon-aff', label: 'FU.DamageFire' },
-		{ icon: 'fas fa-snowflake icon-aff', label: 'FU.DamageIce' },
-		{ icon: 'fas fa-sun icon-aff', label: 'FU.DamageLight' },
-		{ icon: 'fas fa-skull-crossbones', label: 'FU.DamagePoison' },
-	];
-
-	// Initialize an empty string to store the output
-	var output = '';
-
-	// Loop through the damage types and the affinity object
-	for (var i = 0; i < damageTypes.length; i++) {
-		// Get the key and value of the current resistance property
-		var key = Object.keys(affinity)[i];
-		var value = affinity[key];
-
-		// Create a new context object with the icon, label, name, and value
-		var context = {
-			icon: damageTypes[i].icon,
-			label: damageTypes[i].label,
-			name: 'system.resources.affinity.' + key,
-			value: value,
-		};
-
-		// Execute the template block with the new context and append it to the output
-		output += options.fn(context);
+// Register a Handlebars helper for generating stars
+Handlebars.registerHelper('generateStars', function (current, max) {
+	let stars = '';
+	for (let i = 0; i < current; i++) {
+		stars += '<div class="rollable fusl fus-sl-star"></div>';
 	}
-
-	// Return the output
-	return output;
+	for (let i = 0; i < max - current; i++) {
+		stars += '<div class="rollable fusl ful-sl-star"></div>';
+	}
+	return new Handlebars.SafeString(stars);
 });
 
 // Define a Handlebars helper to get the icon class based on item properties
 Handlebars.registerHelper('getIconClass', function (item) {
 	if (item.type === 'weapon') {
 		if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'two-handed') {
-			return 'ra ra-sword ra-2x';
+			return 'ra ra-relic-blade ra-2x  ra-flip-horizontal';
 		} else if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'one-handed') {
-			return 'ra ra-plain-dagger ra-2x';
+			return 'ra ra-sword ra-2x ra-flip-horizontal';
 		} else if (item.system.isEquipped.slot === 'offHand') {
-			return 'ra ra-crossed-swords ra-2x';
+			return 'ra  ra-plain-dagger ra-2x ra-rotate-180';
 		}
 	} else if (item.type === 'shield') {
-		if (item.system.isEquipped.slot === 'mainHand' && item.system.isDualShield && item.system.isDualShield.value) {
-			return 'ra ra-heavy-shield';
+		if (item.system.isDualShield && item.system.isDualShield.value) {
+			return 'ra ra-heavy-shield ra-2x';
 		} else if (item.system.isEquipped.slot === 'offHand' || item.system.isEquipped.slot === 'mainHand') {
-			return 'ra ra-shield';
+			return 'ra ra-shield ra-2x';
 		}
 	} else if (item.type === 'armor') {
 		if (item.system.isEquipped.slot === 'armor') {
@@ -133,41 +104,26 @@ Handlebars.registerHelper('getIconClass', function (item) {
 		}
 	} else if (item.type === 'accessory') {
 		if (item.system.isEquipped.slot === 'accessory') {
-			return 'fas fa-hat-wizard ra-2x';
+			return 'fas fa-leaf ra-2x';
 		}
 	}
 	return 'fas fa-toolbox';
 });
 
 // Example layout for equipment slot handler
-const itemData = {
-	item: {
-		system: {
-			isEquipped: {
-				value: true,
-				slot: 'mainHand',
-			},
-		},
-		type: 'weapon',
-		system: {
-			hands: {
-				value: 'two-handed',
-			},
-		},
-	},
-};
-
-// Register a Handlebars helper for generating stars
-Handlebars.registerHelper('generateStars', function (current, max) {
-	let stars = '';
-
-	for (let i = 0; i < current; i++) {
-		stars += '<div class="rollable fusl fus-sl-star"></div>';
-	}
-
-	for (let i = 0; i < max - current; i++) {
-		stars += '<div class="rollable fusl ful-sl-star"></div>';
-	}
-
-	return new Handlebars.SafeString(stars);
-});
+// const itemData = {
+// 	item: {
+// 		system: {
+// 			isEquipped: {
+// 				value: true,
+// 				slot: 'mainHand',
+// 			},
+// 		},
+// 		type: 'weapon',
+// 		system: {
+// 			hands: {
+// 				value: 'two-handed',
+// 			},
+// 		},
+// 	},
+// };

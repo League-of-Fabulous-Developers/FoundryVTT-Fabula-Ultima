@@ -18,6 +18,9 @@ export class FUActor extends Actor {
 		// Add the spTracker data to the actor's data
 		data.spTracker = this.spTracker;
 
+		//Add the tlTracker data to the actor's data
+		data.tlTracker = this.tlTracker;
+
 		return data;
 	}
 
@@ -47,9 +50,8 @@ export class FUActor extends Actor {
 		if (disableAutomation) {
 			return; // Exit early
 		} */
-
 		this._calculateResources(actorData);
-		this._calculateTotalLevels(actorData);
+		this._calculateAffinities(actorData);
 		this._calculateCrafting(actorData);
 		this._handleStatusEffects(actorData);
 		this._calculateDefenses(actorData);
@@ -103,15 +105,17 @@ export class FUActor extends Actor {
 		// Calculate total defense
 		const def = baseDef + otherDef + bonusDef;
 
-		// Filter equipped items for non-weapons
-		const nonWeapons = equipped.filter((item) => item.type !== 'weapon');
+		// Filter equipped items for non-weapons: weapons and basic attacks
+		const nonWeapons = equipped.filter((item) => item.type !== 'weapon' || item.type !== 'basic');
 
 		// Get the insight attribute value
 		const ins = actorData.system.attributes.ins.current;
 
 		// Calculate defense against magic attacks (magical defense)
 		const otherMDef = nonWeapons.reduce((mdef, item) => {
-			mdef += item.system.mdef.value;
+			if (item.system && item.system.mdef) {
+				mdef += item.system.mdef.value;
+			}
 			return mdef;
 		}, 0);
 
@@ -137,13 +141,13 @@ export class FUActor extends Actor {
 
 		// Filter classes and heroic skills for specific benefits.
 		const classes = actorData.items.filter((item) => item.type === 'class');
-		const classesWithHp = classes.filter((item) => item.system.benefits.hp.value);
-		const classesWithMp = classes.filter((item) => item.system.benefits.mp.value);
-		const classesWithIp = classes.filter((item) => item.system.benefits.ip.value);
+		const classesWithHp = classes.filter((item) => item.system.benefits.resources.hp.value);
+		const classesWithMp = classes.filter((item) => item.system.benefits.resources.mp.value);
+		const classesWithIp = classes.filter((item) => item.system.benefits.resources.ip.value);
 		const heroics = actorData.items.filter((item) => item.type === 'heroic');
-		const heroicSkillWithHp = heroics.filter((item) => item.system.benefits.hp.value);
-		const heroicSkillWithMp = heroics.filter((item) => item.system.benefits.mp.value);
-		const heroicSkillWithIp = heroics.filter((item) => item.system.benefits.ip.value);
+		const heroicSkillWithHp = heroics.filter((item) => item.system.benefits.resources.hp.value);
+		const heroicSkillWithMp = heroics.filter((item) => item.system.benefits.resources.mp.value);
+		const heroicSkillWithIp = heroics.filter((item) => item.system.benefits.resources.ip.value);
 
 		// Calculate multipliers based on actor type and attributes.
 		const hpMultiplier = actorData.type !== 'npc' ? 1 : systemData.isChampion.value !== 1 ? systemData.isChampion.value : systemData.isElite.value ? 2 : 1;
@@ -175,57 +179,6 @@ export class FUActor extends Actor {
 		if (actorData.type === 'character') {
 			systemData.resources.ip.max += heroicSkillWithIp.length * 4;
 		}
-	}
-
-	/**
-	 * Calculate the total levels for classes, skills, and heroic max levels,
-	 * and update the derived values in the actor's system data.
-	 *
-	 * @param {object} actorData - The actor's data object.
-	 */
-	_calculateTotalLevels(actorData) {
-		const systemData = actorData.system;
-
-		/**
-		 * Calculate the total levels for a specific type of items.
-		 *
-		 * @param {object[]} items - An array of items to calculate levels from.
-		 * @param {string} itemType - The type of items to calculate levels for (e.g., 'class' or 'skill').
-		 * @returns {number} The total levels for the specified item type.
-		 */
-		const calculateTotal = (items, itemType) => {
-			return items.reduce((sum, item) => {
-				// Validate the data before using parseInt
-				const level = parseInt(item.system?.level?.value || 0);
-				return sum + level;
-			}, 0);
-		};
-
-		// Filter class and skill items from the actor's items
-		const classes = actorData.items.filter((item) => item.type === 'class');
-		const skills = actorData.items.filter((item) => item.type === 'skill');
-
-		// Calculate total levels for classes and skills
-		const totalClassLevels = calculateTotal(classes, 'class');
-		const totalSkillLevels = calculateTotal(skills, 'skill');
-
-		// Calculate the total count of classes with level >= 10 (heroic max)
-		const totalHeroicMax = classes.reduce((count, item) => {
-			if (parseInt(item.system?.level?.value || 0) >= 10) {
-				return count + 1;
-			}
-			return count;
-		}, 0);
-
-		// Update the derived values in the system data
-		// return {
-		// 	classMax: `${totalClassLevels}`,
-		// 	skillMax: `${totalSkillLevels}`,
-		// 	heroicMax: `${totalHeroicMax}`,
-		systemData.derived.classmax.value = totalClassLevels;
-		systemData.derived.skillmax.value = totalSkillLevels;
-		systemData.derived.heroicmax.value = totalHeroicMax;
-		// };
 	}
 
 	/**
@@ -300,6 +253,55 @@ export class FUActor extends Actor {
 		});
 	}
 
+	async _calculateAffinities(actorData) {
+		const systemData = actorData.system;
+
+		// Initialize an object to store affinities modifiers.
+		const statMods = {};
+
+		Object.keys(systemData.affinities).forEach((attrKey) => (statMods[attrKey] = 0));
+
+		// Iterate through each temporary effect applied to the actor.
+		actorData.effects.forEach((effect) => {
+			// Get the status associated with the effect, if it exists.
+			if (effect.data.flags.core) {
+				const statusId = effect.data.flags.core.statusId;
+				const status = CONFIG.statusEffects.find((status) => status.id === statusId);
+
+				// If a valid status is found, apply its modifiers to the corresponding attributes.
+				if (status) {
+					const stats = status.stats || [];
+					const mod = status.mod || 0;
+
+					stats.forEach((attrKey) => (statMods[attrKey] += mod));
+				}
+			}
+		});
+
+		// Update the current affinities value with the calculated new value.
+		for (const [key, attr] of Object.entries(systemData.affinities)) {
+			let modVal = statMods[key] + attr.bonus;
+			let baseVal = attr.base;
+			let newVal = baseVal;
+
+			// console.log('Key:', key, ' ModVal:', modVal, ' BaseVal:', baseVal, ' Current:', attr.current);
+
+			if (baseVal === -1 && modVal === 1) {
+				newVal = 0;
+			} else if (modVal > 0 || modVal < 0) {
+				newVal = modVal;
+			} else {
+				newVal = baseVal += modVal;
+			}
+
+			// Ensure newVal is capped between -1 and 4
+			newVal = Math.max(-1, Math.min(newVal, 4));
+
+			// Set attr.current directly to newVal
+			attr.current = newVal;
+		}
+	}
+
 	/**
 	 * Handles the calculation of attribute modifiers based on applied status effects for an actor.
 	 *
@@ -360,7 +362,7 @@ export class FUActor extends Actor {
 
 	_handleCustomWeapon(actorData) {
 		// Filter and collect custom weapons
-		const customized = actorData.items.filter((item) => item.type === 'weapon' && item.system.isCustomWeapon?.value);
+		const customized = actorData.items.filter((item) => (item.type === 'weapon' && item.system.isCustomWeapon?.value) || (item.type === 'basic' && item.system.isCustomWeapon?.value));
 		// Update hands.value property for each custom weapon to 'two-handed'
 		customized.forEach((customWeapon) => (customWeapon.system.hands.value = 'two-handed'));
 		customized.forEach((customWeapon) => (customWeapon.system.cost.value = 300));
@@ -370,7 +372,7 @@ export class FUActor extends Actor {
 	 * Create the SP tracker
 	 * @private
 	 */
-	_createSPTracker(actorData, systemData) {
+	_calculateSPTracker(actorData, systemData) {
 		const spTracker = {
 			spAvailable: 0,
 			availableSkills: {
@@ -442,24 +444,24 @@ export class FUActor extends Actor {
 			calcAvailableSkillsFromVulnerabilities() {
 				let sum = 0;
 
-				Object.entries(systemData.resources.affinity).forEach(([affinity, value]) => {
+				Object.entries(systemData.affinities).forEach(([affinity, value]) => {
 					// If physical vulnerable, increment sum twice
-					if (affinity === 'phys' && value === 0) {
+					if (affinity === 'phys' && value.base === -1) {
 						sum += 2;
 					}
 					// If affinity is vulnerable (except 'phys'), increment sum
-					else if (value === 0 && affinity !== 'phys') {
+					else if (value.base === -1 && affinity !== 'phys') {
 						sum++;
 					}
 				});
 
 				// Undeads are vulnerable to light
-				if (systemData.species.value === 'undead' && systemData.resources.affinity.light.value === 0) {
+				if (systemData.species.value === 'undead' && systemData.affinities.light.base === -1) {
 					sum--;
 				}
 
 				// Plants have a free vulnerability
-				if (systemData.species.value === 'plant' && (systemData.resources.affinity.fire.value || systemData.resources.affinity.air.value || systemData.resources.affinity.ice.value || systemData.resources.affinity.bolt.value)) {
+				if (systemData.species.value === 'plant' && (systemData.affinities.fire.base || systemData.affinities.air.base || systemData.affinities.ice.base || systemData.affinities.bolt.base)) {
 					sum--;
 				}
 
@@ -489,12 +491,9 @@ export class FUActor extends Actor {
 			},
 
 			calcUsedSkillsFromExtraDefs() {
-				if (!systemData.derived.def?.bonus || !systemData.derived.mdef?.bonus) {
-					return 0;
-				}
-				return (systemData.derived.def.bonus + systemData.derived.mdef.bonus) / 3;
+				const { def, mdef } = systemData.derived;
+				return def?.bonus && mdef?.bonus ? Math.floor((def.bonus + mdef.bonus) / 3) : 0;
 			},
-
 			calcUsedSkillsFromExtraHP() {
 				if (!systemData.resources.hp?.bonus) {
 					return 0;
@@ -519,10 +518,10 @@ export class FUActor extends Actor {
 			calcUsedSkillsFromResistances() {
 				let sum = 0;
 
-				Object.entries(systemData.resources.affinity).forEach((el) => {
+				Object.entries(systemData.affinities).forEach((el) => {
 					const isConstructWithEarth = systemData.species.value === 'construct' && el[0] === 'earth';
 
-					if (el[1] === 2 && !isConstructWithEarth) {
+					if (el[1].base === 1 && !isConstructWithEarth) {
 						sum += 0.5;
 					}
 				});
@@ -533,13 +532,13 @@ export class FUActor extends Actor {
 
 				sum = Math.max(0, sum);
 
-				return Math.ceil(sum);
+				return sum;
 			},
 
 			calcUsedSkillsFromImmunities() {
 				let sum = 0;
-				Object.entries(systemData.resources.affinity).forEach((el) => {
-					if (el[1] === 3) {
+				Object.entries(systemData.affinities).forEach((el) => {
+					if (el[1].base === 2) {
 						// Don't count poison for construct, elemental, undead
 						if ((systemData.species.value === 'construct' || systemData.species.value === 'elemental' || systemData.species.value === 'undead') && el[0] === 'poison') {
 							return;
@@ -569,8 +568,8 @@ export class FUActor extends Actor {
 				let sum = 0;
 
 				// Loop through the affinity object
-				for (const key in systemData.resources.affinity) {
-					const value = systemData.resources.affinity[key];
+				for (const key in systemData.affinities) {
+					const value = systemData.affinities[key];
 
 					// In the new data model, the values are already plain numbers
 					if (value === 4) {
@@ -606,6 +605,67 @@ export class FUActor extends Actor {
 		return spTracker;
 	}
 
+	_calculateTLTracker(actorData, systemData) {
+		// Filter class and skill items from the actor's items
+		const heroic = actorData.items.filter((item) => item.type === 'heroic');
+		const classes = actorData.items.filter((item) => item.type === 'class');
+		const skills = actorData.items.filter((item) => item.type === 'skill');
+
+		// Function declarations
+		const calculateSkillLevel = (items, itemType) => {
+			return items.reduce((sum, item) => {
+				// Validate the data before using parseInt
+				const level = parseInt(item.system?.level?.value || 0);
+				return sum + level;
+			}, 0);
+		};
+
+		// Calculate the current length of heroic skills
+		const calculateHeroicCurrent = heroic.reduce((sum, item) => {
+			if (item.system.subtype.value === 'skill') {
+				return sum + 1;
+			}
+			return sum;
+		}, 0);
+
+		// Calculate the total sum of classes with level >= 10 (heroic max)
+		const calculateHeroicMax = classes.reduce((sum, item) => {
+			if (parseInt(item.system?.level?.value || 0) >= 10) {
+				return sum + 1;
+			}
+			return sum;
+		}, 0);
+
+		const tlTracker = {
+			totalSkill: {
+				current: 0,
+				max: 0,
+			},
+			totalClass: {
+				current: 0,
+				max: 0,
+			},
+			totalHeroic: {
+				current: 0,
+				max: 0,
+			},
+			calculateTL(actorData, systemData) {
+				this.totalClass.current = calculateSkillLevel(classes, 'class');
+				this.totalSkill.current = calculateSkillLevel(skills, 'skill');
+				this.totalHeroic.current = calculateHeroicCurrent;
+
+				this.totalClass.max = actorData.system.level.value;
+				this.totalSkill.max = actorData.system.level.value;
+				this.totalHeroic.max = calculateHeroicMax;
+			},
+		};
+
+		// Initial calculation
+		tlTracker.calculateTL(actorData, systemData);
+
+		return tlTracker;
+	}
+
 	/**
 	 * Prepare Character type specific data
 	 */
@@ -620,6 +680,12 @@ export class FUActor extends Actor {
 		// Calculate the modifier using d20 rules.
 		// ability.mod = Math.floor((ability.value - 10) / 2);
 		// }
+
+		// Initialize the TL tracker
+		this.tlTracker = this._calculateTLTracker(actorData, systemData);
+	}
+	getTLTracker() {
+		return this.tlTracker;
 	}
 
 	/**
@@ -632,9 +698,8 @@ export class FUActor extends Actor {
 		const systemData = actorData.system;
 
 		// Initialize the SP tracker
-		this.spTracker = this._createSPTracker(actorData, systemData);
+		this.spTracker = this._calculateSPTracker(actorData, systemData);
 	}
-
 	getSPTracker() {
 		return this.spTracker;
 	}

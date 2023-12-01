@@ -1,0 +1,18 @@
+<div class="affinities">
+    <div class="grid grid-9col">
+        {{#if system.affinities}}
+        {{#each system.affinities as |affinity key|}}
+        <div class="affinity resource-content flex-group-center">
+            <label style="cursor: pointer;" data-label="{{ affinity.label }}"
+                data-tooltip="{{ affinity.label }} <br> {{ affinity.affTypeCurr }}">
+                <span class="resource-label-xl">
+                    <i class="{{ affinity.icon }} icon-aff"></i>
+                    {{ affinity.affTypeCurrAbbr }}
+                    <br />
+                </span>
+            </label>
+        </div>
+        {{/each}}
+        {{/if}}
+    </div>
+</div>
