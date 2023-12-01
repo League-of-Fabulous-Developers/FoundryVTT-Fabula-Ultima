@@ -72,7 +72,7 @@
 				"summary": "",
 				"description": "",
 				"isFavored": { "value": false },
-				"hasNotification": { "showTitleCard": { "value": false } }
+				"showTitleCard": { "value": false }
 			},
 			"item": { "cost": { "value": 0 } },
 			"equippable": {
