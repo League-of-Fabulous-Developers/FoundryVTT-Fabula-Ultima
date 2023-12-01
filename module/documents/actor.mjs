@@ -141,13 +141,13 @@ export class FUActor extends Actor {
 
 		// Filter classes and heroic skills for specific benefits.
 		const classes = actorData.items.filter((item) => item.type === 'class');
-		const classesWithHp = classes.filter((item) => item.system.benefits.hp.value);
-		const classesWithMp = classes.filter((item) => item.system.benefits.mp.value);
-		const classesWithIp = classes.filter((item) => item.system.benefits.ip.value);
+		const classesWithHp = classes.filter((item) => item.system.benefits.resources.hp.value);
+		const classesWithMp = classes.filter((item) => item.system.benefits.resources.mp.value);
+		const classesWithIp = classes.filter((item) => item.system.benefits.resources.ip.value);
 		const heroics = actorData.items.filter((item) => item.type === 'heroic');
-		const heroicSkillWithHp = heroics.filter((item) => item.system.benefits.hp.value);
-		const heroicSkillWithMp = heroics.filter((item) => item.system.benefits.mp.value);
-		const heroicSkillWithIp = heroics.filter((item) => item.system.benefits.ip.value);
+		const heroicSkillWithHp = heroics.filter((item) => item.system.benefits.resources.hp.value);
+		const heroicSkillWithMp = heroics.filter((item) => item.system.benefits.resources.mp.value);
+		const heroicSkillWithIp = heroics.filter((item) => item.system.benefits.resources.ip.value);
 
 		// Calculate multipliers based on actor type and attributes.
 		const hpMultiplier = actorData.type !== 'npc' ? 1 : systemData.isChampion.value !== 1 ? systemData.isChampion.value : systemData.isElite.value ? 2 : 1;
@@ -446,22 +446,22 @@ export class FUActor extends Actor {
 
 				Object.entries(systemData.affinities).forEach(([affinity, value]) => {
 					// If physical vulnerable, increment sum twice
-					if (affinity === 'phys' && value === 0) {
+					if (affinity === 'phys' && value.base === -1) {
 						sum += 2;
 					}
 					// If affinity is vulnerable (except 'phys'), increment sum
-					else if (value === 0 && affinity !== 'phys') {
+					else if (value.base === -1 && affinity !== 'phys') {
 						sum++;
 					}
 				});
 
 				// Undeads are vulnerable to light
-				if (systemData.species.value === 'undead' && systemData.affinities.light.value === 0) {
+				if (systemData.species.value === 'undead' && systemData.affinities.light.base === -1) {
 					sum--;
 				}
 
 				// Plants have a free vulnerability
-				if (systemData.species.value === 'plant' && (systemData.affinities.fire.value || systemData.affinities.air.value || systemData.affinities.ice.value || systemData.affinities.bolt.value)) {
+				if (systemData.species.value === 'plant' && (systemData.affinities.fire.base || systemData.affinities.air.base || systemData.affinities.ice.base || systemData.affinities.bolt.base)) {
 					sum--;
 				}
 
@@ -521,7 +521,7 @@ export class FUActor extends Actor {
 				Object.entries(systemData.affinities).forEach((el) => {
 					const isConstructWithEarth = systemData.species.value === 'construct' && el[0] === 'earth';
 
-					if (el[1] === 2 && !isConstructWithEarth) {
+					if (el[1].base === 1 && !isConstructWithEarth) {
 						sum += 0.5;
 					}
 				});
@@ -532,13 +532,13 @@ export class FUActor extends Actor {
 
 				sum = Math.max(0, sum);
 
-				return Math.ceil(sum);
+				return sum;
 			},
 
 			calcUsedSkillsFromImmunities() {
 				let sum = 0;
 				Object.entries(systemData.affinities).forEach((el) => {
-					if (el[1] === 3) {
+					if (el[1].base === 2) {
 						// Don't count poison for construct, elemental, undead
 						if ((systemData.species.value === 'construct' || systemData.species.value === 'elemental' || systemData.species.value === 'undead') && el[0] === 'poison') {
 							return;

@@ -426,6 +426,51 @@ export class FUItem extends Item {
 		return content;
 	}
 
+	/**
+	 * Get the action string based on the action type.
+	 * @param {string} type The type of action.
+	 * @returns {string} The action string.
+	 */
+	getActionString() {
+		const action = this;
+		const type = [];
+		const {} = action.system;
+		let actionDescription = '';
+		switch (type) {
+			case 'equipment':
+				actionDescription = 'This is equipment action description.';
+				break;
+			case 'guard':
+				actionDescription = 'This is guard action description.';
+				break;
+			case 'hinder':
+				actionDescription = 'This is hinder action description.';
+				break;
+			case 'inventory':
+				actionDescription = 'This is inventory action description.';
+				break;
+			case 'objective':
+				actionDescription = 'This is objective action description.';
+				break;
+			case 'spell':
+				actionDescription = 'This is spell action description.';
+				break;
+			case 'study':
+				actionDescription = 'This is study action description.';
+				break;
+			case 'skill':
+				actionDescription = 'This is skill action description.';
+				break;
+			default:
+				break;
+		}
+		if (actionDescription) {
+			return `<div class="detail-desc flex-group-center grid grid-3col">
+			<div>${actionDescription}</div>
+		  </div>`;
+		}
+	}
+
 	getSpellDataString() {
 		const item = this;
 
@@ -560,11 +605,12 @@ export class FUItem extends Item {
 			const heroicString = item.getHeroicDataString();
 			const zeroString = item.getZeroDataString();
 			const qualityString = item.getQualityString();
+			const actionString = item.getActionString();
 
 			const attackString = Array.isArray(attackData) ? attackData.join('<br /><br />') : attackData;
 
 			// Prepare the content by filtering and joining various parts.
-			const content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
+			const content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString, actionString].filter((part) => part).join('');
 
 			if (['consumable', 'skill'].includes(type) || system.showTitleCard?.value) {
 				socketlib.system.executeForEveryone('use', name);
