@@ -5,16 +5,17 @@ export const FU = {};
  * @type {Object}
  */
 FU.attributes = {
-	mig: 'FU.AttributeMig',
 	dex: 'FU.AttributeDex',
 	ins: 'FU.AttributeIns',
+	mig: 'FU.AttributeMig',
+
 	wlp: 'FU.AttributeWlp',
 };
 
 FU.attributeAbbreviations = {
-	mig: 'FU.AttributeMigAbbr',
 	dex: 'FU.AttributeDexAbbr',
 	ins: 'FU.AttributeInsAbbr',
+	mig: 'FU.AttributeMigAbbr',
 	wlp: 'FU.AttributeWlpAbbr',
 };
 
@@ -88,7 +89,6 @@ FU.itemTypes = {
 	project: 'FU.ElementalRule',
 	zeroPower: 'FU.HumanoidRule',
 };
-
 
 FU.actionTypes = {
 	attack: 'FU.Action',

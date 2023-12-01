@@ -24,8 +24,8 @@
 				},
 				"attributes": {
 					"dex": { "base": 6, "current": 6, "bonus": 0 },
-					"mig": { "base": 6, "current": 6, "bonus": 0 },
 					"ins": { "base": 6, "current": 6, "bonus": 0 },
+					"mig": { "base": 6, "current": 6, "bonus": 0 },
 					"wlp": { "base": 6, "current": 6, "bonus": 0 }
 				},
 				"derived": {
