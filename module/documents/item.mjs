@@ -39,9 +39,9 @@ export class FUItem extends Item {
 	 */
 	getWeaponDisplayData() {
 		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
-
+		const isBasic = this.type === 'basic';
 		// Check if this item is not a weapon or not a weapon/shield with dual
-		if (this.type !== 'weapon' && !isWeaponOrShieldWithDual) {
+		if (!isBasic && !isWeaponOrShieldWithDual) {
 			return false;
 		}
 
@@ -54,10 +54,14 @@ export class FUItem extends Item {
 		}
 
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? 'HR0' : 'HR';
-		const qualText = this.system.quality?.value || 'No Quality';
+		const qualText = this.system.quality?.value || '';
+		let qualityString = '';
 
-		const qualityString = [capitalizeFirst(this.system.category.value), capitalizeFirst(this.system.hands.value), capitalizeFirst(this.system.type.value), qualText].filter(Boolean).join(' ⬩ ');
-
+		if (isWeaponOrShieldWithDual) {
+			qualityString = [capitalizeFirst(this.system.category.value), capitalizeFirst(this.system.hands.value), capitalizeFirst(this.system.type.value), qualText].filter(Boolean).join(' ⬥ ');
+		} else if (isBasic) {
+			qualityString = [capitalizeFirst(this.system.type.value), qualText].filter(Boolean).join(' ⬥ ');
+		}
 		const attackAttributes = [this.system.attributes.primary.value.toUpperCase(), this.system.attributes.secondary.value.toUpperCase()].join(' + ');
 
 		const attackString = `【${attackAttributes}】${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}`;
@@ -78,8 +82,8 @@ export class FUItem extends Item {
 	 * @property {string} qualityString - The item's description.
 	 */
 	getItemDisplayData() {
-		// Check if this item is not consumable
-		if (this.type !== 'consumable') {
+		// Check if this item is not consumable or treasure
+		if (this.type !== 'consumable' && this.type !== 'treasure') {
 			return false;
 		}
 
@@ -119,7 +123,9 @@ export class FUItem extends Item {
 		}
 
 		let weaponMain = null;
-		const equippedWeapons = this.actor.items.filter((singleItem) => (singleItem.type === 'weapon' || (singleItem.type === 'shield' && singleItem.system.isDualShield?.value)) && singleItem.system.isEquipped?.value);
+		const equippedWeapons = this.actor.items.filter(
+			(singleItem) => (singleItem.type === 'weapon' || singleItem.type === 'basic' || (singleItem.type === 'shield' && singleItem.system.isDualShield?.value)) && singleItem.system.isEquipped?.value,
+		);
 		for (const equippedWeapon of equippedWeapons) {
 			if (equippedWeapon.system.isEquipped.slot === 'mainHand') {
 				weaponMain = equippedWeapon;
@@ -158,7 +164,7 @@ export class FUItem extends Item {
 				: `【${hrZeroText} ${this.system?.rollInfo?.damage?.value > 0 ? ` ${this.system?.rollInfo?.damage?.value}` : '0'} 】${this.system?.rollInfo?.damage.type.value}`;
 		}
 
-		const qualityString = [capitalizeFirst(this.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬩ ');
+		const qualityString = [capitalizeFirst(this.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬥ ');
 
 		const starCurrent = this.system?.level?.value;
 		const starMax = this.system?.level?.max;
@@ -185,7 +191,7 @@ export class FUItem extends Item {
 		let content = '';
 
 		const hasImpDamage = ['ritual'].includes(item.type) && item.system.rollInfo?.impdamage?.hasImpDamage?.value;
-		const isWeapon = item.type === 'weapon' || (item.type === 'shield' && item.system.isDualShield?.value);
+		const isWeapon = item.type === 'weapon' || this.type === 'basic' || (item.type === 'shield' && item.system.isDualShield?.value);
 		const hasDamage = isWeapon || (['spell', 'skill', 'miscAbility'].includes(item.type) && item.system.rollInfo?.damage?.hasDamage?.value);
 
 		const attrs = isWeapon ? item.system.attributes : item.system.rollInfo.attributes;
@@ -316,7 +322,7 @@ export class FUItem extends Item {
 	async getRollString(isShift) {
 		const isSpellOrSkill = ['spell', 'skill', 'miscAbility', 'ritual'].includes(this.type);
 
-		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
+		const isWeaponOrShieldWithDual = this.type === 'weapon' || this.type === 'basic' || (this.type === 'shield' && this.system.isDualShield?.value);
 
 		const hasRoll = isWeaponOrShieldWithDual || (isSpellOrSkill && this.system.hasRoll?.value);
 
@@ -328,7 +334,9 @@ export class FUItem extends Item {
 			const usesWeapons = isSpellOrSkill && (this.system.rollInfo?.useWeapon?.accuracy?.value || this.system.rollInfo?.useWeapon?.damage?.value);
 
 			if (usesWeapons) {
-				const equippedWeapons = this.actor.items.filter((singleItem) => (singleItem.type === 'weapon' || (singleItem.type === 'shield' && singleItem.system.isDualShield?.value)) && singleItem.system.isEquipped?.value);
+				const equippedWeapons = this.actor.items.filter(
+					(singleItem) => (singleItem.type === 'weapon' || singleItem.type === 'basic' || (singleItem.type === 'shield' && singleItem.system.isDualShield?.value)) && singleItem.system.isEquipped?.value,
+				);
 
 				for (const equippedWeapon of equippedWeapons) {
 					const data = await this.getSingleRollForItem(equippedWeapon, true, isShift);
@@ -381,7 +389,7 @@ export class FUItem extends Item {
 	}
 
 	getQualityString() {
-		if (!['weapon', 'shield', 'armor', 'accessory'].includes(this.type)) {
+		if (!['basic', 'weapon', 'shield', 'armor', 'accessory'].includes(this.type)) {
 			return '';
 		}
 		const DEF = game.i18n.localize('FU.DefenseAbbr');
@@ -397,12 +405,12 @@ export class FUItem extends Item {
 
 		let content = '';
 
-		if (['weapon', 'shield', 'armor', 'accessory'].includes(this.type)) {
+		if (['basic', 'weapon', 'shield', 'armor', 'accessory'].includes(this.type)) {
 			content += `
         <div class="detail-desc flex-group-center grid grid-3col">
-          ${['weapon'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.type) ? `<div>${capitalizeFirst(this.system.type.value)}</div>` : ''}
-          ${['weapon'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.hands) ? `<div>${capitalizeFirst(this.system.hands.value)}</div>` : ''}
-          ${['weapon'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.category) ? `<div>${capitalizeFirst(this.system.category.value)}</div>` : ''}
+          ${['weapon'].includes(this.type) || ['basic'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.type) ? `<div>${capitalizeFirst(this.system.type.value)}</div>` : ''}
+          ${['weapon'].includes(this.type) || ['basic'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.hands) ? `<div>${capitalizeFirst(this.system.hands.value)}</div>` : ''}
+          ${['weapon'].includes(this.type) || ['basic'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.category) ? `<div>${capitalizeFirst(this.system.category.value)}</div>` : ''}
           ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${DEF} ${this.system.def.value}</div>` : ''}
           ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${MDEF} ${this.system.mdef.value}</div>` : ''}
           ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${INIT} ${this.system.init.value}</div>` : ''}
@@ -420,35 +428,40 @@ export class FUItem extends Item {
 
 	getSpellDataString() {
 		const item = this;
+
+		// Use strict equality (===) to check if the type is 'spell'
 		if (item.type !== 'spell') {
 			return '';
 		}
-		if (item.type === 'spell') {
-			const { mpCost, target, duration } = item.system;
-			return `<div class="detail-desc flex-group-center grid grid-3col">
-                <div>${duration.value}</div>
-                <div>${target.value}</div>
-                <div>${mpCost.value} MP</div>
-              </div>`;
-		}
-		return '';
+
+		// No need to check item.type again since it's already 'spell'
+		const { mpCost, target, duration } = item.system;
+
+		// Use a ternary operator to provide a default value if duration, target, or mpCost is empty
+		return `<div class="detail-desc flex-group-center grid grid-3col">
+					<div>${duration.value || 'Duration'}</div>
+					<div>${target.value || 'Target'}</div>
+					<div>${mpCost.value + ' MP' || 'MP Cost'} </div>
+				</div>`;
 	}
 
 	getRitualDataString() {
 		const item = this;
-		if (this.type !== 'ritual') {
+
+		// Use strict equality (===) to check if the type is 'ritual'
+		if (item.type !== 'ritual') {
 			return '';
 		}
 
-		if (item.type === 'ritual') {
-			const { mpCost, dLevel, clock } = this.system;
-			return `<div class="detail-desc flex-group-center grid grid-3col">
-                <div>${mpCost.value} MP</div>
-                <div>${dLevel.value} DL</div>
-                <div>Clock ${clock.value}</div>
-              </div>`;
-		}
-		return '';
+		// No need to check item.type again since it's already 'ritual'
+		const { mpCost, dLevel, clock } = item.system;
+
+		// Use a ternary operator to provide a default value if mpCost, dLevel, or clock is empty
+		return `<div class="detail-desc flex-group-center grid grid-3col">
+					<div>${mpCost.value || 'Mp Cost'} MP</div>
+					<div>${dLevel.value || 'Difficulty Level'} DL</div>
+					<div>Clock ${clock.value || 'Clock'}</div>
+				</div>`;
 	}
 
 	getProjectDataString() {
@@ -496,7 +509,7 @@ export class FUItem extends Item {
 			return '';
 		}
 		const {
-			system: { zeroTrigger, zeroEffect, trigger },
+			system: { zeroTrigger, zeroEffect, progress },
 		} = this;
 		const hasZeroTrigger = zeroTrigger.description?.trim();
 		const hasZeroEffect = zeroEffect.description?.trim();
@@ -504,9 +517,9 @@ export class FUItem extends Item {
 		if (hasZeroTrigger || hasZeroEffect) {
 			return `
         <div class="detail-desc flex-group-center grid grid-3col"> 
-          <div>${zeroTrigger.value}</div>
-          <div>${zeroEffect.value}</div>
-          <div>Clock <br> ${trigger.current} / ${trigger.max} </div>
+          <div>${zeroTrigger.value || 'Zero Trigger'}</div>
+          <div>${zeroEffect.value || 'Zero Effect'}</div>
+          <div>Clock <br> ${progress.current} / ${progress.max} </div>
         </div>
         <div class="chat-desc">
           ${hasZeroTrigger ? `<div class="resource-label">${zeroTrigger.value}</div><div>${zeroTrigger.description}</div>` : ''}

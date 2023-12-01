@@ -1,11 +1,5 @@
 <form class="{{ cssClass }} backgroundstyle" autocomplete="off">
 	{{> "systems/fabulaultima/templates/item/partials/item-header.hbs" dtypes=dtypes}}
-	{{!-- Sheet Tab Navigation --}}
-	<nav class="sheet-tabs tabs" data-group="primary">
-		<a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
-		<a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
-		<a class="item" data-tab="effects">{{localize 'FU.Effects'}}</a>
-	</nav>
 
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
@@ -16,13 +10,11 @@
 		{{!-- Attributes Tab --}}
 		<div class="tab attributes" data-group="primary" data-tab="attributes">
 			<div class="item-settings resource-content">
-				<label class="checkbox resource-label-sm">
-					<span>{{localize 'FU.FavoriteStatus'}}</span>
-					<input type="checkbox" name="system.isFavored.value" {{ checked system.isFavored.value }} />
-				</label>
+				{{> "systems/fabulaultima/templates/item/partials/item-controls.hbs" actor=actor}}
 				<label class="checkbox resource-label-sm"> <span>{{localize 'FU.HRZeroStatus'}}</span><input
 						type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
-						system.rollInfo.useWeapon.hrZero.value }} /> </label>
+						system.rollInfo.useWeapon.hrZero.value }} />
+				</label>
 			</div>
 
 			<section class="flex1 flex-group-center desc">

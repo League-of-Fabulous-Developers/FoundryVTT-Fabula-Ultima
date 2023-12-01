@@ -1,0 +1,29 @@
+<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.Favorite'}}">
+    <span>
+        {{#if item.system.isFavored.value}}
+        <i class="fas fa-star"></i>
+        {{else}}
+        <i class="far fa-star"></i>
+        {{/if}}
+    </span>
+    <input type="checkbox" name="system.isFavored.value" {{ checked system.isFavored.value }} />
+</label>
+<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.TitleCardInfo'}}">
+    <span>
+        {{#if item.system.showTitleCard.value}}
+        <i class="fas fa-message"></i>
+        {{else}}
+        <i class="far fa-message"></i>
+        {{/if}}
+    </span><input type="checkbox" name="system.showTitleCard.value" {{ checked system.showTitleCard.value }} /> </label>
+{{!-- NPC Relevent Option --}} {{#if (eq actor.type "npc")}}
+<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.BehaviorAdd'}}">
+    <span>
+        {{#if item.system.isBehavior.value}}
+        <i class="fas fa-wrench"></i>
+        {{else}}
+        <i class="far fa-wrench"></i>
+        {{/if}}
+    </span><input type="checkbox" name="system.isBehavior.value" {{ checked system.isBehavior.value }} />
+    {{/if}}
+</label>

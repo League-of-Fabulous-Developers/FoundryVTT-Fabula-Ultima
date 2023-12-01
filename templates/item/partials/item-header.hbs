@@ -1,4 +1,4 @@
-<header class="sheet-header">
+<header class="sheet-header desc" style="background-color: #c9c8b9;">
 	<div class="combine-header">
 		<img class="profile-img" src="{{ item.img }}" data-edit="img" title="{{ item.name }}" />
 		<div class="header-fields">
@@ -11,7 +11,7 @@
 				{{!-- Sub Type --}}
 				<span class="resource-content levelup-container flex-group-center">
 					<label class="resource-label-sm" for="item.type"> <i
-							class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.ItemType'}} </label>
+							class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.ItemType'}}</label>
 					{{#if (eq item.type "heroic")}}
 					<span>
 						<select type="select" value="" name="system.subtype.value" data-dtype="String"
@@ -23,11 +23,13 @@
 						</select>
 					</span>
 					{{else if (eq item.type "miscAbility")}}
+
 					<span>
 						<select type="select" value="" name="system.subtype.value" data-dtype="String"
 							class="resource-inputs side-bar">
 							{{#select system.subtype.value}}
 							<option value="custom">Custom</option>
+							{{#if (eq actor.type "character")}}
 							<option value="arcana">Arcana</option>
 							<option value="deck">Deck</option>
 							<option value="verse">Verse</option>
@@ -40,9 +42,15 @@
 							<option value="symbol">Symbol</option>
 							<option value="infusion">Infusion</option>
 							<option value="quirk">Quirk</option>
+							{{/if}}
+							{{#if (eq actor.type "npc")}}
+							<option value="other">Other Action</option>
+							<option value="special">Special Rule</option>
+							{{/if}}
 							{{/select}}
 						</select>
 					</span>
+
 					{{else}}
 					<span>
 						<input type="text" name="item.type" value="{{capitalize item.type}}" data-dtype="String"
@@ -59,14 +67,35 @@
 						class="resource-inputs side-bar" />
 				</span>
 			</div>
-			<span>
-				<div class="resource-content summary">
-					<label class="resource-label-sm summary" for="system.summary.value"> <i
+
+			<span class="header-center">
+				<div class="resource-content summary desc">
+					<label class="resource-label-sm" for="system.summary.value"> <i
 							class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
-					<input type="text" name="system.summary.value" value="{{ system.summary.value }}"
-						data-dtype="String" class="resource-inputs summary" />
+
+					<blockquote><input type="text" name="system.summary.value" value="{{ system.summary.value }}"
+							data-dtype="String" class="flex-group-center resource-inputs summary" /></blockquote>
+
 				</div>
+			</span>
+
+			<div class="resource-content summary desc" style="height: 75px;">
+				<label class="resource-label-sm" style="position: sticky;" for="system.summary.value"> <i
+						class="fa-solid fa-chart-simple icon"></i>{{localize
+					'FU.AttributesKey'}}
+				</label>
+				<div class="grid grid-4col card-style">
+
+				</div>
+			</div>
 			</span>
 		</div>
 	</div>
+
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs desc" data-group="primary" style="align-self: stretch;">
+		<a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
+		<a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
+		<a class="item" data-tab="effects">{{localize 'FU.Effects'}}</a>
+	</nav>
 </header>

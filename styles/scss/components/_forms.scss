@@ -2,7 +2,7 @@
   font-family: $font-primary;
 }
 
-/* Sheet Background */
+// Sheet Background
 .backgroundstyle {
   background-image: url("/systems/fabulaultima/styles/static/ui/bg.png"),
     linear-gradient(to right, $color-beige, $color-faint);
@@ -12,11 +12,12 @@
   padding: 0.5em 1em;
 }
 
+// Clock Image
 img.clock-img {
   flex: 0 0 220px;
   height: fit-content;
   margin-right: 0;
-  margin-top: 15px;
+  margin-top: 0;
   padding: 2px;
   align-self: start;
   background-clip: content-box;
@@ -24,16 +25,23 @@ img.clock-img {
   border: 0;
 }
 
+// Sheet Header
 .sheet-header {
+  position: sticky;
+  top: 10px;
+  z-index: 1000;
+
+  // Header styling
   flex: 0 auto;
-  margin: 0px 2px;
   overflow: visible;
   display: flex;
   flex-direction: column !important;
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-bottom: 0.5em;
+  background-color: #c9c8b9;
 
+  // Combine Header
   .combine-header {
     flex: 0;
     margin: 0;
@@ -44,23 +52,21 @@ img.clock-img {
     display: flex;
   }
 
+  // Profile Image
   .profile-img {
-    flex: 0 0 150px;
-    height: 150px;
-    width: 150px;
+    flex: 0 0 200px;
+    height: 200px;
+    width: 200px;
     margin-right: 0;
-    margin-top: 15px;
     padding: 2px;
     align-self: start;
-    background-image: linear-gradient(to right,
-        $color-secondary,
-        $color-ternary);
+    background-image: linear-gradient(to right, $color-secondary, $color-ternary);
     background-clip: content-box;
     border-color: #9a9a9a;
-    border-radius: 10px;
+    border-radius: 10px 0 10px 10px;
   }
 
-  /* Character Name Input Tag */
+  // Character Name Input Tag
   input.resource-inputs-charname {
     color: $color-primary;
     text-shadow: 1px 1px 1px $color-black;
@@ -68,15 +74,23 @@ img.clock-img {
     border-color: transparent;
   }
 
+  // Header Fields
   .header-fields {
     flex: 1;
-    margin: 3px 0;
 
+    // Header Center
     .header-center {
-      margin: 12px 0 0;
+      // margin-top: 2px;
+    }
+
+    // Header End
+    .header-end {
+      padding: 0;
+      // margin-top: 2px;
     }
   }
 
+  // Select
   select {
     margin: 0;
     padding: 0;
@@ -88,15 +102,17 @@ img.clock-img {
     }
   }
 
+  // Character Name Heading
   h1.charname {
     background-color: transparent;
     border-color: transparent;
     color: $color-black;
     height: 50px;
     padding: 0px;
-    margin: 5px 0;
+    // margin: 5px 0;
     border-bottom: 0;
 
+    // Input
     input {
       width: 100%;
       height: 100%;
@@ -105,13 +121,11 @@ img.clock-img {
   }
 }
 
-.sheet-tabs {
-  flex: 0;
-}
-
+// Section Container
 .section-container {
   padding: 10px 0;
 }
+
 
 .item-settings {
   margin: 0 10px;
@@ -119,7 +133,7 @@ img.clock-img {
 }
 
 .card-style {
-  margin: 0.5em;
+
 }
 
 .item-border-col {
@@ -130,8 +144,8 @@ img.clock-img {
   background: linear-gradient(#{$color-transparent-gradient});
   border: 4px double $color-secondary;
   border-radius: 10px;
-  min-height: 18em;
   max-height: 22em;
+  min-height: 10em;
 }
 
 .npc-desc-sec {
@@ -140,22 +154,24 @@ img.clock-img {
 
 .npc-desc {
   max-height: 17em;
-  height: 17em;
+  min-height: 10em;
 
   .editor {
     height: 100%;
-    min-height: 17em;
+    max-height: 17em;
+    min-height: 10em;
   }
 
   .tox-tinymce {
-    min-height: 17em;
+    min-height: 10em;
   }
 }
 
 .sheet-body,
 .sheet-body .tab {
-  min-height: 50%;
-  max-height: 100%;
+  flex: 1; /* Grow to fill available space */
+  min-height: 50%; /* Minimum height as a percentage */
+  max-height: 100%; /* Maximum height as a percentage */
 }
 
 .desc {
@@ -164,7 +180,7 @@ img.clock-img {
       rgba(226, 237, 213, 0.5));
   border-radius: 10px;
   border: 1px solid #2c4a4254;
-  margin: 3px;
+  padding: 5px;
 
   .desc-header {
     background: none;
@@ -192,14 +208,27 @@ img.clock-img {
 }
 
 .action-container {
-  margin: -3px 5px 5px 3px;
+  margin: 0 5px 5px 3px;
   padding: 2px 0;
 }
+.tiny-desc {
+  .editor {
+    height: 100%;
+    min-height: 1em;
+  }
+
+  .tox-tinymce {
+    height: 100%;
+    min-height: 1em;
+    max-height: 6em
+  }
+}
+
 
 .half-desc {
   .editor {
     height: 100%;
-    min-height: 13em;
+    min-height: 12em;
   }
 
   .tox-tinymce {
@@ -222,9 +251,10 @@ img.clock-img {
   }
 }
 
+
 .editor {
   height: 100%;
-  min-height: 30em;
+  min-height: 26em;
 }
 
 .editor-content {

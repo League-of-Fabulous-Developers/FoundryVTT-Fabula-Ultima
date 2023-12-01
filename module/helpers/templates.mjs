@@ -6,19 +6,26 @@
 export const preloadHandlebarsTemplates = async function () {
 	return loadTemplates([
 		// Actor Section partials.
-		'systems/fabulaultima/templates/actor/partials/actor-section-classes.hbs',
-		'systems/fabulaultima/templates/actor/partials/actor-section-features.hbs',
-		'systems/fabulaultima/templates/actor/partials/actor-section-spells.hbs',
-		'systems/fabulaultima/templates/actor/partials/actor-section-items.hbs',
-		'systems/fabulaultima/templates/actor/partials/actor-section-effects.hbs',
-		'systems/fabulaultima/templates/actor/partials/actor-section-behavior.hbs',
-		'systems/fabulaultima/templates/actor/partials/actor-section-settings.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-classes.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-features.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-spells.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-items.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-combat.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-effects.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-behavior.hbs',
+		'systems/fabulaultima/templates/actor/sections/actor-section-settings.hbs',
 
 		// Actor Component partials.
+		'systems/fabulaultima/templates/actor/partials/actor-actions.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-affinities.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-attributes.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-statistics.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-resources.hbs',
-		'systems/fabulaultima/templates/actor/partials/actor-affinities.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-resource-points.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-traits.hbs',
 
+		'systems/fabulaultima/templates/actor/partials/actor-item-name.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-actions.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-npc-skills.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-favorite.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-bonds.hbs',
@@ -30,6 +37,7 @@ export const preloadHandlebarsTemplates = async function () {
 		// Item partials
 		'systems/fabulaultima/templates/item/partials/item-header.hbs',
 		'systems/fabulaultima/templates/item/partials/item-effects.hbs',
+		'systems/fabulaultima/templates/item/partials/item-controls.hbs',
 	]);
 };
 
@@ -78,17 +86,17 @@ Handlebars.registerHelper('generateStars', function (current, max) {
 Handlebars.registerHelper('getIconClass', function (item) {
 	if (item.type === 'weapon') {
 		if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'two-handed') {
-			return 'ra ra-sword ra-2x';
+			return 'ra ra-relic-blade ra-2x  ra-flip-horizontal';
 		} else if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'one-handed') {
-			return 'ra ra-plain-dagger ra-2x';
+			return 'ra ra-sword ra-2x ra-flip-horizontal';
 		} else if (item.system.isEquipped.slot === 'offHand') {
-			return 'ra ra-crossed-swords ra-2x';
+			return 'ra  ra-plain-dagger ra-2x ra-rotate-180';
 		}
 	} else if (item.type === 'shield') {
-		if (item.system.isEquipped.slot === 'mainHand' && item.system.isDualShield && item.system.isDualShield.value) {
-			return 'ra ra-heavy-shield';
+		if (item.system.isDualShield && item.system.isDualShield.value) {
+			return 'ra ra-heavy-shield ra-2x';
 		} else if (item.system.isEquipped.slot === 'offHand' || item.system.isEquipped.slot === 'mainHand') {
-			return 'ra ra-shield';
+			return 'ra ra-shield ra-2x';
 		}
 	} else if (item.type === 'armor') {
 		if (item.system.isEquipped.slot === 'armor') {
@@ -96,7 +104,7 @@ Handlebars.registerHelper('getIconClass', function (item) {
 		}
 	} else if (item.type === 'accessory') {
 		if (item.system.isEquipped.slot === 'accessory') {
-			return 'fas fa-hat-wizard ra-2x';
+			return 'fas fa-leaf ra-2x';
 		}
 	}
 	return 'fas fa-toolbox';

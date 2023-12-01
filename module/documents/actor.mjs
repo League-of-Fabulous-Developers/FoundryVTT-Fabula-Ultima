@@ -105,15 +105,17 @@ export class FUActor extends Actor {
 		// Calculate total defense
 		const def = baseDef + otherDef + bonusDef;
 
-		// Filter equipped items for non-weapons
-		const nonWeapons = equipped.filter((item) => item.type !== 'weapon');
+		// Filter equipped items for non-weapons: weapons and basic attacks
+		const nonWeapons = equipped.filter((item) => item.type !== 'weapon' || item.type !== 'basic');
 
 		// Get the insight attribute value
 		const ins = actorData.system.attributes.ins.current;
 
 		// Calculate defense against magic attacks (magical defense)
 		const otherMDef = nonWeapons.reduce((mdef, item) => {
-			mdef += item.system.mdef.value;
+			if (item.system && item.system.mdef) {
+				mdef += item.system.mdef.value;
+			}
 			return mdef;
 		}, 0);
 
@@ -360,7 +362,7 @@ export class FUActor extends Actor {
 
 	_handleCustomWeapon(actorData) {
 		// Filter and collect custom weapons
-		const customized = actorData.items.filter((item) => item.type === 'weapon' && item.system.isCustomWeapon?.value);
+		const customized = actorData.items.filter((item) => (item.type === 'weapon' && item.system.isCustomWeapon?.value) || (item.type === 'basic' && item.system.isCustomWeapon?.value));
 		// Update hands.value property for each custom weapon to 'two-handed'
 		customized.forEach((customWeapon) => (customWeapon.system.hands.value = 'two-handed'));
 		customized.forEach((customWeapon) => (customWeapon.system.cost.value = 300));

@@ -1,25 +1,12 @@
 <form class="{{ cssClass }} backgroundstyle" autocomplete="off">
 	{{> "systems/fabulaultima/templates/item/partials/item-header.hbs" dtypes=dtypes}}
-	{{!-- Sheet Tab Navigation --}}
-	<nav class="sheet-tabs tabs" data-group="primary">
-		<a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
-	</nav>
 
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
 		{{!-- Attributes Tab --}}
-		<div class="tab attributes" data-group="primary" data-tab="attributes">
+		<div class="tab attributes" data-group="primary" data-tab="description">
 			<div class="item-settings resource-content">
-				<label class="checkbox resource-label-sm">
-					<span>{{localize 'FU.FavoriteStatus'}}</span>
-					<input type="checkbox" name="system.isFavored.value" {{ checked system.isFavored.value }} />
-				</label>
-				{{!-- NPC Relevent Option --}} {{#if (eq actor.type "npc")}}
-				<label class="checkbox resource-label-sm">
-					<span>{{localize 'FU.BehaviorStatus'}}</span><input type="checkbox" name="system.isBehavior.value"
-						{{ checked system.isBehavior.value }} />
-					{{/if}}
-				</label>
+				{{> "systems/fabulaultima/templates/item/partials/item-controls.hbs" dtypes=dtypes}}
 			</div>
 
 			<section class="flex1 flex-group-center desc">

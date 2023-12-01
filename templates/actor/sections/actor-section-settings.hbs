@@ -102,13 +102,16 @@
 						data-dtype="Number" class="resource-inputs bonus" />
 				</div>
 			</div>
-			{{/if}}
-		</div>
 
+		</div>
+		{{!-- NPC Skills --}}
+		{{>"systems/fabulaultima/templates/actor/partials/actor-npc-skills.hbs" actor=actor}}
+		{{/if}}
 		<!-- Other Sidebar  -->
 		<div class="action-container grid grid-2col">
 
 		</div>
+
 	</aside>
 
 	<!-- Settings Section -->
@@ -116,8 +119,12 @@
 		<section class="align-center desc">
 			<label class="desc-header resource-content flex-group-center grid grid-3col"
 				data-label="{{localize 'FU.SheetSettings'}}">
-				<span class="resource-label-l grid-start-2"><span>{{localize 'FU.SheetSettings'}}</span></span>
+				<span class="resource-label-l grid-start-2"><span>{{localize 'FU.SheetSettings'}}</span>
+				</span>
 			</label>
+
+			{{!-- RP Points --}}
+			{{>"systems/fabulaultima/templates/actor/partials/actor-resource-points.hbs" actor=actor}}
 		</section>
 	</div>
 </section>

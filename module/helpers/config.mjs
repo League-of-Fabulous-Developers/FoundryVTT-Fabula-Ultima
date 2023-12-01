@@ -70,3 +70,35 @@ FU.speciesRule = {
 	plant: 'FU.PlantRule',
 	undead: 'FU.UndeadRule',
 };
+
+FU.itemTypes = {
+	basic: 'FU.BasicAtack',
+	weapon: 'FU.Weapon',
+	shield: 'FU.Shield',
+	armor: 'FU.Armor',
+	accessory: 'FU.Accessory',
+	consumable: 'FU.Consumable',
+	treasure: 'FU.Treasure',
+	class: 'FU.Class',
+	skill: 'FU.Skill',
+	heroic: 'FU.Heroic',
+	miscAbility: 'FU.BeastRule',
+	behavior: 'FU.ConstructRule',
+	ritual: 'FU.DemonRule',
+	project: 'FU.ElementalRule',
+	zeroPower: 'FU.HumanoidRule',
+};
+
+
+FU.actionTypes = {
+	attack: 'FU.Action',
+	equipment: 'FU.Action',
+	guard: 'FU.Action',
+	hinder: 'FU.Action',
+	inventory: 'FU.Action',
+	objective: 'FU.Action',
+	spell: 'FU.Action',
+	study: 'FU.Action',
+	skill: 'FU.Action',
+	other: 'FU.Action',
+};

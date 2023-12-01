@@ -1,0 +1,28 @@
+<!-- Attributes Section -->
+<div class="attributes flexrow grid grid-2col">
+    {{!-- <div class="desc-header resource-content">
+        <label class="resource-label-l">{{localize 'FU.Attributes'}}</label>
+    </div> --}}
+    {{#each system.attributes as |attribute key|}}
+    <div class="attribute resource-content flexrow flex-group-center" style="padding: 1px;">
+        <label class="flexlarge align-left" data-label="{{ attribute.label }}">
+            <span class="resource-label-l">{{ attribute.abbr }}</span>
+        </label>
+        <select class="resource-inputs" style="padding:5px" data-dtype="Number" value="{{ attribute.base }}"
+            name="system.attributes.{{ key }}.base">
+            {{#select attribute.base}}
+            <option value="6">d6</option>
+            <option value="8">d8</option>
+            <option value="10">d10</option>
+            <option value="12">d12</option>
+            {{/select}}
+        </select>
+        <label class="ability-mod">
+            <span class="resource-label-m">{{ attribute.current }}</span>
+        </label>
+        <label class="ability-mod">
+            <span class="resource-label-m" style="color:green">-</span>
+        </label>
+    </div>
+    {{/each}}
+</div>

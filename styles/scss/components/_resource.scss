@@ -13,11 +13,9 @@
 /* Resource Content Styles */
 .resource-content {
   color: $color-secondary;
-  font-weight: bold;
   background-color: transparent;
 
   .resource-label {
-    font-weight: bold;
     border: transparent;
     background: none;
 
@@ -32,9 +30,6 @@
   }
 
   .resource-label-sm {
-    font-weight: bold;
-    padding: 0 2px;
-
     &.summary {
       margin: 0 0.5em;
     }
@@ -73,6 +68,7 @@
       justify-content: center;
       text-align: center;
       appearance: none;
+      border-radius: 5px;
       
       option {
         background-color: $color-secondary;
@@ -85,8 +81,6 @@
         height: 80%;
         width: 90%;
         margin: 3px;
-        border: thin solid $color-secondary;
-        
       }
     }
   }
@@ -105,8 +99,8 @@
   /* Style for Sidebar Section */
   &.levelup-container {
     background: linear-gradient(#{$color-transparent-gradient});
-    margin: 5px 0 5px 0;
-    border-radius: 10%;
+    border-color: $color-secondary;
+    border: none;
 
     & input.resource-inputs-charname {
       color: $color-primary;
@@ -119,7 +113,6 @@
       width: 80%;
       margin: 0 5px 0 5px;
       appearance: none;
-      border: none;
     }
 
     & .side-bar {
@@ -160,6 +153,8 @@
     justify-content: center;
     text-align: center;
     appearance: none;
+    border-color: $color-secondary;
+    border-radius: 5px;
 
     option {
       background-color: $color-secondary;
@@ -178,10 +173,14 @@
 
     &.summary {
       width: 95%;
-      padding: 1.5em;
-      margin: 0 0.5em;
-      font-style: italic;
+      margin: 2px;
       text-align: left;
+      background-color: transparent;
+      border: transparent;
+      color: $color-black;
+      blockquote {
+        padding: 0;
+      }
     }
 
     &.select-dropdown {
@@ -216,7 +215,7 @@
     &.select-dropdown-full {
       appearance: none;
       background-size: 16px 16px;
-      width: 100%;
+      width: 90%;
       margin: 2px 5px;
     }
   }

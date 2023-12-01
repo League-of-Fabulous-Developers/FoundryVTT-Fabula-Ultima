@@ -1,11 +1,5 @@
 <form class="{{ cssClass }} backgroundstyle" autocomplete="off">
 	{{> "systems/fabulaultima/templates/item/partials/item-header.hbs" dtypes=dtypes}}
-	{{!-- Sheet Tab Navigation --}}
-	<nav class="sheet-tabs tabs" data-group="primary">
-		<a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
-		<a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
-		<a class="item" data-tab="effects">{{localize 'FU.Effects'}}</a>
-	</nav>
 
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
@@ -29,22 +23,22 @@
 						<label>
 							<span class="resource-label-m"> <br />{{localize 'FU.Current'}}</span>
 						</label>
-						<input class="resource-inputs" type="number" name="system.trigger.current"
-							value="{{ system.trigger.current }}" />
+						<input class="resource-inputs" type="number" name="system.progress.current"
+							value="{{ system.progress.current }}" />
 					</div>
 					<div class="flex-group-center resource-content">
 						<label>
 							<span class="resource-label-m"> <br />{{localize 'FU.Step'}}</span>
 						</label>
-						<input class="resource-inputs" type="number" name="system.trigger.step"
-							value="{{ system.trigger.step }}" />
+						<input class="resource-inputs" type="number" name="system.progress.step"
+							value="{{ system.progress.step }}" />
 					</div>
 					<div class="flex-group-center resource-content">
 						<label>
 							<span class="resource-label-m"> <br />{{localize 'FU.Max'}}</span>
 						</label>
-						<input class="resource-inputs" type="number" name="{{ system.trigger.max }}"
-							value="{{ system.trigger.max }}" disabled />
+						<input class="resource-inputs" type="number" name="{{ system.progress.max }}"
+							value="{{ system.progress.max }}" disabled />
 					</div>
 					<!-- TODO: implement clocks into zero power, using progress-clocks as placeholder to visualize what it'd look like-->
 					<img class="clock-img" src="icons/svg/clockwork.svg" data-edit="img"

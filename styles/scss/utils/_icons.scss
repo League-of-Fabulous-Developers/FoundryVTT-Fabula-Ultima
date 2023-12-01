@@ -1,11 +1,12 @@
 $ful-sl-star: url("/systems/fabulaultima/styles/static/icons/ful-sl-star.svg");
 $fus-sl-star: url("/systems/fabulaultima/styles/static/icons/fus-sl-star.svg");
 
-$fu-action-melee: url("/systems/fabulaultima/styles/static/icons/fu-phys.svg");
-$fu-action-ranged: url("/systems/fabulaultima/styles/static/icons/fu-phys.svg");
-$fu-action-skill: url("/systems/fabulaultima/styles/static/icons/fu-phys.svg");
-$fu-action-spell: url("/systems/fabulaultima/styles/static/icons/fu-phys.svg");
-$fu-offensive: url("/systems/fabulaultima/styles/static/icons/fu-phys.svg");
+$fu-action-melee: url("/systems/fabulaultima/styles/static/icons/fu-action-melee.svg");
+$fu-action-ranged: url("/systems/fabulaultima/styles/static/icons/fu-action-ranged.svg");
+$fu-action-skill: url("/systems/fabulaultima/styles/static/icons/fu-action-skill.svg");
+$fu-action-spell: url("/systems/fabulaultima/styles/static/icons/fu-action-spell.svg");
+$fu-offensive: url("/systems/fabulaultima/styles/static/icons/fu-offensive.svg");
+$fu-martial: url("/systems/fabulaultima/styles/static/icons/fu-martial.svg");
 
 $fu-phys: url("/systems/fabulaultima/styles/static/icons/fu-phys.svg");
 $fu-wind: url("/systems/fabulaultima/styles/static/icons/fu-wind.svg");
@@ -16,6 +17,11 @@ $fu-fire: url("/systems/fabulaultima/styles/static/icons/fu-fire.svg");
 $fu-ice: url("/systems/fabulaultima/styles/static/icons/fu-ice.svg");
 $fu-light: url("/systems/fabulaultima/styles/static/icons/fu-light.svg");
 $fu-poison: url("/systems/fabulaultima/styles/static/icons/fu-poison.svg");
+
+.spin2win:hover i {
+  -webkit-animation: ra-spin 2s infinite linear;
+  animation: ra-spin 2s infinite linear;
+}
 
 .fu-action-melee {
   background-image: $fu-action-melee;
@@ -31,6 +37,9 @@ $fu-poison: url("/systems/fabulaultima/styles/static/icons/fu-poison.svg");
 }
 .fu-offensive {
   background-image: $fu-offensive;
+}
+.fu-martial {
+  background-image: $fu-martial;
 }
 .fu-phys {
   background-image: $fu-phys;
@@ -64,14 +73,24 @@ $fu-poison: url("/systems/fabulaultima/styles/static/icons/fu-poison.svg");
   width: 24px;
   height: 24px;
   background-size: cover;
-  margin: 1px;
+  margin: -4px 0px;
+  fill: $color-secondary;
 }
 
 .fusl {
   width: 20px;
   height: 20px;
   background-size: cover;
-  margin: 1px;
+  margin: -4px 0px;
+  fill: $color-secondary;
+}
+
+.fuk {
+  width: 16px;
+  height: 16px;
+  background-size: cover;
+  margin: -4px 0px;
+  fill: $color-secondary;
 }
 
 .ful-sl-star {
@@ -91,4 +110,17 @@ $fu-poison: url("/systems/fabulaultima/styles/static/icons/fu-poison.svg");
     /* Bottom-left */
     0.5px 0.5px 0 rgba(0, 0, 0, 0.5);
   /* Bottom-right */
+}
+
+.is-martial {
+  color: $color-danger !important;
+}
+
+.is-crisis {
+  color: $color-danger !important;
+
+  &.float-text {
+    display: inline-block;
+    animation: floating 1s infinite ease-in-out;
+  }
 }

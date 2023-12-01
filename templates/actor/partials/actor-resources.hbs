@@ -1,178 +1,103 @@
-<div class="header-fields desc grid grid-4col" style="align-items: flex-start">
-    {{!-- FU Points --}}
-    <div class="resource-content flex-group-center">
-        <label>
-            {{#if (eq actor.type "npc")}}
-            <span class="resource-label-l"> <i class="fa-solid fa-crystal-ball icon"></i>{{localize
-                'FU.UltimaPoints'}} </span>
-            {{/if}} {{#if (eq actor.type "character")}}
-            <span class="resource-label-l"> <i class="fa-solid fa-crystal-ball icon"></i>{{localize
-                'FU.FabulaPoints'}} </span>
-            {{/if}}
-        </label>
-        <div class="buttons-inc">
-            <button class="decrement-button" data-resource="fp" data-action="decrease">
-                <i class="fas fa-minus"></i>
-            </button>
-            <input type="number" name="system.resources.fp.value" value="{{ system.resources.fp.value }}"
-                data-dtype="Number" id="fp-input" class="fp-resource-inputs" />
-            <button class="increment-button" data-resource="fp" data-action="increase">
-                <i class="fas fa-plus"></i>
-            </button>
+<div class="header-fields flexrow" style="align-self: stretch;">
+    <div class="resource-content flex-group-center desc">
+        {{!-- Key Statuses --}}
+        <div class="resource-content flex-group-center flexrow">
+            <span class="grid grid-4col">
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Status_Bleeding.png" data-tooltip="Crisis"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Slow.webp" data-tooltip="Slow"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Dazed.webp" data-tooltip="Dazed"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Enraged.webp" data-tooltip="Enraged"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/KO.webp" data-tooltip="KO"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Weak.webp" data-tooltip="Weak"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Shaken.webp" data-tooltip="Shaken"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/Poisoned.webp" data-tooltip="Poisoned"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+            </span>
+            <span class="grid grid-4col">
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/DexUp.webp" data-tooltip="Dexterity Up"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/MigUp.webp" data-tooltip="Might UP"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/InsUp.webp" data-tooltip="Insight Up"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/WlpUp.webp" data-tooltip="Willpower Up"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/DexDown.webp" data-tooltip="Dexterity Down"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/MigDown.webp" data-tooltip="Might Down"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/InsDown.webp" data-tooltip="Insight Down"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+
+                <a class="rollable">
+                    <img src="systems/fabulaultima/styles/static/statuses/WlpDown.webp" data-tooltip="Willpower Down"
+                        style="height:24px;margin: 0;border:0;">
+                </a>
+            </span>
         </div>
     </div>
 
-    {{!-- DEF --}}
-    <div class="resource-content flex-group-center">
-        <label class="resource-label-l"> <i class="fa-solid fa-shield icon"></i>{{localize 'FU.DefenseAbbr'}}
-        </label>
-        <div class="resource-content flex-center">
-            <input class="resource-inputs" id="def-input" type="number" name="system.derived.def.value"
-                value="{{ system.derived.def.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.Defense'}}<br>Current: {{
-              system.derived.def.value
-            }}<br>Bonus: {{ system.derived.def.bonus }}" aria-describedby="tooltip" disabled />
-        </div>
+    <div class="resource-content flex-group-center desc">
+        <!-- Attribute Section -->
+        {{>"systems/fabulaultima/templates/actor/partials/actor-attributes.hbs"}}
     </div>
-
-    {{!-- MDEF --}}
-    <div class="resource-content flex-group-center">
-        <label class="resource-label-l"> <i class="fa-solid fa-shield-halved icon"></i>{{localize
-            'FU.MagicDefenseAbbr'}} </label>
-        <div class="resource-content flex-center">
-            <input class="resource-inputs" id="mdef-input" type="number" name="system.derived.mdef.value"
-                value="{{ system.derived.mdef.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.MagicDefense'}}<br>Current: {{
-              system.derived.mdef.value
-            }}<br>Bonus: {{ system.derived.mdef.bonus }}" aria-describedby="tooltip" disabled />
-        </div>
-    </div>
-
-    {{!-- Initiative --}}
-    <div class="resource-content flex-group-center">
-        <label class="rollable resource-label-l" data-roll-type="roll-init"> <i
-                class="fa-solid fa-clock icon"></i>{{localize 'FU.Initiative'}} </label>
-        <div class="resource-content flex-center">
-            <input class="resource-inputs" id="init-input" type="number" name="system.derived.init.value"
-                value="{{ system.derived.init.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.Initiative'}}<br>Current: {{
-              system.derived.init.value
-            }}<br>Bonus: {{ system.derived.init.bonus }}" aria-describedby="tooltip" disabled />
-        </div>
-    </div>
-
-    {{!-- RP1 --}}
-    <div class="resource-content flex-group-center">
-        <div class="name-input">
-            <input type="text" name="system.resources.rp1.name" title="{{localize 'FU.ResourcePoints'}}"
-                value="{{ system.resources.rp1.name }}" data-dtype="String" placeholder="Resource 1"
-                class="resource-label" />
-        </div>
-        <div class="buttons-inc">
-            <button class="increment-button" data-resource="rp1" data-action="decrease">
-                <i class="fas fa-minus"></i>
-            </button>
-            <input type="number" name="system.resources.rp1.value" data-tooltip="Current: {{
-              system.resources.rp1.value
-            }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp1.value }}"
-                data-dtype="Number" id="rp1-input" class="resource-inputs" />
-            <button class="increment-button" data-resource="rp1" data-action="increase">
-                <i class="fas fa-plus"></i>
-            </button>
-        </div>
-    </div>
-
-    {{#if system.isCompanion.value}}{{#if (eq actor.type "npc")}}
-    {{!-- [Companian] PC Level Replace RP2 --}}
-    <div class="resource-content flex-group-center">
-        <div class="name-input">
-            <input type="text" name="system.resources.rp2.name" data-tooltip="{{localize 'FU.PlayerLevel'}}"
-                value="{{localize 'FU.PlayerLevel'}}" data-dtype="String" class="resource-label" disabled />
-        </div>
-        <div class="buttons-inc">
-            <button class="increment-button" data-resource="rp2" data-action="decrease">
-                <i class="fas fa-minus"></i>
-            </button>
-            <input type="number" name="system.resources.rp2.value" data-tooltip="Current: {{
-              system.resources.rp2.value
-            }}<br>Max: 50<br>" aria-describedby="tooltip" value="{{ system.resources.rp2.value }}" data-dtype="Number"
-                id="rp2-input" class="resource-inputs" />
-            <button class="increment-button" data-resource="rp2" data-action="increase">
-                <i class="fas fa-plus"></i>
-            </button>
-        </div>
-    </div>
-
-    {{!-- [Companian] Skill Level Replace RP3 --}}
-    <div class="resource-content flex-group-center">
-        <div class="name-input">
-            <input type="text" name="system.resources.rp3.name" data-tooltip="{{localize 'FU.SkillLevel'}}"
-                value="{{localize 'FU.SkillLevel'}}" data-dtype="String" class="resource-label" disabled />
-        </div>
-        <div class="buttons-inc">
-            <button class="increment-button" data-resource="rp3" data-action="decrease">
-                <i class="fas fa-minus"></i>
-            </button>
-            <input type="number" name="system.resources.rp3.value" data-tooltip="Current: {{
-              system.resources.rp3.value
-            }}<br>Max: 5<br>" aria-describedby="tooltip" value="{{ system.resources.rp3.value }}" data-dtype="Number"
-                id="rp3-input" class="resource-inputs" />
-            <button class="increment-button" data-resource="rp3" data-action="increase">
-                <i class="fas fa-plus"></i>
-            </button>
-        </div>
-    </div>
-    {{/if}}
-    {{else}}
-
-    {{!-- RP2 --}}
-    <div class="resource-content flex-group-center">
-        <div class="name-input">
-            <input type="text" name="system.resources.rp2.name" title="{{localize 'FU.ResourcePoints'}}"
-                value="{{ system.resources.rp2.name }}" data-dtype="String" placeholder="Resource 2"
-                class="resource-label" />
-        </div>
-        <div class="buttons-inc">
-            <button class="increment-button" data-resource="rp2" data-action="decrease">
-                <i class="fas fa-minus"></i>
-            </button>
-            <input type="number" name="system.resources.rp2.value" data-tooltip="Current: {{
-              system.resources.rp2.value
-            }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp2.value }}"
-                data-dtype="Number" id="rp2-input" class="resource-inputs" />
-            <button class="increment-button" data-resource="rp2" data-action="increase">
-                <i class="fas fa-plus"></i>
-            </button>
-        </div>
-    </div>
-
-    {{!-- RP3 --}}
-    <div class="resource-content flex-group-center">
-        <div class="name-input">
-            <input type="text" name="system.resources.rp3.name" title="{{localize 'FU.ResourcePoints'}}"
-                value="{{ system.resources.rp3.name }}" data-dtype="String" placeholder="Resource 3"
-                class="resource-label" />
-        </div>
-        <div class="buttons-inc">
-            <button class="increment-button" data-resource="rp3" data-action="decrease">
-                <i class="fas fa-minus"></i>
-            </button>
-            <input type="number" name="system.resources.rp3.value" data-tooltip="Current: {{
-              system.resources.rp3.value
-            }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp3.value }}"
-                data-dtype="Number" id="rp3-input" class="resource-inputs" />
-            <button class="increment-button" data-resource="rp3" data-action="increase">
-                <i class="fas fa-plus"></i>
-            </button>
-        </div>
-    </div>
-    {{/if}}
 
     {{!-- Roll Check --}}
-    <div class="resource-content flex-group-center">
-        <label class="resource-label-l rollable flex-center" data-roll-type="roll-check"> <i
-                class="fa-solid fa-dice icon"></i>{{localize 'FU.RollCheck'}} </label>
+    <div class="resource-content flex-group-center desc">
+        <label class="resource-label-xl spin2win rollable flex-center" data-roll-type="roll-check">
+            <i class="fas fa-dice-d20 spin2win ra-1x rollable"></i> {{localize 'FU.RollCheck'}}
+        </label>
         <div class="buttons-inc flex-group-center">
             <span class="buttons-inc">
                 <select value="{{ system.rollInfo.attributes.primary.value }}"
-                    name="system.rollInfo.attributes.primary.value" class="resource-inputs">
+                    name="system.rollInfo.attributes.primary.value" class="resource-inputs" style="width:70px">
                     {{#select system.rollInfo.attributes.primary.value}}
                     <option value="attributes.dex.current">{{localize 'FU.AttributeDexAbbr'}}</option>
                     <option value="attributes.ins.current">{{localize 'FU.AttributeInsAbbr'}}</option>
@@ -189,7 +114,7 @@
             </span>
             <span class="buttons-inc">
                 <select value="{{ system.rollInfo.attributes.secondary.value }}"
-                    name="system.rollInfo.attributes.secondary.value" class="resource-inputs">
+                    name="system.rollInfo.attributes.secondary.value" class="resource-inputs" style="width:70px">
                     {{#select system.rollInfo.attributes.secondary.value}}
                     <option value="attributes.dex.current">{{localize 'FU.AttributeDexAbbr'}}</option>
                     <option value="attributes.ins.current">{{localize 'FU.AttributeInsAbbr'}}</option>
