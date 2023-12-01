@@ -1,11 +1,11 @@
-# Fabula Ultima System
+# Unofficial Fabula Ultima System
 
 ![fu-sitecover.jpg](https://trello.com/1/cards/64db0994c4a8791322c8b2e2/attachments/64f476a7f1dc332714f44c8c/download/fu-sitecover.jpg)
 
 ![foundry-v10-green](https://img.shields.io/badge/foundry-v10-green)
 ![foundry-v11-green](https://img.shields.io/badge/foundry-v11-yellow)
 
-Welcome to the Unofficial Fabula Ultima System for the Foundry Virtual Tabletop. This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
+Welcome to the Unofficial Fabula Ultima System for the {Foundry Virtual Tabletop}(<https://foundryvtt.com/>). This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
 
 **Disclaimer:** This system is currently in it's testing phase. We recommend backing up your world before trying it.
 
