@@ -150,9 +150,10 @@ export class FUStandardActorSheet extends ActorSheet {
 			i.duration = i.system.duration?.value;
 			i.dLevel = i.system.dLevel?.value;
 			i.clock = i.system.clock?.value;
-			i.progress = i.system.progress?.value;
 			i.progressPerDay = i.system.progressPerDay?.value;
 			i.days = i.system.days?.value;
+			i.cost = i.system.cost?.value;
+			i.discount = i.system.discount?.value;
 			i.potency = i.system.potency?.value;
 			i.area = i.system.area?.value;
 			i.use = i.system.use?.value;
@@ -160,9 +161,9 @@ export class FUStandardActorSheet extends ActorSheet {
 			i.defectMod = i.system.use?.value;
 			i.zeroTrigger = i.system.zeroTrigger?.value;
 			i.zeroEffect = i.system.zeroEffect?.value;
-			i.triggerCurr = i.system.trigger?.current;
-			i.triggerStep = i.system.trigger?.step;
-			i.triggerMax = i.system.trigger?.max;
+			i.progressCurr = i.system.progress?.current;
+			i.progressStep = i.system.progress?.step;
+			i.progressMax = i.system.progress?.max;
 
 			if (['armor', 'shield', 'accessory'].includes(i.type)) {
 				i.def = i.isMartial && i.type === 'armor' ? i.system.def.value : `+${i.system.def.value}`;
