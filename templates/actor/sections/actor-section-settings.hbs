@@ -116,15 +116,29 @@
 
 	<!-- Settings Section -->
 	<div class="grid-span-2">
-		<section class="align-center desc">
-			<label class="desc-header resource-content flex-group-center grid grid-3col"
-				data-label="{{localize 'FU.SheetSettings'}}">
+		<section class="align-center resource-content desc">
+			<label class="desc-header flex-group-center grid grid-3col" data-label="{{localize 'FU.SheetSettings'}}">
 				<span class="resource-label-l grid-start-2"><span>{{localize 'FU.SheetSettings'}}</span>
 				</span>
 			</label>
 
 			{{!-- RP Points --}}
 			{{>"systems/fabulaultima/templates/actor/partials/actor-resource-points.hbs" actor=actor}}
+
+			{{#if (eq actor.type "npc")}}
+			<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.UseEquipment'}}">
+				<span>
+					{{#if system.useEquipment.value}}
+					<i class="fas fa-sword"></i>
+					{{else}}
+					<i class="far fa-sword"></i>
+					{{/if}}
+					{{localize 'FU.UseEquipment'}}
+				</span>
+				<input type="checkbox" name="system.useEquipment.value" {{ checked system.useEquipment.value }} />
+			</label>
+			{{/if}}
+
 		</section>
 	</div>
 </section>

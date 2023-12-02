@@ -123,6 +123,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		const heroics = [];
 		const spells = [];
 		const abilities = [];
+		const rules = [];
 		const behaviors = [];
 		const consumables = [];
 		const treasures = [];
@@ -213,6 +214,8 @@ export class FUStandardActorSheet extends ActorSheet {
 				const skillData = itemObj.getSkillDisplayData();
 				i.quality = skillData.qualityString;
 				abilities.push(i);
+			} else if (i.type === 'rule') {
+				rules.push(i);
 			} else if (i.type === 'behavior') {
 				behaviors.push(i);
 			} else if (i.type === 'consumable') {
@@ -245,6 +248,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.heroics = heroics;
 		context.spells = spells;
 		context.abilities = abilities;
+		context.rules = rules;
 		context.behaviors = behaviors;
 		context.consumables = consumables;
 		context.treasures = treasures;

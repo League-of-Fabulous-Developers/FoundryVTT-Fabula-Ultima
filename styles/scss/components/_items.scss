@@ -74,17 +74,18 @@
 
   &.zenit-container {
     width: 10.5em;
-    border-radius: 40px 8px 0px 4px;
+    border-radius: 8px;
     font-size: 14px;
     box-sizing: border-box;
     white-space: normal;
     text-overflow: ellipsis;
-    padding: 4px 4px 0px 0;
+    margin: 8px 0px;
+    flex: 0 0 150px;
 
     .zenit-content {
       white-space: nowrap;
       max-width: 100%;
-      margin-left: 10px;
+      margin: 5px 2px;
 
       .fas:hover {
         color: blanchedalmond;
@@ -103,8 +104,7 @@
         border-color: transparent;
         vertical-align: middle;
         text-align: right;
-        margin-bottom: 10px;
-        max-width: 75%;
+        max-width: 78%;
       }
     }
   }
@@ -136,10 +136,30 @@
     margin-right: 5px;
   }
 
-  &.armor-hand,
+    &.armor-hand {
+      width: 10.5em;
+      border-radius: 8px 30px 5px 5px;
+      font-size: 14px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      white-space: normal;
+      text-overflow: ellipsis;
+      padding: 4px 14px 0px 0;
+      text-align: right;
+      
+    .equipped-item {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      margin-left: 10px;
+    }
+  }
+
+  // &.armor-hand,
   &.acc-hand {
     width: 10.5em;
-    border-radius: 40px 8px 0px 4px;
+    border-radius: 40px 8px 5px 5px;
     font-size: 14px;
     box-sizing: border-box;
     white-space: normal;
@@ -411,7 +431,7 @@ span[data-tooltip] {
   align-content: center;
 }
 .item-full {
-  flex: 0 0 420px;
+  flex: 0 0 360px;
   text-align: center;
   justify-content: center;
   display: flex;

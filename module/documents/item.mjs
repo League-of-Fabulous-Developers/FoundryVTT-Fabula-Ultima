@@ -60,7 +60,7 @@ export class FUItem extends Item {
 		if (isWeaponOrShieldWithDual) {
 			qualityString = [capitalizeFirst(this.system.category.value), capitalizeFirst(this.system.hands.value), capitalizeFirst(this.system.type.value), qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
-			qualityString = [capitalizeFirst(this.system.type.value), qualText].filter(Boolean).join(' ⬥ ');
+			qualityString = [qualText].filter(Boolean).join(' ⬥ ');
 		}
 		const attackAttributes = [this.system.attributes.primary.value.toUpperCase(), this.system.attributes.secondary.value.toUpperCase()].join(' + ');
 
