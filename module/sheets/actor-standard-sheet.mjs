@@ -835,8 +835,8 @@ export class FUStandardActorSheet extends ActorSheet {
 		switch (rollType) {
 			case 'roll-check':
 				// Get the selected primary and secondary attributes for rollcheck
-				primaryAttributeRef = $('select[name="system.rollInfo.attributes.primary.value"]').val();
-				secondaryAttributeRef = $('select[name="system.rollInfo.attributes.secondary.value"]').val();
+				primaryAttributeRef = $(this.form).find('select[name="system.rollInfo.attributes.primary.value"]').val();
+				secondaryAttributeRef = $(this.form).find('select[name="system.rollInfo.attributes.secondary.value"]').val();
 				title = game.i18n.localize('FU.RollCheck');
 				bonuses = 0;
 				break;
