@@ -28,8 +28,8 @@
 						<select type="select" value="" name="system.subtype.value" data-dtype="String"
 							class="resource-inputs side-bar">
 							{{#select system.subtype.value}}
-							<option value="custom">Custom</option>
 							{{#if (eq actor.type "character")}}
+							<option value="custom">Custom</option>
 							<option value="arcana">Arcana</option>
 							<option value="deck">Deck</option>
 							<option value="verse">Verse</option>
@@ -45,7 +45,6 @@
 							{{/if}}
 							{{#if (eq actor.type "npc")}}
 							<option value="other">Other Action</option>
-							<option value="special">Special Rule</option>
 							{{/if}}
 							{{/select}}
 						</select>

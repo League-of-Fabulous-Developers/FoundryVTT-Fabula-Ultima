@@ -26,6 +26,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 		'systems/fabulaultima/templates/actor/partials/actor-item-name.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-actions.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-npc-items.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-npc-skills.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-favorite.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-bonds.hbs',

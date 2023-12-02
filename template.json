@@ -24,8 +24,8 @@
 				},
 				"attributes": {
 					"dex": { "base": 6, "current": 6, "bonus": 0 },
-					"mig": { "base": 6, "current": 6, "bonus": 0 },
 					"ins": { "base": 6, "current": 6, "bonus": 0 },
+					"mig": { "base": 6, "current": 6, "bonus": 0 },
 					"wlp": { "base": 6, "current": 6, "bonus": 0 }
 				},
 				"derived": {
@@ -61,18 +61,19 @@
 			"species": { "value": "" },
 			"isElite": { "value": false },
 			"isChampion": { "value": 1 },
-			"isCompanion": { "value": false }
+			"isCompanion": { "value": false },
+			"useEquipment": { "value": false }
 		}
 	},
 	"Item": {
-		"types": ["basic", "weapon", "shield", "armor", "accessory", "consumable", "treasure", "class", "skill", "heroic", "spell", "miscAbility", "behavior", "ritual", "project", "zeroPower"],
+		"types": ["basic", "weapon", "shield", "armor", "accessory", "consumable", "treasure", "class", "skill", "heroic", "spell", "miscAbility", "rule", "behavior", "ritual", "project", "zeroPower"],
 		"templates": {
 			"base": {
 				"subtype": { "value": "" },
 				"summary": "",
 				"description": "",
 				"isFavored": { "value": false },
-				"hasNotification": { "showTitleCard": { "value": false } }
+				"showTitleCard": { "value": false }
 			},
 			"item": { "cost": { "value": 0 } },
 			"equippable": {
@@ -128,8 +129,16 @@
 			}
 		},
 		"basic": {
-			"templates": ["base", "item", "equippable", "weaponize", "hasBehavior"],
-			"isCustomWeapon": { "value": false }
+			"templates": ["base", "hasBehavior"],
+			"attributes": {
+				"primary": { "value": "mig" },
+				"secondary": { "value": "mig" }
+			},
+			"accuracy": { "value": 0 },
+			"damage": { "value": 5 },
+			"type": { "value": "melee" },
+			"damageType": { "value": "physical" },
+			"special": { "value": "" }
 		},
 		"weapon": {
 			"templates": ["base", "item", "equippable", "weaponize", "hasBehavior"],
@@ -192,8 +201,12 @@
 			"isOffensive": { "value": false }
 		},
 		"miscAbility": {
-			"templates": ["base", "equippable", "rollInfo", "hasBehavior"]
+			"templates": ["base", "equippable", "rollInfo", "hasBehavior", "hasProgress"]
 		},
+		"rule": {
+			"templates": ["base", "hasBehavior"]
+		},
+
 		"behavior": {
 			"templates": ["base"],
 			"isBehavior": true,

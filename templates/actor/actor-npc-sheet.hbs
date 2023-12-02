@@ -22,20 +22,14 @@
 		</nav>
 	</header>
 
-
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
 		{{!-- Owned Features Tab --}}
 		<div class="tab features" data-group="primary" data-tab="attributes">
-
 			<section class="grid grid-3col">
-
 				<aside class="sidebar flex-group-center">
 					{{!-- Action Buttons --}}
 					{{>"systems/fabulaultima/templates/actor/partials/actor-actions.hbs" actor=actor}}
-					{{!-- RP Points --}}
-					{{!-- {{>"systems/fabulaultima/templates/actor/partials/actor-resource-points.hbs" actor=actor}}
-					--}}
 
 					{{!-- Study Roll --}}
 					<section class="align-center desc">
@@ -78,9 +72,6 @@
 		{{!-- Combat Tab --}}
 		<div class="tab combat" data-group="primary" data-tab="combat">{{>
 			"systems/fabulaultima/templates/actor/sections/actor-section-combat.hbs" actor=actor}}</div>
-		{{!-- Owned Items Tab --}}
-		{{!-- <div class="tab items" data-group="primary" data-tab="items">{{>
-			"systems/fabulaultima/templates/actor/sections/actor-section-items.hbs" actor=actor}}</div> --}}
 		{{!-- Owned Spells Tab --}}
 		<div class="tab spells" data-group="primary" data-tab="spells">{{>
 			"systems/fabulaultima/templates/actor/sections/actor-section-spells.hbs" actor=actor}}</div>

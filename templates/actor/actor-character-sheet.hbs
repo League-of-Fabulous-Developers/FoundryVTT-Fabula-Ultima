@@ -9,7 +9,7 @@
 		{{!-- Current Affinities Header --}}
 		{{>"systems/fabulaultima/templates/actor/partials/actor-affinities.hbs" actor=actor}}
 		{{!-- Start Sheet Tab Navigation --}}
-		<nav class="sheet-tabs tabs desc" data-group="primary" style="align-self: stretch;">
+		<nav class="sheet-tabs tabs desc flexrow" data-group="primary" style="align-self: stretch;">
 			{{!-- Default tab is specified in actor-sheet.mjs --}}
 			<a class="item rollable tab-style" data-tab="stats">{{localize 'FU.Stats'}}</a>
 			<a class="item rollable tab-style" data-tab="classes">{{localize 'FU.Classes'}}</a>
@@ -20,6 +20,11 @@
 				aria-describedby="tooltip"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
 			<a class="item tab-style" data-tab="settings" data-tooltip="{{localize 'FU.Settings'}}"
 				aria-describedby="tooltip"><i class="fa-solid fa-sliders"></i></a>
+			<a class="item zenit-style" data-tooltip="{{localize 'FU.Zenit'}}" aria-describedby="tooltip"
+				style="align-items: center;"><i class="fas fa-coin rollable"></i>
+				<input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}"
+					data-dtype="Number" />
+			</a>
 		</nav>
 	</header>
 
@@ -31,7 +36,6 @@
 				<aside class="sidebar flex-group-center">
 					{{!-- Action Buttons --}}
 					{{> "systems/fabulaultima/templates/actor/partials/actor-actions.hbs" actor=actor}}
-
 				</aside>
 
 				{{!-- Favorite Section --}}

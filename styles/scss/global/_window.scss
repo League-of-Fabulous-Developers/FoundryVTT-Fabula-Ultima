@@ -9,6 +9,10 @@
   overflow-x: hidden;
 }
 
+.sheet nav.sheet-tabs .item {
+  padding: 8px
+}
+
 .selectable {
   &:hover,
   &:focus {

@@ -1,9 +1,5 @@
 <section class="desc">
-    <header class="items-main-header">
-        <span class="items-main">
-            <label class="items-label">{{localize "FU.Attacks"}}</label>
-        </span>
-    </header>
+
     <ol class="items-list">
         <li class="item flexrow items-header">
             <div class="item-name">{{localize "FU.BasicAttacks"}}</div>
@@ -30,41 +26,8 @@
         </li>
         {{/each}}
     </ol>
-    <ol class="items-list">
-        <li class="item flexrow items-header">
-            <div class="item-name">{{localize "FU.Weapons"}}</div>
-            <div class="item-lg">{{localize "FU.Attack"}}</div>
-            <div class="item-lg">{{localize "FU.Damage"}}</div>
-            <div class="item-m end">
-                <a class="item-control item-create" data-tooltip="{{localize 'FU.WeaponCreate'}}" data-type="weapon"><i
-                        class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
-            </div>
-        </li>
-        {{#each weapons as |item id|}}
-        <li class="item" data-item-id="{{ item._id }}">
-            <div class="flexrow">
-                {{!-- Item Name--}}
-                {{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
-                <div class="item-lg">{{ item.attackString }}</div>
-                <div class="item-lg">{{ item.damageString }}</div>
-                {{> "systems/fabulaultima/templates/actor/partials/actor-equip.hbs" item=item}} {{>
-                "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
-            </div>
-            <span class="item-quality">{{ item.quality }}</span>
-            <div class="individual-description">{{#if item.system.description}} {{editor item.system.description
-                target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
-            </div>
-        </li>
-        {{/each}}
-    </ol>
-</section>
 
-<section class="desc">
-    <header class="items-main-header">
-        <span class="items-main">
-            <label class="items-label">{{localize "FU.Spells"}}</label>
-        </span>
-    </header>
+
     <ol class="items-list">
         <li class="item flexrow items-header">
             <div class="item-name">{{localize 'FU.Spells'}}</div>
@@ -94,15 +57,7 @@
         </li>
         {{/each}}
     </ol>
-</section>
 
-
-<section class="desc">
-    <header class="items-main-header">
-        <span class="items-main">
-            <label class="items-label">{{localize "FU.Features"}}</label>
-        </span>
-    </header>
     <ol class="items-list">
         <li class="item flexrow items-header">
             <div class="item-name">{{localize "FU.OtherAction"}}</div>
@@ -138,4 +93,41 @@
         </li>
         {{/each}}
     </ol>
+
+
+    <ol class="items-list">
+        <li class="item flexrow items-header">
+            <div class="item-name">{{localize "FU.SpecialRule"}}</div>
+            <div class="item-full start">{{localize 'FU.Effect'}}</div>
+            <div class="item-m end">
+                <a class="item-control item-create" aria-describedby="tooltip"
+                    data-tooltip="{{localize 'FU.RuleCreate'}}" data-type="rule">
+                    <i class="fas fa-plus icon"></i>
+                    {{localize 'FU.Add'}}
+                </a>
+            </div>
+        </li>
+        {{#each rules as |item id|}}
+
+        <li class="item" data-item-id="{{ item._id }}">
+            <div class="flexrow">
+                {{!-- Item Name--}}
+                {{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+                <div class="item-full start tiny-desc">
+                    {{#if item.system.description}} {{editor
+                    item.system.description target="item.system.description" rollData=rollData button=false
+                    owner=owner
+                    editable=false}} {{/if}}
+                </div>
+                {{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+            </div>
+        </li>
+        {{/each}}
+    </ol>
+
 </section>
+{{#if actor.system.useEquipment.value}}
+<section class="desc">
+    {{> "systems/fabulaultima/templates/actor/partials/actor-npc-items.hbs" item=item}}
+</section>
+{{/if}}
