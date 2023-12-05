@@ -220,6 +220,18 @@
     }
   }
 
+  .status-effect-toggle img {
+    height: 24px;
+    margin: 0;
+    border: 0;
+    opacity: 0.5;
+  }
+  .status-effect-toggle:hover img {
+    opacity: 0.75;
+  }
+  .status-effect-toggle.active img {
+    opacity: 1;
+  }
 }
 
 /* Target the Clock section */

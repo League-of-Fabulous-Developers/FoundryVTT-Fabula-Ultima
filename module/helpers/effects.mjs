@@ -62,3 +62,33 @@ export function prepareActiveEffectCategories(effects) {
 	}
 	return categories;
 }
+
+/**
+ * A helper function to toggle a status effect on an Actor.
+ * Designed based off TokenDocument#toggleActiveEffect to properly interact with token hud.
+ * @param {string} statusEffectId 								 The status effect id based on CONFIG.statusEffects
+ * @returns {Promise<boolean>}                                   Whether the ActiveEffect is now on or off
+ */
+export async function toggleStatusEffect(actor, statusEffectId) {
+	const existing = actor.effects.reduce((arr, e) => {
+		if (isActiveEffectForStatusEffectId(e, statusEffectId)) arr.push(e.id);
+		return arr;
+	}, []);
+	if (existing.length > 0) {
+		await actor.deleteEmbeddedDocuments('ActiveEffect', existing);
+		return false;
+	} else {
+		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId)
+		const cls = getDocumentClass('ActiveEffect');
+		const createData = foundry.utils.deepClone(statusEffect);
+		createData.label = game.i18n.localize(statusEffect.label);
+		createData['flags.core.statusId'] = statusEffectId;
+		delete createData.id;
+		await cls.create(createData, { parent: actor });
+		return true;
+	}
+}
+
+export function isActiveEffectForStatusEffectId(effect, statusEffectId) {
+	return effect.flags.core && effect.flags.core.statusId === statusEffectId;
+}
