@@ -2,84 +2,12 @@
     <div class="resource-content flex-group-center desc">
         {{!-- Key Statuses --}}
         <div class="resource-content flex-group-center flexrow">
-            <span class="grid grid-4col">
-
-                <a class="effect-trigger" data-action="crisis">
-                    <img src="systems/fabulaultima/styles/static/statuses/Status_Bleeding.png" data-tooltip="Crisis"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-                <a class="effect-trigger" data-action="slow">
-                    <img src="systems/fabulaultima/styles/static/statuses/Slow.webp" data-tooltip="Slow"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-                <a class="effect-trigger" data-action="dazed">
-                    <img src="systems/fabulaultima/styles/static/statuses/Dazed.webp" data-tooltip="Dazed"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-                <a class="effect-trigger" data-action="enraged">
-                    <img src="systems/fabulaultima/styles/static/statuses/Enraged.webp" data-tooltip="Enraged"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-
-
-                <a class="effect-trigger" data-action="ko">
-                    <img src="systems/fabulaultima/styles/static/statuses/KO.webp" data-tooltip="KO"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-                <a class="effect-trigger" data-action="weak">
-                    <img src="systems/fabulaultima/styles/static/statuses/Weak.webp" data-tooltip="Weak"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-                <a class="effect-trigger" data-action="shaken">
-                    <img src="systems/fabulaultima/styles/static/statuses/Shaken.webp" data-tooltip="Shaken"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-                <a class="effect-trigger" data-action="poisoned">
-                    <img src="systems/fabulaultima/styles/static/statuses/Poisoned.webp" data-tooltip="Poisoned"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-
-            </span>
-            <span class="grid grid-4col">
-                <a class="effect-trigger" data-action="dex-up">
-                    <img src="systems/fabulaultima/styles/static/statuses/DexUp.webp" data-tooltip="Dexterity Up"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-
-                <a class="effect-trigger" data-action="mig-up">
-                    <img src="systems/fabulaultima/styles/static/statuses/MigUp.webp" data-tooltip="Might UP"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-
-                <a class="effect-trigger" data-action="ins-up">
-                    <img src="systems/fabulaultima/styles/static/statuses/InsUp.webp" data-tooltip="Insight Up"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-
-                <a class="effect-trigger" data-action="wlp-up">
-                    <img src="systems/fabulaultima/styles/static/statuses/WlpUp.webp" data-tooltip="Willpower Up"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-
-                <a class="effect-trigger" data-action="dex-down">
-                    <img src="systems/fabulaultima/styles/static/statuses/DexDown.webp" data-tooltip="Dexterity Down"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-
-                <a class="effect-trigger" data-action="mig-down">
-                    <img src="systems/fabulaultima/styles/static/statuses/MigDown.webp" data-tooltip="Might Down"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-
-                <a class="effect-trigger" data-action="ins-down">
-                    <img src="systems/fabulaultima/styles/static/statuses/InsDown.webp" data-tooltip="Insight Down"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
-
-                <a class="effect-trigger" data-action="wlp-down">
-                    <img src="systems/fabulaultima/styles/static/statuses/WlpDown.webp" data-tooltip="Willpower Down"
-                        style="height:24px;margin: 0;border:0;">
-                </a>
+            <span class="grid grid-8col">
+		        {{#each effectToggles as |effect|}}
+                    <a class="effect-trigger {{#if effect.active}}active{{/if}}" data-action="{{effect.id}}">
+                        <img src="{{effect.icon}}" data-tooltip="{{localize effect.label}}">
+                    </a>
+                {{/each}}
             </span>
         </div>
     </div>

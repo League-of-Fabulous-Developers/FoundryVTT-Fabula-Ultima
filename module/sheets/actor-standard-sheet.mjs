@@ -1,4 +1,9 @@
-import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/effects.mjs';
+import { onManageActiveEffect, prepareActiveEffectCategories, toggleEffect } from '../helpers/effects.mjs';
+
+const TOGGLEABLE_EFFECT_IDS = [
+	"crisis", "slow", "dazed", "enraged","dex-up","mig-up","ins-up","wlp-up",
+	"ko","weak","shaken","poisoned","dex-down","mig-down","ins-down","wlp-down"
+]
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -58,6 +63,19 @@ export class FUStandardActorSheet extends ActorSheet {
 		if (actorData.type == 'npc') {
 			const spTracker = this.actor.getSPTracker();
 			context.spTracker = spTracker;
+		}
+
+
+		context.effectToggles = []
+		// Setup effect toggle states
+		for (const id of TOGGLEABLE_EFFECT_IDS) {
+			const effect = CONFIG.statusEffects.find((e)=> e.id === id)
+			if(effect){
+				const existing = this.actor.effects.some((e) => {
+					return e.statuses.size === 1 && e.statuses.has(id);
+				});
+				context.effectToggles.push({...effect, active: existing})
+			}
 		}
 
 		// Add roll data for TinyMCE editors.
@@ -484,6 +502,15 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Active Effect management
 		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor));
+		html.find('.effect-trigger').click((event) => {
+			event.preventDefault();
+			const a = event.currentTarget;
+			console.log(this);
+			toggleEffect(
+				this.actor,
+				CONFIG.statusEffects.find((e) => e.id === a.dataset.action),
+			);
+		});
 
 		// Rollable abilities.
 		html.find('.rollable').click(this._onRoll.bind(this));

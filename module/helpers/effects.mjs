@@ -62,3 +62,31 @@ export function prepareActiveEffectCategories(effects) {
 	}
 	return categories;
 }
+
+/**
+ * A helper function to toggle a status effect which includes an ActiveEffect template.
+ * Designed based off TokenDocument#toggleActiveEffect to properly interact with token hud.
+ * @param {{id: string, label: string, icon: string}} effectData The ActiveEffect data
+ * @returns {Promise<boolean>}                                   Whether the ActiveEffect is now on or off
+ */
+export async function toggleEffect(actor, effectData) {
+	const existing = actor.effects.reduce((arr, e) => {
+		if ( (e.statuses.size === 1) && e.statuses.has(effectData.id) ) arr.push(e.id);
+		return arr;
+	}, []);
+	if ( existing.length > 0 ){
+		await actor.deleteEmbeddedDocuments("ActiveEffect", existing);
+		return false;
+	}
+	else {
+		const cls = getDocumentClass("ActiveEffect");
+		const createData = foundry.utils.deepClone(effectData);
+		createData.statuses = [effectData.id];
+		delete createData.id;
+		cls.migrateDataSafe(createData);
+		cls.cleanData(createData);
+		createData.name = game.i18n.localize(createData.name);
+		await cls.create(createData, {parent: actor});
+		return true;
+	}
+}

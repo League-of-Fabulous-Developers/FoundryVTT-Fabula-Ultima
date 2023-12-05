@@ -220,6 +220,20 @@
     }
   }
 
+  .effect-trigger img {
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    opacity: 0.5;
+  }
+  .effect-trigger:hover img {
+    opacity: 0.75;
+  }
+  .effect-trigger.active img {
+    opacity: 1;
+  }
 }
 
 /* Target the Clock section */
