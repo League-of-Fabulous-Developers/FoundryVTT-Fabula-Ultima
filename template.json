@@ -63,7 +63,8 @@
 			"isElite": { "value": false },
 			"isChampion": { "value": 1 },
 			"isCompanion": { "value": false },
-			"useEquipment": { "value": false }
+			"useEquipment": { "value": false },
+			"study": { "value": 0 }
 		}
 	},
 	"Item": {
