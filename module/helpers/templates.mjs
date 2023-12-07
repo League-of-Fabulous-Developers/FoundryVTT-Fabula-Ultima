@@ -39,6 +39,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/fabulaultima/templates/item/partials/item-header.hbs',
 		'systems/fabulaultima/templates/item/partials/item-effects.hbs',
 		'systems/fabulaultima/templates/item/partials/item-controls.hbs',
+		'systems/fabulaultima/templates/item/partials/item-weaponize.hbs',
+		'systems/fabulaultima/templates/item/partials/item-defensive.hbs',
+		'systems/fabulaultima/templates/item/partials/item-spellify.hbs',
 	]);
 };
 

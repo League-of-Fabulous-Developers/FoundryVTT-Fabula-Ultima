@@ -59,6 +59,7 @@
 			},
 			"traits": { "value": "" },
 			"species": { "value": "" },
+			"villain": { "value": "" },
 			"isElite": { "value": false },
 			"isChampion": { "value": 1 },
 			"isCompanion": { "value": false },

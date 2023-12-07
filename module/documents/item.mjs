@@ -55,18 +55,20 @@ export class FUItem extends Item {
 
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? 'HR0' : 'HR';
 		const qualText = this.system.quality?.value || '';
+		const specialText = this.system.special?.value || '';
 		let qualityString = '';
 
-		if (isWeaponOrShieldWithDual) {
-			qualityString = [capitalizeFirst(this.system.category.value), capitalizeFirst(this.system.hands.value), capitalizeFirst(this.system.type.value), qualText].filter(Boolean).join(' ⬥ ');
-		} else if (isBasic) {
-			qualityString = [qualText].filter(Boolean).join(' ⬥ ');
-		}
 		const attackAttributes = [this.system.attributes.primary.value.toUpperCase(), this.system.attributes.secondary.value.toUpperCase()].join(' + ');
 
 		const attackString = `【${attackAttributes}】${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}`;
 
 		const damageString = `【${hrZeroText} + ${this.system.damage.value}】 ${this.system.damageType.value}`;
+
+		if (isWeaponOrShieldWithDual) {
+			qualityString = [capitalizeFirst(this.system.category.value), capitalizeFirst(this.system.hands.value), capitalizeFirst(this.system.type.value), qualText].filter(Boolean).join(' ⬥ ');
+		} else if (isBasic) {
+			qualityString = [attackString, damageString, specialText].filter(Boolean).join(' ⬥ ');
+		}
 
 		return {
 			attackString,
@@ -83,7 +85,7 @@ export class FUItem extends Item {
 	 */
 	getItemDisplayData() {
 		// Check if this item is not consumable or treasure
-		if (this.type !== 'consumable' && this.type !== 'treasure') {
+		if (this.type !== 'consumable' && this.type !== 'treasure' && this.type !== 'rule') {
 			return false;
 		}
 
@@ -408,10 +410,10 @@ export class FUItem extends Item {
 		if (['basic', 'weapon', 'shield', 'armor', 'accessory'].includes(this.type)) {
 			content += `
         <div class="detail-desc flex-group-center grid grid-3col">
-          ${['weapon'].includes(this.type) || ['basic'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.type) ? `<div>${capitalizeFirst(this.system.type.value)}</div>` : ''}
+		  ${['weapon'].includes(this.type) || ['basic'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.category) ? `<div>${capitalizeFirst(this.system.category.value)}</div>` : ''}
           ${['weapon'].includes(this.type) || ['basic'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.hands) ? `<div>${capitalizeFirst(this.system.hands.value)}</div>` : ''}
-          ${['weapon'].includes(this.type) || ['basic'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.category) ? `<div>${capitalizeFirst(this.system.category.value)}</div>` : ''}
-          ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${DEF} ${this.system.def.value}</div>` : ''}
+		  ${['weapon'].includes(this.type) || ['basic'].includes(this.type) || (this.type === 'shield' && this.system.isDualShield.value && this.system.type) ? `<div>${capitalizeFirst(this.system.type.value)}</div>` : ''}
+		  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${DEF} ${this.system.def.value}</div>` : ''}
           ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${MDEF} ${this.system.mdef.value}</div>` : ''}
           ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${INIT} ${this.system.init.value}</div>` : ''}
         </div>`;
