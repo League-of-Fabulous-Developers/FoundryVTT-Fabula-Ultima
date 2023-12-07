@@ -732,7 +732,10 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Modify the duplicated item's name
 		duplicatedItemData.name = `Copy of ${item.data.name || item.name}`;
-
+		duplicatedItemData.system.isEquipped = {
+			value: false,
+			slot: 'default',
+		};
 		// Add the duplicated item to the actor
 		await this.actor.createEmbeddedDocuments('Item', [duplicatedItemData]);
 	}
