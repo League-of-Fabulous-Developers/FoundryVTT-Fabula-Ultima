@@ -1,0 +1,121 @@
+<header class="sheet-header desc" style="background-color: #c9c8b9;">
+	<div class="combine-header">
+		<img class="profile-img" src="{{ item.img }}" data-edit="img" title="{{ item.name }}" />
+		<div class="header-fields">
+			<div class="header-center grid grid-6col">
+				<h1 class="charname grid-span-4 flex-between">
+					<input name="name" type="text" value="{{ item.name }}" placeholder="Name"
+						class="resource-inputs-charname auto-shrink" />
+				</h1>
+
+				{{!-- Sub Type --}}
+				<span class="resource-content levelup-container flex-group-center">
+					<label class="resource-label-sm" for="item.type"> <i
+							class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.ItemType'}}</label>
+					{{#if (eq item.type "heroic")}}
+					<span>
+						<select type="select" value="" name="system.subtype.value" data-dtype="String"
+							class="resource-inputs side-bar">
+							{{#select system.subtype.value}}
+							<option value="skill">Heroic Skill</option>
+							<option value="style">Heroic Style</option>
+							{{/select}}
+						</select>
+					</span>
+					{{else if (eq item.type "miscAbility")}}
+					<span>
+						<select type="select" value="" name="system.subtype.value" data-dtype="String"
+							class="resource-inputs side-bar">
+							{{#select system.subtype.value}}
+							{{#if (eq actor.type "character")}}
+							<option value="custom">Custom</option>
+							<option value="arcana">Arcana</option>
+							<option value="deck">Deck</option>
+							<option value="verse">Verse</option>
+							<option value="dance">Dance</option>
+							<option value="gift">Gift</option>
+							<option value="magiseed">Magiseed</option>
+							<option value="invention">Invention</option>
+							<option value="invocation">Invocation</option>
+							<option value="therioform">Therioform</option>
+							<option value="symbol">Symbol</option>
+							<option value="infusion">Infusion</option>
+							<option value="quirk">Quirk</option>
+							{{/if}}
+							{{#if (eq actor.type "npc")}}
+							<option value="other">Other Action</option>
+							{{/if}}
+							{{/select}}
+						</select>
+					</span>
+
+					{{else}}
+					<span>
+						<input type="text" name="item.type" value="{{capitalize item.type}}" data-dtype="String"
+							class="resource-inputs side-bar" disabled />
+					</span>
+					{{/if}}
+				</span>
+
+				{{!-- Source --}}
+				<span class="resource-content levelup-container flex-group-center">
+					<label class="resource-label-sm rollable" id="pdfLink"> <i
+							class="fa-solid fa-book icon"></i>{{localize 'FU.Source'}} </label>
+					<input type="text" name="system.source.value" value="{{ system.source.value }}" data-dtype="String"
+						class="resource-inputs side-bar" />
+				</span>
+			</div>
+
+			<span class="header-center">
+				<div class="resource-content summary desc">
+					<label class="resource-label-sm" for="system.summary.value"> <i
+							class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
+					<blockquote><input type="text" name="system.summary.value" value="{{ system.summary.value }}"
+							data-dtype="String" class="flex-group-center resource-inputs summary" /></blockquote>
+				</div>
+			</span>
+
+			<div class="resource-content summary desc" style="height: 75px;">
+				<label class="resource-label-sm" style="position: sticky;" for="system.summary.value"> <i
+						class="fa-solid fa-chart-simple icon"></i>{{localize
+					'FU.AttributesKey'}}
+				</label>
+				<div class="grid grid-3col card-style">
+					{{#if system.isMartial.value}}
+					<i class="fusl is-martial fu-martial icon-aff" style="position: absolute;"></i>
+					{{/if}}
+					{{#if system.isOffensive.value}}
+					<i class="fusl is-martial fu-offensive icon-aff" style="position: absolute;"></i>
+					{{/if}}
+					{{#if (eq item.type "weapon")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-weapon-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "shield")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-defense-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "armor")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-defense-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "accessory")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-defense-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "spell")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-spell-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "class")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-class-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "skill")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-skill-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "heroic")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-heroic-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "zeroPower")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-progress-header.hbs" dtypes=dtype }}
+					{{/if}}
+				</div>
+			</div>
+			</span>
+		</div>
+	</div>
+
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs desc" data-group="primary" style="align-self: stretch;">
+		<a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
+		<a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
+		<a class="item" data-tab="effects">{{localize 'FU.Effects'}}</a>
+	</nav>
+</header>

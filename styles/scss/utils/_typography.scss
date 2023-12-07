@@ -1,0 +1,155 @@
+$font-primary: "PT Sans",
+sans-serif;
+$font-secondary: "PT Sans",
+sans-serif;
+
+.window-app {
+  font-family: $font-primary;
+
+  nav,a.item{
+    font-weight: bold;
+  }
+  [class^="item-"] {
+    font-weight: bold;
+  }
+  
+  .item,
+  .zenit-content {
+    font-size: 14px;
+
+    .item-name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .item-quality {
+      font-size: 14px
+    }
+  }
+
+  // Item Summary Font Style
+  input.resource-inputs {
+    font-size: 14px;
+
+    &.summary {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 16px;
+    }
+  }
+
+  .resource-content {
+    &.affinity {
+      label {
+        font-family: 'Modesto Condensed';
+      }
+    }
+
+    .center-label {
+      font-size:18px;
+    }
+
+    .name-input {
+      input, input.disabled {
+        font-size: 18px;
+        height: 22px;
+        color: inherit;
+      }
+    }
+
+    .resource-label-t {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .resource-label-sm {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .resource-label-m {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .resource-label-l {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .resource-label-xl {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  .resource-label {
+    input.resource-inputs {
+      font-size: 16px;
+
+    }
+
+    .item-name {
+      font-size: 16px;
+    }
+  }
+
+  .action-button {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .desc {
+    .editor {
+      font-weight: normal;
+      .editor-content{
+        font-size: 16px;
+      }
+    }
+  }
+
+  .charname {
+    input {
+      font-family: "Alice", serif;
+      font-size: 24px;
+    }
+  }
+}
+
+.detail-desc {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: $font-primary;
+
+  div {
+    font-size: 14px;
+    padding: 5px 0;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.quote {
+  border-left: 3px solid #999;
+  padding-left: 10px;
+  font-style: italic;
+}
+
+.chat-desc {
+  .summary {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 20px;
+  }
+}
+
+.chat-message {
+  .message-header {
+    .flavor-text {
+      font-size: 20px;
+    }
+  }
+}

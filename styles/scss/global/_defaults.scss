@@ -1,0 +1,70 @@
+// Reset or remove default styles for all HTML elements
+// Reset margin, padding, and box-sizing
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Remove list styles
+ul,
+ol {
+  list-style: none;
+}
+
+// Reset text decoration for links
+a {
+  text-decoration: none;
+}
+
+// Reset headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+// Reset form elements
+input,
+button,
+textarea,
+select {
+  margin: 0;
+  padding: 0;
+  border: none;
+  option {
+    // background-color: $color-secondary;
+    // color: $color-primary;
+  }
+}
+
+// Reset table styles
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #e2e8f0;
+  padding: 8px;
+  text-align: left;
+}
+
+// Set default font family and font size
+body {
+  // font-family: sans-serif;
+  // font-size: 16px;
+}
+
+// Define additional custom styles as needed
+.sheet nav.sheet-tabs{
+  justify-content: center;
+  flex: 0;
+  margin: 0;
+}

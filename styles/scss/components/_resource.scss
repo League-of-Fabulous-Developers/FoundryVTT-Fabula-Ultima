@@ -1,0 +1,228 @@
+/* Temp Fixes */
+.auto-shrink {
+  width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.icon::after {
+  content: "\00a0"; /* Non-breaking space */
+}
+
+/* Resource Content Styles */
+.resource-content {
+  color: $color-secondary;
+  background-color: transparent;
+
+  .resource-label {
+    border: transparent;
+    background: none;
+
+    &.section-title {
+      font-size: 18px;
+    }
+
+    &.summary {
+      padding: 1em 0 0 1em;
+      margin: 0.5em 0 0 0.5em;
+    }
+  }
+
+  .resource-label-sm {
+    &.summary {
+      margin: 0 0.5em;
+    }
+  }
+
+// Style for Traits Section
+  input.traitdesc {
+    color: $color-primary;
+    background-color: $color-secondary;
+    border: transparent;
+    border-radius: 0 5px 0 0;
+  }
+
+  &.traits {
+    margin: 0 5px;
+
+    input {
+      color: $color-primary;
+      background-color: $color-secondary;
+      border: thin solid $color-secondary;
+      height: 25px;
+      width: 100%;
+    }
+  }
+
+  /* Style for Bonds Section */
+  &.bond-container {
+    margin: 0 5px;
+
+    .resource-inputs {
+      color: $color-primary;
+      background-color: $color-secondary;
+      border: thin solid $color-secondary;
+      width: 100%;
+      margin: 0 5px;
+      justify-content: center;
+      text-align: center;
+      appearance: none;
+      border-radius: 5px;
+      
+      option {
+        background-color: $color-secondary;
+        color: $color-primary;
+      }
+
+      &.select-bonds {
+        appearance: none;
+        background-size: 16px 16px;
+        height: 80%;
+        width: 90%;
+        margin: 3px;
+      }
+    }
+  }
+
+  .bond-add {
+    .resource-inputs.select-bonds {
+      color: $color-primary;
+      background-color: $color-secondary;
+      border: thin solid $color-secondary;
+      padding: 0;
+      border-radius: 3px;
+      border: none;
+    }
+  }
+
+  /* Style for Sidebar Section */
+  &.levelup-container {
+    background: linear-gradient(#{$color-transparent-gradient});
+    border-color: $color-secondary;
+    border: none;
+
+    & input.resource-inputs-charname {
+      color: $color-primary;
+
+      background-color: $color-secondary;
+      margin: 1px;
+    }
+
+    & .resource-inputs {
+      width: 80%;
+      margin: 0 5px 0 5px;
+      appearance: none;
+    }
+
+    & .side-bar {
+      width: 85%;
+    }
+
+    &.creature {
+      padding: 0.5em;
+
+      .resource-inputs {
+        color: $color-primary;
+        background-color: $color-secondary;
+        width: 3.5em;
+        justify-content: center;
+        text-align: center;
+        appearance: none;
+        border-radius: 5px;
+      }
+    }
+
+    .combineBar {
+      background: $color-secondary;
+      border-radius: 5px;
+
+      #isCompanionCheckbox {
+        flex: 0;
+      }
+    }
+  }
+
+  /* Style for Inputs */
+  .resource-inputs {
+    color: $color-primary;
+    background-color: $color-secondary;
+    border: thin solid $color-secondary;
+    width: 4em;
+    height: 26px;
+    justify-content: center;
+    text-align: center;
+    appearance: none;
+    border-color: $color-secondary;
+    border-radius: 5px;
+
+    option {
+      background-color: $color-secondary;
+      color: $color-primary;
+    }
+
+    input.charname-resource-inputs {
+      color: $color-primary;
+      background-color: transparent;
+      border: transparent;
+    }
+
+    &.bonus {
+      width: calc(100% - 2px);
+    }
+
+    &.summary {
+      width: 95%;
+      margin: 2px 0;
+      text-align: left;
+      background-color: transparent;
+      border: transparent;
+      color: $color-black;
+      blockquote {
+        padding: 0;
+      }
+    }
+
+    &.select-dropdown {
+      appearance: none;
+      background-size: 16px 16px;
+      width: 4em;
+      margin: 2px 5px;
+      padding: 2px;
+    }
+
+    &.select-dropdown-m {
+      appearance: none;
+      background-size: 16px 16px;
+      width: 7em;
+      margin: 2px 5px;
+    }
+
+    &.select-dropdown-l {
+      appearance: none;
+      background-size: 16px 16px;
+      width: 10em;
+      margin: 2px 5px;
+    }
+
+    &.select-dropdown-xl {
+      appearance: none;
+      background-size: 16px 16px;
+      width: 24em;
+      margin: 2px 5px;
+    }
+    
+    &.select-dropdown-full {
+      appearance: none;
+      background-size: 16px 16px;
+      width: 90%;
+      margin: 2px 5px;
+    }
+  }
+
+}
+
+/* Target the Clock section */
+.resource.grid-start-3.grid-span-1.flexrow {
+  grid-row: span 2;
+}

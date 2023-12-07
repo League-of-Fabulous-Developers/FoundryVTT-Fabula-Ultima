@@ -1,0 +1,178 @@
+<header class="items-main-header">
+	<span class="items-main armor-hand slot-style rollable" data-roll-type="item-slot">
+		{{#each armor as |item id|}} {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot
+		"armor"))}}
+		<div class="equipped-item">
+
+			{{ item.name }}
+			<i class="ra ra-helmet ra-2x"></i>
+		</div>
+		{{/if}} {{/each}}
+	</span>
+
+	<span class="flexrow" style="height: 32px;">
+
+		<span class="items-main left-hand slot-style rollable" data-roll-type="item-slot">
+			{{#each items as |item id|}} {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot
+			"mainHand"))}}
+			<div class="equipped-item">
+				<span class="equipped-item-content">{{ item.name }}</span>
+				<span class="icon-letter" data-tooltip="{{localize 'FU.MainHand'}}">M</span>
+			</div>
+			{{/if}} {{/each}}
+		</span>
+		<span class="items-main right-hand slot-style rollable" data-roll-type="item-slot">
+			{{#each items as |item id|}} {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot
+			"offHand"))}}
+			<div class="equipped-item">
+				<span class="icon-letter" data-tooltip="{{localize 'FU.OffHand'}}">O</span>
+				<span class="equipped-item-content">{{ item.name }}</span>
+			</div>
+			{{/if}} {{/each}}
+		</span>
+	</span>
+
+	<!-- Accessory Slot Header-->
+	<span class="items-main acc-hand slot-style rollable" data-roll-type="item-slot">
+		{{#each accessories as |item id|}} {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot
+		"accessory"))}}
+		<div class="equipped-item">
+			<i class="fa-solid fa-leaf ra-2x"></i>
+			{{ item.name }}
+		</div>
+		{{/if}} {{/each}}
+	</span>
+</header>
+
+<ol class="items-list">
+	<li class="item flexrow items-header">
+		<div class="item-name">{{localize "FU.Weapons"}}</div>
+		<div class="item-lg">{{localize "FU.Attack"}}</div>
+		<div class="item-lg">{{localize "FU.Damage"}}</div>
+		<div class="item-xs">{{localize "FU.EquipStatus"}}</div>
+		<div class="item-sm end">
+			<a class="item-control item-create" data-tooltip="{{localize 'FU.WeaponCreate'}}" data-type="weapon"><i
+					class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
+		</div>
+	</li>
+	{{#each weapons as |item id|}}
+	<li class="item" data-item-id="{{ item._id }}">
+		<div class="flexrow">
+			{{!-- Item Name--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+			<div class="item-lg">{{ item.attackString }}</div>
+			<div class="item-lg">{{ item.damageString }}</div>
+			{{!-- Item Equip--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-equip.hbs" item=item}}
+			{{!-- Item Control--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+		</div>
+
+		<span class="item-quality">{{ item.quality }}</span>
+		<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
+			target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+		</div>
+	</li>
+	{{/each}}
+</ol>
+
+<ol class="items-list">
+	<li class="item flexrow items-header">
+		<div class="item-name sortable">{{localize "FU.Shields"}}</div>
+		<div class="item-xs">{{localize "FU.DefenseAbbr"}}</div>
+		<div class="item-xs">{{localize "FU.MagicDefenseAbbr"}}</div>
+		<div class="item-xs">{{localize "FU.InitiativeAbbr"}}</div>
+		<div class="item-xs">{{localize "FU.EquipStatus"}}</div>
+		<div class="item-sm end">
+			<a class="item-control item-create" data-tooltip="{{localize 'FU.ShieldCreate'}}" data-type="shield"><i
+					class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
+		</div>
+	</li>
+	{{#each shields as |item id|}}
+	<li class="item" data-item-id="{{ item._id }}">
+		<div class="flexrow">
+			{{!-- Item Name--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+			<div class="item-xs">{{ item.def }}</div>
+			<div class="item-xs">{{ item.mdef }}</div>
+			<div class="item-xs">{{ item.init }}</div>
+			{{!-- Item Equip--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-equip.hbs" item=item}}
+			{{!-- Item Control--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+		</div>
+		<span class="item-quality">{{ item.quality }}</span>
+		<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
+			target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+		</div>
+	</li>
+	{{/each}}
+</ol>
+
+<ol class="items-list">
+	<li class="item flexrow items-header">
+		<div class="item-name">{{localize "FU.Armors"}}</div>
+		<div class="item-xs">{{localize "FU.DefenseAbbr"}}</div>
+		<div class="item-xs">{{localize "FU.MagicDefenseAbbr"}}</div>
+		<div class="item-xs">{{localize "FU.InitiativeAbbr"}}</div>
+		<div class="item-xs">{{localize "FU.EquipStatus"}}</div>
+		<div class="item-sm end">
+			<a class="item-control item-create" data-tooltip="{{localize 'FU.ArmorCreate'}}" data-type="armor"><i
+					class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
+		</div>
+	</li>
+	{{#each armor as |item id|}}
+	<li class="item" data-item-id="{{ item._id }}">
+		<div class="flexrow">
+			{{!-- Item Name--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+			<div class="item-xs">{{ item.def }}</div>
+			<div class="item-xs">{{ item.mdef }}</div>
+			<div class="item-xs">{{ item.init }}</div>
+			{{!-- Item Equip--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-equip.hbs" item=item}}
+			{{!-- Item Control--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+		</div>
+		<span class="item-quality">{{ item.quality }}</span>
+		<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
+			target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+		</div>
+	</li>
+	{{/each}}
+</ol>
+
+
+<ol class="items-list">
+	<li class="item flexrow items-header">
+		<div class="item-name">{{localize "FU.Accessories"}}</div>
+		<div class="item-xs">{{localize "FU.DefenseAbbr"}}</div>
+		<div class="item-xs">{{localize "FU.MagicDefenseAbbr"}}</div>
+		<div class="item-xs">{{localize "FU.InitiativeAbbr"}}</div>
+		<div class="item-xs">{{localize "FU.EquipStatus"}}</div>
+		<div class="item-sm end">
+			<a class="item-control item-create" data-tooltip="{{localize 'FU.AccessoryCreate'}}"
+				data-type="accessory"><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
+		</div>
+	</li>
+	{{#each accessories as |item id|}}
+	<li class="item" data-item-id="{{ item._id }}">
+		<div class="flexrow">
+			{{!-- Item Name--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+			<div class="item-xs">{{ item.def }}</div>
+			<div class="item-xs">{{ item.mdef }}</div>
+			<div class="item-xs">{{ item.init }}</div>
+			{{!-- Item Equip--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-equip.hbs" item=item}}
+			{{!-- Item Control--}}
+			{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+		</div>
+		<span class="item-quality">{{ item.quality }}</span>
+		<div class="individual-description" data-item-id="{{ item._id }}">
+			{{#if item.system.description}} {{editor item.system.description target="item.system.description"
+			rollData=rollData button=false owner=owner editable=false}} {{/if}}
+		</div>
+	</li>
+	{{/each}}
+</ol>

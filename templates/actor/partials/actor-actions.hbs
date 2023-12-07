@@ -1,0 +1,78 @@
+{{#if (eq actor.type "character")}}
+<div class="desc flexcol">
+    <label class="desc-header resource-content flex-group-center form-group" data-label="{{localize 'FU.Action'}}">
+        <span class="resource-label-l "><span>{{localize 'FU.Actions'}}
+            </span>
+    </label>
+    <div class="action-container grid grid-2col">
+        {{#each items as |item id|}}
+        {{#if (eq item.system.isEquipped.slot "mainHand")}}
+        {{#if (eq item.system.hands.value "one-handed")}}
+        <span class="action-button left-hand rollable grid-span-1" id="attackAction" data-action="attackAction"
+            data-roll-type="item-slot">
+            <span class="icon-letter">{{localize "FU.MainAbbr"}}</span>{{ item.name }}
+        </span>
+        {{else}}
+        <span class="action-button left-hand rollable grid-span-2" id="attackAction" data-action="attackAction"
+            data-roll-type="item-slot">
+            <span class="icon-letter">{{localize "FU.TwinAbbr"}}</span>{{ item.name }}
+        </span>
+        {{/if}}
+        {{/if}}
+        {{#if (eq item.system.isEquipped.slot "offHand")}}
+        <span class="action-button right-hand rollable grid-span-1" id="defenseAction" data-action="defenseAction"
+            data-roll-type="item-slot">
+            <span class="icon-letter">{{localize "FU.OffAbbr"}}</span>{{ item.name }}
+        </span>
+        {{/if}}
+        {{/each}}
+    </div>
+    <div class="action-container grid grid-2col">
+        <span class="action-button left-hand rollable " id="equipmentAction" data-action="equipmentAction"
+            data-roll-type="action-type">
+            <span class="icon-letter">{{localize 'FU.Action'}}</span>{{localize "FU.Equipment"}}
+        </span>
+
+        <span class="action-button left-hand rollable" id="guardAction" data-action="guardAction"
+            data-roll-type="action-type">
+            <span class="icon-letter">{{localize 'FU.Action'}}</span>{{localize "FU.Guard"}}
+        </span>
+    </div>
+
+    <div class="action-container grid grid-2col">
+        <span class="action-button left-hand rollable " id="hinderAction" data-action="hinderAction"
+            data-roll-type="action-type">
+            <span class="icon-letter">{{localize 'FU.Action'}}</span>{{localize "FU.Hinder"}}
+        </span>
+
+        <span class="action-button left-hand rollable" id="inventoryAction" data-action="inventoryAction"
+            data-roll-type="action-type">
+            <span class="icon-letter">{{localize 'FU.Action'}}</span>{{localize "FU.Inventory"}}
+        </span>
+    </div>
+
+    <div class="action-container grid grid-2col">
+        <span class="action-button left-hand rollable " id="objectiveAction" data-action="objectiveAction"
+            data-roll-type="action-type">
+            <span class="icon-letter">{{localize 'FU.Action'}}</span>{{localize "FU.Objective"}}
+        </span>
+
+        <span class="action-button left-hand rollable" id="spellAction" data-action="spellAction"
+            data-roll-type="action-type">
+            <span class="icon-letter">{{localize 'FU.Action'}}</span>{{localize "FU.Spell"}}
+        </span>
+    </div>
+
+    <div class="action-container grid grid-2col">
+        <span class="action-button left-hand rollable " id="studyAction" data-action="studyAction"
+            data-roll-type="action-type">
+            <span class="icon-letter">{{localize 'FU.Action'}}</span>{{localize "FU.Study"}}
+        </span>
+
+        <span class="action-button left-hand rollable" id="skillAction" data-action="skillAction"
+            data-roll-type="action-type">
+            <span class="icon-letter">{{localize 'FU.Action'}}</span>{{localize "FU.Skill"}}
+        </span>
+    </div>
+</div>
+{{/if}}

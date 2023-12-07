@@ -1,0 +1,136 @@
+{{!-- Features Section--}}
+{{#if (eq actor.type "character")}}
+<section class="desc">
+	<header class="items-main-header">
+		<span class="items-main">
+			<label class="items-label">{{localize "FU.Features"}}</label>
+		</span>
+	</header>
+
+	{{!-- Zero Powers Section--}}
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			<div class="item-name">{{localize 'FU.Limit'}}</div>
+			<div class="item-lg">{{localize 'FU.LimitTrigger'}}</div>
+			<div class="item-lg">{{localize 'FU.LimitEffect'}}</div>
+			<div class="item-sm">{{localize 'FU.Clock'}}</div>
+			<div class="item-sm end">
+				<div class="item-controls">
+					<a class="item-control item-create" aria-describedby="tooltip"
+						data-tooltip="{{localize 'FU.LimitCreate'}}" data-type="zeroPower">
+						<i class="fas fa-plus icon"></i>{{localize 'FU.Add'}}</a>
+				</div>
+			</div>
+		</li>
+		{{#each zeroPowers as |item id|}}
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow">
+				{{!-- Item Name--}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				<div class="item-lg">{{ item.zeroTrigger }}</div>
+				<div class="item-lg">{{ item.zeroEffect }}</div>
+				<div class="item-sm">
+					<span>{{ item.system.progress.current }}</span>
+					<span>/</span>
+					<span>{{ item.system.progress.max }}</span>
+				</div>
+				{{!-- Item Control--}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+			</div>
+			<div class="individual-description">
+				<div class="flexrow resource-content">
+					<div class="resource-label-l flexcol">{{ item.zeroTrigger }}
+						<span>
+							{{#if item.system.zeroTrigger.description}} {{editor item.system.zeroTrigger.description
+							target="item.system.zeroTrigger.description" rollData=rollData button=false owner=owner
+							editable=false}}
+							{{/if}}</span>
+					</div>
+
+					<div class="resource-label-l">{{ item.zeroEffect }}
+						<span>{{#if item.system.zeroEffect.description}} {{editor item.system.zeroEffect.description
+							target="item.system.zeroEffect.description" rollData=rollData button=false owner=owner
+							editable=false}}
+							{{/if}}</span>
+					</div>
+
+				</div>
+			</div>
+		</li>
+		{{/each}}
+	</ol>
+
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			<div class="item-name">{{localize 'FU.Feature'}}</div>
+			<div class="item-m">{{localize 'FU.ItemType'}}</div>
+			<div class="item-m end">
+				<a class="item-control item-create" aria-describedby="tooltip"
+					data-tooltip="{{localize 'FU.MiscCreate'}}" data-type="miscAbility">
+					<i class="fas fa-plus icon"></i>
+					{{localize 'FU.Add'}}
+				</a>
+			</div>
+		</li>
+		{{#each abilities as |item id|}}
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow">
+				{{!-- Item Name--}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				<div class="item-m">{{capitalize item.system.subtype.value}}</div>
+				{{!-- Item Control--}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+			</div>
+			<span class="item-quality">{{ item.quality }}</span>
+			<div class="individual-description align-left">{{#if item.system.description}} {{editor
+				item.system.description target="item.system.description" rollData=rollData button=false owner=owner
+				editable=false}} {{/if}}</div>
+		</li>
+		{{/each}}
+	</ol>
+</section>
+{{/if}}
+
+
+{{!-- Projects Section--}}
+<section class="desc">
+	<header class="items-main-header">
+		<span class="items-main">
+			<label class="items-label">{{localize "FU.Projects"}}</label>
+		</span>
+
+	</header>
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			<div class="item-name">{{localize "FU.Name"}}</div>
+			<div class="item-sm">{{localize "FU.Progress"}}</div>
+			<div class="item-lg">{{localize "FU.ProgressPerDay"}}</div>
+			<div class="item-sm">{{localize "FU.Cost"}}</div>
+			<div class="item-sm end">
+				<a class="item-control item-create" aria-describedby="tooltip"
+					data-tooltip="{{localize 'FU.ProjectCreate'}}" data-type="project">
+					<i class="fas fa-plus icon"></i>
+					{{localize 'FU.Add'}}
+				</a>
+			</div>
+		</li>
+		{{#each projects as |item id|}}
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow">
+				{{!-- Item Name--}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				<div class="item-sm">{{ item.system.progress.current }} / {{ item.system.progress.max }}</div>
+				<div class="item-xs">{{ item.system.progressPerDay.value }}</div>
+				<div class="item-xs">{{ item.system.days.value }}</div>
+				<div class="item-sm">{{ item.system.cost.value }}z</div>
+				{{!-- Item Control--}}
+				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+			</div>
+			<span>{{ item.quality }}</span>
+			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
+				target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+			</div>
+		</li>
+		{{/each}}
+	</ol>
+</section>

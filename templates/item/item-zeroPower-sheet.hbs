@@ -1,0 +1,30 @@
+<form class="{{ cssClass }} backgroundstyle" autocomplete="off">
+	{{> "systems/fabulaultima/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+
+	{{!-- Sheet Body --}}
+	<section class="sheet-body">
+		{{!-- Description Tab --}}
+		<div class="tab" data-group="primary" data-tab="description">
+			<div class="grid grid-2col desc flex-group-center resource-content">
+				{{!-- Zero Trigger --}}
+				<div class="resource-content quarter-desc">
+					<input type="text" name="system.zeroTrigger.value" value="{{ system.zeroTrigger.value }}"
+						data-dtype="String" placeholder="{{localize 'FU.LimitTrigger'}}"
+						class="resource-inputs select-dropdown-full" />
+					{{editor system.zeroTrigger.description target="system.zeroTrigger.description"
+					rollData=rollData button=true owner=owner editable=editable}}
+				</div>
+				{{!-- Zero Effect (2 columns) --}}
+				<div class="resource-content  quarter-desc">
+					<input type="text" name="system.zeroEffect.value" value="{{ system.zeroEffect.value }}"
+						data-dtype="String" placeholder="{{localize 'FU.LimitEffect'}}"
+						class="resource-inputs select-dropdown-full" />
+					{{editor system.zeroEffect.description target="system.zeroEffect.description" rollData=rollData
+					button=true owner=owner editable=editable}}
+				</div>
+			</div>
+		</div>
+		{{!-- Attributes Tab --}}
+		<div class="tab attributes" data-group="primary" data-tab="attributes"></div>
+	</section>
+</form>

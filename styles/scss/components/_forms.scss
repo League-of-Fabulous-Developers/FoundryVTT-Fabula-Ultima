@@ -1,0 +1,277 @@
+.item-form {
+  font-family: $font-primary;
+}
+
+// Sheet Background
+.backgroundstyle {
+  background-image: url("/systems/fabulaultima/styles/static/ui/bg.png"),
+    linear-gradient(to right, $color-beige, $color-faint);
+  background-blend-mode: multiply;
+  background-repeat: repeat-y;
+  background-position: right top;
+  padding: 0.5em 1em;
+}
+
+// Clock Image
+img.clock-img {
+  flex: 0 0 220px;
+  height: fit-content;
+  margin-right: 0;
+  margin-top: 0;
+  padding: 2px;
+  align-self: start;
+  background-clip: content-box;
+  margin: 0;
+  border: 0;
+}
+
+// Sheet Header
+.sheet-header {
+  position: sticky;
+  top: 10px;
+  z-index: 1000;
+
+  // Header styling
+  flex: 0 auto;
+  overflow: visible;
+  display: flex;
+  flex-direction: column !important;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 0.5em;
+  background-color: #c9c8b9;
+
+  // Combine Header
+  .combine-header {
+    flex: 0;
+    margin: 0;
+    overflow: visible;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    display: flex;
+  }
+
+  // Profile Image
+  .profile-img {
+    flex: 0 0 200px;
+    height: 200px;
+    width: 200px;
+    margin-right: 0;
+    padding: 2px;
+    align-self: start;
+    background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+    background-clip: content-box;
+    border-color: #9a9a9a;
+    border-radius: 10px 0 10px 10px;
+  }
+
+  // Character Name Input Tag
+  input.resource-inputs-charname {
+    color: $color-primary;
+    text-shadow: 1px 1px 1px $color-black;
+    background: linear-gradient($color-charname-gradient);
+    border-color: transparent;
+  }
+
+  // Header Fields
+  .header-fields {
+    flex: 1;
+
+    // Header Center
+    .header-center {
+      // margin-top: 2px;
+    }
+
+    // Header End
+    .header-end {
+      padding: 0;
+      // margin-top: 2px;
+    }
+  }
+
+  // Select
+  select {
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    option {
+      background-color: $color-secondary;
+      color: $color-primary;
+    }
+  }
+
+  // Character Name Heading
+  h1.charname {
+    background-color: transparent;
+    border-color: transparent;
+    color: $color-black;
+    height: 50px;
+    padding: 0px;
+    // margin: 5px 0;
+    border-bottom: 0;
+
+    // Input
+    input {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+  }
+}
+
+// Section Container
+.section-container {
+  padding: 10px 0;
+}
+
+
+.item-settings {
+  margin: 0 10px;
+  float: left;
+}
+
+.card-style {
+
+}
+
+.item-border-col {
+  border: 4px double $color-secondary;
+}
+
+.npc-border-col {
+  background: linear-gradient(#{$color-transparent-gradient});
+  border: 4px double $color-secondary;
+  border-radius: 10px;
+  max-height: 22em;
+  min-height: 10em;
+}
+
+.npc-desc-sec {
+  margin: 0.5em;
+}
+
+.npc-desc {
+  max-height: 17em;
+  min-height: 10em;
+
+  .editor {
+    height: 100%;
+    max-height: 17em;
+    min-height: 10em;
+  }
+
+  .tox-tinymce {
+    min-height: 10em;
+  }
+}
+
+.sheet-body,
+.sheet-body .tab {
+  flex: 1; /* Grow to fill available space */
+  min-height: 50%; /* Minimum height as a percentage */
+  max-height: 100%; /* Maximum height as a percentage */
+}
+
+.desc {
+  background: linear-gradient(to right,
+      rgba(238, 244, 228, 0.5),
+      rgba(226, 237, 213, 0.5));
+  border-radius: 10px;
+  border: 1px solid #2c4a4254;
+  padding: 5px;
+
+  .desc-header {
+    background: none;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 4px double $color-secondary;
+  }
+  &.attributes {
+    background: linear-gradient(to right,
+        rgba(238, 244, 228, 0.5),
+        rgba(226, 237, 213, 0.5));
+
+    .attribute {
+      padding: 1px 5px;
+      border-bottom: 1px solid $color-secondary;
+
+      .desc-body {
+        font-size: 12px;
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+.action-container {
+  margin: 0 5px 5px 3px;
+  padding: 2px 0;
+}
+.tiny-desc {
+  .editor {
+    height: 100%;
+    min-height: 1em;
+  }
+
+  .tox-tinymce {
+    height: 100%;
+    min-height: 1em;
+    max-height: 6em
+  }
+}
+
+
+.half-desc {
+  .editor {
+    height: 100%;
+    min-height: 12em;
+  }
+
+  .tox-tinymce {
+    height: 100%;
+    min-height: 12em;
+    max-height: 12em;
+  }
+}
+
+.quarter-desc {
+  .editor {
+    height: 100%;
+    min-height: 23em;
+  }
+
+  .tox-tinymce {
+    height: 100%;
+    min-height: 20em;
+    max-height: 20em;
+  }
+}
+
+
+.editor {
+  height: 100%;
+  min-height: 26em;
+}
+
+.editor-content {
+  height: fit-content;
+  padding: 0 0.5em;
+}
+
+.tox-tinymce {
+  height: 100%;
+  min-height: 26em;
+  max-height: 26em;
+}
+
+.tox .tox-editor-container {
+  background: $color-white;
+}
+
+.tox .tox-edit-area {
+  padding: 0 8px;
+}
