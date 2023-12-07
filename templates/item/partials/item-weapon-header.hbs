@@ -1,0 +1,44 @@
+<div class="resource-content flexcol flex-group-center">
+    <label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+        'FU.Category'}}</label>
+    <select value="{{ system.category.value }}" name="system.category.value" class="resource-inputs select-dropdown-m">
+        {{#select system.category.value}}
+        <option value="sword">Sword</option>
+        <option value="thrown">Thrown</option>
+        <option value="spear">Spear</option>
+        <option value="heavy">Heavy</option>
+        <option value="flail">Flail</option>
+        <option value="firearm">Firearm</option>
+        <option value="dagger">Dagger</option>
+        <option value="brawling">Brawling</option>
+        <option value="bow">Bow</option>
+        <option value="arcane">Arcane</option>
+        {{/select}}
+    </select>
+</div>
+<div class="resource-content flexcol flex-group-center">
+    <label for="system.hands.value" class="resource-label-m flexlarge align-left">{{localize
+        'FU.Hand'}}</label>
+    {{#if system.isCustomWeapon.value}}
+    <select value="two-handed" name="system.hands.value" class="resource-inputs select-dropdown-m" disabled>
+        <option value="two-handed">Two-Handed</option>
+    </select>
+    {{else}}
+    <select value="{{ system.hands.value }}" name="system.hands.value" class="resource-inputs select-dropdown-m">
+        {{#select system.hands.value}}
+        <option value="one-handed">One-Handed</option>
+        <option value="two-handed">Two-Handed</option>
+        {{/select}}
+    </select>
+    {{/if}}
+</div>
+<div class="resource-content flexcol flex-group-center">
+    <label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+        'FU.ItemType'}}</label>
+    <select value="{{ system.type.value }}" name="system.type.value" class="resource-inputs select-dropdown-m">
+        {{#select system.type.value}}
+        <option value="melee">Melee</option>
+        <option value="ranged">Ranged</option>
+        {{/select}}
+    </select>
+</div>

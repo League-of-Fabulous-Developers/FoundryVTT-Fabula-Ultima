@@ -23,7 +23,6 @@
 						</select>
 					</span>
 					{{else if (eq item.type "miscAbility")}}
-
 					<span>
 						<select type="select" value="" name="system.subtype.value" data-dtype="String"
 							class="resource-inputs side-bar">
@@ -71,10 +70,8 @@
 				<div class="resource-content summary desc">
 					<label class="resource-label-sm" for="system.summary.value"> <i
 							class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
-
 					<blockquote><input type="text" name="system.summary.value" value="{{ system.summary.value }}"
 							data-dtype="String" class="flex-group-center resource-inputs summary" /></blockquote>
-
 				</div>
 			</span>
 
@@ -83,8 +80,32 @@
 						class="fa-solid fa-chart-simple icon"></i>{{localize
 					'FU.AttributesKey'}}
 				</label>
-				<div class="grid grid-4col card-style">
-
+				<div class="grid grid-3col card-style">
+					{{#if system.isMartial.value}}
+					<i class="fusl is-martial fu-martial icon-aff" style="position: absolute;"></i>
+					{{/if}}
+					{{#if system.isOffensive.value}}
+					<i class="fusl is-martial fu-offensive icon-aff" style="position: absolute;"></i>
+					{{/if}}
+					{{#if (eq item.type "weapon")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-weapon-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "shield")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-defense-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "armor")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-defense-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "accessory")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-defense-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "spell")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-spell-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "class")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-class-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "skill")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-skill-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "heroic")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-heroic-header.hbs" dtypes=dtypes}}
+					{{else if (eq item.type "zeroPower")}}
+					{{> "systems/fabulaultima/templates/item/partials/item-progress-header.hbs" dtypes=dtype }}
+					{{/if}}
 				</div>
 			</div>
 			</span>

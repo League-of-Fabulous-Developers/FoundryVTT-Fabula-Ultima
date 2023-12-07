@@ -232,21 +232,13 @@
 .icon-letter {
   position: sticky;
   background-color: $color-secondary;
-  color: #fff;
-  padding: 2px;
+  color: $color-primary;
+  padding: 0px 4px;
   border-radius: 5px;
   font-size: 12px;
   margin: 0 2px;
 }
-.icon-button {
-  position: sticky;
-  background-color: $color-beige;
-  padding: 2px;
-  border-radius: 5px;
-  font-size: 18px;
-  border: black 1px solid;
-  
-}
+
 
 
 /* ----------------------------------------- */
@@ -431,15 +423,15 @@ span[data-tooltip] {
   align-content: center;
 }
 .item-full {
-  flex: 0 0 360px;
+  flex: 2;
   text-align: center;
   justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  text-align: center;
   align-content: center;
 }
+
 .start {
   display: flex;
   justify-content: flex-start;

@@ -148,7 +148,7 @@
     color: $color-primary;
     background-color: $color-secondary;
     border: thin solid $color-secondary;
-    width: 3.5em;
+    width: 4em;
     height: 26px;
     justify-content: center;
     text-align: center;
@@ -173,7 +173,7 @@
 
     &.summary {
       width: 95%;
-      margin: 2px;
+      margin: 2px 0;
       text-align: left;
       background-color: transparent;
       border: transparent;

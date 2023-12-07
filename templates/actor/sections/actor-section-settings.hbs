@@ -124,21 +124,24 @@
 
 			{{!-- RP Points --}}
 			{{>"systems/fabulaultima/templates/actor/partials/actor-resource-points.hbs" actor=actor}}
-
+		</section>
+		<section class="align-left resource-content desc">
 			{{#if (eq actor.type "npc")}}
-			<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.UseEquipment'}}">
-				<span>
+			<div class="form-group">
+				<span class="resource-label-m" for="system.useEquipment.value">
 					{{#if system.useEquipment.value}}
 					<i class="fas fa-sword"></i>
 					{{else}}
 					<i class="far fa-sword"></i>
 					{{/if}}
-					{{localize 'FU.UseEquipment'}}
+					<label>{{localize 'FU.UseEquipment'}}</label>
 				</span>
-				<input type="checkbox" name="system.useEquipment.value" {{ checked system.useEquipment.value }} />
-			</label>
+				<div class="form-fields">
+					<input type="checkbox" name="system.useEquipment.value" {{ checked system.useEquipment.value }} />
+				</div>
+				<p class="notes">This feature allows npcs to use equipment.</p>
+			</div>
 			{{/if}}
-
 		</section>
 	</div>
 </section>
