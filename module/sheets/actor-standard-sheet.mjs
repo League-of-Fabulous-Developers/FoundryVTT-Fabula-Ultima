@@ -1,4 +1,6 @@
-import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/effects.mjs';
+import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
+
+const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'ko', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -58,6 +60,16 @@ export class FUStandardActorSheet extends ActorSheet {
 		if (actorData.type == 'npc') {
 			const spTracker = this.actor.getSPTracker();
 			context.spTracker = spTracker;
+		}
+
+		context.statusEffectToggles = [];
+		// Setup status effect toggle data
+		for (const id of TOGGLEABLE_STATUS_EFFECT_IDS) {
+			const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
+			if (statusEffect) {
+				const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
+				context.statusEffectToggles.push({ ...statusEffect, active: existing });
+			}
 		}
 
 		// Add roll data for TinyMCE editors.
@@ -489,6 +501,11 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Active Effect management
 		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor));
+		html.find('.status-effect-toggle').click((event) => {
+			event.preventDefault();
+			const a = event.currentTarget;
+			toggleStatusEffect(this.actor, a.dataset.statusId);
+		});
 
 		// Rollable abilities.
 		html.find('.rollable').click(this._onRoll.bind(this));
