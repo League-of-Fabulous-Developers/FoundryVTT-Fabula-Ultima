@@ -1,5 +1,9 @@
 {{#if (eq actor.type "character")}}
-<div class="action-container desc flexcol">
+<div class="desc flexcol">
+    <label class="desc-header resource-content flex-group-center form-group" data-label="{{localize 'FU.Action'}}">
+        <span class="resource-label-l "><span>{{localize 'FU.Actions'}}
+            </span>
+    </label>
     <div class="action-container grid grid-2col">
         {{#each items as |item id|}}
         {{#if (eq item.system.isEquipped.slot "mainHand")}}

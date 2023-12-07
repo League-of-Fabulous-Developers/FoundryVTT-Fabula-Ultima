@@ -139,7 +139,7 @@
 			"damage": { "value": 5 },
 			"type": { "value": "melee" },
 			"damageType": { "value": "physical" },
-			"special": { "value": "" }
+			"quality": { "value": "" }
 		},
 		"weapon": {
 			"templates": ["base", "item", "equippable", "weaponize", "hasBehavior"],
@@ -199,7 +199,8 @@
 			"mpCost": { "value": "" },
 			"target": { "value": "" },
 			"duration": { "value": "" },
-			"isOffensive": { "value": false }
+			"isOffensive": { "value": false },
+			"quality": { "value": "" }
 		},
 		"miscAbility": {
 			"templates": ["base", "equippable", "rollInfo", "hasBehavior", "hasProgress"]
@@ -207,7 +208,6 @@
 		"rule": {
 			"templates": ["base", "hasBehavior"]
 		},
-
 		"behavior": {
 			"templates": ["base"],
 			"isBehavior": true,

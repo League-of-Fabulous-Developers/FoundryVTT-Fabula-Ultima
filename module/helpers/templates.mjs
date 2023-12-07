@@ -16,9 +16,11 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/fabulaultima/templates/actor/sections/actor-section-settings.hbs',
 
 		// Actor Component partials.
+		'systems/fabulaultima/templates/actor/partials/actor-study.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-actions.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-affinities.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-attributes.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-defensive.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-statistics.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-resources.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-resource-points.hbs',
@@ -36,12 +38,16 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/fabulaultima/templates/actor/partials/actor-control.hbs',
 
 		// Item partials
-		'systems/fabulaultima/templates/item/partials/item-header.hbs',
 		'systems/fabulaultima/templates/item/partials/item-effects.hbs',
 		'systems/fabulaultima/templates/item/partials/item-controls.hbs',
-		'systems/fabulaultima/templates/item/partials/item-weaponize.hbs',
-		'systems/fabulaultima/templates/item/partials/item-defensive.hbs',
-		'systems/fabulaultima/templates/item/partials/item-spellify.hbs',
+		'systems/fabulaultima/templates/item/partials/item-header.hbs',
+		'systems/fabulaultima/templates/item/partials/item-weapon-header.hbs',
+		'systems/fabulaultima/templates/item/partials/item-defense-header.hbs',
+		'systems/fabulaultima/templates/item/partials/item-spell-header.hbs',
+		'systems/fabulaultima/templates/item/partials/item-class-header.hbs',
+		'systems/fabulaultima/templates/item/partials/item-skill-header.hbs',
+		'systems/fabulaultima/templates/item/partials/item-heroic-header.hbs',
+		'systems/fabulaultima/templates/item/partials/item-progress-header.hbs',
 	]);
 };
 
@@ -113,21 +119,3 @@ Handlebars.registerHelper('getIconClass', function (item) {
 	}
 	return 'fas fa-toolbox';
 });
-
-// Example layout for equipment slot handler
-// const itemData = {
-// 	item: {
-// 		system: {
-// 			isEquipped: {
-// 				value: true,
-// 				slot: 'mainHand',
-// 			},
-// 		},
-// 		type: 'weapon',
-// 		system: {
-// 			hands: {
-// 				value: 'two-handed',
-// 			},
-// 		},
-// 	},
-// };
