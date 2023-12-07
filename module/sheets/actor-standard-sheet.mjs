@@ -554,113 +554,48 @@ export class FUStandardActorSheet extends ActorSheet {
 		});
 
 		// Check if bonds object exists, if not, initialize
-		if (!this.actor.system.resources.bonds) {
-			initializeBonds(this.actor);
-		}
-
-		async function initializeBonds(actor) {
+		const bonds = this.actor.system.resources.bonds
+		if (!bonds) {
 			const initialBonds = [];
-			actor.system.resources.bonds = initialBonds;
-			await actor.update({ 'system.resources.bonds': initialBonds });
-			// console.log('Bonds initialized:', initialBonds);
+			this.actor.system.resources.bonds = initialBonds;
+			this.actor.update({ 'system.resources.bonds': initialBonds });
 		}
-
-		async function addBond(actor) {
-			const bondsObject = actor.system.resources.bonds || {};
-
-			// Check if the maximum number of bonds (6) has been reached
-			if (Object.keys(bondsObject).length >= 6) {
-				ui.notifications.warn('Maximum number of bonds (6) reached.');
-				return;
+		else if (!Array.isArray(bonds)) {
+			//Convert bonds as object of indexes to bonds as array
+			const currentBonds = [];
+			for (const k in bonds) {
+				currentBonds[k] = bonds[k];
 			}
-
-			// Find the next available index for the new bond
-			let newIndex = 0;
-
-			// Find the next available index for the new bond
-			while (bondsObject[newIndex]) {
-				newIndex++;
-			}
-
-			// Create a new bond object
-			const newBond = {
-				name: '',
-				admInf: '',
-				loyMis: '',
-				affHat: '',
-				strength: 0,
-			};
-
-			// Add the new bond to the bonds object using the next available index
-			bondsObject[newIndex] = newBond;
-
-			// Update the actor's data with the modified bonds object
-			await actor.update({ 'system.resources.bonds': bondsObject });
-
-			// Trigger a sheet re-render
-			actor.sheet.render();
-
-			// console.log('Bonds after adding:', bondsObject);
-		}
-
-		async function deleteBond(actor, index) {
-			const bondsObject = actor.system.resources.bonds || {};
-
-			if (bondsObject[index]) {
-				// Clear all the fields of the bond at the specified index
-				bondsObject[index] = {
-					name: '',
-					admInf: '',
-					loyMis: '',
-					affHat: '',
-					strength: 0,
-				};
-
-				// Update the actor's data with the modified bonds object
-				await actor.update({ 'system.resources.bonds': bondsObject });
-
-				// Trigger a sheet re-render
-				actor.sheet.render();
-
-				// console.log('Bonds after clearing:', bondsObject);
-			}
+			this.actor.system.resources.bonds = currentBonds;
+			this.actor.update({ 'system.resources.bonds': currentBonds });
 		}
 
 		// Event listener for adding a new bonds
 		html.find('.bond-add').click(async (ev) => {
 			ev.preventDefault();
-			await addBond(this.actor);
+			const bonds = this.actor.system.resources.bonds
+			if (bonds.length >= 6) {
+				ui.notifications.warn('Maximum number of bonds (6) reached.');
+				return;
+			}
+			const newBonds = [...bonds];
+			newBonds.push({
+				name: '',
+				admInf: '',
+				loyMis: '',
+				affHat: '',
+				strength: 0,
+			});
+			await this.actor.update({ 'system.resources.bonds': newBonds });
 		});
 
 		// Event listener for deleting a bond
 		html.find('.bond-delete').click(async (ev) => {
 			ev.preventDefault();
-			const bondsObject = this.actor.system.resources.bonds || {};
 			const bondIndex = $(ev.currentTarget).data('bond-index');
-			await deleteBond(this.actor, bondIndex);
-			await this.actor.update({ 'system.resources.bonds': bondsObject });
-		});
-
-		// Event listener for keeping track of bond on change
-		html.find('.select-bonds').change(async (ev) => {
-			const fieldName = $(ev.currentTarget).attr('name');
-			const newValue = $(ev.currentTarget).val();
-
-			// Split the fieldName to extract bondIndex
-			const parts = fieldName.split('.');
-			const bondIndex = parseInt(parts[3]);
-
-			// Get the current bonds array
-			const bonds = this.actor.system.resources.bonds || [];
-
-			// Check if the bond object exists at the specified index
-			if (bondIndex >= 0 && bondIndex < bonds.length) {
-				// Update the bond property based on fieldName
-				bonds[bondIndex][parts[4]] = newValue;
-
-				// Update the actor's data with the modified bonds array
-				await this.actor.update({ 'system.resources.bonds': bonds });
-			}
+			const newBonds = [...this.actor.system.resources.bonds];
+			newBonds.splice(bondIndex,1)
+			await this.actor.update({ 'system.resources.bonds': newBonds });
 		});
 
 		function _sortAlphaList(array, html) {
