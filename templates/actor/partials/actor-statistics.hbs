@@ -209,7 +209,8 @@
             </div>
             {{/if}}
 
-
+            {{#if (or (eq actor.type "character")(eq system.study.value 0)(eq system.study.value 2) (eq
+            system.study.value 3))}}
             <div class="header-fields header-end desc grid grid-2col" style="align-items: center;">
                 <div class="grid grid-3col">
                     {{!-- DEF --}}
@@ -249,7 +250,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
 
@@ -276,10 +276,10 @@
                     </button>
                 </div>
             </div>
+            {{/if}}
+
+
+
         </div>
-
-
-
     </div>
-</div>
 </div>

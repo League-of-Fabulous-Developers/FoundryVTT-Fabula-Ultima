@@ -220,6 +220,11 @@ export class FUStandardActorSheet extends ActorSheet {
 			} else if (i.type === 'heroic') {
 				heroics.push(i);
 			} else if (i.type === 'spell') {
+				const itemObj = context.actor.items.get(i._id);
+				const spellData = itemObj.getSpellDisplayData();
+				i.quality = spellData.qualityString;
+				i.attackString = spellData.attackString;
+				i.damageString = spellData.damageString;
 				spells.push(i);
 			} else if (i.type === 'miscAbility') {
 				const itemObj = context.actor.items.get(i._id);
