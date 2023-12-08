@@ -274,30 +274,32 @@ Hooks.on('renderSheet', (app, html, data) => {
  * Get an existing item macro if one exists, otherwise create a new one.
  * @param {Object} data     The dropped data
  * @param {number} slot     The hotbar slot to use
- * @returns {Promise}
+ * @returns {null | false}
  */
-async function createItemMacro(data, slot) {
+function createItemMacro(data, slot) {
 	// First, determine if this is a valid owned item.
 	if (data.type !== 'Item') return;
 	if (!data.uuid.includes('Actor.') && !data.uuid.includes('Token.')) {
-		return ui.notifications.warn('You can only create macro buttons for owned Items');
+		ui.notifications.warn('You can only create macro buttons for owned Items');
+		return false
 	}
 	// If it is, retrieve it based on the uuid.
-	const item = await Item.fromDropData(data);
-
-	// Create the macro command using the uuid.
-	const command = `game.fabulaultima.rollItemMacro("${data.uuid}");`;
-	let macro = game.macros.find((m) => m.name === item.name && m.command === command);
-	if (!macro) {
-		macro = await Macro.create({
-			name: item.name,
-			type: 'script',
-			img: item.img,
-			command: command,
-			flags: { 'fabulaultima.itemMacro': true },
-		});
-	}
-	game.user.assignHotbarMacro(macro, slot);
+	Item.fromDropData(data).then((item) => {
+		// Create the macro command using the uuid.
+		const command = `game.fabulaultima.rollItemMacro("${data.uuid}");`;
+		let macro = game.macros.find((m) => m.name === item.name && m.command === command);
+		if (!macro) {
+			Macro.create({
+				name: item.name,
+				type: 'script',
+				img: item.img,
+				command: command,
+				flags: { 'fabulaultima.itemMacro': true },
+			}).then((macro) => game.user.assignHotbarMacro(macro, slot));
+		} else {
+			game.user.assignHotbarMacro(macro, slot);
+		}
+	});
 	return false;
 }
 
