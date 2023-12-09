@@ -349,9 +349,8 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		/**
 		 * Clickable stars to update the current skill level.
-		 * 
+		 *
 		 */
-		html.find('')
 
 
 		function handleItemClick(ev, isRightClick) {
@@ -561,13 +560,12 @@ export class FUStandardActorSheet extends ActorSheet {
 		});
 
 		// Check if bonds object exists, if not, initialize
-		const bonds = this.actor.system.resources.bonds
+		const bonds = this.actor.system.resources.bonds;
 		if (!bonds) {
 			const initialBonds = [];
 			this.actor.system.resources.bonds = initialBonds;
 			this.actor.update({ 'system.resources.bonds': initialBonds });
-		}
-		else if (!Array.isArray(bonds)) {
+		} else if (!Array.isArray(bonds)) {
 			//Convert bonds as object of indexes to bonds as array
 			const currentBonds = [];
 			for (const k in bonds) {
@@ -580,7 +578,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Event listener for adding a new bonds
 		html.find('.bond-add').click(async (ev) => {
 			ev.preventDefault();
-			const bonds = this.actor.system.resources.bonds
+			const bonds = this.actor.system.resources.bonds;
 			if (bonds.length >= 6) {
 				ui.notifications.warn('Maximum number of bonds (6) reached.');
 				return;
@@ -601,7 +599,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			ev.preventDefault();
 			const bondIndex = $(ev.currentTarget).data('bond-index');
 			const newBonds = [...this.actor.system.resources.bonds];
-			newBonds.splice(bondIndex,1)
+			newBonds.splice(bondIndex, 1);
 			await this.actor.update({ 'system.resources.bonds': newBonds });
 		});
 
