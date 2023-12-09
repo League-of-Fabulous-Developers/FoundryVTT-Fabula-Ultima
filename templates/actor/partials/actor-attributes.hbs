@@ -21,7 +21,18 @@
             <span class="resource-label-m">{{ attribute.current }}</span>
         </label>
         <label class="ability-mod">
-            <span class="resource-label-m" style="color:green">-</span>
+            <div class="resource-label-m resource-content flex-group-center">
+                {{#if (eq attribute.base attribute.current)}}
+                <i class="fas fa-minus" style="color: #2c4a4254"></i>
+                {{else}}
+                {{#if (gt attribute.base attribute.current)}}
+                <i class="fas fa-caret-down is-crisis float-text"></i>
+                {{else}}
+                <i class="fas fa-caret-up is-buff float-text"></i>
+                {{/if}}
+                {{/if}}
+            </div>
+
         </label>
     </div>
     {{/each}}

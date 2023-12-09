@@ -114,6 +114,14 @@ $fu-poison: url("/systems/fabulaultima/styles/static/icons/fu-poison.svg");
 .is-martial {
   color: $color-danger !important;
 }
+.is-buff {
+  color: $color-success !important;
+
+  &.float-text {
+    display: inline-block;
+    animation: floating 1s infinite ease-in-out;
+  }
+}
 
 .is-crisis {
   color: $color-danger !important;
