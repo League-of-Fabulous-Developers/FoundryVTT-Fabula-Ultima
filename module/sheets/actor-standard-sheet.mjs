@@ -347,6 +347,13 @@ export class FUStandardActorSheet extends ActorSheet {
 			li.slideUp(200, () => this.render(false));
 		});
 
+		/**
+		 * Clickable stars to update the current skill level.
+		 * 
+		 */
+		html.find('')
+
+
 		function handleItemClick(ev, isRightClick) {
 			const li = $(ev.currentTarget).parents('.item');
 			const itemId = li.data('itemId');
