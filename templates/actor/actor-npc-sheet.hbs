@@ -4,10 +4,7 @@
 
 	{{#if (or (eq system.study.value 1) (eq system.study.value 2) (eq system.study.value 3))}}
 	{{>"systems/fabulaultima/templates/actor/partials/actor-study.hbs" actor=actor}}
-	{{/if}}
-
-
-	{{#if (eq system.study.value 0)}}
+	{{else}}
 	<header class="sheet-header desc" style="background-color:#c9c8b9">
 		{{!-- Name/HP Section --}}
 		{{>"systems/fabulaultima/templates/actor/partials/actor-statistics.hbs" actor=actor}}
