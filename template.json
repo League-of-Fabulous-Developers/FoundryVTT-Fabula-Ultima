@@ -9,7 +9,8 @@
 					"mp": { "value": 10, "min": 0, "max": 10, "bonus": 0 },
 					"rp1": { "name": "", "value": 0 },
 					"rp2": { "name": "", "value": 0 },
-					"rp3": { "name": "", "value": 0 }
+					"rp3": { "name": "", "value": 0 },
+					"zenit": { "value": 0 }
 				},
 				"affinities": {
 					"phys": { "base": 0, "current": 0, "bonus": 0 },

@@ -76,7 +76,7 @@ export class FUItemSheet extends ItemSheet {
 		// [PDFPager Support] Opening Journal PDF pages from PDF Code
 		$('#pdfLink').click(function () {
 			const inputValue = $('input[name="system.source.value"]').val();
-			const match = inputValue.match(/([A-Za-z]+)(\d+)/);
+			const match = inputValue.match(/([A-Za-z]+)\s*(\d+)/);
 
 			if (match) {
 				const pdfCode = match[1];
