@@ -29,10 +29,12 @@
 				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-lg">{{ item.zeroTrigger }}</div>
 				<div class="item-lg">{{ item.zeroEffect }}</div>
-				<div class="item-sm">
-					<span>{{ item.system.progress.current }}</span>
-					<span>/</span>
-					<span>{{ item.system.progress.max }}</span>
+				<div class="item-sm" style="text-align: initial;">
+					<div class="progress-container">
+						{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs"
+						arr=item.progressArr
+						data=item.system.progress}}
+					</div>
 				</div>
 				{{!-- Item Control--}}
 				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}

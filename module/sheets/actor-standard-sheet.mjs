@@ -178,6 +178,37 @@ export class FUStandardActorSheet extends ActorSheet {
 			i.progressStep = i.system.progress?.step;
 			i.progressMax = i.system.progress?.max;
 
+			// Prepare Progress Array
+			context.progress = [];
+			const progress = context.system.progress;
+
+			for (let i = 0; i < progress.max; i++) {
+				context.progress.push({
+					id: i + 1,
+					checked: parseInt(progress.current) === i + 1 ? true : false,
+				});
+			}
+
+			context.progress = context.progress.reverse();
+
+			for (let i of context.items) {
+				// Prepare progress clock array
+				if (i.type === 'zeroPower' || i.type === 'ritual') {
+					const progressArr = [];
+
+					const progress = i.system.progress ? i.system.progress : { current: 0, max: 6 };
+
+					for (let i = 0; i < progress.max; i++) {
+						progressArr.push({
+							id: i + 1,
+							checked: parseInt(progress.current) === i + 1 ? true : false,
+						});
+					}
+
+					i.progressArr = progressArr.reverse();
+				}
+			}
+
 			if (['armor', 'shield', 'accessory'].includes(i.type)) {
 				i.def = i.isMartial && i.type === 'armor' ? i.system.def.value : `+${i.system.def.value}`;
 				i.mdef = `+${i.system.mdef.value}`;
@@ -352,6 +383,11 @@ export class FUStandardActorSheet extends ActorSheet {
 		 *
 		 */
 
+		// Update Progress
+		html.find('.progress input').click((ev) => this._onProgressUpdate(ev));
+
+		// Update Progress
+		html.find('.progress input').contextmenu((ev) => this._onProgressReset(ev));
 
 		function handleItemClick(ev, isRightClick) {
 			const li = $(ev.currentTarget).parents('.item');
@@ -954,6 +990,39 @@ export class FUStandardActorSheet extends ActorSheet {
 			// Call the _openCheck function and pass the bonusBond and bonusExtra variables
 			this._openCheck('roll-check', bonusBond, bonusExtra);
 		});
+	}
+
+	// Set progress clock value to the segment clicked
+	_onProgressUpdate(ev) {
+		const input = ev.currentTarget;
+		const segment = input.value;
+
+		const li = $(input).closest('.item');
+
+		if (li.length) {
+			// If the clock is from an item
+			const itemId = li.data('itemId');
+			const item = this.actor.items.get(itemId);
+			item.update({ 'system.progress.current': segment });
+		} else {
+			// If not from an item
+			this.actor.update({ 'system.progress.current': segment });
+		}
+	}
+
+	// Reset Progress Clock
+	_onProgressReset(ev) {
+		const input = ev.currentTarget;
+		const li = $(input).closest('.item');
+		if (li.length) {
+			// If the clock is from an item
+			const itemId = li.data('itemId');
+			const item = this.actor.items.get(itemId);
+			item.update({ 'system.progress.current': 0 });
+		} else {
+			// If not from an item
+			this.actor.update({ 'system.progress.current': 0 });
+		}
 	}
 
 	/**

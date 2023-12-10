@@ -33,7 +33,8 @@
 					"init": { "value": 0, "bonus": 0 },
 					"def": { "value": 0, "bonus": 0 },
 					"mdef": { "value": 0, "bonus": 0 }
-				}
+				},
+				"progress": { "current": 0, "step": 1, "max": 6 }
 			}
 		},
 		"character": {

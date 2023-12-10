@@ -36,6 +36,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/fabulaultima/templates/actor/partials/actor-divider.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-equip.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-control.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs',
 
 		// Item partials
 		'systems/fabulaultima/templates/item/partials/item-effects.hbs',

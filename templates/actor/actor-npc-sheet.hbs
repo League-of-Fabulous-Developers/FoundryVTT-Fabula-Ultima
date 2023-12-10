@@ -77,8 +77,12 @@
 							<span class="resource-label-l "><span>{{localize 'FU.Clock'}}
 								</span>
 						</label>
-						<div class="resource-content form-fields">
-							<i class="fa-solid fa-rotate-right"></i>1 2 3
+						<div class="resource-content form-fields" style="text-align: initial;">
+							<div class="progress-container">
+								{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs"
+								arr=progress
+								data=system.progress}}
+							</div>
 						</div>
 					</section>
 
