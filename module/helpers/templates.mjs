@@ -17,7 +17,6 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Actor Component partials.
 		'systems/fabulaultima/templates/actor/partials/actor-study.hbs',
-		'systems/fabulaultima/templates/actor/partials/actor-actions.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-affinities.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-attributes.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-defensive.hbs',
@@ -28,6 +27,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 		'systems/fabulaultima/templates/actor/partials/actor-item-name.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-actions.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-clocks.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-npc-items.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-npc-skills.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-favorite.hbs',
@@ -36,7 +36,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/fabulaultima/templates/actor/partials/actor-divider.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-equip.hbs',
 		'systems/fabulaultima/templates/actor/partials/actor-control.hbs',
-
+		'systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs',
+		'systems/fabulaultima/templates/actor/partials/actor-progress-clock-xl.hbs',
+		
 		// Item partials
 		'systems/fabulaultima/templates/item/partials/item-effects.hbs',
 		'systems/fabulaultima/templates/item/partials/item-controls.hbs',

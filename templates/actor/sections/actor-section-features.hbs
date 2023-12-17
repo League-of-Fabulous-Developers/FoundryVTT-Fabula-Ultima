@@ -29,10 +29,12 @@
 				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-lg">{{ item.zeroTrigger }}</div>
 				<div class="item-lg">{{ item.zeroEffect }}</div>
-				<div class="item-sm">
-					<span>{{ item.system.progress.current }}</span>
-					<span>/</span>
-					<span>{{ item.system.progress.max }}</span>
+				<div class="item-sm" style="text-align: initial;">
+					<div class="progress-container">
+						{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs"
+						arr=item.progressArr
+						data=item.system.progress}}
+					</div>
 				</div>
 				{{!-- Item Control--}}
 				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
@@ -64,6 +66,7 @@
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize 'FU.Feature'}}</div>
 			<div class="item-m">{{localize 'FU.ItemType'}}</div>
+			<div class="item-sm">{{localize 'FU.Clock'}}</div>
 			<div class="item-m end">
 				<a class="item-control item-create" aria-describedby="tooltip"
 					data-tooltip="{{localize 'FU.MiscCreate'}}" data-type="miscAbility">
@@ -78,6 +81,15 @@
 				{{!-- Item Name--}}
 				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-m">{{capitalize item.system.subtype.value}}</div>
+				{{#if item.system.hasClock.value}}
+				<div class="item-sm" style="text-align: initial;">
+					<div class="progress-container">
+						{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs"
+						arr=item.progressArr
+						data=item.system.progress}}
+					</div>
+				</div>
+				{{/if}}
 				{{!-- Item Control--}}
 				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
@@ -90,7 +102,6 @@
 	</ol>
 </section>
 {{/if}}
-
 
 {{!-- Projects Section--}}
 <section class="desc">

@@ -71,17 +71,8 @@
 							</select>
 						</div>
 					</section>
-					<section class="align-center desc">
-						<label class="desc-header resource-content flex-group-center form-group"
-							data-label="{{localize 'FU.Clock'}}">
-							<span class="resource-label-l "><span>{{localize 'FU.Clock'}}
-								</span>
-						</label>
-						<div class="resource-content form-fields">
-							<i class="fa-solid fa-rotate-right"></i>1 2 3
-						</div>
-					</section>
-
+					{{!-- Clock Section --}}
+					{{> "systems/fabulaultima/templates/actor/partials/actor-clocks.hbs" actor=actor}}
 				</aside>
 				<div class="stats-container grid-span-2">
 					<section class="npc-border-col desc">

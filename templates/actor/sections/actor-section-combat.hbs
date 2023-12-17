@@ -27,7 +27,6 @@
         {{/each}}
     </ol>
 
-
     <ol class="items-list">
         <li class="item flexrow items-header">
             <div class="item-name">{{localize 'FU.Spells'}}</div>
@@ -82,6 +81,15 @@
                     owner=owner
                     editable=false}} {{/if}}
                 </div>
+                {{#if item.system.hasClock.value}}
+				<div class="item-sm" style="text-align: initial;">
+					<div class="progress-container">
+						{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs"
+						arr=item.progressArr
+						data=item.system.progress}}
+					</div>
+				</div>
+				{{/if}}
                 {{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
             </div>
             <span class="item-quality">{{ item.quality }}</span>
@@ -93,7 +101,6 @@
         </li>
         {{/each}}
     </ol>
-
 
     <ol class="items-list">
         <li class="item flexrow items-header">
@@ -119,6 +126,15 @@
                     owner=owner
                     editable=false}} {{/if}}
                 </div>
+                {{#if item.system.hasClock.value}}
+				<div class="item-sm" style="text-align: initial;">
+					<div class="progress-container">
+						{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs"
+						arr=item.progressArr
+						data=item.system.progress}}
+					</div>
+				</div>
+				{{/if}}
                 {{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
             </div>
         </li>
