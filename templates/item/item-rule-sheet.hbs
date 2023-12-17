@@ -7,6 +7,15 @@
 		<div class="tab attributes" data-group="primary" data-tab="description">
 			<div class="item-settings resource-content">
 				{{> "systems/fabulaultima/templates/item/partials/item-controls.hbs" dtypes=dtypes}}
+				<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ClockStatus'}}">
+					<span>
+						{{#if item.system.hasClock.value}}
+						<i class="fas fa-clock"></i>
+						{{else}}
+						<i class="far fa-clock"></i>
+						{{/if}}
+					</span><input type="checkbox" name="system.hasClock.value" {{ checked system.hasClock.value }} /> 
+				</label>
 			</div>
 
 			<section class="flex1 flex-group-center desc">
@@ -15,18 +24,37 @@
 				</div>
 
 				<div class="grid grid-4col card-style">
-					{{#if (and (eq actor.type "npc") system.isBehavior.value)}}
+					{{#if (eq actor.type "npc")}}
 
+					{{#if system.isBehavior.value}}
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.BehaviorWeight'}}</label>
 						<input type="number" name="system.weight.value" value="{{ system.weight.value }}"
 							data-dtype="Number" class="resource-inputs select-dropdown-m" />
 					</div>
+					{{/if}}
+
+					{{#if system.hasClock.value}}
+					<div class="resource-content flexcol flex-group-center">
+						<label class="resource-label-m">{{localize 'FU.Current'}}</label>
+						<input type="text" name="system.progress.current" value="{{ system.progress.current }}"
+							class="resource-inputs select-dropdown-m" />
+					</div>
+					<div class="resource-content flexcol flex-group-center">
+						<label class="resource-label-m">{{localize 'FU.Step'}}</label>
+						<input type="text" name="system.progress.step" value="{{ system.progress.step }}"
+							class="resource-inputs select-dropdown-m" />
+					</div>
+					<div class="resource-content flexcol flex-group-center">
+						<label class="resource-label-m">{{localize 'FU.Max'}}</label>
+						<input type="text" name="system.progress.max" value="{{ system.progress.max }}"
+							class="resource-inputs select-dropdown-m" />
+					</div>
+					{{/if}}
 
 					{{/if}}
 				</div>
 			</section>
-
 			<div class="grid-span-2 desc flex-between">
 				<div class="quarter-desc">{{editor system.description target="system.description" rollData=rollData
 					button=true owner=owner editable=editable}}</div>

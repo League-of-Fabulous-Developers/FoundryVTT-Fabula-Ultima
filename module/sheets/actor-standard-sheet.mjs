@@ -178,22 +178,9 @@ export class FUStandardActorSheet extends ActorSheet {
 			i.progressStep = i.system.progress?.step;
 			i.progressMax = i.system.progress?.max;
 
-			// Prepare Progress Array
-			context.progress = [];
-			const progress = context.system.progress;
-
-			for (let i = 0; i < progress.max; i++) {
-				context.progress.push({
-					id: i + 1,
-					checked: parseInt(progress.current) === i + 1 ? true : false,
-				});
-			}
-
-			context.progress = context.progress.reverse();
-
 			for (let i of context.items) {
 				// Prepare progress clock array
-				if (i.type === 'zeroPower' || i.type === 'ritual') {
+				if (i.type === 'zeroPower' || i.type === 'ritual' || i.type === 'miscAbility' || i.type === 'rule') {
 					const progressArr = [];
 
 					const progress = i.system.progress ? i.system.progress : { current: 0, max: 6 };
@@ -203,6 +190,10 @@ export class FUStandardActorSheet extends ActorSheet {
 							id: i + 1,
 							checked: parseInt(progress.current) === i + 1 ? true : false,
 						});
+					}
+
+					if (progress.current === progress.max) {
+						console.log("Clock is completed!")
 					}
 
 					i.progressArr = progressArr.reverse();

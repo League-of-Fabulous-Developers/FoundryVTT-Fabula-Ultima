@@ -663,6 +663,11 @@ export class FUItem extends Item {
 		return '';
 	}
 
+	getClockString() {
+
+		
+	}
+
 	/**
 	 * Handle clickable rolls.
 	 * @param {Event} event The originating click event.

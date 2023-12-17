@@ -33,8 +33,7 @@
 					"init": { "value": 0, "bonus": 0 },
 					"def": { "value": 0, "bonus": 0 },
 					"mdef": { "value": 0, "bonus": 0 }
-				},
-				"progress": { "current": 0, "step": 1, "max": 6 }
+				}
 			}
 		},
 		"character": {
@@ -90,7 +89,9 @@
 				"mdef": { "value": 0 },
 				"init": { "value": 0 }
 			},
-			"hasProgress": { "progress": { "current": 0, "step": 1, "max": 6 } },
+			"hasProgress": { 
+				"hasClock": { "value": false },
+				"progress": { "current": 0, "step": 1, "max": 6 } },
 			"hasBehavior": { "isBehavior": false, "weight": { "value": 1 } },
 			"hasLevel": { "level": { "value": 1, "max": 10, "min": 0 } },
 			"hasClass": { "class": { "value": "" } },
@@ -209,7 +210,7 @@
 			"templates": ["base", "equippable", "rollInfo", "hasBehavior", "hasProgress"]
 		},
 		"rule": {
-			"templates": ["base", "hasBehavior"]
+			"templates": ["base", "hasBehavior", "hasProgress"]
 		},
 		"behavior": {
 			"templates": ["base"],
