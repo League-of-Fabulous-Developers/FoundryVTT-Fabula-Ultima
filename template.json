@@ -32,7 +32,9 @@
 				"derived": {
 					"init": { "value": 0, "bonus": 0 },
 					"def": { "value": 0, "bonus": 0 },
-					"mdef": { "value": 0, "bonus": 0 }
+					"mdef": { "value": 0, "bonus": 0 },
+					"accuracy": { "value": 0, "bonus": 0 },
+					"magic": { "value": 0, "bonus": 0 }
 				}
 			}
 		},
@@ -155,6 +157,7 @@
 			"category": { "value": "brawling" }
 		},
 		"armor": {
+			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"],
 			"attributes": {
 				"primary": { "value": "dex" },
 				"secondary": { "value": "ins" }

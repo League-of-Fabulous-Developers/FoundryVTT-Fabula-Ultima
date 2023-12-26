@@ -73,6 +73,16 @@
 					<input type="text" name="system.derived.init.bonus" value="{{ system.derived.init.bonus }}"
 						data-dtype="Number" class="resource-inputs bonus" />
 				</div>
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.AccuracyBonus'}}</label>
+					<input type="text" name="system.derived.accuracy.bonus" value="{{ system.derived.accuracy.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" />
+				</div>
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.MagicCheckBonus'}}</label>
+					<input type="text" name="system.derived.magic.bonus" value="{{ system.derived.magic.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" />
+				</div>
 			</div>
 			{{/if}} {{!-- NPC Relevent Bonuses --}} {{#if (eq actor.type "npc")}}
 			<div class="flex-group-center" style="padding: 5px 0;">
@@ -99,6 +109,16 @@
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.InitiativeBonus'}}</label>
 					<input type="text" name="system.derived.init.bonus" value="{{ system.derived.init.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" />
+				</div>
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.AccuracyBonus'}}</label>
+					<input type="text" name="system.derived.accuracy.bonus" value="{{ system.derived.accuracy.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" />
+				</div>
+				<div class="resource-content">
+					<label class="resource-label-sm">{{localize 'FU.MagicCheckBonus'}}</label>
+					<input type="text" name="system.derived.magic.bonus" value="{{ system.derived.magic.bonus }}"
 						data-dtype="Number" class="resource-inputs bonus" />
 				</div>
 			</div>
