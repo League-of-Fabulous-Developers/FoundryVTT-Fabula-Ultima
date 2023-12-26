@@ -155,7 +155,10 @@
 			"category": { "value": "brawling" }
 		},
 		"armor": {
-			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
+			"attributes": {
+				"primary": { "value": "dex" },
+				"secondary": { "value": "ins" }
+			}
 		},
 		"accessory": {
 			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]

@@ -87,8 +87,12 @@ export class FUActor extends Actor {
 		// Get the dexterity attribute value
 		const dex = actorData.system.attributes.dex.current;
 
+		// Get the key attribute value based on the dropdown selection
+		const primaryValue = armor?.system?.attributes?.primary?.value;
+		const primaryKey = primaryValue ? actorData.system.attributes[primaryValue]?.current : dex;
+
 		// Calculate the base defense
-		const baseDef = armor ? (armor.system.isMartial.value ? armor.system.def.value : armor.system.def.value + dex) : dex;
+		const baseDef = armor ? (armor.system.isMartial.value ? armor.system.def.value : armor.system.def.value + primaryKey) : dex;
 
 		// Filter equipped items for shields and accessories
 		const otherArmors = equipped.filter((item) => item.type === 'shield' || item.type === 'accessory');
@@ -111,6 +115,10 @@ export class FUActor extends Actor {
 		// Get the insight attribute value
 		const ins = actorData.system.attributes.ins.current;
 
+		// Get the key attribute value based on the dropdown selection
+		const secondaryValue = armor?.system?.attributes?.secondary?.value;
+		const secondaryKey = secondaryValue ? actorData.system.attributes[secondaryValue]?.current : ins;
+
 		// Calculate defense against magic attacks (magical defense)
 		const otherMDef = nonWeapons.reduce((mdef, item) => {
 			if (item.system && item.system.mdef) {
@@ -123,7 +131,7 @@ export class FUActor extends Actor {
 		const bonusMDef = actorData.system.derived.mdef.bonus ?? 0;
 
 		// Calculate total magical defense
-		const mdef = ins + otherMDef + bonusMDef;
+		const mdef = secondaryKey + otherMDef + bonusMDef;
 
 		// Update derived defense values in actorData
 		actorData.system.derived.def.value = def;
