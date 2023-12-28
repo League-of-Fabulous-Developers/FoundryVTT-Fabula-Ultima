@@ -772,7 +772,7 @@ export class FUActor extends Actor {
 		if (bonds) {
 			if (!Array.isArray(bonds)) {
 				const currentBonds = [];
-				const maxIndex = Object.keys(bonds).length
+				const maxIndex = Object.keys(bonds).length;
 				for (let i = 0; i < maxIndex; i++) {
 					currentBonds.push(bonds[i]);
 				}
@@ -785,8 +785,6 @@ export class FUActor extends Actor {
 
 	_onUpdate(changed, options, userId) {
 		super._onUpdate(changed, options, userId);
-
-		console.log(changed);
 
 		if (options.damageTaken) {
 			this.showFloatyText(options.damageTaken);

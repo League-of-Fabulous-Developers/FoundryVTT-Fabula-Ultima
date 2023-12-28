@@ -193,7 +193,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					}
 
 					if (progress.current === progress.max) {
-						console.log("Clock is completed!")
+						console.log('Clock is completed!');
 					}
 
 					i.progressArr = progressArr.reverse();
@@ -354,6 +354,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
+
+		// Use Equipment
+		html.find('.use-equipment').click(this._onUseEquipment.bind(this));
 
 		// Duplicate Inventory Item
 		html.find('.item-duplicate').click(this._onItemDuplicate.bind(this));
@@ -679,6 +682,35 @@ export class FUStandardActorSheet extends ActorSheet {
 			// Trigger a sheet re-render
 			this.actor.sheet.render(true);
 		});
+	}
+
+	async _onUseEquipment(event) {
+		const checkbox = event.currentTarget;
+		const isChecked = checkbox.checked;
+
+		if (!isChecked) {
+			// Checkbox is unchecked
+			// console.log('Checkbox is unchecked');
+
+			// Get the actor's item collection
+			const itemCollection = this.actor.items;
+
+			// Iterate over each item in the collection
+			itemCollection.forEach((item) => {
+				if (item.system && item.system.isEquipped && item.system.isEquipped.value === true) {
+					// Update the item to set 'system.isEquipped.value' to false
+					item.update({
+						'system.isEquipped.value': false,
+						'system.isEquipped.slot': 'default', 
+					});
+				}
+			});
+			// Log a message or perform other actions if needed
+			// console.log('All equipped items have been set to unequip.');
+		} else {
+			// Checkbox is checked
+			// console.log('Checkbox is checked');
+		}
 	}
 
 	async _onItemDuplicate(event) {
