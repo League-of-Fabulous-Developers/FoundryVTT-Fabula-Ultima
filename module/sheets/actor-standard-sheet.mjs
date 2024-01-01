@@ -1124,6 +1124,23 @@ export class FUStandardActorSheet extends ActorSheet {
 			return roll;
 		}
 	}
+
+	async _updateObject(event, data){
+		// Foundry's form update handlers send back bond information as an object {0: ..., 1: ....}
+		// So correct an update in that form and create an updated bond array to properly represent the changes
+		const bonds = data.system?.resources?.bonds;
+		if (bonds) {
+			if (!Array.isArray(bonds)) {
+				const currentBonds = [];
+				const maxIndex = Object.keys(bonds).length
+				for (let i = 0; i < maxIndex; i++) {
+					currentBonds.push(bonds[i]);
+				}
+				data.system.resources.bonds = currentBonds;
+			}
+		}
+		super._updateObject(event,data)
+	}
 }
 
 /* Randomize array in-place using Durstenfeld shuffle algorithm */

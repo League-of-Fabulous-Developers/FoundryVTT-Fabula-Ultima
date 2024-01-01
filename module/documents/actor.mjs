@@ -758,20 +758,6 @@ export class FUActor extends Actor {
 			if (hpChange !== 0 && !levelChanged) options.damageTaken = hpChange * -1;
 		}
 
-		// Foundry's form update handlers send back bond information as an object {0: ..., 1: ....}
-		// So correct an update in that form and create an updated bond array to properly represent the changes
-		const bonds = changed.system?.resources?.bonds;
-		if (bonds) {
-			if (!Array.isArray(bonds)) {
-				const currentBonds = [];
-				const maxIndex = Object.keys(bonds).length
-				for (let i = 0; i < maxIndex; i++) {
-					currentBonds.push(bonds[i]);
-				}
-				changed.system.resources.bonds = currentBonds;
-			}
-		}
-
 		await super._preUpdate(changed, options, user);
 	}
 
