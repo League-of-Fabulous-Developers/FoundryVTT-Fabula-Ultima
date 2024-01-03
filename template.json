@@ -91,9 +91,10 @@
 				"mdef": { "value": 0 },
 				"init": { "value": 0 }
 			},
-			"hasProgress": { 
+			"hasProgress": {
 				"hasClock": { "value": false },
-				"progress": { "current": 0, "step": 1, "max": 6 } },
+				"progress": { "current": 0, "step": 1, "max": 6 }
+			},
 			"hasBehavior": { "isBehavior": false, "weight": { "value": 1 } },
 			"hasLevel": { "level": { "value": 1, "max": 10, "min": 0 } },
 			"hasClass": { "class": { "value": "" } },
@@ -192,6 +193,7 @@
 		},
 		"heroic": {
 			"templates": ["base", "hasLevel", "hasClass", "rollInfo"],
+			"subtype": { "value": "skill" },
 			"requirement": { "value": "" },
 			"benefits": {
 				"resources": {

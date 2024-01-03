@@ -56,7 +56,7 @@
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize 'FU.Name'}}</div>
 			<div class="item-lg">{{localize 'FU.SkillLevel'}}</div>
-			<div class="item-m">{{localize 'FU.SkillLevelAbbr'}}</div>
+			{{!-- <div class="item-m">{{localize 'FU.SkillLevelAbbr'}}</div> --}}
 			<div class="item-m end">
 				<a class="item-control item-create" aria-describedby="tooltip"
 					data-tooltip="{{localize 'FU.SkillCreate'}}" data-type="skill">
@@ -78,14 +78,14 @@
 				<div class="item-lg sl-stars">
 					{{ generateStars item.starCurrent item.starMax }}
 				</div>
-				<div class="item-m">
+				{{!-- <div class="item-m">
 					<span class="editable-skill-level" data-resource="item.system.level.value">{{
 						item.system.level.value }}</span>
 					{{#if (gt item.system.level.max 0)}}
 					<span>/</span>
 					<span>{{ item.system.level.max }}</span>
 					{{/if}}
-				</div>
+				</div> --}}
 				{{!-- Item Control--}}
 				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
