@@ -253,18 +253,6 @@ Hooks.once('mmo-hud.ready', () => {
 	// Do this
 });
 
-Hooks.on('renderSheet', (app, html, data) => {
-	if (app.document.type === 'Actor' && app.document.isCharacter) {
-		const linkActorDataSetting = game.settings.get('fabulaultima', 'linkActorData');
-
-		// Check if the "Link Actor Data" setting is enabled (true or false)
-		if (linkActorDataSetting) {
-			// Modify the character sheet HTML to set "Link Actor Data" as default
-			html.find('.link-actor-data').prop('checked', true);
-		}
-	}
-});
-
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */
