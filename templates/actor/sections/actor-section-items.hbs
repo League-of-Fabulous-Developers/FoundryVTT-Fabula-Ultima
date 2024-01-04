@@ -198,7 +198,7 @@
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize "FU.Consumables"}}</div>
-			<div class="item-xxl start">{{localize "FU.Effect"}}</div>
+			<div class="item-full start">{{localize "FU.Effect"}}</div>
 			<div class="item-xs">{{localize "FU.InventoryCost"}}</div>
 			<div class="item-m end">
 				<a class="item-control item-create" data-tooltip="{{localize 'FU.ConsumableCreate'}}"
@@ -210,7 +210,7 @@
 			<div class="flexrow">
 				{{!-- Item Name--}}
 				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
-				<div class="item-xxl start"><span>{{ item.quality }}</span></div>
+				<div class="item-full start"><span>{{ item.quality }}</span></div>
 				<div class="item-xs">{{ item.system.ipCost.value }}</div>
 				{{!-- Item Control--}}
 				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
@@ -226,7 +226,7 @@
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize "FU.Treasures"}}</div>
-			<div class="item-xxl start">{{localize "FU.Effect"}}</div>
+			<div class="item-full start">{{localize "FU.Effect"}}</div>
 			<div class="item-xs">{{localize "FU.Quantity"}}</div>
 			<div class="item-m end">
 				<a class="item-control item-create" data-tooltip="{{localize 'FU.TreasureCreate'}}"
@@ -238,7 +238,7 @@
 			<div class="flexrow">
 				{{!-- Item Name--}}
 				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
-				<div class="item-xxl start"><span>{{ item.quality }}</span></div>
+				<div class="item-full start"><span>{{ item.quality }}</span></div>
 				<div class="item-xs">{{ item.system.quantity.value }}</div>
 				{{!-- Item Control--}}
 				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}

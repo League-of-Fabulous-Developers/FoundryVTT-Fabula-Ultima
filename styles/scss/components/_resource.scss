@@ -111,6 +111,7 @@
 
     & .resource-inputs {
       width: 80%;
+      padding: 0;
       margin: 0 5px 0 5px;
       appearance: none;
     }
@@ -126,6 +127,7 @@
         color: $color-primary;
         background-color: $color-secondary;
         width: 3.5em;
+        padding: 0;
         justify-content: center;
         text-align: center;
         appearance: none;
@@ -149,7 +151,9 @@
     background-color: $color-secondary;
     border: thin solid $color-secondary;
     width: 4em;
-    height: 26px;
+    height: auto;
+    margin: 2px;
+    padding: 0;
     justify-content: center;
     text-align: center;
     appearance: none;
@@ -187,36 +191,31 @@
       appearance: none;
       background-size: 16px 16px;
       width: 4em;
-      margin: 2px 5px;
-      padding: 2px;
+      padding: 0;
     }
 
     &.select-dropdown-m {
       appearance: none;
       background-size: 16px 16px;
       width: 7em;
-      margin: 2px 5px;
     }
 
     &.select-dropdown-l {
       appearance: none;
       background-size: 16px 16px;
       width: 10em;
-      margin: 2px 5px;
     }
 
     &.select-dropdown-xl {
       appearance: none;
       background-size: 16px 16px;
       width: 24em;
-      margin: 2px 5px;
     }
     
     &.select-dropdown-full {
       appearance: none;
       background-size: 16px 16px;
       width: 90%;
-      margin: 2px 5px;
     }
   }
 

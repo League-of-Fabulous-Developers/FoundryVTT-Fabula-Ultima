@@ -32,7 +32,9 @@
 				"derived": {
 					"init": { "value": 0, "bonus": 0 },
 					"def": { "value": 0, "bonus": 0 },
-					"mdef": { "value": 0, "bonus": 0 }
+					"mdef": { "value": 0, "bonus": 0 },
+					"accuracy": { "value": 0, "bonus": 0 },
+					"magic": { "value": 0, "bonus": 0 }
 				}
 			}
 		},
@@ -89,9 +91,10 @@
 				"mdef": { "value": 0 },
 				"init": { "value": 0 }
 			},
-			"hasProgress": { 
+			"hasProgress": {
 				"hasClock": { "value": false },
-				"progress": { "current": 0, "step": 1, "max": 6 } },
+				"progress": { "current": 0, "step": 1, "max": 6 }
+			},
 			"hasBehavior": { "isBehavior": false, "weight": { "value": 1 } },
 			"hasLevel": { "level": { "value": 1, "max": 10, "min": 0 } },
 			"hasClass": { "class": { "value": "" } },
@@ -155,7 +158,11 @@
 			"category": { "value": "brawling" }
 		},
 		"armor": {
-			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
+			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"],
+			"attributes": {
+				"primary": { "value": "dex" },
+				"secondary": { "value": "ins" }
+			}
 		},
 		"accessory": {
 			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
@@ -186,6 +193,7 @@
 		},
 		"heroic": {
 			"templates": ["base", "hasLevel", "hasClass", "rollInfo"],
+			"subtype": { "value": "skill" },
 			"requirement": { "value": "" },
 			"benefits": {
 				"resources": {
