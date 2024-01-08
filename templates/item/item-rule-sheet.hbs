@@ -1,12 +1,12 @@
 <form class="{{ cssClass }} backgroundstyle" autocomplete="off">
-	{{> "systems/fabulaultima/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+	{{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}}
 
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
 		{{!-- Attributes Tab --}}
 		<div class="tab attributes" data-group="primary" data-tab="description">
 			<div class="item-settings resource-content">
-				{{> "systems/fabulaultima/templates/item/partials/item-controls.hbs" dtypes=dtypes}}
+				{{> "systems/projectfu/templates/item/partials/item-controls.hbs" dtypes=dtypes}}
 				<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ClockStatus'}}">
 					<span>
 						{{#if item.system.hasClock.value}}
@@ -14,7 +14,7 @@
 						{{else}}
 						<i class="far fa-clock"></i>
 						{{/if}}
-					</span><input type="checkbox" name="system.hasClock.value" {{ checked system.hasClock.value }} /> 
+					</span><input type="checkbox" name="system.hasClock.value" {{ checked system.hasClock.value }} />
 				</label>
 			</div>
 

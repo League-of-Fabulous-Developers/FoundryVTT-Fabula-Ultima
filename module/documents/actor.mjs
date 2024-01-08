@@ -42,14 +42,8 @@ export class FUActor extends Actor {
 	prepareDerivedData() {
 		const actorData = this;
 		const systemData = actorData.system;
-		const flags = actorData.flags.fabulaultima || {};
+		const flags = actorData.flags.projectfu || {};
 
-		/* 
-		const disableAutomation = game.settings.get('fabulaultima', 'disableAutomation');
-
-		if (disableAutomation) {
-			return; // Exit early
-		} */
 		this._calculateResources(actorData);
 		this._calculateAffinities(actorData);
 		this._calculateCrafting(actorData);
@@ -754,18 +748,18 @@ export class FUActor extends Actor {
 		// Process additional NPC data here.
 	}
 
-  async _preCreate(createData, options, user) {
-    await super._preCreate(createData, options, user);
+	async _preCreate(createData, options, user) {
+		await super._preCreate(createData, options, user);
 
-    if (this.type === 'character') {
-        this.updateSource({
-            prototypeToken: {
-                actorLink: true,
-                disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-            },
-        });
-    }
-  }
+		if (this.type === 'character') {
+			this.updateSource({
+				prototypeToken: {
+					actorLink: true,
+					disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+				},
+			});
+		}
+	}
 
 	async _preUpdate(changed, options, user) {
 		const changedHP = changed.system?.resources?.hp;

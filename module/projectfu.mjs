@@ -21,7 +21,7 @@ import { registerSystemSettings } from './settings.js';
 Hooks.once('init', async () => {
 	// Add utility classes to the global game object so that they're more easily
 	// accessible in global contexts.
-	game.fabulaultima = {
+	game.projectfu = {
 		FUActor,
 		FUItem,
 		rollItemMacro,
@@ -50,165 +50,165 @@ Hooks.once('init', async () => {
 		{
 			id: 'accelerated',
 			label: 'Accelerated',
-			icon: 'systems/fabulaultima/styles/static/statuses/Accelerated.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Accelerated.webp',
 		},
 		{
 			id: 'aura',
 			label: 'Aura',
-			icon: 'systems/fabulaultima/styles/static/statuses/Aura.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Aura.webp',
 		},
 		{
 			id: 'barrier',
 			label: 'Barrier',
-			icon: 'systems/fabulaultima/styles/static/statuses/Barrier.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Barrier.webp',
 		},
 		{
 			id: 'beserk',
 			label: 'Beserk',
-			icon: 'systems/fabulaultima/styles/static/statuses/Beserk.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Beserk.webp',
 		},
 		{
 			id: 'blinded',
 			label: 'Blinded',
-			icon: 'systems/fabulaultima/styles/static/statuses/Blinded.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Blinded.webp',
 		},
 		{
 			id: 'death',
 			label: 'Death',
-			icon: 'systems/fabulaultima/styles/static/statuses/Death.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Death.webp',
 		},
 		{
 			id: 'dazed',
 			label: 'Dazed',
-			icon: 'systems/fabulaultima/styles/static/statuses/Dazed.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Dazed.webp',
 			stats: ['ins'],
 			mod: -2,
 		},
 		{
 			id: 'dex-down',
 			label: 'DEX Down',
-			icon: 'systems/fabulaultima/styles/static/statuses/DexDown.webp',
+			icon: 'systems/projectfu/styles/static/statuses/DexDown.webp',
 			stats: ['dex'],
 			mod: -2,
 		},
 		{
 			id: 'dex-up',
 			label: 'DEX Up',
-			icon: 'systems/fabulaultima/styles/static/statuses/DexUp.webp',
+			icon: 'systems/projectfu/styles/static/statuses/DexUp.webp',
 			stats: ['dex'],
 			mod: 2,
 		},
 		{
 			id: 'enraged',
 			label: 'Enraged',
-			icon: 'systems/fabulaultima/styles/static/statuses/Enraged.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Enraged.webp',
 			stats: ['dex', 'ins'],
 			mod: -2,
 		},
 		{
 			id: 'ins-down',
 			label: 'INS Down',
-			icon: 'systems/fabulaultima/styles/static/statuses/InsDown.webp',
+			icon: 'systems/projectfu/styles/static/statuses/InsDown.webp',
 			stats: ['ins'],
 			mod: -2,
 		},
 		{
 			id: 'ins-up',
 			label: 'INS Up',
-			icon: 'systems/fabulaultima/styles/static/statuses/InsUp.webp',
+			icon: 'systems/projectfu/styles/static/statuses/InsUp.webp',
 			stats: ['ins'],
 			mod: 2,
 		},
 		{
 			id: 'ko',
 			label: 'KO',
-			icon: 'systems/fabulaultima/styles/static/statuses/KO.webp',
+			icon: 'systems/projectfu/styles/static/statuses/KO.webp',
 		},
 		{
 			id: 'mig-down',
 			label: 'MIG Down',
-			icon: 'systems/fabulaultima/styles/static/statuses/MigDown.webp',
+			icon: 'systems/projectfu/styles/static/statuses/MigDown.webp',
 			stats: ['mig'],
 			mod: -2,
 		},
 		{
 			id: 'mig-up',
 			label: 'MIG Up',
-			icon: 'systems/fabulaultima/styles/static/statuses/MigUp.webp',
+			icon: 'systems/projectfu/styles/static/statuses/MigUp.webp',
 			stats: ['mig'],
 			mod: 2,
 		},
 		{
 			id: 'reflect',
 			label: 'Reflect',
-			icon: 'systems/fabulaultima/styles/static/statuses/Reflect.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Reflect.webp',
 		},
 		{
 			id: 'regen',
 			label: 'Regen',
-			icon: 'systems/fabulaultima/styles/static/statuses/Regen.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Regen.webp',
 		},
 		{
 			id: 'shaken',
 			label: 'Shaken',
-			icon: 'systems/fabulaultima/styles/static/statuses/Shaken.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Shaken.webp',
 			stats: ['wlp'],
 			mod: -2,
 		},
 		{
 			id: 'sleep',
 			label: 'Sleep',
-			icon: 'systems/fabulaultima/styles/static/statuses/Sleep.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Sleep.webp',
 		},
 		{
 			id: 'slow',
 			label: 'Slow',
-			icon: 'systems/fabulaultima/styles/static/statuses/Slow.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Slow.webp',
 			stats: ['dex'],
 			mod: -2,
 		},
 		{
 			id: 'poisoned',
 			label: 'Poisoned',
-			icon: 'systems/fabulaultima/styles/static/statuses/Poisoned.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Poisoned.webp',
 			stats: ['mig', 'wlp'],
 			mod: -2,
 		},
 		{
 			id: 'weak',
 			label: 'Weak',
-			icon: 'systems/fabulaultima/styles/static/statuses/Weak.webp',
+			icon: 'systems/projectfu/styles/static/statuses/Weak.webp',
 			stats: ['mig'],
 			mod: -2,
 		},
 		{
 			id: 'wlp-down',
 			label: 'WLP Down',
-			icon: 'systems/fabulaultima/styles/static/statuses/WlpDown.webp',
+			icon: 'systems/projectfu/styles/static/statuses/WlpDown.webp',
 			stats: ['wlp'],
 			mod: -2,
 		},
 		{
 			id: 'wlp-up',
 			label: 'WLP Up',
-			icon: 'systems/fabulaultima/styles/static/statuses/WlpUp.webp',
+			icon: 'systems/projectfu/styles/static/statuses/WlpUp.webp',
 			stats: ['wlp'],
 			mod: 2,
 		},
 		{
 			id: 'crisis',
 			label: 'Crisis',
-			icon: 'systems/fabulaultima/styles/static/statuses/Status_Bleeding.png',
+			icon: 'systems/projectfu/styles/static/statuses/Status_Bleeding.png',
 		},
 	];
 
 	// Register sheet application classes
 	Actors.unregisterSheet('core', ActorSheet);
-	Actors.registerSheet('fabulaultima', FUStandardActorSheet, {
+	Actors.registerSheet('projectfu', FUStandardActorSheet, {
 		makeDefault: true,
 	});
 	Items.unregisterSheet('core', ItemSheet);
-	Items.registerSheet('fabulaultima', FUItemSheet, {
+	Items.registerSheet('projectfu', FUItemSheet, {
 		makeDefault: true,
 	});
 
@@ -245,7 +245,7 @@ Hooks.once('ready', async function () {
 });
 
 Hooks.once('socketlib.ready', () => {
-	const socket = socketlib.registerSystem('fabulaultima');
+	const socket = socketlib.registerSystem('projectfu');
 	socket.register('use', displayUsingText);
 });
 
@@ -274,7 +274,7 @@ function createItemMacro(data, slot) {
 	// If it is, retrieve it based on the uuid.
 	Item.fromDropData(data).then((item) => {
 		// Create the macro command using the uuid.
-		const command = `game.fabulaultima.rollItemMacro("${data.uuid}");`;
+		const command = `game.projectfu.rollItemMacro("${data.uuid}");`;
 		let macro = game.macros.find((m) => m.name === item.name && m.command === command);
 		if (!macro) {
 			Macro.create({
@@ -282,7 +282,7 @@ function createItemMacro(data, slot) {
 				type: 'script',
 				img: item.img,
 				command: command,
-				flags: { 'fabulaultima.itemMacro': true },
+				flags: { 'projectfu.itemMacro': true },
 			}).then((macro) => game.user.assignHotbarMacro(macro, slot));
 		} else {
 			game.user.assignHotbarMacro(macro, slot);
@@ -319,7 +319,7 @@ function displayUsingText(text) {
 	text = `${text}`;
 	ui.notifications.queue.push({
 		message: text,
-		type: 'fabulaultima-spellname',
+		type: 'projectfu-spellname',
 		timestamp: new Date().getTime(),
 		permanent: false,
 		console: false,

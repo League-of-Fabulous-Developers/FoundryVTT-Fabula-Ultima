@@ -10,8 +10,8 @@ export class FUStandardActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			classes: ['fabulaultima', 'sheet', 'actor'],
-			template: 'systems/fabulaultima/templates/actor/actor-character-sheet.hbs',
+			classes: ['projectfu', 'sheet', 'actor'],
+			template: 'systems/projectfu/templates/actor/actor-character-sheet.hbs',
 			width: 700,
 			height: 1150,
 			tabs: [
@@ -26,7 +26,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 	/** @override */
 	get template() {
-		return `systems/fabulaultima/templates/actor/actor-${this.actor.type}-sheet.hbs`;
+		return `systems/projectfu/templates/actor/actor-${this.actor.type}-sheet.hbs`;
 	}
 
 	/* -------------------------------------------- */
@@ -514,7 +514,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Increment and Decrement Buttons
 		html.find('.increment-button, .decrement-button').click((ev) => {
-			const currentSheet = $(ev.currentTarget).closest('.fabulaultima-actor-sheet');
+			const currentSheet = $(ev.currentTarget).closest('.projectfu-actor-sheet');
 			if (currentSheet.length === 0) {
 				console.error('Current sheet not found.');
 				return;

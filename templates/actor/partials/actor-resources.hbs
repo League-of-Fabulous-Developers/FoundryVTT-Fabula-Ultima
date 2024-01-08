@@ -3,10 +3,11 @@
         {{!-- Key Statuses --}}
         <div class="resource-content flex-group-center flexrow">
             <span class="grid grid-8col">
-		        {{#each statusEffectToggles as |statusEffect|}}
-                    <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}" data-status-id="{{statusEffect.id}}">
-                        <img src="{{statusEffect.icon}}" data-tooltip="{{statusEffect.label}}">
-                    </a>
+                {{#each statusEffectToggles as |statusEffect|}}
+                <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}"
+                    data-status-id="{{statusEffect.id}}">
+                    <img src="{{statusEffect.icon}}" data-tooltip="{{statusEffect.label}}">
+                </a>
                 {{/each}}
             </span>
         </div>
@@ -14,7 +15,7 @@
 
     <div class="resource-content flex-group-center desc">
         <!-- Attribute Section -->
-        {{>"systems/fabulaultima/templates/actor/partials/actor-attributes.hbs"}}
+        {{>"systems/projectfu/templates/actor/partials/actor-attributes.hbs"}}
     </div>
 
     {{!-- Roll Check --}}

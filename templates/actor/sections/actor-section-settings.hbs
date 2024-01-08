@@ -125,7 +125,7 @@
 
 		</div>
 		{{!-- NPC Skills --}}
-		{{>"systems/fabulaultima/templates/actor/partials/actor-npc-skills.hbs" actor=actor}}
+		{{>"systems/projectfu/templates/actor/partials/actor-npc-skills.hbs" actor=actor}}
 		{{/if}}
 		<!-- Other Sidebar  -->
 		<div class="action-container grid grid-2col">
@@ -143,7 +143,7 @@
 			</label>
 
 			{{!-- RP Points --}}
-			{{>"systems/fabulaultima/templates/actor/partials/actor-resource-points.hbs" actor=actor}}
+			{{>"systems/projectfu/templates/actor/partials/actor-resource-points.hbs" actor=actor}}
 		</section>
 		<section class="align-left resource-content desc">
 			{{#if (eq actor.type "npc")}}
@@ -157,7 +157,8 @@
 					<label>{{localize 'FU.UseEquipment'}}</label>
 				</span>
 				<div class="form-fields">
-					<input class="use-equipment" type="checkbox" name="system.useEquipment.value" {{ checked system.useEquipment.value }} />
+					<input class="use-equipment" type="checkbox" name="system.useEquipment.value" {{ checked
+						system.useEquipment.value }} />
 				</div>
 				<p class="notes">This feature allows npcs to use equipment.</p>
 			</div>

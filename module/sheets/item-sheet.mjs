@@ -6,7 +6,7 @@ export class FUItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			classes: ['fabulaultima', 'sheet', 'item'],
+			classes: ['projectfu', 'sheet', 'item'],
 			width: 700,
 			height: 700,
 			tabs: [
@@ -21,7 +21,7 @@ export class FUItemSheet extends ItemSheet {
 
 	/** @override */
 	get template() {
-		const path = 'systems/fabulaultima/templates/item';
+		const path = 'systems/projectfu/templates/item';
 		// Return a single sheet for all item types.
 		// return `${path}/item-sheet.hbs`;
 

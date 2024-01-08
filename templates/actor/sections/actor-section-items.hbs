@@ -61,13 +61,13 @@
 		<li class="item" data-item-id="{{ item._id }}">
 			<div class="flexrow">
 				{{!-- Item Name--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-lg">{{ item.attackString }}</div>
 				<div class="item-lg">{{ item.damageString }}</div>
 				{{!-- Item Equip--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-equip.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" item=item}}
 				{{!-- Item Control--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 
 			<span class="item-quality">{{ item.quality }}</span>
@@ -98,14 +98,14 @@
 		<li class="item" data-item-id="{{ item._id }}">
 			<div class="flexrow">
 				{{!-- Item Name--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-xs">{{ item.def }}</div>
 				<div class="item-xs">{{ item.mdef }}</div>
 				<div class="item-xs">{{ item.init }}</div>
 				{{!-- Item Equip--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-equip.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" item=item}}
 				{{!-- Item Control--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span class="item-quality">{{ item.quality }}</span>
 			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
@@ -136,14 +136,14 @@
 		<li class="item" data-item-id="{{ item._id }}">
 			<div class="flexrow">
 				{{!-- Item Name--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-xs">{{ item.def }}</div>
 				<div class="item-xs">{{ item.mdef }}</div>
 				<div class="item-xs">{{ item.init }}</div>
 				{{!-- Item Equip--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-equip.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" item=item}}
 				{{!-- Item Control--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span class="item-quality">{{ item.quality }}</span>
 			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
@@ -173,14 +173,14 @@
 		<li class="item" data-item-id="{{ item._id }}">
 			<div class="flexrow">
 				{{!-- Item Name--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-xs">{{ item.def }}</div>
 				<div class="item-xs">{{ item.mdef }}</div>
 				<div class="item-xs">{{ item.init }}</div>
 				{{!-- Item Equip--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-equip.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" item=item}}
 				{{!-- Item Control--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span class="item-quality">{{ item.quality }}</span>
 			<div class="individual-description" data-item-id="{{ item._id }}">
@@ -209,11 +209,11 @@
 		<li class="item" data-item-id="{{ item._id }}">
 			<div class="flexrow">
 				{{!-- Item Name--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-full start"><span>{{ item.quality }}</span></div>
 				<div class="item-xs">{{ item.system.ipCost.value }}</div>
 				{{!-- Item Control--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 		</li>
 		{{/each}}
@@ -237,11 +237,11 @@
 		<li class="item" data-item-id="{{ item._id }}">
 			<div class="flexrow">
 				{{!-- Item Name--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-full start"><span>{{ item.quality }}</span></div>
 				<div class="item-xs">{{ item.system.quantity.value }}</div>
 				{{!-- Item Control--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 		</li>
 		{{/each}}

@@ -14,10 +14,10 @@
         <li class="item" data-item-id="{{ item._id }}">
             <div class="flexrow">
                 {{!-- Item Name--}}
-                {{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+                {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
                 <div class="item-lg">{{ item.attackString }}</div>
                 <div class="item-lg">{{ item.damageString }}</div>
-                {{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+                {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
             </div>
             <span class="item-quality">{{ item.quality }}</span>
             <div class="individual-description">{{#if item.system.description}} {{editor item.system.description
@@ -42,13 +42,13 @@
         <li class="item" data-item-id="{{ item._id }}">
             <div class="flexrow">
                 {{!-- Item Name--}}
-                {{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+                {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
                 <div class="item-m">{{ item.duration }}</div>
                 <div class="item-m">{{ item.target }}</div>
                 <div class="item-m">
                     <span>{{ item.mpCost }}</span>
                 </div>
-                {{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+                {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
             </div>
             <div class="individual-description align-left">{{#if item.system.description}} {{editor
                 item.system.description target="item.system.description" rollData=rollData button=false owner=owner
@@ -74,7 +74,7 @@
         <li class="item" data-item-id="{{ item._id }}">
             <div class="flexrow">
                 {{!-- Item Name--}}
-                {{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+                {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
                 <div class="item-full start tiny-desc">
                     {{#if item.system.description}} {{editor
                     item.system.description target="item.system.description" rollData=rollData button=false
@@ -82,15 +82,15 @@
                     editable=false}} {{/if}}
                 </div>
                 {{#if item.system.hasClock.value}}
-				<div class="item-sm" style="text-align: initial;">
-					<div class="progress-container">
-						{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs"
-						arr=item.progressArr
-						data=item.system.progress}}
-					</div>
-				</div>
-				{{/if}}
-                {{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+                <div class="item-sm" style="text-align: initial;">
+                    <div class="progress-container">
+                        {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
+                        arr=item.progressArr
+                        data=item.system.progress}}
+                    </div>
+                </div>
+                {{/if}}
+                {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
             </div>
             <span class="item-quality">{{ item.quality }}</span>
             <div class="individual-description align-left">
@@ -119,7 +119,7 @@
         <li class="item" data-item-id="{{ item._id }}">
             <div class="flexrow">
                 {{!-- Item Name--}}
-                {{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+                {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
                 <div class="item-full start tiny-desc">
                     {{#if item.system.description}} {{editor
                     item.system.description target="item.system.description" rollData=rollData button=false
@@ -127,15 +127,15 @@
                     editable=false}} {{/if}}
                 </div>
                 {{#if item.system.hasClock.value}}
-				<div class="item-sm" style="text-align: initial;">
-					<div class="progress-container">
-						{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs"
-						arr=item.progressArr
-						data=item.system.progress}}
-					</div>
-				</div>
-				{{/if}}
-                {{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+                <div class="item-sm" style="text-align: initial;">
+                    <div class="progress-container">
+                        {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
+                        arr=item.progressArr
+                        data=item.system.progress}}
+                    </div>
+                </div>
+                {{/if}}
+                {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
             </div>
         </li>
         {{/each}}
@@ -144,6 +144,6 @@
 </section>
 {{#if actor.system.useEquipment.value}}
 <section class="desc">
-    {{> "systems/fabulaultima/templates/actor/partials/actor-npc-items.hbs" item=item}}
+    {{> "systems/projectfu/templates/actor/partials/actor-npc-items.hbs" item=item}}
 </section>
 {{/if}}

@@ -1,5 +1,5 @@
 export const registerSystemSettings = async function () {
-	game.settings.registerMenu('fabulaultima', 'myOptionalRules', {
+	game.settings.registerMenu('projectfu', 'myOptionalRules', {
 		name: 'Optional Rules',
 		label: 'Manage Optional Rules',
 		hint: 'Decide what optional rules you would like to include in your world.',
@@ -8,7 +8,7 @@ export const registerSystemSettings = async function () {
 		restricted: true,
 	});
 
-	await game.settings.register('fabulaultima', 'optionQuirks', {
+	await game.settings.register('projectfu', 'optionQuirks', {
 		name: 'Enable Quirks?',
 		hint: 'Play with the Quirk advanced optional rule from Atlas High Fantasy pg 114.',
 		scope: 'world',
@@ -16,7 +16,7 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 	});
-	await game.settings.register('fabulaultima', 'optionZeroPower', {
+	await game.settings.register('projectfu', 'optionZeroPower', {
 		name: 'Enable Zero Powers?',
 		hint: 'Play with the Zero Power optional rule from Atlas High Fantasy pg 124.',
 		scope: 'world',
@@ -24,7 +24,7 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 	});
-	await game.settings.register('fabulaultima', 'optionCampingRules', {
+	await game.settings.register('projectfu', 'optionCampingRules', {
 		name: 'Enable Camping Activities?',
 		hint: 'Play with the Camping Activities optional rule from Natural Fantasy Playtest',
 		scope: 'world',
@@ -37,21 +37,21 @@ export const registerSystemSettings = async function () {
 class OptionalRules extends FormApplication {
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			template: 'systems/fabulaultima/templates/system/settings/optional-rules.hbs',
+			template: 'systems/projectfu/templates/system/settings/optional-rules.hbs',
 		});
 	}
 	getData() {
 		return {
-			optionQuirks: game.settings.get('fabulaultima', 'optionQuirks'),
-			optionZeroPower: game.settings.get('fabulaultima', 'optionZeroPower'),
-			optionCampingRules: game.settings.get('fabulaultima', 'optionCampingRules'),
+			optionQuirks: game.settings.get('projectfu', 'optionQuirks'),
+			optionZeroPower: game.settings.get('projectfu', 'optionZeroPower'),
+			optionCampingRules: game.settings.get('projectfu', 'optionCampingRules'),
 		};
 	}
 
 	_updateObject(event, formData) {
 		const data = expandObject(formData);
-		game.settings.set('fabulaultima', 'optionQuirks', optionQuirks);
-		game.settings.set('fabulaultima', 'optionZeroPower', optionZeroPower);
-		game.settings.set('fabulaultima', 'optionCampingRules', optionCampingRules);
+		game.settings.set('projectfu', 'optionQuirks', optionQuirks);
+		game.settings.set('projectfu', 'optionZeroPower', optionZeroPower);
+		game.settings.set('projectfu', 'optionCampingRules', optionCampingRules);
 	}
 }

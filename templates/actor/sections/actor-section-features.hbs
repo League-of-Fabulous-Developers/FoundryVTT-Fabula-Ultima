@@ -26,18 +26,18 @@
 		<li class="item" data-item-id="{{ item._id }}">
 			<div class="flexrow">
 				{{!-- Item Name--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-lg">{{ item.zeroTrigger }}</div>
 				<div class="item-lg">{{ item.zeroEffect }}</div>
 				<div class="item-sm" style="text-align: initial;">
 					<div class="progress-container">
-						{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs"
+						{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
 						arr=item.progressArr
 						data=item.system.progress}}
 					</div>
 				</div>
 				{{!-- Item Control--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<div class="individual-description">
 				<div class="flexrow resource-content">
@@ -79,19 +79,19 @@
 		<li class="item" data-item-id="{{ item._id }}">
 			<div class="flexrow">
 				{{!-- Item Name--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-m">{{capitalize item.system.subtype.value}}</div>
 				{{#if item.system.hasClock.value}}
 				<div class="item-sm" style="text-align: initial;">
 					<div class="progress-container">
-						{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock.hbs"
+						{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
 						arr=item.progressArr
 						data=item.system.progress}}
 					</div>
 				</div>
 				{{/if}}
 				{{!-- Item Control--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span class="item-quality">{{ item.quality }}</span>
 			<div class="individual-description align-left">{{#if item.system.description}} {{editor
@@ -129,13 +129,13 @@
 		<li class="item" data-item-id="{{ item._id }}">
 			<div class="flexrow">
 				{{!-- Item Name--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-sm">{{ item.system.progress.current }} / {{ item.system.progress.max }}</div>
 				<div class="item-xs">{{ item.system.progressPerDay.value }}</div>
 				<div class="item-xs">{{ item.system.days.value }}</div>
 				<div class="item-sm">{{ item.system.cost.value }}z</div>
 				{{!-- Item Control--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span>{{ item.quality }}</span>
 			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description

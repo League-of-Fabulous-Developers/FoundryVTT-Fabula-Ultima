@@ -1,7 +1,7 @@
 {
-	"name": "fabulaultima",
-	"version": "0.2.0",
-	"description": "CSS compiler for the FabulaUltima system",
+	"name": "projectfu",
+	"version": "2.1.0",
+	"description": "CSS compiler for the Fabula Ultima system",
 	"scripts": {
 		"build": "gulp build",
 		"compile": "gulp css",
@@ -11,7 +11,7 @@
 	"browserslist": [
 		"last 3 versions"
 	],
-	"author": "John Doe",
+	"author": "spyrella",
 	"license": "MIT",
 	"private": true,
 	"devDependencies": {
