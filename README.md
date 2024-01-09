@@ -1,4 +1,4 @@
-# Unofficial Fabula Ultima System
+# Unofficial Fabula Ultima System (Project FU)
 
 ![fu-sitecover.jpg](https://trello.com/1/cards/64db0994c4a8791322c8b2e2/attachments/64f476a7f1dc332714f44c8c/download/fu-sitecover.jpg)
 
@@ -21,10 +21,33 @@ Welcome to the Unofficial Fabula Ultima System for the {Foundry Virtual Tabletop
 ### Manual Installation
 
 1. Visit the [Release](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/releases "‌") page to find your desired version.
-2. Download the `fabulaultima.zip` file for your chosen version.
+2. Download the `projectfu.zip` file for your chosen version.
 3. Unzip the downloaded file to your FoundryVTT Data systems folder. (For more details, refer to the [FoundryVTT Configuration Guide](https://foundryvtt.com/article/configuration/#where-user-data "‌")).
 4. [Mandatory] Ensure that you have the `socketLib` module installed.
 5. Restart FoundryVTT if necessary.
+
+### Updating from Legacy Build
+
+1. Uninstall any previous versions of the system in FoundryVTT.
+2. Refer to `Semi-Automatic Installation` above.
+3. Refer to the [Project FU World Migration Guide](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/wiki/Migration-Tutorial) on how to migrate pre-existing worlds to the latest version.
+
+### Migrating Pre-Existing Worlds to New System
+
+To avoid any clashes with developers of other unofficial fabula ultima systems, we're making a small change. We need to switch the package ID from `fabulaultima` to `projectfu`. This ensures smooth updates for users who want both systems installed on Forge/Foundry without any conflicts. For users with pre-existing worlds, this involves editing a JSON file to make your world compatible with the new system. Make sure to back up your world before making any changes.
+
+**Changes:**
+
+1. Package ID: `fabulaultima` ➔ `projectfu`
+2. Path: Update records to point to `systems/projectfu/`
+
+**For World Migration:**
+
+1. Open your world's folder.
+2. Edit `world.json`.
+3. Change `"system": "fabulaultima"` to `"system": "projectfu"`.
+
+For detailed guidance, check out the [Project FU World Migration Guide](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/wiki/Migration-Tutorial).
 
 ## Feedback
 
