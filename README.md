@@ -47,7 +47,7 @@ To avoid any clashes with developers of other unofficial fabula ultima systems, 
 2. Edit `world.json`.
 3. Change `"system": "fabulaultima"` to `"system": "projectfu"`.
 
-For detailed guidance, check out the [Project FU World Migration Guide](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/wiki/World-Migration).
+For detailed guidance, check out the [Project FU World Migration Guide](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/wiki/Migration-Tutorial).
 
 ## Feedback
 
