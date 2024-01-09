@@ -55,7 +55,6 @@ export function prepareActiveEffectCategories(effects) {
 
 	// Iterate over active effects, classifying them into categories
 	for (let e of effects) {
-		e._getSourceName(); // Trigger a lookup for the source name
 		if (e.disabled) categories.inactive.effects.push(e);
 		else if (e.isTemporary) categories.temporary.effects.push(e);
 		else categories.passive.effects.push(e);
@@ -81,8 +80,11 @@ export async function toggleStatusEffect(actor, statusEffectId) {
 		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId)
 		const cls = getDocumentClass('ActiveEffect');
 		const createData = foundry.utils.deepClone(statusEffect);
-		createData.label = game.i18n.localize(statusEffect.label);
-		createData['flags.core.statusId'] = statusEffectId;
+		createData.statuses = [statusEffect.id];
+		delete createData.id;
+		cls.migrateDataSafe(createData);
+		cls.cleanData(createData);
+		createData.name = game.i18n.localize(statusEffect.name);
 		delete createData.id;
 		await cls.create(createData, { parent: actor });
 		return true;
@@ -90,5 +92,5 @@ export async function toggleStatusEffect(actor, statusEffectId) {
 }
 
 export function isActiveEffectForStatusEffectId(effect, statusEffectId) {
-	return effect.flags.core && effect.flags.core.statusId === statusEffectId;
+	return effect.statuses.size == 1 && effect.statuses.has(statusEffectId);
 }
