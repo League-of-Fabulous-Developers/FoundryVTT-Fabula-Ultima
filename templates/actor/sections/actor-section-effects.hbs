@@ -23,15 +23,15 @@
 					<div class="item-name">
 						<div class="item-image">
 							<div class="rollable" data-roll-type="item">
-								<img src="{{ effect.icon }}" data-tooltip="{{ effect.label }}" />
+								<img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}" />
 							</div>
 						</div>
 						<h4 class="click-item">
-							{{ effect.label }}
+							{{ effect.name }}
 						</h4>
 					</div>
 					<div class="item-lg">{{ effect.sourceName }}</div>
-					<div class="item-lg">{{ effect.duration.label }}</div>
+					<div class="item-lg">{{ effect.duration.name }}</div>
 					<div class="item-m end flexrow">
 						<a class="effect-control" data-action="toggle" title="{{localize 'FU.EffectToggle'}}">
 							<i class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
