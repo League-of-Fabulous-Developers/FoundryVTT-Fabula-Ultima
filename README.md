@@ -26,6 +26,12 @@ Welcome to the Unofficial Fabula Ultima System for the {Foundry Virtual Tabletop
 4. [Mandatory] Ensure that you have the `socketLib` module installed.
 5. Restart FoundryVTT if necessary.
 
+### Updating from Legacy Build
+
+1. Uninstall any previous versions of the system in FoundryVTT.
+2. Refer to `Semi-Automatic Installation` above.
+3. Refer to the [Project FU World Migration Guide](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/wiki/Migration-Tutorial) on how to migrate pre-existing worlds to the latest version.
+
 ### Migrating Pre-Existing Worlds to New System
 
 To avoid any clashes with developers of other unofficial fabula ultima systems, we're making a small change. We need to switch the package ID from `fabulaultima` to `projectfu`. This ensures smooth updates for users who want both systems installed on Forge/Foundry without any conflicts. For users with pre-existing worlds, this involves editing a JSON file to make your world compatible with the new system. Make sure to back up your world before making any changes.
