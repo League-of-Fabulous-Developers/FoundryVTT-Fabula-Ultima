@@ -32,6 +32,14 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 	});
+  game.settings.register('projectfu', 'collapseDescriptions', {
+    name: 'Collapse Item Descriptions',
+    hint: 'Chat descriptions on weapons, items, spells and abilities will be collapsed by default',
+    scope: 'world',
+    config: true,
+    type: Boolean,
+    default: false,
+  });
 };
 
 class OptionalRules extends FormApplication {
