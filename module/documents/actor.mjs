@@ -266,9 +266,8 @@ export class FUActor extends Actor {
 		// Iterate through each temporary effect applied to the actor.
 		actorData.effects.forEach((effect) => {
 			// Get the status associated with the effect, if it exists.
-			if (effect.flags.core) {
-				const statusId = effect.flags.core.statusId;
-				const status = CONFIG.statusEffects.find((status) => status.id === statusId);
+			if (effect.statuses.size == 1) {
+				const status = CONFIG.statusEffects.find((status) => effect.statuses.has(status));
 
 				// If a valid status is found, apply its modifiers to the corresponding attributes.
 				if (status) {
@@ -322,8 +321,9 @@ export class FUActor extends Actor {
 		// Iterate through each temporary effect applied to the actor.
 		actorData.temporaryEffects.forEach((effect) => {
 			// Get the status associated with the effect, if it exists.
-			if (effect.flags.core) {
-				const status = CONFIG.statusEffects.find((status) => status.id === effect.flags.core.statusId);
+
+			if (effect.statuses.size == 1) {
+				const status = CONFIG.statusEffects.find((status) => effect.statuses.has(status.id));
 
 				// If a valid status is found, apply its modifiers to the corresponding attributes.
 				if (status) {
