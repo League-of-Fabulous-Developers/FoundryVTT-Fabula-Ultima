@@ -41,13 +41,13 @@ env:
   # FoundryVTT uses this URL to check whether the current module version that
   # is installed is the latest version. This URL should NOT change,
   # otherwise FoundryVTT won't be able to perform this check.
-  latest_manifest_url: "https://github.com/${{github.repository}}/releases/latest/download/system.json"
+  latest_manifest_url: "https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.json"
 
   # The URL to the module archive associated with the module release being
   # processed by this workflow.
   release_system_url: "https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/fabulaultima.zip"
 
-
+  
 on:
   # Only run this workflow when a release is published.
   # To modify this workflow when other events occur, see:
