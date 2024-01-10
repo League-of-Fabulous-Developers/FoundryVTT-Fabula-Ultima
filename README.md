@@ -55,7 +55,9 @@ You can find a list of feature suggestions and ideas on our [Trello board](https
 
 Please report any bugs or suggest features using the Issues tab on GitHub.
 
-For questions and discussions, you can join the Rooster Games Discord Server at [#bots-and-tools-discussion](https://discord.com/channels/447159961491865610/1034111889740943470 "‌"). Before suggesting new features, please review the existing issues to avoid duplication.
+For questions and discussions for all things related to Fabula Ultima, you can join the Rooster Games Discord Server at [#bots-and-tools-discussion](https://discord.gg/G9qGbn2 "‌").
+
+Before suggesting new features, please review the existing issues to avoid duplication.
 
 ## Project Contributors
 
