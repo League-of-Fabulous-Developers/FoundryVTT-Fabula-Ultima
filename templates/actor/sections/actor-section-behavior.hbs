@@ -22,12 +22,12 @@
 		{{#if (and item.system.isBehavior.value)}}
 		<li class="item flexrow" data-item-id="{{ item._id }}">
 			{{!-- Item Name--}}
-			{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+			{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 			<div class="item-sm">
 				<span>{{ item.system.weight.value }}</span>
 			</div>
 			{{!-- Item Control--}}
-			{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+			{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 		</li>
 		{{/if}}
 		{{/each}}
@@ -48,12 +48,12 @@
 			{{#if (not item.system.isBehavior.value)}}
 			<li class="item flexrow" data-item-id="{{ item._id }}">
 				{{!-- Item Name--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-sm">
 					<span>{{ item.system.weight.value }}</span>
 				</div>
 				{{!-- Item Control--}}
-				{{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</li>
 			{{/if}}
 			{{/each}}

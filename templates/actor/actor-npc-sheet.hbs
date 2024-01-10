@@ -1,19 +1,19 @@
 <form class="{{ cssClass }} {{
     actor.type
-  }} backgroundstyle fabulaultima-actor-sheet" autocomplete="off">
+  }} backgroundstyle projectfu-actor-sheet" autocomplete="off">
 
 	{{#if (or (eq system.study.value 1) (eq system.study.value 2) (eq system.study.value 3))}}
-	{{>"systems/fabulaultima/templates/actor/partials/actor-study.hbs" actor=actor}}
+	{{>"systems/projectfu/templates/actor/partials/actor-study.hbs" actor=actor}}
 	{{else}}
 	<header class="sheet-header desc" style="background-color:#c9c8b9">
 		{{!-- Name/HP Section --}}
-		{{>"systems/fabulaultima/templates/actor/partials/actor-statistics.hbs" actor=actor}}
+		{{>"systems/projectfu/templates/actor/partials/actor-statistics.hbs" actor=actor}}
 		{{!-- Defense Section --}}
-		{{>"systems/fabulaultima/templates/actor/partials/actor-defensive.hbs" actor=actor}}
+		{{>"systems/projectfu/templates/actor/partials/actor-defensive.hbs" actor=actor}}
 		{{!-- Attributes Section --}}
-		{{>"systems/fabulaultima/templates/actor/partials/actor-resources.hbs" actor=actor}}
+		{{>"systems/projectfu/templates/actor/partials/actor-resources.hbs" actor=actor}}
 		{{!-- Affinity Section --}}
-		{{>"systems/fabulaultima/templates/actor/partials/actor-affinities.hbs" actor=actor}}
+		{{>"systems/projectfu/templates/actor/partials/actor-affinities.hbs" actor=actor}}
 
 		{{!-- Sheet Tab Navigation --}}
 		<nav class="sheet-tabs tabs desc flexrow" data-group="primary" style="align-self: stretch;">
@@ -51,7 +51,7 @@
 			<section class="grid grid-3col">
 				<aside class="sidebar flex-group-center">
 					{{!-- Action Buttons --}}
-					{{>"systems/fabulaultima/templates/actor/partials/actor-actions.hbs" actor=actor}}
+					{{>"systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
 
 					<section class="align-center desc">
 						<label class="desc-header resource-content flex-group-center form-group"
@@ -72,7 +72,7 @@
 						</div>
 					</section>
 					{{!-- Clock Section --}}
-					{{> "systems/fabulaultima/templates/actor/partials/actor-clocks.hbs" actor=actor}}
+					{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
 				</aside>
 				<div class="stats-container grid-span-2">
 					<section class="npc-border-col desc">
@@ -85,7 +85,7 @@
 							rollData=rollData button=true owner=owner editable=editable }}</section>
 					</section>
 					<!-- Favorite Section -->
-					<section class="desc">{{> "systems/fabulaultima/templates/actor/partials/actor-favorite.hbs"
+					<section class="desc">{{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs"
 						groups=systemData.bond dtypes=dtypes}}</section>
 				</div>
 			</section>
@@ -93,19 +93,19 @@
 		</div>
 		{{!-- Combat Tab --}}
 		<div class="tab combat" data-group="primary" data-tab="combat">{{>
-			"systems/fabulaultima/templates/actor/sections/actor-section-combat.hbs" actor=actor}}</div>
+			"systems/projectfu/templates/actor/sections/actor-section-combat.hbs" actor=actor}}</div>
 		{{!-- Owned Spells Tab --}}
 		<div class="tab spells" data-group="primary" data-tab="spells">{{>
-			"systems/fabulaultima/templates/actor/sections/actor-section-spells.hbs" actor=actor}}</div>
+			"systems/projectfu/templates/actor/sections/actor-section-spells.hbs" actor=actor}}</div>
 		{{!-- Behavior Tab --}}
 		<div class="tab behavior" data-group="primary" data-tab="behavior">{{>
-			"systems/fabulaultima/templates/actor/sections/actor-section-behavior.hbs" actor=actor}}</div>
+			"systems/projectfu/templates/actor/sections/actor-section-behavior.hbs" actor=actor}}</div>
 		{{!-- Active Effects Tab --}}
 		<div class="tab effects flexcol" data-group="primary" data-tab="effects">{{>
-			"systems/fabulaultima/templates/actor/sections/actor-section-effects.hbs" actor=actor}}</div>
+			"systems/projectfu/templates/actor/sections/actor-section-effects.hbs" actor=actor}}</div>
 		{{!-- Settings Tab --}}
 		<div class="tab effects flexcol" data-group="primary" data-tab="settings">{{>
-			"systems/fabulaultima/templates/actor/sections/actor-section-settings.hbs" actor=actor}}</div>
+			"systems/projectfu/templates/actor/sections/actor-section-settings.hbs" actor=actor}}</div>
 	</section>
 	{{/if}}
 </form>

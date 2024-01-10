@@ -3,16 +3,16 @@
 
     {{#if (or (eq system.study.value 1) (eq system.study.value 2) (eq system.study.value 3))}}
     {{!-- Name/HP Section --}}
-    {{>"systems/fabulaultima/templates/actor/partials/actor-statistics.hbs" actor=actor}}
+    {{>"systems/projectfu/templates/actor/partials/actor-statistics.hbs" actor=actor}}
     {{/if}}
 
     {{#if (or (eq system.study.value 2) (eq system.study.value 3))}}
     {{!-- Defense Section --}}
-    {{>"systems/fabulaultima/templates/actor/partials/actor-defensive.hbs" actor=actor}}
+    {{>"systems/projectfu/templates/actor/partials/actor-defensive.hbs" actor=actor}}
     {{!-- Attributes Section --}}
-    {{>"systems/fabulaultima/templates/actor/partials/actor-resources.hbs" actor=actor}}
+    {{>"systems/projectfu/templates/actor/partials/actor-resources.hbs" actor=actor}}
     {{!-- Affinity Section --}}
-    {{>"systems/fabulaultima/templates/actor/partials/actor-affinities.hbs" actor=actor}}
+    {{>"systems/projectfu/templates/actor/partials/actor-affinities.hbs" actor=actor}}
     {{/if}}
 
     <nav class="sheet-tabs tabs desc flexrow" data-group="primary" style="align-self: stretch;">
@@ -65,14 +65,14 @@
         <div class="flexrow">
             <div class="flexcol">
                 {{!-- Item Name--}}
-                {{> "systems/fabulaultima/templates/actor/partials/actor-item-name.hbs" item=item}}
+                {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 
                 {{#if item.quality}}
                 <div class="item-quality align-left">{{ item.quality }}</div>
                 {{/if}}
             </div>
             {{!-- Item Control--}}
-            {{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}}
+            {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
         </div>
         <div class="individual-description align-left">
             {{#if item.system.description}}

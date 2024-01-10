@@ -421,12 +421,21 @@ export class FUItem extends Item {
 		const hasSummary = summary && summary.trim() !== '';
 		const description = item.system.description;
 		const hasDescription = description && description.trim() !== '';
+    const collapseDescriptions = game.settings.get('projectfu', 'collapseDescriptions') ? '' : 'open' //TODO: 'open' will expand by default Turn into a setting
 
 		if (hasSummary || hasDescription) {
-			return `<div class="chat-desc">
+			return `<span>
+        <details ${collapseDescriptions}>
+        <summary>${game.i18n.localize('FU.Description')}</summary>
+        <div class="chat-desc">
         ${hasSummary ? `<blockquote class="summary quote">${summary}</blockquote>` : ''}
-        ${hasDescription ? `<span>${description}</span>` : ''}
-      </div>`;
+        ${hasDescription ? `
+          <p>${description}</p>
+          ` : ''
+        }
+        </div>
+        </details>
+        </span>`;
 		} else {
 			return '';
 		}

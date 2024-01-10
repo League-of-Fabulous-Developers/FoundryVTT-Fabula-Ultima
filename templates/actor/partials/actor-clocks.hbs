@@ -1,49 +1,46 @@
 <div class="desc flexcol">
-    <label class="desc-header resource-content flex-group-center form-group" data-label="{{localize 'FU.Action'}}">
-        <span class="resource-label-l">{{localize 'FU.Clocks'}}
-            </span>
-    </label>
-		{{#each items as |item id|}}
-        {{#if (and item.system.isFavored.value)}}
-        {{#if (eq item.type "zeroPower")}}
-		<li class="item flexcol" data-item-id="{{ item._id }}">
-				{{!-- Item Name--}}
-                <h4 class="click-item resource-content">
-                     <span class="resource-label-m">
-                    {{ item.name }}
-                    </span>
-                 </h4>
-				<div class="item-sm" style="text-align: initial;">
-					<div class="progress-container">
-						{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock-xl.hbs"
-						arr=item.progressArr
-						data=item.system.progress}}
-					</div>
-				</div>
-				{{!-- Item Control--}}
-				{{!-- {{> "systems/fabulaultima/templates/actor/partials/actor-control.hbs" item=item}} --}}
+	<label class="desc-header resource-content flex-group-center form-group" data-label="{{localize 'FU.Action'}}">
+		<span class="resource-label-l">{{localize 'FU.Clocks'}}
+		</span>
+	</label>
+	{{#each items as |item id|}}
+	{{#if (and item.system.isFavored.value)}}
+	{{#if (eq item.type "zeroPower")}}
+	<li class="item flexcol" data-item-id="{{ item._id }}">
+		{{!-- Item Name--}}
+		<h4 class="click-item resource-content">
+			<span class="resource-label-m">
+				{{ item.name }}
+			</span>
+		</h4>
+		<div class="item-sm" style="text-align: initial;">
+			<div class="progress-container">
+				{{> "systems/projectfu/templates/actor/partials/actor-progress-clock-xl.hbs"
+				arr=item.progressArr
+				data=item.system.progress}}
+			</div>
+		</div>
+	</li>
+	{{/if}}
 
-		</li>
-        {{/if}}
-
-        {{#if (and item.system.hasClock.value)}}
-		<li class="item flexcol" data-item-id="{{ item._id }}">
-				{{!-- Item Name--}}
-                <h4 class="click-item resource-content">
-                     <span class="resource-label-m">
-                    {{ item.name }}
-                    </span>
-                 </h4>
-				<div class="item-sm" style="text-align: initial;">
-					<div class="progress-container">
-						{{> "systems/fabulaultima/templates/actor/partials/actor-progress-clock-xl.hbs"
-						arr=item.progressArr
-						data=item.system.progress}}
-					</div>
-				</div>
-		</li>
-        {{/if}}
-        {{/if}}
-		{{/each}}
+	{{#if (and item.system.hasClock.value)}}
+	<li class="item flexcol" data-item-id="{{ item._id }}">
+		{{!-- Item Name--}}
+		<h4 class="click-item resource-content">
+			<span class="resource-label-m">
+				{{ item.name }}
+			</span>
+		</h4>
+		<div class="item-sm" style="text-align: initial;">
+			<div class="progress-container">
+				{{> "systems/projectfu/templates/actor/partials/actor-progress-clock-xl.hbs"
+				arr=item.progressArr
+				data=item.system.progress}}
+			</div>
+		</div>
+	</li>
+	{{/if}}
+	{{/if}}
+	{{/each}}
 
 </div>
