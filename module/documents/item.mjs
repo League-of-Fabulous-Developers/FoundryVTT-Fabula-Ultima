@@ -430,7 +430,7 @@ export class FUItem extends Item {
         <div class="chat-desc">
         ${hasSummary ? `<blockquote class="summary quote">${summary}</blockquote>` : ''}
         ${hasDescription ? `
-          <p>${description}</p>
+          ${description}
           ` : ''
         }
         </div>
