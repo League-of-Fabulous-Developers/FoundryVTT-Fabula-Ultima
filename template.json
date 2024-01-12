@@ -32,10 +32,39 @@
 				"derived": {
 					"init": { "value": 0, "bonus": 0 },
 					"def": { "value": 0, "bonus": 0 },
-					"mdef": { "value": 0, "bonus": 0 },
-					"accuracy": { "value": 0, "bonus": 0 },
-					"magic": { "value": 0, "bonus": 0 }
-				}
+					"mdef": { "value": 0, "bonus": 0 }
+				},
+				"bonuses": {
+                    "accuracy": {
+                        "accuracyCheck": { "bonus": 0 },
+                        "magicCheck": { "bonus": 0 },
+                        "opposedCheck": { "bonus": 0 },
+                        "openCheck": { "bonus": 0},
+                        "arcane": { "bonus": 0},
+                        "bow": { "bonus": 0},
+                        "brawling": { "bonus": 0},
+                        "dagger": { "bonus": 0},
+                        "firearm": { "bonus": 0},
+                        "flail": { "bonus": 0},
+                        "heavy": { "bonus": 0},
+                        "spear": { "bonus": 0},
+                        "sword": { "bonus": 0},
+                        "thrown": { "bonus": 0}
+                    },
+                    "damage": {
+                        "magic": { "bonus":0 },
+                        "arcane": { "bonus": 0},
+                        "bow": { "bonus": 0},
+                        "brawling": { "bonus": 0},
+                        "dagger": { "bonus": 0},
+                        "firearm": { "bonus": 0},
+                        "flail": { "bonus": 0},
+                        "heavy": { "bonus": 0},
+                        "spear": { "bonus": 0},
+                        "sword": { "bonus": 0},
+                        "thrown": { "bonus": 0}
+                    }
+                }
 			}
 		},
 		"character": {

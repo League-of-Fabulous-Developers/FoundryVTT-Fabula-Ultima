@@ -413,8 +413,8 @@ export class FUActor extends Actor {
 				this.usedSkills.extraHP = this.calcUsedSkillsFromExtraHP(systemData);
 				this.usedSkills.extraMP = this.calcUsedSkillsFromExtraMP(systemData);
 				this.usedSkills.initiativeBonus = this.calcUsedSkillsFromExtraInit(systemData);
-				this.usedSkills.accuracyCheck = 0;
-				this.usedSkills.magicCheck = 0;
+				this.usedSkills.accuracyCheck = this.calcUsedSkillsFromExtraPrecision(systemData);
+				this.usedSkills.magicCheck = this.calcUsedSkillsFromExtraMagic(systemData);
 				this.usedSkills.resistances = this.calcUsedSkillsFromResistances(systemData);
 				this.usedSkills.immunities = this.calcUsedSkillsFromImmunities(systemData);
 				this.usedSkills.absorption = this.calcUsedSkillsFromAbsorbs(systemData);
@@ -515,6 +515,22 @@ export class FUActor extends Actor {
 					return 0;
 				}
 				return Math.floor(systemData.derived.init.bonus / 4);
+			},
+
+			calcUsedSkillsFromExtraPrecision() {
+				if (!systemData.bonuses.accuracy.accuracyCheck.bonus) {
+					return 0;
+				}
+				let sum = systemData.bonuses.accuracy.accuracyCheck.bonus;
+				return Math.floor((sum - 1) / 3) + 1;
+			},			
+
+			calcUsedSkillsFromExtraMagic () {
+				if (!systemData.bonuses.accuracy.magicCheck.bonus) {
+					return 0;
+				}
+				let sum = systemData.bonuses.accuracy.magicCheck.bonus;
+				return Math.floor((sum - 1) / 3) + 1;
 			},
 
 			calcUsedSkillsFromResistances() {
