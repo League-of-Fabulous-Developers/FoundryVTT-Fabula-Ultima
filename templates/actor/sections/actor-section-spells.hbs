@@ -9,7 +9,7 @@
 			<div class="item-name">{{localize "FU.Rituals"}}</div>
 			<div class="item-m">{{localize "FU.MindPointCost"}}</div>
 			<div class="item-xs">{{localize "FU.DLAbbr"}}</div>
-			<div class="item-xs">{{localize "FU.Clock"}}</div>
+			<div class="item-sm">{{localize 'FU.Clock'}}</div>
 			<div class="item-m end">
 				<a class="item-control item-create" aria-describedby="tooltip"
 					data-tooltip="{{localize 'FU.RitualCreate'}}" data-type="ritual">
@@ -25,7 +25,18 @@
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-m">{{ item.mpCost }}</div>
 				<div class="item-xs">{{ item.dLevel }}</div>
-				<div class="item-xs">{{ item.clock }}</div>
+				{{#if (not item.system.hasClock.value)}}
+					<div class="item-sm">{{ item.clock }}</div>
+				{{else}}
+					<div class="item-sm" style="text-align: initial;">
+						<div class="progress-container">
+							{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
+							arr=item.progressArr
+							data=item.system.progress}}
+						</div>
+					</div>
+				{{/if}}
+
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
