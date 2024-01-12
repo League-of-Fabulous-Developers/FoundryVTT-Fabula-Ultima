@@ -7,7 +7,7 @@
 
 Welcome to the Unofficial Fabula Ultima System for the {Foundry Virtual Tabletop}(<https://foundryvtt.com/>). This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
 
-**Disclaimer:** This system is currently in it's testing phase. We recommend backing up your world before trying it.
+**Disclaimer:** This system has been tested and is ready for use. We recommend backing up your world before trying it.
 
 ## Installation
 
@@ -66,6 +66,13 @@ Major thanks to the following contributors:
 - **Fabula Ultima Boilerplate System**: This system is a fork of the [Fabula Ultima Boilerplate System](https://github.com/zarick1342/fabula-ultima-system) by [zarick1342](https://github.com/zarick1342/).
 - **Design and CSS Improvements**: Various upgrades and CSS design improvements by [\@serpuss/quake](https://github.com/serpuss).
 - **Current Maintainer**: [spyrella](https://github.com/spyrella) - for ongoing updates to the system.
+
+As well as the following contributers:
+
+- [Savantford](https://github.com/Savantford) - For providing and allowing me to utilize their clock code.
+- [xeqi](https://github.com/xeqi) - Various fixes to the codebase (bonds, status effects, etc).
+- And to all the following contributers found here: [Contributers Link](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/graphs/contributors)
+
 
 A few assets/code were used from the following projects:
 
