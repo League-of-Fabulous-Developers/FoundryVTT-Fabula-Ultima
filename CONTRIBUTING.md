@@ -64,7 +64,7 @@ Or for a one-time build:
 npm run build
 ```
 
-Enable the [_Hot-Reload Package Files_](https://foundryvtt.wiki/en/basics/configuration#hot-reload-package-files) option in your Foundry application configuration for an improved developer experience.
+Enable the _Hot-Reload Package Files_ option in your Foundry application configuration for an improved developer experience.
 
 ## Code Contributions
 
