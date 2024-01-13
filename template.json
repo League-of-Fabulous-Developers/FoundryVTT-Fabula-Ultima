@@ -92,6 +92,8 @@
 			"traits": { "value": "" },
 			"species": { "value": "" },
 			"villain": { "value": "" },
+			"phases": { "value": "" },
+			"multipart": { "value": "" },
 			"isElite": { "value": false },
 			"isChampion": { "value": 1 },
 			"isCompanion": { "value": false },

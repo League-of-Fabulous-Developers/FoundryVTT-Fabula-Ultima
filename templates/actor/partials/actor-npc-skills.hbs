@@ -8,8 +8,13 @@
 		{{!-- Start Available Skills --}}
 		{{#if spTracker.availableSkills.species}}
 		<div class="resource-content grid grid-4col align-center">
-			<label class="resource-label-sm grid-span-3">Available skills from Species</label>
+			<label class="resource-label-sm grid-span-3">Available skills from species</label>
 			<span>{{ spTracker.availableSkills.species }}</span>
+		</div>
+		{{/if}} {{#if spTracker.availableSkills.level}}
+		<div class="resource-content grid grid-4col align-center">
+			<label class="resource-label-sm grid-span-3">Available skills from level</label>
+			<span>{{ spTracker.availableSkills.level }}</span>
 		</div>
 		{{/if}} {{#if spTracker.availableSkills.vulnerabilities}}
 		<div class="resource-content grid grid-4col align-center">
