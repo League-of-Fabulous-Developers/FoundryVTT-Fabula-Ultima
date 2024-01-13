@@ -584,17 +584,11 @@ export class FUActor extends Actor {
 
 			calcUsedSkillsFromAbsorbs() {
 				let sum = 0;
-
-				// Loop through the affinity object
-				for (const key in systemData.affinities) {
-					const value = systemData.affinities[key];
-
-					// In the new data model, the values are already plain numbers
-					if (value === 4) {
+				Object.entries(systemData.affinities).forEach((el) => {
+					if (el[1].base === 3) {
 						sum++;
-						console.log(`sp maybe Key: ${key}, Value: ${value}`);
 					}
-				}
+				});
 
 				if (sum < 0) {
 					sum = 0;
@@ -602,6 +596,8 @@ export class FUActor extends Actor {
 
 				return Math.ceil(sum) * 2;
 			},
+
+
 
 			calcUsedSkillsFromSpecial(actorData) {
 				const miscAbility = actorData.items.filter((item) => item.type === 'miscAbility');
