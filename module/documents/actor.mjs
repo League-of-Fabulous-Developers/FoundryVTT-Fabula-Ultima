@@ -511,10 +511,11 @@ export class FUActor extends Actor {
 			},
 
 			calcUsedSkillsFromExtraInit() {
-				if (!systemData.derived.init.bonus) {
-					return 0;
+				let sum = 0;
+				if (systemData.derived.init.bonus) {
+					sum = 1;
 				}
-				return Math.floor(systemData.derived.init.bonus / 4);
+				return sum;
 			},
 
 			calcUsedSkillsFromExtraPrecision() {

@@ -55,7 +55,6 @@ export class FUItem extends Item {
 
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? 'HR0' : 'HR';
 		const qualText = this.system.quality?.value || '';
-		const specialText = this.system.special?.value || '';
 		let qualityString = '';
 
 		const attackAttributes = [this.system.attributes.primary.value.toUpperCase(), this.system.attributes.secondary.value.toUpperCase()].join(' + ');
@@ -67,7 +66,7 @@ export class FUItem extends Item {
 		if (isWeaponOrShieldWithDual) {
 			qualityString = [capitalizeFirst(this.system.category.value), capitalizeFirst(this.system.hands.value), capitalizeFirst(this.system.type.value), qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
-			qualityString = [attackString, damageString, specialText].filter(Boolean).join(' ⬥ ');
+			qualityString = [attackString, damageString, qualText].filter(Boolean).join(' ⬥ ');
 		}
 
 		return {
