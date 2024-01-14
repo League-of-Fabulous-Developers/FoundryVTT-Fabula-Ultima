@@ -61,6 +61,7 @@ export class FUItem extends Item {
 
 		const attackString = `【${attackAttributes}】${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}`;
 
+    //TODO: Account for added damage and typing changes
 		const damageString = `【${hrZeroText} + ${this.system.damage.value}】 ${this.system.damageType.value}`;
 
 		if (isWeaponOrShieldWithDual) {
@@ -177,12 +178,12 @@ export class FUItem extends Item {
 		}
 		const hasRoll = this.system.hasRoll?.value;
 		const hasDamage = this.system.rollInfo?.damage?.hasDamage.value;
-		const usesWeapons = this.system.rollInfo?.useWeapon?.accuracy.value;
-		const usesWeaponsDamage = this.system.rollInfo?.useWeapon?.damage.value;
+		const useWeaponAccuracy = this.system.rollInfo?.useWeapon?.accuracy.value;
+		const useWeaponDamage = this.system.rollInfo?.useWeapon?.damage.value;
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero.value ? 'HR0 +' : 'HR +';
 
 		let attackWeaponAttributes, attackAttributes;
-		if (usesWeapons && weaponMain) {
+		if (useWeaponAccuracy && weaponMain) {
 			attackWeaponAttributes = [weaponMain?.system?.attributes?.primary.value.toUpperCase(), weaponMain?.system?.attributes?.secondary.value.toUpperCase()].join(' + ');
 		} else {
 			attackWeaponAttributes = '';
@@ -192,18 +193,18 @@ export class FUItem extends Item {
 			attackAttributes = [this.system?.rollInfo?.attributes?.primary.value.toUpperCase(), this.system?.rollInfo?.attributes?.secondary.value.toUpperCase()].join(' + ');
 		}
 
-		const weaponString = usesWeapons ? (weaponMain ? weaponMain?.name : 'No weapon equipped!') : '';
+		const weaponString = useWeaponAccuracy ? (weaponMain ? weaponMain?.name : 'No weapon equipped!') : '';
 
 		let attackString = '';
-		if (hasRoll || usesWeapons) {
-			attackString = usesWeapons
+		if (hasRoll || useWeaponAccuracy) {
+			attackString = useWeaponAccuracy
 				? `【${attackWeaponAttributes}】${weaponMain ? (weaponMain?.system?.accuracy?.value > 0 ? ` + ${weaponMain?.system?.accuracy?.value}` : '') : ''}`
 				: `【${attackAttributes}】${this.system?.rollInfo?.accuracy?.value > 0 ? ` + ${this.system?.rollInfo?.accuracy?.value}` : ''}`;
 		}
 
 		let damageString = '';
-		if (hasDamage || usesWeaponsDamage) {
-			damageString = usesWeapons
+		if (hasDamage || useWeaponDamage) {
+			damageString = useWeaponDamage
 				? `【${hrZeroText} ${weaponMain ? `${weaponMain?.system?.damage.value}】 ${weaponMain?.system?.damageType.value}` : ''}`
 				: `【${hrZeroText} ${this.system?.rollInfo?.damage?.value > 0 ? ` ${this.system?.rollInfo?.damage?.value}` : '0'} 】${this.system?.rollInfo?.damage.type.value}`;
 		}
@@ -315,12 +316,17 @@ export class FUItem extends Item {
   `;
 
 		if (hasDamage) {
-			let damVal = isWeapon ? item.system.damage.value : item.system.rollInfo.damage.value;
+      // Use weapon damage if "Use Weapon Damage"
+      // Use spell/ability damage if Not "Use Weapon Damage"
+      // Add bonus spell/ability damage if "Use Weapon Damage" and useItem
+      // Change type of damage if it's defined in the rollInfo.damage
+			let damVal = (isWeapon && (item.system.rollInfo.useWeapon.damage?.value ?? true)) ? item.system.damage.value : this.system.rollInfo.damage.value;
+      console.log(damVal)
 			damVal = damVal || 0;
-			const bonusDamVal = usedItem ? this.system.rollInfo.damage.value : 0;
+			const bonusDamVal = (usedItem && this.system.rollInfo.useWeapon?.damage.value) ? this.system.rollInfo.damage.value : 0;
 			const bonusDamValString = bonusDamVal ? ` + ${bonusDamVal} (${this.type})` : '';
 			const damage = hr + damVal + bonusDamVal;
-			const damType = isWeapon ? item.system.damageType.value : item.system.rollInfo.damage.type.value;
+      const damType = item.system.rollInfo.damage?.type.value || item.system.damageType.value;
 
 			content += `
       <div class="damage-desc align-left">
@@ -329,7 +335,7 @@ export class FUItem extends Item {
         </div>
         <div class="damage-details">
           <span class="damage-detail-text">
-            ${hr} <strong>(HR)</strong> + ${damVal}
+            ${hr} <strong>(HR)</strong> + ${damVal} ${bonusDamVal ? '+ '+ bonusDamVal : ''}
           </span>
         </div>
         <div class="float-box dam-float">
@@ -395,7 +401,9 @@ export class FUItem extends Item {
 				);
 
 				for (const equippedWeapon of equippedWeapons) {
-					const data = await this.getSingleRollForItem(equippedWeapon, true, isShift);
+					 // if (! this.system.rollInfo?.useWeapon?.damage?.value)
+           //   equippedWeapon = mergeObject(equippedWeapon, {system: {rollInfo: this.system.rollInfo}})
+          const data = await this.getSingleRollForItem(mergeObject(duplicate(equippedWeapon), {system: {rollInfo: this.system.rollInfo}}), true, isShift);
 					if (equippedWeapon.system.isEquipped.slot === 'mainHand') {
 						mainHandContent += data;
 					} else if (equippedWeapon.system.isEquipped.slot === 'offHand') {
