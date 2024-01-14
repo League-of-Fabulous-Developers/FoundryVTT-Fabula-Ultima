@@ -23,35 +23,5 @@
         <label class="resource-label-xl spin2win rollable flex-center" data-roll-type="roll-check">
             <i class="fas fa-dice-d20 spin2win ra-1x"></i> {{localize 'FU.RollCheck'}}
         </label>
-        <div class="buttons-inc flex-group-center">
-            <span class="buttons-inc">
-                <select value="{{ system.rollInfo.attributes.primary.value }}"
-                    name="system.rollInfo.attributes.primary.value" class="resource-inputs" style="width:70px">
-                    {{#select system.rollInfo.attributes.primary.value}}
-                    <option value="attributes.dex.current">{{localize 'FU.AttributeDexAbbr'}}</option>
-                    <option value="attributes.ins.current">{{localize 'FU.AttributeInsAbbr'}}</option>
-                    <option value="attributes.mig.current">{{localize 'FU.AttributeMigAbbr'}}</option>
-                    <option value="attributes.wlp.current">{{localize 'FU.AttributeWlpAbbr'}}</option>
-                    {{/select}}
-                </select>
-            </span>
-            <span class="buttons-inc rollable" data-tooltip="{{localize 'FU.RollCheckOptions'}}"
-                aria-describedby="tooltip" data-type="roll-check-option" data-roll-type="roll-check-option">
-                <button class="roll-check-option">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </span>
-            <span class="buttons-inc">
-                <select value="{{ system.rollInfo.attributes.secondary.value }}"
-                    name="system.rollInfo.attributes.secondary.value" class="resource-inputs" style="width:70px">
-                    {{#select system.rollInfo.attributes.secondary.value}}
-                    <option value="attributes.dex.current">{{localize 'FU.AttributeDexAbbr'}}</option>
-                    <option value="attributes.ins.current">{{localize 'FU.AttributeInsAbbr'}}</option>
-                    <option value="attributes.mig.current">{{localize 'FU.AttributeMigAbbr'}}</option>
-                    <option value="attributes.wlp.current">{{localize 'FU.AttributeWlpAbbr'}}</option>
-                    {{/select}}
-                </select>
-            </span>
-        </div>
     </div>
 </div>

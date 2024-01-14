@@ -1,0 +1,32 @@
+<section class="traits">
+    {{#each traits}}
+        <div>
+            <label >
+                <input type="radio" name="trait" value="{{this.type}}" data-value="{{this.value}}">
+                <span>{{localize (concat 'FU.' (capitalize this.type))}}:</span>
+                <strong class="trait">{{this.value}}</strong>
+            </label>
+        </div>
+    {{/each}}
+</section>
+<hr>
+<section class="flexrow">
+
+    <label class="dice-container">
+            <span class="roll-container">
+                <span class="roll">{{attr1.result}}</span>
+            </span>
+        <span>{{localize (concat 'FU.Attribute' (capitalize attr1.attribute))}}</span>
+        <input type="checkbox" name="results" value="attr1">
+    </label>
+
+    <label class="dice-container">
+            <span class="roll-container">
+                <span class="roll">{{attr2.result}}</span>
+            </span>
+        <span>{{localize (concat 'FU.Attribute' (capitalize attr2.attribute))}}</span>
+        <input type="checkbox" name="results" value="attr2">
+    </label>
+
+</section>
+<hr>

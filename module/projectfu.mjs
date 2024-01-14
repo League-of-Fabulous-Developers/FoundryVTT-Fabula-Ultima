@@ -8,6 +8,7 @@ import { FUItemSheet } from './sheets/item-sheet.mjs';
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU } from './helpers/config.mjs';
 import { registerSystemSettings } from './settings.js';
+import {addRollContextMenuEntries} from "./helpers/checks.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -211,6 +212,8 @@ Hooks.once('init', async () => {
 	Items.registerSheet('projectfu', FUItemSheet, {
 		makeDefault: true,
 	});
+
+    Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();

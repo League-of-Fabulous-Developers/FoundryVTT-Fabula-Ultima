@@ -50,6 +50,27 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/item/partials/item-skill-header.hbs',
 		'systems/projectfu/templates/item/partials/item-heroic-header.hbs',
 		'systems/projectfu/templates/item/partials/item-progress-header.hbs',
+
+		// Dialogs
+		'systems/projectfu/templates/dialog/dialog-check.hbs',
+		'systems/projectfu/templates/dialog/dialog-check-push.hbs',
+		'systems/projectfu/templates/dialog/dialog-check-reroll.hbs',
+
+		// Chat Messages
+		'systems/projectfu/templates/chat/chat-check.hbs',
+		'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
+		'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
+
+		// Chat Message Partials
+		'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',
+		'systems/projectfu/templates/chat/partials/chat-damage.hbs',
+		'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
+		'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
+		'systems/projectfu/templates/chat/partials/chat-item-quality.hbs',
+		'systems/projectfu/templates/chat/partials/chat-spell-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
+        'systems/projectfu/templates/chat/partials/chat-check-push.hbs',
+        'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs',
 	]);
 };
 

@@ -1,0 +1,53 @@
+<div class='detail-desc flex-group-center grid grid-2col'>
+    <div class='spin2win'>
+        <i class='fas fa-dice-d{{check.attr1.dice}} ra-2x rollable'></i>
+        {{result.attr1}}
+        ({{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}})
+    </div>
+    <div class='spin2win'>
+        <i class='fas fa-dice-d{{check.attr2.dice}} ra-2x rollable'></i>
+        {{result.attr2}}
+        ({{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute) 'Abbr')}})
+    </div>
+</div>
+<div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
+    <div>
+        {{localize 'FU.ChatDifficulty'}}: {{difficulty}}
+    </div>
+</div>
+<div class='detail-desc flexrow' style='padding:0 2px'>
+    <div class='spin2win'><i class='fas fa-dice-d20 ra-2x rollable'></i>
+        {{#if result.modifier}}
+            Modifier:
+            {{result.modifier}}
+            <br />
+        {{/if}}
+        {{#if result.bonus}}
+            Bonus:
+            {{result.bonus}}
+            <br />
+        {{/if}}
+        Total Result:
+        {{result.total}}</div>
+</div>
+<div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
+    <div>
+		<span class='result-text'>
+			{{#if result.crit}}
+                <span>{{localize 'FU.Critical'}}</span>
+            {{/if}}
+            {{#if result.fumble}}
+                <span>{{localize 'FU.Fumble'}}</span>
+            {{/if}}
+            {{#if difficulty}}
+                {{#if (and (or result.crit (gte result.total difficulty)) (not result.fumble))}}
+                    <span>{{localize 'FU.Success'}}</span>
+                {{else}}
+                    {{#unless result.fumble}}
+                        <span>{{localize 'FU.Failure'}}</span>
+                    {{/unless}}
+                {{/if}}
+            {{/if}}
+		</span>
+    </div>
+</div>
