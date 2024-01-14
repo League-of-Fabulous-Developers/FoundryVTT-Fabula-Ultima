@@ -32,10 +32,40 @@
 				"derived": {
 					"init": { "value": 0, "bonus": 0 },
 					"def": { "value": 0, "bonus": 0 },
-					"mdef": { "value": 0, "bonus": 0 },
-					"accuracy": { "value": 0, "bonus": 0 },
-					"magic": { "value": 0, "bonus": 0 }
-				}
+					"mdef": { "value": 0, "bonus": 0 }
+				},
+                "bonuses": {
+                    "accuracy": {
+						"accuracyCheck": 0,
+                        "magicCheck": 0,
+                        "opposedCheck": 0,
+                        "openCheck": 0,
+                        "arcane": 0,
+                        "bow": 0,
+                        "brawling": 0,
+                        "dagger": 0,
+                        "firearm": 0,
+                        "flail": 0,
+                        "heavy": 0,
+                        "spear": 0,
+                        "sword": 0,
+                        "thrown": 0
+                    },
+                    "damage": {
+                        "physical": 0,
+                        "magic": 0,
+                        "arcane": 0,
+                        "bow": 0,
+                        "brawling": 0,
+                        "dagger": 0,
+                        "firearm": 0,
+                        "flail": 0,
+                        "heavy": 0,
+                        "spear": 0,
+                        "sword": 0,
+                        "thrown": 0
+                    }
+                }
 			}
 		},
 		"character": {
@@ -63,6 +93,8 @@
 			"traits": { "value": "" },
 			"species": { "value": "" },
 			"villain": { "value": "" },
+			"phases": { "value": "" },
+			"multipart": { "value": "" },
 			"isElite": { "value": false },
 			"isChampion": { "value": 1 },
 			"isCompanion": { "value": false },

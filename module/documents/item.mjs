@@ -55,7 +55,6 @@ export class FUItem extends Item {
 
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? 'HR0' : 'HR';
 		const qualText = this.system.quality?.value || '';
-		const specialText = this.system.special?.value || '';
 		let qualityString = '';
 
 		const attackAttributes = [this.system.attributes.primary.value.toUpperCase(), this.system.attributes.secondary.value.toUpperCase()].join(' + ');
@@ -67,7 +66,7 @@ export class FUItem extends Item {
 		if (isWeaponOrShieldWithDual) {
 			qualityString = [capitalizeFirst(this.system.category.value), capitalizeFirst(this.system.hands.value), capitalizeFirst(this.system.type.value), qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
-			qualityString = [attackString, damageString, specialText].filter(Boolean).join(' ⬥ ');
+			qualityString = [attackString, damageString, qualText].filter(Boolean).join(' ⬥ ');
 		}
 
 		return {
@@ -239,11 +238,18 @@ export class FUItem extends Item {
 		const isWeapon = item.type === 'weapon' || this.type === 'basic' || (item.type === 'shield' && item.system.isDualShield?.value);
 		const hasDamage = isWeapon || (['spell', 'skill', 'miscAbility'].includes(item.type) && item.system.rollInfo?.damage?.hasDamage?.value);
 
+		// TODO: Code for getting all weapons accuracy bonus & determining which type is applied
+
+		// TODO: Code for getting all weapons damage bonus & determining which damage bonus to apply
+
+		// Code for determining bonuses based on item type
+		const magicCheckBonus = this.actor.system.bonuses.accuracy.magicCheck;
+		const accCheckBonus = this.actor.system.bonuses.accuracy.accuracyCheck;
+		const accBonus = isWeapon ? accCheckBonus : magicCheckBonus || 0;
+
 		const attrs = isWeapon ? item.system.attributes : item.system.rollInfo.attributes;
 		const accVal = isWeapon ? item.system.accuracy.value : item.system.rollInfo.accuracy.value || 0;
-		const magicCheckBonus = this.actor.system.derived.magic.bonus;
-		const accCheckBonus = this.actor.system.derived.accuracy.bonus;
-		const accBonus = isWeapon ? accCheckBonus : magicCheckBonus || 0;
+
 		const primary = this.actor.system.attributes[attrs.primary.value].current;
 		const secondary = this.actor.system.attributes[attrs.secondary.value].current;
 		const roll = new Roll('1d@prim + 1d@sec + @mod + @bonus', {
@@ -421,12 +427,21 @@ export class FUItem extends Item {
 		const hasSummary = summary && summary.trim() !== '';
 		const description = item.system.description;
 		const hasDescription = description && description.trim() !== '';
+    const collapseDescriptions = game.settings.get('projectfu', 'collapseDescriptions') ? '' : 'open';
 
 		if (hasSummary || hasDescription) {
-			return `<div class="chat-desc">
+			return `<span>
+        <details ${collapseDescriptions}>
+        <summary>${game.i18n.localize('FU.Description')}</summary>
+        <div class="chat-desc">
         ${hasSummary ? `<blockquote class="summary quote">${summary}</blockquote>` : ''}
-        ${hasDescription ? `<span>${description}</span>` : ''}
-      </div>`;
+        ${hasDescription ? `
+          ${description}
+          ` : ''
+        }
+        </div>
+        </details>
+        </span>`;
 		} else {
 			return '';
 		}
