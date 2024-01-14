@@ -513,27 +513,27 @@ export class FUStandardActorSheet extends ActorSheet {
 		});
 
 		// Increment and Decrement Buttons
-		html.find('.increment-button, .decrement-button').click((ev) => {
-			const currentSheet = $(ev.currentTarget).closest('.projectfu-actor-sheet');
-			if (currentSheet.length === 0) {
-				console.error('Current sheet not found.');
-				return;
-			}
-			const targetResource = $(ev.currentTarget).data('resource');
-			const action = $(ev.currentTarget).data('action');
-			const inputElement = currentSheet.find('#' + targetResource + '-input');
-			let currentValue = parseInt(inputElement.val());
+		// html.find('.increment-button, .decrement-button').click((ev) => {
+		// 	const currentSheet = $(ev.currentTarget).closest('.projectfu-actor-sheet');
+		// 	if (currentSheet.length === 0) {
+		// 		console.error('Current sheet not found.');
+		// 		return;
+		// 	}
+		// 	const targetResource = $(ev.currentTarget).data('resource');
+		// 	const action = $(ev.currentTarget).data('action');
+		// 	const inputElement = currentSheet.find('#' + targetResource + '-input');
+		// 	let currentValue = parseInt(inputElement.val());
 
-			if (isNaN(currentValue)) {
-				currentValue = 0;
-			}
-			if (action === 'increase') {
-				currentValue += 1;
-			} else if (action === 'decrease') {
-				currentValue = Math.max(currentValue - 1, 0);
-			}
-			inputElement.val(currentValue);
-		});
+		// 	if (isNaN(currentValue)) {
+		// 		currentValue = 0;
+		// 	}
+		// 	if (action === 'increase') {
+		// 		currentValue += 1;
+		// 	} else if (action === 'decrease') {
+		// 		currentValue = Math.max(currentValue - 1, 0);
+		// 	}
+		// 	inputElement.val(currentValue);
+		// });
 
 		// Active Effect management
 		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor));
