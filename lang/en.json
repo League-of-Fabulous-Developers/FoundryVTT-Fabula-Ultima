@@ -494,6 +494,18 @@
 		"ChatDifficulty": "Difficulty",
 		"DialogCheckTitle": "Configure Check",
 		"DialogCheckRoll": "Roll Check",
-		"HighRollAbbr": "HR"
+		"HighRollAbbr": "HR",
+        "ExperimentalCombatTracker" : "Enable Experimental Combat Tracker",
+        "ExperimentalCombatTrackerHint" : "Experimental combat tracker featuring back and forth initiative.",
+        "DialogDefeatedTurnTitle" : "Take Turn?",
+        "DialogDefeatedTurnContent" : "You are about to take a turn with a defeated combatant. Do you want to continue?",
+        "DialogFirstTurnTitle" : "Initiative",
+        "DialogFirstTurnLabel" : "Start Combat",
+        "DialogFirstTurnFaction" : "Which faction has the Initiative?",
+        "DialogFirstTurnFactionsFriendly" : "Allies",
+        "DialogFirstTurnFactionsHostile" : "Opponents",
+        "CombatCurrentTurn" : "Current Turn: {turn}",
+        "CombatFactionFriendly" : "Allies",
+        "CombatFactionHostile" : "Opponents"
 	}
 }
