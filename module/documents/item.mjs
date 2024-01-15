@@ -249,7 +249,7 @@ export class FUItem extends Item {
 		// Code for determining bonuses based on item type
 		const magicCheckBonus = this.actor.system.bonuses.accuracy.magicCheck;
 		const accCheckBonus = this.actor.system.bonuses.accuracy.accuracyCheck;
-		const accBonus = isWeapon ? accCheckBonus : magicCheckBonus || 0;
+		const actorAccBonus = isWeapon ? accCheckBonus : magicCheckBonus || 0;
 
 		const attrs = (isWeapon && (item.system.rollInfo?.useWeapon?.accuracy?.value ?? true)) ? item.system.attributes : item.system.rollInfo.attributes;
 		const accVal = (isWeapon && (item.system.rollInfo?.useWeapon?.accuracy?.value ?? true)) ? item.system.accuracy.value : item.system.rollInfo.accuracy?.value || 0;
@@ -260,7 +260,7 @@ export class FUItem extends Item {
 			prim: primary,
 			sec: secondary,
 			mod: accVal,
-			bonus: accBonus,
+			bonus: actorAccBonus,
 		});
 		await roll.evaluate({ async: true });
 
@@ -269,8 +269,9 @@ export class FUItem extends Item {
 			await game.dice3d.showForRoll(roll, game.user, false, null, false, null, null);
 		}
 
-		const bonusAccVal = usedItem ? this.system.rollInfo.accuracy.value : 0;
+		const bonusAccVal = (usedItem && this.system.rollInfo.useWeapon?.accuracy.value) ? this.system.rollInfo.accuracy.value : 0;
 		const bonusAccValString = bonusAccVal ? ` + ${bonusAccVal} (${this.type})` : '';
+    console.log(`roll total ${roll.total}`, `bonusAccVal ${bonusAccVal}`)
 		const acc = roll.total + bonusAccVal;
 		const diceResults = roll.terms.filter((term) => term.results).map((die) => die.results[0].result);
 
@@ -309,7 +310,8 @@ export class FUItem extends Item {
           ${diceResults[0]} <strong>(${attrs.primary.value.toUpperCase()})</strong>
           + ${diceResults[1]} <strong>(${attrs.secondary.value.toUpperCase()})</strong>
           + ${accVal}
-		  + ${accBonus}
+        ${actorAccBonus ? '+ '+ actorAccBonus : ''}
+        ${bonusAccVal ? '+ '+ bonusAccVal : ''}
         </span>
       </div>
       <div class="float-box acc-float">
