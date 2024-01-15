@@ -699,7 +699,7 @@ export class FUItem extends Item {
         if (this.type === 'weapon') {
             return this.rollWeapon(isShift);
         }
-		if (this.type === 'spell') {
+		if (this.type === 'spell' && this.system.hasRoll?.value) {
             return this.rollSpell(isShift);
         }
 
@@ -802,7 +802,7 @@ export class FUItem extends Item {
                 mpCost: mpCost.value,
                 opportunity: quality.value,
                 summary: summary.value,
-                description: description,
+                description: await TextEditor.enrichHTML(description),
             },
             damage: checkDamage,
             speaker: ChatMessage.implementation.getSpeaker({actor: this.actor})
@@ -853,7 +853,7 @@ export class FUItem extends Item {
                 defense: 'def', //TODO: targeted defense missing from weapon?
                 quality: quality.value,
                 summary: summary.value,
-                description: description,
+                description: await TextEditor.enrichHTML(description),
             },
             damage: {
                 hrZero: rollInfo?.useWeapon?.hrZero?.value || hrZero,

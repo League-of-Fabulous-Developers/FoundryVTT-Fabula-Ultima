@@ -27,5 +27,5 @@
 {{/if}}
 
 {{#if (or spell.summary spell.description)}}
-    {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=spell.summary description=spell.description}}
+    {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=spell.summary description=spell.description collapseDescriptions=collapseDescriptions}}
 {{/if}}
