@@ -1,4 +1,4 @@
-const SYSTEM = 'projectfu';
+export const SYSTEM = 'projectfu';
 
 export const SETTINGS = Object.freeze({
 	optionQuirks: 'optionQuirks',

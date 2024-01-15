@@ -1,0 +1,11 @@
+<div>
+    <details {{collapseDescriptions}}>
+        <summary>{{localize 'FU.Description'}}</summary>
+        <div class='chat-desc'>
+            {{#if summary}}
+                <blockquote class='summary quote'>{{summary}}</blockquote>
+            {{/if}}
+            {{description}}
+        </div>
+    </details>
+</div>
