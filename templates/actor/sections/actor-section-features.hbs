@@ -81,15 +81,15 @@
 				{{!-- Item Name--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				<div class="item-m">{{capitalize item.system.subtype.value}}</div>
-				{{#if item.system.hasClock.value}}
 				<div class="item-sm" style="text-align: initial;">
+                    {{#if item.system.hasClock.value}}
 					<div class="progress-container">
 						{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
 						arr=item.progressArr
 						data=item.system.progress}}
 					</div>
+                    {{/if}}
 				</div>
-				{{/if}}
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
