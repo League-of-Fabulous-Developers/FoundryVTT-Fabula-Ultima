@@ -251,8 +251,8 @@ export class FUItem extends Item {
 		const accCheckBonus = this.actor.system.bonuses.accuracy.accuracyCheck;
 		const accBonus = isWeapon ? accCheckBonus : magicCheckBonus || 0;
 
-		const attrs = isWeapon ? item.system.attributes : item.system.rollInfo.attributes;
-		const accVal = isWeapon ? item.system.accuracy.value : item.system.rollInfo.accuracy.value || 0;
+		const attrs = (isWeapon && (item.system.rollInfo?.useWeapon?.accuracy?.value ?? true)) ? item.system.attributes : item.system.rollInfo.attributes;
+		const accVal = (isWeapon && (item.system.rollInfo?.useWeapon?.accuracy?.value ?? true)) ? item.system.accuracy.value : item.system.rollInfo.accuracy?.value || 0;
 
 		const primary = this.actor.system.attributes[attrs.primary.value].current;
 		const secondary = this.actor.system.attributes[attrs.secondary.value].current;
