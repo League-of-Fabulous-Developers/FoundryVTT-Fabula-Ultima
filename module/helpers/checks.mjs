@@ -94,10 +94,11 @@
  * @property {CheckSpell} [spell]
  * @property {number} [difficulty]
  * @property {CheckTarget[]} [targets]
+ * @property {boolean} [collapseDescriptions]
  */
 
 import { FU } from './config.mjs';
-import { SYSTEM } from '../settings.js';
+import { SETTINGS, SYSTEM } from '../settings.js';
 import { FUActor } from '../documents/actor.mjs';
 import { Flags } from './flags.mjs';
 
@@ -184,7 +185,7 @@ export async function rollCheck(params) {
  * @returns {Promise<void>}
  */
 async function handleReroll(check) {
-	const { attr1: attribute1, attr2: attribute2, modifier, bonus} = check.check;
+	const { attr1: attribute1, attr2: attribute2, modifier, bonus } = check.check;
 	const selection = check.reroll.selection;
 
 	let { attr1: attr1Result, attr2: attr2Result } = check.result;
@@ -534,6 +535,7 @@ export async function createCheckMessage(checkParams) {
 		});
 	})();
 
+	checkParams.collapseDescriptions = game.settings.get(SYSTEM, SETTINGS.collapseDescriptions);
 	/** @type Partial<ChatMessageData> */
 	const chatMessage = {
 		flavor: flavor,
@@ -607,9 +609,9 @@ export async function promptCheck(actor) {
 
 		const speaker = ChatMessage.implementation.getSpeaker({ actor });
 
-        /**
-         * @type CheckParams
-         */
+		/**
+		 * @type CheckParams
+		 */
 		let params = {
 			check: {
 				attr1: {
