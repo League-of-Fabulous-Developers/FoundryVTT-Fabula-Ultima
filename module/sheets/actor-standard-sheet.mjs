@@ -514,7 +514,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Increment and Decrement Buttons
 		html.find('.increment-button, .decrement-button').click((ev) => {
-			e.preventDefault();
+			ev.preventDefault();
 			const currentSheet = $(ev.currentTarget).closest('.projectfu-actor-sheet');
 			if (currentSheet.length === 0) {
 				console.error('Current sheet not found.');
