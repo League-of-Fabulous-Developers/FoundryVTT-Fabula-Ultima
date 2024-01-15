@@ -636,8 +636,8 @@ export class FUItem extends Item {
                   <span>${cost.value} Zenith</span>
                   ${discountText}
                 </div>
-                <div>${progress.value} Progress</div>
-                <div>${progressPerDay.value} progress per day / ${days.value} days</div>
+                <div>${progress.current} progress / ${progress.max} total days</div>
+                <div>${progressPerDay.value} progress per day</div>
               </div>`;
 		}
 		return '';
