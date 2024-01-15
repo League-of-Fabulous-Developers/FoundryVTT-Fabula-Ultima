@@ -61,7 +61,6 @@ export class FUItem extends Item {
 
 		const attackString = `【${attackAttributes}】${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}`;
 
-    //TODO: Account for added damage and typing changes
 		const damageString = `【${hrZeroText} + ${this.system.damage.value}】 ${this.system.damageType.value}`;
 
 		if (isWeaponOrShieldWithDual) {
@@ -325,7 +324,6 @@ export class FUItem extends Item {
       // Add bonus spell/ability damage if "Use Weapon Damage" and useItem
       // Change type of damage if it's defined in the rollInfo.damage
 			let damVal = (isWeapon && (item.system.rollInfo.useWeapon.damage?.value ?? true)) ? item.system.damage.value : this.system.rollInfo.damage.value;
-      console.log(damVal)
 			damVal = damVal || 0;
 			const bonusDamVal = (usedItem && this.system.rollInfo.useWeapon?.damage.value) ? this.system.rollInfo.damage.value : 0;
 			const bonusDamValString = bonusDamVal ? ` + ${bonusDamVal} (${this.type})` : '';
@@ -405,8 +403,6 @@ export class FUItem extends Item {
 				);
 
 				for (const equippedWeapon of equippedWeapons) {
-					 // if (! this.system.rollInfo?.useWeapon?.damage?.value)
-           //   equippedWeapon = mergeObject(equippedWeapon, {system: {rollInfo: this.system.rollInfo}})
           const data = await this.getSingleRollForItem(mergeObject(duplicate(equippedWeapon), {system: {rollInfo: this.system.rollInfo}}), true, isShift);
 					if (equippedWeapon.system.isEquipped.slot === 'mainHand') {
 						mainHandContent += data;
