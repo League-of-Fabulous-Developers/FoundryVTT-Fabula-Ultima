@@ -209,6 +209,10 @@ export class FUItem extends Item {
 				: `【${hrZeroText} ${this.system?.rollInfo?.damage?.value > 0 ? ` ${this.system?.rollInfo?.damage?.value}` : '0'} 】${this.system?.rollInfo?.damage.type.value}`;
 		}
 
+    if (hasDamage && useWeaponDamage) {
+        damageString=	 `【${hrZeroText} ${this.system?.rollInfo?.damage?.value > 0 ? ` ${weaponMain?.system?.damage.value} + ${this.system?.rollInfo?.damage?.value}` : '0'} 】${this.system?.rollInfo?.damage.type.value}`;
+    }
+
 		const qualityString = [capitalizeFirst(this.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬥ ');
 
 		const starCurrent = this.system?.level?.value;
