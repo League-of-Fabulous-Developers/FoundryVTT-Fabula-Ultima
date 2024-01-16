@@ -7,8 +7,11 @@ import { FUItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU } from './helpers/config.mjs';
-import { registerSystemSettings } from './settings.js';
+import {registerSystemSettings, SETTINGS, SYSTEM} from './settings.js';
 import {addRollContextMenuEntries} from "./helpers/checks.mjs";
+import {FUCombatTracker} from "./ui/combat-tracker.mjs";
+import {FUCombat} from "./ui/combat.mjs";
+import {FUCombatant} from "./ui/combatant.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -46,6 +49,17 @@ Hooks.once('init', async () => {
 
 	// Register system settings
 	registerSystemSettings();
+
+    if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker)) {
+        console.log(`${SYSTEM} | Initializing experimental combat tracker`)
+        CONFIG.Combat.documentClass = FUCombat
+        CONFIG.Combatant.documentClass = FUCombatant
+        CONFIG.Combat.initiative = {
+            formula: "1",
+            decimals: 0
+        }
+        CONFIG.ui.combat = FUCombatTracker
+    }
 
 	CONFIG.statusEffects = [
 		{

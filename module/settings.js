@@ -5,6 +5,7 @@ export const SETTINGS = Object.freeze({
 	optionZeroPower: 'optionZeroPower',
 	optionCampingRules: 'optionCampingRules',
 	collapseDescriptions: 'collapseDescriptions',
+	experimentalCombatTracker: 'experimentalCombatTracker',
 });
 
 export const registerSystemSettings = async function () {
@@ -51,6 +52,16 @@ export const registerSystemSettings = async function () {
 		config: true,
 		type: Boolean,
 		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.experimentalCombatTracker, {
+		name: game.i18n.localize('FU.ExperimentalCombatTracker'),
+		hint: game.i18n.localize('FU.ExperimentalCombatTrackerHint'),
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
 	});
 };
 
