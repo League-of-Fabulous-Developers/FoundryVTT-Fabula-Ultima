@@ -415,9 +415,11 @@ export class FUActor extends Actor {
 				this.usedSkills.initiativeBonus = this.calcUsedSkillsFromExtraInit(systemData);
 				this.usedSkills.accuracyCheck = this.calcUsedSkillsFromExtraPrecision(systemData);
 				this.usedSkills.magicCheck = this.calcUsedSkillsFromExtraMagic(systemData);
-				this.usedSkills.resistances = this.calcUsedSkillsFromResistances(systemData);
-				this.usedSkills.immunities = this.calcUsedSkillsFromImmunities(systemData);
 				this.usedSkills.absorption = this.calcUsedSkillsFromAbsorbs(systemData);
+				const [immunities, remainingFromAbsorb] = this.calcUsedSkillsFromImmunities(systemData, this.usedSkills.absorption);
+				this.usedSkills.immunities = immunities
+				this.usedSkills.resistances = this.calcUsedSkillsFromResistances(systemData, remainingFromAbsorb);
+				
 				this.usedSkills.specialRules = this.calcUsedSkillsFromSpecial(actorData);
 				this.usedSkills.equipment = this.calcUsedSkillsFromEquipment(actorData);
 				this.spUsed = Object.values(this.usedSkills).reduce((total, value) => total + value, 0);
@@ -534,8 +536,8 @@ export class FUActor extends Actor {
 				return Math.floor((sum - 1) / 3) + 1;
 			},
 
-			calcUsedSkillsFromResistances() {
-				let sum = 0;
+			calcUsedSkillsFromResistances(systemData,fromAbsorb) {
+				let sum = fromAbsorb*0.5;
 
 				Object.entries(systemData.affinities).forEach((el) => {
 					const isConstructWithEarth = systemData.species.value === 'construct' && el[0] === 'earth';
@@ -554,7 +556,7 @@ export class FUActor extends Actor {
 				return sum;
 			},
 
-			calcUsedSkillsFromImmunities() {
+			calcUsedSkillsFromImmunities(systemData, fromAbsorb) {
 				let sum = 0;
 				Object.entries(systemData.affinities).forEach((el) => {
 					if (el[1].base === 2) {
@@ -577,25 +579,19 @@ export class FUActor extends Actor {
 				}
 
 				if (sum < 0) {
-					sum = 0;
+					return[0,Math.max(0,fromAbsorb+sum)]
 				}
-
-				return Math.ceil(sum);
+				return [sum,fromAbsorb];
 			},
 
-			calcUsedSkillsFromAbsorbs() {
+			calcUsedSkillsFromAbsorbs(systemData) {
 				let sum = 0;
 				Object.entries(systemData.affinities).forEach((el) => {
 					if (el[1].base === 3) {
 						sum++;
 					}
 				});
-
-				if (sum < 0) {
-					sum = 0;
-				}
-
-				return Math.ceil(sum) * 2;
+				return sum;
 			},
 
 
