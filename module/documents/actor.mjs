@@ -520,19 +520,19 @@ export class FUActor extends Actor {
 				return sum;
 			},
 
-			calcUsedSkillsFromExtraPrecision() {
-				if (!systemData.bonuses.accuracy.accuracyCheck.bonus) {
+			calcUsedSkillsFromExtraPrecision(systemData) {
+				if (!systemData.bonuses.accuracy.accuracyCheck) {
 					return 0;
 				}
-				let sum = systemData.bonuses.accuracy.accuracyCheck.bonus;
+				let sum = systemData.bonuses.accuracy.accuracyCheck;
 				return Math.floor((sum - 1) / 3) + 1;
 			},			
 
-			calcUsedSkillsFromExtraMagic () {
-				if (!systemData.bonuses.accuracy.magicCheck.bonus) {
+			calcUsedSkillsFromExtraMagic (systemData) {
+				if (!systemData.bonuses.accuracy.magicCheck) {
 					return 0;
 				}
-				let sum = systemData.bonuses.accuracy.magicCheck.bonus;
+				let sum = systemData.bonuses.accuracy.magicCheck;
 				return Math.floor((sum - 1) / 3) + 1;
 			},
 
