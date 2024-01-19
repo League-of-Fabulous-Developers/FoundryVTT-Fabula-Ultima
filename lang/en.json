@@ -506,6 +506,18 @@
         "DialogFirstTurnFactionsHostile" : "Opponents",
         "CombatCurrentTurn" : "Current Turn: {turn}",
         "CombatFactionFriendly" : "Allies",
-        "CombatFactionHostile" : "Opponents"
+        "CombatFactionHostile" : "Opponents",
+        "SupportCheck" : "Support Check",
+        "GroupCheck" : "Group Check",
+        "ChatGroupCheckInitiated" : "{name} has initiated a Group Check!",
+        "ChatGroupCheckCanceled" : "Group Check canceled",
+        "ChatGroupCheckCompleted" : "Group Check completed",
+        "ChatGroupCheckSupport" : "Support Group Check",
+        "GroupCheckAttributeNotSelected" : "Check attribute not missing!",
+        "GroupCheckSupporters" : "Supporters:",
+        "DialogGroupCheckDifficulty" : "Group Check Difficulty:",
+        "DialogGroupCheckSupportDifficulty" : "Support Check Difficulty:",
+        "DialogGroupCheckTitle" : "Configure Group Check",
+        "DialogGroupCheckLabel" : "Initiate Group Check"
 	}
 }

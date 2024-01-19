@@ -1,7 +1,13 @@
 
 export const Flags = Object.freeze({
-    CheckParams: "CheckParams",
     CombatantsTurnTaken: "CombatantsTurnTaken",
     CurrentTurn: "CurrentTurn",
-    FirstTurn: "FirstTurn"
+    FirstTurn: "FirstTurn",
+    ChatMessage: Object.freeze({
+        CheckParams: "CheckParams",
+        GroupCheck: "GroupCheck",
+        GroupCheckConfig: "GroupCheckConfig",
+        SupportCheck: "Supporter",
+        GroupCheckSupporters: "GroupCheckSupporters",
+    }),
 })
