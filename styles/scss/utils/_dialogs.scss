@@ -1,3 +1,23 @@
 .dialog-group-check-cancel {
     padding: 0.5em;
 }
+
+.dialog-group-check-support {
+    & > * {
+        margin: 0.5em;
+    }
+
+    .leader {
+        font-weight: bold;
+    }
+
+    .bond {
+        padding: 0.25em;
+        border: 1px solid gray;
+        margin-bottom: 0.25em;
+
+        .feeling, .bondWith {
+            font-weight: bold;
+        }
+    }
+}
