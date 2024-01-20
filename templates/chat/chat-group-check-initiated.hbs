@@ -12,23 +12,30 @@
             {{localize (concat 'FU.Attribute' (capitalize attributes.attr2) 'Abbr')}}
         </div>
     </div>
-    {{#if supporter}}
-        <div class='detail-desc flexrow flex-group-center'>
-            <ul>
-                {{#each supporter}}
-                    <li>
+    {{#if supporters}}
+        <div class='detail-desc flexcol flex-group-center'>
+            <div class="flexcol group-check-supporters">
+                <div class='flexrow group-check-supporters-title'>
+                    <div>{{localize 'FU.ChatGroupCheckSupporter'}}</div>
+                    <div>{{localize 'FU.ChatGroupCheckSupportResult'}}</div>
+                    <div>{{localize 'FU.ChatGroupCheckSupportBond'}}</div>
+                </div>
+                {{#each supporters}}
+                    <div class='flexrow group-check-supporters-supporter'>
                         <div>
                             <span>{{name}}</span>
-                            <span>
-                                {{#if result}}
-                                    {{localize 'FU.Success'}}
-                                {{else}}
-                                    {{localize 'FU.Failure'}}
-                                {{/if}}
-                            </span>
                         </div>
-                        {{#if bond}}
-                            <div>
+                        <div>
+						<span>
+                            {{#if result}}
+                                {{localize 'FU.Success'}}
+                            {{else}}
+                                {{localize 'FU.Failure'}}
+                            {{/if}}
+                        </span>
+                        </div>
+                        <div>
+                            {{#if bond}}
                                 <span>{{localize 'FU.Bond'}}</span>
                                 {{#each bond}}
                                     <span>{{localize (concat 'FU.' bond)}}</span>
@@ -36,14 +43,14 @@
                                         <span>{{localize 'FU.And'}}</span>
                                     {{/unless}}
                                 {{/each}}
-                            </div>
-                        {{/if}}
-                    </li>
+                            {{/if}}
+                        </div>
+                    </div>
                 {{/each}}
-            </ul>
+            </div>
         </div>
     {{/if}}
-    <div class="detail-desc flexrow flex-group-center">
+    <div class='detail-desc flexrow flex-group-center'>
         {{#if (eq status 'open')}}
             <button type='button' data-support='{{groupCheckId}}'>{{localize 'FU.ChatGroupCheckSupport'}}</button>
         {{/if}}

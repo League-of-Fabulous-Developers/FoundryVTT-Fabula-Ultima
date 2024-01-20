@@ -55,14 +55,15 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/dialog/dialog-check.hbs',
 		'systems/projectfu/templates/dialog/dialog-check-push.hbs',
 		'systems/projectfu/templates/dialog/dialog-check-reroll.hbs',
-        'systems/projectfu/templates/dialog/dialog_first_turn.hbs',
-        'systems/projectfu/templates/dialog/dialog-group-check.hbs',
+		'systems/projectfu/templates/dialog/dialog_first_turn.hbs',
+		'systems/projectfu/templates/dialog/dialog-group-check.hbs',
+		'systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs',
 
 		// Chat Messages
 		'systems/projectfu/templates/chat/chat-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
-        'systems/projectfu/templates/chat/chat-group-check-initiated.hbs',
+		'systems/projectfu/templates/chat/chat-group-check-initiated.hbs',
 
 		// Chat Message Partials
 		'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',
@@ -72,14 +73,14 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-item-quality.hbs',
 		'systems/projectfu/templates/chat/partials/chat-spell-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
-        'systems/projectfu/templates/chat/partials/chat-check-push.hbs',
-        'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs',
+		'systems/projectfu/templates/chat/partials/chat-check-push.hbs',
+		'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs',
 
-        // UI Components
-        'systems/projectfu/templates/ui/combat-tracker.hbs',
+		// UI Components
+		'systems/projectfu/templates/ui/combat-tracker.hbs',
 
-        // Applications
-        'systems/projectfu/templates/app/app-group-check.hbs',
+		// Applications
+		'systems/projectfu/templates/app/app-group-check.hbs',
 	]);
 };
 

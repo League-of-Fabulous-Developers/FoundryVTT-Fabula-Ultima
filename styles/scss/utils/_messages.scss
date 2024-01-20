@@ -99,7 +99,7 @@
     font-size: 16px;
     color: $color-secondary;
   }
-    div {
+    & > div {
     margin: 0;
     height: 100% !important;
     flex-grow: 1;
@@ -302,4 +302,18 @@
       }
     }
   }
+}
+
+.group-check-supporters {
+
+    .group-check-supporters-title, .group-check-supporters-supporter {
+        & > *:not(:last-child) {
+            border-right: 1px solid black;
+        }
+    }
+
+
+    .group-check-supporters-title {
+        font-weight: bolder;
+    }
 }
