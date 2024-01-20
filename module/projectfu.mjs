@@ -12,6 +12,7 @@ import {addRollContextMenuEntries} from "./helpers/checks.mjs";
 import {FUCombatTracker} from "./ui/combat-tracker.mjs";
 import {FUCombat} from "./ui/combat.mjs";
 import {FUCombatant} from "./ui/combatant.mjs";
+import {GroupCheck} from "./helpers/group-check.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -29,6 +30,7 @@ Hooks.once('init', async () => {
 		FUActor,
 		FUItem,
 		rollItemMacro,
+        GroupCheck2: GroupCheck
 	};
 
 	// Add custom constants for configuration.

@@ -1,5 +1,6 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
 import {promptCheck} from "../helpers/checks.mjs";
+import {GroupCheck} from "../helpers/group-check.mjs";
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'ko', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -1075,6 +1076,10 @@ export class FUStandardActorSheet extends ActorSheet {
 			if (dataset.rollType === 'roll-check' || dataset.rollType === 'roll-init') {
                 return promptCheck(this.actor)
 			}
+            if (dataset.rollType === "group-check")
+            {
+                GroupCheck.promptCheck(this.actor)
+            }
 		}
 
 		// Handle item-slot rolls.

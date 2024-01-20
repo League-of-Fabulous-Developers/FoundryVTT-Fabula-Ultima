@@ -1,0 +1,57 @@
+<div>
+    <div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
+        <div>{{localize 'FU.ChatGroupCheckInitiated' name=leader.name}}</div>
+    </div>
+    <div class='detail-desc flex-group-center grid grid-2col'>
+        <div class='spin2win'>
+            <i class='fas fa-dice-d20 ra-2x rollable'></i>
+            {{localize (concat 'FU.Attribute' (capitalize attributes.attr1) 'Abbr')}}
+        </div>
+        <div class='spin2win'>
+            <i class='fas fa-dice-d20 ra-2x rollable'></i>
+            {{localize (concat 'FU.Attribute' (capitalize attributes.attr2) 'Abbr')}}
+        </div>
+    </div>
+    {{#if supporter}}
+        <div class='detail-desc flexrow flex-group-center'>
+            <ul>
+                {{#each supporter}}
+                    <li>
+                        <div>
+                            <span>{{name}}</span>
+                            <span>
+                                {{#if result}}
+                                    {{localize 'FU.Success'}}
+                                {{else}}
+                                    {{localize 'FU.Failure'}}
+                                {{/if}}
+                            </span>
+                        </div>
+                        {{#if bond}}
+                            <div>
+                                <span>{{localize 'FU.Bond'}}</span>
+                                {{#each bond}}
+                                    <span>{{localize (concat 'FU.' bond)}}</span>
+                                    {{#unless @last}}
+                                        <span>{{localize 'FU.And'}}</span>
+                                    {{/unless}}
+                                {{/each}}
+                            </div>
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    {{/if}}
+    <div class="detail-desc flexrow flex-group-center">
+        {{#if (eq status 'open')}}
+            <button type='button' data-support='{{groupCheckId}}'>{{localize 'FU.ChatGroupCheckSupport'}}</button>
+        {{/if}}
+        {{#if (eq status 'completed')}}
+            <span>{{localize 'FU.ChatGroupCheckCompleted'}}</span>
+        {{/if}}
+        {{#if (eq status 'canceled')}}
+            <span>{{localize 'FU.ChatGroupCheckCanceled'}}</span>
+        {{/if}}
+    </div>
+</div>
