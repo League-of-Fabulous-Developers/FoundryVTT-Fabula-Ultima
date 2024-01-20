@@ -10,11 +10,13 @@
         ({{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute) 'Abbr')}})
     </div>
 </div>
-<div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
-    <div>
-        {{localize 'FU.ChatDifficulty'}}: {{difficulty}}
+{{#if (gt difficulty 0)}}
+    <div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
+        <div>
+            {{localize 'FU.ChatDifficulty'}}: {{difficulty}}
+        </div>
     </div>
-</div>
+{{/if}}
 <div class='detail-desc flexrow' style='padding:0 2px'>
     <div class='spin2win'><i class='fas fa-dice-d20 ra-2x rollable'></i>
         {{#if result.modifier}}

@@ -23,7 +23,11 @@
             <div class="detail-desc flexrow flex-group-center">
                 <span>{{lookup (lookup @root.supporters id) 'name'}}</span>
                 <span>{{#if result}}{{localize 'FU.Success'}}{{else}}{{localize 'FU.Failure'}}{{/if}}</span>
-                <span>{{bond}}</span>
+                <span>
+                    {{#each bond}}
+                        <span>{{localize (concat 'FU.' this)}}</span>{{#unless @last}}<span>,</span>{{/unless}}
+                    {{/each}}
+                </span>
             </div>
         {{/each}}
     </div>
