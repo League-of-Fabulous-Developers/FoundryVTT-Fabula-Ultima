@@ -1,18 +1,36 @@
 // Import document classes.
-import { FUActor } from './documents/actor.mjs';
-import { FUItem } from './documents/item.mjs';
+import {FUActor} from './documents/actors/actor.mjs';
+import {FUItem} from './documents/items/item.mjs';
 // Import sheet classes.
-import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
-import { FUItemSheet } from './sheets/item-sheet.mjs';
+import {FUStandardActorSheet} from './sheets/actor-standard-sheet.mjs';
+import {FUItemSheet} from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
-import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
-import { FU } from './helpers/config.mjs';
+import {preloadHandlebarsTemplates} from './helpers/templates.mjs';
+import {FU} from './helpers/config.mjs';
 import {registerSystemSettings, SETTINGS, SYSTEM} from './settings.js';
-import {addRollContextMenuEntries} from "./helpers/checks.mjs";
-import {FUCombatTracker} from "./ui/combat-tracker.mjs";
-import {FUCombat} from "./ui/combat.mjs";
-import {FUCombatant} from "./ui/combatant.mjs";
-import {GroupCheck} from "./helpers/group-check.mjs";
+import {addRollContextMenuEntries} from './helpers/checks.mjs';
+import {FUCombatTracker} from './ui/combat-tracker.mjs';
+import {FUCombat} from './ui/combat.mjs';
+import {FUCombatant} from './ui/combatant.mjs';
+import {GroupCheck} from './helpers/group-check.mjs';
+import {CharacterDataModel} from './documents/actors/character/character-data-model.mjs';
+import {NpcDataModel} from './documents/actors/npc/npc-data-model.mjs';
+import {AccessoryDataModel} from './documents/items/accessory/accessory-data-model.mjs';
+import {ArmorDataModel} from './documents/items/armor/armor-data-model.mjs';
+import {BasicItemDataModel} from './documents/items/basic/basic-item-data-model.mjs';
+import {BehaviorDataModel} from './documents/items/behavior/behavior-data-model.mjs';
+import {ClassDataModel} from './documents/items/class/class-data-model.mjs';
+import {ConsumableDataModel} from './documents/items/consumable/consumable-data-model.mjs';
+import {HeroicSkillDataModel} from './documents/items/heroic/heroic-skill-data-model.mjs';
+import {MiscAbilityDataModel} from './documents/items/misc/misc-ability-data-model.mjs';
+import {ProjectDataModel} from './documents/items/project/project-data-model.mjs';
+import {RitualDataModel} from './documents/items/ritual/ritual-data-model.mjs';
+import {RuleDataModel} from './documents/items/rule/rule-data-model.mjs';
+import {ShieldDataModel} from './documents/items/shield/shield-data-model.mjs';
+import {SkillDataModel} from './documents/items/skill/skill-data-model.mjs';
+import {SpellDataModel} from './documents/items/spell/spell-data-model.mjs';
+import {TreasureDataModel} from './documents/items/treasure/treasure-data-model.mjs';
+import {ZeroPowerDataModel} from './documents/items/zeropower/zero-power-data-model.mjs';
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -30,7 +48,7 @@ Hooks.once('init', async () => {
 		FUActor,
 		FUItem,
 		rollItemMacro,
-        GroupCheck2: GroupCheck
+		GroupCheck: GroupCheck,
 	};
 
 	// Add custom constants for configuration.
@@ -47,21 +65,43 @@ Hooks.once('init', async () => {
 
 	// Define custom Document classes
 	CONFIG.Actor.documentClass = FUActor;
+	CONFIG.Actor.dataModels = {
+		character: CharacterDataModel,
+		npc: NpcDataModel,
+	};
 	CONFIG.Item.documentClass = FUItem;
+	CONFIG.Item.dataModels = {
+		accessory: AccessoryDataModel,
+		armor: ArmorDataModel,
+		basic: BasicItemDataModel,
+		behavior: BehaviorDataModel,
+		class: ClassDataModel,
+		consumable: ConsumableDataModel,
+		heroic: HeroicSkillDataModel,
+		misc: MiscAbilityDataModel,
+		project: ProjectDataModel,
+		ritual: RitualDataModel,
+		rule: RuleDataModel,
+		shield: ShieldDataModel,
+		skill: SkillDataModel,
+		spell: SpellDataModel,
+		treasure: TreasureDataModel,
+		zeroPower: ZeroPowerDataModel,
+	};
 
 	// Register system settings
 	registerSystemSettings();
 
-    if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker)) {
-        console.log(`${SYSTEM} | Initializing experimental combat tracker`)
-        CONFIG.Combat.documentClass = FUCombat
-        CONFIG.Combatant.documentClass = FUCombatant
-        CONFIG.Combat.initiative = {
-            formula: "1",
-            decimals: 0
-        }
-        CONFIG.ui.combat = FUCombatTracker
-    }
+	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker)) {
+		console.log(`${SYSTEM} | Initializing experimental combat tracker`);
+		CONFIG.Combat.documentClass = FUCombat;
+		CONFIG.Combatant.documentClass = FUCombatant;
+		CONFIG.Combat.initiative = {
+			formula: '1',
+			decimals: 0,
+		};
+		CONFIG.ui.combat = FUCombatTracker;
+	}
 
 	CONFIG.statusEffects = [
 		{
@@ -229,7 +269,7 @@ Hooks.once('init', async () => {
 		makeDefault: true,
 	});
 
-    Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
+	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
@@ -288,7 +328,7 @@ function createItemMacro(data, slot) {
 	if (data.type !== 'Item') return;
 	if (!data.uuid.includes('Actor.') && !data.uuid.includes('Token.')) {
 		ui.notifications.warn('You can only create macro buttons for owned Items');
-		return false
+		return false;
 	}
 	// If it is, retrieve it based on the uuid.
 	Item.fromDropData(data).then((item) => {

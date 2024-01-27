@@ -1,4 +1,4 @@
-import {createCheckMessage, rollCheck} from '../helpers/checks.mjs';
+import {createCheckMessage, rollCheck} from '../../helpers/checks.mjs';
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -10,7 +10,7 @@ export class FUItem extends Item {
 	 * This method is automatically called when an item is created or updated.
 	 */
 	prepareData() {
-		// As with the actor class, items are documents that can have their data
+		// As with the actors class, items are documents that can have their data
 		// preparation methods overridden (such as prepareBaseData()).
 		super.prepareData();
 	}
@@ -18,10 +18,10 @@ export class FUItem extends Item {
 	/**
 	 * Prepare a data object which is passed to any Roll formulas that are created related to this Item.
 	 * @private
-	 * @returns {object|null} The roll data object, or null if no actor is associated with this item.
+	 * @returns {object|null} The roll data object, or null if no actors is associated with this item.
 	 */
 	getRollData() {
-		// If present, return the actor's roll data.
+		// If present, return the actors's roll data.
 		if (!this.actor) return null;
 		const rollData = this.actor.getRollData();
 
@@ -429,7 +429,7 @@ export class FUItem extends Item {
 		const hasSummary = summary && summary.trim() !== '';
 		const description = item.system.description;
 		const hasDescription = description && description.trim() !== '';
-    const collapseDescriptions = game.settings.get('projectfu', 'collapseDescriptions') ? '' : 'open';
+		const collapseDescriptions = game.settings.get('projectfu', 'collapseDescriptions') ? '' : 'open';
 
 		if (hasSummary || hasDescription) {
 			return `<span>
@@ -437,10 +437,13 @@ export class FUItem extends Item {
         <summary>${game.i18n.localize('FU.Description')}</summary>
         <div class="chat-desc">
         ${hasSummary ? `<blockquote class="summary quote">${summary}</blockquote>` : ''}
-        ${hasDescription ? `
+        ${
+			hasDescription
+				? `
           ${description}
-          ` : ''
-        }
+          `
+				: ''
+		}
         </div>
         </details>
         </span>`;
@@ -685,10 +688,7 @@ export class FUItem extends Item {
 		return '';
 	}
 
-	getClockString() {
-
-		
-	}
+	getClockString() {}
 
 	/**
 	 * Handle clickable rolls.
@@ -696,12 +696,12 @@ export class FUItem extends Item {
 	 * @private
 	 */
 	async roll(isShift) {
-        if (this.type === 'weapon') {
-            return this.rollWeapon(isShift);
-        }
+		if (this.type === 'weapon') {
+			return this.rollWeapon(isShift);
+		}
 		if (this.type === 'spell' && this.system.hasRoll?.value) {
-            return this.rollSpell(isShift);
-        }
+			return this.rollSpell(isShift);
+		}
 
 		const item = this;
 		const { system, img, name, type } = item;
@@ -763,105 +763,90 @@ export class FUItem extends Item {
 		}
 	}
 
-    /**
-     * @param {boolean} hrZero whether HR should be treated as 0 for damage
-     * @return {Promise<chatMessage>}
-     */
-    async rollSpell(hrZero)
-    {
-        const {rollInfo, quality, description, summary, mpCost, target, duration} = this.system;
-        let checkDamage = undefined;
-        if (rollInfo?.damage?.hasDamage?.value)
-        {
-            checkDamage = {
-                hrZero: rollInfo.useWeapon?.hrZero?.value || hrZero,
-                type: rollInfo.damage.type.value,
-                bonus: rollInfo.damage.value,
-            }
-        }
-        ;
-        const check = await rollCheck({
-            check: {
-                title: game.i18n.localize('FU.MagicCheck'),
-                attr1: {
-                    attribute: rollInfo.attributes.primary.value,
-                    dice: this.actor.system.attributes[rollInfo.attributes.primary.value].current,
-                },
-                attr2: {
-                    attribute: rollInfo.attributes.secondary.value,
-                    dice: this.actor.system.attributes[rollInfo.attributes.secondary.value].current,
-                },
-                modifier: rollInfo.accuracy.value,
-                bonus: this.actor.system.bonuses.accuracy.magicCheck,
-            },
-            spell: {
-                name: this.name,
-                img: this.img,
-                duration: duration.value,
-                target: target.value,
-                mpCost: mpCost.value,
-                opportunity: quality.value,
-                summary: summary.value,
-                description: await TextEditor.enrichHTML(description),
-            },
-            damage: checkDamage,
-            speaker: ChatMessage.implementation.getSpeaker({actor: this.actor})
-        });
-        return createCheckMessage(check);
-    }
+	/**
+	 * @param {boolean} hrZero whether HR should be treated as 0 for damage
+	 * @return {Promise<chatMessage>}
+	 */
+	async rollSpell(hrZero) {
+		const { rollInfo, quality, description, summary, mpCost, target, duration } = this.system;
+		let checkDamage = undefined;
+		if (rollInfo?.damage?.hasDamage?.value) {
+			checkDamage = {
+				hrZero: rollInfo.useWeapon?.hrZero?.value || hrZero,
+				type: rollInfo.damage.type.value,
+				bonus: rollInfo.damage.value,
+			};
+		}
 
-    /**
-     * @param  {boolean} hrZero whether HR should be treated as 0 for damage
-     * @return {Promise<chatMessage>}
-     */
-    async rollWeapon(hrZero)
-    {
-        const {
-            accuracy,
-            attributes,
-            type,
-            rollInfo,
-            quality,
-            damage,
-            damageType,
-            hands,
-            description,
-            category,
-            summary
-        } = this.system;
-        const {accuracyCheck, ...other} = this.actor.system.bonuses.accuracy;
-        const check = await rollCheck({
-            check: {
-                title: game.i18n.localize('FU.AccuracyCheck'),
-                attr1: {
-                    attribute: attributes.primary.value,
-                    dice: this.actor.system.attributes[attributes.primary.value].current,
-                },
-                attr2: {
-                    attribute: attributes.secondary.value,
-                    dice: this.actor.system.attributes[attributes.secondary.value].current,
-                },
-                modifier: accuracy.value,
-                bonus: accuracyCheck + (other[category.value] ?? 0),
-            },
-            weapon: {
-                name: this.name,
-                img: this.img,
-                category: category.value,
-                type: type.value,
-                hands: hands.value,
-                defense: 'def', //TODO: targeted defense missing from weapon?
-                quality: quality.value,
-                summary: summary.value,
-                description: await TextEditor.enrichHTML(description),
-            },
-            damage: {
-                hrZero: rollInfo?.useWeapon?.hrZero?.value || hrZero,
-                type: damageType.value,
-                bonus: damage.value,
-            },
-            speaker: ChatMessage.implementation.getSpeaker({actor: this.actor})
-        });
-        return createCheckMessage(check);
-    }
+		const check = await rollCheck({
+			check: {
+				title: game.i18n.localize('FU.MagicCheck'),
+				attr1: {
+					attribute: rollInfo.attributes.primary.value,
+					dice: this.actor.system.attributes[rollInfo.attributes.primary.value].current,
+				},
+				attr2: {
+					attribute: rollInfo.attributes.secondary.value,
+					dice: this.actor.system.attributes[rollInfo.attributes.secondary.value].current,
+				},
+				modifier: rollInfo.accuracy.value,
+				bonus: this.actor.system.bonuses.accuracy.magicCheck,
+			},
+			spell: {
+				name: this.name,
+				img: this.img,
+				duration: duration.value,
+				target: target.value,
+				mpCost: mpCost.value,
+				opportunity: quality.value,
+				summary: summary.value,
+				description: await TextEditor.enrichHTML(description),
+			},
+			damage: checkDamage,
+			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
+		});
+		return createCheckMessage(check);
+	}
+
+	/**
+	 * @param  {boolean} hrZero whether HR should be treated as 0 for damage
+	 * @return {Promise<chatMessage>}
+	 */
+	async rollWeapon(hrZero) {
+		const { accuracy, attributes, type, rollInfo, quality, damage, damageType, hands, description, category, summary } = this.system;
+		const { accuracyCheck, ...other } = this.actor.system.bonuses.accuracy;
+		const check = await rollCheck({
+			check: {
+				title: game.i18n.localize('FU.AccuracyCheck'),
+				attr1: {
+					attribute: attributes.primary.value,
+					dice: this.actor.system.attributes[attributes.primary.value].current,
+				},
+				attr2: {
+					attribute: attributes.secondary.value,
+					dice: this.actor.system.attributes[attributes.secondary.value].current,
+				},
+				modifier: accuracy.value,
+				bonus: accuracyCheck + (other[category.value] ?? 0),
+			},
+			weapon: {
+				name: this.name,
+				img: this.img,
+				category: category.value,
+				type: type.value,
+				hands: hands.value,
+				defense: 'def', //TODO: targeted defense missing from weapon?
+				quality: quality.value,
+				summary: summary.value,
+				description: await TextEditor.enrichHTML(description),
+			},
+			damage: {
+				hrZero: rollInfo?.useWeapon?.hrZero?.value || hrZero,
+				type: damageType.value,
+				bonus: damage.value,
+			},
+			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
+		});
+		return createCheckMessage(check);
+	}
 }

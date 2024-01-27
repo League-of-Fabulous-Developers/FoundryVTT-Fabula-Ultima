@@ -97,10 +97,10 @@
  * @property {boolean} [collapseDescriptions]
  */
 
-import { FU } from './config.mjs';
-import { SETTINGS, SYSTEM } from '../settings.js';
-import { FUActor } from '../documents/actor.mjs';
-import { Flags } from './flags.mjs';
+import {FU} from './config.mjs';
+import {SETTINGS, SYSTEM} from '../settings.js';
+import {FUActor} from '../documents/actors/actor.mjs';
+import {Flags} from './flags.mjs';
 
 /**
  *
@@ -271,7 +271,7 @@ export function addRollContextMenuEntries(html, options) {
 			const messageId = li.data('messageId');
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
-            const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
+			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
 			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.result?.fumble;
 		},
@@ -280,7 +280,7 @@ export function addRollContextMenuEntries(html, options) {
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
-                const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
+				const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 				const rerollParams = await getRerollParams(checkParams, ChatMessage.getSpeakerActor(message.speaker));
 				if (rerollParams) {
 					const newMessage = await rerollCheck(checkParams, rerollParams);
@@ -299,7 +299,7 @@ export function addRollContextMenuEntries(html, options) {
 			const messageId = li.data('messageId');
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
-            const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
+			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
 			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.push && !flag.result?.fumble;
 		},
@@ -308,7 +308,7 @@ export function addRollContextMenuEntries(html, options) {
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
-                const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
+				const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 				const pushParams = await getPushParams(ChatMessage.getSpeakerActor(message.speaker));
 				if (pushParams) {
 					const newMessage = await pushCheck(checkParams, pushParams);
@@ -327,7 +327,7 @@ export function addRollContextMenuEntries(html, options) {
 			const messageId = li.data('messageId');
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
-            const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
+			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
 			return message && message.isRoll && flag && speakerActor?.type === 'npc' && speakerActor.system.villain.value && !flag.result?.fumble;
 		},
@@ -336,7 +336,7 @@ export function addRollContextMenuEntries(html, options) {
 			/** @type ChatMessage | undefined */
 			const message = game.messages.get(messageId);
 			if (message) {
-                const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
+				const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 				const rerollParams = await getRerollParams(checkParams, ChatMessage.getSpeakerActor(message.speaker));
 				if (rerollParams) {
 					const newMessage = await rerollCheck(checkParams, rerollParams);
@@ -517,8 +517,7 @@ async function getRerollParams(params, actor) {
  * @param {Object} [additionalFlags]
  * @return {Promise<chatMessage>}
  */
-export async function createCheckMessage(checkParams, additionalFlags = {})
-{
+export async function createCheckMessage(checkParams, additionalFlags = {}) {
 	const flavor = await (async () => {
 		if (checkParams.weapon) {
 			return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
@@ -533,7 +532,7 @@ export async function createCheckMessage(checkParams, additionalFlags = {})
 			});
 		}
 		return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
-            title: checkParams.check.title || 'FU.RollCheck',
+			title: checkParams.check.title || 'FU.RollCheck',
 		});
 	})();
 
@@ -545,11 +544,14 @@ export async function createCheckMessage(checkParams, additionalFlags = {})
 		rolls: [checkParams.result.roll],
 		type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 		speaker: checkParams.speaker,
-        flags: foundry.utils.mergeObject({
-			[SYSTEM]: {
-                [Flags.ChatMessage.CheckParams]: checkParams,
+		flags: foundry.utils.mergeObject(
+			{
+				[SYSTEM]: {
+					[Flags.ChatMessage.CheckParams]: checkParams,
+				},
 			},
-        }, additionalFlags)
+			additionalFlags,
+		),
 	};
 
 	return ChatMessage.create(chatMessage);

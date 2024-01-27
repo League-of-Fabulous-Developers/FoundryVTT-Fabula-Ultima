@@ -1,0 +1,93 @@
+{
+	"name": "Class (2.1)",
+	"type": "class",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"subtype": {
+			"value": ""
+		},
+		"summary": {
+			"value": "Class"
+		},
+		"description": "<p>Description</p>",
+		"isFavored": {
+			"value": true
+		},
+		"showTitleCard": {
+			"value": true
+		},
+		"level": {
+			"value": "1",
+			"max": 10,
+			"min": 0
+		},
+		"benefits": {
+			"resources": {
+				"hp": {
+					"value": true
+				},
+				"mp": {
+					"value": true
+				},
+				"ip": {
+					"value": true
+				}
+			},
+			"martials": {
+				"melee": {
+					"value": true
+				},
+				"ranged": {
+					"value": true
+				},
+				"armor": {
+					"value": true
+				},
+				"shields": {
+					"value": true
+				}
+			},
+			"rituals": {
+				"arcanism": {
+					"value": true
+				},
+				"chimerism": {
+					"value": true
+				},
+				"elementalism": {
+					"value": true
+				},
+				"entropism": {
+					"value": true
+				},
+				"ritualism": {
+					"value": true
+				},
+				"spiritism": {
+					"value": true
+				}
+			}
+		},
+		"source": {
+			"value": "1"
+		}
+	},
+	"effects": [],
+	"folder": null,
+	"flags": {
+		"exportSource": {
+			"world": "project-fu-testworld",
+			"system": "projectfu",
+			"coreVersion": "11.315",
+			"systemVersion": "#{VERSION}#"
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"systemVersion": "#{VERSION}#",
+		"coreVersion": "11.315",
+		"createdTime": 1706295711575,
+		"modifiedTime": 1706295732583,
+		"lastModifiedBy": "dAAgcxcaWwIjCHxo"
+	}
+}

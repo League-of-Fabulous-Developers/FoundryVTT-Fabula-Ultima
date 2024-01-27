@@ -67,7 +67,7 @@ export const registerSystemSettings = async function () {
 
 class OptionalRules extends FormApplication {
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			template: 'systems/projectfu/templates/system/settings/optional-rules.hbs',
 		});
 	}

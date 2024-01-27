@@ -37,6 +37,18 @@ FU.affinities = {
 	poison: 'FU.DamagePoison',
 };
 
+FU.damageTypes = {
+	physical: 'FU.DamagePhysical',
+	air: 'FU.DamageAir',
+	bolt: 'FU.DamageBolt',
+	dark: 'FU.DamageDark',
+	earth: 'FU.DamageEarth',
+	fire: 'FU.DamageFire',
+	ice: 'FU.DamageIce',
+	light: 'FU.DamageLight',
+	poison: 'FU.DamagePoison',
+};
+
 FU.affIcon = {
 	phys: 'fun fu-phys',
 	air: 'fun fu-wind',
@@ -66,6 +78,10 @@ FU.affTypeAbbr = {
 	3: 'FU.AffinityAbsorptionAbbr',
 	4: 'FU.AffinityRepulsionAbbr',
 };
+
+FU.species = ['beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead'];
+
+FU.villainTypes = ['minor', 'major', 'supreme'];
 
 FU.speciesRule = {
 	beast: 'FU.BeastRule',

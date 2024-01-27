@@ -1,0 +1,189 @@
+{
+	"level": {
+		"value": 5
+	},
+	"resources": {
+		"hp": {
+			"value": 10,
+			"min": 0,
+			"max": 10,
+			"bonus": 5
+		},
+		"mp": {
+			"value": 10,
+			"min": 0,
+			"max": 10,
+			"bonus": 5
+		},
+		"rp1": {
+			"name": "",
+			"value": 1
+		},
+		"rp2": {
+			"name": "",
+			"value": 2
+		},
+		"rp3": {
+			"name": "",
+			"value": 3
+		},
+		"zenit": {
+			"value": 0
+		},
+		"ip": {
+			"value": 6,
+			"min": 0,
+			"max": 6
+		},
+		"fp": {
+			"value": 3
+		},
+		"bonds": []
+	},
+	"affinities": {
+		"phys": {
+			"base": 0,
+			"current": 0,
+			"bonus": 0
+		},
+		"air": {
+			"base": -1,
+			"current": 0,
+			"bonus": 0
+		},
+		"bolt": {
+			"base": 1,
+			"current": 0,
+			"bonus": 0
+		},
+		"dark": {
+			"base": 2,
+			"current": 0,
+			"bonus": 0
+		},
+		"earth": {
+			"base": 3,
+			"current": 0,
+			"bonus": 0
+		},
+		"fire": {
+			"base": 4,
+			"current": 0,
+			"bonus": 0
+		},
+		"ice": {
+			"base": 0,
+			"current": 0,
+			"bonus": 0
+		},
+		"light": {
+			"base": -1,
+			"current": 0,
+			"bonus": 0
+		},
+		"poison": {
+			"base": 1,
+			"current": 0,
+			"bonus": 0
+		}
+	},
+	"attributes": {
+		"dex": {
+			"base": 6,
+			"current": 6,
+			"bonus": 0
+		},
+		"ins": {
+			"base": 8,
+			"current": 6,
+			"bonus": 0
+		},
+		"mig": {
+			"base": 10,
+			"current": 6,
+			"bonus": 0
+		},
+		"wlp": {
+			"base": 12,
+			"current": 6,
+			"bonus": 0
+		}
+	},
+	"derived": {
+		"init": {
+			"value": 0,
+			"bonus": 1
+		},
+		"def": {
+			"value": 0,
+			"bonus": 1
+		},
+		"mdef": {
+			"value": 0,
+			"bonus": 1
+		}
+	},
+	"bonuses": {
+		"accuracy": {
+			"accuracyCheck": 1,
+			"magicCheck": 1,
+			"opposedCheck": 0,
+			"openCheck": 0,
+			"arcane": 0,
+			"bow": 0,
+			"brawling": 0,
+			"dagger": 0,
+			"firearm": 0,
+			"flail": 0,
+			"heavy": 0,
+			"spear": 0,
+			"sword": 0,
+			"thrown": 0
+		},
+		"damage": {
+			"physical": 0,
+			"magic": 0,
+			"arcane": 0,
+			"bow": 0,
+			"brawling": 0,
+			"dagger": 0,
+			"firearm": 0,
+			"flail": 0,
+			"heavy": 0,
+			"spear": 0,
+			"sword": 0,
+			"thrown": 0
+		}
+	},
+	"traits": {
+		"value": "small, medium, large"
+	},
+	"species": {
+		"value": "beast"
+	},
+	"villain": {
+		"value": "minor"
+	},
+	"phases": {
+		"value": 1
+	},
+	"multipart": {
+		"value": "2"
+	},
+	"isElite": {
+		"value": true
+	},
+	"isChampion": {
+		"value": 2
+	},
+	"isCompanion": {
+		"value": false
+	},
+	"useEquipment": {
+		"value": true
+	},
+	"study": {
+		"value": 0
+	},
+	"description": "<p>Description</p>"
+}
