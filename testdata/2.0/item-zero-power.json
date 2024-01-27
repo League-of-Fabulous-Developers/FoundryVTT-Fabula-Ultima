@@ -1,0 +1,57 @@
+{
+	"name": "Zero Power (2.0)",
+	"type": "zeroPower",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"subtype": {
+			"value": ""
+		},
+		"summary": {
+			"value": "Zero Power"
+		},
+		"description": "",
+		"isFavored": {
+			"value": false
+		},
+		"showTitleCard": {
+			"value": false
+		},
+		"hasClock": {
+			"value": false
+		},
+		"progress": {
+			"current": "1",
+			"step": "2",
+			"max": "5"
+		},
+		"zeroTrigger": {
+			"value": "Trigger",
+			"description": "<p>Trigger Description</p>"
+		},
+		"zeroEffect": {
+			"value": "Effect",
+			"description": "<p>Effect Description</p>"
+		},
+		"source": {
+			"value": "1"
+		}
+	},
+	"effects": [],
+	"folder": null,
+	"flags": {
+		"exportSource": {
+			"world": "project-fu-old",
+			"system": "projectfu-old",
+			"coreVersion": "11.315",
+			"systemVersion": "2.0.9"
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu-old",
+		"systemVersion": "2.0.9",
+		"coreVersion": "11.315",
+		"createdTime": 1706294321192,
+		"modifiedTime": 1706294358173,
+		"lastModifiedBy": "sSw77RM9l0da15kO"
+	}
+}

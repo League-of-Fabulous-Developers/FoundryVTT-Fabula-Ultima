@@ -1,0 +1,88 @@
+{
+	"name": "Project (2.0)",
+	"type": "project",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"subtype": {
+			"value": ""
+		},
+		"summary": {
+			"value": "Project"
+		},
+		"description": "<p>Description</p>",
+		"isFavored": {
+			"value": true
+		},
+		"showTitleCard": {
+			"value": true
+		},
+		"hasClock": {
+			"value": false
+		},
+		"progress": {
+			"current": 1,
+			"step": 1,
+			"max": 6
+		},
+		"potency": {
+			"value": "medium"
+		},
+		"area": {
+			"value": "small"
+		},
+		"use": {
+			"value": "permanent"
+		},
+		"isFlawed": {
+			"value": true
+		},
+		"defectMod": {
+			"value": 0
+		},
+		"numTinker": {
+			"value": 1
+		},
+		"numHelper": {
+			"value": 1
+		},
+		"lvlVision": {
+			"value": 1
+		},
+		"cost": {
+			"value": 0
+		},
+		"progressPerDay": {
+			"value": 0
+		},
+		"days": {
+			"value": 0
+		},
+		"discount": {
+			"value": 0
+		},
+		"clock": {
+			"value": 0
+		},
+		"source": {
+			"value": "1"
+		}
+	},
+	"effects": [],
+	"folder": null,
+	"flags": {
+		"exportSource": {
+			"world": "project-fu-old",
+			"system": "projectfu-old",
+			"coreVersion": "11.315",
+			"systemVersion": "2.0.9"
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu-old",
+		"systemVersion": "2.0.9",
+		"coreVersion": "11.315",
+		"createdTime": 1706294268621,
+		"modifiedTime": 1706294298867,
+		"lastModifiedBy": "sSw77RM9l0da15kO"
+	}
+}
