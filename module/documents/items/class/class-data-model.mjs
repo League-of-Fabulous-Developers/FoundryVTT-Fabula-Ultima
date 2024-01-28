@@ -1,5 +1,29 @@
 import {ClassMigrations} from './class-migrations.mjs';
 
+/**
+ * @property {string} subtype.value
+ * @property {string} summary.value
+ * @property {string} description
+ * @property {boolean} isFavored.value
+ * @property {boolean} showTitleCard.value
+ * @property {number} level.value
+ * @property {number} level.min
+ * @property {number} level.max
+ * @property {boolean} benefits.resources.hp.value
+ * @property {boolean} benefits.resources.mp.value
+ * @property {boolean} benefits.resources.ip.value
+ * @property {boolean} benefits.martials.melee.value
+ * @property {boolean} benefits.martials.ranged.value
+ * @property {boolean} benefits.martials.armor.value
+ * @property {boolean} benefits.martials.shields.value
+ * @property {boolean} benefits.rituals.arcanism.value
+ * @property {boolean} benefits.rituals.chimerism.value
+ * @property {boolean} benefits.rituals.elementalism.value
+ * @property {boolean} benefits.rituals.entropism.value
+ * @property {boolean} benefits.rituals.ritualism.value
+ * @property {boolean} benefits.rituals.spiritism.value
+ * @property {string} source.value
+ */
 export class ClassDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
@@ -10,9 +34,9 @@ export class ClassDataModel extends foundry.abstract.TypeDataModel {
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 			level: new SchemaField({
-				value: new NumberField({ initial: 1 }),
-				max: new NumberField({ initial: 10 }),
-				min: new NumberField({ initial: 0 }),
+				value: new NumberField({ initial: 1, nullable: false}),
+				max: new NumberField({ initial: 10, nullable: false}),
+				min: new NumberField({ initial: 0, nullable: false}),
 			}),
 			benefits: new SchemaField({
 				resources: new SchemaField({

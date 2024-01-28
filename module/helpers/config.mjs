@@ -37,6 +37,12 @@ FU.affinities = {
 	poison: 'FU.DamagePoison',
 };
 
+/**
+ * @typedef {"physical","air","bolt","dark","earth","fire","ice","light","poison"} DamageType
+ */
+/**
+ * @type {Object<DamageType, string>}
+ */
 FU.damageTypes = {
 	physical: 'FU.DamagePhysical',
 	air: 'FU.DamageAir',

@@ -9,7 +9,7 @@ export class AttributeDataModel extends foundry.abstract.DataModel
     {
         const {NumberField} = foundry.data.fields;
         return {
-            base: new NumberField({min: 6, max: 12, initial: 8, integer: true, validate: (value) => value % 2 === 0}),
+            base: new NumberField({min: 6, max: 12, initial: 8, integer: true, validate: (value) => value % 2 === 0, nullable: false}),
             current: new NumberField({
                 min: 6,
                 max: 12,
@@ -17,7 +17,7 @@ export class AttributeDataModel extends foundry.abstract.DataModel
                 integer: true,
                 validate: (value) => value % 2 === 0
             }),
-            bonus: new NumberField({min: -6, max: 6, initial: 0, integer: true, validate: (value) => value % 2 === 0}),
+            bonus: new NumberField({min: -6, max: 6, initial: 0, integer: true, validate: (value) => value % 2 === 0, nullable: false}),
         };
     }
 }

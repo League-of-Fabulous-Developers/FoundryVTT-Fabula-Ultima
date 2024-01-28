@@ -9,9 +9,9 @@ export class AffinityDataModel extends foundry.abstract.DataModel
     {
         const {NumberField} = foundry.data.fields;
         return {
-            base: new NumberField({min: -1, max: 4, initial: 0, integer: true}),
-            current: new NumberField({min: -1, max: 4, initial: 0, integer: true}),
-            bonus: new NumberField({min: -5, max: 5, initial: 0, integer: true}),
+            base: new NumberField({min: -1, max: 4, initial: 0, integer: true, nullable: false}),
+            current: new NumberField({min: -1, max: 4, initial: 0, integer: true, nullable: false}),
+            bonus: new NumberField({min: -5, max: 5, initial: 0, integer: true, nullable: false}),
         };
     }
 }

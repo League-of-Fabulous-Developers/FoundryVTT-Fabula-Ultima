@@ -20,20 +20,20 @@ export class AccuracyBonusesDataModel extends foundry.abstract.DataModel
     {
         const {NumberField} = foundry.data.fields;
         return {
-            accuracyCheck: new NumberField({initial: 0, integer: true}),
-            magicCheck: new NumberField({initial: 0, integer: true}),
-            opposedCheck: new NumberField({initial: 0, integer: true}),
-            openCheck: new NumberField({initial: 0, integer: true}),
-            arcane: new NumberField({initial: 0, integer: true}),
-            bow: new NumberField({initial: 0, integer: true}),
-            brawling: new NumberField({initial: 0, integer: true}),
-            dagger: new NumberField({initial: 0, integer: true}),
-            firearm: new NumberField({initial: 0, integer: true}),
-            flail: new NumberField({initial: 0, integer: true}),
-            heavy: new NumberField({initial: 0, integer: true}),
-            spear: new NumberField({initial: 0, integer: true}),
-            sword: new NumberField({initial: 0, integer: true}),
-            thrown: new NumberField({initial: 0, integer: true}),
+            accuracyCheck: new NumberField({initial: 0, integer: true, nullable: false}),
+            magicCheck: new NumberField({initial: 0, integer: true, nullable: false}),
+            opposedCheck: new NumberField({initial: 0, integer: true, nullable: false}),
+            openCheck: new NumberField({initial: 0, integer: true, nullable: false}),
+            arcane: new NumberField({initial: 0, integer: true, nullable: false}),
+            bow: new NumberField({initial: 0, integer: true, nullable: false}),
+            brawling: new NumberField({initial: 0, integer: true, nullable: false}),
+            dagger: new NumberField({initial: 0, integer: true, nullable: false}),
+            firearm: new NumberField({initial: 0, integer: true, nullable: false}),
+            flail: new NumberField({initial: 0, integer: true, nullable: false}),
+            heavy: new NumberField({initial: 0, integer: true, nullable: false}),
+            spear: new NumberField({initial: 0, integer: true, nullable: false}),
+            sword: new NumberField({initial: 0, integer: true, nullable: false}),
+            thrown: new NumberField({initial: 0, integer: true, nullable: false}),
         };
     }
 }
