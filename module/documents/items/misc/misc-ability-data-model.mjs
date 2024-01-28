@@ -1,8 +1,39 @@
-import {FU} from '../../../helpers/config.mjs';
+import {IsEquippedDataModel} from '../common/is-equipped-data-model.mjs';
+import {UseWeaponDataModel} from '../common/use-weapon-data-model.mjs';
+import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs';
+import {DamageDataModel} from '../common/damage-data-model.mjs';
+import {ImprovisedDamageDataModel} from '../common/improvised-damage-data-model.mjs';
+import {ProgressDataModel} from '../common/progress-data-model.mjs';
 
+/**
+ * @property {string} subtype.value
+ * @property {string} summary.value
+ * @property {string} description
+ * @property {boolean} isFavored.value
+ * @property {boolean} showTitleCard.value
+ * @property {boolean} isMartial.value
+ * @property {string} quality.value
+ * @property {IsEquippedDataModel} isEquipped
+ * @property {UseWeaponDataModel} useWeapon
+ * @property {ItemAttributesDataModel} attributes
+ * @property {number} accuracy.value
+ * @property {DamageDataModel} damage
+ * @property {ImprovisedDamageDataModel} impdamage
+ * @property {boolean} isBehavior.value
+ * @property {number} weight.value
+ * @property {boolean} hasClock.value
+ * @property {ProgressDataModel} progress
+ * @property {string} source.value
+ * @property {UseWeaponDataModel} rollInfo.useWeapon
+ * @property {ItemAttributesDataModel} rollInfo.attributes
+ * @property {number} rollInfo.accuracy.value
+ * @property {DamageDataModel} rollInfo.damage
+ * @property {boolean} isOffensive.value
+ * @property {boolean} hasRoll.value
+ */
 export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
+		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
 			subtype: new SchemaField({ value: new StringField() }),
 			summary: new SchemaField({ value: new StringField() }),
@@ -11,56 +42,22 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
 			quality: new SchemaField({ value: new StringField() }),
-			isEquipped: new SchemaField({
-				value: new BooleanField(),
-				slot: new StringField(),
-			}),
-			useWeapon: new SchemaField({
-				accuracy: new SchemaField({ value: new BooleanField() }),
-				damage: new SchemaField({ value: new BooleanField() }),
-				hrZero: new SchemaField({ value: new BooleanField() }),
-			}),
-			attributes: new SchemaField({
-				primary: new SchemaField({ value: new StringField({ initial: 'dex', choices: Object.keys(FU.attributes) }) }),
-				secondary: new SchemaField({ value: new StringField({ initial: 'ins', choices: Object.keys(FU.attributes) }) }),
-			}),
-			accuracy: new SchemaField({ value: new NumberField({ integer: true }) }),
-			damage: new SchemaField({
-				hasDamage: new SchemaField({ value: new BooleanField() }),
-				value: new NumberField(),
-				type: new SchemaField({ value: new StringField({ initial: 'physical', blank: true, choices: Object.keys(FU.damageTypes) }) }),
-			}),
-			impdamage: new SchemaField({
-				hasImpDamage: new SchemaField({ value: new BooleanField() }),
-				value: new NumberField(),
-				impType: new SchemaField({ value: new StringField({ initial: 'minor', choices: ['minor', 'heavy', 'massive'] }) }),
-				type: new SchemaField({ value: new StringField({ initial: 'physical', blank: true, choices: Object.keys(FU.damageTypes) }) }),
-			}),
-			isBehavior: new BooleanField(),
-			weight: new SchemaField({ value: new NumberField({ initial: 1 }) }),
+			isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
+			useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
+			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'dex' }, secondary: { value: 'ins' } } }),
+			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
+			damage: new EmbeddedDataField(DamageDataModel, {}),
+			impdamage: new EmbeddedDataField(ImprovisedDamageDataModel, {}),
+			isBehavior: new SchemaField({ value: new BooleanField() }),
+			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			hasClock: new SchemaField({ value: new BooleanField() }),
-			progress: new SchemaField({
-				current: new NumberField({ initial: 0, integer: true }),
-				step: new NumberField({ initial: 1, integer: true }),
-				max: new NumberField({ initial: 6, integer: true }),
-			}),
+			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			source: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({
-				useWeapon: new SchemaField({
-					hrZero: new SchemaField({ value: new BooleanField() }),
-					accuracy: new SchemaField({ value: new BooleanField() }),
-					damage: new SchemaField({ value: new BooleanField() }),
-				}),
-				attributes: new SchemaField({
-					primary: new SchemaField({ value: new StringField({ initial: 'dex', choices: Object.keys(FU.attributes) }) }),
-					secondary: new SchemaField({ value: new StringField({ initial: 'ins', choices: Object.keys(FU.attributes) }) }),
-				}),
-				accuracy: new SchemaField({ value: new NumberField() }),
-				damage: new SchemaField({
-					hasDamage: new SchemaField({ value: new BooleanField() }),
-					type: new SchemaField({ value: new StringField({ initial: 'physical', blank: true, choices: Object.keys(FU.damageTypes) }) }),
-					value: new NumberField(),
-				}),
+				useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
+				attributes: new EmbeddedDataField(ItemAttributesDataModel, {}),
+				accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: true }) }),
+				damage: new EmbeddedDataField(DamageDataModel, {}),
 			}),
 			isOffensive: new SchemaField({ value: new BooleanField() }),
 			hasRoll: new SchemaField({ value: new BooleanField() }),

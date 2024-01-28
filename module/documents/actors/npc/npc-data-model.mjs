@@ -1,178 +1,119 @@
 import {FU} from '../../../helpers/config.mjs';
 import {NpcMigrations} from './npc-migrations.mjs';
+import {AffinitiesDataModel} from '../common/affinities-data-model.mjs';
+import {AttributesDataModel} from '../common/attributes-data-model.mjs';
+import {BonusesDataModel} from '../common/bonuses-data-model.mjs';
+import {BondDataModel} from '../common/bond-data-model.mjs';
 
+/**
+ * @property {number} level.value
+ * @property {number} resources.hp.min
+ * @property {number} resources.hp.max
+ * @property {number} resources.hp.value
+ * @property {number} resources.hp.bonus
+ * @property {number} resources.mp.min
+ * @property {number} resources.mp.max
+ * @property {number} resources.mp.value
+ * @property {number} resources.mp.bonus
+ * @property {string} resources.rp1.name
+ * @property {number} resources.rp1.value
+ * @property {string} resources.rp2.name
+ * @property {number} resources.rp2.value
+ * @property {string} resources.rp2.name
+ * @property {number} resources.rp2.value
+ * @property {number} resources.zenit.value
+ * @property {number} resources.ip.min
+ * @property {number} resources.ip.max
+ * @property {number} resources.ip.value
+ * @property {number} resources.ip.bonus
+ * @property {number} resources.fp.value
+ * @property {AffinitiesDataModel} affinities
+ * @property {AttributesDataModel} attributes
+ * @property {number} derived.init.value
+ * @property {number} derived.init.bonus
+ * @property {number} derived.def.value
+ * @property {number} derived.def.bonus
+ * @property {number} derived.mdef.value
+ * @property {number} derived.mdef.bonus
+ * @property {BonusesDataModel} bonuses
+ * @property {string} traits.value
+ * @property {'beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead'} species.value
+ * @property {"", "minor", "major", "supreme"} villain.value
+ * @property {number} phases.value
+ * @property {string} multipart.value
+ * @property {boolean} isElite.value
+ * @property {number} isChampion.value
+ * @property {boolean} isCompanion.value
+ * @property {boolean} useEquipment.value
+ * @property {number} study.value
+ * @property {string} description
+ */
 export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, BooleanField, ArrayField, HTMLField } = foundry.data.fields;
+		const { SchemaField, NumberField, StringField, BooleanField, ArrayField, HTMLField, EmbeddedDataField } = foundry.data.fields;
 		return {
-			level: new SchemaField({ value: new NumberField({ min: 5, max: 60, initial: 5, integer: true }) }),
+			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
 				hp: new SchemaField({
-					min: new NumberField({ min: 0, initial: 0, integer: true }),
-					max: new NumberField({ min: 0, initial: 10, integer: true }),
-					value: new NumberField({ min: 0, initial: 10, integer: true }),
-					bonus: new NumberField({ min: 0, initial: 0, integer: true }),
+					min: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
+					max: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
+					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
+					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
 				mp: new SchemaField({
-					min: new NumberField({ min: 0, initial: 0, integer: true }),
-					max: new NumberField({ min: 0, initial: 10, integer: true }),
-					value: new NumberField({ min: 0, initial: 10, integer: true }),
-					bonus: new NumberField({ min: 0, initial: 0, integer: true }),
+					min: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
+					max: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
+					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
+					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
 				rp1: new SchemaField({
 					name: new StringField({ initial: '' }),
-					value: new NumberField({ min: 0, initial: 0, integer: true }),
+					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
 				rp2: new SchemaField({
 					name: new StringField({ initial: '' }),
-					value: new NumberField({ min: 0, initial: 0, integer: true }),
+					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
 				rp3: new SchemaField({
 					name: new StringField({ initial: '' }),
-					value: new NumberField({ min: 0, initial: 0, integer: true }),
+					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
-				zenit: new SchemaField({ value: new NumberField({ min: 0, initial: 0, integer: true }) }),
+				zenit: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 				ip: new SchemaField({
-					min: new NumberField({ min: 0, initial: 0, integer: true }),
-					max: new NumberField({ min: 0, initial: 6, integer: true }),
-					value: new NumberField({ min: 0, initial: 6, integer: true }),
+					min: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
+					max: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
+					value: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
 				}),
-				fp: new SchemaField({ value: new NumberField({ min: 0, initial: 3, integer: true }) }),
-				bonds: new ArrayField(
-					new SchemaField({
-						name: new StringField({ initial: '' }),
-						admInf: new StringField({ initial: '', blank: true, choices: ['Admiration', 'Inferiority'] }),
-						loyMis: new StringField({ initial: '', blank: true, choices: ['Loyalty', 'Mistrust'] }),
-						affHat: new StringField({ initial: '', blank: true, choices: ['Affection', 'Hatred'] }),
-						strength: new NumberField({ min: 0, max: 4, initial: 0 }),
-					}),
-				),
+				fp: new SchemaField({ value: new NumberField({ initial: 3, min: 0, integer: true, nullable: false }) }),
+				bonds: new ArrayField(new EmbeddedDataField(BondDataModel, {})),
 			}),
-			affinities: new SchemaField({
-				phys: new SchemaField({
-					base: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					current: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					bonus: new NumberField({ min: -5, max: 5, initial: 0, integer: true }),
-				}),
-				air: new SchemaField({
-					base: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					current: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					bonus: new NumberField({ min: -5, max: 5, initial: 0, integer: true }),
-				}),
-				bolt: new SchemaField({
-					base: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					current: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					bonus: new NumberField({ min: -5, max: 5, initial: 0, integer: true }),
-				}),
-				dark: new SchemaField({
-					base: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					current: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					bonus: new NumberField({ min: -5, max: 5, initial: 0, integer: true }),
-				}),
-				earth: new SchemaField({
-					base: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					current: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					bonus: new NumberField({ min: -5, max: 5, initial: 0, integer: true }),
-				}),
-				fire: new SchemaField({
-					base: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					current: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					bonus: new NumberField({ min: -5, max: 5, initial: 0, integer: true }),
-				}),
-				ice: new SchemaField({
-					base: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					current: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					bonus: new NumberField({ min: -5, max: 5, initial: 0, integer: true }),
-				}),
-				light: new SchemaField({
-					base: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					current: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					bonus: new NumberField({ min: -5, max: 5, initial: 0, integer: true }),
-				}),
-				poison: new SchemaField({
-					base: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					current: new NumberField({ min: -1, max: 4, initial: 0, integer: true }),
-					bonus: new NumberField({ min: -5, max: 5, initial: 0, integer: true }),
-				}),
-			}),
-			attributes: new SchemaField({
-				dex: new SchemaField({
-					base: new NumberField({ min: 6, max: 12, initial: 8, integer: true, validate: (value) => value % 2 === 0 }),
-					current: new NumberField({ min: 6, max: 12, initial: 8, integer: true, validate: (value) => value % 2 === 0 }),
-					bonus: new NumberField({ min: -6, max: 6, initial: 0, integer: true, validate: (value) => value % 2 === 0 }),
-				}),
-				ins: new SchemaField({
-					base: new NumberField({ min: 6, max: 12, initial: 8, integer: true, validate: (value) => value % 2 === 0 }),
-					current: new NumberField({ min: 6, max: 12, initial: 8, integer: true, validate: (value) => value % 2 === 0 }),
-					bonus: new NumberField({ min: -6, max: 6, initial: 0, integer: true, validate: (value) => value % 2 === 0 }),
-				}),
-				mig: new SchemaField({
-					base: new NumberField({ min: 6, max: 12, initial: 8, integer: true, validate: (value) => value % 2 === 0 }),
-					current: new NumberField({ min: 6, max: 12, initial: 8, integer: true, validate: (value) => value % 2 === 0 }),
-					bonus: new NumberField({ min: -6, max: 6, initial: 0, integer: true, validate: (value) => value % 2 === 0 }),
-				}),
-				wlp: new SchemaField({
-					base: new NumberField({ min: 6, max: 12, initial: 8, integer: true, validate: (value) => value % 2 === 0 }),
-					current: new NumberField({ min: 6, max: 12, initial: 8, integer: true, validate: (value) => value % 2 === 0 }),
-					bonus: new NumberField({ min: -6, max: 6, initial: 0, integer: true, validate: (value) => value % 2 === 0 }),
-				}),
-			}),
+			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
+			attributes: new EmbeddedDataField(AttributesDataModel, {}),
 			derived: new SchemaField({
 				init: new SchemaField({
-					value: new NumberField({ min: 0, initial: 0, integer: true }),
-					bonus: new NumberField({ initial: 0, integer: true }),
+					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
+					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
 				}),
 				def: new SchemaField({
-					value: new NumberField({ min: 0, initial: 0, integer: true }),
-					bonus: new NumberField({ initial: 0, integer: true }),
+					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
+					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
 				}),
 				mdef: new SchemaField({
-					value: new NumberField({ min: 0, initial: 0, integer: true }),
-					bonus: new NumberField({ initial: 0, integer: true }),
+					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
+					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
 				}),
 			}),
-			bonuses: new SchemaField({
-				accuracy: new SchemaField({
-					accuracyCheck: new NumberField({ initial: 0, integer: true }),
-					magicCheck: new NumberField({ initial: 0, integer: true }),
-					opposedCheck: new NumberField({ initial: 0, integer: true }),
-					openCheck: new NumberField({ initial: 0, integer: true }),
-					arcane: new NumberField({ initial: 0, integer: true }),
-					bow: new NumberField({ initial: 0, integer: true }),
-					brawling: new NumberField({ initial: 0, integer: true }),
-					dagger: new NumberField({ initial: 0, integer: true }),
-					firearm: new NumberField({ initial: 0, integer: true }),
-					flail: new NumberField({ initial: 0, integer: true }),
-					heavy: new NumberField({ initial: 0, integer: true }),
-					spear: new NumberField({ initial: 0, integer: true }),
-					sword: new NumberField({ initial: 0, integer: true }),
-					thrown: new NumberField({ initial: 0, integer: true }),
-				}),
-				damage: new SchemaField({
-					physical: new NumberField({ initial: 0, integer: true }),
-					magic: new NumberField({ initial: 0, integer: true }),
-					arcane: new NumberField({ initial: 0, integer: true }),
-					bow: new NumberField({ initial: 0, integer: true }),
-					brawling: new NumberField({ initial: 0, integer: true }),
-					dagger: new NumberField({ initial: 0, integer: true }),
-					firearm: new NumberField({ initial: 0, integer: true }),
-					flail: new NumberField({ initial: 0, integer: true }),
-					heavy: new NumberField({ initial: 0, integer: true }),
-					spear: new NumberField({ initial: 0, integer: true }),
-					sword: new NumberField({ initial: 0, integer: true }),
-					thrown: new NumberField({ initial: 0, integer: true }),
-				}),
-			}),
+			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
 			traits: new SchemaField({ value: new StringField({ initial: '' }) }),
 			species: new SchemaField({ value: new StringField({ initial: 'beast', choices: FU.species }) }),
 			villain: new SchemaField({ value: new StringField({ initial: '', blank: true, choices: FU.villainTypes }) }),
-			phases: new SchemaField({ value: new NumberField({ min: 1, initial: 1, integer: true }) }),
+			phases: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			multipart: new SchemaField({ value: new StringField({ initial: '' }) }),
 			isElite: new SchemaField({ value: new BooleanField({ initial: false }) }),
-			isChampion: new SchemaField({ value: new NumberField({ min: 1, initial: 1, integer: true }) }),
+			isChampion: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			isCompanion: new SchemaField({ value: new BooleanField({ initial: false }) }),
 			useEquipment: new SchemaField({ value: new BooleanField({ initial: false }) }),
-			study: new SchemaField({ value: new NumberField({ min: 0, max: 3, initial: 0, integer: true }) }),
+			study: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 3, integer: true, nullable: false }) }),
 			description: new HTMLField(),
 		};
 	}
