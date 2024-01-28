@@ -1,4 +1,4 @@
-import {ProgressDataModel} from "../common/progress-data-model.mjs";
+import {ProgressDataModel} from '../common/progress-data-model.mjs';
 
 /**
  * @property {string} subtype.value
@@ -21,8 +21,8 @@ export class RuleDataModel extends foundry.abstract.TypeDataModel {
 			description: new HTMLField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
-			isBehavior: new SchemaField({value: new BooleanField()}),
-            weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
+			isBehavior: new SchemaField({ value: new BooleanField() }),
+			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			hasClock: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			source: new SchemaField({ value: new StringField() }),

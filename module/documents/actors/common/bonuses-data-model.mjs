@@ -1,5 +1,5 @@
-import {AccuracyBonusesDataModel} from "./accuracy-bonuses-data-model.mjs";
-import {DamageBonusesDataModel} from "./damage-bonuses-data-model.mjs";
+import {AccuracyBonusesDataModel} from './accuracy-bonuses-data-model.mjs';
+import {DamageBonusesDataModel} from './damage-bonuses-data-model.mjs';
 
 /**
  * @property {AccuracyBonusesDataModel} accuracy

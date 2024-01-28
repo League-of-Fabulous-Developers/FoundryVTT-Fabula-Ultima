@@ -17,8 +17,8 @@ export class BehaviorDataModel extends foundry.abstract.TypeDataModel {
 			description: new HTMLField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
-			isBehavior: new SchemaField({value: new BooleanField({ initial: true })}),
-            weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
+			isBehavior: new SchemaField({ value: new BooleanField({ initial: true }) }),
+			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			source: new SchemaField({ value: new StringField() }),
 		};
 	}

@@ -35,7 +35,7 @@ export class BasicItemDataModel extends foundry.abstract.TypeDataModel {
 			damage: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			type: new SchemaField({ value: new StringField({ choices: Object.keys(FU.weaponTypes) }) }),
 			damageType: new SchemaField({ value: new StringField({ initial: 'physical', blank: true, choices: Object.keys(FU.damageTypes) }) }),
-			cost: new SchemaField({ value: new NumberField({ min: 0, initial: 0, integer: true, nullable: false }) }),
+			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			quality: new SchemaField({ value: new StringField() }),
 			source: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({

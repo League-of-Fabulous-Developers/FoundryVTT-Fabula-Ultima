@@ -56,7 +56,7 @@ export class RitualDataModel extends foundry.abstract.TypeDataModel {
 			rollInfo: new SchemaField({
 				impdamage: new EmbeddedDataField(ImprovisedDamageDataModel, {}),
 				attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'dex' }, secondary: { value: 'ins' } } }),
-				accuracy: new SchemaField({ value: new NumberField() }),
+				accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			}),
 		};
 	}

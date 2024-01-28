@@ -29,7 +29,7 @@ export class ArmorDataModel extends foundry.abstract.TypeDataModel {
 			description: new HTMLField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
-            cost: new SchemaField({ value: new NumberField({ min: 0, initial: 0, integer: true, nullable: false }) }),
+			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
 			quality: new SchemaField({ value: new StringField() }),
 			isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
@@ -37,7 +37,7 @@ export class ArmorDataModel extends foundry.abstract.TypeDataModel {
 			mdef: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
-            weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
+			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'dex' }, secondary: { value: 'ins' } } }),
 			source: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({

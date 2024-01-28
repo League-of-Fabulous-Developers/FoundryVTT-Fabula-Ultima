@@ -1,4 +1,4 @@
-import {AttributeDataModel} from "./attribute-data-model.mjs";
+import {AttributeDataModel} from './attribute-data-model.mjs';
 
 /**
  * @property {AttributeDataModel} dex

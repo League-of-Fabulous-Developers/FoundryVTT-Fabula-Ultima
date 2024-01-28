@@ -1,4 +1,4 @@
-import {AffinityDataModel} from "./affinity-data-model.mjs";
+import {AffinityDataModel} from './affinity-data-model.mjs';
 
 /**
  * @property {AffinityDataModel} phys

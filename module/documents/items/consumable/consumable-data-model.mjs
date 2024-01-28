@@ -16,7 +16,7 @@ export class ConsumableDataModel extends foundry.abstract.TypeDataModel {
 			description: new HTMLField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
-			ipCost: new SchemaField({ value: new NumberField({ initial: 3, min: 0, integer: true , nullable: false}) }),
+			ipCost: new SchemaField({ value: new NumberField({ initial: 3, min: 0, integer: true, nullable: false }) }),
 			source: new SchemaField({ value: new StringField() }),
 		};
 	}
