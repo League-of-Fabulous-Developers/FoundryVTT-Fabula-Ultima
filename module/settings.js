@@ -1,10 +1,11 @@
-const SYSTEM = 'projectfu';
+export const SYSTEM = 'projectfu';
 
 export const SETTINGS = Object.freeze({
 	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
 	optionCampingRules: 'optionCampingRules',
 	collapseDescriptions: 'collapseDescriptions',
+	experimentalCombatTracker: 'experimentalCombatTracker',
 });
 
 export const registerSystemSettings = async function () {
@@ -52,11 +53,21 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 	});
+
+	game.settings.register(SYSTEM, SETTINGS.experimentalCombatTracker, {
+		name: game.i18n.localize('FU.ExperimentalCombatTracker'),
+		hint: game.i18n.localize('FU.ExperimentalCombatTrackerHint'),
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
 };
 
 class OptionalRules extends FormApplication {
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			template: 'systems/projectfu/templates/system/settings/optional-rules.hbs',
 		});
 	}

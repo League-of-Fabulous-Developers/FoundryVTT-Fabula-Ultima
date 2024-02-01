@@ -1,0 +1,34 @@
+<section class="flexrow">
+    {{#each attributes}}
+        <fieldset class="form-fields">
+            <label>
+                <abbr title="{{localize this}}">
+                    {{localize (lookup @root/attributeAbbr @key)}}
+                </abbr>
+                :
+            </label>
+            <span>D{{lookup @root/attributeValues @key}}</span>
+        </fieldset>
+    {{/each}}
+</section>
+<hr>
+<section>
+    <fieldset>
+        {{radioBoxes 'attr1' attributes checked=attr1 localize=true }}
+    </fieldset>
+    <fieldset>
+        {{radioBoxes 'attr2' attributes checked=attr2 localize=true }}
+    </fieldset>
+    <fieldset>
+        <label>
+            {{localize 'FU.DialogCheckModifier'}}
+            <input name="modifier" type="number" value="{{modifier}}">
+        </label>
+    </fieldset>
+    <fieldset>
+        <label>
+            {{localize 'FU.DialogCheckDifficulty'}}
+            <input name="difficulty" type="number" value="{{difficulty}}" min="0">
+        </label>
+    </fieldset>
+</section>

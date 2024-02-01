@@ -99,7 +99,7 @@
     font-size: 16px;
     color: $color-secondary;
   }
-    div {
+    & > div {
     margin: 0;
     height: 100% !important;
     flex-grow: 1;
@@ -271,7 +271,7 @@
         padding: 0px 14px 4px 14px;
         background-color: $color-ternary;
         font-family: "alice";
-        z-index: 100;
+        z-index: 10;
         position: relative;
         border-width: 0 1px 1px 1px;
         border-color: $color-beige;
@@ -302,4 +302,18 @@
       }
     }
   }
+}
+
+.group-check-supporters {
+
+    .group-check-supporters-title, .group-check-supporters-supporter {
+        & > *:not(:last-child) {
+            border-right: 1px solid black;
+        }
+    }
+
+
+    .group-check-supporters-title {
+        font-weight: bolder;
+    }
 }

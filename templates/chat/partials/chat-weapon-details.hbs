@@ -1,0 +1,17 @@
+<div class="detail-desc flex-group-center grid grid-3col">
+    <div>{{localize (concat 'FU.' (capitalize weapon.category))}}</div>
+    {{#if (eq weapon.hands 'two-handed')}}
+        <div>{{localize (concat 'FU.TwoHanded' )}}</div>
+    {{else}}
+        <div>{{localize (concat 'FU.OneHanded' )}}</div>
+    {{/if}}
+    <div>{{localize (concat 'FU.' (capitalize weapon.type))}}</div>
+</div>
+
+{{#if weapon.quality}}
+    {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=weapon.quality}}
+{{/if}}
+
+{{#if (or weapon.summary weapon.description)}}
+    {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=weapon.summary description=weapon.description collapseDescriptions=collapseDescriptions}}
+{{/if}}

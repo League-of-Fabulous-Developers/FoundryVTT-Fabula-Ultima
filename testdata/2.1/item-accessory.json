@@ -1,0 +1,74 @@
+{
+	"name": "Accessory (2.1)",
+	"type": "accessory",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"subtype": {
+			"value": ""
+		},
+		"summary": {
+			"value": "Accessory"
+		},
+		"description": "<p>Description</p>",
+		"isFavored": {
+			"value": true
+		},
+		"showTitleCard": {
+			"value": true
+		},
+		"cost": {
+			"value": 10
+		},
+		"isMartial": {
+			"value": false
+		},
+		"quality": {
+			"value": "Quality"
+		},
+		"isEquipped": {
+			"value": false,
+			"slot": ""
+		},
+		"def": {
+			"value": 1
+		},
+		"mdef": {
+			"value": 1
+		},
+		"init": {
+			"value": 1
+		},
+		"isBehavior": false,
+		"weight": {
+			"value": 1
+		},
+		"source": {
+			"value": "1"
+		},
+		"rollInfo": {
+			"useWeapon": {
+				"hrZero": {
+					"value": true
+				}
+			}
+		}
+	},
+	"effects": [],
+	"folder": null,
+	"flags": {
+		"exportSource": {
+			"world": "project-fu-testworld",
+			"system": "projectfu",
+			"coreVersion": "11.315",
+			"systemVersion": "#{VERSION}#"
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"systemVersion": "#{VERSION}#",
+		"coreVersion": "11.315",
+		"createdTime": 1706295600275,
+		"modifiedTime": 1706295623403,
+		"lastModifiedBy": "dAAgcxcaWwIjCHxo"
+	}
+}

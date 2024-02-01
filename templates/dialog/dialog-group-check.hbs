@@ -1,0 +1,20 @@
+<section>
+    <fieldset>
+        {{radioBoxes 'attributes.attr1' attributes checked=attr1 localize=true }}
+    </fieldset>
+    <fieldset>
+        {{radioBoxes 'attributes.attr2' attributes checked=attr2 localize=true }}
+    </fieldset>
+    <fieldset>
+        <label>
+            {{localize 'FU.DialogGroupCheckDifficulty'}}
+            <input name="difficulty.check" type="number" value="{{difficulty.check}}" min="0">
+        </label>
+    </fieldset>
+    <fieldset>
+        <label>
+            {{localize 'FU.DialogGroupCheckSupportDifficulty'}}
+            <input name="difficulty.support" type="number" value="{{difficulty.support}}" min="0">
+        </label>
+    </fieldset>
+</section>

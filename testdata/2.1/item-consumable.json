@@ -1,0 +1,44 @@
+{
+	"name": "Consumable (2.1)",
+	"type": "consumable",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"subtype": {
+			"value": ""
+		},
+		"summary": {
+			"value": "Consumable"
+		},
+		"description": "<p>Description</p>",
+		"isFavored": {
+			"value": true
+		},
+		"showTitleCard": {
+			"value": true
+		},
+		"ipCost": {
+			"value": 3
+		},
+		"source": {
+			"value": "1"
+		}
+	},
+	"effects": [],
+	"folder": null,
+	"flags": {
+		"exportSource": {
+			"world": "project-fu-testworld",
+			"system": "projectfu",
+			"coreVersion": "11.315",
+			"systemVersion": "#{VERSION}#"
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"systemVersion": "#{VERSION}#",
+		"coreVersion": "11.315",
+		"createdTime": 1706295643006,
+		"modifiedTime": 1706295659529,
+		"lastModifiedBy": "dAAgcxcaWwIjCHxo"
+	}
+}

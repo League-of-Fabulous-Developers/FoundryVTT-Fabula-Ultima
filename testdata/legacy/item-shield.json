@@ -1,0 +1,45 @@
+{
+	"name": "Shield (Legacy)",
+	"type": "shield",
+	"img": "icons/svg/item-bag.svg",
+	"system": {
+		"description": "",
+		"cost": {
+			"value": 100
+		},
+		"isMartial": true,
+		"quality": {
+			"value": "Quality"
+		},
+		"isEquipped": {
+			"value": false
+		},
+		"def": {
+			"value": 1
+		},
+		"mdef": {
+			"value": 1
+		},
+		"init": {
+			"value": 1
+		}
+	},
+	"effects": [],
+	"folder": null,
+	"flags": {
+		"exportSource": {
+			"world": "project-fu-legacy",
+			"system": "projectfu-legacy",
+			"coreVersion": "11.315",
+			"systemVersion": "0.1.1"
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu-legacy",
+		"systemVersion": "0.1.1",
+		"coreVersion": "11.315",
+		"createdTime": 1706294691943,
+		"modifiedTime": 1706294706818,
+		"lastModifiedBy": "ecWd2m6RtdSCvtr9"
+	}
+}

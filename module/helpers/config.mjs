@@ -19,10 +19,34 @@ FU.attributeAbbreviations = {
 	wlp: 'FU.AttributeWlpAbbr',
 };
 
+/**
+ * @typedef {"phys","air","bolt","dark","earth","fire","ice","light","poison"} Affinity
+ */
+/**
+ * @type {Object.<Affinity, string>}
+ */
 FU.affinities = {
 	phys: 'FU.DamageNormal',
 	air: 'FU.DamageWind',
 	bolt: 'FU.DamageLightning',
+	dark: 'FU.DamageDark',
+	earth: 'FU.DamageEarth',
+	fire: 'FU.DamageFire',
+	ice: 'FU.DamageIce',
+	light: 'FU.DamageLight',
+	poison: 'FU.DamagePoison',
+};
+
+/**
+ * @typedef {"physical","air","bolt","dark","earth","fire","ice","light","poison"} DamageType
+ */
+/**
+ * @type {Object<DamageType, string>}
+ */
+FU.damageTypes = {
+	physical: 'FU.DamagePhysical',
+	air: 'FU.DamageAir',
+	bolt: 'FU.DamageBolt',
 	dark: 'FU.DamageDark',
 	earth: 'FU.DamageEarth',
 	fire: 'FU.DamageFire',
@@ -60,6 +84,10 @@ FU.affTypeAbbr = {
 	3: 'FU.AffinityAbsorptionAbbr',
 	4: 'FU.AffinityRepulsionAbbr',
 };
+
+FU.species = ['beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead'];
+
+FU.villainTypes = ['minor', 'major', 'supreme'];
 
 FU.speciesRule = {
 	beast: 'FU.BeastRule',
@@ -101,4 +129,63 @@ FU.actionTypes = {
 	study: 'FU.Action',
 	skill: 'FU.Action',
 	other: 'FU.Action',
+};
+
+/**
+ * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown", "custom"} WeaponCategory
+ */
+/**
+ * @type {Object.<WeaponCategory, string>}
+ */
+FU.weaponCategories = {
+	arcane: 'FU.Arcane',
+	bow: 'FU.Bow',
+	brawling: 'FU.Brawling',
+	dagger: 'FU.Dagger',
+	firearm: 'FU.Firearm',
+	flail: 'FU.Flail',
+	heavy: 'FU.Heavy',
+	spear: 'FU.Spear',
+	sword: 'FU.Sword',
+	thrown: 'FU.Thrown',
+	custom: 'FU.Custom',
+};
+
+/**
+ * @typedef {"melee", "ranged"} WeaponType
+ */
+/**
+ * @type {Object.<WeaponType, string>}
+ */
+FU.weaponTypes = {
+	melee: 'FU.Melee',
+	ranged: 'FU.Ranged',
+};
+
+/**
+ * @typedef {"def", "mdef"} Defense
+ */
+/**
+ * @type {Object.<Defense, Object.<"name"|"abbr", string>>}
+ */
+FU.defenses = {
+	def: {
+		name: 'FU.Defense',
+		abbr: 'FU.DefenseAbbr',
+	},
+	mdef: {
+		name: 'FU.MagicDefense',
+		abbr: 'FU.MagicDefenseAbbr',
+	},
+};
+
+/**
+ * @typedef {"one-handed", "two-handed"} Handedness
+ */
+/**
+ * @type {Object.<Handedness, string>}
+ */
+FU.handedness = {
+	'one-handed': 'FU.OneHanded',
+	'two-handed': 'FU.TwoHanded',
 };

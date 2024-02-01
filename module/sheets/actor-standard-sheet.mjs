@@ -1,4 +1,6 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
+import {promptCheck} from "../helpers/checks.mjs";
+import {GroupCheck} from "../helpers/group-check.mjs";
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'ko', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -514,7 +516,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Increment and Decrement Buttons
 		html.find('.increment-button, .decrement-button').click((ev) => {
-			e.preventDefault();
+			ev.preventDefault();
 			const currentSheet = $(ev.currentTarget).closest('.projectfu-actor-sheet');
 			if (currentSheet.length === 0) {
 				console.error('Current sheet not found.');
@@ -1072,8 +1074,12 @@ export class FUStandardActorSheet extends ActorSheet {
 				return this._rollBehavior();
 			}
 			if (dataset.rollType === 'roll-check' || dataset.rollType === 'roll-init') {
-				return this._openCheck(dataset.rollType);
+                return promptCheck(this.actor)
 			}
+            if (dataset.rollType === "group-check")
+            {
+                GroupCheck.promptCheck(this.actor)
+            }
 		}
 
 		// Handle item-slot rolls.

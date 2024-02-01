@@ -1,0 +1,171 @@
+{
+	"name": "Npc (Legacy)",
+	"type": "npc",
+	"img": "icons/svg/mystery-man.svg",
+	"system": {
+		"level": {
+			"value": 5
+		},
+		"resources": {
+			"hp": {
+				"value": 10,
+				"min": 0,
+				"max": 150,
+				"bonus": 5
+			},
+			"mp": {
+				"value": 10,
+				"min": 0,
+				"max": 80,
+				"bonus": 5
+			}
+		},
+		"attributes": {
+			"dex": {
+				"base": 6,
+				"current": 6,
+				"bonus": 0
+			},
+			"ins": {
+				"base": 8,
+				"current": 6,
+				"bonus": 0
+			},
+			"mig": {
+				"base": 12,
+				"current": 6,
+				"bonus": 0
+			},
+			"wlp": {
+				"base": 6,
+				"current": 6,
+				"bonus": 0
+			}
+		},
+		"derived": {
+			"crisis": {
+				"value": 5
+			},
+			"init": {
+				"value": 0,
+				"bonus": 1
+			},
+			"def": {
+				"value": 0,
+				"bonus": 1
+			},
+			"mdef": {
+				"value": 0,
+				"bonus": 1
+			}
+		},
+		"castingAttributes": {
+			"primary": {
+				"value": "ins"
+			},
+			"secondary": {
+				"value": "wlp"
+			}
+		},
+		"resistances": {
+			"phys": "NA",
+			"air": "VU",
+			"bolt": "RS",
+			"dark": "IM",
+			"earth": "AB",
+			"fire": "NA",
+			"ice": "VU",
+			"light": "RS",
+			"poison": "IM"
+		},
+		"isElite": {
+			"value": true
+		},
+		"isChampion": {
+			"value": 2
+		},
+		"description": "<p>Description?</p>"
+	},
+	"prototypeToken": {
+		"name": "Npc",
+		"displayName": 0,
+		"actorLink": false,
+		"appendNumber": false,
+		"prependAdjective": false,
+		"texture": {
+			"src": "icons/svg/mystery-man.svg",
+			"scaleX": 1,
+			"scaleY": 1,
+			"offsetX": 0,
+			"offsetY": 0,
+			"rotation": 0
+		},
+		"width": 1,
+		"height": 1,
+		"lockRotation": false,
+		"rotation": 0,
+		"alpha": 1,
+		"disposition": -1,
+		"displayBars": 0,
+		"bar1": {
+			"attribute": "hp"
+		},
+		"bar2": {
+			"attribute": "mp"
+		},
+		"light": {
+			"alpha": 0.5,
+			"angle": 360,
+			"bright": 0,
+			"coloration": 1,
+			"dim": 0,
+			"attenuation": 0.5,
+			"luminosity": 0.5,
+			"saturation": 0,
+			"contrast": 0,
+			"shadows": 0,
+			"animation": {
+				"type": null,
+				"speed": 5,
+				"intensity": 5,
+				"reverse": false
+			},
+			"darkness": {
+				"min": 0,
+				"max": 1
+			}
+		},
+		"sight": {
+			"enabled": false,
+			"range": 0,
+			"angle": 360,
+			"visionMode": "basic",
+			"attenuation": 0.1,
+			"brightness": 0,
+			"saturation": 0,
+			"contrast": 0
+		},
+		"detectionModes": [],
+		"flags": {},
+		"randomImg": false
+	},
+	"items": [],
+	"effects": [],
+	"folder": null,
+	"flags": {
+		"exportSource": {
+			"world": "project-fu-legacy",
+			"system": "projectfu-legacy",
+			"coreVersion": "11.315",
+			"systemVersion": "0.1.1"
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu-legacy",
+		"systemVersion": "0.1.1",
+		"coreVersion": "11.315",
+		"createdTime": 1706294600919,
+		"modifiedTime": 1706294637509,
+		"lastModifiedBy": "ecWd2m6RtdSCvtr9"
+	}
+}

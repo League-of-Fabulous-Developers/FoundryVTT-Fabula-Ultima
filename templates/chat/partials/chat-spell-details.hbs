@@ -1,0 +1,31 @@
+<div class="detail-desc flex-group-center grid grid-3col">
+    <div>
+        {{#if spell.duration}}
+            {{spell.duration}}
+        {{else}}
+            {{localize 'FU.Duration'}}
+        {{/if}}
+    </div>
+    <div>
+        {{#if spell.target}}
+            {{spell.target}}
+        {{else}}
+            {{localize 'FU.Target'}}
+        {{/if}}
+    </div>
+    <div>
+        {{#if spell.mpCost}}
+            {{spell.mpCost}} {{localize 'FU.MindAbbr'}}
+        {{else}}
+            {{localize 'FU.MindPointCost'}}
+        {{/if}}
+    </div>
+</div>
+
+{{#if spell.opportunity}}
+    {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=spell.opportunity}}
+{{/if}}
+
+{{#if (or spell.summary spell.description)}}
+    {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=spell.summary description=spell.description collapseDescriptions=collapseDescriptions}}
+{{/if}}
