@@ -37,7 +37,7 @@ import {BondDataModel} from '../common/bond-data-model.mjs';
  * @property {number} derived.mdef.bonus
  * @property {BonusesDataModel} bonuses
  * @property {string} traits.value
- * @property {'beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead'} species.value
+ * @property {'beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead', 'custom'} species.value
  * @property {"", "minor", "major", "supreme"} villain.value
  * @property {number} phases.value
  * @property {string} multipart.value

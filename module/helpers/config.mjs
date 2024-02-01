@@ -85,7 +85,7 @@ FU.affTypeAbbr = {
 	4: 'FU.AffinityRepulsionAbbr',
 };
 
-FU.species = ['beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead'];
+FU.species = ['beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead', 'custom'];
 
 FU.villainTypes = ['minor', 'major', 'supreme'];
 
@@ -98,6 +98,7 @@ FU.speciesRule = {
 	monster: 'FU.MonsterRule',
 	plant: 'FU.PlantRule',
 	undead: 'FU.UndeadRule',
+	custom: 'FU.CustomRule',
 };
 
 FU.itemTypes = {

@@ -438,6 +438,7 @@
 		"MonsterRule": "I mostri non hanno regole speciali.",
 		"PlantRule": "Le piante sono Vulnerabili al danno da (scegliere uno tra aria, fulmine, fuoco, ghiaccio)",
 		"UndeadRule": "I non morti sono Immuni al danno da ombra e da veleno e Vulnerabili al danno da luce.",
+		"CustomRule": "Custom NPC",
 		"UseEquipment": "Use Equipment?",
 		"Potency": "Power",
 		"Area": "Area",
