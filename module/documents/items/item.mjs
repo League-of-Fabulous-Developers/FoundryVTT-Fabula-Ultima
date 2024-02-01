@@ -42,11 +42,11 @@ export class FUItem extends Item {
 	getWeaponDisplayData() {
 		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
 		const isBasic = this.type === 'basic';
-		// Check if this item is not a weapon or not a weapon/shield with dual
+			// Check if this item is not a weapon or not a weapon/shield with dual
 		if (!isBasic && !isWeaponOrShieldWithDual) {
 			return false;
 		}
-
+	
 		function capitalizeFirst(string) {
 			if (typeof string !== 'string') {
 				// Handle the case where string is not a valid string
@@ -54,23 +54,40 @@ export class FUItem extends Item {
 			}
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		}
-
+	
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? 'HR0' : 'HR';
 		const qualText = this.system.quality?.value || '';
 		let qualityString = '';
-
-		const attackAttributes = [this.system.attributes.primary.value.toUpperCase(), this.system.attributes.secondary.value.toUpperCase()].join(' + ');
-
-		const attackString = `【${attackAttributes}】${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}`;
-
-		const damageString = `【${hrZeroText} + ${this.system.damage.value}】 ${this.system.damageType.value}`;
-
+	
+		const primaryAttribute = this.system.attributes?.primary?.value;
+		const secondaryAttribute = this.system.attributes?.secondary?.value;
+	
+		const attackAttributes = [
+			(primaryAttribute || '').toUpperCase(),
+			(secondaryAttribute || '').toUpperCase()
+		].join(' + ');
+	
+		const accuracyValue = this.system.accuracy?.value ?? 0;
+		const damageValue = this.system.damage?.value ?? 0;
+	
+		const attackString = `【${attackAttributes}】${accuracyValue > 0 ? ` +${accuracyValue}` : ''}`;
+	
+		const hrZeroValue = this.system.rollInfo?.useWeapon?.hrZero?.value ?? false;
+		const damageTypeValue = this.system.damageType?.value || '';
+	
+		const damageString = `【${hrZeroText} + ${damageValue}】 ${damageTypeValue}`;
+	
 		if (isWeaponOrShieldWithDual) {
-			qualityString = [capitalizeFirst(this.system.category.value), capitalizeFirst(this.system.hands.value), capitalizeFirst(this.system.type.value), qualText].filter(Boolean).join(' ⬥ ');
+			qualityString = [
+				capitalizeFirst(this.system.category?.value),
+				capitalizeFirst(this.system.hands?.value),
+				capitalizeFirst(this.system.type?.value),
+				qualText
+			].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
 			qualityString = [attackString, damageString, qualText].filter(Boolean).join(' ⬥ ');
 		}
-
+	
 		return {
 			attackString,
 			damageString,
@@ -819,7 +836,7 @@ export class FUItem extends Item {
 			check: {
 				title: game.i18n.localize('FU.AccuracyCheck'),
 				attr1: {
-					attribute: attributes.primary.value,
+					attribute: attributes.primary?.value,
 					dice: this.actor.system.attributes[attributes.primary.value].current,
 				},
 				attr2: {

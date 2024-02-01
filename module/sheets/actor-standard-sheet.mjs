@@ -389,7 +389,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			const li = $(ev.currentTarget).parents('.item');
 			const itemId = li.data('itemId');
 			const item = this.actor.items.get(itemId);
-			const currentEquipped = item.system.isEquipped.value;
 			const itemType = item.system.type;
 			const handType = item.system.hands;
 

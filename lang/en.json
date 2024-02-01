@@ -438,6 +438,7 @@
 		"MonsterRule": "Monsters have no special rules",
 		"PlantRule": "Plants are Vulnerable to <b>(choose one: air, bolt, fire, ice)</b> damage.",
 		"UndeadRule": "Undead are Immune to <b>dark</b> and <b>poison</b> damage, immune to <b>poisoned</b> and Vulnerable to <b>light</b> damage.",
+		"CustomRule": "Custom NPC",
 		"UseEquipment": "Use Equipment?",
 		"Potency": "Potency",
 		"Area": "Area",
