@@ -1,6 +1,11 @@
-import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
-import {promptCheck} from "../helpers/checks.mjs";
-import {GroupCheck} from "../helpers/group-check.mjs";
+import {
+    isActiveEffectForStatusEffectId,
+    onManageActiveEffect,
+    prepareActiveEffectCategories,
+    toggleStatusEffect
+} from '../helpers/effects.mjs';
+import {promptCheck} from '../helpers/checks.mjs';
+import {GroupCheck} from '../helpers/group-check.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'ko', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -703,7 +708,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					// Update the item to set 'system.isEquipped.value' to false
 					item.update({
 						'system.isEquipped.value': false,
-						'system.isEquipped.slot': 'default', 
+						'system.isEquipped.slot': 'default',
 					});
 				}
 			});
@@ -729,10 +734,10 @@ export class FUStandardActorSheet extends ActorSheet {
 		if (!item) return;
 
 		// Duplicate the item
-		const duplicatedItemData = duplicate(item.data);
+		const duplicatedItemData = foundry.utils.duplicate(item);
 
 		// Modify the duplicated item's name
-		duplicatedItemData.name = `Copy of ${item.data.name || item.name}`;
+		duplicatedItemData.name = `Copy of ${item.name}`;
 		duplicatedItemData.system.isEquipped = {
 			value: false,
 			slot: 'default',
@@ -752,7 +757,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Get the type of item to create.
 		const type = header.dataset.type;
 		// Grab any data associated with this control.
-		const data = duplicate(header.dataset);
+		const data = foundry.utils.duplicate(header.dataset);
 		// Initialize a default name.
 		const name = `New ${type.capitalize()}`;
 		// Prepare the item object.
@@ -1073,12 +1078,11 @@ export class FUStandardActorSheet extends ActorSheet {
 				return this._rollBehavior();
 			}
 			if (dataset.rollType === 'roll-check' || dataset.rollType === 'roll-init') {
-                return promptCheck(this.actor)
+				return promptCheck(this.actor);
 			}
-            if (dataset.rollType === "group-check")
-            {
-                GroupCheck.promptCheck(this.actor)
-            }
+			if (dataset.rollType === 'group-check') {
+				GroupCheck.promptCheck(this.actor);
+			}
 		}
 
 		// Handle item-slot rolls.
@@ -1163,21 +1167,21 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
-	async _updateObject(event, data){
+	async _updateObject(event, data) {
 		// Foundry's form update handlers send back bond information as an object {0: ..., 1: ....}
 		// So correct an update in that form and create an updated bond array to properly represent the changes
 		const bonds = data.system?.resources?.bonds;
 		if (bonds) {
 			if (!Array.isArray(bonds)) {
 				const currentBonds = [];
-				const maxIndex = Object.keys(bonds).length
+				const maxIndex = Object.keys(bonds).length;
 				for (let i = 0; i < maxIndex; i++) {
 					currentBonds.push(bonds[i]);
 				}
 				data.system.resources.bonds = currentBonds;
 			}
 		}
-		super._updateObject(event,data)
+		super._updateObject(event, data);
 	}
 }
 

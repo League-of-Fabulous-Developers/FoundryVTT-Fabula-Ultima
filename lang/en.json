@@ -536,6 +536,7 @@
 		"GroupCheckSupportCanceled": "Support Check has been canceled.",
 		"GroupCheckLeaderCantSupport": "The leader can't also support the Group Check.",
 		"GroupCheckNotPlayerCharacter": "NPCs can't support Group Checks.",
-		"GroupCheckMissingCharacter": "No character selected."
+		"GroupCheckMissingCharacter": "No character selected.",
+		"AbilityNoWeaponEquipped": "No weapons equipped!"
 	}
 }

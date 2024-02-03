@@ -15,7 +15,7 @@ import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs'
  * @property {IsEquippedDataModel} isEquipped
  * @property {ItemAttributesDataModel} attributes
  * @property {number} accuracy.value
- * @property {damage} damage.value
+ * @property {number} damage.value
  * @property {WeaponType} type.value
  * @property {WeaponCategory} category.value
  * @property {Handedness} hands.value

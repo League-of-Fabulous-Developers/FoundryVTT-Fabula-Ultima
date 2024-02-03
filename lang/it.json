@@ -542,6 +542,7 @@
 		"IsBehavior": "Condotta?",
 		"HasCollateral": "Ha danni collaterali?",
 		"IsCompanion": "Compagno?",
-		"IsElite": "Elite?"
+		"IsElite": "Elite?",
+		"AbilityNoWeaponEquipped": "FU.AbilityNoWeaponEquipped"
 	}
 }
