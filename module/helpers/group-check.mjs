@@ -97,7 +97,7 @@ async function handleSupportCheck(groupCheck)
 
     const {attr1, attr2} = groupCheck.attributes;
     /**
-     * @type {CheckParams}
+     * @type {CheckParameters}
      */
     const checkParams = {
         check: {
@@ -370,7 +370,7 @@ export class GroupCheck extends Application {
 				system: { attributes },
 			} = leader;
 			/**
-			 * @type {CheckParams}
+			 * @type {CheckParameters}
 			 */
 			const check = {
 				check: {

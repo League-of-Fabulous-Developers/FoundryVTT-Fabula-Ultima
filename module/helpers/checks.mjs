@@ -43,7 +43,16 @@
  */
 
 /**
+ * @typedef CheckDetails
+ * @extends CheckWeapon
+ * @extends CheckSpell
+ * @extends CheckBasic
+ * @extends CheckAbility
+ */
+
+/**
  * @typedef CheckWeapon
+ * @property {"weapon"} _type
  * @property {string} name
  * @property {string} img
  * @property {WeaponCategory} category
@@ -57,6 +66,7 @@
 
 /**
  * @typedef CheckSpell
+ * @property {"spell"} _type
  * @property {string} name
  * @property {string} img
  * @property {string} mpCost
@@ -65,6 +75,35 @@
  * @property {string} opportunity
  * @property {string} summary
  * @property {string} description
+ */
+
+/**
+ * @typedef CheckBasic
+ * @property {"basic"} _type
+ * @property {string} name
+ * @property {string} img
+ * @property {string} quality
+ * @property {WeaponType} type
+ * @property {Defense} defense
+ * @property {string} summary
+ * @property {string} description
+ */
+
+/**
+ * @typedef AbilityWeapon
+ * @property {string} name
+ * @property {string} slot
+ */
+
+/**
+ * @typedef CheckAbility
+ * @property {"ability"} _type
+ * @property {string} name
+ * @property {string} img
+ * @property {string} quality
+ * @property {string} summary
+ * @property {string} description
+ * @property {AbilityWeapon} [weapon]
  */
 
 /**
@@ -83,15 +122,15 @@
  */
 
 /**
- * @typedef CheckParams
+ * @typedef CheckParameters
  * @property {CheckData} check
+ * @property {CheckDetails} details
  * @property {CheckResult} [result]
  * @property {CheckReroll} [reroll]
  * @property {ChatSpeakerData} [speaker]
  * @property {CheckPush} [push]
+ * @property {boolean} [offensive] implied true if damage is set
  * @property {CheckDamage} [damage]
- * @property {CheckWeapon} [weapon]
- * @property {CheckSpell} [spell]
  * @property {number} [difficulty]
  * @property {CheckTarget[]} [targets]
  * @property {boolean} [collapseDescriptions]
@@ -119,7 +158,7 @@ function getOptionalPart(modifier, name) {
 }
 
 /**
- * @param {CheckParams} check
+ * @param {CheckParameters} check
  * @returns {Promise<void>}
  */
 async function handleRoll(check) {
@@ -148,7 +187,7 @@ async function handleRoll(check) {
 }
 
 /**
- * @param {CheckParams} check
+ * @param {CheckParameters} check
  */
 function handleDamage(check) {
 	if (check.damage) {
@@ -167,12 +206,12 @@ function handleDamage(check) {
 }
 
 /**
- * @param {CheckParams} params
- * @returns {Promise<CheckParams>}
+ * @param {CheckParameters} params
+ * @returns {Promise<CheckParameters>}
  */
 export async function rollCheck(params) {
-	/** @type CheckParams */
-	const check = { ...params };
+	/** @type CheckParameters */
+	const check = { ...params, offensive: params.offensive || !!params.damage };
 
 	await handleRoll(check);
 	handleDamage(check);
@@ -181,7 +220,7 @@ export async function rollCheck(params) {
 }
 
 /**
- * @param {CheckParams} check
+ * @param {CheckParameters} check
  * @returns {Promise<void>}
  */
 async function handleReroll(check) {
@@ -242,12 +281,12 @@ async function handleReroll(check) {
 }
 
 /**
- * @param {CheckParams} params
+ * @param {CheckParameters} params
  * @param {CheckReroll} reroll
- * @returns {Promise<CheckParams>}
+ * @returns {Promise<CheckParameters>}
  */
 export async function rerollCheck(params, reroll) {
-	/** @type CheckParams */
+	/** @type CheckParameters */
 	const check = { ...params };
 
 	check.reroll = reroll;
@@ -348,7 +387,7 @@ export function addRollContextMenuEntries(html, options) {
 }
 
 /**
- * @param {CheckParams} check
+ * @param {CheckParameters} check
  * @returns {Promise<void>}
  */
 async function handlePush(check) {
@@ -379,12 +418,12 @@ async function handlePush(check) {
 
 /**
  *
- * @param {CheckParams} params
+ * @param {CheckParameters} params
  * @param {CheckPush} push
- * @returns {Promise<CheckParams>}
+ * @returns {Promise<CheckParameters>}
  */
 async function pushCheck(params, push) {
-	/** @type CheckParams */
+	/** @type CheckParameters */
 	const check = { ...params };
 	check.push = push;
 
@@ -436,7 +475,7 @@ async function getPushParams(actor) {
 
 /**
  *
- * @param {CheckParams} params
+ * @param {CheckParameters} params
  * @param {Actor} actor
  * @returns {Promise<CheckReroll | undefined>}
  */
@@ -513,27 +552,22 @@ async function getRerollParams(params, actor) {
 }
 
 /**
- * @param {CheckParams} checkParams
+ * @param {CheckParameters} checkParams
  * @param {Object} [additionalFlags]
  * @return {Promise<chatMessage>}
  */
 export async function createCheckMessage(checkParams, additionalFlags = {}) {
 	const flavor = await (async () => {
-		if (checkParams.weapon) {
+		if (checkParams.details) {
 			return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
-				name: checkParams.weapon.name,
-				img: checkParams.weapon.img,
+				name: checkParams.details.name,
+				img: checkParams.details.img,
+			});
+		} else {
+			return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
+				title: checkParams.check.title || 'FU.RollCheck',
 			});
 		}
-		if (checkParams.spell) {
-			return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
-				name: checkParams.spell.name,
-				img: checkParams.spell.img,
-			});
-		}
-		return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
-			title: checkParams.check.title || 'FU.RollCheck',
-		});
 	})();
 
 	checkParams.collapseDescriptions = game.settings.get(SYSTEM, SETTINGS.collapseDescriptions);
@@ -614,7 +648,7 @@ export async function promptCheck(actor) {
 		const speaker = ChatMessage.implementation.getSpeaker({ actor });
 
 		/**
-		 * @type CheckParams
+		 * @type CheckParameters
 		 */
 		let params = {
 			check: {
