@@ -31,6 +31,7 @@ import {SkillDataModel} from './documents/items/skill/skill-data-model.mjs';
 import {SpellDataModel} from './documents/items/spell/spell-data-model.mjs';
 import {TreasureDataModel} from './documents/items/treasure/treasure-data-model.mjs';
 import {ZeroPowerDataModel} from './documents/items/zeropower/zero-power-data-model.mjs';
+import {WeaponDataModel} from "./documents/items/weapon/weapon-data-model.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -86,6 +87,7 @@ Hooks.once('init', async () => {
 		skill: SkillDataModel,
 		spell: SpellDataModel,
 		treasure: TreasureDataModel,
+        weapon: WeaponDataModel,
 		zeroPower: ZeroPowerDataModel,
 	};
 
