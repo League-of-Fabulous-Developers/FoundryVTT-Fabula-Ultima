@@ -79,7 +79,7 @@ Hooks.once('init', async () => {
 		class: ClassDataModel,
 		consumable: ConsumableDataModel,
 		heroic: HeroicSkillDataModel,
-		misc: MiscAbilityDataModel,
+        miscAbility: MiscAbilityDataModel,
 		project: ProjectDataModel,
 		ritual: RitualDataModel,
 		rule: RuleDataModel,
