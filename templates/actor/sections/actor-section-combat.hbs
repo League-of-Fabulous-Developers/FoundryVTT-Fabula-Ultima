@@ -141,6 +141,30 @@
         {{/each}}
     </ol>
 
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			<div class="item-name">{{localize "FU.Treasures"}}</div>
+			<div class="item-full start">{{localize "FU.Effect"}}</div>
+			<div class="item-xs">{{localize "FU.Quantity"}}</div>
+			<div class="item-m end">
+				<a class="item-control item-create" data-tooltip="{{localize 'FU.TreasureCreate'}}"
+					data-type="treasure"><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
+			</div>
+		</li>
+		{{#each treasures as |item id|}}
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow">
+				{{!-- Item Name--}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+				<div class="item-full start"><span>{{ item.quality }}</span></div>
+				<div class="item-xs">{{ item.system.quantity.value }}</div>
+				{{!-- Item Control--}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+			</div>
+		</li>
+		{{/each}}
+	</ol>
+
 </section>
 {{#if actor.system.useEquipment.value}}
 <section class="desc">
