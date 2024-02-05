@@ -32,26 +32,3 @@
         Total Result:
         {{result.total}}</div>
 </div>
-{{#if (gt difficulty 0)}}
-<div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
-    <div>
-		<span class='result-text'>
-			{{#if result.crit}}
-                <span>{{localize 'FU.Critical'}}</span>
-            {{/if}}
-            {{#if result.fumble}}
-                <span>{{localize 'FU.Fumble'}}</span>
-            {{/if}}
-            {{#if difficulty}}
-                {{#if (and (or result.crit (gte result.total difficulty)) (not result.fumble))}}
-                    <span>{{localize 'FU.Success'}}</span>
-                {{else}}
-                    {{#unless result.fumble}}
-                        <span>{{localize 'FU.Failure'}}</span>
-                    {{/unless}}
-                {{/if}}
-            {{/if}}
-		</span>
-    </div>
-</div>
-{{/if}}
