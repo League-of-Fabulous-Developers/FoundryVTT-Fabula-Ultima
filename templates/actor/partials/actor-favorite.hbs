@@ -38,14 +38,13 @@
 			<div class="flexcol">
 				{{!-- Item Name--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-
-				{{#if item.quality}}
-				<div class="item-quality align-left">{{ item.quality }}</div>
-				{{/if}}
 			</div>
 			{{!-- Item Control--}}
 			{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 		</div>
+		{{#if item.quality}}
+			<div class="item-quality align-left">{{ item.quality }}</div>
+		{{/if}}
 		<div class="individual-description align-left">{{#if item.system.description}} {{editor item.system.description
 			target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
 	</li>
