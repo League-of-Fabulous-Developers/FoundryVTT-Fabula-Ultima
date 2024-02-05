@@ -309,48 +309,6 @@ export class FUStandardActorSheet extends ActorSheet {
 	activateListeners(html) {
 		super.activateListeners(html);
 
-		// Add an event listener to the document that listens for clicks on elements with the class 'action-button'
-		html.find('#action-button').click((event) => {
-			const element = event.target;
-
-			// Check if the clicked element has the required data attributes
-			const rollType = element.dataset.rollType;
-			const actionType = element.dataset.action;
-
-			if (rollType === 'action-type' && actionType) {
-				// Handle action-type rolls.
-				const actor = this.actor;
-
-				// Determine the type based on the data-action attribute
-				let type = '';
-				switch (actionType) {
-					case 'EquipmentAction':
-						type = 'equipment';
-						break;
-					case 'guardAction':
-						type = 'guard';
-						break;
-					case 'hinderAction':
-						type = 'hinder';
-						break;
-					case 'inventoryAction':
-						type = 'inventory';
-						break;
-					// Add more cases for other actions
-
-					default:
-						type = 'default';
-						break;
-				}
-
-				// Check if the item exists and call its roll method
-				if (type) {
-					// Assuming that item is accessible in this context
-					item.roll(type);
-				}
-			}
-		});
-
 		// Render the item sheet for viewing/editing prior to the editable check.
 		html.find('.item-edit').click((ev) => {
 			const li = $(ev.currentTarget).parents('.item');
@@ -378,11 +336,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			item.delete();
 			li.slideUp(200, () => this.render(false));
 		});
-
-		/**
-		 * Clickable stars to update the current skill level.
-		 *
-		 */
 
 		// Update Progress
 		html.find('.progress input').click((ev) => this._onProgressUpdate(ev));
@@ -519,28 +472,28 @@ export class FUStandardActorSheet extends ActorSheet {
 		});
 
 		// Increment and Decrement Buttons
-		html.find('.increment-button, .decrement-button').click((ev) => {
-			ev.preventDefault();
-			const currentSheet = $(ev.currentTarget).closest('.projectfu-actor-sheet');
-			if (currentSheet.length === 0) {
-				console.error('Current sheet not found.');
-				return;
-			}
-			const targetResource = $(ev.currentTarget).data('resource');
-			const action = $(ev.currentTarget).data('action');
-			const inputElement = currentSheet.find('#' + targetResource + '-input');
-			let currentValue = parseInt(inputElement.val());
+		// html.find('.increment-button, .decrement-button').click((ev) => {
+		// 	ev.preventDefault();
+		// 	const currentSheet = $(ev.currentTarget).closest('.projectfu-actor-sheet');
+		// 	if (currentSheet.length === 0) {
+		// 		console.error('Current sheet not found.');
+		// 		return;
+		// 	}
+		// 	const targetResource = $(ev.currentTarget).data('resource');
+		// 	const action = $(ev.currentTarget).data('action');
+		// 	const inputElement = currentSheet.find('#' + targetResource + '-input');
+		// 	let currentValue = parseInt(inputElement.val());
 
-			if (isNaN(currentValue)) {
-				currentValue = 0;
-			}
-			if (action === 'increase') {
-				currentValue += 1;
-			} else if (action === 'decrease') {
-				currentValue = Math.max(currentValue - 1, 0);
-			}
-			inputElement.val(currentValue);
-		});
+		// 	if (isNaN(currentValue)) {
+		// 		currentValue = 0;
+		// 	}
+		// 	if (action === 'increase') {
+		// 		currentValue += 1;
+		// 	} else if (action === 'decrease') {
+		// 		currentValue = Math.max(currentValue - 1, 0);
+		// 	}
+		// 	inputElement.val(currentValue);
+		// });
 
 		// Active Effect management
 		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor));
@@ -553,11 +506,6 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Rollable abilities.
 		html.find('.rollable').click(this._onRoll.bind(this));
 
-		// Roll Check Options
-		// TODO: Open Dialog Box for Roll Customizer
-		html.find('.roll-check-option').click((ev) => {
-			this._onRollCheckOption(ev);
-		});
 
 		// Drag events for macros.
 		if (this.actor.isOwner) {
@@ -848,178 +796,6 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Create a chat message with the chat data
 		ChatMessage.create(chatData);
-	}
-
-	/**
-	 * Performs a check (rollcheck or rollinit) based on the selected primary/secondary selection and displays the result in a chat message.
-	 * @private
-	 * @param {string} rollType - The type of check to perform (either 'rollcheck' or 'rollinit').
-	 */
-	async _openCheck(rollType) {
-		let primaryAttributeRef = '';
-		let secondaryAttributeRef = '';
-		let title = '';
-		let bonuses = '';
-		const actorData = this.actor.system;
-
-		// Use a switch statement to handle different cases based on rollType
-		switch (rollType) {
-			case 'roll-check':
-				// Get the selected primary and secondary attributes for rollcheck
-				primaryAttributeRef = $(this.form).find('select[name="system.rollInfo.attributes.primary.value"]').val();
-				secondaryAttributeRef = $(this.form).find('select[name="system.rollInfo.attributes.secondary.value"]').val();
-				title = game.i18n.localize('FU.RollCheck');
-				bonuses = 0;
-				break;
-
-			case 'roll-init':
-				// Get the selected primary and secondary attributes for initiative
-				primaryAttributeRef = 'attributes.dex.current';
-				secondaryAttributeRef = 'attributes.ins.current';
-				title = game.i18n.localize('FU.InitiativeCheck');
-				bonuses = +actorData.derived.init.value;
-				break;
-
-			default:
-				// Handle other cases or invalid rollType values
-				return;
-		}
-
-		// Extract the attribute values from the actor's data
-		const primaryAttributeValue = getProperty(actorData, primaryAttributeRef);
-		const secondaryAttributeValue = getProperty(actorData, secondaryAttributeRef);
-
-		// Assuming primaryAttributeRef and secondaryAttributeRef are in the format 'attributes.xxx.current'
-		const primaryAttributeParts = primaryAttributeRef.split('.');
-		const secondaryAttributeParts = secondaryAttributeRef.split('.');
-
-		// Assuming the parts after 'attributes.' match your attribute keys (e.g., 'dex', 'ins', etc.)
-		const primaryAttributeKey = primaryAttributeParts[1];
-		const secondaryAttributeKey = secondaryAttributeParts[1];
-
-		// Localize the attribute names using your localization data (using abbreviations)
-		const primaryAttributeName = game.i18n.localize(CONFIG.FU.attributeAbbreviations[primaryAttributeKey]) ?? primaryAttributeKey;
-		const secondaryAttributeName = game.i18n.localize(CONFIG.FU.attributeAbbreviations[secondaryAttributeKey]) ?? secondaryAttributeKey;
-
-		// Perform the roll calculation here using the extracted attribute values
-		const primaryRollResult = await new Roll(`1d${primaryAttributeValue}`).evaluate({ async: true });
-		const secondaryRollResult = await new Roll(`1d${secondaryAttributeValue}`).evaluate({ async: true });
-
-		// Calculate the total result
-		const totalResult = primaryRollResult.total + secondaryRollResult.total + bonuses;
-
-		// Prepare chat data for displaying the message
-		const speaker = ChatMessage.getSpeaker({ actor: this.actor });
-		const label = `
-		<div class="title-desc">
-		  <div class="flex-group-center backgroundstyle">
-			<p>${title}</p>
-		  </div>
-		</div>
-	  `;
-
-		// Check if Dice So Nice is enabled
-		if (game.modules.get('dice-so-nice')?.active) {
-			// Prepare data for 3D animation
-			const diceData = {
-				throws: [
-					{
-						dice: [
-							{
-								result: primaryRollResult.total,
-								resultLabel: primaryRollResult.total,
-								type: `d${primaryAttributeValue}`, // Use primary attribute value
-								vectors: [],
-								options: {},
-							},
-							{
-								result: secondaryRollResult.total,
-								resultLabel: secondaryRollResult.total,
-								type: `d${secondaryAttributeValue}`, // Use secondary attribute value
-								vectors: [],
-								options: {},
-							},
-						],
-					},
-				],
-			};
-
-			// Show the 3D animation
-			await game.dice3d.show(diceData, game.user, false, null, false);
-		}
-
-		// Create a chat message
-		const bonusString = bonuses === 0 ? '' : `Bonus: ${bonuses} <br>`;
-		const content = `
-		
-		<div class="detail-desc flex-group-center grid grid-2col">
-          <div class="spin2win"><i class="fas fa-dice-d20 ra-2x rollable"></i>${primaryRollResult.total} (${primaryAttributeName})</div>
-          <div class="spin2win"><i class="fas fa-dice-d20 ra-2x rollable"></i>${secondaryRollResult.total} (${secondaryAttributeName})</div> 
-        </div>
-		<div class="detail-desc flexrow" style="padding:0 2px">
-            <div class="spin2win"><i class="fas fa-dice-d20 ra-2x rollable"></i>${bonusString}Total Result: ${totalResult}</div>
-        </div>
-	
-		`;
-
-		ChatMessage.create({
-			speaker: speaker,
-			rollMode: game.settings.get('core', 'rollMode'),
-			flavor: label,
-			content: content,
-			flags: {},
-		});
-	}
-
-	_onRollCheckOption(event) {
-		event.preventDefault();
-		const element = event.currentTarget;
-		const dataset = element.dataset;
-		const rollCheck = game.i18n.localize('FU.RollCheck');
-		const rollCheckOption = game.i18n.localize('FU.RollCheckOptions');
-
-		const dialogContent = `
-			<p>Dialog for customizing Roll Check.</p>
-			<button id="roll-check-button">${rollCheck}</button>
-		`;
-
-		const bonusBond = 0;
-		const bonusExtra = 0;
-
-		// Create the dialog
-		const dialog = new Dialog({
-			title: `${rollCheckOption}`,
-			content: dialogContent,
-			buttons: {
-				close: {
-					label: 'Close',
-					callback: () => {
-						// Handle any actions on dialog close if needed
-					},
-				},
-			},
-			default: 'close', // The default button (close) that responds to the Enter key
-		});
-
-		// Render the dialog
-		dialog.render(true);
-
-		// Add event listener to the close button (optional)
-		const closeDialogButton = dialog.element.find('#close-dialog');
-		closeDialogButton.on('click', (event) => {
-			event.preventDefault();
-			dialog.close();
-		});
-
-		// Add event listener to the "Customize Roll Check" button
-		const rollCheckButton = dialog.element.find('#roll-check-button');
-		rollCheckButton.on('click', (event) => {
-			event.preventDefault();
-			dialog.close();
-
-			// Call the _openCheck function and pass the bonusBond and bonusExtra variables
-			this._openCheck('roll-check', bonusBond, bonusExtra);
-		});
 	}
 
 	// Set progress clock value to the segment clicked
