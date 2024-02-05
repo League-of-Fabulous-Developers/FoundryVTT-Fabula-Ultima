@@ -4,6 +4,7 @@ import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs'
 import {DamageDataModel} from '../common/damage-data-model.mjs';
 import {ImprovisedDamageDataModel} from '../common/improvised-damage-data-model.mjs';
 import {ProgressDataModel} from '../common/progress-data-model.mjs';
+import {MiscAbilityMigrations} from './misc-ability-migrations.mjs';
 
 /**
  * @property {string} subtype.value
@@ -12,7 +13,7 @@ import {ProgressDataModel} from '../common/progress-data-model.mjs';
  * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {boolean} isMartial.value
- * @property {string} quality.value
+ * @property {string} opportunity
  * @property {IsEquippedDataModel} isEquipped
  * @property {UseWeaponDataModel} useWeapon
  * @property {ItemAttributesDataModel} attributes
@@ -41,7 +42,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
-			quality: new SchemaField({ value: new StringField() }),
+			opportunity: new StringField(),
 			isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
 			useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'dex' }, secondary: { value: 'ins' } } }),
@@ -62,5 +63,10 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			isOffensive: new SchemaField({ value: new BooleanField() }),
 			hasRoll: new SchemaField({ value: new BooleanField() }),
 		};
+	}
+
+	static migrateData(source) {
+		MiscAbilityMigrations.run(source);
+		return source;
 	}
 }

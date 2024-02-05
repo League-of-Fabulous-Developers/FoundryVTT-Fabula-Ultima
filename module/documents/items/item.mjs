@@ -787,7 +787,7 @@ export class FUItem extends Item {
 	 * @return {Promise<chatMessage>}
 	 */
 	async rollSpell(hrZero) {
-		const { rollInfo, quality, description, summary, mpCost, target, duration } = this.system;
+		const { rollInfo, opportunity, description, summary, mpCost, target, duration } = this.system;
 		let checkDamage = undefined;
 		if (rollInfo?.damage?.hasDamage?.value) {
 			checkDamage = {
@@ -805,7 +805,7 @@ export class FUItem extends Item {
 			duration: duration.value,
 			target: target.value,
 			mpCost: mpCost.value,
-			opportunity: quality.value,
+			opportunity: opportunity,
 			summary: summary.value,
 			description: await TextEditor.enrichHTML(description),
 		};
@@ -917,14 +917,14 @@ export class FUItem extends Item {
 	}
 
 	async rollAbility(hrZero) {
-		const { summary, description, quality, rollInfo } = /** @type {MiscAbilityDataModel | SkillDataModel} */ this.system;
+		const { summary, description, opportunity, rollInfo } = /** @type {MiscAbilityDataModel | SkillDataModel} */ this.system;
 		/** @type CheckAbility */
 		const details = {
 			_type: 'ability',
 			name: this.name,
 			img: this.img,
 			summary: summary.value,
-			quality: quality?.value,
+			opportunity: opportunity,
 			description: await TextEditor.enrichHTML(description),
 		};
 
