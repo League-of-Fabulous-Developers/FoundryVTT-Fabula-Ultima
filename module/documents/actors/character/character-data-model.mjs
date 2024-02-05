@@ -30,7 +30,7 @@ import {BondDataModel} from '../common/bond-data-model.mjs';
  * @property {BondDataModel[]} resources.bonds
  * @property {number} resources.exp.value
  * @property {string} resources.identity.value
- * @property {string} resources.pronous.value
+ * @property {string} resources.pronouns.value
  * @property {string} resources.theme.value
  * @property {string} resources.origin.value
  * @property {AffinitiesDataModel} affinities

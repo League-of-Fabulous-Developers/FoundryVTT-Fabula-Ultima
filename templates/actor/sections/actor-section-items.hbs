@@ -77,11 +77,8 @@
 		</li>
 		{{/each}}
 	</ol>
-</section>
 
-<!-- Shield Section -->
-<section class="desc">
-
+	<!-- Shield Section -->
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name item-name-sort sortable">{{localize "FU.Shields"}}</div>
@@ -114,12 +111,8 @@
 		</li>
 		{{/each}}
 	</ol>
-</section>
 
-
-<!-- Armor Section -->
-<section class="desc">
-
+	<!-- Armor Section -->
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize "FU.Armors"}}</div>
@@ -152,11 +145,8 @@
 		</li>
 		{{/each}}
 	</ol>
-</section>
 
-<!-- Accessory Section -->
-<section class="desc">
-
+	<!-- Accessory Section -->
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize "FU.Accessories"}}</div>
@@ -190,11 +180,8 @@
 		</li>
 		{{/each}}
 	</ol>
-</section>
 
-<!-- Consumable Section -->
-<section class="desc">
-
+	<!-- Consumable Section -->
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize "FU.Consumables"}}</div>
@@ -218,11 +205,8 @@
 		</li>
 		{{/each}}
 	</ol>
-</section>
 
-<!-- Treasure Section -->
-<section class="desc">
-
+	<!-- Treasure Section -->
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize "FU.Treasures"}}</div>
@@ -246,13 +230,10 @@
 		</li>
 		{{/each}}
 	</ol>
-</section>
 
-<!-- Basic Item Section only shown if the actor has basic items -->
-{{#if basics.length}}
-<section class="desc">
-
-	<ol class="items-list">
+	<!-- Basic Item Section only shown if the actor has basic items -->
+	{{#if basics.length}}
+		<ol class="items-list">
 			<li class="item flexrow items-header">
 				<div class="item-name">{{localize "FU.Basic"}}</div>
 				<div class="item-full start">{{localize "FU.Effect"}}</div>
@@ -274,6 +255,8 @@
 				</div>
 			</li>
 			{{/each}}
-	</ol>
+		</ol>
+	</section>
+	{{/if}}
+
 </section>
-{{/if}}

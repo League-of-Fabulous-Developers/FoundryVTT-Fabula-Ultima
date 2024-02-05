@@ -8,61 +8,21 @@
 						class="resource-inputs-charname auto-shrink" />
 				</h1>
 
-				{{!-- Sub Type --}}
-				<span class="resource-content levelup-container flex-group-center">
-					<label class="resource-label-sm" for="item.type"> <i
+				{{!-- Item Type --}}
+				<span class="resource-content levelup-container flexcol flex-group-center">
+					<label class="resource-label-m" for="item.type" > <i
 							class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.ItemType'}}</label>
-					{{#if (eq item.type "heroic")}}
-					<span>
-						<select type="select" value="" name="system.subtype.value" data-dtype="String"
-							class="resource-inputs side-bar">
-							{{#select system.subtype.value}}
-							<option value="skill">Heroic Skill</option>
-							<option value="style">Heroic Style</option>
-							{{/select}}
-						</select>
-					</span>
-					{{else if (eq item.type "miscAbility")}}
-					<span>
-						<select type="select" value="" name="system.subtype.value" data-dtype="String"
-							class="resource-inputs side-bar">
-							{{#select system.subtype.value}}
-							{{#if (eq actor.type "character")}}
-							<option value="custom">Custom</option>
-							<option value="arcana">Arcana</option>
-							<option value="deck">Deck</option>
-							<option value="verse">Verse</option>
-							<option value="dance">Dance</option>
-							<option value="gift">Gift</option>
-							<option value="magiseed">Magiseed</option>
-							<option value="invention">Invention</option>
-							<option value="invocation">Invocation</option>
-							<option value="therioform">Therioform</option>
-							<option value="symbol">Symbol</option>
-							<option value="infusion">Infusion</option>
-							<option value="quirk">Quirk</option>
-							{{/if}}
-							{{#if (eq actor.type "npc")}}
-							<option value="other">Other Action</option>
-							{{/if}}
-							{{/select}}
-						</select>
-					</span>
+						<input type="text" name="item.type" value="{{capitalize item.type}}" data-dtype="String" style="margin: 2px 5px;"
+							class="resource-inputs" disabled />
 
-					{{else}}
-					<span>
-						<input type="text" name="item.type" value="{{capitalize item.type}}" data-dtype="String"
-							class="resource-inputs side-bar" disabled />
-					</span>
-					{{/if}}
 				</span>
 
 				{{!-- Source --}}
-				<span class="resource-content levelup-container flex-group-center">
-					<label class="resource-label-sm rollable" id="pdfLink"> <i
+				<span class="resource-content levelup-container flexcol flex-group-center">
+					<label class="resource-label-m rollable" id="pdfLink"> <i
 							class="fa-solid fa-book icon"></i>{{localize 'FU.Source'}} </label>
-					<input type="text" name="system.source.value" value="{{ system.source.value }}" data-dtype="String"
-						class="resource-inputs side-bar" />
+					<input type="text" name="system.source.value" value="{{ system.source.value }}" data-dtype="String" style="margin: 2px 5px;"
+						class="resource-inputs" />
 				</span>
 			</div>
 
@@ -75,12 +35,12 @@
 				</div>
 			</span>
 
-			<div class="resource-content summary desc" style="height: 75px;">
+			<div class="resource-content summary desc" style="height: 72px;">
 				<label class="resource-label-sm" style="position: sticky;" for="system.summary.value"> <i
 						class="fa-solid fa-chart-simple icon"></i>{{localize
 					'FU.AttributesKey'}}
 				</label>
-				<div class="grid grid-3col card-style">
+				<div class="grid grid-3col card-style" style="margin-top: 6px;">
 					{{#if system.isMartial.value}}
 					<i class="fusl is-martial fu-martial icon-aff" style="position: absolute;"></i>
 					{{/if}}
@@ -111,11 +71,62 @@
 			</span>
 		</div>
 	</div>
+	<div class="grid grid-3col" style="width: -webkit-fill-available;">
+		{{!-- Sub Type --}}
+		<span class="resource-content flexcol flex-group-center desc">
+			<label class="resource-label-sm" for="item.type"> <i
+					class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.SubType'}}</label>
+			{{#if (eq item.type "heroic")}}
+			<span>
+				<select type="select" value="" name="system.subtype.value" data-dtype="String"
+					class="resource-inputs select-dropdown-l">
+					{{#select system.subtype.value}}
+					<option value="skill">Heroic Skill</option>
+					<option value="style">Heroic Style</option>
+					{{/select}}
+				</select>
+			</span>
+			{{else if (eq item.type "miscAbility")}}
+			<span>
+				<select type="select" value="" name="system.subtype.value" data-dtype="String"
+					class="resource-inputs select-dropdown-l">
+					{{#select system.subtype.value}}
+					<option value="custom">Custom</option>
+					<option value="arcana">Arcana</option>
+					<option value="deck">Deck</option>
+					<option value="verse">Verse</option>
+					<option value="dance">Dance</option>
+					<option value="gift">Gift</option>
+					<option value="magiseed">Magiseed</option>
+					<option value="invention">Invention</option>
+					<option value="invocation">Invocation</option>
+					<option value="therioform">Therioform</option>
+					<option value="symbol">Symbol</option>
+					<option value="infusion">Infusion</option>
+					<option value="quirk">Quirk</option>
+					<option value="other">Other Action</option>
+					{{/select}}
+				</select>
+			</span>
+			{{else if (eq item.type "treasure")}}
+			<span>
+				<select type="select" value="" name="system.subtype.value" data-dtype="String"
+					class="resource-inputs select-dropdown-l">
+					{{#select system.subtype.value}}
+					<option value="treasure">Treasure</option>
+					<option value="material">Material</option>
+					<option value="artifact">Artifact</option>
+					{{/select}}
+				</select>
+			</span>
+			{{/if}}
+		</span>
 
-	{{!-- Sheet Tab Navigation --}}
-	<nav class="sheet-tabs tabs desc" data-group="primary" style="align-self: stretch;">
-		<a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
-		<a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
-		<a class="item" data-tab="effects">{{localize 'FU.Effects'}}</a>
-	</nav>
+		{{!-- Sheet Tab Navigation --}}
+		<nav class="sheet-tabs tabs desc flex-group-left grid-span-2" data-group="primary" style="align-self: stretch;">
+			<a class="item" data-tab="description">{{localize 'FU.Description'}}</a>
+			<a class="item" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
+			<a class="item" data-tab="effects">{{localize 'FU.Effects'}}</a>
+		</nav>
+	</div>
 </header>

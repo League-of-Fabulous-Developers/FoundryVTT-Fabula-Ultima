@@ -31,7 +31,7 @@
         <li class="item flexrow items-header">
             <div class="item-name">{{localize 'FU.Spells'}}</div>
             <div class="item-m">{{localize 'FU.Duration'}}</div>
-            <div class="item-m">{{localize 'FU.Target'}}</div>
+            <div class="item-lg">{{localize 'FU.Target'}}</div>
             <div class="item-m">{{localize 'FU.MindPointCost'}}</div>
             <div class="item-m end">
                 <a class="item-control item-create" title="Create Spell" data-type="spell"> <i
@@ -44,7 +44,7 @@
                 {{!-- Item Name--}}
                 {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
                 <div class="item-m">{{ item.duration }}</div>
-                <div class="item-m">{{ item.target }}</div>
+                <div class="item-lg">{{ item.target }}</div>
                 <div class="item-m">
                     <span>{{ item.mpCost }}</span>
                 </div>

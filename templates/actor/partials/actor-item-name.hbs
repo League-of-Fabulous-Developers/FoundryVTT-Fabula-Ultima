@@ -4,30 +4,32 @@
             <img src="{{ item.img }}" data-tooltip="{{ item.name }}" />
         </div>
     </div>
-    <h4 class="click-item resource-content">
-        <span class="resource-label">
+<h4 class="click-item resource-content">
+    <span class="resource-label">
+        {{#if (eq @root.actor.type "npc")}}
             {{#if (eq item.system.type.value "melee")}}
-            <i class="fusl fu-action-melee icon-aff"></i>
+                <i class="fusl fu-action-melee icon-aff"></i>
             {{else if (eq item.system.type.value "ranged")}}
-            <i class="fusl fu-action-ranged icon-aff"></i>
+                <i class="fusl fu-action-ranged icon-aff"></i>
             {{else if (eq item.type "spell")}}
-            <i class="fusl fu-action-spell icon-aff"></i>
+                <i class="fusl fu-action-spell icon-aff"></i>
             {{else if (eq item.type "miscAbility")}}
-            <i class="fusl fu-action-skill icon-aff"></i>
+                <i class="fusl fu-action-skill icon-aff"></i>
             {{/if}}
-            {{ item.name }}
-            {{#if item.system.isMartial.value}}
+        {{/if}}
+        {{ item.name }}
+        {{#if item.system.isMartial.value}}
             <i class="fusl is-martial fu-martial icon-aff"></i>
-            {{/if}}
-            {{#if item.system.isOffensive.value}}
+        {{/if}}
+        {{#if item.system.isOffensive.value}}
             <i class="fusl is-martial fu-offensive icon-aff"></i>
-            {{/if}}
-            {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "mainHand"))}}
+        {{/if}}
+        {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "mainHand"))}}
             <span class="icon-letter" data-tooltip="{{localize 'FU.MainHand'}}">M</span>
-            {{/if}}
-            {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "offHand"))}}
+        {{/if}}
+        {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "offHand"))}}
             <span class="icon-letter" data-tooltip="{{localize 'FU.OffHand'}}">O</span>
-            {{/if}}
-        </span>
-    </h4>
+        {{/if}}
+    </span>
+</h4>
 </div>

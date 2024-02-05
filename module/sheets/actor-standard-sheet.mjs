@@ -19,7 +19,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		return mergeObject(super.defaultOptions, {
 			classes: ['projectfu', 'sheet', 'actor'],
 			template: 'systems/projectfu/templates/actor/actor-character-sheet.hbs',
-			width: 700,
+			width: 750,
 			height: 1150,
 			tabs: [
 				{

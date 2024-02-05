@@ -382,7 +382,7 @@ span[data-tooltip] {
   align-content: center;
 }
 .item-m {
-  flex: 0 0 96px;
+  flex: 0 0 100px;
   text-align: center;
   justify-content: center;
   display: flex;
@@ -390,10 +390,9 @@ span[data-tooltip] {
   flex-wrap: wrap;
   text-align: center;
   align-content: center;
-  align-content: center;
 }
 .item-lg {
-  flex: 0 0 128px;
+  flex: 0 0 150px;
   text-align: center;
   justify-content: center;
   display: flex;
@@ -455,6 +454,6 @@ span[data-tooltip] {
 }
 .sl-stars {
   height: 42px;
-  padding: 0 10px;
+  padding: 0 25px;
 }
 

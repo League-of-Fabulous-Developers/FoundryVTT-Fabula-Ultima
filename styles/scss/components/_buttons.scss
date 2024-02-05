@@ -10,13 +10,12 @@
   input.up-resource-inputs {
     color: $color-secondary;
     text-shadow: 1px 2px $color-quaternary;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     background-color: transparent;
     border-color: transparent;
     vertical-align: middle;
     height: auto;
-    padding: 5px;
   }
 
   &.roll-check {

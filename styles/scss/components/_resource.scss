@@ -110,7 +110,7 @@
     }
 
     & .resource-inputs {
-      width: 80%;
+      width: 90%;
       padding: 0;
       margin: 0 5px 0 5px;
       appearance: none;
@@ -121,7 +121,7 @@
     }
 
     &.creature {
-      padding: 0.5em;
+      padding: 8px;
 
       .resource-inputs {
         color: $color-primary;
@@ -151,8 +151,7 @@
     background-color: $color-secondary;
     border: thin solid $color-secondary;
     width: 4em;
-    height: auto;
-    margin: 2px;
+    height: 2em;
     padding: 0;
     justify-content: center;
     text-align: center;

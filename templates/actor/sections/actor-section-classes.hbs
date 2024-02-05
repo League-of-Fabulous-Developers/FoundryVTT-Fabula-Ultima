@@ -38,10 +38,8 @@
 		</li>
 		{{/each}}
 	</ol>
-</section>
 
-<!-- Skills Section -->
-<section class="desc">
+	<!-- Skills Section -->
 	<header class="items-main-header">
 		<span class="items-main">
 			<label class="items-label">{{localize "FU.Skills"}}</label>
@@ -67,7 +65,7 @@
 		</li>
 		{{#each skills as |item id|}}
 		<li class="item" data-item-id="{{ item._id }}">
-			<div class="flexrow" style="height: fit-content;align-items: baseline;">
+			<div class="flexrow" style="height: fit-content; align-items: flex-start;">
 				<div class="flexcol">
 					{{!-- Item Name--}}
 					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -78,14 +76,6 @@
 				<div class="item-lg sl-stars">
 					{{ generateStars item.starCurrent item.starMax }}
 				</div>
-				{{!-- <div class="item-m">
-					<span class="editable-skill-level" data-resource="item.system.level.value">{{
-						item.system.level.value }}</span>
-					{{#if (gt item.system.level.max 0)}}
-					<span>/</span>
-					<span>{{ item.system.level.max }}</span>
-					{{/if}}
-				</div> --}}
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
@@ -95,10 +85,8 @@
 		</li>
 		{{/each}}
 	</ol>
-</section>
 
-<!-- Heroic Skill Section-->
-<section class="desc">
+	<!-- Heroic Skill Section-->
 	<header class="items-main-header">
 		<span class="items-main">
 			<label class="items-label">{{localize "FU.Heroics"}}</label>

@@ -1,7 +1,7 @@
 <div class="header-fields flexrow" style="align-self: stretch;">
-    <div class="resource-content flex-group-center desc">
+    <div class="resource-content flex-group-center desc" style="border-radius: 10px 0 0 10px;">
         {{!-- Key Statuses --}}
-        <div class="resource-content flex-group-center flexrow">
+        <div class="resource-content flex-group-center flexrow" style="margin-top: 2px;">
             <span class="grid grid-8col">
                 {{#each statusEffectToggles as |statusEffect|}}
                 <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}"
@@ -13,19 +13,17 @@
         </div>
     </div>
 
-    <div class="resource-content flex-group-center desc">
+    <div class="resource-content flex-group-center desc" style="border-radius: 0;">
         <!-- Attribute Section -->
         {{>"systems/projectfu/templates/actor/partials/actor-attributes.hbs"}}
     </div>
 
     {{!-- Roll Check --}}
-    <div class="resource-content flex-group-center desc">
-        <div>
+    <div class="resource-content flex-group-center desc" style="border-radius: 0 10px 10px 0;">
+        <div class="flexcol flex-group-center" style="margin-top: 3px;">
             <label class="resource-label-xl spin2win rollable flex-center" data-roll-type="roll-check">
                 <i class="fas fa-dice-d20 spin2win ra-1x"></i> {{localize 'FU.RollCheck'}}
             </label>
-        </div>
-        <div>
             <label class="resource-label-xl spin2win rollable flex-center" data-roll-type="group-check">
                 <i class="fas fa-dice-d20 spin2win ra-1x"></i> {{localize 'FU.GroupCheck'}}
             </label>
