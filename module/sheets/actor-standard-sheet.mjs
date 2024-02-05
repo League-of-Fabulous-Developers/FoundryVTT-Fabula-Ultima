@@ -316,6 +316,15 @@ export class FUStandardActorSheet extends ActorSheet {
 			item.sheet.render(true);
 		});
 
+		// Render the item sheet for viewing/editing when middle-clicking
+		html.find('.item').mouseup((ev) => {
+			if (ev.button === 1 && !$(ev.target).hasClass('item-edit')) {
+				const li = $(ev.currentTarget);
+				const item = this.actor.items.get(li.data('itemId'));
+				item.sheet.render(true);
+			}
+		});
+		
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
