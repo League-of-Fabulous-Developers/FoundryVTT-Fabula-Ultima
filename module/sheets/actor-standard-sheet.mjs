@@ -322,6 +322,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				const li = $(ev.currentTarget);
 				const item = this.actor.items.get(li.data('itemId'));
 				item.sheet.render(true);
+				ev.preventDefault();
 			}
 		});
 		
