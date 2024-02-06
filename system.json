@@ -35,7 +35,11 @@
 			"lang": "it",
 			"name": "Italian",
 			"path": "lang/it.json"
-		}
+		},{
+            "lang": "de",
+            "name": "Deutsch",
+            "path": "lang/de.json"
+        }
 	],
 	"relationships": {
 		"requires": [
