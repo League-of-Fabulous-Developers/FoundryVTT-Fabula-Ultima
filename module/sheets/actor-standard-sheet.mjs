@@ -201,6 +201,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 					if (progress.current === progress.max) {
 						console.log('Clock is completed!');
+						// TODO: Setup Completed Clock Chat Card
 					}
 
 					i.progressArr = progressArr.reverse();
@@ -481,30 +482,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
 		});
 
-		// Increment and Decrement Buttons
-		// html.find('.increment-button, .decrement-button').click((ev) => {
-		// 	ev.preventDefault();
-		// 	const currentSheet = $(ev.currentTarget).closest('.projectfu-actor-sheet');
-		// 	if (currentSheet.length === 0) {
-		// 		console.error('Current sheet not found.');
-		// 		return;
-		// 	}
-		// 	const targetResource = $(ev.currentTarget).data('resource');
-		// 	const action = $(ev.currentTarget).data('action');
-		// 	const inputElement = currentSheet.find('#' + targetResource + '-input');
-		// 	let currentValue = parseInt(inputElement.val());
-
-		// 	if (isNaN(currentValue)) {
-		// 		currentValue = 0;
-		// 	}
-		// 	if (action === 'increase') {
-		// 		currentValue += 1;
-		// 	} else if (action === 'decrease') {
-		// 		currentValue = Math.max(currentValue - 1, 0);
-		// 	}
-		// 	inputElement.val(currentValue);
-		// });
-
 		// Active Effect management
 		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor));
 		html.find('.status-effect-toggle').click((event) => {
@@ -654,9 +631,6 @@ export class FUStandardActorSheet extends ActorSheet {
 		const isChecked = checkbox.checked;
 
 		if (!isChecked) {
-			// Checkbox is unchecked
-			// console.log('Checkbox is unchecked');
-
 			// Get the actor's item collection
 			const itemCollection = this.actor.items;
 
@@ -766,7 +740,6 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Randomly select a behavior from the behaviorMap
 		const randVal = Math.floor(Math.random() * behaviorMap.length);
 		const selected = behaviorMap[randVal];
-		// console.log(selected.id, " this works")
 
 		// Get the item from the actor's items by id
 		const item = this.actor.items.get(selected.id); // Use "this.actor" to access the actor's items
@@ -934,8 +907,8 @@ export class FUStandardActorSheet extends ActorSheet {
 					action = 'default';
 					break;
 			}
-			console.log('Action Type: ', action);
-
+			// console.log('Action Type: ', action);
+			// TODO: Setup Action Type Chat Card
 			// Call the roll method with the determined action type
 			// this.roll(action);
 		}

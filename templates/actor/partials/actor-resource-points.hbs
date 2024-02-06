@@ -10,16 +10,10 @@
                 class="resource-label" />
         </div>
         <div class="buttons-inc">
-            <button class="increment-button" data-resource="rp1" data-action="decrease">
-                <i class="fas fa-minus"></i>
-            </button>
             <input type="number" name="system.resources.rp1.value" data-tooltip="Current: {{
               system.resources.rp1.value
             }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp1.value }}"
                 data-dtype="Number" id="rp1-input" class="resource-inputs" />
-            <button class="increment-button" data-resource="rp1" data-action="increase">
-                <i class="fas fa-plus"></i>
-            </button>
         </div>
     </div>
 
@@ -31,16 +25,10 @@
                 value="{{localize 'FU.PlayerLevel'}}" data-dtype="String" class="resource-label" disabled />
         </div>
         <div class="buttons-inc">
-            <button class="increment-button" data-resource="rp2" data-action="decrease">
-                <i class="fas fa-minus"></i>
-            </button>
             <input type="number" name="system.resources.rp2.value" data-tooltip="Current: {{
               system.resources.rp2.value
             }}<br>Max: 50<br>" aria-describedby="tooltip" value="{{ system.resources.rp2.value }}" data-dtype="Number"
                 id="rp2-input" class="resource-inputs" />
-            <button class="increment-button" data-resource="rp2" data-action="increase">
-                <i class="fas fa-plus"></i>
-            </button>
         </div>
     </div>
 
@@ -51,16 +39,10 @@
                 value="{{localize 'FU.SkillLevel'}}" data-dtype="String" class="resource-label" disabled />
         </div>
         <div class="buttons-inc">
-            <button class="increment-button" data-resource="rp3" data-action="decrease">
-                <i class="fas fa-minus"></i>
-            </button>
             <input type="number" name="system.resources.rp3.value" data-tooltip="Current: {{
               system.resources.rp3.value
             }}<br>Max: 5<br>" aria-describedby="tooltip" value="{{ system.resources.rp3.value }}" data-dtype="Number"
                 id="rp3-input" class="resource-inputs" />
-            <button class="increment-button" data-resource="rp3" data-action="increase">
-                <i class="fas fa-plus"></i>
-            </button>
         </div>
     </div>
     {{/if}}
@@ -74,37 +56,24 @@
                 class="resource-label" />
         </div>
         <div class="buttons-inc">
-            <button class="increment-button" data-resource="rp2" data-action="decrease">
-                <i class="fas fa-minus"></i>
-            </button>
             <input type="number" name="system.resources.rp2.value" data-tooltip="Current: {{
               system.resources.rp2.value
             }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp2.value }}"
                 data-dtype="Number" id="rp2-input" class="resource-inputs" />
-            <button class="increment-button" data-resource="rp2" data-action="increase">
-                <i class="fas fa-plus"></i>
-            </button>
         </div>
     </div>
 
     {{!-- RP3 --}}
-    <div class="resource-content ">
+    <div class="resource-content">
         <div class="resource-label-l">
             <input type="text" name="system.resources.rp3.name" title="{{localize 'FU.ResourcePoints'}}"
                 value="{{ system.resources.rp3.name }}" data-dtype="String" placeholder="Resource 3"
                 class="resource-label" />
         </div>
         <div class="buttons-inc">
-            <button class="increment-button" data-resource="rp3" data-action="decrease">
-                <i class="fas fa-minus"></i>
-            </button>
-            <input type="number" name="system.resources.rp3.value" data-tooltip="Current: {{
-              system.resources.rp3.value
-            }}<br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp3.value }}"
-                data-dtype="Number" id="rp3-input" class="resource-inputs" />
-            <button class="increment-button" data-resource="rp3" data-action="increase">
-                <i class="fas fa-plus"></i>
-            </button>
+        <input type="number" name="system.resources.rp3.value" data-tooltip="Current: {{ system.resources.rp3.value }}
+        <br>Step: X<br>Max: X<br>" aria-describedby="tooltip" value="{{ system.resources.rp3.value }}"
+            data-dtype="Number" id="rp3-input" class="resource-inputs" />
         </div>
     </div>
     {{/if}}
