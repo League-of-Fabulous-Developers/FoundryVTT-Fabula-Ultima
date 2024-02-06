@@ -69,9 +69,9 @@ img.clock-img {
   // Character Name Input Tag
   input.resource-inputs-charname {
     color: $color-primary;
-    text-shadow: 1px 1px 1px $color-black;
     background: linear-gradient($color-charname-gradient);
-    border-color: transparent;
+    border-color: #c1b7c7;
+    border-radius: 0;
   }
 
   // Header Fields
@@ -209,7 +209,7 @@ img.clock-img {
 
 .action-container {
   margin: 0 5px 5px 3px;
-  padding: 2px 0;
+  padding: 1px 0;
 }
 .tiny-desc {
   .editor {
