@@ -647,21 +647,21 @@ export class FUActor extends Actor {
 
 		const tlTracker = {
 			totalSkill: {
-				current: 0,
+				value: 0,
 				max: 0,
 			},
 			totalClass: {
-				current: 0,
+				value: 0,
 				max: 0,
 			},
 			totalHeroic: {
-				current: 0,
+				value: 0,
 				max: 0,
 			},
 			calculateTL(actorData, systemData) {
-				this.totalClass.current = calculateSkillLevel(classes, 'class');
-				this.totalSkill.current = calculateSkillLevel(skills, 'skill');
-				this.totalHeroic.current = calculateHeroicCurrent;
+				this.totalClass.value = calculateSkillLevel(classes, 'class');
+				this.totalSkill.value = calculateSkillLevel(skills, 'skill');
+				this.totalHeroic.value = calculateHeroicCurrent;
 
 				this.totalClass.max = actorData.system.level.value;
 				this.totalSkill.max = actorData.system.level.value;

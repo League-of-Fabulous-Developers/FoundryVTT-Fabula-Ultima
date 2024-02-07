@@ -6,7 +6,7 @@
 		</span>
 		<span class="items-main total-level grid grid-3col">
 			<i class="fas fa-question-circle"></i>
-			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalClass.current }} / {{
+			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalClass.value }} / {{
 				tlTracker.totalClass.max }} </span>
 		</span>
 	</header>
@@ -46,7 +46,7 @@
 		</span>
 		<span class="items-main total-level grid grid-3col">
 			<i class="fas fa-question-circle"></i>
-			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalSkill.current }} / {{
+			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalSkill.value }} / {{
 				tlTracker.totalSkill.max }} </span>
 		</span>
 	</header>
@@ -72,8 +72,13 @@
 					<div class="item-quality">{{ item.quality }}</div>
 					{{/if}}
 				</div>
-				<div class="item-lg sl-stars">
-					{{ generateStars item.starCurrent item.starMax }}
+				<div class="skillLevel item-lg sl-stars">
+				{{#each item.skillArr as |level|}}
+					<div class="star-radio-container">
+					<input type="radio" name="skillLevel_{{ item._id }}" id="skillLevel_{{ item._id }}_{{ level.id }}" value="{{ level.id }}" {{#if level.checked}}checked{{/if}} data-item-id="{{ item._id }}" class="hidden-radio">
+					<label for="skillLevel_{{ item._id }}_{{ level.id }}" class="star-label {{#if (lte level.id item.system.level.value)}} fus-sl-star {{else}}ful-sl-star{{/if}}"></label>
+					</div>
+				{{/each}}
 				</div>
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
@@ -92,7 +97,7 @@
 		</span>
 		<span class="items-main total-level grid grid-3col">
 			<i class="fas fa-question-circle"></i>
-			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalHeroic.current }} / {{
+			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalHeroic.value }} / {{
 				tlTracker.totalHeroic.max }} </span>
 		</span>
 	</header>

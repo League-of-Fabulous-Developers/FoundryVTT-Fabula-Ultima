@@ -1,3 +1,4 @@
+{{!-- Clock Template --}}
 <div class="desc flexcol">
 	<label class="desc-header resource-content flex-group-center form-group" data-label="{{localize 'FU.Action'}}">
 		<span class="resource-label-l">{{localize 'FU.Clocks'}}
@@ -22,7 +23,6 @@
 		</div>
 	</li>
 	{{/if}}
-
 	{{#if (and item.system.hasClock.value)}}
 	<li class="item flexcol" data-item-id="{{ item._id }}">
 		{{!-- Item Name--}}
@@ -42,5 +42,4 @@
 	{{/if}}
 	{{/if}}
 	{{/each}}
-
 </div>

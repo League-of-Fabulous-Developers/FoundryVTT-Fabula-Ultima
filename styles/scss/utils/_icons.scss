@@ -18,11 +18,6 @@ $fu-ice: url("/systems/projectfu/styles/static/icons/fu-ice.svg");
 $fu-light: url("/systems/projectfu/styles/static/icons/fu-light.svg");
 $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 
-.spin2win:hover i {
-  -webkit-animation: ra-spin 2s infinite linear;
-  animation: ra-spin 2s infinite linear;
-}
-
 .fu-action-melee {
   background-image: $fu-action-melee;
 }
@@ -130,4 +125,29 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
     display: inline-block;
     animation: floating 1s infinite ease-in-out;
   }
+}
+
+.spin2win:hover i {
+  animation: hover-up-down 1s ease-in-out infinite alternate;
+}
+
+@keyframes hover-up-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.hidden-radio {
+  display: none;
+}
+
+.star-label {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  cursor: pointer;
 }

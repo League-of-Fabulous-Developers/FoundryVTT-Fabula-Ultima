@@ -1,4 +1,4 @@
-{{!-- Start Bond Section --}}
+{{!-- Bond Template --}}
 <section class="section-container grid-start-4 desc">
 	<div class="resource-content grid grid-5col bond-container">
 		{{#each system.resources.bonds as |bond bondIndex|}}
@@ -48,7 +48,6 @@
 		</div>
 		{{/each}}
 	</div>
-
 	<div class="resource-content flex-group-center">
 		<a class="bond-add" data-tooltip="{{localize 'FU.BondAdd'}}">
 			<button class="resource-inputs select-bonds" style="visibility: visible"
@@ -58,4 +57,3 @@
 		</a>
 	</div>
 </section>
-{{!-- End Bond Section --}}

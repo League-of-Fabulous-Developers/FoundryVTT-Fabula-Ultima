@@ -1,4 +1,5 @@
 <header class="items-main-header">
+	{{!-- Armor Slot Header --}}
 	<span class="items-main armor-hand slot-style rollable" data-roll-type="item-slot">
 		{{#each armor as |item id|}} {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot
 		"armor"))}}
@@ -10,8 +11,8 @@
 		{{/if}} {{/each}}
 	</span>
 
+	{{!-- Weapon/Shield Slot Header --}}
 	<span class="flexrow" style="height: 32px;">
-
 		<span class="items-main left-hand slot-style rollable" data-roll-type="item-slot">
 			{{#each items as |item id|}} {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot
 			"mainHand"))}}
@@ -32,7 +33,7 @@
 		</span>
 	</span>
 
-	<!-- Accessory Slot Header-->
+	{{!-- Accessory Slot Header --}}
 	<span class="items-main acc-hand slot-style rollable" data-roll-type="item-slot">
 		{{#each accessories as |item id|}} {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot
 		"accessory"))}}
@@ -44,6 +45,7 @@
 	</span>
 </header>
 
+{{!-- Weapon Section --}}
 <ol class="items-list">
 	<li class="item flexrow items-header">
 		<div class="item-name">{{localize "FU.Weapons"}}</div>
@@ -76,6 +78,7 @@
 	{{/each}}
 </ol>
 
+{{!-- Shield Section --}}
 <ol class="items-list">
 	<li class="item flexrow items-header">
 		<div class="item-name sortable">{{localize "FU.Shields"}}</div>
@@ -109,6 +112,7 @@
 	{{/each}}
 </ol>
 
+{{!-- Armor Section --}}
 <ol class="items-list">
 	<li class="item flexrow items-header">
 		<div class="item-name">{{localize "FU.Armors"}}</div>
@@ -142,7 +146,7 @@
 	{{/each}}
 </ol>
 
-
+{{!-- Accessories Section --}}
 <ol class="items-list">
 	<li class="item flexrow items-header">
 		<div class="item-name">{{localize "FU.Accessories"}}</div>

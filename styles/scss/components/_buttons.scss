@@ -129,7 +129,42 @@
 
 }
 
+.study-style {
+  color: $color-primary;
+  flex: 0 0 90px;
+  font-size: 17px;
+  text-shadow: 1px 1px 1px $color-black;
+  box-shadow: 3px 6px $color-secondary;
+  border-radius: 8px;
+  background-color: $color-secondary;
+  background-image: linear-gradient($color-tabStyle-gradient);
+  margin-right: 8px;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 
+    input,
+   .study-text {
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 1px 1px 1px $color-black;
+      background: transparent;
+      color: $color-primary;
+      height: inherit;
+      background-color: transparent;
+      border-color: transparent;
+      vertical-align: middle;
+      text-align: right;
+    
+      max-width: 78%;
+    }
+
+  &:focus {
+    outline: none;
+    box-shadow: 3px 6px $color-info;
+  }
+
+}
 
 .tab-style {
   color: $color-primary;
@@ -138,10 +173,12 @@
   box-shadow: 3px 6px $color-secondary;
   border-radius: 8px;
   margin-top: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   background-color: $color-secondary;
   background-image: linear-gradient($color-tabStyle-gradient);
   margin-right: 8px;
+  word-wrap: break-word;
+
   transition:
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;

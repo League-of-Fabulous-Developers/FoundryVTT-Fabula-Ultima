@@ -118,18 +118,6 @@ Handlebars.registerHelper('calculatePercentage', function (value, max) {
 	return percentage.toFixed(2) + '%';
 });
 
-// Register a Handlebars helper for generating stars
-Handlebars.registerHelper('generateStars', function (current, max) {
-	let stars = '';
-	for (let i = 0; i < current; i++) {
-		stars += '<div class="rollable fusl fus-sl-star"></div>';
-	}
-	for (let i = 0; i < max - current; i++) {
-		stars += '<div class="rollable fusl ful-sl-star"></div>';
-	}
-	return new Handlebars.SafeString(stars);
-});
-
 // Define a Handlebars helper to get the icon class based on item properties
 Handlebars.registerHelper('getIconClass', function (item) {
 	if (item.type === 'weapon') {

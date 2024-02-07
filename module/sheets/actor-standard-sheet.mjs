@@ -185,26 +185,46 @@ export class FUStandardActorSheet extends ActorSheet {
 			i.progressStep = i.system.progress?.step;
 			i.progressMax = i.system.progress?.max;
 
-			for (let i of context.items) {
-				// Prepare progress clock array
-				if (i.type === 'zeroPower' || i.type === 'ritual' || i.type === 'miscAbility' || i.type === 'rule') {
+			for (let item of context.items) {
+				const relevantTypes = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
+			
+				if (relevantTypes.includes(item.type)) {
 					const progressArr = [];
-
-					const progress = i.system.progress ? i.system.progress : { current: 0, max: 6 };
-
+					const progress = item.system.progress || { current: 0, max: 6 };
+			
 					for (let i = 0; i < progress.max; i++) {
 						progressArr.push({
 							id: i + 1,
-							checked: parseInt(progress.current) === i + 1 ? true : false,
+							checked: parseInt(progress.current) === i + 1
 						});
 					}
-
+			
 					if (progress.current === progress.max) {
 						console.log('Clock is completed!');
 						// TODO: Setup Completed Clock Chat Card
 					}
+			
+					item.progressArr = progressArr.reverse();
+				}
+			}			
 
-					i.progressArr = progressArr.reverse();
+			for (let item of context.items) {
+				if (item.type === 'skill') {
+					const skillArr = [];
+					const level = item.system.level || { value: 0, max: 8 };
+			
+					for (let i = 0; i < level.max; i++) {
+						skillArr.push({
+							id: i + 1,
+							checked: parseInt(level.value) === i + 1
+						});
+					}
+			
+					if (level.value === level.max) {
+						console.log('Skill is MAXXED out!');
+					}
+			
+					item.skillArr = skillArr;
 				}
 			}
 
@@ -244,8 +264,6 @@ export class FUStandardActorSheet extends ActorSheet {
 				const itemObj = context.actor.items.get(i._id);
 				const skillData = itemObj.getSkillDisplayData();
 				i.quality = skillData.qualityString;
-				i.starCurrent = skillData.starCurrent;
-				i.starMax = skillData.starMax;
 				skills.push(i);
 			} else if (i.type === 'heroic') {
 				heroics.push(i);
@@ -347,6 +365,9 @@ export class FUStandardActorSheet extends ActorSheet {
 			item.delete();
 			li.slideUp(200, () => this.render(false));
 		});
+
+		// Update Skill Level
+		html.find('.skillLevel input').click((ev) => this._onSkillLevelUpdate(ev));
 
 		// Update Progress
 		html.find('.progress input').click((ev) => this._onProgressUpdate(ev));
@@ -779,6 +800,27 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Create a chat message with the chat data
 		ChatMessage.create(chatData);
+	}
+
+	// Set progress clock value to the segment clicked
+	_onSkillLevelUpdate(ev) {
+		const input = ev.currentTarget;
+		const segment = input.value;
+	
+		const li = $(input).closest('.item');
+	
+		if (li.length) {
+			const itemId = li.find('input').data('item-id');
+			const item = this.actor.items.get(itemId);
+	
+			if (item) {
+				item.update({ 'system.level.value': segment });
+			} else {
+				console.error(`Item with ID ${itemId} not found.`);
+			}
+		} else {
+			console.error('Parent item not found.');
+		}
 	}
 
 	// Set progress clock value to the segment clicked

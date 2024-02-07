@@ -112,7 +112,7 @@
   &.total-level {
     border-radius: 30px 8px 0px 4px;
     text-align: right;
-    width: 5em;
+    width: 6em;
 
     .fas:hover {
       color: blanchedalmond;
@@ -441,7 +441,7 @@ span[data-tooltip] {
 
 }
 .end {
-  flex: 0 0 96px;
+  flex: 0 0 100px;
   display: flex;
   justify-content: flex-end;
   align-items: inherit;
@@ -449,11 +449,12 @@ span[data-tooltip] {
   a {
     font-size: 14px;
     text-align: center;
-    margin: 0 3px;
+    margin: 0 2px;
   }
 }
 .sl-stars {
   height: 50px;
-  gap: 2px;
+  gap: 3px;
+  margin-top: 2px;
 }
 
