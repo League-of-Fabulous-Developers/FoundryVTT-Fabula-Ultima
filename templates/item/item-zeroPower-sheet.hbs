@@ -5,7 +5,7 @@
 	<section class="sheet-body">
 		{{!-- Description Tab --}}
 		<div class="tab" data-group="primary" data-tab="description">
-			<div class="grid grid-2col desc flex-group-center resource-content">
+			<div class="grid grid-2col desc flex-group-left resource-content" style="align-items:baseline; gap: 5px;">
 				{{!-- Zero Trigger --}}
 				<div class="resource-content quarter-desc">
 					<input type="text" name="system.zeroTrigger.value" value="{{ system.zeroTrigger.value }}"
@@ -15,7 +15,7 @@
 					rollData=rollData button=true owner=owner editable=editable}}
 				</div>
 				{{!-- Zero Effect (2 columns) --}}
-				<div class="resource-content  quarter-desc">
+				<div class="resource-content quarter-desc">
 					<input type="text" name="system.zeroEffect.value" value="{{ system.zeroEffect.value }}"
 						data-dtype="String" placeholder="{{localize 'FU.LimitEffect'}}"
 						class="resource-label-m resource-inputs select-dropdown-full" />

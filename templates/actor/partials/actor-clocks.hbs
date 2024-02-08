@@ -1,9 +1,8 @@
 {{!-- Clock Template --}}
-<div class="desc flexcol">
-	<label class="desc-header resource-content flex-group-center form-group" data-label="{{localize 'FU.Action'}}">
-		<span class="resource-label-l">{{localize 'FU.Clocks'}}
-		</span>
-	</label>
+<fieldset class="title-fieldset desc resource-content">
+    <legend class="resource-label-m">
+        {{localize 'FU.Clocks'}}
+    </legend>
 	{{#each items as |item id|}}
 	{{#if (and item.system.isFavored.value)}}
 	{{#if (eq item.type "zeroPower")}}
@@ -42,4 +41,4 @@
 	{{/if}}
 	{{/if}}
 	{{/each}}
-</div>
+</fieldset>

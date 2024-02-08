@@ -13,7 +13,7 @@
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize "FU.Name"}}</div>
-			<div class="item-m">{{localize "FU.Level"}}</div>
+			<div class="item-lg">{{localize "FU.Level"}}</div>
 			<div class="item-m end">
 				<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="Create class"
 					data-type="class"> <i class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
@@ -24,16 +24,22 @@
 			<div class="flexrow">
 				{{!-- Item Name--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-				<div class="item-m">
+				{{!-- Class Level --}}
+				<div class="item-lg buttons-inc">
+					<button class="decrement-button" data-item-id="{{ item._id }}">-</button>
 					<span data-resource="item.level">{{ item.level }}</span>
 					<span>/</span>
 					<span>{{ item.system.level.max }}</span>
+					<button class="increment-button" data-item-id="{{ item._id }}">+</button>
 				</div>
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
-			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
-				target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+			<div class="individual-description">
+				{{#if item.system.description}}
+				{{editor item.system.description target="item.system.description" rollData=rollData button=false
+				owner=owner editable=false}}
+				{{/if}}
 			</div>
 		</li>
 		{{/each}}
@@ -72,13 +78,17 @@
 					<div class="item-quality">{{ item.quality }}</div>
 					{{/if}}
 				</div>
+				{{!-- Star Tracker--}}
 				<div class="skillLevel item-lg sl-stars">
-				{{#each item.skillArr as |level|}}
+					{{#each item.skillArr as |level|}}
 					<div class="star-radio-container">
-					<input type="radio" name="skillLevel_{{ item._id }}" id="skillLevel_{{ item._id }}_{{ level.id }}" value="{{ level.id }}" {{#if level.checked}}checked{{/if}} data-item-id="{{ item._id }}" class="hidden-radio">
-					<label for="skillLevel_{{ item._id }}_{{ level.id }}" class="star-label {{#if (lte level.id item.system.level.value)}} fus-sl-star {{else}}ful-sl-star{{/if}}"></label>
+						<input type="radio" name="skillLevel_{{ item._id }}"
+							id="skillLevel_{{ item._id }}_{{ level.id }}" value="{{ level.id }}" {{#if
+							level.checked}}checked{{/if}} data-item-id="{{ item._id }}" class="hidden-radio">
+						<label for="skillLevel_{{ item._id }}_{{ level.id }}"
+							class="star-label {{#if (lte level.id item.system.level.value)}} fus-sl-star {{else}}ful-sl-star{{/if}}"></label>
 					</div>
-				{{/each}}
+					{{/each}}
 				</div>
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}

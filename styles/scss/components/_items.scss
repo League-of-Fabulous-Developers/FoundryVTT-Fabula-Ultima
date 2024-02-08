@@ -233,13 +233,11 @@
   position: sticky;
   background-color: $color-secondary;
   color: $color-primary;
-  padding: 0px 4px;
+  padding: 0px 2px;
   border-radius: 5px;
-  font-size: 12px;
-  margin: 0 2px;
+  font-size: 11px;
+  margin: 0;
 }
-
-
 
 /* ----------------------------------------- */
 /*  Fixes                                    */
@@ -360,7 +358,6 @@ span[data-tooltip] {
   display: inline-block;
 }
 
-
 .item-xs {
   flex: 0 0 64px;
   text-align: center;
@@ -371,6 +368,7 @@ span[data-tooltip] {
   text-align: center;
   align-content: center;
 }
+
 .item-sm {
   flex: 0 0 80px;
   text-align: center;
@@ -381,6 +379,7 @@ span[data-tooltip] {
   text-align: center;
   align-content: center;
 }
+
 .item-m {
   flex: 0 0 100px;
   text-align: center;
@@ -391,6 +390,7 @@ span[data-tooltip] {
   text-align: center;
   align-content: center;
 }
+
 .item-lg {
   flex: 0 0 150px;
   text-align: center;
@@ -401,6 +401,7 @@ span[data-tooltip] {
   text-align: center;
   align-content: center;
 }
+
 .item-xl {
   flex: 0 0 256px;
   text-align: center;
@@ -411,6 +412,7 @@ span[data-tooltip] {
   text-align: center;
   align-content: center;
 }
+
 .item-xxl {
   flex: 0 0 300px;
   text-align: center;
@@ -421,6 +423,7 @@ span[data-tooltip] {
   text-align: center;
   align-content: center;
 }
+
 .item-full {
   flex: 2;
   text-align: center;
@@ -438,8 +441,8 @@ span[data-tooltip] {
   text-align: left;
   padding: 0 5px;
   align-content: center;
-
 }
+
 .end {
   flex: 0 0 100px;
   display: flex;
@@ -452,9 +455,9 @@ span[data-tooltip] {
     margin: 0 2px;
   }
 }
+
 .sl-stars {
   height: 50px;
   gap: 3px;
   margin-top: 2px;
 }
-

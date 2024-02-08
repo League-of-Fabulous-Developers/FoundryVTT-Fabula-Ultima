@@ -1,6 +1,6 @@
 $font-primary: "PT Sans",
 sans-serif;
-$font-secondary: "PT Sans",
+$font-secondary: "Antonio",
 sans-serif;
 
 .window-app {
@@ -39,6 +39,8 @@ sans-serif;
   }
 
   .resource-content {
+    font-family: $font-primary;
+
     &.affinity {
       label {
         font-family: 'Modesto Condensed';
@@ -60,26 +62,36 @@ sans-serif;
     .resource-label-t {
       font-size: 12px;
       font-weight: bold;
+      font-family: $font-secondary;
+      text-transform: uppercase;
     }
 
     .resource-label-sm {
       font-size: 14px;
       font-weight: bold;
+      font-family: $font-secondary;
+      text-transform: uppercase;
     }
 
     .resource-label-m {
       font-size: 16px;
       font-weight: bold;
+      font-family: $font-secondary;
+      text-transform: uppercase;
     }
 
     .resource-label-l {
       font-size: 18px;
       font-weight: bold;
+      font-family: $font-secondary;
+      text-transform: uppercase;
     }
     
     .resource-label-xl {
       font-size: 20px;
       font-weight: bold;
+      font-family: $font-secondary;
+      text-transform: uppercase;
     }
   }
 
@@ -103,16 +115,21 @@ sans-serif;
     .editor {
       font-weight: normal;
       .editor-content{
-        font-size: 14px;
+        font-size: 16px;
       }
     }
   }
 
-  .charname {
-    input {
-      font-family: "Alice", serif;
-      font-size: 24px;
-    }
+  .charname input {
+    font-family: Antonio;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }  
+
+  .pronouns input {
+    font-family: Antonio;
+    font-weight: bold;
+    font-size: 15px;
   }
 }
 
@@ -152,4 +169,12 @@ sans-serif;
       font-size: 20px;
     }
   }
+}
+
+.auto-shrink {
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

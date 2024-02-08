@@ -20,7 +20,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			classes: ['projectfu', 'sheet', 'actor'],
 			template: 'systems/projectfu/templates/actor/actor-character-sheet.hbs',
 			width: 750,
-			height: 1150,
+			height: 950,
 			tabs: [
 				{
 					navSelector: '.sheet-tabs',
@@ -185,6 +185,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			i.progressStep = i.system.progress?.step;
 			i.progressMax = i.system.progress?.max;
 
+			// Clocks
 			for (let item of context.items) {
 				const relevantTypes = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
 			
@@ -207,7 +208,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					item.progressArr = progressArr.reverse();
 				}
 			}			
-
+			// SL Stars
 			for (let item of context.items) {
 				if (item.type === 'skill') {
 					const skillArr = [];
@@ -366,6 +367,10 @@ export class FUStandardActorSheet extends ActorSheet {
 			li.slideUp(200, () => this.render(false));
 		});
 
+		// Add event listeners for increment and decrement buttons
+		html.find('.increment-button').click((ev) => this._onIncrementButtonClick(ev));
+		html.find('.decrement-button').click((ev) => this._onDecrementButtonClick(ev));
+
 		// Update Skill Level
 		html.find('.skillLevel input').click((ev) => this._onSkillLevelUpdate(ev));
 
@@ -375,6 +380,13 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Update Progress
 		html.find('.progress input').contextmenu((ev) => this._onProgressReset(ev));
 
+		/**
+		 * Handles item click events, equipping or unequipping items based on the click type.
+		 * 
+		 * @param {Event} ev - The click event triggering the item click.
+		 * @param {boolean} isRightClick - Indicates if the item click is a right-click event.
+		 * @returns {void}
+		 */
 		function handleItemClick(ev, isRightClick) {
 			const li = $(ev.currentTarget).parents('.item');
 			const itemId = li.data('itemId');
@@ -525,6 +537,13 @@ export class FUStandardActorSheet extends ActorSheet {
 			});
 		}
 
+	/**
+	 * Handles resting actions for the actor, restoring health and possibly other resources.
+	 *
+	 * @param {Actor} actor - The actor performing the rest action.
+	 * @param {boolean} isRightClick - Indicates if the rest action is triggered by a right-click.
+	 * @returns {Promise<void>} A promise that resolves when the rest action is complete.
+	 */
 		async function onRest(actor, isRightClick) {
 			const maxHP = actor.system.resources.hp.max;
 			const maxMP = actor.system.resources.mp.max;
@@ -540,6 +559,8 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 
 			await actor.update(updateData);
+
+			// Rerender the actor's sheet if necessary
 			if (updateData['system.resources.ip.value'] || !isRightClick) {
 				actor.sheet.render(true);
 			}
@@ -596,6 +617,13 @@ export class FUStandardActorSheet extends ActorSheet {
 			await this.actor.update({ 'system.resources.bonds': newBonds });
 		});
 
+		/**
+		 * Sorts an array of items alphabetically by the "name" property and updates the corresponding HTML list.
+		 *
+		 * @param {Array} array - The array of items to be sorted.
+		 * @param {jQuery} html - The HTML element containing the list to be updated.
+		 * @returns {void}
+		 */
 		function _sortAlphaList(array, html) {
 			// Sort the array alphabetically by the "name" property
 			array.sort((a, b) => {
@@ -622,19 +650,23 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 		}
 
-		// Define a function to sort the list alphabetically
-		// Event listener for sorting items alphabetically
+		/**
+		 * Event listener for sorting items alphabetically.
+		 *
+		 * @param {Event} ev - The click event triggering the sorting.
+		 * @returns {void}
+		 */
 		html.find('.item-name-sort').click(async function (ev) {
 			ev.preventDefault();
 
 			// Get the actor that owns the item
-
-			// Get the items that belong to the actor
 			const actor = this.actor;
 			const li = parentEl;
 			const itemId = li.data('item-id');
 			const item = actor.items.get(itemId);
 			const shieldArray = this.actor.getOwnedItems({ type: 'shield' });
+
+			// Sort the array alphabetically
 			_sortAlphaList(shieldArray, html);
 
 			// Update the actor's data with the modified item list
@@ -647,6 +679,13 @@ export class FUStandardActorSheet extends ActorSheet {
 		});
 	}
 
+		/**
+	 * Handles the event when the "Use Equipment" checkbox is clicked.
+	 * If the checkbox is unchecked, it unequips all equipped items in the actor's inventory.
+	 * 
+	 * @param {Event} event - The click event triggering the "Use Equipment" checkbox.
+	 * @returns {void} The function does not return a promise.
+	 */
 	async _onUseEquipment(event) {
 		const checkbox = event.currentTarget;
 		const isChecked = checkbox.checked;
@@ -673,6 +712,12 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
+		/**
+	 * Handles the duplication of an item and adds it to the actor's inventory.
+	 * 
+	 * @param {Event} event - The click event triggering the item duplication.
+	 * @returns {Promise<void>} A promise that resolves when the item duplication process is complete.
+	 */
 	async _onItemDuplicate(event) {
 		event.preventDefault();
 		const header = event.currentTarget;
@@ -728,6 +773,8 @@ export class FUStandardActorSheet extends ActorSheet {
 
 	/**
 	 * Rolls a random behavior for the given actor and displays the result in a chat message.
+	 *
+	 * @returns {void}
 	 */
 	_rollBehavior() {
 		// Filter items in the actor's inventory to find behaviors
@@ -802,7 +849,11 @@ export class FUStandardActorSheet extends ActorSheet {
 		ChatMessage.create(chatData);
 	}
 
-	// Set progress clock value to the segment clicked
+	/**
+	 * Sets the skill level value to the segment clicked.
+	 * 
+	 * @param {Event} ev - The input change event.
+	 */
 	_onSkillLevelUpdate(ev) {
 		const input = ev.currentTarget;
 		const segment = input.value;
@@ -823,7 +874,59 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
-	// Set progress clock value to the segment clicked
+	/**
+	 * Handles button click events to update item level.
+	 * @param {Event} ev - The button click event.
+	 * @param {number} increment - The value by which to increment or decrement the item level.
+	 * @private
+	 */
+	async _onButtonClick(ev, increment) {
+		const button = ev.currentTarget;
+		const li = $(button).closest('.item');
+
+		try {
+			if (li.length) {
+				const itemId = li.find('button').data('item-id');
+				const item = this.actor.items.get(itemId);
+
+				if (item) {
+					// Increment or decrement the level value
+					const newLevel = item.system.level.value + increment;
+
+					// Update the item with the new level value
+					await item.update({ 'system.level.value': newLevel });
+				} else {
+					console.error(`Item with ID ${itemId} not found.`);
+				}
+			}
+		} catch (error) {
+			console.error('Error updating item level:', error);
+		}
+	}
+
+	/**
+	 * Handles increment button click events.
+	 * @param {Event} ev - The button click event.
+	 * @private
+	 */
+	_onIncrementButtonClick(ev) {
+		this._onButtonClick(ev, 1);
+	}
+
+	/**
+	 * Handles decrement button click events.
+	 * @param {Event} ev - The button click event.
+	 * @private
+	 */
+	_onDecrementButtonClick(ev) {
+		this._onButtonClick(ev, -1);
+	}
+
+	/**
+	 * Updates the progress clock value based on the clicked segment.
+	 * @param {Event} ev - The input change event.
+	 * @private
+	 */
 	_onProgressUpdate(ev) {
 		const input = ev.currentTarget;
 		const segment = input.value;
@@ -841,10 +944,15 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
-	// Reset Progress Clock
+	/**
+	 * Resets the progress clock.
+	 * @param {Event} ev - The input change event.
+	 * @private
+	 */
 	_onProgressReset(ev) {
 		const input = ev.currentTarget;
 		const li = $(input).closest('.item');
+
 		if (li.length) {
 			// If the clock is from an item
 			const itemId = li.data('itemId');
@@ -986,7 +1094,12 @@ export class FUStandardActorSheet extends ActorSheet {
 	}
 }
 
-/* Randomize array in-place using Durstenfeld shuffle algorithm */
+/**
+ * Randomizes the order of elements in an array in-place using the Durstenfeld shuffle algorithm.
+ *
+ * @param {Array} array - The array to be shuffled.
+ * @returns {void} The array is modified in-place.
+ */
 function shuffleArray(array) {
 	for (var i = array.length - 1; i > 0; i--) {
 		var j = Math.floor(Math.random() * (i + 1));

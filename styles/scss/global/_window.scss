@@ -5,13 +5,13 @@
   justify-content: flex-start;
   padding: 0;
   color: var(--color-text-dark-primary);
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
 .sheet nav.sheet-tabs .item {
   margin-block: auto;
-  padding: 4px 2px;
+  padding: 4px 0 4px 4px;
 }
 
 .selectable {

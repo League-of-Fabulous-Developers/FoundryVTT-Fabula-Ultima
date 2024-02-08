@@ -1,23 +1,29 @@
-<div class="combine-header desc" style="padding: 0;">
+<div class="combine-header" style="padding: 0;">
     <img class="profile-img" src="{{ actor.img }}" data-edit="img" data-tooltip="{{ actor.name }}" />
     <div class="header-fields">
         <div class="header-start grid grid-6col">
-            <h1 class="charname grid-span-4">
+        <div class="charname-container flexrow grid-span-4">
+            <h1 class="charname" style="flex: 3;">
                 <input name="name" type="text" value="{{ actor.name }}" placeholder="Name"
-                    class="resource-inputs-charname auto-shrink" />
+                    data-tooltip="{{ actor.name }}"  class="resource-inputs-charname auto-shrink" />
             </h1>
+            <h3 class="pronouns">
+                <input name="system.resources.pronouns.name" type="text" value="{{ system.resources.pronouns.name }}"
+                    data-tooltip="{{localize 'FU.Pronouns'}}" class="auto-shrink" />
+            </h3>
+        </div>
             {{#if (eq actor.type "character")}}
-            <span class="flexrow grid-span-2" style="border-bottom: 2px solid; border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
+            <span class="flexrow grid-span-2" style="gap: 2px; border-bottom: 2px solid; border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
                 <!-- Level -->
                 <span class="resource-content levelup-container flexcol flex-group-center">
                     <label class="resource-label-l" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip"> <i
                             class="fa-solid fa-chart-simple icon"></i>{{localize
                         'FU.LevelAbbr'}} </label>
                     <input name="system.level.value" value="{{ system.level.value }}" type="number" data-dtype="Number"
-                        class="resource-inputs" style="border-radius: 0;"/>
+                        class="resource-inputs" style="border-radius: 0 12px 0 0;;"/>
                 </span>
                 <!-- Experience -->
-                <span class="resource-content levelup-container flexcol flex-group-center">
+                <span class="resource-content levelup-container flexcol flex-group-center" style="border-top-right-radius: 12px;">
                     <label class="resource-label-l" data-tooltip="{{localize 'FU.Exp'}}" aria-describedby="tooltip">
                         <i class="fa-solid fa-feather-pointed icon"></i>
                         {{localize 'FU.ExpAbbr'}} {{#if (gte system.resources.exp.value 10)}}
@@ -25,26 +31,26 @@
                         {{/if}}
                     </label>
                     <input name="system.resources.exp.value" value="{{ system.resources.exp.value }}"  type="number" data-dtype="Number"
-                        class="resource-inputs"  style="border-radius: 0;"/>
+                        class="resource-inputs"  style="border-radius: 12px 0 0;"/>
                 </span>
             </span>
             {{/if}}
             {{#if (eq actor.type "npc")}}
-            <span class="flexrow grid-span-2" style="border-bottom: 2px solid; border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
+            <span class="flexrow grid-span-2" style="gap: 2px; border-bottom: 2px solid; border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
                 <!-- Level -->
                 <span class="resource-content levelup-container flexcol flex-group-center">
                     <label class="resource-label-l" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip"> <i
                             class="fa-solid fa-chart-simple icon"></i>{{localize
                         'FU.LevelAbbr'}} </label>
                     <input name="system.level.value" value="{{ system.level.value }}" data-dtype="Number"
-                        class="resource-inputs"  style="border-radius: 0;"/>
+                        class="resource-inputs"  style="border-radius: 0 12px 0 0;"/>
                 </span>
                 <!-- Rank -->
-                <span class="resource-content levelup-container flexcol flex-group-center">
+                <span class="resource-content levelup-container flexcol flex-group-center" style="border-top-right-radius: 12px;">
                     <label class="resource-label-l" data-tooltip="{{localize 'FU.Rank'}}" aria-describedby="tooltip"> <i
                             class="fa-solid fa-feather-pointed icon"></i>{{localize
                         'FU.Rank'}} </label>
-                    <span class="flexrow combineBar" style="border-radius: 0;">
+                    <span class="flexrow combineBar" style="border-radius: 12px 0 0;">
                         <input type="text" name="system.isChampion.value" value="{{ system.isChampion.value }}"
                             data-dtype="Number" class="resource-inputs" {{#if system.isCompanion.value}} disabled {{/if}} />
                         <input type="checkbox" id="isEliteCheckbox"
@@ -60,9 +66,9 @@
         <div class="header-field header-center grid grid-3col">
             <!-- HP -->
             <div class="resource-content levelup-container flex-group-center">
-                <div class="grid grid-2col" style="padding: 0 3px; margin-bottom: -5px;">
+                <div class="grid grid-2col" style="padding: 0 3px; margin-bottom: -2px;">
                     <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
-                        aria-describedby="tooltip" style="font-family: monospace; margin-top: 6px;">
+                        aria-describedby="tooltip" style="margin-top: 4px;">
                         {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
                         <i class="fa-solid fa-heart-crack is-martial"></i>
                         {{else}}
@@ -105,11 +111,11 @@
 
             <!-- MP -->
             <div class="resource-content levelup-container flex-group-center">
-                <div class="grid grid-2col" style="padding: 0 3px; margin-bottom: -5px;">
+                <div class="grid grid-2col" style="padding: 0 3px; margin-bottom: -2px;">
                     <label class="resource-label-l align-left grid-span-1" data-tooltip="Mind Points"
-                        aria-describedby="tooltip" style="font-family: monospace; margin-top: 6px;"><i class="fa-solid fa-hat-wizard icon"></i></i>{{localize
+                        aria-describedby="tooltip" style="margin-top: 4px;"><i class="fa-solid fa-hat-wizard icon"></i></i>{{localize
                         'FU.MindAbbr'}} </label>
-                    <label class="resource-label-l align-right rollable" data-tooltip="Rest" aria-describedby="tooltip" style="margin-top: 6px;">
+                    <label class="resource-label-l align-right rollable" data-tooltip="Rest" aria-describedby="tooltip" style="margin-top: 4px;">
                         <i class="fa-solid fa-bed rest"></i></label>
                 </div>
                 <div class="bar bar-progress">
@@ -142,9 +148,9 @@
             {{#if (eq actor.type "character")}}
             <!-- IP -->
             <div class="resource-content levelup-container flex-group-center align-left" >
-                <div class="grid grid-3col" style="padding: 0 5px; margin-bottom: -5px;">
+                <div class="grid grid-3col" style="padding: 0 5px; margin-bottom: -2px;">
                     <label class="resource-label-l align-left grid-span-2" data-tooltip="Inventory Points"
-                        aria-describedby="tooltip" style="font-family: monospace; margin-top: 6px;"> <i class="fa-solid fa-backpack icon"></i>{{localize
+                        aria-describedby="tooltip" style="margin-top: 4px;"> <i class="fa-solid fa-backpack icon"></i>{{localize
                         'FU.InventoryAbbr'}} </label>
                 </div>
                 <div class="bar bar-progress">
@@ -255,7 +261,7 @@
             </div>
 
             <!-- FU Points -->
-            <div class="header-end flex-group-center resource-content desc" style="padding: 7px 0; border-radius: 0 10px 10px 0;">
+            <div class="header-end flex-group-center resource-content desc" style="border-radius: 0 10px 10px 0;">
                 <label>
                     {{#if (eq actor.type "npc")}}
                     <span class="resource-label-l"> <i class="fa-solid fa-crystal-ball icon"></i>{{localize

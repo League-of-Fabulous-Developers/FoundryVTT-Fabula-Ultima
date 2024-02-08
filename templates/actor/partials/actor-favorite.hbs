@@ -1,52 +1,36 @@
-<ol class="items-list">
-	<li class="item flexrow items-header">
-		<div class="item-name start"><i class="fas fa-star icon"></i>{{localize 'FU.Favorite'}}</div>
-		<div class="item-m end">
-			<a class="item-control sort" data-tooltip="{{localize 'FU.Sort'}}" data-type="sort">
-				<!-- TODO: Dynamically change icon/tooltip based on sorting type 
-
-            Item Type
-            <i class="fas fa-sort"></i>
-            data-tooltip="{{localize 'FU.SortItemType'}}"
-
-            Alphabetical (asc)
-            <i class="fas fa-arrow-down-a-z"></i>
-            data-tooltip="{{localize 'FU.SortAlphaAsc'}}"
-
-            Alphabetical (desc)
-            <i class="fas fa-arrow-down-z-a"></i>
-            data-tooltip="{{localize 'FU.SortAlphaDesc'}}"
-
-            Ordered List
-            <i class="fas fa-arrow-down-short-wide"></i>
-            data-tooltip="{{localize 'FU.SortOrderList'}}"
-        
-        -->
-				<i class="fas fa-sort icon"></i>
-				{{localize 'FU.Sort'}}
-
-				<!-- TODO: This button will open filter sorting type dialog box  -->
-				{{!-- <a class="item-control sort-edit" data-tooltip="{{localize 'FU.SortEdit'}}">
-					<i class="fas fa-filter"></i>
-				</a> --}}
-			</a>
-		</div>
-	</li>
-	{{#each items as |item id|}} {{#if (and item.system.isFavored.value)}}
-	<li class="item" data-item-id="{{ item._id }}">
-		<div class="flexrow">
-			<div class="flexcol">
-				{{!-- Item Name--}}
-				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+<fieldset class="title-fieldset desc resource-content" style="margin-bottom: 5px; height: 50%; overflow-y: auto; max-height: 30em; min-height: 18em;"> 
+    <legend class="resource-label-m">
+        {{localize 'FU.Favorite'}}
+    </legend>
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			<div class="item-name start"><i class="fas fa-star icon"></i>{{localize 'FU.Favorite'}}</div>
+			<div class="item-m end">
+				<a class="item-control sort" data-tooltip="{{localize 'FU.Sort'}}" data-type="sort">
+					<i class="fas fa-sort icon"></i>
+					{{localize 'FU.Sort'}}
+				</a>
 			</div>
-			{{!-- Item Control--}}
-			{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-		</div>
-		{{#if item.quality}}
-			<div class="item-quality align-left">{{ item.quality }}</div>
-		{{/if}}
-		<div class="individual-description align-left">{{#if item.system.description}} {{editor item.system.description
-			target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
-	</li>
-	{{/if}} {{/each}}
-</ol>
+		</li>
+		{{#each items as |item id|}}
+			{{#if (and item.system.isFavored.value)}}
+				<li class="item" data-item-id="{{ item._id }}">
+					<div class="flexrow">
+						<div class="flexcol">
+							{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+						</div>
+						{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+					</div>
+					{{#if item.quality}}
+						<div class="item-quality align-left">{{ item.quality }}</div>
+					{{/if}}
+					<div class="individual-description align-left">
+						{{#if item.system.description}}
+							{{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner editable=false}}
+						{{/if}}
+					</div>
+				</li>
+			{{/if}}
+		{{/each}}
+	</ol>
+</fieldset>
