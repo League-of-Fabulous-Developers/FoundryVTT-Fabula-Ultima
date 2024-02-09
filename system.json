@@ -39,6 +39,10 @@
             "lang": "de",
             "name": "Deutsch",
             "path": "lang/de.json"
+        },{
+            "lang": "fr",
+            "name": "French",
+            "path": "lang/fr.json"
         }
 	],
 	"relationships": {
