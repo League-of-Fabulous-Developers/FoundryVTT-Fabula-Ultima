@@ -8,6 +8,7 @@ $fu-action-spell: url("/systems/projectfu/styles/static/icons/fu-action-spell.sv
 $fu-offensive: url("/systems/projectfu/styles/static/icons/fu-offensive.svg");
 $fu-martial: url("/systems/projectfu/styles/static/icons/fu-martial.svg");
 
+$fu-guard: url("/systems/projectfu/styles/static/icons/fu-guard.svg");
 $fu-phys: url("/systems/projectfu/styles/static/icons/fu-phys.svg");
 $fu-wind: url("/systems/projectfu/styles/static/icons/fu-wind.svg");
 $fu-bolt: url("/systems/projectfu/styles/static/icons/fu-bolt.svg");
@@ -35,6 +36,9 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 }
 .fu-martial {
   background-image: $fu-martial;
+}
+.fa-guard {
+  background-image: $fu-guard;
 }
 .fu-phys {
   background-image: $fu-phys;
@@ -109,26 +113,47 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 .is-martial {
   color: $color-danger !important;
 }
+
 .is-buff {
+  position: relative;
   color: $color-success !important;
 
   &.float-text {
+    position: relative;
     display: inline-block;
-    animation: floating 1s infinite ease-in-out;
+    animation: floating 4s infinite ease-in-out;
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25%, 75% {
+    transform: translateY(-5px); /* Adjust the pixel value as needed for subtlety */
+  }
+  50% {
+    transform: translateY(0);
   }
 }
 
 .is-crisis {
   color: $color-danger !important;
-
+  
   &.float-text {
     display: inline-block;
+    position: relative;
+    bottom: 8px;
     animation: floating 1s infinite ease-in-out;
   }
 }
 
-.spin2win:hover i {
+.spin2win:hover 
+i {
   animation: hover-up-down 1s ease-in-out infinite alternate;
+}
+label {
+  cursor: pointer;
 }
 
 @keyframes hover-up-down {

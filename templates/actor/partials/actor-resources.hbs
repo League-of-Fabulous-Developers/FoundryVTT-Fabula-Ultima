@@ -1,9 +1,9 @@
 <div class="header-fields flexrow" style="align-self: stretch;">
     <!-- Status Toggle Section -->
-    <div class="resource-content flex-group-center desc" style="border-radius: 10px 0 0 10px; display: flex; align-items: center;">
+    <div id="status-section" class="resource-content flex-group-center desc" style="">
         {{!-- Key Statuses --}}
         <div class="resource-content flex-group-center flexrow" style="margin-top: 2px;">
-            <span class="grid grid-8col" style="gap: 4px;">
+            <span class="grid grid-8col" style="gap: 5px; flex: 1;">
                 {{#each statusEffectToggles as |statusEffect|}}
                 <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}"
                     data-status-id="{{statusEffect.id}}">
@@ -14,11 +14,11 @@
         </div>
     </div>
     <!-- Attribute Section -->
-    <div class="resource-content flex-group-center desc" style="border-radius: 0; display: flex; align-items: center;">
+    <div id="attribute-section" class="resource-content flex-group-center desc" style="">
         {{>"systems/projectfu/templates/actor/partials/actor-attributes.hbs"}}
     </div>
     <!-- Roll Section -->
-    <div class="resource-content flex-group-center desc grid grid-2col" style="border-radius: 0 10px 10px 0;">
+    <div id="roll-section" class="resource-content flex-group-center desc grid grid-2col" style="">
             {{!-- Group Check --}}
             <div class="flexcol rollable spin2win" data-roll-type="group-check">
                 <i class="fas fa-dice-d20 spin2win ra-2x"></i> 

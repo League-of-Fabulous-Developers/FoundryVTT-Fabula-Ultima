@@ -19,10 +19,10 @@
         {{/if}}
         {{ item.name }}
         {{#if item.system.isMartial.value}}
-            <i class="fusl is-martial fu-martial icon-aff"></i>
+            <i class="fusl is-martial fu-martial icon-aff" style="margin-bottom: -5px;"></i>
         {{/if}}
         {{#if item.system.isOffensive.value}}
-            <i class="fusl is-martial fu-offensive icon-aff"></i>
+            <i class="fusl is-martial fu-offensive icon-aff" style="margin-bottom: -5px;"></i>
         {{/if}}
         {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "mainHand"))}}
             <span class="icon-letter" data-tooltip="{{localize 'FU.MainHand'}}">M</span>

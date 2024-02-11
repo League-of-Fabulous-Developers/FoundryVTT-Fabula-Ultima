@@ -1,22 +1,4 @@
-// Description Format
-.desc {
-  background: linear-gradient(to right,
-      rgba(238, 244, 228, 0.5),
-      rgba(226, 237, 213, 0.5));
-  border-radius: 12px;
-  border: 1px solid #2c4a4254;
-  padding: 5px;
-
-  .desc-header {
-    background: none;
-    border-radius: 10px 10px 0 0;
-    border-bottom: 4px double $color-secondary;
-    margin: -5px -5px 0;
-  }
-
-}
-
-// Sheet Background
+/* Sheet Background */
 .backgroundstyle {
   background-image: url("/systems/projectfu/styles/static/ui/bg.png"),
     linear-gradient(to right, $color-beige, $color-faint);
@@ -26,25 +8,34 @@
   padding: 0.5em 1em;
 }
 
-// Sheet Header
+/* Description Format */
+.desc {
+  background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
+  border-radius: 12px;
+  border: 1px solid #2c4a4254;
+  padding: 5px;
+
+  .desc-header {
+    background: none;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 4px double $color-secondary;
+    padding: 0px 0;
+  }
+}
+
+/* Sheet Header */
 .sheet-header {
   position: sticky;
   top: 10px;
   z-index: 1000;
-
-  // Header styling
-  flex: 0 auto;
-  overflow: visible;
   display: flex;
   flex-direction: column !important;
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-bottom: 0.5em;
-  background-color: linear-gradient(to right,
-  rgba(238, 244, 228, 0.5),
-  rgba(226, 237, 213, 0.5));
+  background-color: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
 
-  // Combine Header
+  /* Combine Header */
   .combine-header {
     flex: 0;
     margin: 0;
@@ -55,13 +46,12 @@
     display: flex;
   }
 
-  // Profile Image
+  /* Profile Image */
   .profile-img {
     flex: 0 0 200px;
     height: 200px;
     width: 200px;
     margin-right: 0;
-    margin-top: 1px;
     align-self: start;
     background-image: linear-gradient(to right, $color-secondary, $color-ternary);
     background-clip: content-box;
@@ -69,42 +59,74 @@
     border-radius: 10px 0 0 10px;
   }
 
-// Character Name Container
-.charname-container {
-  background: linear-gradient($color-charname-gradient);
-  border-color: #c1b7c7;
-  border-radius: 0;
-
-  // Character Name
-  input {
-      white-space: normal; // Allow text to wrap
+  /* Character Name Container */
+  .charname-container {
+    background: linear-gradient($color-charname-gradient);
+    border-color: #c1b7c7;
+    border-radius: 0;
   }
-}
 
-  // Header Fields
+  /* Character Name */
+  .charname-container input {
+    white-space: normal;
+  }
+
+  /* Header Fields */
   .header-fields {
     flex: 1;
 
-    // Header End
+    .header-start {
+      border-top-right-radius: 12px;
+      border: 1px solid rgba(44, 74, 66, 0.3294117647);
+    }
+    .header-center {
+      border-radius: 0 0 12px 0;
+      padding: 5px 0;
+      grid-row-gap: 3px;
+      
+      &.item-header {
+        grid-row-gap: 1px;
+      }
+    }
     .header-end {
       padding: 0;
+      align-self: baseline;
+      margin-bottom: 2px;
+    }
+
+    #status-section {
+      border-radius: 10px 0 0 10px;
+      display: flex;
+      align-items: center;
+    }
+    #attribute-section {
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      div {
+        gap: 2px;
+      }
+    }
+    #roll-section {
+      border-radius: 0 10px 10px 0;
     }
   }
 
-  // Select
+  /* Select */
   select {
     margin: 0;
     padding: 0;
     border: none;
 
+    /* Select Option */
     option {
       background-color: $color-secondary;
       color: $color-primary;
     }
   }
 
-  // Character Name Heading
-  h1.charname {
+  /* Character Name Heading */
+  h2.charname {
     background-color: transparent;
     border-color: transparent;
     color: $color-black;
@@ -112,7 +134,7 @@
     padding-left: 8px;
     border-bottom: 0;
 
-    // Input
+    /* Character Name Input */
     input {
       color: $color-primary;
       border: 0;
@@ -124,7 +146,7 @@
     }
   }
 
-  // Pronoun Heading
+  /* Pronoun Heading */
   h3.pronouns {
     align-self: center;
     background-color: transparent;
@@ -134,7 +156,7 @@
     padding-right: 2px;
     border-bottom: 0;
 
-    // Input
+    /* Pronoun Input */
     input {
       color: $color-primary;
       text-shadow: 2px 2px 1px black;
@@ -153,121 +175,147 @@
 .sheet-wrapper {
   display: flex;
   flex-direction: column;
-  max-height: 35vh;
+  max-height: 42vh;
+
+  /* Sheet Body */
+  .sheet-body,
+  .tab {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* Tabs styling */
+  .sheet-tabs {
+    align-self: stretch;
+  }
+
+  /* Footer styling */
+  /* Push the footer to the bottom */
+  > footer {
+    margin-top: auto; 
+  }
 }
 
-/* Sheet Body */
-.sheet-body,
-.sheet-body .tab {
-  flex: 1;
-  overflow-y: auto;
-  // min-height: 50%;
-  // max-height: 100%;
-  // overflow-y: auto; 
-}
-
-/* Tabs styling */
-.sheet-tabs {
-  align-self: stretch;
-}
-
-/* Footer styling */
-.sheet-wrapper > footer {
-  margin-top: auto; /* Push the footer to the bottom */
-}
-
+/* NPC Border Column */
 .npc-border-col {
   background: linear-gradient(#{$color-transparent-gradient});
   border-radius: 10px;
   max-height: 17em;
   min-height: 10em;
-}
+  margin-bottom: 5px;
+  padding: 0;
 
-.npc-desc {
-  max-height: 14em;
-  min-height: 10em;
-
-  .editor {
-    height: 100%;
+  /* NPC Description */
+  .npc-desc {
     max-height: 14em;
     min-height: 10em;
-  }
 
-  .tox-tinymce {
-    min-height: 10em;
+    /* Editor Styles */
+    .editor {
+      height: 100%;
+      max-height: 14em;
+      min-height: 10em;
+
+      /* Tox Tinymce Styles */
+      .tox-tinymce {
+        min-height: 10em;
+      }
+    }
   }
 }
 
+/* Action Container */
 .action-container {
   margin: 0 5px 5px 0px;
   padding: 1px 0;
   gap: 2px;
 }
 
+/* Item Settings */
 .item-settings {
   margin: 0 10px;
   float: left;
 }
 
+/* Tiny Description */
 .tiny-desc {
   .editor {
     height: 100%;
     min-height: 1em;
-  }
 
-  .tox-tinymce {
-    height: 100%;
-    min-height: 1em;
-    max-height: 6em
+    /* Tox Tinymce Styles */
+    .tox-tinymce {
+      height: 100%;
+      min-height: 1em;
+      max-height: 6em;
+    }
   }
 }
 
+/* Half Description */
 .half-desc {
   .editor {
     height: 100%;
     min-height: 12em;
-  }
 
-  .tox-tinymce {
-    height: 100%;
-    min-height: 12em;
-    max-height: 12em;
+    /* Tox Tinymce Styles */
+    .tox-tinymce {
+      height: 100%;
+      min-height: 12em;
+      max-height: 12em;
+    }
   }
 }
 
+/* Quarter Description */
 .quarter-desc {
   .editor {
     height: 100%;
     min-height: 20em;
-  }
 
-  .tox-tinymce {
-    height: 100%;
-    min-height: 20em;
-    max-height: 20em;
+    /* Tox Tinymce Styles */
+    .tox-tinymce {
+      height: 100%;
+      min-height: 20em;
+      max-height: 20em;
+    }
   }
 }
 
+/* Item Description Styles */
+.tab.desc.active {
+  margin-bottom: 5px;
+  height: 50%;
+  overflow-y: auto;
+  max-height: 26em;
+  min-height: 18em;
+}
+
+/* General Editor Styles */
 .editor {
   height: 100%;
   min-height: 26em;
 }
 
+/* Editor Content Styles */
 .editor-content {
   height: fit-content;
   padding: 0 0.5em;
 }
 
+/* Tox Tinymce Styles */
 .tox-tinymce {
   height: 100%;
-  min-height: 26em;
-  max-height: 26em;
+  min-height: 22em;
+  max-height: 22em;
 }
 
+/* Tox Editor Container Styles */
 .tox .tox-editor-container {
   background: $color-white;
 }
 
+/* Tox Edit Area Styles */
 .tox .tox-edit-area {
   margin: 0 10px;
 }

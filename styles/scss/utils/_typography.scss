@@ -1,28 +1,33 @@
-$font-primary: "PT Sans",
-sans-serif;
-$font-secondary: "Antonio",
-sans-serif;
+// Font Variables
+$font-primary: "PT Sans Narrow", sans-serif;
+$font-secondary: "Antonio", sans-serif;
+$font-quote: "EB Garamond", sans-serif;
 
+// Styles for .window-app class
 .window-app {
   font-family: $font-primary;
 
-  nav,a.item{
+  // Navigation Styles
+  nav, a.item {
     font-weight: bold;
   }
+
+  // Item and Zenit Content Styles
   [class^="item-"] {
     font-weight: bold;
   }
-  
+
   .item,
   .zenit-content {
-    font-size: 14px;
+    font-size: 16px;
 
     .item-name {
       font-size: 16px;
       font-weight: bold;
     }
+
     .item-quality {
-      font-size: 14px
+      font-size: 14px;
     }
   }
 
@@ -31,13 +36,14 @@ sans-serif;
     font-size: 14px;
 
     &.summary {
-      font-family: "Cormorant Garamond", serif;
+      font-family: $font-quote;
       font-weight: 700;
       font-style: italic;
-      font-size: 16px;
+      font-size: 18px;
     }
   }
 
+  // Resource Content Styles
   .resource-content {
     font-family: $font-primary;
 
@@ -47,18 +53,7 @@ sans-serif;
       }
     }
 
-    .center-label {
-      font-size:18px;
-    }
-
-    .name-input {
-      input, input.disabled {
-        font-size: 18px;
-        height: 22px;
-        color: inherit;
-      }
-    }
-
+    // Resource Label Sizes
     .resource-label-t {
       font-size: 12px;
       font-weight: bold;
@@ -86,7 +81,7 @@ sans-serif;
       font-family: $font-secondary;
       text-transform: uppercase;
     }
-    
+
     .resource-label-xl {
       font-size: 20px;
       font-weight: bold;
@@ -95,15 +90,12 @@ sans-serif;
     }
   }
 
-  .resource-label {
-    input.resource-inputs {
-      font-size: 16px;
-
-    }
-
-    .item-name {
-      font-size: 16px;
-    }
+  label.is-crisis {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: $font-secondary;
+    text-transform: uppercase;
+    font-style: italic;
   }
 
   .action-button {
@@ -114,7 +106,8 @@ sans-serif;
   .desc {
     .editor {
       font-weight: normal;
-      .editor-content{
+
+      .editor-content {
         font-size: 16px;
       }
     }
@@ -123,16 +116,17 @@ sans-serif;
   .charname input {
     font-family: Antonio;
     font-weight: bold;
-    font-size: 1.1rem;
-  }  
-
+    font-size: 1.25rem;
+  }
+  
   .pronouns input {
     font-family: Antonio;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
+// Styles for .detail-desc class
 .detail-desc {
   font-size: 14px;
   font-weight: bold;
@@ -144,25 +138,30 @@ sans-serif;
   }
 }
 
+// Uppercase Text
 .uppercase {
   text-transform: uppercase;
 }
 
+// Quote Styles
 .quote {
   border-left: 3px solid #999;
   padding-left: 10px;
   font-style: italic;
 }
 
+// Styles for Chat Description
 .chat-desc {
   .summary {
-    font-family: "Cormorant Garamond", serif;
+    font-family: $font-quote;
     font-weight: 700;
     font-style: italic;
-    font-size: 20px;
+    font-size: 16px;
+    color: $color-ternary;
   }
 }
 
+// Styles for Chat Message
 .chat-message {
   .message-header {
     .flavor-text {
@@ -171,6 +170,7 @@ sans-serif;
   }
 }
 
+// Auto Shrink Text
 .auto-shrink {
   overflow: hidden;
   width: 100%;

@@ -593,7 +593,7 @@ export class FUItem extends Item {
 		}
 
 		const { mpCost, target, duration } = item.system;
-		const hasQualityValue = item.system.quality.value.trim() !== '';
+		const hasQualityValue = item.system.opportunity.trim() !== '';
 
 		let content = '';
 
@@ -609,7 +609,7 @@ export class FUItem extends Item {
 		if (hasQualityValue) {
 			content += `
 			<div class="detail-desc flexrow flex-group-center" style="padding: 0 2px;">
-			  <div>Quality: ${item.system.quality.value}</div>
+			  <div>Quality: ${item.system.opportunity}</div>
 			</div>`;
 		}
 

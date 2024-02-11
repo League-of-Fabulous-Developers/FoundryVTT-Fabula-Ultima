@@ -1,8 +1,6 @@
-// Color Scheme
-
 // Primary colors
 $color-primary: #ffffff;
-$color-secondary: #2a4a41;
+$color-secondary: #2b4a42;
 $color-ternary: #3d665a;
 $color-quaternary: #cccbbb;
 
@@ -27,16 +25,6 @@ $color-tan: #444;
 $color-shadow: #e74c3c;
 $color-shadow-inverted: #2a4a41;
 
-// More color variants here...
-
-// Text and background colors
-$color-text: $color-primary;
-$color-text-inverted: $color-secondary-inverted;
-$color-text-alt: $color-secondary;
-
-$color-text-shadow: $color-quaternary;
-$color-text-shadow: $color-secondary;
-
 $color-background: $color-secondary;
 $color-background-inverted: $color-secondary-inverted;
 $color-background-alt: $color-primary;
@@ -44,35 +32,25 @@ $color-background-alt: $color-primary;
 $color-box-shadow: darken($color-secondary, 10%);
 $color-box-shadow-inverted: darken($color-primary-inverted, 10%);
 
-// Gradient colors
-
 // Background for Actor Name & Levels
-$color-charname-gradient:   to right, #532853, #bfb8c4;
+$color-charname-gradient: to right, #532853, #bfb8c4;
 $color-charname-gradient-alt: to right, #2A4A41, #b9c4b8;
-
-$color-level-exp-gradient:
-  to right,
-  rgba(237, 233, 224, 1),
-  rgba(226, 237, 213, 1);
 
 // Background for Tabs
 $color-tabStyle-gradient: to bottom, #2c584d, #a0cdbc;
 
-
-// Determine a suitable threshold for brightness to switch text color
-$dark-background-threshold: 150; // Adjust as needed
-
-// Adjust text color based on background brightness
-//$color-tabStyle-text: if(lightness(nth($color-tabStyle-gradient, 1)) > $dark-background-threshold, $color-secondary, $color-primary);
-
-// Other
+// Transparent Gradient
 $color-transparent-gradient:
   to right,
   rgba(238, 244, 228, 0.5),
   rgba(226, 237, 213, 0.5);
 
+$color-header-gradient: to right, #e9f3ea, transparent;
+$color-quote-gradient: to right, #e1efe3, transparent;
+
 // Affinity icons colors
 $color-outline: black;
+$color-icon-guard: #dddddd;
 $color-icon-sword: #dddddd;
 $color-icon-wind: #cfd600;
 $color-icon-bolt-lightning: #ffef26;

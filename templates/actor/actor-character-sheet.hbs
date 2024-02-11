@@ -37,15 +37,15 @@
 		<div class="sheet-body">
 			{{!-- Owned Features Tab --}}
 			<div class="tab features" data-group="primary" data-tab="stats">
-				<section class="grid grid-3col" style="gap: 5px; padding: 0 0.5rem 0.5rem 0">
-					{{>"systems/projectfu/templates/actor/partials/actor-traits.hbs"}}
+				{{>"systems/projectfu/templates/actor/partials/actor-traits.hbs"}}
+				<section class="grid grid-4col" style="gap: 5px; padding: 0 0.5rem 0.5rem 0">
 					<aside class="sidebar flex-group-center">
 						{{!-- Action Buttons --}}
 						{{> "systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
 						{{!-- Clock Section --}}
 						{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
 					</aside>
-					<main class="grid-span-2">
+					<main class="grid-span-3">
 						{{!-- Favorite Section --}}
 						{{>"systems/projectfu/templates/actor/partials/actor-favorite.hbs" groups=systemData.bond dtypes=dtypes actor=actor}}
 						{{!-- Bond Section --}}

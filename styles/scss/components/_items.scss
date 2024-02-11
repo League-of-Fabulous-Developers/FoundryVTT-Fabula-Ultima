@@ -29,7 +29,7 @@
 
 .items-main-header {
   height: 34px;
-  margin: 2px 2px 5px 2px;
+  margin: 2px 2px 7px 2px;
   padding-right: 2px;
   display: flex;
   flex-direction: row;
@@ -65,7 +65,7 @@
   box-shadow: 3px 6px $color-secondary;
   border: thin $color-shadow-inverted;
   background: linear-gradient($color-tabStyle-gradient);
-  border-radius: 8px 30px 4px 0px;
+  border-radius: 8px 30px 5px 5px;
   padding: 5px 0 0 5px;
 
   &.items-label {
@@ -110,7 +110,7 @@
   }
 
   &.total-level {
-    border-radius: 30px 8px 0px 4px;
+    border-radius: 30px 8px 5px 5px;
     text-align: right;
     width: 6em;
 
@@ -297,7 +297,7 @@
 
 .items-list .item {
   align-items: center;
-  padding: 2px;
+  padding: 1px;
   transition:
     background-color 0.5s ease,
     border-color 0.5s ease,
@@ -313,7 +313,7 @@
   }
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background: linear-gradient($color-quote-gradient);
     border-color: $color-secondary;
     color: darken($color-secondary, 20%);
   }
@@ -454,10 +454,4 @@ span[data-tooltip] {
     text-align: center;
     margin: 0 2px;
   }
-}
-
-.sl-stars {
-  height: 50px;
-  gap: 3px;
-  margin-top: 2px;
 }
