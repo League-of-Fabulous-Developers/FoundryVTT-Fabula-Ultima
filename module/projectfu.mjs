@@ -1,37 +1,38 @@
 // Import document classes.
-import {FUActor} from './documents/actors/actor.mjs';
-import {FUItem} from './documents/items/item.mjs';
+import { FUActor } from './documents/actors/actor.mjs';
+import { FUItem } from './documents/items/item.mjs';
 // Import sheet classes.
-import {FUStandardActorSheet} from './sheets/actor-standard-sheet.mjs';
-import {FUItemSheet} from './sheets/item-sheet.mjs';
+import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
+import { FUItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
-import {preloadHandlebarsTemplates} from './helpers/templates.mjs';
-import {FU} from './helpers/config.mjs';
-import {registerSystemSettings, SETTINGS, SYSTEM} from './settings.js';
-import {addRollContextMenuEntries} from './helpers/checks.mjs';
-import {FUCombatTracker} from './ui/combat-tracker.mjs';
-import {FUCombat} from './ui/combat.mjs';
-import {FUCombatant} from './ui/combatant.mjs';
-import {GroupCheck} from './helpers/group-check.mjs';
-import {CharacterDataModel} from './documents/actors/character/character-data-model.mjs';
-import {NpcDataModel} from './documents/actors/npc/npc-data-model.mjs';
-import {AccessoryDataModel} from './documents/items/accessory/accessory-data-model.mjs';
-import {ArmorDataModel} from './documents/items/armor/armor-data-model.mjs';
-import {BasicItemDataModel} from './documents/items/basic/basic-item-data-model.mjs';
-import {BehaviorDataModel} from './documents/items/behavior/behavior-data-model.mjs';
-import {ClassDataModel} from './documents/items/class/class-data-model.mjs';
-import {ConsumableDataModel} from './documents/items/consumable/consumable-data-model.mjs';
-import {HeroicSkillDataModel} from './documents/items/heroic/heroic-skill-data-model.mjs';
-import {MiscAbilityDataModel} from './documents/items/misc/misc-ability-data-model.mjs';
-import {ProjectDataModel} from './documents/items/project/project-data-model.mjs';
-import {RitualDataModel} from './documents/items/ritual/ritual-data-model.mjs';
-import {RuleDataModel} from './documents/items/rule/rule-data-model.mjs';
-import {ShieldDataModel} from './documents/items/shield/shield-data-model.mjs';
-import {SkillDataModel} from './documents/items/skill/skill-data-model.mjs';
-import {SpellDataModel} from './documents/items/spell/spell-data-model.mjs';
-import {TreasureDataModel} from './documents/items/treasure/treasure-data-model.mjs';
-import {ZeroPowerDataModel} from './documents/items/zeropower/zero-power-data-model.mjs';
-import {WeaponDataModel} from "./documents/items/weapon/weapon-data-model.mjs";
+import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
+import { FU } from './helpers/config.mjs';
+import { registerSystemSettings, SETTINGS, SYSTEM } from './settings.js';
+import { addRollContextMenuEntries } from './helpers/checks.mjs';
+import { FUCombatTracker } from './ui/combat-tracker.mjs';
+import { FUCombat } from './ui/combat.mjs';
+import { FUCombatant } from './ui/combatant.mjs';
+import { GroupCheck } from './helpers/group-check.mjs';
+import { CharacterDataModel } from './documents/actors/character/character-data-model.mjs';
+import { NpcDataModel } from './documents/actors/npc/npc-data-model.mjs';
+import { AccessoryDataModel } from './documents/items/accessory/accessory-data-model.mjs';
+import { ArmorDataModel } from './documents/items/armor/armor-data-model.mjs';
+import { BasicItemDataModel } from './documents/items/basic/basic-item-data-model.mjs';
+import { BehaviorDataModel } from './documents/items/behavior/behavior-data-model.mjs';
+import { ClassDataModel } from './documents/items/class/class-data-model.mjs';
+import { ConsumableDataModel } from './documents/items/consumable/consumable-data-model.mjs';
+import { HeroicSkillDataModel } from './documents/items/heroic/heroic-skill-data-model.mjs';
+import { MiscAbilityDataModel } from './documents/items/misc/misc-ability-data-model.mjs';
+import { ProjectDataModel } from './documents/items/project/project-data-model.mjs';
+import { RitualDataModel } from './documents/items/ritual/ritual-data-model.mjs';
+import { RuleDataModel } from './documents/items/rule/rule-data-model.mjs';
+import { ShieldDataModel } from './documents/items/shield/shield-data-model.mjs';
+import { SkillDataModel } from './documents/items/skill/skill-data-model.mjs';
+import { SpellDataModel } from './documents/items/spell/spell-data-model.mjs';
+import { TreasureDataModel } from './documents/items/treasure/treasure-data-model.mjs';
+import { ZeroPowerDataModel } from './documents/items/zeropower/zero-power-data-model.mjs';
+import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs';
+import { onSocketLibReady } from './socket.mjs';
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -79,7 +80,7 @@ Hooks.once('init', async () => {
 		class: ClassDataModel,
 		consumable: ConsumableDataModel,
 		heroic: HeroicSkillDataModel,
-        miscAbility: MiscAbilityDataModel,
+		miscAbility: MiscAbilityDataModel,
 		project: ProjectDataModel,
 		ritual: RitualDataModel,
 		rule: RuleDataModel,
@@ -87,7 +88,7 @@ Hooks.once('init', async () => {
 		skill: SkillDataModel,
 		spell: SpellDataModel,
 		treasure: TreasureDataModel,
-        weapon: WeaponDataModel,
+		weapon: WeaponDataModel,
 		zeroPower: ZeroPowerDataModel,
 	};
 
@@ -305,10 +306,7 @@ Hooks.once('ready', async function () {
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
 });
 
-Hooks.once('socketlib.ready', () => {
-	const socket = socketlib.registerSystem('projectfu');
-	socket.register('use', displayUsingText);
-});
+Hooks.once('socketlib.ready', onSocketLibReady);
 
 Hooks.once('mmo-hud.ready', () => {
 	// Do this
@@ -374,16 +372,4 @@ function rollItemMacro(itemUuid) {
 		// Trigger the item roll
 		item.roll();
 	});
-}
-
-function displayUsingText(text) {
-	text = `${text}`;
-	ui.notifications.queue.push({
-		message: text,
-		type: 'projectfu-spellname',
-		timestamp: new Date().getTime(),
-		permanent: false,
-		console: false,
-	});
-	if (ui.notifications.rendered) ui.notifications.fetch();
 }

@@ -100,10 +100,22 @@
                 {{/if}}
 
                 <div class="token-initiative">
-                    {{#if (and this.owner (eq faction @root.currentTurn) (not (lookup @root.turnsTaken this.id)))}}
-                        <a class="combatant-control take-turn" role="button" data-action="take-turn">
-                            <i class="fas fa-check-circle"></i>
-                        </a>
+                    {{#if (lookup @root.turnsLeft this.id)}}
+                        {{#if (and this.owner (eq faction @root.currentTurn))}}
+                            <a class="combatant-control take-turn" role="button" data-action="take-turn">
+                                {{#if (gt (lookup @root.totalTurns this.id) 1)}}
+                                    <i class="fas fa-2x fa-circle-{{lookup @root.turnsLeft this.id}}"></i>
+                                {{else}}
+                                    <i class="fas fa-2x fa-check-circle"></i>
+                                {{/if}}
+                            </a>
+                        {{else}}
+                            {{#if (and this.owner (gt (lookup @root.totalTurns this.id) 1))}}
+                                <i class="fas fa-thin fa-2x fa-circle-{{lookup @root.turnsLeft this.id}}"></i>
+                            {{else}}
+                                <i class="fas fa-thin fa-2x fa-check-circle"></i>
+                            {{/if}}
+                        {{/if}}
                     {{/if}}
                 </div>
             </li>
@@ -124,10 +136,6 @@
                 {{else}}
                     <a class="combat-control center" aria-label="{{localize 'COMBAT.Begin'}}" role="button"  data-control="startCombat">{{localize 'COMBAT.Begin'}}</a>
                 {{/if}}
-            {{else if control}}
-                <a class="combat-control" aria-label="{{localize 'COMBAT.TurnPrev'}}" role="button"  data-tooltip="COMBAT.TurnPrev" data-control="previousTurn"><i class="fas fa-arrow-left"></i></a>
-                <a class="combat-control center" aria-label="{{localize 'COMBAT.TurnEnd'}}" role="button"  data-control="nextTurn">{{localize 'COMBAT.TurnEnd'}}</a>
-                <a class="combat-control" aria-label="{{localize 'COMBAT.TurnNext'}}" role="button"  data-tooltip="COMBAT.TurnNext" data-control="nextTurn"><i class="fas fa-arrow-right"></i></a>
             {{/if}}
         {{/if}}
     </nav>
