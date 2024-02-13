@@ -41,7 +41,6 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			description: new HTMLField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
-			isMartial: new SchemaField({ value: new BooleanField() }),
 			opportunity: new StringField(),
 			isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
 			useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
@@ -60,7 +59,6 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 				accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: true }) }),
 				damage: new EmbeddedDataField(DamageDataModel, {}),
 			}),
-			isOffensive: new SchemaField({ value: new BooleanField() }),
 			hasRoll: new SchemaField({ value: new BooleanField() }),
 		};
 	}

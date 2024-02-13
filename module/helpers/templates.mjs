@@ -122,25 +122,25 @@ Handlebars.registerHelper('calculatePercentage', function (value, max) {
 Handlebars.registerHelper('getIconClass', function (item) {
 	if (item.type === 'weapon') {
 		if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'two-handed') {
-			return 'ra ra-relic-blade ra-2x  ra-flip-horizontal';
+			return 'ra ra-relic-blade ra-1xh  ra-flip-horizontal';
 		} else if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'one-handed') {
-			return 'ra ra-sword ra-2x ra-flip-horizontal';
+			return 'ra ra-sword ra-1xh ra-flip-horizontal';
 		} else if (item.system.isEquipped.slot === 'offHand') {
-			return 'ra  ra-plain-dagger ra-2x ra-rotate-180';
+			return 'ra  ra-plain-dagger ra-1xh ra-rotate-180';
 		}
 	} else if (item.type === 'shield') {
 		if (item.system.isDualShield && item.system.isDualShield.value) {
-			return 'ra ra-heavy-shield ra-2x';
+			return 'ra ra-heavy-shield ra-1xh';
 		} else if (item.system.isEquipped.slot === 'offHand' || item.system.isEquipped.slot === 'mainHand') {
-			return 'ra ra-shield ra-2x';
+			return 'ra ra-shield ra-1xh';
 		}
 	} else if (item.type === 'armor') {
 		if (item.system.isEquipped.slot === 'armor') {
-			return 'ra ra-helmet ra-2x';
+			return 'ra ra-helmet ra-1xh';
 		}
 	} else if (item.type === 'accessory') {
 		if (item.system.isEquipped.slot === 'accessory') {
-			return 'fas fa-leaf ra-2x';
+			return 'fas fa-leaf ra-1xh';
 		}
 	}
 	return 'fas fa-toolbox';

@@ -5,7 +5,7 @@
         </div>
     </div>
 <h4 class="click-item resource-content">
-    <span class="resource-label">
+    <span class="resource-text-m" style="display: flex; align-items: center; gap: 3px">
         {{#if (eq @root.actor.type "npc")}}
             {{#if (eq item.system.type.value "melee")}}
                 <i class="fusl fu-action-melee icon-aff"></i>
@@ -17,19 +17,20 @@
                 <i class="fusl fu-action-skill icon-aff"></i>
             {{/if}}
         {{/if}}
-        {{ item.name }}
-        {{#if item.system.isMartial.value}}
-            <i class="fusl is-martial fu-martial icon-aff" style="margin-bottom: -5px;"></i>
-        {{/if}}
-        {{#if item.system.isOffensive.value}}
-            <i class="fusl is-martial fu-offensive icon-aff" style="margin-bottom: -5px;"></i>
-        {{/if}}
         {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "mainHand"))}}
             <span class="icon-letter" data-tooltip="{{localize 'FU.MainHand'}}">M</span>
         {{/if}}
         {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "offHand"))}}
             <span class="icon-letter" data-tooltip="{{localize 'FU.OffHand'}}">O</span>
         {{/if}}
+        {{ item.name }}
+        {{#if item.system.isMartial.value}}
+            <i class="fusl is-martial fus-martial icon-aff" style="margin-bottom: -1px; width: 18px; height: 18px;"></i>
+        {{/if}}
+        {{#if item.system.isOffensive.value}}
+            <i class="fusl is-martial fus-offensive icon-aff" style="margin-right:2px; width: 14px; height: 18px;"></i>
+        {{/if}}
+
     </span>
 </h4>
 </div>

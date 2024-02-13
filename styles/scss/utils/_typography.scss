@@ -52,6 +52,16 @@ $font-quote: "EB Garamond", sans-serif;
         font-family: 'Modesto Condensed';
       }
     }
+    // Resource Body Text Sizes
+    .resource-text-sm {
+      font-size: 14px;
+      font-family: $font-primary;
+    }
+
+    .resource-text-m {
+      font-size: 16px;
+      font-family: $font-primary;
+    }
 
     // Resource Label Sizes
     .resource-label-t {
@@ -121,7 +131,6 @@ $font-quote: "EB Garamond", sans-serif;
   
   .pronouns input {
     font-family: Antonio;
-    font-weight: bold;
     font-size: 16px;
   }
 }
@@ -177,4 +186,10 @@ $font-quote: "EB Garamond", sans-serif;
   box-sizing: border-box;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+// Navbar Text
+.sheet nav.sheet-tabs .item {
+  text-transform: uppercase;
+  font-size: 16px;
 }

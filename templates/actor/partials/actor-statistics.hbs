@@ -9,7 +9,7 @@
             </h2>
             <h3 class="pronouns">
                 <input name="system.resources.pronouns.name" type="text" value="{{ system.resources.pronouns.name }}"
-                    data-tooltip="{{localize 'FU.Pronouns'}}" class="auto-shrink" />
+                    data-tooltip="{{localize 'FU.Pronouns'}}<br>{{ system.resources.pronouns.name }}" class="auto-shrink" />
             </h3>
         </div>
             {{#if (eq actor.type "character")}}
@@ -89,7 +89,7 @@
             </div>
 
             <div class="resource-content flexrow flex-center flex-between align-center">
-                <input class="resource-current-input bar-start" type="number" name="system.resources.hp.value"
+                <input class="resource-text-sm resource-current-input bar-start" type="number" name="system.resources.hp.value"
                     value="{{ system.resources.hp.value }}" data-dtype="Number" />
                 <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.HealthPoints'}}<br>Current: {{
                     system.resources.hp.value
@@ -105,7 +105,7 @@
                         {{/if}}
                     </div>
                 </span>
-                <input class="resource-max-input bar-end" type="number" name="system.resources.hp.max"
+                <input class="resource-text-sm resource-max-input bar-end" type="number" name="system.resources.hp.max"
                     value="{{ system.resources.hp.max }}" data-dtype="Number"
                     disabled="{{ system.resources.hp.max }}" />
             </div>
@@ -127,7 +127,7 @@
                 <span class="bar-value"></span>
             </div>
             <div class="resource-content flexrow flex-center flex-between align-center">
-                <input class="resource-current-input bar-start" type="number" name="system.resources.mp.value"
+                <input class="resource-text-sm resource-current-input bar-start" type="number" name="system.resources.mp.value"
                     value="{{ system.resources.mp.value }}" data-dtype="Number" class="resource-inputs bar-start" />
                 <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.MindPoints'}}<br>Current: {{
                     system.resources.mp.value
@@ -142,7 +142,7 @@
                         {{/if}}
                     </div>
                 </span>
-                <input class="resource-max-input bar-end" type="number" name="system.resources.mp.max"
+                <input class="resource-text-sm resource-max-input bar-end" type="number" name="system.resources.mp.max"
                     value="{{ system.resources.mp.max }}" data-dtype="Number"
                     disabled="{{ system.resources.mp.max }}" />
             </div>
@@ -153,7 +153,7 @@
             <div class="resource-content levelup-container flex-group-center align-left" >
                 <div class="grid grid-3col" style="padding: 0 5px;">
                     <label class="resource-label-l align-left grid-span-2" data-tooltip="Inventory Points"
-                        aria-describedby="tooltip"> <i class="fa-solid fa-backpack icon"></i>{{localize
+                        aria-describedby="tooltip"><i class="ra ra-gear-hammer icon"></i>{{localize
                         'FU.InventoryAbbr'}} </label>
                 </div>
                 <div class="bar bar-progress">
@@ -163,7 +163,7 @@
                     <span class="bar-value"></span>
                 </div>
                 <div class="resource-content flexrow flex-center flex-between align-center">
-                    <input class="resource-current-input bar-start" type="number" name="system.resources.ip.value"
+                    <input class="resource-text-sm resource-current-input bar-start" type="number" name="system.resources.ip.value"
                         value="{{ system.resources.ip.value }}" data-dtype="Number" />
                     <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.InventoryPoints'}}<br>Current: {{
                     system.resources.ip.value
@@ -177,7 +177,7 @@
                             {{/if}}
                         </div>
                     </span>
-                    <input class="resource-max-input bar-end" type="number" name="system.resources.ip.max"
+                    <input class="resource-text-sm resource-max-input bar-end" type="number" name="system.resources.ip.max"
                         value="{{ system.resources.ip.max }}" data-dtype="Number"
                         disabled="{{ system.resources.ip.max }}" />
                 </div>

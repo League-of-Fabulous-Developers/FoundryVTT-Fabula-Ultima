@@ -5,8 +5,10 @@ $fu-action-melee: url("/systems/projectfu/styles/static/icons/fu-action-melee.sv
 $fu-action-ranged: url("/systems/projectfu/styles/static/icons/fu-action-ranged.svg");
 $fu-action-skill: url("/systems/projectfu/styles/static/icons/fu-action-skill.svg");
 $fu-action-spell: url("/systems/projectfu/styles/static/icons/fu-action-spell.svg");
-$fu-offensive: url("/systems/projectfu/styles/static/icons/fu-offensive.svg");
-$fu-martial: url("/systems/projectfu/styles/static/icons/fu-martial.svg");
+$fus-offensive: url("/systems/projectfu/styles/static/icons/fus-offensive.svg");
+$fus-martial: url("/systems/projectfu/styles/static/icons/fus-martial.svg");
+$ful-offensive: url("/systems/projectfu/styles/static/icons/ful-offensive.svg");
+$ful-martial: url("/systems/projectfu/styles/static/icons/ful-martial.svg");
 
 $fu-guard: url("/systems/projectfu/styles/static/icons/fu-guard.svg");
 $fu-phys: url("/systems/projectfu/styles/static/icons/fu-phys.svg");
@@ -31,11 +33,17 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 .fu-action-spell {
   background-image: $fu-action-spell;
 }
-.fu-offensive {
-  background-image: $fu-offensive;
+.fus-offensive {
+  background-image: $fus-offensive;
 }
-.fu-martial {
-  background-image: $fu-martial;
+.ful-offensive {
+  background-image: $ful-offensive;
+}
+.fus-martial {
+  background-image: $fus-martial;
+}
+.ful-martial {
+  background-image: $ful-martial;
 }
 .fa-guard {
   background-image: $fu-guard;
@@ -98,6 +106,11 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 .fus-sl-star {
   background-image: $fus-sl-star;
 }
+
+.ra-1xh{
+  font-size: 1.5em;
+}
+
 .ra.ral {
   text-shadow:
     -0.5px -0.5px 0 rgba(0, 0, 0, 0.5),
@@ -175,4 +188,8 @@ label {
   height: 24px;
   background-size: cover;
   cursor: pointer;
+}
+
+img:not([src]) {
+  content: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
 }
