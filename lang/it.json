@@ -540,6 +540,7 @@
 		"GroupCheckLeaderCantSupport": "FU.GroupCheckLeaderCantSupport",
 		"GroupCheckNotPlayerCharacter": "FU.GroupCheckNotPlayerCharacter",
 		"GroupCheckMissingCharacter": "FU.GroupCheckMissingCharacter",
-		"AbilityNoWeaponEquipped": "Nessuna arma equipaggiata!"
+		"AbilityNoWeaponEquipped": "Nessuna arma equipaggiata!",
+		"CombatTakeTurnOutOfTurn": "FU.CombatTakeTurnOutOfTurn"
 	}
 }

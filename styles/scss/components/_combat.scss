@@ -1,8 +1,12 @@
 .token-initiative {
     display: flex;
+    justify-content: space-around;
 
     & i.fas {
-        align-self: center;
         vertical-align: middle;
+    }
+
+    & .take-turn.out-of-turn:hover {
+        text-shadow: 0 0 4px white;
     }
 }

@@ -45,6 +45,7 @@ export class FUCombatTracker extends CombatTracker {
 	activateListeners(html) {
 		super.activateListeners(html);
 		html.find('a[data-action=take-turn]').click((event) => this.handleTakeTurn(event));
+		html.find('a[data-action=take-turn-out-of-turn]').click((event) => this.handleTakeTurnOutOfTurn(event));
 	}
 
 	/**
@@ -80,6 +81,14 @@ export class FUCombatTracker extends CombatTracker {
 				}
 			}
 			await this.viewed.markTurnTaken(combatant);
+		}
+	}
+
+	async handleTakeTurnOutOfTurn(event) {
+		if (event.shiftKey) {
+			await this.handleTakeTurn(event);
+		} else {
+			ui.notifications.info('FU.CombatTakeTurnOutOfTurn', { localize: true });
 		}
 	}
 }

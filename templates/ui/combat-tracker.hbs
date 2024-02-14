@@ -110,10 +110,18 @@
                                 {{/if}}
                             </a>
                         {{else}}
-                            {{#if (and this.owner (gt (lookup @root.totalTurns this.id) 1))}}
-                                <i class="fas fa-thin fa-2x fa-circle-{{lookup @root.turnsLeft this.id}}"></i>
+                            {{#if this.owner}}
+                                <a class="combatant-control take-turn out-of-turn" data-action="take-turn-out-of-turn">
+                                    {{# if (gt (lookup @root.totalTurns this.id) 1)}}
+                                        <i class="fas fa-thin fa-2x fa-circle-{{lookup @root.turnsLeft this.id}}"></i>
+                                    {{else}}
+                                        <i class="fas fa-thin fa-2x fa-check-circle"></i>
+                                    {{/if}}
+                                </a>
                             {{else}}
-                                <i class="fas fa-thin fa-2x fa-check-circle"></i>
+                                <span class="combatant-control take-turn">
+                                    <i class="fas fa-thin fa-2x fa-check-circle"></i>
+                                </span>
                             {{/if}}
                         {{/if}}
                     {{/if}}
