@@ -540,6 +540,7 @@
         "GroupCheckLeaderCantSupport" : "Der Anführer kann die Gruppenprobe nicht unterstützen.",
         "GroupCheckNotPlayerCharacter" : "NSCs können die Gruppenprobe nicht unterstützen.",
         "GroupCheckMissingCharacter" : "Kein Charakter ausgewählt.",
-        "AbilityNoWeaponEquipped" : "Keine Waffe ausgerüstet."
+        "AbilityNoWeaponEquipped" : "Keine Waffe ausgerüstet.",
+        "CombatTakeTurnOutOfTurn" : "Shift + Klick um einen Zug außerhalb der normalen Reihenfolge zu nutzen"
     }
 }

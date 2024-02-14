@@ -347,8 +347,8 @@
 		"AccuracyBonus": "Bonus au jet de précision",
 		"AccuracyTest": "Test de précision",
 		"Accuracy": "Précision",
-		"HasAccuracy": "Demande un jet de précision?",
-		"UseWeaponAccuracy": "Utiliser le jet de précision de l'arme?",
+        "HasAccuracy": "Demande un jet de précision?",
+        "UseWeaponAccuracy": "Utiliser le jet de précision de l'arme?",
 		"IsOffensive": "Offensif?",
 		"General": "General",
 		"GeneralInfo": "Infos Générales",
@@ -404,12 +404,12 @@
 		"EnemyTurn": "Tour de l'adversaire",
 		"Quirk": "Particularité",
 		"Quirks": "Particularités",
-		"LimitCreate": "Créer un Zero Power",
-		"Limit": "Zero Power",
-		"Limits": "Zero Powers",
-		"LimitEffect": "Zero Effect",
-		"LimitTrigger": "Zero Trigger",
-		"LimitType": "Zero Power",
+        "LimitCreate": "Créer un Zero Power",
+        "Limit": "Zero Power",
+        "Limits": "Zero Powers",
+        "LimitEffect": "Zero Effect",
+        "LimitTrigger": "Zero Trigger",
+        "LimitType": "Zero Power",
 		"LimitCondition": "Condition",
 		"Companion": "Compagnon",
 		"isCompanion": "Compagnon?",
@@ -540,6 +540,7 @@
 		"GroupCheckLeaderCantSupport": "Le leader ne peut pas supporter son test de groupe.",
 		"GroupCheckNotPlayerCharacter": "Les PNJs ne peuvent supporter un test de groupe.",
 		"GroupCheckMissingCharacter": "Pas de personnage séléctionné.",
-		"AbilityNoWeaponEquipped": "Pas d'arme équipé!"
+		"AbilityNoWeaponEquipped": "Pas d'arme équipé!",
+		"CombatTakeTurnOutOfTurn": "FU.CombatTakeTurnOutOfTurn"
 	}
 }

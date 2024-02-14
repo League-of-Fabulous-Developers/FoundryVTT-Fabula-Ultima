@@ -540,6 +540,7 @@
 		"GroupCheckLeaderCantSupport": "The leader can't also support the Group Check.",
 		"GroupCheckNotPlayerCharacter": "NPCs can't support Group Checks.",
 		"GroupCheckMissingCharacter": "No character selected.",
-		"AbilityNoWeaponEquipped": "No weapons equipped!"
+		"AbilityNoWeaponEquipped": "No weapons equipped!",
+		"CombatTakeTurnOutOfTurn": "Shift + Click to use a turn outside of the normal turn order"
 	}
 }
