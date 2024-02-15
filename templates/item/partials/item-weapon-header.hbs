@@ -21,14 +21,11 @@
         'FU.Hand'}}</label>
     {{#if system.isCustomWeapon.value}}
     <select value="two-handed" name="system.hands.value" class="resource-inputs select-dropdown-m" disabled>
-        <option value="two-handed">Two-Handed</option>
+        <option value="two-handed">{{localize 'FU.TwoHanded'}}</option>
     </select>
     {{else}}
     <select value="{{ system.hands.value }}" name="system.hands.value" class="resource-inputs select-dropdown-m">
-        {{#select system.hands.value}}
-        <option value="one-handed">One-Handed</option>
-        <option value="two-handed">Two-Handed</option>
-        {{/select}}
+        {{selectOptions handedness selected=system.hands.value sort=true localize=true}}
     </select>
     {{/if}}
 </div>
@@ -36,9 +33,6 @@
     <label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
         'FU.ItemType'}}</label>
     <select value="{{ system.type.value }}" name="system.type.value" class="resource-inputs select-dropdown-m">
-        {{#select system.type.value}}
-        <option value="melee">Melee</option>
-        <option value="ranged">Ranged</option>
-        {{/select}}
+        {{selectOptions wpnType selected=system.type.value sort=true localize=true}}
     </select>
 </div>
