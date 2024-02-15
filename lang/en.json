@@ -1,4 +1,27 @@
 {
+	"ACTOR":{
+		"TypeCharacter":"Character",
+		"TypeNpc":"NPC"
+	},
+	"ITEM":{
+		"TypeBasic":"Basic",
+		"TypeWeapon":"Weapon",
+		"TypeShield":"Shield",
+		"TypeArmor":"Armor",
+		"TypeAccessory":"Accessory",
+		"TypeConsumable":"Consumable",
+		"TypeTreasure":"Treasure",
+		"TypeClass":"Class",
+		"TypeSkill":"Skill",
+		"TypeHeroic":"Heroic",
+		"TypeSpell":"Spell",
+		"TypeMiscAbility":"Misc Ability",
+		"TypeRule":"Rule",
+		"TypeBehavior":"Behavior",
+		"TypeRitual":"Ritual",
+		"TypeProject":"Project",
+		"TypeZeroPower":"Zero Power"
+	},
 	"TYPES":{
 		"Actor":{
 			"character":"Character",

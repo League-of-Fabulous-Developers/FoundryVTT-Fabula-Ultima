@@ -1,4 +1,27 @@
 {
+	"ACTOR":{
+		"TypeCharacter":"Personnage",
+		"TypeNpc":"PNJ"
+	},
+	"ITEM":{
+		"TypeBasic":"Basique",
+		"TypeWeapon":"Arme",
+		"TypeShield":"Bouclier",
+		"TypeArmor":"Armure",
+		"TypeAccessory":"Accessoire",
+		"TypeConsumable":"Consommable",
+		"TypeTreasure":"Trésor",
+		"TypeClass":"Classe",
+		"TypeSkill":"Compétence",
+		"TypeHeroic":"Héroïque",
+		"TypeSpell":"Sort",
+		"TypeMiscAbility":"Autre atout",
+		"TypeRule":"Règle",
+		"TypeBehavior":"Attitude",
+		"TypeRitual":"Ritual",
+		"TypeProject":"Projet",
+		"TypeZeroPower":"Zero Power"
+	},
 	"TYPES":{
 		"Actor":{
 			"character":"Personnage",
@@ -14,14 +37,14 @@
 			"treasure":"Trésor",
 			"class":"Classe",
 			"skill":"Compétence",
-			"heroic":"Compétence héroïque",
+			"heroic":"Héroïque",
 			"spell":"Sort",
-			"miscAbility":"Autre capacité",
+			"miscAbility":"Autre atout",
 			"rule":"Règle",
 			"behavior":"Attitude",
 			"ritual":"Rituel",
 			"project":"Projet",
-			"zeroPower":"Déchainement Zéro"
+			"zeroPower":"Zéro Power"
 		}
 	},
 	"FU": {
