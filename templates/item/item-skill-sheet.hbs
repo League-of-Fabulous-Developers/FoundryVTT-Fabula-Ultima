@@ -45,12 +45,7 @@
 								'FU.Primary'}} </label>
 							<select value="{{ system.rollInfo.attributes.primary.value }}"
 								name="system.rollInfo.attributes.primary.value" class="resource-inputs select-dropdown">
-								{{#select system.rollInfo.attributes.primary.value}}
-								<option value="dex">DEX</option>
-								<option value="ins">INS</option>
-								<option value="mig">MIG</option>
-								<option value="wlp">WLP</option>
-								{{/select}}
+								{{selectOptions attrAbbr selected=system.rollInfo.attributes.primary.value sort=true localize=true}}
 							</select>
 						</div>
 						<div class="resource-content flexcol flex-group-center">
@@ -59,12 +54,7 @@
 							<select value="{{ system.rollInfo.attributes.secondary.value }}"
 								name="system.rollInfo.attributes.secondary.value"
 								class="resource-inputs select-dropdown">
-								{{#select system.rollInfo.attributes.secondary.value}}
-								<option value="dex">DEX</option>
-								<option value="ins">INS</option>
-								<option value="mig">MIG</option>
-								<option value="wlp">WLP</option>
-								{{/select}}
+								{{selectOptions attrAbbr selected=system.rollInfo.attributes.secondary.value sort=true localize=true}}
 							</select>
 						</div>
 						<div class="resource-content flexcol flex-group-center">
@@ -98,18 +88,7 @@
 								class="resource-label-m flexlarge">{{localize 'FU.DamageType'}} </label>
 							<select value="{{ system.rollInfo.damage.type.value }}"
 								name="system.rollInfo.damage.type.value" class="resource-inputs select-dropdown-m">
-								{{#select system.rollInfo.damage.type.value}}
-								<option value="">Untyped</option>
-								<option value="physical">Physical</option>
-								<option value="air">Air</option>
-								<option value="bolt">Bolt</option>
-								<option value="dark">Dark</option>
-								<option value="earth">Earth</option>
-								<option value="fire">Fire</option>
-								<option value="ice">Ice</option>
-								<option value="light">Light</option>
-								<option value="poison">Poison</option>
-								{{/select}}
+								{{selectOptions damageTypes selected=system.rollInfo.damage.type.value blank='Untyped' sort=true localize=true}}
 							</select>
 						</div>
 						<div class="resource-content flexcol flex-group-center">
