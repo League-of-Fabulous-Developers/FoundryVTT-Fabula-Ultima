@@ -6,13 +6,7 @@
     {{#if (eq item.type "armor")}}
         <select value="{{ system.attributes.primary.value }}" name="system.attributes.primary.value"
             class="resource-inputs select-dropdown">
-            {{#select system.attributes.primary.value}}
-            <option value="">-</option>
-            <option value="dex">DEX</option>
-            <option value="ins">INS</option>
-            <option value="mig">MIG</option>
-            <option value="wlp">WLP</option>
-            {{/select}}
+            {{selectOptions attrAbbr selected=system.attributes.primary.value blank='-' sort=true localize=true}}
         </select>
     {{/if}}
     <input type="number" name="system.def.value" value="{{ system.def.value }}" data-dtype="Number"
@@ -26,13 +20,7 @@
     {{#if (eq item.type "armor")}}
         <select value="{{ system.attributes.secondary.value }}"
             name="system.attributes.secondary.value" class="resource-inputs select-dropdown">
-            {{#select system.attributes.secondary.value}}
-            <option value="">-</option>
-            <option value="dex">DEX</option>
-            <option value="ins">INS</option>
-            <option value="mig">MIG</option>
-            <option value="wlp">WLP</option>
-            {{/select}}
+            {{selectOptions attrAbbr selected=system.attributes.secondary.value blank='-' sort=true localize=true}}
         </select>
     {{/if}}
     <input type="number" name="system.mdef.value" value="{{ system.mdef.value }}" data-dtype="Number"
