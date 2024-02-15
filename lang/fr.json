@@ -589,6 +589,24 @@
 		"GroupCheckNotPlayerCharacter": "Les PNJs ne peuvent supporter un test de groupe.",
 		"GroupCheckMissingCharacter": "Pas de personnage séléctionné.",
 		"AbilityNoWeaponEquipped": "Pas d'arme équipé!",
-		"CombatTakeTurnOutOfTurn": "FU.CombatTakeTurnOutOfTurn"
+		"CombatTakeTurnOutOfTurn": "FU.CombatTakeTurnOutOfTurn",
+		"Accelerated": "Accéléré",
+		"Aura": "Aura",
+		"Barrier": "Barrière",
+		"Beserk": "Beserk",
+		"Blinded": "Aveuglé",
+		"Death": "Mort",
+		"DEXDown": "DEX Diminuée",
+		"DEXUp": "DEX Augmentée",
+		"INSDown": "INT Diminuée",
+		"INSUp": "INT Augmentée",
+		"KO": "KO",
+		"MIGDown": "PUI Diminuée",
+		"MIGUp": "PUI Augmentée",
+		"Reflect": "Réfléchir",
+		"Regen": "Régén",
+		"Sleep": "Sommeil",
+		"WLPDown": "VOL Diminuée",
+		"WLPUp": "VOL Augmentée"
 	}
 }

@@ -1,4 +1,52 @@
 {
+    "ACTOR":{
+		"TypeCharacter":"Character",
+		"TypeNpc":"NPC"
+	},
+	"ITEM":{
+		"TypeBasic":"Basic",
+		"TypeWeapon":"Weapon",
+		"TypeShield":"Shield",
+		"TypeArmor":"Armor",
+		"TypeAccessory":"Accessory",
+		"TypeConsumable":"Consumable",
+		"TypeTreasure":"Treasure",
+		"TypeClass":"Class",
+		"TypeSkill":"Skill",
+		"TypeHeroic":"Heroic",
+		"TypeSpell":"Spell",
+		"TypeMiscAbility":"Misc Ability",
+		"TypeRule":"Rule",
+		"TypeBehavior":"Behavior",
+		"TypeRitual":"Ritual",
+		"TypeProject":"Project",
+		"TypeZeroPower":"Zero Power"
+	},
+	"TYPES":{
+		"Actor":{
+			"character":"Character",
+			"npc":"NPC"
+		},
+		"Item":{
+			"basic":"Basic",
+			"weapon":"Weapon",
+			"shield":"Shield",
+			"armor":"Armor",
+			"accessory":"Accessory",
+			"consumable":"Consumable",
+			"treasure":"Treasure",
+			"class":"Class",
+			"skill":"Skill",
+			"heroic":"Heroic",
+			"spell":"Spell",
+			"miscAbility":"Misc Ability",
+			"rule":"Rule",
+			"behavior":"Behavior",
+			"ritual":"Ritual",
+			"project":"Project",
+			"zeroPower":"Zero Power"
+		}
+	},
     "FU" : {
         "AttributeMig" : "Macht",
         "AttributeDex" : "Geschicklichkeit",
@@ -541,6 +589,24 @@
         "GroupCheckNotPlayerCharacter" : "NSCs können die Gruppenprobe nicht unterstützen.",
         "GroupCheckMissingCharacter" : "Kein Charakter ausgewählt.",
         "AbilityNoWeaponEquipped" : "Keine Waffe ausgerüstet.",
-        "CombatTakeTurnOutOfTurn" : "Shift + Klick um einen Zug außerhalb der normalen Reihenfolge zu nutzen"
+        "CombatTakeTurnOutOfTurn" : "Shift + Klick um einen Zug außerhalb der normalen Reihenfolge zu nutzen",
+		"Accelerated": "Accelerated",
+		"Aura": "Aura",
+		"Barrier": "Barrier",
+		"Beserk": "Beserk",
+		"Blinded": "Blinded",
+		"Death": "Death",
+		"DEXDown": "DEX Down",
+		"DEXUp": "DEX Up",
+		"INSDown": "INS Down",
+		"INSUp": "INS Up",
+		"KO": "KO",
+		"MIGDown": "MIG Down",
+		"MIGUp": "MIG Up",
+		"Reflect": "Reflect",
+		"Regen": "Regen",
+		"Sleep": "Sleep",
+		"WLPDown": "WLP Down",
+		"WLPUp": "WLP Up"
     }
 }
