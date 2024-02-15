@@ -1,4 +1,29 @@
 {
+	"TYPES":{
+		"Actor":{
+			"character":"Personnage",
+			"npc":"PNJ"
+		},
+		"Item":{
+			"basic":"Basique",
+			"weapon":"Arme",
+			"shield":"Bouclier",
+			"armor":"Armure",
+			"accessory":"Accessoire",
+			"consumable":"Consommable",
+			"treasure":"Trésor",
+			"class":"Classe",
+			"skill":"Compétence",
+			"heroic":"Compétence héroïque",
+			"spell":"Sort",
+			"miscAbility":"Autre capacité",
+			"rule":"Règle",
+			"behavior":"Attitude",
+			"ritual":"Rituel",
+			"project":"Projet",
+			"zeroPower":"Déchainement Zéro"
+		}
+	},
 	"FU": {
 		"AttributeMig": "Puissance",
 		"AttributeDex": "Dextérité",

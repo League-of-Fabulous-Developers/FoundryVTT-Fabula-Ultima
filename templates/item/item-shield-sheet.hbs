@@ -71,8 +71,7 @@
 							'FU.Hand'}}</label>
 						<select value="{{ system.hands.value }}" name="system.hands.value"
 							class="resource-inputs select-dropdown-m">
-							<option value="one-handed">One-Handed</option>
-							<option value="two-handed">Two-Handed</option>
+								{{selectOptions handedness selected=system.hands.value sort=true localize=true}}
 						</select>
 					</div>
 					<div class="resource-content flexcol flex-group-center">
@@ -80,8 +79,7 @@
 							'FU.ItemType'}}</label>
 						<select value="{{ system.type.value }}" name="system.type.value"
 							class="resource-inputs select-dropdown-m">
-							<option value="melee">Melee</option>
-							<option value="ranged">Ranged</option>
+								{{selectOptions wpnType selected=system.type.value sort=true localize=true}}
 						</select>
 					</div>
 					{{/if}}
@@ -100,12 +98,7 @@
 								'FU.Primary'}} </label>
 							<select value="{{ system.attributes.primary.value }}" name="system.attributes.primary.value"
 								class="resource-inputs select-dropdown">
-								{{#select system.attributes.primary.value}}
-								<option value="dex">DEX</option>
-								<option value="ins">INS</option>
-								<option value="mig">MIG</option>
-								<option value="wlp">WLP</option>
-								{{/select}}
+								{{selectOptions attrAbbr selected=system.attributes.primary.value sort=true localize=true}}
 							</select>
 						</div>
 						<div class="resource-content flexcol flex-group-center">
@@ -113,12 +106,7 @@
 								'FU.Secondary'}} </label>
 							<select value="{{ system.attributes.secondary.value }}"
 								name="system.attributes.secondary.value" class="resource-inputs select-dropdown">
-								{{#select system.attributes.secondary.value}}
-								<option value="dex">DEX</option>
-								<option value="ins">INS</option>
-								<option value="mig">MIG</option>
-								<option value="wlp">WLP</option>
-								{{/select}}
+								{{selectOptions attrAbbr selected=system.attributes.secondary.value sort=true localize=true}}
 							</select>
 						</div>
 						<div class="resource-content flexcol flex-group-center">
@@ -140,18 +128,7 @@
 								class="resource-label-m flexlarge">{{localize 'FU.DamageType'}} </label>
 							<select value="{{ system.damageType.value }}" name="system.damageType.value"
 								class="resource-inputs select-dropdown-m">
-								{{#select system.damageType.value}}
-								<option value="">Untyped</option>
-								<option value="physical">Physical</option>
-								<option value="air">Air</option>
-								<option value="bolt">Bolt</option>
-								<option value="dark">Dark</option>
-								<option value="earth">Earth</option>
-								<option value="fire">Fire</option>
-								<option value="ice">Ice</option>
-								<option value="light">Light</option>
-								<option value="poison">Poison</option>
-								{{/select}}
+								{{selectOptions damageTypes selected=system.damageType.value blank='Untyped' sort=true localize=true}}
 							</select>
 						</div>
 						<div class="resource-content flexcol flex-group-center">
