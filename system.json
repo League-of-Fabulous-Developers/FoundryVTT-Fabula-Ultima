@@ -35,15 +35,27 @@
 			"lang": "it",
 			"name": "Italian",
 			"path": "lang/it.json"
-		},{
-            "lang": "de",
-            "name": "Deutsch",
-            "path": "lang/de.json"
-        },{
-            "lang": "fr",
-            "name": "French",
-            "path": "lang/fr.json"
-        }
+		},
+		{
+			"lang": "de",
+			"name": "Deutsch",
+			"path": "lang/de.json"
+		},
+		{
+			"lang": "fr",
+			"name": "Française",
+			"path": "lang/fr.json"
+		},
+		{
+			"lang": "es",
+			"name": "Español",
+			"path": "lang/es.json"
+		},
+		{
+			"lang": "pt-BR",
+			"name": "Português (Brasil)",
+			"path": "lang/pt_BR.json"
+		}
 	],
 	"relationships": {
 		"requires": [
