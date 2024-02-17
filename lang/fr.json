@@ -404,10 +404,10 @@
 		"OptionalFeats": "Foctionnalité optionnelles",
 		"GlobalBonuses": "Bonus globaux",
 		"Bonus": "Bonus",
-		"Arcane": "Arcane",
+		"Arcane": "Arcanique",
 		"Bow": "Arc",
-		"Flail": "Fléau",
-		"Firearm": "arme à feu",
+		"Flail": "Articulée",
+		"Firearm": "Arme à feu",
 		"Spear": "Lance",
 		"Thrown": "Jet",
 		"Heavy": "Lourde",
@@ -612,7 +612,7 @@
 		"HeroicStyle":"Style Héroïque",
 		"Deck":"Pioche",
 		"Arcana":"Arcana",
-		"Verse":"Verse",
+		"Verse":"Couplet",
 		"Dance":"Dance",
 		"Gift":"Cadeau",
 		"Magiseed":"Magigraine",
@@ -621,6 +621,12 @@
 		"Therioform":"Therioforme",
 		"Symbol":"Symbole",
 		"Infusion":"Infusion",
-		"material":"Matériel"
+		"Material":"Matériel",
+		"Arcanism":"Arcanisme",
+		"Chimerism":"Chimérisme",
+		"Elementalism":"Élémentalisme",
+		"Entropism":"Entropisme",
+		"Ritualism":"Ritualisme",
+		"Spiritism":"Spiritisme"
 	}
 }

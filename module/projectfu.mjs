@@ -303,8 +303,16 @@ Handlebars.registerHelper('translate', function (str) {
 		'hp':'FU.HealthAbbr',
 		'mp':'FU.MindAbbr',
 		'ip':'FU.InventoryAbbr',
-	}, CONFIG.FU.itemTypes);
-	return result?.[str] ?? '';
+		'shields':'FU.Shield',
+		'arcanism':'FU.Arcanism',
+		'chimerism':'FU.Chimerism',
+		'elementalism':'FU.Elementalism',
+		'entropism':'FU.Entropism',
+		'ritualism':'FU.Ritualism',
+		'spiritism':'FU.Spiritism',
+	}, CONFIG.FU.itemTypes, CONFIG.FU.weaponTypes);
+
+	return result?.[str] ?? str;
 });
 
 /* -------------------------------------------- */
