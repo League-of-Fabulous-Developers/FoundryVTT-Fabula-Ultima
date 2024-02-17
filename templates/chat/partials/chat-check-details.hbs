@@ -11,4 +11,6 @@
     {{> 'systems/projectfu/templates/chat/partials/chat-ability-details.hbs' ability=details}}
 {{/inline}}
 
-{{> (lookup details "_type") }}
+<div data-item-id="{{details.id}}">
+    {{> (lookup details "_type") }}
+</div>

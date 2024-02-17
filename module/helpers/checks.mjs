@@ -55,6 +55,7 @@
  * @property {"weapon"} _type
  * @property {string} name
  * @property {string} img
+ * @property {string} id
  * @property {WeaponCategory} category
  * @property {Handedness} hands
  * @property {string} quality
@@ -69,6 +70,7 @@
  * @property {"spell"} _type
  * @property {string} name
  * @property {string} img
+ * @property {string} id
  * @property {string} mpCost
  * @property {string} target
  * @property {string} duration
@@ -82,6 +84,7 @@
  * @property {"basic"} _type
  * @property {string} name
  * @property {string} img
+ * @property {string} id
  * @property {string} quality
  * @property {WeaponType} type
  * @property {Defense} defense
@@ -100,6 +103,7 @@
  * @property {"ability"} _type
  * @property {string} name
  * @property {string} img
+ * @property {string} id
  * @property {string} quality
  * @property {string} summary
  * @property {string} description
@@ -136,10 +140,10 @@
  * @property {boolean} [collapseDescriptions]
  */
 
-import {FU} from './config.mjs';
-import {SETTINGS, SYSTEM} from '../settings.js';
-import {FUActor} from '../documents/actors/actor.mjs';
-import {Flags} from './flags.mjs';
+import { FU } from './config.mjs';
+import { SETTINGS, SYSTEM } from '../settings.js';
+import { FUActor } from '../documents/actors/actor.mjs';
+import { Flags } from './flags.mjs';
 
 /**
  *
