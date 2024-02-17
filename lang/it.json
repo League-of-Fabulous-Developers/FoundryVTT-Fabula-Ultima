@@ -621,6 +621,12 @@
 		"Therioform":"Therioforme",
 		"Symbol":"Symbol",
 		"Infusion":"Infusion",
-		"material":"Material"
+		"Material":"Material",
+		"Arcanism":"Arcanism",
+		"Chimerism":"Chimerism",
+		"Elementalism":"Élémentalism",
+		"Entropism":"Entropism",
+		"Ritualism":"Ritualism",
+		"Spiritism":"Spiritism"
 	}
 }

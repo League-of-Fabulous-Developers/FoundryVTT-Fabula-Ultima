@@ -23,7 +23,7 @@
 
                         {{#each system.benefits.resources as |benefit key|}}
 
-                        <label class="checkbox"> <span class="resource-label-sm">{{capitalize key}}</span><input
+                        <label class="checkbox"> <span class="resource-label-sm">{{localize (translate key)}}</span><input
                                 type="checkbox" name="system.benefits.resources.{{ key }}.value" {{ checked
                                 benefit.value }} />
                         </label>
@@ -34,7 +34,7 @@
                         <label class="resource-label-l flexcol">{{localize 'FU.BenefitMartial'}}</label>
 
                         {{#each system.benefits.martials as |benefit key|}}
-                        <label class="checkbox"> <span class="resource-label-sm">{{capitalize key}}</span><input
+                        <label class="checkbox"> <span class="resource-label-sm">{{localize (translate key)}}</span><input
                                 type="checkbox" name="system.benefits.martials.{{ key }}.value" {{ checked benefit.value
                                 }} />
                         </label>
@@ -45,7 +45,7 @@
                         <label class="resource-label-l flexcol">{{localize 'FU.BenefitRitual'}}</label>
 
                         {{#each system.benefits.rituals as |benefit key|}}
-                        <label class="checkbox"> <span class="resource-label-sm">{{capitalize key}}</span><input
+                        <label class="checkbox"> <span class="resource-label-sm">{{localize (translate key)}}</span><input
                                 type="checkbox" name="system.benefits.rituals.{{ key }}.value" {{ checked benefit.value
                                 }} />
                         </label>

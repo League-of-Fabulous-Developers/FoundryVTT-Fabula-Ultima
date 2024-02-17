@@ -404,10 +404,10 @@
 		"OptionalFeats": "Foctionnalité optionnelles",
 		"GlobalBonuses": "Bonus globaux",
 		"Bonus": "Bonus",
-		"Arcane": "Arcane",
+		"Arcane": "Arcanique",
 		"Bow": "Arc",
-		"Flail": "Fléau",
-		"Firearm": "arme à feu",
+		"Flail": "Articulée",
+		"Firearm": "Arme à feu",
 		"Spear": "Lance",
 		"Thrown": "Jet",
 		"Heavy": "Lourde",
@@ -621,6 +621,12 @@
 		"Therioform":"Therioforme",
 		"Symbol":"Symbole",
 		"Infusion":"Infusion",
-		"material":"Matériel"
+		"Material":"Matériel",
+		"Arcanism":"Arcanisme",
+		"Chimerism":"Chimérisme",
+		"Elementalism":"Elementalisme",
+		"Entropism":"Entropisme",
+		"Ritualism":"Ritualisme",
+		"Spiritism":"Spiritisme"
 	}
 }

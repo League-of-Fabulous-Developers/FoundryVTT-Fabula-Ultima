@@ -618,9 +618,15 @@
 		"Magiseed":"Magiseed",
 		"Invention":"Invention",
 		"Invocation":"Invocation",
-		"Therioform":"Therioforme",
+		"Therioform":"Therioform",
 		"Symbol":"Symbol",
 		"Infusion":"Infusion",
-		"material":"Material"
+		"Material":"Material",
+		"Arcanism":"Arcanism",
+		"Chimerism":"Chimerism",
+		"Elementalism":"Élémentalism",
+		"Entropism":"Entropism",
+		"Ritualism":"Ritualism",
+		"Spiritism":"Spiritism"
 	}
 }
