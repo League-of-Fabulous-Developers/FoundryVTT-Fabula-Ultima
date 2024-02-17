@@ -102,7 +102,7 @@ FU.speciesRule = {
 };
 
 FU.itemTypes = {
-	basic: 'FU.BasicAtack',
+	basic: 'TYPES.Item.Basic',
 	weapon: 'FU.Weapon',
 	shield: 'FU.Shield',
 	armor: 'FU.Armor',
@@ -112,11 +112,11 @@ FU.itemTypes = {
 	class: 'FU.Class',
 	skill: 'FU.Skill',
 	heroic: 'FU.Heroic',
-	miscAbility: 'FU.BeastRule',
-	behavior: 'FU.ConstructRule',
-	ritual: 'FU.DemonRule',
-	project: 'FU.ElementalRule',
-	zeroPower: 'FU.HumanoidRule',
+	miscAbility: 'TYPES.Item.miscAbility',
+	behavior: 'TYPES.Item.behavior',
+	ritual: 'TYPES.Item.ritual',
+	project: 'TYPES.Item.project',
+	zeroPower: 'TYPES.Item.zeroPower',
 };
 
 FU.actionTypes = {
