@@ -312,7 +312,6 @@ Handlebars.registerHelper('translate', function (str) {
 		'spiritism':'FU.Spiritism',
 	}, CONFIG.FU.itemTypes, CONFIG.FU.weaponTypes);
 
-	console.warn(str);
 	return result?.[str] ?? str;
 });
 
