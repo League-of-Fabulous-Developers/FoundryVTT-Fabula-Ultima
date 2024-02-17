@@ -607,6 +607,20 @@
         "Regen" : "Erneuerung",
         "Sleep" : "Schlaf",
         "WLPDown" : "WLP -",
-        "WLPUp" : "WLP +"
+        "WLPUp" : "WLP +",
+		"Untyped":"None",
+		"HeroicStyle":"Heroic Style",
+		"Deck":"Deck",
+		"Arcana":"Arcana",
+		"Verse":"Verse",
+		"Dance":"Dance",
+		"Gift":"Gift",
+		"Magiseed":"Magiseed",
+		"Invention":"Invention",
+		"Invocation":"Invocation",
+		"Therioform":"Therioforme",
+		"Symbol":"Symbol",
+		"Infusion":"Infusion",
+		"material":"Material"
     }
 }
