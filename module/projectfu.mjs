@@ -297,6 +297,16 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 	return str.toLowerCase();
 });
 
+Handlebars.registerHelper('translate', function (str) {
+	const result = Object.assign({
+		'spell':'FU.Spell',
+		'hp':'FU.HealthAbbr',
+		'mp':'FU.MindAbbr',
+		'ip':'FU.InventoryAbbr',
+	}, CONFIG.FU.itemTypes);
+	return result?.[str] ?? '';
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */

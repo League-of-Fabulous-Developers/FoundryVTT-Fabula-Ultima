@@ -607,6 +607,20 @@
 		"Regen": "Regen",
 		"Sleep": "Sleep",
 		"WLPDown": "WLP Down",
-		"WLPUp": "WLP Up"
+		"WLPUp": "WLP Up",
+		"Untyped":"None",
+		"HeroicStyle":"Heroic Style",
+		"Deck":"Deck",
+		"Arcana":"Arcana",
+		"Verse":"Verse",
+		"Dance":"Dance",
+		"Gift":"Gift",
+		"Magiseed":"Magiseed",
+		"Invention":"Invention",
+		"Invocation":"Invocation",
+		"Therioform":"Therioforme",
+		"Symbol":"Symbol",
+		"Infusion":"Infusion",
+		"material":"Material"
 	}
 }

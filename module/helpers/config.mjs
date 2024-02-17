@@ -153,6 +153,71 @@ FU.weaponCategories = {
 };
 
 /**
+ * @typedef {"custom", "arcana", "deck", "dance", "gift", "magiseed", "invention", "invocation", "therioform", "symbol", "infusion", "quirk", "other"} MiscCategory
+ */
+/**
+ * @type {Object.<MiscCategory, string>}
+ */
+FU.miscCategories = {
+	custom: 'FU.Custom',
+	arcana: 'FU.Arcana',
+	deck: 'FU.Deck',
+	verse: 'FU.Verse',
+	dance: 'FU.Dance',
+	gift: 'FU.Gift',
+	magiseed: 'FU.Magiseed',
+	invention: 'FU.Invention',
+	invocation: 'FU.Invocation',
+	therioform: 'FU.Therioform',
+	symbol: 'FU.Symbol',
+	infusion: 'FU.Infusion',
+	quirk: 'FU.Quirk',
+	other: 'FU.Other',
+};
+
+/**
+ * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown"} weaponCategoriesWithoutCustom
+ */
+/**
+ * @type {Object.<weaponCategoriesWithoutCustom, string>}
+ */
+FU.weaponCategoriesWithoutCustom = {
+	arcane: 'FU.Arcane',
+	bow: 'FU.Bow',
+	brawling: 'FU.Brawling',
+	dagger: 'FU.Dagger',
+	firearm: 'FU.Firearm',
+	flail: 'FU.Flail',
+	heavy: 'FU.Heavy',
+	spear: 'FU.Spear',
+	sword: 'FU.Sword',
+	thrown: 'FU.Thrown',
+};
+
+/**
+ * @typedef {"skill", "style"} HeroicType
+ */
+/**
+ * @type {Object.<HeroicType, string>}
+ */
+FU.heroicType = {
+	skill: 'FU.Heroic',
+	style: 'FU.HeroicStyle',
+};
+
+/**
+ * @typedef {"treasure", "material", "artifact"} TreasureType
+ */
+/**
+ * @type {Object.<TreasureType, string>}
+ */
+FU.treasureType = {
+	treasure: 'FU.Treasure',
+	material: 'FU.Material',
+	artifact: 'FU.Artifact',
+};
+
+/**
  * @typedef {"melee", "ranged"} WeaponType
  */
 /**

@@ -607,6 +607,20 @@
 		"Regen": "Régén",
 		"Sleep": "Sommeil",
 		"WLPDown": "VOL Diminuée",
-		"WLPUp": "VOL Augmentée"
+		"WLPUp": "VOL Augmentée",
+		"Untyped":"Aucun",
+		"HeroicStyle":"Style Héroïque",
+		"Deck":"Pioche",
+		"Arcana":"Arcana",
+		"Verse":"Verse",
+		"Dance":"Dance",
+		"Gift":"Cadeau",
+		"Magiseed":"Magigraine",
+		"Invention":"Invention",
+		"Invocation":"Invocation",
+		"Therioform":"Therioforme",
+		"Symbol":"Symbole",
+		"Infusion":"Infusion",
+		"material":"Matériel"
 	}
 }

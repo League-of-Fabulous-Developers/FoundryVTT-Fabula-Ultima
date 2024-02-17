@@ -9,11 +9,11 @@
 				</h2>
 				<h3 class="has-martial" style="border-bottom: 0; display: flex; align-items: center; height: 3em; text-align: center; flex-grow: 1;">
 					{{#if system.isMartial}}
-						<img class="icon-aff {{#if system.isMartial.value}}fus-martial{{else}}ful-martial{{/if}}" style="flex: 0 0 40px; height: 40px; object-fit: contain; border: none; background-repeat-x: no-repeat; margin-right: 0; margin: auto;">
+						<img class="icon-aff {{#if system.isMartial.value}}fus-martial{{else}}ful-martial{{/if}}" style="flex: 0 0 40px; height: 40px; object-fit: contain; border: none; background-repeat: no-repeat repeat; margin-right: 0; margin: auto;">
 					{{/if}}
 
 					{{#if system.isOffensive}}
-						<img class="icon-aff {{#if system.isOffensive.value}}fus-offensive{{else}}ful-offensive{{/if}}" style="flex: 0 0 40px; height: 40px; object-fit: contain; margin-right: 0; border: none; background-repeat-x: no-repeat; margin-right: -15px; margin: auto;">
+						<img class="icon-aff {{#if system.isOffensive.value}}fus-offensive{{else}}ful-offensive{{/if}}" style="flex: 0 0 40px; height: 40px; object-fit: contain; margin-right: 0; border: none; background-repeat: no-repeat repeat; margin-right: -15px; margin: auto;">
 					{{/if}}
 				</h3>
 			</div>
@@ -25,7 +25,7 @@
 					<span class="resource-content levelup-container flexcol flex-group-center">
 						<label class="resource-label-m" for="item.type" > <i
 							class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.ItemType'}}</label>
-						<input type="text" name="item.type" value="{{capitalize item.type}}" data-dtype="String"
+						<input type="text" name="item.type" value="{{localize (translate item.type)}}" data-dtype="String"
 							class="resource-inputs" disabled style="border-radius: 0 12px 0 0;"/>
 					</span>
 
@@ -89,43 +89,21 @@
 			<span>
 				<select type="select" value="" name="system.subtype.value" data-dtype="String"
 					class="resource-inputs select-dropdown-l">
-					{{#select system.subtype.value}}
-					<option value="skill">Heroic Skill</option>
-					<option value="style">Heroic Style</option>
-					{{/select}}
+        			{{selectOptions heroicType selected=system.subtype.value sort=true localize=true}}
 				</select>
 			</span>
 			{{else if (eq item.type "miscAbility")}}
 			<span>
 				<select type="select" value="" name="system.subtype.value" data-dtype="String"
 					class="resource-inputs select-dropdown-l">
-					{{#select system.subtype.value}}
-					<option value="custom">Custom</option>
-					<option value="arcana">Arcana</option>
-					<option value="deck">Deck</option>
-					<option value="verse">Verse</option>
-					<option value="dance">Dance</option>
-					<option value="gift">Gift</option>
-					<option value="magiseed">Magiseed</option>
-					<option value="invention">Invention</option>
-					<option value="invocation">Invocation</option>
-					<option value="therioform">Therioform</option>
-					<option value="symbol">Symbol</option>
-					<option value="infusion">Infusion</option>
-					<option value="quirk">Quirk</option>
-					<option value="other">Other Action</option>
-					{{/select}}
+        			{{selectOptions miscCategories selected=system.subtype.value sort=true localize=true}}
 				</select>
 			</span>
 			{{else if (eq item.type "treasure")}}
 			<span>
 				<select type="select" value="" name="system.subtype.value" data-dtype="String"
 					class="resource-inputs select-dropdown-l">
-					{{#select system.subtype.value}}
-					<option value="treasure">Treasure</option>
-					<option value="material">Material</option>
-					<option value="artifact">Artifact</option>
-					{{/select}}
+        			{{selectOptions treasureType selected=system.subtype.value sort=true localize=true}}
 				</select>
 			</span>
 			{{/if}}
