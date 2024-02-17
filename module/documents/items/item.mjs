@@ -1,4 +1,4 @@
-import {createCheckMessage, rollCheck} from '../../helpers/checks.mjs';
+import { createCheckMessage, rollCheck } from '../../helpers/checks.mjs';
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -802,6 +802,7 @@ export class FUItem extends Item {
 			_type: 'spell',
 			name: this.name,
 			img: this.img,
+			id: this.id,
 			duration: duration.value,
 			target: target.value,
 			mpCost: mpCost.value,
@@ -844,6 +845,7 @@ export class FUItem extends Item {
 			_type: 'weapon',
 			name: this.name,
 			img: this.img,
+			id: this.id,
 			category: category.value,
 			type: type.value,
 			hands: hands.value,
@@ -885,6 +887,7 @@ export class FUItem extends Item {
 			_type: 'basic',
 			name: this.name,
 			img: this.img,
+			id: this.id,
 			type: type.value,
 			defense: 'def', //TODO: targeted defense missing from weapon?
 			quality: quality.value,
@@ -923,6 +926,7 @@ export class FUItem extends Item {
 			_type: 'ability',
 			name: this.name,
 			img: this.img,
+			id: this.id,
 			summary: summary.value,
 			opportunity: opportunity,
 			description: await TextEditor.enrichHTML(description),
