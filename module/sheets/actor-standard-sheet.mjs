@@ -79,6 +79,24 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 		}
 
+		// Sort the items array in-place based on the current sorting method
+		if (this.sortMethod === 'name') {
+			context.items.sort((a, b) => {
+				const nameA = a.name.toUpperCase();
+				const nameB = b.name.toUpperCase();
+				return this.sortOrder * nameA.localeCompare(nameB);
+			});
+		} else if (this.sortMethod === 'type') {
+			context.items.sort((a, b) => {
+				const typeA = a.type.toUpperCase();
+				const typeB = b.type.toUpperCase();
+				return this.sortOrder * typeA.localeCompare(typeB);
+			});
+		} else {
+			// Default sorting by 'sort' property
+			context.items.sort((a, b) => (this.sortOrder * (a.sort || 0)) - (this.sortOrder * (b.sort || 0)));
+		}
+
 		// Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
 
@@ -617,68 +635,50 @@ export class FUStandardActorSheet extends ActorSheet {
 			await this.actor.update({ 'system.resources.bonds': newBonds });
 		});
 
-		/**
-		 * Sorts an array of items alphabetically by the "name" property and updates the corresponding HTML list.
-		 *
-		 * @param {Array} array - The array of items to be sorted.
-		 * @param {jQuery} html - The HTML element containing the list to be updated.
-		 * @returns {void}
-		 */
-		function _sortAlphaList(array, html) {
-			// Sort the array alphabetically by the "name" property
-			array.sort((a, b) => {
-				const nameA = a.name.toUpperCase();
-				const nameB = b.name.toUpperCase();
+		const sortButton = html.find('#sortButton');
 
-				if (nameA < nameB) {
-					return -1;
-				}
-				if (nameA > nameB) {
-					return 1;
-				}
-				return 0;
-			});
-
-			// Update the HTML to reflect the sorted order
-			const itemList = html.find('.item-list');
-			itemList.empty(); // Clear the existing list
-
-			// Iterate through the sorted array and add items to the HTML
-			for (const item of array) {
-				const listItem = `<li class="item" data-item-id="${item._id}">${item.name}</li>`;
-				itemList.append(listItem);
+		// Initialize sortOrder
+		this.sortOrder = 1;
+	
+		sortButton.mousedown(event => {
+			// Right click changes the sort type
+			if (event.button === 2) {
+				this.changeSortType();
+			} else {
+				// Left click switches between ascending and descending order
+				this.sortOrder *= -1;
+				this.render();
+			}
+		});
+	
+		// Load sorting method from actor flags
+		if (this.actor) {
+			const flags = this.actor.getFlag('projectfu', 'sortMethod');
+	
+			if (flags) {
+				flags.then(sortMethod => {
+					if (sortMethod) {
+						this.sortMethod = sortMethod;
+						this.render();
+					}
+				}).catch(error => {
+					console.error(`Error loading sortMethod: ${error}`);
+				});
 			}
 		}
-
-		/**
-		 * Event listener for sorting items alphabetically.
-		 *
-		 * @param {Event} ev - The click event triggering the sorting.
-		 * @returns {void}
-		 */
-		html.find('.item-name-sort').click(async function (ev) {
-			ev.preventDefault();
-
-			// Get the actor that owns the item
-			const actor = this.actor;
-			const li = parentEl;
-			const itemId = li.data('item-id');
-			const item = actor.items.get(itemId);
-			const shieldArray = this.actor.getOwnedItems({ type: 'shield' });
-
-			// Sort the array alphabetically
-			_sortAlphaList(shieldArray, html);
-
-			// Update the actor's data with the modified item list
-			await this.actor.update({
-				items: shieldArray.map((item) => item.data),
-			});
-
-			// Trigger a sheet re-render
-			this.actor.sheet.render(true);
-		});
 	}
-
+	
+	// Method to change the sort type
+	changeSortType() {
+		if (this.sortMethod === 'name') {
+			this.sortMethod = 'type';
+		} else {
+			this.sortMethod = 'name';
+		}
+	
+		this.render();
+	}
+	
 		/**
 	 * Handles the event when the "Use Equipment" checkbox is clicked.
 	 * If the checkbox is unchecked, it unequips all equipped items in the actor's inventory.
