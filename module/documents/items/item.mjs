@@ -47,22 +47,25 @@ export class FUItem extends Item {
 			return false;
 		}
 
-		function capitalizeFirst(string) {
-			if (typeof string !== 'string') {
-				// Handle the case where string is not a valid string
-				return string;
-			}
-			return string.charAt(0).toUpperCase() + string.slice(1);
+		function translate(string) {
+			const allTranslations = Object.assign({},
+				CONFIG.FU.handedness,
+				CONFIG.FU.weaponCategories,
+				CONFIG.FU.weaponTypes,
+				CONFIG.FU.attributeAbbreviations,
+				CONFIG.FU.damageTypes);
+
+			return game.i18n.localize(allTranslations?.[string] ?? string);
 		}
 
-		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? 'HR0' : 'HR';
+		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? game.i18n.localize('FU.HRZero') : game.i18n.localize('FU.HighRollAbbr');
 		const qualText = this.system.quality?.value || '';
 		let qualityString = '';
 
 		const primaryAttribute = this.system.attributes?.primary?.value;
 		const secondaryAttribute = this.system.attributes?.secondary?.value;
 
-		const attackAttributes = [(primaryAttribute || '').toUpperCase(), (secondaryAttribute || '').toUpperCase()].join(' + ');
+		const attackAttributes = [translate((primaryAttribute || '')).toUpperCase(), translate((secondaryAttribute || '')).toUpperCase()].join(' + ');
 
 		const accuracyValue = this.system.accuracy?.value ?? 0;
 		const damageValue = this.system.damage?.value ?? 0;
@@ -70,12 +73,12 @@ export class FUItem extends Item {
 		const attackString = `【${attackAttributes}】${accuracyValue > 0 ? ` +${accuracyValue}` : ''}`;
 
 		const hrZeroValue = this.system.rollInfo?.useWeapon?.hrZero?.value ?? false;
-		const damageTypeValue = this.system.damageType?.value || '';
+		const damageTypeValue = translate(this.system.damageType?.value || '');
 
 		const damageString = `【${hrZeroText} + ${damageValue}】 ${damageTypeValue}`;
 
 		if (isWeaponOrShieldWithDual) {
-			qualityString = [capitalizeFirst(this.system.category?.value), capitalizeFirst(this.system.hands?.value), capitalizeFirst(this.system.type?.value), qualText].filter(Boolean).join(' ⬥ ');
+			qualityString = [translate(this.system.category?.value), translate(this.system.hands?.value), translate(this.system.type?.value), qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
 			qualityString = [attackString, damageString, qualText].filter(Boolean).join(' ⬥ ');
 		}
@@ -684,7 +687,7 @@ export class FUItem extends Item {
 
 		if (hasZeroTrigger || hasZeroEffect) {
 			return `
-        <div class="detail-desc flex-group-center grid grid-3col"> 
+        <div class="detail-desc flex-group-center grid grid-3col">
           <div>${zeroTrigger.value || 'Zero Trigger'}</div>
           <div>${zeroEffect.value || 'Zero Effect'}</div>
           <div>Clock <br> ${progress.current} / ${progress.max} </div>
