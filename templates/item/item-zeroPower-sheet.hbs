@@ -11,7 +11,7 @@
 					<input type="text" name="system.zeroTrigger.value" value="{{ system.zeroTrigger.value }}"
 						data-dtype="String" placeholder="{{localize 'FU.LimitTrigger'}}"
 						class="resource-label-m resource-inputs select-dropdown-full" />
-					{{editor system.zeroTrigger.description target="system.zeroTrigger.description"
+					{{editor enrichedHtml.zeroTrigger target="system.zeroTrigger.description"
 					rollData=rollData button=true owner=owner editable=editable}}
 				</div>
 				{{!-- Zero Effect (2 columns) --}}
@@ -19,7 +19,7 @@
 					<input type="text" name="system.zeroEffect.value" value="{{ system.zeroEffect.value }}"
 						data-dtype="String" placeholder="{{localize 'FU.LimitEffect'}}"
 						class="resource-label-m resource-inputs select-dropdown-full" />
-					{{editor system.zeroEffect.description target="system.zeroEffect.description" rollData=rollData
+					{{editor enrichedHtml.zeroEffect target="system.zeroEffect.description" rollData=rollData
 					button=true owner=owner editable=editable}}
 				</div>
 			</div>

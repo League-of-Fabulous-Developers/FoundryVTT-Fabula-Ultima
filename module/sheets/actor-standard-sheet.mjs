@@ -1,11 +1,6 @@
-import {
-    isActiveEffectForStatusEffectId,
-    onManageActiveEffect,
-    prepareActiveEffectCategories,
-    toggleStatusEffect
-} from '../helpers/effects.mjs';
-import {promptCheck} from '../helpers/checks.mjs';
-import {GroupCheck} from '../helpers/group-check.mjs';
+import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
+import { promptCheck } from '../helpers/checks.mjs';
+import { GroupCheck } from '../helpers/group-check.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'ko', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -39,7 +34,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	/* -------------------------------------------- */
 
 	/** @override */
-	getData() {
+	async getData() {
 		// Retrieve the data structure from the base sheet. You can inspect or log
 		// the context variable to see the structure, but some key properties for
 		// sheets are the actor object, the data object, whether or not it's
@@ -94,7 +89,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			});
 		} else {
 			// Default sorting by 'sort' property
-			context.items.sort((a, b) => (this.sortOrder * (a.sort || 0)) - (this.sortOrder * (b.sort || 0)));
+			context.items.sort((a, b) => this.sortOrder * (a.sort || 0) - this.sortOrder * (b.sort || 0));
 		}
 
 		// Add roll data for TinyMCE editors.
@@ -105,6 +100,10 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Add the actor object to context for easier access
 		context.actor = actorData;
+
+		context.enrichedHtml = {
+			description: await TextEditor.enrichHTML(context.system.description ?? ''),
+		};
 
 		return context;
 	}
@@ -206,23 +205,23 @@ export class FUStandardActorSheet extends ActorSheet {
 			// Clocks
 			for (let item of context.items) {
 				const relevantTypes = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
-			
+
 				if (relevantTypes.includes(item.type)) {
 					const progressArr = [];
 					const progress = item.system.progress || { current: 0, max: 6 };
-			
+
 					for (let i = 0; i < progress.max; i++) {
 						progressArr.push({
 							id: i + 1,
-							checked: parseInt(progress.current) === i + 1
+							checked: parseInt(progress.current) === i + 1,
 						});
 					}
-			
+
 					if (progress.current === progress.max) {
 						console.log('Clock is completed!');
 						// TODO: Setup Completed Clock Chat Card
 					}
-			
+
 					item.progressArr = progressArr.reverse();
 				}
 			}
@@ -230,22 +229,22 @@ export class FUStandardActorSheet extends ActorSheet {
 			// Resource Points
 			for (let item of context.items) {
 				const relevantTypes = ['miscAbility'];
-			
+
 				if (relevantTypes.includes(item.type)) {
 					const rpArr = [];
 					const rp = item.system.rp || { current: 0, max: 6 };
-			
+
 					for (let i = 0; i < rp.max; i++) {
 						rpArr.push({
 							id: i + 1,
-							checked: parseInt(rp.current) === i + 1
+							checked: parseInt(rp.current) === i + 1,
 						});
 					}
-			
+
 					if (rp.current === rp.max) {
 						console.log('Resource maxxed out!');
 					}
-			
+
 					item.rpArr = rpArr.reverse();
 				}
 			}
@@ -255,18 +254,18 @@ export class FUStandardActorSheet extends ActorSheet {
 				if (item.type === 'skill') {
 					const skillArr = [];
 					const level = item.system.level || { value: 0, max: 8 };
-			
+
 					for (let i = 0; i < level.max; i++) {
 						skillArr.push({
 							id: i + 1,
-							checked: parseInt(level.value) === i + 1
+							checked: parseInt(level.value) === i + 1,
 						});
 					}
-			
+
 					if (level.value === level.max) {
 						console.log('Skill is MAXXED out!');
 					}
-			
+
 					item.skillArr = skillArr;
 				}
 			}
@@ -387,7 +386,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				ev.preventDefault();
 			}
 		});
-		
+
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
@@ -424,7 +423,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		/**
 		 * Handles item click events, equipping or unequipping items based on the click type.
-		 * 
+		 *
 		 * @param {Event} ev - The click event triggering the item click.
 		 * @param {boolean} isRightClick - Indicates if the item click is a right-click event.
 		 * @returns {void}
@@ -568,7 +567,6 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Rollable abilities.
 		html.find('.rollable').click(this._onRoll.bind(this));
 
-
 		// Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
@@ -579,13 +577,13 @@ export class FUStandardActorSheet extends ActorSheet {
 			});
 		}
 
-	/**
-	 * Handles resting actions for the actor, restoring health and possibly other resources.
-	 *
-	 * @param {Actor} actor - The actor performing the rest action.
-	 * @param {boolean} isRightClick - Indicates if the rest action is triggered by a right-click.
-	 * @returns {Promise<void>} A promise that resolves when the rest action is complete.
-	 */
+		/**
+		 * Handles resting actions for the actor, restoring health and possibly other resources.
+		 *
+		 * @param {Actor} actor - The actor performing the rest action.
+		 * @param {boolean} isRightClick - Indicates if the rest action is triggered by a right-click.
+		 * @returns {Promise<void>} A promise that resolves when the rest action is complete.
+		 */
 		async function onRest(actor, isRightClick) {
 			const maxHP = actor.system.resources.hp.max;
 			const maxMP = actor.system.resources.mp.max;
@@ -663,8 +661,8 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Initialize sortOrder
 		this.sortOrder = 1;
-	
-		sortButton.mousedown(event => {
+
+		sortButton.mousedown((event) => {
 			// Right click changes the sort type
 			if (event.button === 2) {
 				this.changeSortType();
@@ -674,24 +672,26 @@ export class FUStandardActorSheet extends ActorSheet {
 				this.render();
 			}
 		});
-	
+
 		// Load sorting method from actor flags
 		if (this.actor) {
 			const flags = this.actor.getFlag('projectfu', 'sortMethod');
-	
+
 			if (flags) {
-				flags.then(sortMethod => {
-					if (sortMethod) {
-						this.sortMethod = sortMethod;
-						this.render();
-					}
-				}).catch(error => {
-					console.error(`Error loading sortMethod: ${error}`);
-				});
+				flags
+					.then((sortMethod) => {
+						if (sortMethod) {
+							this.sortMethod = sortMethod;
+							this.render();
+						}
+					})
+					.catch((error) => {
+						console.error(`Error loading sortMethod: ${error}`);
+					});
 			}
 		}
 	}
-	
+
 	// Method to change the sort type
 	changeSortType() {
 		if (this.sortMethod === 'name') {
@@ -699,14 +699,14 @@ export class FUStandardActorSheet extends ActorSheet {
 		} else {
 			this.sortMethod = 'name';
 		}
-	
+
 		this.render();
 	}
-	
-		/**
+
+	/**
 	 * Handles the event when the "Use Equipment" checkbox is clicked.
 	 * If the checkbox is unchecked, it unequips all equipped items in the actor's inventory.
-	 * 
+	 *
 	 * @param {Event} event - The click event triggering the "Use Equipment" checkbox.
 	 * @returns {void} The function does not return a promise.
 	 */
@@ -736,9 +736,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
-		/**
+	/**
 	 * Handles the duplication of an item and adds it to the actor's inventory.
-	 * 
+	 *
 	 * @param {Event} event - The click event triggering the item duplication.
 	 * @returns {Promise<void>} A promise that resolves when the item duplication process is complete.
 	 */
@@ -875,19 +875,19 @@ export class FUStandardActorSheet extends ActorSheet {
 
 	/**
 	 * Sets the skill level value to the segment clicked.
-	 * 
+	 *
 	 * @param {Event} ev - The input change event.
 	 */
 	_onSkillLevelUpdate(ev) {
 		const input = ev.currentTarget;
 		const segment = input.value;
-	
+
 		const li = $(input).closest('.item');
-	
+
 		if (li.length) {
 			const itemId = li.find('input').data('item-id');
 			const item = this.actor.items.get(itemId);
-	
+
 			if (item) {
 				item.update({ 'system.level.value': segment });
 			} else {
@@ -928,36 +928,35 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
-		/**
+	/**
 	 * Handles button click events to update item progress.
 	 * @param {Event} ev - The button click event.
 	 * @param {number} increment - The current value by which to increment or decrement the item progress.
 	 * @private
 	 */
-		async _onResourceClick(ev, increment) {
-			const button = ev.currentTarget;
-			const li = $(button).closest('.item');
-	
-			try {
-				if (li.length) {
-					const itemId = li.find('button').data('item-id');
-					const item = this.actor.items.get(itemId);
-	
-					if (item) {
-						// Increment or decrement the rp progress current value
-						const newProgress = item.system.rp.current + increment;
-	
-						// Update the item with the new rp progress value
-						await item.update({ 'system.rp.current': newProgress });
-					} else {
-						console.error(`Item with ID ${itemId} not found.`);
-					}
+	async _onResourceClick(ev, increment) {
+		const button = ev.currentTarget;
+		const li = $(button).closest('.item');
+
+		try {
+			if (li.length) {
+				const itemId = li.find('button').data('item-id');
+				const item = this.actor.items.get(itemId);
+
+				if (item) {
+					// Increment or decrement the rp progress current value
+					const newProgress = item.system.rp.current + increment;
+
+					// Update the item with the new rp progress value
+					await item.update({ 'system.rp.current': newProgress });
+				} else {
+					console.error(`Item with ID ${itemId} not found.`);
 				}
-			} catch (error) {
-				console.error('Error updating item rp progress:', error);
 			}
+		} catch (error) {
+			console.error('Error updating item rp progress:', error);
 		}
-	
+	}
 
 	/**
 	 * Handles increment button click events.
