@@ -1,0 +1,17 @@
+<div>
+    <label>
+        {{localize 'FU.ClassFeatureArcanumDomains'}}
+        <input type='text' name='system.data.domains' value='{{system.data.domains}}' />
+    </label>
+	<hr />
+    <div class="grid grid-2col">
+        <div>
+            <label>{{localize 'FU.ClassFeatureArcanumMerge'}}</label>
+            {{editor enrichedHtml.merge target="system.data.merge" engine="prosemirror" button=true}}
+        </div>
+        <div>
+            <label>{{localize 'FU.ClassFeatureArcanumDismiss'}}</label>
+            {{editor enrichedHtml.dismiss target="system.data.dismiss" engine="prosemirror" button=true}}
+        </div>
+    </div>
+</div>

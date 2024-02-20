@@ -7,7 +7,33 @@
 		</span>
 	</header>
 
-	{{!-- Zero Powers Section--}}
+    {{#each classFeatures}}
+    <ol class="items-list">
+        <li class="item flexrow items-header">
+            <div class="item-name">{{localize feature.translation}}</div>
+            <div class="item-sm end">
+                <div class="item-controls">
+                    <a class="item-control item-create" aria-describedby="tooltip"
+                       data-tooltip="{{localize 'FU.ClassFeatureCreate' featureType=(localize feature.translation)}}" data-type="classFeature" data-feature-type="{{@key}}">
+                        <i class="fas fa-plus icon"></i>{{localize 'FU.Add'}}</a>
+                </div>
+            </div>
+        </li>
+        {{#each items }}
+        <li class="item" data-item-id="{{ item._id }}">
+        <div class="flexrow">
+            {{!-- Item Name--}}
+            {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+            {{> (lookup ../feature 'previewTemplate') item additionalData=additionalData}}
+            {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+        </div>
+        </li>
+        {{/each}}
+    </ol>
+    {{/each}}
+
+
+    {{!-- Zero Powers Section--}}
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize 'FU.Limit'}}</div>

@@ -1,0 +1,8 @@
+
+$sizes: 25, 50, 75, 100;
+
+@each $size in $sizes {
+    .w-#{$size} {
+        width: $size * 1%;
+    }
+}

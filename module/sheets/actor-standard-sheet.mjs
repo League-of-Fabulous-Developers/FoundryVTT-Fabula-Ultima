@@ -362,6 +362,14 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.projects = projects;
 		context.rituals = rituals;
 		context.zeroPowers = zeroPowers;
+		context.classFeatures = this.actor.itemTypes.classFeature.reduce((acc, item) => {
+			const feature = (acc[item.system.featureType] ??= {
+				feature: item.system.data?.constructor,
+				items: [],
+			});
+			feature.items.push({ item, additionalData: feature.feature?.getAdditionalData(item) });
+			return acc;
+		}, {});
 	}
 
 	/* -------------------------------------------- */
