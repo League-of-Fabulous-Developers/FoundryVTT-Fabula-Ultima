@@ -225,7 +225,31 @@ export class FUStandardActorSheet extends ActorSheet {
 			
 					item.progressArr = progressArr.reverse();
 				}
-			}			
+			}
+
+			// Resource Points
+			for (let item of context.items) {
+				const relevantTypes = ['miscAbility'];
+			
+				if (relevantTypes.includes(item.type)) {
+					const rpArr = [];
+					const rp = item.system.rp || { current: 0, max: 6 };
+			
+					for (let i = 0; i < rp.max; i++) {
+						rpArr.push({
+							id: i + 1,
+							checked: parseInt(rp.current) === i + 1
+						});
+					}
+			
+					if (rp.current === rp.max) {
+						console.log('Resource maxxed out!');
+					}
+			
+					item.rpArr = rpArr.reverse();
+				}
+			}
+
 			// SL Stars
 			for (let item of context.items) {
 				if (item.type === 'skill') {
@@ -904,6 +928,37 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
+		/**
+	 * Handles button click events to update item progress.
+	 * @param {Event} ev - The button click event.
+	 * @param {number} increment - The current value by which to increment or decrement the item progress.
+	 * @private
+	 */
+		async _onResourceClick(ev, increment) {
+			const button = ev.currentTarget;
+			const li = $(button).closest('.item');
+	
+			try {
+				if (li.length) {
+					const itemId = li.find('button').data('item-id');
+					const item = this.actor.items.get(itemId);
+	
+					if (item) {
+						// Increment or decrement the rp progress current value
+						const newProgress = item.system.rp.current + increment;
+	
+						// Update the item with the new rp progress value
+						await item.update({ 'system.rp.current': newProgress });
+					} else {
+						console.error(`Item with ID ${itemId} not found.`);
+					}
+				}
+			} catch (error) {
+				console.error('Error updating item rp progress:', error);
+			}
+		}
+	
+
 	/**
 	 * Handles increment button click events.
 	 * @param {Event} ev - The button click event.
@@ -911,6 +966,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	 */
 	_onIncrementButtonClick(ev) {
 		this._onButtonClick(ev, 1);
+		// this._onResourceClick(ev, 1);
 	}
 
 	/**
@@ -920,6 +976,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	 */
 	_onDecrementButtonClick(ev) {
 		this._onButtonClick(ev, -1);
+		// this._onResourceClick(ev, -1);
 	}
 
 	/**

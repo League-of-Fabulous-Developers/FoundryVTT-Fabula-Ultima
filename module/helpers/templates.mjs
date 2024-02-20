@@ -118,6 +118,13 @@ Handlebars.registerHelper('calculatePercentage', function (value, max) {
 	return percentage.toFixed(2) + '%';
 });
 
+Handlebars.registerHelper('crisis', function(value, max) {
+    value = parseFloat(value);
+    max = parseFloat(max);
+    const half = max / 2;
+    return value <= half;
+});
+
 // Define a Handlebars helper to get the icon class based on item properties
 Handlebars.registerHelper('getIconClass', function (item) {
 	if (item.type === 'weapon') {

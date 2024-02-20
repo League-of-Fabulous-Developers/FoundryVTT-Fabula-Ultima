@@ -23,6 +23,7 @@ import {MiscAbilityMigrations} from './misc-ability-migrations.mjs';
  * @property {boolean} isBehavior.value
  * @property {number} weight.value
  * @property {boolean} hasClock.value
+ * @property {boolean} hasResource.value
  * @property {ProgressDataModel} progress
  * @property {string} source.value
  * @property {UseWeaponDataModel} rollInfo.useWeapon
@@ -51,7 +52,9 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			hasClock: new SchemaField({ value: new BooleanField() }),
+			hasResource: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
+			rp: new EmbeddedDataField(ProgressDataModel, {}),
 			source: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({
 				useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
