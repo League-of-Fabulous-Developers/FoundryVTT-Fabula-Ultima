@@ -33,12 +33,10 @@
   &:hover {
     opacity: 0.75;
   }
+}
 
-  &.active {
-    img {
-      opacity: 1;
-    }
-  }
+.status-effect-toggle.active img {
+  opacity: 1;
 }
 
 
