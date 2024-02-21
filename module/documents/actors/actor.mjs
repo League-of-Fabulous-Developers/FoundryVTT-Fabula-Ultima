@@ -1,3 +1,5 @@
+import { statusEffects } from "../../helpers/statuses.mjs";
+
 /**
  * Extend the base Actor document by defining a custom roll data structure
  * @extends {Actor}
@@ -784,12 +786,27 @@ export class FUActor extends Actor {
 	}
 
 	_onUpdate(changed, options, userId) {
-		super._onUpdate(changed, options, userId);
-
 		if (options.damageTaken) {
+			// console.log("Damage taken:", options.damageTaken);
 			this.showFloatyText(options.damageTaken);
 		}
+	
+		const { hp } = this.system?.resources || {};
+	
+		if (hp && userId === game.userId) {
+			const crisisThreshold = Math.floor(hp.max / 2);
+			const inCrisis = hp.value <= crisisThreshold;
+			const crisisEffect = this.getEmbeddedCollection("ActiveEffect").contents.find(effect => effect.name === "FU.Crisis");
+	
+			if (inCrisis && !crisisEffect) {
+				this.createEmbeddedDocuments("ActiveEffect", [statusEffects.find(s => s.id === "crisis")]);
+			} else if (!inCrisis && crisisEffect) {
+				this.deleteEmbeddedDocuments("ActiveEffect", [crisisEffect._id]);
+			}
+		}
+		super._onUpdate(changed, options, userId);
 	}
+	
 
 	async showFloatyText(input) {
 		let scrollingTextArgs;
