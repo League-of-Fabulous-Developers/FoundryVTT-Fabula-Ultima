@@ -2,60 +2,68 @@
     <img class="profile-img" src="{{ actor.img }}" data-edit="img" data-tooltip="{{ actor.name }}" />
     <div class="header-fields">
         <div class="header-start grid grid-6col">
-        <div class="charname-container flexrow grid-span-4">
-            <h2 class="charname" style="flex: 3;">
-                <input name="name" type="text" value="{{ actor.name }}" placeholder="Name"
-                    data-tooltip="{{ actor.name }}"  class="resource-inputs-charname auto-shrink" />
-            </h2>
-            <h3 class="pronouns">
-                <input name="system.resources.pronouns.name" type="text" value="{{ system.resources.pronouns.name }}"
-                    data-tooltip="{{localize 'FU.Pronouns'}}<br>{{ system.resources.pronouns.name }}" class="auto-shrink" />
-            </h3>
-        </div>
+            <div class="charname-container flexrow grid-span-4">
+                <h2 class="charname" style="flex: 3;">
+                    <input name="name" type="text" value="{{ actor.name }}" placeholder="Name"
+                        data-tooltip="{{ actor.name }}" class="resource-inputs-charname auto-shrink" />
+                </h2>
+                <h3 class="pronouns">
+                    <input name="system.resources.pronouns.name" type="text"
+                        value="{{ system.resources.pronouns.name }}" placeholder="Pronouns"
+                        data-tooltip="{{localize 'FU.Pronouns'}}<br>{{ system.resources.pronouns.name }}"
+                        class="auto-shrink" />
+                </h3>
+            </div>
             {{#if (eq actor.type "character")}}
-            <span class="flexrow grid-span-2" style="border-bottom: 2px solid; border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
+            <span class="flexrow grid-span-2"
+                style="border-bottom: 2px solid; border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
                 <!-- Level -->
                 <span class="resource-content levelup-container flexcol flex-group-center">
-                    <label class="resource-label-l" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip"> <i
-                            class="fa-solid fa-chart-simple icon"></i>{{localize
+                    <label class="resource-label-l" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip">
+                        <i class="fa-solid fa-chart-simple icon"></i>{{localize
                         'FU.LevelAbbr'}} </label>
                     <input name="system.level.value" value="{{ system.level.value }}" type="number" data-dtype="Number"
-                        class="resource-inputs" style="border-radius: 0 12px 0 0;;"/>
+                        class="resource-inputs" style="border-radius: 0 12px 0 0;;" />
                 </span>
                 <!-- Experience -->
-                <span class="resource-content levelup-container flexcol flex-group-center" style="border-top-right-radius: 12px;">
+                <span class="resource-content levelup-container flexcol flex-group-center"
+                    style="border-top-right-radius: 12px;">
                     <label class="resource-label-l" data-tooltip="{{localize 'FU.Exp'}}" aria-describedby="tooltip">
                         <i class="fa-solid fa-feather-pointed icon"></i>
                         {{localize 'FU.ExpAbbr'}} {{#if (gte system.resources.exp.value 10)}}
-                        <i class="fas fa-level-up" data-tooltip="{{localize 'FU.LevelUp'}}" aria-describedby="tooltip"></i>
+                        <i class="fas fa-level-up" data-tooltip="{{localize 'FU.LevelUp'}}"
+                            aria-describedby="tooltip"></i>
                         {{/if}}
                     </label>
-                    <input name="system.resources.exp.value" value="{{ system.resources.exp.value }}"  type="number" data-dtype="Number"
-                        class="resource-inputs"  style="border-radius: 12px 0 0;"/>
+                    <input name="system.resources.exp.value" value="{{ system.resources.exp.value }}" type="number"
+                        data-dtype="Number" class="resource-inputs" style="border-radius: 12px 0 0;" />
                 </span>
             </span>
             {{/if}}
             {{#if (eq actor.type "npc")}}
-            <span class="flexrow grid-span-2" style="border-bottom: 2px solid; border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
+            <span class="flexrow grid-span-2"
+                style="border-bottom: 2px solid; border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
                 <!-- Level -->
                 <span class="resource-content levelup-container flexcol flex-group-center">
-                    <label class="resource-label-l" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip"> <i
-                            class="fa-solid fa-chart-simple icon"></i>{{localize
+                    <label class="resource-label-l" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip">
+                        <i class="fa-solid fa-chart-simple icon"></i>{{localize
                         'FU.LevelAbbr'}} </label>
                     <input name="system.level.value" value="{{ system.level.value }}" data-dtype="Number"
-                        class="resource-inputs"  style="border-radius: 0 12px 0 0;"/>
+                        class="resource-inputs" style="border-radius: 0 12px 0 0;" />
                 </span>
                 <!-- Rank -->
-                <span class="resource-content levelup-container flexcol flex-group-center" style="border-top-right-radius: 12px;">
+                <span class="resource-content levelup-container flexcol flex-group-center"
+                    style="border-top-right-radius: 12px;">
                     <label class="resource-label-l" data-tooltip="{{localize 'FU.Rank'}}" aria-describedby="tooltip"> <i
                             class="fa-solid fa-feather-pointed icon"></i>{{localize
                         'FU.Rank'}} </label>
                     <span class="flexrow combineBar" style="border-radius: 12px 0 0;">
-                        <input type="text" id="championSelect" name="system.isChampion.value" value="{{ system.isChampion.value }}"
-                            data-dtype="Number" class="resource-inputs" {{#if system.isCompanion.value}} disabled {{/if}} />
-                        <input type="checkbox" id="isEliteCheckbox"
-                            data-tooltip="{{localize 'FU.isElite'}}" name="system.isElite.value" {{#if
-                            system.isCompanion.value}} disabled {{/if}} {{checked system.isElite.value}} />
+                        <input type="text" id="championSelect" name="system.isChampion.value"
+                            value="{{ system.isChampion.value }}" data-dtype="Number" class="resource-inputs" {{#if
+                            system.isCompanion.value}} disabled {{/if}} />
+                        <input type="checkbox" id="isEliteCheckbox" data-tooltip="{{localize 'FU.isElite'}}"
+                            name="system.isElite.value" {{#if system.isCompanion.value}} disabled {{/if}} {{checked
+                            system.isElite.value}} />
                     </span>
                 </span>
             </span>
@@ -65,97 +73,99 @@
         <!-- Point Bars -->
         <div class="header-field header-center grid grid-3col desc">
 
-        <!-- HP -->
-        <div class="resource-content levelup-container flex-group-center">
-            <div class="grid grid-3col" style="padding: 0 5px;">
-                <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
-                    aria-describedby="tooltip">
-                    {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
+            <!-- HP -->
+            <div class="resource-content levelup-container flex-group-center">
+                <div class="grid grid-3col" style="padding: 0 5px;">
+                    <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
+                        aria-describedby="tooltip">
+                        {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
                         <i class="fa-solid fa-heart-crack is-martial"></i>
-                    {{else}}
+                        {{else}}
                         <i class="fa-solid fa-heart"></i>
-                    {{/if}} {{localize 'FU.HealthAbbr'}}
-                </label>
-                <label class="align-right grid-start-3 is-crisis"
-                    aria-describedby="tooltip">
-                    {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
+                        {{/if}} {{localize 'FU.HealthAbbr'}}
+                    </label>
+                    <label class="align-right grid-start-3 is-crisis" aria-describedby="tooltip">
+                        {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
                         {{localize 'FU.Crisis'}}
-                    {{/if}}
-                </label>
-            </div>
-            <div class="bar bar-progress">
-                {{#if (crisis system.resources.hp.value system.resources.hp.max)}}
-                    <div class="bar-progress-bar bar-hp-crisis" style="width: {{calculatePercentage system.resources.hp.value system.resources.hp.max}};"></div>
+                        {{/if}}
+                    </label>
+                </div>
+                <div class="bar bar-progress">
+                    {{#if (crisis system.resources.hp.value system.resources.hp.max)}}
+                    <div class="bar-progress-bar bar-hp-crisis"
+                        style="width: {{calculatePercentage system.resources.hp.value system.resources.hp.max}};"></div>
                     <div class="center-line"></div>
-                {{else}}
-                    <div class="bar-progress-bar bar-hp" style="width: {{calculatePercentage system.resources.hp.value system.resources.hp.max}};"></div>
-                {{/if}}
-                <span class="bar-value"></span>
-            </div>
+                    {{else}}
+                    <div class="bar-progress-bar bar-hp"
+                        style="width: {{calculatePercentage system.resources.hp.value system.resources.hp.max}};"></div>
+                    {{/if}}
+                    <span class="bar-value"></span>
+                </div>
 
-            <div class="resource-content flexrow flex-center flex-between align-center">
-                <input class="resource-text-sm resource-current-input bar-start" type="number" name="system.resources.hp.value"
-                    value="{{ system.resources.hp.value }}" data-dtype="Number" />
-                <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.HealthPoints'}}<br>Current: {{
+                <div class="resource-content flexrow flex-center flex-between align-center">
+                    <input class="resource-text-sm resource-current-input bar-start" type="number"
+                        name="system.resources.hp.value" value="{{ system.resources.hp.value }}" data-dtype="Number" />
+                    <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.HealthPoints'}}<br>Current: {{
                     system.resources.hp.value
                 }}<br>Crisis: {{half system.resources.hp.max}}
                 <br>Bonus: {{ system.resources.hp.bonus }} <br>Max: {{
                     system.resources.hp.max
                 }}" aria-describedby="tooltip">
-                    <div class="resource-label-l resource-content flex-group-center">
-                        {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
+                        <div class="resource-label-l resource-content flex-group-center">
+                            {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
                             <i class="fa-solid fa-caret-up is-crisis float-text"></i>
-                        {{else}}
+                            {{else}}
                             <i class="fa-solid fa-caret-up"></i>
-                        {{/if}}
-                    </div>
-                </span>
-                <input class="resource-text-sm resource-max-input bar-end" type="number" name="system.resources.hp.max"
-                    value="{{ system.resources.hp.max }}" data-dtype="Number"
-                    disabled="{{ system.resources.hp.max }}" />
-            </div>
-        </div>
-
-        <!-- MP -->
-        <div class="resource-content levelup-container flex-group-center">
-            <div class="grid grid-2col" style="padding: 0 5px;">
-                <label class="resource-label-l align-left grid-span-1" data-tooltip="Mind Points"
-                    aria-describedby="tooltip"><i class="fa-solid fa-hat-wizard icon"></i></i>{{localize
-                    'FU.MindAbbr'}} </label>
-                <label class="resource-label-l align-right rollable" data-tooltip="Rest" aria-describedby="tooltip">
-                    <i class="fa-solid fa-bed rest"></i></label>
-            </div>
-            <div class="bar bar-progress">
-                <div class="bar-progress-bar bar-mp"
-                    style="width: {{calculatePercentage system.resources.mp.value system.resources.mp.max}};">
+                            {{/if}}
+                        </div>
+                    </span>
+                    <input class="resource-text-sm resource-max-input bar-end" type="number"
+                        name="system.resources.hp.max" value="{{ system.resources.hp.max }}" data-dtype="Number"
+                        disabled="{{ system.resources.hp.max }}" />
                 </div>
-                <span class="bar-value"></span>
             </div>
-            <div class="resource-content flexrow flex-center flex-between align-center">
-                <input class="resource-text-sm resource-current-input bar-start" type="number" name="system.resources.mp.value"
-                    value="{{ system.resources.mp.value }}" data-dtype="Number" class="resource-inputs bar-start" />
-                <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.MindPoints'}}<br>Current: {{
+
+            <!-- MP -->
+            <div class="resource-content levelup-container flex-group-center">
+                <div class="grid grid-2col" style="padding: 0 5px;">
+                    <label class="resource-label-l align-left grid-span-1" data-tooltip="Mind Points"
+                        aria-describedby="tooltip"><i class="fa-solid fa-hat-wizard icon"></i></i>{{localize
+                        'FU.MindAbbr'}} </label>
+                    <label class="resource-label-l align-right rollable" data-tooltip="Rest" aria-describedby="tooltip">
+                        <i class="fa-solid fa-bed rest"></i></label>
+                </div>
+                <div class="bar bar-progress">
+                    <div class="bar-progress-bar bar-mp"
+                        style="width: {{calculatePercentage system.resources.mp.value system.resources.mp.max}};">
+                    </div>
+                    <span class="bar-value"></span>
+                </div>
+                <div class="resource-content flexrow flex-center flex-between align-center">
+                    <input class="resource-text-sm resource-current-input bar-start" type="number"
+                        name="system.resources.mp.value" value="{{ system.resources.mp.value }}" data-dtype="Number"
+                        class="resource-inputs bar-start" />
+                    <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.MindPoints'}}<br>Current: {{
                     system.resources.mp.value
                 }}<br>Bonus: {{ system.resources.mp.bonus }} <br>Max: {{
                     system.resources.mp.max
                 }}" aria-describedby="tooltip">
-                    <div class="resource-label-l resource-content flex-group-center">
-                        {{#if (lte system.resources.mp.value (half system.resources.mp.max))}}
+                        <div class="resource-label-l resource-content flex-group-center">
+                            {{#if (lte system.resources.mp.value (half system.resources.mp.max))}}
                             <i class="fa-solid fa-caret-up is-crisis float-text"></i>
-                        {{else}}
+                            {{else}}
                             <i class="fa-solid fa-caret-up"></i>
-                        {{/if}}
-                    </div>
-                </span>
-                <input class="resource-text-sm resource-max-input bar-end" type="number" name="system.resources.mp.max"
-                    value="{{ system.resources.mp.max }}" data-dtype="Number"
-                    disabled="{{ system.resources.mp.max }}" />
+                            {{/if}}
+                        </div>
+                    </span>
+                    <input class="resource-text-sm resource-max-input bar-end" type="number"
+                        name="system.resources.mp.max" value="{{ system.resources.mp.max }}" data-dtype="Number"
+                        disabled="{{ system.resources.mp.max }}" />
+                </div>
             </div>
-        </div>
 
-        {{#if (eq actor.type "character")}}
+            {{#if (eq actor.type "character")}}
             <!-- IP -->
-            <div class="resource-content levelup-container flex-group-center align-left" >
+            <div class="resource-content levelup-container flex-group-center align-left">
                 <div class="grid grid-3col" style="padding: 0 5px;">
                     <label class="resource-label-l align-left grid-span-2" data-tooltip="Inventory Points"
                         aria-describedby="tooltip"><i class="ra ra-gear-hammer icon"></i>{{localize
@@ -168,26 +178,26 @@
                     <span class="bar-value"></span>
                 </div>
                 <div class="resource-content flexrow flex-center flex-between align-center">
-                    <input class="resource-text-sm resource-current-input bar-start" type="number" name="system.resources.ip.value"
-                        value="{{ system.resources.ip.value }}" data-dtype="Number" />
+                    <input class="resource-text-sm resource-current-input bar-start" type="number"
+                        name="system.resources.ip.value" value="{{ system.resources.ip.value }}" data-dtype="Number" />
                     <span class="resource-middle-input bar-middle" data-tooltip="{{localize 'FU.InventoryPoints'}}<br>Current: {{
                     system.resources.ip.value
                     }}<br>Bonus: {{ system.resources.ip.bonus }} <br>Max: {{ system.resources.ip.max }}"
                         aria-describedby="tooltip">
                         <div class="resource-label-l resource-content flex-group-center">
                             {{#if (lte system.resources.ip.value (half system.resources.ip.max))}}
-                                <i class="fa-solid fa-caret-up is-crisis float-text"></i>
+                            <i class="fa-solid fa-caret-up is-crisis float-text"></i>
                             {{else}}
-                                <i class="fa-solid fa-caret-up"></i>
+                            <i class="fa-solid fa-caret-up"></i>
                             {{/if}}
                         </div>
                     </span>
-                    <input class="resource-text-sm resource-max-input bar-end" type="number" name="system.resources.ip.max"
-                        value="{{ system.resources.ip.max }}" data-dtype="Number"
+                    <input class="resource-text-sm resource-max-input bar-end" type="number"
+                        name="system.resources.ip.max" value="{{ system.resources.ip.max }}" data-dtype="Number"
                         disabled="{{ system.resources.ip.max }}" />
                 </div>
             </div>
-        {{/if}}
+            {{/if}}
 
 
 
@@ -195,11 +205,13 @@
             {{!-- Creature Rank --}}
             <div class="resource-content levelup-container creature flex-group-center desc" style="">
                 <span class="resource-content levelup-container flexcol flex-group-center">
-                    <label class="resource-label-l" data-tooltip="{{localize 'FU.Creatture'}}" aria-describedby="tooltip"> 
+                    <label class="resource-label-l" data-tooltip="{{localize 'FU.Creatture'}}"
+                        aria-describedby="tooltip">
                         <i class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.Creature'}}
                     </label>
                     <span class="flexrow combineBar" style="">
-                        <select id="specieSelect" "{{ system.species.value }}" name="system.species.value" class="resource-inputs">
+                        <select id="specieSelect" "{{ system.species.value }}" name="system.species.value"
+                            class="resource-inputs">
                             {{#select system.species.value}} {{#if system.isCompanion.value}}
                             {{!-- Companion Options --}}
                             <option value="beast">{{localize 'FU.Beast'}}</option>
@@ -221,9 +233,8 @@
                             {{/if}} {{/select}}
                         </select>
                         <span class="resource-inputs">
-                            <input type="checkbox" id="isCompanionCheckbox"
-                                data-tooltip="{{localize 'FU.isCompanion'}}" name="system.isCompanion.value" {{checked
-                                system.isCompanion.value}} />
+                            <input type="checkbox" id="isCompanionCheckbox" data-tooltip="{{localize 'FU.isCompanion'}}"
+                                name="system.isCompanion.value" {{checked system.isCompanion.value}} />
                         </span>
                     </span>
                 </span>
@@ -232,7 +243,7 @@
 
             {{#if (or (eq actor.type "character")(eq system.study.value 0)(eq system.study.value 2) (eq
             system.study.value 3))}}
-            <div class="header-fields flex-group-center grid grid-2col" >
+            <div class="header-fields flex-group-center grid grid-2col">
                 <div class="grid grid-3col" style="align-self: baseline;">
                     {{!-- DEF --}}
                     <div class="resource-content flex-group-center">
@@ -274,7 +285,7 @@
             </div>
 
             <!-- FU Points -->
-            <div class="header-end flex-group-center resource-content"  style="align-self: baseline;">
+            <div class="header-end flex-group-center resource-content" style="align-self: baseline;">
                 <label>
                     {{#if (eq actor.type "npc")}}
                     <span class="resource-label-l"> <i class="fa-solid fa-crystal-ball icon"></i>{{localize

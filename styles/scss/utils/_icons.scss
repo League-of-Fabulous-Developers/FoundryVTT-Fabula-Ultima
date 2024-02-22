@@ -161,12 +161,14 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
   }
 }
 
-.spin2win:hover 
-i {
-  animation: hover-up-down 1s ease-in-out infinite alternate;
-}
-label {
-  cursor: pointer;
+.spin2win:hover {
+  & i {
+    animation: hover-up-down 1s ease-in-out infinite alternate;
+  }
+  
+  & label {
+    cursor: pointer;
+  }
 }
 
 @keyframes hover-up-down {

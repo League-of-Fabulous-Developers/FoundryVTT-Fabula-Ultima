@@ -46,10 +46,10 @@
 						{{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
 					</aside>
 					<main class="grid-span-3">
-						{{!-- Favorite Section --}}
-						{{>"systems/projectfu/templates/actor/partials/actor-favorite.hbs" groups=systemData.bond dtypes=dtypes actor=actor}}
 						{{!-- Bond Section --}}
 						{{>"systems/projectfu/templates/actor/partials/actor-bonds.hbs" bond=bond bondIndex=bondIndex}}
+						{{!-- Favorite Section --}}
+						{{>"systems/projectfu/templates/actor/partials/actor-favorite.hbs" groups=systemData.bond dtypes=dtypes actor=actor}}
 					</main>
 				</section>
 			</div>

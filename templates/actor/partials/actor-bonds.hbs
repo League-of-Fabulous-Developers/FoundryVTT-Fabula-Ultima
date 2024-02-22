@@ -1,15 +1,14 @@
 {{!-- Bond Template --}}
-<fieldset class="title-fieldset desc resource-content" style="margin-bottom: 5px; height: 50%; overflow-y: auto; max-height: 17em; min-height: 12em;"> 
-    <legend class="resource-label-m">
-        {{localize 'FU.Bonds'}}
+<fieldset class="title-fieldset desc resource-content" style="margin-bottom: 5px;"> 
+    <legend class="bond-add" data-tooltip="{{localize 'FU.BondAdd'}}">
+        <button class="resource-inputs resource-label-m" data-tooltip="{{localize 'FU.BondAdd'}}">
+            <i class="fas fa-plus icon"></i>{{localize 'FU.Bonds'}}
+        </button>
     </legend>
-
     <div class="bonds resource-content grid grid-5col">
         {{#each system.resources.bonds as |bond bondIndex|}}
-
             <input type="text" data-tooltip="{{ bond.name }}" name="system.resources.bonds.{{ bondIndex }}.name"
                 class="bond-select resource-content resource-inputs" value="{{ bond.name }}" data-dtype="String" />
-
             <select value="{{ bond.admInf }}" name="system.resources.bonds.{{ bondIndex }}.admInf"
                 class="bond-select resource-content resource-inputs">
                 {{#select bond.admInf}}
@@ -18,7 +17,6 @@
                 <option value="Inferiority">{{localize 'FU.Inferiority'}}</option>
                 {{/select}}
             </select>
-
             <select value="{{ bond.loyMis }}" name="system.resources.bonds.{{ bondIndex }}.loyMis"
                 class="bond-select resource-content resource-inputs">
                 {{#select bond.loyMis}}
@@ -27,7 +25,6 @@
                 <option value="Mistrust">{{localize 'FU.Mistrust'}}</option>
                 {{/select}}
             </select>
-
             <select value="{{ bond.affHat }}" name="system.resources.bonds.{{ bondIndex }}.affHat"
                 class="bond-select resource-content resource-inputs">
                 {{#select bond.affHat}}
@@ -36,7 +33,6 @@
                 <option value="Hatred">{{localize 'FU.Hatred'}}</option>
                 {{/select}}
             </select>
-
             <div class="resource-content flexrow" style="gap: 2px;">
                 <input class="resource-inputs" data-tooltip="{{localize 'FU.BondStrength'}}"
                     name="system.resources.bonds.{{ bondIndex }}.strength" value="{{ bond.strength }}"
@@ -49,13 +45,5 @@
             </div>
         {{/each}}
     </div>
-
-    <section class="bond-add resource-content flex-center">
-        <a data-tooltip="{{localize 'FU.BondAdd'}}">
-            <button class="resource-inputs" data-tooltip="{{localize 'FU.BondAdd'}}">
-                <i class="fas fa-plus"></i>
-            </button>
-        </a>
-    </section>
-
+    {{!--  --}}
 </fieldset>

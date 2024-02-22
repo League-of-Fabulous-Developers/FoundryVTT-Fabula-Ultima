@@ -66,6 +66,7 @@ $font-quote: "EB Garamond", sans-serif;
     // Resource Label Sizes
     .resource-label-t {
       font-size: 12px;
+      line-height: 16px;
       font-weight: bold;
       font-family: $font-secondary;
       text-transform: uppercase;
@@ -73,6 +74,7 @@ $font-quote: "EB Garamond", sans-serif;
 
     .resource-label-sm {
       font-size: 14px;
+      line-height: 16px;
       font-weight: bold;
       font-family: $font-secondary;
       text-transform: uppercase;
@@ -80,6 +82,7 @@ $font-quote: "EB Garamond", sans-serif;
 
     .resource-label-m {
       font-size: 16px;
+      line-height: 18px;
       font-weight: bold;
       font-family: $font-secondary;
       text-transform: uppercase;
@@ -87,6 +90,7 @@ $font-quote: "EB Garamond", sans-serif;
 
     .resource-label-l {
       font-size: 18px;
+      line-height: 24px;
       font-weight: bold;
       font-family: $font-secondary;
       text-transform: uppercase;
@@ -94,6 +98,7 @@ $font-quote: "EB Garamond", sans-serif;
 
     .resource-label-xl {
       font-size: 20px;
+      line-height: 24px;
       font-weight: bold;
       font-family: $font-secondary;
       text-transform: uppercase;
@@ -119,6 +124,7 @@ $font-quote: "EB Garamond", sans-serif;
 
       .editor-content {
         font-size: 14px;
+        line-height: 16px;
       }
     }
   }
@@ -145,6 +151,13 @@ $font-quote: "EB Garamond", sans-serif;
     font-size: 14px;
     padding: 5px 0;
   }
+}
+
+.description-effect {
+  font-size: 15px;
+  line-height: 16px;
+  font-weight: normal;
+  font-family: $font-primary;
 }
 
 // Uppercase Text

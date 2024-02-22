@@ -9,11 +9,13 @@
 
   legend {
     border-radius: 8px;
+    margin: 0 auto;
+    padding: 2px 30px;
     background: $color-secondary;
-    padding: 2px 36px;
     color: $color-primary;
+    position: relative;
     text-align: center;
-    margin-bottom: 2px;
+    width: auto;
   }
 }
 
@@ -62,7 +64,6 @@
     padding: 0;
     justify-content: center;
     text-align: center;
-    appearance: none;
     border-color: $color-secondary;
     border-radius: 5px;
     
@@ -98,32 +99,27 @@
       }
 
       &.select-dropdown {
-        appearance: none;
         background-size: 16px 16px;
         width: 4em;
         padding: 0;
       }
 
       &.select-dropdown-m {
-        appearance: none;
         background-size: 16px 16px;
         width: 7em;
       }
 
       &.select-dropdown-l {
-        appearance: none;
         background-size: 16px 16px;
         width: 10em;
       }
 
-      &.select-dropdown-xl {
-        appearance: none;
+      &.select-dropdown-xl { 
         background-size: 16px 16px;
-        width: 24em;
+        width: 20em;
       }
       
       &.select-dropdown-full {
-        appearance: none;
         background-size: 16px 16px;
         width: 100%;
     }
@@ -179,7 +175,7 @@
       width: 100%;
       padding: 0;
       margin: 0 5px 0 5px;
-      appearance: none;
+      
     }
 
     & .side-bar {
@@ -197,7 +193,7 @@
         padding: 0;
         justify-content: center;
         text-align: center;
-        appearance: none;
+        
         border-radius: 5px;
       }
     }
@@ -237,7 +233,7 @@
     width: 100%;
     justify-content: center;
     text-align: center;
-    appearance: none;
+    height: 24px;
     border-radius: 5px;
     
     option {
@@ -246,7 +242,7 @@
     }
 
     &.select-bonds {
-      appearance: none;
+      
       background-size: 16px 16px;
       height: auto;
       margin: 3px;
@@ -256,9 +252,6 @@
 
 .bond-add {
   color: $color-primary;
-  margin-top: 5px;
-  padding: 0;
-  border-radius: 3px;
   border: none;
   width: 100%;
   display: flex;

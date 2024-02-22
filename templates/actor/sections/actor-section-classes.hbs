@@ -13,7 +13,7 @@
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize "FU.Name"}}</div>
-			<div class="item-lg">{{localize "FU.Level"}}</div>
+			<div class="item-m">{{localize "FU.Level"}}</div>
 			<div class="item-m end">
 				<a class="item-control item-create" aria-describedby="tooltip" data-tooltip="Create class"
 					data-type="class"> <i class="fas fa-plus icon"></i>{{localize "FU.Add"}} </a>
@@ -25,7 +25,7 @@
 				{{!-- Item Name--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				{{!-- Class Level --}}
-				<div class="item-lg buttons-inc">
+				<div class="item-m buttons-inc">
 					<button class="decrement-button" data-item-id="{{ item._id }}">-</button>
 					<span data-resource="item.level">{{ item.level }}</span>
 					<span>/</span>

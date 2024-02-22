@@ -69,7 +69,14 @@ body {
   margin: 0;
 }
 
-
 blockquote {
   padding: 0 0 0 10px !important; 
+}
+
+input[type=number] {
+  appearance: textfield;
+}
+
+input[type="checkbox"] {
+  top: 0 !important;
 }

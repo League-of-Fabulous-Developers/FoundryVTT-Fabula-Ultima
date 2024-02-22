@@ -3,39 +3,46 @@
 
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
+		
 		{{!-- Attributes Tab --}}
 		<div class="tab attributes" data-group="primary" data-tab="description">
-			<div class="item-settings resource-content">
-				{{> "systems/projectfu/templates/item/partials/item-controls.hbs" dtypes=dtypes}}
-			</div>
 
-			<section class="flex1 flex-group-center desc">
-				<div class="desc-header resource-content">
-					<label class="resource-label-m">{{localize 'FU.GeneralInfo'}}</label>
-				</div>
+			<section class="grid grid-2col" style="gap: 5px;">
 
-				<div class="grid grid-4col card-style">
-					<div class="resource-content flexcol flex-group-center">
-						<label class="resource-label-m">{{localize "FU.InventoryCost"}}</label>
-						<input type="number" name="system.ipCost.value" value="{{ system.ipCost.value }}"
-							data-dtype="Number" class="resource-inputs select-dropdown-m" />
-					</div>
-					{{#if (and (eq actor.type "npc") system.isBehavior.value)}}
+				{{!-- General Info Section --}}
+				<fieldset class="title-fieldset desc resource-content grid-span-2">
 
-					<div class="resource-content flexcol flex-group-center">
-						<label class="resource-label-m">{{localize 'FU.BehaviorWeight'}}</label>
-						<input type="number" name="system.weight.value" value="{{ system.weight.value }}"
-							data-dtype="Number" class="resource-inputs select-dropdown-m" />
+					{{!-- Item Controls --}}
+					<div class="item-settings resource-content">
+						{{> "systems/projectfu/templates/item/partials/item-controls.hbs" dtypes=dtypes}}
 					</div>
 
-					{{/if}}
+					<div class="grid grid-4col">
+						<div class="resource-content flexcol flex-group-center">
+							<label class="resource-label-m">{{localize "FU.InventoryCost"}}</label>
+							<input type="number" name="system.ipCost.value" value="{{ system.ipCost.value }}"
+								data-dtype="Number" class="resource-inputs select-dropdown-m" />
+						</div>
+
+						{{#if (and (eq actor.type "npc") system.isBehavior.value)}}
+						<div class="resource-content flexcol flex-group-center">
+							<label class="resource-label-m">{{localize 'FU.BehaviorWeight'}}</label>
+							<input type="number" name="system.weight.value" value="{{ system.weight.value }}"
+								data-dtype="Number" class="resource-inputs select-dropdown-m" />
+						</div>
+						{{/if}}
+
+					</div>
+				</fieldset>
+
+				{{!-- Description Section --}}
+				<div class="grid-span-2 desc flex-between">
+					<div class="quarter-desc">{{editor enrichedHtml.description target="system.description"
+						rollData=rollData
+						button=true owner=owner editable=editable}}</div>
 				</div>
+
 			</section>
-
-			<div class="grid-span-2 desc flex-between">
-				<div class="quarter-desc">{{editor enrichedHtml.description target="system.description" rollData=rollData
-					button=true owner=owner editable=editable}}</div>
-			</div>
 		</div>
 	</section>
 </form>

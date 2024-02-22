@@ -8,19 +8,20 @@
   padding: 0.5em 1em;
 }
 
+.title-fieldset {
+  // height: 50%; 
+  overflow-y: auto;
+  // min-height: 12em;
+  // max-height: 20em; 
+}
+
+
 /* Description Format */
 .desc {
   background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
   border-radius: 12px;
   border: 1px solid #2c4a4254;
   padding: 5px;
-
-  .desc-header {
-    background: none;
-    border-radius: 10px 10px 0 0;
-    border-bottom: 4px double $color-secondary;
-    padding: 0px 0;
-  }
 }
 
 /* Sheet Header */
@@ -33,6 +34,7 @@
   justify-content: flex-start;
   margin-bottom: 5px;
   background-color: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
+  gap: 5px;
 
   /* Combine Header */
   .combine-header {
@@ -66,7 +68,7 @@
     display: flex;
     align-items: center;
     padding: 0;
-    border-right: groove 3px;
+    border-right: groove $color-white 3px;
   }
 
   /* Character Name */
@@ -97,7 +99,7 @@
       margin-bottom: 2px;
     }
 
-    #status-section {
+    #status-section, #subtype-section {
       border-radius: 10px 0 0 10px;
       display: flex;
       align-items: center;
@@ -111,6 +113,10 @@
       }
     }
     #roll-section {
+      border-radius: 0 10px 10px 0;
+    }
+
+    #item-navbar {
       border-radius: 0 10px 10px 0;
     }
   }
@@ -159,12 +165,43 @@
     /* Pronoun Input */
     input {
       color: $color-primary;
-      text-shadow: 2px 2px 1px black;
+      text-shadow: 1px 1px 1px black;
       width: 100%;
       height: 100%;
       border: 0;
       background-color: transparent;
       text-align: center;
+    }
+  }
+
+  /* Martial Heading */
+  h3.martials {
+    border-bottom: 0;
+    display: flex;
+    align-items: center;
+    height: 3em;
+    text-align: center;
+    flex-grow: 1;
+
+    /* Martial Icon */
+    img#martial-header {
+      flex: 0 0 40px;
+      height: 40px;
+      object-fit: contain;
+      border: none;
+      background-repeat: no-repeat;
+      margin: auto;
+    }
+
+    /* Offensive Icon */
+    img#offensive-header {
+      flex: 0 0 40px;
+      height: 40px;
+      object-fit: contain;
+      border: none;
+      background-repeat: no-repeat;
+      margin-right: -15px;
+      margin: auto;
     }
   }
 }
@@ -173,7 +210,7 @@
 .sheet-wrapper {
   display: flex;
   flex-direction: column;
-  max-height: 56vh;
+  max-height: 38vh;
 
   /* Sheet Body */
   .sheet-body,
@@ -206,7 +243,7 @@
   /* NPC Description */
   .npc-desc {
     max-height: 14em;
-    min-height: 10em;
+    min-height: 11em;
 
     /* Editor Styles */
     .editor {
@@ -231,8 +268,8 @@
 
 /* Item Settings */
 .item-settings {
-  margin: 0 10px;
-  float: left;
+  margin: -5px 5px 0;
+  // float: left;
 }
 
 /* Tiny Description */
@@ -274,8 +311,8 @@
     /* Tox Tinymce Styles */
     .tox-tinymce {
       height: 100%;
-      min-height: 20em;
-      max-height: 20em;
+      min-height: 18em;
+      max-height: 18em;
     }
   }
 }
@@ -286,7 +323,7 @@
   height: 50%;
   overflow-y: auto;
   max-height: 28em;
-  min-height: 18em;
+  min-height: 16em;
 }
 
 /* General Editor Styles */

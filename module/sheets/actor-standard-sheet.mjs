@@ -15,7 +15,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			classes: ['projectfu', 'sheet', 'actor'],
 			template: 'systems/projectfu/templates/actor/actor-character-sheet.hbs',
 			width: 750,
-			height: 1050,
+			height: 1000,
 			tabs: [
 				{
 					navSelector: '.sheet-tabs',
