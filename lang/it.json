@@ -1,7 +1,7 @@
 {
 	"ACTOR":{
 		"TypeCharacter":"Personaggio",
-		"TypeNpc":"NPC"
+		"TypeNpc":"PNG"
 	},
 	"ITEM":{
 		"TypeBasic":"Base",
@@ -25,7 +25,7 @@
 	"TYPES":{
 		"Actor":{
 			"character":"Personaggio",
-			"npc":"NPC"
+			"npc":"PNG"
 		},
 		"Item":{
 			"basic":"Base",
@@ -275,6 +275,8 @@
 		"CharacterDelete":"Cancella Personaggio",
 		"PlayerCharacter":"Personaggi Giocanti",
 		"PlayerCharacterAbbr":"PG",
+		"NonPlayerCharacter":"Personaggio Non Giocante",
+		"NonPlayerCharacterAbbr":"PNG",
 		"Biography":"Biografia",
 		"BiographyAbbr":"Bio",
 		"BiographyInfo":"Biografia e Informazioni",

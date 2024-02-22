@@ -275,6 +275,8 @@
 		"CharacterDelete":"Supprimer le Personnage",
 		"PlayerCharacter":"Personnage joueur",
 		"PlayerCharacterAbbr":"PJ",
+		"NonPlayerCharacter":"Personnage non-joueur",
+		"NonPlayerCharacterAbbr":"PNJ",
 		"Biography":"Biographie",
 		"BiographyAbbr":"Bio",
 		"BiographyInfo":"Biographie & Info",

@@ -275,6 +275,8 @@
         "CharacterDelete":"Charakter löschen",
         "PlayerCharacter":"Spielercharakter",
         "PlayerCharacterAbbr":"SC",
+        "NonPlayerCharacter":"Nicht-Spielercharakter",
+		"NonPlayerCharacterAbbr":"NSC",
         "Biography":"Biografie",
         "BiographyAbbr":"Bio",
         "BiographyInfo":"Biografie & Informationen",

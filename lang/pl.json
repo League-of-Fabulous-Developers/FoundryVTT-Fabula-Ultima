@@ -275,6 +275,8 @@
 		"CharacterDelete":"",
 		"PlayerCharacter":"",
 		"PlayerCharacterAbbr":"",
+		"NonPlayerCharacter":"",
+		"NonPlayerCharacterAbbr":"",
 		"Biography":"",
 		"BiographyAbbr":"",
 		"BiographyInfo":"",

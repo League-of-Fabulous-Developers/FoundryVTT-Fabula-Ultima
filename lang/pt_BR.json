@@ -1,7 +1,7 @@
 {
 	"ACTOR":{
 		"TypeCharacter":"Personagem",
-		"TypeNpc":"NPC"
+		"TypeNpc":"PNJ"
 	},
 	"ITEM":{
 		"TypeBasic":"Básico",
@@ -24,8 +24,8 @@
 	},
 	"TYPES":{
 		"Actor":{
-			"character":"Character",
-			"npc":"NPC"
+			"character":"Personagem",
+			"npc":"PNJ"
 		},
 		"Item":{
 			"basic":"Básico",
@@ -275,6 +275,8 @@
         "CharacterDelete":"Deletar Personagens",
         "PlayerCharacter":"Personagem-Jogador",
         "PlayerCharacterAbbr":"PJ",
+        "NonPlayerCharacter":"Personagem Não-Jogável",
+        "NonPlayerCharacterAbbr":"PNJ",
         "Biography":"Biografia",
         "BiographyAbbr":"Bio",
         "BiographyInfo":"Biografia \u0026 Informações",

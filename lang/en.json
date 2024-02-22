@@ -275,6 +275,8 @@
 		"CharacterDelete":"Delete Character",
 		"PlayerCharacter":"Player Character",
 		"PlayerCharacterAbbr":"PC",
+		"NonPlayerCharacter":"Non-Playable Character",
+		"NonPlayerCharacterAbbr":"NPC",
 		"Biography":"Biography",
 		"BiographyAbbr":"Bio",
 		"BiographyInfo":"Biography & Info",
