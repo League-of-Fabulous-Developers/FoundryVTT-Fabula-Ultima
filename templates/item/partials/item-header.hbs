@@ -11,12 +11,12 @@
 					<h3 class="martials">
 						{{#if system.isMartial}}
 						<img id="martial-header"
-							class="icon-aff {{#if system.isMartial.value}}fus-martial{{else}}ful-martial{{/if}}">
+							class="icon-aff {{#if system.isMartial.value}}fus-martial active{{else}}ful-martial{{/if}}">
 						{{/if}}
 
 						{{#if system.isOffensive}}
 						<img id="offensive-header"
-							class="icon-aff {{#if system.isOffensive.value}}fus-offensive{{else}}ful-offensive{{/if}}">
+							class="icon-aff {{#if system.isOffensive.value}}fus-offensive active{{else}}ful-offensive{{/if}}">
 						{{/if}}
 					</h3>
 				</div>
@@ -61,7 +61,7 @@
 							class="fa-solid fa-chart-simple icon"></i>{{localize
 						'FU.AttributesKey'}}
 					</label>
-					<div class="grid grid-3col card-style" style="margin-top: 6px;">
+					<div class="grid grid-3col card-style" style="margin: 5px 0;">
 						{{#if (eq item.type "weapon")}}
 						{{> "systems/projectfu/templates/item/partials/item-weapon-header.hbs" dtypes=dtypes}}
 						{{else if (eq item.type "shield")}}

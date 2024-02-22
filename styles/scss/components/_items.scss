@@ -246,12 +246,12 @@
 .items-list .item .item-name .item-image {
   border: none;
   padding-right: 5px;
-  flex: 0 0 auto;
+  flex: 0 0 30px;
   
   img {
     max-width: 100%;
     display: block;
-    height: auto;
+    height: 24px;
     width: 24px;
     overflow: hidden;
     border-radius: 5px;

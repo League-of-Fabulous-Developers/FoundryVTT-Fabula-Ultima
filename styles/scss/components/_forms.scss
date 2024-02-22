@@ -183,25 +183,19 @@
     text-align: center;
     flex-grow: 1;
 
-    /* Martial Icon */
-    img#martial-header {
+    /* Martial & Offensive Icon */
+    img#martial-header, img#offensive-header {
       flex: 0 0 40px;
       height: 40px;
       object-fit: contain;
       border: none;
       background-repeat: no-repeat;
       margin: auto;
-    }
+      opacity: 0.5;
 
-    /* Offensive Icon */
-    img#offensive-header {
-      flex: 0 0 40px;
-      height: 40px;
-      object-fit: contain;
-      border: none;
-      background-repeat: no-repeat;
-      margin-right: -15px;
-      margin: auto;
+      &.active {
+        opacity: 1;
+      }
     }
   }
 }
