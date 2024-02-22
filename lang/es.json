@@ -74,6 +74,7 @@
         "Ultima":"Ultima",
         "Resource":"Recurso",
         "ResourcePoints":"Puntos de Recurso",
+        "ResourceStatus":"¿Puntos de Recurso?",
         "Initiative":"Iniciativa",
         "InitiativeCheck":"Prueba de Iniciativa",
         "InitiativeAbbr":"INIC",
