@@ -137,7 +137,7 @@ export class FUItem extends Item {
 	 * Get the display data for an item.
 	 *
 	 * @returns {object|boolean} An object containing item display information, or false if this is not an item.
-	 * @property {string} qualityString - The item's description.
+	 * @property {string} qualityString - The item's summary.
 	 */
 	getItemDisplayData() {
 		// Check if this item is not consumable or treasure
@@ -145,15 +145,15 @@ export class FUItem extends Item {
 			return false;
 		}
 
-		const description = this.system.description;
-		const hasDescription = description && description.trim() !== '';
+		const summary = this.system.summary.value;
+		const hasSummary = summary && summary.trim() !== '';
 
-		let qualityString = 'No Description';
+		let qualityString = 'No Summary';
 
-		if (hasDescription) {
+		if (hasSummary) {
 			const parser = new DOMParser();
-			const doc = parser.parseFromString(description, 'text/html');
-			qualityString = doc.body.textContent || 'No Description';
+			const doc = parser.parseFromString(summary, 'text/html');
+			qualityString = doc.body.textContent || 'No Summary';
 		}
 
 		return {
