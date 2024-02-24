@@ -40,6 +40,7 @@ $font-quote: "EB Garamond", sans-serif;
       font-weight: 700;
       font-style: italic;
       font-size: 18px;
+      line-height: 1.45em;
     }
   }
 
@@ -60,13 +61,15 @@ $font-quote: "EB Garamond", sans-serif;
 
     .resource-text-m {
       font-size: 16px;
+      line-height: 1.45em;
       font-family: $font-primary;
     }
 
     // Resource Label Sizes
     .resource-label-t {
       font-size: 12px;
-      line-height: 16px;
+      line-height: 1.45em;
+      line-height: 1.45em;
       font-weight: bold;
       font-family: $font-secondary;
       text-transform: uppercase;
@@ -74,7 +77,7 @@ $font-quote: "EB Garamond", sans-serif;
 
     .resource-label-sm {
       font-size: 14px;
-      line-height: 16px;
+      line-height: 1.45em;
       font-weight: bold;
       font-family: $font-secondary;
       text-transform: uppercase;
@@ -82,7 +85,7 @@ $font-quote: "EB Garamond", sans-serif;
 
     .resource-label-m {
       font-size: 16px;
-      line-height: 18px;
+      line-height: 1.45em;
       font-weight: bold;
       font-family: $font-secondary;
       text-transform: uppercase;
@@ -90,7 +93,7 @@ $font-quote: "EB Garamond", sans-serif;
 
     .resource-label-l {
       font-size: 18px;
-      line-height: 24px;
+      line-height: 1.45em;
       font-weight: bold;
       font-family: $font-secondary;
       text-transform: uppercase;
@@ -98,7 +101,7 @@ $font-quote: "EB Garamond", sans-serif;
 
     .resource-label-xl {
       font-size: 20px;
-      line-height: 24px;
+      line-height: 1.45em;
       font-weight: bold;
       font-family: $font-secondary;
       text-transform: uppercase;
@@ -115,7 +118,8 @@ $font-quote: "EB Garamond", sans-serif;
 
   .action-button {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1.2em;
   }
 
   .desc {
@@ -123,8 +127,9 @@ $font-quote: "EB Garamond", sans-serif;
       font-weight: normal;
 
       .editor-content {
-        font-size: 14px;
-        line-height: 16px;
+        font-size: 16px;
+        line-height: 1.45em;
+        width: 100%;
       }
     }
   }
@@ -133,17 +138,20 @@ $font-quote: "EB Garamond", sans-serif;
     font-family: Antonio;
     font-weight: bold;
     font-size: 1.25rem;
+    text-transform: uppercase;
   }
   
   .pronouns input {
     font-family: Antonio;
     font-size: 16px;
+    text-transform: uppercase;
   }
 }
 
 // Styles for .detail-desc class
 .detail-desc {
   font-size: 14px;
+  line-height: 1.45em;
   font-weight: bold;
   font-family: $font-primary;
 
@@ -155,7 +163,7 @@ $font-quote: "EB Garamond", sans-serif;
 
 .description-effect {
   font-size: 15px;
-  line-height: 16px;
+  line-height: 1.45em;
   font-weight: normal;
   font-family: $font-primary;
 }
@@ -179,6 +187,7 @@ $font-quote: "EB Garamond", sans-serif;
     font-weight: 700;
     font-style: italic;
     font-size: 16px;
+    line-height: 1.45em;
     color: $color-ternary;
   }
 }
@@ -188,6 +197,7 @@ $font-quote: "EB Garamond", sans-serif;
   .message-header {
     .flavor-text {
       font-size: 20px;
+      line-height: 1.45em;
     }
   }
 }
@@ -205,4 +215,5 @@ $font-quote: "EB Garamond", sans-serif;
 .sheet nav.sheet-tabs .item {
   text-transform: uppercase;
   font-size: 16px;
+  line-height: 1.45em;
 }

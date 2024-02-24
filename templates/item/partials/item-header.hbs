@@ -45,8 +45,7 @@
 			</div>
 
 			{{!-- Center Header --}}
-			<div class="item-header header-field header-center grid grid-3col desc"
-				style="border-radius: 0 0 12px 0; padding: 9px">
+			<div class="item-header header-field header-center grid grid-3col desc">
 				<div class="resource-content summary grid-span-3">
 					<label class="resource-label-sm" for="system.summary.value"> <i
 							class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
@@ -61,7 +60,7 @@
 							class="fa-solid fa-chart-simple icon"></i>{{localize
 						'FU.AttributesKey'}}
 					</label>
-					<div class="grid grid-3col card-style" style="margin: 5px 0;">
+					<div class="grid grid-3col" style="margin: 5px 0;">
 						{{#if (eq item.type "weapon")}}
 						{{> "systems/projectfu/templates/item/partials/item-weapon-header.hbs" dtypes=dtypes}}
 						{{else if (eq item.type "shield")}}
