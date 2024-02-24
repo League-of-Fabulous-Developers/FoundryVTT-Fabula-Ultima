@@ -74,18 +74,26 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-spell-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-push.hbs',
-        'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs',
-        'systems/projectfu/templates/chat/partials/chat-basic-attack-details.hbs',
-        'systems/projectfu/templates/chat/partials/chat-check-details.hbs',
-        'systems/projectfu/templates/chat/partials/chat-ability-details.hbs',
-        'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs',
-        'systems/projectfu/templates/chat/partials/chat-check-result.hbs',
+		'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs',
+		'systems/projectfu/templates/chat/partials/chat-basic-attack-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-check-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-ability-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs',
+		'systems/projectfu/templates/chat/partials/chat-check-result.hbs',
 
 		// UI Components
 		'systems/projectfu/templates/ui/combat-tracker.hbs',
 
 		// Applications
 		'systems/projectfu/templates/app/app-group-check.hbs',
+
+		// Class Feature Templates
+		'systems/projectfu/templates/feature/arcanist/feature-arcanum-sheet.hbs',
+		'systems/projectfu/templates/feature/arcanist/feature-arcanum-preview.hbs',
+		'systems/projectfu/templates/feature/tinkerer/feature-gadgets-preview.hbs',
+		'systems/projectfu/templates/feature/tinkerer/feature-alchemy-sheet.hbs',
+		'systems/projectfu/templates/feature/tinkerer/feature-magitech-sheet.hbs',
+		'systems/projectfu/templates/feature/tinkerer/feature-infusions-sheet.hbs',
 	]);
 };
 
@@ -118,11 +126,11 @@ Handlebars.registerHelper('calculatePercentage', function (value, max) {
 	return percentage.toFixed(2) + '%';
 });
 
-Handlebars.registerHelper('crisis', function(value, max) {
-    value = parseFloat(value);
-    max = parseFloat(max);
-    const half = max / 2;
-    return value <= half;
+Handlebars.registerHelper('crisis', function (value, max) {
+	value = parseFloat(value);
+	max = parseFloat(max);
+	const half = max / 2;
+	return value <= half;
 });
 
 // Define a Handlebars helper to get the icon class based on item properties

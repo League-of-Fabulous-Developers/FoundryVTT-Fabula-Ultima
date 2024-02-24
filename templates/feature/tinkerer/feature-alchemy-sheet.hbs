@@ -1,0 +1,91 @@
+<div class='resource-content desc'>
+	<div>
+		<label>
+			{{localize 'FU.ClassFeatureGadgetsRank'}}
+			<select name='system.data.rank'>
+				{{selectOptions additionalData.ranks selected=system.data.rank localize=true}}
+			</select>
+		</label>
+	</div>
+	<nav class='gadget-tabs tabs flexrow' data-group='gadgetBenefits'>
+		<a class='item tab-style' data-tab='description'>{{localize 'FU.ClassFeatureGadgetsDescription'}}</a>
+		<a class='item tab-style' data-tab='basic'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</a>
+		<a class='item tab-style' data-tab='advanced'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</a>
+		<a class='item tab-style' data-tab='superior'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</a>
+		<a class='item tab-style' data-tab='config'>{{localize 'FU.ClassFeatureGadgetsConfig'}}</a>
+	</nav>
+	<hr />
+	<div class='gadget-content'>
+		<div class='tab' data-group='gadgetBenefits' data-tab='description'>
+			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsDescription'}}</label>
+			{{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
+		</div>
+		<div class='tab' data-group='gadgetBenefits' data-tab='basic'>
+			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</label>
+			{{editor enrichedHtml.basic target='system.data.basic' engine='prosemirror' button=true}}
+		</div>
+		<div class='tab' data-group='gadgetBenefits' data-tab='advanced'>
+			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</label>
+			{{editor enrichedHtml.advanced target='system.data.advanced' engine='prosemirror' button=true}}
+		</div>
+		<div class='tab' data-group='gadgetBenefits' data-tab='superior'>
+			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</label>
+			{{editor enrichedHtml.superior target='system.data.superior' engine='prosemirror' button=true}}
+		</div>
+		<div class='tab' data-group='gadgetBenefits' data-tab='config'>
+			<div>
+				<label data-tooltip="{{localize 'FU.ClassFeatureAlchemyRollTableExplanation'}}">
+					{{localize 'FU.ClassFeatureAlchemyTargetRollTable'}}
+					<select name='system.data.config.targetRollTable'>
+						<option value=''>-</option>
+						{{selectOptions additionalData.rollTables selected=system.data.config.targetRollTable.id nameAttr='id' labelAttr='name'}}
+					</select>
+				</label>
+			</div>
+			<div>
+				<label data-tooltip="{{localize 'FU.ClassFeatureAlchemyRollTableExplanation'}}">
+					{{localize 'FU.ClassFeatureAlchemyEffectRollTable'}}
+					<select name='system.data.config.effectRollTable'>
+						<option value=''>-</option>
+						{{selectOptions additionalData.rollTables selected=system.data.config.effectRollTable.id nameAttr='id' labelAttr='name'}}
+					</select>
+				</label>
+			</div>
+			<hr />
+			<div class='grid grid-3col'>
+				{{#each system.data.config.ranks}}
+					<div>
+						<div>{{localize (lookup @root.additionalData.ranks @key)}}</div>
+						<div>
+							<label>
+								{{localize 'FU.ClassFeatureAlchemyDice'}}
+								<input type='number' name='system.data.config.ranks.{{@key}}.dice' value='{{dice}}' />
+							</label>
+						</div>
+						<div>
+							<label>
+								{{localize 'FU.ClassFeatureAlchemyCost'}}
+								<input type='number' name='system.data.config.ranks.{{@key}}.cost' value='{{cost}}' />
+							</label>
+						</div>
+					</div>
+				{{/each}}
+			</div>
+			<hr />
+			<div>
+				<div class='flexrow'>
+					<label>{{localize 'FU.ClassFeatureAlchemyAlwaysAvailableEffectsSection'}}</label>
+					<a class='flex0' data-action='addEffect'><i class='fas fa-plus'></i></a>
+				</div>
+				<div>
+					{{#each system.data.config.alwaysAvailableEffects}}
+						<div class='flexrow'>
+							<input type='text' name='system.data.config.alwaysAvailableEffects.{{@index}}' value='{{this}}' />
+							<a class='flex0' data-action='deleteEffect' data-index='{{@index}}'><i class='fas fa-trash'></i></a>
+						</div>
+					{{/each}}
+                </div>
+			</div>
+		</div>
+	</div>
+</div>

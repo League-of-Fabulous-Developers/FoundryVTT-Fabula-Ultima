@@ -110,6 +110,7 @@ FU.itemTypes = {
 	consumable: 'TYPES.Item.consumable',
 	treasure: 'TYPES.Item.treasure',
 	class: 'TYPES.Item.class',
+	classFeature: 'TYPES.Item.classFeature',
 	skill: 'TYPES.Item.skill',
 	heroic: 'TYPES.Item.heroic',
 	spell: 'TYPES.Item.spell',

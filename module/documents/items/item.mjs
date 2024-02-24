@@ -1,4 +1,5 @@
 import { createCheckMessage, rollCheck } from '../../helpers/checks.mjs';
+import { RollableClassFeatureDataModel } from './classFeature/class-feature-data-model.mjs';
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -48,12 +49,7 @@ export class FUItem extends Item {
 		}
 
 		function translate(string) {
-			const allTranslations = Object.assign({},
-				CONFIG.FU.handedness,
-				CONFIG.FU.weaponCategories,
-				CONFIG.FU.weaponTypes,
-				CONFIG.FU.attributeAbbreviations,
-				CONFIG.FU.damageTypes);
+			const allTranslations = Object.assign({}, CONFIG.FU.handedness, CONFIG.FU.weaponCategories, CONFIG.FU.weaponTypes, CONFIG.FU.attributeAbbreviations, CONFIG.FU.damageTypes);
 
 			return game.i18n.localize(allTranslations?.[string] ?? string);
 		}
@@ -65,7 +61,7 @@ export class FUItem extends Item {
 		const primaryAttribute = this.system.attributes?.primary?.value;
 		const secondaryAttribute = this.system.attributes?.secondary?.value;
 
-		const attackAttributes = [translate((primaryAttribute || '')).toUpperCase(), translate((secondaryAttribute || '')).toUpperCase()].join(' + ');
+		const attackAttributes = [translate(primaryAttribute || '').toUpperCase(), translate(secondaryAttribute || '').toUpperCase()].join(' + ');
 
 		const accuracyValue = this.system.accuracy?.value ?? 0;
 		const damageValue = this.system.damage?.value ?? 0;
@@ -722,6 +718,9 @@ export class FUItem extends Item {
 		}
 		if ((this.type === 'miscAbility' || this.type === 'skill') && this.system.hasRoll.value) {
 			return this.rollAbility(isShift);
+		}
+		if (this.type === 'classFeature' && this.system.data instanceof RollableClassFeatureDataModel) {
+			return this.system.data.constructor.roll(this.system.data);
 		}
 
 		const item = this;

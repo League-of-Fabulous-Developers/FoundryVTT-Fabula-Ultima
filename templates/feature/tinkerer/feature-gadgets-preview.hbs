@@ -1,0 +1,8 @@
+<div>
+	<span>{{localize 'FU.ClassFeatureGadgetsRank'}}:</span>
+	<span class='bold'>{{localize (lookup additionalData.ranks system.data.rank)}}</span>
+	{{#if system.summary.value}}
+		<span>⬥</span>
+		<span>{{system.summary.value}}</span>
+	{{/if}}
+</div>
