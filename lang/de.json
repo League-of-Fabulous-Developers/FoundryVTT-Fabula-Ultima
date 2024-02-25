@@ -695,6 +695,7 @@
         "ClassFeatureDance" : "Tanz",
         "ClassFeatureDanceDuration" : "Effektdauer",
         "ClassFeatureDanceDurationInstant" : "Sofort",
-        "ClassFeatureDanceDurationNextTurn" : "Bis zum Beginn deines nächsten Zuges"
+        "ClassFeatureDanceDurationNextTurn" : "Bis zum Beginn deines nächsten Zuges",
+        "ClassFeatureSymbol" : "Symbol"
     }
 }

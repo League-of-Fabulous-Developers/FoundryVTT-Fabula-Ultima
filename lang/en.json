@@ -695,6 +695,7 @@
         "ClassFeatureDance" : "Dance",
         "ClassFeatureDanceDuration" : "Duration",
         "ClassFeatureDanceDurationInstant" : "Instantaneous",
-        "ClassFeatureDanceDurationNextTurn" : "Until the start of your next turn"
+        "ClassFeatureDanceDurationNextTurn" : "Until the start of your next turn",
+        "ClassFeatureSymbol" : "Symbol"
     }
 }

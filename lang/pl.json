@@ -695,6 +695,7 @@
         "ClassFeatureDance" : "FU.ClassFeatureDance",
         "ClassFeatureDanceDuration" : "FU.ClassFeatureDanceDuration",
         "ClassFeatureDanceDurationInstant" : "FU.ClassFeatureDanceDurationInstant",
-        "ClassFeatureDanceDurationNextTurn" : "FU.ClassFeatureDanceDurationNextTurn"
+        "ClassFeatureDanceDurationNextTurn" : "FU.ClassFeatureDanceDurationNextTurn",
+        "ClassFeatureSymbol" : "FU.ClassFeatureSymbol"
     }
 }
