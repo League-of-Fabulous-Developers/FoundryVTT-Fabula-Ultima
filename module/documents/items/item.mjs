@@ -720,7 +720,7 @@ export class FUItem extends Item {
 			return this.rollAbility(isShift);
 		}
 		if (this.type === 'classFeature' && this.system.data instanceof RollableClassFeatureDataModel) {
-			return this.system.data.constructor.roll(this.system.data);
+			return this.system.data.constructor.roll(this.system.data, this);
 		}
 
 		const item = this;

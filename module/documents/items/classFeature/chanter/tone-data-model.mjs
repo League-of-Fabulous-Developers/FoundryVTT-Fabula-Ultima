@@ -16,10 +16,6 @@ export class ToneDataModel extends ClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/chanter/feature-tone-sheet.hbs';
 	}
 
-	static get previewTemplate() {
-		return 'systems/projectfu/templates/feature/chanter/feature-tone-preview.hbs';
-	}
-
 	static async getAdditionalData(model) {
 		return {
 			rollData: {

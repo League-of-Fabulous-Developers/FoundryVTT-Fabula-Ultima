@@ -14,7 +14,7 @@ export class ClassFeatureDataModel extends foundry.abstract.DataModel {
 	 * @return string
 	 */
 	static get previewTemplate() {
-		return 'systems/projectfu/templates/feature/feature-no-preview.hbs';
+		return 'systems/projectfu/templates/feature/feature-basic-preview.hbs';
 	}
 
 	/**
@@ -62,8 +62,9 @@ export class ClassFeatureDataModel extends foundry.abstract.DataModel {
 export class RollableClassFeatureDataModel extends ClassFeatureDataModel {
 	/**
 	 * @param {RollableClassFeatureDataModel} model an instance of the RollableClassFeatureDataModel
+	 * @param {FUItem} item the item the model is part of
 	 */
-	static roll(model) {
+	static roll(model, item) {
 		ui.notifications.error('Subclasses of RollableClassFeatureDataModel must override the roll() function');
 		throw new Error('Subclasses of RollableClassFeatureDataModel must override the roll() function');
 	}

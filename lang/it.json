@@ -691,6 +691,10 @@
         "ClassFeatureVerseVolumeHigh" : "FU.ClassFeatureVerseVolumeHigh",
         "ClassFeatureVerseVolumeHighTargets" : "FU.ClassFeatureVerseVolumeHighTargets",
         "ClassFeatureVerseSingDialogTitle" : "FU.ClassFeatureVerseSingDialogTitle",
-        "ClassFeatureVerseSingDialogLabel" : "FU.ClassFeatureVerseSingDialogLabel"
+        "ClassFeatureVerseSingDialogLabel" : "FU.ClassFeatureVerseSingDialogLabel",
+        "ClassFeatureDance" : "FU.ClassFeatureDance",
+        "ClassFeatureDanceDuration" : "FU.ClassFeatureDanceDuration",
+        "ClassFeatureDanceDurationInstant" : "FU.ClassFeatureDanceDurationInstant",
+        "ClassFeatureDanceDurationNextTurn" : "FU.ClassFeatureDanceDurationNextTurn"
     }
 }

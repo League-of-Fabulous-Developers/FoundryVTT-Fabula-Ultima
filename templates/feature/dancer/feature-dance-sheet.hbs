@@ -1,0 +1,17 @@
+<div class='resource-content desc'>
+    <div>
+        <label>
+            {{localize 'FU.ClassFeatureDanceDuration'}}:
+            <select name="system.data.duration">
+                {{selectOptions additionalData.durations localize=true}}
+            </select>
+        </label>
+    </div>
+    <hr>
+    <div>
+        <label>
+            {{localize 'FU.Description'}}
+        </label>
+        {{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true }}
+    </div>
+</div>

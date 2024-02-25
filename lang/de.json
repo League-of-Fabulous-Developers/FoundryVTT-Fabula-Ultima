@@ -691,6 +691,10 @@
         "ClassFeatureVerseVolumeHigh" : "Hohe Lautstärke",
         "ClassFeatureVerseVolumeHighTargets" : "Alle Gegner die dich hören können.",
         "ClassFeatureVerseSingDialogTitle" : "Lautstärke wählen",
-        "ClassFeatureVerseSingDialogLabel" : "Strophe singen"
+        "ClassFeatureVerseSingDialogLabel" : "Strophe singen",
+        "ClassFeatureDance" : "Tanz",
+        "ClassFeatureDanceDuration" : "Effektdauer",
+        "ClassFeatureDanceDurationInstant" : "Sofort",
+        "ClassFeatureDanceDurationNextTurn" : "Bis zum Beginn deines nächsten Zuges"
     }
 }

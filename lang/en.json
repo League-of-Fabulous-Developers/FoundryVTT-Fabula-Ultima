@@ -691,6 +691,10 @@
         "ClassFeatureVerseVolumeHigh" : "High Volume",
         "ClassFeatureVerseVolumeHighTargets" : "Every enemy who can hear you.",
         "ClassFeatureVerseSingDialogTitle" : "Choose Volume",
-        "ClassFeatureVerseSingDialogLabel" : "Sing Verse"
+        "ClassFeatureVerseSingDialogLabel" : "Sing Verse",
+        "ClassFeatureDance" : "Dance",
+        "ClassFeatureDanceDuration" : "Duration",
+        "ClassFeatureDanceDurationInstant" : "Instantaneous",
+        "ClassFeatureDanceDurationNextTurn" : "Until the start of your next turn"
     }
 }
