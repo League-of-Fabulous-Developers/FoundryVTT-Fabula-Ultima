@@ -88,12 +88,19 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/app/app-group-check.hbs',
 
 		// Class Feature Templates
+		'systems/projectfu/templates/feature/feature-no-preview.hbs',
 		'systems/projectfu/templates/feature/arcanist/feature-arcanum-sheet.hbs',
 		'systems/projectfu/templates/feature/arcanist/feature-arcanum-preview.hbs',
 		'systems/projectfu/templates/feature/tinkerer/feature-gadgets-preview.hbs',
 		'systems/projectfu/templates/feature/tinkerer/feature-alchemy-sheet.hbs',
 		'systems/projectfu/templates/feature/tinkerer/feature-magitech-sheet.hbs',
 		'systems/projectfu/templates/feature/tinkerer/feature-infusions-sheet.hbs',
+		'systems/projectfu/templates/feature/chanter/feature-key-sheet.hbs',
+		'systems/projectfu/templates/feature/chanter/feature-key-preview.hbs',
+		'systems/projectfu/templates/feature/chanter/feature-tone-sheet.hbs',
+		'systems/projectfu/templates/feature/chanter/feature-tone-preview.hbs',
+		'systems/projectfu/templates/feature/chanter/feature-verse-sheet.hbs',
+		'systems/projectfu/templates/feature/chanter/feature-verse-preview.hbs',
 	]);
 };
 

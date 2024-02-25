@@ -14,7 +14,7 @@ export class ClassFeatureDataModel extends foundry.abstract.DataModel {
 	 * @return string
 	 */
 	static get previewTemplate() {
-		throw new Error('Subclasses of ClassFeatureDataModel must provide a preview template');
+		return 'systems/projectfu/templates/feature/feature-no-preview.hbs';
 	}
 
 	/**
@@ -53,6 +53,10 @@ export class ClassFeatureDataModel extends foundry.abstract.DataModel {
 	static processUpdateData(data) {
 		return data;
 	}
+
+	prepareBaseData() {}
+
+	prepareDerivedData() {}
 }
 
 export class RollableClassFeatureDataModel extends ClassFeatureDataModel {

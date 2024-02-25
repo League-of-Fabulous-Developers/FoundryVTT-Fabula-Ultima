@@ -16,6 +16,14 @@ export class ClassFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 		};
 	}
 
+	prepareBaseData() {
+		this.data?.prepareBaseData();
+	}
+
+	prepareDerivedData() {
+		this.data?.prepareDerivedData();
+	}
+
 	/**
 	 * For default item chat messages to pick up description.
 	 * @return {*}

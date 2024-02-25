@@ -32,10 +32,8 @@ export class ClassFeatureRegistry {
 			throw new Error(`Class feature ${key} must provide a template`, { cause });
 		}
 
-		try {
-			model.previewTemplate;
-		} catch (cause) {
-			throw new Error(`Class feature ${key} must provide a preview template`, { cause });
+		if (!model.previewTemplate) {
+			throw new Error(`Class feature ${key} must provide a preview template`);
 		}
 
 		try {
