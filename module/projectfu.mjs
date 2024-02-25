@@ -39,6 +39,7 @@ import { ClassFeatureRegistry } from './documents/items/classFeature/class-featu
 import { FUClassFeatureSheet } from './documents/items/classFeature/class-feature-sheet.mjs';
 import { ClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
+import { handlebarsHtmlEnricher } from './helpers/handlebars-html-enricher.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -141,6 +142,8 @@ Hooks.once('init', async () => {
 	Hooks.callAll('projectfu.registerClassFeatures', registry);
 	CONFIG.FU.classFeatureRegistry = registry;
 
+	CONFIG.TextEditor.enrichers.push(handlebarsHtmlEnricher);
+
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
 });
@@ -169,19 +172,23 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 });
 
 Handlebars.registerHelper('translate', function (str) {
-	const result = Object.assign({
-		'spell':'FU.Spell',
-		'hp':'FU.HealthAbbr',
-		'mp':'FU.MindAbbr',
-		'ip':'FU.InventoryAbbr',
-		'shields':'FU.Shield',
-		'arcanism':'FU.Arcanism',
-		'chimerism':'FU.Chimerism',
-		'elementalism':'FU.Elementalism',
-		'entropism':'FU.Entropism',
-		'ritualism':'FU.Ritualism',
-		'spiritism':'FU.Spiritism',
-	}, CONFIG.FU.itemTypes, CONFIG.FU.weaponTypes);
+	const result = Object.assign(
+		{
+			spell: 'FU.Spell',
+			hp: 'FU.HealthAbbr',
+			mp: 'FU.MindAbbr',
+			ip: 'FU.InventoryAbbr',
+			shields: 'FU.Shield',
+			arcanism: 'FU.Arcanism',
+			chimerism: 'FU.Chimerism',
+			elementalism: 'FU.Elementalism',
+			entropism: 'FU.Entropism',
+			ritualism: 'FU.Ritualism',
+			spiritism: 'FU.Spiritism',
+		},
+		CONFIG.FU.itemTypes,
+		CONFIG.FU.weaponTypes,
+	);
 
 	return result?.[str] ?? str;
 });

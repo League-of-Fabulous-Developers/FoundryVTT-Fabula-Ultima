@@ -48,7 +48,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.system = actorData.system;
 		context.flags = actorData.flags;
 
-		this._prepareItems(context);
+		await this._prepareItems(context);
 		this._prepareCharacterData(context);
 		// Initialize the _expanded set as a local variable within the object or class
 		this._expanded = new Set();
@@ -147,7 +147,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	 *
 	 * @return {undefined}
 	 */
-	_prepareItems(context) {
+	async _prepareItems(context) {
 		// Initialize containers.
 		const basics = [];
 		const weapons = [];
@@ -362,14 +362,14 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.projects = projects;
 		context.rituals = rituals;
 		context.zeroPowers = zeroPowers;
-		context.classFeatures = this.actor.itemTypes.classFeature.reduce((acc, item) => {
-			const feature = (acc[item.system.featureType] ??= {
+		context.classFeatures = {};
+		for (const item of this.actor.itemTypes.classFeature) {
+			const featureType = (context.classFeatures[item.system.featureType] ??= {
 				feature: item.system.data?.constructor,
 				items: [],
 			});
-			feature.items.push({ item, additionalData: feature.feature?.getAdditionalData(item) });
-			return acc;
-		}, {});
+			featureType.items.push({ item, additionalData: await featureType.feature?.getAdditionalData(item.system.data) });
+		}
 	}
 
 	/* -------------------------------------------- */

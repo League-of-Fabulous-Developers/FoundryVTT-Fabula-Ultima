@@ -108,7 +108,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 				rejectClose: false,
 				callback: (html) => html.find('select[name=rank]').val(),
 			});
-			dice = model.config.ranks[rank].dice;
+			dice = model.config.ranks[rank]?.dice;
 		}
 
 		if (dice && rank) {

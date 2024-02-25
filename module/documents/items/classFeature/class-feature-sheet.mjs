@@ -65,7 +65,7 @@ export class FUClassFeatureSheet extends ItemSheet {
 		if (data.system.data instanceof ClassFeatureDataModel) {
 			data.feature = data.system.data.constructor;
 			data.featureTemplate = data.feature.template;
-			data.additionalData = data.feature.getAdditionalData(data.system.data);
+			data.additionalData = await data.feature.getAdditionalData(data.system.data);
 			const schema = data.feature.schema;
 
 			data.enrichedHtml = {};
@@ -85,7 +85,7 @@ export class FUClassFeatureSheet extends ItemSheet {
 				}
 			});
 			for (let [key, value] of Object.entries(data.enrichedHtml)) {
-				data.enrichedHtml[key] = await TextEditor.enrichHTML(value);
+				data.enrichedHtml[key] = await TextEditor.enrichHTML(value, { rollData: data.additionalData?.rollData });
 			}
 		}
 		data.features = CONFIG.FU.classFeatureRegistry.features();
