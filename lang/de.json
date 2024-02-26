@@ -696,6 +696,7 @@
         "ClassFeatureDanceDuration" : "Effektdauer",
         "ClassFeatureDanceDurationInstant" : "Sofort",
         "ClassFeatureDanceDurationNextTurn" : "Bis zum Beginn deines nächsten Zuges",
-        "ClassFeatureSymbol" : "Symbol"
+        "ClassFeatureSymbol" : "Symbol",
+        "GroupCheckTooltip" : "Umschalt + Klick für Initiativeprobe"
     }
 }

@@ -1054,7 +1054,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				return promptCheck(this.actor);
 			}
 			if (dataset.rollType === 'group-check') {
-				GroupCheck.promptCheck(this.actor);
+				GroupCheck.promptCheck(this.actor, isShift);
 			}
 		}
 

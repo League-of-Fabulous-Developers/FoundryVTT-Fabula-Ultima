@@ -696,6 +696,7 @@
         "ClassFeatureDanceDuration" : "FU.ClassFeatureDanceDuration",
         "ClassFeatureDanceDurationInstant" : "FU.ClassFeatureDanceDurationInstant",
         "ClassFeatureDanceDurationNextTurn" : "FU.ClassFeatureDanceDurationNextTurn",
-        "ClassFeatureSymbol" : "FU.ClassFeatureSymbol"
+        "ClassFeatureSymbol" : "FU.ClassFeatureSymbol",
+        "GroupCheckTooltip" : "FU.GroupCheckTooltip"
     }
 }
