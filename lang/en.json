@@ -696,6 +696,7 @@
         "ClassFeatureDanceDuration" : "Duration",
         "ClassFeatureDanceDurationInstant" : "Instantaneous",
         "ClassFeatureDanceDurationNextTurn" : "Until the start of your next turn",
-        "ClassFeatureSymbol" : "Symbol"
+        "ClassFeatureSymbol" : "Symbol",
+        "GroupCheckTooltip" : "Shift + Click for Initiative Check"
     }
 }
