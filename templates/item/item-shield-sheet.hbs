@@ -63,14 +63,7 @@
 							<label for="system.category.value" class="resource-label-m flexlarge align-left">{{localize
 								'FU.Category'}}</label>
 							<select name="system.category.value" class="resource-inputs select-dropdown-m">
-								<option value="brawling">Brawling</option>
-								<option value="sword">Sword</option>
-								<option value="thrown">Thrown</option>
-								<option value="spear">Spear</option>
-								<option value="heavy">Heavy</option>
-								<option value="flail">Flail</option>
-								<option value="firearm">Firearm</option>
-								<option value="dagger">Dagger</option>
+                                {{selectOptions weaponCategoriesWithoutCustom selected=system.category.value localize=true}}
 							</select>
 						</div>
 						<div class="resource-content flexcol flex-group-center">
