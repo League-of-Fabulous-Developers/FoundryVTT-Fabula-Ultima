@@ -792,10 +792,11 @@ export class FUItem extends Item {
 		const { rollInfo, opportunity, description, summary, mpCost, target, duration } = this.system;
 		let checkDamage = undefined;
 		if (rollInfo?.damage?.hasDamage?.value) {
+			const damageBonus = this.actor.system.bonuses.damage.spell;
 			checkDamage = {
 				hrZero: rollInfo.useWeapon?.hrZero?.value || hrZero,
 				type: rollInfo.damage.type.value,
-				bonus: rollInfo.damage.value,
+				bonus: rollInfo.damage.value + damageBonus,
 			};
 		}
 
@@ -841,7 +842,8 @@ export class FUItem extends Item {
 		/** @type WeaponDataModel */
 		const dataModel = this.system;
 		const { accuracy, attributes, type, rollInfo, quality, damage, damageType, hands, description, category, summary } = dataModel;
-		const { accuracyCheck, [category.value]: categoryAccuracyBonus = 0 } = this.actor.system.bonuses.accuracy;
+		const { accuracyCheck = 0, [category.value]: categoryAccuracyBonus = 0 } = this.actor.system.bonuses.accuracy;
+		const { [type.value]: typeDamageBonus = 0, [category.value]: categoryDamageBonus = 0 } = this.actor.system.bonuses.damage;
 		/** @type CheckWeapon */
 		let details = {
 			_type: 'weapon',
@@ -874,7 +876,7 @@ export class FUItem extends Item {
 			damage: {
 				hrZero: rollInfo?.useWeapon?.hrZero?.value || hrZero,
 				type: damageType.value,
-				bonus: damage.value,
+				bonus: damage.value + categoryDamageBonus + typeDamageBonus,
 			},
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
 		});

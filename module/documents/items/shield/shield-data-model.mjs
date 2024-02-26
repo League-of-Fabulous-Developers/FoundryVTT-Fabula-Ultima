@@ -1,6 +1,6 @@
-import {FU} from '../../../helpers/config.mjs';
-import {IsEquippedDataModel} from '../common/is-equipped-data-model.mjs';
-import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs';
+import { FU } from '../../../helpers/config.mjs';
+import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
+import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
 
 /**
  * @property {string} subtype.value
@@ -45,12 +45,12 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 			def: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			mdef: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
-			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'ins' }, secondary: { value: 'mig' } } }),
+			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'mig' }, secondary: { value: 'mig' } } }),
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
-			damage: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
+			damage: new SchemaField({ value: new NumberField({ initial: 5, integer: true, nullable: false }) }),
 			type: new SchemaField({ value: new StringField({ initial: 'melee', choices: Object.keys(FU.weaponTypes) }) }),
 			category: new SchemaField({ value: new StringField({ initial: 'brawling', choices: Object.keys(FU.weaponCategories) }) }),
-			hands: new SchemaField({ value: new StringField({ initial: 'one-handed', choices: Object.keys(FU.handedness) }) }),
+			hands: new SchemaField({ value: new StringField({ initial: 'two-handed', choices: Object.keys(FU.handedness) }) }),
 			impType: new SchemaField({ value: new StringField({ initial: 'minor', choices: ['minor', 'heavy', 'massive'] }) }),
 			damageType: new SchemaField({ value: new StringField({ initial: 'physical', blank: true, choices: Object.keys(FU.damageTypes) }) }),
 			isBehavior: new SchemaField({ value: new BooleanField() }),

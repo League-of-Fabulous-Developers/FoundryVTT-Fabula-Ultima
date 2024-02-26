@@ -1,6 +1,7 @@
 /**
- * @property {number} physical
- * @property {number} magic
+ * @property {number} melee
+ * @property {number} ranged
+ * @property {number} spell
  * @property {number} arcane
  * @property {number} bow
  * @property {number} brawling
@@ -16,8 +17,9 @@ export class DamageBonusesDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { NumberField } = foundry.data.fields;
 		return {
-			physical: new NumberField({ initial: 0, integer: true, nullable: false }),
-			magic: new NumberField({ initial: 0, integer: true, nullable: false }),
+			melee: new NumberField({ initial: 0, integer: true, nullable: false }),
+			ranged: new NumberField({ initial: 0, integer: true, nullable: false }),
+			spell: new NumberField({ initial: 0, integer: true, nullable: false }),
 			arcane: new NumberField({ initial: 0, integer: true, nullable: false }),
 			bow: new NumberField({ initial: 0, integer: true, nullable: false }),
 			brawling: new NumberField({ initial: 0, integer: true, nullable: false }),
