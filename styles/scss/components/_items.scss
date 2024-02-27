@@ -153,6 +153,7 @@
       text-overflow: ellipsis;
       max-width: 100%;
       margin-left: 10px;
+      gap: 2px;
     }
   }
 
@@ -172,6 +173,7 @@
       text-overflow: ellipsis;
       max-width: 100%;
       margin-left: 10px;
+      gap: 2px;
     }
   }
 
@@ -190,6 +192,7 @@
       align-items: center;
       white-space: nowrap;
       justify-content: flex-end;
+      gap: 2px;
     }
 
     .equipped-item-content {
@@ -213,9 +216,8 @@
       position: relative;
       display: flex;
       align-items: center;
-      /* Vertically center the icon and text */
       white-space: nowrap;
-      /* Prevent text from wrapping */
+      gap: 2px;
     }
 
     .equipped-item-content {
@@ -233,10 +235,12 @@
   position: sticky;
   background-color: $color-secondary;
   color: $color-primary;
-  padding: 0px 2px;
+  padding: 0 2px;
   border-radius: 5px;
-  font-size: 11px;
+  font-size: 12px;
   margin: 0;
+  flex: 0 0 16px;
+  text-align: center;
 }
 
 /* ----------------------------------------- */
@@ -431,6 +435,15 @@ span[data-tooltip] {
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
+}
+.item-progressbar {
+  flex: 2;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  justify-content: center;
+  align-content: stretch;
+  flex-wrap: wrap;
 }
 
 .start {

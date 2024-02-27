@@ -1,3 +1,4 @@
+{{#if item.system.isEquipped}}
 <div class="item-xs equipped-icon-container">
 	<a class="item-control item-equip" data-slot="{{ item.system.isEquipped.slot }}" {{#if
 		item.system.isEquipped.value}} data-tooltip="{{ localize 'FU.UnequipItem' }}" {{else}}
@@ -9,3 +10,4 @@
 		{{/if}}
 	</a>
 </div>
+{{/if}}

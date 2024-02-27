@@ -16,6 +16,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/sections/actor-section-settings.hbs',
 
 		// Actor Component partials.
+		'systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs',
 		'systems/projectfu/templates/actor/partials/actor-study.hbs',
 		'systems/projectfu/templates/actor/partials/actor-affinities.hbs',
 		'systems/projectfu/templates/actor/partials/actor-attributes.hbs',

@@ -7,33 +7,33 @@
 		</span>
 	</header>
 
-    {{#each classFeatures}}
-    <ol class="items-list">
-        <li class="item flexrow items-header">
-            <div class="item-name">{{localize feature.translation}}</div>
-            <div class="item-sm end">
-                <div class="item-controls">
-                    <a class="item-control item-create" aria-describedby="tooltip"
-                       data-tooltip="{{localize 'FU.ClassFeatureCreate' featureType=(localize feature.translation)}}" data-type="classFeature" data-feature-type="{{@key}}">
-                        <i class="fas fa-plus icon"></i>{{localize 'FU.Add'}}</a>
-                </div>
-            </div>
-        </li>
-        {{#each items }}
-        <li class="item" data-item-id="{{ item._id }}">
-        <div class="flexrow">
-            {{!-- Item Name--}}
-            {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-            {{> (lookup ../feature 'previewTemplate') item additionalData=additionalData}}
-            {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-        </div>
-        </li>
-        {{/each}}
-    </ol>
-    {{/each}}
+	{{#each classFeatures}}
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			<div class="item-name">{{localize feature.translation}}</div>
+			<div class="item-sm end">
+				<div class="item-controls">
+					<a class="item-control item-create" aria-describedby="tooltip"
+						data-tooltip="{{localize 'FU.ClassFeatureCreate' featureType=(localize feature.translation)}}"
+						data-type="classFeature" data-feature-type="{{@key}}">
+						<i class="fas fa-plus icon"></i>{{localize 'FU.Add'}}</a>
+				</div>
+			</div>
+		</li>
+		{{#each items }}
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow">
+				{{!-- Item Name--}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> (lookup ../feature 'previewTemplate') item additionalData=additionalData}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+			</div>
+		</li>
+		{{/each}}
+	</ol>
+	{{/each}}
 
-
-    {{!-- Zero Powers Section--}}
+	{{!-- Zero Powers Section--}}
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize 'FU.Limit'}}</div>
@@ -135,23 +135,13 @@
 		</li>
 		{{/each}}
 	</ol>
-</section>
-{{/if}}
 
-{{!-- Projects Section--}}
-<section class="desc">
-	<header class="items-main-header">
-		<span class="items-main">
-			<label class="items-label">{{localize "FU.Projects"}}</label>
-		</span>
-
-	</header>
+	{{!-- Projects Section--}}
 	<ol class="items-list">
 		<li class="item flexrow items-header">
-			<div class="item-name">{{localize "FU.Name"}}</div>
+			<div class="item-name">{{localize "FU.Projects"}}</div>
+			<div class="item-progressbar">{{localize "FU.ProjectStatus"}}</div>
 			<div class="item-sm">{{localize "FU.Progress"}}</div>
-			<div class="item-lg">{{localize "FU.ProgressPerDay"}}</div>
-			<div class="item-sm">{{localize "FU.Cost"}}</div>
 			<div class="item-sm end">
 				<a class="item-control item-create" aria-describedby="tooltip"
 					data-tooltip="{{localize 'FU.ProjectCreate'}}" data-type="project">
@@ -165,10 +155,16 @@
 			<div class="flexrow">
 				{{!-- Item Name--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+
+				<div class="item-progressbar">
+					<div class="bar bar-progress">
+						<div class="bar-progress-bar bar-project"
+							style="width: {{calculatePercentage item.system.progress.current item.system.progress.max}};">
+						</div>
+						<span class="bar-value"></span>
+					</div>
+				</div>
 				<div class="item-sm">{{ item.system.progress.current }} / {{ item.system.progress.max }}</div>
-				<div class="item-xs">{{ item.system.progressPerDay.value }}</div>
-				<div class="item-xs">{{ item.system.days.value }}</div>
-				<div class="item-sm">{{ item.system.cost.value }}z</div>
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
@@ -180,3 +176,4 @@
 		{{/each}}
 	</ol>
 </section>
+{{/if}}

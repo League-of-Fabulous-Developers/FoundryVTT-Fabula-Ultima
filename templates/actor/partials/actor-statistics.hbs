@@ -199,45 +199,60 @@
             </div>
             {{/if}}
 
-
-
             {{#if (eq actor.type "npc")}}
             {{!-- Creature Rank --}}
-            <div class="resource-content levelup-container creature flex-group-center desc" style="">
-                <span class="resource-content levelup-container flexcol flex-group-center">
-                    <label class="resource-label-l" data-tooltip="{{localize 'FU.Creatture'}}"
-                        aria-describedby="tooltip">
-                        <i class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.Creature'}}
-                    </label>
-                    <span class="flexrow combineBar" style="">
-                        <select id="specieSelect" "{{ system.species.value }}" name="system.species.value"
-                            class="resource-inputs">
-                            {{#select system.species.value}} {{#if system.isCompanion.value}}
-                            {{!-- Companion Options --}}
-                            <option value="beast">{{localize 'FU.Beast'}}</option>
-                            <option value="construct">{{localize 'FU.Construct'}}</option>
-                            <option value="elemental">{{localize 'FU.Elemental'}}</option>
-                            <option value="plant">{{localize 'FU.Plant'}}</option>
-                            <option value="custom">{{localize 'FU.Custom'}}</option>
-                            {{else}}
-                            {{!-- Creature Options --}}
-                            <option value="beast">{{localize 'FU.Beast'}}</option>
-                            <option value="construct">{{localize 'FU.Construct'}}</option>
-                            <option value="demon">{{localize 'FU.Demon'}}</option>
-                            <option value="elemental">{{localize 'FU.Elemental'}}</option>
-                            <option value="monster">{{localize 'FU.Monster'}}</option>
-                            <option value="plant">{{localize 'FU.Plant'}}</option>
-                            <option value="undead">{{localize 'FU.Undead'}}</option>
-                            <option value="humanoid">{{localize 'FU.Humanoid'}}</option>
-                            <option value="custom">{{localize 'FU.Custom'}}</option>
-                            {{/if}} {{/select}}
-                        </select>
-                        <span class="resource-inputs">
-                            <input type="checkbox" id="isCompanionCheckbox" data-tooltip="{{localize 'FU.isCompanion'}}"
-                                name="system.isCompanion.value" {{checked system.isCompanion.value}} />
+            <div class="flexcol" style="gap:1px;">
+                <div class="resource-content levelup-container creature flex-group-center desc" style="">
+                    <span class="resource-content levelup-container flexcol flex-group-center">
+                        <label class="resource-label-l" data-tooltip="{{localize 'FU.CreatureType'}}"
+                            aria-describedby="tooltip">
+                            <i class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.CreatureType'}}
+                        </label>
+                        <span class="flexrow combineBar" style="border: 0.125em solid #c7c7c7;">
+                            <select id="specieSelect" "{{ system.species.value }}" name="system.species.value"
+                                class="resource-inputs">
+                                {{#select system.species.value}} {{#if system.isCompanion.value}}
+                                {{!-- Companion Options --}}
+                                <option value="beast">{{localize 'FU.Beast'}}</option>
+                                <option value="construct">{{localize 'FU.Construct'}}</option>
+                                <option value="elemental">{{localize 'FU.Elemental'}}</option>
+                                <option value="plant">{{localize 'FU.Plant'}}</option>
+                                <option value="custom">{{localize 'FU.Custom'}}</option>
+                                {{else}}
+                                {{!-- Creature Options --}}
+                                <option value="beast">{{localize 'FU.Beast'}}</option>
+                                <option value="construct">{{localize 'FU.Construct'}}</option>
+                                <option value="demon">{{localize 'FU.Demon'}}</option>
+                                <option value="elemental">{{localize 'FU.Elemental'}}</option>
+                                <option value="monster">{{localize 'FU.Monster'}}</option>
+                                <option value="plant">{{localize 'FU.Plant'}}</option>
+                                <option value="undead">{{localize 'FU.Undead'}}</option>
+                                <option value="humanoid">{{localize 'FU.Humanoid'}}</option>
+                                <option value="custom">{{localize 'FU.Custom'}}</option>
+                                {{/if}} {{/select}}
+                            </select>
+                            <span class="resource-inputs">
+                                <input type="checkbox" id="isCompanionCheckbox"
+                                    data-tooltip="{{localize 'FU.isCompanion'}}" name="system.isCompanion.value"
+                                    {{checked system.isCompanion.value}} />
+                            </span>
                         </span>
                     </span>
-                </span>
+                </div>
+
+                <div class="resource-content">
+                    {{!-- <label class="resource-label-sm">{{localize 'FU.VillainType'}}</label> --}}
+                    <select type="text" name="system.villain.value" value="{{ system.villain.value }}"
+                        data-dtype="String" class="resource-inputs"
+                        style="border-radius: 0 0 0 14px; width: 100%; padding: 2px; border: 0.125em solid #c7c7c7;">
+                        {{#select system.villain.value}}
+                        <option value="">Non-Villain</option>
+                        <option value="minor">Minor Villain</option>
+                        <option value="major">Major Villain</option>
+                        <option value="supreme">Supreme Villain</option>
+                        {{/select}}
+                    </select>
+                </div>
             </div>
             {{/if}}
 

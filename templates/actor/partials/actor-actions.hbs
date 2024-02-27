@@ -4,7 +4,7 @@
     <legend class="resource-label-m">
         {{localize 'FU.Actions'}}
     </legend>
-    <div class="action-container grid grid-2col">
+    {{!-- <div class="action-container grid grid-2col">
         {{#each items as |item id|}}
         {{#if (eq item.system.isEquipped.slot "mainHand")}}
         {{#if (eq item.system.hands.value "one-handed")}}
@@ -26,7 +26,7 @@
         </span>
         {{/if}}
         {{/each}}
-    </div>
+    </div> --}}
     <div class="action-container grid grid-2col">
         <span class="action-button left-hand rollable " id="equipmentAction" data-action="equipmentAction"
             data-roll-type="action-type">
