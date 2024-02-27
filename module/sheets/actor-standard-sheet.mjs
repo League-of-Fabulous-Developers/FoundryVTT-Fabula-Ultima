@@ -849,9 +849,12 @@ export class FUStandardActorSheet extends ActorSheet {
 			item.roll();
 		} else {
 		}
+		// Get the value of optionTargetPriority from game settings
+		const settingValue = game.settings.get('projectfu', 'optionTargetPriority');
 
-		// Prepare an array for target priority
-		const targetArray = [1, 2, 3, 4, 5];
+		// Prepare an array for target priority with a length equal to settingValue
+		const targetArray = Array.from({ length: settingValue }, (_, index) => index + 1);
+
 		shuffleArray(targetArray); // Assuming shuffleArray is defined elsewhere
 
 		// Prepare the content for the chat message

@@ -4,6 +4,8 @@ export const SETTINGS = Object.freeze({
 	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
 	optionCampingRules: 'optionCampingRules',
+	optionBehaviorRoll: 'optionBehaviorRoll',
+	optionTargetPriority: 'optionTargetPriority',
 	collapseDescriptions: 'collapseDescriptions',
 	experimentalCombatTracker: 'experimentalCombatTracker',
 });
@@ -38,10 +40,38 @@ export const registerSystemSettings = async function () {
 
 	game.settings.register(SYSTEM, SETTINGS.optionCampingRules, {
 		name: 'Enable Camping Activities?',
-		hint: 'Play with the Camping Activities optional rule from Natural Fantasy Playtest',
+		hint: 'Play with the Camping Activities optional rule from Natural Fantasy Playtest.',
 		scope: 'world',
 		config: false,
 		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionBehaviorRoll, {
+		name: 'Enable Behavior Roll?',
+		hint: 'Play with the Random Targeting rule from Core Rulebook pg 297.',
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.registerMenu(SYSTEM, 'myBehaviorRolls', {
+		name: 'Behavior Rolls',
+		label: 'Manage Behavior Rolls',
+		hint: ' Manage the Behavior Roll mechanic based on Random Targeting.',
+		icon: 'fas fa-book',
+		type: myBehaviorRolls,
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionTargetPriority, {
+		name: 'Total Party Members?',
+		hint: 'How many heroes are currently in your party for target priority.',
+		scope: 'world',
+		config: false,
+		type: Number,
 		default: false,
 	});
 
@@ -87,5 +117,28 @@ class OptionalRules extends FormApplication {
 		game.settings.set(SYSTEM, SETTINGS.optionQuirks, optionQuirks);
 		game.settings.set(SYSTEM, SETTINGS.optionZeroPower, optionZeroPower);
 		game.settings.set(SYSTEM, SETTINGS.optionCampingRules, optionCampingRules);
+	}
+}
+
+class myBehaviorRolls extends FormApplication {
+	static get defaultOptions() {
+		return foundry.utils.mergeObject(super.defaultOptions, {
+			template: 'systems/projectfu/templates/system/settings/behavior-rolls.hbs',
+		});
+	}
+
+	getData() {
+		let newVar = {
+			optionBehaviorRoll: game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll),
+			optionTargetPriority: game.settings.get(SYSTEM, SETTINGS.optionTargetPriority),
+		};
+		console.log(newVar);
+		return newVar;
+	}
+
+	async _updateObject(event, formData) {
+		const { optionBehaviorRoll, optionTargetPriority } = expandObject(formData);
+		game.settings.set(SYSTEM, SETTINGS.optionBehaviorRoll, optionBehaviorRoll);
+		game.settings.set(SYSTEM, SETTINGS.optionTargetPriority, optionTargetPriority);
 	}
 }

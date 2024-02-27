@@ -161,7 +161,8 @@
 				{{#if system.hasClock.value}}
 				<fieldset class="title-fieldset desc ">
 					<legend>
-						<label class="resource-label-m"><i class="fas fa-clock icon"></i>{{localize 'FU.Clocks'}}</label>
+						<label class="resource-label-m"><i class="fas fa-clock icon"></i>{{localize
+							'FU.Clocks'}}</label>
 					</legend>
 					<div class="grid grid-3col">
 						<div class=" flexcol flex-group-center">
@@ -182,23 +183,8 @@
 					</div>
 				</fieldset>
 				{{/if}}
-
-				{{!-- Optional Features --}}
-				{{#if (and (eq actor.type "npc") system.isBehavior.value)}}
-				<fieldset class="title-fieldset desc ">
-					<legend>
-						<label class="resource-label-m"></i>{{localize 'FU.OptionalFeats'}}</label>
-					</legend>
-					<div class="grid grid-4col">
-						<div class=" flexcol flex-group-center">
-							<label class="resource-label-m">{{localize 'FU.BehaviorWeight'}}</label>
-							<input type="number" name="system.weight.value" value="{{ system.weight.value }}"
-								data-dtype="Number" class="resource-inputs select-dropdown-m" />
-						</div>
-					</div>
-				</fieldset>
-				{{/if}}
-
+				{{!-- Behavior Field --}}
+				{{> "systems/projectfu/templates/item/partials/item-behavior-field.hbs"}}
 			</div>
 		</div>
 	</section>

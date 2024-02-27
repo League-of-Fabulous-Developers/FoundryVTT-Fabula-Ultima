@@ -50,6 +50,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/item/partials/item-skill-header.hbs',
 		'systems/projectfu/templates/item/partials/item-heroic-header.hbs',
 		'systems/projectfu/templates/item/partials/item-progress-header.hbs',
+		'systems/projectfu/templates/item/partials/item-behavior-field.hbs',
 
 		// Dialogs
 		'systems/projectfu/templates/dialog/dialog-check.hbs',
@@ -109,6 +110,10 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/symbolist/feature-symbol-sheet.hbs',
 	]);
 };
+
+Handlebars.registerHelper('getGameSetting', function (settingKey) {
+	return game.settings.get('projectfu', settingKey);
+});
 
 Handlebars.registerHelper('capitalize', function (str) {
 	if (str && typeof str === 'string') {

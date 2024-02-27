@@ -1,0 +1,27 @@
+<form style="padding:10px" autocomplete="off" onsubmit="event.preventDefault();">
+    <p class="instructions">Decide how you would like to alter the behavior roll mechanic.</p>
+    <!-- optionBehaviorRoll -->
+    <div class="form-group">
+        <label for="optionBehaviorRoll">Enable Behavior Roll?</label>
+        <div class="form-fields">
+            <input type="checkbox" name="optionBehaviorRoll" id="optionBehaviorRoll" {{checked optionBehaviorRoll}}>
+        </div>
+        <p class="notes">Play with the Random Targeting rule from Core Rulebook pg 297.</p>
+    </div>
+    <!-- optionTargetPriority -->
+    <div class="form-group">
+        <label for="optionTargetPriority">Total Party Members?</label>
+        <div class="form-fields">
+            <input type="text" name="optionTargetPriority" id="optionTargetPriority" class="text" value="{{optionTargetPriority}}">
+        </div>
+        <p class="notes">How many heroes are currently in your party for target priority.</p>
+    </div>
+    <div class="form-group buttons">
+        <button type="submit">
+            <i class="far fa-save"></i> Save Changes
+        </button>
+        <button type="reset" name="reset">
+            <i class="fas fa-undo"></i> Reset Changes
+        </button>
+    </div>
+</form>

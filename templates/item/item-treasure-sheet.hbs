@@ -32,13 +32,8 @@
 							<input type="text" name="system.origin.value" value="{{ system.origin.value }}"
 								data-dtype="String" class="resource-inputs select-dropdown-xl" />
 						</div>
-						{{#if (and (eq actor.type "npc") system.isBehavior.value)}}
-						<div class="resource-content flexcol flex-group-center">
-							<label class="resource-label-m">{{localize 'FU.BehaviorWeight'}}</label>
-							<input type="number" name="system.weight.value" value="{{ system.weight.value }}"
-								data-dtype="Number" class="resource-inputs select-dropdown-m" />
-						</div>
-						{{/if}}
+						{{!-- Behavior Field --}}
+						{{> "systems/projectfu/templates/item/partials/item-behavior-field.hbs"}}
 					</div>
 				</fieldset>
 

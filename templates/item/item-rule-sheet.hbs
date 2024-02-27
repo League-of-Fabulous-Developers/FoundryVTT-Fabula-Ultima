@@ -27,14 +27,6 @@
 				{{!-- Optional Feature Section --}}
 				<div class="grid grid-4col">
 					{{#if (eq actor.type "npc")}}
-					{{#if system.isBehavior.value}}
-					<div class="resource-content flexcol flex-group-center">
-						<label class="resource-label-m">{{localize 'FU.BehaviorWeight'}}</label>
-						<input type="number" name="system.weight.value" value="{{ system.weight.value }}"
-							data-dtype="Number" class="resource-inputs select-dropdown-m" />
-					</div>
-					{{/if}}
-
 					{{#if system.hasClock.value}}
 					<div class="resource-content flexcol flex-group-center">
 						<label class="resource-label-m">{{localize 'FU.Current'}}</label>
@@ -52,7 +44,6 @@
 							class="resource-inputs select-dropdown-m" />
 					</div>
 					{{/if}}
-
 					{{/if}}
 				</div>
 			</fieldset>
@@ -61,6 +52,10 @@
 					rollData=rollData
 					button=true owner=owner editable=editable}}</div>
 			</div>
+		</div>
+		<div class="tab attributes" data-group="primary" data-tab="attributes">
+			{{!-- Behavior Field --}}
+			{{> "systems/projectfu/templates/item/partials/item-behavior-field.hbs"}}
 		</div>
 	</section>
 </form>
