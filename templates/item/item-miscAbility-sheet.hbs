@@ -10,8 +10,9 @@
 		</div>
 
 		{{!-- Description Tab --}}
-		<div class="tab desc" data-group="primary" data-tab="description">{{editor enrichedHtml.description
-			target="system.description" rollData=rollData button=true owner=owner editable=editable}}</div>
+		<div class="tab desc" data-group="primary" data-tab="description">
+			{{editor enrichedHtml.description target="system.description" engine="prosemirror" button=true}}
+		</div>
 
 		{{!-- Attributes Tab --}}
 		<div class="tab attributes resource-content" data-group="primary" data-tab="attributes">

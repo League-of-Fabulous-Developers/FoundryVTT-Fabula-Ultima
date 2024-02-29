@@ -33,9 +33,9 @@
 
 				{{!-- Description Section --}}
 				<div class="grid-span-2 desc flex-between">
-					<div class="quarter-desc">{{editor enrichedHtml.description target="system.description"
-						rollData=rollData
-						button=true owner=owner editable=editable}}</div>
+					<div class="quarter-desc">
+						{{editor enrichedHtml.description target="system.description" engine="prosemirror" button=true}}
+					</div>
 				</div>
 			</section>
 		</div>

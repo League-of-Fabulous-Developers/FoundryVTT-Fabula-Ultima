@@ -3,13 +3,13 @@
 
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
-		
+
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
 			{{> "systems/projectfu/templates/item/partials/item-effects.hbs"}}
 		</div>
 
-		
+
 		{{!-- Attributes Tab --}}
 		<div class="tab attributes" data-group="primary" data-tab="description">
 
@@ -34,9 +34,9 @@
 
 				{{!-- Description Section --}}
 				<div class="grid-span-2 desc flex-between">
-					<div class="quarter-desc">{{editor enrichedHtml.description target="system.description"
-						rollData=rollData
-						button=true owner=owner editable=editable}}</div>
+					<div class="quarter-desc">
+						{{editor enrichedHtml.description target="system.description" engine="prosemirror" button=true}}
+					</div>
 				</div>
 
 			</section>

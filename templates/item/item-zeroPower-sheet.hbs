@@ -21,8 +21,8 @@
 							data-dtype="String" placeholder="{{localize 'FU.LimitTrigger'}}"
 							class="resource-label-m resource-inputs select-dropdown-full" />
 					</legend>
-					{{editor enrichedHtml.zeroTrigger target="system.zeroTrigger.description"
-					rollData=rollData button=true owner=owner editable=editable}}
+					{{editor enrichedHtml.zeroTrigger target="system.zeroTrigger.description" engine="prosemirror"
+					button=true}}
 				</fieldset>
 
 				{{!-- Zero Effect --}}
@@ -32,8 +32,8 @@
 							data-dtype="String" placeholder="{{localize 'FU.LimitEffect'}}"
 							class="resource-label-m resource-inputs select-dropdown-full" />
 					</legend>
-					{{editor enrichedHtml.zeroEffect target="system.zeroEffect.description" rollData=rollData
-					button=true owner=owner editable=editable}}
+					{{editor enrichedHtml.zeroEffect target="system.zeroEffect.description" engine="prosemirror"
+					button=true}}
 				</fieldset>
 			</div>
 		</div>
