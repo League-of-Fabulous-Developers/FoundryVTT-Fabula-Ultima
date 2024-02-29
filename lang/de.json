@@ -697,6 +697,8 @@
         "ClassFeatureDanceDurationInstant" : "Sofort",
         "ClassFeatureDanceDurationNextTurn" : "Bis zum Beginn deines nächsten Zuges",
         "ClassFeatureSymbol" : "Symbol",
-        "GroupCheckTooltip" : "Umschalt + Klick für Initiativeprobe"
+        "GroupCheckTooltip" : "Umschalt + Klick für Initiativeprobe",
+		"RollGroupCheck":"Roll Group Check",
+		"Cancel":"Cancel"
     }
 }
