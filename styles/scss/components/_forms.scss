@@ -205,7 +205,8 @@
 .sheet-wrapper {
   display: flex;
   flex-direction: column;
-  max-height: 38vh;
+  height: 100%;
+  overflow-y: scroll;
 
   /* Sheet Body */
   .sheet-body,
@@ -349,4 +350,14 @@
 /* Tox Edit Area Styles */
 .tox .tox-edit-area {
   margin: 0 10px;
+}
+
+.sheet-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .sheet-header, .sheet-footer {
+        flex: 0;
+    }
 }

@@ -1,4 +1,4 @@
-<fieldset class="title-fieldset desc resource-content" style="max-height: 23em;">
+<fieldset class="title-fieldset desc resource-content">
 	<legend class="resource-label-m">
 		{{localize 'FU.Favorite'}}
 	</legend>
@@ -22,8 +22,15 @@
 			<div class="flexrow">
 				{{!-- Item Name --}}
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-
-				{{!-- Item Equip --}}
+                {{!-- Class Features --}}
+                {{#if (eq item.type 'classFeature')}}
+                    {{#with (lookup @root.classFeatures item.system.featureType) as | featureType |}}
+                        {{#with (lookup featureType.items item._id) as | itemData |}}
+                            {{> (lookup featureType.feature 'previewTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
+                        {{/with}}
+                    {{/with}}
+                {{/if}}
+				{{!-- Item Equip--}}
 				{{#if (or (eq @root.actor.type "character") @root.actor.system.useEquipment.value)}}
 				{{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" actor=actor item=item}}
 				{{/if}}

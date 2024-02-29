@@ -5,4 +5,8 @@ $sizes: 25, 50, 75, 100;
     .w-#{$size} {
         width: $size * 1%;
     }
+
+    .h-#{$size} {
+        height: $size * 1%;
+    }
 }

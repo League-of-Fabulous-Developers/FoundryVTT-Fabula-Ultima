@@ -11,7 +11,7 @@ const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex
 export class FUStandardActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['projectfu', 'sheet', 'actor'],
 			template: 'systems/projectfu/templates/actor/actor-character-sheet.hbs',
 			width: 750,
@@ -23,6 +23,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					initial: 'stats',
 				},
 			],
+			scrollY: ['.sheet-body'],
 		});
 	}
 
@@ -366,9 +367,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		for (const item of this.actor.itemTypes.classFeature) {
 			const featureType = (context.classFeatures[item.system.featureType] ??= {
 				feature: item.system.data?.constructor,
-				items: [],
+				items: {},
 			});
-			featureType.items.push({ item, additionalData: await featureType.feature?.getAdditionalData(item.system.data) });
+			featureType.items[item.id] = { item, additionalData: await featureType.feature?.getAdditionalData(item.system.data) };
 		}
 	}
 

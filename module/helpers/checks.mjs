@@ -114,7 +114,7 @@
  * @typedef CheckDamage
  * @property {boolean} hrZero
  * @property {number} bonus
- * @property {Affinity} type
+ * @property {DamageType} type
  * @property {number} [total]
  */
 

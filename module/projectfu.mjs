@@ -8,7 +8,7 @@ import { FUItemSheet } from './sheets/item-sheet.mjs';
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU } from './helpers/config.mjs';
 import { registerSystemSettings, SETTINGS, SYSTEM } from './settings.js';
-import { addRollContextMenuEntries } from './helpers/checks.mjs';
+import { addRollContextMenuEntries, createCheckMessage, rollCheck } from './helpers/checks.mjs';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -37,12 +37,13 @@ import { statusEffects } from './helpers/statuses.mjs';
 import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-feature-type-data-model.mjs';
 import { ClassFeatureRegistry } from './documents/items/classFeature/class-feature-registry.mjs';
 import { FUClassFeatureSheet } from './documents/items/classFeature/class-feature-sheet.mjs';
-import { ClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
+import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
 import { handlebarsHtmlEnricher } from './helpers/handlebars-html-enricher.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
+	RollableClassFeatureDataModel,
 };
 
 /* -------------------------------------------- */
@@ -61,8 +62,11 @@ Hooks.once('init', async () => {
 		FUActor,
 		FUItem,
 		rollItemMacro,
+		rollCheck,
+		createCheckMessage,
 		GroupCheck: GroupCheck,
 		ClassFeatureDataModel,
+		RollableClassFeatureDataModel,
 	};
 
 	// Add custom constants for configuration.
