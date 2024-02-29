@@ -44,6 +44,8 @@ import {BondDataModel} from '../common/bond-data-model.mjs';
  * @property {boolean} isElite.value
  * @property {number} isChampion.value
  * @property {boolean} isCompanion.value
+ * @property {number} companion.playerLevel
+ * @property {number} companion.skillLevel
  * @property {boolean} useEquipment.value
  * @property {number} study.value
  * @property {string} description
@@ -112,6 +114,10 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			isElite: new SchemaField({ value: new BooleanField({ initial: false }) }),
 			isChampion: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			isCompanion: new SchemaField({ value: new BooleanField({ initial: false }) }),
+			companion: new SchemaField({
+				playerLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
+				skillLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
+			}),
 			useEquipment: new SchemaField({ value: new BooleanField({ initial: false }) }),
 			study: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 3, integer: true, nullable: false }) }),
 			description: new HTMLField(),

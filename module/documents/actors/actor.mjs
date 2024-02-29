@@ -163,7 +163,7 @@ export class FUActor extends Actor {
 			systemData.resources.hp.max = (systemData.attributes.mig.base * 5 + levelVal + classesWithHp.length * 5 + systemData.resources.hp.bonus) * hpMultiplier;
 		} else if (systemData.isCompanion.value) {
 			// Calculate maximum health points (hp) for Companion with rounding down
-			systemData.resources.hp.max = Math.floor(systemData.attributes.mig.base * systemData.resources.rp3.value) + Math.floor(systemData.resources.rp2.value / 2 + systemData.resources.hp.bonus);
+			systemData.resources.hp.max = Math.floor(systemData.attributes.mig.base * systemData.companion.skillLevel) + Math.floor(systemData.companion.playerLevel / 2 + systemData.resources.hp.bonus);
 		}
 
 		// Calculate maximum mind points (mp) based on various factors.

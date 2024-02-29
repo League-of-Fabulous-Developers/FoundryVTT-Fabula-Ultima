@@ -43,7 +43,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 			opportunity: new StringField(),
-			isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
+			// isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
 			useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'dex' }, secondary: { value: 'ins' } } }),
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),

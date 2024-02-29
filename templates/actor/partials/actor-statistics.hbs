@@ -240,8 +240,28 @@
                     </span>
                 </div>
 
-                <div class="resource-content">
-                    {{!-- <label class="resource-label-sm">{{localize 'FU.VillainType'}}</label> --}}
+                <span class="resource-content levelup-container flexcol flex-group-center">
+                    {{#if system.isCompanion.value}}
+                    <span class="flexrow combineBar resource-content flex-group-center"
+                        style="color:white;border-radius: 0 0 0 14px; width: 100%; border: 0.125em solid #c7c7c7;">
+                        <label class="resource-label-m" for="system.companion.playerLevel"
+                            data-tooltip="{{localize 'FU.PlayerLevel'}}">{{ localize 'FU.LevelAbbr'
+                            }}</label>
+                        <span class="resource-inputs">
+                            <input type="number" id="companionPlayerLevel" name="system.companion.playerLevel"
+                                value="{{ system.companion.playerLevel }}"
+                                style="color:white; height: 1.5em; border: none;" />
+                        </span>
+                        <label class="resource-label-m" for="system.companion.skillLevel"
+                            data-tooltip="{{localize 'FU.SkillLevel'}}">{{ localize
+                            'FU.SkillLevelAbbr' }}</label>
+                        <span class="resource-inputs">
+                            <input type="number" id="companionSkillLevel" name="system.companion.skillLevel"
+                                value="{{ system.companion.skillLevel }}"
+                                style="color:white; height: 1.5em; border: none;" />
+                        </span>
+                    </span>
+                    {{else}}
                     <select type="text" name="system.villain.value" value="{{ system.villain.value }}"
                         data-dtype="String" class="resource-inputs"
                         style="border-radius: 0 0 0 14px; width: 100%; padding: 2px; border: 0.125em solid #c7c7c7;">
@@ -252,7 +272,8 @@
                         <option value="supreme">Supreme Villain</option>
                         {{/select}}
                     </select>
-                </div>
+                    {{/if}}
+                </span>
             </div>
             {{/if}}
 
