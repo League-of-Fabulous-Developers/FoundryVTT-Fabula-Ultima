@@ -1,3 +1,5 @@
+import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
@@ -54,6 +56,9 @@ export class FUItemSheet extends ItemSheet {
 		context.system = itemData.system;
 		context.flags = itemData.flags;
 
+		// Prepare active effects for easier access
+		context.effects = prepareActiveEffectCategories(this.item.effects);
+
 		//Add CONFIG data required
 		context.attrAbbr = CONFIG.FU.attributeAbbreviations;
 		context.damageTypes = CONFIG.FU.damageTypes;
@@ -108,5 +113,10 @@ export class FUItemSheet extends ItemSheet {
 				console.error('Invalid input format. Please use proper syntax "PDFCode PageNumber"');
 			}
 		});
+
+		// Active Effect management
+		html.on('click', '.effect-control', (ev) =>
+			onManageActiveEffect(ev, this.item)
+		);
 	}
 }

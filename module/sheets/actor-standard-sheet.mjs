@@ -789,6 +789,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Grab any data associated with this control.
 		const data = foundry.utils.duplicate(header.dataset);
 		// Initialize a default name.
+		// TODO: Instead of item type, refer to the localized name instead
 		const name = `New ${type.capitalize()}`;
 		// Prepare the item object.
 		const itemData = {
