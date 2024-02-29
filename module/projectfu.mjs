@@ -120,6 +120,7 @@ Hooks.once('init', async () => {
 	}
 
 	// Register status effects
+	if (game.release.generation >= 11) CONFIG.ActiveEffect.legacyTransferral = false;
 	CONFIG.statusEffects = statusEffects;
 
 	// Register sheet application classes

@@ -230,7 +230,6 @@ export class FUCombat extends Combat {
 		await this.setCurrentTurn(this.determineNextTurn());
 		await super.previousRound();
 
-		console.log(this.started);
 		if (!this.started) {
 			await this.setCurrentTurn(undefined);
 		}
