@@ -669,7 +669,6 @@ export async function promptCheck(actor) {
 			difficulty: difficulty,
 			speaker: speaker,
 		};
-		console.log(params);
 		const rolledCheck = await rollCheck(params);
 
 		return await createCheckMessage(rolledCheck);

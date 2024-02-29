@@ -92,7 +92,6 @@ export class ParentDocumentEmbeddedDocumentField extends foundry.data.fields.Doc
 			}
 		}
 		return () => {
-			console.log(collection);
 			const document = collection?.get(value);
 			if (!document) {
 				return this.options.fallback ? value : null;

@@ -103,17 +103,15 @@ class OptionalRules extends FormApplication {
 	}
 
 	getData() {
-		let newVar = {
+		return {
 			optionQuirks: game.settings.get(SYSTEM, SETTINGS.optionQuirks),
 			optionZeroPower: game.settings.get(SYSTEM, SETTINGS.optionZeroPower),
 			optionCampingRules: game.settings.get(SYSTEM, SETTINGS.optionCampingRules),
 		};
-		console.log(newVar);
-		return newVar;
 	}
 
 	async _updateObject(event, formData) {
-		const { optionQuirks, optionZeroPower, optionCampingRules } = expandObject(formData);
+		const { optionQuirks, optionZeroPower, optionCampingRules } = foundry.utils.expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.optionQuirks, optionQuirks);
 		game.settings.set(SYSTEM, SETTINGS.optionZeroPower, optionZeroPower);
 		game.settings.set(SYSTEM, SETTINGS.optionCampingRules, optionCampingRules);
@@ -128,12 +126,10 @@ class myBehaviorRolls extends FormApplication {
 	}
 
 	getData() {
-		let newVar = {
+		return {
 			optionBehaviorRoll: game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll),
 			optionTargetPriority: game.settings.get(SYSTEM, SETTINGS.optionTargetPriority),
 		};
-		console.log(newVar);
-		return newVar;
 	}
 
 	async _updateObject(event, formData) {
