@@ -697,6 +697,8 @@
         "ClassFeatureDanceDurationInstant" : "Instantaneous",
         "ClassFeatureDanceDurationNextTurn" : "Until the start of your next turn",
         "ClassFeatureSymbol" : "Symbol",
-        "GroupCheckTooltip" : "Shift + Click for Initiative Check"
+        "GroupCheckTooltip" : "Shift + Click for Initiative Check",
+		"RollGroupCheck":"Roll Group Check",
+		"Cancel":"Cancel"
     }
 }
