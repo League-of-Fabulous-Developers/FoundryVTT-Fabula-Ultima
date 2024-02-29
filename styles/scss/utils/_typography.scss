@@ -164,7 +164,7 @@ $font-quote: "EB Garamond", sans-serif;
 .description-effect {
   font-size: 15px;
   line-height: 1.45em;
-  font-weight: normal;
+  font-weight: normal !important;
   font-family: $font-primary;
 }
 
