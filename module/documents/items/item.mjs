@@ -14,6 +14,7 @@ export class FUItem extends Item {
 		// As with the actors class, items are documents that can have their data
 		// preparation methods overridden (such as prepareBaseData()).
 		super.prepareData();
+		Hooks.callAll('projectfu.item.dataPrepared', this);
 	}
 
 	/**
@@ -720,7 +721,7 @@ export class FUItem extends Item {
 			return this.rollAbility(isShift);
 		}
 		if (this.type === 'classFeature' && this.system.data instanceof RollableClassFeatureDataModel) {
-			return this.system.data.constructor.roll(this.system.data, this);
+			return this.system.data.constructor.roll(this.system.data, this, isShift);
 		}
 
 		const item = this;

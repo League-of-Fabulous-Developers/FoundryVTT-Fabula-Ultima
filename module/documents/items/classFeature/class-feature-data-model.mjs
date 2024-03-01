@@ -57,14 +57,23 @@ export class ClassFeatureDataModel extends foundry.abstract.DataModel {
 	prepareBaseData() {}
 
 	prepareDerivedData() {}
+
+	get item() {
+		return this.parent?.parent ?? null;
+	}
+
+	get actor() {
+		return this.parent?.parent?.actor ?? null;
+	}
 }
 
 export class RollableClassFeatureDataModel extends ClassFeatureDataModel {
 	/**
 	 * @param {RollableClassFeatureDataModel} model an instance of the RollableClassFeatureDataModel
 	 * @param {FUItem} item the item the model is part of
+	 * @param {boolean} shiftClick if the button was shift-clicked
 	 */
-	static roll(model, item) {
+	static roll(model, item, shiftClick) {
 		ui.notifications.error('Subclasses of RollableClassFeatureDataModel must override the roll() function');
 		throw new Error('Subclasses of RollableClassFeatureDataModel must override the roll() function');
 	}

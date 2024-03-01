@@ -1,8 +1,8 @@
-import {CharacterMigrations} from './character-migrations.mjs';
-import {AffinitiesDataModel} from '../common/affinities-data-model.mjs';
-import {AttributesDataModel} from '../common/attributes-data-model.mjs';
-import {BonusesDataModel} from '../common/bonuses-data-model.mjs';
-import {BondDataModel} from '../common/bond-data-model.mjs';
+import { CharacterMigrations } from './character-migrations.mjs';
+import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
+import { AttributesDataModel } from '../common/attributes-data-model.mjs';
+import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
+import { BondDataModel } from '../common/bond-data-model.mjs';
 
 /**
  * @property {number} level.value

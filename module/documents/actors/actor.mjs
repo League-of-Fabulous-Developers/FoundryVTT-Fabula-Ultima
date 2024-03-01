@@ -1,4 +1,4 @@
-import { statusEffects } from "../../helpers/statuses.mjs";
+import { statusEffects } from '../../helpers/statuses.mjs';
 
 /**
  * Extend the base Actor document by defining a custom roll data structure
@@ -12,6 +12,7 @@ export class FUActor extends Actor {
 		// prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
 		// prepareDerivedData().
 		super.prepareData();
+		Hooks.callAll('projectfu.actor.dataPrepared', this);
 	}
 
 	async getData(options = {}) {
@@ -732,7 +733,8 @@ export class FUActor extends Actor {
 	 * Prepare character roll data.
 	 */
 	_getCharacterRollData(data) {
-		if (this.type !== 'character') {}
+		if (this.type !== 'character') {
+		}
 
 		// Copy the ability scores to the top level, so that rolls can use
 		// formulas like `@str.mod + 4`.
@@ -752,7 +754,8 @@ export class FUActor extends Actor {
 	 * Prepare NPC roll data.
 	 */
 	_getNpcRollData(data) {
-		if (this.type !== 'npc') {}
+		if (this.type !== 'npc') {
+		}
 
 		// Process additional NPC data here.
 	}
@@ -790,23 +793,22 @@ export class FUActor extends Actor {
 			// console.log("Damage taken:", options.damageTaken);
 			this.showFloatyText(options.damageTaken);
 		}
-	
+
 		const { hp } = this.system?.resources || {};
-	
+
 		if (hp && userId === game.userId) {
 			const crisisThreshold = Math.floor(hp.max / 2);
 			const inCrisis = hp.value <= crisisThreshold;
-			const crisisEffect = this.getEmbeddedCollection("ActiveEffect").contents.find(effect => effect.name === "FU.Crisis");
-	
+			const crisisEffect = this.getEmbeddedCollection('ActiveEffect').contents.find((effect) => effect.name === 'FU.Crisis');
+
 			if (inCrisis && !crisisEffect) {
-				this.createEmbeddedDocuments("ActiveEffect", [statusEffects.find(s => s.id === "crisis")]);
+				this.createEmbeddedDocuments('ActiveEffect', [statusEffects.find((s) => s.id === 'crisis')]);
 			} else if (!inCrisis && crisisEffect) {
-				this.deleteEmbeddedDocuments("ActiveEffect", [crisisEffect._id]);
+				this.deleteEmbeddedDocuments('ActiveEffect', [crisisEffect._id]);
 			}
 		}
 		super._onUpdate(changed, options, userId);
 	}
-	
 
 	async showFloatyText(input) {
 		let scrollingTextArgs;
