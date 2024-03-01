@@ -69,8 +69,7 @@
 
             {{!-- Sheet Tab Navigation --}}
             <nav class="sheet-tabs tabs desc flexrow grid-span-2" data-group="primary" style="align-self: stretch;">
-                <a class="item tab-style" data-tab="description">{{localize 'FU.Description'}}</a>
-                <a class="item tab-style" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
+                <a class="item tab-style" data-tab="details">{{localize 'FU.ClassFeatureDetails'}}</a>
                 <a class="item tab-style" data-tab="effects">{{localize 'FU.Effects'}}</a>
             </nav>
         </div>
@@ -78,10 +77,13 @@
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        <div class="tab" data-group="primary" data-tab="description" data-feature-content >
+        <div class="tab" data-group="primary" data-tab="details" data-feature-content>
             {{#if featureTemplate}}
                 {{> (lookup this 'featureTemplate') }}
             {{/if}}
+        </div>
+        <div class="tab" data-group="primary" data-tab="effects">
+            {{> "systems/projectfu/templates/item/partials/item-effects.hbs"}}
         </div>
     </section>
 </form>

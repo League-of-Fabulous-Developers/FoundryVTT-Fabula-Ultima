@@ -638,7 +638,6 @@
         "ClassFeatureGadgetsBenefitsBasic" : "Atouts de bases",
         "ClassFeatureGadgetsBenefitsAdvanced" : "Atouts avancés",
         "ClassFeatureGadgetsBenefitsSuperior" : "Atouts supérieurs",
-        "ClassFeatureGadgetsDescription" : "Description",
         "ClassFeatureGadgetsConfig" : "Config",
         "ClassFeatureGadgetsRank" : "Rang",
         "ClassFeatureGadgetsRankBasic" : "De base",
@@ -699,7 +698,8 @@
         "ClassFeatureDanceDurationNextTurn" : "Jusqu'au début de votre prochain tour",
         "ClassFeatureSymbol" : "Symbole",
         "GroupCheckTooltip" : "Shift + Clique pour test d'Initiative",
-		"RollGroupCheck":"Lancer le test de groupe",
-		"Cancel":"Annuler"
+        "RollGroupCheck" : "Lancer le test de groupe",
+        "Cancel" : "Annuler",
+        "ClassFeatureDetails" : "FU.ClassFeatureDetails"
     }
 }
