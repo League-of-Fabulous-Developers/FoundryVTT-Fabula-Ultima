@@ -5,7 +5,7 @@
 ![foundry-v10-green](https://img.shields.io/badge/foundry-v10-green)
 ![foundry-v11-green](https://img.shields.io/badge/foundry-v11-green)
 
-Welcome to the Unofficial Fabula Ultima System for the {Foundry Virtual Tabletop}(<https://foundryvtt.com/>). This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
+Welcome to the Unofficial Fabula Ultima System for the [Foundry Virtual Tabletop](<https://foundryvtt.com/>). This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
 
 **Disclaimer:** This system has been tested and is ready for use. We recommend backing up your world before trying it.
 
@@ -78,7 +78,7 @@ Major thanks to the following contributors:
 - [Savantford](https://github.com/Savantford) - For providing and allowing me to utilize their clock code.
 - [xeqi](https://github.com/xeqi) - Various fixes to the codebase (bonds, status effects, etc).
 - [Shourn](https://github.com/Shourn) & [Wigginns](https://github.com/Wigginns) - Various refactoring of the codebase.
-- Special thanks to the following contributers found here: [Contributers Link](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/graphs/contributors)
+- Special thanks to the following contributors found here: [Contributors Link](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/graphs/contributors)
 
 A few assets/code were used from the following projects:
 
