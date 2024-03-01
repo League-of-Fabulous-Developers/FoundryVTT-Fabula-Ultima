@@ -1,4 +1,5 @@
 import { ClassFeatureDataModel } from './class-feature-data-model.mjs';
+import { onManageActiveEffect, prepareActiveEffectCategories } from '../../../helpers/effects.mjs';
 
 export class FUClassFeatureSheet extends ItemSheet {
 	static get defaultOptions() {
@@ -87,11 +88,14 @@ export class FUClassFeatureSheet extends ItemSheet {
 			}
 		}
 		data.features = CONFIG.FU.classFeatureRegistry.features();
+		data.effects = prepareActiveEffectCategories(this.item.effects);
 		return data;
 	}
 
 	activateListeners(html) {
 		super.activateListeners(html);
+
+		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.item));
 
 		html.find('[data-action=pdfLink]').click(() => {
 			const match = this.item.system.source.match(/([A-Za-z]+)\s*(\d+)/);

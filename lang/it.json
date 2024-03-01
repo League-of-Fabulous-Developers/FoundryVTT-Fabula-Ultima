@@ -698,7 +698,8 @@
         "ClassFeatureDanceDurationNextTurn" : "FU.ClassFeatureDanceDurationNextTurn",
         "ClassFeatureSymbol" : "FU.ClassFeatureSymbol",
         "GroupCheckTooltip" : "FU.GroupCheckTooltip",
-		"RollGroupCheck":"Roll Group Check",
-		"Cancel":"Cancel"
+        "RollGroupCheck" : "Roll Group Check",
+        "Cancel" : "Cancel",
+        "ClassFeatureDetails" : "FU.ClassFeatureDetails"
     }
 }
