@@ -72,6 +72,7 @@ export class FUItemSheet extends ItemSheet {
 		// Add the actor object to context for easier access
 		context.actor = actorData;
 
+		// Enriches description fields within the context object
 		context.enrichedHtml = {
 			description: await TextEditor.enrichHTML(context.system.description ?? ''),
 			zeroTrigger: await TextEditor.enrichHTML(context.system?.zeroTrigger?.description ?? ''),

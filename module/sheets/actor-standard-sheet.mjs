@@ -269,6 +269,15 @@ export class FUStandardActorSheet extends ActorSheet {
 					item.skillArr = skillArr;
 				}
 			}
+			
+			// Enriches description fields for each item within the context.items array
+			for (let item of context.items) {
+				item.enrichedHtml = {
+				  description: await TextEditor.enrichHTML(item.system?.description ?? ''),
+				  zeroTrigger: await TextEditor.enrichHTML(item.system?.zeroTrigger?.description ?? ''),
+				  zeroEffect: await TextEditor.enrichHTML(item.system?.zeroEffect?.description ?? ''),
+				};
+			}
 
 			if (['armor', 'shield', 'accessory'].includes(i.type)) {
 				i.def = i.isMartial && i.type === 'armor' ? i.system.def.value : `+${i.system.def.value}`;

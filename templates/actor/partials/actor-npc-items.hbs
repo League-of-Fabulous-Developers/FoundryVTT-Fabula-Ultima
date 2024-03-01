@@ -71,8 +71,10 @@
 		</div>
 
 		<span class="item-quality">{{ item.quality }}</span>
-		<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
-			target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+		<div class="individual-description">
+			{{#if item.system.description}}
+			{{{item.enrichedHtml.description}}}
+			{{/if}}
 		</div>
 	</li>
 	{{/each}}
@@ -105,8 +107,10 @@
 			{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 		</div>
 		<span class="item-quality">{{ item.quality }}</span>
-		<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
-			target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+		<div class="individual-description">
+			{{#if item.system.description}}
+			{{{item.enrichedHtml.description}}}
+			{{/if}}
 		</div>
 	</li>
 	{{/each}}
@@ -139,8 +143,10 @@
 			{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 		</div>
 		<span class="item-quality">{{ item.quality }}</span>
-		<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
-			target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+		<div class="individual-description">
+			{{#if item.system.description}}
+			{{{item.enrichedHtml.description}}}
+			{{/if}}
 		</div>
 	</li>
 	{{/each}}
@@ -174,8 +180,9 @@
 		</div>
 		<span class="item-quality">{{ item.quality }}</span>
 		<div class="individual-description" data-item-id="{{ item._id }}">
-			{{#if item.system.description}} {{editor item.system.description target="item.system.description"
-			rollData=rollData button=false owner=owner editable=false}} {{/if}}
+			{{#if item.system.description}}
+			{{{item.enrichedHtml.description}}}
+			{{/if}}
 		</div>
 	</li>
 	{{/each}}

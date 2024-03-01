@@ -14,7 +14,8 @@
     {{/if}}
 
     <nav class="sheet-tabs tabs desc flexrow" data-group="primary" style="align-self: stretch;">
-        <a class="item study-style" data-tooltip="{{localize 'FU.StudyRoll'}}" style="margin-bottom: 5px; min-width: fit-content;">
+        <a class="item study-style" data-tooltip="{{localize 'FU.StudyRoll'}}"
+            style="margin-bottom: 5px; min-width: fit-content;">
             <i class="fa-solid fa-magnifying-glass icon"></i>
             <label for="studySelect" style="padding-right: 5px; cursor: pointer;">{{localize 'FU.Study'}}</label>
             <select name="system.study.value" id="studySelect" value="{{ system.study.value }}" data-dtype="Number"
@@ -74,8 +75,7 @@
         </div>
         <div class="individual-description align-left">
             {{#if item.system.description}}
-            {{editor item.system.description target="item.system.description" rollData=rollData button=false owner=owner
-            editable=false}}
+            {{{item.enrichedHtml.description}}}
             {{/if}}
         </div>
     </li>

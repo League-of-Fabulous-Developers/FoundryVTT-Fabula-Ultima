@@ -7,6 +7,7 @@
 		</span>
 	</header>
 
+	{{!-- Class Feature Sections --}}
 	{{#each classFeatures}}
 	<ol class="items-list">
 		<li class="item flexrow items-header">
@@ -66,34 +67,35 @@
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<div class="individual-description">
-				<div class="flexrow resource-content">
-					<div class="resource-label-l flexcol">{{ item.zeroTrigger }}
-						<span>
-							{{#if item.system.zeroTrigger.description}} {{editor item.system.zeroTrigger.description
-							target="item.system.zeroTrigger.description" rollData=rollData button=false owner=owner
-							editable=false}}
-							{{/if}}</span>
+				<div class="flexrow resource-content align-center">
+					<div class="flexcol">
+						<label class="resource-label-l">{{ item.zeroTrigger }}</label>
+						<span class="resource-text-m">
+							{{#if item.system.zeroTrigger.description}}
+							{{{item.enrichedHtml.zeroTrigger}}}
+							{{/if}}
+						</span>
 					</div>
 
-					<div class="resource-label-l">{{ item.zeroEffect }}
-						<span>{{#if item.system.zeroEffect.description}} {{editor item.system.zeroEffect.description
-							target="item.system.zeroEffect.description" rollData=rollData button=false owner=owner
-							editable=false}}
-							{{/if}}</span>
+					<div class="flexcol">
+						<label class="resource-label-l">{{ item.zeroEffect }}</label>
+						<span class="resource-text-m">
+							{{#if item.system.zeroEffect.description}}
+							{{{item.enrichedHtml.zeroEffect}}}
+							{{/if}}
+						</span>
 					</div>
-
 				</div>
 			</div>
 		</li>
 		{{/each}}
 	</ol>
 
+	{{!-- Misc Abilities Section--}}
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize 'FU.Feature'}}</div>
-			<div class="item-m">{{localize 'FU.ItemType'}}</div>
-			<div class="item-m">Etc.</div>
-			<div class="item-sm">{{localize 'FU.Clock'}}</div>
+			<div class="item-full start">{{localize 'FU.Effect'}}</div>
 			<div class="item-m end">
 				<a class="item-control item-create" aria-describedby="tooltip"
 					data-tooltip="{{localize 'FU.MiscCreate'}}" data-type="miscAbility">
@@ -104,34 +106,49 @@
 		</li>
 		{{#each abilities as |item id|}}
 		<li class="item" data-item-id="{{ item._id }}">
-			<div class="flexrow">
-				{{!-- Item Name--}}
-				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-				<div class="item-m">{{capitalize item.system.subtype.value}}</div>
-				{{!-- Resource Points --}}
-				<div class="item-m buttons-inc">
-					<button class="decrement-button" data-item-id="{{ item._id }}">-</button>
-					<span data-resource="item.rp">{{ item.progress }}</span>
-					<span>/</span>
-					<span>{{ item.system.rp.max }}</span>
-					<button class="increment-button" data-item-id="{{ item._id }}">+</button>
+			<div class="flexrow" style="height: fit-content; align-items: flex-start;">
+				<div class="flexcol">
+					{{!-- Item Name--}}
+					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+					{{#if item.system.subtype}}
+					<div class="item-quality">{{capitalize item.system.subtype.value}}</div>
+					{{/if}}
 				</div>
+				<div class="item-full start description-effect">
+					<p>{{ item.system.summary.value}}</p>
+				</div>
+
+				{{#if item.system.hasClock.value}}
 				<div class="item-sm" style="text-align: initial;">
-					{{#if item.system.hasClock.value}}
 					<div class="progress-container">
 						{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
 						arr=item.progressArr
 						data=item.system.progress}}
 					</div>
-					{{/if}}
 				</div>
+				{{/if}}
+				{{!-- Resource Points --}}
+				{{#if item.system.hasResource.value}}
+				<div class="item-m flexcol flex-group-center resource-content">
+					<label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
+					<div class="resource-text-m buttons-inc">
+						<button class="decrement-button" data-item-id="{{ item._id }}">-</button>
+						<span data-resource="item.rp">{{ item.progress }}</span>
+						<span>/</span>
+						<span>{{ item.system.rp.max }}</span>
+						<button class="increment-button" data-item-id="{{ item._id }}">+</button>
+					</div>
+				</div>
+				{{/if}}
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span class="item-quality">{{ item.quality }}</span>
-			<div class="individual-description align-left">{{#if item.system.description}} {{editor
-				item.system.description target="item.system.description" rollData=rollData button=false owner=owner
-				editable=false}} {{/if}}</div>
+			<div class="individual-description align-left">
+				{{#if item.enrichedHtml.description}}
+				{{{item.enrichedHtml.description}}}
+				{{/if}}
+			</div>
 		</li>
 		{{/each}}
 	</ol>
@@ -169,8 +186,10 @@
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<span>{{ item.quality }}</span>
-			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
-				target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+			<div class="individual-description align-left">
+				{{#if item.enrichedHtml.description}}
+				{{{item.enrichedHtml.description}}}
+				{{/if}}
 			</div>
 		</li>
 		{{/each}}

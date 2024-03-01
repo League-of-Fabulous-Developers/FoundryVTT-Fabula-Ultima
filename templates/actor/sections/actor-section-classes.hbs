@@ -35,10 +35,9 @@
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
-			<div class="individual-description">
+			<div class="individual-description align-left">
 				{{#if item.system.description}}
-				{{editor item.system.description target="item.system.description" rollData=rollData button=false
-				owner=owner editable=false}}
+				{{{item.enrichedHtml.description}}}
 				{{/if}}
 			</div>
 		</li>
@@ -93,8 +92,10 @@
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
-			<div class="individual-description">{{#if item.system.description}} {{editor item.system.description
-				target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}
+			<div class="individual-description align-left">
+				{{#if item.system.description}}
+				{{{item.enrichedHtml.description}}}
+				{{/if}}
 			</div>
 		</li>
 		{{/each}}
@@ -134,9 +135,11 @@
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
-			<div class="individual-description align-left">{{#if item.system.description}} {{editor
-				item.system.description target="item.system.description" rollData=rollData button=false owner=owner
-				editable=false}} {{/if}}</div>
+			<div class="individual-description align-left">
+				{{#if item.system.description}}
+				{{{item.enrichedHtml.description}}}
+				{{/if}}
+			</div>
 		</li>
 		{{/each}}
 	</ol>
