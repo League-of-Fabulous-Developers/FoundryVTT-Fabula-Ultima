@@ -46,6 +46,49 @@ export class FUCombatTracker extends CombatTracker {
 		super.activateListeners(html);
 		html.find('a[data-action=take-turn]').click((event) => this.handleTakeTurn(event));
 		html.find('a[data-action=take-turn-out-of-turn]').click((event) => this.handleTakeTurnOutOfTurn(event));
+		html.find('.combatant').off('click').on('click', (event) => this.customOnCombatantClick(event));
+		html.find('.combatant-name').on('dblclick', (event) => this._onCombatantMouseDown(event));
+	}
+
+	/**
+	 * Custom method for handling combatant click
+	 * @param {Event} event
+	 */
+	customOnCombatantClick(event) {
+		event.preventDefault();
+
+		if (game.settings.get("projectfu", "optionCombatMouseDown")) {
+			// Call the custom function
+			this._onCustomCombatantMouseDown(event);
+		} else {
+			this._onCombatantMouseDown(event);
+		}
+	}
+
+	/**
+	 * Handle custom combatant mouse down
+	 * @param {Event} event
+	 */
+	async _onCustomCombatantMouseDown(event) {
+		event.preventDefault();
+
+		const li = event.currentTarget;
+		const combatant = this.viewed.combatants.get(li.dataset.combatantId);
+		const token = combatant.token;
+		if (!combatant.actor?.testUserPermission(game.user, "OBSERVER")) return;
+
+		// Handle double-left click to open sheet
+		const now = Date.now();
+		const dt = now - this._clickTime;
+		this._clickTime = now;
+		if (dt <= 250) {
+			return combatant.actor?.sheet.render(true);
+		}
+
+    	// Control Token object (no panning)
+		if (token?.object) {
+			token.object?.control({ releaseOthers: true });
+		}
 	}
 
 	/**

@@ -8,6 +8,7 @@ export const SETTINGS = Object.freeze({
 	optionTargetPriority: 'optionTargetPriority',
 	collapseDescriptions: 'collapseDescriptions',
 	experimentalCombatTracker: 'experimentalCombatTracker',
+	optionCombatMouseDown: 'optionCombatMouseDown',
 });
 
 export const registerSystemSettings = async function () {
@@ -92,6 +93,15 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {
+		name: 'Disable Pan to Token for Combat Tracker',
+		hint: 'Enable this option to prevent panning to the token when clicking on a combatant in the Combat Tracker.',
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
 	});
 };
 
