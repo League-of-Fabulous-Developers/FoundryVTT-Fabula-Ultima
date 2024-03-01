@@ -7,12 +7,12 @@
                     <input name="name" type="text" value="{{ actor.name }}" placeholder="Name"
                         data-tooltip="{{ actor.name }}" class="resource-inputs-charname auto-shrink" />
                 </h2>
-                <h3 class="pronouns">
+                <h4 class="pronouns">
                     <input name="system.resources.pronouns.name" type="text"
                         value="{{ system.resources.pronouns.name }}" placeholder="Pronouns"
                         data-tooltip="{{localize 'FU.Pronouns'}}<br>{{ system.resources.pronouns.name }}"
                         class="auto-shrink" />
-                </h3>
+                </h4>
             </div>
             {{#if (eq actor.type "character")}}
             <span class="flexrow grid-span-2"

@@ -8,7 +8,7 @@
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name start"><i class="fas fa-star icon"></i>{{localize 'FU.Favorite'}}</div>
-			<div class="item-xs">Etc.</div>
+			<div class="item-m">Etc.</div>
 			<div class="item-m end">
 				<a id="sortButton" class="item-control sort" data-tooltip="{{localize 'FU.Sort'}}" data-type="sort">
 					<i class="fas fa-sort icon"></i>
@@ -20,12 +20,27 @@
 		{{#if (and item.system.isFavored.value)}}
 		<li class="item" data-item-id="{{ item._id }}">
 			<div class="flexrow">
-				{{!-- Item Name--}}
+				{{!-- Item Name --}}
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-				{{!-- Item Equip--}}
+
+				{{!-- Item Equip --}}
 				{{#if (or (eq @root.actor.type "character") @root.actor.system.useEquipment.value)}}
 				{{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" actor=actor item=item}}
 				{{/if}}
+
+				{{#if item.system.hasResource.value}}
+				<div class="item-m flexcol flex-group-center resource-content">
+					<label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
+					<div class="resource-text-m buttons-inc">
+						<button class="decrement-button" data-item-id="{{ item._id }}">-</button>
+						<span data-resource="item.rp">{{ item.progress }}</span>
+						<span>/</span>
+						<span>{{ item.system.rp.max }}</span>
+						<button class="increment-button" data-item-id="{{ item._id }}">+</button>
+					</div>
+				</div>
+				{{/if}}
+
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>

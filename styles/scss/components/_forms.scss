@@ -156,7 +156,7 @@
   }
 
   /* Pronoun Heading */
-  h3.pronouns {
+  h4.pronouns {
     background-color: transparent;
     border-color: transparent;
     color: $color-black;
@@ -176,11 +176,11 @@
   }
 
   /* Martial Heading */
-  h3.martials {
+  h4.martials {
     border-bottom: 0;
     display: flex;
     align-items: center;
-    height: 3em;
+    height: 2em;
     text-align: center;
     flex-grow: 1;
 
@@ -238,13 +238,13 @@
   /* NPC Description */
   .npc-desc {
     max-height: 14em;
-    min-height: 11em;
+    min-height: 14em;
 
     /* Editor Styles */
     .editor {
       height: 100%;
       max-height: 14em;
-      min-height: 10em;
+      min-height: 14em;
 
       /* Tox Tinymce Styles */
       .tox-tinymce {

@@ -9,6 +9,10 @@
   overflow-x: hidden;
 }
 
+.window-app .window-header {
+  background: $color-secondary;
+}
+
 .sheet nav.sheet-tabs .item {
   margin-block: auto;
   padding: 4px 0 4px 4px;

@@ -1,4 +1,19 @@
+@font-face {
+  font-family: 'CreditValley';
+  src: url('/systems/projectfu/styles/fonts/credit-valley/CreditValley.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CreditValleybold';
+  src: url('/systems/projectfu/styles/fonts/credit-valley/CreditValleybold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 // Font Variables
+$font-title: "CreditValleybold";
 $font-primary: "PT Sans Narrow", sans-serif;
 $font-secondary: "Antonio", sans-serif;
 $font-quote: "EB Garamond", sans-serif;
@@ -7,8 +22,68 @@ $font-quote: "EB Garamond", sans-serif;
 .window-app {
   font-family: $font-primary;
 
+  // Default styles for header
+  h1 {
+    font-family: $font-title;
+    font-size: 32px;
+    font-weight: 700;
+    color: $color-secondary;
+  }
+
+  h2 {
+    font-family: $font-secondary;
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-family: $font-secondary;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  h4 {
+    font-family: $font-secondary;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  h5 {
+    font-family: $font-primary;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  h6 {
+    font-family: $font-primary;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  // Reset implementation for li bullets
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      position: relative;
+      margin-left: 1em;
+
+      &::before {
+        content: "◆";
+        display: inline-block;
+        color: $color-secondary;
+        font-size: 14px;
+        margin-right: 8px;
+        vertical-align: middle;
+        line-height: 1;
+      }
+    }
+  }
+
   // Navigation Styles
-  nav, a.item {
+  nav,
+  a.item {
     font-weight: bold;
   }
 
@@ -53,6 +128,7 @@ $font-quote: "EB Garamond", sans-serif;
         font-family: 'Modesto Condensed';
       }
     }
+
     // Resource Body Text Sizes
     .resource-text-sm {
       font-size: 14px;
@@ -126,6 +202,19 @@ $font-quote: "EB Garamond", sans-serif;
     .editor {
       font-weight: normal;
 
+      h1, h2, h3 {
+        border-bottom: 2px solid $color-secondary;
+      }
+      h1 {
+        line-height: 1.2em;
+      }
+      h2, h3, h4 {
+        line-height: 1.45em;
+      }
+      p {
+        line-height: 1.45em;
+      }
+
       .editor-content {
         font-size: 16px;
         line-height: 1.45em;
@@ -140,80 +229,81 @@ $font-quote: "EB Garamond", sans-serif;
     font-size: 1.25rem;
     text-transform: uppercase;
   }
-  
+
   .pronouns input {
     font-family: Antonio;
     font-size: 16px;
     text-transform: uppercase;
   }
-}
 
-// Styles for .detail-desc class
-.detail-desc {
-  font-size: 14px;
-  line-height: 1.45em;
-  font-weight: bold;
-  font-family: $font-primary;
 
-  div {
+  // Styles for .detail-desc class
+  .detail-desc {
     font-size: 14px;
-    padding: 5px 0;
-  }
-}
-
-.description-effect {
-  font-size: 15px;
-  line-height: 1.45em;
-  font-weight: normal !important;
-  font-family: $font-primary;
-}
-
-// Uppercase Text
-.uppercase {
-  text-transform: uppercase;
-}
-
-// Quote Styles
-.quote {
-  border-left: 3px solid #999;
-  padding-left: 10px;
-  font-style: italic;
-}
-
-// Styles for Chat Description
-.chat-desc {
-  .summary {
-    font-family: $font-quote;
-    font-weight: 700;
-    font-style: italic;
-    font-size: 16px;
     line-height: 1.45em;
-    color: $color-ternary;
-  }
-}
+    font-weight: bold;
+    font-family: $font-primary;
 
-// Styles for Chat Message
-.chat-message {
-  .message-header {
-    .flavor-text {
-      font-size: 20px;
-      line-height: 1.45em;
+    div {
+      font-size: 14px;
+      padding: 5px 0;
     }
   }
-}
 
-// Auto Shrink Text
-.auto-shrink {
-  overflow: hidden;
-  width: 100%;
-  box-sizing: border-box;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
+  .description-effect {
+    font-size: 15px;
+    line-height: 1.45em;
+    font-weight: normal !important;
+    font-family: $font-primary;
+  }
 
-// Navbar Text
-.sheet nav.sheet-tabs .item {
-  text-transform: uppercase;
-  font-size: 16px;
-  line-height: 1.45em;
+  // Uppercase Text
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  // Quote Styles
+  .quote {
+    border-left: 3px solid #999;
+    padding-left: 10px;
+    font-style: italic;
+  }
+
+  // Styles for Chat Description
+  .chat-desc {
+    .summary {
+      font-family: $font-quote;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1.45em;
+      color: $color-ternary;
+    }
+  }
+
+  // Styles for Chat Message
+  .chat-message {
+    .message-header {
+      .flavor-text {
+        font-size: 20px;
+        line-height: 1.45em;
+      }
+    }
+  }
+
+  // Auto Shrink Text
+  .auto-shrink {
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  // Navbar Text
+  .sheet nav.sheet-tabs .item {
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 1.45em;
+  }
 }

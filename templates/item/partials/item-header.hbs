@@ -8,7 +8,7 @@
 						<input name="name" type="text" value="{{ item.name }}" placeholder="Name"
 							data-tooltip="{{ item.name }}" class="resource-inputs-charname auto-shrink" />
 					</h2>
-					<h3 class="martials">
+					<h4 class="martials">
 						{{#if system.isMartial}}
 						<img id="martial-header"
 							class="icon-aff {{#if system.isMartial.value}}fus-martial active{{else}}ful-martial{{/if}}">
@@ -18,7 +18,7 @@
 						<img id="offensive-header"
 							class="icon-aff {{#if system.isOffensive.value}}fus-offensive active{{else}}ful-offensive{{/if}}">
 						{{/if}}
-					</h3>
+					</h4>
 				</div>
 
 				{{!-- Part --}}

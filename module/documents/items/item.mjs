@@ -442,7 +442,7 @@ export class FUItem extends Item {
 		if (hasSummary || hasDescription) {
 			return `<span>
         <details ${collapseDescriptions}>
-        <summary>${game.i18n.localize('FU.Description')}</summary>
+        <summary style="margin-top: 10px">${game.i18n.localize('FU.Description')}</summary>
         <div class="chat-desc">
         ${hasSummary ? `<blockquote class="summary quote">${summary}</blockquote>` : ''}
         ${
