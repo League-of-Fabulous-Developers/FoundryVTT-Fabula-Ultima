@@ -11,7 +11,8 @@
 
 		{{!-- Description Tab --}}
 		<div class="tab desc" data-group="primary" data-tab="description">
-			{{editor enrichedHtml.description target="system.description" engine="prosemirror" button=true}}
+			{{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
+			button=true owner=owner editable=editable }}
 		</div>
 
 		{{!-- Attributes Tab --}}
@@ -21,6 +22,8 @@
 
 				{{!-- General Info Section --}}
 				<fieldset class="title-fieldset desc resource-content grid-span-2">
+					
+					{{!-- Item Controls --}}
 					<div class="item-settings">
 						{{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
 						<label class="checkbox resource-label-sm"> <span>{{localize "FU.HRZeroStatus"}}</span><input

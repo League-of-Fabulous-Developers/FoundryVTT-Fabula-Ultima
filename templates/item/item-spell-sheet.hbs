@@ -3,7 +3,7 @@
 
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
-		
+
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
 			{{> "systems/projectfu/templates/item/partials/item-effects.hbs"}}
@@ -11,7 +11,9 @@
 
 		{{!-- Description Tab --}}
 		<div class="tab desc" data-group="primary" data-tab="description">
-			{{editor enrichedHtml.description target="system.description" engine="prosemirror" button=true}}
+			{{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
+			button=true owner=owner editable=editable }}
+
 		</div>
 
 		{{!-- Attributes Tab --}}
@@ -29,7 +31,8 @@
 								type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
 								system.rollInfo.useWeapon.hrZero.value }} /> </label>
 						<label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsOffensive'}}</span><input
-								type="checkbox" name="system.isOffensive.value" {{ checked system.isOffensive.value }} />
+								type="checkbox" name="system.isOffensive.value" {{ checked system.isOffensive.value
+								}} />
 						</label>
 					</div>
 
@@ -53,7 +56,7 @@
 						<label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize
 							'FU.Accuracy'}}</label>
 					</legend>
-					
+
 					<div class="item-settings">
 						<label class="checkbox resource-label-m"> <span>{{localize 'FU.HasAccuracy'}}</span><input
 								type="checkbox" name="system.hasRoll.value" {{ checked system.hasRoll.value }} />
