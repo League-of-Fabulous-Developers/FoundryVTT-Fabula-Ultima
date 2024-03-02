@@ -1,3 +1,5 @@
+import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
+
 export const FU = {};
 
 /**
@@ -258,3 +260,5 @@ FU.handedness = {
 	'one-handed': 'FU.OneHanded',
 	'two-handed': 'FU.TwoHanded',
 };
+
+FU.classFeatureRegistry = new ClassFeatureRegistry();
