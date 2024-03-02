@@ -35,7 +35,6 @@ import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs'
 import { onSocketLibReady } from './socket.mjs';
 import { statusEffects } from './helpers/statuses.mjs';
 import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-feature-type-data-model.mjs';
-import { ClassFeatureRegistry } from './documents/items/classFeature/class-feature-registry.mjs';
 import { FUClassFeatureSheet } from './documents/items/classFeature/class-feature-sheet.mjs';
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
@@ -143,9 +142,7 @@ Hooks.once('init', async () => {
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 
-	const registry = new ClassFeatureRegistry();
-	Hooks.callAll('projectfu.registerClassFeatures', registry);
-	CONFIG.FU.classFeatureRegistry = registry;
+	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 
 	CONFIG.TextEditor.enrichers.push(handlebarsHtmlEnricher);
 
@@ -154,8 +151,6 @@ Hooks.once('init', async () => {
 });
 
 Hooks.once('setup', () => {});
-
-Hooks.once('projectfu.registerClassFeatures', registerClassFeatures);
 
 /* -------------------------------------------- */
 /*  Handlebars Helpers                          */
