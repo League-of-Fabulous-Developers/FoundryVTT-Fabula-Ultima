@@ -1,3 +1,5 @@
+import { FUActor } from '../documents/actors/actor.mjs';
+
 /**
  * Manage Active Effect instances through the Actor Sheet via effect control buttons.
  * @param {MouseEvent} event      The left-click event on the effect control
@@ -7,7 +9,8 @@ export function onManageActiveEffect(event, owner) {
 	event.preventDefault();
 	const a = event.currentTarget;
 	const li = a.closest('li');
-	const effect = li.dataset.effectId ? owner.effects.get(li.dataset.effectId) : null;
+	const effectId = li.dataset.effectId;
+	const effect = owner instanceof FUActor ? owner.appliedEffects.find((value) => value.id === effectId) : owner.effects.get(effectId);
 	switch (a.dataset.action) {
 		case 'create':
 			return owner.createEmbeddedDocuments('ActiveEffect', [
@@ -77,7 +80,7 @@ export async function toggleStatusEffect(actor, statusEffectId) {
 		await actor.deleteEmbeddedDocuments('ActiveEffect', existing);
 		return false;
 	} else {
-		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId)
+		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId);
 		const cls = getDocumentClass('ActiveEffect');
 		const createData = foundry.utils.deepClone(statusEffect);
 		createData.statuses = [statusEffect.id];
