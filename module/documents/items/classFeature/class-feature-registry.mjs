@@ -1,5 +1,10 @@
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './class-feature-data-model.mjs';
 
+/**
+ * Registry for `Class Features`.
+ * `Class Features` are modelled through a subclass of either {@link ClassFeatureDataModel} or {@link RollableClassFeatureDataModel}.
+ * Registered `Class Features` are eligible for selection as a subtype of the `classFeature` Item type implemented by the system.
+ */
 export class ClassFeatureRegistry {
 	/**
 	 * @type {Map<string, typeof ClassFeatureDataModel>}
@@ -7,9 +12,9 @@ export class ClassFeatureRegistry {
 	#features = new Map();
 
 	/**
-	 * @param {string} module the module that implements the class classFeature
-	 * @param {string} type the identifier of the class classFeature
-	 * @param {typeof ClassFeatureDataModel} model
+	 * @param {string} module the module that implements the `Class Feature`
+	 * @param {string} type the identifier of the `Class Feature`
+	 * @param {typeof ClassFeatureDataModel} model the `DataModel` of the `Class Feature`
 	 */
 	register(module, type, model) {
 		if (!module) {
@@ -42,8 +47,8 @@ export class ClassFeatureRegistry {
 			throw new Error(`Class feature ${key} must provide a translation`, { cause });
 		}
 
-		if (model instanceof RollableClassFeatureDataModel && model.roll === RollableClassFeatureDataModel.roll) {
-			throw new Error(`Class feature ${key} must override the roll() function`);
+		if (foundry.utils.isSubclass(model, RollableClassFeatureDataModel) && !Object.hasOwn(model, 'roll')) {
+			throw new Error(`Rollable class feature ${key} must override the roll() function`);
 		}
 
 		if (this.#features.has(key)) {

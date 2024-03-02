@@ -2,9 +2,10 @@ import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FUItem } from '../../item.mjs';
 import { KeyDataModel } from './key-data-model.mjs';
 import { ToneDataModel } from './tone-data-model.mjs';
-import { ParentDocumentEmbeddedDocumentField } from '../parent-document-embedded-document-field.mjs';
+import { LocallyEmbeddedDocumentField } from '../locally-embedded-document-field.mjs';
 import { FUActor } from '../../../actors/actor.mjs';
 import { FU } from '../../../../helpers/config.mjs';
+import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
 
 const volumes = {
 	low: 'FU.ClassFeatureVerseVolumeLow',
@@ -57,12 +58,25 @@ async function getDescription(model, useAttributes = false) {
 	});
 }
 
+/**
+ * @extends {RollableClassFeatureDataModel}
+ * @property {FUItem|null} key
+ * @property {FUItem|null} tone
+ * @property {Object} config
+ * @property {number} config.low
+ * @property {number} config.medium
+ * @property {number} config.high
+ */
 export class VerseDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField } = foundry.data.fields;
+		const { SchemaField, NumberField } = foundry.data.fields;
 		return {
-			key: new ParentDocumentEmbeddedDocumentField(FUItem, FUActor),
-			tone: new ParentDocumentEmbeddedDocumentField(FUItem, FUActor),
+			key: new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+				validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof KeyDataModel,
+			}),
+			tone: new LocallyEmbeddedDocumentField(FUItem, FUActor, {
+				validate: (doc) => doc.system instanceof ClassFeatureTypeDataModel && doc.system.data instanceof ToneDataModel,
+			}),
 			config: new SchemaField({
 				low: new NumberField({ initial: 10, min: 0 }),
 				medium: new NumberField({ initial: 20, min: 0 }),

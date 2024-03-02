@@ -5,6 +5,11 @@ const durations = {
 	nextTurn: 'FU.ClassFeatureDanceDurationNextTurn',
 };
 
+/**
+ * @extends RollableClassFeatureDataModel
+ * @property {"instant", "nextTurn"} duration
+ * @property {string} description
+ */
 export class DanceDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { StringField, HTMLField } = foundry.data.fields;
@@ -28,7 +33,7 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 		};
 	}
 
-	static async roll(model, item) {
+	static async roll(model, item, isShift) {
 		const data = {
 			duration: durations[model.duration],
 			description: await TextEditor.enrichHTML(model.description),

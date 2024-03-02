@@ -1,3 +1,7 @@
+/**
+ * Subclass of {@link foundry.data.fields.ObjectField} that can embed a {@link ClassFeatureDataModel}
+ * while allowing the actual implementation of {@link ClassFeatureDataModel} to be chosen at runtime.
+ */
 export class FeatureDataField extends foundry.data.fields.ObjectField {
 	/**
 	 * @type {string} name of the field that stores the type key in the containing DataModel
@@ -6,7 +10,7 @@ export class FeatureDataField extends foundry.data.fields.ObjectField {
 
 	/**
 	 * @param {string} [typeField = 'type'] name of the field that stores the type key in the containing DataModel
-	 * @param {Object} [options = {}]
+	 * @param {DataFieldOptions} [options = {}]
 	 */
 	constructor(typeField = 'type', options = {}) {
 		super(options);

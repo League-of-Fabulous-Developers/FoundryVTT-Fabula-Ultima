@@ -1,5 +1,9 @@
 import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
 
+/**
+ * @extends ClassFeatureDataModel
+ * @property {string} description
+ */
 export class SymbolDataModel extends ClassFeatureDataModel {
 	static defineSchema() {
 		const { HTMLField } = foundry.data.fields;

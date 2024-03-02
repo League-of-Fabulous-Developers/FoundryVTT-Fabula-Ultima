@@ -17,6 +17,10 @@ const statuses = {
 
 /**
  * @extends ClassFeatureDataModel
+ * @property {DamageType} type
+ * @property {"slow","dazed","weak","shaken","enraged","poisoned"} status
+ * @property {Attribute} attribute
+ * @property {"hp","mp"} recovery
  */
 export class KeyDataModel extends ClassFeatureDataModel {
 	static get recoveryOptions() {
@@ -52,10 +56,10 @@ export class KeyDataModel extends ClassFeatureDataModel {
 	static getAdditionalData(model) {
 		return {
 			types: FU.damageTypes,
-			statuses,
+			statuses: KeyDataModel.statuses,
 			attributes: FU.attributes,
 			attributeAbbreviations: FU.attributeAbbreviations,
-			recoveryOptions,
+			recoveryOptions: KeyDataModel.recoveryOptions,
 		};
 	}
 }

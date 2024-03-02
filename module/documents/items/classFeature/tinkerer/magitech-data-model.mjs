@@ -44,9 +44,9 @@ export class MagitechDataModel extends RollableClassFeatureDataModel {
 	static getTabConfigurations() {
 		return [
 			{
-				group: 'gadgetBenefits',
-				navSelector: '.gadget-tabs',
-				contentSelector: '.gadget-content',
+				group: 'magitechTabs',
+				navSelector: '.magitech-tabs',
+				contentSelector: '.magitech-content',
 				initial: 'description',
 			},
 		];

@@ -1,5 +1,11 @@
 import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
 
+/**
+ * @extends ClassFeatureDataModel
+ * @property {string} domains
+ * @property {string} merge
+ * @property {string} dismiss
+ */
 export class ArcanumDataModel extends ClassFeatureDataModel {
 	static defineSchema() {
 		const { StringField, HTMLField } = foundry.data.fields;

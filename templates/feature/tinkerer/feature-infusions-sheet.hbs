@@ -6,16 +6,19 @@
     {{#each (lookup system.data rank)}}
         <div class='flexcol'>
             <div class='flexrow'>
-                <input type='text' name='system.data.{{../rank}}.{{@index}}.name' value='{{name}}' placeholder="{{localize 'FU.ClassFeatureInfusionsPlaceholderName'}}" />
+                <input type='text' name='system.data.{{../rank}}.{{@index}}.name' value='{{name}}'
+                       placeholder="{{localize 'FU.ClassFeatureInfusionsPlaceholderName'}}" />
                 <input type='number' name='system.data.{{../rank}}.{{@index}}.extraDamage' value='{{extraDamage}}' />
                 <select name='system.data.{{../rank}}.{{@index}}.changedDamageType'>
                     <option value="">-</option>
                     {{selectOptions @root.additionalData.damageTypes selected=changedDamageType localize=true}}
                 </select>
-                <a class='flex0' data-action='deleteInfusion' data-rank="{{../rank}}" data-index='{{@index}}'><i class='fas fa-trash'></i> </a>
+                <a class='flex0' data-action='deleteInfusion' data-rank="{{../rank}}" data-index='{{@index}}'><i
+                 class='fas fa-trash'></i> </a>
             </div>
             <div class='flexrow'>
-                <textarea name='system.data.{{../rank}}.{{@index}}.description' rows="1" placeholder="{{localize 'FU.Description'}}">{{description}}</textarea>
+                <textarea name='system.data.{{../rank}}.{{@index}}.description' rows="1"
+                          placeholder="{{localize 'FU.Description'}}">{{description}}</textarea>
             </div>
         </div>
         {{#unless @last}}
@@ -25,34 +28,34 @@
 {{/inline}}
 
 <div class='resource-content desc'>
-	<div>
-		<label>
-			{{localize 'FU.ClassFeatureGadgetsRank'}}
-			<select name='system.data.rank'>
-				{{selectOptions additionalData.ranks selected=system.data.rank localize=true}}
-			</select>
-		</label>
-	</div>
-	<nav class='gadget-tabs tabs flexrow' data-group='gadgetBenefits'>
-		<a class='item tab-style' data-tab='description'>{{localize 'FU.Description'}}</a>
-		<a class='item tab-style' data-tab='basic'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</a>
-		<a class='item tab-style' data-tab='advanced'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</a>
-		<a class='item tab-style' data-tab='superior'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</a>
-	</nav>
-	<hr />
-	<div class='gadget-content'>
-		<div class='tab' data-group='gadgetBenefits' data-tab='description'>
-			<label class='resource-label-m'>{{localize 'FU.Description'}}</label>
-			{{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
-		</div>
-		<div class='tab' data-group='gadgetBenefits' data-tab='basic'>
-            {{> "infusions" rank="basic"}}
+    <div>
+        <label>
+            {{localize 'FU.ClassFeatureGadgetsRank'}}
+            <select name='system.data.rank'>
+                {{selectOptions additionalData.ranks selected=system.data.rank localize=true}}
+            </select>
+        </label>
+    </div>
+    <nav class='infusion-tabs tabs flexrow' data-group='infusionTabs'>
+        <a class='item tab-style' data-tab='description'>{{localize 'FU.Description'}}</a>
+        <a class='item tab-style' data-tab='basic'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</a>
+        <a class='item tab-style' data-tab='advanced'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</a>
+        <a class='item tab-style' data-tab='superior'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</a>
+    </nav>
+    <hr />
+    <div class='infusion-content'>
+        <div class='tab' data-group='infusionTabs' data-tab='description'>
+            <label class='resource-label-m'>{{localize 'FU.Description'}}</label>
+            {{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
         </div>
-		<div class='tab' data-group='gadgetBenefits' data-tab='advanced'>
-            {{> "infusions" rank="advanced"}}
+        <div class='tab' data-group='infusionTabs' data-tab='basic'>
+            {{> "infusions" rank="basicInfusions"}}
         </div>
-		<div class='tab' data-group='gadgetBenefits' data-tab='superior'>
-            {{> "infusions" rank="superior"}}
+        <div class='tab' data-group='infusionTabs' data-tab='advanced'>
+            {{> "infusions" rank="advancedInfusions"}}
         </div>
-	</div>
+        <div class='tab' data-group='infusionTabs' data-tab='superior'>
+            {{> "infusions" rank="superiorInfusions"}}
+        </div>
+    </div>
 </div>

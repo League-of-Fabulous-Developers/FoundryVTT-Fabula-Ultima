@@ -6,6 +6,27 @@ const alchemyFlavors = {
 	superior: 'FU.ClassFeatureAlchemySuperior',
 };
 
+/**
+ * @extends RollableClassFeatureDataModel
+ * @property {"basic","advanced","superior"} rank
+ * @property {string} description
+ * @property {string} basic
+ * @property {string} advanced
+ * @property {string} superior
+ * @property {Object} config
+ * @property {RollTable} config.targetRollTable
+ * @property {RollTable} config.effectRollTable
+ * @property {Object} config.ranks
+ * @property {Object} config.ranks.basicInfusions
+ * @property {number} config.ranks.basicInfusions.dice
+ * @property {number} config.ranks.basicInfusions.cost
+ * @property {Object} config.ranks.advancedInfusions
+ * @property {number} config.ranks.advancedInfusions.dice
+ * @property {number} config.ranks.advancedInfusions.cost
+ * @property {Object} config.ranks.superiorInfusions
+ * @property {number} config.ranks.superiorInfusions.dice
+ * @property {number} config.ranks.superiorInfusions.cost
+ */
 export class AlchemyDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { StringField, HTMLField, SchemaField, ArrayField, ForeignDocumentField, NumberField } = foundry.data.fields;
@@ -14,7 +35,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 				initial: 'basic',
 				nullable: false,
 				blank: true,
-				choices: ['basic', 'advanced', 'superior'],
+				choices: Object.keys(alchemyFlavors),
 			}),
 			description: new HTMLField(),
 			basic: new HTMLField(),
@@ -69,9 +90,9 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 	static getTabConfigurations() {
 		return [
 			{
-				group: 'gadgetBenefits',
-				navSelector: '.gadget-tabs',
-				contentSelector: '.gadget-content',
+				group: 'alchemyTabs',
+				navSelector: '.alchemy-tabs',
+				contentSelector: '.alchemy-content',
 				initial: 'description',
 			},
 		];

@@ -10,9 +10,10 @@ import { DanceDataModel } from './dancer/dance-data-model.mjs';
 import { SymbolDataModel } from './symbolist/symbol-data-model.mjs';
 
 /**
+ * Registers system-provided class features.
  * @param {ClassFeatureRegistry} registry
  */
-export const registerClassFeatures = (registry) => {
+export function registerClassFeatures(registry) {
 	registry.register(SYSTEM, 'arcanum', ArcanumDataModel);
 	registry.register(SYSTEM, 'alchemy', AlchemyDataModel);
 	registry.register(SYSTEM, 'magitech', MagitechDataModel);
@@ -22,4 +23,4 @@ export const registerClassFeatures = (registry) => {
 	registry.register(SYSTEM, 'verse', VerseDataModel);
 	registry.register(SYSTEM, 'dance', DanceDataModel);
 	registry.register(SYSTEM, 'symbol', SymbolDataModel);
-};
+}
