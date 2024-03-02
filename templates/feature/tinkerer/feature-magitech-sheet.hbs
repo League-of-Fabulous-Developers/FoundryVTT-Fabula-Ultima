@@ -7,27 +7,27 @@
 			</select>
 		</label>
 	</div>
-	<nav class='gadget-tabs tabs flexrow' data-group='gadgetBenefits'>
+	<nav class='magitech-tabs tabs flexrow' data-group='magitechTabs'>
 		<a class='item tab-style' data-tab='description'>{{localize 'FU.Description'}}</a>
 		<a class='item tab-style' data-tab='basic'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</a>
 		<a class='item tab-style' data-tab='advanced'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</a>
 		<a class='item tab-style' data-tab='superior'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</a>
 	</nav>
 	<hr />
-	<div class='gadget-content'>
-		<div class='tab' data-group='gadgetBenefits' data-tab='description'>
+	<div class='magitech-content'>
+		<div class='tab' data-group='magitechTabs' data-tab='description'>
 			<label class='resource-label-m'>{{localize 'FU.Description'}}</label>
 			{{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
 		</div>
-		<div class='tab' data-group='gadgetBenefits' data-tab='basic'>
+		<div class='tab' data-group='magitechTabs' data-tab='basic'>
 			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</label>
 			{{editor enrichedHtml.basic target='system.data.basic' engine='prosemirror' button=true}}
 		</div>
-		<div class='tab' data-group='gadgetBenefits' data-tab='advanced'>
+		<div class='tab' data-group='magitechTabs' data-tab='advanced'>
 			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</label>
 			{{editor enrichedHtml.advanced target='system.data.advanced' engine='prosemirror' button=true}}
 		</div>
-		<div class='tab' data-group='gadgetBenefits' data-tab='superior'>
+		<div class='tab' data-group='magitechTabs' data-tab='superior'>
 			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</label>
 			{{editor enrichedHtml.superior target='system.data.superior' engine='prosemirror' button=true}}
 		</div>

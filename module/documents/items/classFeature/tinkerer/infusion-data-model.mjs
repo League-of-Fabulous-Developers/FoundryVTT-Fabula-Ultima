@@ -1,6 +1,13 @@
 import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FU } from '../../../../helpers/config.mjs';
 
+/**
+ * @extends foundry.abstract.DataModel
+ * @property {string} name
+ * @property {string} description
+ * @property {number} extraDamage
+ * @property {"",DamageType} changedDamageType
+ */
 class InfusionDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { StringField, NumberField } = foundry.data.fields;
@@ -13,6 +20,14 @@ class InfusionDataModel extends foundry.abstract.DataModel {
 	}
 }
 
+/**
+ * @extends ClassFeatureDataModel
+ * @property {"basic","advanced","superior"} rank
+ * @property {string} description
+ * @property {InfusionDataModel[]} basicInfusions
+ * @property {InfusionDataModel[]} advancedInfusions
+ * @property {InfusionDataModel[]} superiorInfusions
+ */
 export class InfusionsDataModel extends ClassFeatureDataModel {
 	static defineSchema() {
 		const { StringField, HTMLField, ArrayField, EmbeddedDataField } = foundry.data.fields;
@@ -24,9 +39,9 @@ export class InfusionsDataModel extends ClassFeatureDataModel {
 				choices: ['basic', 'advanced', 'superior'],
 			}),
 			description: new HTMLField(),
-			basic: new ArrayField(new EmbeddedDataField(InfusionDataModel, {}), {}),
-			advanced: new ArrayField(new EmbeddedDataField(InfusionDataModel, {}), {}),
-			superior: new ArrayField(new EmbeddedDataField(InfusionDataModel, {}), {}),
+			basicInfusions: new ArrayField(new EmbeddedDataField(InfusionDataModel, {}), {}),
+			advancedInfusions: new ArrayField(new EmbeddedDataField(InfusionDataModel, {}), {}),
+			superiorInfusions: new ArrayField(new EmbeddedDataField(InfusionDataModel, {}), {}),
 		};
 	}
 
@@ -57,9 +72,9 @@ export class InfusionsDataModel extends ClassFeatureDataModel {
 	static getTabConfigurations() {
 		return [
 			{
-				group: 'gadgetBenefits',
-				navSelector: '.gadget-tabs',
-				contentSelector: '.gadget-content',
+				group: 'infusionTabs',
+				navSelector: '.infusion-tabs',
+				contentSelector: '.infusion-content',
 				initial: 'description',
 			},
 		];
@@ -80,24 +95,24 @@ export class InfusionsDataModel extends ClassFeatureDataModel {
 	}
 
 	static processUpdateData(data) {
-		if (data.basic && !Array.isArray(data.basic)) {
-			data.basic = this.#processInfusions(data.basic);
-		}
-		if (data.advanced && !Array.isArray(data.advanced)) {
-			data.advanced = this.#processInfusions(data.advanced);
-		}
-		if (data.superior && !Array.isArray(data.superior)) {
-			data.superior = this.#processInfusions(data.superior);
+		for (const field of ['basicInfusions', 'advancedInfusions', 'superiorInfusions']) {
+			this.#processInfusions(field, data);
 		}
 		return data;
 	}
 
-	static #processInfusions(data) {
-		const infusions = [];
-		const maxIndex = Object.keys(data).length;
-		for (let i = 0; i < maxIndex; i++) {
-			infusions.push(data[i]);
+	/**
+	 * Convert object to array
+	 */
+	static #processInfusions(key, data) {
+		let value = data[key];
+		if (value && !Array.isArray(value)) {
+			const infusions = [];
+			const maxIndex = Object.keys(value).length;
+			for (let i = 0; i < maxIndex; i++) {
+				infusions.push(data[i]);
+			}
+			data[key] = infusions;
 		}
-		return infusions;
 	}
 }

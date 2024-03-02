@@ -16,12 +16,8 @@ export class ClassFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 		};
 	}
 
-	prepareBaseData() {
-		this.data?.prepareBaseData();
-	}
-
 	prepareDerivedData() {
-		this.data?.prepareDerivedData();
+		this.data?.prepareData();
 	}
 
 	/**

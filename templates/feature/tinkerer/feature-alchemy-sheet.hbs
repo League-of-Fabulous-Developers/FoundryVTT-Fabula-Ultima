@@ -7,7 +7,7 @@
 			</select>
 		</label>
 	</div>
-	<nav class='gadget-tabs tabs flexrow' data-group='gadgetBenefits'>
+	<nav class='alchemy-tabs tabs flexrow' data-group='alchemyTabs'>
 		<a class='item tab-style' data-tab='description'>{{localize 'FU.Description'}}</a>
 		<a class='item tab-style' data-tab='basic'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</a>
 		<a class='item tab-style' data-tab='advanced'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</a>
@@ -15,24 +15,24 @@
 		<a class='item tab-style' data-tab='config'>{{localize 'FU.ClassFeatureGadgetsConfig'}}</a>
 	</nav>
 	<hr />
-	<div class='gadget-content'>
-		<div class='tab' data-group='gadgetBenefits' data-tab='description'>
+	<div class='alchemy-content'>
+		<div class='tab' data-group='alchemyTabs' data-tab='description'>
 			<label class='resource-label-m'>{{localize 'FU.Description'}}</label>
 			{{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
 		</div>
-		<div class='tab' data-group='gadgetBenefits' data-tab='basic'>
+		<div class='tab' data-group='alchemyTabs' data-tab='basic'>
 			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</label>
 			{{editor enrichedHtml.basic target='system.data.basic' engine='prosemirror' button=true}}
 		</div>
-		<div class='tab' data-group='gadgetBenefits' data-tab='advanced'>
+		<div class='tab' data-group='alchemyTabs' data-tab='advanced'>
 			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</label>
 			{{editor enrichedHtml.advanced target='system.data.advanced' engine='prosemirror' button=true}}
 		</div>
-		<div class='tab' data-group='gadgetBenefits' data-tab='superior'>
+		<div class='tab' data-group='alchemyTabs' data-tab='superior'>
 			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</label>
 			{{editor enrichedHtml.superior target='system.data.superior' engine='prosemirror' button=true}}
 		</div>
-		<div class='tab' data-group='gadgetBenefits' data-tab='config'>
+		<div class='tab' data-group='alchemyTabs' data-tab='config'>
 			<div>
 				<label data-tooltip="{{localize 'FU.ClassFeatureAlchemyRollTableExplanation'}}">
 					{{localize 'FU.ClassFeatureAlchemyTargetRollTable'}}

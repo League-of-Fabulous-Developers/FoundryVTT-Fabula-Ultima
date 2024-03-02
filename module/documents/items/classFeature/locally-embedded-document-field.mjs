@@ -1,27 +1,40 @@
 /**
- * @typedef LocallyEmbeddedDocumentFieldOptions
- * @extends StringFieldOptions
+ * @typedef {StringFieldOptions} LocallyEmbeddedDocumentFieldOptions
  * @property {boolean} [fallback=false]  Display the string value if no matching item is found.
  */
 
 /**
- * A mirror of ForeignDocumentField that references a Document embedded within this Document or .
+ * A subclass of {@link foundry.data.fields.DocumentIdField} that references an embedded {@link foundry.abstract.Document}
+ * within some parent {@link foundry.abstract.Document} of this field.
  *
- * @param {typeof Document} model              The local DataModel class definition which this field should link to.
- * @param {LocallyEmbeddedDocumentFieldOptions} options  Options which configure the behavior of the field.
+ * Conceptually extremely similar to {@link foundry.data.fields.ForeignDocumentField} but only able to reference {@link foundry.abstract.Document Documents}
+ * embedded within a parent of the {@link foundry.abstract.DataModel} this field is defined in.
+ *
+ * **Important caveat:**
+ *
+ * Custom validation (`options.validate`) does work slightly differently with this field.
+ *
+ * Because the field only stores a `string` ID until it is initialized the provided validation function is run each time
+ * the field is accessed instead. If the validation function returns false or throws an error the field value will be `null`.
  */
-export class ParentDocumentEmbeddedDocumentField extends foundry.data.fields.DocumentIdField {
-	constructor(embeddedType, parentType, options = {}) {
+export class LocallyEmbeddedDocumentField extends foundry.data.fields.DocumentIdField {
+	/**
+	 * @param {typeof Document} embeddedType The embedded Document class this field should reference
+	 * @param {typeof Document} parentType The Document class this field should to locate its reference in
+	 * @param {LocallyEmbeddedDocumentFieldOptions} options  Options which configure the behavior of the field.
+	 */
+	constructor(embeddedType, parentType, { validate, ...options } = {}) {
 		if (!foundry.utils.isSubclass(embeddedType, foundry.abstract.Document)) {
-			throw new Error('A ParentDocumentEmbeddedDocumentField must specify a Document subclass as its embedded type');
+			throw new Error('A LocallyEmbeddedDocumentField must specify a Document subclass as its embedded type');
 		}
 		if (!foundry.utils.isSubclass(parentType, foundry.abstract.Document)) {
-			throw new Error('A ParentDocumentEmbeddedDocumentField must specify a Document subclass as its parent type');
+			throw new Error('A LocallyEmbeddedDocumentField must specify a Document subclass as its parent type');
 		}
 
 		super(options);
 		this.embeddedType = embeddedType;
 		this.parentType = parentType;
+		this.userValidate = validate;
 	}
 
 	/* -------------------------------------------- */
@@ -37,6 +50,12 @@ export class ParentDocumentEmbeddedDocumentField extends foundry.data.fields.Doc
 	 * @type {typeof Document}
 	 */
 	parentType;
+
+	/**
+	 *
+	 * @type {(Document) => boolean}
+	 */
+	userValidate;
 
 	/* -------------------------------------------- */
 
@@ -95,15 +114,13 @@ export class ParentDocumentEmbeddedDocumentField extends foundry.data.fields.Doc
 			const document = collection?.get(value);
 			if (!document) {
 				return this.options.fallback ? value : null;
+			} else {
+				try {
+					return this.userValidate(document) ? document : null;
+				} catch (e) {
+					return null;
+				}
 			}
-			if (this.options.fallback) {
-				Object.defineProperty(document, 'toString', {
-					value: () => document.name,
-					configurable: true,
-					enumerable: false,
-				});
-			}
-			return document;
 		};
 	}
 

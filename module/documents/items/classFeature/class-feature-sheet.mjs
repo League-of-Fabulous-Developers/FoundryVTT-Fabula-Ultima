@@ -3,8 +3,9 @@ import { onManageActiveEffect, prepareActiveEffectCategories } from '../../../he
 
 export class FUClassFeatureSheet extends ItemSheet {
 	static get defaultOptions() {
+		// add all the tab configurations from registered class features
 		const featureTabConfigs = [];
-		for (let value of Object.values(globalThis.CONFIG.FU.classFeatureRegistry.features())) {
+		for (let value of Object.values(CONFIG.FU.classFeatureRegistry.features())) {
 			featureTabConfigs.push(...value.getTabConfigurations());
 		}
 		return foundry.utils.mergeObject(super.defaultOptions, {
@@ -24,15 +25,27 @@ export class FUClassFeatureSheet extends ItemSheet {
 
 	async _updateObject(event, formData) {
 		if (!this.object.id) return;
+
+		// on change of feature type ask user to confirm user
 		if (this.item.system.featureType !== formData['system.featureType']) {
 			const shouldChangeType = await Dialog.confirm({
 				title: game.i18n.localize('FU.ClassFeatureDialogChangeTypeTitle'),
 				content: game.i18n.localize('FU.ClassFeatureDialogChangeTypeContent'),
 				rejectClose: false,
 			});
+
 			if (!shouldChangeType) {
 				return this.render();
 			}
+
+			// remove all the formData referencing the old data model
+			for (const key of Object.keys(formData)) {
+				if (key.startsWith('system.data.')) {
+					delete formData[key];
+				}
+			}
+
+			// recursively add delete instructions for every field in the old data model
 			const schema = this.item.system.data.constructor.schema;
 			schema.apply(function () {
 				const path = this.fieldPath.split('.');
@@ -42,10 +55,10 @@ export class FUClassFeatureSheet extends ItemSheet {
 				path.push(`-=${field}`);
 				formData[path.join('.')] = null;
 			});
+		} else {
+			formData = foundry.utils.expandObject(formData);
+			formData.system.data = this.item.system.data.constructor.processUpdateData(formData.system.data) ?? formData.system.data;
 		}
-		formData = foundry.utils.expandObject(formData);
-
-		formData.system.data = this.item.system.data.constructor.processUpdateData(formData.system.data) ?? formData.system.data;
 
 		this.object.update(formData);
 	}
@@ -83,9 +96,18 @@ export class FUClassFeatureSheet extends ItemSheet {
 					enrichedHtml[this.name] = modelData[this.name];
 				}
 			});
-			for (let [key, value] of Object.entries(data.enrichedHtml)) {
-				data.enrichedHtml[key] = await TextEditor.enrichHTML(value, { rollData: data.additionalData?.rollData });
+
+			async function enrichRecursively(obj) {
+				for (let [key, value] of Object.entries(obj)) {
+					if (typeof value === 'object') {
+						await enrichRecursively(value);
+					} else {
+						obj[key] = await TextEditor.enrichHTML(value, { rollData: data.additionalData?.rollData });
+					}
+				}
 			}
+
+			await enrichRecursively(data.enrichedHtml);
 		}
 		data.features = CONFIG.FU.classFeatureRegistry.features();
 		data.effects = prepareActiveEffectCategories(this.item.effects);
