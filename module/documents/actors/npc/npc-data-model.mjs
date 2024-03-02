@@ -1,9 +1,10 @@
-import {FU} from '../../../helpers/config.mjs';
-import {NpcMigrations} from './npc-migrations.mjs';
-import {AffinitiesDataModel} from '../common/affinities-data-model.mjs';
-import {AttributesDataModel} from '../common/attributes-data-model.mjs';
-import {BonusesDataModel} from '../common/bonuses-data-model.mjs';
-import {BondDataModel} from '../common/bond-data-model.mjs';
+import { FU } from '../../../helpers/config.mjs';
+import { NpcMigrations } from './npc-migrations.mjs';
+import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
+import { AttributesDataModel } from '../common/attributes-data-model.mjs';
+import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
+import { BondDataModel } from '../common/bond-data-model.mjs';
+import { NpcSkillTracker } from './npc-skill-tracker.mjs';
 
 /**
  * @property {number} level.value
@@ -49,6 +50,7 @@ import {BondDataModel} from '../common/bond-data-model.mjs';
  * @property {boolean} useEquipment.value
  * @property {number} study.value
  * @property {string} description
+ * @property {NpcSkillTracker} spTracker
  */
 export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
@@ -128,5 +130,16 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 		NpcMigrations.run(source);
 
 		return source;
+	}
+
+	/**
+	 * @return FUActor
+	 */
+	get actor() {
+		return this.parent;
+	}
+
+	prepareDerivedData() {
+		this.spTracker = new NpcSkillTracker(this);
 	}
 }

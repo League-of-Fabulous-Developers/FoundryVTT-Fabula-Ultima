@@ -87,6 +87,15 @@ FU.affTypeAbbr = {
 	4: 'FU.AffinityRepulsionAbbr',
 };
 
+FU.affValue = {
+	vulnerability: -1,
+	none: 0,
+	resistance: 1,
+	immunity: 2,
+	absorption: 3,
+	repulsion: 4,
+};
+
 FU.species = ['beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead', 'custom'];
 
 FU.villainTypes = ['minor', 'major', 'supreme'];

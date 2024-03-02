@@ -54,15 +54,13 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Initialize the _expanded set as a local variable within the object or class
 		this._expanded = new Set();
 		// Prepare character data and items.
-		if (actorData.type == 'character') {
-			const tlTracker = this.actor.getTLTracker();
-			context.tlTracker = tlTracker;
+		if (actorData.type === 'character') {
+			context.tlTracker = this.actor.tlTracker;
 		}
 
 		// Prepare NPC data and items.
-		if (actorData.type == 'npc') {
-			const spTracker = this.actor.getSPTracker();
-			context.spTracker = spTracker;
+		if (actorData.type === 'npc') {
+			context.spTracker = this.actor.spTracker;
 		}
 
 		context.statusEffectToggles = [];
@@ -270,13 +268,13 @@ export class FUStandardActorSheet extends ActorSheet {
 					item.skillArr = skillArr;
 				}
 			}
-			
+
 			// Enriches description fields for each item within the context.items array
 			for (let item of context.items) {
 				item.enrichedHtml = {
-				  description: await TextEditor.enrichHTML(item.system?.description ?? ''),
-				  zeroTrigger: await TextEditor.enrichHTML(item.system?.zeroTrigger?.description ?? ''),
-				  zeroEffect: await TextEditor.enrichHTML(item.system?.zeroEffect?.description ?? ''),
+					description: await TextEditor.enrichHTML(item.system?.description ?? ''),
+					zeroTrigger: await TextEditor.enrichHTML(item.system?.zeroTrigger?.description ?? ''),
+					zeroEffect: await TextEditor.enrichHTML(item.system?.zeroEffect?.description ?? ''),
 				};
 			}
 
