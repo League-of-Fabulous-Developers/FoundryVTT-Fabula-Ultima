@@ -9,10 +9,7 @@
 }
 
 .title-fieldset {
-  // height: 50%; 
   overflow-y: auto;
-  // min-height: 12em;
-  // max-height: 20em; 
 }
 
 
@@ -84,35 +81,41 @@
       border-top-right-radius: 12px;
       border: 1px solid rgba(44, 74, 66, 0.3294117647);
     }
+
     .header-center {
       border-radius: 0 0 12px 0;
       padding: 4px 2px;
       grid-row-gap: 2px;
-      
+
       &.item-header {
         grid-row-gap: 1px;
         padding: 2px 10px;
       }
     }
+
     .header-end {
       padding: 0;
       align-self: baseline;
       margin-bottom: 2px;
     }
 
-    #status-section, #subtype-section {
+    #status-section,
+    #subtype-section {
       border-radius: 10px 0 0 10px;
       display: flex;
       align-items: center;
     }
+
     #attribute-section {
       border-radius: 0;
       display: flex;
       align-items: center;
+
       div {
         gap: 2px;
       }
     }
+
     #roll-section {
       border-radius: 0 10px 10px 0;
     }
@@ -185,7 +188,8 @@
     flex-grow: 1;
 
     /* Martial & Offensive Icon */
-    img#martial-header, img#offensive-header {
+    img#martial-header,
+    img#offensive-header {
       flex: 0 0 40px;
       height: 40px;
       object-fit: contain;
@@ -222,8 +226,8 @@
 
   /* Footer styling */
   /* Push the footer to the bottom */
-  > footer {
-    margin-top: auto; 
+  >footer {
+    margin-top: auto;
   }
 }
 
@@ -323,6 +327,17 @@
   padding: 0.5em;
 }
 
+.scrollable {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-right: 0.5rem;
+  overflow: hidden auto;
+  scrollbar-width: thin;
+}
+
 /* General Editor Styles */
 .editor {
   height: 100%;
@@ -353,11 +368,12 @@
 }
 
 .sheet-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
-    .sheet-header, .sheet-footer {
-        flex: 0;
-    }
+  .sheet-header,
+  .sheet-footer {
+    flex: 0;
+  }
 }

@@ -10,7 +10,13 @@
 }
 
 .window-app .window-header {
-  background: $color-secondary;
+  background: rgba($color-secondary, 0.95);
+  background-image: url("/systems/projectfu/styles/static/ui/bg.png"),
+    linear-gradient(to right, $color-beige, $color-faint) !important;
+  border-bottom: none !important;
+  background-blend-mode: multiply;
+  background-repeat: repeat-y;
+  background-position: right top;
 }
 
 .sheet nav.sheet-tabs .item {
@@ -19,6 +25,7 @@
 }
 
 .selectable {
+
   &:hover,
   &:focus {
     color: #000;
@@ -28,6 +35,7 @@
 }
 
 .rollable {
+
   &:hover,
   &:focus {
     color: #000;
@@ -69,9 +77,11 @@ input[type="checkbox"]:focus {
   0% {
     transform: translate(0, 0px);
   }
+
   50% {
     transform: translate(0, 6px);
   }
+
   100% {
     transform: translate(0, -0px);
   }
@@ -97,6 +107,8 @@ input[type="checkbox"]:focus {
 }
 
 .notification.projectfu-spellname .close {
-  opacity: 0; /* Hide the notification by reducing opacity */
-  pointer-events: none; /* Disable interactions with hidden notifications */
+  opacity: 0;
+  /* Hide the notification by reducing opacity */
+  pointer-events: none;
+  /* Disable interactions with hidden notifications */
 }

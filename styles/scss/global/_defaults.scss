@@ -9,7 +9,7 @@
 // Remove list styles
 ul,
 ol {
-  //list-style: none;
+  list-style: none;
 }
 
 // Reset text decoration for links
@@ -41,6 +41,7 @@ select {
   margin: 0;
   padding: 0;
   border: none;
+
   option {
     // background-color: $color-secondary;
     // color: $color-primary;
@@ -67,14 +68,14 @@ body {
 }
 
 // Define additional custom styles as needed
-.sheet nav.sheet-tabs{
+.sheet nav.sheet-tabs {
   justify-content: center;
   flex: 0;
   margin: 0;
 }
 
 blockquote {
-  padding: 0 0 0 10px !important; 
+  padding: 0 0 0 10px !important;
 }
 
 input[type=number] {

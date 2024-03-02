@@ -60,23 +60,38 @@ $font-quote: "EB Garamond", sans-serif;
     font-weight: 700;
   }
 
-  // Reset implementation for li bullets
-  ul {
-    list-style: none;
-    padding-left: 0;
+  .sheet-body,
+  .journal-sheet-container {
 
+    p,
     li {
-      position: relative;
-      margin-left: 1em;
+      font-family: $font-primary;
+      font-style: normal;
+      font-size: 16px;
+    }
 
-      &::before {
-        content: "◆";
-        display: inline-block;
-        color: $color-secondary;
-        font-size: 14px;
-        margin-right: 8px;
-        vertical-align: middle;
-        line-height: 1;
+    blockquote,
+    blockquote p {
+      font-family: $font-quote !important;
+      font-style: italic;
+      font-size: 18px;
+    }
+
+    // Change bullet content for li
+    ul {
+      li {
+        display: flex;
+        align-items: center;
+
+        &::before {
+          content: "◆";
+          display: inline-block;
+          color: $color-secondary;
+          font-size: 14px;
+          margin-right: 8px;
+          vertical-align: middle;
+          line-height: 1;
+        }
       }
     }
   }
@@ -198,20 +213,34 @@ $font-quote: "EB Garamond", sans-serif;
     line-height: 1.2em;
   }
 
-  .desc {
-    .editor {
+  .desc,
+  .journal-entry-content {
+
+    .editor,
+    .journal-entry-page {
       font-weight: normal;
 
-      h1, h2, h3 {
+      h1,
+      h2,
+      h3 {
         border-bottom: 2px solid $color-secondary;
       }
+
       h1 {
         line-height: 1.2em;
       }
-      h2, h3, h4 {
+
+      h2,
+      h3,
+      h4 {
         line-height: 1.45em;
       }
+
       p {
+        line-height: 1.45em;
+      }
+
+      blockquote {
         line-height: 1.45em;
       }
 
