@@ -39,6 +39,7 @@ import { FUClassFeatureSheet } from './documents/items/classFeature/class-featur
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
 import { handlebarsHtmlEnricher } from './helpers/handlebars-html-enricher.mjs';
+import { FUActiveEffect } from './documents/effects/active-effect.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -107,6 +108,7 @@ Hooks.once('init', async () => {
 		weapon: WeaponDataModel,
 		zeroPower: ZeroPowerDataModel,
 	};
+	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
 
 	// Register system settings
 	registerSystemSettings();
