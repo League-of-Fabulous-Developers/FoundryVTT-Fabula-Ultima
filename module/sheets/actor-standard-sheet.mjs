@@ -95,7 +95,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.rollData = context.actor.getRollData();
 
 		// Prepare active effects
-		context.effects = prepareActiveEffectCategories(game.release.generation >= 11 ? this.actor.appliedEffects : this.actor.effects);
+		context.effects = prepareActiveEffectCategories(game.release.generation >= 11 ? Array.from(this.actor.allApplicableEffects()) : this.actor.effects);
 
 		// Add the actor object to context for easier access
 		context.actor = actorData;

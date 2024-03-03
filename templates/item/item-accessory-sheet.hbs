@@ -6,7 +6,7 @@
 
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
-			{{> "systems/projectfu/templates/item/partials/item-effects.hbs"}}
+			{{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
 		</div>
 
 		{{!-- Description Tab --}}
@@ -22,7 +22,7 @@
 
 				{{!-- General Info Section --}}
 				<fieldset class="title-fieldset desc resource-content grid-span-2">
-					
+
 					{{!-- Item Controls --}}
 					<div class="item-settings">
 						{{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}

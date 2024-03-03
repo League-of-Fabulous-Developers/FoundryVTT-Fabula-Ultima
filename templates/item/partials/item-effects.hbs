@@ -33,7 +33,7 @@
 						<div class="item-lg">{{ effect.duration.name }}</div>
 						<div class="item-m end flexrow">
 							<a class="effect-control" data-action="toggle" title="{{localize 'FU.EffectToggle'}}">
-								<i class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
+                                <i class="{{#if effect.disabled}}fal fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
 							</a>
 							<a class="effect-control" data-action="edit" title="{{localize 'FU.EffectEdit'}}">
 								<i class="fas fa-edit"></i>

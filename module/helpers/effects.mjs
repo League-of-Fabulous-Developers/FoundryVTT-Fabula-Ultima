@@ -10,7 +10,16 @@ export function onManageActiveEffect(event, owner) {
 	const a = event.currentTarget;
 	const li = a.closest('li');
 	const effectId = li.dataset.effectId;
-	const effect = owner instanceof FUActor ? owner.appliedEffects.find((value) => value.id === effectId) : owner.effects.get(effectId);
+	let effect;
+	if (owner instanceof FUActor) {
+		if (game.release.isNewer(11)) {
+			effect = Array.from(owner.allApplicableEffects()).find((value) => value.id === effectId);
+		} else {
+			effect = owner.effects.find((value) => value.id === effectId);
+		}
+	} else {
+		effect = owner.effects.get(effectId);
+	}
 	switch (a.dataset.action) {
 		case 'create':
 			return owner.createEmbeddedDocuments('ActiveEffect', [

@@ -11,7 +11,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/sections/actor-section-spells.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-items.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-combat.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-effects.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-behavior.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-settings.hbs',
 
@@ -41,7 +40,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-progress-clock-xl.hbs',
 
 		// Item partials
-		'systems/projectfu/templates/item/partials/item-effects.hbs',
 		'systems/projectfu/templates/item/partials/item-controls.hbs',
 		'systems/projectfu/templates/item/partials/item-header.hbs',
 		'systems/projectfu/templates/item/partials/item-weapon-header.hbs',
@@ -52,6 +50,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/item/partials/item-heroic-header.hbs',
 		'systems/projectfu/templates/item/partials/item-progress-header.hbs',
 		'systems/projectfu/templates/item/partials/item-behavior-field.hbs',
+
+		// Common partials
+		'systems/projectfu/templates/common/active-effects.hbs',
 
 		// Dialogs
 		'systems/projectfu/templates/dialog/dialog-check.hbs',

@@ -104,8 +104,9 @@
                 <div class="tab behavior" data-group="primary" data-tab="behavior">{{>
                 "systems/projectfu/templates/actor/sections/actor-section-behavior.hbs" actor=actor}}</div>
                 {{!-- Active Effects Tab --}}
-                <div class="tab effects flexcol" data-group="primary" data-tab="effects">{{>
-                "systems/projectfu/templates/actor/sections/actor-section-effects.hbs" actor=actor}}</div>
+                <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+                    {{> "systems/projectfu/templates/common/active-effects.hbs"}}
+                </div>
                 {{!-- Settings Tab --}}
                 <div class="tab effects flexcol" data-group="primary" data-tab="settings">{{>
                 "systems/projectfu/templates/actor/sections/actor-section-settings.hbs" actor=actor}}</div>
