@@ -1,4 +1,5 @@
 <section class="desc">
+    {{log 'rituals'}}
 	<header class="items-main-header">
 		<span class="items-main">
 			<label class="items-label">{{localize "FU.Rituals"}}</label>
@@ -42,9 +43,7 @@
 			</div>
 			<span>{{ item.quality }}</span>
 			<div class="individual-description align-left">
-				{{#if item.enrichedHtml.description}}
-				{{{item.enrichedHtml.description rollData=rollData}}}
-				{{/if}}
+				{{{item.enrichedHtml.description}}}
 			</div>
 		</li>
 		{{/each}}
