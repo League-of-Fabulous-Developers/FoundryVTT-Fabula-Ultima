@@ -54,11 +54,6 @@ export class FUActor extends Actor {
 		this._calculateDefenses(actorData);
 		this._calculateInitOrInitMod(actorData);
 		this._handleCustomWeapon(actorData);
-
-		// Make separate methods for each Actor type (character, npc, etc.) to keep
-		// things organized.
-		this._prepareCharacterData(actorData);
-		this._prepareNpcData(actorData);
 	}
 
 	/**
