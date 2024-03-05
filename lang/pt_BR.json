@@ -700,6 +700,11 @@
         "GroupCheckTooltip" : "FU.GroupCheckTooltip",
         "RollGroupCheck" : "Roll Group Check",
         "Cancel" : "Cancel",
-        "ClassFeatureDetails" : "FU.ClassFeatureDetails"
+        "ClassFeatureDetails" : "FU.ClassFeatureDetails",
+        "ChatApplyDamageTooltip" : "FU.ChatApplyDamageTooltip",
+        "ChatApplyDamageNoActorsSelected" : "FU.ChatApplyDamageNoActorsSelected",
+        "ChatApplyDamageVulnerable" : "FU.ChatApplyDamageVulnerable",
+        "ChatApplyDamageNormal" : "",
+        "ChatApplyDamageResistant" : "FU.ChatApplyDamageResistant"
     }
 }

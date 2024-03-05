@@ -700,6 +700,15 @@
         "GroupCheckTooltip" : "Shift + Click for Initiative Check",
         "RollGroupCheck" : "Roll Group Check",
         "Cancel" : "Cancel",
-        "ClassFeatureDetails" : "Details"
+        "ClassFeatureDetails" : "Details",
+        "ChatApplyDamageTooltip" : "Click to apply damage to selected tokens.<br>Shift + Click to ignore Resistances.<br>Ctrl + Shift + Click to ignore Resistances and Immunities.",
+        "ChatApplyDamageNoActorsSelected" : "No actors selected. Unable to apply damage.",
+        "ChatApplyDamageVulnerable" : "<strong>{actor}</strong> was <strong>vulnerable</strong> to <strong>{type}</strong> and took <strong>{damage}</strong> damage from <strong>{from}</strong>",
+        "ChatApplyDamageNormal" : "<strong>{actor}</strong> took <strong>{damage} {type}</strong> damage from <strong>{from}</strong>",
+        "ChatApplyDamageResistant" : "<strong>{actor}</strong> was <strong>resistant</strong> to <strong>{type}</strong> and took <strong>{damage}</strong> damage from <strong>{from}</strong>",
+        "ChatApplyDamageResistantIgnored" : "<strong>{actor}</strong> took <strong>{damage} {type}</strong> damage from <strong>{from} (Resistance ignored)</strong>",
+        "ChatApplyDamageImmune" : "<strong>{actor}</strong> was <strong>immune</strong> to <strong>{type}</strong> and took <strong>{damage}</strong> damage from <strong>{from}</strong>",
+        "ChatApplyDamageImmuneIgnored" : "<strong>{actor}</strong> took <strong>{damage} {type}</strong> damage from <strong>{from} (Immunity ignored)</strong>",
+        "ChatApplyDamageAbsorb" : "<strong>{actor} absorbed {type}</strong> damage from <strong>{from}</strong> and was healed by <strong>{damage}</strong> HP"
     }
 }

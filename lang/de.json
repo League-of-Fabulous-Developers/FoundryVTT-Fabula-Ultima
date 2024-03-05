@@ -700,6 +700,15 @@
         "GroupCheckTooltip" : "Umschalt + Klick für Initiativeprobe",
         "RollGroupCheck" : "Gruppenprobe würfeln",
         "Cancel" : "Abbrechen",
-        "ClassFeatureDetails" : "Details"
+        "ClassFeatureDetails" : "Details",
+        "ChatApplyDamageTooltip" : "Klicken um Schaden für ausgewählte Tokens zu verrechnen.<br>Shift + Klick um Resistenz zu ignorieren.<br>Strg + Shift + Klick um Resistenz und Immunität zu ignorieren.",
+        "ChatApplyDamageNoActorsSelected" : "Keine Akteure ausgewählt. Schaden kann nicht verrechnet werden.",
+        "ChatApplyDamageVulnerable" : "<strong>{actor}</strong> war <strong>schwach</strong> gegen <strong>{type}</strong> und nahm <strong>{damage}</strong> Schaden von <strong>{from}</strong>.",
+        "ChatApplyDamageNormal" : "<strong>{actor}</strong> nahm <strong>{damage} {type}</strong> Schaden von <strong>{from}</strong>",
+        "ChatApplyDamageResistant" : "<strong>{actor}</strong> war <strong>resistent</strong> gegen <strong>{type}</strong> und nahm <strong>{damage}</strong> Schaden von <strong>{from}</strong>",
+        "ChatApplyDamageResistantIgnored" : "<strong>{actor}</strong> nahm <strong>{damage} {type}</strong> Schaden von <strong>{from} (ignoriert Resistenz)</strong>",
+        "ChatApplyDamageImmune" : "<strong>{actor}</strong> war <strong>immun</strong> gegen <strong>{type}</strong> und nahm <strong>{damage}</strong> Schaden von <strong>{from}</strong>",
+        "ChatApplyDamageImmuneIgnored" : "<strong>{actor}</strong> nahm <strong>{damage} {type}</strong> Schaden von <strong>{from} (ignoriert Immunität)</strong>",
+        "ChatApplyDamageAbsorb" : "<strong>{actor} absorbierte {type}</strong> Schaden von <strong>{from}</strong> und heilte sich um <strong>{damage}</strong> Lebenspunkte"
     }
 }

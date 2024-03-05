@@ -40,6 +40,7 @@ import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './document
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
 import { handlebarsHtmlEnricher } from './helpers/handlebars-html-enricher.mjs';
 import { FUActiveEffect } from './documents/effects/active-effect.mjs';
+import { registerChatInteraction } from './helpers/apply-damage.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -143,6 +144,7 @@ Hooks.once('init', async () => {
 	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
+	registerChatInteraction();
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 

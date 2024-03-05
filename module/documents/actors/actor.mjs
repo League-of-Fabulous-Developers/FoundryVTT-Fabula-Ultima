@@ -484,15 +484,14 @@ export class FUActor extends Actor {
 	}
 
 	async showFloatyText(input) {
-		let scrollingTextArgs;
-
 		if (!canvas.scene) return;
 
-		const gridSize = canvas.scene.grid.size;
+		const [token] = this.getActiveTokens();
 
-		if (_token && typeof input === 'number') {
-			scrollingTextArgs = [
-				{ x: _token.x + gridSize / 2, y: _token.y + gridSize - 20 },
+		if (token && typeof input === 'number') {
+			const gridSize = canvas.scene.grid.size;
+			const scrollingTextArgs = [
+				{ x: token.x + gridSize / 2, y: token.y + gridSize - 20 },
 				Math.abs(input),
 				{
 					fill: input < 0 ? 'lightgreen' : 'white',
@@ -501,11 +500,8 @@ export class FUActor extends Actor {
 					strokeThickness: 4,
 				},
 			];
+			await token._animation;
+			await canvas.interface?.createScrollingText(...scrollingTextArgs);
 		}
-
-		if (!scrollingTextArgs) return;
-
-		await _token._animation;
-		await canvas.interface?.createScrollingText(...scrollingTextArgs);
 	}
 }
