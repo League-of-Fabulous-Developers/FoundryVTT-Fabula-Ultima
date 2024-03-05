@@ -10,6 +10,7 @@ $fus-martial: url("/systems/projectfu/styles/static/icons/fus-martial.svg");
 $ful-offensive: url("/systems/projectfu/styles/static/icons/ful-offensive.svg");
 $ful-martial: url("/systems/projectfu/styles/static/icons/ful-martial.svg");
 
+$fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
 $fu-guard: url("/systems/projectfu/styles/static/icons/fu-guard.svg");
 $fu-phys: url("/systems/projectfu/styles/static/icons/fu-phys.svg");
 $fu-wind: url("/systems/projectfu/styles/static/icons/fu-wind.svg");
@@ -45,7 +46,10 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 .ful-martial {
   background-image: $ful-martial;
 }
-.fa-guard {
+.fu-d20 {
+  background-image: $fu-d20;
+}
+.fu-guard {
   background-image: $fu-guard;
 }
 .fu-phys {

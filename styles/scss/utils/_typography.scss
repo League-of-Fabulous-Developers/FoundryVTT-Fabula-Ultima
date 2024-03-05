@@ -25,21 +25,24 @@ $font-quote: "EB Garamond", sans-serif;
   // Default styles for header
   h1 {
     font-family: $font-title;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 700;
     color: $color-secondary;
+    text-transform: uppercase;
   }
 
   h2 {
     font-family: $font-secondary;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 700;
+    text-transform: uppercase;
   }
 
   h3 {
     font-family: $font-secondary;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
+    text-transform: uppercase;
   }
 
   h4 {
@@ -49,13 +52,13 @@ $font-quote: "EB Garamond", sans-serif;
   }
 
   h5 {
-    font-family: $font-primary;
+    font-family: $font-secondary;
     font-size: 16px;
     font-weight: 700;
   }
 
   h6 {
-    font-family: $font-primary;
+    font-family: $font-secondary;
     font-size: 14px;
     font-weight: 700;
   }
@@ -80,9 +83,6 @@ $font-quote: "EB Garamond", sans-serif;
     // Change bullet content for li
     ul {
       li {
-        display: flex;
-        align-items: center;
-
         &::before {
           content: "◆";
           display: inline-block;
@@ -94,6 +94,11 @@ $font-quote: "EB Garamond", sans-serif;
         }
       }
     }
+  }
+
+  .label {
+    text-transform: uppercase;
+    border: none;
   }
 
   // Navigation Styles
@@ -213,10 +218,12 @@ $font-quote: "EB Garamond", sans-serif;
     line-height: 1.2em;
   }
 
-  .desc,
-  .journal-entry-content {
+  .editor,
+  .journal-entry-content,
+  .editor-container {
 
-    .editor,
+    .editor-edit,
+    .editor-content,
     .journal-entry-page {
       font-weight: normal;
 
@@ -264,7 +271,6 @@ $font-quote: "EB Garamond", sans-serif;
     font-size: 16px;
     text-transform: uppercase;
   }
-
 
   // Styles for .detail-desc class
   .detail-desc {

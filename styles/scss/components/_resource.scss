@@ -19,29 +19,6 @@
   }
 }
 
-/* Status Effect Icon - Toggle Fading */
-.status-effect-toggle img {
-  height: 24px !important;
-  width: 24px;
-  max-width: 100%;
-  display: block;
-  overflow: hidden;
-  border-radius: 5px;
-  margin: 0;
-  border: 0;
-  opacity: 0.5;
-  background-image: linear-gradient(to right, $color-secondary, $color-ternary);
-
-  &:hover {
-    opacity: 0.75;
-  }
-}
-
-.status-effect-toggle.active img {
-  opacity: 1;
-}
-
-
 /* Resource Content Styles */
 .resource-content {
   color: $color-secondary;

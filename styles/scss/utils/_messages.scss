@@ -49,6 +49,7 @@
       border-radius: 12px;
       background-color: $color-ternary;
       overflow-wrap: anywhere;
+      margin: 10px 0;
     }
   }
 
@@ -57,7 +58,7 @@
     text-align: left;
     font-size: 14px;
     padding: 0.5em;
-    margin: 5px 0 5px;
+    margin: 10px 0;
     color: #272a2a;
     box-shadow: 3px 6px $color-background-inverted;
     background-image: linear-gradient(to right,
@@ -98,8 +99,10 @@
   .summary {
     font-size: 16px;
     color: $color-secondary;
+    padding: 5px 0;
   }
-    & > div {
+
+  &>div {
     margin: 0;
     height: 100% !important;
     flex-grow: 1;
@@ -108,6 +111,7 @@
     justify-content: center;
     text-align: center;
     position: relative;
+    padding: 5px 0;
 
     &::before {
       content: "";
@@ -306,14 +310,15 @@
 
 .group-check-supporters {
 
-    .group-check-supporters-title, .group-check-supporters-supporter {
-        & > *:not(:last-child) {
-            border-right: 1px solid black;
-        }
+  .group-check-supporters-title,
+  .group-check-supporters-supporter {
+    &>*:not(:last-child) {
+      border-right: 1px solid black;
     }
+  }
 
 
-    .group-check-supporters-title {
-        font-weight: bolder;
-    }
+  .group-check-supporters-title {
+    font-weight: bolder;
+  }
 }

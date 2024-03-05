@@ -246,12 +246,21 @@
 /* ----------------------------------------- */
 /*  Fixes                                    */
 /* ----------------------------------------- */
+$fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
 
 .items-list .item .item-name .item-image {
   border: none;
   padding-right: 5px;
   flex: 0 0 30px;
-  
+  position: relative;
+}
+
+.status-effect-toggle {
+  border: none;
+  flex: 0 0 24px;
+}
+
+.items-list .item .item-name .item-image, .status-effect-toggle{
   img {
     max-width: 100%;
     display: block;
@@ -259,11 +268,50 @@
     width: 24px;
     overflow: hidden;
     border-radius: 5px;
-    background-image: linear-gradient(to right,
-    $color-secondary,
-    $color-ternary);
+    background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.1);
+      opacity: 0.5;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background: $fu-d20 center/cover;
+        opacity: 0.5;
+        z-index: -1;
+      }
+    }
   }
 }
+
+/* Status Effect Icon - Toggle Fading */
+.status-effect-toggle img {
+  height: 24px !important;
+  width: 24px;
+  max-width: 100%;
+  display: block;
+  overflow: hidden;
+  border-radius: 5px;
+  margin: 0;
+  border: 0;
+  opacity: 0.5;
+  background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.status-effect-toggle.active img {
+  opacity: 1;
+}
+
 
 /* ----------------------------------------- */
 /*  Items Lists                              */
@@ -300,7 +348,7 @@
 
 .items-list .item {
   align-items: center;
-  padding: 1px;
+  padding: 1px 2px;
   transition:
     background-color 0.5s ease,
     border-color 0.5s ease,
