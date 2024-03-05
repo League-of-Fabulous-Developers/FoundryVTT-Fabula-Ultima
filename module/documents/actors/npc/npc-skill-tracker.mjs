@@ -112,10 +112,11 @@ export class NpcSkillTracker {
 		let sum = 0;
 
 		this.#data.actor.items.forEach((item) => {
-			// Check if the item has a non-null quality value or an empty quality
-			const hasQuality = item.system.quality?.value.length > 0;
-			const isNotSkill = item.type !== 'miscAbility';
-			if (hasQuality && isNotSkill) {
+			// Check if the item has a system and a quality property before accessing it
+			const hasSystem = item.system && item.system.quality;
+			// Check if the quality value is defined and has a length property
+			const hasQuality = hasSystem && item.system.quality.value && item.system.quality.value.length > 0;
+			if (hasQuality) {
 				sum++;
 			}
 		});
