@@ -58,6 +58,11 @@ export const statusEffects = [
         mod: -2,
     },
     {
+        id: 'guard',
+        name: 'FU.Guard',
+        icon: 'systems/projectfu/styles/static/icons/fu-guard.svg',
+    },    
+    {
         id: 'ins-down',
         name: 'FU.INSDown',
         icon: 'systems/projectfu/styles/static/statuses/InsDown.webp',

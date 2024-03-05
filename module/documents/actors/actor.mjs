@@ -261,43 +261,56 @@ export class FUActor extends Actor {
 
 		Object.keys(systemData.affinities).forEach((attrKey) => (statMods[attrKey] = 0));
 
-		// Iterate through each temporary effect applied to the actor.
-		actorData.effects.forEach((effect) => {
-			// Get the status associated with the effect, if it exists.
-			if (effect.statuses.size == 1) {
-				const status = CONFIG.statusEffects.find((status) => effect.statuses.has(status));
-
-				// If a valid status is found, apply its modifiers to the corresponding attributes.
-				if (status) {
-					const stats = status.stats || [];
-					const mod = status.mod || 0;
-
-					stats.forEach((attrKey) => (statMods[attrKey] += mod));
+		// Check for "Guard" effect
+		const guardEffect = actorData.effects.find((effect) => effect.statuses.size === 1 && effect.statuses.has('guard'));
+	
+		// Override all non-positive stats with '1' if "Guard" effect is active
+		if (guardEffect) {
+			Object.keys(statMods).forEach((attrKey) => {
+				const currentVal = systemData.affinities[attrKey].current;
+				if (currentVal <= 0) {
+					systemData.affinities[attrKey].current = 1;
 				}
-			}
-		});
+			});
+		} else {
+			// Iterate through each temporary effect applied to the actor.
+			actorData.effects.forEach((effect) => {
+				// Get the status associated with the effect, if it exists.
+				if (effect.statuses.size === 1) {
+					const status = CONFIG.statusEffects.find((status) => effect.statuses.has(status));
 
-		// Update the current affinities value with the calculated new value.
-		for (const [key, attr] of Object.entries(systemData.affinities)) {
-			let modVal = statMods[key] + attr.bonus;
-			let baseVal = attr.base;
-			let newVal = baseVal;
+					// If a valid status is found, apply its modifiers to the corresponding attributes.
+					if (status) {
+						const stats = status.stats || [];
+						const mod = status.mod || 0;
+
+						stats.forEach((attrKey) => (statMods[attrKey] += mod));
+					}
+				}
+			});
+
+			// Update the current affinities value with the calculated new value.
+			for (const [key, attr] of Object.entries(systemData.affinities)) {
+				let modVal = statMods[key] + attr.bonus;
+				let baseVal = attr.base;
+				let newVal = baseVal;
 
 			// console.log('Key:', key, ' ModVal:', modVal, ' BaseVal:', baseVal, ' Current:', attr.current);
 
-			if (baseVal === -1 && modVal === 1) {
-				newVal = 0;
-			} else if (modVal > 0 || modVal < 0) {
-				newVal = modVal;
-			} else {
-				newVal = baseVal += modVal;
+				if (baseVal === -1 && modVal === 1) {
+					newVal = 0;
+				} else if (modVal > 0 || modVal < 0) {
+					newVal = modVal;
+				} else {
+					newVal = baseVal += modVal;
+				}
+
+				// Ensure newVal is capped between -1 and 4
+				newVal = Math.max(-1, Math.min(newVal, 4));
+
+				// Set attr.current directly to newVal
+				attr.current = newVal;
 			}
-
-			// Ensure newVal is capped between -1 and 4
-			newVal = Math.max(-1, Math.min(newVal, 4));
-
-			// Set attr.current directly to newVal
-			attr.current = newVal;
 		}
 	}
 

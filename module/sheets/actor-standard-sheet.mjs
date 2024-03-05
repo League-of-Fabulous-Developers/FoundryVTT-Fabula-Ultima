@@ -2,7 +2,8 @@ import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEff
 import { promptCheck } from '../helpers/checks.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
 
-const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'ko', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
+const TOGGLEABLE_STATUS_EFFECT_IDS = [ 'crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
+// const TOGGLEABLE_STATUS_EFFECT_IDS = ['guard', 'crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'ko', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
 /**
  * Extend the basic ActorSheet with some very simple modifications

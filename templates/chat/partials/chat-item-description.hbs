@@ -1,11 +1,11 @@
 <div>
-    <details {{#unless collapseDescriptions}}open{{/unless}}>
-        <summary style="margin: 10px 0">{{localize 'FU.Description'}}</summary>
-        <div class='chat-desc'>
+    <div class='chat-desc'>
+        <details {{#unless collapseDescriptions}}open{{/unless}}>
+            <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
             {{#if summary}}
             <blockquote class='summary quote'>{{summary}}</blockquote>
             {{/if}}
             {{{description}}}
-        </div>
-    </details>
+        </details>
+    </div>
 </div>
