@@ -1,7 +1,12 @@
+{{!-- Favorite Template --}}
 <fieldset class="title-fieldset desc resource-content">
-	<legend class="resource-label-m">
-		{{localize 'FU.Favorite'}}
+	<legend class="resource-label-m" aria-describedby="tooltip">
+		<button class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.FavoriteAdd'}}"
+			style="width: 5em;" data-type="newFavorite">
+			<i class="fas fa-plus icon"></i>{{localize 'FU.Favorite'}}
+		</button>
 	</legend>
+
 	{{!-- Equipped Item Header--}}
 	{{> "systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs" item=item}}
 
@@ -16,7 +21,7 @@
 			</div>
 		</li>
 		{{#each items as |item id|}}
-		{{#if (and item.system.isFavored.value)}}
+		{{#if item.system.isFavored.value}}
 		<li class="item" data-item-id="{{ item._id }}">
 			<div class="flexrow">
 				{{!-- Item Name --}}

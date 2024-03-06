@@ -397,10 +397,10 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Render the item sheet for viewing/editing when middle-clicking
 		html.find('.item').mouseup((ev) => {
 			if (ev.button === 1 && !$(ev.target).hasClass('item-edit')) {
+				ev.preventDefault();
 				const li = $(ev.currentTarget);
 				const item = this.actor.items.get(li.data('itemId'));
 				item.sheet.render(true);
-				ev.preventDefault();
 			}
 		});
 
@@ -416,6 +416,9 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Add Inventory Item
 		html.find('.item-create').click(this._onItemCreate.bind(this));
+
+		// Add Inventory Item Dialog
+		html.find('.item-create-dialog').click(this._onItemCreateDialog.bind(this));
 
 		// Delete Inventory Item
 		html.find('.item-delete').click((ev) => {
@@ -813,6 +816,77 @@ export class FUStandardActorSheet extends ActorSheet {
 		return await Item.create(itemData, { parent: this.actor });
 	}
 
+	async _onItemCreateDialog(event) {
+		event.preventDefault();
+	
+		const dataType = event.currentTarget.dataset.type;
+		let types;
+		let clock = false;
+	
+		// Get all available item types and class feature types
+		const allItemTypes = Object.keys(CONFIG.Item.dataModels);
+		const classFeatureTypes = Object.keys(CONFIG.FU.classFeatureRegistry.features());
+		const isCharacter = this.actor.type === 'character';
+		const isNPC = this.actor.type === 'npc';
+	
+		console.log('All Item Types:', allItemTypes);
+	
+		switch (dataType) {
+			case 'newClock':
+				types = allItemTypes.map(type => ({ type }));
+				if (isCharacter) types = types.filter(item => ["miscAbility", "zeroPower", "ritual"].includes(item.type));
+				else if (isNPC) types = types.filter(item => ["miscAbility", "rule"].includes(item.type));
+				clock = true;
+				break;
+			case 'newFavorite':
+				types = allItemTypes.map(type => ({ type }));
+				if (isCharacter) types = types.filter(item => !["rule", "behavior", "basic"].includes(item.type));
+				else if (isNPC) types = types.filter(item => !["class", "classFeature", "skill", "heroic", "project", "ritual", "consumable", "zeroPower"].includes(item.type));
+				break;
+			case 'newClassFeatures':
+				types = classFeatureTypes.map(fullType => ({ type: "classFeature", subtype: fullType }));
+				break;
+			default:
+				break;
+		}
+	
+		const buttons = types.map(item => ({
+			label: item.subtype ? item.subtype.split('.')[1] : item.type,
+			callback: () => this._createItem(item.type, clock, item.subtype),
+		}));		
+	
+		new Dialog({
+			title: "Select Item Type",
+			content: `<p>Select the type of item you want to create:</p>`,
+			buttons: buttons,
+		}).render(true);
+	}
+	
+	async _createItem(type, clock, subtype) {
+		const name = `New ${subtype ? subtype.split('.')[1].capitalize() : type.capitalize()}`;
+	
+		const itemData = {
+			name: name,
+			type: type,
+			data: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }) },
+		};
+	
+		try {
+			let item = await Item.create(itemData, { parent: this.actor });
+			await item.update({
+				'data.hasClock.value': clock,
+				'data.isFavored.value': true,
+				'data.featureType': subtype,
+			});
+			ui.notifications.info(`${name} created successfully.`);
+			item.sheet.render(true);
+			return item;
+		} catch (error) {
+			console.error(`Error creating/updating item: ${error.message}`);
+			ui.notifications.error(`Error creating ${name}: ${error.message}`);
+		}
+	}
+	
 	/**
 	 * Rolls a random behavior for the given actor and displays the result in a chat message.
 	 *

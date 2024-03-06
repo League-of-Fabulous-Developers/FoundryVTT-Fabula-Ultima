@@ -1,11 +1,13 @@
 {{!-- Clock Template --}}
 <fieldset class="title-fieldset desc resource-content">
-    <legend class="resource-label-m">
-        {{localize 'FU.Clocks'}}
-    </legend>
+	<legend class="resource-label-m" aria-describedby="tooltip">
+		<button class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}"
+			style="width: 4.5em;" data-type="newClock">
+			<i class="fas fa-plus icon"></i>{{localize 'FU.Clocks'}}
+		</button>
+	</legend>
 	{{#each items as |item id|}}
-	{{#if (and item.system.isFavored.value)}}
-	{{#if (eq item.type "zeroPower")}}
+	{{#if (and item.system.isFavored.value item.system.hasClock.value)}}
 	<li class="item flexcol" data-item-id="{{ item._id }}">
 		{{!-- Item Name--}}
 		<h4 class="click-item resource-content">
@@ -21,24 +23,6 @@
 			</div>
 		</div>
 	</li>
-	{{/if}}
-	{{#if (and item.system.hasClock.value)}}
-	<li class="item flexcol" data-item-id="{{ item._id }}">
-		{{!-- Item Name--}}
-		<h4 class="click-item resource-content">
-			<span class="resource-label-m">
-				{{ item.name }}
-			</span>
-		</h4>
-		<div class="item-sm" style="text-align: initial;">
-			<div class="progress-container">
-				{{> "systems/projectfu/templates/actor/partials/actor-progress-clock-xl.hbs"
-				arr=item.progressArr
-				data=item.system.progress}}
-			</div>
-		</div>
-	</li>
-	{{/if}}
 	{{/if}}
 	{{/each}}
 </fieldset>
