@@ -41,7 +41,7 @@ async function getDescription(model, useAttributes = false) {
 
 		const actor = model.parent.parent?.actor;
 		if (useAttributes && actor) {
-			rollData.attributes = Object.entries(actor?.system.attributes ?? {}).reduce(
+			rollData.attribute = Object.entries(actor?.system.attributes ?? {}).reduce(
 				(agg, [key, value]) => ({
 					...agg,
 					[key]: value.current,
@@ -49,7 +49,7 @@ async function getDescription(model, useAttributes = false) {
 				{},
 			);
 		} else {
-			rollData.attributes = (await ToneDataModel.getAdditionalData(tone.system.data)).rollData.attributes;
+			rollData.attribute = (await ToneDataModel.getAdditionalData(tone.system.data)).rollData.attribute;
 		}
 	}
 

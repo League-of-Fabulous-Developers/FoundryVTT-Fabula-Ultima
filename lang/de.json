@@ -674,7 +674,7 @@
         "ClassFeatureKeyAttribute" : "Attribut",
         "ClassFeatureKeyRecovery" : "Wiederherstellung",
         "ClassFeatureTone" : "Melodie",
-        "ClassFeatureToneDescriptionTooltip" : "Du kannst auf die Tonart der Strophe verweisen indem du 'key.type', 'key.status', 'key.attribute' and 'key.recovery' mit '{{ }}' umgibst. Gleichermaßen kannst du über 'attribute.dex', 'attribute.ins', 'attribute.mig' and 'attribute.wlp' auf die aktuelle Attributswürfelgröße verweisen.",
+        "ClassFeatureToneDescriptionTooltip" : "Du kannst auf die Tonart der Strophe verweisen indem du 'key.type', 'key.status', 'key.attribute' and 'key.recovery' mit '@DATA[ ]' umgibst. Gleichermaßen kannst du über 'attribute.dex', 'attribute.ins', 'attribute.mig' and 'attribute.wlp' auf die aktuelle Attributswürfelgröße verweisen.",
         "ClassFeatureToneDescriptionKeyDamageType" : "Tonart Schadentyp",
         "ClassFeatureToneDescriptionKeyStatus" : "Tonart Statuseffekt",
         "ClassFeatureToneDescriptionKeyAttribute" : "Tonart Attribut",

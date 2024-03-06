@@ -674,7 +674,7 @@
         "ClassFeatureKeyAttribute" : "Attribute",
         "ClassFeatureKeyRecovery" : "Recovery",
         "ClassFeatureTone" : "Tone",
-        "ClassFeatureToneDescriptionTooltip" : "You can use 'key.type', 'key.status', 'key.attribute' and 'key.recovery' to refer to a verses key by wrapping them in '{{ }}'. You can also refer to attribute die sizes by using 'attribute.dex', 'attribute.ins', 'attribute.mig' and 'attribute.wlp' the same way.",
+        "ClassFeatureToneDescriptionTooltip" : "You can use 'key.type', 'key.status', 'key.attribute' and 'key.recovery' to refer to a verses key by wrapping them in '@DATA[ ]'. You can also refer to attribute die sizes by using 'attribute.dex', 'attribute.ins', 'attribute.mig' and 'attribute.wlp' the same way.",
         "ClassFeatureToneDescriptionKeyDamageType" : "key type",
         "ClassFeatureToneDescriptionKeyStatus" : "key status effect",
         "ClassFeatureToneDescriptionKeyAttribute" : "key Attribute",

@@ -674,7 +674,7 @@
         "ClassFeatureKeyAttribute" : "Attribut",
         "ClassFeatureKeyRecovery" : "Récupération",
         "ClassFeatureTone" : "Tonalité",
-        "ClassFeatureToneDescriptionTooltip" : "Vous pouvez utiliser 'key.type', 'key.status', 'key.attribute' et 'key.recovery' pour faire référence à une clé de couplets en les entourant avec '{{ }}'. Vous pouvez également faire référence à des tailles de dé d'attribut en utilisant 'attribute.dex', 'attribute.ins', 'attribute.mig' et 'attribute.wlp' de la même manière.",
+        "ClassFeatureToneDescriptionTooltip" : "Vous pouvez utiliser 'key.type', 'key.status', 'key.attribute' et 'key.recovery' pour faire référence à une clé de couplets en les entourant avec '@DATA[ ]'. Vous pouvez également faire référence à des tailles de dé d'attribut en utilisant 'attribute.dex', 'attribute.ins', 'attribute.mig' et 'attribute.wlp' de la même manière.",
         "ClassFeatureToneDescriptionKeyDamageType" : "clé (type)",
         "ClassFeatureToneDescriptionKeyStatus" : "clé (état)",
         "ClassFeatureToneDescriptionKeyAttribute" : "clé (attribut)",

@@ -38,7 +38,7 @@ import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-
 import { FUClassFeatureSheet } from './documents/items/classFeature/class-feature-sheet.mjs';
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
-import { handlebarsHtmlEnricher } from './helpers/handlebars-html-enricher.mjs';
+import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
 import { FUActiveEffect } from './documents/effects/active-effect.mjs';
 import { registerChatInteraction } from './helpers/apply-damage.mjs';
 
@@ -148,7 +148,7 @@ Hooks.once('init', async () => {
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 
-	CONFIG.TextEditor.enrichers.push(handlebarsHtmlEnricher);
+	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
