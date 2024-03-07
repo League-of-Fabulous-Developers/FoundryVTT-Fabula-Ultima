@@ -2,6 +2,7 @@ import {UseWeaponDataModel} from '../common/use-weapon-data-model.mjs';
 import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs';
 import {DamageDataModel} from '../common/damage-data-model.mjs';
 import {ImprovisedDamageDataModel} from '../common/improvised-damage-data-model.mjs';
+import {ProgressDataModel} from '../common/progress-data-model.mjs';
 
 /**
  * @property {string} subtype.value
@@ -44,6 +45,8 @@ export class HeroicSkillDataModel extends foundry.abstract.TypeDataModel {
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			damage: new EmbeddedDataField(DamageDataModel, {}),
 			impdamage: new EmbeddedDataField(ImprovisedDamageDataModel, {}),
+			hasResource: new SchemaField({ value: new BooleanField() }),
+			rp: new EmbeddedDataField(ProgressDataModel, {}),
 			requirement: new SchemaField({ value: new StringField() }),
 			benefits: new SchemaField({
 				resources: new SchemaField({

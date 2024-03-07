@@ -7,7 +7,7 @@ import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEff
 export class FUItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['projectfu', 'sheet', 'item'],
 			width: 700,
 			height: 700,

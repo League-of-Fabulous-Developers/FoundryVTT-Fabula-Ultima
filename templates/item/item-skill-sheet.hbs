@@ -18,7 +18,7 @@
 		{{!-- Attributes Tab --}}
 		<div class="tab attributes" data-group="primary" data-tab="attributes">
 
-			<section class="grid grid-2col" style="gap: 5px;">
+			<section class="grid grid-2col resource-content" style="gap: 5px;">
 
 				{{!-- General Info Section --}}
 				<fieldset class="title-fieldset desc resource-content grid-span-2">
@@ -29,6 +29,16 @@
 						<label class="checkbox resource-label-sm"> <span>{{localize 'FU.HRZeroStatus'}}</span><input
 								type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
 								system.rollInfo.useWeapon.hrZero.value }} />
+						</label>
+						<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ResourceStatus'}}">
+							<span>
+								{{#if item.system.hasResource.value}}
+								<i class="fas fa-hashtag"></i>
+								{{else}}
+								<i class="far fa-hashtag"></i>
+								{{/if}}
+							</span><input type="checkbox" name="system.hasResource.value" {{ checked
+								system.hasResource.value }} />
 						</label>
 					</div>
 
@@ -81,7 +91,6 @@
 					</div>
 				</fieldset>
 
-
 				{{!-- Damage Section --}}
 				<fieldset class="title-fieldset desc resource-content">
 					<legend class="resource-label-full">
@@ -117,6 +126,9 @@
 						</div>
 					</div>
 				</fieldset>
+
+				{{!-- Resource Pointts --}}
+				{{> "systems/projectfu/templates/item/partials/item-resource-points.hbs"}}
 
 			</section>
 		</div>

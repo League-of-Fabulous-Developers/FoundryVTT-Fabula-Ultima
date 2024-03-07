@@ -2,7 +2,7 @@ import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEff
 import { promptCheck } from '../helpers/checks.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
 
-const TOGGLEABLE_STATUS_EFFECT_IDS = [ 'crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
+const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 // const TOGGLEABLE_STATUS_EFFECT_IDS = ['guard', 'crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'ko', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
 /**
@@ -818,19 +818,19 @@ export class FUStandardActorSheet extends ActorSheet {
 
 	async _onItemCreateDialog(event) {
 		event.preventDefault();
-	
+
 		const dataType = event.currentTarget.dataset.type;
 		let types;
 		let clock = false;
-	
+
 		// Get all available item types and class feature types
 		const allItemTypes = Object.keys(CONFIG.Item.dataModels);
 		const classFeatureTypes = Object.keys(CONFIG.FU.classFeatureRegistry.features());
 		const isCharacter = this.actor.type === 'character';
 		const isNPC = this.actor.type === 'npc';
-	
+
 		console.log('All Item Types:', allItemTypes);
-	
+
 		switch (dataType) {
 			case 'newClock':
 				types = allItemTypes.map(type => ({ type }));
@@ -849,28 +849,28 @@ export class FUStandardActorSheet extends ActorSheet {
 			default:
 				break;
 		}
-	
+
 		const buttons = types.map(item => ({
 			label: item.subtype ? item.subtype.split('.')[1] : item.type,
 			callback: () => this._createItem(item.type, clock, item.subtype),
-		}));		
-	
+		}));
+
 		new Dialog({
 			title: "Select Item Type",
 			content: `<p>Select the type of item you want to create:</p>`,
 			buttons: buttons,
 		}).render(true);
 	}
-	
+
 	async _createItem(type, clock, subtype) {
 		const name = `New ${subtype ? subtype.split('.')[1].capitalize() : type.capitalize()}`;
-	
+
 		const itemData = {
 			name: name,
 			type: type,
 			data: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }) },
 		};
-	
+
 		try {
 			let item = await Item.create(itemData, { parent: this.actor });
 			await item.update({
@@ -886,7 +886,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			ui.notifications.error(`Error creating ${name}: ${error.message}`);
 		}
 	}
-	
+
 	/**
 	 * Rolls a random behavior for the given actor and displays the result in a chat message.
 	 *
@@ -994,12 +994,13 @@ export class FUStandardActorSheet extends ActorSheet {
 	}
 
 	/**
-	 * Handles button click events to update item level.
+	 * Handles button click events to update item level or resource progress.
 	 * @param {Event} ev - The button click event.
-	 * @param {number} increment - The value by which to increment or decrement the item level.
+	 * @param {number} increment - The value by which to increment or decrement the item level or resource progress.
+	 * @param {string} dataType - The type of data ('levelCounter', 'resourceCounter', 'clockCounter', or 'projectCounter').
 	 * @private
 	 */
-	async _onButtonClick(ev, increment) {
+	async _onButtonClick(ev, increment, dataType) {
 		const button = ev.currentTarget;
 		const li = $(button).closest('.item');
 
@@ -1009,68 +1010,79 @@ export class FUStandardActorSheet extends ActorSheet {
 				const item = this.actor.items.get(itemId);
 
 				if (item) {
-					// Increment or decrement the level value
-					const newLevel = item.system.level.value + increment;
+					switch (dataType) {
+						case 'levelCounter':
+							// Increment or decrement the level value
+							const newLevel = item.system.level.value + increment;
+							// Update the item with the new level value
+							await item.update({ 'system.level.value': newLevel });
+							break;
 
-					// Update the item with the new level value
-					await item.update({ 'system.level.value': newLevel });
+						case 'resourceCounter':
+							// Increment or decrement the rp progress current value
+							const stepMultiplier = item.system.rp.step || 1;
+							const maxProgress = item.system.rp.max;
+							let newProgress = item.system.rp.current + increment * stepMultiplier;
+
+							// Check if newProgress exceeds rp.max unless rp.max is 0
+							if (maxProgress !== 0) {
+								newProgress = Math.min(newProgress, maxProgress);
+							}
+
+							// Update the item with the new rp progress value
+							await item.update({ 'system.rp.current': newProgress });
+							break;
+
+						case 'clockCounter':
+							break;
+
+						case 'projectCounter':
+							// Increment or decrement the rp progress current value
+							const progressPerDay = item.system.progressPerDay.value || 1;
+							const maxProjectProgress = item.system.progress.max;
+							let currentProgress = item.system.progress.current + increment * progressPerDay;
+
+							// Check if currentProgress exceeds progress.max unless progress.max is 0
+							if (maxProjectProgress !== 0) {
+								currentProgress = Math.min(currentProgress, maxProjectProgress);
+							}
+
+							// Update the item with the new progress value
+							await item.update({ 'system.progress.current': currentProgress });
+							break;
+
+						default:
+							console.error('Invalid data-type:', dataType);
+							break;
+					}
 				} else {
 					console.error(`Item with ID ${itemId} not found.`);
 				}
 			}
 		} catch (error) {
-			console.error('Error updating item level:', error);
+			console.error(`Error updating item ${dataType === 'levelCounter' ? 'level' : 'rp progress'}:`, error);
 		}
 	}
 
-	/**
-	 * Handles button click events to update item progress.
-	 * @param {Event} ev - The button click event.
-	 * @param {number} increment - The current value by which to increment or decrement the item progress.
-	 * @private
-	 */
-	async _onResourceClick(ev, increment) {
-		const button = ev.currentTarget;
-		const li = $(button).closest('.item');
-
-		try {
-			if (li.length) {
-				const itemId = li.find('button').data('item-id');
-				const item = this.actor.items.get(itemId);
-
-				if (item) {
-					// Increment or decrement the rp progress current value
-					const newProgress = item.system.rp.current + increment;
-
-					// Update the item with the new rp progress value
-					await item.update({ 'system.rp.current': newProgress });
-				} else {
-					console.error(`Item with ID ${itemId} not found.`);
-				}
-			}
-		} catch (error) {
-			console.error('Error updating item rp progress:', error);
-		}
-	}
 
 	/**
-	 * Handles increment button click events.
+	 * Handles increment button click events for both level and resource progress.
 	 * @param {Event} ev - The button click event.
 	 * @private
 	 */
 	_onIncrementButtonClick(ev) {
-		this._onButtonClick(ev, 1);
-		// this._onResourceClick(ev, 1);
+		const dataType = $(ev.currentTarget).data('type');
+		this._onButtonClick(ev, 1, dataType);
 	}
 
 	/**
-	 * Handles decrement button click events.
+	 * Handles decrement button click events for both level and resource progress.
 	 * @param {Event} ev - The button click event.
 	 * @private
 	 */
 	_onDecrementButtonClick(ev) {
-		this._onButtonClick(ev, -1);
-		// this._onResourceClick(ev, -1);
+		const dataType = $(ev.currentTarget).data('type');
+		this._onButtonClick(ev, -1, dataType);
 	}
 
 	/**

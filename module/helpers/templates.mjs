@@ -40,6 +40,8 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-progress-clock-xl.hbs',
 
 		// Item partials
+		'systems/projectfu/templates/item/partials/item-progress-clock.hbs',
+		'systems/projectfu/templates/item/partials/item-resource-points.hbs',
 		'systems/projectfu/templates/item/partials/item-controls.hbs',
 		'systems/projectfu/templates/item/partials/item-header.hbs',
 		'systems/projectfu/templates/item/partials/item-weapon-header.hbs',

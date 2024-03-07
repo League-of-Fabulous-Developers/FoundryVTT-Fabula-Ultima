@@ -39,15 +39,18 @@
 				{{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" actor=actor item=item}}
 				{{/if}}
 
+				{{!-- Resource Points --}}
 				{{#if item.system.hasResource.value}}
 				<div class="item-m flexcol flex-group-center resource-content">
 					<label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
 					<div class="resource-text-m buttons-inc">
-						<button class="decrement-button" data-item-id="{{ item._id }}">-</button>
-						<span data-resource="item.rp">{{ item.progress }}</span>
+						<button class="decrement-button" data-type="resourceCounter" data-item-id="{{ item._id }}">-</button>
+						<span data-resource="item.rp">{{ item.system.rp.current }}</span>
+						{{#if (gt item.system.rp.max 0)}}
 						<span>/</span>
 						<span>{{ item.system.rp.max }}</span>
-						<button class="increment-button" data-item-id="{{ item._id }}">+</button>
+						{{/if}}
+						<button class="increment-button" data-type="resourceCounter" data-item-id="{{ item._id }}">+</button>
 					</div>
 				</div>
 				{{/if}}

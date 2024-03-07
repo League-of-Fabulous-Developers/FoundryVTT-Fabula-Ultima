@@ -26,11 +26,11 @@
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				{{!-- Class Level --}}
 				<div class="item-m buttons-inc">
-					<button class="decrement-button" data-item-id="{{ item._id }}">-</button>
+					<button class="decrement-button" data-type="levelCounter" data-item-id="{{ item._id }}">-</button>
 					<span data-resource="item.level">{{ item.level }}</span>
 					<span>/</span>
 					<span>{{ item.system.level.max }}</span>
-					<button class="increment-button" data-item-id="{{ item._id }}">+</button>
+					<button class="increment-button" data-type="levelCounter" data-item-id="{{ item._id }}">+</button>
 				</div>
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
@@ -77,6 +77,24 @@
 					<div class="item-quality">{{ item.quality }}</div>
 					{{/if}}
 				</div>
+				{{!-- Resource Points --}}
+				{{#if item.system.hasResource.value}}
+				<div class="item-m flexcol flex-group-center resource-content">
+					<label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
+					<div class="resource-text-m buttons-inc" style="padding: 0 4px;">
+						<button class="decrement-button" data-type="resourceCounter"
+							data-item-id="{{ item._id }}">-</button>
+						<span data-resource="item.rp">{{ item.system.rp.current }}</span>
+						{{#if (gt item.system.rp.max 0)}}
+						<span>/</span>
+						<span>{{ item.system.rp.max }}</span>
+						{{/if}}
+
+						<button class="increment-button" data-type="resourceCounter"
+							data-item-id="{{ item._id }}">+</button>
+					</div>
+				</div>
+				{{/if}}
 				{{!-- Star Tracker--}}
 				<div class="skillLevel item-lg sl-stars">
 					{{#each item.skillArr as |level|}}
@@ -129,6 +147,25 @@
 			<div class="flexrow">
 				{{!-- Item Name--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{!-- Resource Points --}}
+				{{#if item.system.hasResource.value}}
+				<div class="item-m flexcol flex-group-center resource-content">
+					<label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
+					<div class="resource-text-m buttons-inc" style="padding: 0 4px;">
+						<button class="decrement-button" data-type="resourceCounter"
+							data-item-id="{{ item._id }}">-</button>
+						<span data-resource="item.rp">{{ item.system.rp.current }}</span>
+						{{#if (gt item.system.rp.max 0)}}
+						<span>/</span>
+						<span>{{ item.system.rp.max }}</span>
+						{{/if}}
+
+						<button class="increment-button" data-type="resourceCounter"
+							data-item-id="{{ item._id }}">+</button>
+					</div>
+				</div>
+				{{/if}}
+				{{!-- Subtype --}}
 				<div class="item-m">
 					<span>{{capitalize item.type }} {{capitalize item.system.subtype.value }}</span>
 				</div>

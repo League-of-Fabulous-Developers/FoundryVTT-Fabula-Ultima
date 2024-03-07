@@ -45,8 +45,8 @@
 }
 
 .bar-project {
-  background-color: #ba3b14;
-  background-image: linear-gradient(90deg, #ba3b14, rgba(255, 255, 255, 0.5));
+  background-color: #d68931;
+  background-image: linear-gradient(90deg, #d68931, rgba(255, 255, 255, 0.5));
 }
 
 .bar-start {
@@ -59,6 +59,10 @@
 
 .bar-end {
   border-radius: 0 0 100% 100%;
+}
+
+.bar-value {
+  color: $color-white;
 }
 
 .center-line {
