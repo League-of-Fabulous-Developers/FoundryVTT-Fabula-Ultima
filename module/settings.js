@@ -9,6 +9,7 @@ export const SETTINGS = Object.freeze({
 	collapseDescriptions: 'collapseDescriptions',
 	experimentalCombatTracker: 'experimentalCombatTracker',
 	optionCombatMouseDown: 'optionCombatMouseDown',
+	useRevisedStudyRule: 'useRevisedStudyRule',
 });
 
 export const registerSystemSettings = async function () {
@@ -103,6 +104,16 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 	});
+
+	game.settings.register(SYSTEM, SETTINGS.useRevisedStudyRule, {
+		name: 'Revised Study Roll',
+		hint: 'Enable this option to use revised Study Roll [7/10/13] from Rework Playtest.',
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+	});
+
 };
 
 class OptionalRules extends FormApplication {

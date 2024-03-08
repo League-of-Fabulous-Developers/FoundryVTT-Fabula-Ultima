@@ -145,7 +145,10 @@ $font-quote: "EB Garamond", sans-serif;
 
     &.affinity {
       label {
-        font-family: 'Modesto Condensed';
+        font-family: "Antonio", sans-serif;
+        line-height: 1.68em;
+        font-size: 18px;
+        color: $color-secondary;
       }
     }
 

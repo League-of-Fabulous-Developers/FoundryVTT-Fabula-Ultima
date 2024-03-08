@@ -1,6 +1,7 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
 import { promptCheck } from '../helpers/checks.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
+import { handleStudyRoll } from '../helpers/study-roll.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 // const TOGGLEABLE_STATUS_EFFECT_IDS = ['guard', 'crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'ko', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
@@ -427,6 +428,8 @@ export class FUStandardActorSheet extends ActorSheet {
 			item.delete();
 			li.slideUp(200, () => this.render(false));
 		});
+
+		html.find('.study-button').click(() => handleStudyRoll.bind(this)());
 
 		// Add event listeners for increment and decrement buttons
 		html.find('.increment-button').click((ev) => this._onIncrementButtonClick(ev));
