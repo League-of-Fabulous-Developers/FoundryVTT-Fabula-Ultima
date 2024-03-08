@@ -10,6 +10,7 @@ export const SETTINGS = Object.freeze({
 	experimentalCombatTracker: 'experimentalCombatTracker',
 	optionCombatMouseDown: 'optionCombatMouseDown',
 	useRevisedStudyRule: 'useRevisedStudyRule',
+	optionImagePixelated: 'optionImagePixelated',
 });
 
 export const registerSystemSettings = async function () {
@@ -66,6 +67,7 @@ export const registerSystemSettings = async function () {
 		icon: 'fas fa-book',
 		type: myBehaviorRolls,
 		restricted: true,
+		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionTargetPriority, {
@@ -114,6 +116,15 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
+	game.settings.register(SYSTEM, SETTINGS.optionImagePixelated, {
+		name: 'Pixelated View',
+		hint: 'Enable this option to render 16-bit art in a viewable manner, preserving its retro aesthetic with minimal scaling artifacts.',
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
 };
 
 class OptionalRules extends FormApplication {

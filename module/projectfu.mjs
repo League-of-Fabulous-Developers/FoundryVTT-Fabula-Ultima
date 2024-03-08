@@ -212,6 +212,17 @@ Hooks.once('mmo-hud.ready', () => {
 	// Do this
 });
 
+Hooks.once('ready', () => {
+	const isPixelated = game.settings.get("projectfu", "optionImagePixelated");
+    const applyPixelatedStyle = () => {
+        // Apply the style to specific selectors
+        $('img')
+            .css('image-rendering', isPixelated ? 'pixelated' : '');
+    };
+    // Apply the style initially
+    applyPixelatedStyle();
+});
+
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */
