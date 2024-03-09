@@ -11,7 +11,7 @@
             {{>"systems/projectfu/templates/actor/partials/actor-affinities.hbs" actor=actor}}
 
             {{!-- Start Sheet Tab Navigation --}}
-            <nav class="sheet-tabs tabs desc flexrow" data-group="primary" style="align-self: stretch;">
+            <nav class="sheet-tabs tabs desc flexrow" data-group="primary">
                 {{!-- Default tab is specified in actor-sheet.mjs --}}
                 <a class="item tab-style" data-tab="stats">{{localize 'FU.Stats'}}</a>
                 <a class="item tab-style" data-tab="classes">{{localize 'FU.Classes'}}</a>
@@ -27,7 +27,7 @@
                 <a class="item zenit-style" data-tooltip="{{localize 'FU.Zenit'}}">
                     <i class="fas fa-coin"></i>
                     <input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}"
-                           data-dtype="Number" />
+                        data-dtype="Number" />
                 </a>
             </nav>
         </header>
@@ -39,7 +39,7 @@
                 {{!-- Owned Features Tab --}}
                 <div class="tab features" data-group="primary" data-tab="stats">
                     {{>"systems/projectfu/templates/actor/partials/actor-traits.hbs"}}
-                    <section class="grid grid-4col" style="gap: 5px; padding: 0 0.5rem 0.5rem 0;">
+                    <section class="body-section grid grid-4col">
                         <aside class="sidebar flex-group-center">
                             {{!-- Action Buttons --}}
                             {{> "systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
@@ -48,9 +48,11 @@
                         </aside>
                         <main class="grid-span-3">
                             {{!-- Bond Section --}}
-                            {{>"systems/projectfu/templates/actor/partials/actor-bonds.hbs" bond=bond bondIndex=bondIndex}}
+                            {{>"systems/projectfu/templates/actor/partials/actor-bonds.hbs" bond=bond
+                            bondIndex=bondIndex}}
                             {{!-- Favorite Section --}}
-                            {{>"systems/projectfu/templates/actor/partials/actor-favorite.hbs" groups=systemData.bond dtypes=dtypes actor=actor}}
+                            {{>"systems/projectfu/templates/actor/partials/actor-favorite.hbs" groups=systemData.bond
+                            dtypes=dtypes actor=actor}}
                         </main>
                     </section>
                 </div>

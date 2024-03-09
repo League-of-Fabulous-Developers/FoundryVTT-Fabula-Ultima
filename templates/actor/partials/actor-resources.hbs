@@ -1,9 +1,9 @@
 <div class="header-fields flexrow" style="align-self: stretch;">
     <!-- Status Toggle Section -->
-    <div id="status-section" class="resource-content flex-group-center desc" style="">
+    <div id="status-section" class="resource-content flex-group-center desc">
         {{!-- Key Statuses --}}
         <div class="resource-content flex-group-center flexrow" style="margin-top: 2px;">
-            <span class="grid grid-8col" style="gap: 5px; flex: 1;">
+            <span class="grid grid-8col gap-5" style="flex: 1;">
                 {{#each statusEffectToggles as |statusEffect|}}
                 <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}"
                     data-status-id="{{statusEffect.id}}">
@@ -14,11 +14,11 @@
         </div>
     </div>
     <!-- Attribute Section -->
-    <div id="attribute-section" class="resource-content flex-group-center desc" style="">
+    <div id="attribute-section" class="resource-content flex-group-center desc">
         {{>"systems/projectfu/templates/actor/partials/actor-attributes.hbs"}}
     </div>
     <!-- Roll Section -->
-    <div id="roll-section" class="resource-content flex-group-center desc grid grid-2col" style="">
+    <div id="roll-section" class="resource-content flex-group-center desc grid grid-2col">
         {{!-- Group Check --}}
         <div class="flexcol rollable spin2win" data-roll-type="group-check"
             data-tooltip="{{localize 'FU.GroupCheckTooltip'}}">

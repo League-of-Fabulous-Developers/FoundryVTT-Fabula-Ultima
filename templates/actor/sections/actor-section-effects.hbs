@@ -1,11 +1,11 @@
 <section class="desc">
-     {{#unless hideHeader}}
+	{{#unless hideHeader}}
 	<header class="items-main-header">
 		<span class="items-main">
 			<label class="items-label">{{localize "FU.Effects"}}</label>
 		</span>
 	</header>
-     {{/unless}}
+	{{/unless}}
 	<ol class="items-list effects-list">
 		{{#each effects as |section sid|}}
 		<li class="item items-header flexrow" data-effect-type="{{ section.type }}">
@@ -31,7 +31,7 @@
 								</div>
 							</div>
 							<h4 class="click-item resource-content">
-								<span class="resource-text-m" style="display: flex; align-items: center; gap: 3px">
+								<span class="resource-text-m gap-3 align-center flexrow">
 									{{ effect.name }}
 								</span>
 							</h4>
@@ -40,7 +40,8 @@
 						<div class="item-lg">{{ effect.duration.name }}</div>
 						<div class="item-m end flexrow">
 							<a class="effect-control" data-action="toggle" title="{{localize 'FU.EffectToggle'}}">
-								<i class="{{#if effect.disabled}}fal fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
+								<i
+									class="{{#if effect.disabled}}fal fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
 							</a>
 							<a class="effect-control" data-action="edit" title="{{localize 'FU.EffectEdit'}}">
 								<i class="fas fa-edit"></i>

@@ -2,22 +2,22 @@
 {{#if system.hasClock.value}}
 <fieldset class="title-fieldset desc ">
     <legend>
-        <label class="resource-label-m"><i class="fas fa-clock icon"></i>{{localize
+        <label class="resource-label-sm"><i class="fas fa-clock icon"></i>{{localize
             'FU.Clocks'}}</label>
     </legend>
     <div class="grid grid-3col">
         <div class=" flexcol flex-group-center">
-            <label class="resource-label-m">{{localize 'FU.Current'}}</label>
+            <label class="resource-label-sm">{{localize 'FU.Current'}}</label>
             <input type="number" name="system.progress.current" value="{{ system.progress.current }}"
                 class="resource-inputs select-dropdown-m" />
         </div>
         <div class=" flexcol flex-group-center">
-            <label class="resource-label-m">{{localize 'FU.Step'}}</label>
+            <label class="resource-label-sm">{{localize 'FU.Step'}}</label>
             <input type="number" name="system.progress.step" value="{{ system.progress.step }}"
                 class="resource-inputs select-dropdown-m" />
         </div>
         <div class=" flexcol flex-group-center">
-            <label class="resource-label-m">{{localize 'FU.Max'}}</label>
+            <label class="resource-label-sm">{{localize 'FU.Max'}}</label>
             <input type="number" name="system.progress.max" value="{{ system.progress.max }}"
                 class="resource-inputs select-dropdown-m" />
         </div>

@@ -1,5 +1,5 @@
 
-$sizes: 25, 50, 75, 100;
+$sizes: 5, 10, 15, 25, 50, 75, 100;
 
 @each $size in $sizes {
     .w-#{$size} {

@@ -14,3 +14,13 @@
 @mixin hide {
   display: none;
 }
+
+@mixin gap($value) {
+  gap: $value;
+}
+
+@for $i from 1 through 20 {
+  .gap-#{$i} {
+    @include gap($i * 1px);
+  }
+}

@@ -18,7 +18,7 @@
 		{{!-- Attributes Tab --}}
 		<div class="tab attributes" data-group="primary" data-tab="attributes">
 
-			<section class="grid grid-2col" style="gap: 5px;">
+			<section class="grid grid-2col gap-5">
 
 				{{!-- General Info Section --}}
 				<fieldset class="title-fieldset desc resource-content grid-span-2">
@@ -127,8 +127,7 @@
 						<label class="resource-label-m">{{localize 'FU.ProjectStatus'}}</label>
 					</legend>
 					<div class="grid grid-4col">
-						<div class="resource-content flexrow flex-center flex-between buttons-inc combineBar"
-							style="gap:4px;">
+						<div class="resource-content flexrow flex-center flex-between buttons-inc combineBar gap-5">
 							<label class="resource-label-sm">{{localize 'FU.CurrentProgress'}}</label>
 							<input type="number" class="resource-inputs select-dropdown-m"
 								name="system.progress.current" value="{{ system.progress.current }}"

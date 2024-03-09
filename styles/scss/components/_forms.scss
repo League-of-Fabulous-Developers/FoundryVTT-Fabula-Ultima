@@ -229,13 +229,21 @@
   }
 }
 
+.body-section {
+  gap: 5px;
+  padding: 0 0.5rem 0.5rem 0;
+}
+
+.section-container {
+  margin-bottom: 5px;
+}
+
 /* NPC Border Column */
 .npc-border-col {
   background: linear-gradient(#{$color-transparent-gradient});
   border-radius: 10px;
   max-height: 17em;
   min-height: 10em;
-  margin-bottom: 5px;
   padding: 0;
 
   /* NPC Description */
