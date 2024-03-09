@@ -21,6 +21,7 @@ export class FUCombatTracker extends CombatTracker {
 					name: effect.name,
 					img: effect.img,
 				}));
+				turn.css = turn.css.replace('active', '');
 				return turn;
 			});
 		}
@@ -46,7 +47,9 @@ export class FUCombatTracker extends CombatTracker {
 		super.activateListeners(html);
 		html.find('a[data-action=take-turn]').click((event) => this.handleTakeTurn(event));
 		html.find('a[data-action=take-turn-out-of-turn]').click((event) => this.handleTakeTurnOutOfTurn(event));
-		html.find('.combatant').off('click').on('click', (event) => this.customOnCombatantClick(event));
+		html.find('.combatant')
+			.off('click')
+			.on('click', (event) => this.customOnCombatantClick(event));
 		html.find('.combatant-name').on('dblclick', (event) => this._onCombatantMouseDown(event));
 	}
 
@@ -57,7 +60,7 @@ export class FUCombatTracker extends CombatTracker {
 	customOnCombatantClick(event) {
 		event.preventDefault();
 
-		if (game.settings.get("projectfu", "optionCombatMouseDown")) {
+		if (game.settings.get('projectfu', 'optionCombatMouseDown')) {
 			// Call the custom function
 			this._onCustomCombatantMouseDown(event);
 		} else {
@@ -75,7 +78,7 @@ export class FUCombatTracker extends CombatTracker {
 		const li = event.currentTarget;
 		const combatant = this.viewed.combatants.get(li.dataset.combatantId);
 		const token = combatant.token;
-		if (!combatant.actor?.testUserPermission(game.user, "OBSERVER")) return;
+		if (!combatant.actor?.testUserPermission(game.user, 'OBSERVER')) return;
 
 		// Handle double-left click to open sheet
 		const now = Date.now();
@@ -85,7 +88,7 @@ export class FUCombatTracker extends CombatTracker {
 			return combatant.actor?.sheet.render(true);
 		}
 
-    	// Control Token object (no panning)
+		// Control Token object (no panning)
 		if (token?.object) {
 			token.object?.control({ releaseOthers: true });
 		}
