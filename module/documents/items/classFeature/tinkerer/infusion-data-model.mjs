@@ -95,24 +95,12 @@ export class InfusionsDataModel extends ClassFeatureDataModel {
 	}
 
 	static processUpdateData(data) {
-		for (const field of ['basicInfusions', 'advancedInfusions', 'superiorInfusions']) {
-			this.#processInfusions(field, data);
+		for (const rank of ['basicInfusions', 'advancedInfusions', 'superiorInfusions']) {
+			let value = data[rank];
+			if (value && !Array.isArray(value)) {
+				data[rank] = Array.from(Object.values(value));
+			}
 		}
 		return data;
-	}
-
-	/**
-	 * Convert object to array
-	 */
-	static #processInfusions(key, data) {
-		let value = data[key];
-		if (value && !Array.isArray(value)) {
-			const infusions = [];
-			const maxIndex = Object.keys(value).length;
-			for (let i = 0; i < maxIndex; i++) {
-				infusions.push(data[i]);
-			}
-			data[key] = infusions;
-		}
 	}
 }
