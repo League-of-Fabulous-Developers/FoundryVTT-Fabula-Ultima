@@ -10,7 +10,6 @@ FU.attributes = {
 	dex: 'FU.AttributeDex',
 	ins: 'FU.AttributeIns',
 	mig: 'FU.AttributeMig',
-
 	wlp: 'FU.AttributeWlp',
 };
 
@@ -134,16 +133,27 @@ FU.itemTypes = {
 };
 
 FU.actionTypes = {
-	attack: 'FU.Action',
-	equipment: 'FU.Action',
-	guard: 'FU.Action',
-	hinder: 'FU.Action',
-	inventory: 'FU.Action',
-	objective: 'FU.Action',
-	spell: 'FU.Action',
-	study: 'FU.Action',
-	skill: 'FU.Action',
-	other: 'FU.Action',
+	attack: 'FU.Attack',
+	equipment: 'FU.Equipment',
+	guard: 'FU.Guard',
+	hinder: 'FU.Hinder',
+	inventory: 'FU.Inventory',
+	objective: 'FU.Objective',
+	spell: 'FU.Spell',
+	study: 'FU.Study',
+	skill: 'FU.Skill',
+};
+
+FU.actionRule = {
+	attack: 'FU.AttackRule',
+	equipment: 'FU.EquipmentRule',
+	guard: 'FU.GuardRule',
+	hinder: 'FU.HinderRule',
+	inventory: 'FU.InventoryRule',
+	objective: 'FU.ObjectiveRule',
+	spell: 'FU.SpellRule',
+	study: 'FU.StudyRule',
+	skill: 'FU.SkillRule',
 };
 
 /**
