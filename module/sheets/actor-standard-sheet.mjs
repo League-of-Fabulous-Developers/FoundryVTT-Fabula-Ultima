@@ -1203,6 +1203,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					break;
 				case 'hinderAction':
 					action = 'hinder';
+					promptCheck(this.actor, 'FU.Hinder');
 					break;
 				case 'inventoryAction':
 					action = 'inventory';
@@ -1215,6 +1216,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					break;
 				case 'studyAction':
 					action = 'study';
+					promptCheck(this.actor, 'FU.StudyRoll');
 					break;
 				case 'skillAction':
 					action = 'skill';
@@ -1223,10 +1225,6 @@ export class FUStandardActorSheet extends ActorSheet {
 					action = 'default';
 					break;
 			}
-			// console.log('Action Type: ', action);
-			// TODO: Setup Action Type Chat Card
-			// Call the roll method with the determined action type
-			// this.roll(action);
 		}
 
 		// Handle rolls that supply the formula directly.

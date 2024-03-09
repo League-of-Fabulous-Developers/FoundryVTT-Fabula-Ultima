@@ -9,8 +9,8 @@
 		{{#if system.affinities}}
 		{{#each system.affinities as |affinity key|}}
 		<div class="affinity resource-content flex-group-center flexcol">
-			<label data-label="{{ affinity.label }}">
-				<span class="resource-label-xl">
+			<label data-label="{{ affinity.label }}" style="line-height: 1.2em">
+				<span class="resource-label-l">
 					<i class="{{ affinity.icon }} icon-aff"></i>
 					<br />
 					{{affinity.label}}
@@ -35,7 +35,7 @@
 	{{!-- End Affinity Section --}}
 </fieldset>
 
-<section class="grid grid-3col">
+<section class="grid grid-3col" style="gap: 5px;">
 	<aside class="sidebar flex-group-center">
 		{{!-- Global Bonus Sidebar --}}
 		<fieldset class="title-fieldset desc affinities resource-content" style="margin-bottom: 5px;">
@@ -89,7 +89,7 @@
 				</div>
 			</div>
 			{{/if}} {{!-- NPC Relevent Bonuses --}} {{#if (eq actor.type "npc")}}
-			<div class="flex-group-center" style="padding: 5px 0;">
+			<div class="flex-group-center">
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.HealthBonus'}}</label>
 					<input type="text" name="system.resources.hp.bonus" value="{{ system.resources.hp.bonus }}"

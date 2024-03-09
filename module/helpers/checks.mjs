@@ -601,14 +601,16 @@ const KEY_RECENT_CHECKS = 'fabulaultima.recentChecks';
  * @param {FUActor} actor
  * @returns {Promise<ChatMessage|Object>}
  */
-export async function promptCheck(actor) {
+export async function promptCheck(actor, title) {
 	const recentChecks = JSON.parse(sessionStorage.getItem(KEY_RECENT_CHECKS) || '{}');
 	const recentActorChecks = recentChecks[actor.uuid] || (recentChecks[actor.uuid] = {});
 	try {
 		const attributes = actor.system.attributes;
+		const titleMain = title || 'FU.DialogCheckTitle';
+		const labelHeader = '';
 		const { attr1, attr2, difficulty, modifier } = await Dialog.wait(
 			{
-				title: game.i18n.localize('FU.DialogCheckTitle'),
+				title: game.i18n.localize(titleMain),
 				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check.hbs', {
 					attributes: FU.attributes,
 					attributeAbbr: FU.attributeAbbreviations,
@@ -665,13 +667,14 @@ export async function promptCheck(actor) {
 					dice: attributes[attr2].current,
 				},
 				modifier: modifier,
+				title: title || 'FU.RollCheck',
 			},
 			difficulty: difficulty,
 			speaker: speaker,
 		};
 		const rolledCheck = await rollCheck(params);
 
-		return await createCheckMessage(rolledCheck);
+        return await createCheckMessage(rolledCheck);
 	} catch (e) {
 		console.log(e);
 		// TODO

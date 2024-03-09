@@ -156,6 +156,44 @@ FU.actionRule = {
 	skill: 'FU.SkillRule',
 };
 
+FU.statusEffects = {
+	'crisis' : 'FU.Crisis',
+	'guard' : 'FU.Guard',
+	'slow' : 'FU.Slow',
+	'dazed' : 'FU.Dazed',
+	'weak' : 'FU.Weak',
+	'shaken' : 'FU.Shaken',
+	'enraged' : 'FU.Enraged',
+	'poisoned' : 'FU.Poisoned',
+	'wlp-down' : 'FU.WLPDown',
+	'wlp-up' : 'FU.WLPUp', 
+	'dex-down' : 'FU.DEXDown', 
+	'dex-up' : 'FU.DEXUp',
+	'ins-up' : 'FU.ISNUp',
+	'ins-down' : 'FU.INSDown',
+	'mig-up' : 'FU.MIGUp',
+	'mig-down' : 'FU.MIGDown',
+}
+
+FU.statusEffectRule = {
+	'crisis' : 'FU.CrisisRule',
+	'guard' : 'FU.GuardRule',
+	'slow' : 'FU.SlowRule',
+	'dazed' : 'FU.DazedRule',
+	'weak' : 'FU.WeakRule',
+	'shaken' : 'FU.ShakenRule',
+	'enraged' : 'FU.EnragedRule',
+	'poisoned' : 'FU.PoisonedRule',
+	'wlp-down' : 'FU.WLPDownRule',
+	'wlp-up' : 'FU.WLPUpRule', 
+	'dex-down' : 'FU.DEXDownRule', 
+	'dex-up' : 'FU.DEXUpRule',
+	'ins-down' : 'FU.INSDownRule',
+	'ins-up' : 'FU.ISNUpRule',
+	'mig-down' : 'FU.MIGDownRule',
+	'mig-up' : 'FU.MIGUpRule',
+}
+
 /**
  * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown", "custom"} WeaponCategory
  */

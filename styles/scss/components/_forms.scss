@@ -241,13 +241,13 @@
   /* NPC Description */
   .npc-desc {
     max-height: 14em;
-    min-height: 14em;
+    min-height: 12em;
 
     /* Editor Styles */
     .editor {
       height: 100%;
       max-height: 14em;
-      min-height: 14em;
+      min-height: 12em;
 
       /* Tox Tinymce Styles */
       .tox-tinymce {
@@ -260,8 +260,7 @@
 /* Action Container */
 .action-container {
   margin: 0 5px 5px 0px;
-  padding: 1px 0;
-  gap: 2px;
+  row-gap: 7px
 }
 
 /* Item Settings */

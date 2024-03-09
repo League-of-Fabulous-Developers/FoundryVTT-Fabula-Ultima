@@ -81,16 +81,25 @@ $font-quote: "EB Garamond", sans-serif;
     }
 
     // Change bullet content for li
-    ul {
-      li {
-        &::before {
-          content: "◆";
-          display: inline-block;
-          color: $color-secondary;
-          font-size: 14px;
-          margin-right: 8px;
-          vertical-align: middle;
-          line-height: 1;
+    .editor, .journal-page-content, .editor-content {
+      ul {
+        li, .ProseMirror li {
+          align-items: center;
+          justify-content: flex-start;
+          align-content: center;
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: row;
+
+          &::before {
+            content: "◆";
+            display: inline-block;
+            color: $color-secondary;
+            font-size: 14px;
+            margin-right: 8px;
+            vertical-align: middle;
+            line-height: 1;
+          }
         }
       }
     }
