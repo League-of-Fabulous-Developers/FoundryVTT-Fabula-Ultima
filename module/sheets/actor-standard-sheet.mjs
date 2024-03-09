@@ -4,7 +4,6 @@ import { GroupCheck } from '../helpers/group-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
-// const TOGGLEABLE_STATUS_EFFECT_IDS = ['guard', 'crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'ko', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -219,7 +218,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					}
 
 					if (progress.current === progress.max) {
-						console.log('Clock is completed!');
+						// console.log('Clock is completed!');
 						// TODO: Setup Completed Clock Chat Card
 					}
 
@@ -243,7 +242,8 @@ export class FUStandardActorSheet extends ActorSheet {
 					}
 
 					if (rp.current === rp.max) {
-						console.log('Resource maxxed out!');
+						// console.log('Resource maxxed out!');
+						// TODO: Setup Completed Resource Chat Card
 					}
 
 					item.rpArr = rpArr.reverse();
@@ -264,7 +264,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					}
 
 					if (level.value === level.max) {
-						console.log('Skill is MAXXED out!');
+						// console.log('Skill is MAXXED out!');
 					}
 
 					item.skillArr = skillArr;
@@ -804,8 +804,8 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Grab any data associated with this control.
 		const data = foundry.utils.duplicate(header.dataset);
 		// Initialize a default name.
-		// TODO: Instead of item type, refer to the localized name instead
-		const name = `New ${type.capitalize()}`;
+		const localizedKey = CONFIG.FU.itemTypes[type] || `TYPES.Item.${type}`;
+		const name = game.i18n.localize(localizedKey);
 		// Prepare the item object.
 		const itemData = {
 			name: name,
@@ -831,8 +831,6 @@ export class FUStandardActorSheet extends ActorSheet {
 		const classFeatureTypes = Object.keys(CONFIG.FU.classFeatureRegistry.features());
 		const isCharacter = this.actor.type === 'character';
 		const isNPC = this.actor.type === 'npc';
-
-		console.log('All Item Types:', allItemTypes);
 
 		switch (dataType) {
 			case 'newClock':
@@ -866,7 +864,8 @@ export class FUStandardActorSheet extends ActorSheet {
 	}
 
 	async _createItem(type, clock, subtype) {
-		const name = `New ${subtype ? subtype.split('.')[1].capitalize() : type.capitalize()}`;
+		const localizedKey = CONFIG.FU.itemTypes[type] || `TYPES.Item.${type}`;
+		const name = game.i18n.localize(localizedKey) || `${subtype ? subtype.split('.')[1].capitalize() : type.capitalize()}`;
 
 		const itemData = {
 			name: name,

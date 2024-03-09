@@ -509,7 +509,7 @@ export class FUItem extends Item {
 		const DEF = game.i18n.localize('FU.DefenseAbbr');
 		const MDEF = game.i18n.localize('FU.MagicDefenseAbbr');
 		const INIT = game.i18n.localize('FU.InitiativeAbbr');
-		const hasQualityValue = this.system.quality.value.trim() !== '';
+
 		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
 
 		function capitalizeFirst(string) {
@@ -529,10 +529,13 @@ export class FUItem extends Item {
 			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${INIT} ${this.system.init.value}</div>` : ''}
 			</div>`;
 
+			const qualityValue = this.system.quality?.value || '';
+			const hasQualityValue = qualityValue.trim() !== '';
+	
 			if (hasQualityValue) {
 				content += `
 				<div class="detail-desc flexrow flex-group-center" style="padding: 0 2px;">
-				  <div>Quality: ${this.system.quality.value}</div>
+				  <div>Quality: ${qualityValue.trim()}</div>
 				</div>`;
 			}
 		}
@@ -593,7 +596,6 @@ export class FUItem extends Item {
 		}
 
 		const { mpCost, target, duration } = item.system;
-		const hasQualityValue = item.system.opportunity.trim() !== '';
 
 		let content = '';
 
@@ -606,10 +608,13 @@ export class FUItem extends Item {
 			</div>`;
 		}
 
+		const qualityValue = this.system.opportunity?.value || '';
+		const hasQualityValue = qualityValue.trim() !== '';
+
 		if (hasQualityValue) {
 			content += `
 			<div class="detail-desc flexrow flex-group-center" style="padding: 0 2px;">
-			  <div>Quality: ${item.system.opportunity}</div>
+			  <div>Quality: ${qualityValue.trim()}</div>
 			</div>`;
 		}
 
@@ -662,11 +667,21 @@ export class FUItem extends Item {
 
 		const { class: heroicClass, requirement, heroicStyle } = this.system;
 
-		if ((heroicClass && heroicClass.value.trim()) || (requirement && requirement.value.trim()) || (heroicStyle && heroicStyle.value.trim())) {
+		const heroicClassValue = heroicClass?.value || '';
+		const hasHeroicClassValue = heroicClassValue.trim() !== '';
+	
+		const requirementValue = requirement?.value || '';
+		const hasRequirementValue = requirementValue.trim() !== '';
+	
+		const heroicStyleValue = heroicStyle?.value || '';
+		const hasHeroicStyleValue = heroicStyleValue.trim() !== '';
+
+		if (hasHeroicClassValue || hasRequirementValue || hasHeroicStyleValue) {
 			return `<div class="detail-desc flex-group-center">
-                ${heroicClass && heroicClass.value.trim() ? `<div>Class: ${heroicClass.value}</div>` : ''}
-                ${requirement && requirement.value.trim() ? `<div>Requirements: ${requirement.value}</div>` : ''}
-              </div>`;
+				${hasHeroicClassValue ? `<div>Class: ${heroicClassValue}</div>` : ''}
+				${hasRequirementValue ? `<div>Requirements: ${requirementValue}</div>` : ''}
+				${hasHeroicStyleValue ? `<div>Style: ${heroicStyleValue}</div>` : ''}
+			  </div>`;
 		}
 
 		return '';
