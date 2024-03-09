@@ -1,9 +1,9 @@
 {{!-- Bond Template --}}
 <fieldset class="title-fieldset desc resource-content" style="margin-bottom: 5px;">
     <legend class="bond-add" data-tooltip="{{localize 'FU.BondAdd'}}">
-        <button class="resource-inputs resource-label-m select-dropdown-m" data-tooltip="{{localize 'FU.BondAdd'}}">
+        <a class="resource-inputs resource-label-m select-dropdown-m" data-tooltip="{{localize 'FU.BondAdd'}}">
             <i class="fas fa-plus icon"></i>{{localize 'FU.Bonds'}}
-        </button>
+        </a>
     </legend>
     <div class="bonds resource-content grid grid-5col">
         {{#each system.resources.bonds as |bond bondIndex|}}
@@ -38,7 +38,7 @@
                 name="system.resources.bonds.{{ bondIndex }}.strength" value="{{ bond.strength }}"
                 data-dtype="Number" />
             <a class="bond-delete" data-tooltip="{{localize 'FU.BondDelete'}}" data-bond-index="{{ bondIndex }}">
-                <button class="resource-inputs" data-action="">
+                <button type="button" class="resource-inputs">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </a>

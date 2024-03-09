@@ -1,10 +1,10 @@
 {{!-- Favorite Template --}}
 <fieldset class="title-fieldset desc resource-content">
 	<legend class="resource-label-m" aria-describedby="tooltip">
-		<button class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.FavoriteAdd'}}"
+		<a class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.FavoriteAdd'}}"
 			style="width: 5em;" data-type="newFavorite">
 			<i class="fas fa-plus icon"></i>{{localize 'FU.Favorite'}}
-		</button>
+		</a>
 	</legend>
 
 	{{!-- Equipped Item Header--}}
@@ -44,13 +44,13 @@
 				<div class="item-m flexcol flex-group-center resource-content">
 					<label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
 					<div class="resource-text-m buttons-inc">
-						<button class="decrement-button" data-type="resourceCounter" data-item-id="{{ item._id }}">-</button>
+						<a class="decrement-button" data-type="resourceCounter" data-item-id="{{ item._id }}">-</a>
 						<span data-resource="item.rp">{{ item.system.rp.current }}</span>
 						{{#if (gt item.system.rp.max 0)}}
 						<span>/</span>
 						<span>{{ item.system.rp.max }}</span>
 						{{/if}}
-						<button class="increment-button" data-type="resourceCounter" data-item-id="{{ item._id }}">+</button>
+						<a class="increment-button" data-type="resourceCounter" data-item-id="{{ item._id }}">+</a>
 					</div>
 				</div>
 				{{/if}}

@@ -1,10 +1,10 @@
 {{!-- Clock Template --}}
 <fieldset class="title-fieldset desc resource-content">
 	<legend class="resource-label-m" aria-describedby="tooltip">
-		<button class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}"
+		<a class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}"
 			style="width: 4.5em;" data-type="newClock">
 			<i class="fas fa-plus icon"></i>{{localize 'FU.Clocks'}}
-		</button>
+		</a>
 	</legend>
 	{{#each items as |item id|}}
 	{{#if (and item.system.isFavored.value item.system.hasClock.value)}}

@@ -100,11 +100,11 @@
                 <div class="item-m flexcol flex-group-center resource-content">
                     <label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
                     <div class="resource-text-m buttons-inc">
-                        <button class="decrement-button" data-item-id="{{ item._id }}">-</button>
+                        <a class="decrement-button" data-item-id="{{ item._id }}">-</a>
                         <span data-resource="item.rp">{{ item.progress }}</span>
                         <span>/</span>
                         <span>{{ item.system.rp.max }}</span>
-                        <button class="increment-button" data-item-id="{{ item._id }}">+</button>
+                        <a class="increment-button" data-item-id="{{ item._id }}">+</a>
                     </div>
                 </div>
                 {{/if}}

@@ -834,30 +834,30 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		switch (dataType) {
 			case 'newClock':
-				types = allItemTypes.map(type => ({ type }));
-				if (isCharacter) types = types.filter(item => ["miscAbility", "zeroPower", "ritual"].includes(item.type));
-				else if (isNPC) types = types.filter(item => ["miscAbility", "rule"].includes(item.type));
+				types = allItemTypes.map((type) => ({ type }));
+				if (isCharacter) types = types.filter((item) => ['miscAbility', 'zeroPower', 'ritual'].includes(item.type));
+				else if (isNPC) types = types.filter((item) => ['miscAbility', 'rule'].includes(item.type));
 				clock = true;
 				break;
 			case 'newFavorite':
-				types = allItemTypes.map(type => ({ type }));
-				if (isCharacter) types = types.filter(item => !["rule", "behavior", "basic"].includes(item.type));
-				else if (isNPC) types = types.filter(item => !["class", "classFeature", "skill", "heroic", "project", "ritual", "consumable", "zeroPower"].includes(item.type));
+				types = allItemTypes.map((type) => ({ type }));
+				if (isCharacter) types = types.filter((item) => !['rule', 'behavior', 'basic'].includes(item.type));
+				else if (isNPC) types = types.filter((item) => !['class', 'classFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'zeroPower'].includes(item.type));
 				break;
 			case 'newClassFeatures':
-				types = classFeatureTypes.map(fullType => ({ type: "classFeature", subtype: fullType }));
+				types = classFeatureTypes.map((fullType) => ({ type: 'classFeature', subtype: fullType }));
 				break;
 			default:
 				break;
 		}
 
-		const buttons = types.map(item => ({
+		const buttons = types.map((item) => ({
 			label: item.subtype ? item.subtype.split('.')[1] : item.type,
 			callback: () => this._createItem(item.type, clock, item.subtype),
 		}));
 
 		new Dialog({
-			title: "Select Item Type",
+			title: 'Select Item Type',
 			content: `<p>Select the type of item you want to create:</p>`,
 			buttons: buttons,
 		}).render(true);
@@ -1008,7 +1008,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		try {
 			if (li.length) {
-				const itemId = li.find('button').data('item-id');
+				const itemId = li.find('[data-item-id]').data('item-id');
 				const item = this.actor.items.get(itemId);
 
 				if (item) {
@@ -1065,7 +1065,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			console.error(`Error updating item ${dataType === 'levelCounter' ? 'level' : 'rp progress'}:`, error);
 		}
 	}
-
 
 	/**
 	 * Handles increment button click events for both level and resource progress.
