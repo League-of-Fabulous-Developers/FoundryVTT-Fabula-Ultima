@@ -11,7 +11,6 @@ export class FUClassFeatureSheet extends ItemSheet {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['projectfu', 'sheet', 'item'],
 			width: 700,
-			height: 700,
 			tabs: [
 				{
 					navSelector: '.sheet-tabs',
@@ -138,7 +137,7 @@ export class FUClassFeatureSheet extends ItemSheet {
 		});
 
 		if (this.item.system.data instanceof ClassFeatureDataModel) {
-			this.item.system.data.constructor.activateListeners(html.find('[data-feature-content]'), this.item);
+			this.item.system.data.constructor.activateListeners(html.find('[data-feature-content]'), this.item, this);
 		}
 	}
 }

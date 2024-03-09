@@ -74,8 +74,9 @@ export class ClassFeatureDataModel extends foundry.abstract.DataModel {
 	 * For convenience the jQuery instance is scoped to the element immediately containing the rendered template.
 	 * @param {jQuery} html
 	 * @param {FUItem} item
+	 * @param {FUClassFeatureSheet} sheet
 	 */
-	static activateListeners(html, item) {}
+	static activateListeners(html, item, sheet) {}
 
 	/**
 	 * Adjust update formdata before the update call. Most useful to fix up Foundry array handling.
