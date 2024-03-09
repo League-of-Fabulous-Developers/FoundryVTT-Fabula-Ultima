@@ -82,27 +82,21 @@ export function prepareActiveEffectCategories(effects) {
  */
 export async function toggleStatusEffect(actor, statusEffectId) {
 	const existing = actor.effects.reduce((arr, e) => {
-		if (isActiveEffectForStatusEffectId(e, statusEffectId)) arr.push(e.id);
+		if (isActiveEffectForStatusEffectId(e, statusEffectId)) arr.push(e);
 		return arr;
 	}, []);
 	if (existing.length > 0) {
-		await actor.deleteEmbeddedDocuments('ActiveEffect', existing);
+		await Promise.all(existing.map((e) => e.delete()));
 		return false;
 	} else {
-		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId);
-		const cls = getDocumentClass('ActiveEffect');
-		const createData = foundry.utils.deepClone(statusEffect);
-		createData.statuses = [statusEffect.id];
-		delete createData.id;
-		cls.migrateDataSafe(createData);
-		cls.cleanData(createData);
-		createData.name = game.i18n.localize(statusEffect.name);
-		delete createData.id;
-		await cls.create(createData, { parent: actor });
+		const statusEffect = CONFIG.statusEffects.find((e) => e.statuses.includes(statusEffectId));
+		if (statusEffect) {
+			await ActiveEffect.create(statusEffect, { parent: actor });
+		}
 		return true;
 	}
 }
 
 export function isActiveEffectForStatusEffectId(effect, statusEffectId) {
-	return effect.statuses.size == 1 && effect.statuses.has(statusEffectId);
+	return effect.statuses.size === 1 && effect.statuses.has(statusEffectId);
 }

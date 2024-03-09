@@ -1,5 +1,3 @@
-import { statusEffects } from '../../helpers/statuses.mjs';
-
 /**
  * Extend the base Actor document by defining a custom roll data structure
  * @extends {Actor}
@@ -263,7 +261,7 @@ export class FUActor extends Actor {
 
 		// Check for "Guard" effect
 		const guardEffect = actorData.effects.find((effect) => effect.statuses.size === 1 && effect.statuses.has('guard'));
-	
+
 		// Override all non-positive stats with '1' if "Guard" effect is active
 		if (guardEffect) {
 			Object.keys(statMods).forEach((attrKey) => {
@@ -295,7 +293,7 @@ export class FUActor extends Actor {
 				let baseVal = attr.base;
 				let newVal = baseVal;
 
-			// console.log('Key:', key, ' ModVal:', modVal, ' BaseVal:', baseVal, ' Current:', attr.current);
+				// console.log('Key:', key, ' ModVal:', modVal, ' BaseVal:', baseVal, ' Current:', attr.current);
 
 				if (baseVal === -1 && modVal === 1) {
 					newVal = 0;
@@ -461,7 +459,7 @@ export class FUActor extends Actor {
 		await super._preUpdate(changed, options, user);
 	}
 
-	_onUpdate(changed, options, userId) {
+	async _onUpdate(changed, options, userId) {
 		if (options.damageTaken) {
 			// console.log("Damage taken:", options.damageTaken);
 			this.showFloatyText(options.damageTaken);
@@ -471,13 +469,16 @@ export class FUActor extends Actor {
 
 		if (hp && userId === game.userId) {
 			const crisisThreshold = Math.floor(hp.max / 2);
-			const inCrisis = hp.value <= crisisThreshold;
-			const crisisEffect = this.getEmbeddedCollection('ActiveEffect').contents.find((effect) => effect.name === 'FU.Crisis');
+			const shouldBeInCrisis = hp.value <= crisisThreshold;
+			const isInCrisis = this.statuses.has('crisis');
 
-			if (inCrisis && !crisisEffect) {
-				this.createEmbeddedDocuments('ActiveEffect', [statusEffects.find((s) => s.id === 'crisis')]);
-			} else if (!inCrisis && crisisEffect) {
-				this.deleteEmbeddedDocuments('ActiveEffect', [crisisEffect._id]);
+			if (shouldBeInCrisis && !isInCrisis) {
+				await ActiveEffect.create(
+					CONFIG.statusEffects.find((val) => val.id === 'crisis'),
+					{ parent: this },
+				);
+			} else if (!shouldBeInCrisis && isInCrisis) {
+				this.effects.filter((effect) => effect.statuses.has('crisis')).forEach((val) => val.delete());
 			}
 		}
 		super._onUpdate(changed, options, userId);
