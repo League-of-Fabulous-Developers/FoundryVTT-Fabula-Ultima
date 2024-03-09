@@ -1,5 +1,5 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
-import { promptCheck } from '../helpers/checks.mjs';
+import { promptCheck, createChatMessage } from '../helpers/checks.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
 
@@ -1222,6 +1222,23 @@ export class FUStandardActorSheet extends ActorSheet {
 				default:
 					action = 'default';
 					break;
+			}
+
+			// Create a new check message using createChatMessage
+			if (action !== 'default') {
+				const actionName = game.i18n.localize(CONFIG.FU.actionTypes[action] || action);
+				const actionRule = game.i18n.localize(CONFIG.FU.actionRule[action] || action);
+			
+				let params = {
+					details: {
+						name: actionName,
+					},
+					description: actionRule,
+					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+				};
+			
+				// Call the createChatMessage function
+				createChatMessage(params);
 			}
 		}
 

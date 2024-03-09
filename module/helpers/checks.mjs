@@ -556,6 +556,46 @@ async function getRerollParams(params, actor) {
 }
 
 /**
+ * Enrich HTML content.
+ * @param {string} htmlContent - The HTML content to enrich.
+ * @returns {string} - The enriched content.
+ */
+async function EnrichHTML(htmlContent) {
+    return TextEditor.enrichHTML(htmlContent);
+}
+
+/**
+ * @param {CheckParameters} checkParams
+ * @param {Object} [additionalFlags]
+ * @return {Promise<chatMessage>}
+ */
+export async function createChatMessage(checkParams, additionalFlags = {}) {
+    const content = checkParams.description
+        ? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
+            flavor: checkParams.details?.name || '',
+            description: await EnrichHTML(checkParams.description),
+        })
+        : '';
+
+    /** @type Partial<ChatMessageData> */
+    const chatMessage = {
+        content: content,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+        speaker: checkParams.speaker,
+        flags: foundry.utils.mergeObject(
+            {
+                [SYSTEM]: {
+                    [Flags.ChatMessage.CheckParams]: checkParams,
+                },
+            },
+            additionalFlags,
+        ),
+    };
+
+    return ChatMessage.create(chatMessage);
+}
+
+/**
  * @param {CheckParameters} checkParams
  * @param {Object} [additionalFlags]
  * @return {Promise<chatMessage>}
@@ -674,7 +714,7 @@ export async function promptCheck(actor, title) {
 		};
 		const rolledCheck = await rollCheck(params);
 
-        return await createCheckMessage(rolledCheck);
+		return await createCheckMessage(rolledCheck);
 	} catch (e) {
 		console.log(e);
 		// TODO

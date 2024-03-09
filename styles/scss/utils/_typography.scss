@@ -81,7 +81,7 @@ $font-quote: "EB Garamond", sans-serif;
     }
 
     // Change bullet content for li
-    .editor, .journal-page-content, .editor-content {
+    .editor, .journal-page-content, .editor-content, .chat-desc {
       ul {
         li, .ProseMirror li {
           align-items: center;
@@ -98,6 +98,24 @@ $font-quote: "EB Garamond", sans-serif;
             font-size: 14px;
             margin-right: 8px;
             vertical-align: middle;
+            line-height: 1;
+          }
+        }
+      }
+      ol {
+        list-style-type: none;
+      
+        li, .ProseMirror li {
+          counter-increment: li;
+          display: flex;
+          align-items: center;
+      
+          &::before {
+            content: counter(li) ".";
+            color: $color-secondary;
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 8px;
             line-height: 1;
           }
         }
