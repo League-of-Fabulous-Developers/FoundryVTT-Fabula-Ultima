@@ -221,20 +221,8 @@ FU.weaponCategories = {
  * @type {Object.<MiscCategory, string>}
  */
 FU.miscCategories = {
-	custom: 'FU.Custom',
-	arcana: 'FU.Arcana',
-	deck: 'FU.Deck',
-	verse: 'FU.Verse',
-	dance: 'FU.Dance',
-	gift: 'FU.Gift',
-	magiseed: 'FU.Magiseed',
-	invention: 'FU.Invention',
-	invocation: 'FU.Invocation',
-	therioform: 'FU.Therioform',
-	symbol: 'FU.Symbol',
-	infusion: 'FU.Infusion',
-	quirk: 'FU.Quirk',
 	other: 'FU.Other',
+	quirk: 'FU.Quirk',
 };
 
 /**

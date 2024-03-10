@@ -84,7 +84,7 @@
                         <i class="fa-solid fa-heart"></i>
                         {{/if}} {{localize 'FU.HealthAbbr'}}
                     </label>
-                    <label class="align-right grid-start-3 is-crisis" aria-describedby="tooltip">
+                    <label class="align-right grid-start-2 grid-span-2 is-crisis" aria-describedby="tooltip">
                         {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
                         {{localize 'FU.Crisis'}}
                         {{/if}}

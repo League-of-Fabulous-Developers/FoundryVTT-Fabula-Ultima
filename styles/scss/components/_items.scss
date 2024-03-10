@@ -136,17 +136,17 @@
     margin-right: 5px;
   }
 
-    &.armor-hand {
-      width: 10.5em;
-      border-radius: 8px 30px 5px 5px;
-      font-size: 14px;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      white-space: normal;
-      text-overflow: ellipsis;
-      padding: 4px 14px 0px 0;
-      text-align: right;
-      
+  &.armor-hand {
+    width: 10.5em;
+    border-radius: 8px 30px 5px 5px;
+    font-size: 14px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    white-space: normal;
+    text-overflow: ellipsis;
+    padding: 4px 14px 0px 0;
+    text-align: right;
+
     .equipped-item {
       white-space: nowrap;
       overflow: hidden;
@@ -255,12 +255,7 @@ $fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
   position: relative;
 }
 
-.status-effect-toggle {
-  border: none;
-  flex: 0 0 24px;
-}
-
-.items-list .item .item-name .item-image, .status-effect-toggle{
+.items-list .item .item-name .item-image {
   img {
     max-width: 100%;
     display: block;
@@ -275,7 +270,7 @@ $fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
   &:hover {
     img {
       transform: scale(1.1);
-      opacity: 0.5;
+      opacity: 0.75;
 
       &::before {
         content: "";
@@ -283,35 +278,40 @@ $fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
         width: 24px;
         height: 24px;
         background: $fu-d20 center/cover;
-        opacity: 0.5;
+        opacity: 0.75;
         z-index: -1;
       }
     }
   }
 }
 
+.status-effect-toggle {
+  display: flex;
+}
+
 /* Status Effect Icon - Toggle Fading */
 .status-effect-toggle img {
-  height: 24px !important;
-  width: 24px;
-  max-width: 100%;
+  flex: 0 0 32px !important;
+  height: 32px !important;
+  width: 32px !important;
   display: block;
-  overflow: hidden;
-  border-radius: 5px;
-  margin: 0;
-  border: 0;
-  opacity: 0.5;
-  background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+  margin-top: -1px;
+  border-radius: 4px;
+  border: 0px solid transparent;
+  opacity: 0.4;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    opacity: 0.75;
+    opacity: 0.80;
+    transform: scale(1.2);
+    transform-origin: center center;
+    z-index: 100;
   }
 }
 
 .status-effect-toggle.active img {
   opacity: 1;
 }
-
 
 /* ----------------------------------------- */
 /*  Items Lists                              */
@@ -484,6 +484,7 @@ $fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
   flex-wrap: wrap;
   align-content: center;
 }
+
 .item-progressbar {
   flex: 2;
   display: flex;
@@ -509,6 +510,7 @@ $fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
   justify-content: flex-end;
   align-items: inherit;
   align-content: center;
+
   a {
     font-size: 14px;
     text-align: center;

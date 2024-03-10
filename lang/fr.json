@@ -21,7 +21,7 @@
         "TypeRitual": "Rituel",
         "TypeProject": "Projet",
         "TypeZeroPower": "Zero Power",
-        "TypeClassFeature": "ITEM.TypeClassFeature"
+        "TypeClassFeature": "Atout de classe"
     },
     "TYPES": {
         "Actor": {

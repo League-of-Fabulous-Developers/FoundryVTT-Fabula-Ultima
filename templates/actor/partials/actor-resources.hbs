@@ -1,17 +1,17 @@
 <div class="header-fields flexrow" style="align-self: stretch;">
     <!-- Status Toggle Section -->
-    <div id="status-section" class="resource-content flex-group-center desc">
+    <div id="status-section" class="desc">
         {{!-- Key Statuses --}}
-        <div class="resource-content flex-group-center flexrow" style="margin-top: 2px;">
-            <span class="grid grid-8col gap-5" style="flex: 1;">
-                {{#each statusEffectToggles as |statusEffect|}}
-                <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}"
-                    data-status-id="{{statusEffect.id}}">
-                    <img src="{{statusEffect.icon}}" data-tooltip="{{statusEffect.name}}">
-                </a>
-                {{/each}}
-            </span>
+
+        <div class="grid grid-8col">
+            {{#each statusEffectToggles as |statusEffect|}}
+            <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}"
+                data-status-id="{{statusEffect.id}}">
+                <img src="{{statusEffect.icon}}" data-tooltip="{{statusEffect.name}}">
+            </a>
+            {{/each}}
         </div>
+
     </div>
     <!-- Attribute Section -->
     <div id="attribute-section" class="resource-content flex-group-center desc">

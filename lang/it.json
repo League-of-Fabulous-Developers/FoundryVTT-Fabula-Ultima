@@ -21,7 +21,7 @@
         "TypeRitual": "Rituale",
         "TypeProject": "Progetto",
         "TypeZeroPower": "Potere Zero",
-        "TypeClassFeature": "ITEM.TypeClassFeature"
+        "TypeClassFeature": "Abilità di Classe"
     },
     "TYPES": {
         "Actor": {
@@ -46,7 +46,7 @@
             "ritual": "Rituale",
             "project": "Progetto",
             "zeroPower": "Potere Zero",
-            "classFeature": "TYPES.Item.classFeature"
+            "classFeature": "Abilità di Classe"
         }
     },
     "FU": {

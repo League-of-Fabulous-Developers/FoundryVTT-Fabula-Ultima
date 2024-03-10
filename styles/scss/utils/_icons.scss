@@ -160,7 +160,8 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
   &.float-text {
     display: inline-block;
     position: relative;
-    bottom: 8px;
+    bottom: 4px;
+    transform: translateY(-50%);
     animation: floating 1s infinite ease-in-out;
   }
 }

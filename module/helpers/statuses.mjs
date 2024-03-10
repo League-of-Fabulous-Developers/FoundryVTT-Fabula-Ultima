@@ -70,7 +70,7 @@ export const statusEffects = [
 	{
 		id: 'guard',
 		name: 'FU.Guard',
-		icon: 'systems/projectfu/styles/static/icons/fu-guard.svg',
+		icon: 'systems/projectfu/styles/static/statuses/Guard.webp',
 		statuses: ['guard'],
 	},
 	{
@@ -180,7 +180,7 @@ export const statusEffects = [
 	{
 		id: 'crisis',
 		name: 'FU.Crisis',
-		icon: 'systems/projectfu/styles/static/statuses/Status_Bleeding.png',
+		icon: 'systems/projectfu/styles/static/statuses/Crisis.webp',
 		statuses: ['crisis'],
 	},
 ];

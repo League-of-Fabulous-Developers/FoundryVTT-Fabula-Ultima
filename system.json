@@ -26,8 +26,13 @@
 		}
 	],
 	"scripts": [],
-	"esmodules": ["module/projectfu.mjs"],
-	"styles": ["styles/css/projectfu.css", "styles/css/rpg-awesome.css"],
+	"esmodules": [
+		"module/projectfu.mjs"
+	],
+	"styles": [
+		"styles/css/projectfu.css",
+		"styles/css/rpg-awesome.css"
+	],
 	"packs": [],
 	"languages": [
 		{
@@ -59,6 +64,11 @@
 			"lang": "pt-BR",
 			"name": "Português (Brasil)",
 			"path": "lang/pt_BR.json"
+		},
+		{
+			"lang": "ru",
+			"name": "Русский",
+			"path": "lang/ru.json"
 		}
 	],
 	"relationships": {
@@ -69,11 +79,18 @@
 			}
 		]
 	},
-
 	"flags": {
 		"hotReload": {
-			"extensions": ["css", "hbs", "json"],
-			"paths": ["css", "lang", "templates"]
+			"extensions": [
+				"css",
+				"hbs",
+				"json"
+			],
+			"paths": [
+				"css",
+				"lang",
+				"templates"
+			]
 		}
 	},
 	"socket": true,

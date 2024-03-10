@@ -5,7 +5,7 @@
     },
     "ITEM": {
         "TypeBasic": "Básico",
-        "TypeWeapon": "Arma",
+        "TypeWeapon": "Armadura",
         "TypeShield": "Escudo",
         "TypeArmor": "Amadura",
         "TypeAccessory": "Acessório",
@@ -21,7 +21,7 @@
         "TypeRitual": "Ritual",
         "TypeProject": "Projeto",
         "TypeZeroPower": "Poderes Zero",
-        "TypeClassFeature": "ITEM.TypeClassFeature"
+        "TypeClassFeature": "Característica de Classe"
     },
     "TYPES": {
         "Actor": {
@@ -30,7 +30,7 @@
         },
         "Item": {
             "basic": "Básico",
-            "weapon": "Arma",
+            "weapon": "Armadura",
             "shield": "Escudo",
             "armor": "Amadura",
             "accessory": "Acessório",
@@ -38,7 +38,7 @@
             "treasure": "Tesouro",
             "class": "Classe",
             "skill": "Habilidade",
-            "heroic": "Habilidade Heróicaoic",
+            "heroic": "Habilidade Heróica",
             "spell": "Feitiço",
             "miscAbility": "Habilidades Variadas",
             "rule": "Regra",
@@ -46,7 +46,7 @@
             "ritual": "Ritual",
             "project": "Projeto",
             "zeroPower": "Poderes Zero",
-            "classFeature": "TYPES.Item.classFeature"
+            "classFeature": "Característica de Classe"
         }
     },
     "FU": {
