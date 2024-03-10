@@ -15,12 +15,16 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/sections/actor-section-settings.hbs',
 
 		// Actor Component partials.
+		'systems/projectfu/templates/actor/partials/actor-point-bars.hbs',
+		'systems/projectfu/templates/actor/partials/actor-defensive.hbs',
+		'systems/projectfu/templates/actor/partials/actor-creatures.hbs',
+		'systems/projectfu/templates/actor/partials/actor-defensive.hbs',
 		'systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs',
 		'systems/projectfu/templates/actor/partials/actor-study.hbs',
 		'systems/projectfu/templates/actor/partials/actor-affinities.hbs',
 		'systems/projectfu/templates/actor/partials/actor-attributes.hbs',
 		'systems/projectfu/templates/actor/partials/actor-defensive.hbs',
-		'systems/projectfu/templates/actor/partials/actor-statistics.hbs',
+		'systems/projectfu/templates/actor/partials/actor-header.hbs',
 		'systems/projectfu/templates/actor/partials/actor-resources.hbs',
 		'systems/projectfu/templates/actor/partials/actor-resource-points.hbs',
 		'systems/projectfu/templates/actor/partials/actor-traits.hbs',

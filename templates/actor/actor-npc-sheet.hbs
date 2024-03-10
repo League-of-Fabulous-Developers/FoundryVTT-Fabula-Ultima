@@ -5,9 +5,7 @@
         {{else}}
         <header class="sheet-header desc">
             {{!-- Name/HP Section --}}
-            {{>"systems/projectfu/templates/actor/partials/actor-statistics.hbs" actor=actor}}
-            {{!-- Defense Section --}}
-            {{>"systems/projectfu/templates/actor/partials/actor-defensive.hbs" actor=actor}}
+            {{>"systems/projectfu/templates/actor/partials/actor-header.hbs" actor=actor}}
             {{!-- Attributes Section --}}
             {{>"systems/projectfu/templates/actor/partials/actor-resources.hbs" actor=actor}}
             {{!-- Affinity Section --}}

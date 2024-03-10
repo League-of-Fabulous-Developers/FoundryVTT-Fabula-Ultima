@@ -2,7 +2,7 @@
     <div class="sheet-content-wrapper">
         <header class="sheet-header desc">
             {{!-- Statistics Header --}}
-            {{>"systems/projectfu/templates/actor/partials/actor-statistics.hbs" actor=actor}}
+            {{>"systems/projectfu/templates/actor/partials/actor-header.hbs" actor=actor}}
 
             {{!-- Resources Header --}}
             {{>"systems/projectfu/templates/actor/partials/actor-resources.hbs" actor=actor}}
@@ -57,7 +57,6 @@
                     </section>
                 </div>
                 {{!-- Handlebar Partials --}}
-                {{!-- {{>"systems/projectfu/templates/actor/partials/actor-divider.hbs"}} --}}
                 {{!-- Classes Tab --}}
                 <div class="tab classes" data-group="primary" data-tab="classes">
                     {{>"systems/projectfu/templates/actor/sections/actor-section-classes.hbs" actor=actor}}
