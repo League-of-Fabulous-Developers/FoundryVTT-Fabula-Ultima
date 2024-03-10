@@ -1,12 +1,10 @@
 <header class="sheet-header desc" style="background-color:#c9c8b9">
     {{#if (or (eq system.study.value 1) (eq system.study.value 2) (eq system.study.value 3))}}
     {{!-- Name/HP Section --}}
-    {{>"systems/projectfu/templates/actor/partials/actor-statistics.hbs" actor=actor}}
+    {{>"systems/projectfu/templates/actor/partials/actor-header.hbs" actor=actor}}
     {{/if}}
 
     {{#if (or (eq system.study.value 2) (eq system.study.value 3))}}
-    {{!-- Defense Section --}}
-    {{>"systems/projectfu/templates/actor/partials/actor-defensive.hbs" actor=actor}}
     {{!-- Attributes Section --}}
     {{>"systems/projectfu/templates/actor/partials/actor-resources.hbs" actor=actor}}
     {{!-- Affinity Section --}}
@@ -14,8 +12,7 @@
     {{/if}}
 
     <nav class="sheet-tabs tabs desc flexrow" data-group="primary" style="align-self: stretch;">
-        <a class="item study-style gap-5" data-tooltip="{{localize 'FU.StudyRoll'}}"
-            style="min-width: fit-content;">
+        <a class="item study-style gap-5" data-tooltip="{{localize 'FU.StudyRoll'}}" style="min-width: fit-content;">
             <i class="fa-solid fa-magnifying-glass icon"></i>
             <label for="studySelect" style="padding-right: 5px; cursor: pointer;">{{localize 'FU.Study'}}</label>
             <select name="system.study.value" id="studySelect" value="{{ system.study.value }}" data-dtype="Number"

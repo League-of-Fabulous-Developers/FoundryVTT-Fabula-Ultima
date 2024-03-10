@@ -24,18 +24,6 @@ export const statusEffects = [
 		statuses: ['berserk'],
 	},
 	{
-		id: 'blinded',
-		name: 'FU.Blinded',
-		icon: 'systems/projectfu/styles/static/statuses/Blinded.webp',
-		statuses: ['blinded'],
-	},
-	{
-		id: 'death',
-		name: 'FU.Death',
-		icon: 'systems/projectfu/styles/static/statuses/Death.webp',
-		statuses: ['death'],
-	},
-	{
 		id: 'dazed',
 		name: 'FU.Dazed',
 		icon: 'systems/projectfu/styles/static/statuses/Dazed.webp',
