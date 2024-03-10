@@ -12,6 +12,12 @@
   font-style: normal;
 }
 
+@counter-style diamonds {
+    system: cyclic;
+    suffix: " ";
+    symbols: "◆";
+}
+
 // Font Variables
 $font-title: "CreditValleybold";
 $font-primary: "PT Sans Narrow", sans-serif;
@@ -83,40 +89,21 @@ $font-quote: "EB Garamond", sans-serif;
     // Change bullet content for li
     .editor, .journal-page-content, .editor-content, .chat-desc {
       ul {
-        li, .ProseMirror li {
-          align-items: center;
-          justify-content: flex-start;
-          align-content: center;
-          display: flex;
-          flex-wrap: wrap;
-          flex-direction: row;
+        list-style: diamonds;
 
-          &::before {
-            content: "◆";
-            display: inline-block;
+        li, .ProseMirror li {
+          &::marker {
             color: $color-secondary;
             font-size: 14px;
-            margin-right: 8px;
-            vertical-align: middle;
-            line-height: 1;
           }
         }
       }
       ol {
-        list-style-type: none;
-      
         li, .ProseMirror li {
-          counter-increment: li;
-          display: flex;
-          align-items: center;
-      
-          &::before {
-            content: counter(li) ".";
+          &::marker {
             color: $color-secondary;
             font-size: 16px;
             font-weight: bold;
-            margin-right: 8px;
-            line-height: 1;
           }
         }
       }
