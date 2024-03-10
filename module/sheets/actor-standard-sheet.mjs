@@ -2,6 +2,7 @@ import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEff
 import { promptCheck, createChatMessage } from '../helpers/checks.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
+import { SETTINGS, SYSTEM } from '../settings.js';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -828,31 +829,44 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Get all available item types and class feature types
 		const allItemTypes = Object.keys(CONFIG.Item.dataModels);
-		const classFeatureTypes = Object.keys(CONFIG.FU.classFeatureRegistry.features());
 		const isCharacter = this.actor.type === 'character';
 		const isNPC = this.actor.type === 'npc';
 
 		switch (dataType) {
 			case 'newClock':
-				types = allItemTypes.map((type) => ({ type }));
-				if (isCharacter) types = types.filter((item) => ['miscAbility', 'zeroPower', 'ritual'].includes(item.type));
-				else if (isNPC) types = types.filter((item) => ['miscAbility', 'rule'].includes(item.type));
+				types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
+				if (isCharacter) {
+					const options = ['miscAbility', 'ritual'];
+					if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) options.push('zeroPower');
+					types = types.filter((item) => options.includes(item.type));
+				} else if (isNPC) types = types.filter((item) => ['miscAbility', 'rule'].includes(item.type));
 				clock = true;
 				break;
 			case 'newFavorite':
-				types = allItemTypes.map((type) => ({ type }));
-				if (isCharacter) types = types.filter((item) => !['rule', 'behavior', 'basic'].includes(item.type));
-				else if (isNPC) types = types.filter((item) => !['class', 'classFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'zeroPower'].includes(item.type));
+				types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
+				if (isCharacter) {
+					const dontShow = ['rule', 'behavior', 'basic'];
+					if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) dontShow.push('zeroPower');
+					types = types.filter((item) => !dontShow.includes(item.type));
+				} else if (isNPC) {
+					const dontShow = ['class', 'classFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'zeroPower'];
+					if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShow.push('behavior');
+					types = types.filter((item) => !dontShow.includes(item.type));
+				}
 				break;
 			case 'newClassFeatures':
-				types = classFeatureTypes.map((fullType) => ({ type: 'classFeature', subtype: fullType }));
+				const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.features());
+				types = ['miscAbility', 'project'];
+				if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) types.push('zeroPower');
+				types = types.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
+				types.push(...classFeatureTypes.map(([key, feature]) => ({ type: 'classFeature', subtype: key, label: game.i18n.localize(feature.translation) })));
 				break;
 			default:
 				break;
 		}
 
 		const buttons = types.map((item) => ({
-			label: item.subtype ? item.subtype.split('.')[1] : item.type,
+			label: item.label ?? (item.subtype ? item.subtype.split('.')[1] : item.type),
 			callback: () => this._createItem(item.type, clock, item.subtype),
 		}));
 
@@ -1228,7 +1242,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			if (action !== 'default') {
 				const actionName = game.i18n.localize(CONFIG.FU.actionTypes[action] || action);
 				const actionRule = game.i18n.localize(CONFIG.FU.actionRule[action] || action);
-			
+
 				let params = {
 					details: {
 						name: actionName,
@@ -1236,7 +1250,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					description: actionRule,
 					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
 				};
-			
+
 				// Call the createChatMessage function
 				createChatMessage(params);
 			}

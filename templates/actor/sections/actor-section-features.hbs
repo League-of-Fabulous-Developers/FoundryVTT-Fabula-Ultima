@@ -39,6 +39,7 @@
 	{{/each}}
 
 	{{!-- Zero Powers Section--}}
+{{#if zeroPowers}}
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize 'FU.Limit'}}</div>
@@ -94,7 +95,9 @@
 		</li>
 		{{/each}}
 	</ol>
+{{/if}}
 
+{{#if abilities}}
 	{{!-- Misc Abilities Section--}}
 	<ol class="items-list">
 		<li class="item flexrow items-header">
@@ -159,7 +162,9 @@
 		</li>
 		{{/each}}
 	</ol>
+{{/if}}
 
+{{#if projects}}
 	{{!-- Projects Section--}}
 	<ol class="items-list">
 		<li class="item flexrow items-header">
@@ -209,4 +214,5 @@
 		{{/each}}
 	</ol>
 </section>
+{{/if}}
 {{/if}}
