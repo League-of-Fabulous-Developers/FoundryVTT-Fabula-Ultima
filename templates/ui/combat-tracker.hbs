@@ -60,14 +60,14 @@
 
     <ol id="combat-tracker" class="directory-list">
         {{#if currentTurn}}
-            <h1>{{localize 'FU.CombatCurrentTurn' turn=(localize (concat 'FU.CombatFaction' (capitalize currentTurn)))}}</h1>
+            <h1 class="current-turn">{{localize 'FU.CombatCurrentTurn' turn=(localize (concat 'FU.CombatFaction' (capitalize currentTurn)))}}</h1>
         {{else if combat}}
             <h1>{{localize 'COMBAT.NotStarted'}}</h1>
         {{/if}}
         {{#each factions as |combatants faction| }}
-            <h2>{{localize (concat 'FU.CombatFaction' (capitalize faction))}}</h2>
+            <h2 class="faction">{{localize (concat 'FU.CombatFaction' (capitalize faction))}}</h2>
             {{#each combatants}}
-            <li class="combatant actor directory-item flexrow {{this.css}}" data-combatant-id="{{this.id}}">
+            <li class="combatant actor directory-item flexrow {{faction}} {{this.css}}" data-combatant-id="{{this.id}}">
                 <img class="token-image" data-src="{{this.img}}" alt="{{this.name}}"/>
                 <div class="token-name flexcol">
                     <h4>{{this.name}}</h4>

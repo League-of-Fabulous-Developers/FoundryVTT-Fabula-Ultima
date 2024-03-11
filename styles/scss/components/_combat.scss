@@ -10,3 +10,33 @@
         text-shadow: 0 0 4px white;
     }
 }
+
+#combat-tracker {
+    --color-disposition-friendly: #33BC4E;
+    --color-disposition-hostile: #E72124;
+    --color-disposition-neutral: #F1D836;
+
+    .current-turn {
+        padding: 0.25em;
+        font-size: 1.5em;
+    }
+
+    .faction {
+        padding: 0.25em;
+        font-size: 1.2em;
+    }
+
+    .friendly {
+        background-color: color-mix(in srgb, var(--color-disposition-friendly) 10%, transparent);
+    }
+
+    .hostile {
+        background-color: color-mix(in srgb, var(--color-disposition-hostile) 10%, transparent);
+    }
+
+    .neutral {
+        background-color: color-mix(in srgb, var(--color-disposition-neutral) 10%, transparent);
+    }
+
+}
+
