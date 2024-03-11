@@ -1,16 +1,14 @@
 <form class="{{ cssClass }} {{ actor.type }} backgroundstyle projectfu-actor-sheet h-100" autocomplete="off">
     <div class="sheet-content-wrapper">
         <header class="sheet-header desc">
-            {{!-- Statistics Header --}}
+            {{!-- Name/HP/Level Section --}}
             {{>"systems/projectfu/templates/actor/partials/actor-header.hbs" actor=actor}}
-
-            {{!-- Resources Header --}}
+            {{!-- Statuses/Attributes/RollCheck Section --}}
             {{>"systems/projectfu/templates/actor/partials/actor-resources.hbs" actor=actor}}
-
-            {{!-- Current Affinities Header --}}
+            {{!-- Affinity Section --}}
             {{>"systems/projectfu/templates/actor/partials/actor-affinities.hbs" actor=actor}}
 
-            {{!-- Start Sheet Tab Navigation --}}
+            {{!-- Sheet Tab Navigation --}}
             <nav class="sheet-tabs tabs desc flexrow" data-group="primary">
                 {{!-- Default tab is specified in actor-sheet.mjs --}}
                 <a class="item tab-style" data-tab="stats">{{localize 'FU.Stats'}}</a>

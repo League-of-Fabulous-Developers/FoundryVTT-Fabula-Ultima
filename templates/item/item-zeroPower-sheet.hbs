@@ -40,6 +40,25 @@
 		</div>
 
 		{{!-- Attributes Tab --}}
-		<div class="tab attributes" data-group="primary" data-tab="attributes"></div>
+		<div class="tab attributes" data-group="primary" data-tab="attributes">
+			{{!-- General Info Section --}}
+			<fieldset class="title-fieldset desc resource-content grid-span-2">
+
+				{{!-- Item Controls --}}
+				<div class="item-settings">
+					{{> "systems/projectfu/templates/item/partials/item-controls.hbs" dtypes=dtypes}}
+					<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ClockStatus'}}">
+						<span>
+							{{#if item.system.hasClock.value}}
+							<i class="fas fa-clock"></i>
+							{{else}}
+							<i class="far fa-clock"></i>
+							{{/if}}
+						</span><input type="checkbox" name="system.hasClock.value" {{ checked system.hasClock.value
+							}} />
+					</label>
+				</div>
+			</fieldset>
+		</div>
 	</section>
 </form>

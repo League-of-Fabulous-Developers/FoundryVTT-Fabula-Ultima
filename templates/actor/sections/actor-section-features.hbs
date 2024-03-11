@@ -39,7 +39,7 @@
 	{{/each}}
 
 	{{!-- Zero Powers Section--}}
-{{#if zeroPowers}}
+	{{#if zeroPowers}}
 	<ol class="items-list">
 		<li class="item flexrow items-header">
 			<div class="item-name">{{localize 'FU.Limit'}}</div>
@@ -47,10 +47,10 @@
 			<div class="item-lg">{{localize 'FU.LimitEffect'}}</div>
 			<div class="item-sm">{{localize 'FU.Clock'}}</div>
 			<div class="item-sm end">
-				<div class="item-controls">
-					<a class="item-control item-create" aria-describedby="tooltip"
-						data-tooltip="{{localize 'FU.LimitCreate'}}" data-type="zeroPower">
-						<i class="fas fa-plus icon"></i>{{localize 'FU.Add'}}</a>
+				<div class="">
+					<a class="" aria-describedby="tooltip" data-tooltip="Activate {{localize 'FU.Limit'}}"
+						data-type="zeroPower">
+						<i class="fas fa-clock icon"></i>Activate</a>
 				</div>
 			</div>
 		</li>
@@ -95,9 +95,9 @@
 		</li>
 		{{/each}}
 	</ol>
-{{/if}}
+	{{/if}}
 
-{{#if abilities}}
+	{{#if abilities}}
 	{{!-- Misc Abilities Section--}}
 	<ol class="items-list">
 		<li class="item flexrow items-header">
@@ -162,9 +162,9 @@
 		</li>
 		{{/each}}
 	</ol>
-{{/if}}
+	{{/if}}
 
-{{#if projects}}
+	{{#if projects}}
 	{{!-- Projects Section--}}
 	<ol class="items-list">
 		<li class="item flexrow items-header">
@@ -193,7 +193,7 @@
 						<span class="bar-value"></span>
 					</div>
 				</div>
-				<div class="resource-content buttons-inc">
+				<div class="resource-content flex-group-center buttons-inc">
 					<a class="decrement-button" data-type="projectCounter" data-item-id="{{ item._id }}">-</a>
 					<div class="item-quality resource-text-sm">{{ item.system.progress.current }} / {{
 						item.system.progress.max }}
@@ -213,6 +213,6 @@
 		</li>
 		{{/each}}
 	</ol>
+	{{/if}}
 </section>
-{{/if}}
 {{/if}}

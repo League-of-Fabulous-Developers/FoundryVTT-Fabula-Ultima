@@ -218,10 +218,24 @@ export class FUStandardActorSheet extends ActorSheet {
 						});
 					}
 
-					if (progress.current === progress.max) {
-						// console.log('Clock is completed!');
-						// TODO: Setup Completed Clock Chat Card
-					}
+					// TODO: On progress max display a custom button over clock to activate item's effect
+					// if (progress.current === progress.max) {
+					// 	let maxTitle = `${item.name} MAX!`;
+					// 	let maxDescription = '';
+	
+					// 	if (item.type === 'zeroPower') {
+					// 		maxDescription = `Trigger: ${item.system.zeroTrigger?.description || ''}<br>Effect: ${item.system.zeroEffect?.description || ''}`;
+					// 	} else {
+					// 		maxDescription = item.system.description || '';
+					// 	}
+	
+					// 	const params = {
+					// 		details: { name: maxTitle },
+					// 		description: maxDescription,
+					// 		speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+					// 	};
+					// 	createChatMessage(params);
+					// }
 
 					item.progressArr = progressArr.reverse();
 				}
@@ -229,7 +243,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 			// Resource Points
 			for (let item of context.items) {
-				const relevantTypes = ['miscAbility'];
+				const relevantTypes = ['miscAbility', 'skill', 'heroic'];
 
 				if (relevantTypes.includes(item.type)) {
 					const rpArr = [];
@@ -243,8 +257,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					}
 
 					if (rp.current === rp.max) {
-						// console.log('Resource maxxed out!');
-						// TODO: Setup Completed Resource Chat Card
+						// console.log(item.name + ' is MAXXED out!');
 					}
 
 					item.rpArr = rpArr.reverse();
@@ -530,7 +543,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			handleItemClick.call(this, ev, true);
 		});
 
-		// TODO: Figure out how to store description visibility state
 		const animDuration = 250;
 
 		const toggleDesc = (ev) => {
@@ -887,6 +899,11 @@ export class FUStandardActorSheet extends ActorSheet {
 			data: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }) },
 		};
 
+		// Check if the type is 'zeroPower' and set clock to true
+		if (type === 'zeroPower') {
+			clock = true;
+		}
+
 		try {
 			let item = await Item.create(itemData, { parent: this.actor });
 			await item.update({
@@ -1212,10 +1229,19 @@ export class FUStandardActorSheet extends ActorSheet {
 					break;
 				case 'guardAction':
 					action = 'guard';
+					if (isShift) {
+						event.preventDefault();
+						toggleGuardEffect(actor);
+						return;
+					}
 					break;
 				case 'hinderAction':
 					action = 'hinder';
-					promptCheck(this.actor, 'FU.Hinder');
+					if (isShift) {
+						event.preventDefault();
+						promptCheck(this.actor, 'FU.Hinder');
+						return;
+					}
 					break;
 				case 'inventoryAction':
 					action = 'inventory';
@@ -1228,7 +1254,11 @@ export class FUStandardActorSheet extends ActorSheet {
 					break;
 				case 'studyAction':
 					action = 'study';
-					promptCheck(this.actor, 'FU.StudyRoll');
+					if (isShift) {
+						event.preventDefault();
+						promptCheck(this.actor, 'FU.StudyRoll');
+						return;
+					}
 					break;
 				case 'skillAction':
 					action = 'skill';
@@ -1299,5 +1329,22 @@ function shuffleArray(array) {
 		var temp = array[i];
 		array[i] = array[j];
 		array[j] = temp;
+	}
+}
+
+async function toggleGuardEffect(actor) {
+	const GUARD_EFFECT_ID = 'guard';
+	const guardEffect = CONFIG.statusEffects.find(effect => effect.id === GUARD_EFFECT_ID);
+
+	const guardActive = actor.effects.some(effect => effect.statuses.has('guard'));
+
+	if (guardActive) {
+		// Delete existing guard effects
+		actor.effects.filter(effect => effect.statuses.has('guard')).forEach(effect => effect.delete());
+		ui.notifications.info('Guard is activated.');
+	} else {
+		// Create a new guard effect
+		await ActiveEffect.create(guardEffect, { parent: actor });
+		ui.notifications.info('Guard is deactivated.');
 	}
 }

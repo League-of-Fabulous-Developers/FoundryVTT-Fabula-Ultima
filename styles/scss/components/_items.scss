@@ -270,6 +270,7 @@ $fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
   &:hover {
     img {
       transform: scale(1.1);
+      transform-origin: center center;
       opacity: 0.75;
 
       &::before {
