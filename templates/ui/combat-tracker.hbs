@@ -60,14 +60,14 @@
 
     <ol id="combat-tracker" class="directory-list">
         {{#if currentTurn}}
-            <h1>{{localize 'FU.CombatCurrentTurn' turn=(localize (concat 'FU.CombatFaction' (capitalize currentTurn)))}}</h1>
+            <h1 class="current-turn">{{localize 'FU.CombatCurrentTurn' turn=(localize (concat 'FU.CombatFaction' (capitalize currentTurn)))}}</h1>
         {{else if combat}}
             <h1>{{localize 'COMBAT.NotStarted'}}</h1>
         {{/if}}
         {{#each factions as |combatants faction| }}
-            <h2>{{localize (concat 'FU.CombatFaction' (capitalize faction))}}</h2>
+            <h2 class="faction">{{localize (concat 'FU.CombatFaction' (capitalize faction))}}</h2>
             {{#each combatants}}
-            <li class="combatant actor directory-item flexrow {{this.css}}" data-combatant-id="{{this.id}}">
+            <li class="combatant actor directory-item flexrow {{faction}} {{this.css}}" data-combatant-id="{{this.id}}">
                 <img class="token-image" data-src="{{this.img}}" alt="{{this.name}}"/>
                 <div class="token-name flexcol">
                     <h4>{{this.name}}</h4>
@@ -100,10 +100,30 @@
                 {{/if}}
 
                 <div class="token-initiative">
-                    {{#if (and this.owner (eq faction @root.currentTurn) (not (lookup @root.turnsTaken this.id)))}}
-                        <a class="combatant-control take-turn" role="button" data-action="take-turn">
-                            <i class="fas fa-check-circle"></i>
-                        </a>
+                    {{#if (lookup @root.turnsLeft this.id)}}
+                        {{#if (and this.owner (eq faction @root.currentTurn))}}
+                            <a class="combatant-control take-turn" role="button" data-action="take-turn">
+                                {{#if (gt (lookup @root.totalTurns this.id) 1)}}
+                                    <i class="fas fa-2x fa-circle-{{lookup @root.turnsLeft this.id}}"></i>
+                                {{else}}
+                                    <i class="fas fa-2x fa-check-circle"></i>
+                                {{/if}}
+                            </a>
+                        {{else}}
+                            {{#if this.owner}}
+                                <a class="combatant-control take-turn out-of-turn" data-action="take-turn-out-of-turn">
+                                    {{# if (gt (lookup @root.totalTurns this.id) 1)}}
+                                        <i class="fas fa-thin fa-2x fa-circle-{{lookup @root.turnsLeft this.id}}"></i>
+                                    {{else}}
+                                        <i class="fas fa-thin fa-2x fa-check-circle"></i>
+                                    {{/if}}
+                                </a>
+                            {{else}}
+                                <span class="combatant-control take-turn">
+                                    <i class="fas fa-thin fa-2x fa-check-circle"></i>
+                                </span>
+                            {{/if}}
+                        {{/if}}
                     {{/if}}
                 </div>
             </li>
@@ -124,10 +144,6 @@
                 {{else}}
                     <a class="combat-control center" aria-label="{{localize 'COMBAT.Begin'}}" role="button"  data-control="startCombat">{{localize 'COMBAT.Begin'}}</a>
                 {{/if}}
-            {{else if control}}
-                <a class="combat-control" aria-label="{{localize 'COMBAT.TurnPrev'}}" role="button"  data-tooltip="COMBAT.TurnPrev" data-control="previousTurn"><i class="fas fa-arrow-left"></i></a>
-                <a class="combat-control center" aria-label="{{localize 'COMBAT.TurnEnd'}}" role="button"  data-control="nextTurn">{{localize 'COMBAT.TurnEnd'}}</a>
-                <a class="combat-control" aria-label="{{localize 'COMBAT.TurnNext'}}" role="button"  data-tooltip="COMBAT.TurnNext" data-control="nextTurn"><i class="fas fa-arrow-right"></i></a>
             {{/if}}
         {{/if}}
     </nav>

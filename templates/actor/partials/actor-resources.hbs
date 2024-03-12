@@ -1,34 +1,34 @@
 <div class="header-fields flexrow" style="align-self: stretch;">
-    <div class="resource-content flex-group-center desc">
+    <!-- Status Toggle Section -->
+    <div id="status-section" class="desc">
         {{!-- Key Statuses --}}
-        <div class="resource-content flex-group-center flexrow">
-            <span class="grid grid-8col">
-                {{#each statusEffectToggles as |statusEffect|}}
-                <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}"
-                    data-status-id="{{statusEffect.id}}">
-                    <img src="{{statusEffect.icon}}" data-tooltip="{{statusEffect.name}}">
-                </a>
-                {{/each}}
-            </span>
-        </div>
-    </div>
 
-    <div class="resource-content flex-group-center desc">
-        <!-- Attribute Section -->
+        <div class="grid grid-8col">
+            {{#each statusEffectToggles as |statusEffect|}}
+            <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}"
+                data-status-id="{{statusEffect.id}}">
+                <img src="{{statusEffect.icon}}" data-tooltip="{{statusEffect.name}}">
+            </a>
+            {{/each}}
+        </div>
+
+    </div>
+    <!-- Attribute Section -->
+    <div id="attribute-section" class="resource-content flex-group-center desc">
         {{>"systems/projectfu/templates/actor/partials/actor-attributes.hbs"}}
     </div>
-
-    {{!-- Roll Check --}}
-    <div class="resource-content flex-group-center desc">
-        <div>
-            <label class="resource-label-xl spin2win rollable flex-center" data-roll-type="roll-check">
-                <i class="fas fa-dice-d20 spin2win ra-1x"></i> {{localize 'FU.RollCheck'}}
-            </label>
+    <!-- Roll Section -->
+    <div id="roll-section" class="resource-content flex-group-center desc grid grid-2col">
+        {{!-- Group Check --}}
+        <div class="flexcol rollable spin2win" data-roll-type="group-check"
+            data-tooltip="{{localize 'FU.GroupCheckTooltip'}}">
+            <i class="fas fa-dice-d20 spin2win ra-2x"></i>
+            <label class="resource-label-sm">{{localize 'FU.GroupCheck'}}</label>
         </div>
-        <div>
-            <label class="resource-label-xl spin2win rollable flex-center" data-roll-type="group-check">
-                <i class="fas fa-dice-d20 spin2win ra-1x"></i> {{localize 'FU.GroupCheck'}}
-            </label>
+        {{!-- Roll Check --}}
+        <div class="flexcol rollable spin2win  grid-start-2" data-roll-type="roll-check">
+            <i class="fas fa-dice-d20 spin2win ra-2x"></i>
+            <label class="resource-label-sm">{{localize 'FU.RollCheck'}}</label>
         </div>
     </div>
 </div>

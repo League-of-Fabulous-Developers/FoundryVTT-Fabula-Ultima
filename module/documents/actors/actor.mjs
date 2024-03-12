@@ -10,6 +10,7 @@ export class FUActor extends Actor {
 		// prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
 		// prepareDerivedData().
 		super.prepareData();
+		Hooks.callAll('projectfu.actor.dataPrepared', this);
 	}
 
 	async getData(options = {}) {
@@ -51,11 +52,6 @@ export class FUActor extends Actor {
 		this._calculateDefenses(actorData);
 		this._calculateInitOrInitMod(actorData);
 		this._handleCustomWeapon(actorData);
-
-		// Make separate methods for each Actor type (character, npc, etc.) to keep
-		// things organized.
-		this._prepareCharacterData(actorData);
-		this._prepareNpcData(actorData);
 	}
 
 	/**
@@ -161,7 +157,7 @@ export class FUActor extends Actor {
 			systemData.resources.hp.max = (systemData.attributes.mig.base * 5 + levelVal + classesWithHp.length * 5 + systemData.resources.hp.bonus) * hpMultiplier;
 		} else if (systemData.isCompanion.value) {
 			// Calculate maximum health points (hp) for Companion with rounding down
-			systemData.resources.hp.max = Math.floor(systemData.attributes.mig.base * systemData.resources.rp3.value) + Math.floor(systemData.resources.rp2.value / 2 + systemData.resources.hp.bonus);
+			systemData.resources.hp.max = Math.floor(systemData.attributes.mig.base * systemData.companion.skillLevel) + Math.floor(systemData.companion.playerLevel / 2 + systemData.resources.hp.bonus);
 		}
 
 		// Calculate maximum mind points (mp) based on various factors.
@@ -263,43 +259,59 @@ export class FUActor extends Actor {
 
 		Object.keys(systemData.affinities).forEach((attrKey) => (statMods[attrKey] = 0));
 
-		// Iterate through each temporary effect applied to the actor.
-		actorData.effects.forEach((effect) => {
-			// Get the status associated with the effect, if it exists.
-			if (effect.statuses.size == 1) {
-				const status = CONFIG.statusEffects.find((status) => effect.statuses.has(status));
+		// Check for "Guard" effect
+		const guardEffect = actorData.effects.find((effect) => effect.statuses.size === 1 && effect.statuses.has('guard'));
 
-				// If a valid status is found, apply its modifiers to the corresponding attributes.
-				if (status) {
-					const stats = status.stats || [];
-					const mod = status.mod || 0;
-
-					stats.forEach((attrKey) => (statMods[attrKey] += mod));
+		// Override all non-positive stats with '1' if "Guard" effect is active, but if mod/bonus is '-1' Vulnerable, set to Normal '0'
+		if (guardEffect) {
+			Object.keys(statMods).forEach((attrKey) => {
+				const currentVal = systemData.affinities[attrKey].current;
+				const baseVal = systemData.affinities[attrKey].base;
+				if (baseVal === -1) {
+					systemData.affinities[attrKey].current = 0; // Vulnerability becomes Normal '0'
+				} else if (currentVal <= 0) {
+					systemData.affinities[attrKey].current = 1; // Set to Resistance by default
 				}
+			});
+		} else {
+			// Iterate through each temporary effect applied to the actor.
+			actorData.effects.forEach((effect) => {
+				// Get the status associated with the effect, if it exists.
+				if (effect.statuses.size === 1) {
+					const status = CONFIG.statusEffects.find((status) => effect.statuses.has(status));
+
+					// If a valid status is found, apply its modifiers to the corresponding attributes.
+					if (status) {
+						const stats = status.stats || [];
+						const mod = status.mod || 0;
+
+						stats.forEach((attrKey) => (statMods[attrKey] += mod));
+					}
+				}
+			});
+
+			// Update the current affinities value with the calculated new value.
+			for (const [key, attr] of Object.entries(systemData.affinities)) {
+				let modVal = statMods[key] + attr.bonus;
+				let baseVal = attr.base;
+				let newVal = baseVal;
+
+				// console.log('Key:', key, ' ModVal:', modVal, ' BaseVal:', baseVal, ' Current:', attr.current);
+
+				if (baseVal === -1 && modVal === 1) {
+					newVal = 0;
+				} else if (modVal > 0 || modVal < 0) {
+					newVal = modVal;
+				} else {
+					newVal = baseVal += modVal;
+				}
+
+				// Ensure newVal is capped between -1 and 4
+				newVal = Math.max(-1, Math.min(newVal, 4));
+
+				// Set attr.current directly to newVal
+				attr.current = newVal;
 			}
-		});
-
-		// Update the current affinities value with the calculated new value.
-		for (const [key, attr] of Object.entries(systemData.affinities)) {
-			let modVal = statMods[key] + attr.bonus;
-			let baseVal = attr.base;
-			let newVal = baseVal;
-
-			// console.log('Key:', key, ' ModVal:', modVal, ' BaseVal:', baseVal, ' Current:', attr.current);
-
-			if (baseVal === -1 && modVal === 1) {
-				newVal = 0;
-			} else if (modVal > 0 || modVal < 0) {
-				newVal = modVal;
-			} else {
-				newVal = baseVal += modVal;
-			}
-
-			// Ensure newVal is capped between -1 and 4
-			newVal = Math.max(-1, Math.min(newVal, 4));
-
-			// Set attr.current directly to newVal
-			attr.current = newVal;
 		}
 	}
 
@@ -370,347 +382,12 @@ export class FUActor extends Actor {
 		customized.forEach((customWeapon) => (customWeapon.system.cost.value = 300));
 	}
 
-	/**
-	 * Create the SP tracker
-	 * @private
-	 */
-	_calculateSPTracker(actorData, systemData) {
-		const spTracker = {
-			spAvailable: 0,
-			availableSkills: {
-				level: 0,
-				species: 0,
-				vulnerabilities: 0,
-				rank: 0,
-			},
-			spUsed: 0,
-			usedSkills: {
-				specialAttacks: 0,
-				spells: 0,
-				extraDefense: 0,
-				extraHP: 0,
-				extraMP: 0,
-				initiativeBonus: 0,
-				accuracyCheck: 0,
-				magicCheck: 0,
-				resistances: 0,
-				immunities: 0,
-				absorption: 0,
-				specialRules: 0,
-				equipment: 0,
-			},
-
-			calculateSP(actorData, systemData) {
-				this.availableSkills.species = this.calcAvailableSkillsFromSpecies(systemData);
-				this.availableSkills.level = Math.floor(systemData.level.value / 10);
-				this.availableSkills.vulnerabilities = this.calcAvailableSkillsFromVulnerabilities(systemData);
-				this.availableSkills.rank = this.calcAvailableSkillsFromRank(systemData);
-				this.spAvailable = Object.values(this.availableSkills).reduce((total, value) => total + value, 0);
-
-				this.usedSkills.specialAttacks = this.calcUsedSpecialAttacks(actorData);
-				this.usedSkills.spells = this.calcUsedSkillsFromSpells(actorData);
-				this.usedSkills.extraDefense = this.calcUsedSkillsFromExtraDefs(systemData);
-				this.usedSkills.extraHP = this.calcUsedSkillsFromExtraHP(systemData);
-				this.usedSkills.extraMP = this.calcUsedSkillsFromExtraMP(systemData);
-				this.usedSkills.initiativeBonus = this.calcUsedSkillsFromExtraInit(systemData);
-				this.usedSkills.accuracyCheck = this.calcUsedSkillsFromExtraPrecision(systemData);
-				this.usedSkills.magicCheck = this.calcUsedSkillsFromExtraMagic(systemData);
-				this.usedSkills.absorption = this.calcUsedSkillsFromAbsorbs(systemData);
-				const [immunities, remainingFromAbsorb] = this.calcUsedSkillsFromImmunities(systemData, this.usedSkills.absorption);
-				this.usedSkills.immunities = immunities;
-				this.usedSkills.resistances = this.calcUsedSkillsFromResistances(systemData, remainingFromAbsorb);
-
-				this.usedSkills.specialRules = this.calcUsedSkillsFromSpecial(actorData);
-				this.usedSkills.equipment = this.calcUsedSkillsFromEquipment(actorData);
-				this.spUsed = Object.values(this.usedSkills).reduce((total, value) => total + value, 0);
-			},
-
-			calcAvailableSkillsFromSpecies() {
-				let number = 4;
-				if (systemData.species.value === 'construct' || systemData.species.value === 'elemental' || systemData.species.value === 'undead') {
-					number = 2;
-				}
-				if (systemData.species.value === 'demon' || systemData.species.value === 'plant' || systemData.species.value === 'humanoid') {
-					number = 3;
-				}
-				return number;
-			},
-
-			calcAvailableSkillsFromRank() {
-				if (systemData.isChampion.value > 1) {
-					return systemData.isChampion.value;
-				} else if (systemData.isElite.value) {
-					return 1;
-				}
-
-				return 0;
-			},
-			calcAvailableSkillsFromVulnerabilities() {
-				let sum = 0;
-
-				Object.entries(systemData.affinities).forEach(([affinity, value]) => {
-					// If physical vulnerable, increment sum twice
-					if (affinity === 'phys' && value.base === -1) {
-						sum += 2;
-					}
-					// If affinity is vulnerable (except 'phys'), increment sum
-					else if (value.base === -1 && affinity !== 'phys') {
-						sum++;
-					}
-				});
-
-				// Undeads are vulnerable to light
-				if (systemData.species.value === 'undead' && systemData.affinities.light.base === -1) {
-					sum--;
-				}
-
-				// Plants have a free vulnerability
-				if (systemData.species.value === 'plant' && (systemData.affinities.fire.base || systemData.affinities.air.base || systemData.affinities.ice.base || systemData.affinities.bolt.base)) {
-					sum--;
-				}
-
-				// Ensure the sum is non-negative
-				sum = Math.max(0, sum);
-
-				return sum;
-			},
-
-			calcUsedSpecialAttacks(actorData) {
-				let sum = 0;
-
-				actorData.items.forEach((item) => {
-					// Check if the item has a non-null quality value or an empty quality
-					const hasQuality = item.system.quality?.value !== undefined && item.system.quality.value !== '';
-					const isNotSkill = item.type !== 'miscAbility';
-					if (hasQuality && isNotSkill) {
-						sum++;
-					}
-				});
-				return sum;
-			},
-
-			calcUsedSkillsFromSpells(actorData) {
-				const spells = actorData.items.filter((item) => item.type === 'spell');
-				return spells.length / 2 || 0;
-			},
-
-			calcUsedSkillsFromExtraDefs() {
-				const { def, mdef } = systemData.derived;
-				return def?.bonus && mdef?.bonus ? Math.floor((def.bonus + mdef.bonus) / 3) : 0;
-			},
-			calcUsedSkillsFromExtraHP() {
-				if (!systemData.resources.hp?.bonus) {
-					return 0;
-				}
-				return systemData.resources.hp.bonus / 10;
-			},
-
-			calcUsedSkillsFromExtraMP() {
-				if (!systemData.resources.mp?.bonus) {
-					return 0;
-				}
-				return systemData.resources.mp.bonus / 10 / 2;
-			},
-
-			calcUsedSkillsFromExtraInit() {
-				let sum = 0;
-				if (systemData.derived.init.bonus) {
-					sum = 1;
-				}
-				return sum;
-			},
-
-			calcUsedSkillsFromExtraPrecision(systemData) {
-				if (!systemData.bonuses.accuracy.accuracyCheck) {
-					return 0;
-				}
-				let sum = systemData.bonuses.accuracy.accuracyCheck;
-				return Math.floor((sum - 1) / 3) + 1;
-			},
-
-			calcUsedSkillsFromExtraMagic(systemData) {
-				if (!systemData.bonuses.accuracy.magicCheck) {
-					return 0;
-				}
-				let sum = systemData.bonuses.accuracy.magicCheck;
-				return Math.floor((sum - 1) / 3) + 1;
-			},
-
-			calcUsedSkillsFromResistances(systemData, fromAbsorb) {
-				let sum = fromAbsorb * 0.5;
-
-				Object.entries(systemData.affinities).forEach((el) => {
-					const isConstructWithEarth = systemData.species.value === 'construct' && el[0] === 'earth';
-
-					if (el[1].base === 1 && !isConstructWithEarth) {
-						sum += 0.5;
-					}
-				});
-				// Demons have two free resistances
-				if (systemData.species.value === 'demon') {
-					sum -= 1;
-				}
-
-				sum = Math.max(0, sum);
-
-				return sum;
-			},
-
-			calcUsedSkillsFromImmunities(systemData, fromAbsorb) {
-				let sum = 0;
-				Object.entries(systemData.affinities).forEach((el) => {
-					if (el[1].base === 2) {
-						// Don't count poison for construct, elemental, undead
-						if ((systemData.species.value === 'construct' || systemData.species.value === 'elemental' || systemData.species.value === 'undead') && el[0] === 'poison') {
-							return;
-						}
-
-						// Don't count dark for undead
-						if (systemData.species.value === 'undead' && el[0] === 'dark') {
-							return;
-						}
-						sum++;
-					}
-				});
-
-				// Elementals have a free immunity
-				if (systemData.species.value === 'elemental') {
-					sum = sum - 1;
-				}
-
-				if (sum < 0) {
-					return [0, Math.max(0, fromAbsorb + sum)];
-				}
-				return [sum, fromAbsorb];
-			},
-
-			calcUsedSkillsFromAbsorbs(systemData) {
-				let sum = 0;
-				Object.entries(systemData.affinities).forEach((el) => {
-					if (el[1].base === 3) {
-						sum++;
-					}
-				});
-				return sum;
-			},
-
-			calcUsedSkillsFromSpecial(actorData) {
-				const miscAbility = actorData.items.filter((item) => item.type === 'miscAbility');
-				return miscAbility.length || 0;
-			},
-
-			calcUsedSkillsFromEquipment(actorData) {
-				const equipmentTypes = ['weapon', 'shield', 'armor'];
-				const sum = equipmentTypes.reduce((total, type) => {
-					return total + actorData.items.filter((item) => item.type === type).length;
-				}, 0);
-
-				return sum > 0 ? 1 : 0;
-			},
-		};
-		// Initial calculation
-		spTracker.calculateSP(actorData, systemData);
-
-		return spTracker;
+	get tlTracker() {
+		return this.system.tlTracker;
 	}
 
-	_calculateTLTracker(actorData, systemData) {
-		// Filter class and skill items from the actor's items
-		const heroic = actorData.items.filter((item) => item.type === 'heroic');
-		const classes = actorData.items.filter((item) => item.type === 'class');
-		const skills = actorData.items.filter((item) => item.type === 'skill');
-
-		// Function declarations
-		const calculateSkillLevel = (items, itemType) => {
-			return items.reduce((sum, item) => {
-				// Validate the data before using parseInt
-				const level = parseInt(item.system?.level?.value || 0);
-				return sum + level;
-			}, 0);
-		};
-
-		// Calculate the current length of heroic skills
-		const calculateHeroicCurrent = heroic.reduce((sum, item) => {
-			if (item.system.subtype.value === 'skill') {
-				return sum + 1;
-			}
-			return sum;
-		}, 0);
-
-		// Calculate the total sum of classes with level >= 10 (heroic max)
-		const calculateHeroicMax = classes.reduce((sum, item) => {
-			if (parseInt(item.system?.level?.value || 0) >= 10) {
-				return sum + 1;
-			}
-			return sum;
-		}, 0);
-
-		const tlTracker = {
-			totalSkill: {
-				current: 0,
-				max: 0,
-			},
-			totalClass: {
-				current: 0,
-				max: 0,
-			},
-			totalHeroic: {
-				current: 0,
-				max: 0,
-			},
-			calculateTL(actorData, systemData) {
-				this.totalClass.current = calculateSkillLevel(classes, 'class');
-				this.totalSkill.current = calculateSkillLevel(skills, 'skill');
-				this.totalHeroic.current = calculateHeroicCurrent;
-
-				this.totalClass.max = actorData.system.level.value;
-				this.totalSkill.max = actorData.system.level.value;
-				this.totalHeroic.max = calculateHeroicMax;
-			},
-		};
-
-		// Initial calculation
-		tlTracker.calculateTL(actorData, systemData);
-
-		return tlTracker;
-	}
-
-	/**
-	 * Prepare Character type specific data
-	 */
-	_prepareCharacterData(actorData) {
-		if (actorData.type !== 'character') return;
-
-		// Make modifications to data here. For example:
-		const systemData = actorData.system;
-
-		// Loop through ability scores, and add their modifiers to our sheet output.
-		// for (let [key, ability] of Object.entries(systemData.abilities)) {
-		// Calculate the modifier using d20 rules.
-		// ability.mod = Math.floor((ability.value - 10) / 2);
-		// }
-
-		// Initialize the TL tracker
-		this.tlTracker = this._calculateTLTracker(actorData, systemData);
-	}
-	getTLTracker() {
-		return this.tlTracker;
-	}
-
-	/**
-	 * Prepare NPC type specific data.
-	 */
-	_prepareNpcData(actorData) {
-		if (actorData.type !== 'npc') return;
-
-		// Make modifications to data here. For example:
-		const systemData = actorData.system;
-
-		// Initialize the SP tracker
-		this.spTracker = this._calculateSPTracker(actorData, systemData);
-	}
-	getSPTracker() {
-		return this.spTracker;
+	get spTracker() {
+		return this.system.spTracker;
 	}
 
 	/**
@@ -730,7 +407,8 @@ export class FUActor extends Actor {
 	 * Prepare character roll data.
 	 */
 	_getCharacterRollData(data) {
-		if (this.type !== 'character') {}
+		if (this.type !== 'character') {
+		}
 
 		// Copy the ability scores to the top level, so that rolls can use
 		// formulas like `@str.mod + 4`.
@@ -750,7 +428,8 @@ export class FUActor extends Actor {
 	 * Prepare NPC roll data.
 	 */
 	_getNpcRollData(data) {
-		if (this.type !== 'npc') {}
+		if (this.type !== 'npc') {
+		}
 
 		// Process additional NPC data here.
 	}
@@ -783,24 +462,40 @@ export class FUActor extends Actor {
 		await super._preUpdate(changed, options, user);
 	}
 
-	_onUpdate(changed, options, userId) {
-		super._onUpdate(changed, options, userId);
-
+	async _onUpdate(changed, options, userId) {
 		if (options.damageTaken) {
+			// console.log("Damage taken:", options.damageTaken);
 			this.showFloatyText(options.damageTaken);
 		}
+
+		const { hp } = this.system?.resources || {};
+
+		if (hp && userId === game.userId) {
+			const crisisThreshold = Math.floor(hp.max / 2);
+			const shouldBeInCrisis = hp.value <= crisisThreshold;
+			const isInCrisis = this.statuses.has('crisis');
+
+			if (shouldBeInCrisis && !isInCrisis) {
+				await ActiveEffect.create(
+					CONFIG.statusEffects.find((val) => val.id === 'crisis'),
+					{ parent: this },
+				);
+			} else if (!shouldBeInCrisis && isInCrisis) {
+				this.effects.filter((effect) => effect.statuses.has('crisis')).forEach((val) => val.delete());
+			}
+		}
+		super._onUpdate(changed, options, userId);
 	}
 
 	async showFloatyText(input) {
-		let scrollingTextArgs;
-
 		if (!canvas.scene) return;
 
-		const gridSize = canvas.scene.grid.size;
+		const [token] = this.getActiveTokens();
 
-		if (_token && typeof input === 'number') {
-			scrollingTextArgs = [
-				{ x: _token.x + gridSize / 2, y: _token.y + gridSize - 20 },
+		if (token && typeof input === 'number') {
+			const gridSize = canvas.scene.grid.size;
+			const scrollingTextArgs = [
+				{ x: token.x + gridSize / 2, y: token.y + gridSize - 20 },
 				Math.abs(input),
 				{
 					fill: input < 0 ? 'lightgreen' : 'white',
@@ -809,11 +504,8 @@ export class FUActor extends Actor {
 					strokeThickness: 4,
 				},
 			];
+			await token._animation;
+			await canvas.interface?.createScrollingText(...scrollingTextArgs);
 		}
-
-		if (!scrollingTextArgs) return;
-
-		await _token._animation;
-		await canvas.interface?.createScrollingText(...scrollingTextArgs);
 	}
 }

@@ -1,3 +1,5 @@
+import { FUActor } from '../documents/actors/actor.mjs';
+
 /**
  * Manage Active Effect instances through the Actor Sheet via effect control buttons.
  * @param {MouseEvent} event      The left-click event on the effect control
@@ -7,7 +9,17 @@ export function onManageActiveEffect(event, owner) {
 	event.preventDefault();
 	const a = event.currentTarget;
 	const li = a.closest('li');
-	const effect = li.dataset.effectId ? owner.effects.get(li.dataset.effectId) : null;
+	const effectId = li.dataset.effectId;
+	let effect;
+	if (owner instanceof FUActor) {
+		if (game.release.isNewer(11)) {
+			effect = Array.from(owner.allApplicableEffects()).find((value) => value.id === effectId);
+		} else {
+			effect = owner.effects.find((value) => value.id === effectId);
+		}
+	} else {
+		effect = owner.effects.get(effectId);
+	}
 	switch (a.dataset.action) {
 		case 'create':
 			return owner.createEmbeddedDocuments('ActiveEffect', [
@@ -70,27 +82,21 @@ export function prepareActiveEffectCategories(effects) {
  */
 export async function toggleStatusEffect(actor, statusEffectId) {
 	const existing = actor.effects.reduce((arr, e) => {
-		if (isActiveEffectForStatusEffectId(e, statusEffectId)) arr.push(e.id);
+		if (isActiveEffectForStatusEffectId(e, statusEffectId)) arr.push(e);
 		return arr;
 	}, []);
 	if (existing.length > 0) {
-		await actor.deleteEmbeddedDocuments('ActiveEffect', existing);
+		await Promise.all(existing.map((e) => e.delete()));
 		return false;
 	} else {
-		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId)
-		const cls = getDocumentClass('ActiveEffect');
-		const createData = foundry.utils.deepClone(statusEffect);
-		createData.statuses = [statusEffect.id];
-		delete createData.id;
-		cls.migrateDataSafe(createData);
-		cls.cleanData(createData);
-		createData.name = game.i18n.localize(statusEffect.name);
-		delete createData.id;
-		await cls.create(createData, { parent: actor });
+		const statusEffect = CONFIG.statusEffects.find((e) => e.statuses.includes(statusEffectId));
+		if (statusEffect) {
+			await ActiveEffect.create(statusEffect, { parent: actor });
+		}
 		return true;
 	}
 }
 
 export function isActiveEffectForStatusEffectId(effect, statusEffectId) {
-	return effect.statuses.size == 1 && effect.statuses.has(statusEffectId);
+	return effect.statuses.size === 1 && effect.statuses.has(statusEffectId);
 }

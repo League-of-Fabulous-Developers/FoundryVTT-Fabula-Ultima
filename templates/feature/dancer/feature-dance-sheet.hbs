@@ -1,0 +1,17 @@
+<div class='resource-content desc flexcol gap-5'>
+    <div>
+        <label class='resource-label-m'>
+            {{localize 'FU.ClassFeatureDanceDuration'}}:
+            <select class="resource-text-m resource-inputs" style="width: 16em;" name="system.data.duration">
+                {{selectOptions additionalData.durations selected=system.data.duration localize=true}}
+            </select>
+        </label>
+    </div>
+    <hr>
+    <div>
+        <label class='resource-label-m'>
+            {{localize 'FU.Description'}}
+        </label>
+        {{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true }}
+    </div>
+</div>

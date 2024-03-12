@@ -3,28 +3,62 @@
 
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
+
+		{{!-- Effects Tab --}}
+		<div class="tab effects" data-group="primary" data-tab="effects">
+			{{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
+		</div>
+
 		{{!-- Description Tab --}}
 		<div class="tab" data-group="primary" data-tab="description">
-			<div class="grid grid-2col desc flex-group-center resource-content">
+
+			<div class="grid grid-2col gap-5">
+
 				{{!-- Zero Trigger --}}
-				<div class="resource-content quarter-desc">
-					<input type="text" name="system.zeroTrigger.value" value="{{ system.zeroTrigger.value }}"
-						data-dtype="String" placeholder="{{localize 'FU.LimitTrigger'}}"
-						class="resource-label-m resource-inputs select-dropdown-full" />
-					{{editor system.zeroTrigger.description target="system.zeroTrigger.description"
-					rollData=rollData button=true owner=owner editable=editable}}
-				</div>
-				{{!-- Zero Effect (2 columns) --}}
-				<div class="resource-content  quarter-desc">
-					<input type="text" name="system.zeroEffect.value" value="{{ system.zeroEffect.value }}"
-						data-dtype="String" placeholder="{{localize 'FU.LimitEffect'}}"
-						class="resource-label-m resource-inputs select-dropdown-full" />
-					{{editor system.zeroEffect.description target="system.zeroEffect.description" rollData=rollData
-					button=true owner=owner editable=editable}}
-				</div>
+				<fieldset class="title-fieldset desc resource-content">
+					<legend class="resource-label-full">
+						<input type="text" name="system.zeroTrigger.value" value="{{ system.zeroTrigger.value }}"
+							data-dtype="String" placeholder="{{localize 'FU.LimitTrigger'}}" data-tooltip="
+							{{localize 'FU.LimitTrigger'}}" class="resource-label-m resource-inputs select-dropdown-full" />
+					</legend>
+					{{editor enrichedHtml.zeroTrigger target="system.zeroTrigger.description" engine="prosemirror"
+					rollData=rollData button=true owner=owner editable=editable }}
+				</fieldset>
+
+				{{!-- Zero Effect --}}
+				<fieldset class="title-fieldset desc resource-content">
+					<legend class="resource-label-full">
+						<input type="text" name="system.zeroEffect.value" value="{{ system.zeroEffect.value }}"
+							data-dtype="String" placeholder="{{localize 'FU.LimitEffect'}}"
+							data-tooltip="{{localize 'FU.LimitEffect'}}"
+							class="resource-label-m resource-inputs select-dropdown-full" />
+					</legend>
+					{{editor enrichedHtml.zeroEffect target="system.zeroEffect.description" engine="prosemirror"
+					rollData=rollData button=true owner=owner editable=editable }}
+				</fieldset>
 			</div>
 		</div>
+
 		{{!-- Attributes Tab --}}
-		<div class="tab attributes" data-group="primary" data-tab="attributes"></div>
+		<div class="tab attributes" data-group="primary" data-tab="attributes">
+			{{!-- General Info Section --}}
+			<fieldset class="title-fieldset desc resource-content grid-span-2">
+
+				{{!-- Item Controls --}}
+				<div class="item-settings">
+					{{> "systems/projectfu/templates/item/partials/item-controls.hbs" dtypes=dtypes}}
+					<label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ClockStatus'}}">
+						<span>
+							{{#if item.system.hasClock.value}}
+							<i class="fas fa-clock"></i>
+							{{else}}
+							<i class="far fa-clock"></i>
+							{{/if}}
+						</span><input type="checkbox" name="system.hasClock.value" {{ checked system.hasClock.value
+							}} />
+					</label>
+				</div>
+			</fieldset>
+		</div>
 	</section>
 </form>

@@ -1,3 +1,5 @@
+import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
+
 export const FU = {};
 
 /**
@@ -8,7 +10,6 @@ FU.attributes = {
 	dex: 'FU.AttributeDex',
 	ins: 'FU.AttributeIns',
 	mig: 'FU.AttributeMig',
-
 	wlp: 'FU.AttributeWlp',
 };
 
@@ -85,6 +86,15 @@ FU.affTypeAbbr = {
 	4: 'FU.AffinityRepulsionAbbr',
 };
 
+FU.affValue = {
+	vulnerability: -1,
+	none: 0,
+	resistance: 1,
+	immunity: 2,
+	absorption: 3,
+	repulsion: 4,
+};
+
 FU.species = ['beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead', 'custom'];
 
 FU.villainTypes = ['minor', 'major', 'supreme'];
@@ -102,35 +112,87 @@ FU.speciesRule = {
 };
 
 FU.itemTypes = {
-	basic: 'FU.BasicAtack',
-	weapon: 'FU.Weapon',
-	shield: 'FU.Shield',
-	armor: 'FU.Armor',
-	accessory: 'FU.Accessory',
-	consumable: 'FU.Consumable',
-	treasure: 'FU.Treasure',
-	class: 'FU.Class',
-	skill: 'FU.Skill',
-	heroic: 'FU.Heroic',
-	miscAbility: 'FU.BeastRule',
-	behavior: 'FU.ConstructRule',
-	ritual: 'FU.DemonRule',
-	project: 'FU.ElementalRule',
-	zeroPower: 'FU.HumanoidRule',
+	basic: 'TYPES.Item.basic',
+	weapon: 'TYPES.Item.weapon',
+	shield: 'TYPES.Item.shield',
+	armor: 'TYPES.Item.armor',
+	accessory: 'TYPES.Item.accessory',
+	consumable: 'TYPES.Item.consumable',
+	treasure: 'TYPES.Item.treasure',
+	class: 'TYPES.Item.class',
+	classFeature: 'TYPES.Item.classFeature',
+	skill: 'TYPES.Item.skill',
+	heroic: 'TYPES.Item.heroic',
+	spell: 'TYPES.Item.spell',
+	miscAbility: 'TYPES.Item.miscAbility',
+	rule: 'TYPES.Item.rule',
+	behavior: 'TYPES.Item.behavior',
+	ritual: 'TYPES.Item.ritual',
+	project: 'TYPES.Item.project',
+	zeroPower: 'TYPES.Item.zeroPower',
 };
 
 FU.actionTypes = {
-	attack: 'FU.Action',
-	equipment: 'FU.Action',
-	guard: 'FU.Action',
-	hinder: 'FU.Action',
-	inventory: 'FU.Action',
-	objective: 'FU.Action',
-	spell: 'FU.Action',
-	study: 'FU.Action',
-	skill: 'FU.Action',
-	other: 'FU.Action',
+	attack: 'FU.Attack',
+	equipment: 'FU.Equipment',
+	guard: 'FU.Guard',
+	hinder: 'FU.Hinder',
+	inventory: 'FU.Inventory',
+	objective: 'FU.Objective',
+	spell: 'FU.Spell',
+	study: 'FU.Study',
+	skill: 'FU.Skill',
 };
+
+FU.actionRule = {
+	attack: 'FU.AttackRule',
+	equipment: 'FU.EquipmentRule',
+	guard: 'FU.GuardRule',
+	hinder: 'FU.HinderRule',
+	inventory: 'FU.InventoryRule',
+	objective: 'FU.ObjectiveRule',
+	spell: 'FU.SpellRule',
+	study: 'FU.StudyRule',
+	skill: 'FU.SkillRule',
+};
+
+FU.statusEffects = {
+	'crisis' : 'FU.Crisis',
+	'guard' : 'FU.Guard',
+	'slow' : 'FU.Slow',
+	'dazed' : 'FU.Dazed',
+	'weak' : 'FU.Weak',
+	'shaken' : 'FU.Shaken',
+	'enraged' : 'FU.Enraged',
+	'poisoned' : 'FU.Poisoned',
+	'wlp-down' : 'FU.WLPDown',
+	'wlp-up' : 'FU.WLPUp', 
+	'dex-down' : 'FU.DEXDown', 
+	'dex-up' : 'FU.DEXUp',
+	'ins-up' : 'FU.ISNUp',
+	'ins-down' : 'FU.INSDown',
+	'mig-up' : 'FU.MIGUp',
+	'mig-down' : 'FU.MIGDown',
+}
+
+FU.statusEffectRule = {
+	'crisis' : 'FU.CrisisRule',
+	'guard' : 'FU.GuardRule',
+	'slow' : 'FU.SlowRule',
+	'dazed' : 'FU.DazedRule',
+	'weak' : 'FU.WeakRule',
+	'shaken' : 'FU.ShakenRule',
+	'enraged' : 'FU.EnragedRule',
+	'poisoned' : 'FU.PoisonedRule',
+	'wlp-down' : 'FU.WLPDownRule',
+	'wlp-up' : 'FU.WLPUpRule', 
+	'dex-down' : 'FU.DEXDownRule', 
+	'dex-up' : 'FU.DEXUpRule',
+	'ins-down' : 'FU.INSDownRule',
+	'ins-up' : 'FU.ISNUpRule',
+	'mig-down' : 'FU.MIGDownRule',
+	'mig-up' : 'FU.MIGUpRule',
+}
 
 /**
  * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown", "custom"} WeaponCategory
@@ -150,6 +212,59 @@ FU.weaponCategories = {
 	sword: 'FU.Sword',
 	thrown: 'FU.Thrown',
 	custom: 'FU.Custom',
+};
+
+/**
+ * @typedef {"custom", "arcana", "deck", "dance", "gift", "magiseed", "invention", "invocation", "therioform", "symbol", "infusion", "quirk", "other"} MiscCategory
+ */
+/**
+ * @type {Object.<MiscCategory, string>}
+ */
+FU.miscCategories = {
+	other: 'FU.Other',
+	quirk: 'FU.Quirk',
+};
+
+/**
+ * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown"} weaponCategoriesWithoutCustom
+ */
+/**
+ * @type {Object.<weaponCategoriesWithoutCustom, string>}
+ */
+FU.weaponCategoriesWithoutCustom = {
+	arcane: 'FU.Arcane',
+	bow: 'FU.Bow',
+	brawling: 'FU.Brawling',
+	dagger: 'FU.Dagger',
+	firearm: 'FU.Firearm',
+	flail: 'FU.Flail',
+	heavy: 'FU.Heavy',
+	spear: 'FU.Spear',
+	sword: 'FU.Sword',
+	thrown: 'FU.Thrown',
+};
+
+/**
+ * @typedef {"skill", "style"} HeroicType
+ */
+/**
+ * @type {Object.<HeroicType, string>}
+ */
+FU.heroicType = {
+	skill: 'FU.Heroic',
+	style: 'FU.HeroicStyle',
+};
+
+/**
+ * @typedef {"treasure", "material", "artifact"} TreasureType
+ */
+/**
+ * @type {Object.<TreasureType, string>}
+ */
+FU.treasureType = {
+	treasure: 'FU.Treasure',
+	material: 'FU.Material',
+	artifact: 'FU.Artifact',
 };
 
 /**
@@ -190,3 +305,5 @@ FU.handedness = {
 	'one-handed': 'FU.OneHanded',
 	'two-handed': 'FU.TwoHanded',
 };
+
+FU.classFeatureRegistry = new ClassFeatureRegistry();

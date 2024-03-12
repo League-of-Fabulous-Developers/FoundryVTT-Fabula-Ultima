@@ -1,28 +1,142 @@
-$font-primary: "PT Sans",
-sans-serif;
-$font-secondary: "PT Sans",
-sans-serif;
+@font-face {
+  font-family: 'CreditValley';
+  src: url('/systems/projectfu/styles/fonts/credit-valley/CreditValley.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'CreditValleybold';
+  src: url('/systems/projectfu/styles/fonts/credit-valley/CreditValleybold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@counter-style diamonds {
+    system: cyclic;
+    suffix: " ";
+    symbols: "◆";
+}
+
+// Font Variables
+$font-title: "CreditValleybold";
+$font-primary: "PT Sans Narrow", sans-serif;
+$font-secondary: "Antonio", sans-serif;
+$font-quote: "EB Garamond", sans-serif;
+
+// Styles for .window-app class
 .window-app {
   font-family: $font-primary;
 
-  nav,a.item{
+  // Default styles for header
+  h1 {
+    font-family: $font-title;
+    font-size: 30px;
+    font-weight: 700;
+    color: $color-secondary;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-family: $font-secondary;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-family: $font-secondary;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  h4 {
+    font-family: $font-secondary;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  h5 {
+    font-family: $font-secondary;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  h6 {
+    font-family: $font-secondary;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .sheet-body,
+  .journal-sheet-container {
+
+    p,
+    li {
+      font-family: $font-primary;
+      font-style: normal;
+      font-size: 16px;
+    }
+
+    blockquote,
+    blockquote p {
+      font-family: $font-quote !important;
+      font-style: italic;
+      font-size: 18px;
+    }
+
+    // Change bullet content for li
+    .editor, .journal-page-content, .editor-content, .chat-desc {
+      ul {
+        list-style: diamonds;
+
+        li, .ProseMirror li {
+          &::marker {
+            color: $color-secondary;
+            font-size: 14px;
+          }
+        }
+      }
+      ol {
+        li, .ProseMirror li {
+          &::marker {
+            color: $color-secondary;
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .label {
+    text-transform: uppercase;
+    border: none;
+  }
+
+  // Navigation Styles
+  nav,
+  a.item {
     font-weight: bold;
   }
+
+  // Item and Zenit Content Styles
   [class^="item-"] {
     font-weight: bold;
   }
-  
+
   .item,
   .zenit-content {
-    font-size: 14px;
+    font-size: 16px;
 
     .item-name {
       font-size: 16px;
       font-weight: bold;
     }
+
     .item-quality {
-      font-size: 14px
+      font-size: 14px;
     }
   }
 
@@ -31,125 +145,217 @@ sans-serif;
     font-size: 14px;
 
     &.summary {
-      font-family: "Cormorant Garamond", serif;
+      font-family: $font-quote;
       font-weight: 700;
       font-style: italic;
-      font-size: 16px;
+      font-size: 18px;
+      line-height: 1.45em;
     }
   }
 
+  // Resource Content Styles
   .resource-content {
+    font-family: $font-primary;
+
     &.affinity {
       label {
-        font-family: 'Modesto Condensed';
-      }
-    }
-
-    .center-label {
-      font-size:18px;
-    }
-
-    .name-input {
-      input, input.disabled {
+        font-family: "Antonio", sans-serif;
+        line-height: 1.68em;
         font-size: 18px;
-        height: 22px;
-        color: inherit;
+        color: $color-secondary;
       }
     }
 
+    // Resource Body Text Sizes
+    .resource-text-sm {
+      font-size: 14px;
+      font-family: $font-primary;
+    }
+
+    .resource-text-m {
+      font-size: 16px;
+      line-height: 1.45em;
+      font-family: $font-primary;
+    }
+
+    // Resource Label Sizes
     .resource-label-t {
       font-size: 12px;
+      line-height: 1.45em;
+      line-height: 1.45em;
       font-weight: bold;
+      font-family: $font-secondary;
+      text-transform: uppercase;
     }
 
     .resource-label-sm {
       font-size: 14px;
+      line-height: 1.45em;
       font-weight: bold;
+      font-family: $font-secondary;
+      text-transform: uppercase;
     }
 
     .resource-label-m {
       font-size: 16px;
+      line-height: 1.45em;
       font-weight: bold;
+      font-family: $font-secondary;
+      text-transform: uppercase;
     }
 
     .resource-label-l {
       font-size: 18px;
+      line-height: 1.45em;
       font-weight: bold;
+      font-family: $font-secondary;
+      text-transform: uppercase;
     }
-    
+
     .resource-label-xl {
       font-size: 20px;
+      line-height: 1.45em;
       font-weight: bold;
+      font-family: $font-secondary;
+      text-transform: uppercase;
     }
   }
 
-  .resource-label {
-    input.resource-inputs {
-      font-size: 16px;
-
-    }
-
-    .item-name {
-      font-size: 16px;
-    }
+  label.is-crisis {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: $font-secondary;
+    text-transform: uppercase;
+    font-style: italic;
   }
 
   .action-button {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1.2em;
   }
 
-  .desc {
-    .editor {
+  .editor,
+  .journal-entry-content,
+  .editor-container {
+
+    .editor-edit,
+    .editor-content,
+    .journal-entry-page {
       font-weight: normal;
-      .editor-content{
+
+      h1,
+      h2,
+      h3 {
+        border-bottom: 2px solid $color-secondary;
+      }
+
+      h1 {
+        line-height: 1.2em;
+      }
+
+      h2,
+      h3,
+      h4 {
+        line-height: 1.45em;
+      }
+
+      p {
+        line-height: 1.45em;
+      }
+
+      blockquote {
+        line-height: 1.45em;
+      }
+
+      .editor-content {
         font-size: 16px;
+        line-height: 1.45em;
+        width: 100%;
       }
     }
   }
 
-  .charname {
-    input {
-      font-family: "Alice", serif;
-      font-size: 24px;
-    }
+  .charname input {
+    font-family: Antonio;
+    font-weight: bold;
+    font-size: 1.25rem;
+    text-transform: uppercase;
   }
-}
 
-.detail-desc {
-  font-size: 14px;
-  font-weight: bold;
-  font-family: $font-primary;
+  .pronouns input {
+    font-family: Antonio;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
 
-  div {
+  // Styles for .detail-desc class
+  .detail-desc {
     font-size: 14px;
-    padding: 5px 0;
-  }
-}
+    line-height: 1.45em;
+    font-weight: bold;
+    font-family: $font-primary;
 
-.uppercase {
-  text-transform: uppercase;
-}
-
-.quote {
-  border-left: 3px solid #999;
-  padding-left: 10px;
-  font-style: italic;
-}
-
-.chat-desc {
-  .summary {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 700;
-    font-style: italic;
-    font-size: 20px;
-  }
-}
-
-.chat-message {
-  .message-header {
-    .flavor-text {
-      font-size: 20px;
+    div {
+      font-size: 14px;
+      padding: 5px 0;
     }
+  }
+
+  .description-effect {
+    font-size: 15px;
+    line-height: 1.45em;
+    font-weight: normal !important;
+    font-family: $font-primary;
+  }
+
+  // Uppercase Text
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  // Quote Styles
+  .quote {
+    border-left: 3px solid #999;
+    padding-left: 10px;
+    font-style: italic;
+  }
+
+  // Styles for Chat Description
+  .chat-desc {
+    .summary {
+      font-family: $font-quote;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1.45em;
+      color: $color-ternary;
+    }
+  }
+
+  // Styles for Chat Message
+  .chat-message {
+    .message-header {
+      .flavor-text {
+        font-size: 20px;
+        line-height: 1.45em;
+      }
+    }
+  }
+
+  // Auto Shrink Text
+  .auto-shrink {
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  // Navbar Text
+  .sheet nav.sheet-tabs .item {
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 1.45em;
   }
 }

@@ -29,7 +29,7 @@
 
 .items-main-header {
   height: 34px;
-  margin: 2px 2px 5px 2px;
+  margin: 2px 2px 7px 2px;
   padding-right: 2px;
   display: flex;
   flex-direction: row;
@@ -65,8 +65,8 @@
   box-shadow: 3px 6px $color-secondary;
   border: thin $color-shadow-inverted;
   background: linear-gradient($color-tabStyle-gradient);
-  border-radius: 8px 30px 4px 0px;
-  padding: 5px 0 0 5px;
+  border-radius: 8px 30px 5px 5px;
+  padding: 5px;
 
   &.items-label {
     margin: 5em;
@@ -110,9 +110,9 @@
   }
 
   &.total-level {
-    border-radius: 30px 8px 0px 4px;
+    border-radius: 30px 8px 5px 5px;
     text-align: right;
-    width: 5em;
+    width: 6em;
 
     .fas:hover {
       color: blanchedalmond;
@@ -136,23 +136,24 @@
     margin-right: 5px;
   }
 
-    &.armor-hand {
-      width: 10.5em;
-      border-radius: 8px 30px 5px 5px;
-      font-size: 14px;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      white-space: normal;
-      text-overflow: ellipsis;
-      padding: 4px 14px 0px 0;
-      text-align: right;
-      
+  &.armor-hand {
+    width: 10.5em;
+    border-radius: 8px 30px 5px 5px;
+    font-size: 14px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    white-space: normal;
+    text-overflow: ellipsis;
+    padding: 4px 14px 0px 0;
+    text-align: right;
+
     .equipped-item {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
       margin-left: 10px;
+      gap: 2px;
     }
   }
 
@@ -172,6 +173,7 @@
       text-overflow: ellipsis;
       max-width: 100%;
       margin-left: 10px;
+      gap: 2px;
     }
   }
 
@@ -190,6 +192,7 @@
       align-items: center;
       white-space: nowrap;
       justify-content: flex-end;
+      gap: 2px;
     }
 
     .equipped-item-content {
@@ -213,9 +216,8 @@
       position: relative;
       display: flex;
       align-items: center;
-      /* Vertically center the icon and text */
       white-space: nowrap;
-      /* Prevent text from wrapping */
+      gap: 2px;
     }
 
     .equipped-item-content {
@@ -233,35 +235,83 @@
   position: sticky;
   background-color: $color-secondary;
   color: $color-primary;
-  padding: 0px 4px;
+  padding: 0 2px;
   border-radius: 5px;
   font-size: 12px;
-  margin: 0 2px;
+  margin: 0;
+  flex: 0 0 16px;
+  text-align: center;
 }
-
-
 
 /* ----------------------------------------- */
 /*  Fixes                                    */
 /* ----------------------------------------- */
+$fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
 
 .items-list .item .item-name .item-image {
   border: none;
   padding-right: 5px;
-  flex: 0 0 auto;
-  
+  flex: 0 0 30px;
+  position: relative;
+}
+
+.items-list .item .item-name .item-image {
   img {
     max-width: 100%;
-    height: auto;
     display: block;
     height: 24px;
     width: 24px;
     overflow: hidden;
     border-radius: 5px;
-    background-image: linear-gradient(to right,
-    $color-secondary,
-    $color-ternary);
+    background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
+
+  &:hover {
+    img {
+      transform: scale(1.1);
+      transform-origin: center center;
+      opacity: 0.75;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background: $fu-d20 center/cover;
+        opacity: 0.75;
+        z-index: -1;
+      }
+    }
+  }
+}
+
+.status-effect-toggle {
+  display: flex;
+}
+
+/* Status Effect Icon - Toggle Fading */
+.status-effect-toggle img {
+  flex: 0 0 32px !important;
+  height: 32px !important;
+  width: 32px !important;
+  display: block;
+  margin-top: -1px;
+  border-radius: 4px;
+  border: 0px solid transparent;
+  opacity: 0.4;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    opacity: 0.80;
+    transform: scale(1.2);
+    transform-origin: center center;
+    z-index: 100;
+  }
+}
+
+.status-effect-toggle.active img {
+  opacity: 1;
 }
 
 /* ----------------------------------------- */
@@ -299,7 +349,7 @@
 
 .items-list .item {
   align-items: center;
-  padding: 2px;
+  padding: 1px 2px;
   transition:
     background-color 0.5s ease,
     border-color 0.5s ease,
@@ -315,7 +365,7 @@
   }
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background: linear-gradient($color-quote-gradient);
     border-color: $color-secondary;
     color: darken($color-secondary, 20%);
   }
@@ -356,10 +406,9 @@
   }
 }
 
-span[data-tooltip] {
-  display: inline-block;
-}
-
+// span[data-tooltip] {
+//   display: inline-block;
+// }
 
 .item-xs {
   flex: 0 0 64px;
@@ -371,6 +420,7 @@ span[data-tooltip] {
   text-align: center;
   align-content: center;
 }
+
 .item-sm {
   flex: 0 0 80px;
   text-align: center;
@@ -381,8 +431,9 @@ span[data-tooltip] {
   text-align: center;
   align-content: center;
 }
+
 .item-m {
-  flex: 0 0 96px;
+  flex: 0 0 100px;
   text-align: center;
   justify-content: center;
   display: flex;
@@ -390,10 +441,10 @@ span[data-tooltip] {
   flex-wrap: wrap;
   text-align: center;
   align-content: center;
-  align-content: center;
 }
+
 .item-lg {
-  flex: 0 0 128px;
+  flex: 0 0 150px;
   text-align: center;
   justify-content: center;
   display: flex;
@@ -402,6 +453,7 @@ span[data-tooltip] {
   text-align: center;
   align-content: center;
 }
+
 .item-xl {
   flex: 0 0 256px;
   text-align: center;
@@ -412,6 +464,7 @@ span[data-tooltip] {
   text-align: center;
   align-content: center;
 }
+
 .item-xxl {
   flex: 0 0 300px;
   text-align: center;
@@ -422,6 +475,7 @@ span[data-tooltip] {
   text-align: center;
   align-content: center;
 }
+
 .item-full {
   flex: 2;
   text-align: center;
@@ -432,6 +486,16 @@ span[data-tooltip] {
   align-content: center;
 }
 
+.item-progressbar {
+  flex: 2;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  justify-content: center;
+  align-content: stretch;
+  flex-wrap: wrap;
+}
+
 .start {
   display: flex;
   justify-content: flex-start;
@@ -439,22 +503,18 @@ span[data-tooltip] {
   text-align: left;
   padding: 0 5px;
   align-content: center;
-
 }
+
 .end {
-  flex: 0 0 96px;
+  flex: 0 0 100px;
   display: flex;
   justify-content: flex-end;
   align-items: inherit;
   align-content: center;
+
   a {
     font-size: 14px;
     text-align: center;
-    margin: 0 3px;
+    margin: 0 2px;
   }
 }
-.sl-stars {
-  height: 42px;
-  padding: 0 10px;
-}
-

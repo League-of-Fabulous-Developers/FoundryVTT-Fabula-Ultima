@@ -1,13 +1,22 @@
-/* Temp Fixes */
-.auto-shrink {
-  width: 100%;
-  box-sizing: border-box;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+/* Non-breaking space after icon */
+.icon::after {
+  content: "\00a0"; 
 }
 
-.icon::after {
-  content: "\00a0"; /* Non-breaking space */
+/* Section Header Title */
+.title-fieldset {
+  border-radius: 12px;
+
+  legend {
+    border-radius: 8px;
+    margin: 0 auto;
+    padding: 2px 30px;
+    background: $color-secondary;
+    color: $color-primary;
+    position: relative;
+    text-align: center;
+    width: auto;
+  }
 }
 
 /* Resource Content Styles */
@@ -15,19 +24,6 @@
   color: $color-secondary;
   background-color: transparent;
 
-  .resource-label {
-    border: transparent;
-    background: none;
-
-    &.section-title {
-      font-size: 18px;
-    }
-
-    &.summary {
-      padding: 1em 0 0 1em;
-      margin: 0.5em 0 0 0.5em;
-    }
-  }
 
   .resource-label-sm {
     &.summary {
@@ -35,12 +31,95 @@
     }
   }
 
+  /* Style for Inputs */
+  .resource-inputs {
+    color: $color-primary;
+    background-color: $color-secondary;
+    border: thin solid $color-secondary;
+    width: 4em;
+    height: auto;
+    padding: 0;
+    justify-content: center;
+    text-align: center;
+    border-color: $color-secondary;
+    border-radius: 5px;
+    
+      input {
+        height: 2em;
+      }
+
+      option {
+        background-color: $color-secondary;
+        color: $color-primary;
+      }
+
+      input.charname-resource-inputs {
+        color: $color-primary;
+        background-color: transparent;
+        border: transparent;
+      }
+
+      &.bonus {
+        width: calc(100% - 2px);
+      }
+
+      &.summary {
+        width: 100%;
+        margin: 2px 0;
+        text-align: left;
+        background-color: transparent;
+        border: transparent;
+        color: $color-ternary;
+        blockquote {
+          padding: 0;
+        }
+      }
+
+      &.select-dropdown {
+        background-size: 16px 16px;
+        width: 4em;
+        padding: 0;
+      }
+
+      &.select-dropdown-m {
+        background-size: 16px 16px;
+        width: 7em;
+      }
+
+      &.select-dropdown-l {
+        background-size: 16px 16px;
+        width: 10em;
+      }
+
+      &.select-dropdown-xl { 
+        background-size: 16px 16px;
+        width: 20em;
+      }
+      
+      &.select-dropdown-full {
+        background-size: 16px 16px;
+        width: 100%;
+    }
+  }
+
+
+  /* Fabula/Ultima Point Input Text */
+  input.fp-resource-inputs,
+  input.up-resource-inputs {
+    color: $color-secondary;
+    font-size: 32px;
+    font-weight: bold;
+    background-color: transparent;
+    border-color: transparent;
+  }
+
 // Style for Traits Section
   input.traitdesc {
     color: $color-primary;
     background-color: $color-secondary;
-    border: transparent;
-    border-radius: 0 5px 0 0;
+    border: $color-secondary 1px solid;
+    border-radius: 0 10px 0 0;
+    flex: 4;
   }
 
   &.traits {
@@ -50,53 +129,13 @@
       color: $color-primary;
       background-color: $color-secondary;
       border: thin solid $color-secondary;
-      height: 25px;
+      height: 22px;
       width: 100%;
-    }
-  }
-
-  /* Style for Bonds Section */
-  &.bond-container {
-    margin: 0 5px;
-
-    .resource-inputs {
-      color: $color-primary;
-      background-color: $color-secondary;
-      border: thin solid $color-secondary;
-      width: 100%;
-      margin: 0 5px;
-      justify-content: center;
-      text-align: center;
-      appearance: none;
       border-radius: 5px;
-      
-      option {
-        background-color: $color-secondary;
-        color: $color-primary;
-      }
-
-      &.select-bonds {
-        appearance: none;
-        background-size: 16px 16px;
-        height: 80%;
-        width: 90%;
-        margin: 3px;
-      }
     }
   }
 
-  .bond-add {
-    .resource-inputs.select-bonds {
-      color: $color-primary;
-      background-color: $color-secondary;
-      border: thin solid $color-secondary;
-      padding: 0;
-      border-radius: 3px;
-      border: none;
-    }
-  }
-
-  /* Style for Sidebar Section */
+  /*  Sidebar Section Style */
   &.levelup-container {
     background: linear-gradient(#{$color-transparent-gradient});
     border-color: $color-secondary;
@@ -110,10 +149,10 @@
     }
 
     & .resource-inputs {
-      width: 80%;
+      width: 100%;
       padding: 0;
       margin: 0 5px 0 5px;
-      appearance: none;
+      
     }
 
     & .side-bar {
@@ -121,7 +160,8 @@
     }
 
     &.creature {
-      padding: 0.5em;
+      padding: 0;
+      border-radius: 12px;
 
       .resource-inputs {
         color: $color-primary;
@@ -130,110 +170,76 @@
         padding: 0;
         justify-content: center;
         text-align: center;
-        appearance: none;
+        
         border-radius: 5px;
       }
     }
 
     .combineBar {
       background: $color-secondary;
-      border-radius: 5px;
+      border-radius: 0px;
+      width: 100%;
+      align-items: center;
 
-      #isCompanionCheckbox {
-        flex: 0;
+      #specieSelect, #championSelect {
+        flex: 4;
+      }
+    
+      #isCompanionCheckbox,
+      #isEliteCheckbox {
+        display: flex;
+        
+        flex: 0 0 15px;
+        width: 15px;
+        height: 15px;
       }
     }
   }
+}
 
-  /* Style for Inputs */
+/* Style for Bonds Section */
+.bonds {
+  margin: 0 5px;
+  row-gap: 5px;
+  column-gap: 2px;
+
   .resource-inputs {
     color: $color-primary;
     background-color: $color-secondary;
     border: thin solid $color-secondary;
-    width: 4em;
-    height: auto;
-    margin: 2px;
-    padding: 0;
+    width: 100%;
     justify-content: center;
     text-align: center;
-    appearance: none;
-    border-color: $color-secondary;
+    height: 24px;
     border-radius: 5px;
-
+    
     option {
       background-color: $color-secondary;
       color: $color-primary;
     }
 
-    input.charname-resource-inputs {
-      color: $color-primary;
-      background-color: transparent;
-      border: transparent;
-    }
-
-    &.bonus {
-      width: calc(100% - 2px);
-    }
-
-    &.summary {
-      width: 95%;
-      margin: 2px 0;
-      text-align: left;
-      background-color: transparent;
-      border: transparent;
-      color: $color-black;
-      blockquote {
-        padding: 0;
-      }
-    }
-
-    &.select-dropdown {
-      appearance: none;
+    &.select-bonds {
+      
       background-size: 16px 16px;
-      width: 4em;
-      padding: 0;
+      height: auto;
+      margin: 3px;
     }
-
-    &.select-dropdown-m {
-      appearance: none;
-      background-size: 16px 16px;
-      width: 7em;
-    }
-
-    &.select-dropdown-l {
-      appearance: none;
-      background-size: 16px 16px;
-      width: 10em;
-    }
-
-    &.select-dropdown-xl {
-      appearance: none;
-      background-size: 16px 16px;
-      width: 24em;
-    }
-    
-    &.select-dropdown-full {
-      appearance: none;
-      background-size: 16px 16px;
-      width: 90%;
-    }
-  }
-
-  .status-effect-toggle img {
-    height: 24px;
-    margin: 0;
-    border: 0;
-    opacity: 0.5;
-  }
-  .status-effect-toggle:hover img {
-    opacity: 0.75;
-  }
-  .status-effect-toggle.active img {
-    opacity: 1;
   }
 }
 
-/* Target the Clock section */
-.resource.grid-start-3.grid-span-1.flexrow {
-  grid-row: span 2;
+.bond-add {
+  color: $color-primary;
+  border: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    display: flex;
+  }
+
+  button {
+    visibility: visible;
+  }
 }

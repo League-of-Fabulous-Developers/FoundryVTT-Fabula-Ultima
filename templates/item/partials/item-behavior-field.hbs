@@ -1,0 +1,16 @@
+{{!-- Optional Feature Section --}}
+{{#if (and (eq actor.type "npc") system.isBehavior.value)}}
+<fieldset class="title-fieldset desc resource-content">
+	<legend class="resource-label-full">
+		<label class="resource-label-m">{{localize
+			'FU.OptionalFeats'}}</label>
+	</legend>
+	<div class="grid grid-3col">
+		<div class="resource-content flexcol flex-group-center">
+			<label class="resource-label-m">{{localize 'FU.BehaviorWeight'}}</label>
+			<input type="number" name="system.weight.value" value="{{ system.weight.value }}" data-dtype="Number"
+				class="resource-inputs" />
+		</div>
+	</div>
+</fieldset>
+{{/if}}

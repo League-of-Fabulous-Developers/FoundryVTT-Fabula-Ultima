@@ -1,5 +1,5 @@
 <section class="desc">
-	<header class="items-main-header auto-shrink">
+	<header class="items-main-header">
 		<span class="items-main spin2win rollable" data-roll-type="behavior">
 			<i class="fas fa-dice-d20 ra-1x"></i>
 			<label class="items-label">{{ localize "FU.Behavior" }}</label>
@@ -8,6 +8,7 @@
 
 	<ol class="items-list">
 		<li class="item flexrow items-header">
+
 			<div class="item-name">{{ localize "FU.BehaviorActive" }}</div>
 			<div class="item-sm">{{ localize "FU.BehaviorWeight" }}</div>
 			<div class="item-m end">
@@ -20,14 +21,21 @@
 
 		{{#each items as |item id|}}
 		{{#if (and item.system.isBehavior.value)}}
-		<li class="item flexrow" data-item-id="{{ item._id }}">
-			{{!-- Item Name--}}
-			{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-			<div class="item-sm">
-				<span>{{ item.system.weight.value }}</span>
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow">
+				{{!-- Item Name--}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+				<div class="item-sm">
+					<span>{{ item.system.weight.value }}</span>
+				</div>
+				{{!-- Item Control--}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
-			{{!-- Item Control--}}
-			{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+			<div class="individual-description align-left">
+				{{#if item.system.description}}
+				{{{item.enrichedHtml.description}}}
+				{{/if}}
+			</div>
 		</li>
 		{{/if}}
 		{{/each}}
@@ -46,14 +54,22 @@
 
 			{{#each behaviors as |item id|}}
 			{{#if (not item.system.isBehavior.value)}}
-			<li class="item flexrow" data-item-id="{{ item._id }}">
-				{{!-- Item Name--}}
-				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-				<div class="item-sm">
-					<span>{{ item.system.weight.value }}</span>
+			<li class="item" data-item-id="{{ item._id }}">
+				<div class="flexrow">
+					{{!-- Item Name--}}
+					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+					<div class="item-sm">
+						<span>{{ item.system.weight.value }}</span>
+					</div>
+					{{!-- Item Control--}}
+					{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+
 				</div>
-				{{!-- Item Control--}}
-				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+				<div class="individual-description align-left">
+					{{#if item.system.description}}
+					{{{item.enrichedHtml.description}}}
+					{{/if}}
+				</div>
 			</li>
 			{{/if}}
 			{{/each}}

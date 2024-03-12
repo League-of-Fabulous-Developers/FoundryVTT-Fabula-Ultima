@@ -1,0 +1,16 @@
+{{#if ability.opportunity}}
+    {{> 'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs' opportunity=ability.opportunity}}
+{{/if}}
+
+{{#if (or ability.summary ability.description)}}
+    {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=ability.summary description=ability.description collapseDescriptions=collapseDescriptions}}
+{{/if}}
+
+{{#if ability.weapon}}
+    <div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
+        <div>
+            {{localize ability.weapon.slot}}:
+            {{ability.weapon.name}}
+        </div>
+    </div>
+{{/if}}

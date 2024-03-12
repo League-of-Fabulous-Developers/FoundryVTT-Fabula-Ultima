@@ -1,0 +1,47 @@
+<div class='resource-content desc'>
+    <nav class='verse-tabs tabs flexrow' data-group='verseTabs'>
+        <a class='item tab-style' data-tab='description'>{{localize 'FU.Description'}}</a>
+        <a class='item tab-style' data-tab='config'>{{localize 'FU.ClassFeatureVerseConfig'}}</a>
+    </nav>
+    <div class='verse-content'>
+        <div class='tab' data-group='verseTabs' data-tab='description'>
+            <div>
+                <label class="resource-label-m">
+                    {{localize 'FU.ClassFeatureVerseKey'}}:
+                    <select class="resource-text-m" name='system.data.key'>
+                        <option value="">-</option>
+                        {{selectOptions additionalData.keys selected=system.data.key.id nameAttr='id' labelAttr='name'}}
+                    </select>
+                </label>
+            </div>
+
+            <div>
+                <label class="resource-label-m">
+                    {{localize 'FU.ClassFeatureVerseTone'}}:
+                    <select class="resource-text-m" name='system.data.tone'>
+                        <option value="">-</option>
+                        {{selectOptions additionalData.tones selected=system.data.tone.id nameAttr='id'
+                        labelAttr='name'}}
+                    </select>
+                </label>
+            </div>
+
+            <div>
+                {{{additionalData.description}}}
+            </div>
+        </div>
+        <div class="tab" data-group="verseTabs" data-tab="config">
+            <div class="grid grid-3col gap-5">
+                {{#each system.data.config}}
+                <div>
+                    <label class="resource-label-sm">
+                        {{localize (lookup ../additionalData.volumes @key)}} {{localize 'FU.MindPointCost'}}:
+                        <input type="number" name="system.data.config.{{@key}}" value="{{this}}"
+                            class="resource-inputs select-dropdown-full resource-text-m">
+                    </label>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

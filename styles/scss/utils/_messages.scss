@@ -4,7 +4,7 @@
 .chat-message,
 .chat-message.whisper {
   // Styles for the chat card message
-  background-image: url("/systems/projectfu/styles/static/ui/bg.png"),
+  background-image: url("/systems/projectfu/styles/static/ui/bg.webp"),
     linear-gradient(to right, $color-beige, $color-faint) !important;
   background-blend-mode: multiply !important;
   background-repeat: repeat-y;
@@ -49,6 +49,7 @@
       border-radius: 12px;
       background-color: $color-ternary;
       overflow-wrap: anywhere;
+      margin: 10px 0;
     }
   }
 
@@ -57,7 +58,7 @@
     text-align: left;
     font-size: 14px;
     padding: 0.5em;
-    margin: 5px 0 5px;
+    margin: 10px 0;
     color: #272a2a;
     box-shadow: 3px 6px $color-background-inverted;
     background-image: linear-gradient(to right,
@@ -98,8 +99,10 @@
   .summary {
     font-size: 16px;
     color: $color-secondary;
+    padding: 5px 0;
   }
-    & > div {
+
+  &>div {
     margin: 0;
     height: 100% !important;
     flex-grow: 1;
@@ -108,6 +111,7 @@
     justify-content: center;
     text-align: center;
     position: relative;
+    padding: 5px 0;
 
     &::before {
       content: "";
@@ -174,14 +178,14 @@
     .accuracy-box {
       span.accuracy-title {
         color: $color-primary;
-        font-size: 28px;
+        font-size: 24px;
         text-shadow: 1px 2px 4px $color-black;
         box-shadow: 3px 7px $color-secondary;
-        border-radius: 8px 8px 0px 0px;
+        border-radius: 8px 8px 8px 0px;
         padding: 4px 14px 7px 14px;
         background-color: $color-ternary;
         font-family: "alice";
-        border-width: 1px 1px 0 1px;
+        border-width: 1px;
         border-color: $color-beige;
         border-style: solid;
       }
@@ -196,7 +200,7 @@
         text-shadow: 1px 2px 4px $color-black;
         box-shadow: 3px 6px #2a4a41;
         border-radius: 0px 8px 8px 8px;
-        padding: 0px 14px 4px 14px;
+        padding: 2px 8px;
         background-color: $color-ternary;
         font-family: "alice";
         border-width: 1px;
@@ -207,7 +211,7 @@
 
     .float-box {
       float: right;
-      font-size: 24px;
+      font-size: 18px;
       font-weight: bold;
       border-radius: 8px;
       color: $color-secondary;
@@ -223,7 +227,7 @@
 
       .float-text {
         display: inline-block;
-        font-size: 38px;
+        font-size: 34px;
         animation: floating 3s infinite ease-in-out;
       }
     }
@@ -246,7 +250,7 @@
     .damage-box {
       span.damage-title {
         color: $color-white;
-        font-size: 28px;
+        font-size: 24px;
         text-shadow: 1px 2px 4px $color-black;
         box-shadow: 3px 7px $color-secondary;
         border-radius: 8px 8px 8px 0px;
@@ -267,13 +271,13 @@
         font-size: 16px;
         text-shadow: 1px 2px 4px $color-black;
         box-shadow: 3px 6px $color-secondary;
-        border-radius: 0px 0px 8px 8px;
-        padding: 0px 14px 4px 14px;
+        border-radius: 0px 8px 8px 8px;
+        padding: 2px 8px;
         background-color: $color-ternary;
         font-family: "alice";
         z-index: 10;
         position: relative;
-        border-width: 0 1px 1px 1px;
+        border-width: 1px;
         border-color: $color-beige;
         border-style: solid;
       }
@@ -281,7 +285,7 @@
 
     .float-box {
       float: right;
-      font-size: 24px;
+      font-size: 18px;
       font-weight: bold;
       border-radius: 8px;
       color: $color-secondary;
@@ -297,7 +301,7 @@
 
       .float-text {
         display: inline-block;
-        font-size: 38px;
+        font-size: 34px;
         animation: floating 3s infinite ease-in-out;
       }
     }
@@ -306,14 +310,15 @@
 
 .group-check-supporters {
 
-    .group-check-supporters-title, .group-check-supporters-supporter {
-        & > *:not(:last-child) {
-            border-right: 1px solid black;
-        }
+  .group-check-supporters-title,
+  .group-check-supporters-supporter {
+    &>*:not(:last-child) {
+      border-right: 1px solid black;
     }
+  }
 
 
-    .group-check-supporters-title {
-        font-weight: bolder;
-    }
+  .group-check-supporters-title {
+    font-weight: bolder;
+  }
 }

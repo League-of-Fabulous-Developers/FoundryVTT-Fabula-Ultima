@@ -3,7 +3,7 @@ $color-outline: #000;
 $color-text-shadow: #333;
 
 .affinities {
-  padding: 7px;
+  padding: 2px;
   width: 100%;
 }
 
@@ -11,7 +11,11 @@ $color-text-shadow: #333;
   display: inline-block;
   position: relative;
   z-index: 1;
-  margin-bottom: -5px;
+  margin-bottom: -2px;
+
+  &.fa-guard {
+    color: $color-icon-guard;
+  }
 
   &.fa-sword {
     color: $color-icon-sword;

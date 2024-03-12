@@ -6,6 +6,7 @@
  * @property {boolean} showTitleCard.value
  * @property {number} cost.value
  * @property {number} quantity.value
+ * @property {string} origin.value
  * @property {string} source.value
  */
 export class TreasureDataModel extends foundry.abstract.TypeDataModel {
@@ -19,6 +20,7 @@ export class TreasureDataModel extends foundry.abstract.TypeDataModel {
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			quantity: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
+			origin: new SchemaField({ value: new StringField() }),
 			source: new SchemaField({ value: new StringField() }),
 		};
 	}

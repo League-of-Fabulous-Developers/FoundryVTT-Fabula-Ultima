@@ -43,9 +43,19 @@
  */
 
 /**
+ * @typedef CheckDetails
+ * @extends CheckWeapon
+ * @extends CheckSpell
+ * @extends CheckBasic
+ * @extends CheckAbility
+ */
+
+/**
  * @typedef CheckWeapon
+ * @property {"weapon"} _type
  * @property {string} name
  * @property {string} img
+ * @property {string} id
  * @property {WeaponCategory} category
  * @property {Handedness} hands
  * @property {string} quality
@@ -57,8 +67,10 @@
 
 /**
  * @typedef CheckSpell
+ * @property {"spell"} _type
  * @property {string} name
  * @property {string} img
+ * @property {string} id
  * @property {string} mpCost
  * @property {string} target
  * @property {string} duration
@@ -68,10 +80,41 @@
  */
 
 /**
+ * @typedef CheckBasic
+ * @property {"basic"} _type
+ * @property {string} name
+ * @property {string} img
+ * @property {string} id
+ * @property {string} quality
+ * @property {WeaponType} type
+ * @property {Defense} defense
+ * @property {string} summary
+ * @property {string} description
+ */
+
+/**
+ * @typedef AbilityWeapon
+ * @property {string} name
+ * @property {string} slot
+ */
+
+/**
+ * @typedef CheckAbility
+ * @property {"ability"} _type
+ * @property {string} name
+ * @property {string} img
+ * @property {string} id
+ * @property {string} quality
+ * @property {string} summary
+ * @property {string} description
+ * @property {AbilityWeapon} [weapon]
+ */
+
+/**
  * @typedef CheckDamage
  * @property {boolean} hrZero
  * @property {number} bonus
- * @property {Affinity} type
+ * @property {DamageType} type
  * @property {number} [total]
  */
 
@@ -83,24 +126,24 @@
  */
 
 /**
- * @typedef CheckParams
+ * @typedef CheckParameters
  * @property {CheckData} check
+ * @property {CheckDetails} details
  * @property {CheckResult} [result]
  * @property {CheckReroll} [reroll]
  * @property {ChatSpeakerData} [speaker]
  * @property {CheckPush} [push]
+ * @property {boolean} [offensive] implied true if damage is set
  * @property {CheckDamage} [damage]
- * @property {CheckWeapon} [weapon]
- * @property {CheckSpell} [spell]
  * @property {number} [difficulty]
  * @property {CheckTarget[]} [targets]
  * @property {boolean} [collapseDescriptions]
  */
 
-import {FU} from './config.mjs';
-import {SETTINGS, SYSTEM} from '../settings.js';
-import {FUActor} from '../documents/actors/actor.mjs';
-import {Flags} from './flags.mjs';
+import { FU } from './config.mjs';
+import { SETTINGS, SYSTEM } from '../settings.js';
+import { FUActor } from '../documents/actors/actor.mjs';
+import { Flags } from './flags.mjs';
 
 /**
  *
@@ -119,7 +162,7 @@ function getOptionalPart(modifier, name) {
 }
 
 /**
- * @param {CheckParams} check
+ * @param {CheckParameters} check
  * @returns {Promise<void>}
  */
 async function handleRoll(check) {
@@ -148,7 +191,7 @@ async function handleRoll(check) {
 }
 
 /**
- * @param {CheckParams} check
+ * @param {CheckParameters} check
  */
 function handleDamage(check) {
 	if (check.damage) {
@@ -167,12 +210,12 @@ function handleDamage(check) {
 }
 
 /**
- * @param {CheckParams} params
- * @returns {Promise<CheckParams>}
+ * @param {CheckParameters} params
+ * @returns {Promise<CheckParameters>}
  */
 export async function rollCheck(params) {
-	/** @type CheckParams */
-	const check = { ...params };
+	/** @type CheckParameters */
+	const check = { ...params, offensive: params.offensive || !!params.damage };
 
 	await handleRoll(check);
 	handleDamage(check);
@@ -181,7 +224,7 @@ export async function rollCheck(params) {
 }
 
 /**
- * @param {CheckParams} check
+ * @param {CheckParameters} check
  * @returns {Promise<void>}
  */
 async function handleReroll(check) {
@@ -242,12 +285,12 @@ async function handleReroll(check) {
 }
 
 /**
- * @param {CheckParams} params
+ * @param {CheckParameters} params
  * @param {CheckReroll} reroll
- * @returns {Promise<CheckParams>}
+ * @returns {Promise<CheckParameters>}
  */
 export async function rerollCheck(params, reroll) {
-	/** @type CheckParams */
+	/** @type CheckParameters */
 	const check = { ...params };
 
 	check.reroll = reroll;
@@ -348,7 +391,7 @@ export function addRollContextMenuEntries(html, options) {
 }
 
 /**
- * @param {CheckParams} check
+ * @param {CheckParameters} check
  * @returns {Promise<void>}
  */
 async function handlePush(check) {
@@ -379,12 +422,12 @@ async function handlePush(check) {
 
 /**
  *
- * @param {CheckParams} params
+ * @param {CheckParameters} params
  * @param {CheckPush} push
- * @returns {Promise<CheckParams>}
+ * @returns {Promise<CheckParameters>}
  */
 async function pushCheck(params, push) {
-	/** @type CheckParams */
+	/** @type CheckParameters */
 	const check = { ...params };
 	check.push = push;
 
@@ -436,7 +479,7 @@ async function getPushParams(actor) {
 
 /**
  *
- * @param {CheckParams} params
+ * @param {CheckParameters} params
  * @param {Actor} actor
  * @returns {Promise<CheckReroll | undefined>}
  */
@@ -513,27 +556,62 @@ async function getRerollParams(params, actor) {
 }
 
 /**
- * @param {CheckParams} checkParams
+ * Enrich HTML content.
+ * @param {string} htmlContent - The HTML content to enrich.
+ * @returns {string} - The enriched content.
+ */
+async function EnrichHTML(htmlContent) {
+    return TextEditor.enrichHTML(htmlContent);
+}
+
+/**
+ * @param {CheckParameters} checkParams
+ * @param {Object} [additionalFlags]
+ * @return {Promise<chatMessage>}
+ */
+export async function createChatMessage(checkParams, additionalFlags = {}) {
+    const content = checkParams.description
+        ? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
+            flavor: checkParams.details?.name || '',
+            description: await EnrichHTML(checkParams.description),
+        })
+        : '';
+
+    /** @type Partial<ChatMessageData> */
+    const chatMessage = {
+        content: content,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+        speaker: checkParams.speaker,
+        flags: foundry.utils.mergeObject(
+            {
+                [SYSTEM]: {
+                    [Flags.ChatMessage.CheckParams]: checkParams,
+                },
+            },
+            additionalFlags,
+        ),
+    };
+
+    return ChatMessage.create(chatMessage);
+}
+
+/**
+ * @param {CheckParameters} checkParams
  * @param {Object} [additionalFlags]
  * @return {Promise<chatMessage>}
  */
 export async function createCheckMessage(checkParams, additionalFlags = {}) {
 	const flavor = await (async () => {
-		if (checkParams.weapon) {
+		if (checkParams.details) {
 			return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
-				name: checkParams.weapon.name,
-				img: checkParams.weapon.img,
+				name: checkParams.details.name,
+				img: checkParams.details.img,
+			});
+		} else {
+			return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
+				title: checkParams.check.title || 'FU.RollCheck',
 			});
 		}
-		if (checkParams.spell) {
-			return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
-				name: checkParams.spell.name,
-				img: checkParams.spell.img,
-			});
-		}
-		return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
-			title: checkParams.check.title || 'FU.RollCheck',
-		});
 	})();
 
 	checkParams.collapseDescriptions = game.settings.get(SYSTEM, SETTINGS.collapseDescriptions);
@@ -563,14 +641,16 @@ const KEY_RECENT_CHECKS = 'fabulaultima.recentChecks';
  * @param {FUActor} actor
  * @returns {Promise<ChatMessage|Object>}
  */
-export async function promptCheck(actor) {
+export async function promptCheck(actor, title) {
 	const recentChecks = JSON.parse(sessionStorage.getItem(KEY_RECENT_CHECKS) || '{}');
 	const recentActorChecks = recentChecks[actor.uuid] || (recentChecks[actor.uuid] = {});
 	try {
 		const attributes = actor.system.attributes;
+		const titleMain = title || 'FU.DialogCheckTitle';
+		const labelHeader = '';
 		const { attr1, attr2, difficulty, modifier } = await Dialog.wait(
 			{
-				title: game.i18n.localize('FU.DialogCheckTitle'),
+				title: game.i18n.localize(titleMain),
 				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check.hbs', {
 					attributes: FU.attributes,
 					attributeAbbr: FU.attributeAbbreviations,
@@ -614,7 +694,7 @@ export async function promptCheck(actor) {
 		const speaker = ChatMessage.implementation.getSpeaker({ actor });
 
 		/**
-		 * @type CheckParams
+		 * @type CheckParameters
 		 */
 		let params = {
 			check: {
@@ -627,11 +707,11 @@ export async function promptCheck(actor) {
 					dice: attributes[attr2].current,
 				},
 				modifier: modifier,
+				title: title || 'FU.RollCheck',
 			},
 			difficulty: difficulty,
 			speaker: speaker,
 		};
-		console.log(params);
 		const rolledCheck = await rollCheck(params);
 
 		return await createCheckMessage(rolledCheck);

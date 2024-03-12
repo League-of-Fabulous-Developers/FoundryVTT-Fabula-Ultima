@@ -1,0 +1,37 @@
+<div class='resource-content desc'>
+    <div>
+        <label class="resource-label-sm">
+            {{localize 'FU.ClassFeatureKeyDamageType'}}:
+            <select class="resource-text-m" name="system.data.type">
+                {{selectOptions additionalData.types selected=system.data.type localize=true}}
+            </select>
+        </label>
+    </div>
+
+    <div>
+        <label class="resource-label-sm">
+            {{localize 'FU.ClassFeatureKeyStatus'}}:
+            <select class="resource-text-m" name="system.data.status">
+                {{selectOptions additionalData.statuses selected=system.data.status localize=true}}
+            </select>
+        </label>
+    </div>
+
+    <div>
+        <label class="resource-label-sm">
+            {{localize 'FU.ClassFeatureKeyAttribute'}}:
+            <select class="resource-text-m" name="system.data.attribute">
+                {{selectOptions additionalData.attributes selected=system.data.attribute localize=true}}
+            </select>
+        </label>
+    </div>
+
+    <div>
+        <label class="resource-label-sm">
+            {{localize 'FU.ClassFeatureKeyRecovery'}}:
+            <select class="resource-text-m" name="system.data.recovery">
+                {{selectOptions additionalData.recoveryOptions selected=system.data.recovery localize=true}}
+            </select>
+        </label>
+    </div>
+</div>

@@ -1,84 +1,87 @@
-/* Increment/Decrement Buttons */
+/* All Buttons */
 .buttons-inc {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $color-secondary;
-  text-shadow: 3px 3px $color-primary;
+  vertical-align: middle;
 
-  input.fp-resource-inputs,
-  input.up-resource-inputs {
-    color: $color-secondary;
-    text-shadow: 1px 2px $color-quaternary;
-    font-size: 24px;
-    font-weight: bold;
-    background-color: transparent;
-    border-color: transparent;
-    vertical-align: middle;
-    height: auto;
-    padding: 5px;
-  }
-
-  &.roll-check {
-    margin: 6px 0;
-  }
-
+  /* Increment/Decrement Buttons */
   .increment-button,
-  .decrement-button,
-  .roll-check-option {
+  .decrement-button {
     color: $color-secondary;
-    text-shadow: 1px 2px $color-quaternary;
-    font-size: 16px;
+    font-size: 22px;
     font-weight: bold;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    width: 40px;
+    width: 25px;
     margin: 1%;
-    visibility: hidden;
 
     &:hover {
       background-color: rgba(0, 128, 128, 0.1);
+      border: 0;
     }
   }
+}
 
-  &:hover .increment-button,
-  &:hover .decrement-button,
-  &:hover .roll-check-option {
-    visibility: visible;
+.tab-style {
+  color: $color-primary;
+  font-size: 17px;
+  text-shadow: 1px 1px 1px $color-black;
+  box-shadow: 3px 6px $color-secondary;
+  border-radius: 8px;
+  margin: 12px 8px 8px;
+  background: linear-gradient($color-tabStyle-gradient, $color-secondary);
+  word-wrap: break-word;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-1px);
+    z-index: 1;
+    text-shadow: $color-info;
   }
 
-  .roll-check-option {
-    visibility: visible;
-    width: 26px;
+  &.active {
+    border: 1px solid darkslategrey;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(3px);
+    border-radius: 8px;
+  }
+
+  &:active {
+    transform: translateY(3px);
+    box-shadow: 1px 2px $color-secondary;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 3px 6px $color-info;
   }
 }
 
 /* Action Buttons */
 .action-button {
-  width: 100%;
-  height: 36px;
-  appearance: none;
-  border: none;
+  gap: 1px;
+  height: 32px;
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: normal;
   position: relative;
   display: flex;
   align-items: center;
-  white-space: normal;
-
   color: $color-primary;
-
   text-shadow: 1px 1px 1px $color-black;
   box-shadow: 3px 6px $color-secondary;
   border-radius: 8px;
+  background: linear-gradient($color-tabStyle-gradient), $color-secondary;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
-  background-color: $color-secondary;
-  background-image: linear-gradient($color-tabStyle-gradient);
-
-  transition:
-    transform 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out;
+  &.active {
+    border: 1px solid darkslategrey;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(3px);
+    border-radius: 8px;
+  }
 
   &:active {
     transform: translateY(3px);
@@ -91,46 +94,51 @@
   }
 }
 
-.zenit-style {
-  flex: 0 0 150px;
+.zenit-style,
+.study-style {
   color: $color-primary;
-  font-size: 17px;
+  font-size: 16px;
   text-shadow: 1px 1px 1px $color-black;
   box-shadow: 3px 6px $color-secondary;
   border-radius: 8px;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  background-color: $color-secondary;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   background-image: linear-gradient($color-tabStyle-gradient);
-  margin-right: 8px;
-  transition:
-    transform 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out;
 
-    input,
-    .zenit-text {
-      font-size: 16px;
-      font-weight: bold;
-      text-shadow: 1px 1px 1px $color-black;
-      background: transparent;
-      color: $color-primary;
-      height: inherit;
-      background-color: transparent;
-      border-color: transparent;
-      vertical-align: middle;
-      text-align: right;
-    
-      max-width: 78%;
-    }
+  input,select,
+  .zenit-text,
+  .study-text {
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px $color-black;
+    background: transparent;
+    color: $color-primary;
+    height: inherit;
+    background-color: transparent;
+    border-color: transparent;
+    text-align: right;
+    max-width: 78%;
+    padding: 0;
+  }
 
   &:focus {
     outline: none;
     box-shadow: 3px 6px $color-info;
   }
-
 }
 
+.zenit-style {
+  flex: 0 0 150px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  background-color: $color-secondary;
+  margin-right: 8px;
+}
 
+.study-style {
+  flex: 0 0 90px;
+  margin-right: 4px;
+  padding: 0;
+}
 
 .tab-style {
   color: $color-primary;
@@ -138,14 +146,11 @@
   text-shadow: 1px 1px 1px $color-black;
   box-shadow: 3px 6px $color-secondary;
   border-radius: 8px;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin: 12px 8px 8px 0;
   background-color: $color-secondary;
   background-image: linear-gradient($color-tabStyle-gradient);
-  margin-right: 8px;
-  transition:
-    transform 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out;
+  word-wrap: break-word;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
   &.active {
     border: 1px solid darkslategrey;
@@ -153,7 +158,7 @@
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     transform: translateY(1px);
   } 
-  
+
   &:hover {
     transform: translateY(-1px);
     z-index: 1;
@@ -171,18 +176,16 @@
   }
 }
 
+// Slot styles
 .slot-style {
   color: $color-primary;
   font-size: 18px;
   box-shadow: 3px 6px $color-secondary;
   border-radius: 8px;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin: 12px 0;
   background-color: $color-secondary;
   background-image: linear-gradient($color-tabStyle-gradient);
-  transition:
-    transform 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
   &:active {
     transform: translateY(3px);
@@ -195,64 +198,15 @@
   }
 }
 
+// Item control styles
 .item-control {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  i {
-    font-size: 13px;
-  }
 }
 
-.item-equip {
-  $size-outline: 2px; 
-  $color-outline: #000;
-  $color-text-shadow: #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  i {
-    font-size: 24px
-  }
-
-  &:before {
-    z-index: -1;
-    text-shadow: $size-outline $size-outline 1px $color-outline;
-  }
-}
-
-.item-create-bond {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 6px;
-  height: 1em;
-  width: 3em;
-
-  i {
-    border-radius: 20%;
-    font-size: 16px;
-    margin-right: 1em;
-  }
-}
-
-label.elite {
-  line-height: 0;
-  font-size: 14px;
-}
-
-.info-circle {
-  width: 16px;
-  height: 16px;
-  background-color: $color-secondary;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-  font-style: italic;
-  font-size: 16px;
-  cursor: pointer;
-  position: relative;
+// SL Star counter styles
+.sl-stars {
+  gap: 2px;
+  margin: 2px 0;
 }

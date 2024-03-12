@@ -1,6 +1,6 @@
 {
 	"name": "projectfu",
-	"version": "2.1.0",
+	"version": "2.2.1",
 	"description": "CSS compiler for the Fabula Ultima system",
 	"scripts": {
 		"build": "gulp build",

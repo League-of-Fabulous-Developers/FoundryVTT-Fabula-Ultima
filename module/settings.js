@@ -4,8 +4,13 @@ export const SETTINGS = Object.freeze({
 	optionQuirks: 'optionQuirks',
 	optionZeroPower: 'optionZeroPower',
 	optionCampingRules: 'optionCampingRules',
+	optionBehaviorRoll: 'optionBehaviorRoll',
+	optionTargetPriority: 'optionTargetPriority',
 	collapseDescriptions: 'collapseDescriptions',
 	experimentalCombatTracker: 'experimentalCombatTracker',
+	optionCombatMouseDown: 'optionCombatMouseDown',
+	useRevisedStudyRule: 'useRevisedStudyRule',
+	optionImagePixelated: 'optionImagePixelated',
 });
 
 export const registerSystemSettings = async function () {
@@ -38,10 +43,39 @@ export const registerSystemSettings = async function () {
 
 	game.settings.register(SYSTEM, SETTINGS.optionCampingRules, {
 		name: 'Enable Camping Activities?',
-		hint: 'Play with the Camping Activities optional rule from Natural Fantasy Playtest',
+		hint: 'Play with the Camping Activities optional rule from Natural Fantasy Playtest.',
 		scope: 'world',
 		config: false,
 		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionBehaviorRoll, {
+		name: 'Enable Behavior Roll?',
+		hint: 'Play with the Random Targeting rule from Core Rulebook pg 297.',
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.registerMenu(SYSTEM, 'myBehaviorRolls', {
+		name: 'Behavior Rolls',
+		label: 'Manage Behavior Rolls',
+		hint: ' Manage the Behavior Roll mechanic based on Random Targeting.',
+		icon: 'fas fa-book',
+		type: myBehaviorRolls,
+		restricted: true,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionTargetPriority, {
+		name: 'Total Party Members?',
+		hint: 'How many heroes are currently in your party for target priority.',
+		scope: 'world',
+		config: false,
+		type: Number,
 		default: false,
 	});
 
@@ -63,6 +97,34 @@ export const registerSystemSettings = async function () {
 		default: false,
 		requiresReload: true,
 	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {
+		name: 'Disable Pan to Token for Combat Tracker',
+		hint: 'Enable this option to prevent panning to the token when clicking on a combatant in the Combat Tracker.',
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.useRevisedStudyRule, {
+		name: 'Revised Study Roll',
+		hint: 'Enable this option to use revised Study Roll [7/10/13] from Rework Playtest.',
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionImagePixelated, {
+		name: 'Pixelated View',
+		hint: 'Enable this option to render 16-bit art in a viewable manner, preserving its retro aesthetic with minimal scaling artifacts.',
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
 };
 
 class OptionalRules extends FormApplication {
@@ -73,19 +135,38 @@ class OptionalRules extends FormApplication {
 	}
 
 	getData() {
-		let newVar = {
+		return {
 			optionQuirks: game.settings.get(SYSTEM, SETTINGS.optionQuirks),
 			optionZeroPower: game.settings.get(SYSTEM, SETTINGS.optionZeroPower),
 			optionCampingRules: game.settings.get(SYSTEM, SETTINGS.optionCampingRules),
 		};
-		console.log(newVar);
-		return newVar;
 	}
 
 	async _updateObject(event, formData) {
-		const { optionQuirks, optionZeroPower, optionCampingRules } = expandObject(formData);
+		const { optionQuirks, optionZeroPower, optionCampingRules } = foundry.utils.expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.optionQuirks, optionQuirks);
 		game.settings.set(SYSTEM, SETTINGS.optionZeroPower, optionZeroPower);
 		game.settings.set(SYSTEM, SETTINGS.optionCampingRules, optionCampingRules);
+	}
+}
+
+class myBehaviorRolls extends FormApplication {
+	static get defaultOptions() {
+		return foundry.utils.mergeObject(super.defaultOptions, {
+			template: 'systems/projectfu/templates/system/settings/behavior-rolls.hbs',
+		});
+	}
+
+	getData() {
+		return {
+			optionBehaviorRoll: game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll),
+			optionTargetPriority: game.settings.get(SYSTEM, SETTINGS.optionTargetPriority),
+		};
+	}
+
+	async _updateObject(event, formData) {
+		const { optionBehaviorRoll, optionTargetPriority } = expandObject(formData);
+		game.settings.set(SYSTEM, SETTINGS.optionBehaviorRoll, optionBehaviorRoll);
+		game.settings.set(SYSTEM, SETTINGS.optionTargetPriority, optionTargetPriority);
 	}
 }

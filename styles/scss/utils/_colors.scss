@@ -1,8 +1,6 @@
-// Color Scheme
-
 // Primary colors
 $color-primary: #ffffff;
-$color-secondary: #2a4a41;
+$color-secondary: #2b4a42;
 $color-ternary: #3d665a;
 $color-quaternary: #cccbbb;
 
@@ -12,7 +10,7 @@ $color-secondary-inverted: #412a3a;
 
 // Semantic colors
 $color-success: #28a745;
-$color-danger: #dc3545;
+$color-danger: #cd1619;
 $color-warning: #c78f31;
 $color-info: #17a2b8;
 
@@ -27,16 +25,6 @@ $color-tan: #444;
 $color-shadow: #e74c3c;
 $color-shadow-inverted: #2a4a41;
 
-// More color variants here...
-
-// Text and background colors
-$color-text: $color-primary;
-$color-text-inverted: $color-secondary-inverted;
-$color-text-alt: $color-secondary;
-
-$color-text-shadow: $color-quaternary;
-$color-text-shadow: $color-secondary;
-
 $color-background: $color-secondary;
 $color-background-inverted: $color-secondary-inverted;
 $color-background-alt: $color-primary;
@@ -44,74 +32,25 @@ $color-background-alt: $color-primary;
 $color-box-shadow: darken($color-secondary, 10%);
 $color-box-shadow-inverted: darken($color-primary-inverted, 10%);
 
-// Gradient colors
-
 // Background for Actor Name & Levels
-$color-charname-gradient:
-  to right,
-  rgba(83, 40, 83, 1),
-  rgba(100, 43, 93, 1),
-  rgba(117, 49, 104, 1),
-  rgba(134, 54, 113, 1),
-  rgba(151, 60, 122, 1),
-  rgba(168, 65, 132, 1),
-  rgba(185, 74, 142, 1),
-  rgba(202, 82, 152, 1),
-  rgba(219, 89, 161, 1),
-  rgba(236, 96, 171, 1),
-  rgba(252, 104, 181, 1),
-  rgba(237, 244, 228, 1);
-$color-charname-gradient-alt:
-  to right,
-  rgba(42, 74, 65, 1),
-  rgba(51, 164, 50, 1),
-  rgba(60, 191, 77, 1),
-  rgba(77, 168, 77, 1),
-  rgba(94, 180, 77, 1),
-  rgba(111, 176, 77, 1),
-  rgba(128, 172, 77, 1),
-  rgba(145, 168, 77, 1),
-  rgba(196, 156, 77, 1),
-  rgba(213, 152, 77, 1),
-  rgba(230, 148, 77, 1),
-  rgba(255, 255, 255, 1);
-$color-level-exp-gradient:
-  to right,
-  rgba(237, 233, 224, 1),
-  rgba(226, 237, 213, 1);
+$color-charname-gradient: to right, #532853, #bfb8c4;
+$color-charname-gradient-alt: to right, #2A4A41, #b9c4b8;
 
 // Background for Tabs
-$color-tabStyle-gradient:
-  to bottom,
-  rgba(30, 62, 53),
-  rgba(42, 74, 65),
-  rgba(53, 86, 77),
-  rgba(64, 98, 89),
-  rgba(75, 110, 101),
-  rgba(87, 123, 112),
-  rgba(98, 135, 122),
-  rgba(109, 136, 136),
-  rgba(121, 149, 148),
-  rgba(132, 157, 163),
-  rgba(144, 177, 171),
-  rgba(156, 202, 183),
-  rgba(168, 210, 195),
-  rgba(168, 210, 195);
+$color-tabStyle-gradient: to bottom, #2c584d, #a0cdbc;
 
-// Determine a suitable threshold for brightness to switch text color
-$dark-background-threshold: 150; // Adjust as needed
-
-// Adjust text color based on background brightness
-//$color-tabStyle-text: if(lightness(nth($color-tabStyle-gradient, 1)) > $dark-background-threshold, $color-secondary, $color-primary);
-
-// Other
+// Transparent Gradient
 $color-transparent-gradient:
   to right,
   rgba(238, 244, 228, 0.5),
   rgba(226, 237, 213, 0.5);
 
+$color-header-gradient: to right, #e9f3ea, transparent;
+$color-quote-gradient: to right, #e1efe3, transparent;
+
 // Affinity icons colors
 $color-outline: black;
+$color-icon-guard: #dddddd;
 $color-icon-sword: #dddddd;
 $color-icon-wind: #cfd600;
 $color-icon-bolt-lightning: #ffef26;

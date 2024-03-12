@@ -5,9 +5,13 @@ $fu-action-melee: url("/systems/projectfu/styles/static/icons/fu-action-melee.sv
 $fu-action-ranged: url("/systems/projectfu/styles/static/icons/fu-action-ranged.svg");
 $fu-action-skill: url("/systems/projectfu/styles/static/icons/fu-action-skill.svg");
 $fu-action-spell: url("/systems/projectfu/styles/static/icons/fu-action-spell.svg");
-$fu-offensive: url("/systems/projectfu/styles/static/icons/fu-offensive.svg");
-$fu-martial: url("/systems/projectfu/styles/static/icons/fu-martial.svg");
+$fus-offensive: url("/systems/projectfu/styles/static/icons/fus-offensive.svg");
+$fus-martial: url("/systems/projectfu/styles/static/icons/fus-martial.svg");
+$ful-offensive: url("/systems/projectfu/styles/static/icons/ful-offensive.svg");
+$ful-martial: url("/systems/projectfu/styles/static/icons/ful-martial.svg");
 
+$fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
+$fu-guard: url("/systems/projectfu/styles/static/icons/fu-guard.svg");
 $fu-phys: url("/systems/projectfu/styles/static/icons/fu-phys.svg");
 $fu-wind: url("/systems/projectfu/styles/static/icons/fu-wind.svg");
 $fu-bolt: url("/systems/projectfu/styles/static/icons/fu-bolt.svg");
@@ -17,11 +21,6 @@ $fu-fire: url("/systems/projectfu/styles/static/icons/fu-fire.svg");
 $fu-ice: url("/systems/projectfu/styles/static/icons/fu-ice.svg");
 $fu-light: url("/systems/projectfu/styles/static/icons/fu-light.svg");
 $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
-
-.spin2win:hover i {
-  -webkit-animation: ra-spin 2s infinite linear;
-  animation: ra-spin 2s infinite linear;
-}
 
 .fu-action-melee {
   background-image: $fu-action-melee;
@@ -35,11 +34,23 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 .fu-action-spell {
   background-image: $fu-action-spell;
 }
-.fu-offensive {
-  background-image: $fu-offensive;
+.fus-offensive {
+  background-image: $fus-offensive;
 }
-.fu-martial {
-  background-image: $fu-martial;
+.ful-offensive {
+  background-image: $ful-offensive;
+}
+.fus-martial {
+  background-image: $fus-martial;
+}
+.ful-martial {
+  background-image: $ful-martial;
+}
+.fu-d20 {
+  background-image: $fu-d20;
+}
+.fu-guard {
+  background-image: $fu-guard;
 }
 .fu-phys {
   background-image: $fu-phys;
@@ -78,8 +89,8 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 }
 
 .fusl {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   background-size: cover;
   fill: $color-secondary;
 }
@@ -99,6 +110,11 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 .fus-sl-star {
   background-image: $fus-sl-star;
 }
+
+.ra-1xh{
+  font-size: 1.5em;
+}
+
 .ra.ral {
   text-shadow:
     -0.5px -0.5px 0 rgba(0, 0, 0, 0.5),
@@ -114,20 +130,73 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 .is-martial {
   color: $color-danger !important;
 }
+
 .is-buff {
+  position: relative;
   color: $color-success !important;
 
   &.float-text {
+    position: relative;
     display: inline-block;
-    animation: floating 1s infinite ease-in-out;
+    animation: floating 4s infinite ease-in-out;
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25%, 75% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(0);
   }
 }
 
 .is-crisis {
   color: $color-danger !important;
-
+  
   &.float-text {
     display: inline-block;
+    position: relative;
+    bottom: 4px;
+    transform: translateY(-50%);
     animation: floating 1s infinite ease-in-out;
   }
+}
+
+.spin2win:hover {
+  & i {
+    animation: hover-up-down 1s ease-in-out infinite alternate;
+  }
+  
+  & label {
+    cursor: pointer;
+  }
+}
+
+@keyframes hover-up-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.hidden-radio {
+  display: none;
+}
+
+.star-label {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  cursor: pointer;
+}
+
+img:not([src]) {
+  content: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
 }

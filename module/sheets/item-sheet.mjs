@@ -1,3 +1,5 @@
+import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
@@ -5,7 +7,7 @@
 export class FUItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['projectfu', 'sheet', 'item'],
 			width: 700,
 			height: 700,
@@ -33,7 +35,7 @@ export class FUItemSheet extends ItemSheet {
 	/* -------------------------------------------- */
 
 	/** @override */
-	getData() {
+	async getData() {
 		// Retrieve base data structure.
 		const context = super.getData();
 
@@ -54,8 +56,28 @@ export class FUItemSheet extends ItemSheet {
 		context.system = itemData.system;
 		context.flags = itemData.flags;
 
+		// Prepare active effects for easier access
+		context.effects = prepareActiveEffectCategories(this.item.effects);
+
+		//Add CONFIG data required
+		context.attrAbbr = CONFIG.FU.attributeAbbreviations;
+		context.damageTypes = CONFIG.FU.damageTypes;
+		context.wpnType = CONFIG.FU.weaponTypes;
+		context.handedness = CONFIG.FU.handedness;
+		context.weaponCategoriesWithoutCustom = CONFIG.FU.weaponCategoriesWithoutCustom;
+		context.heroicType = CONFIG.FU.heroicType;
+		context.miscCategories = CONFIG.FU.miscCategories;
+		context.treasureType = CONFIG.FU.treasureType;
+
 		// Add the actor object to context for easier access
 		context.actor = actorData;
+
+		// Enriches description fields within the context object
+		context.enrichedHtml = {
+			description: await TextEditor.enrichHTML(context.system.description ?? ''),
+			zeroTrigger: await TextEditor.enrichHTML(context.system?.zeroTrigger?.description ?? ''),
+			zeroEffect: await TextEditor.enrichHTML(context.system?.zeroEffect?.description ?? ''),
+		};
 
 		return context;
 	}
@@ -92,5 +114,10 @@ export class FUItemSheet extends ItemSheet {
 				console.error('Invalid input format. Please use proper syntax "PDFCode PageNumber"');
 			}
 		});
+
+		// Active Effect management
+		html.on('click', '.effect-control', (ev) =>
+			onManageActiveEffect(ev, this.item)
+		);
 	}
 }

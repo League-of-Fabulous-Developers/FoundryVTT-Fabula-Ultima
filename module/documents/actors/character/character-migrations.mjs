@@ -1,19 +1,21 @@
 function migrateLegacyBonds(source) {
-	for (const bond of ['bond1', 'bond2', 'bond3', 'bond4', 'bond5', 'bond6']) {
-		if (bond in source.resources) {
-			const { name, admInf, loyMis, affHat } = source.resources[bond];
+	if (source.resources) {
+		for (const bond of ['bond1', 'bond2', 'bond3', 'bond4', 'bond5', 'bond6']) {
+			if (bond in source.resources) {
+				const { name, admInf, loyMis, affHat } = source.resources[bond];
 
-			if (name || admInf || loyMis || affHat) {
-				const bonds = (source.resources.bonds ??= []);
-				bonds.push({
-					name,
-					admInf,
-					loyMis,
-					affHat,
-					strength: [admInf, loyMis, affHat].reduce((prev, curr) => prev + (curr.length ? 1 : 0), 0),
-				});
+				if (name || admInf || loyMis || affHat) {
+					const bonds = (source.resources.bonds ??= []);
+					bonds.push({
+						name,
+						admInf,
+						loyMis,
+						affHat,
+						strength: [admInf, loyMis, affHat].reduce((prev, curr) => prev + (curr.length ? 1 : 0), 0),
+					});
+				}
+				delete source.resources[bond];
 			}
-			delete source.resources[bond];
 		}
 	}
 }

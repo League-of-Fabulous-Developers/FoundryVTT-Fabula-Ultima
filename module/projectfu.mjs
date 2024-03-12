@@ -1,36 +1,51 @@
 // Import document classes.
-import {FUActor} from './documents/actors/actor.mjs';
-import {FUItem} from './documents/items/item.mjs';
+import { FUActor } from './documents/actors/actor.mjs';
+import { FUItem } from './documents/items/item.mjs';
 // Import sheet classes.
-import {FUStandardActorSheet} from './sheets/actor-standard-sheet.mjs';
-import {FUItemSheet} from './sheets/item-sheet.mjs';
+import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
+import { FUItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
-import {preloadHandlebarsTemplates} from './helpers/templates.mjs';
-import {FU} from './helpers/config.mjs';
-import {registerSystemSettings, SETTINGS, SYSTEM} from './settings.js';
-import {addRollContextMenuEntries} from './helpers/checks.mjs';
-import {FUCombatTracker} from './ui/combat-tracker.mjs';
-import {FUCombat} from './ui/combat.mjs';
-import {FUCombatant} from './ui/combatant.mjs';
-import {GroupCheck} from './helpers/group-check.mjs';
-import {CharacterDataModel} from './documents/actors/character/character-data-model.mjs';
-import {NpcDataModel} from './documents/actors/npc/npc-data-model.mjs';
-import {AccessoryDataModel} from './documents/items/accessory/accessory-data-model.mjs';
-import {ArmorDataModel} from './documents/items/armor/armor-data-model.mjs';
-import {BasicItemDataModel} from './documents/items/basic/basic-item-data-model.mjs';
-import {BehaviorDataModel} from './documents/items/behavior/behavior-data-model.mjs';
-import {ClassDataModel} from './documents/items/class/class-data-model.mjs';
-import {ConsumableDataModel} from './documents/items/consumable/consumable-data-model.mjs';
-import {HeroicSkillDataModel} from './documents/items/heroic/heroic-skill-data-model.mjs';
-import {MiscAbilityDataModel} from './documents/items/misc/misc-ability-data-model.mjs';
-import {ProjectDataModel} from './documents/items/project/project-data-model.mjs';
-import {RitualDataModel} from './documents/items/ritual/ritual-data-model.mjs';
-import {RuleDataModel} from './documents/items/rule/rule-data-model.mjs';
-import {ShieldDataModel} from './documents/items/shield/shield-data-model.mjs';
-import {SkillDataModel} from './documents/items/skill/skill-data-model.mjs';
-import {SpellDataModel} from './documents/items/spell/spell-data-model.mjs';
-import {TreasureDataModel} from './documents/items/treasure/treasure-data-model.mjs';
-import {ZeroPowerDataModel} from './documents/items/zeropower/zero-power-data-model.mjs';
+import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
+import { FU } from './helpers/config.mjs';
+import { registerSystemSettings, SETTINGS, SYSTEM } from './settings.js';
+import { addRollContextMenuEntries, createCheckMessage, rollCheck } from './helpers/checks.mjs';
+import { FUCombatTracker } from './ui/combat-tracker.mjs';
+import { FUCombat } from './ui/combat.mjs';
+import { FUCombatant } from './ui/combatant.mjs';
+import { GroupCheck } from './helpers/group-check.mjs';
+import { CharacterDataModel } from './documents/actors/character/character-data-model.mjs';
+import { NpcDataModel } from './documents/actors/npc/npc-data-model.mjs';
+import { AccessoryDataModel } from './documents/items/accessory/accessory-data-model.mjs';
+import { ArmorDataModel } from './documents/items/armor/armor-data-model.mjs';
+import { BasicItemDataModel } from './documents/items/basic/basic-item-data-model.mjs';
+import { BehaviorDataModel } from './documents/items/behavior/behavior-data-model.mjs';
+import { ClassDataModel } from './documents/items/class/class-data-model.mjs';
+import { ConsumableDataModel } from './documents/items/consumable/consumable-data-model.mjs';
+import { HeroicSkillDataModel } from './documents/items/heroic/heroic-skill-data-model.mjs';
+import { MiscAbilityDataModel } from './documents/items/misc/misc-ability-data-model.mjs';
+import { ProjectDataModel } from './documents/items/project/project-data-model.mjs';
+import { RitualDataModel } from './documents/items/ritual/ritual-data-model.mjs';
+import { RuleDataModel } from './documents/items/rule/rule-data-model.mjs';
+import { ShieldDataModel } from './documents/items/shield/shield-data-model.mjs';
+import { SkillDataModel } from './documents/items/skill/skill-data-model.mjs';
+import { SpellDataModel } from './documents/items/spell/spell-data-model.mjs';
+import { TreasureDataModel } from './documents/items/treasure/treasure-data-model.mjs';
+import { ZeroPowerDataModel } from './documents/items/zeropower/zero-power-data-model.mjs';
+import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs';
+import { onSocketLibReady } from './socket.mjs';
+import { statusEffects } from './helpers/statuses.mjs';
+import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-feature-type-data-model.mjs';
+import { FUClassFeatureSheet } from './documents/items/classFeature/class-feature-sheet.mjs';
+import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
+import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
+import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
+import { FUActiveEffect } from './documents/effects/active-effect.mjs';
+import { registerChatInteraction } from './helpers/apply-damage.mjs';
+
+globalThis.projectfu = {
+	ClassFeatureDataModel,
+	RollableClassFeatureDataModel,
+};
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -48,7 +63,11 @@ Hooks.once('init', async () => {
 		FUActor,
 		FUItem,
 		rollItemMacro,
+		rollCheck,
+		createCheckMessage,
 		GroupCheck: GroupCheck,
+		ClassFeatureDataModel,
+		RollableClassFeatureDataModel,
 	};
 
 	// Add custom constants for configuration.
@@ -76,9 +95,10 @@ Hooks.once('init', async () => {
 		basic: BasicItemDataModel,
 		behavior: BehaviorDataModel,
 		class: ClassDataModel,
+		classFeature: ClassFeatureTypeDataModel,
 		consumable: ConsumableDataModel,
 		heroic: HeroicSkillDataModel,
-		misc: MiscAbilityDataModel,
+		miscAbility: MiscAbilityDataModel,
 		project: ProjectDataModel,
 		ritual: RitualDataModel,
 		rule: RuleDataModel,
@@ -86,8 +106,10 @@ Hooks.once('init', async () => {
 		skill: SkillDataModel,
 		spell: SpellDataModel,
 		treasure: TreasureDataModel,
+		weapon: WeaponDataModel,
 		zeroPower: ZeroPowerDataModel,
 	};
+	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
 
 	// Register system settings
 	registerSystemSettings();
@@ -103,161 +125,9 @@ Hooks.once('init', async () => {
 		CONFIG.ui.combat = FUCombatTracker;
 	}
 
-	CONFIG.statusEffects = [
-		{
-			id: 'accelerated',
-			name: 'Accelerated',
-			icon: 'systems/projectfu/styles/static/statuses/Accelerated.webp',
-		},
-		{
-			id: 'aura',
-			name: 'Aura',
-			icon: 'systems/projectfu/styles/static/statuses/Aura.webp',
-		},
-		{
-			id: 'barrier',
-			name: 'Barrier',
-			icon: 'systems/projectfu/styles/static/statuses/Barrier.webp',
-		},
-		{
-			id: 'beserk',
-			name: 'Beserk',
-			icon: 'systems/projectfu/styles/static/statuses/Beserk.webp',
-		},
-		{
-			id: 'blinded',
-			name: 'Blinded',
-			icon: 'systems/projectfu/styles/static/statuses/Blinded.webp',
-		},
-		{
-			id: 'death',
-			name: 'Death',
-			icon: 'systems/projectfu/styles/static/statuses/Death.webp',
-		},
-		{
-			id: 'dazed',
-			name: 'Dazed',
-			icon: 'systems/projectfu/styles/static/statuses/Dazed.webp',
-			stats: ['ins'],
-			mod: -2,
-		},
-		{
-			id: 'dex-down',
-			name: 'DEX Down',
-			icon: 'systems/projectfu/styles/static/statuses/DexDown.webp',
-			stats: ['dex'],
-			mod: -2,
-		},
-		{
-			id: 'dex-up',
-			name: 'DEX Up',
-			icon: 'systems/projectfu/styles/static/statuses/DexUp.webp',
-			stats: ['dex'],
-			mod: 2,
-		},
-		{
-			id: 'enraged',
-			name: 'Enraged',
-			icon: 'systems/projectfu/styles/static/statuses/Enraged.webp',
-			stats: ['dex', 'ins'],
-			mod: -2,
-		},
-		{
-			id: 'ins-down',
-			name: 'INS Down',
-			icon: 'systems/projectfu/styles/static/statuses/InsDown.webp',
-			stats: ['ins'],
-			mod: -2,
-		},
-		{
-			id: 'ins-up',
-			name: 'INS Up',
-			icon: 'systems/projectfu/styles/static/statuses/InsUp.webp',
-			stats: ['ins'],
-			mod: 2,
-		},
-		{
-			id: 'ko',
-			name: 'KO',
-			icon: 'systems/projectfu/styles/static/statuses/KO.webp',
-		},
-		{
-			id: 'mig-down',
-			name: 'MIG Down',
-			icon: 'systems/projectfu/styles/static/statuses/MigDown.webp',
-			stats: ['mig'],
-			mod: -2,
-		},
-		{
-			id: 'mig-up',
-			name: 'MIG Up',
-			icon: 'systems/projectfu/styles/static/statuses/MigUp.webp',
-			stats: ['mig'],
-			mod: 2,
-		},
-		{
-			id: 'reflect',
-			name: 'Reflect',
-			icon: 'systems/projectfu/styles/static/statuses/Reflect.webp',
-		},
-		{
-			id: 'regen',
-			name: 'Regen',
-			icon: 'systems/projectfu/styles/static/statuses/Regen.webp',
-		},
-		{
-			id: 'shaken',
-			name: 'Shaken',
-			icon: 'systems/projectfu/styles/static/statuses/Shaken.webp',
-			stats: ['wlp'],
-			mod: -2,
-		},
-		{
-			id: 'sleep',
-			name: 'Sleep',
-			icon: 'systems/projectfu/styles/static/statuses/Sleep.webp',
-		},
-		{
-			id: 'slow',
-			name: 'Slow',
-			icon: 'systems/projectfu/styles/static/statuses/Slow.webp',
-			stats: ['dex'],
-			mod: -2,
-		},
-		{
-			id: 'poisoned',
-			name: 'Poisoned',
-			icon: 'systems/projectfu/styles/static/statuses/Poisoned.webp',
-			stats: ['mig', 'wlp'],
-			mod: -2,
-		},
-		{
-			id: 'weak',
-			name: 'Weak',
-			icon: 'systems/projectfu/styles/static/statuses/Weak.webp',
-			stats: ['mig'],
-			mod: -2,
-		},
-		{
-			id: 'wlp-down',
-			name: 'WLP Down',
-			icon: 'systems/projectfu/styles/static/statuses/WlpDown.webp',
-			stats: ['wlp'],
-			mod: -2,
-		},
-		{
-			id: 'wlp-up',
-			name: 'WLP Up',
-			icon: 'systems/projectfu/styles/static/statuses/WlpUp.webp',
-			stats: ['wlp'],
-			mod: 2,
-		},
-		{
-			id: 'crisis',
-			name: 'Crisis',
-			icon: 'systems/projectfu/styles/static/statuses/Status_Bleeding.png',
-		},
-	];
+	// Register status effects
+	if (game.release.isNewer(11)) CONFIG.ActiveEffect.legacyTransferral = false;
+	CONFIG.statusEffects = statusEffects;
 
 	// Register sheet application classes
 	Actors.unregisterSheet('core', ActorSheet);
@@ -268,12 +138,23 @@ Hooks.once('init', async () => {
 	Items.registerSheet('projectfu', FUItemSheet, {
 		makeDefault: true,
 	});
+	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
+		types: ['classFeature'],
+		makeDefault: true,
+	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
+	registerChatInteraction();
+
+	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
+
+	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
 });
+
+Hooks.once('setup', () => {});
 
 /* -------------------------------------------- */
 /*  Handlebars Helpers                          */
@@ -294,6 +175,96 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 	return str.toLowerCase();
 });
 
+Handlebars.registerHelper('translate', function (str) {
+	const result = Object.assign(
+		{
+			spell: 'FU.Spell',
+			hp: 'FU.HealthAbbr',
+			mp: 'FU.MindAbbr',
+			ip: 'FU.InventoryAbbr',
+			shields: 'FU.Shield',
+			arcanism: 'FU.Arcanism',
+			chimerism: 'FU.Chimerism',
+			elementalism: 'FU.Elementalism',
+			entropism: 'FU.Entropism',
+			ritualism: 'FU.Ritualism',
+			spiritism: 'FU.Spiritism',
+		},
+		CONFIG.FU.itemTypes,
+		CONFIG.FU.weaponTypes,
+	);
+
+	return result?.[str] ?? str;
+});
+
+Handlebars.registerHelper('getGameSetting', function (settingKey) {
+	return game.settings.get('projectfu', settingKey);
+});
+
+Handlebars.registerHelper('capitalize', function (str) {
+	if (str && typeof str === 'string') {
+		return str.charAt(0).toUpperCase() + str.slice(1);
+	}
+	return str;
+});
+
+Handlebars.registerHelper('neq', function (a, b, options) {
+	if (a !== b) {
+		return options.fn(this);
+	}
+	return '';
+});
+
+Handlebars.registerHelper('half', function (value) {
+	var num = Number(value);
+	if (isNaN(num)) {
+		return '';
+	}
+	return Math.floor(num / 2);
+});
+
+Handlebars.registerHelper('calculatePercentage', function (value, max) {
+	value = parseFloat(value);
+	max = parseFloat(max);
+	const percentage = (value / max) * 100;
+	return percentage.toFixed(2) + '%';
+});
+
+Handlebars.registerHelper('crisis', function (value, max) {
+	value = parseFloat(value);
+	max = parseFloat(max);
+	const half = max / 2;
+	return value <= half;
+});
+
+// Define a Handlebars helper to get the icon class based on item properties
+Handlebars.registerHelper('getIconClass', function (item) {
+	if (item.type === 'weapon') {
+		if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'two-handed') {
+			return 'ra ra-relic-blade ra-1xh  ra-flip-horizontal';
+		} else if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'one-handed') {
+			return 'ra ra-sword ra-1xh ra-flip-horizontal';
+		} else if (item.system.isEquipped.slot === 'offHand') {
+			return 'ra  ra-plain-dagger ra-1xh ra-rotate-180';
+		}
+	} else if (item.type === 'shield') {
+		if (item.system.isDualShield && item.system.isDualShield.value) {
+			return 'ra ra-heavy-shield ra-1xh';
+		} else if (item.system.isEquipped.slot === 'offHand' || item.system.isEquipped.slot === 'mainHand') {
+			return 'ra ra-shield ra-1xh';
+		}
+	} else if (item.type === 'armor') {
+		if (item.system.isEquipped.slot === 'armor') {
+			return 'ra ra-helmet ra-1xh';
+		}
+	} else if (item.type === 'accessory') {
+		if (item.system.isEquipped.slot === 'accessory') {
+			return 'fas fa-leaf ra-1xh';
+		}
+	}
+	return 'fas fa-toolbox';
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
@@ -303,13 +274,21 @@ Hooks.once('ready', async function () {
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
 });
 
-Hooks.once('socketlib.ready', () => {
-	const socket = socketlib.registerSystem('projectfu');
-	socket.register('use', displayUsingText);
-});
+Hooks.once('socketlib.ready', onSocketLibReady);
 
 Hooks.once('mmo-hud.ready', () => {
 	// Do this
+});
+
+Hooks.once('ready', () => {
+	const isPixelated = game.settings.get("projectfu", "optionImagePixelated");
+    const applyPixelatedStyle = () => {
+        // Apply the style to specific selectors
+        $('img')
+            .css('image-rendering', isPixelated ? 'pixelated' : '');
+    };
+    // Apply the style initially
+    applyPixelatedStyle();
 });
 
 /* -------------------------------------------- */
@@ -372,16 +351,4 @@ function rollItemMacro(itemUuid) {
 		// Trigger the item roll
 		item.roll();
 	});
-}
-
-function displayUsingText(text) {
-	text = `${text}`;
-	ui.notifications.queue.push({
-		message: text,
-		type: 'projectfu-spellname',
-		timestamp: new Date().getTime(),
-		permanent: false,
-		console: false,
-	});
-	if (ui.notifications.rendered) ui.notifications.fetch();
 }

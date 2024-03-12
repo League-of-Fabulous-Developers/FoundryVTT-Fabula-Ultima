@@ -1,0 +1,46 @@
+{{#if (or (eq actor.type "character") system.useEquipment.value)}}
+<header class="items-main-header">
+	<span class="items-main armor-hand slot-style rollable" data-roll-type="item-slot">
+		{{#each armor as |item id|}} {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot
+		"armor"))}}
+		<div class="equipped-item">
+
+			{{ item.name }}
+			<i class="ra ra-helmet ra-2x"></i>
+		</div>
+		{{/if}} {{/each}}
+	</span>
+
+	<span class="flexrow" style="height: 32px;">
+		<span class="items-main left-hand slot-style rollable" data-roll-type="item-slot">
+			{{#each items as |item id|}} {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot
+			"mainHand"))}}
+			<div class="equipped-item">
+				<span class="equipped-item-content">{{ item.name }}</span>
+				<span class="icon-letter" data-tooltip="{{localize 'FU.MainHand'}}">M</span>
+			</div>
+			{{/if}} {{/each}}
+		</span>
+		<span class="items-main right-hand slot-style rollable" data-roll-type="item-slot">
+			{{#each items as |item id|}} {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot
+			"offHand"))}}
+			<div class="equipped-item">
+				<span class="icon-letter" data-tooltip="{{localize 'FU.OffHand'}}">O</span>
+				<span class="equipped-item-content">{{ item.name }}</span>
+			</div>
+			{{/if}} {{/each}}
+		</span>
+	</span>
+
+	<!-- Accessory Slot Header-->
+	<span class="items-main acc-hand slot-style rollable" data-roll-type="item-slot">
+		{{#each accessories as |item id|}} {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot
+		"accessory"))}}
+		<div class="equipped-item">
+			<i class="fa-solid fa-leaf ra-2x"></i>
+			{{ item.name }}
+		</div>
+		{{/if}} {{/each}}
+	</span>
+</header>
+{{/if}}

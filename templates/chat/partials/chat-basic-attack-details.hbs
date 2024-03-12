@@ -1,0 +1,11 @@
+<div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
+    <div>{{localize (concat 'FU.' (capitalize basic.type))}}</div>
+</div>
+
+{{#if basic.quality}}
+    {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=basic.quality}}
+{{/if}}
+
+{{#if (or basic.summary basic.description)}}
+    {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=basic.summary description=basic.description collapseDescriptions=collapseDescriptions}}
+{{/if}}

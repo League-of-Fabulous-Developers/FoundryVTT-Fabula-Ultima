@@ -1,0 +1,8 @@
+<div class='resource-content desc'>
+    <label class='resource-label-m' data-tooltip="{{localize 'FU.ClassFeatureToneDescriptionTooltip'}}">
+        {{localize 'FU.Description'}}
+        <i class="fas fa-info-circle"></i>
+    </label>
+    {{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true
+    rollData=additionalData.rollData}}
+</div>

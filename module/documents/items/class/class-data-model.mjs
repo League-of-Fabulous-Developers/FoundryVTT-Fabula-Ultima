@@ -34,7 +34,7 @@ export class ClassDataModel extends foundry.abstract.TypeDataModel {
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 			level: new SchemaField({
-				value: new NumberField({ initial: 1, min: 0, nullable: false }),
+				value: new NumberField({ initial: 1, min: 1, max: 10, nullable: false }),
 				max: new NumberField({ initial: 10, min: 1, nullable: false }),
 				min: new NumberField({ initial: 0, min: 0, nullable: false }),
 			}),

@@ -2,6 +2,7 @@ import {UseWeaponDataModel} from '../common/use-weapon-data-model.mjs';
 import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs';
 import {DamageDataModel} from '../common/damage-data-model.mjs';
 import {ImprovisedDamageDataModel} from '../common/improvised-damage-data-model.mjs';
+import {SpellMigrations} from "./spell-migrations.mjs";
 
 /**
  * @property {string} subtype.value
@@ -21,7 +22,7 @@ import {ImprovisedDamageDataModel} from '../common/improvised-damage-data-model.
  * @property {string} target.value
  * @property {string} duration.value
  * @property {boolean} isOffensive.value
- * @property {string} quality.value
+ * @property {string} opportunity
  * @property {string} source.value
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  * @property {ItemAttributesDataModel} rollInfo.attributes
@@ -50,7 +51,7 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 			target: new SchemaField({ value: new StringField() }),
 			duration: new SchemaField({ value: new StringField() }),
 			isOffensive: new SchemaField({ value: new BooleanField() }),
-			quality: new SchemaField({ value: new StringField() }),
+			opportunity: new StringField(),
 			source: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({
 				useWeapon: new SchemaField({
@@ -63,4 +64,9 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 			hasRoll: new SchemaField({ value: new BooleanField() }),
 		};
 	}
+
+    static migrateData(source) {
+        SpellMigrations.run(source)
+        return source;
+    }
 }

@@ -1,21 +1,15 @@
-{{#unless (or weapon spell damage)}}
-    {{>'systems/projectfu/templates/chat/partials/chat-default-check.hbs'}}
-{{/unless}}
-{{#if weapon}}
-    {{> 'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs'}}
-{{/if}}
-{{#if spell}}
-    {{> 'systems/projectfu/templates/chat/partials/chat-spell-details.hbs'}}
-{{/if}}
-{{#if push}}
-    {{> 'systems/projectfu/templates/chat/partials/chat-check-push.hbs'}}
+{{#if details}}
+    {{> 'systems/projectfu/templates/chat/partials/chat-check-details.hbs'}}
 {{/if}}
 {{#if reroll}}
     {{> 'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs'}}
 {{/if}}
-{{#if (or weapon spell)}}
+{{#if (or offensive damage)}}
     {{> 'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs' }}
+    {{#if damage}}
+        {{> 'systems/projectfu/templates/chat/partials/chat-damage.hbs' }}
+    {{/if}}
+{{else}}
+    {{>'systems/projectfu/templates/chat/partials/chat-default-check.hbs'}}
 {{/if}}
-{{#if damage}}
-    {{> 'systems/projectfu/templates/chat/partials/chat-damage.hbs' }}
-{{/if}}
+{{> 'systems/projectfu/templates/chat/partials/chat-check-result.hbs' }}

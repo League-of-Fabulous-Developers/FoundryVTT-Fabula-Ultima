@@ -1,7 +1,7 @@
-import {FU} from './config.mjs';
-import {SYSTEM} from '../settings.js';
-import {Flags} from './flags.mjs';
-import {createCheckMessage, rollCheck} from './checks.mjs';
+import { FU } from './config.mjs';
+import { SYSTEM } from '../settings.js';
+import { Flags } from './flags.mjs';
+import { createCheckMessage, rollCheck } from './checks.mjs';
 
 /**
  * @typedef Supporter
@@ -22,6 +22,7 @@ import {createCheckMessage, rollCheck} from './checks.mjs';
  * @property {Object} difficulty
  * @property {number} difficulty.check
  * @property {number} difficulty.support
+ * @property {boolean} [initiative]
  * @property {Supporter[]} supporters
  * @property {"open", "completed", "canceled"} [status]
  */
@@ -39,96 +40,88 @@ import {createCheckMessage, rollCheck} from './checks.mjs';
  * @param {GroupCheckFlag} groupCheck
  * @return {Promise<void>}
  */
-async function handleSupportCheck(groupCheck)
-{
-    const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
-    if (!character)
-    {
-        ui.notifications.error('FU.GroupCheckMissingCharacter', {localize: true});
-        return;
-    }
-    if (character.type !== 'character')
-    {
-        ui.notifications.error('FU.GroupCheckNotPlayerCharacter', {localize: true});
-        return;
-    }
-    if (character.id === groupCheck.leader)
-    {
-        ui.notifications.error('FU.GroupCheckLeaderCantSupport', {localize: true});
-        return;
-    }
-    if (groupCheck.supporters.find((supporter) => supporter.id === character.id))
-    {
-        ui.notifications.error('FU.GroupCheckAlreadySupported', {localize: true});
-        return;
-    }
+async function handleSupportCheck(groupCheck) {
+	const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
+	if (!character) {
+		ui.notifications.error('FU.GroupCheckMissingCharacter', { localize: true });
+		return;
+	}
+	if (character.type !== 'character') {
+		ui.notifications.error('FU.GroupCheckNotPlayerCharacter', { localize: true });
+		return;
+	}
+	if (character.id === groupCheck.leader) {
+		ui.notifications.error('FU.GroupCheckLeaderCantSupport', { localize: true });
+		return;
+	}
+	if (groupCheck.supporters.find((supporter) => supporter.id === character.id)) {
+		ui.notifications.error('FU.GroupCheckAlreadySupported', { localize: true });
+		return;
+	}
 
-    const bonds = (character.system.resources.bonds ?? []).map(bond =>
-    {
-        const feelings = [];
-        bond.admInf.length && feelings.push(bond.admInf);
-        bond.loyMis.length && feelings.push(bond.loyMis);
-        bond.affHat.length && feelings.push(bond.affHat);
-        return {name: bond.name, feelings};
-    }).filter(value => value.feelings.length)
+	const bonds = (character.system.resources.bonds ?? [])
+		.map((bond) => {
+			const feelings = [];
+			bond.admInf.length && feelings.push(bond.admInf);
+			bond.loyMis.length && feelings.push(bond.loyMis);
+			bond.affHat.length && feelings.push(bond.affHat);
+			return { name: bond.name, feelings };
+		})
+		.filter((value) => value.feelings.length);
 
-    let bond
-    try
-    {
-        bond = await Dialog.prompt({
-            title: game.i18n.localize("FU.GroupCheckBondDialogTitle"),
-            label: game.i18n.localize("FU.GroupCheckBondDialogLabel"),
-            content: await renderTemplate("systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs", {
-                leader: game.actors.get(groupCheck.leader).name,
-                bonds
-            }),
-            callback: jQuery =>
-            {
-                const selected = jQuery.find("[name=bond]:checked").val();
-                return bonds[selected]?.feelings ?? []
-            }
-        })
-    }
-    catch (e)
-    {
-        ui.notifications.info("FU.GroupCheckSupportCanceled", {localize: true})
-        return;
-    }
+	let bond;
+	try {
+		bond = await Dialog.prompt({
+			title: game.i18n.localize('FU.GroupCheckBondDialogTitle'),
+			label: game.i18n.localize('FU.GroupCheckBondDialogLabel'),
+			content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
+				leader: game.actors.get(groupCheck.leader).name,
+				bonds,
+			}),
+			callback: (jQuery) => {
+				const selected = jQuery.find('[name=bond]:checked').val();
+				return bonds[selected]?.feelings ?? [];
+			},
+		});
+	} catch (e) {
+		ui.notifications.info('FU.GroupCheckSupportCanceled', { localize: true });
+		return;
+	}
 
-    const {attr1, attr2} = groupCheck.attributes;
-    /**
-     * @type {CheckParams}
-     */
-    const checkParams = {
-        check: {
-            attr1: {
-                attribute: attr1,
-                dice: character.system.attributes[attr1].current,
-            },
-            attr2: {
-                attribute: attr2,
-                dice: character.system.attributes[attr2].current,
-            },
-            modifier: 0,
-            bonus: 0,
-            title: 'FU.SupportCheck',
-        },
-        difficulty: groupCheck.difficulty.support,
-        speaker: ChatMessage.implementation.getSpeaker({actor: character})
-    };
-    const check = await rollCheck(checkParams);
-    /** @type SupportCheckFlag */
-    const supportCheckFlag = {
-        groupCheckId: groupCheck.id,
-        supporterId: character.id,
-        result: check.result.crit || check.result.total >= groupCheck.difficulty.support,
-        bond: bond
-    };
-    await createCheckMessage(check, {
-        [SYSTEM]: {
-            [Flags.ChatMessage.SupportCheck]: supportCheckFlag,
-        },
-    });
+	const { attr1, attr2 } = groupCheck.attributes;
+	/**
+	 * @type {CheckParameters}
+	 */
+	const checkParams = {
+		check: {
+			attr1: {
+				attribute: attr1,
+				dice: character.system.attributes[attr1].current,
+			},
+			attr2: {
+				attribute: attr2,
+				dice: character.system.attributes[attr2].current,
+			},
+			modifier: groupCheck.initiative ? character.system.derived.init.bonus : 0,
+			bonus: 0,
+			title: 'FU.SupportCheck',
+		},
+		difficulty: groupCheck.difficulty.support,
+		speaker: ChatMessage.implementation.getSpeaker({ actor: character }),
+	};
+	const check = await rollCheck(checkParams);
+	/** @type SupportCheckFlag */
+	const supportCheckFlag = {
+		groupCheckId: groupCheck.id,
+		supporterId: character.id,
+		result: check.result.crit || check.result.total >= groupCheck.difficulty.support,
+		bond: bond,
+	};
+	await createCheckMessage(check, {
+		[SYSTEM]: {
+			[Flags.ChatMessage.SupportCheck]: supportCheckFlag,
+		},
+	});
 }
 
 /**
@@ -142,10 +135,10 @@ function attachSupportCheckListener(message, jQuery) {
 	const groupCheck = message.getFlag(SYSTEM, Flags.ChatMessage.GroupCheck);
 	if (groupCheck) {
 		jQuery.find(`button[data-support=${groupCheck.id}]`).click(async function () {
-            $(this).attr("disabled", true)
-            await handleSupportCheck(groupCheck);
-            $(this).attr("disabled", false)
-        });
+			$(this).attr('disabled', true);
+			await handleSupportCheck(groupCheck);
+			$(this).attr('disabled', false);
+		});
 	}
 }
 
@@ -188,41 +181,61 @@ export class GroupCheck extends Application {
 
 	/**
 	 * @param {FUActor} leader
+	 * @param {boolean} initiative is this an initiative check?
 	 * @return {Promise<void>}
 	 */
-	static async promptCheck(leader) {
+	static async promptCheck(leader, initiative) {
 		const groupCheckId = foundry.utils.randomID();
 
 		/**
 		 * @type GroupCheckFlag
 		 */
-		const groupCheck = await Dialog.prompt({
-			title: game.i18n.localize('FU.DialogGroupCheckTitle'),
-			label: game.i18n.localize('FU.DialogGroupCheckLabel'),
-			content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check.hbs', {
-				attributes: FU.attributes,
-				difficulty: {
-					check: 10,
-					support: 10,
-				},
-			}),
-			/** @type {(jQuery) => GroupCheckFlag}*/
-			callback: (jQuery) => ({
+		let groupCheck;
+		if (!initiative) {
+			groupCheck = await Dialog.prompt({
+				title: game.i18n.localize('FU.DialogGroupCheckTitle'),
+				label: game.i18n.localize('FU.DialogGroupCheckLabel'),
+				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check.hbs', {
+					attributes: FU.attributes,
+					difficulty: {
+						check: 10,
+						support: 10,
+					},
+				}),
+				/** @type {(jQuery) => GroupCheckFlag}*/
+				callback: (jQuery) => ({
+					id: groupCheckId,
+					leader: leader.id,
+					initiatingUser: game.user.id,
+					attributes: {
+						attr1: jQuery.find('[name=attributes\\.attr1]:checked').val(),
+						attr2: jQuery.find('[name=attributes\\.attr2]:checked').val(),
+					},
+					difficulty: {
+						check: jQuery.find('[name=difficulty\\.check]').val(),
+						support: jQuery.find('[name=difficulty\\.support]').val(),
+					},
+					supporters: [],
+				}),
+				rejectClose: false,
+			});
+		} else {
+			groupCheck = {
 				id: groupCheckId,
 				leader: leader.id,
 				initiatingUser: game.user.id,
 				attributes: {
-					attr1: jQuery.find('[name=attributes\\.attr1]:checked').val(),
-					attr2: jQuery.find('[name=attributes\\.attr2]:checked').val(),
+					attr1: 'dex',
+					attr2: 'ins',
 				},
 				difficulty: {
-					check: jQuery.find('[name=difficulty\\.check]').val(),
-					support: jQuery.find('[name=difficulty\\.support]').val(),
+					check: 0,
+					support: 10,
 				},
+				initiative: true,
 				supporters: [],
-			}),
-			rejectClose: false,
-		});
+			};
+		}
 
 		if (!groupCheck) {
 			return;
@@ -234,7 +247,7 @@ export class GroupCheck extends Application {
 
 		await ChatMessage.create({
 			speaker: ChatMessage.implementation.getSpeaker({ actor: leader }),
-			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', { title: 'FU.GroupRollCheck' }),
+			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', { title: groupCheck.initiative ? 'FU.InitiativeCheck' : 'FU.GroupRollCheck' }),
 			content: await GroupCheck.#renderChatMessage(groupCheck),
 			flags: {
 				[SYSTEM]: {
@@ -365,12 +378,12 @@ export class GroupCheck extends Application {
 			const flag = this.groupCheckData;
 			const { attr1, attr2 } = flag.attributes;
 			const successfulSupports = flag.supporters.filter((value) => value.result);
-            let leader = game.actors.get(flag.leader);
-            const {
-				system: { attributes },
+			let leader = game.actors.get(flag.leader);
+			const {
+				system: { attributes, derived },
 			} = leader;
 			/**
-			 * @type {CheckParams}
+			 * @type {CheckParameters}
 			 */
 			const check = {
 				check: {
@@ -382,12 +395,12 @@ export class GroupCheck extends Application {
 						attribute: attr2,
 						dice: attributes[attr2].current,
 					},
-					modifier: successfulSupports.length,
+					modifier: flag.initiative ? derived.init.bonus + successfulSupports.length : successfulSupports.length,
 					bonus: successfulSupports.reduce((biggestBond, currentValue) => Math.max(biggestBond, currentValue.bond?.length ?? 0), 0),
-					title: 'FU.GroupRollCheck',
+					title: flag.initiative ? 'FU.InitiativeCheck' : 'FU.GroupRollCheck',
 				},
 				difficulty: flag.difficulty.check,
-                speaker: ChatMessage.implementation.getSpeaker({actor: leader})
+				speaker: ChatMessage.implementation.getSpeaker({ actor: leader }),
 			};
 			await createCheckMessage(await rollCheck(check));
 			this.groupCheckData = { ...flag, status: 'completed' };

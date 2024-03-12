@@ -1,53 +1,97 @@
-<ol class="items-list">
-	<li class="item flexrow items-header">
-		<div class="item-name start"><i class="fas fa-star icon"></i>{{localize 'FU.Favorite'}}</div>
-		<div class="item-m end">
-			<a class="item-control sort" data-tooltip="{{localize 'FU.Sort'}}" data-type="sort">
-				<!-- TODO: Dynamically change icon/tooltip based on sorting type 
+{{!-- Favorite Template --}}
+<fieldset class="section-container title-fieldset desc resource-content">
+	<legend class="resource-label-m" aria-describedby="tooltip">
+		<a class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.FavoriteAdd'}}"
+			data-type="newFavorite">
+			<i class="fas fa-plus icon"></i>{{localize 'FU.Favorite'}}
+		</a>
+	</legend>
 
-            Item Type
-            <i class="fas fa-sort"></i>
-            data-tooltip="{{localize 'FU.SortItemType'}}"
+	{{!-- Equipped Item Header--}}
+	{{> "systems/projectfu/templates/actor/partials/actor-equipment-slots.hbs" item=item}}
 
-            Alphabetical (asc)
-            <i class="fas fa-arrow-down-a-z"></i>
-            data-tooltip="{{localize 'FU.SortAlphaAsc'}}"
-
-            Alphabetical (desc)
-            <i class="fas fa-arrow-down-z-a"></i>
-            data-tooltip="{{localize 'FU.SortAlphaDesc'}}"
-
-            Ordered List
-            <i class="fas fa-arrow-down-short-wide"></i>
-            data-tooltip="{{localize 'FU.SortOrderList'}}"
-        
-        -->
-				<i class="fas fa-sort icon"></i>
-				{{localize 'FU.Sort'}}
-
-				<!-- TODO: This button will open filter sorting type dialog box  -->
-				<a class="item-control sort-edit" data-tooltip="{{localize 'FU.SortEdit'}}">
-					<i class="fas fa-filter"></i>
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			<div class="item-name start"><i class="fas fa-star icon"></i>{{localize 'FU.Favorite'}}</div>
+			<div class="item-m end">
+				<a id="sortButton" class="item-control sort" data-tooltip="{{localize 'FU.Sort'}}" data-type="sort">
+					<i class="fas fa-sort icon"></i>
+					{{localize 'FU.Sort'}}
 				</a>
-			</a>
-		</div>
-	</li>
-	{{#each items as |item id|}} {{#if (and item.system.isFavored.value)}}
-	<li class="item" data-item-id="{{ item._id }}">
-		<div class="flexrow">
-			<div class="flexcol">
-				{{!-- Item Name--}}
+			</div>
+		</li>
+		{{#each items as |item id|}}
+		{{#if item.system.isFavored.value}}
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow">
+				{{!-- Item Name --}}
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                {{!-- Class Features --}}
+                {{#if (eq item.type 'classFeature')}}
+                    {{#with (lookup @root.classFeatures item.system.featureType) as | featureType |}}
+                        {{#with (lookup featureType.items item._id) as | itemData |}}
+                            {{> (lookup featureType.feature 'previewTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
+                        {{/with}}
+                    {{/with}}
+                {{/if}}
+				{{!-- Item Equip--}}
+				{{#if (or (eq @root.actor.type "character") @root.actor.system.useEquipment.value)}}
+				{{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" actor=actor item=item}}
+				{{/if}}
 
-				{{#if item.quality}}
-				<div class="item-quality align-left">{{ item.quality }}</div>
+				{{!-- Resource Points --}}
+				{{#if item.system.hasResource.value}}
+				<div class="item-m flexcol flex-group-center resource-content">
+					<label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
+					<div class="resource-text-m buttons-inc">
+						<a class="decrement-button" data-type="resourceCounter" data-item-id="{{ item._id }}">-</a>
+						<span data-resource="item.rp">{{ item.system.rp.current }}</span>
+						{{#if (gt item.system.rp.max 0)}}
+						<span>/</span>
+						<span>{{ item.system.rp.max }}</span>
+						{{/if}}
+						<a class="increment-button" data-type="resourceCounter" data-item-id="{{ item._id }}">+</a>
+					</div>
+				</div>
+				{{/if}}
+
+				{{!-- Item Control--}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+			</div>
+			{{#if item.quality}}
+			<div class="item-quality align-left">{{ item.quality }}</div>
+			{{/if}}
+			<div class="individual-description align-left">
+				{{#if item.system.description}}
+				{{{item.enrichedHtml.description}}}
+				{{/if}}
+
+				{{#if item.system.zeroEffect}}
+				{{#if item.system.zeroTrigger}}
+				<div class="flexrow resource-content align-center">
+					<div class="flexcol">
+						<label class="resource-label-l">{{ item.zeroTrigger }}</label>
+						<span class="resource-text-m">
+							{{#if item.system.zeroTrigger.description}}
+							{{{item.enrichedHtml.zeroTrigger}}}
+							{{/if}}
+						</span>
+					</div>
+
+					<div class="flexcol">
+						<label class="resource-label-l">{{ item.zeroEffect }}</label>
+						<span class="resource-text-m">
+							{{#if item.system.zeroEffect.description}}
+							{{{item.enrichedHtml.zeroEffect}}}
+							{{/if}}
+						</span>
+					</div>
+				</div>
+				{{/if}}
 				{{/if}}
 			</div>
-			{{!-- Item Control--}}
-			{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-		</div>
-		<div class="individual-description align-left">{{#if item.system.description}} {{editor item.system.description
-			target="item.system.description" rollData=rollData button=false owner=owner editable=false}} {{/if}}</div>
-	</li>
-	{{/if}} {{/each}}
-</ol>
+		</li>
+		{{/if}}
+		{{/each}}
+	</ol>
+</fieldset>

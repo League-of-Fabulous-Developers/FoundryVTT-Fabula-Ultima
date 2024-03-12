@@ -4,6 +4,7 @@ import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs'
 import {DamageDataModel} from '../common/damage-data-model.mjs';
 import {ImprovisedDamageDataModel} from '../common/improvised-damage-data-model.mjs';
 import {ProgressDataModel} from '../common/progress-data-model.mjs';
+import {MiscAbilityMigrations} from './misc-ability-migrations.mjs';
 
 /**
  * @property {string} subtype.value
@@ -12,7 +13,7 @@ import {ProgressDataModel} from '../common/progress-data-model.mjs';
  * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
  * @property {boolean} isMartial.value
- * @property {string} quality.value
+ * @property {string} opportunity
  * @property {IsEquippedDataModel} isEquipped
  * @property {UseWeaponDataModel} useWeapon
  * @property {ItemAttributesDataModel} attributes
@@ -22,6 +23,7 @@ import {ProgressDataModel} from '../common/progress-data-model.mjs';
  * @property {boolean} isBehavior.value
  * @property {number} weight.value
  * @property {boolean} hasClock.value
+ * @property {boolean} hasResource.value
  * @property {ProgressDataModel} progress
  * @property {string} source.value
  * @property {UseWeaponDataModel} rollInfo.useWeapon
@@ -40,9 +42,8 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			description: new HTMLField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
-			isMartial: new SchemaField({ value: new BooleanField() }),
-			quality: new SchemaField({ value: new StringField() }),
-			isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
+			opportunity: new StringField(),
+			// isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
 			useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'dex' }, secondary: { value: 'ins' } } }),
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
@@ -51,7 +52,9 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			hasClock: new SchemaField({ value: new BooleanField() }),
+			hasResource: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
+			rp: new EmbeddedDataField(ProgressDataModel, {}),
 			source: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({
 				useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
@@ -59,8 +62,12 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 				accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: true }) }),
 				damage: new EmbeddedDataField(DamageDataModel, {}),
 			}),
-			isOffensive: new SchemaField({ value: new BooleanField() }),
 			hasRoll: new SchemaField({ value: new BooleanField() }),
 		};
+	}
+
+	static migrateData(source) {
+		MiscAbilityMigrations.run(source);
+		return source;
 	}
 }

@@ -1,8 +1,9 @@
-import {CharacterMigrations} from './character-migrations.mjs';
-import {AffinitiesDataModel} from '../common/affinities-data-model.mjs';
-import {AttributesDataModel} from '../common/attributes-data-model.mjs';
-import {BonusesDataModel} from '../common/bonuses-data-model.mjs';
-import {BondDataModel} from '../common/bond-data-model.mjs';
+import { CharacterMigrations } from './character-migrations.mjs';
+import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
+import { AttributesDataModel } from '../common/attributes-data-model.mjs';
+import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
+import { BondDataModel } from '../common/bond-data-model.mjs';
+import { CharacterSkillTracker } from './character-skill-tracker.mjs';
 
 /**
  * @property {number} level.value
@@ -30,7 +31,7 @@ import {BondDataModel} from '../common/bond-data-model.mjs';
  * @property {BondDataModel[]} resources.bonds
  * @property {number} resources.exp.value
  * @property {string} resources.identity.value
- * @property {string} resources.pronous.value
+ * @property {string} resources.pronouns.value
  * @property {string} resources.theme.value
  * @property {string} resources.origin.value
  * @property {AffinitiesDataModel} affinities
@@ -42,6 +43,7 @@ import {BondDataModel} from '../common/bond-data-model.mjs';
  * @property {number} derived.mdef.value
  * @property {number} derived.mdef.bonus
  * @property {BonusesDataModel} bonuses
+ * @property {CharacterSkillTracker} tlTracker
  */
 export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
@@ -112,5 +114,16 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 		CharacterMigrations.run(source);
 
 		return source;
+	}
+
+	/**
+	 * @return FUActor
+	 */
+	get actor() {
+		return this.parent;
+	}
+
+	prepareDerivedData() {
+		this.tlTracker = new CharacterSkillTracker(this);
 	}
 }
