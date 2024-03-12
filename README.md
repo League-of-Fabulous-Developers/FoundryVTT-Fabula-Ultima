@@ -11,7 +11,7 @@ Welcome to the Unofficial Fabula Ultima System for the [Foundry Virtual Tabletop
 
 ## Preview
 
-![Sheet Preview](image.png)
+![Sheet_Preview](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/assets/16845165/5c2ddd38-4132-4087-aec3-bece8fb769ee)
 
 ## Installation
 
