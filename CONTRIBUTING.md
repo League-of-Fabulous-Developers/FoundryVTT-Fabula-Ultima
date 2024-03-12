@@ -32,7 +32,6 @@ Project FU is based on the [Boilerplate Template](https://foundryvtt.wiki/en/dev
 - **main:** Mainline branch for v11 releases and above.
 - **v10-maintenance:** Mainline branch for v10 builds.
 - **dev:** Primary development branch for V10 and V11.
-- **v11-dev:** Development branch for v11-specific work.
 
 When opening a PR, ensure it goes into the most relevant branch.
 

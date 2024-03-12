@@ -40,6 +40,7 @@ export class NpcSkillTracker {
 			immunities: immunities,
 			resistances: this.#calcUsedSkillsFromResistances(remainingFromAbsorb),
 			specialRules: this.#calcUsedSkillsFromSpecial(),
+			otherActions: this.#calcUsedSkillsFromOtherActions(),
 			equipment: this.#calcUsedSkillsFromEquipment(),
 		};
 	}
@@ -214,8 +215,13 @@ export class NpcSkillTracker {
 		return sum;
 	}
 
-	#calcUsedSkillsFromSpecial() {
+	#calcUsedSkillsFromOtherActions() {
 		return this.#data.actor.itemTypes.miscAbility.length;
+	  }
+
+
+	#calcUsedSkillsFromSpecial() {
+		return this.#data.actor.itemTypes.rule.length;
 	}
 
 	#calcUsedSkillsFromEquipment() {
