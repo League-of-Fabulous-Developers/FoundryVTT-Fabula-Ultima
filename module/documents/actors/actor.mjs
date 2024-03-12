@@ -262,12 +262,15 @@ export class FUActor extends Actor {
 		// Check for "Guard" effect
 		const guardEffect = actorData.effects.find((effect) => effect.statuses.size === 1 && effect.statuses.has('guard'));
 
-		// Override all non-positive stats with '1' if "Guard" effect is active
+		// Override all non-positive stats with '1' if "Guard" effect is active, but if mod/bonus is '-1' Vulnerable, set to Normal '0'
 		if (guardEffect) {
 			Object.keys(statMods).forEach((attrKey) => {
 				const currentVal = systemData.affinities[attrKey].current;
-				if (currentVal <= 0) {
-					systemData.affinities[attrKey].current = 1;
+				const baseVal = systemData.affinities[attrKey].base;
+				if (baseVal === -1) {
+					systemData.affinities[attrKey].current = 0; // Vulnerability becomes Normal '0'
+				} else if (currentVal <= 0) {
+					systemData.affinities[attrKey].current = 1; // Set to Resistance by default
 				}
 			});
 		} else {
