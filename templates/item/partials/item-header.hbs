@@ -36,8 +36,9 @@
 					{{!-- Source --}}
 					<span class="resource-content levelup-container flexcol flex-group-center"
 						style="border-top-right-radius: 12px;">
-						<label class="resource-label-m rollable" id="pdfLink"> <i
-								class="fa-solid fa-book icon"></i>{{localize 'FU.Source'}} </label>
+						<label class="resource-label-m rollable" id="pdfLink">
+							{{!-- <i class="fa-solid fa-book icon"></i> --}}
+							{{localize 'FU.Source'}} </label>
 						<input type="text" name="system.source.value" value="{{ system.source.value }}"
 							data-dtype="String" style="border-radius: 12px 0 0;" class="resource-inputs" />
 					</span>
@@ -69,6 +70,10 @@
 						{{> "systems/projectfu/templates/item/partials/item-defense-header.hbs" dtypes=dtypes}}
 						{{else if (eq item.type "accessory")}}
 						{{> "systems/projectfu/templates/item/partials/item-defense-header.hbs" dtypes=dtypes}}
+						{{else if (eq item.type "consumable")}}
+						{{> "systems/projectfu/templates/item/partials/item-consumable-header.hbs" dtypes=dtypes}}
+						{{else if (eq item.type "treasure")}}
+						{{> "systems/projectfu/templates/item/partials/item-treasure-header.hbs" dtypes=dtypes}}
 						{{else if (eq item.type "spell")}}
 						{{> "systems/projectfu/templates/item/partials/item-spell-header.hbs" dtypes=dtypes}}
 						{{else if (eq item.type "class")}}

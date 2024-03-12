@@ -51,6 +51,8 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/item/partials/item-header.hbs',
 		'systems/projectfu/templates/item/partials/item-weapon-header.hbs',
 		'systems/projectfu/templates/item/partials/item-defense-header.hbs',
+		'systems/projectfu/templates/item/partials/item-consumable-header.hbs',
+		'systems/projectfu/templates/item/partials/item-treasure-header.hbs',
 		'systems/projectfu/templates/item/partials/item-spell-header.hbs',
 		'systems/projectfu/templates/item/partials/item-class-header.hbs',
 		'systems/projectfu/templates/item/partials/item-skill-header.hbs',

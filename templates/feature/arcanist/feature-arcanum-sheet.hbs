@@ -1,17 +1,21 @@
 <div>
-    <label>
-        {{localize 'FU.ClassFeatureArcanumDomains'}}
-        <input type='text' name='system.data.domains' value='{{system.data.domains}}' />
-    </label>
-	<hr />
-    <div class="grid grid-2col">
-        <div>
-            <label>{{localize 'FU.ClassFeatureArcanumMerge'}}</label>
-            {{editor enrichedHtml.merge target="system.data.merge" engine="prosemirror" button=true}}
+    <fieldset class="title-fieldset section-container desc resource-content">
+        <label class="resource-label-m">
+            {{localize 'FU.ClassFeatureArcanumDomains'}}
+            <input type='text' name='system.data.domains' value='{{system.data.domains}}'
+                class="resource-inputs select-dropdown-full resource-text-m" />
+        </label>
+    </fieldset>
+    <fieldset class="title-fieldset section-container desc resource-content">
+        <div class="grid grid-2col">
+            <div>
+                <label class="resource-label-m">{{localize 'FU.ClassFeatureArcanumMerge'}}</label>
+                {{editor enrichedHtml.merge target="system.data.merge" engine="prosemirror" button=true}}
+            </div>
+            <div>
+                <label class="resource-label-m">{{localize 'FU.ClassFeatureArcanumDismiss'}}</label>
+                {{editor enrichedHtml.dismiss target="system.data.dismiss" engine="prosemirror" button=true}}
+            </div>
         </div>
-        <div>
-            <label>{{localize 'FU.ClassFeatureArcanumDismiss'}}</label>
-            {{editor enrichedHtml.dismiss target="system.data.dismiss" engine="prosemirror" button=true}}
-        </div>
-    </div>
+    </fieldset>
 </div>
