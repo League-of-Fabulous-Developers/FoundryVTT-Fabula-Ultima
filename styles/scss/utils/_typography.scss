@@ -13,9 +13,9 @@
 }
 
 @counter-style diamonds {
-    system: cyclic;
-    suffix: " ";
-    symbols: "◆";
+  system: cyclic;
+  suffix: " ";
+  symbols: "◆";
 }
 
 // Font Variables
@@ -87,19 +87,26 @@ $font-quote: "EB Garamond", sans-serif;
     }
 
     // Change bullet content for li
-    .editor, .journal-page-content, .editor-content, .chat-desc {
+    .editor,
+    .journal-page-content,
+    .editor-content,
+    .chat-desc {
       ul {
         list-style: diamonds;
 
-        li, .ProseMirror li {
+        li,
+        .ProseMirror li {
           &::marker {
             color: $color-secondary;
             font-size: 14px;
           }
         }
       }
+
       ol {
-        li, .ProseMirror li {
+
+        li,
+        .ProseMirror li {
           &::marker {
             color: $color-secondary;
             font-size: 16px;
@@ -148,7 +155,7 @@ $font-quote: "EB Garamond", sans-serif;
       font-family: $font-quote;
       font-weight: 700;
       font-style: italic;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.45em;
     }
   }
@@ -242,6 +249,7 @@ $font-quote: "EB Garamond", sans-serif;
     .editor-edit,
     .editor-content,
     .journal-entry-page {
+
       font-weight: normal;
 
       h1,
@@ -261,7 +269,18 @@ $font-quote: "EB Garamond", sans-serif;
       }
 
       p {
+        margin: 0;
         line-height: 1.45em;
+      }
+
+      h1+p,
+      h2+p,
+      h3+p,
+      h4+p,
+      h5+p,
+      h6+p,
+      p+p {
+        margin-top: 5px;
       }
 
       blockquote {
