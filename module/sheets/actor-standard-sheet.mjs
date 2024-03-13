@@ -1341,10 +1341,10 @@ async function toggleGuardEffect(actor) {
 	if (guardActive) {
 		// Delete existing guard effects
 		actor.effects.filter(effect => effect.statuses.has('guard')).forEach(effect => effect.delete());
-		ui.notifications.info('Guard is activated.');
+		ui.notifications.info('Guard is deactivated.');
 	} else {
 		// Create a new guard effect
 		await ActiveEffect.create(guardEffect, { parent: actor });
-		ui.notifications.info('Guard is deactivated.');
+		ui.notifications.info('Guard is activated.');
 	}
 }
