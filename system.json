@@ -33,7 +33,19 @@
 		"styles/css/projectfu.css",
 		"styles/css/rpg-awesome.css"
 	],
-	"packs": [],
+	"packs": [
+		{
+			"label": "Essentials",
+			"type": "Item",
+			"name": "essentials",
+			"path": "packs/essentials",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		}
+	],
 	"languages": [
 		{
 			"lang": "en",

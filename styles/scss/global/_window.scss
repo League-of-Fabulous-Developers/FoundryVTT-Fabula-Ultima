@@ -5,7 +5,7 @@
   justify-content: flex-start;
   padding: 0;
   color: var(--color-text-dark-primary);
-  overflow-y: hidden;
+  overflow-y: auto !important;
   overflow-x: hidden;
 }
 
