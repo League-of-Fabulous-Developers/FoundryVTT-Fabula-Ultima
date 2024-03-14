@@ -154,7 +154,7 @@ Hooks.once('init', async () => {
 	return preloadHandlebarsTemplates();
 });
 
-Hooks.once('setup', () => {});
+Hooks.once('setup', () => { });
 
 /* -------------------------------------------- */
 /*  Handlebars Helpers                          */
@@ -272,6 +272,11 @@ Handlebars.registerHelper('getIconClass', function (item) {
 Hooks.once('ready', async function () {
 	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
+
+    Hooks.on('rollEquipment', (actor, slot) => {
+        // Call the rollEquipment function
+        rollEquipment(actor, slot);
+    });
 });
 
 Hooks.once('socketlib.ready', onSocketLibReady);
@@ -282,13 +287,13 @@ Hooks.once('mmo-hud.ready', () => {
 
 Hooks.once('ready', () => {
 	const isPixelated = game.settings.get("projectfu", "optionImagePixelated");
-    const applyPixelatedStyle = () => {
-        // Apply the style to specific selectors
-        $('img')
-            .css('image-rendering', isPixelated ? 'pixelated' : '');
-    };
-    // Apply the style initially
-    applyPixelatedStyle();
+	const applyPixelatedStyle = () => {
+		// Apply the style to specific selectors
+		$('img')
+			.css('image-rendering', isPixelated ? 'pixelated' : '');
+	};
+	// Apply the style initially
+	applyPixelatedStyle();
 });
 
 /* -------------------------------------------- */
@@ -351,4 +356,36 @@ function rollItemMacro(itemUuid) {
 		// Trigger the item roll
 		item.roll();
 	});
+}
+
+/**
+ * Rolls equipment for the specified actor and slot.
+ * @param {Actor} actor The actor whose equipment will be rolled.
+ * @param {string} slot The slot of the equipment to roll ('mainHand', 'offHand', 'armor', or 'accessory').
+ * @param {boolean} isShift Indicates whether the shift key is pressed.
+ */
+function rollEquipment(actor, slot, isShift) {
+    // Check if the slot is valid
+    const validSlots = ['mainHand', 'offHand', 'armor', 'accessory'];
+    if (!validSlots.includes(slot)) {
+        ui.notifications.warn(`Invalid slot: ${slot}!`);
+        return;
+    }
+
+    // Filter items based on the provided slot
+    const sameSlotItems = actor.items.filter((item) => {
+        return item.system.isEquipped && item.system.isEquipped.slot === slot;
+    });
+
+    // Check if any item is found in the specified slot
+    if (sameSlotItems.length === 0) {
+        ui.notifications.warn(`No item equipped in ${slot} slot!`);
+        return;
+    }
+
+    // Get the first item from the filtered collection
+    const item = sameSlotItems[0];
+
+    // Roll the item
+    item.roll(isShift);
 }
