@@ -25,57 +25,75 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 .fu-action-melee {
   background-image: $fu-action-melee;
 }
+
 .fu-action-ranged {
   background-image: $fu-action-ranged;
 }
+
 .fu-action-skill {
   background-image: $fu-action-skill;
 }
+
 .fu-action-spell {
   background-image: $fu-action-spell;
 }
+
 .fus-offensive {
   background-image: $fus-offensive;
 }
+
 .ful-offensive {
   background-image: $ful-offensive;
 }
+
 .fus-martial {
   background-image: $fus-martial;
 }
+
 .ful-martial {
   background-image: $ful-martial;
 }
+
 .fu-d20 {
   background-image: $fu-d20;
 }
+
 .fu-guard {
   background-image: $fu-guard;
 }
+
 .fu-phys {
   background-image: $fu-phys;
 }
+
 .fu-wind {
   background-image: $fu-wind;
 }
+
 .fu-bolt {
   background-image: $fu-bolt;
 }
+
 .fu-dark {
   background-image: $fu-dark;
 }
+
 .fu-earth {
   background-image: $fu-earth;
 }
+
 .fu-fire {
   background-image: $fu-fire;
 }
+
 .fu-ice {
   background-image: $fu-ice;
 }
+
 .fu-light {
   background-image: $fu-light;
 }
+
 .fu-poison {
   background-image: $fu-poison;
 }
@@ -96,8 +114,8 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 }
 
 .fuk {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background-size: cover;
   margin: -4px 0px;
   fill: $color-secondary;
@@ -111,7 +129,7 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
   background-image: $fus-sl-star;
 }
 
-.ra-1xh{
+.ra-1xh {
   font-size: 1.5em;
 }
 
@@ -127,10 +145,6 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
   /* Bottom-right */
 }
 
-.is-martial {
-  color: $color-danger !important;
-}
-
 .is-buff {
   position: relative;
   color: $color-success !important;
@@ -143,12 +157,17 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 }
 
 @keyframes floating {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
-  25%, 75% {
+
+  25%,
+  75% {
     transform: translateY(-5px);
   }
+
   50% {
     transform: translateY(0);
   }
@@ -156,7 +175,7 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 
 .is-crisis {
   color: $color-danger !important;
-  
+
   &.float-text {
     display: inline-block;
     position: relative;
@@ -170,16 +189,19 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
   & i {
     animation: hover-up-down 1s ease-in-out infinite alternate;
   }
-  
+
   & label {
     cursor: pointer;
   }
 }
 
 @keyframes hover-up-down {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-3px);
   }

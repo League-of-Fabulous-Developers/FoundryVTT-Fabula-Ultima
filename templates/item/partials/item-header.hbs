@@ -9,16 +9,28 @@
 							data-tooltip="{{ item.name }}" class="resource-inputs-charname auto-shrink" />
 					</h2>
 					<h4 class="martials">
-						{{#if system.isMartial}}
-						<img id="martial-header"
-							class="icon-aff {{#if system.isMartial.value}}fus-martial active{{else}}ful-martial{{/if}}">
-						{{/if}}
+						<input id="martial-checkbox" type="checkbox" style="display: none;" {{#if
+							system.isMartial.value}}checked{{/if}}>
+						<label for="martial-checkbox">
+							{{#if system.isMartial}}
+							<img id="martial-header"
+								class="icon-aff {{#if system.isMartial.value}}fus-martial active{{else}}ful-martial{{/if}}"
+								tabindex="0" aria-hidden="true" onkeypress="toggleCheckbox(event, 'martial-checkbox')">
+							{{/if}}
+						</label>
 
-						{{#if system.isOffensive}}
-						<img id="offensive-header"
-							class="icon-aff {{#if system.isOffensive.value}}fus-offensive active{{else}}ful-offensive{{/if}}">
-						{{/if}}
+						<input id="offensive-checkbox" type="checkbox" style="display: none;" {{#if
+							system.isOffensive.value}}checked{{/if}}>
+						<label for="offensive-checkbox">
+							{{#if system.isOffensive}}
+							<img id="offensive-header"
+								class="icon-aff {{#if system.isOffensive.value}}fus-offensive active{{else}}ful-offensive{{/if}}"
+								tabindex="0" aria-hidden="true"
+								onkeypress="toggleCheckbox(event, 'offensive-checkbox')">
+							{{/if}}
+						</label>
 					</h4>
+
 				</div>
 
 				{{!-- Part --}}

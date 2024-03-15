@@ -121,5 +121,20 @@ export class FUItemSheet extends ItemSheet {
 
 		// Active Effect management
 		html.on('click', '.effect-control', (ev) => onManageActiveEffect(ev, this.item));
+
+        // Martial/Offensive Toggle
+        html.find('#offensive-header').click(this._toggleMartial.bind(this, 'offensive'));
+        html.find('#martial-header').click(this._toggleMartial.bind(this, 'martial'));
+
 	}
+
+	_toggleMartial(type) {
+		const system = this.item?.system;
+	
+		if (system) {
+			const updateKey = type === 'offensive' ? 'isOffensive' : 'isMartial';
+			this.item.update({ [`system.${updateKey}.value`]: !system[updateKey].value });
+		}
+	}
+	
 }

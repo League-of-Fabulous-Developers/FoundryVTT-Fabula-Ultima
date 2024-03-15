@@ -4,7 +4,7 @@
         <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
             aria-describedby="tooltip">
             {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
-            <i class="fa-solid fa-heart-crack is-martial"></i>
+            <i class="fa-solid fa-heart-crack is-crisis"></i>
             {{else}}
             <i class="fa-solid fa-heart"></i>
             {{/if}} {{localize 'FU.HealthAbbr'}}

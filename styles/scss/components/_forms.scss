@@ -187,16 +187,24 @@
     /* Martial & Offensive Icon */
     img#martial-header,
     img#offensive-header {
-      flex: 0 0 40px;
-      height: 40px;
+      flex: 0 0 48px;
+      height: 48px;
       object-fit: contain;
+      vertical-align: middle;
+      background-position-x: center;
       border: none;
       background-repeat: no-repeat;
       margin: auto;
       opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.7s ease;
 
       &.active {
         opacity: 1;
+      }
+
+      &:not(.active):hover {
+        opacity: 0.8;
       }
     }
   }
