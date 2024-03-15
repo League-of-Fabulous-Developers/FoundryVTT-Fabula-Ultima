@@ -1,11 +1,15 @@
 <section class="desc">
-     {{#unless hideHeader}}
+	{{#unless hideHeader}}
 	<header class="items-main-header">
 		<span class="items-main">
 			<label class="items-label">{{localize "FU.Effects"}}</label>
 		</span>
+		<span class="effects-clear items-main total-level w-25" data-type="clearTempEffects"
+			data-tooltip="{{localize 'FU.Clear'}} {{localize 'FU.TemporaryEffects'}}">
+			<a>{{localize 'FU.Clear'}} <i class="fa-solid fa-circle-plus"></i></a>
+		</span>
 	</header>
-     {{/unless}}
+	{{/unless}}
 	<ol class="items-list effects-list">
 		{{#each effects as |section sid|}}
 		<li class="item items-header flexrow" data-effect-type="{{ section.type }}">
@@ -40,7 +44,8 @@
 						<div class="item-lg">{{ effect.duration.name }}</div>
 						<div class="item-m end flexrow">
 							<a class="effect-control" data-action="toggle" title="{{localize 'FU.EffectToggle'}}">
-								<i class="{{#if effect.disabled}}fal fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
+								<i
+									class="{{#if effect.disabled}}fal fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
 							</a>
 							<a class="effect-control" data-action="edit" title="{{localize 'FU.EffectEdit'}}">
 								<i class="fas fa-edit"></i>
