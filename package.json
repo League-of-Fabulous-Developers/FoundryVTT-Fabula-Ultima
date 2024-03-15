@@ -15,6 +15,7 @@
 	"license": "MIT",
 	"private": true,
 	"devDependencies": {
+		"@foundryvtt/foundryvtt-cli": "^1.0.2",
 		"gulp": "^4.0.2",
 		"gulp-autoprefixer": "^6.1.0",
 		"gulp-sass": "^5.1.0",
