@@ -1,5 +1,7 @@
 import { createCheckMessage, rollCheck } from '../../helpers/checks.mjs';
 import { RollableClassFeatureDataModel } from './classFeature/class-feature-data-model.mjs';
+import { SYSTEM } from '../../settings.js';
+import { Flags } from '../../helpers/flags.mjs';
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -524,7 +526,7 @@ export class FUItem extends Item {
 
 			const qualityValue = this.system.quality?.value || '';
 			const hasQualityValue = qualityValue.trim() !== '';
-	
+
 			if (hasQualityValue) {
 				content += `
 				<div class="detail-desc flexrow flex-group-center" style="padding: 0 2px;">
@@ -617,10 +619,10 @@ export class FUItem extends Item {
 
 		const heroicClassValue = heroicClass?.value || '';
 		const hasHeroicClassValue = heroicClassValue.trim() !== '';
-	
+
 		const requirementValue = requirement?.value || '';
 		const hasRequirementValue = requirementValue.trim() !== '';
-	
+
 		const heroicStyleValue = heroicStyle?.value || '';
 		const hasHeroicStyleValue = heroicStyleValue.trim() !== '';
 
@@ -730,7 +732,7 @@ export class FUItem extends Item {
 				flavor: label,
 				content,
 				rolls,
-				flags: { item },
+				flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
 			});
 		} else {
 			// Retrieve roll data.

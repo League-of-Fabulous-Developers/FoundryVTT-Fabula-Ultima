@@ -1,4 +1,6 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { SYSTEM } from '../../../../settings.js';
+import { Flags } from '../../../../helpers/flags.mjs';
 
 const durations = {
 	instant: 'FU.ClassFeatureDanceDurationInstant',
@@ -43,6 +45,9 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 			speaker,
 			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', item),
 			content: await renderTemplate('systems/projectfu/templates/feature/dancer/feature-dance-chat-message.hbs', data),
+			flags: {
+				[SYSTEM]: { [Flags.ChatMessage.Item]: item },
+			},
 		};
 
 		ChatMessage.create(chatMessage);

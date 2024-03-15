@@ -3,6 +3,8 @@ import { promptCheck, createChatMessage } from '../helpers/checks.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
 import { SETTINGS, SYSTEM } from '../settings.js';
+import { InlineDamage } from '../helpers/inline-damage.mjs';
+import { InlineRecovery } from '../helpers/inline-recovery.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -222,13 +224,13 @@ export class FUStandardActorSheet extends ActorSheet {
 					// if (progress.current === progress.max) {
 					// 	let maxTitle = `${item.name} MAX!`;
 					// 	let maxDescription = '';
-	
+
 					// 	if (item.type === 'zeroPower') {
 					// 		maxDescription = `Trigger: ${item.system.zeroTrigger?.description || ''}<br>Effect: ${item.system.zeroEffect?.description || ''}`;
 					// 	} else {
 					// 		maxDescription = item.system.description || '';
 					// 	}
-	
+
 					// 	const params = {
 					// 		details: { name: maxTitle },
 					// 		description: maxDescription,
@@ -401,6 +403,8 @@ export class FUStandardActorSheet extends ActorSheet {
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
+		InlineDamage.activateListeners(html, this.actor);
+		InlineRecovery.activateListeners(html, this.actor);
 
 		// Render the item sheet for viewing/editing prior to the editable check.
 		html.find('.item-edit').click((ev) => {
@@ -1315,6 +1319,16 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 		super._updateObject(event, data);
 	}
+
+	async _onDrop(event) {
+		if (InlineDamage.onDropActor(event, this.actor)) {
+			return;
+		}
+		if (InlineRecovery.onDropActor(event, this.actor)) {
+			return;
+		}
+		return super._onDrop(event);
+	}
 }
 
 /**
@@ -1334,13 +1348,13 @@ function shuffleArray(array) {
 
 async function toggleGuardEffect(actor) {
 	const GUARD_EFFECT_ID = 'guard';
-	const guardEffect = CONFIG.statusEffects.find(effect => effect.id === GUARD_EFFECT_ID);
+	const guardEffect = CONFIG.statusEffects.find((effect) => effect.id === GUARD_EFFECT_ID);
 
-	const guardActive = actor.effects.some(effect => effect.statuses.has('guard'));
+	const guardActive = actor.effects.some((effect) => effect.statuses.has('guard'));
 
 	if (guardActive) {
 		// Delete existing guard effects
-		actor.effects.filter(effect => effect.statuses.has('guard')).forEach(effect => effect.delete());
+		actor.effects.filter((effect) => effect.statuses.has('guard')).forEach((effect) => effect.delete());
 		ui.notifications.info('Guard is deactivated.');
 	} else {
 		// Create a new guard effect

@@ -1,4 +1,6 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
+import { InlineDamage } from '../helpers/inline-damage.mjs';
+import { InlineRecovery } from '../helpers/inline-recovery.mjs';
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -87,6 +89,8 @@ export class FUItemSheet extends ItemSheet {
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
+		InlineDamage.activateListeners(html, this.item);
+		InlineRecovery.activateListeners(html, this.item);
 
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
@@ -116,8 +120,6 @@ export class FUItemSheet extends ItemSheet {
 		});
 
 		// Active Effect management
-		html.on('click', '.effect-control', (ev) =>
-			onManageActiveEffect(ev, this.item)
-		);
+		html.on('click', '.effect-control', (ev) => onManageActiveEffect(ev, this.item));
 	}
 }

@@ -1,4 +1,6 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { SYSTEM } from '../../../../settings.js';
+import { Flags } from '../../../../helpers/flags.mjs';
 
 const alchemyFlavors = {
 	basic: 'FU.ClassFeatureAlchemyBasic',
@@ -114,7 +116,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 	 * @param {AlchemyDataModel} model
 	 * @return {Promise<void>}
 	 */
-	static async roll(model) {
+	static async roll(model, item) {
 		let dice = model.config.ranks.basic.dice;
 		let rank = 'basic';
 		if (['advanced', 'superior'].includes(model.rank)) {
@@ -151,6 +153,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 					type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 					rolls: [roll],
 					content: await renderTemplate('systems/projectfu/templates/feature/tinkerer/feature-alchemy-chat-message.hbs', data),
+					flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
 				});
 			} else {
 				await roll.toMessage({ flavor: game.i18n.localize(alchemyFlavors[rank]), speaker });

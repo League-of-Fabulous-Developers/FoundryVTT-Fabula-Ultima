@@ -1,5 +1,5 @@
-import {AccuracyBonusesDataModel} from './accuracy-bonuses-data-model.mjs';
-import {DamageBonusesDataModel} from './damage-bonuses-data-model.mjs';
+import { AccuracyBonusesDataModel } from './accuracy-bonuses-data-model.mjs';
+import { DamageBonusesDataModel } from './damage-bonuses-data-model.mjs';
 
 /**
  * @property {AccuracyBonusesDataModel} accuracy
@@ -13,4 +13,10 @@ export class BonusesDataModel extends foundry.abstract.DataModel {
 			damage: new EmbeddedDataField(DamageBonusesDataModel, {}),
 		};
 	}
+
+	recovery = {
+		hp: 0,
+		mp: 0,
+		ip: 0,
+	};
 }
