@@ -11,6 +11,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatMouseDown: 'optionCombatMouseDown',
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	optionImagePixelated: 'optionImagePixelated',
+	optionAlwaysFavorite: 'optionAlwaysFavorite',
 });
 
 export const registerSystemSettings = async function () {
@@ -124,6 +125,15 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
+		name: 'Always Favorite Item',
+		hint: 'Enable this option to always favorite an item during creation.',
+		scope: 'client',
+		config: true,
+		type: Boolean,
+		default: false,
 	});
 };
 

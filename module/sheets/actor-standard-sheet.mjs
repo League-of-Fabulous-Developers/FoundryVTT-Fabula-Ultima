@@ -831,11 +831,20 @@ export class FUStandardActorSheet extends ActorSheet {
 		};
 		// Remove the type from the dataset since it's in the itemData.type prop.
 		delete itemData.system['type'];
-
-		// Finally, create the item!
-		return await Item.create(itemData, { parent: this.actor });
+	
+		// Check if the game option exists and is enabled
+		if (game.settings.get("projectfu", "optionAlwaysFavorite")) {
+			let item = await Item.create(itemData, { parent: this.actor });
+			await item.update({
+				'data.isFavored.value': true,
+			});
+			return item;
+		} else {
+			// Finally, create the item!
+			return await Item.create(itemData, { parent: this.actor });
+		}
 	}
-
+	
 	async _onItemCreateDialog(event) {
 		event.preventDefault();
 
