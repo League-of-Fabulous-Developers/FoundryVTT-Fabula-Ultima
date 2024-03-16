@@ -1,0 +1,94 @@
+<div class="{{cssClasses}}" id="{{cssId}}">
+    <div class="window-header" style="display: none;">Combat HUD</div>
+    <div class="faction-list npcs">
+        {{#each npcs}}
+        <div class="combat-row" data-actor-id="{{ this.actor.id }}" data-token-id="{{ this.token.id }}">
+            <img class="token-image" src="{{this.actor.img}}" alt="{{this.actor.name}}"/>
+            <div class="combat-info">
+                {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
+                <div class="combat-name crisis"><h2>{{this.actor.name}}</h2></div>    
+                {{else}}
+                <div class="combat-name"><h2>{{this.actor.name}}</h2></div>   
+                {{/if}}
+                <div class="combat-effects">
+                    {{#each this.actor.effects as |effect|}}
+                    <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}" />
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="faction-list characters">
+        {{#each characters}}
+        <div class="combat-row" data-actor-id="{{ this.actor.id }}" data-token-id="{{ this.token.id }}">
+            <img class="token-image" src="{{this.actor.img}}" alt="{{this.actor.name}}"/>
+            <div class="combat-info">
+                {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
+                <div class="combat-name crisis"><h2>{{this.actor.name}}</h2></div>    
+                {{else}}
+                <div class="combat-name"><h2>{{this.actor.name}}</h2></div>   
+                {{/if}} 
+                <div class="combat-effects">
+                    {{#each this.actor.effects as |effect|}}
+                    <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}" />
+                    {{/each}}
+                </div>
+            </div>
+            <div class="combat-bars">
+                <div class="bar-container">
+                    <div class="bar bar-progress">
+                        {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
+                        <div class="bar-progress-bar bar-hp-crisis"
+                            style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
+                        <div class="center-line"></div>
+                        {{else}}
+                        <div class="bar-progress-bar bar-hp"
+                            style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
+                        {{/if}}
+                        <span class="bar-value"></span>
+                    </div>  
+                    <div class="resource-value">
+                        {{#if (lte this.actor.system.resources.hp.value (half this.actor.system.resources.hp.max))}}
+                        <i class="fa-solid fa-heart-crack is-crisis"></i>
+                        {{else}}
+                        <i class="fa-solid fa-heart"></i>
+                        {{/if}}
+                        <div class="resource-text">
+                            <span>{{ this.actor.system.resources.hp.value }} / {{ this.actor.system.resources.hp.max }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar bar-progress">
+                        <div class="bar-progress-bar bar-mp"
+                            style="width: {{calculatePercentage this.actor.system.resources.mp.value this.actor.system.resources.mp.max}};">
+                        </div>
+                        <span class="bar-value"></span>
+                    </div>  
+                    <div class="resource-value">
+                        <i class="fa-solid fa-hat-wizard icon"></i>
+                        <div class="resource-text">
+                            <span>{{ this.actor.system.resources.mp.value }} / {{ this.actor.system.resources.mp.max }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar bar-progress">
+                        <div class="bar-progress-bar bar-ip"
+                            style="width: {{calculatePercentage this.actor.system.resources.ip.value this.actor.system.resources.ip.max}};">
+                        </div>
+                        <span class="bar-value"></span>
+                    </div>
+                    <div class="resource-value">
+                        <i class="ra ra-gear-hammer icon"></i>
+                        <div class="resource-text">
+                            <span>{{ this.actor.system.resources.ip.value }} / {{ this.actor.system.resources.ip.max }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

@@ -12,6 +12,7 @@ export const SETTINGS = Object.freeze({
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	optionImagePixelated: 'optionImagePixelated',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
+	experimentalCombatHud: 'experimentalCombatHud',
 });
 
 export const registerSystemSettings = async function () {
@@ -131,6 +132,15 @@ export const registerSystemSettings = async function () {
 		name: 'Always Favorite Item',
 		hint: 'Enable this option to always favorite an item during creation.',
 		scope: 'client',
+		config: true,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.experimentalCombatHud, {
+		name: game.i18n.localize('FU.ExperimentalCombatHud'),
+		hint: game.i18n.localize('FU.ExperimentalCombatHudHint'),
+		scope: 'world',
 		config: true,
 		type: Boolean,
 		default: false,
