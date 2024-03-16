@@ -796,7 +796,7 @@ export class FUItem extends Item {
 			damage: checkDamage,
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
 		});
-		return createCheckMessage(check);
+		return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 	}
 
 	/**
@@ -845,7 +845,7 @@ export class FUItem extends Item {
 			},
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
 		});
-		return createCheckMessage(check);
+		return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 	}
 
 	async rollBasic(hrZero) {
@@ -885,7 +885,7 @@ export class FUItem extends Item {
 			},
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
 		});
-		return createCheckMessage(check);
+		return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 	}
 
 	async rollAbility(hrZero) {
@@ -916,7 +916,7 @@ export class FUItem extends Item {
 			for (let [_, weapon] of Object.entries(equippedWeapons)) {
 				if (weapon) {
 					let params = this.#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo);
-					checks.push(rollCheck(params).then((check) => createCheckMessage(check)));
+					checks.push(rollCheck(params).then((check) => createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } })));
 				}
 			}
 			return Promise.all(checks);
@@ -948,7 +948,7 @@ export class FUItem extends Item {
 				damage: checkDamage,
 				speaker: speaker,
 			});
-			return createCheckMessage(check);
+			return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 		}
 	}
 

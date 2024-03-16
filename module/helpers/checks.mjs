@@ -326,8 +326,10 @@ export function addRollContextMenuEntries(html, options) {
 				const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 				const rerollParams = await getRerollParams(checkParams, ChatMessage.getSpeakerActor(message.speaker));
 				if (rerollParams) {
+					const flags = foundry.utils.duplicate(message.flags);
+					delete flags[SYSTEM][Flags.ChatMessage.CheckParams];
 					const newMessage = await rerollCheck(checkParams, rerollParams);
-					await createCheckMessage(newMessage);
+					await createCheckMessage(newMessage, flags);
 				}
 			}
 		},
@@ -354,8 +356,10 @@ export function addRollContextMenuEntries(html, options) {
 				const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 				const pushParams = await getPushParams(ChatMessage.getSpeakerActor(message.speaker));
 				if (pushParams) {
+					const flags = foundry.utils.duplicate(message.flags);
+					delete flags[SYSTEM][Flags.ChatMessage.CheckParams];
 					const newMessage = await pushCheck(checkParams, pushParams);
-					await createCheckMessage(newMessage);
+					await createCheckMessage(newMessage, flags);
 				}
 			}
 		},
@@ -382,8 +386,10 @@ export function addRollContextMenuEntries(html, options) {
 				const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 				const rerollParams = await getRerollParams(checkParams, ChatMessage.getSpeakerActor(message.speaker));
 				if (rerollParams) {
+					const flags = foundry.utils.duplicate(message.flags);
+					delete flags[SYSTEM][Flags.ChatMessage.CheckParams];
 					const newMessage = await rerollCheck(checkParams, rerollParams);
-					await createCheckMessage(newMessage);
+					await createCheckMessage(newMessage, flags);
 				}
 			}
 		},
@@ -561,7 +567,7 @@ async function getRerollParams(params, actor) {
  * @returns {string} - The enriched content.
  */
 async function EnrichHTML(htmlContent) {
-    return TextEditor.enrichHTML(htmlContent);
+	return TextEditor.enrichHTML(htmlContent);
 }
 
 /**
@@ -570,29 +576,29 @@ async function EnrichHTML(htmlContent) {
  * @return {Promise<chatMessage>}
  */
 export async function createChatMessage(checkParams, additionalFlags = {}) {
-    const content = checkParams.description
-        ? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
-            flavor: checkParams.details?.name || '',
-            description: await EnrichHTML(checkParams.description),
-        })
-        : '';
+	const content = checkParams.description
+		? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
+				flavor: checkParams.details?.name || '',
+				description: await EnrichHTML(checkParams.description),
+		  })
+		: '';
 
-    /** @type Partial<ChatMessageData> */
-    const chatMessage = {
-        content: content,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-        speaker: checkParams.speaker,
-        flags: foundry.utils.mergeObject(
-            {
-                [SYSTEM]: {
-                    [Flags.ChatMessage.CheckParams]: checkParams,
-                },
-            },
-            additionalFlags,
-        ),
-    };
+	/** @type Partial<ChatMessageData> */
+	const chatMessage = {
+		content: content,
+		type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+		speaker: checkParams.speaker,
+		flags: foundry.utils.mergeObject(
+			{
+				[SYSTEM]: {
+					[Flags.ChatMessage.CheckParams]: checkParams,
+				},
+			},
+			additionalFlags,
+		),
+	};
 
-    return ChatMessage.create(chatMessage);
+	return ChatMessage.create(chatMessage);
 }
 
 /**
@@ -639,6 +645,7 @@ const KEY_RECENT_CHECKS = 'fabulaultima.recentChecks';
 
 /**
  * @param {FUActor} actor
+ * @param {string} title
  * @returns {Promise<ChatMessage|Object>}
  */
 export async function promptCheck(actor, title) {

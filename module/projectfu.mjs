@@ -45,10 +45,13 @@ import { InlineDamage } from './helpers/inline-damage.mjs';
 import { FUChatMessage } from './documents/message/chat-message.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
 import { InlineRecovery } from './helpers/inline-recovery.mjs';
+import { Flags } from './helpers/flags.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
 	RollableClassFeatureDataModel,
+	SYSTEM,
+	Flags,
 };
 
 /* -------------------------------------------- */
