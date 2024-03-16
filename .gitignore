@@ -12,3 +12,7 @@ npm-debug.log
 *.lock
 jsconfig.json
 foundry
+
+/packs/**/*
+!/packs/**/*/
+!/packs/**/*.json
