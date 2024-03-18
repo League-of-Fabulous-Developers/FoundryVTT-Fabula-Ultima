@@ -102,6 +102,12 @@ jobs:
           MANIFEST: ${{ env.latest_manifest_url }}
           DOWNLOAD: ${{ env.release_system_url }}
 
+      # Install FoundryVTT CLI and pack the Compendiums.
+      - name: Install FoundryVTT CLI and Pack Compendiums
+        run: |
+          npm install @foundryvtt/foundryvtt-cli --save-dev
+          fvtt package pack "Essentials"
+        working-directory: ./packs/essentials/
 
       # Create a "fabulaultima.zip" archive containing all the system's required files.
       # If you have other directories or files that will need to be added to
