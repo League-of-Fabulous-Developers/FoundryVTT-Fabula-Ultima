@@ -44,15 +44,15 @@
 			</div>
 		</div>
 	{{/if}}
-	<div class='detail-desc flexrow flex-group-center'>
+	<div class='action-button detail-desc flexrow flex-group-center'>
 		{{#if (eq status 'open')}}
 			<button type='button' data-support='{{groupCheckId}}'>{{localize 'FU.ChatGroupCheckSupport'}}</button>
 		{{/if}}
 		{{#if (eq status 'completed')}}
-			<span>{{localize 'FU.ChatGroupCheckCompleted'}}</span>
+			<button type='button' disabled>{{localize 'FU.ChatGroupCheckCompleted'}}</button>
 		{{/if}}
 		{{#if (eq status 'canceled')}}
-			<span>{{localize 'FU.ChatGroupCheckCanceled'}}</span>
+            <button type='button' disabled>{{localize 'FU.ChatGroupCheckCanceled'}}</button>
 		{{/if}}
 	</div>
 </div>

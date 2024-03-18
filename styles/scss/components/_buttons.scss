@@ -92,6 +92,11 @@
     outline: none;
     box-shadow: 3px 6px $color-success;
   }
+
+  button {
+    background-color: transparent;
+    color: $color-white;
+  }
 }
 
 .zenit-style,

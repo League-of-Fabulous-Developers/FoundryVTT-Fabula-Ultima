@@ -4,8 +4,8 @@
 .chat-message,
 .chat-message.whisper {
   // Styles for the chat card message
-  background-image: url("/systems/projectfu/styles/static/ui/bg.webp"),
-    linear-gradient(to right, $color-beige, $color-faint) !important;
+  background: #{$background-core},
+  linear-gradient(to right, $color-beige, $color-faint);
   background-blend-mode: multiply !important;
   background-repeat: repeat-y;
   background-position: right top;
@@ -127,6 +127,70 @@
     &:last-child::before {
       display: none; // Show the border for all divs except the third child and the last child
     }
+  }
+}
+
+/* Action Buttons */
+.action-button {
+  gap: 1px;
+  height: 32px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: normal;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: $color-primary;
+  text-shadow: 1px 1px 1px $color-black;
+  box-shadow: 3px 6px $color-secondary;
+  border-radius: 8px;
+  background: linear-gradient($color-tabStyle-gradient), $color-secondary;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &.active {
+    border: 1px solid darkslategrey;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(3px);
+    border-radius: 8px;
+  }
+
+  &:active {
+    transform: translateY(3px);
+    box-shadow: 1px 2px $color-secondary;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 3px 6px $color-success;
+  }
+
+  button {
+    background-color: transparent;
+    color: $color-white;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  button {
+    background-color: transparent;
+    color: $color-white;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &:has(button:disabled) {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(3px);
   }
 }
 

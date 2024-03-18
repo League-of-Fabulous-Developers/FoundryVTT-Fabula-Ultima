@@ -24,3 +24,9 @@
     @include gap($i * 1px);
   }
 }
+
+@mixin border-right-except-last {
+  >div:not(:last-child) {
+    border-right: 1px solid $color-secondary;
+  }
+}

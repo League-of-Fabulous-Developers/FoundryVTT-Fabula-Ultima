@@ -11,8 +11,8 @@
 
 .window-app .window-header {
   background: rgba($color-secondary, 0.95);
-  background-image: url("/systems/projectfu/styles/static/ui/bg.webp"),
-    linear-gradient(to right, $color-beige, $color-faint) !important;
+  background-image: #{$background-core},
+  linear-gradient(to right, $color-beige, $color-faint);
   border-bottom: none !important;
   background-blend-mode: multiply;
   background-repeat: repeat-y;

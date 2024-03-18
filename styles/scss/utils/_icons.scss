@@ -145,15 +145,37 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
   /* Bottom-right */
 }
 
-.is-buff {
-  position: relative;
-  color: $color-success !important;
 
+.is-buff {
+  color: $color-success !important;
+}
+
+.is-crisis {
+  color: $color-danger !important;
+}
+
+.is-levelup {
+  color: $color-levelup !important;
+  -webkit-text-stroke: 1px $color-secondary;
+  margin-left: 1px;
+}
+
+.is-buff,
+.is-crisis,
+.is-levelup {
   &.float-text {
-    position: relative;
     display: inline-block;
-    animation: floating 4s infinite ease-in-out;
+    position: relative;
+    animation: floating 3s infinite ease-in-out;
   }
+}
+
+.is-buff.float-text,
+.is-crisis.float-text,
+.is-levelup.float-text {
+  bottom: 2px;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 @keyframes floating {
@@ -170,18 +192,6 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 
   50% {
     transform: translateY(0);
-  }
-}
-
-.is-crisis {
-  color: $color-danger !important;
-
-  &.float-text {
-    display: inline-block;
-    position: relative;
-    bottom: 4px;
-    transform: translateY(-50%);
-    animation: floating 1s infinite ease-in-out;
   }
 }
 

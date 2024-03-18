@@ -453,6 +453,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('.increment-button').click((ev) => this._onIncrementButtonClick(ev));
 		html.find('.decrement-button').click((ev) => this._onDecrementButtonClick(ev));
 
+		// Update Character on Level Up
+		html.find('.is-levelup').click((ev) => this._onLevelUp(ev));
+
 		// Update Skill Level
 		html.find('.skillLevel input').click((ev) => this._onSkillLevelUpdate(ev));
 
@@ -831,7 +834,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		};
 		// Remove the type from the dataset since it's in the itemData.type prop.
 		delete itemData.system['type'];
-	
+
 		// Check if the game option exists and is enabled
 		if (game.settings.get("projectfu", "optionAlwaysFavorite")) {
 			let item = await Item.create(itemData, { parent: this.actor });
@@ -844,7 +847,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			return await Item.create(itemData, { parent: this.actor });
 		}
 	}
-	
+
 	async _onItemCreateDialog(event) {
 		event.preventDefault();
 
@@ -1012,6 +1015,30 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Create a chat message with the chat data
 		ChatMessage.create(chatData);
+	}
+
+	/**
+	 * Handles the level up action when clicked.
+	 *
+	 * @param {Event} ev - The input change event.
+	 */
+	_onLevelUp(ev) {
+		const input = ev.currentTarget;
+		const actor = this.actor;
+		if (!actor) return;
+
+		const exp = actor.system.resources.exp.value;
+		if (exp < 10) return;
+
+		const { level } = actor.system;
+		const $icon = $(input).css("position", "relative");
+		$icon.animate({ top: '-100%', opacity: 0 }, 500, function () {
+			actor.update({
+				"system.resources.exp.value": exp - 10,
+				"system.level.value": level.value + 1
+			});
+			$icon.remove();
+		});
 	}
 
 	/**
