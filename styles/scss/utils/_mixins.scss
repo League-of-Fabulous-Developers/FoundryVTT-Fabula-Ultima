@@ -30,3 +30,13 @@
     border-right: 1px solid $color-secondary;
   }
 }
+
+@mixin mb($value) {
+  margin-bottom: $value;
+}
+
+@for $i from 1 through 20 {
+  .mb-#{$i} {
+    @include mb($i * 1px);
+  }
+}

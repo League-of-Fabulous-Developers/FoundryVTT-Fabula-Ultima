@@ -3,7 +3,6 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  padding: 0;
   color: var(--color-text-dark-primary);
   overflow-y: auto !important;
   overflow-x: hidden;
@@ -11,12 +10,18 @@
 
 .window-app .window-header {
   background: rgba($color-secondary, 0.95);
-  background-image: #{$background-core},
+}
+
+/* Sheet Background */
+.backgroundstyle {
+  background: #{$background-core},
   linear-gradient(to right, $color-beige, $color-faint);
-  border-bottom: none !important;
   background-blend-mode: multiply;
   background-repeat: repeat-y;
   background-position: right top;
+  .window-content {
+    background: none;
+  }
 }
 
 .sheet nav.sheet-tabs .item {

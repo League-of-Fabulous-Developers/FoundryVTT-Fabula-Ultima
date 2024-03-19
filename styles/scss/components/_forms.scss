@@ -1,13 +1,3 @@
-/* Sheet Background */
-.backgroundstyle {
-  background: #{$background-core},
-  linear-gradient(to right, $color-beige, $color-faint);
-  background-blend-mode: multiply;
-  background-repeat: repeat-y;
-  background-position: right top;
-  padding: 0.5em 1em;
-}
-
 /* Description Format */
 .desc {
   background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));

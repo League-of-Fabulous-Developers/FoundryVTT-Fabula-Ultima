@@ -467,7 +467,7 @@ async function getPushParams(actor) {
 		title: game.i18n.localize('FU.DialogPushTitle'),
 		label: game.i18n.localize('FU.DialogPushLabel'),
 		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check-push.hbs', { bonds }),
-		options: { classes: ['dialog-reroll'] },
+		options: { classes: ['dialog-reroll', 'unique-dialog', 'backgroundstyle'] },
 		/** @type {(jQuery) => CheckPush} */
 		callback: (html) => {
 			const index = +html.find('input[name=bond]:checked').val();
@@ -530,7 +530,7 @@ async function getRerollParams(params, actor) {
 			attr1,
 			attr2,
 		}),
-		options: { classes: ['dialog-reroll'] },
+		options: { classes: ['dialog-reroll', "unique-dialog", "backgroundstyle"] },
 		/** @type {(jQuery) => CheckReroll} */
 		callback: (html) => {
 			const trait = html.find('input[name=trait]:checked');
@@ -578,9 +578,9 @@ async function EnrichHTML(htmlContent) {
 export async function createChatMessage(checkParams, additionalFlags = {}) {
 	const content = checkParams.description
 		? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
-				flavor: checkParams.details?.name || '',
-				description: await EnrichHTML(checkParams.description),
-		  })
+			flavor: checkParams.details?.name || '',
+			description: await EnrichHTML(checkParams.description),
+		})
 		: '';
 
 	/** @type Partial<ChatMessageData> */
@@ -687,7 +687,9 @@ export async function promptCheck(actor, title) {
 						},
 					},
 				],
-			},
+			}, {
+			classes: ["unique-dialog", "backgroundstyle"]
+		},
 			{},
 			{},
 		);

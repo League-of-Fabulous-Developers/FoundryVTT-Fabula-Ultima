@@ -168,18 +168,7 @@
     background-color: transparent;
     color: $color-white;
     cursor: pointer;
-  }
-
-  button:disabled {
-    opacity: 0.75;
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-
-  button {
-    background-color: transparent;
-    color: $color-white;
-    cursor: pointer;
+    border: 0;
   }
 
   button:disabled {

@@ -1,15 +1,14 @@
 // Reset or remove default styles for all HTML elements
 // Reset margin, padding, and box-sizing
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+// }
 
 // Remove list styles
 ul,
-ol {
-}
+ol {}
 
 // Reset text decoration for links
 a {
@@ -39,10 +38,8 @@ textarea,
 select {
   margin: 0;
   padding: 0;
-  border: none;
 
-  option {
-  }
+  option {}
 }
 
 // Reset table styles

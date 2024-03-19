@@ -16,7 +16,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['projectfu', 'sheet', 'actor'],
+			classes: ['projectfu', 'sheet', 'actor', 'backgroundstyle'],
 			template: 'systems/projectfu/templates/actor/actor-character-sheet.hbs',
 			width: 750,
 			height: 1000,
@@ -507,7 +507,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 			// Update the HTML icon based on the equipped item
 			const icon = li.find('.item-icon');
-			icon.removeClass('fa-toolbox').addClass(getIconClassForEquippedItem(item, itemType, handType));
+			icon.removeClass('fa-circle').addClass(getIconClassForEquippedItem(item, itemType, handType));
 
 			// Prevent the default right-click context menu if it's a right-click event
 			if (isRightClick) {
@@ -538,7 +538,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			} else if (item.system.isEquipped.slot === 'offHand') {
 				return 'ra ra-shield';
 			} else {
-				return 'fas fa-toolbox';
+				return 'fas fa-circle';
 			}
 		}
 

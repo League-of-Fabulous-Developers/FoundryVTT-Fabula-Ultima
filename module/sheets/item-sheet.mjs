@@ -10,7 +10,7 @@ export class FUItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['projectfu', 'sheet', 'item'],
+			classes: ['projectfu', 'sheet', 'item', 'backgroundstyle'],
 			width: 700,
 			height: 700,
 			tabs: [

@@ -1,4 +1,4 @@
-<form class="{{ cssClass }} {{ actor.type }} backgroundstyle projectfu-actor-sheet h-100" autocomplete="off">
+<form class="{{ cssClass }} {{ actor.type }} projectfu-actor-sheet h-100" autocomplete="off">
     <div class="sheet-content-wrapper">
         <header class="sheet-header desc">
             {{!-- Name/HP/Level Section --}}
@@ -27,6 +27,7 @@
                 </a>
                 <a class="item zenit-style" data-tooltip="{{localize 'FU.Zenit'}}">
                     <i class="fas fa-coin"></i>
+                    
                     <input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}"
                         data-dtype="Number" />
                 </a>
