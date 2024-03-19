@@ -775,7 +775,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			// console.log('All equipped items have been set to unequip.');
 		} else {
 			// Checkbox is checked
-			// console.log('Checkbox is checked');
 		}
 	}
 
@@ -802,7 +801,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		const duplicatedItemData = foundry.utils.duplicate(item);
 
 		// Modify the duplicated item's name
-		duplicatedItemData.name = `Copy of ${item.name}`;
+		duplicatedItemData.name = `${item.name}`;
 		duplicatedItemData.system.isEquipped = {
 			value: false,
 			slot: 'default',
@@ -1085,43 +1084,19 @@ export class FUStandardActorSheet extends ActorSheet {
 				if (item) {
 					switch (dataType) {
 						case 'levelCounter':
-							// Increment or decrement the level value
-							const newLevel = item.system.level.value + increment;
-							// Update the item with the new level value
-							await item.update({ 'system.level.value': newLevel });
+							await this._updateLevel(item, increment);
 							break;
 
 						case 'resourceCounter':
-							// Increment or decrement the rp progress current value
-							const stepMultiplier = item.system.rp.step || 1;
-							const maxProgress = item.system.rp.max;
-							let newProgress = item.system.rp.current + increment * stepMultiplier;
-
-							// Check if newProgress exceeds rp.max unless rp.max is 0
-							if (maxProgress !== 0) {
-								newProgress = Math.min(newProgress, maxProgress);
-							}
-
-							// Update the item with the new rp progress value
-							await item.update({ 'system.rp.current': newProgress });
+							await this._updateResourceProgress(item, increment);
 							break;
 
 						case 'clockCounter':
+							await this._updateClockProgress(item, increment);
 							break;
 
 						case 'projectCounter':
-							// Increment or decrement the rp progress current value
-							const progressPerDay = item.system.progressPerDay.value || 1;
-							const maxProjectProgress = item.system.progress.max;
-							let currentProgress = item.system.progress.current + increment * progressPerDay;
-
-							// Check if currentProgress exceeds progress.max unless progress.max is 0
-							if (maxProjectProgress !== 0) {
-								currentProgress = Math.min(currentProgress, maxProjectProgress);
-							}
-
-							// Update the item with the new progress value
-							await item.update({ 'system.progress.current': currentProgress });
+							await this._updateProjectProgress(item, increment);
 							break;
 
 						default:
@@ -1135,6 +1110,47 @@ export class FUStandardActorSheet extends ActorSheet {
 		} catch (error) {
 			console.error(`Error updating item ${dataType === 'levelCounter' ? 'level' : 'rp progress'}:`, error);
 		}
+	}
+
+	async _updateLevel(item, increment) {
+		const newLevel = item.system.level.value + increment;
+		await item.update({ 'system.level.value': newLevel });
+	}
+
+	async _updateResourceProgress(item, increment) {
+		const stepMultiplier = item.system.rp.step || 1;
+		const maxProgress = item.system.rp.max;
+		let newProgress = item.system.rp.current + increment * stepMultiplier;
+
+		if (maxProgress !== 0) {
+			newProgress = Math.min(newProgress, maxProgress);
+		}
+
+		await item.update({ 'system.rp.current': newProgress });
+	}
+
+	async _updateClockProgress(item, increment) {
+		const stepMultiplier = item.system.progress.step || 1;
+		const maxProgress = item.system.progress.max;
+		let newProgress = item.system.progress.current + increment * stepMultiplier;
+
+		if (maxProgress !== 0) {
+			newProgress = Math.min(newProgress, maxProgress);
+		}
+
+		await item.update({ 'system.progress.current': newProgress });
+	}
+
+	async _updateProjectProgress(item, increment) {
+		const progressPerDay = item.system.progressPerDay.value || 1;
+		const maxProjectProgress = item.system.progress.max;
+		let currentProgress = item.system.progress.current + increment * progressPerDay;
+
+		if (maxProjectProgress !== 0) {
+			currentProgress = Math.min(currentProgress, maxProjectProgress);
+		}
+
+		await item.update({ 'system.progress.current': currentProgress });
 	}
 
 	/**
