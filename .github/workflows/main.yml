@@ -73,6 +73,10 @@ jobs:
         uses: actions/checkout@v4
 
 
+      # Install @foundryvtt/foundryvtt-cli package
+      - name: Install foundryvtt-cli
+        run: npm install @foundryvtt/foundryvtt-cli
+
       # Extract version embedded in the tag.
       # This step expects the tag to be one of the following formats:
       #   - "v<major>.<minor>.<patch>" (e.g., "v1.2.3")
