@@ -102,6 +102,10 @@ jobs:
           MANIFEST: ${{ env.latest_manifest_url }}
           DOWNLOAD: ${{ env.release_system_url }}
 
+      # Run npm script to convert YML to LDB before creating release
+      - name: Convert YML to LDB
+        run: npm run pullYMLtoLDB
+        working-directory: ./tools
 
       # Create a "fabulaultima.zip" archive containing all the system's required files.
       # If you have other directories or files that will need to be added to
