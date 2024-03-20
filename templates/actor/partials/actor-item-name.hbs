@@ -9,13 +9,16 @@
         <span class="resource-text-m gap-3" style="display: flex; align-items: center;">
             {{#if (eq @root.actor.type "npc")}}
             {{#if (eq item.system.type.value "melee")}}
-            <i class="fusl fu-action-melee icon-aff"></i>
+            {{!-- <i class="fusl fu-action-melee icon-aff"></i> --}}
+            <span class="evil">$</span>
             {{else if (eq item.system.type.value "ranged")}}
             <i class="fusl fu-action-ranged icon-aff"></i>
             {{else if (eq item.type "spell")}}
-            <i class="fusl fu-action-spell icon-aff"></i>
+            {{!-- <i class="fusl fu-action-spell icon-aff"></i> --}}
+            <span class="evil">h</span>
             {{else if (eq item.type "miscAbility")}}
-            <i class="fusl fu-action-skill icon-aff"></i>
+            {{!-- <i class="fusl fu-action-skill icon-aff"></i> --}}
+            <span class="websymbols">S</span>
             {{/if}}
             {{/if}}
             {{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "mainHand"))}}
@@ -26,10 +29,14 @@
             {{/if}}
             {{ item.name }}
             {{#if item.system.isMartial.value}}
-            <i class="fusl is-martial fus-martial icon-aff" style="margin-bottom: -1px; width: 18px; height: 18px;"></i>
+            {{!-- <i class="fusl is-martial fus-martial icon-aff"
+                style="margin-bottom: -1px; width: 18px; height: 18px;"></i> --}}
+            <span class="is-martial">E</span>
             {{/if}}
             {{#if item.system.isOffensive.value}}
-            <i class="fusl is-martial fus-offensive icon-aff" style="margin-right:2px; width: 14px; height: 18px;"></i>
+            {{!-- <i class="fusl is-martial fus-offensive icon-aff"
+                style="margin-right:2px; width: 14px; height: 18px;"></i> --}}
+            <span class="is-offensive">r</span>
             {{/if}}
 
         </span>

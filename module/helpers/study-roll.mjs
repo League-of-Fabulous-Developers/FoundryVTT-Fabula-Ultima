@@ -15,12 +15,16 @@ export async function handleStudyRoll(app) {
     ];
 
     const dialogContent = `
-        <table>
-            <tr><th>Result</th><th>Information Revealed</th></tr>
-            ${contentRows.map(row => `<tr><td>${row}</td></tr>`).join('')}
-        </table>
-        <p>Enter Study Check total:</p>
-        <input type="number" id="study-input">
+        <div class="desc mb-5">
+            <table>
+                <tr><th>Result</th><th>Information Revealed</th></tr>
+                ${contentRows.map(row => `<tr><td>${row}</td></tr>`).join('')}
+            </table>
+        </div>
+        <div class="desc">
+            <p>Enter Study Check total:</p>
+            <input type="number" id="study-input">
+        </div>
         <hr>`;
 
     const dialog = new Dialog({
@@ -305,6 +309,8 @@ export async function handleStudyRoll(app) {
             },
         },
         default: 'ok',
+    }, {
+        classes: ["dialog", "backgroundstyle"]
     });
 
     dialog.render(true);

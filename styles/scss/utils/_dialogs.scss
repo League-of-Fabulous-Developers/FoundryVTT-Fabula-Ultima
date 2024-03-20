@@ -1,9 +1,60 @@
+.dialog-content {
+
+    .resource-content {
+        color: $color-secondary;
+        background-color: transparent;
+    }
+
+    /* Description Format */
+    .desc {
+        background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
+        border-radius: 12px;
+        border: 1px solid #2c4a4254;
+        padding: 5px;
+    }
+
+    fieldset {
+        background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
+        border-radius: 12px;
+        border: 1px solid #2c4a4254;
+        padding: 5px;
+        margin-bottom: 5px;
+
+        legend {
+            border-radius: 10px;
+            margin: 0 auto;
+            padding: 0px 15px;
+            background: $color-secondary;
+            color: $color-primary;
+            position: relative;
+            text-align: left;
+            width: auto;
+        }
+    }
+
+    .radio-container {
+        display: inline-flex;
+        gap: 5px;
+
+        label {
+            font-size: 16px;
+            line-height: 1.45em;
+            font-family: "PT Sans Narrow", sans-serif;
+        }
+    }
+
+}
+
+.dialog-buttons {
+    margin-top: 5px;
+}
+
 .dialog-group-check-cancel {
     padding: 0.5em;
 }
 
 .dialog-group-check-support {
-    & > * {
+    &>* {
         margin: 0.5em;
     }
 
@@ -16,7 +67,8 @@
         border: 1px solid gray;
         margin-bottom: 0.25em;
 
-        .feeling, .bondWith {
+        .feeling,
+        .bondWith {
             font-weight: bold;
         }
     }

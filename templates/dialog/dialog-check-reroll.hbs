@@ -1,31 +1,32 @@
-<section class="traits">
+<section class="traits desc title-fieldset resource-content flex-group-left">
+    <label>{{localize 'FU.ChatContextRerollFabula'}}</label>
     {{#each traits}}
-        <div>
-            <label >
-                <input type="radio" name="trait" value="{{this.type}}" data-value="{{this.value}}">
-                <span>{{localize (concat 'FU.' (capitalize this.type))}}:</span>
-                <strong class="trait">{{this.value}}</strong>
-            </label>
-        </div>
+    <div>
+        <input id="trait-{{@index}}" type="radio" name="trait" value="{{this.type}}" data-value="{{this.value}}">
+        <label for="trait-{{@index}}">
+            <span>{{localize (concat 'FU.' (capitalize this.type))}}</span>
+            <strong class="trait">{{this.value}}</strong>
+        </label>
+    </div>
     {{/each}}
 </section>
 <hr>
-<section class="flexrow">
+<section class="traits desc title-fieldset resource-content flex-group-left">
 
-    <label class="dice-container">
-            <span class="roll-container">
-                <span class="roll">{{attr1.result}}</span>
-            </span>
+    <input type="checkbox" id="attr1-result" name="results" value="attr1">
+    <label class="dice-container" for="attr1-result">
+        <span class="roll-container">
+            <span class="roll">{{attr1.result}}</span>
+        </span>
         <span>{{localize (concat 'FU.Attribute' (capitalize attr1.attribute))}}</span>
-        <input type="checkbox" name="results" value="attr1">
     </label>
 
-    <label class="dice-container">
-            <span class="roll-container">
-                <span class="roll">{{attr2.result}}</span>
-            </span>
+    <input type="checkbox" id="attr2-result" name="results" value="attr2">
+    <label class="dice-container" for="attr2-result">
+        <span class="roll-container">
+            <span class="roll">{{attr2.result}}</span>
+        </span>
         <span>{{localize (concat 'FU.Attribute' (capitalize attr2.attribute))}}</span>
-        <input type="checkbox" name="results" value="attr2">
     </label>
 
 </section>

@@ -1,12 +1,12 @@
 <!-- HP -->
-<div class="resource-content levelup-container flex-group-center">
+<div class="resource-content flex-group-center">
     <div class="grid grid-3col" style="padding: 0 5px;">
         <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.HealthPoints'}}"
             aria-describedby="tooltip">
             {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
-            <i class="fa-solid fa-heart-crack is-martial"></i>
+            <i class="fas fa-heart-crack is-crisis"></i>
             {{else}}
-            <i class="fa-solid fa-heart"></i>
+            <i class="fas fa-heart"></i>
             {{/if}} {{localize 'FU.HealthAbbr'}}
         </label>
         <label class="align-right grid-start-2 grid-span-2 is-crisis" aria-describedby="tooltip">
@@ -38,9 +38,9 @@
                 }}" aria-describedby="tooltip">
             <div class="resource-label-l resource-content flex-group-center">
                 {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
-                <i class="fa-solid fa-caret-up is-crisis float-text"></i>
+                <i class="fas fa-caret-up is-crisis float-text"></i>
                 {{else}}
-                <i class="fa-solid fa-caret-up"></i>
+                <i class="fas fa-caret-up"></i>
                 {{/if}}
             </div>
         </span>
@@ -50,13 +50,13 @@
 </div>
 
 <!-- MP -->
-<div class="resource-content levelup-container flex-group-center">
+<div class="resource-content flex-group-center">
     <div class="grid grid-2col" style="padding: 0 5px;">
         <label class="resource-label-l align-left grid-span-1" data-tooltip="{{localize 'FU.MindPoints'}}" aria-describedby="tooltip"><i
-                class="fa-solid fa-hat-wizard icon"></i></i>{{localize
+                class="fas fa-hat-wizard icon"></i></i>{{localize
             'FU.MindAbbr'}} </label>
         <label class="resource-label-l align-right rollable" data-tooltip="Rest" aria-describedby="tooltip">
-            <i class="fa-solid fa-bed rest"></i></label>
+            <i class="fas fa-bed rest"></i></label>
     </div>
     <div class="bar bar-progress">
         <div class="bar-progress-bar bar-mp"
@@ -74,9 +74,9 @@
                 }}" aria-describedby="tooltip">
             <div class="resource-label-l resource-content flex-group-center">
                 {{#if (lte system.resources.mp.value (half system.resources.mp.max))}}
-                <i class="fa-solid fa-caret-up is-crisis float-text"></i>
+                <i class="fas fa-caret-up is-crisis float-text"></i>
                 {{else}}
-                <i class="fa-solid fa-caret-up"></i>
+                <i class="fas fa-caret-up"></i>
                 {{/if}}
             </div>
         </span>
@@ -87,7 +87,7 @@
 
 {{#if (eq actor.type "character")}}
 <!-- IP -->
-<div class="resource-content levelup-container flex-group-center align-left">
+<div class="resource-content flex-group-center align-left">
     <div class="grid grid-3col" style="padding: 0 5px;">
         <label class="resource-label-l align-left grid-span-2" data-tooltip="{{localize 'FU.InventoryPoints'}}"
             aria-describedby="tooltip"><i class="ra ra-gear-hammer icon"></i>{{localize
@@ -108,9 +108,9 @@
             aria-describedby="tooltip">
             <div class="resource-label-l resource-content flex-group-center">
                 {{#if (lte system.resources.ip.value (half system.resources.ip.max))}}
-                <i class="fa-solid fa-caret-up is-crisis float-text"></i>
+                <i class="fas fa-caret-up is-crisis float-text"></i>
                 {{else}}
-                <i class="fa-solid fa-caret-up"></i>
+                <i class="fas fa-caret-up"></i>
                 {{/if}}
             </div>
         </span>

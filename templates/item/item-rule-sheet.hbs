@@ -54,7 +54,12 @@
 				</div>
 			</fieldset>
 			<div class="grid-span-2 desc flex-between">
-				<div class="quarter-desc">
+				{{!-- Description --}}
+				<div class="quarter-desc resource-content">
+					<label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
+						{{localize 'FU.Description'}}
+						<i class="fas fa-info-circle"></i>
+					</label>
 					{{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
 					button=true owner=owner editable=editable }}
 				</div>
@@ -66,3 +71,5 @@
 		</div>
 	</section>
 </form>
+
+

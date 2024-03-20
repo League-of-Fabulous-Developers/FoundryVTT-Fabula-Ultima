@@ -1,20 +1,22 @@
-<section>
-    <fieldset>
-        {{radioBoxes 'attributes.attr1' attributes checked=attr1 localize=true }}
+<section class="title-fieldset desc resource-content flex-group-center">
+    <fieldset class="flexrow">
+        <legend class="resource-text-m">{{localize 'FU.Primary'}}</legend>
+        <span class="radio-container">{{radioBoxes 'attributes.attr1' attributes checked=attr1 localize=true }}</span>
     </fieldset>
-    <fieldset>
-        {{radioBoxes 'attributes.attr2' attributes checked=attr2 localize=true }}
+    <fieldset class="flexrow">
+        <legend class="resource-text-m">{{localize 'FU.Secondary'}}</legend>
+        <span class="radio-container">{{radioBoxes 'attributes.attr2' attributes checked=attr2 localize=true }}</span>
     </fieldset>
-    <fieldset>
-        <label>
-            {{localize 'FU.DialogGroupCheckDifficulty'}}
+    <fieldset class="flex-group-left resource-content">
+        <legend class="resource-text-m">{{localize 'FU.DialogCheckDifficulty'}}</legend>
+        <label class="resource-text-m">{{localize 'FU.DialogGroupCheckDifficulty'}}</label>
+        <label class="resource-text-m">
             <input name="difficulty.check" type="number" value="{{difficulty.check}}" min="0">
         </label>
-    </fieldset>
-    <fieldset>
-        <label>
-            {{localize 'FU.DialogGroupCheckSupportDifficulty'}}
+        <label class="resource-text-m">{{localize 'FU.DialogGroupCheckSupportDifficulty'}}</label>
+        <label class="resource-text-m">
             <input name="difficulty.support" type="number" value="{{difficulty.support}}" min="0">
         </label>
     </fieldset>
 </section>
+<hr>

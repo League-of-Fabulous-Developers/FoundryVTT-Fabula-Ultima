@@ -74,6 +74,7 @@ async function handleSupportCheck(groupCheck) {
 		bond = await Dialog.prompt({
 			title: game.i18n.localize('FU.GroupCheckBondDialogTitle'),
 			label: game.i18n.localize('FU.GroupCheckBondDialogLabel'),
+			options: { classes: ["unique-dialog", "backgroundstyle"] },
 			content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
 				leader: game.actors.get(groupCheck.leader).name,
 				bonds,
@@ -195,6 +196,7 @@ export class GroupCheck extends Application {
 			groupCheck = await Dialog.prompt({
 				title: game.i18n.localize('FU.DialogGroupCheckTitle'),
 				label: game.i18n.localize('FU.DialogGroupCheckLabel'),
+				options: { classes: ["unique-dialog", "backgroundstyle"] },
 				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check.hbs', {
 					attributes: FU.attributes,
 					difficulty: {
@@ -282,6 +284,7 @@ export class GroupCheck extends Application {
 			width: 300,
 			height: 500,
 			title: game.i18n.localize('FU.GroupCheck'),
+			classes: ["unique-dialog", "backgroundstyle"],
 		});
 	}
 
@@ -365,6 +368,7 @@ export class GroupCheck extends Application {
 		if (!options.roll) {
 			const cancel = await Dialog.confirm({
 				title: game.i18n.localize('FU.GroupCheckCancelDialogTitle'),
+				options: { classes: ["unique-dialog", "backgroundstyle"] },
 				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs'),
 				rejectClose: false,
 			});

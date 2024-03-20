@@ -5,8 +5,8 @@
 			<label class="items-label">{{localize "FU.Effects"}}</label>
 		</span>
 		<span class="effects-clear items-main total-level w-25" data-type="clearTempEffects"
-			data-tooltip="{{localize 'FU.Clear'}} {{localize 'FU.TemporaryEffects'}}">
-			<a>{{localize 'FU.Clear'}} <i class="fa-solid fa-circle-plus"></i></a>
+			data-tooltip="{{localize 'FU.ClearTemp'}}">
+			<a>{{localize 'FU.Clear'}} <i class="fas fa-eraser"></i></a>
 		</span>
 	</header>
 	{{/unless}}
@@ -45,7 +45,7 @@
 						<div class="item-m end flexrow">
 							<a class="effect-control" data-action="toggle" title="{{localize 'FU.EffectToggle'}}">
 								<i
-									class="{{#if effect.disabled}}fal fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
+									class="{{#if effect.disabled}}far fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
 							</a>
 							<a class="effect-control" data-action="edit" title="{{localize 'FU.EffectEdit'}}">
 								<i class="fas fa-edit"></i>

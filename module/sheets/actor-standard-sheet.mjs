@@ -3,6 +3,8 @@ import { promptCheck, createChatMessage } from '../helpers/checks.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
 import { SETTINGS, SYSTEM } from '../settings.js';
+import { InlineDamage } from '../helpers/inline-damage.mjs';
+import { InlineRecovery } from '../helpers/inline-recovery.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -14,7 +16,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['projectfu', 'sheet', 'actor'],
+			classes: ['projectfu', 'sheet', 'actor', 'backgroundstyle'],
 			template: 'systems/projectfu/templates/actor/actor-character-sheet.hbs',
 			width: 750,
 			height: 1000,
@@ -222,13 +224,13 @@ export class FUStandardActorSheet extends ActorSheet {
 					// if (progress.current === progress.max) {
 					// 	let maxTitle = `${item.name} MAX!`;
 					// 	let maxDescription = '';
-	
+
 					// 	if (item.type === 'zeroPower') {
 					// 		maxDescription = `Trigger: ${item.system.zeroTrigger?.description || ''}<br>Effect: ${item.system.zeroEffect?.description || ''}`;
 					// 	} else {
 					// 		maxDescription = item.system.description || '';
 					// 	}
-	
+
 					// 	const params = {
 					// 		details: { name: maxTitle },
 					// 		description: maxDescription,
@@ -401,6 +403,8 @@ export class FUStandardActorSheet extends ActorSheet {
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
+		InlineDamage.activateListeners(html, this.actor);
+		InlineRecovery.activateListeners(html, this.actor);
 
 		// Render the item sheet for viewing/editing prior to the editable check.
 		html.find('.item-edit').click((ev) => {
@@ -448,6 +452,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Add event listeners for increment and decrement buttons
 		html.find('.increment-button').click((ev) => this._onIncrementButtonClick(ev));
 		html.find('.decrement-button').click((ev) => this._onDecrementButtonClick(ev));
+
+		// Update Character on Level Up
+		html.find('.is-levelup').click((ev) => this._onLevelUp(ev));
 
 		// Update Skill Level
 		html.find('.skillLevel input').click((ev) => this._onSkillLevelUpdate(ev));
@@ -500,7 +507,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 			// Update the HTML icon based on the equipped item
 			const icon = li.find('.item-icon');
-			icon.removeClass('fa-toolbox').addClass(getIconClassForEquippedItem(item, itemType, handType));
+			icon.removeClass('fa-circle').addClass(getIconClassForEquippedItem(item, itemType, handType));
 
 			// Prevent the default right-click context menu if it's a right-click event
 			if (isRightClick) {
@@ -531,7 +538,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			} else if (item.system.isEquipped.slot === 'offHand') {
 				return 'ra ra-shield';
 			} else {
-				return 'fas fa-toolbox';
+				return 'fas fa-circle';
 			}
 		}
 
@@ -768,7 +775,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			// console.log('All equipped items have been set to unequip.');
 		} else {
 			// Checkbox is checked
-			// console.log('Checkbox is checked');
 		}
 	}
 
@@ -795,7 +801,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		const duplicatedItemData = foundry.utils.duplicate(item);
 
 		// Modify the duplicated item's name
-		duplicatedItemData.name = `Copy of ${item.name}`;
+		duplicatedItemData.name = `${item.name}`;
 		duplicatedItemData.system.isEquipped = {
 			value: false,
 			slot: 'default',
@@ -828,8 +834,17 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Remove the type from the dataset since it's in the itemData.type prop.
 		delete itemData.system['type'];
 
-		// Finally, create the item!
-		return await Item.create(itemData, { parent: this.actor });
+		// Check if the game option exists and is enabled
+		if (game.settings.get("projectfu", "optionAlwaysFavorite")) {
+			let item = await Item.create(itemData, { parent: this.actor });
+			await item.update({
+				'data.isFavored.value': true,
+			});
+			return item;
+		} else {
+			// Finally, create the item!
+			return await Item.create(itemData, { parent: this.actor });
+		}
 	}
 
 	async _onItemCreateDialog(event) {
@@ -1002,6 +1017,30 @@ export class FUStandardActorSheet extends ActorSheet {
 	}
 
 	/**
+	 * Handles the level up action when clicked.
+	 *
+	 * @param {Event} ev - The input change event.
+	 */
+	_onLevelUp(ev) {
+		const input = ev.currentTarget;
+		const actor = this.actor;
+		if (!actor) return;
+
+		const exp = actor.system.resources.exp.value;
+		if (exp < 10) return;
+
+		const { level } = actor.system;
+		const $icon = $(input).css("position", "relative");
+		$icon.animate({ top: '-100%', opacity: 0 }, 500, function () {
+			actor.update({
+				"system.resources.exp.value": exp - 10,
+				"system.level.value": level.value + 1
+			});
+			$icon.remove();
+		});
+	}
+
+	/**
 	 * Sets the skill level value to the segment clicked.
 	 *
 	 * @param {Event} ev - The input change event.
@@ -1045,43 +1084,19 @@ export class FUStandardActorSheet extends ActorSheet {
 				if (item) {
 					switch (dataType) {
 						case 'levelCounter':
-							// Increment or decrement the level value
-							const newLevel = item.system.level.value + increment;
-							// Update the item with the new level value
-							await item.update({ 'system.level.value': newLevel });
+							await this._updateLevel(item, increment);
 							break;
 
 						case 'resourceCounter':
-							// Increment or decrement the rp progress current value
-							const stepMultiplier = item.system.rp.step || 1;
-							const maxProgress = item.system.rp.max;
-							let newProgress = item.system.rp.current + increment * stepMultiplier;
-
-							// Check if newProgress exceeds rp.max unless rp.max is 0
-							if (maxProgress !== 0) {
-								newProgress = Math.min(newProgress, maxProgress);
-							}
-
-							// Update the item with the new rp progress value
-							await item.update({ 'system.rp.current': newProgress });
+							await this._updateResourceProgress(item, increment);
 							break;
 
 						case 'clockCounter':
+							await this._updateClockProgress(item, increment);
 							break;
 
 						case 'projectCounter':
-							// Increment or decrement the rp progress current value
-							const progressPerDay = item.system.progressPerDay.value || 1;
-							const maxProjectProgress = item.system.progress.max;
-							let currentProgress = item.system.progress.current + increment * progressPerDay;
-
-							// Check if currentProgress exceeds progress.max unless progress.max is 0
-							if (maxProjectProgress !== 0) {
-								currentProgress = Math.min(currentProgress, maxProjectProgress);
-							}
-
-							// Update the item with the new progress value
-							await item.update({ 'system.progress.current': currentProgress });
+							await this._updateProjectProgress(item, increment);
 							break;
 
 						default:
@@ -1095,6 +1110,47 @@ export class FUStandardActorSheet extends ActorSheet {
 		} catch (error) {
 			console.error(`Error updating item ${dataType === 'levelCounter' ? 'level' : 'rp progress'}:`, error);
 		}
+	}
+
+	async _updateLevel(item, increment) {
+		const newLevel = item.system.level.value + increment;
+		await item.update({ 'system.level.value': newLevel });
+	}
+
+	async _updateResourceProgress(item, increment) {
+		const stepMultiplier = item.system.rp.step || 1;
+		const maxProgress = item.system.rp.max;
+		let newProgress = item.system.rp.current + increment * stepMultiplier;
+
+		if (maxProgress !== 0) {
+			newProgress = Math.min(newProgress, maxProgress);
+		}
+
+		await item.update({ 'system.rp.current': newProgress });
+	}
+
+	async _updateClockProgress(item, increment) {
+		const stepMultiplier = item.system.progress.step || 1;
+		const maxProgress = item.system.progress.max;
+		let newProgress = item.system.progress.current + increment * stepMultiplier;
+
+		if (maxProgress !== 0) {
+			newProgress = Math.min(newProgress, maxProgress);
+		}
+
+		await item.update({ 'system.progress.current': newProgress });
+	}
+
+	async _updateProjectProgress(item, increment) {
+		const progressPerDay = item.system.progressPerDay.value || 1;
+		const maxProjectProgress = item.system.progress.max;
+		let currentProgress = item.system.progress.current + increment * progressPerDay;
+
+		if (maxProjectProgress !== 0) {
+			currentProgress = Math.min(currentProgress, maxProjectProgress);
+		}
+
+		await item.update({ 'system.progress.current': currentProgress });
 	}
 
 	/**
@@ -1315,6 +1371,16 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 		super._updateObject(event, data);
 	}
+
+	async _onDrop(event) {
+		if (InlineDamage.onDropActor(event, this.actor)) {
+			return;
+		}
+		if (InlineRecovery.onDropActor(event, this.actor)) {
+			return;
+		}
+		return super._onDrop(event);
+	}
 }
 
 /**
@@ -1334,13 +1400,13 @@ function shuffleArray(array) {
 
 async function toggleGuardEffect(actor) {
 	const GUARD_EFFECT_ID = 'guard';
-	const guardEffect = CONFIG.statusEffects.find(effect => effect.id === GUARD_EFFECT_ID);
+	const guardEffect = CONFIG.statusEffects.find((effect) => effect.id === GUARD_EFFECT_ID);
 
-	const guardActive = actor.effects.some(effect => effect.statuses.has('guard'));
+	const guardActive = actor.effects.some((effect) => effect.statuses.has('guard'));
 
 	if (guardActive) {
 		// Delete existing guard effects
-		actor.effects.filter(effect => effect.statuses.has('guard')).forEach(effect => effect.delete());
+		actor.effects.filter((effect) => effect.statuses.has('guard')).forEach((effect) => effect.delete());
 		ui.notifications.info('Guard is deactivated.');
 	} else {
 		// Create a new guard effect

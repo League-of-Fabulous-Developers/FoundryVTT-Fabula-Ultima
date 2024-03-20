@@ -41,10 +41,17 @@ import { registerClassFeatures } from './documents/items/classFeature/class-feat
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
 import { FUActiveEffect } from './documents/effects/active-effect.mjs';
 import { registerChatInteraction } from './helpers/apply-damage.mjs';
+import { InlineDamage } from './helpers/inline-damage.mjs';
+import { FUChatMessage } from './documents/message/chat-message.mjs';
+import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
+import { InlineRecovery } from './helpers/inline-recovery.mjs';
+import { Flags } from './helpers/flags.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
 	RollableClassFeatureDataModel,
+	SYSTEM,
+	Flags,
 };
 
 /* -------------------------------------------- */
@@ -143,18 +150,23 @@ Hooks.once('init', async () => {
 		makeDefault: true,
 	});
 
+	CONFIG.ChatMessage.documentClass = FUChatMessage;
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	registerChatInteraction();
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 
 	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
+	CONFIG.TextEditor.enrichers.push(InlineDamage.enricher);
+	CONFIG.TextEditor.enrichers.push(InlineRecovery.enricher);
+
+	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
 });
 
-Hooks.once('setup', () => { });
+Hooks.once('setup', () => {});
 
 /* -------------------------------------------- */
 /*  Handlebars Helpers                          */
@@ -273,10 +285,10 @@ Hooks.once('ready', async function () {
 	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
 
-    Hooks.on('rollEquipment', (actor, slot) => {
-        // Call the rollEquipment function
-        rollEquipment(actor, slot);
-    });
+	Hooks.on('rollEquipment', (actor, slot) => {
+		// Call the rollEquipment function
+		rollEquipment(actor, slot);
+	});
 });
 
 Hooks.once('socketlib.ready', onSocketLibReady);
@@ -286,11 +298,10 @@ Hooks.once('mmo-hud.ready', () => {
 });
 
 Hooks.once('ready', () => {
-	const isPixelated = game.settings.get("projectfu", "optionImagePixelated");
+	const isPixelated = game.settings.get('projectfu', 'optionImagePixelated');
 	const applyPixelatedStyle = () => {
 		// Apply the style to specific selectors
-		$('img')
-			.css('image-rendering', isPixelated ? 'pixelated' : '');
+		$('img').css('image-rendering', isPixelated ? 'pixelated' : '');
 	};
 	// Apply the style initially
 	applyPixelatedStyle();
@@ -365,27 +376,27 @@ function rollItemMacro(itemUuid) {
  * @param {boolean} isShift Indicates whether the shift key is pressed.
  */
 function rollEquipment(actor, slot, isShift) {
-    // Check if the slot is valid
-    const validSlots = ['mainHand', 'offHand', 'armor', 'accessory'];
-    if (!validSlots.includes(slot)) {
-        ui.notifications.warn(`Invalid slot: ${slot}!`);
-        return;
-    }
+	// Check if the slot is valid
+	const validSlots = ['mainHand', 'offHand', 'armor', 'accessory'];
+	if (!validSlots.includes(slot)) {
+		ui.notifications.warn(`Invalid slot: ${slot}!`);
+		return;
+	}
 
-    // Filter items based on the provided slot
-    const sameSlotItems = actor.items.filter((item) => {
-        return item.system.isEquipped && item.system.isEquipped.slot === slot;
-    });
+	// Filter items based on the provided slot
+	const sameSlotItems = actor.items.filter((item) => {
+		return item.system.isEquipped && item.system.isEquipped.slot === slot;
+	});
 
-    // Check if any item is found in the specified slot
-    if (sameSlotItems.length === 0) {
-        ui.notifications.warn(`No item equipped in ${slot} slot!`);
-        return;
-    }
+	// Check if any item is found in the specified slot
+	if (sameSlotItems.length === 0) {
+		ui.notifications.warn(`No item equipped in ${slot} slot!`);
+		return;
+	}
 
-    // Get the first item from the filtered collection
-    const item = sameSlotItems[0];
+	// Get the first item from the filtered collection
+	const item = sameSlotItems[0];
 
-    // Roll the item
-    item.roll(isShift);
+	// Roll the item
+	item.roll(isShift);
 }

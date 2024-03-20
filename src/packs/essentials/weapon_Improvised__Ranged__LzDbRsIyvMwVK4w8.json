@@ -1,0 +1,102 @@
+{
+  "name": "Improvised (Ranged)",
+  "type": "weapon",
+  "img": "icons/magic/earth/projectile-stone-boulder-orange.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 0
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": "Breaks after the attack."
+    },
+    "isEquipped": {
+      "value": false,
+      "slot": ""
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "value": 2
+    },
+    "type": {
+      "value": "ranged"
+    },
+    "category": {
+      "value": "thrown"
+    },
+    "hands": {
+      "value": "one-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "isCustomWeapon": {
+      "value": false
+    },
+    "source": {
+      "value": "FUCR131"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "vsRiR5VfAOG3CwZh",
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706649030547,
+    "modifiedTime": 1710393284157,
+    "lastModifiedBy": "YN7AhHIwAZeH33Tw"
+  },
+  "_id": "LzDbRsIyvMwVK4w8",
+  "sort": 300000,
+  "_key": "!items!LzDbRsIyvMwVK4w8"
+}

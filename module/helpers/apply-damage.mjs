@@ -65,43 +65,56 @@ const affinityKeys = {
 };
 
 /**
- * @param {CheckParameters} check
- * @param {ChatMessage} message
+ *
+ * @param {FUActor[]} targets
+ * @param {DamageType} damageType
+ * @param {number} total
  * @param {ClickModifiers} modifiers
- * @return {Promise}
+ * @param {string} sourceName
+ * @return {Promise<Awaited<unknown>[]>}
  */
-async function handleDamageApplication(check, message, modifiers) {
-	const actors = canvas.tokens.controlled.map((value) => value.document.actor).filter((value) => value);
-	if (!actors.length) {
-		if (game.user.character) {
-			actors.push(game.user.character);
-		} else {
-			ui.notifications.error('FU.ChatApplyDamageNoActorsSelected', { localize: true });
-			return;
-		}
-	}
-	const { total = 0, type: damageType } = check.damage;
+export async function applyDamage(targets, damageType, total, modifiers, sourceName) {
 	const affinityType = damageType === 'physical' ? 'phys' : damageType;
 
 	const updates = [];
-	for (const actor of actors) {
+	for (const actor of targets) {
 		const affinity = actor.system.affinities[affinityType].current;
 		const damageMod = affinityDamageModifier[affinity] ?? affinityDamageModifier[FU.affValue.none];
-		const damageTaken = damageMod(-total, modifiers);
+		const damageTaken = -damageMod(total, modifiers);
 		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
 		updates.push(
 			ChatMessage.create({
-				speaker: message.speaker,
+				speaker: ChatMessage.getSpeaker({ actor }),
 				flavor: game.i18n.localize(FU.affType[affinity]),
 				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
 					message: affinityKeys[affinity](modifiers),
 					actor: actor.name,
 					damage: Math.abs(damageTaken),
 					type: game.i18n.localize(FU.damageTypes[damageType]),
-					from: check.details.name,
+					from: sourceName,
 				}),
 			}),
 		);
 	}
 	return Promise.all(updates);
+}
+
+/**
+ * @param {CheckParameters} check
+ * @param {ChatMessage} message
+ * @param {ClickModifiers} modifiers
+ * @return {Promise}
+ */
+async function handleDamageApplication(check, message, modifiers) {
+	const targets = canvas.tokens.controlled.map((value) => value.document.actor).filter((value) => value);
+	if (!targets.length) {
+		if (game.user.character) {
+			targets.push(game.user.character);
+		} else {
+			ui.notifications.error('FU.ChatApplyDamageNoActorsSelected', { localize: true });
+			return;
+		}
+	}
+	const { total = 0, type: damageType } = check.damage;
+	return applyDamage(targets, damageType, total, modifiers, check.details.name);
 }

@@ -1,5 +1,7 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { createCheckMessage, rollCheck } from '../../../../helpers/checks.mjs';
+import { SYSTEM } from '../../../../settings.js';
+import { Flags } from '../../../../helpers/flags.mjs';
 
 export class MagitechDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
@@ -56,8 +58,8 @@ export class MagitechDataModel extends RollableClassFeatureDataModel {
 	 * @param {MagitechDataModel} model
 	 * @return {Promise<void>}
 	 */
-	static async roll(model) {
-		const currentIns = model.parent.parent.actor.system.attributes.ins.current;
+	static async roll(model, item, isShift) {
+		const currentIns = model.actor.system.attributes.ins.current;
 		/** @type CheckParameters */
 		const check = {
 			check: {
@@ -74,6 +76,6 @@ export class MagitechDataModel extends RollableClassFeatureDataModel {
 				bonus: 0,
 			},
 		};
-		rollCheck(check).then((value) => createCheckMessage(value));
+		rollCheck(check).then((value) => createCheckMessage(value, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } }));
 	}
 }

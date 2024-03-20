@@ -6,6 +6,8 @@ import { LocallyEmbeddedDocumentField } from '../locally-embedded-document-field
 import { FUActor } from '../../../actors/actor.mjs';
 import { FU } from '../../../../helpers/config.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
+import { SYSTEM } from '../../../../settings.js';
+import { Flags } from '../../../../helpers/flags.mjs';
 
 const volumes = {
 	low: 'FU.ClassFeatureVerseVolumeLow',
@@ -106,7 +108,7 @@ export class VerseDataModel extends RollableClassFeatureDataModel {
 		};
 	}
 
-	static async roll(model) {
+	static async roll(model, item) {
 		if (!model.key || !model.tone) {
 			return;
 		}
@@ -137,6 +139,7 @@ export class VerseDataModel extends RollableClassFeatureDataModel {
 			speaker,
 			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
 			content: await renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
+			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
 		};
 
 		ChatMessage.create(chatMessage);

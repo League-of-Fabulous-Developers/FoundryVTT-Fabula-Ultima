@@ -1,16 +1,3 @@
-/* Sheet Background */
-.backgroundstyle {
-  background-image: url("/systems/projectfu/styles/static/ui/bg.webp"),
-    linear-gradient(to right, $color-beige, $color-faint);
-  background-blend-mode: multiply;
-  background-repeat: repeat-y;
-  background-position: right top;
-  padding: 0.5em 1em;
-}
-
-// .title-fieldset {
-// }
-
 /* Description Format */
 .desc {
   background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
@@ -51,7 +38,7 @@
     align-self: start;
     background-image: linear-gradient(to right, $color-secondary, $color-ternary);
     background-clip: content-box;
-    border-color: #9a9a9a;
+    border: 1px solid #aeb8a8;
     border-radius: 10px 0 0 10px;
   }
 
@@ -82,11 +69,19 @@
 
     .header-center {
       border-radius: 0 0 12px 0;
-      padding: 4px 2px;
+      padding: 2px;
       grid-row-gap: 2px;
+      height: 145px;
 
       &.item-header {
-        padding: 4px 10px;
+        padding: 3px 10px;
+        height: 148px !important;
+      }
+
+      &.item-feature-header {
+        border-radius: 0 0 12px 0;
+        padding: 10px;
+        height: 85px !important;
       }
     }
 
@@ -187,16 +182,24 @@
     /* Martial & Offensive Icon */
     img#martial-header,
     img#offensive-header {
-      flex: 0 0 40px;
-      height: 40px;
+      flex: 0 0 48px;
+      height: 48px;
       object-fit: contain;
+      vertical-align: middle;
+      background-position-x: center;
       border: none;
       background-repeat: no-repeat;
       margin: auto;
       opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.7s ease;
 
       &.active {
         opacity: 1;
+      }
+
+      &:not(.active):hover {
+        opacity: 0.8;
       }
     }
   }
@@ -273,7 +276,6 @@
 /* Item Settings */
 .item-settings {
   margin: -5px 5px 0;
-  // float: left;
 }
 
 /* Tiny Description */
@@ -281,13 +283,6 @@
   .editor {
     height: 100%;
     min-height: 1em;
-
-    /* Tox Tinymce Styles */
-    .tox-tinymce {
-      height: 100%;
-      min-height: 1em;
-      max-height: 6em;
-    }
   }
 }
 
@@ -296,13 +291,6 @@
   .editor {
     height: 100%;
     min-height: 12em;
-
-    /* Tox Tinymce Styles */
-    .tox-tinymce {
-      height: 100%;
-      min-height: 12em;
-      max-height: 12em;
-    }
   }
 }
 
@@ -311,13 +299,6 @@
   .editor {
     height: 100%;
     min-height: 20em;
-
-    /* Tox Tinymce Styles */
-    .tox-tinymce {
-      height: 100%;
-      min-height: 18em;
-      max-height: 18em;
-    }
   }
 }
 
@@ -331,21 +312,10 @@
   padding: 0.5em;
 }
 
-.scrollable {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding-right: 0.5rem;
-  overflow: hidden auto;
-  scrollbar-width: thin;
-}
-
 /* General Editor Styles */
 .editor {
   height: 100%;
-  min-height: 26em;
+  min-height: 25em;
 }
 
 /* Editor Content Styles */
@@ -354,21 +324,9 @@
   padding: 0 0.5em;
 }
 
-/* Tox Tinymce Styles */
-.tox-tinymce {
-  height: 100%;
-  min-height: 23em;
-  max-height: 23em;
-}
-
-/* Tox Editor Container Styles */
-.tox .tox-editor-container {
-  background: $color-white;
-}
-
-/* Tox Edit Area Styles */
-.tox .tox-edit-area {
-  margin: 0 10px;
+/* Prosemirror Editor Container Styles */
+.prosemirror .editor-container {
+  margin: 0;
 }
 
 .sheet-content-wrapper {
