@@ -125,7 +125,7 @@
                 {{#if this.owner}}
                 <a class="combatant-control take-turn out-of-turn" data-action="take-turn-out-of-turn">
                     {{# if (gt (lookup @root.totalTurns this.id) 1)}}
-                    // TODO: Replace with free alternative
+                    {{!-- TODO: Replace with free alternative --}}
                     <i class="fas fa-thin fa-2x fa-circle-{{lookup @root.turnsLeft this.id}}"></i>
                     {{else}}
                     <i class="fas fa-thin fa-2x fa-check-circle"></i>
