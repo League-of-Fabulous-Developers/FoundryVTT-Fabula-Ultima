@@ -451,7 +451,7 @@
         "Custom": "Personnalisé",
         "Melee": "Corps à corps",
         "Ranged": "Distance",
-        "DamageNone": "Aucun",
+        "DamageNone": "Non typé",
         "DamageNormal": "Physique",
         "DamageWind": "Air",
         "DamageLightning": "Foudre",
@@ -788,6 +788,11 @@
         "Rest": "Repos",
         "RestingScene": "Scène de repos",
         "RestingEffects": "<strong>Entièrement restauré :</strong> Tous les Points de Vie et Points de Magie sont réstaurés.<br>Tous les états sont effacés.",
-        "RestingEffectsIP": "<strong>Entièrement restauré :</strong> Tous les Points de Vie, Points de Magie, et Points d'Inventaire sont restaurés.<br>Tous les états sont effacés."
+        "RestingEffectsIP": "<strong>Entièrement restauré :</strong> Tous les Points de Vie, Points de Magie, et Points d'Inventaire sont restaurés.<br>Tous les états sont effacés.",
+        "ChatResourceLoss": "<strong>{actor}</strong> perd <strong>{amount} {resource}</strong> à cause de <strong>{from}</strong>",
+        "HealthPointLoss": "Perte de PV",
+        "MindPointLoss": "Perte de PM",
+        "InventoryPointLoss": "Perte de PI",
+        "DragAndDropHowTo": "Pour l'appliquer, Glisser & Déposer cet élément sur une fiche d'Acteur ou un Token que vous contrôlez."
     }
 }

@@ -451,7 +451,7 @@
         "Custom": "Personalizado",
         "Melee": "Corpo a Corpo",
         "Ranged": "Distância",
-        "DamageNone": "Nenhum Dano",
+        "DamageNone": "Sem Tipo",
         "DamageNormal": "Físico",
         "DamageWind": "Ar",
         "DamageLightning": "Relâmpago",
@@ -788,6 +788,11 @@
         "Rest": "Repouso",
         "RestingScene": "Cena de Repouso",
         "RestingEffects": "<strong>Totalmente curado:</strong> Todos os pontos de vida e pontos mentais foram reabastecidos.<br>Todos os efeitos de status foram eliminados.",
-        "RestingEffectsIP": "<strong>Totalmente curado:</strong> Todos os pontos de vida, pontos mentais e inventário foram reabastecidos.<br>Todos os efeitos de status foram eliminados."
+        "RestingEffectsIP": "<strong>Totalmente curado:</strong> Todos os pontos de vida, pontos mentais e inventário foram reabastecidos.<br>Todos os efeitos de status foram eliminados.",
+        "ChatResourceLoss": "<strong>{actor}</strong> perdeu <strong>{amount} {resource}</strong> de <strong>{from}</strong>",
+        "HealthPointLoss": "Perda de PV",
+        "MindPointLoss": "Perda de PM",
+        "InventoryPointLoss": "Perda de PI",
+        "DragAndDropHowTo": "Para aplicar, arraste e solte este elemento em uma ficha de ator ou token que você controla."
     }
 }

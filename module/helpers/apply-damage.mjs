@@ -74,11 +74,20 @@ const affinityKeys = {
  * @return {Promise<Awaited<unknown>[]>}
  */
 export async function applyDamage(targets, damageType, total, modifiers, sourceName) {
-	const affinityType = damageType === 'physical' ? 'phys' : damageType;
-
 	const updates = [];
 	for (const actor of targets) {
-		const affinity = actor.system.affinities[affinityType].current;
+		let affinity = FU.affValue.none; // Default to no affinity
+		let affinityIcon = '';
+		let affinityString = '';
+		if (damageType in actor.system.affinities) {
+			affinity = actor.system.affinities[damageType].current;
+			affinityIcon = FU.affIcon[damageType];
+		}
+		affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
+			damageType: game.i18n.localize(FU.damageTypes[damageType]),
+			affinityIcon: affinityIcon,
+		});
+
 		const damageMod = affinityDamageModifier[affinity] ?? affinityDamageModifier[FU.affValue.none];
 		const damageTaken = -damageMod(total, modifiers);
 		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
@@ -90,7 +99,7 @@ export async function applyDamage(targets, damageType, total, modifiers, sourceN
 					message: affinityKeys[affinity](modifiers),
 					actor: actor.name,
 					damage: Math.abs(damageTaken),
-					type: game.i18n.localize(FU.damageTypes[damageType]),
+					type: affinityString,
 					from: sourceName,
 				}),
 			}),

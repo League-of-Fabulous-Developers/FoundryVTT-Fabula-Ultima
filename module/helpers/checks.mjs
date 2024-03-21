@@ -530,7 +530,7 @@ async function getRerollParams(params, actor) {
 			attr1,
 			attr2,
 		}),
-		options: { classes: ['dialog-reroll', "unique-dialog", "backgroundstyle"] },
+		options: { classes: ['dialog-reroll', 'unique-dialog', 'backgroundstyle'] },
 		/** @type {(jQuery) => CheckReroll} */
 		callback: (html) => {
 			const trait = html.find('input[name=trait]:checked');
@@ -578,9 +578,9 @@ async function EnrichHTML(htmlContent) {
 export async function createChatMessage(checkParams, additionalFlags = {}) {
 	const content = checkParams.description
 		? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
-			flavor: checkParams.details?.name || '',
-			description: await EnrichHTML(checkParams.description),
-		})
+				flavor: checkParams.details?.name || '',
+				description: await EnrichHTML(checkParams.description),
+		  })
 		: '';
 
 	/** @type Partial<ChatMessageData> */
@@ -624,7 +624,7 @@ export async function createCheckMessage(checkParams, additionalFlags = {}) {
 	/** @type Partial<ChatMessageData> */
 	const chatMessage = {
 		flavor: flavor,
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-check.hbs', checkParams),
+		content: await renderTemplate('systems/projectfu/templates/chat/chat-check.hbs', { ...checkParams, translation: { damageTypes: FU.damageTypes } }),
 		rolls: [checkParams.result.roll],
 		type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 		speaker: checkParams.speaker,
@@ -687,11 +687,10 @@ export async function promptCheck(actor, title) {
 						},
 					},
 				],
-			}, {
-			classes: ["unique-dialog", "backgroundstyle"]
-		},
-			{},
-			{},
+			},
+			{
+				classes: ['unique-dialog', 'backgroundstyle'],
+			},
 		);
 
 		recentActorChecks.attr1 = attr1;
