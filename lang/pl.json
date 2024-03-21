@@ -788,6 +788,11 @@
         "Rest": "",
         "RestingScene": "",
         "RestingEffects": "",
-        "RestingEffectsIP": ""
+        "RestingEffectsIP": "",
+        "ChatResourceLoss": "",
+        "HealthPointLoss": "",
+        "MindPointLoss": "",
+        "InventoryPointLoss": "",
+        "DragAndDropHowTo": ""
     }
 }

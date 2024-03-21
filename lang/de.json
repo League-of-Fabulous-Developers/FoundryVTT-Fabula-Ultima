@@ -788,6 +788,11 @@
         "Rest": "Rast",
         "RestingScene": "Rastszene",
         "RestingEffects": "<strong>Vollständig geheilt:</strong> Alle LP und MP wiederhergestellt.<br>Alle Statuseffekte geheilt.",
-        "RestingEffectsIP": "<strong>Vollständig geheilt:</strong> Alle LP, MP und IP wiederhergestellt.<br>Alle Statuseffekte geheilt."
+        "RestingEffectsIP": "<strong>Vollständig geheilt:</strong> Alle LP, MP und IP wiederhergestellt.<br>Alle Statuseffekte geheilt.",
+        "ChatResourceLoss": "<strong>{actor}</strong> hat durch <strong>{from} {amount} {resource}</strong> verloren.",
+        "HealthPointLoss": "LP Verlust",
+        "MindPointLoss": "MP Verlust",
+        "InventoryPointLoss": "IP Verlust",
+        "DragAndDropHowTo": "Zieh das Element auf einen Charakterbogen oder Token den du kontrollierst, um es anzuwenden."
     }
 }

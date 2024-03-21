@@ -788,6 +788,11 @@
         "Rest": "Descanso",
         "RestingScene": "Escena de Descanso",
         "RestingEffects": "<strong>Totalmente restaurado:</strong> Todos los puntos de vida y puntos mentales han sido restaurados.<br> Todos los efectos de estado han sido eliminados.",
-        "RestingEffectsIP": "<strong>Totalmente Restaurado:</strong> Todos los Puntos de Vida, Puntos Mentales e Inventario han sido restablecidos.<br>Todos los efectos de estado han sido eliminados."
+        "RestingEffectsIP": "<strong>Totalmente Restaurado:</strong> Todos los Puntos de Vida, Puntos Mentales e Inventario han sido restablecidos.<br>Todos los efectos de estado han sido eliminados.",
+        "ChatResourceLoss": "<strong>{from}</strong> hace que <strong>{actor}</strong> pierda <strong>{amount} {resource}</strong>.",
+        "HealthPointLoss": "Pérdida de PV",
+        "MindPointLoss": "Pérdida de PM",
+        "InventoryPointLoss": "Pérdida de PI",
+        "DragAndDropHowTo": "Para aplicarlo, arrastra este elemento a la Ficha de Personaje o Token bajo tu control."
     }
 }

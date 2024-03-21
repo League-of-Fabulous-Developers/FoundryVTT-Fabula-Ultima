@@ -788,6 +788,11 @@
         "Rest": "Riposo",
         "RestingScene": "Scena di Riposo",
         "RestingEffects": "<strong>Completamente Riposato:</strong> Tutti i Punti Vita e i Punti Mente sono stati recuperati.<br>Tutti gli status sono stati rimossi.",
-        "RestingEffectsIP": "<strong>Completamente Riposato:</strong> Tutti i Punti Vita, i Punti Mente e i Punti Inventario sono stati recuperati.<br>Tutti gli status sono stati rimossi."
+        "RestingEffectsIP": "<strong>Completamente Riposato:</strong> Tutti i Punti Vita, i Punti Mente e i Punti Inventario sono stati recuperati.<br>Tutti gli status sono stati rimossi.",
+        "ChatResourceLoss": "<strong>{actor}</strong> ha perso <strong>{amount} {resource}</strong> a causa di <strong>{from}</strong>",
+        "HealthPointLoss": "Perdita di PV",
+        "MindPointLoss": "Perdita di PM",
+        "InventoryPointLoss": "Perdita di PI",
+        "DragAndDropHowTo": "Per applicare, trascina e rilascia su una Scheda Personaggio o un Token che controlli."
     }
 }

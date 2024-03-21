@@ -788,6 +788,11 @@
         "Rest": "Отдых",
         "RestingScene": "Сцена отдыха",
         "RestingEffects": "<strong>Полное восстановление:</strong> Восстановлены все ОЗ и ОМ.<br>Все статус-эффекты сняты.",
-        "RestingEffectsIP": "<strong>Полное восстановление:</strong> Восстановлены все ОЗ, ОМ и ОИ.<br>Все статус-эффекты сняты."
+        "RestingEffectsIP": "<strong>Полное восстановление:</strong> Восстановлены все ОЗ, ОМ и ОИ.<br>Все статус-эффекты сняты.",
+        "ChatResourceLoss": "<strong>{actor}</strong> потерял <strong>{amount} {resource}</strong> от <strong>{from}</strong>",
+        "HealthPointLoss": "потеря ОЗ",
+        "MindPointLoss": "потеря ОМ",
+        "InventoryPointLoss": "потеря ОИ",
+        "DragAndDropHowTo": "Для применения перетащите этот элемент на контролируемый вами лист или токен"
     }
 }
