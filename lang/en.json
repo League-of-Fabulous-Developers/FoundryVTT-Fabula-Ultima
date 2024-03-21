@@ -451,7 +451,7 @@
         "Custom": "Custom",
         "Melee": "Melee",
         "Ranged": "Ranged",
-        "DamageNone": "None",
+        "DamageNone": "Untyped",
         "DamageNormal": "Physical",
         "DamageWind": "Air",
         "DamageLightning": "Bolt",

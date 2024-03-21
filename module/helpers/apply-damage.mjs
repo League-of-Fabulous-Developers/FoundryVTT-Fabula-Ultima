@@ -74,27 +74,44 @@ const affinityKeys = {
  * @return {Promise<Awaited<unknown>[]>}
  */
 export async function applyDamage(targets, damageType, total, modifiers, sourceName) {
-	const affinityType = damageType === 'physical' ? 'phys' : damageType;
-
 	const updates = [];
 	for (const actor of targets) {
-		const affinity = actor.system.affinities[affinityType].current;
-		const damageMod = affinityDamageModifier[affinity] ?? affinityDamageModifier[FU.affValue.none];
-		const damageTaken = -damageMod(total, modifiers);
-		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
-		updates.push(
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor }),
-				flavor: game.i18n.localize(FU.affType[affinity]),
-				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
-					message: affinityKeys[affinity](modifiers),
-					actor: actor.name,
-					damage: Math.abs(damageTaken),
-					type: game.i18n.localize(FU.damageTypes[damageType]),
-					from: sourceName,
+		try {
+			let affinity = FU.affValue.none; // Default to no affinity
+			let affinityIcon = '';
+			let affinityString = '';
+			if (damageType !== 'untyped') {
+				const affinityType = damageType === 'physical' ? 'phys' : damageType;
+				affinity = actor.system.affinities[affinityType]?.current;
+				if (affinity === undefined) {
+					throw new Error(`Affinity not found for actor: ${actor.name}, damageType: ${damageType}`);
+				}
+				affinityIcon = FU.affIcon[affinityType];
+			}
+			affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
+				damageType: game.i18n.localize(FU.damageTypes[damageType]),
+				affinityIcon: affinityIcon,
+			});
+
+			const damageMod = affinityDamageModifier[affinity] ?? affinityDamageModifier[FU.affValue.none];
+			const damageTaken = -damageMod(total, modifiers);
+			updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
+			updates.push(
+				ChatMessage.create({
+					speaker: ChatMessage.getSpeaker({ actor }),
+					flavor: game.i18n.localize(FU.affType[affinity]),
+					content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
+						message: affinityKeys[affinity](modifiers),
+						actor: actor.name,
+						damage: Math.abs(damageTaken),
+						type: affinityString,
+						from: sourceName,
+					}),
 				}),
-			}),
-		);
+			);
+		} catch (error) {
+			console.error('Error applying damage:', error);
+		}
 	}
 	return Promise.all(updates);
 }

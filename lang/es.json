@@ -451,7 +451,7 @@
         "Custom": "Personalizado",
         "Melee": "Cuerpo a cuerpo",
         "Ranged": "A distancia",
-        "DamageNone": "Ningun daño",
+        "DamageNone": "Sin Tipo",
         "DamageNormal": "Físico",
         "DamageWind": "Aire",
         "DamageLightning": "Rayo",

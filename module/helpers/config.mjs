@@ -39,12 +39,13 @@ FU.affinities = {
 };
 
 /**
- * @typedef {"physical","air","bolt","dark","earth","fire","ice","light","poison"} DamageType
+ * @typedef {"untyped", "physical","air","bolt","dark","earth","fire","ice","light","poison"} DamageType
  */
 /**
  * @type {Object<DamageType, string>}
  */
 FU.damageTypes = {
+	untyped: 'FU.DamageNone',
 	physical: 'FU.DamagePhysical',
 	air: 'FU.DamageAir',
 	bolt: 'FU.DamageBolt',

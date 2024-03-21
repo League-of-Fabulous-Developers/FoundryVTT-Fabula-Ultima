@@ -451,7 +451,7 @@
         "Custom": "Personalizzata",
         "Melee": "Mischia",
         "Ranged": "Distanza",
-        "DamageNone": "Nessun Danno",
+        "DamageNone": "Senza tipo",
         "DamageNormal": "Fisico",
         "DamageWind": "Aria",
         "DamageLightning": "Fulmine",

@@ -451,7 +451,7 @@
         "Custom": "Нестандартное",
         "Melee": "Ближний бой",
         "Ranged": "Дальний бой",
-        "DamageNone": "нет",
+        "DamageNone": "Чистый",
         "DamageNormal": "Физич.",
         "DamageWind": "Воздух",
         "DamageLightning": "Разряд",

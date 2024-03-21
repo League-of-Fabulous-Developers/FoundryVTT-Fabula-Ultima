@@ -451,7 +451,7 @@
         "Custom": "Spezialwaffe",
         "Melee": "Nahkampfwaffe",
         "Ranged": "Fernkampfwaffe",
-        "DamageNone": "Keine",
+        "DamageNone": "Typlos",
         "DamageNormal": "Physisch",
         "DamageWind": "Wind",
         "DamageLightning": "Blitz",
