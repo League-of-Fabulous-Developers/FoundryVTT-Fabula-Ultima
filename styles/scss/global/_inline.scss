@@ -1,10 +1,13 @@
+@import "../utils/colors";
 
 .inline {
 
-    &.inline-damage, &.inline-recovery {
+    display: inline-block;
+
+    &.inline-damage, &.inline-recovery, &.inline-loss {
         font-size: var(--font-size-14);
         background: #DDD;
-        padding: 1px 4px;
+        padding: 0.125em 0.25em;
         border: 1px solid var(--color-border-dark-tertiary);
         border-radius: 2px;
         white-space: nowrap;
@@ -20,12 +23,73 @@
         }
     }
 
-    &.inline-recovery {
+    &.inline-recovery, &.inline-loss {
         .fas, .ra {
             margin-left: 0.125rem;
-            vertical-align: bottom;
-            font-size: var(--font-size-18);
+            vertical-align: middle;
+            font-size: var(--font-size-16);
+        }
+
+        .indicator {
+            width: 0;
+            height: 0;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.125em;
+            border-left: calc(var(--font-size-16) / 2) solid transparent;
+            border-right: calc(var(--font-size-16) / 2) solid transparent;
+            filter: drop-shadow(0px 1px 1px black);
+        }
+
+        .hp {
+            background: linear-gradient(to right, $color-hp, color-mix(in srgb, $color-hp, black 30%));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mp {
+            background: linear-gradient(to right, $color-mp, color-mix(in srgb, $color-mp, black 30%));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ip {
+            background: linear-gradient(to right, $color-ip, color-mix(in srgb, $color-ip, black 30%));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     }
 
+    &.inline-recovery {
+        .indicator {
+            border-bottom: calc(var(--font-size-16) * 0.866) solid $color-success;
+        }
+
+        &:hover .indicator {
+            animation: 0.5s infinite alternate linear recovery-indicator-bobbing;
+        }
+    }
+
+    &.inline-loss  {
+        .indicator {
+            border-top: calc(var(--font-size-16) * 0.866) solid $color-danger;
+            border-bottom: calc(var(--font-size-16) * 0.134) solid transparent;
+        }
+
+        &:hover .indicator {
+            animation: 0.5s infinite alternate linear loss-indicator-bobbing;
+        }
+    }
+}
+
+@keyframes recovery-indicator-bobbing {
+    to {
+        translate: 0 -2px;
+    }
+}
+
+@keyframes loss-indicator-bobbing {
+    to {
+        translate: 0 2px;
+    }
 }

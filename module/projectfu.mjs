@@ -42,10 +42,10 @@ import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
 import { FUActiveEffect } from './documents/effects/active-effect.mjs';
 import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
-import { FUChatMessage } from './documents/message/chat-message.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
-import { InlineRecovery } from './helpers/inline-recovery.mjs';
+import { InlineResources } from './helpers/inline-resources.mjs';
 import { Flags } from './helpers/flags.mjs';
+import { InlineElementsHowTo } from './helpers/inline-how-to.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -150,15 +150,31 @@ Hooks.once('init', async () => {
 		makeDefault: true,
 	});
 
-	CONFIG.ChatMessage.documentClass = FUChatMessage;
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	registerChatInteraction();
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 
+	Hooks.on('renderChatMessage', InlineElementsHowTo.activateListeners);
+	Hooks.on('renderApplication', InlineElementsHowTo.activateListeners);
+	Hooks.on('renderActorSheet', InlineElementsHowTo.activateListeners);
+	Hooks.on('renderItemSheet', InlineElementsHowTo.activateListeners);
+
 	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
+
 	CONFIG.TextEditor.enrichers.push(InlineDamage.enricher);
-	CONFIG.TextEditor.enrichers.push(InlineRecovery.enricher);
+	Hooks.on('renderChatMessage', InlineDamage.activateListeners);
+	Hooks.on('renderApplication', InlineDamage.activateListeners);
+	Hooks.on('renderActorSheet', InlineDamage.activateListeners);
+	Hooks.on('renderItemSheet', InlineDamage.activateListeners);
+	Hooks.on('dropActorSheetData', InlineDamage.onDropActor);
+
+	CONFIG.TextEditor.enrichers.push(...InlineResources.enrichers);
+	Hooks.on('renderChatMessage', InlineResources.activateListeners);
+	Hooks.on('renderApplication', InlineResources.activateListeners);
+	Hooks.on('renderActorSheet', InlineResources.activateListeners);
+	Hooks.on('renderItemSheet', InlineResources.activateListeners);
+	Hooks.on('dropActorSheetData', InlineResources.onDropActor);
 
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
 

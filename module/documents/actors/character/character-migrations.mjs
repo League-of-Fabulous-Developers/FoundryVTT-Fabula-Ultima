@@ -28,10 +28,18 @@ function migrateLegacyFabulaPoints(source) {
 	}
 }
 
+function migratePhysicalAffinity(source) {
+	if (source.affinities && 'phys' in source.affinities && !('physical' in source.affinities)) {
+		source.affinities.physical = source.affinities.phys;
+	}
+}
+
 export class CharacterMigrations {
 	static run(source) {
 		migrateLegacyBonds(source);
 
 		migrateLegacyFabulaPoints(source);
+
+		migratePhysicalAffinity(source);
 	}
 }

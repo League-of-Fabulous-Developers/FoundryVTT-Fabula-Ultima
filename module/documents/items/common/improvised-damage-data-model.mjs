@@ -1,4 +1,4 @@
-import {FU} from '../../../helpers/config.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 /**
  * @typedef {"minor", "heavy", "massive"} ImprovisedDamageType
@@ -17,7 +17,7 @@ export class ImprovisedDamageDataModel extends foundry.abstract.DataModel {
 			hasImpDamage: new SchemaField({ value: new BooleanField() }),
 			value: new NumberField({ initial: 0, integer: true, nullable: false }),
 			impType: new SchemaField({ value: new StringField({ initial: 'minor', choices: ['minor', 'heavy', 'massive'] }) }),
-			type: new SchemaField({ value: new StringField({ initial: 'physical', blank: true, choices: Object.keys(FU.damageTypes) }) }),
+			type: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
 		};
 	}
 }
