@@ -1,10 +1,8 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
-import { promptCheck, createChatMessage } from '../helpers/checks.mjs';
+import { createChatMessage, promptCheck } from '../helpers/checks.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
 import { SETTINGS, SYSTEM } from '../settings.js';
-import { InlineDamage } from '../helpers/inline-damage.mjs';
-import { InlineRecovery } from '../helpers/inline-recovery.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -132,7 +130,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Handle affinity
 		for (let [k, v] of Object.entries(context.system.affinities)) {
-			v.label = game.i18n.localize(CONFIG.FU.affinities[k]) ?? k;
+			v.label = game.i18n.localize(CONFIG.FU.damageTypes[k]) ?? k;
 			v.affTypeBase = game.i18n.localize(CONFIG.FU.affType[v.base]) ?? v.base;
 			v.affTypeBaseAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.base]) ?? v.base;
 			v.affTypeCurr = game.i18n.localize(CONFIG.FU.affType[v.current]) ?? v.current;
@@ -403,8 +401,6 @@ export class FUStandardActorSheet extends ActorSheet {
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
-		InlineDamage.activateListeners(html, this.actor);
-		InlineRecovery.activateListeners(html, this.actor);
 
 		// Render the item sheet for viewing/editing prior to the editable check.
 		html.find('.item-edit').click((ev) => {
@@ -835,7 +831,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		delete itemData.system['type'];
 
 		// Check if the game option exists and is enabled
-		if (game.settings.get("projectfu", "optionAlwaysFavorite")) {
+		if (game.settings.get('projectfu', 'optionAlwaysFavorite')) {
 			let item = await Item.create(itemData, { parent: this.actor });
 			await item.update({
 				'data.isFavored.value': true,
@@ -1030,11 +1026,11 @@ export class FUStandardActorSheet extends ActorSheet {
 		if (exp < 10) return;
 
 		const { level } = actor.system;
-		const $icon = $(input).css("position", "relative");
+		const $icon = $(input).css('position', 'relative');
 		$icon.animate({ top: '-100%', opacity: 0 }, 500, function () {
 			actor.update({
-				"system.resources.exp.value": exp - 10,
-				"system.level.value": level.value + 1
+				'system.resources.exp.value': exp - 10,
+				'system.level.value': level.value + 1,
 			});
 			$icon.remove();
 		});
@@ -1370,16 +1366,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 		}
 		super._updateObject(event, data);
-	}
-
-	async _onDrop(event) {
-		if (InlineDamage.onDropActor(event, this.actor)) {
-			return;
-		}
-		if (InlineRecovery.onDropActor(event, this.actor)) {
-			return;
-		}
-		return super._onDrop(event);
 	}
 }
 

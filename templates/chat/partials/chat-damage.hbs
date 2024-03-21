@@ -19,7 +19,7 @@
 	<div class='float-box dam-float'>
         <a data-action="applyDamage" data-tooltip="{{{localize 'FU.ChatApplyDamageTooltip'}}}">
             <span class='float-text' style=''>{{damage.total}}</span>
-            {{localize (concat 'FU.Damage' (capitalize damage.type))}}!
+            {{localize (lookup translation.damageTypes damage.type)}}!
         </a>
 	</div>
 </div>

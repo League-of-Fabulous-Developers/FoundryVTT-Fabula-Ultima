@@ -96,9 +96,7 @@
 								class="resource-label-sm flexlarge align-left">{{localize 'FU.DamageType'}} </label>
 							<select value="{{ system.rollInfo.impdamage.type.value }}"
 								name="system.rollInfo.impdamage.type.value" class="resource-inputs select-dropdown-m">
-								{{selectOptions damageTypes selected=system.rollInfo.impdamage.type.value
-								blank='Untyped'
-								sort=true localize=true}}
+								{{selectOptions damageTypes selected=system.rollInfo.impdamage.type.value sort=true localize=true}}
 							</select>
 						</div>
 						<div class="resource-content flexcol flex-group-center">

@@ -1,4 +1,4 @@
-import {AffinityDataModel} from './affinity-data-model.mjs';
+import { AffinityDataModel } from './affinity-data-model.mjs';
 
 /**
  * @property {AffinityDataModel} phys
@@ -15,7 +15,7 @@ export class AffinitiesDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { EmbeddedDataField } = foundry.data.fields;
 		return {
-			phys: new EmbeddedDataField(AffinityDataModel, {}),
+			physical: new EmbeddedDataField(AffinityDataModel, {}),
 			air: new EmbeddedDataField(AffinityDataModel, {}),
 			bolt: new EmbeddedDataField(AffinityDataModel, {}),
 			dark: new EmbeddedDataField(AffinityDataModel, {}),

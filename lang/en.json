@@ -788,6 +788,11 @@
         "Rest": "Rest",
         "RestingScene": "Resting Scene",
         "RestingEffects": "<strong>Fully Restored:</strong> All Hit Points and Mind Points replenished.<br>All status effects cleared.",
-        "RestingEffectsIP": "<strong>Fully Restored:</strong> All Hit Points, Mind Points, and Inventory replenished.<br>All status effects cleared."
+        "RestingEffectsIP": "<strong>Fully Restored:</strong> All Hit Points, Mind Points, and Inventory replenished.<br>All status effects cleared.",
+        "ChatResourceLoss": "<strong>{actor}</strong> lost <strong>{amount} {resource}</strong> from <strong>{from}</strong>",
+        "HealthPointLoss": "HP Loss",
+        "MindPointLoss": "MP Loss",
+        "InventoryPointLoss": "IP Loss",
+        "DragAndDropHowTo": "To apply, Drag & Drop this element onto an Actor Sheet or Token you control."
     }
 }

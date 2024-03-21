@@ -48,6 +48,12 @@ function migrateOldMisspelledVillain(source) {
 	}
 }
 
+function migratePhysicalAffinity(source) {
+	if ('phys' in source.affinities && !('physical' in source.affinities)) {
+		source.affinities.physical = source.affinities.phys;
+	}
+}
+
 export const NpcMigrations = {
 	run: (source) => {
 		migrateLegacyAffinities(source);
@@ -57,5 +63,7 @@ export const NpcMigrations = {
 		migrateOldMagicBonus(source);
 
 		migrateOldMisspelledVillain(source);
+
+		migratePhysicalAffinity(source);
 	},
 };

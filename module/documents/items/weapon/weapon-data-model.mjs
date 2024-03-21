@@ -1,7 +1,7 @@
-import {FU} from '../../../helpers/config.mjs';
-import {WeaponMigrations} from './weapon-migrations.mjs';
-import {IsEquippedDataModel} from '../common/is-equipped-data-model.mjs';
-import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs';
+import { FU } from '../../../helpers/config.mjs';
+import { WeaponMigrations } from './weapon-migrations.mjs';
+import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
+import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
 
 /**
  * @property {string} subtype.value
@@ -47,7 +47,7 @@ export class WeaponDataModel extends foundry.abstract.TypeDataModel {
 			category: new SchemaField({ value: new StringField({ initial: 'brawling', choices: Object.keys(FU.weaponCategories) }) }),
 			hands: new SchemaField({ value: new StringField({ initial: 'one-handed', choices: Object.keys(FU.handedness) }) }),
 			impType: new SchemaField({ value: new StringField({ initial: 'minor', choices: ['minor', 'heavy', 'massive'] }) }),
-			damageType: new SchemaField({ value: new StringField({ initial: 'physical', blank: true, choices: Object.keys(FU.damageTypes) }) }),
+			damageType: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			isCustomWeapon: new SchemaField({ value: new BooleanField() }),
