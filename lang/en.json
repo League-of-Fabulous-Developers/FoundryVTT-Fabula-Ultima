@@ -793,6 +793,15 @@
         "HealthPointLoss": "HP Loss",
         "MindPointLoss": "MP Loss",
         "InventoryPointLoss": "IP Loss",
-        "DragAndDropHowTo": "To apply, Drag & Drop this element onto an Actor Sheet or Token you control."
+        "DragAndDropHowTo": "To apply, Drag & Drop this element onto an Actor Sheet or Token you control.",
+        "TextEditorTextCommands": "ProjectFU Text Commands",
+        "TextEditorButtonCommandDamage": "Damage",
+        "TextEditorDialogDamageTitle": "Damage",
+        "TextEditorButtonCommandGain": "Resource Gain",
+        "TextEditorDialogResourceGainTitle": "Resource Gain",
+        "TextEditorButtonCommandLoss": "Resource Loss",
+        "TextEditorDialogResourceLossTitle": "Resource Loss",
+        "TextEditorDialogButtonInsert": "Insert",
+        "Amount": "Amount"
     }
 }

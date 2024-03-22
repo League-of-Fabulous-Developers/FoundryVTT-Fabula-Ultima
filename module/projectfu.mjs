@@ -46,6 +46,7 @@ import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
 import { InlineResources } from './helpers/inline-resources.mjs';
 import { Flags } from './helpers/flags.mjs';
 import { InlineElementsHowTo } from './helpers/inline-how-to.mjs';
+import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -177,6 +178,8 @@ Hooks.once('init', async () => {
 	Hooks.on('dropActorSheetData', InlineResources.onDropActor);
 
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
+
+	TextEditorCommandDropdown.initialize();
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();

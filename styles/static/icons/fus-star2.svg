@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <linearGradient id="grad1" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="30%" stop-color="#e95a0b"/>
+        <stop offset="100%" stop-color="#fbcc00" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="50%" stop-color="#e95a0b"/>
+        <stop offset="50%" stop-color="#fbcc00"/>
+        <stop offset="100%" stop-color="yellow" />
+    </linearGradient>
+    <g stroke-linecap="round" stroke-linejoin="round" stroke="#000" stroke-width="2">
+        <path d="
+        M 25 50
+        L
+        42 45
+        50 5
+        58 45
+        75 50
+        58 55
+        50 95
+        42 55
+        Z"
+              style="fill: url(#grad1); stroke: url(#grad2); filter: drop-shadow(0 0 2px white)"
+        />
+    </g>
+</svg>

@@ -27,7 +27,6 @@ FU.attributeAbbreviations = {
  * @type {Object<DamageType, string>}
  */
 FU.damageTypes = {
-	untyped: 'FU.DamageNone',
 	physical: 'FU.DamagePhysical',
 	air: 'FU.DamageAir',
 	bolt: 'FU.DamageBolt',
@@ -37,6 +36,7 @@ FU.damageTypes = {
 	ice: 'FU.DamageIce',
 	light: 'FU.DamageLight',
 	poison: 'FU.DamagePoison',
+	untyped: 'FU.DamageNone',
 };
 
 FU.affIcon = {
