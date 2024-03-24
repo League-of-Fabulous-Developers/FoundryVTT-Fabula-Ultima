@@ -1,3 +1,5 @@
+import { SYSTEM, SETTINGS } from '../settings.js';
+
 export class CombatHUD extends Application {
     constructor(options) {
         super(options);
@@ -57,12 +59,12 @@ export class CombatHUD extends Application {
 
     activateListeners(html) {
         super.activateListeners(html);
+
         const rows = html.find('.combat-row');
         rows.hover(this._onHoverIn.bind(this), this._onHoverOut.bind(this));
 
-        setTimeout(() => {
-            this.doPopOut();
-        }, 2000);
+        const popOutButton = html.find('.window-popout');
+        popOutButton.click(this.doPopOut.bind(this));
     }
 
     doPopOut() {
@@ -70,7 +72,7 @@ export class CombatHUD extends Application {
 
         ui.windows[this.appId] = this;
         this._poppedOut = true;
-        this._poppedSize = { width: this.element.css("width"), height: this.element.css("height") };
+        this.element.find('.window-popout').css("display", "none");
         PopoutModule.singleton.onPopoutClicked(this);
     }
 
@@ -83,7 +85,6 @@ export class CombatHUD extends Application {
             return;
         }
 
-        const vOffset = 15;
         const hOffset = -5;
 
         const uiMiddle = $("#ui-middle");
@@ -135,5 +136,14 @@ export class CombatHUD extends Application {
         }
 
         ui.combatHud = null;
+    }
+
+    close() {
+        if (this._poppedOut) {
+            this._poppedOut = false;
+            this.element.find('.window-popout').css("display", "block");
+            return;
+        }
+        super.close();
     }
 }

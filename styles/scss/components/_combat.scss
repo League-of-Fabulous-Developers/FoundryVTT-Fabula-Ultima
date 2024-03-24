@@ -59,6 +59,19 @@
     display: flex;
     gap: 4px;
 
+    .window-popout {
+        position: absolute;
+        right: 0.5em;
+        top: -1.5em;
+        color: $color-white;
+
+        text-shadow: 1px 1px 1px $color-black;
+        box-shadow: 3px 3px $color-secondary;
+        border-radius: 8px;
+        background: linear-gradient($color-tabStyle-gradient), $color-secondary;
+        padding: 0.5em 1em 0.5em 1em;
+    }
+
     .faction-list {
         color: $color-primary;
         text-shadow: 1px 1px 1px $color-black;
