@@ -19,7 +19,7 @@ function enricher(text, options) {
 	const amount = Number(text[1]);
 	const type = text[2];
 
-	if ([...Object.keys(FU.damageTypes), 'untyped'].includes(type) && typeof amount === 'number') {
+	if (type in FU.damageTypes && !Number.isNaN(amount)) {
 		const anchor = document.createElement('a');
 		anchor.dataset.type = type;
 		anchor.dataset.amount = amount;
@@ -27,23 +27,22 @@ function enricher(text, options) {
 		anchor.classList.add('inline', 'inline-damage');
 		anchor.append(`${amount} ${game.i18n.localize(FU.damageTypes[type])}`);
 		const icon = document.createElement('i');
-		if (type === 'physical') {
-			icon.className = FU.affIcon['phys'];
-		} else {
-			icon.className = FU.affIcon[type] ?? '';
-		}
+		icon.className = FU.affIcon[type] ?? '';
 		anchor.append(icon);
 		return anchor;
-	} else {
-		return null;
 	}
+	return null;
 }
 
 /**
- * @param {jQuery} html
  * @param {ClientDocument} document
+ * @param {jQuery} html
  */
-function activateListeners(html, document) {
+function activateListeners(document, html) {
+	if (document instanceof DocumentSheet) {
+		document = document.document;
+	}
+
 	html.find('a.inline.inline-damage[draggable]').on('dragstart', function (event) {
 		/** @type DragEvent */
 		event = event.originalEvent;
@@ -54,7 +53,7 @@ function activateListeners(html, document) {
 		if (document instanceof FUActor || document instanceof FUItem) {
 			source = document.name;
 		} else if (document instanceof ChatMessage) {
-			var speakerActor = ChatMessage.getSpeakerActor(document.speaker);
+			const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
 			if (speakerActor) {
 				source = speakerActor.name;
 				const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
@@ -74,13 +73,10 @@ function activateListeners(html, document) {
 	});
 }
 
-function onDropActor(event, actor) {
-	if (event.dataTransfer) {
-		const data = TextEditor.getDragEventData(event);
-		const { type, damageType, amount, source, ignore } = data;
-		if (type === INLINE_DAMAGE) {
-			return applyDamage([actor], damageType, Number(amount), {}, source || 'something');
-		}
+function onDropActor(actor, sheet, { type, damageType, amount, source, ignore }) {
+	if (type === INLINE_DAMAGE) {
+		applyDamage([actor], damageType, Number(amount), {}, source || 'something');
+		return false;
 	}
 }
 

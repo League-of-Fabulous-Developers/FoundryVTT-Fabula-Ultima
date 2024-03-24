@@ -52,7 +52,7 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 			category: new SchemaField({ value: new StringField({ initial: 'brawling', choices: Object.keys(FU.weaponCategories) }) }),
 			hands: new SchemaField({ value: new StringField({ initial: 'two-handed', choices: Object.keys(FU.handedness) }) }),
 			impType: new SchemaField({ value: new StringField({ initial: 'minor', choices: ['minor', 'heavy', 'massive'] }) }),
-			damageType: new SchemaField({ value: new StringField({ initial: 'physical', blank: true, choices: Object.keys(FU.damageTypes) }) }),
+			damageType: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			isDualShield: new SchemaField({ value: new BooleanField() }),

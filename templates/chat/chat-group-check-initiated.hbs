@@ -4,11 +4,11 @@
 	</div>
 	<div class='detail-desc flex-group-center grid grid-2col'>
 		<div class='spin2win'>
-			<i class='fas fa-dice-d20 ra-2x rollable'></i>
+			<i class='fas fa-dice-d6 ra-2x rollable'></i>
 			{{localize (concat 'FU.Attribute' (capitalize attributes.attr1) 'Abbr')}}
 		</div>
 		<div class='spin2win'>
-			<i class='fas fa-dice-d20 ra-2x rollable'></i>
+			<i class='fas fa-dice-d6 ra-2x rollable'></i>
 			{{localize (concat 'FU.Attribute' (capitalize attributes.attr2) 'Abbr')}}
 		</div>
 	</div>
@@ -44,15 +44,15 @@
 			</div>
 		</div>
 	{{/if}}
-	<div class='detail-desc flexrow flex-group-center'>
+	<div class='action-button detail-desc flexrow flex-group-center'>
 		{{#if (eq status 'open')}}
 			<button type='button' data-support='{{groupCheckId}}'>{{localize 'FU.ChatGroupCheckSupport'}}</button>
 		{{/if}}
 		{{#if (eq status 'completed')}}
-			<span>{{localize 'FU.ChatGroupCheckCompleted'}}</span>
+			<button type='button' disabled>{{localize 'FU.ChatGroupCheckCompleted'}}</button>
 		{{/if}}
 		{{#if (eq status 'canceled')}}
-			<span>{{localize 'FU.ChatGroupCheckCanceled'}}</span>
+            <button type='button' disabled>{{localize 'FU.ChatGroupCheckCanceled'}}</button>
 		{{/if}}
 	</div>
 </div>

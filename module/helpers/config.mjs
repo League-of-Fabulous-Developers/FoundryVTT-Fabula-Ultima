@@ -21,25 +21,7 @@ FU.attributeAbbreviations = {
 };
 
 /**
- * @typedef {"phys","air","bolt","dark","earth","fire","ice","light","poison"} Affinity
- */
-/**
- * @type {Object.<Affinity, string>}
- */
-FU.affinities = {
-	phys: 'FU.DamageNormal',
-	air: 'FU.DamageWind',
-	bolt: 'FU.DamageLightning',
-	dark: 'FU.DamageDark',
-	earth: 'FU.DamageEarth',
-	fire: 'FU.DamageFire',
-	ice: 'FU.DamageIce',
-	light: 'FU.DamageLight',
-	poison: 'FU.DamagePoison',
-};
-
-/**
- * @typedef {"physical","air","bolt","dark","earth","fire","ice","light","poison"} DamageType
+ * @typedef {"untyped", "physical","air","bolt","dark","earth","fire","ice","light","poison"} DamageType
  */
 /**
  * @type {Object<DamageType, string>}
@@ -54,10 +36,35 @@ FU.damageTypes = {
 	ice: 'FU.DamageIce',
 	light: 'FU.DamageLight',
 	poison: 'FU.DamagePoison',
+	untyped: 'FU.DamageNone',
 };
 
 FU.affIcon = {
-	phys: 'fun fu-phys',
+	physical: 'fun fu-phys',
+	air: 'fun fu-wind',
+	bolt: 'fun fu-bolt',
+	dark: 'fun fu-dark',
+	earth: 'fun fu-earth',
+	fire: 'fun fu-fire',
+	ice: 'fun fu-ice',
+	light: 'fun fu-light',
+	poison: 'fun fu-poison',
+};
+
+FU.allIcon = {
+	offensive: 'is-offensive',
+	martial: 'is-martial',
+	melee: "is-melee",
+	range: 'is-range',
+	spell: 'is-spell',
+	skill: 'is-skill',
+	twoweapon: 'is-two-weapon',
+	header: 'is-header',
+	diamond: 'is-diamond',
+	club: 'is-club',
+	heart: 'is-heart',
+	spade: 'is-spade',
+	physical: 'fun fu-phys',
 	air: 'fun fu-wind',
 	bolt: 'fun fu-bolt',
 	dark: 'fun fu-dark',
@@ -157,42 +164,42 @@ FU.actionRule = {
 };
 
 FU.statusEffects = {
-	'crisis' : 'FU.Crisis',
-	'guard' : 'FU.Guard',
-	'slow' : 'FU.Slow',
-	'dazed' : 'FU.Dazed',
-	'weak' : 'FU.Weak',
-	'shaken' : 'FU.Shaken',
-	'enraged' : 'FU.Enraged',
-	'poisoned' : 'FU.Poisoned',
-	'wlp-down' : 'FU.WLPDown',
-	'wlp-up' : 'FU.WLPUp', 
-	'dex-down' : 'FU.DEXDown', 
-	'dex-up' : 'FU.DEXUp',
-	'ins-up' : 'FU.ISNUp',
-	'ins-down' : 'FU.INSDown',
-	'mig-up' : 'FU.MIGUp',
-	'mig-down' : 'FU.MIGDown',
-}
+	crisis: 'FU.Crisis',
+	guard: 'FU.Guard',
+	slow: 'FU.Slow',
+	dazed: 'FU.Dazed',
+	weak: 'FU.Weak',
+	shaken: 'FU.Shaken',
+	enraged: 'FU.Enraged',
+	poisoned: 'FU.Poisoned',
+	'wlp-down': 'FU.WLPDown',
+	'wlp-up': 'FU.WLPUp',
+	'dex-down': 'FU.DEXDown',
+	'dex-up': 'FU.DEXUp',
+	'ins-up': 'FU.ISNUp',
+	'ins-down': 'FU.INSDown',
+	'mig-up': 'FU.MIGUp',
+	'mig-down': 'FU.MIGDown',
+};
 
 FU.statusEffectRule = {
-	'crisis' : 'FU.CrisisRule',
-	'guard' : 'FU.GuardRule',
-	'slow' : 'FU.SlowRule',
-	'dazed' : 'FU.DazedRule',
-	'weak' : 'FU.WeakRule',
-	'shaken' : 'FU.ShakenRule',
-	'enraged' : 'FU.EnragedRule',
-	'poisoned' : 'FU.PoisonedRule',
-	'wlp-down' : 'FU.WLPDownRule',
-	'wlp-up' : 'FU.WLPUpRule', 
-	'dex-down' : 'FU.DEXDownRule', 
-	'dex-up' : 'FU.DEXUpRule',
-	'ins-down' : 'FU.INSDownRule',
-	'ins-up' : 'FU.ISNUpRule',
-	'mig-down' : 'FU.MIGDownRule',
-	'mig-up' : 'FU.MIGUpRule',
-}
+	crisis: 'FU.CrisisRule',
+	guard: 'FU.GuardRule',
+	slow: 'FU.SlowRule',
+	dazed: 'FU.DazedRule',
+	weak: 'FU.WeakRule',
+	shaken: 'FU.ShakenRule',
+	enraged: 'FU.EnragedRule',
+	poisoned: 'FU.PoisonedRule',
+	'wlp-down': 'FU.WLPDownRule',
+	'wlp-up': 'FU.WLPUpRule',
+	'dex-down': 'FU.DEXDownRule',
+	'dex-up': 'FU.DEXUpRule',
+	'ins-down': 'FU.INSDownRule',
+	'ins-up': 'FU.ISNUpRule',
+	'mig-down': 'FU.MIGDownRule',
+	'mig-up': 'FU.MIGUpRule',
+};
 
 /**
  * @typedef {"arcane", "bow", "brawling", "dagger", "firearm", "flail", "heavy", "spear", "sword", "thrown", "custom"} WeaponCategory
@@ -307,3 +314,21 @@ FU.handedness = {
 };
 
 FU.classFeatureRegistry = new ClassFeatureRegistry();
+
+FU.resources = {
+	hp: 'FU.HealthPoints',
+	mp: 'FU.MindPoints',
+	ip: 'FU.InventoryPoints',
+};
+
+FU.resourcesAbbr = {
+	hp: 'FU.HealthAbbr',
+	mp: 'FU.MindAbbr',
+	ip: 'FU.InventoryAbbr',
+};
+
+FU.resourceIcons = {
+	hp: 'fas fa-heart',
+	mp: 'fas fa-hat-wizard',
+	ip: 'ra ra-gear-hammer',
+};

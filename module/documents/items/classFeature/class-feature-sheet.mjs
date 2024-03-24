@@ -1,7 +1,5 @@
 import { ClassFeatureDataModel } from './class-feature-data-model.mjs';
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../../../helpers/effects.mjs';
-import { InlineDamage } from '../../../helpers/inline-damage.mjs';
-import { InlineRecovery } from '../../../helpers/inline-recovery.mjs';
 
 export class FUClassFeatureSheet extends ItemSheet {
 	static get defaultOptions() {
@@ -117,8 +115,6 @@ export class FUClassFeatureSheet extends ItemSheet {
 
 	activateListeners(html) {
 		super.activateListeners(html);
-		InlineDamage.activateListeners(html, this.item);
-		InlineRecovery.activateListeners(html, this.item);
 
 		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.item));
 

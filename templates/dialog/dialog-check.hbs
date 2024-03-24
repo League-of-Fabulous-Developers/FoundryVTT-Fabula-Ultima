@@ -1,34 +1,37 @@
-<section class="flexrow">
+<section class="title-fieldset resource-content flex-group-center flexrow">
     {{#each attributes}}
-        <fieldset class="form-fields">
-            <label>
-                <abbr title="{{localize this}}">
-                    {{localize (lookup @root/attributeAbbr @key)}}
-                </abbr>
-                :
-            </label>
-            <span>D{{lookup @root/attributeValues @key}}</span>
-        </fieldset>
+    <fieldset class="form-fields">
+        <label class="resource-label-sm">
+            <abbr title="{{localize this}}">
+                {{localize (lookup @root/attributeAbbr @key)}}
+            </abbr>
+            :
+        </label>
+        <span class="resource-label-m">D{{lookup @root/attributeValues @key}}</span>
+    </fieldset>
     {{/each}}
 </section>
 <hr>
 <section>
-    <fieldset>
-        {{radioBoxes 'attr1' attributes checked=attr1 localize=true }}
+    <fieldset class="flexrow resource-content">
+        <legend class="resource-text-m">{{localize 'FU.Primary'}}</legend>
+        <span class="radio-container">{{radioBoxes 'attr1' attributes checked=attr1 localize=true }}</span>
     </fieldset>
-    <fieldset>
-        {{radioBoxes 'attr2' attributes checked=attr2 localize=true }}
+    <fieldset class="flexrow resource-content">
+        <legend class="resource-text-m">{{localize 'FU.Secondary'}}</legend>
+        <span class="radio-container">{{radioBoxes 'attr2' attributes checked=attr2 localize=true }}</span>
     </fieldset>
-    <fieldset>
-        <label>
+
+    <fieldset class="flex-group-left resource-content">
+        <legend class="resource-text-m">{{localize 'FU.DialogCheckDifficulty'}}</legend>
+        <label class="resource-text-m">
             {{localize 'FU.DialogCheckModifier'}}
             <input name="modifier" type="number" value="{{modifier}}">
         </label>
-    </fieldset>
-    <fieldset>
-        <label>
+        <label class="resource-text-m">
             {{localize 'FU.DialogCheckDifficulty'}}
             <input name="difficulty" type="number" value="{{difficulty}}" min="0">
         </label>
     </fieldset>
 </section>
+<hr>

@@ -4,7 +4,7 @@ system.study.value 3))}}
     <div class="grid grid-3col" style="align-self: baseline;">
         {{!-- DEF --}}
         <div class="resource-content flex-group-center">
-            <label class="resource-label-l"> <i class="fa-solid fa-shield icon"></i>{{localize
+            <label class="resource-label-l"> <i class="fas fa-shield icon"></i>{{localize
                 'FU.DefenseAbbr'}}
             </label>
             <div class="resource-content flex-center">
@@ -17,7 +17,7 @@ system.study.value 3))}}
 
         {{!-- MDEF --}}
         <div class="resource-content flex-group-center">
-            <label class="resource-label-l"> <i class="fa-solid fa-shield-halved icon"></i>{{localize
+            <label class="resource-label-l"> <i class="fas fa-shield-halved icon"></i>{{localize
                 'FU.MagicDefenseAbbr'}} </label>
             <div class="resource-content flex-center">
                 <input class="resource-inputs" id="mdef-input" name="system.derived.mdef.value"
@@ -30,7 +30,7 @@ system.study.value 3))}}
         {{!-- Initiative --}}
         <div class="resource-content flex-group-center">
             <label class="rollable resource-label-l" data-roll-type="roll-init"> <i
-                    class="fa-solid fa-clock icon"></i>{{localize 'FU.InitiativeAbbr'}} </label>
+                    class="fas fa-clock icon"></i>{{localize 'FU.InitiativeAbbr'}} </label>
             <div class="resource-content flex-center">
                 <input class="resource-inputs" id="init-input" name="system.derived.init.value"
                     value="{{ system.derived.init.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.Initiative'}}<br>Current: {{
@@ -45,11 +45,11 @@ system.study.value 3))}}
 <div class="header-end flex-group-center resource-content" style="align-self: baseline;">
     <label>
         {{#if (eq actor.type "npc")}}
-        <span class="resource-label-l"> <i class="fa-solid fa-crystal-ball icon"></i>{{localize
+        <span class="resource-label-l"> <i class="fas fa-feather icon"></i>{{localize
             'FU.UltimaPoints'}} </span>
         {{/if}}
         {{#if (eq actor.type "character")}}
-        <span class="resource-label-l"> <i class="fa-solid fa-crystal-ball icon"></i>{{localize
+        <span class="resource-label-l"> <i class="fas fa-feather icon"></i>{{localize
             'FU.FabulaPoints'}} </span>
         {{/if}}
     </label>

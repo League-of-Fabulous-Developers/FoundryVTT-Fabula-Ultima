@@ -10,7 +10,11 @@
 		</div>
 
 		{{!-- Description Tab --}}
-		<div class="tab desc" data-group="primary" data-tab="description">
+		<div class="tab desc resource-content" data-group="primary" data-tab="description">
+			<label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
+				{{localize 'FU.Description'}}
+				<i class="fas fa-info-circle"></i>
+			</label>
 			{{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
 			button=true owner=owner editable=editable }}
 		</div>
@@ -114,8 +118,7 @@
 								class="resource-label-m flexlarge">{{localize 'FU.DamageType'}} </label>
 							<select value="{{ system.rollInfo.damage.type.value }}"
 								name="system.rollInfo.damage.type.value" class="resource-inputs select-dropdown-m">
-								{{selectOptions damageTypes selected=system.rollInfo.damage.type.value blank='Untyped'
-								sort=true localize=true}}
+								{{selectOptions damageTypes selected=system.rollInfo.damage.type.value sort=true localize=true}}
 							</select>
 						</div>
 						<div class="resource-content flexcol flex-group-center">

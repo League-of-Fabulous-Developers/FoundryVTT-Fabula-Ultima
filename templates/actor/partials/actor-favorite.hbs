@@ -26,14 +26,15 @@
 			<div class="flexrow">
 				{{!-- Item Name --}}
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                {{!-- Class Features --}}
-                {{#if (eq item.type 'classFeature')}}
-                    {{#with (lookup @root.classFeatures item.system.featureType) as | featureType |}}
-                        {{#with (lookup featureType.items item._id) as | itemData |}}
-                            {{> (lookup featureType.feature 'previewTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
-                        {{/with}}
-                    {{/with}}
-                {{/if}}
+				{{!-- Class Features --}}
+				{{#if (eq item.type 'classFeature')}}
+				{{#with (lookup @root.classFeatures item.system.featureType) as | featureType |}}
+				{{#with (lookup featureType.items item._id) as | itemData |}}
+				{{> (lookup featureType.feature 'previewTemplate') itemData.item additionalData=itemData.additionalData
+				item=itemData.item}}
+				{{/with}}
+				{{/with}}
+				{{/if}}
 				{{!-- Item Equip--}}
 				{{#if (or (eq @root.actor.type "character") @root.actor.system.useEquipment.value)}}
 				{{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" actor=actor item=item}}
@@ -41,7 +42,7 @@
 
 				{{!-- Resource Points --}}
 				{{#if item.system.hasResource.value}}
-				<div class="item-m flexcol flex-group-center resource-content">
+				<div class="item-l desc flexrow flex-group-center resource-content" style="padding: 0">
 					<label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
 					<div class="resource-text-m buttons-inc">
 						<a class="decrement-button" data-type="resourceCounter" data-item-id="{{ item._id }}">-</a>
@@ -51,6 +52,29 @@
 						<span>{{ item.system.rp.max }}</span>
 						{{/if}}
 						<a class="increment-button" data-type="resourceCounter" data-item-id="{{ item._id }}">+</a>
+					</div>
+				</div>
+				{{/if}}
+
+				{{#if (eq item.type "project")}}
+				{{!-- Progress Bar --}}
+				<div class="item-progressbar">
+					<div class="bar bar-progress">
+						<div class="bar-progress-bar bar-project"
+							style="width: {{calculatePercentage item.system.progress.current item.system.progress.max}};">
+						</div>
+						<span class="bar-value"></span>
+					</div>
+				</div>
+				{{!-- Progress Counter --}}
+				<div class="item-m desc flexcol flex-group-center resource-content"
+					style="padding: 0px; border-radius: 6px 12px 12px 6px;">
+					<div class="resource-text-m buttons-inc">
+						<a class="decrement-button" data-type="projectCounter" data-item-id="{{ item._id }}">-</a>
+						<span data-resource="item.rp">{{ item.system.progress.current }}</span>
+						<span>/</span>
+						<span>{{ item.system.progress.max }}</span>
+						<a class="increment-button" data-type="projectCounter" data-item-id="{{ item._id }}">+</a>
 					</div>
 				</div>
 				{{/if}}

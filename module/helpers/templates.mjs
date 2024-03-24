@@ -11,6 +11,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/sections/actor-section-spells.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-items.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-combat.hbs',
+		'systems/projectfu/templates/actor/sections/actor-section-notes.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-behavior.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-settings.hbs',
 

@@ -43,11 +43,13 @@ import { CharacterSkillTracker } from './character-skill-tracker.mjs';
  * @property {number} derived.mdef.value
  * @property {number} derived.mdef.bonus
  * @property {BonusesDataModel} bonuses
+ * @property {string} description
  * @property {CharacterSkillTracker} tlTracker
+ * 
  */
 export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, ArrayField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, NumberField, StringField, ArrayField, EmbeddedDataField, HTMLField } = foundry.data.fields;
 		return {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
@@ -107,6 +109,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 				}),
 			}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
+			description: new HTMLField(),
 		};
 	}
 

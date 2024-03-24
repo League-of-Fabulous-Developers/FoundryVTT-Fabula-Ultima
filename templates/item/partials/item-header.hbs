@@ -40,7 +40,7 @@
 					{{!-- Item Type --}}
 					<span class="resource-content levelup-container flexcol flex-group-center">
 						<label class="resource-label-m" for="item.type"> <i
-								class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.ItemType'}}</label>
+								class="fas fa-chart-simple icon"></i>{{localize 'FU.ItemType'}}</label>
 						<input type="text" name="item.type" value="{{localize (translate item.type)}}"
 							data-dtype="String" class="resource-inputs" disabled style="border-radius: 0 12px 0 0;" />
 					</span>
@@ -49,7 +49,6 @@
 					<span class="resource-content levelup-container flexcol flex-group-center"
 						style="border-top-right-radius: 12px;">
 						<label class="resource-label-m rollable" id="pdfLink">
-							{{!-- <i class="fa-solid fa-book icon"></i> --}}
 							{{localize 'FU.Source'}} </label>
 						<input type="text" name="system.source.value" value="{{ system.source.value }}"
 							data-dtype="String" style="border-radius: 12px 0 0;" class="resource-inputs" />
@@ -61,7 +60,7 @@
 			<div class="item-header header-field header-center grid grid-3col desc">
 				<div class="resource-content summary grid-span-3">
 					<label class="resource-label-sm" for="system.summary.value"> <i
-							class="fa-solid fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
+							class="fas fa-chart-simple icon"></i>{{localize 'FU.Summary'}} </label>
 					<blockquote><input type="text" name="system.summary.value" value="{{ system.summary.value }}"
 							data-dtype="String" class="flex-group-center resource-inputs summary"
 							data-tooltip="{{ system.summary.value }}" /></blockquote>
@@ -70,10 +69,10 @@
 				{{!-- Key Attributes --}}
 				<div class="resource-content summary grid-span-3">
 					<label class="resource-label-sm" style="position: sticky;" for="system.summary.value"> <i
-							class="fa-solid fa-chart-simple icon"></i>{{localize
+							class="fas fa-chart-simple icon"></i>{{localize
 						'FU.AttributesKey'}}
 					</label>
-					<div class="grid grid-3col" style="margin: 5px 0;">
+					<div class="grid grid-3col">
 						{{#if (eq item.type "weapon")}}
 						{{> "systems/projectfu/templates/item/partials/item-weapon-header.hbs" dtypes=dtypes}}
 						{{else if (eq item.type "shield")}}
@@ -106,7 +105,7 @@
 	<div class="header-fields grid grid-3col" style="width: 100%">
 		{{!-- Sub Type --}}
 		<span id="subtype-section" class="resource-content flexcol flex-group-center desc">
-			<label class="resource-label-sm" for="item.type"> <i class="fa-solid fa-chart-simple icon"></i>{{localize
+			<label class="resource-label-sm" for="item.type"> <i class="fas fa-chart-simple icon"></i>{{localize
 				'FU.SubType'}}</label>
 			{{#if (eq item.type "heroic")}}
 			<span>

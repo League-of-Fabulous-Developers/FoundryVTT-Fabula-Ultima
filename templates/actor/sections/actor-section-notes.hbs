@@ -1,0 +1,18 @@
+<section class="body-section grid grid-4col">
+    <main class="grid-span-4">
+
+        <fieldset class="section-container title-fieldset desc resource-content">
+            <legend class="resource-label-m" aria-describedby="tooltip">
+                <a class="resource-inputs resource-label-m">
+                    </i>{{localize 'FU.BiographyInfo'}}
+                </a>
+            </legend>
+
+            <section>
+                {{editor enrichedHtml.description target="system.description" engine="prosemirror"
+                rollData=rollData button=true owner=owner editable=editable }}
+            </section>
+
+        </fieldset>
+    </main>
+</section>

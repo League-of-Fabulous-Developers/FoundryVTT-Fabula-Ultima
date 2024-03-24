@@ -14,8 +14,12 @@
 
 			<section class="grid grid-2col gap-5">
 
-				{{!-- Description --}}
-				<div class="grid-span-2 desc flex-between">
+				<div class="grid-span-2 desc flex-between resource-content">
+					<label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
+						{{localize 'FU.Description'}}
+						<i class="fas fa-info-circle"></i>
+					</label>
+
 					{{editor enrichedHtml.description target="system.description" engine="prosemirror"
 					rollData=rollData button=true owner=owner editable=editable }}
 				</div>

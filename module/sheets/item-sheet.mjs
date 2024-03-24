@@ -1,6 +1,4 @@
-import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
-import { InlineDamage } from '../helpers/inline-damage.mjs';
-import { InlineRecovery } from '../helpers/inline-recovery.mjs';
+import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/effects.mjs';
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -10,7 +8,7 @@ export class FUItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['projectfu', 'sheet', 'item'],
+			classes: ['projectfu', 'sheet', 'item', 'backgroundstyle'],
 			width: 700,
 			height: 700,
 			tabs: [
@@ -89,8 +87,6 @@ export class FUItemSheet extends ItemSheet {
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
-		InlineDamage.activateListeners(html, this.item);
-		InlineRecovery.activateListeners(html, this.item);
 
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
@@ -122,19 +118,17 @@ export class FUItemSheet extends ItemSheet {
 		// Active Effect management
 		html.on('click', '.effect-control', (ev) => onManageActiveEffect(ev, this.item));
 
-        // Martial/Offensive Toggle
-        html.find('#offensive-header').click(this._toggleMartial.bind(this, 'offensive'));
-        html.find('#martial-header').click(this._toggleMartial.bind(this, 'martial'));
-
+		// Martial/Offensive Toggle
+		html.find('#offensive-header').click(this._toggleMartial.bind(this, 'offensive'));
+		html.find('#martial-header').click(this._toggleMartial.bind(this, 'martial'));
 	}
 
 	_toggleMartial(type) {
 		const system = this.item?.system;
-	
+
 		if (system) {
 			const updateKey = type === 'offensive' ? 'isOffensive' : 'isMartial';
 			this.item.update({ [`system.${updateKey}.value`]: !system[updateKey].value });
 		}
 	}
-	
 }

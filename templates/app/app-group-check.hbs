@@ -1,14 +1,12 @@
-<div class="flexcol">
+<section class="title-fieldset resource-content flexcol">
     <div class="flex0">
         <div class='detail-desc flex-group-center grid grid-2col'>
             <div class='spin2win'>
-                <i class='fas fa-dice-d{{lookup (lookup leader.system.attributes groupCheck.attributes.attr1)
-                                                'current'}} ra-2x rollable'></i>
+                <i class='fas fa-dice-d20 ra-2x rollable'></i>
                 {{localize (concat 'FU.Attribute' (capitalize groupCheck.attributes.attr1) 'Abbr')}}
             </div>
             <div class='spin2win'>
-                <i class='fas fa-dice-d{{lookup (lookup leader.system.attributes groupCheck.attributes.attr2)
-                                                'current'}} ra-2x rollable'></i>
+                <i class='fas fa-dice-d20 ra-2x rollable'></i>
                 {{localize (concat 'FU.Attribute' (capitalize groupCheck.attributes.attr2) 'Abbr')}}
             </div>
         </div>
@@ -20,15 +18,15 @@
     </div>
     <div>
         {{#each groupCheck.supporters}}
-            <div class="detail-desc flexrow flex-group-center">
-                <span>{{lookup (lookup @root.supporters id) 'name'}}</span>
-                <span>{{#if result}}{{localize 'FU.Success'}}{{else}}{{localize 'FU.Failure'}}{{/if}}</span>
-                <span>
-                    {{#each bond}}
-                        <span>{{localize (concat 'FU.' this)}}</span>{{#unless @last}}<span>,</span>{{/unless}}
-                    {{/each}}
-                </span>
-            </div>
+        <div class="detail-desc flexrow flex-group-center">
+            <span>{{lookup (lookup @root.supporters id) 'name'}}</span>
+            <span>{{#if result}}{{localize 'FU.Success'}}{{else}}{{localize 'FU.Failure'}}{{/if}}</span>
+            <span>
+                {{#each bond}}
+                <span>{{localize (concat 'FU.' this)}}</span>{{#unless @last}}<span>,</span>{{/unless}}
+                {{/each}}
+            </span>
+        </div>
         {{/each}}
     </div>
     <div class="flexrow flex0">
@@ -39,4 +37,4 @@
             <button type="button" data-type="group-check" data-action="cancel">{{localize 'FU.Cancel'}}</button>
         </span>
     </div>
-</div>
+</section>

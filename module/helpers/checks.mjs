@@ -326,8 +326,10 @@ export function addRollContextMenuEntries(html, options) {
 				const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 				const rerollParams = await getRerollParams(checkParams, ChatMessage.getSpeakerActor(message.speaker));
 				if (rerollParams) {
+					const flags = foundry.utils.duplicate(message.flags);
+					delete flags[SYSTEM][Flags.ChatMessage.CheckParams];
 					const newMessage = await rerollCheck(checkParams, rerollParams);
-					await createCheckMessage(newMessage);
+					await createCheckMessage(newMessage, flags);
 				}
 			}
 		},
@@ -354,8 +356,10 @@ export function addRollContextMenuEntries(html, options) {
 				const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 				const pushParams = await getPushParams(ChatMessage.getSpeakerActor(message.speaker));
 				if (pushParams) {
+					const flags = foundry.utils.duplicate(message.flags);
+					delete flags[SYSTEM][Flags.ChatMessage.CheckParams];
 					const newMessage = await pushCheck(checkParams, pushParams);
-					await createCheckMessage(newMessage);
+					await createCheckMessage(newMessage, flags);
 				}
 			}
 		},
@@ -382,8 +386,10 @@ export function addRollContextMenuEntries(html, options) {
 				const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
 				const rerollParams = await getRerollParams(checkParams, ChatMessage.getSpeakerActor(message.speaker));
 				if (rerollParams) {
+					const flags = foundry.utils.duplicate(message.flags);
+					delete flags[SYSTEM][Flags.ChatMessage.CheckParams];
 					const newMessage = await rerollCheck(checkParams, rerollParams);
-					await createCheckMessage(newMessage);
+					await createCheckMessage(newMessage, flags);
 				}
 			}
 		},
@@ -461,7 +467,7 @@ async function getPushParams(actor) {
 		title: game.i18n.localize('FU.DialogPushTitle'),
 		label: game.i18n.localize('FU.DialogPushLabel'),
 		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check-push.hbs', { bonds }),
-		options: { classes: ['dialog-reroll'] },
+		options: { classes: ['dialog-reroll', 'unique-dialog', 'backgroundstyle'] },
 		/** @type {(jQuery) => CheckPush} */
 		callback: (html) => {
 			const index = +html.find('input[name=bond]:checked').val();
@@ -524,7 +530,7 @@ async function getRerollParams(params, actor) {
 			attr1,
 			attr2,
 		}),
-		options: { classes: ['dialog-reroll'] },
+		options: { classes: ['dialog-reroll', 'unique-dialog', 'backgroundstyle'] },
 		/** @type {(jQuery) => CheckReroll} */
 		callback: (html) => {
 			const trait = html.find('input[name=trait]:checked');
@@ -561,7 +567,7 @@ async function getRerollParams(params, actor) {
  * @returns {string} - The enriched content.
  */
 async function EnrichHTML(htmlContent) {
-    return TextEditor.enrichHTML(htmlContent);
+	return TextEditor.enrichHTML(htmlContent);
 }
 
 /**
@@ -570,29 +576,29 @@ async function EnrichHTML(htmlContent) {
  * @return {Promise<chatMessage>}
  */
 export async function createChatMessage(checkParams, additionalFlags = {}) {
-    const content = checkParams.description
-        ? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
-            flavor: checkParams.details?.name || '',
-            description: await EnrichHTML(checkParams.description),
-        })
-        : '';
+	const content = checkParams.description
+		? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
+				flavor: checkParams.details?.name || '',
+				description: await EnrichHTML(checkParams.description),
+		  })
+		: '';
 
-    /** @type Partial<ChatMessageData> */
-    const chatMessage = {
-        content: content,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-        speaker: checkParams.speaker,
-        flags: foundry.utils.mergeObject(
-            {
-                [SYSTEM]: {
-                    [Flags.ChatMessage.CheckParams]: checkParams,
-                },
-            },
-            additionalFlags,
-        ),
-    };
+	/** @type Partial<ChatMessageData> */
+	const chatMessage = {
+		content: content,
+		type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+		speaker: checkParams.speaker,
+		flags: foundry.utils.mergeObject(
+			{
+				[SYSTEM]: {
+					[Flags.ChatMessage.CheckParams]: checkParams,
+				},
+			},
+			additionalFlags,
+		),
+	};
 
-    return ChatMessage.create(chatMessage);
+	return ChatMessage.create(chatMessage);
 }
 
 /**
@@ -618,7 +624,7 @@ export async function createCheckMessage(checkParams, additionalFlags = {}) {
 	/** @type Partial<ChatMessageData> */
 	const chatMessage = {
 		flavor: flavor,
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-check.hbs', checkParams),
+		content: await renderTemplate('systems/projectfu/templates/chat/chat-check.hbs', { ...checkParams, translation: { damageTypes: FU.damageTypes } }),
 		rolls: [checkParams.result.roll],
 		type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 		speaker: checkParams.speaker,
@@ -639,6 +645,7 @@ const KEY_RECENT_CHECKS = 'fabulaultima.recentChecks';
 
 /**
  * @param {FUActor} actor
+ * @param {string} title
  * @returns {Promise<ChatMessage|Object>}
  */
 export async function promptCheck(actor, title) {
@@ -681,8 +688,9 @@ export async function promptCheck(actor, title) {
 					},
 				],
 			},
-			{},
-			{},
+			{
+				classes: ['unique-dialog', 'backgroundstyle'],
+			},
 		);
 
 		recentActorChecks.attr1 = attr1;

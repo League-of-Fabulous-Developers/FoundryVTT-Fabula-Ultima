@@ -1,5 +1,8 @@
 $ful-sl-star: url("/systems/projectfu/styles/static/icons/ful-sl-star.svg");
 $fus-sl-star: url("/systems/projectfu/styles/static/icons/fus-sl-star.svg");
+$fus-star: url("/systems/projectfu/styles/static/icons/fus-star.svg");
+$fus-star2: url("/systems/projectfu/styles/static/icons/fus-star2.svg");
+$fus-star2-border: url("/systems/projectfu/styles/static/icons/fus-star2-border.svg");
 
 $fu-action-melee: url("/systems/projectfu/styles/static/icons/fu-action-melee.svg");
 $fu-action-ranged: url("/systems/projectfu/styles/static/icons/fu-action-ranged.svg");
@@ -129,6 +132,17 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
   background-image: $fus-sl-star;
 }
 
+.fus-star {
+  background-image: $fus-star;
+}
+
+.fus-star2 {
+  background-image: $fus-star2;
+}
+.fus-star2-border {
+  background-image: $fus-star2-border;
+}
+
 .ra-1xh {
   font-size: 1.5em;
 }
@@ -145,15 +159,37 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
   /* Bottom-right */
 }
 
-.is-buff {
-  position: relative;
-  color: $color-success !important;
 
+.is-buff {
+  color: $color-success !important;
+}
+
+.is-crisis {
+  color: $color-danger !important;
+}
+
+.is-levelup {
+  color: $color-levelup !important;
+  -webkit-text-stroke: 1px $color-secondary;
+  margin-left: 1px;
+}
+
+.is-buff,
+.is-crisis,
+.is-levelup {
   &.float-text {
-    position: relative;
     display: inline-block;
-    animation: floating 4s infinite ease-in-out;
+    position: relative;
+    animation: floating 3s infinite ease-in-out;
   }
+}
+
+.is-buff.float-text,
+.is-crisis.float-text,
+.is-levelup.float-text {
+  bottom: 2px;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 @keyframes floating {
@@ -170,18 +206,6 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 
   50% {
     transform: translateY(0);
-  }
-}
-
-.is-crisis {
-  color: $color-danger !important;
-
-  &.float-text {
-    display: inline-block;
-    position: relative;
-    bottom: 4px;
-    transform: translateY(-50%);
-    animation: floating 1s infinite ease-in-out;
   }
 }
 
@@ -221,4 +245,13 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 
 img:not([src]) {
   content: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+}
+
+.icon-option {
+  display: flex;
+  align-items: center;
+  height: 28px;
+}
+.icon-preview {
+  margin: 0 5px;
 }

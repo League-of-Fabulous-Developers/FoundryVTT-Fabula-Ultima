@@ -6,7 +6,9 @@
 		"build": "gulp build",
 		"compile": "gulp css",
 		"watch": "gulp",
-		"gulp": "gulp"
+		"gulp": "gulp",
+		"pushLDBtoYML": "node ./tools/pushLDBtoYML.mjs",
+		"pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs"
 	},
 	"browserslist": [
 		"last 3 versions"

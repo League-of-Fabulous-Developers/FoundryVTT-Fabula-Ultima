@@ -76,11 +76,11 @@ export class NpcSkillTracker {
 
 		Object.entries(this.#data.affinities).forEach(([affinity, value]) => {
 			if (value.base === -1) {
-				if (affinity === 'phys') {
+				if (affinity === 'physical') {
 					// If physical vulnerable, add 2
 					sum += 2;
 				} else {
-					// If vulnerable (except 'phys'), add 1
+					// If vulnerable (except 'physical'), add 1
 					sum += 1;
 				}
 			}
@@ -217,8 +217,7 @@ export class NpcSkillTracker {
 
 	#calcUsedSkillsFromOtherActions() {
 		return this.#data.actor.itemTypes.miscAbility.length;
-	  }
-
+	}
 
 	#calcUsedSkillsFromSpecial() {
 		return this.#data.actor.itemTypes.rule.length;

@@ -56,6 +56,12 @@ export const statusEffects = [
 		statuses: ['enraged'],
 	},
 	{
+		id: 'flying',
+		name: 'FU.Flying',
+		icon: 'systems/projectfu/styles/static/statuses/Flying.webp',
+		statuses: ['flying'],
+	},
+	{
 		id: 'guard',
 		name: 'FU.Guard',
 		icon: 'systems/projectfu/styles/static/statuses/Guard.webp',
