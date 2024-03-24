@@ -46,6 +46,7 @@ import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
 import { InlineResources } from './helpers/inline-resources.mjs';
 import { Flags } from './helpers/flags.mjs';
 import { InlineElementsHowTo } from './helpers/inline-how-to.mjs';
+import { InlineIcon } from './helpers/inline-icons.mjs';
 import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
 
 globalThis.projectfu = {
@@ -176,6 +177,8 @@ Hooks.once('init', async () => {
 	Hooks.on('renderActorSheet', InlineResources.activateListeners);
 	Hooks.on('renderItemSheet', InlineResources.activateListeners);
 	Hooks.on('dropActorSheetData', InlineResources.onDropActor);
+
+	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
 

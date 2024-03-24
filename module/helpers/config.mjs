@@ -51,6 +51,30 @@ FU.affIcon = {
 	poison: 'fun fu-poison',
 };
 
+FU.allIcon = {
+	offensive: 'is-offensive',
+	martial: 'is-martial',
+	melee: "is-melee",
+	range: 'is-range',
+	spell: 'is-spell',
+	skill: 'is-skill',
+	twoweapon: 'is-two-weapon',
+	header: 'is-header',
+	diamond: 'is-diamond',
+	club: 'is-club',
+	heart: 'is-heart',
+	spade: 'is-spade',
+	physical: 'fun fu-phys',
+	air: 'fun fu-wind',
+	bolt: 'fun fu-bolt',
+	dark: 'fun fu-dark',
+	earth: 'fun fu-earth',
+	fire: 'fun fu-fire',
+	ice: 'fun fu-ice',
+	light: 'fun fu-light',
+	poison: 'fun fu-poison',
+};
+
 FU.affType = {
 	'-1': 'FU.AffinityVulnurable',
 	0: 'FU.AffinityNormal',

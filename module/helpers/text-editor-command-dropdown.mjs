@@ -72,12 +72,41 @@ async function promptResourceLossDialog(state, dispatch, view) {
 	}
 }
 
+async function promptIconSelectionDialog(state, dispatch, view) {
+    const result = await Dialog.prompt({
+		title: game.i18n.localize('FU.TextEditorDialogIconTitle'),
+        content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-icon.hbs', { allIcon: FU.allIcon }),
+        options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
+        callback: (html) => {
+            const icon = html.find('.icon-radio:checked').val();
+            return { icon };
+        },
+        render: (html) => {
+            html.find('.icon-radio').change(function () {
+                const icon = $(this).val();
+            });
+        },
+        rejectClose: false,
+    });
+
+    if (result) {
+        const { icon } = result;
+        dispatch(state.tr.insertText(` @ICON[${icon}] `));
+    }
+}
+
 function onGetProseMirrorMenuDropDowns(menu, config) {
 	config['projectfu.textCommands'] = {
 		title: 'FU.TextEditorTextCommands',
 		icon: `<i class="star-label fus-star2-border" data-tooltip="FU.TextEditorTextCommands"></i>`,
 		cssClass: 'right',
 		entries: [
+			{
+				action: 'icon',
+				title: 'FU.TextEditorButtonCommandIcon',
+				group: 1,
+				cmd: promptIconSelectionDialog,
+			},
 			{
 				action: 'damage',
 				title: 'FU.TextEditorButtonCommandDamage',

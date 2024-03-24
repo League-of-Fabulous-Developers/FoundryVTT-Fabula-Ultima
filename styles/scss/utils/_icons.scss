@@ -246,3 +246,12 @@ $fu-poison: url("/systems/projectfu/styles/static/icons/fu-poison.svg");
 img:not([src]) {
   content: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
 }
+
+.icon-option {
+  display: flex;
+  align-items: center;
+  height: 28px;
+}
+.icon-preview {
+  margin: 0 5px;
+}

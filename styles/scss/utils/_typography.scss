@@ -418,46 +418,158 @@ $font-quote: "EB Garamond", sans-serif;
   }
 }
 
+.is-offensive::before {
+  content: 'r';
+}
 
 .is-offensive {
   color: $color-danger !important;
   font-family: "Heydings Icons";
-  font-size: 18px;
-  -webkit-text-stroke: 0.5px black;
+  font-size: 24px;
+  -webkit-text-stroke: 0.5px $color-black;
+}
+
+.is-martial::before {
+  content: 'E';
 }
 
 .is-martial {
   color: $color-danger !important;
   font-family: "FnT_BasicShapes1";
-  font-size: 18px;
-  -webkit-text-stroke: 0.5px black;
+  font-size: 24px;
+  -webkit-text-stroke: 0.5px $color-black;
+}
+
+.is-melee::before {
+  content: '$';
+}
+
+.is-melee {
+  color: $color-black !important;
+  font-family: "Evilz";
+  font-size: 24px;
+  -webkit-text-stroke: 0.5px $color-black;
+}
+
+.is-range::before {
+  content: '9';
+}
+
+.is-range {
+  color: $color-black !important;
+  font-family: "Evilz";
+  font-size: 24px;
+  -webkit-text-stroke: 0.5px $color-black;
+}
+
+.is-spell::before {
+  content: 'h';
+}
+
+.is-spell {
+  color: $color-black !important;
+  font-family: "Evilz";
+  font-size: 24px;
+  -webkit-text-stroke: 0.5px $color-black;
+}
+
+.is-skill::before {
+  content: 'S';
+}
+
+.is-skill {
+  color: $color-black !important;
+  font-family: "Web Symbols";
+  font-size: 24px;
+  -webkit-text-stroke: 0.5px $color-black;
+}
+
+.is-two-weapon::before {
+  content: '4';
+}
+
+.is-two-weapon {
+  color: $color-black !important;
+  font-family: "Evilz";
+  font-size: 24px;
+  -webkit-text-stroke: 0.5px $color-black;
+}
+
+.is-header::before {
+  content: 'd';
+}
+
+.is-header {
+  font-size: 24px;
+  color: $color-black;
+  font-family: "old retro labels tfb";
+}
+
+.is-diamond::before {
+  content: 'Q';
+}
+
+.is-diamond {
+  color: $color-danger !important;
+  font-family: "FnT_BasicShapes1";
+  font-size: 24px;
+  -webkit-text-stroke: 0.5px $color-black;
+}
+
+.is-club::before {
+  content: 'P';
+}
+
+.is-club {
+  font-family: "FnT_BasicShapes1";
+  font-size: 24px;
+  -webkit-text-stroke: 0.5px $color-black;
+}
+
+.is-heart::before {
+  content: 'O';
+}
+
+.is-heart {
+  color: $color-danger !important;
+  font-family: "FnT_BasicShapes1";
+  font-size: 24px;
+  -webkit-text-stroke: 0.5px $color-black;
+}
+
+.is-spade::before {
+  content: 'R';
+}
+
+.is-spade {
+  font-family: "FnT_BasicShapes1";
+  font-size: 24px;
+  -webkit-text-stroke: 0.5px $color-black;
+
 }
 
 .heydings {
   font-family: "Heydings Icons";
   font-size: 18px;
-  -webkit-text-stroke: 0.5px black;
-
+  -webkit-text-stroke: 0.5px $color-black;
 }
 
 .fnt {
   font-family: "FnT_BasicShapes1";
   font-size: 18px;
-  -webkit-text-stroke: 0.5px black;
-
+  -webkit-text-stroke: 0.5px $color-black;
 }
 
 .evil {
   font-family: "Evilz";
   font-size: 18px;
-  -webkit-text-stroke: 0.5px black;
-
+  -webkit-text-stroke: 0.5px $color-black;
 }
 
 .websymbols {
   font-family: "Web Symbols";
   font-size: 18px;
-  -webkit-text-stroke: 0.5px black;
+  -webkit-text-stroke: 0.5px $color-black;
 
 }
 
