@@ -76,7 +76,7 @@ FU.allIcon = {
 };
 
 FU.affType = {
-	'-1': 'FU.AffinityVulnurable',
+	'-1': 'FU.AffinityVulnerable',
 	0: 'FU.AffinityNormal',
 	1: 'FU.AffinityResistance',
 	2: 'FU.AffinityImmune',
@@ -85,7 +85,7 @@ FU.affType = {
 };
 
 FU.affTypeAbbr = {
-	'-1': 'FU.AffinityVulnurableAbbr',
+	'-1': 'FU.AffinityVulnerableAbbr',
 	0: 'FU.AffinityNormalAbbr',
 	1: 'FU.AffinityResistanceAbbr',
 	2: 'FU.AffinityImmuneAbbr',

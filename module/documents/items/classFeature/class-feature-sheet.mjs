@@ -9,7 +9,7 @@ export class FUClassFeatureSheet extends ItemSheet {
 			featureTabConfigs.push(...value.getTabConfigurations());
 		}
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['projectfu', 'sheet', 'item'],
+			classes: ['projectfu', 'sheet', 'item', 'backgroundstyle'],
 			width: 700,
 			tabs: [
 				{

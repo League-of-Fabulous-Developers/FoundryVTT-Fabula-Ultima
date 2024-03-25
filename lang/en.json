@@ -339,6 +339,7 @@
         "BenefitRanged": "Martial ranged weapon proficiency",
         "BenefitArmor": "Martial armor proficiency",
         "BenefitShields": "Martial shield proficiency",
+        "": "",
         "Slow": "Slow",
         "Dazed": "Dazed",
         "Weak": "Weak",
@@ -462,13 +463,13 @@
         "DamageLight": "Light",
         "DamagePoison": "Poison",
         "AffinityNormal": "Normal",
-        "AffinityVulnerable": "Vulnerable",
+        "AffinityVulnurable": "Vulnurable",
         "AffinityResistance": "Resistance",
         "AffinityImmune": "Immune",
         "AffinityAbsorption": "Absorption",
         "AffinityRepulsion": "Repulsion",
         "AffinityNormalAbbr": "-",
-        "AffinityVulnerableAbbr": "VU",
+        "AffinityVulnurableAbbr": "VU",
         "AffinityResistanceAbbr": "RS",
         "AffinityImmuneAbbr": "IM",
         "AffinityAbsorptionAbbr": "AB",
@@ -802,6 +803,10 @@
         "TextEditorButtonCommandLoss": "Resource Loss",
         "TextEditorDialogResourceLossTitle": "Resource Loss",
         "TextEditorDialogButtonInsert": "Insert",
-        "Amount": "Amount"
+        "TextEditorButtonCommandIcon": "Icons",
+        "TextEditorDialogSelectIconTitle": "Select Icon",
+        "Amount": "Amount",
+        "StatusEffectImmunity": "Status Effect Immunity",
+        "ImmunityDescription": "Immune to {status}"
     }
 }
