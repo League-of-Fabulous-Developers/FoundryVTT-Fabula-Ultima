@@ -35,6 +35,7 @@ export class CombatHUD extends Application {
 		const data = await super.getData(options);
 		data.cssClasses = this.options.classes.join(' ');
         data.cssId = this.options.id;
+        data.isCompact = this._isCompact || false;
 
         data.npcs = [];
         data.characters = [];
@@ -72,6 +73,18 @@ export class CombatHUD extends Application {
         
         const popOutButton = html.find('.window-popout');
         popOutButton.click(this._doPopOut.bind(this));
+
+        const compactButton = html.find('.window-compact');
+        compactButton.click(this._doToggleCompact.bind(this));
+    }
+
+    _doToggleCompact() {
+        this._isCompact = !this._isCompact;
+
+        const icons = this.element.find('.window-compact .fas');
+        icons.toggleClass("hidden");
+
+        this.element.find('.faction-list').toggleClass("compact");
     }
 
     _doPopOut() {
@@ -80,6 +93,7 @@ export class CombatHUD extends Application {
         ui.windows[this.appId] = this;
         this._poppedOut = true;
         this.element.find('.window-popout').css("display", "none");
+        this.element.find('.window-compact').css("display", "none");
         PopoutModule.singleton.onPopoutClicked(this);
     }
 
@@ -213,6 +227,7 @@ export class CombatHUD extends Application {
         if (this._poppedOut) {
             this._poppedOut = false;
             this.element.find('.window-popout').css("display", "block");
+            this.element.find('.window-compact').css("display", "block");
             return;
         }
         super.close();
