@@ -40,3 +40,163 @@
 
 }
 
+&#combat-hud {
+    --hud-height: 15em;
+    --npc-width-percent: 30%;
+    --character-width-percent: calc(100% - var(--npc-width-percent));
+    --combat-info-height: 3.5em;
+    --combat-info-content-padding: 5px;
+    --combat-info-image-size: calc(var(--combat-info-height) - var(--combat-info-content-padding) * 2);
+    --combat-info-effects-icon-size: 1.5em;
+    --combat-info-character-width: 30%;
+    --combat-bars-width: calc(92% - var(--combat-info-character-width));
+    --combat-bars-icon-width: 45%;
+    --combat-bars-text-width: calc(100% - var(--combat-bars-icon-width));
+
+    position: fixed;
+    left: 0;
+    height: var(--hud-height);
+    display: flex;
+    gap: 4px;
+
+    .window-popout {
+        position: absolute;
+        right: 0.5em;
+        top: -1.5em;
+        color: $color-white;
+
+        text-shadow: 1px 1px 1px $color-black;
+        box-shadow: 3px 3px $color-secondary;
+        border-radius: 8px;
+        background: linear-gradient($color-tabStyle-gradient), $color-secondary;
+        padding: 0.5em 1em 0.5em 1em;
+    }
+
+    .faction-list {
+        color: $color-primary;
+        text-shadow: 1px 1px 1px $color-black;
+        box-shadow: 3px 6px $color-secondary;
+        border-radius: 8px;
+        background: linear-gradient($color-tabStyle-gradient), $color-secondary;
+        padding: 0.5em;
+        display: flex;
+        align-content: center;
+        flex-wrap: wrap;
+        gap: 2px;
+
+        .combat-row {
+            flex: 0 0 100%;
+            height: var(--combat-info-height);
+            border-radius: 8px;
+            margin: 0 auto;
+            padding: var(--combat-info-content-padding);
+            background: $color-secondary;
+            color: $color-primary;
+            text-transform: uppercase;
+            display: flex;
+            gap: 4px;
+
+            img {
+                flex: 0 0 var(--combat-info-image-size);
+                height: var(--combat-info-image-size);
+                width: var(--combat-info-image-size);
+                object-fit: cover;
+                object-position: 50% 0;
+                border: none;
+            }
+
+            .combat-info {
+                overflow: hidden;
+
+                .combat-name {
+                    overflow: hidden;
+    
+                    h2 {
+                        font-size: 1.1em;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        border: none;
+                    }
+
+                    &.crisis {
+                        color: $color-warning;
+                    }
+                }
+
+                img {
+                    flex: 0 0 var(--combat-info-effects-icon-size);
+                    height: var(--combat-info-effects-icon-size);
+                    width: var(--combat-info-effects-icon-size);
+                    object-fit: cover;
+                    object-position: 50% 0;
+                    border: none;
+                }
+
+                .combat-effects {
+                    display: flex;
+                    gap: 1px;
+                }
+            }
+        }
+
+        &.npcs {
+            flex: 0 0 var(--npc-width-percent);
+        }
+    
+        &.characters {
+            flex: 0 0 var(--character-width-percent);
+
+            .combat-row {
+                .combat-info {
+                    flex: 0 0 var(--combat-info-character-width);
+                }
+
+                .combat-bars {
+                    flex: 0 0 var(--combat-bars-width);
+                    display: flex;
+                    gap: 12px;
+
+                    .bar-container {
+                        flex: 0 0 calc(100% / 3);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 3px;
+
+                        .bar {
+                            width: 100%;
+                            height: 20px;
+                        }
+
+                        .resource-value {
+                            display: flex;
+                            width: 100%;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 5px;
+
+                            i.ra-gear-hammer {
+                                margin-right: -5px;
+                            }
+
+                            i {
+                                flex: 0 0 var(--combat-bars-icon-width);
+                                text-align: right;
+                            }
+
+                            .resource-text {
+                                flex: 0 0 var(--combat-bars-text-width);
+
+                                span {
+                                    text-align: left;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

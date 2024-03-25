@@ -1,6 +1,7 @@
-import { SYSTEM } from '../settings.js';
+import { SYSTEM, SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { MESSAGES, SOCKET } from '../socket.mjs';
+import { CombatHUD } from '../ui/combat-hud.mjs';
 
 export const FRIENDLY = 'friendly';
 
@@ -42,6 +43,9 @@ export class FUCombat extends Combat {
 	 */
 	constructor(data, context) {
 		super(data, context);
+
+		if (this.isActive && game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) 
+			CombatHUD.init(); 
 	}
 
 	/**

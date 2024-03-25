@@ -1,0 +1,19 @@
+<form autocomplete="off" onsubmit="event.preventDefault();">
+    <p class="instructions">Choose your preferred options for the Combat HUD.</p>
+    <!-- experimentalCombatHud -->
+    <div class="form-group">
+        <label for="experimentalCombatHud">Enable Combat HUD?</label>
+        <div class="form-fields">
+            <input type="checkbox" name="experimentalCombatHud" id="experimentalCombatHud" {{checked experimentalCombatHud}}>
+        </div>
+        <p class="notes">Use the experimental Combat HUD.</p>
+    </div>
+    <div class="form-group buttons">
+        <button type="submit">
+            <i class="fas fa-floppy-disk"></i> Save Changes
+        </button>
+        <button type="reset" name="reset">
+            <i class="fas fa-undo"></i> Reset Changes
+        </button>
+    </div>
+</form>

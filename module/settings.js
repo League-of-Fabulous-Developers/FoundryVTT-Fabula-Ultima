@@ -12,6 +12,7 @@ export const SETTINGS = Object.freeze({
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	optionImagePixelated: 'optionImagePixelated',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
+	experimentalCombatHud: 'experimentalCombatHud',
 });
 
 export const registerSystemSettings = async function () {
@@ -135,6 +136,27 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 	});
+
+	game.settings.registerMenu(SYSTEM, "combatHudSettings", {
+		name: game.i18n.localize('FU.ExperimentalCombatHudSettings'),
+		hint: game.i18n.localize('FU.ExperimentalCombatHudSettingsHint'),
+		label: game.i18n.localize('FU.ExperimentalCombatHudSettingsLabel'),
+		scope: 'world',
+		icon: 'fas fa-book',
+		restricted: true,
+		type: CombatHudSettings,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.experimentalCombatHud, {
+		name: game.i18n.localize('FU.ExperimentalCombatHud'),
+		hint: game.i18n.localize('FU.ExperimentalCombatHudHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
+	});
 };
 
 class OptionalRules extends FormApplication {
@@ -178,5 +200,24 @@ class myBehaviorRolls extends FormApplication {
 		const { optionBehaviorRoll, optionTargetPriority } = expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.optionBehaviorRoll, optionBehaviorRoll);
 		game.settings.set(SYSTEM, SETTINGS.optionTargetPriority, optionTargetPriority);
+	}
+}
+
+class CombatHudSettings extends FormApplication {
+	static get defaultOptions() {
+		return foundry.utils.mergeObject(super.defaultOptions, {
+			template: 'systems/projectfu/templates/system/settings/combat-hud.hbs',
+		});
+	}
+
+	getData() {
+		return {
+			experimentalCombatHud: game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud),
+		}
+	}
+
+	async _updateObject(event, formData) {
+		const { experimentalCombatHud, optionCombatHudShowMode } = expandObject(formData);
+		game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
 	}
 }
