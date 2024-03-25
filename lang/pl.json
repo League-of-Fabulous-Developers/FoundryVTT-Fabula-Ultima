@@ -463,13 +463,13 @@
         "DamageLight": "",
         "DamagePoison": "",
         "AffinityNormal": "",
-        "AffinityVulnurable": "",
+        "AffinityVulnerable": "",
         "AffinityResistance": "",
         "AffinityImmune": "",
         "AffinityAbsorption": "Wchłanianie",
         "AffinityRepulsion": "",
         "AffinityNormalAbbr": "-",
-        "AffinityVulnurableAbbr": "",
+        "AffinityVulnerableAbbr": "",
         "AffinityResistanceAbbr": "",
         "AffinityImmuneAbbr": "",
         "AffinityAbsorptionAbbr": "",
@@ -807,6 +807,13 @@
         "TextEditorDialogSelectIconTitle": "",
         "Amount": "",
         "StatusEffectImmunity": "",
-        "ImmunityDescription": ""
+        "ImmunityDescription": "",
+        "ExperimentalCombatHudSettings": "",
+        "ExperimentalCombatHudStatus": "",
+        "ExperimentalCombatHudSettingsLabel": "",
+        "ExperimentalCombatHudSettingsHint": "",
+        "ExperimentalCombatHudInstuction": "",
+        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "",
+        "ExperimentalCombatHudWarningNoCombatTrackerContent": ""
     }
 }

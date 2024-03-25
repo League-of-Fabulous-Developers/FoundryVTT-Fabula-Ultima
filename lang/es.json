@@ -463,13 +463,13 @@
         "DamageLight": "Luz",
         "DamagePoison": "Veneno",
         "AffinityNormal": "Normal",
-        "AffinityVulnurable": "Vulnerable",
+        "AffinityVulnerable": "Vulnerable",
         "AffinityResistance": "Resistencia",
         "AffinityImmune": "Inmune",
         "AffinityAbsorption": "Absorción",
         "AffinityRepulsion": "Repulsión",
         "AffinityNormalAbbr": "-",
-        "AffinityVulnurableAbbr": "VU",
+        "AffinityVulnerableAbbr": "VU",
         "AffinityResistanceAbbr": "RE",
         "AffinityImmuneAbbr": "IN",
         "AffinityAbsorptionAbbr": "AB",
@@ -806,7 +806,14 @@
         "TextEditorButtonCommandIcon": "Iconos",
         "TextEditorDialogSelectIconTitle": "Seleccionar icono",
         "Amount": "Cantidad",
-        "StatusEffectImmunity": "",
-        "ImmunityDescription": ""
+        "StatusEffectImmunity": "Inmunidad a efecto de Estado",
+        "ImmunityDescription": "Inmune a {status}",
+        "ExperimentalCombatHudSettings": "HUD de Combate (WIP)",
+        "ExperimentalCombatHudStatus": "¿Activar HUD de Combate?",
+        "ExperimentalCombatHudSettingsLabel": "Opciones del HUD de Combate",
+        "ExperimentalCombatHudSettingsHint": "Habilita el uso del HUD de Combate que cuenta con una interfaz de usuario para rastrear atributos y efectos de Estado",
+        "ExperimentalCombatHudInstuction": "Elige tus opciones preferidas para el HUD de Combate",
+        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "Advertencia del HUD de Combate",
+        "ExperimentalCombatHudWarningNoCombatTrackerContent": "El HUD de Combate requiere que el track de combate experimental esté habilitado ¿Quieres activarlo?"
     }
 }

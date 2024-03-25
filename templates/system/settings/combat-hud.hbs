@@ -1,12 +1,12 @@
 <form autocomplete="off" onsubmit="event.preventDefault();">
-    <p class="instructions">Choose your preferred options for the Combat HUD.</p>
-    <!-- experimentalCombatHud -->
+    <p class="instructions">{{localize "FU.ExperimentalCombatHudInstuction"}}</p>
+    {{!-- experimentalCombatHud --}}
     <div class="form-group">
-        <label for="experimentalCombatHud">Enable Combat HUD?</label>
+        <label for="experimentalCombatHud">{{localize "FU.ExperimentalCombatHudStatus"}}</label>
         <div class="form-fields">
             <input type="checkbox" name="experimentalCombatHud" id="experimentalCombatHud" {{checked experimentalCombatHud}}>
         </div>
-        <p class="notes">Use the experimental Combat HUD.</p>
+        <p class="notes">{{localize "FU.ExperimentalCombatHudSettingsHint"}}</p>
     </div>
     <div class="form-group buttons">
         <button type="submit">

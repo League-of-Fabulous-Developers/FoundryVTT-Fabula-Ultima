@@ -463,13 +463,13 @@
         "DamageLight": "Luz",
         "DamagePoison": "Veneno",
         "AffinityNormal": "Normal",
-        "AffinityVulnurable": "Vulnerável",
+        "AffinityVulnerable": "Vulnerável",
         "AffinityResistance": "Resistência",
         "AffinityImmune": "Imune",
         "AffinityAbsorption": "Absorção",
         "AffinityRepulsion": "Repulsão",
         "AffinityNormalAbbr": "-",
-        "AffinityVulnurableAbbr": "VU",
+        "AffinityVulnerableAbbr": "VU",
         "AffinityResistanceAbbr": "RS",
         "AffinityImmuneAbbr": "IM",
         "AffinityAbsorptionAbbr": "AB",
@@ -807,6 +807,13 @@
         "TextEditorDialogSelectIconTitle": "Selecione Ícone",
         "Amount": "Quantidade",
         "StatusEffectImmunity": "",
-        "ImmunityDescription": ""
+        "ImmunityDescription": "",
+        "ExperimentalCombatHudSettings": "",
+        "ExperimentalCombatHudStatus": "",
+        "ExperimentalCombatHudSettingsLabel": "",
+        "ExperimentalCombatHudSettingsHint": "",
+        "ExperimentalCombatHudInstuction": "",
+        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "",
+        "ExperimentalCombatHudWarningNoCombatTrackerContent": ""
     }
 }
