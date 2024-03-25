@@ -145,7 +145,6 @@ export const registerSystemSettings = async function () {
 		icon: 'fas fa-book',
 		restricted: true,
 		type: CombatHudSettings,
-		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.experimentalCombatHud, {
@@ -217,7 +216,9 @@ class CombatHudSettings extends FormApplication {
 	}
 
 	async _updateObject(event, formData) {
-		const { experimentalCombatHud, optionCombatHudShowMode } = expandObject(formData);
+		const { experimentalCombatHud } = expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
+
+		await SettingsConfig.reloadConfirm({ world: true });
 	}
 }
