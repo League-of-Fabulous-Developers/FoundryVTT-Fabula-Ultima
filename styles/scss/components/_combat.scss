@@ -49,7 +49,8 @@
     --combat-info-image-size: calc(var(--combat-info-height) - var(--combat-info-content-padding) * 2);
     --combat-info-effects-icon-size: 1.5em;
     --combat-info-character-width: 30%;
-    --combat-bars-width: calc(92% - var(--combat-info-character-width));
+    --combat-bars-right-margin: 2.5em;
+    --combat-bars-width: calc(100% - var(--combat-info-character-width) - var(--combat-info-image-size) - var(--combat-bars-right-margin));
     --combat-bars-icon-width: 45%;
     --combat-bars-text-width: calc(100% - var(--combat-bars-icon-width));
 
