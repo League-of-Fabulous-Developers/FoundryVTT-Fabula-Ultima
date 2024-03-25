@@ -145,7 +145,6 @@ export const registerSystemSettings = async function () {
 		icon: 'fas fa-book',
 		restricted: true,
 		type: CombatHudSettings,
-		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.experimentalCombatHud, {
@@ -217,7 +216,21 @@ class CombatHudSettings extends FormApplication {
 	}
 
 	async _updateObject(event, formData) {
-		const { experimentalCombatHud, optionCombatHudShowMode } = expandObject(formData);
+		const { experimentalCombatHud } = expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
+
+		const isCustomTrackerActive = game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker);
+		if (!isCustomTrackerActive && experimentalCombatHud) {
+			const enableTracker = await Dialog.confirm({
+				title: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerTitle'),
+				content: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerContent')
+			});
+
+			if (enableTracker) {
+				game.settings.set(SYSTEM, SETTINGS.experimentalCombatTracker, true);
+			}
+		}
+
+		await SettingsConfig.reloadConfirm({ world: true });
 	}
 }

@@ -1,11 +1,17 @@
 <div class="{{cssClasses}}" id="{{cssId}}">
+    <div class="window-compact">
+        <a class="compact" title="Toggle compact mode">
+            <i class="fas fa-minus"></i>
+            <i class="fas fa-plus hidden"></i>
+        </a>
+    </div>
     <div class="window-popout">
         <a class="popout" title="Popout Combat HUD" data-target="combat-hud">
             <i class="fas fa-expand-alt"></i>
         </a>
     </div>
     <div class="window-header" style="display: none;">Combat HUD</div>
-    <div class="faction-list npcs">
+    <div class="faction-list npcs {{#if isCompact }}compact{{/if}}">
         {{#each npcs}}
         <div class="combat-row" data-actor-id="{{ this.actor.id }}" data-token-id="{{ this.token.id }}">
             <img class="token-image" src="{{this.actor.img}}" alt="{{this.actor.name}}"/>
@@ -24,7 +30,7 @@
         </div>
         {{/each}}
     </div>
-    <div class="faction-list characters">
+    <div class="faction-list characters {{#if isCompact }}compact{{/if}}">
         {{#each characters}}
         <div class="combat-row" data-actor-id="{{ this.actor.id }}" data-token-id="{{ this.token.id }}">
             <img class="token-image" src="{{this.actor.img}}" alt="{{this.actor.name}}"/>
@@ -52,6 +58,12 @@
                             style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
                         {{/if}}
                         <span class="bar-value"></span>
+
+                        <div class="resource-value-compact">
+                            <div class="resource-text">
+                                <span>{{ this.actor.system.resources.hp.value }} / {{ this.actor.system.resources.hp.max }}</span>
+                            </div>
+                        </div>
                     </div>  
                     <div class="resource-value">
                         {{#if (lte this.actor.system.resources.hp.value (half this.actor.system.resources.hp.max))}}
@@ -70,6 +82,12 @@
                             style="width: {{calculatePercentage this.actor.system.resources.mp.value this.actor.system.resources.mp.max}};">
                         </div>
                         <span class="bar-value"></span>
+
+                        <div class="resource-value-compact">
+                            <div class="resource-text">
+                                <span>{{ this.actor.system.resources.mp.value }} / {{ this.actor.system.resources.mp.max }}</span>
+                            </div>
+                        </div>
                     </div>  
                     <div class="resource-value">
                         <i class="fa-solid fa-hat-wizard icon"></i>
@@ -84,6 +102,12 @@
                             style="width: {{calculatePercentage this.actor.system.resources.ip.value this.actor.system.resources.ip.max}};">
                         </div>
                         <span class="bar-value"></span>
+
+                        <div class="resource-value-compact">
+                            <div class="resource-text">
+                                <span>{{ this.actor.system.resources.ip.value }} / {{ this.actor.system.resources.ip.max }}</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="resource-value">
                         <i class="ra ra-gear-hammer icon"></i>
