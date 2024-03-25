@@ -807,6 +807,8 @@
         "TextEditorDialogSelectIconTitle": "Select Icon",
         "Amount": "Amount",
         "StatusEffectImmunity": "Status Effect Immunity",
-        "ImmunityDescription": "Immune to {status}"
+        "ImmunityDescription": "Immune to {status}",
+        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "Combat HUD Warning",
+        "ExperimentalCombatHudWarningNoCombatTrackerContent": "Experimental Combat HUD requires the Experimental Combat Tracker to be enabled. Do you want to enable it?"
     }
 }

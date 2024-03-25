@@ -219,6 +219,18 @@ class CombatHudSettings extends FormApplication {
 		const { experimentalCombatHud } = expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
 
+		const isCustomTrackerActive = game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker);
+		if (!isCustomTrackerActive && experimentalCombatHud) {
+			const enableTracker = await Dialog.confirm({
+				title: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerTitle'),
+				content: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerContent')
+			});
+
+			if (enableTracker) {
+				game.settings.set(SYSTEM, SETTINGS.experimentalCombatTracker, true);
+			}
+		}
+
 		await SettingsConfig.reloadConfirm({ world: true });
 	}
 }
