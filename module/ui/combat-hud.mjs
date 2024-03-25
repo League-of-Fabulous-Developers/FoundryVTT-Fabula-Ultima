@@ -50,10 +50,12 @@ export class CombatHUD extends Application {
                 effects: game.release.generation >= 11 ? Array.from(combatant.actor.allApplicableEffects()) : combatant.actor.effects
             };
 
-            if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY)
+            if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
                 data.characters.push(actorData);
-            else
+            }
+            else {
                 data.npcs.push(actorData);
+            }
         }
         
 		return data;
@@ -67,8 +69,7 @@ export class CombatHUD extends Application {
 
         const combatantImages = html.find('.combat-row .token-image');
         combatantImages.click((event) => this._onCombatantClick(event));
-        combatantImages.on('dblclick', (event) => this._onCombatantDoubleClick(event));   
-
+        
         const popOutButton = html.find('.window-popout');
         popOutButton.click(this._doPopOut.bind(this));
     }
@@ -85,17 +86,65 @@ export class CombatHUD extends Application {
     _onCombatantClick(event) {
         event.preventDefault();
 
+        const now = Date.now();
+        const dt = now - this._clickTime;
+        this._clickTime = now;
+        if (dt <= 250) {
+            this._onCombatantDoubleClick(event);
+            return;
+        }
+
+        const isShiftActive = game.keyboard.isModifierActive(KeyboardManager.MODIFIER_KEYS.SHIFT);
+        
         const combatRow = event.currentTarget.closest('.combat-row');
         const token = canvas.tokens.get(combatRow.dataset.tokenId);
-        
-        const isShiftActive = game.keyboard.isModifierActive(KeyboardManager.MODIFIER_KEYS.SHIFT);
         if (token) {
+            if (!token.actor?.testUserPermission(game.user, 'OBSERVER')) {
+                return;
+            }
+
             token.control({ releaseOthers: !isShiftActive });
         }
     }
 
     _onCombatantDoubleClick(event) {
+        event.preventDefault();
 
+        const combatRow = event.currentTarget.closest('.combat-row');
+        const token = canvas.tokens.get(combatRow.dataset.tokenId);
+        
+        if (token) {
+            const combatant = game.combat.combatants.find(c => c.tokenId === token.id);
+            if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
+                this._onCharacterDoubleClick(token);
+            } else {
+                this._onNPCDoubleClick(token);
+            }
+        }
+    }
+
+    _onCharacterDoubleClick(token) {
+        console.log(token);
+        if (!token) return;
+        if (!token.actor?.testUserPermission(game.user, 'OBSERVER') && !game.user.isGM) return;
+        
+        token.actor?.sheet.render(true);
+    }
+
+    _onNPCDoubleClick(token) {
+        if (!token) return;
+
+        if (game.user.isGM) {
+            const actorSheet = token.actor.sheet;
+            if (actorSheet) {
+                actorSheet.render(true);
+            }
+        } else {
+            const studyJournal = game.journal.getName(token.actor?.name);
+            if (studyJournal) {
+                studyJournal.sheet.render(true);
+            }
+        }
     }
 
     async _render(force, options) {
