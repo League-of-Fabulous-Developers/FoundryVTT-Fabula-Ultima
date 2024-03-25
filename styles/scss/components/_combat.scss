@@ -104,6 +104,10 @@
                 object-fit: cover;
                 object-position: 50% 0;
                 border: none;
+
+                &:hover {
+                    cursor: pointer;
+                }
             }
 
             .combat-info {

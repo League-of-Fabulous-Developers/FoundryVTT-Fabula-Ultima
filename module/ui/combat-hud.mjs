@@ -42,6 +42,8 @@ export class CombatHUD extends Application {
         if (!game.combat) return data;
 
         for (const combatant of game.combat.combatants) {
+            if (!combatant.actor || !combatant.token) continue;
+
             const actorData = {
                 actor: combatant.actor,
                 token: combatant.token,
@@ -63,17 +65,37 @@ export class CombatHUD extends Application {
         const rows = html.find('.combat-row');
         rows.hover(this._onHoverIn.bind(this), this._onHoverOut.bind(this));
 
+        const combatantImages = html.find('.combat-row .token-image');
+        combatantImages.click((event) => this._onCombatantClick(event));
+        combatantImages.on('dblclick', (event) => this._onCombatantDoubleClick(event));   
+
         const popOutButton = html.find('.window-popout');
-        popOutButton.click(this.doPopOut.bind(this));
+        popOutButton.click(this._doPopOut.bind(this));
     }
 
-    doPopOut() {
+    _doPopOut() {
         if (!PopoutModule || !PopoutModule.singleton) return;
 
         ui.windows[this.appId] = this;
         this._poppedOut = true;
         this.element.find('.window-popout').css("display", "none");
         PopoutModule.singleton.onPopoutClicked(this);
+    }
+
+    _onCombatantClick(event) {
+        event.preventDefault();
+
+        const combatRow = event.currentTarget.closest('.combat-row');
+        const token = canvas.tokens.get(combatRow.dataset.tokenId);
+        
+        const isShiftActive = game.keyboard.isModifierActive(KeyboardManager.MODIFIER_KEYS.SHIFT);
+        if (token) {
+            token.control({ releaseOthers: !isShiftActive });
+        }
+    }
+
+    _onCombatantDoubleClick(event) {
+
     }
 
     async _render(force, options) {
