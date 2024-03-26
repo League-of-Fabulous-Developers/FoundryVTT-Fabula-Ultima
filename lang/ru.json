@@ -526,6 +526,7 @@
         "UndeadRule": "Нежить невосприимчива к урону <b>тьмой</b> и <b>ядом</b>, невосприимчива к <b>отравлению</b> и уязвима к урону <b>светом</b>.",
         "CustomRule": "Нестандартный НИП",
         "UseEquipment": "Использовать экипировку?",
+        "UseEquipmentHint": "Эта черта позволяет НИП пользоваться экипировкой",
         "Potency": "Потенциал",
         "Area": "Область",
         "Use": "Использовать",
@@ -813,7 +814,7 @@
         "ExperimentalCombatHudSettingsLabel": "Настройки боевого интерфейса",
         "ExperimentalCombatHudSettingsHint": "Включить использование боевого интерфейса для отслеживания статусов и параметров ",
         "ExperimentalCombatHudInstuction": "Выберите предпочтительные опции для боевого интерфейса",
-        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "",
-        "ExperimentalCombatHudWarningNoCombatTrackerContent": ""
+        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "Предупреждение о боевом интерфейсе",
+        "ExperimentalCombatHudWarningNoCombatTrackerContent": "Экспериментальный боевой интерфейс требует экспериментальный трекер боя для работы. Включить его?"
     }
 }

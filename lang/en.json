@@ -526,6 +526,7 @@
         "UndeadRule": "Undead are Immune to <b>dark</b> and <b>poison</b> damage, immune to <b>poisoned</b> and Vulnerable to <b>light</b> damage.",
         "CustomRule": "Custom NPC",
         "UseEquipment": "Use Equipment?",
+        "UseEquipmentHint": "This feature allows npcs to use equipment",
         "Potency": "Potency",
         "Area": "Area",
         "Use": "Use",
