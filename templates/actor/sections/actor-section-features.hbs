@@ -111,7 +111,7 @@
 					{{!-- Item Name--}}
 					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 					{{#if item.system.subtype}}
-					<div class="item-quality">{{capitalize (localize (translate item.system.subtype.value))}}</div>
+					<div class="item-quality">{{capitalize item.system.subtype.value}}</div>
 					{{/if}}
 				</div>
 				<div class="item-full start description-effect">
