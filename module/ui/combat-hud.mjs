@@ -35,7 +35,7 @@ export class CombatHUD extends Application {
 		const data = await super.getData(options);
 		data.cssClasses = this.options.classes.join(' ');
         data.cssId = this.options.id;
-        data.isCompact = this._isCompact || false;
+        data.isCompact = this._isCompact || false || game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
 
         data.npcs = [];
         data.characters = [];
@@ -80,6 +80,7 @@ export class CombatHUD extends Application {
 
     _doToggleCompact() {
         this._isCompact = !this._isCompact;
+        game.settings.set(SYSTEM, SETTINGS.optionCombatHudCompact, this._isCompact);
 
         const icons = this.element.find('.window-compact .fas');
         icons.toggleClass("hidden");

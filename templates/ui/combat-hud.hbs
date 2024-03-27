@@ -1,13 +1,13 @@
 <div class="{{cssClasses}}" id="{{cssId}}">
     <div class="window-compact">
         <a class="compact" title="Toggle compact mode">
-            <i class="fas fa-minus"></i>
-            <i class="fas fa-plus hidden"></i>
+            <i class="fas fa-caret-down {{#if isCompact }}hidden{{/if}}"></i>
+            <i class="fas fa-caret-up {{#unless isCompact }}hidden{{/unless}}"></i>
         </a>
     </div>
     <div class="window-popout">
         <a class="popout" title="Popout Combat HUD" data-target="combat-hud">
-            <i class="fas fa-expand-alt"></i>
+            <i class="fas fa-up-right-from-square"></i>
         </a>
     </div>
     <div class="window-header" style="display: none;">Combat HUD</div>

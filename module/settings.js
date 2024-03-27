@@ -13,6 +13,7 @@ export const SETTINGS = Object.freeze({
 	optionImagePixelated: 'optionImagePixelated',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	experimentalCombatHud: 'experimentalCombatHud',
+	optionCombatHudCompact: 'optionCombatHudCompact',
 });
 
 export const registerSystemSettings = async function () {
@@ -155,6 +156,14 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudCompact, {
+		name: "CombatHudCompactMode",
+		scope: 'local',
+		config: false,
+		type: Boolean,
+		default: false,
 	});
 };
 
