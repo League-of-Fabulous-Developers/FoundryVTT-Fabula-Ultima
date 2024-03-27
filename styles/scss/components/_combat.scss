@@ -62,23 +62,8 @@
     display: flex;
     gap: 4px;
 
-    .window-popout {
+    .window-button {
         position: absolute;
-        right: 0.5em;
-        top: -1.5em;
-        color: $color-white;
-
-        text-shadow: 1px 1px 1px $color-black;
-        box-shadow: 3px 3px $color-secondary;
-        border-radius: 8px;
-        background: linear-gradient($color-tabStyle-gradient), $color-secondary;
-        padding: 0.5em 1em 0.5em 1em;
-        height: var(--hud-buttons-height);
-    }
-
-    .window-compact {
-        position: absolute;
-        right: 4em;
         top: -1.5em;
         color: $color-white;
 
@@ -89,8 +74,20 @@
         padding: 0.5em 1em 0.5em 1em;
         height: var(--hud-buttons-height);
 
-        .fas.hidden {
-            display: none;
+        &.window-minimize {
+            right: 0.5em;
+        }
+
+        &.window-popout {
+            right: 4em;   
+        }
+
+        &.window-compact {
+            right: 7.5em;
+
+            .fas.hidden {
+                display: none;
+            }
         }
     }
 

@@ -14,6 +14,7 @@ export const SETTINGS = Object.freeze({
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	experimentalCombatHud: 'experimentalCombatHud',
 	optionCombatHudCompact: 'optionCombatHudCompact',
+	optionCombatHudMinimized: 'optionCombatHudMinimized',
 });
 
 export const registerSystemSettings = async function () {
@@ -159,7 +160,15 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudCompact, {
-		name: "CombatHudCompactMode",
+		name: "CombatHudCompact",
+		scope: 'local',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudMinimized, {
+		name: "CombatHudMinimized",
 		scope: 'local',
 		config: false,
 		type: Boolean,
