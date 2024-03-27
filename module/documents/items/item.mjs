@@ -857,6 +857,7 @@ export class FUItem extends Item {
 	async rollBasic(hrZero) {
 		const { accuracy, attributes, type, rollInfo, quality, damage, damageType, description, summary } = /** @type BasicItemDataModel */ this.system;
 		const { accuracyCheck } = this.actor.system.bonuses.accuracy;
+		const { [type.value]: typeDamageBonus = 0 } = this.actor.system.bonuses.damage;
 		/** @type CheckBasic */
 		const details = {
 			_type: 'basic',
@@ -887,7 +888,7 @@ export class FUItem extends Item {
 			damage: {
 				hrZero: rollInfo?.useWeapon?.hrZero?.value || hrZero,
 				type: damageType.value,
-				bonus: damage.value,
+				bonus: damage.value + typeDamageBonus,
 			},
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
 		});
