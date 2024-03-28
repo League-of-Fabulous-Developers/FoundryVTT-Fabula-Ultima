@@ -48,6 +48,7 @@ import { Flags } from './helpers/flags.mjs';
 import { InlineElementsHowTo } from './helpers/inline-how-to.mjs';
 import { InlineIcon } from './helpers/inline-icons.mjs';
 import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
+import { promptCheck } from './helpers/checks.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -311,6 +312,24 @@ Hooks.once('ready', async function () {
 		// Call the rollEquipment function
 		rollEquipment(actor, slot);
 	});
+
+	Hooks.on('promptCheckCalled', (actor) => {
+		if (!actor) {
+			return ui.notification.error("No character for this user");
+		}
+		// Call promptCheck function
+		promptCheck(actor);
+	});
+
+	Hooks.on('promptGroupCheckCalled', (actor) => {
+		if (!actor) {
+			return ui.notification.error("No character for this user");
+		}
+		let isShift = true; 
+		// Call Group Check promptCheck function
+		GroupCheck.promptCheck(actor, isShift);
+	});
+
 });
 
 Hooks.once('socketlib.ready', onSocketLibReady);
