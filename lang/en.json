@@ -815,6 +815,8 @@
         "ExperimentalCombatHudSettingsHint": "Enable to use combat HUD which features a UI to track attributes and status effects.",
         "ExperimentalCombatHudInstuction": "Choose your preferred options for the Combat HUD.",
         "ExperimentalCombatHudWarningNoCombatTrackerTitle": "Combat HUD Warning",
-        "ExperimentalCombatHudWarningNoCombatTrackerContent": "Experimental Combat HUD requires the Experimental Combat Tracker to be enabled. Do you want to enable it?"
+        "ExperimentalCombatHudWarningNoCombatTrackerContent": "Experimental Combat HUD requires the Experimental Combat Tracker to be enabled. Do you want to enable it?",
+        "Hit": "Hit",
+        "Miss": "Miss"
     }
 }

@@ -1,0 +1,17 @@
+{{#if targets}}
+    <div style="clear: both"></div>
+    <div class='detail-desc targets'>
+        <section>
+            {{#each targets as | target |}}
+                <div class="target flexrow">
+                    <span>
+                        {{target.link}}
+                    </span>
+                    <span class="{{target.result}}">
+                        {{localize (concat 'FU.' (capitalize target.result))}}
+                    </span>
+                </div>
+            {{/each}}
+        </section>
+    </div>
+{{/if}}
