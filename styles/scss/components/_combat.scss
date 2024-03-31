@@ -55,6 +55,9 @@
     --combat-bars-icon-width: 45%;
     --combat-bars-text-width: calc(100% - var(--combat-bars-icon-width));
     --hud-buttons-height: 2.2em;
+    --hud-opacity: 1;
+    --hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));
+    --hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));
 
     position: fixed;
     left: 0;
@@ -94,9 +97,9 @@
     .faction-list {
         color: $color-primary;
         text-shadow: 1px 1px 1px $color-black;
-        box-shadow: 3px 6px $color-secondary;
+        box-shadow: 3px 6px var(--hud-boxshadow-color);
         border-radius: 8px;
-        background: linear-gradient($color-tabStyle-gradient), $color-secondary;
+        background: var(--hud-background-gradient);
         padding: 0.5em;
         display: flex;
         align-content: center;

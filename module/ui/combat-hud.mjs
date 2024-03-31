@@ -31,11 +31,20 @@ export class CombatHUD extends Application {
         });
     }
 
+    _getAdditionalStyle(opacity) {
+        return "--hud-opacity: " + opacity + ";" +
+                "--hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));" +
+                "--hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));"
+    }
+
     async getData(options = {}) {
 		const data = await super.getData(options);
 		data.cssClasses = this.options.classes.join(' ');
         data.cssId = this.options.id;
-        data.isCompact = this._isCompact || false || game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
+        data.isCompact = game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
+        
+        const opacity = game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity) / 100;
+        data.additionalStyle = this._getAdditionalStyle(opacity);
 
         data.npcs = [];
         data.characters = [];
@@ -94,8 +103,8 @@ export class CombatHUD extends Application {
     }
 
     _doToggleCompact() {
-        this._isCompact = !this._isCompact;
-        game.settings.set(SYSTEM, SETTINGS.optionCombatHudCompact, this._isCompact);
+        const isCompact = !game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
+        game.settings.set(SYSTEM, SETTINGS.optionCombatHudCompact, isCompact);
 
         const icons = this.element.find('.window-compact .fas');
         icons.toggleClass("hidden");
@@ -192,14 +201,21 @@ export class CombatHUD extends Application {
         }
 
         const hOffset = -5;
+        const minWidth = 700;
 
         const uiMiddle = $("#ui-middle");
-        this.element.css("width", uiMiddle.width() + hOffset);
+        const hudWidth = minWidth + (uiMiddle.width() - minWidth) * (game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100);
+        this.element.css("width", hudWidth + hOffset);
 
         this.element.css("left", uiMiddle.position().left);
 
-        const uiBottom = $("#ui-bottom");
-        this.element.css("bottom", uiBottom.height() + 10);
+        if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top') {
+            const uiTop = $("#ui-top");
+            this.element.css("top", uiTop.height() + 2);
+        } else {
+            const uiBottom = $("#ui-bottom");
+            this.element.css("bottom", uiBottom.height() + 10);
+        }
     }
 
     _onUpdateHUD() {

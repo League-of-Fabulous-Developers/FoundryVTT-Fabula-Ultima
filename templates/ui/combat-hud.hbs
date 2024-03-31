@@ -16,7 +16,7 @@
         </a>
     </div>
     <div class="window-header" style="display: none;">Combat HUD</div>
-    <div class="faction-list npcs {{#if isCompact }}compact{{/if}}">
+    <div class="faction-list npcs {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }}">
         {{#each npcs}}
         <div class="combat-row" data-actor-id="{{ this.actor.id }}" data-token-id="{{ this.token.id }}">
             <img class="token-image" src="{{this.actor.img}}" alt="{{this.actor.name}}"/>
@@ -35,7 +35,7 @@
         </div>
         {{/each}}
     </div>
-    <div class="faction-list characters {{#if isCompact }}compact{{/if}}">
+    <div class="faction-list characters {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }}">
         {{#each characters}}
         <div class="combat-row" data-actor-id="{{ this.actor.id }}" data-token-id="{{ this.token.id }}">
             <img class="token-image" src="{{this.actor.img}}" alt="{{this.actor.name}}"/>

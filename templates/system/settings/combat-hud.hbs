@@ -8,6 +8,35 @@
         </div>
         <p class="notes">{{localize "FU.ExperimentalCombatHudSettingsHint"}}</p>
     </div>
+    {{!-- optionCombatHudOpacity --}}
+    <div class="form-group">
+        <label for="optionCombatHudOpacity">{{localize "FU.CombatHudOpacity"}}</label>
+        <div class="form-fields">
+            <input type="range" min="0" max="100" name="optionCombatHudOpacity" id="optionCombatHudOpacity" value="{{optionCombatHudOpacity}}">
+        </div>
+        <p class="notes">{{localize "FU.CombatHudOpacityHint"}}</p>
+    </div>
+    {{!-- optionCombatHudWidth --}}
+    <div class="form-group">
+        <label for="optionCombatHudWidth">{{localize "FU.CombatHudWidth"}}</label>
+        <div class="form-fields">
+            <input type="range" min="0" max="100" name="optionCombatHudWidth" id="optionCombatHudWidth" value="{{optionCombatHudWidth}}">
+        </div>
+        <p class="notes">{{localize "FU.CombatHudWidthHint"}}</p>
+    </div>
+    {{!-- optionCombatHudPosition --}}
+    <div class="form-group">
+        <label for="optionCombatHudPosition">{{localize "FU.CombatHudPosition"}}</label>
+        <div class="form-fields">
+            <select name="optionCombatHudPosition" id="optionCombatHudPosition">
+                {{#select optionCombatHudPosition}}
+                <option value="bottom">{{ localize "FU.CombatHudPositionBottom" }}</option>
+                <option value="top">{{ localize "FU.CombatHudPositionTop" }}</option>
+                {{/select}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudPositionHint"}}</p>
+    </div>
     <div class="form-group buttons">
         <button type="submit">
             <i class="fas fa-floppy-disk"></i> Save Changes
