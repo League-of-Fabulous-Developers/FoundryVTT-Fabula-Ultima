@@ -48,6 +48,7 @@ import { Flags } from './helpers/flags.mjs';
 import { InlineElementsHowTo } from './helpers/inline-how-to.mjs';
 import { InlineIcon } from './helpers/inline-icons.mjs';
 import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
+import { CombatHUD } from './ui/combat-hud.mjs';
 import { promptCheck } from './helpers/checks.mjs';
 
 globalThis.projectfu = {
@@ -346,6 +347,17 @@ Hooks.once('ready', () => {
 	};
 	// Apply the style initially
 	applyPixelatedStyle();
+});
+
+/* -------------------------------------------- */
+/*  Other Hooks                                 */
+/* -------------------------------------------- */
+
+Hooks.on('getSceneControlButtons', (controls) => {
+	const tokenButton = controls.find((control) => control.name === 'token');
+	if (!tokenButton) return;
+
+	tokenButton.tools.push(CombatHUD.getToggleControlButton());
 });
 
 /* -------------------------------------------- */

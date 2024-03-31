@@ -31,11 +31,20 @@ export class CombatHUD extends Application {
         });
     }
 
+    _getAdditionalStyle(opacity) {
+        return "--hud-opacity: " + opacity + ";" +
+                "--hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));" +
+                "--hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));"
+    }
+
     async getData(options = {}) {
 		const data = await super.getData(options);
 		data.cssClasses = this.options.classes.join(' ');
         data.cssId = this.options.id;
-        data.isCompact = this._isCompact || false;
+        data.isCompact = game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
+        
+        const opacity = game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity) / 100;
+        data.additionalStyle = this._getAdditionalStyle(opacity);
 
         data.npcs = [];
         data.characters = [];
@@ -76,10 +85,26 @@ export class CombatHUD extends Application {
 
         const compactButton = html.find('.window-compact');
         compactButton.click(this._doToggleCompact.bind(this));
+
+        const minimizeButton = html.find('.window-minimize');
+        minimizeButton.click(this._doMinimize.bind(this));
+    }
+
+    _doMinimize() {
+        game.settings.set(SYSTEM, SETTINGS.optionCombatHudMinimized, true);
+    
+        const tokenButton = ui.controls.controls.find((control) => control.name === 'token');
+        if (tokenButton) {
+            tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-toggle').active = false;
+            ui.controls.render(true);
+        }
+
+        CombatHUD.close();
     }
 
     _doToggleCompact() {
-        this._isCompact = !this._isCompact;
+        const isCompact = !game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
+        game.settings.set(SYSTEM, SETTINGS.optionCombatHudCompact, isCompact);
 
         const icons = this.element.find('.window-compact .fas');
         icons.toggleClass("hidden");
@@ -94,6 +119,7 @@ export class CombatHUD extends Application {
         this._poppedOut = true;
         this.element.find('.window-popout').css("display", "none");
         this.element.find('.window-compact').css("display", "none");
+        this.element.find('.window-minimize').css("display", "none");
         PopoutModule.singleton.onPopoutClicked(this);
     }
 
@@ -138,7 +164,6 @@ export class CombatHUD extends Application {
     }
 
     _onCharacterDoubleClick(token) {
-        console.log(token);
         if (!token) return;
         if (!token.actor?.testUserPermission(game.user, 'OBSERVER') && !game.user.isGM) return;
         
@@ -162,6 +187,11 @@ export class CombatHUD extends Application {
     }
 
     async _render(force, options) {
+        if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
+            this.close();
+            return;
+        }
+
         await super._render(force, options);
         if (this._poppedOut) { 
             this.element.css("width", "calc(100% - 4px)");
@@ -171,14 +201,21 @@ export class CombatHUD extends Application {
         }
 
         const hOffset = -5;
+        const minWidth = 700;
 
         const uiMiddle = $("#ui-middle");
-        this.element.css("width", uiMiddle.width() + hOffset);
+        const hudWidth = minWidth + (uiMiddle.width() - minWidth) * (game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100);
+        this.element.css("width", hudWidth + hOffset);
 
         this.element.css("left", uiMiddle.position().left);
 
-        const uiBottom = $("#ui-bottom");
-        this.element.css("bottom", uiBottom.height() + 10);
+        if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top') {
+            const uiTop = $("#ui-top");
+            this.element.css("top", uiTop.height() + 2);
+        } else {
+            const uiBottom = $("#ui-bottom");
+            this.element.css("bottom", uiBottom.height() + 10);
+        }
     }
 
     _onUpdateHUD() {
@@ -210,6 +247,17 @@ export class CombatHUD extends Application {
         this._hoveredToken = null;
     }
 
+    close() {
+        if (this._poppedOut) {
+            this._poppedOut = false;
+            this.element.find('.window-popout').css("display", "block");
+            this.element.find('.window-compact').css("display", "block");
+            this.element.find('.window-minimize').css("display", "block");
+            return;
+        }
+        super.close();
+    }
+
     static init() {
         ui.combatHud = new CombatHUD();
         ui.combatHud.render(true);
@@ -223,13 +271,37 @@ export class CombatHUD extends Application {
         ui.combatHud = null;
     }
 
-    close() {
-        if (this._poppedOut) {
-            this._poppedOut = false;
-            this.element.find('.window-popout').css("display", "block");
-            this.element.find('.window-compact').css("display", "block");
-            return;
+    static minimize() {
+        if (ui.combatHud) {
+            ui.combatHud._doMinimize();
         }
-        super.close();
+
+        ui.combatHud = null;
+    }
+
+    static restore() {
+        game.settings.set(SYSTEM, SETTINGS.optionCombatHudMinimized, false);
+
+        if (game.combat && game.combat.isActive)
+            CombatHUD.init();
+    }
+
+    static getToggleControlButton() {
+        const isMinimized = game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized);
+        return {
+            name: 'projectfu-combathud-toggle',
+            title: game.i18n.localize('FU.CombatHudControlButtonTitle'),
+            icon: 'fas fa-thumbtack',
+            button: false,
+            toggle: true,
+            active: !isMinimized,
+            onClick: () => {
+                if (isMinimized) {
+                    CombatHUD.restore();
+                } else {
+                    CombatHUD.minimize();
+                }
+            },
+        };  
     }
 }

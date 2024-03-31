@@ -13,6 +13,11 @@ export const SETTINGS = Object.freeze({
 	optionImagePixelated: 'optionImagePixelated',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	experimentalCombatHud: 'experimentalCombatHud',
+	optionCombatHudCompact: 'optionCombatHudCompact',
+	optionCombatHudMinimized: 'optionCombatHudMinimized',
+	optionCombatHudOpacity: 'optionCombatHudOpacity',
+	optionCombatHudWidth: 'optionCombatHudWidth',
+	optionCombatHudPosition: 'optionCombatHudPosition',
 });
 
 export const registerSystemSettings = async function () {
@@ -156,6 +161,56 @@ export const registerSystemSettings = async function () {
 		default: false,
 		requiresReload: true,
 	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudOpacity, {
+		name: game.i18n.localize('FU.CombatHudOpacity'),
+		hint: game.i18n.localize('FU.CombatHudOpacityHint'),
+		scope: 'local',
+		config: false,
+		type: Number,
+		default: 100,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudWidth, {
+		name: game.i18n.localize('FU.CombatHudWidth'),
+		hint: game.i18n.localize('FU.CombatHudWidthHint'),
+		scope: 'local',
+		config: false,
+		type: Number,
+		default: 100,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudPosition, {
+		name: game.i18n.localize('FU.CombatHudPosition'),
+		hint: game.i18n.localize('FU.CombatHudPositionHint'),
+		scope: 'local',
+		config: false,
+		type: String,
+		default: 'bottom',
+		choices: {
+			'bottom': game.i18n.localize('FU.CombatHudPositionBottom'),
+			'top': game.i18n.localize('FU.CombatHudPositionTop'),
+		},
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudCompact, {
+		name: "CombatHudCompact",
+		scope: 'local',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudMinimized, {
+		name: "CombatHudMinimized",
+		scope: 'local',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
 };
 
 class OptionalRules extends FormApplication {
@@ -212,12 +267,18 @@ class CombatHudSettings extends FormApplication {
 	getData() {
 		return {
 			experimentalCombatHud: game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud),
+			optionCombatHudOpacity: game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity),
+			optionCombatHudWidth: game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth),
+			optionCombatHudPosition: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition),
 		}
 	}
 
 	async _updateObject(event, formData) {
-		const { experimentalCombatHud } = expandObject(formData);
+		const { experimentalCombatHud, optionCombatHudOpacity, optionCombatHudWidth, optionCombatHudPosition } = expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
+		game.settings.set(SYSTEM, SETTINGS.optionCombatHudOpacity, optionCombatHudOpacity);
+		game.settings.set(SYSTEM, SETTINGS.optionCombatHudWidth, optionCombatHudWidth);
+		game.settings.set(SYSTEM, SETTINGS.optionCombatHudPosition, optionCombatHudPosition);
 
 		const isCustomTrackerActive = game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker);
 		if (!isCustomTrackerActive && experimentalCombatHud) {

@@ -817,6 +817,14 @@
         "ExperimentalCombatHudWarningNoCombatTrackerTitle": "Combat HUD Warning",
         "ExperimentalCombatHudWarningNoCombatTrackerContent": "Experimental Combat HUD requires the Experimental Combat Tracker to be enabled. Do you want to enable it?",
         "Hit": "Hit",
-        "Miss": "Miss"
+        "Miss": "Miss",
+        "CombatHudOpacity": "HUD Opacity",
+        "CombatHudOpacityHint": "Adjust the opacity of the Combat HUD.",
+        "CombatHudWidth": "HUD Width",
+        "CombatHudWidthHint": "Adjust the width of the Combat HUD.",
+        "CombatHudPosition": "HUD Position",
+        "CombatHudPositionHint": "Adjust the position of the Combat HUD.",
+        "CombatHudPositionTop": "Top",
+        "CombatHudPositionBottom": "Bottom"
     }
 }
