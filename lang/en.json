@@ -526,6 +526,7 @@
         "UndeadRule": "Undead are Immune to <b>dark</b> and <b>poison</b> damage, immune to <b>poisoned</b> and Vulnerable to <b>light</b> damage.",
         "CustomRule": "Custom NPC",
         "UseEquipment": "Use Equipment?",
+        "UseEquipmentHint": "This feature allows npcs to use equipment",
         "Potency": "Potency",
         "Area": "Area",
         "Use": "Use",
@@ -814,6 +815,16 @@
         "ExperimentalCombatHudSettingsHint": "Enable to use combat HUD which features a UI to track attributes and status effects.",
         "ExperimentalCombatHudInstuction": "Choose your preferred options for the Combat HUD.",
         "ExperimentalCombatHudWarningNoCombatTrackerTitle": "Combat HUD Warning",
-        "ExperimentalCombatHudWarningNoCombatTrackerContent": "Experimental Combat HUD requires the Experimental Combat Tracker to be enabled. Do you want to enable it?"
+        "ExperimentalCombatHudWarningNoCombatTrackerContent": "Experimental Combat HUD requires the Experimental Combat Tracker to be enabled. Do you want to enable it?",
+        "Hit": "Hit",
+        "Miss": "Miss",
+        "CombatHudOpacity": "HUD Opacity",
+        "CombatHudOpacityHint": "Adjust the opacity of the Combat HUD.",
+        "CombatHudWidth": "HUD Width",
+        "CombatHudWidthHint": "Adjust the width of the Combat HUD.",
+        "CombatHudPosition": "HUD Position",
+        "CombatHudPositionHint": "Adjust the position of the Combat HUD.",
+        "CombatHudPositionTop": "Top",
+        "CombatHudPositionBottom": "Bottom"
     }
 }

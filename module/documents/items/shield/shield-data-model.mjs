@@ -17,6 +17,7 @@ import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mj
  * @property {number} init.value
  * @property {ItemAttributesDataModel} attributes
  * @property {number} accuracy.value
+ * @property {Defense} defense
  * @property {number} damage.value
  * @property {WeaponType} type.value
  * @property {WeaponCategory} category.value
@@ -47,6 +48,7 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'mig' }, secondary: { value: 'mig' } } }),
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
+			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses) }),
 			damage: new SchemaField({ value: new NumberField({ initial: 5, integer: true, nullable: false }) }),
 			type: new SchemaField({ value: new StringField({ initial: 'melee', choices: Object.keys(FU.weaponTypes) }) }),
 			category: new SchemaField({ value: new StringField({ initial: 'brawling', choices: Object.keys(FU.weaponCategories) }) }),

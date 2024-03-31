@@ -525,7 +525,8 @@
         "PlantRule": "Le piante sono Vulnerabili al danno da (scegliere uno tra aria, fulmine, fuoco, ghiaccio)",
         "UndeadRule": "I non morti sono Immuni al danno da ombra e da veleno e Vulnerabili al danno da luce.",
         "CustomRule": "PNG Personalizzato",
-        "UseEquipment": "Usa Equipaggiamento?",
+        "UseEquipment": "Equipaggiabile?",
+        "UseEquipmentHint": "Questa abilità permette agli NPC di avere degli slot equipaggiamento ",
         "Potency": "Potere",
         "Area": "Area",
         "Use": "Uso",
@@ -813,7 +814,7 @@
         "ExperimentalCombatHudSettingsLabel": "Modifica impostazioni Interfaccia di Conflitto",
         "ExperimentalCombatHudSettingsHint": "Attiva per utilizzare un'interfaccia che mostra attributi e status dei partecipanti al conflitto.",
         "ExperimentalCombatHudInstuction": "Modifica a tua preferenza le opzioni dell'Interfaccia di Conflitto.",
-        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "",
-        "ExperimentalCombatHudWarningNoCombatTrackerContent": ""
+        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "Avviso Interfaccia di Conflitto",
+        "ExperimentalCombatHudWarningNoCombatTrackerContent": "Interfaccia di Conflitto (Sperimentale) richiede che sia attivato anche il Tracker di Combattimento (Sperimentale). Vuoi attivarlo?"
     }
 }

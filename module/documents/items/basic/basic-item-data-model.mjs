@@ -11,6 +11,7 @@ import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mj
  * @property {number} weight.value
  * @property {ItemAttributesDataModel} attributes
  * @property {number} accuracy.value
+ * @property {Defense} defense
  * @property {number} damage.value
  * @property {WeaponType} type.value
  * @property {DamageType} damageType.value
@@ -32,6 +33,7 @@ export class BasicItemDataModel extends foundry.abstract.TypeDataModel {
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'dex' }, secondary: { value: 'ins' } } }),
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
+			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses) }),
 			damage: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			type: new SchemaField({ value: new StringField({ choices: Object.keys(FU.weaponTypes) }) }),
 			damageType: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),

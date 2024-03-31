@@ -68,6 +68,7 @@ export class FUItemSheet extends ItemSheet {
 		context.heroicType = CONFIG.FU.heroicType;
 		context.miscCategories = CONFIG.FU.miscCategories;
 		context.treasureType = CONFIG.FU.treasureType;
+		context.defenses = CONFIG.FU.defenses;
 
 		// Add the actor object to context for easier access
 		context.actor = actorData;

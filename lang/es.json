@@ -526,6 +526,7 @@
         "UndeadRule": "Los No muertos son inmunes al daño <b>Oscuro</b> y <b>Veneno</b>, inmunes a <b>Envenenado</b> y vulnerables a daño de <b>Luz</b>.",
         "CustomRule": "Personalizar PNJ",
         "UseEquipment": "¿Usar equipamiento?",
+        "UseEquipmentHint": "Esta característica permite al PNJ usar equipo",
         "Potency": "Potencia",
         "Area": "Área",
         "Use": "Uso",

@@ -526,6 +526,7 @@
         "UndeadRule": "Mortos-Vivos são imunes aos danos <b>Sombrio</b> e <b>Veneno</b>, imunes a <b>Envenenado</b> e Vulneráveis a dano <b>Luz</b>.",
         "CustomRule": "PNJ Personalizado",
         "UseEquipment": "Usar Equipamento?",
+        "UseEquipmentHint": "Este recurso permite que PNJs utilizem equipamento.",
         "Potency": "Potência",
         "Area": "Área",
         "Use": "Usar",
@@ -806,14 +807,14 @@
         "TextEditorButtonCommandIcon": "Ícones",
         "TextEditorDialogSelectIconTitle": "Selecione Ícone",
         "Amount": "Quantidade",
-        "StatusEffectImmunity": "",
-        "ImmunityDescription": "",
-        "ExperimentalCombatHudSettings": "",
-        "ExperimentalCombatHudStatus": "",
-        "ExperimentalCombatHudSettingsLabel": "",
-        "ExperimentalCombatHudSettingsHint": "",
-        "ExperimentalCombatHudInstuction": "",
-        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "",
-        "ExperimentalCombatHudWarningNoCombatTrackerContent": ""
+        "StatusEffectImmunity": "Imunidade ao efeito de Status",
+        "ImmunityDescription": "Imune a {status}",
+        "ExperimentalCombatHudSettings": "HUD de Combate (WIP)",
+        "ExperimentalCombatHudStatus": "Ativar HUD de Combate?",
+        "ExperimentalCombatHudSettingsLabel": "Opções do HUD de Combate",
+        "ExperimentalCombatHudSettingsHint": "Habilita o uso do HUD de Combate que apresenta uma interface de usuário para rastrear atributos e efeitos de status.",
+        "ExperimentalCombatHudInstuction": "Escolha suas opções preferidas para o HUD de Combate.",
+        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "Alerta do HUD de Combate",
+        "ExperimentalCombatHudWarningNoCombatTrackerContent": "O HUD de Combate Experimental requer que o Experimental Combat Tracker esteja habilitado. Você quer habilitá-lo?"
     }
 }

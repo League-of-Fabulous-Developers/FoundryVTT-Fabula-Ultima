@@ -526,6 +526,7 @@
         "UndeadRule": "Les morts vivant sont immunisés aux dégats de <b>Ténébres</b> et de <b>poison</b>, immunisés à l'êtat <b>Empoisonné</b> et vulnérable AttributeDex dégats de <b>lumiére</b>.",
         "CustomRule": "PNJ personnalisé",
         "UseEquipment": "Utilise l'Équipement?",
+        "UseEquipmentHint": "Cet atout permet aux PNJ d'utiliser des équipements",
         "Potency": "Puissance",
         "Area": "Zone",
         "Use": "Utilisation",
@@ -628,7 +629,7 @@
         "GroupCheckLeaderCantSupport": "Le leader ne peut pas supporter son test de groupe.",
         "GroupCheckNotPlayerCharacter": "Les PNJs ne peuvent supporter un test de groupe.",
         "GroupCheckMissingCharacter": "Pas de personnage séléctionné.",
-        "AbilityNoWeaponEquipped": "Pas d'arme équipé!",
+        "AbilityNoWeaponEquipped": "Pas d'arme équipé !",
         "CombatTakeTurnOutOfTurn": "Shift + Clique pour effectuer un tour en dehors de l'ordre normal des tours.",
         "Accelerated": "Accéléré",
         "Aura": "Aura",
@@ -808,12 +809,12 @@
         "Amount": "Montant",
         "StatusEffectImmunity": "Immunité aux états",
         "ImmunityDescription": "Immunité à {status}",
-        "ExperimentalCombatHudSettings": "",
-        "ExperimentalCombatHudStatus": "",
-        "ExperimentalCombatHudSettingsLabel": "",
-        "ExperimentalCombatHudSettingsHint": "",
-        "ExperimentalCombatHudInstuction": "",
-        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "",
-        "ExperimentalCombatHudWarningNoCombatTrackerContent": ""
+        "ExperimentalCombatHudSettings": "HUD de combat expérimental",
+        "ExperimentalCombatHudStatus": "Activer le HUD de combat expérimental ?",
+        "ExperimentalCombatHudSettingsLabel": "Gérer les paramètres du HUD de combat",
+        "ExperimentalCombatHudSettingsHint": "Permet d'utiliser le HUD de combat qui comprend une interface utilisateur pour suivre les attributs et les etats",
+        "ExperimentalCombatHudInstuction": "Choisissez vos options préférées pour le HUD de combat.",
+        "ExperimentalCombatHudWarningNoCombatTrackerTitle": "Avertissement concernant le HUD de Combat",
+        "ExperimentalCombatHudWarningNoCombatTrackerContent": "Le HUD de combat expérimental nécessite l'activation du traqueur de combat expérimental. Voulez-vous l'activer ?"
     }
 }

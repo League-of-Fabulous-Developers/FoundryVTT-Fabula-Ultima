@@ -134,6 +134,12 @@
                                 <input type="number" name="system.accuracy.value" value="{{ system.accuracy.value }}"
                                        class="resource-inputs" data-dtype="Number" />
                             </div>
+                            <div class="resource-content flexcol flex-group-center">
+                                <label for="system.defense" class="resource-label-m flexlarge align-left">{{localize 'FU.Defense'}}</label>
+                                <select name="system.defense" class="resource-inputs select-dropdown-m">
+                                    {{selectOptions defenses selected=system.defense sort=true localize=true labelAttr="abbr"}}
+                                </select>
+                            </div>
                         </div>
                     </fieldset>
 

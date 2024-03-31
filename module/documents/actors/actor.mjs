@@ -506,6 +506,20 @@ export class FUActor extends Actor {
 			];
 			await token._animation;
 			await canvas.interface?.createScrollingText(...scrollingTextArgs);
+		} else {
+			const gridSize = canvas.scene.grid.size;
+			const scrollingTextArgs = [
+				{ x: token.x + gridSize / 2, y: token.y + gridSize - 20 },
+				input,
+				{
+					fill: 'white',
+					fontSize: 32,
+					stroke: 0x000000,
+					strokeThickness: 4,
+				},
+			];
+			await token._animation;
+			await canvas.interface?.createScrollingText(...scrollingTextArgs);
 		}
 	}
 }

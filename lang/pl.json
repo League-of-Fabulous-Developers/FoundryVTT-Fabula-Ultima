@@ -526,6 +526,7 @@
         "UndeadRule": "",
         "CustomRule": "",
         "UseEquipment": "",
+        "UseEquipmentHint": "",
         "Potency": "",
         "Area": "Obszar",
         "Use": "",
@@ -815,5 +816,5 @@
         "ExperimentalCombatHudInstuction": "",
         "ExperimentalCombatHudWarningNoCombatTrackerTitle": "",
         "ExperimentalCombatHudWarningNoCombatTrackerContent": ""
-    }
+      }
 }

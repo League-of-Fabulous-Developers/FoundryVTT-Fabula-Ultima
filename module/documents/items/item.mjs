@@ -1,4 +1,4 @@
-import { createCheckMessage, rollCheck } from '../../helpers/checks.mjs';
+import { createCheckMessage, getTargets, rollCheck } from '../../helpers/checks.mjs';
 import { RollableClassFeatureDataModel } from './classFeature/class-feature-data-model.mjs';
 import { SYSTEM } from '../../settings.js';
 import { Flags } from '../../helpers/flags.mjs';
@@ -801,6 +801,7 @@ export class FUItem extends Item {
 			details,
 			damage: checkDamage,
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
+			targets: getTargets('mdef'),
 		});
 		return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 	}
@@ -812,7 +813,7 @@ export class FUItem extends Item {
 	async rollWeapon(hrZero) {
 		/** @type WeaponDataModel */
 		const dataModel = this.system;
-		const { accuracy, attributes, type, rollInfo, quality, damage, damageType, hands, description, category, summary } = dataModel;
+		const { accuracy, attributes, type, rollInfo, quality, damage, damageType, hands, description, category, summary, defense } = dataModel;
 		const { accuracyCheck = 0, [category.value]: categoryAccuracyBonus = 0 } = this.actor.system.bonuses.accuracy;
 		const { [type.value]: typeDamageBonus = 0, [category.value]: categoryDamageBonus = 0 } = this.actor.system.bonuses.damage;
 		/** @type CheckWeapon */
@@ -824,7 +825,7 @@ export class FUItem extends Item {
 			category: category.value,
 			type: type.value,
 			hands: hands.value,
-			defense: 'def', //TODO: targeted defense missing from weapon?
+			defense: defense,
 			quality: quality.value,
 			summary: summary.value,
 			description: await TextEditor.enrichHTML(description),
@@ -850,13 +851,15 @@ export class FUItem extends Item {
 				bonus: damage.value + categoryDamageBonus + typeDamageBonus,
 			},
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
+			targets: getTargets(defense),
 		});
 		return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 	}
 
 	async rollBasic(hrZero) {
-		const { accuracy, attributes, type, rollInfo, quality, damage, damageType, description, summary } = /** @type BasicItemDataModel */ this.system;
+		const { accuracy, attributes, type, rollInfo, quality, damage, damageType, description, summary, defense } = /** @type BasicItemDataModel */ this.system;
 		const { accuracyCheck } = this.actor.system.bonuses.accuracy;
+		const { [type.value]: typeDamageBonus = 0 } = this.actor.system.bonuses.damage;
 		/** @type CheckBasic */
 		const details = {
 			_type: 'basic',
@@ -864,7 +867,7 @@ export class FUItem extends Item {
 			img: this.img,
 			id: this.id,
 			type: type.value,
-			defense: 'def', //TODO: targeted defense missing from weapon?
+			defense: defense,
 			quality: quality.value,
 			summary: summary.value,
 			description: await TextEditor.enrichHTML(description),
@@ -887,27 +890,30 @@ export class FUItem extends Item {
 			damage: {
 				hrZero: rollInfo?.useWeapon?.hrZero?.value || hrZero,
 				type: damageType.value,
-				bonus: damage.value,
+				bonus: damage.value + typeDamageBonus,
 			},
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
+			targets: getTargets(defense),
 		});
 		return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 	}
 
 	async rollAbility(hrZero) {
-		const { summary, description, opportunity, rollInfo } = /** @type {MiscAbilityDataModel | SkillDataModel} */ this.system;
+		const { summary, description, opportunity, rollInfo, defense } = /** @type {MiscAbilityDataModel | SkillDataModel} */ this.system;
 		/** @type CheckAbility */
 		const details = {
 			_type: 'ability',
 			name: this.name,
 			img: this.img,
 			id: this.id,
+			defense: defense,
 			summary: summary.value,
 			opportunity: opportunity,
 			description: await TextEditor.enrichHTML(description),
 		};
 
 		const speaker = ChatMessage.implementation.getSpeaker({ actor: this.actor });
+		const targets = getTargets(defense);
 
 		if (rollInfo.useWeapon.accuracy.value || rollInfo.useWeapon.damage.value) {
 			const equippedWeapons = this.actor.items
@@ -921,7 +927,7 @@ export class FUItem extends Item {
 			const checks = [];
 			for (let [_, weapon] of Object.entries(equippedWeapons)) {
 				if (weapon) {
-					let params = this.#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo);
+					let params = this.#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo, targets);
 					checks.push(rollCheck(params).then((check) => createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } })));
 				}
 			}
@@ -953,6 +959,7 @@ export class FUItem extends Item {
 				details,
 				damage: checkDamage,
 				speaker: speaker,
+				targets: targets,
 			});
 			return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 		}
@@ -966,7 +973,7 @@ export class FUItem extends Item {
 	 * @param {{useWeapon: UseWeaponDataModel, attributes: ItemAttributesDataModel, accuracy: {value: number}, damage: DamageDataModel}} rollInfo
 	 * @return {CheckParameters}
 	 */
-	#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo) {
+	#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo, targets) {
 		const { useWeapon, accuracy, attributes, damage } = rollInfo;
 		const {
 			name: weaponName,
@@ -1020,6 +1027,7 @@ export class FUItem extends Item {
 			details: { ...details, weapon: { name: weaponName, slot: slot } },
 			damage: checkDamage,
 			speaker: speaker,
+			targets: targets,
 		};
 	}
 }

@@ -376,3 +376,39 @@
     font-weight: bolder;
   }
 }
+
+.message-content .targets {
+    margin-top: 0.5em;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+
+    .target {
+
+        &:not(:last-child) {
+            margin-bottom: 0.125em;
+        }
+
+        .hit,.miss {
+            white-space: nowrap;
+            font-family: "Antonio", serif;
+            font-weight: bold;
+            font-size: var(--font-size-16);
+            flex: 0 0 5em;
+            text-align: right;
+            text-transform: uppercase;
+        }
+
+        .hit {
+            color: $color-success;
+        }
+
+        .miss {
+            color: $color-danger;
+        }
+
+        &.flexrow {
+            gap: 0.25em;
+        }
+    }
+}
