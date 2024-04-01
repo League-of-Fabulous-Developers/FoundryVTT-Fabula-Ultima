@@ -825,6 +825,13 @@
         "CombatHudPosition": "HUD Position",
         "CombatHudPositionHint": "Adjust the position of the Combat HUD.",
         "CombatHudPositionTop": "Top",
-        "CombatHudPositionBottom": "Bottom"
+        "CombatHudPositionBottom": "Bottom",
+        "EffectCrisisInteraction": "Crisis Interaction",
+        "EffectCrisisInteractionNone": "None",
+        "EffectCrisisInteractionActive": "Active while in Crisis",
+        "EffectCrisisInteractionActiveTooltip": "This effect will become active when the Actor goes into Crisis.",
+        "EffectCrisisInteractionInactive": "Active while not in Crisis",
+        "EffectCrisisInteractionInactiveTooltip": "This effect will stay inactive as long as the Actor is in Crisis.",
+        "EffectChangeInvalidFormula": "The change for '{key}' in the Active Effect '{effect}' on '{target}' was invalid. Please check the Active Effect configuration."
     }
 }

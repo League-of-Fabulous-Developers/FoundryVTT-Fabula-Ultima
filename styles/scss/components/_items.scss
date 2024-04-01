@@ -518,3 +518,8 @@ $fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
     margin: 0 2px;
   }
 }
+
+.effects-list .suppressed .item-name .item-name {
+    text-decoration: $color-danger line-through 2px;
+    filter: opacity(60%);
+}

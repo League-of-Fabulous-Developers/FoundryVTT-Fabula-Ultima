@@ -476,10 +476,7 @@ export class FUActor extends Actor {
 			const isInCrisis = this.statuses.has('crisis');
 
 			if (shouldBeInCrisis && !isInCrisis) {
-				await ActiveEffect.create(
-					CONFIG.statusEffects.find((val) => val.id === 'crisis'),
-					{ parent: this },
-				);
+				await ActiveEffect.create({ ...CONFIG.statusEffects.find((val) => val.id === 'crisis'), origin: this.uuid }, { parent: this });
 			} else if (!shouldBeInCrisis && isInCrisis) {
 				this.effects.filter((effect) => effect.statuses.has('crisis')).forEach((val) => val.delete());
 			}

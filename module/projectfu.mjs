@@ -39,7 +39,7 @@ import { FUClassFeatureSheet } from './documents/items/classFeature/class-featur
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
-import { FUActiveEffect } from './documents/effects/active-effect.mjs';
+import { FUActiveEffect, onRenderActiveEffectConfig } from './documents/effects/active-effect.mjs';
 import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
@@ -121,6 +121,7 @@ Hooks.once('init', async () => {
 		zeroPower: ZeroPowerDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
+	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
 	// Register system settings
 	registerSystemSettings();
@@ -316,7 +317,7 @@ Hooks.once('ready', async function () {
 
 	Hooks.on('promptCheckCalled', (actor) => {
 		if (!actor) {
-			return ui.notification.error("No character for this user");
+			return ui.notification.error('No character for this user');
 		}
 		// Call promptCheck function
 		promptCheck(actor);
@@ -324,13 +325,12 @@ Hooks.once('ready', async function () {
 
 	Hooks.on('promptGroupCheckCalled', (actor) => {
 		if (!actor) {
-			return ui.notification.error("No character for this user");
+			return ui.notification.error('No character for this user');
 		}
-		let isShift = true; 
+		let isShift = true;
 		// Call Group Check promptCheck function
 		GroupCheck.promptCheck(actor, isShift);
 	});
-
 });
 
 Hooks.once('socketlib.ready', onSocketLibReady);
