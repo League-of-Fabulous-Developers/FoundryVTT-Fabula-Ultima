@@ -1,8 +1,8 @@
 {
   "folder": "6gTO70HUAzfEfLY2",
-  "name": "Melee Weapon Mastery",
+  "name": "Dark Blood",
   "type": "skill",
-  "img": "icons/skills/melee/weapons-crossed-swords-pink.webp",
+  "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
   "system": {
     "subtype": {
       "value": ""
@@ -19,11 +19,11 @@
     },
     "level": {
       "value": 1,
-      "max": 4,
+      "max": 1,
       "min": 0
     },
     "class": {
-      "value": "Weaponmaster"
+      "value": "Darkblade"
     },
     "useWeapon": {
       "accuracy": {
@@ -69,7 +69,7 @@
       }
     },
     "source": {
-      "value": "FUCR219"
+      "value": "FUCR185"
     },
     "rollInfo": {
       "useWeapon": {
@@ -119,70 +119,44 @@
   },
   "effects": [
     {
-      "icon": "icons/skills/melee/weapons-crossed-swords-pink.webp",
-      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.I5IuMtOaPji0mAVi",
+      "icon": "icons/skills/wounds/blood-drip-droplet-red.webp",
+      "origin": "Compendium.projectfu.essentials.Item.NOJ4atrXwmrwWYwc",
       "duration": {
+        "rounds": 1,
         "startTime": null,
         "seconds": null,
         "combat": null,
-        "rounds": null,
         "turns": null,
         "startRound": null,
         "startTurn": null
       },
       "disabled": false,
-      "name": "Melee Weapon Mastery",
-      "_id": "Sks7cSsjFlEgMg53",
+      "name": "Dark Blood",
+      "_id": "5dvnU0essa3FNunN",
       "changes": [
         {
-          "key": "system.bonuses.damage.arcane",
-          "mode": 2,
-          "value": "@system.level.value",
+          "key": "system.affinities.dark.bonus",
+          "mode": 5,
+          "value": "1",
           "priority": null
         },
         {
-          "key": "system.bonuses.damage.brawling",
-          "mode": 2,
-          "value": "@system.level.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.dagger",
-          "mode": 2,
-          "value": "@system.level.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.flail",
-          "mode": 2,
-          "value": "@system.level.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.heavy",
-          "mode": 2,
-          "value": "@system.level.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.heavy",
-          "mode": 2,
-          "value": "@system.level.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.sword",
-          "mode": 2,
-          "value": "@system.level.value",
+          "key": "system.affinities.poison.bonus",
+          "mode": 5,
+          "value": "1",
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<ul><li><p><strong>Trigger:</strong> On <strong>Crisis</strong></p></li><li><p><strong>Effect:</strong> Resistance to <strong>dark</strong>/<strong>poison</strong> damage</p></li></ul>",
       "transfer": true,
       "statuses": [],
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "active"
+        }
+      },
       "tint": null,
-      "_key": "!items.effects!HHMMW8MumsMWI27u.Sks7cSsjFlEgMg53"
+      "_key": "!items.effects!NOJ4atrXwmrwWYwc.5dvnU0essa3FNunN"
     }
   ],
   "ownership": {
@@ -197,11 +171,11 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
-    "createdTime": 1706514138632,
-    "modifiedTime": 1710516305143,
+    "createdTime": 1706496871786,
+    "modifiedTime": 1712061562452,
     "lastModifiedBy": "YN7AhHIwAZeH33Tw"
   },
-  "_id": "HHMMW8MumsMWI27u",
-  "sort": 200000,
-  "_key": "!items!HHMMW8MumsMWI27u"
+  "_id": "NOJ4atrXwmrwWYwc",
+  "sort": 300000,
+  "_key": "!items!NOJ4atrXwmrwWYwc"
 }

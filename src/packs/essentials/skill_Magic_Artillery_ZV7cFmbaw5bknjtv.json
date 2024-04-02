@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you cast an offensive spell, if you have an </span><span class=\"fontstyle3\"><strong>arcane </strong></span><span class=\"fontstyle0\">weapon equipped, you gain a bonus to your Magic Check equal to</span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 2</strong></span><span class=\"fontstyle4\"><strong>】</strong></span><span class=\"fontstyle0\">.</span> <br /></p>",
+    "description": "",
     "isFavored": {
       "value": false
     },
@@ -130,7 +130,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "disabled": true,
+      "disabled": false,
       "name": "Magic Artillery",
       "_id": "HmpPyOHEzMIoGVgk",
       "changes": [
@@ -162,7 +162,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706497996319,
-    "modifiedTime": 1710516289765,
+    "modifiedTime": 1712061618029,
     "lastModifiedBy": "YN7AhHIwAZeH33Tw"
   },
   "_id": "ZV7cFmbaw5bknjtv",

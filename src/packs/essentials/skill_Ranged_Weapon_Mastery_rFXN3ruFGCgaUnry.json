@@ -1,8 +1,8 @@
 {
   "folder": "6gTO70HUAzfEfLY2",
-  "name": "Darkblood",
+  "name": "Ranged Weapon Mastery",
   "type": "skill",
-  "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
+  "img": "icons/skills/ranged/target-bullseye-arrow-glowing.webp",
   "system": {
     "subtype": {
       "value": ""
@@ -19,11 +19,11 @@
     },
     "level": {
       "value": 1,
-      "max": 1,
+      "max": 4,
       "min": 0
     },
     "class": {
-      "value": "Darkblade"
+      "value": "Sharpshooter"
     },
     "useWeapon": {
       "accuracy": {
@@ -69,7 +69,7 @@
       }
     },
     "source": {
-      "value": "FUCR185"
+      "value": "FUCR205"
     },
     "rollInfo": {
       "useWeapon": {
@@ -99,7 +99,7 @@
           "value": false
         },
         "type": {
-          "value": ""
+          "value": "physical"
         },
         "value": 0
       }
@@ -115,48 +115,59 @@
       "current": 0,
       "step": 1,
       "max": 6
-    }
+    },
+    "defense": "def"
   },
   "effects": [
     {
-      "icon": "icons/skills/wounds/blood-drip-droplet-red.webp",
-      "origin": "Compendium.projectfu.essentials.Item.NOJ4atrXwmrwWYwc",
+      "icon": "icons/skills/ranged/target-bullseye-arrow-glowing.webp",
+      "origin": "Item.WLFwkDW5mLynFMpJ",
       "duration": {
-        "rounds": 1,
         "startTime": null,
         "seconds": null,
         "combat": null,
+        "rounds": null,
         "turns": null,
         "startRound": null,
         "startTurn": null
       },
-      "disabled": true,
-      "name": "Dark Blood",
-      "_id": "5dvnU0essa3FNunN",
+      "disabled": false,
+      "name": "Ranged Weapon Mastery",
+      "_id": "XkHK5cD6OreUyE6O",
       "changes": [
         {
-          "key": "system.affinities.dark.bonus",
-          "mode": 5,
-          "value": "1",
+          "key": "system.bonuses.accuracy.bow",
+          "mode": 2,
+          "value": "@system.level.value",
           "priority": null
         },
         {
-          "key": "system.affinities.poison.bonus",
-          "mode": 5,
-          "value": "1",
+          "key": "system.bonuses.accuracy.firearm",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.thrown",
+          "mode": 2,
+          "value": "@system.level.value",
           "priority": null
         }
       ],
-      "description": "<ul><li><p><strong>Trigger:</strong> On <strong>Crisis</strong></p></li><li><p><strong>Effect:</strong> Resistance to <strong>dark</strong>/<strong>poison</strong> damage</p></li></ul>",
+      "description": "<ul><li><p><strong>Effect:</strong> <span class=\"fontstyle0\"><strong>【</strong></span><span class=\"fontstyle1\"><strong>SL</strong></span><span class=\"fontstyle0\"><strong>】 </strong>bonus to <strong>Accuracy Checks</strong> with <strong>ranged</strong> weapons.</span></p></li></ul>",
       "transfer": true,
       "statuses": [],
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
       "tint": null,
-      "_key": "!items.effects!NOJ4atrXwmrwWYwc.5dvnU0essa3FNunN"
+      "_key": "!items.effects!rFXN3ruFGCgaUnry.XkHK5cD6OreUyE6O"
     }
   ],
   "ownership": {
-    "default": 0,
+    "default": 3,
     "hYECXwi6O8UUBuN4": 3,
     "YN7AhHIwAZeH33Tw": 3
   },
@@ -167,11 +178,11 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
-    "createdTime": 1706496871786,
-    "modifiedTime": 1710516298510,
+    "createdTime": 1706506773814,
+    "modifiedTime": 1712062007773,
     "lastModifiedBy": "YN7AhHIwAZeH33Tw"
   },
-  "_id": "NOJ4atrXwmrwWYwc",
-  "sort": 300000,
-  "_key": "!items!NOJ4atrXwmrwWYwc"
+  "_id": "rFXN3ruFGCgaUnry",
+  "sort": 0,
+  "_key": "!items!rFXN3ruFGCgaUnry"
 }

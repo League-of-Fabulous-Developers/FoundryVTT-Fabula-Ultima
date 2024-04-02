@@ -1,9 +1,8 @@
 {
   "folder": "6gTO70HUAzfEfLY2",
-  "name": "Ranged Weapon Mastery",
+  "name": "Melee Weapon Mastery",
   "type": "skill",
-  "_id": "WLFwkDW5mLynFMpJ",
-  "img": "icons/skills/ranged/target-bullseye-arrow-glowing.webp",
+  "img": "icons/skills/melee/weapons-crossed-swords-pink.webp",
   "system": {
     "subtype": {
       "value": ""
@@ -24,7 +23,7 @@
       "min": 0
     },
     "class": {
-      "value": "Sharpshooter"
+      "value": "Weaponmaster"
     },
     "useWeapon": {
       "accuracy": {
@@ -70,7 +69,7 @@
       }
     },
     "source": {
-      "value": "FUCR205"
+      "value": "FUCR219"
     },
     "rollInfo": {
       "useWeapon": {
@@ -100,7 +99,7 @@
           "value": false
         },
         "type": {
-          "value": ""
+          "value": "physical"
         },
         "value": 0
       }
@@ -116,12 +115,13 @@
       "current": 0,
       "step": 1,
       "max": 6
-    }
+    },
+    "defense": "def"
   },
   "effects": [
     {
-      "icon": "icons/skills/ranged/target-bullseye-arrow-glowing.webp",
-      "origin": "Item.WLFwkDW5mLynFMpJ",
+      "icon": "icons/skills/melee/weapons-crossed-swords-pink.webp",
+      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.I5IuMtOaPji0mAVi",
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -132,54 +132,81 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Ranged Weapon Mastery",
-      "_id": "XkHK5cD6OreUyE6O",
+      "name": "Melee Weapon Mastery",
+      "_id": "Sks7cSsjFlEgMg53",
       "changes": [
         {
-          "key": "system.accuracy.damage.bow",
+          "key": "system.bonuses.accuracy.arcane",
           "mode": 2,
           "value": "@system.level.value",
           "priority": null
         },
         {
-          "key": "system.accuracy.damage.firearm",
+          "key": "system.bonuses.accuracy.brawling",
           "mode": 2,
           "value": "@system.level.value",
           "priority": null
         },
         {
-          "key": "system.accuracy.damage.thrown",
+          "key": "system.bonuses.accuracy.dagger",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.flail",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.heavy",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.spear",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.sword",
           "mode": 2,
           "value": "@system.level.value",
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<ul><li><p><strong>Effect:</strong> <span class=\"fontstyle0\"><strong>【</strong></span><span class=\"fontstyle1\"><strong>SL</strong></span><span class=\"fontstyle0\"><strong>】 </strong>bonus to <strong>Accuracy Checks</strong> with <strong>melee </strong>weapons.</span></p></li></ul>",
       "transfer": true,
       "statuses": [],
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
       "tint": null,
-      "_key": "!items.effects!WLFwkDW5mLynFMpJ.XkHK5cD6OreUyE6O"
+      "_key": "!items.effects!QcTHEWL3xEos1UyO.Sks7cSsjFlEgMg53"
     }
   ],
-  "sort": 500000,
   "ownership": {
-    "default": 3,
+    "default": 0,
     "hYECXwi6O8UUBuN4": 3,
     "YN7AhHIwAZeH33Tw": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.cJpsJVZuxiQcRXqN"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
-    "createdTime": 1706506773814,
-    "modifiedTime": 1710516301743,
+    "createdTime": 1706514138632,
+    "modifiedTime": 1712061991295,
     "lastModifiedBy": "YN7AhHIwAZeH33Tw"
   },
-  "_key": "!items!WLFwkDW5mLynFMpJ"
+  "_id": "QcTHEWL3xEos1UyO",
+  "sort": 0,
+  "_key": "!items!QcTHEWL3xEos1UyO"
 }
