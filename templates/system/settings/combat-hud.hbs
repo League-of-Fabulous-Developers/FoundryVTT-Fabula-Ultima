@@ -37,6 +37,19 @@
         </div>
         <p class="notes">{{localize "FU.CombatHudPositionHint"}}</p>
     </div>
+    {{!-- optionCombatHudPortrait --}}
+    <div class="form-group">
+        <label for="optionCombatHudPortrait">{{localize "FU.CombatHudPortrait"}}</label>
+        <div class="form-fields">
+            <select name="optionCombatHudPortrait" id="optionCombatHudPortrait">
+                {{#select optionCombatHudPortrait}}
+                <option value="actor">{{ localize "FU.CombatHudPortraitActor" }}</option>
+                <option value="token">{{ localize "FU.CombatHudPortraitToken" }}</option>
+                {{/select}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudPortraitHint"}}</p>
+    </div>
     <div class="form-group buttons">
         <button type="submit">
             <i class="fas fa-floppy-disk"></i> Save Changes

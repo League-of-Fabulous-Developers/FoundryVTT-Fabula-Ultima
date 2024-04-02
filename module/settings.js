@@ -19,6 +19,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudOpacity: 'optionCombatHudOpacity',
 	optionCombatHudWidth: 'optionCombatHudWidth',
 	optionCombatHudPosition: 'optionCombatHudPosition',
+	optionCombatHudPortrait: 'optionCombatHudPortrait',
 });
 
 export const registerSystemSettings = async function () {
@@ -207,6 +208,20 @@ export const registerSystemSettings = async function () {
 		requiresReload: true,
 	});
 
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudPortrait, {
+		name: game.i18n.localize('FU.CombatHudPortrait'),
+		hint: game.i18n.localize('FU.CombatHudPortraitHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'actor',
+		choices: {
+			'actor': game.i18n.localize('FU.CombatHudPortraitActor'),
+			'token': game.i18n.localize('FU.CombatHudPortraitToken'),
+		},
+		requiresReload: true,
+	});
+
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudCompact, {
 		name: "CombatHudCompact",
 		scope: 'local',
@@ -281,15 +296,17 @@ class CombatHudSettings extends FormApplication {
 			optionCombatHudOpacity: game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity),
 			optionCombatHudWidth: game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth),
 			optionCombatHudPosition: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition),
+			optionCombatHudPortrait: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait),
 		}
 	}
 
 	async _updateObject(event, formData) {
-		const { experimentalCombatHud, optionCombatHudOpacity, optionCombatHudWidth, optionCombatHudPosition } = expandObject(formData);
+		const { experimentalCombatHud, optionCombatHudOpacity, optionCombatHudWidth, optionCombatHudPosition, optionCombatHudPortrait } = expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudOpacity, optionCombatHudOpacity);
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudWidth, optionCombatHudWidth);
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudPosition, optionCombatHudPosition);
+		game.settings.set(SYSTEM, SETTINGS.optionCombatHudPortrait, optionCombatHudPortrait);
 
 		const isCustomTrackerActive = game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker);
 		if (!isCustomTrackerActive && experimentalCombatHud) {

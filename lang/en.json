@@ -832,6 +832,10 @@
         "EffectCrisisInteractionActiveTooltip": "This effect will become active when the Actor goes into Crisis.",
         "EffectCrisisInteractionInactive": "Active while not in Crisis",
         "EffectCrisisInteractionInactiveTooltip": "This effect will stay inactive as long as the Actor is in Crisis.",
-        "EffectChangeInvalidFormula": "The change for '{key}' in the Active Effect '{effect}' on '{target}' was invalid. Please check the Active Effect configuration."
+        "EffectChangeInvalidFormula": "The change for '{key}' in the Active Effect '{effect}' on '{target}' was invalid. Please check the Active Effect configuration.",
+        "CombatHudPortrait": "HUD Portrait",
+        "CombatHudPortraitHint": "Choose the image used as portrait in the Combat HUD.",
+        "CombatHudPortraitActor": "Actor Image",
+        "CombatHudPortraitToken": "Token Image"
     }
 }
