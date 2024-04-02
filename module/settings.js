@@ -12,6 +12,7 @@ export const SETTINGS = Object.freeze({
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	optionImagePixelated: 'optionImagePixelated',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
+	optionNPCNotesTab: 'optionNPCNotesTab',
 	experimentalCombatHud: 'experimentalCombatHud',
 	optionCombatHudCompact: 'optionCombatHudCompact',
 	optionCombatHudMinimized: 'optionCombatHudMinimized',
@@ -140,6 +141,16 @@ export const registerSystemSettings = async function () {
 		config: true,
 		type: Boolean,
 		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
+		name: 'Enable NPC Notes Tab',
+		hint: 'Add the biography & info notes tab into the NPC Sheet.',
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
 	});
 
 	game.settings.registerMenu(SYSTEM, "combatHudSettings", {
