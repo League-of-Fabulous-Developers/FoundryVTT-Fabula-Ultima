@@ -19,7 +19,7 @@
     <div class="faction-list npcs {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }}">
         {{#each npcs}}
         <div class="combat-row" data-actor-id="{{ this.actor.id }}" data-token-id="{{ this.token.id }}">
-            <img class="token-image" src="{{this.actor.img}}" alt="{{this.actor.name}}"/>
+            <img class="token-image" src="{{this.img}}" alt="{{this.actor.name}}"/>
             <div class="combat-info">
                 {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
                 <div class="combat-name crisis"><h2>{{this.actor.name}}</h2></div>    
@@ -38,7 +38,7 @@
     <div class="faction-list characters {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }}">
         {{#each characters}}
         <div class="combat-row" data-actor-id="{{ this.actor.id }}" data-token-id="{{ this.token.id }}">
-            <img class="token-image" src="{{this.actor.img}}" alt="{{this.actor.name}}"/>
+            <img class="token-image" src="{{this.img}}" alt="{{this.actor.name}}"/>
             <div class="combat-info">
                 {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
                 <div class="combat-name crisis"><h2>{{this.actor.name}}</h2></div>    

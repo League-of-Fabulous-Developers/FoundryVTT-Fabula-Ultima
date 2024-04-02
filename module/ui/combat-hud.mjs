@@ -53,11 +53,12 @@ export class CombatHUD extends Application {
 
         for (const combatant of game.combat.combatants) {
             if (!combatant.actor || !combatant.token) continue;
-
+            
             const actorData = {
                 actor: combatant.actor,
                 token: combatant.token,
-                effects: game.release.generation >= 11 ? Array.from(combatant.actor.allApplicableEffects()) : combatant.actor.effects
+                effects: game.release.generation >= 11 ? Array.from(combatant.actor.allApplicableEffects()) : combatant.actor.effects,
+                img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? combatant.token.texture.src : combatant.actor.img,
             };
 
             if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
