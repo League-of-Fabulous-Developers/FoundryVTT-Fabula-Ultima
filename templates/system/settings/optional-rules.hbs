@@ -1,35 +1,35 @@
 <form autocomplete="off" onsubmit="event.preventDefault();">
-    <p class="instructions">Decide what optional rules you would like to include in your world.</p>
+    <p class="instructions">{{localize "FU.OptionalRulesSettingsInstuction"}}</p>
     <!-- optionQuirks -->
     <div class="form-group">
-        <label for="optionQuirks">Enable Quirks?</label>
+        <label for="optionQuirks">{{localize "FU.QuirksSettings"}}</label>
         <div class="form-fields">
             <input type="checkbox" name="optionQuirks" id="optionQuirks" {{checked optionQuirks}}>
         </div>
-        <p class="notes">Play with the Quirk advanced optional rule from Atlas High Fantasy pg 114.</p>
+        <p class="notes">{{localize "FU.QuirksSettingsHint"}}</p>
     </div>
     <!-- optionZeroPower -->
     <div class="form-group">
-        <label for="optionZeroPower">Enable Zero Powers?</label>
+        <label for="optionZeroPower">{{localize "FU.ZeroPowerSettings"}}</label>
         <div class="form-fields">
             <input type="checkbox" name="optionZeroPower" id="optionZeroPower" {{checked optionZeroPower}}>
         </div>
-        <p class="notes">Play with the Zero Power optional rule from Atlas High Fantasy pg 124.</p>
+        <p class="notes">{{localize "FU.ZeroPowerSettingsHint"}}</p>
     </div>
     <!-- optionCampingRules -->
     <div class="form-group">
-        <label for="optionCampingRules">Enable Camping Activities?</label>
+        <label for="optionCampingRules">{{localize "FU.CampingActivitiesSettings"}}</label>
         <div class="form-fields">
             <input type="checkbox" name="optionCampingRules" id="optionCampingRules" {{checked optionCampingRules}}>
         </div>
-        <p class="notes">Play with the Camping Activities optional rule from Natural Fantasy Playtest</p>
+        <p class="notes">{{localize "FU.CampingActivitiesSettingsHint"}}</p>
     </div>
     <div class="form-group buttons">
         <button type="submit">
-            <i class="fas fa-floppy-disk"></i> Save Changes
+            <i class="fas fa-floppy-disk"></i>{{localize "FU.SettingsSave"}}
         </button>
         <button type="reset" name="reset">
-            <i class="fas fa-undo"></i> Reset Changes
+            <i class="fas fa-undo"></i>{{localize "FU.SettingsReset"}}
         </button>
     </div>
 </form>
