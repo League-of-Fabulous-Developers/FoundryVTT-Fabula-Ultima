@@ -288,16 +288,15 @@ export class CombatHUD extends Application {
     }
 
     static getToggleControlButton() {
-        const isMinimized = game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized);
         return {
             name: 'projectfu-combathud-toggle',
             title: game.i18n.localize('FU.CombatHudControlButtonTitle'),
             icon: 'fas fa-thumbtack',
             button: false,
             toggle: true,
-            active: !isMinimized,
+            active: !game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized),
             onClick: () => {
-                if (isMinimized) {
+                if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
                     CombatHUD.restore();
                 } else {
                     CombatHUD.minimize();
