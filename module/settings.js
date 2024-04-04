@@ -12,6 +12,7 @@ export const SETTINGS = Object.freeze({
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	optionImagePixelated: 'optionImagePixelated',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
+	optionNPCNotesTab: 'optionNPCNotesTab',
 	experimentalCombatHud: 'experimentalCombatHud',
 	optionCombatHudCompact: 'optionCombatHudCompact',
 	optionCombatHudMinimized: 'optionCombatHudMinimized',
@@ -23,17 +24,17 @@ export const SETTINGS = Object.freeze({
 
 export const registerSystemSettings = async function () {
 	game.settings.registerMenu(SYSTEM, 'myOptionalRules', {
-		name: 'Optional Rules',
-		label: 'Manage Optional Rules',
-		hint: 'Decide what optional rules you would like to include in your world.',
+		name: game.i18n.localize('FU.OptionalRules'),
+		label: game.i18n.localize('FU.OptionalRulesManage'),
+		hint: game.i18n.localize('FU.OptionalRulesSettingsInstuction'),
 		icon: 'fas fa-book',
 		type: OptionalRules,
 		restricted: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionQuirks, {
-		name: 'Enable Quirks?',
-		hint: 'Play with the Quirk advanced optional rule from Atlas High Fantasy pg 114.',
+		name: game.i18n.localize('FU.QuirksSettings'),
+		hint: game.i18n.localize('FU.QuirksSettingsHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,
@@ -41,8 +42,8 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionZeroPower, {
-		name: 'Enable Zero Powers?',
-		hint: 'Play with the Zero Power optional rule from Atlas High Fantasy pg 124.',
+		name: game.i18n.localize('FU.ZeroPowerSettings'),
+		hint: game.i18n.localize('FU.ZeroPowerSettingsHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,
@@ -50,8 +51,8 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCampingRules, {
-		name: 'Enable Camping Activities?',
-		hint: 'Play with the Camping Activities optional rule from Natural Fantasy Playtest.',
+		name: game.i18n.localize('FU.CampingActivitiesSettings'),
+		hint: game.i18n.localize('FU.CampingActivitiesSettingsHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,
@@ -59,19 +60,21 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionBehaviorRoll, {
-		name: 'Enable Behavior Roll?',
-		hint: 'Play with the Random Targeting rule from Core Rulebook pg 297.',
+		name: game.i18n.localize('FU.BehaviorRollsSettings'),
+		hint: game.i18n.localize('FU.BehaviorRollsSettingsHint'),
 		scope: 'world',
 		config: false,
 		type: Boolean,
 		default: false,
 		requiresReload: true,
 	});
+	game.i18n.localize('FU.BehaviorRollsSettings'),
+	game.i18n.localize('FU.BehaviorRollsSettingsHint'),
 
 	game.settings.registerMenu(SYSTEM, 'myBehaviorRolls', {
-		name: 'Behavior Rolls',
-		label: 'Manage Behavior Rolls',
-		hint: ' Manage the Behavior Roll mechanic based on Random Targeting.',
+		name: game.i18n.localize('FU.BehaviorRolls'),
+		label: game.i18n.localize('FU.BehaviorRollsManage'),
+		hint: game.i18n.localize('FU.BehaviorRollsManageHint'),
 		icon: 'fas fa-book',
 		type: myBehaviorRolls,
 		restricted: true,
@@ -79,8 +82,8 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionTargetPriority, {
-		name: 'Total Party Members?',
-		hint: 'How many heroes are currently in your party for target priority.',
+		name: game.i18n.localize('FU.TotalPartyMemberSettings'),
+		hint: game.i18n.localize('FU.TotalPartyMemberSettingsHint'),
 		scope: 'world',
 		config: false,
 		type: Number,
@@ -88,8 +91,8 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.collapseDescriptions, {
-		name: 'Collapse Item Descriptions',
-		hint: 'Chat descriptions on weapons, items, spells and abilities will be collapsed by default',
+		name: game.i18n.localize('FU.CollapseDescriptionSettings'),
+		hint: game.i18n.localize('FU.CollapseDescriptionSettingsHint'),
 		scope: 'world',
 		config: true,
 		type: Boolean,
@@ -107,8 +110,8 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {
-		name: 'Disable Pan to Token for Combat Tracker',
-		hint: 'Enable this option to prevent panning to the token when clicking on a combatant in the Combat Tracker.',
+		name: game.i18n.localize('FU.CombatHudPanTokenSettings'),
+		hint: game.i18n.localize('FU.CombatHudPanTokenSettingsHint'),
 		scope: 'world',
 		config: true,
 		type: Boolean,
@@ -116,8 +119,8 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.useRevisedStudyRule, {
-		name: 'Revised Study Roll',
-		hint: 'Enable this option to use revised Study Roll [7/10/13] from Rework Playtest.',
+		name: game.i18n.localize('FU.RevisedStudyRollSettings'),
+		hint: game.i18n.localize('FU.RevisedStudyRollSettingsHint'),
 		scope: 'world',
 		config: true,
 		type: Boolean,
@@ -125,8 +128,8 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionImagePixelated, {
-		name: 'Pixelated View',
-		hint: 'Enable this option to render 16-bit art in a viewable manner, preserving its retro aesthetic with minimal scaling artifacts.',
+		name: game.i18n.localize('FU.PixelatedViewSettings'),
+		hint: game.i18n.localize('FU.PixelatedViewSettingsHint'),
 		scope: 'world',
 		config: true,
 		type: Boolean,
@@ -135,12 +138,22 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
-		name: 'Always Favorite Item',
-		hint: 'Enable this option to always favorite an item during creation.',
+		name: game.i18n.localize('FU.AlwaysFavoriteSettings'),
+		hint: game.i18n.localize('FU.AlwaysFavoriteSettingsHint'),
 		scope: 'client',
 		config: true,
 		type: Boolean,
 		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionNPCNotesTab, {
+		name: game.i18n.localize('FU.NotesTabSettings'),
+		hint: game.i18n.localize('FU.NotesTabSettingsHint'),
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
+		requiresReload: true,
 	});
 
 	game.settings.registerMenu(SYSTEM, "combatHudSettings", {

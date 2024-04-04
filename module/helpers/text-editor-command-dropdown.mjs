@@ -74,7 +74,7 @@ async function promptResourceLossDialog(state, dispatch, view) {
 
 async function promptIconSelectionDialog(state, dispatch, view) {
     const result = await Dialog.prompt({
-		title: game.i18n.localize('FU.TextEditorDialogIconTitle'),
+		title: game.i18n.localize('FU.TextEditorDialogSelectIconTitle'),
         content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-icon.hbs', { allIcon: FU.allIcon }),
         options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
         callback: (html) => {

@@ -9,8 +9,13 @@
             </legend>
 
             <section>
-                {{editor enrichedHtml.description target="system.description" engine="prosemirror"
-                rollData=rollData button=true owner=owner editable=editable }}
+                {{#if (or (eq (getGameSetting 'optionNPCNotesTab') true) (eq actor.type "character"))}}
+                {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
+                button=true owner=owner editable=editable }}
+                {{else}}
+                {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
+                button=false owner=owner editable=false }}
+                {{/if}}
             </section>
 
         </fieldset>
