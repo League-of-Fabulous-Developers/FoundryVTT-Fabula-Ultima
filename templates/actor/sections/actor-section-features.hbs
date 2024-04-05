@@ -123,7 +123,7 @@
 					{{!-- Item Name--}}
 					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 					{{#if item.system.subtype}}
-					<div class="item-quality">{{capitalize (localize (translate item.system.subtype.value))}}</div>
+					<div class="item-quality">{{capitalize (localize (translate item.system.subtype.value))}}{{ item.quality }}</div>
 					{{/if}}
 				</div>
 				<div class="item-full start description-effect">
@@ -161,7 +161,7 @@
 				{{!-- Item Control--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
-			<span class="item-quality">{{ item.quality }}</span>
+			<span class="item-quality"></span>
 			<div class="individual-description align-left">
 				{{#if item.enrichedHtml.description}}
 				{{{item.enrichedHtml.description}}}

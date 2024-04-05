@@ -138,7 +138,7 @@ Hooks.once('init', async () => {
 	}
 
 	// Register status effects
-	if (game.release.isNewer(11)) CONFIG.ActiveEffect.legacyTransferral = false;
+	CONFIG.ActiveEffect.legacyTransferral = false;
 	CONFIG.statusEffects = statusEffects;
 
 	// Register sheet application classes

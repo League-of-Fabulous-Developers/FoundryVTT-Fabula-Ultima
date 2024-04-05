@@ -1,3 +1,5 @@
+import { FUItem } from '../items/item.mjs';
+
 /**
  * Extend the base Actor document by defining a custom roll data structure
  * @extends {Actor}
@@ -298,9 +300,11 @@ export class FUActor extends Actor {
 
 				// console.log('Key:', key, ' ModVal:', modVal, ' BaseVal:', baseVal, ' Current:', attr.current);
 
-				if (baseVal === -1 && modVal === 1) {
+				// If both Vulnerable and Resistant, becomes Normal
+				if (baseVal === -1 && modVal === 1 || baseVal === 1 && modVal === -1) {
 					newVal = 0;
-				} else if (modVal > 0 || modVal < 0) {
+				// If modifier is greater than Normal, superscede the value	
+				} else if (modVal > 0) {
 					newVal = modVal;
 				} else {
 					newVal = baseVal += modVal;
@@ -456,7 +460,9 @@ export class FUActor extends Actor {
 		if (typeof changedHP?.value === 'number' && currentHP) {
 			const hpChange = changedHP.value - currentHP.value;
 			const levelChanged = !!changed.system && 'level' in changed.system;
-			if (hpChange !== 0 && !levelChanged) options.damageTaken = hpChange * -1;
+			if (hpChange !== 0 && !levelChanged) {
+				options.damageTaken = hpChange * -1;
+			}
 		}
 
 		await super._preUpdate(changed, options, user);
@@ -476,7 +482,13 @@ export class FUActor extends Actor {
 			const isInCrisis = this.statuses.has('crisis');
 
 			if (shouldBeInCrisis && !isInCrisis) {
-				await ActiveEffect.create({ ...CONFIG.statusEffects.find((val) => val.id === 'crisis'), origin: this.uuid }, { parent: this });
+				await ActiveEffect.create(
+					{
+						...CONFIG.statusEffects.find((val) => val.id === 'crisis'),
+						origin: this.uuid,
+					},
+					{ parent: this },
+				);
 			} else if (!shouldBeInCrisis && isInCrisis) {
 				this.effects.filter((effect) => effect.statuses.has('crisis')).forEach((val) => val.delete());
 			}
@@ -485,7 +497,9 @@ export class FUActor extends Actor {
 	}
 
 	async showFloatyText(input) {
-		if (!canvas.scene) return;
+		if (!canvas.scene) {
+			return;
+		}
 
 		const [token] = this.getActiveTokens();
 
@@ -517,6 +531,16 @@ export class FUActor extends Actor {
 			];
 			await token._animation;
 			await canvas.interface?.createScrollingText(...scrollingTextArgs);
+		}
+	}
+
+	*allApplicableEffects() {
+		for (const effect of super.allApplicableEffects()) {
+			if (effect.parent instanceof FUItem && effect.parent.system.isEquipped && !effect.parent.system.isEquipped.value) {
+				// skip equipable items that are NOT currently equipped
+				continue;
+			}
+			yield effect;
 		}
 	}
 }

@@ -46,8 +46,9 @@ export class FUItem extends Item {
 	getWeaponDisplayData() {
 		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
 		const isBasic = this.type === 'basic';
+		const isShield = this.type === 'shield' && !this.system.isDualShield?.value;
 		// Check if this item is not a weapon or not a weapon/shield with dual
-		if (!isBasic && !isWeaponOrShieldWithDual) {
+		if (!isBasic && !isWeaponOrShieldWithDual && !isShield) {
 			return false;
 		}
 
@@ -80,7 +81,9 @@ export class FUItem extends Item {
 			qualityString = [translate(this.system.category?.value), translate(this.system.hands?.value), translate(this.system.type?.value), qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
 			qualityString = [attackString, damageString, qualText].filter(Boolean).join(' ⬥ ');
-		}
+		} else if (isShield) {
+			qualityString = [qualText].filter(Boolean).join(' ⬥ ');
+		} 
 
 		return {
 			attackString,
