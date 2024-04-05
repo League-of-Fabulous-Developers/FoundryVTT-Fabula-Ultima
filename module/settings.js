@@ -21,6 +21,12 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudWidth: 'optionCombatHudWidth',
 	optionCombatHudPosition: 'optionCombatHudPosition',
 	optionCombatHudPortrait: 'optionCombatHudPortrait',
+	optionCombatHudShowEffects: 'optionCombatHudShowEffects',
+	optionCombatHudEffectsMarqueeDuration: 'optionCombatHudEffectsMarqueeDuration',
+	optionCombatHudEffectsMarqueeMode: 'optionCombatHudEffectsMarqueeMode',
+	optionCombatHudReordering: 'optionCombatHudReordering',
+	optionCombatHudShowOrderNumbers: 'optionCombatHudShowOrderNumbers',
+	optionCombatHudActorOrdering: 'optionCombatHudActorOrdering',
 });
 
 export const registerSystemSettings = async function () {
@@ -248,6 +254,67 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowEffects, {
+		name: game.i18n.localize('FU.CombatHudShowEffects'),
+		hint: game.i18n.localize('FU.CombatHudShowEffectsHint'),
+		scope: 'local',
+		config: false,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration, {
+		name: game.i18n.localize('FU.CombatHudEffectsMarqueeDuration'),
+		hint: game.i18n.localize('FU.CombatHudEffectsMarqueeDurationHint'),
+		scope: 'local',
+		config: false,
+		type: Number,
+		default: 15,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, {
+		name: game.i18n.localize('FU.CombatHudEffectsMarqueeMode'),
+		hint: game.i18n.localize('FU.CombatHudEffectsMarqueeModeHint'),
+		scope: 'local',
+		config: false,
+		type: String,
+		default: 'alternate',
+		choices: {
+			'normal': game.i18n.localize('FU.CombatHudEffectsMarqueeModeNormal'),
+			'alternate': game.i18n.localize('FU.CombatHudEffectsMarqueeModeAlternate'),
+		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudReordering, {
+		name: game.i18n.localize('FU.CombatHudReordering'),
+		hint: game.i18n.localize('FU.CombatHudReorderingHint'),
+		scope: 'global',
+		config: false,
+		type: Boolean,
+		default: false,
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, {
+		name: game.i18n.localize('FU.CombatHudShowOrderNumbers'),
+		hint: game.i18n.localize('FU.CombatHudShowOrderNumbersHint'),
+		scope: 'global',
+		config: false,
+		type: Boolean,
+		default: false,
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudActorOrdering, {
+		name: game.i18n.localize('FU.CombatHudActorOrdering'),
+		hint: game.i18n.localize('FU.CombatHudActorOrderingHint'),
+		scope: 'global',
+		config: false,
+		type: Array,
+		default: [],
+		restricted: true,
+	});
 };
 
 class OptionalRules extends FormApplication {
@@ -308,16 +375,38 @@ class CombatHudSettings extends FormApplication {
 			optionCombatHudWidth: game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth),
 			optionCombatHudPosition: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition),
 			optionCombatHudPortrait: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait),
+			optionCombatHudShowEffects: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowEffects),
+			optionCombatHudEffectsMarqueeDuration: game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration),
+			optionCombatHudEffectsMarqueeMode: game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode),
+			optionCombatHudReordering: game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering),
+			optionCombatHudShowOrderNumbers: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers),
 		}
 	}
 
 	async _updateObject(event, formData) {
-		const { experimentalCombatHud, optionCombatHudOpacity, optionCombatHudWidth, optionCombatHudPosition, optionCombatHudPortrait } = expandObject(formData);
+		const { 
+			experimentalCombatHud, 
+			optionCombatHudOpacity, 
+			optionCombatHudWidth, 
+			optionCombatHudPosition, 
+			optionCombatHudPortrait,
+			optionCombatHudShowEffects,
+			optionCombatHudEffectsMarqueeDuration,
+			optionCombatHudEffectsMarqueeMode,
+			optionCombatHudReordering,
+			optionCombatHudShowOrderNumbers,
+		} = expandObject(formData);
+
 		game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudOpacity, optionCombatHudOpacity);
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudWidth, optionCombatHudWidth);
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudPosition, optionCombatHudPosition);
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudPortrait, optionCombatHudPortrait);
+		game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowEffects, optionCombatHudShowEffects);
+		game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration, optionCombatHudEffectsMarqueeDuration);
+		game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, optionCombatHudEffectsMarqueeMode);
+		game.settings.set(SYSTEM, SETTINGS.optionCombatHudReordering, optionCombatHudReordering);
+		game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, optionCombatHudShowOrderNumbers);
 
 		const isCustomTrackerActive = game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker);
 		if (!isCustomTrackerActive && experimentalCombatHud) {
