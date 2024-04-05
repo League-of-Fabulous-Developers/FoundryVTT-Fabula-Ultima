@@ -1,3 +1,5 @@
+import { FUItem } from '../items/item.mjs';
+
 /**
  * Extend the base Actor document by defining a custom roll data structure
  * @extends {Actor}
@@ -456,7 +458,9 @@ export class FUActor extends Actor {
 		if (typeof changedHP?.value === 'number' && currentHP) {
 			const hpChange = changedHP.value - currentHP.value;
 			const levelChanged = !!changed.system && 'level' in changed.system;
-			if (hpChange !== 0 && !levelChanged) options.damageTaken = hpChange * -1;
+			if (hpChange !== 0 && !levelChanged) {
+				options.damageTaken = hpChange * -1;
+			}
 		}
 
 		await super._preUpdate(changed, options, user);
@@ -476,7 +480,13 @@ export class FUActor extends Actor {
 			const isInCrisis = this.statuses.has('crisis');
 
 			if (shouldBeInCrisis && !isInCrisis) {
-				await ActiveEffect.create({ ...CONFIG.statusEffects.find((val) => val.id === 'crisis'), origin: this.uuid }, { parent: this });
+				await ActiveEffect.create(
+					{
+						...CONFIG.statusEffects.find((val) => val.id === 'crisis'),
+						origin: this.uuid,
+					},
+					{ parent: this },
+				);
 			} else if (!shouldBeInCrisis && isInCrisis) {
 				this.effects.filter((effect) => effect.statuses.has('crisis')).forEach((val) => val.delete());
 			}
@@ -485,7 +495,9 @@ export class FUActor extends Actor {
 	}
 
 	async showFloatyText(input) {
-		if (!canvas.scene) return;
+		if (!canvas.scene) {
+			return;
+		}
 
 		const [token] = this.getActiveTokens();
 
@@ -517,6 +529,16 @@ export class FUActor extends Actor {
 			];
 			await token._animation;
 			await canvas.interface?.createScrollingText(...scrollingTextArgs);
+		}
+	}
+
+	*allApplicableEffects() {
+		for (const effect of super.allApplicableEffects()) {
+			if (effect.parent instanceof FUItem && effect.parent.system.isEquipped && !effect.parent.system.isEquipped.value) {
+				// skip equipable items that are NOT currently equipped
+				continue;
+			}
+			yield effect;
 		}
 	}
 }

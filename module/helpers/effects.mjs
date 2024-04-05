@@ -12,11 +12,7 @@ export function onManageActiveEffect(event, owner) {
 	const effectId = li.dataset.effectId;
 	let effect;
 	if (owner instanceof FUActor) {
-		if (game.release.isNewer(11)) {
-			effect = Array.from(owner.allApplicableEffects()).find((value) => value.id === effectId);
-		} else {
-			effect = owner.effects.find((value) => value.id === effectId);
-		}
+		effect = Array.from(owner.allApplicableEffects()).find((value) => value.id === effectId);
 	} else {
 		effect = owner.effects.get(effectId);
 	}

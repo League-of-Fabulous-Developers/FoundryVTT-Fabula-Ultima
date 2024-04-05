@@ -29,12 +29,14 @@ export class FUActiveEffect extends ActiveEffect {
 	}
 
 	get isSuppressed() {
-		const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
-		if (flag !== 'none' && this.target instanceof FUActor) {
-			if (this.target.statuses.has('crisis')) {
-				return flag === 'inactive';
-			} else {
-				return flag === 'active';
+		if (this.target instanceof FUActor) {
+			const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
+			if (flag && flag !== 'none') {
+				if (this.target.statuses.has('crisis')) {
+					return flag === 'inactive';
+				} else {
+					return flag === 'active';
+				}
 			}
 		}
 		return false;
@@ -42,15 +44,20 @@ export class FUActiveEffect extends ActiveEffect {
 
 	apply(actor, change) {
 		if (change.value && typeof change.value === 'string') {
-			const source = CONFIG.ActiveEffect.legacyTransferral ? this.source : this.parent;
 			try {
-				const expression = Roll.replaceFormulaData(change.value, source);
+				const expression = Roll.replaceFormulaData(change.value, this.parent);
 				const value = Roll.validate(expression) ? Roll.safeEval(expression) : change.value;
 				console.debug('Substituting change variable:', change.value, value);
 				change.value = String(value ?? 0);
 			} catch (e) {
 				console.error(e);
-				ui.notifications?.error(game.i18n.format('FU.EffectChangeInvalidFormula', { key: change.key, effect: this.name, target: actor.name }));
+				ui.notifications?.error(
+					game.i18n.format('FU.EffectChangeInvalidFormula', {
+						key: change.key,
+						effect: this.name,
+						target: actor.name,
+					}),
+				);
 			}
 		}
 
