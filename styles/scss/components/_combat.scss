@@ -59,6 +59,15 @@
     --hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));
     --hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));
 
+    @keyframes effects-marquee {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(-150%, 0);
+        }
+    }
+
     position: fixed;
     left: 0;
     height: var(--hud-height);
@@ -174,6 +183,10 @@
                     &.crisis {
                         color: $color-warning;
                     }
+
+                    &.full-height {
+                        height: 100%;
+                    }
                 }
 
                 img {
@@ -189,7 +202,28 @@
                     display: flex;
                     gap: 1px;
                     height: auto;
-                    //transition: all 0.5s ease-in-out;
+                    flex-flow: row nowrap;
+                    overflow: hidden;
+                    max-width: 100%;
+                    align-items: center;
+
+                    .marquee {
+                        white-space: nowrap;
+                        display: inline-block;
+                        animation-name: effects-marquee;
+                        animation-timing-function: linear;
+                        animation-iteration-count: infinite;
+                        animation-delay: 0.5s;
+                        animation-play-state: running;
+                        
+                        img {
+                            display: inline-block;
+                        }
+
+                        &:hover {
+                            animation-play-state: paused;
+                        }
+                    }
                 }
             }
         }

@@ -50,6 +50,51 @@
         </div>
         <p class="notes">{{localize "FU.CombatHudPortraitHint"}}</p>
     </div>
+    {{!-- optionCombatHudShowEffects --}}
+    <div class="form-group">
+        <label for="optionCombatHudShowEffects">{{localize "FU.CombatHudShowEffects"}}</label>
+        <div class="form-fields">
+            <input type="checkbox" name="optionCombatHudShowEffects" id="optionCombatHudShowEffects" {{checked optionCombatHudShowEffects}}>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudShowEffectsHint"}}</p>
+    </div>
+    {{!-- optionCombatHudEffectsMarqueeDuration --}}
+    <div class="form-group">
+        <label for="optionCombatHudEffectsMarqueeDuration">{{localize "FU.CombatHudEffectsMarqueeDuration"}}</label>
+        <div class="form-fields">
+            <input type="number" name="optionCombatHudEffectsMarqueeDuration" id="optionCombatHudEffectsMarqueeDuration" min="1" value="{{optionCombatHudEffectsMarqueeDuration}}">
+        </div>
+        <p class="notes">{{localize "FU.CombatHudEffectsMarqueeDurationHint"}}</p>
+    </div>
+    {{!-- optionCombatHudEffectsMarqueeMode --}}
+    <div class="form-group">
+        <label for="optionCombatHudEffectsMarqueeMode">{{localize "FU.CombatHudEffectsMarqueeMode"}}</label>
+        <div class="form-fields">
+            <select name="optionCombatHudEffectsMarqueeMode" id="optionCombatHudEffectsMarqueeMode">
+                {{#select optionCombatHudEffectsMarqueeMode}}
+                <option value="normal">{{ localize "FU.CombatHudEffectsMarqueeModeNormal" }}</option>
+                <option value="alternate">{{ localize "FU.CombatHudEffectsMarqueeModeAlternate" }}</option>
+                {{/select}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudEffectsMarqueeModeHint"}}</p>
+    </div>
+    {{!-- optionCombatHudReordering --}}
+    <div class="form-group">
+        <label for="optionCombatHudReordering">{{localize "FU.CombatHudReordering"}}</label>
+        <div class="form-fields">
+            <input type="checkbox" name="optionCombatHudReordering" id="optionCombatHudReordering" {{checked optionCombatHudReordering}}>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudReorderingHint"}}</p>
+    </div>
+    {{!-- optionCombatHudShowOrderNumbers --}}
+    <div class="form-group">
+        <label for="optionCombatHudShowOrderNumbers">{{localize "FU.CombatHudShowOrderNumbers"}}</label>
+        <div class="form-fields">
+            <input type="checkbox" name="optionCombatHudShowOrderNumbers" id="optionCombatHudShowOrderNumbers" {{checked optionCombatHudShowOrderNumbers}}>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudShowOrderNumbersHint"}}</p>
+    </div>
     <div class="form-group buttons">
         <button type="submit">
             <i class="fas fa-floppy-disk"></i>{{localize "FU.SettingsSave"}}

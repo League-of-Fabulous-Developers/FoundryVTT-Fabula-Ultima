@@ -19,7 +19,19 @@ export class CombatHUD extends Application {
         Hooks.on("updateActiveEffect", this._onUpdateHUD.bind(this));
         Hooks.on("deleteActiveEffect", this._onUpdateHUD.bind(this));
 
-        Hooks.on("deleteCombat", this.close.bind(this));
+        Hooks.on("deleteCombat", this._onCombatEnd.bind(this));
+
+        Hooks.on("canvasDraw", (canvas) => {
+            setTimeout(() => {
+                console.log(game.combat);
+                if (game.combat && game.combat.isActive) {
+                    CombatHUD.init();
+                } else {
+                    this._resetCombatState(false);
+                    CombatHUD.close();
+                }
+            }, 300);
+        });
     }
 
     static get defaultOptions() {
@@ -37,14 +49,34 @@ export class CombatHUD extends Application {
                 "--hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));"
     }
 
+    _resetCombatState(full = true) {
+        game.settings.set(SYSTEM, SETTINGS.optionCombatHudMinimized, false);
+
+        if (full) {
+            game.settings.set(SYSTEM, SETTINGS.optionCombatHudCompact, false);
+            game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, []);
+        }
+
+        const tokenButton = ui.controls.controls.find((control) => control.name === 'token');
+        if (tokenButton) {
+            const tool = tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-toggle');
+            tool.active = false;
+            tool.visible = false;
+
+            ui.controls.render(true);
+        }
+    }
+
     async getData(options = {}) {
 		const data = await super.getData(options);
 		data.cssClasses = this.options.classes.join(' ');
         data.cssId = this.options.id;
         data.isCompact = game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
-        
+
         const opacity = game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity) / 100;
         data.additionalStyle = this._getAdditionalStyle(opacity);
+
+        const ordering = game.settings.get(SYSTEM, SETTINGS.optionCombatHudActorOrdering);
 
         data.npcs = [];
         data.characters = [];
@@ -53,14 +85,45 @@ export class CombatHUD extends Application {
 
         for (const combatant of game.combat.combatants) {
             if (!combatant.actor || !combatant.token) continue;
-            
+
             const actorData = {
                 actor: combatant.actor,
                 token: combatant.token,
                 effects: game.release.generation >= 11 ? Array.from(combatant.actor.allApplicableEffects()) : combatant.actor.effects,
                 img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? combatant.token.texture.src : combatant.actor.img,
             };
+            actorData.hasEffects = actorData.effects.length > 0 && game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowEffects);
 
+            if (actorData.hasEffects) {
+                const maxEffectsBeforeMarquee = 5;
+                actorData.shouldEffectsMarquee = actorData.effects.length > maxEffectsBeforeMarquee;
+
+                const effectsMarqueeDuration = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration);
+                actorData.effectsMarqueeDuration = effectsMarqueeDuration;
+
+                const marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
+                actorData.marqueeDirection = marqueeDirection; 
+            }
+
+            let order = 0;
+            const prevOrder = ordering.find(o => o.tokenId === combatant.token.id);
+            if (prevOrder) {
+                order = prevOrder.order;
+            } else {
+                if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
+                    order = data.characters.length + 1;
+                }
+                else {
+                    order = data.npcs.length + 1;
+                }
+
+                ordering.push({
+                    tokenId: combatant.token.id,
+                    order: order,
+                });
+            }
+
+            actorData.order = order;
             if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
                 data.characters.push(actorData);
             }
@@ -68,6 +131,11 @@ export class CombatHUD extends Application {
                 data.npcs.push(actorData);
             }
         }
+
+        data.characters.sort((a, b) => a.order - b.order);
+        data.npcs.sort((a, b) => a.order - b.order);
+
+        game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, ordering);
         
 		return data;
 	}
@@ -77,6 +145,9 @@ export class CombatHUD extends Application {
 
         const rows = html.find('.combat-row');
         rows.hover(this._onHoverIn.bind(this), this._onHoverOut.bind(this));
+        rows.on('dragstart', this._doDragStart.bind(this));
+        //rows.on('dragover', this._doDragOver.bind(this));
+        rows.on('drop', this._doDrop.bind(this));
 
         const combatantImages = html.find('.combat-row .token-image');
         combatantImages.click((event) => this._onCombatantClick(event));
@@ -89,6 +160,57 @@ export class CombatHUD extends Application {
 
         const minimizeButton = html.find('.window-minimize');
         minimizeButton.click(this._doMinimize.bind(this));
+    }
+
+    _doDragStart(event) {
+        event.originalEvent.dataTransfer.dropEffect = "move";
+        event.originalEvent.dataTransfer.setData("text/plain", JSON.stringify({
+            "token": event.currentTarget.dataset.tokenId,
+            "actor": event.currentTarget.dataset.actorId,
+            "type": event.currentTarget.dataset.type,
+        }));
+    }
+
+    _doDragOver(event) {
+        
+    }
+
+    _doDrop(event) {
+        const combatRowOver = event.currentTarget.closest('.combat-row');
+        const actorTypeOver = combatRowOver.dataset.type;
+
+        const data = JSON.parse(event.originalEvent.dataTransfer.getData("text/plain"));
+        const actorTypeDragged = data.type;
+
+        if (actorTypeOver !== actorTypeDragged) {
+            event.preventDefault();
+            return;
+        }
+
+        const faction = actorTypeOver === 'character' ? '.characters' : '.npcs'; 
+        const combatRowDragged = this.element.find(`.combat-row[data-token-id="${data.token}"]`)[0];
+
+        const orderOver = parseInt(combatRowOver.dataset.order);
+        const orderDragged = parseInt(combatRowDragged.dataset.order);
+
+        combatRowOver.dataset.order = orderDragged;
+        $(combatRowOver).find('.combat-order').html(orderDragged);
+
+        combatRowDragged.dataset.order = orderOver;
+        $(combatRowDragged).find('.combat-order').html(orderOver);
+
+        const ordering = game.settings.get(SYSTEM, SETTINGS.optionCombatHudActorOrdering);
+
+        ordering.find(o => o.tokenId === data.token).order = orderOver;
+        ordering.find(o => o.tokenId === combatRowOver.dataset.tokenId).order = orderDragged;
+
+        game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, ordering);
+
+        const factionList = this.element.find(faction);
+        const rows = $(faction).find('.combat-row');
+        rows.detach().sort((a, b) => a.dataset.order - b.dataset.order);
+
+        factionList.append(rows);
     }
 
     _doMinimize() {
@@ -104,6 +226,8 @@ export class CombatHUD extends Application {
     }
 
     _doToggleCompact() {
+        if (!game.combat) return;
+
         const isCompact = !game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
         game.settings.set(SYSTEM, SETTINGS.optionCombatHudCompact, isCompact);
 
@@ -248,6 +372,11 @@ export class CombatHUD extends Application {
         this._hoveredToken = null;
     }
 
+    _onCombatEnd() {
+        this._resetCombatState();
+        this.close();
+    }
+
     close() {
         if (this._poppedOut) {
             this._poppedOut = false;
@@ -256,12 +385,26 @@ export class CombatHUD extends Application {
             this.element.find('.window-minimize').css("display", "block");
             return;
         }
+
         super.close();
     }
 
     static init() {
-        ui.combatHud = new CombatHUD();
+        if (!ui.combatHud) {
+            ui.combatHud = new CombatHUD();
+        }
+
         ui.combatHud.render(true);
+
+        setTimeout(() => {
+            const tokenButton = ui.controls.controls.find((control) => control.name === 'token');
+            if (tokenButton) {
+                const tool = tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-toggle');
+                tool.active = !game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized);
+                tool.visible = true;
+                ui.controls.render(true);
+            }   
+        }, 200);
     }
 
     static close() {
@@ -294,6 +437,7 @@ export class CombatHUD extends Application {
             icon: 'fas fa-thumbtack',
             button: false,
             toggle: true,
+            visible: game.combat ? game.combat.isActive : false,
             active: !game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized),
             onClick: () => {
                 if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
