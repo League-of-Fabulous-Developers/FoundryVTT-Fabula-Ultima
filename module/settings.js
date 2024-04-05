@@ -9,6 +9,7 @@ export const SETTINGS = Object.freeze({
 	collapseDescriptions: 'collapseDescriptions',
 	experimentalCombatTracker: 'experimentalCombatTracker',
 	optionCombatMouseDown: 'optionCombatMouseDown',
+	optionStudySavePath: 'optionStudySavePath',
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	optionImagePixelated: 'optionImagePixelated',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
@@ -126,6 +127,14 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionStudySavePath, {
+		name: game.i18n.localize('FU.StudySavePathSettings'),
+		hint: game.i18n.localize('FU.StudySavePathSettingsHint'),
+		scope: 'world',
+		config: true,
+		type: String
+	});	
 
 	game.settings.register(SYSTEM, SETTINGS.optionImagePixelated, {
 		name: game.i18n.localize('FU.PixelatedViewSettings'),

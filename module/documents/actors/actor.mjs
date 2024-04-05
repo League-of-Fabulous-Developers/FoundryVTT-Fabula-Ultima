@@ -300,9 +300,11 @@ export class FUActor extends Actor {
 
 				// console.log('Key:', key, ' ModVal:', modVal, ' BaseVal:', baseVal, ' Current:', attr.current);
 
-				if (baseVal === -1 && modVal === 1) {
+				// If both Vulnerable and Resistant, becomes Normal
+				if (baseVal === -1 && modVal === 1 || baseVal === 1 && modVal === -1) {
 					newVal = 0;
-				} else if (modVal > 0 || modVal < 0) {
+				// If modifier is greater than Normal, superscede the value	
+				} else if (modVal > 0) {
 					newVal = modVal;
 				} else {
 					newVal = baseVal += modVal;
