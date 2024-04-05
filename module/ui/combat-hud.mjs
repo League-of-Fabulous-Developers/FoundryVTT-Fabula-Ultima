@@ -21,17 +21,7 @@ export class CombatHUD extends Application {
 
         Hooks.on("deleteCombat", this._onCombatEnd.bind(this));
 
-        Hooks.on("canvasDraw", (canvas) => {
-            setTimeout(() => {
-                console.log(game.combat);
-                if (game.combat && game.combat.isActive) {
-                    CombatHUD.init();
-                } else {
-                    this._resetCombatState(false);
-                    CombatHUD.close();
-                }
-            }, 300);
-        });
+        Hooks.on("canvasDraw", this._onCanvasDraw.bind(this)); 
     }
 
     static get defaultOptions() {
@@ -145,9 +135,12 @@ export class CombatHUD extends Application {
 
         const rows = html.find('.combat-row');
         rows.hover(this._onHoverIn.bind(this), this._onHoverOut.bind(this));
-        rows.on('dragstart', this._doDragStart.bind(this));
-        //rows.on('dragover', this._doDragOver.bind(this));
-        rows.on('drop', this._doDrop.bind(this));
+
+        if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering)) {
+            rows.on('dragstart', this._doDragStart.bind(this));
+            //rows.on('dragover', this._doDragOver.bind(this));
+            rows.on('drop', this._doDrop.bind(this));
+        }
 
         const combatantImages = html.find('.combat-row .token-image');
         combatantImages.click((event) => this._onCombatantClick(event));
@@ -160,6 +153,18 @@ export class CombatHUD extends Application {
 
         const minimizeButton = html.find('.window-minimize');
         minimizeButton.click(this._doMinimize.bind(this));
+    }
+
+    _onCanvasDraw(canvas) {
+        setTimeout(() => {
+            console.log(game.combat);
+            if (game.combat && game.combat.isActive) {
+                CombatHUD.init();
+            } else {
+                this._resetCombatState(false);
+                CombatHUD.close();
+            }
+        }, 300);
     }
 
     _doDragStart(event) {

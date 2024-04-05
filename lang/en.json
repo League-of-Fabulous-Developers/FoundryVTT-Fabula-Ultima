@@ -866,6 +866,18 @@
         "CombatHudPortrait": "HUD Portrait",
         "CombatHudPortraitHint": "Choose the image used as portrait in the Combat HUD.",
         "CombatHudPortraitActor": "Actor Image",
-        "CombatHudPortraitToken": "Token Image"
+        "CombatHudPortraitToken": "Token Image",
+        "CombatHudShowEffects": "Show Combatant Effects",
+        "CombatHudShowEffectsHint": "Show the effects of the combatant in the Combat HUD.",
+        "CombatHudEffectsMarqueeDuration": "Effects Marquee Duration",
+        "CombatHudEffectsMarqueeDurationHint": "Adjust the duration of the effects marquee cycle in the Combat HUD.",
+        "CombatHudEffectsMarqueeMode": "Effects Marquee Mode",
+        "CombatHudEffectsMarqueeModeHint": "Choose the mode of the effects marquee cycle in the Combat HUD.",
+        "CombatHudEffectsMarqueeModeNormal": "Normal",
+        "CombatHudEffectsMarqueeModeAlternate": "Alternate",
+        "CombatHudReordering": "Enable Combatant Reordering",   
+        "CombatHudReorderingHint": "Enable this option to allow reordering of combatants in the Combat HUD.",
+        "CombatHudShowOrderNumbers": "Show Order Numbers",
+        "CombatHudShowOrderNumbersHint": "Show the order numbers of the combatants in the Combat HUD."
       }
 }
