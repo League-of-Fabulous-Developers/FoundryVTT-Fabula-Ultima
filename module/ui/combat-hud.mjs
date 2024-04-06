@@ -22,6 +22,7 @@ export class CombatHUD extends Application {
         Hooks.on("deleteCombat", this._onCombatEnd.bind(this));
 
         Hooks.on("canvasDraw", this._onCanvasDraw.bind(this)); 
+        Hooks.once('ready', this._onGameReady.bind(this));
     }
 
     static get defaultOptions() {
@@ -124,9 +125,8 @@ export class CombatHUD extends Application {
 
         data.characters.sort((a, b) => a.order - b.order);
         data.npcs.sort((a, b) => a.order - b.order);
-
-        game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, ordering);
         
+        this._backupOrdering = ordering;
 		return data;
 	}
 
@@ -136,7 +136,7 @@ export class CombatHUD extends Application {
         const rows = html.find('.combat-row');
         rows.hover(this._onHoverIn.bind(this), this._onHoverOut.bind(this));
 
-        if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering)) {
+        if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering) && game.user.isGM) {
             rows.on('dragstart', this._doDragStart.bind(this));
             //rows.on('dragover', this._doDragOver.bind(this));
             rows.on('drop', this._doDrop.bind(this));
@@ -155,9 +155,14 @@ export class CombatHUD extends Application {
         minimizeButton.click(this._doMinimize.bind(this));
     }
 
+    _onGameReady() {    
+        if (!game.user.isGM) return;
+        
+        game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, this._backupOrdering ?? []);
+    }
+
     _onCanvasDraw(canvas) {
         setTimeout(() => {
-            console.log(game.combat);
             if (game.combat && game.combat.isActive) {
                 CombatHUD.init();
             } else {
@@ -168,6 +173,9 @@ export class CombatHUD extends Application {
     }
 
     _doDragStart(event) {
+        if (!game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering)) return;
+        if (!game.user.isGM) return;
+
         event.originalEvent.dataTransfer.dropEffect = "move";
         event.originalEvent.dataTransfer.setData("text/plain", JSON.stringify({
             "token": event.currentTarget.dataset.tokenId,
@@ -181,6 +189,9 @@ export class CombatHUD extends Application {
     }
 
     _doDrop(event) {
+        if (!game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering)) return;
+        if (!game.user.isGM) return;
+
         const combatRowOver = event.currentTarget.closest('.combat-row');
         const actorTypeOver = combatRowOver.dataset.type;
 
@@ -410,6 +421,12 @@ export class CombatHUD extends Application {
                 ui.controls.render(true);
             }   
         }, 200);
+    }
+
+    static update() {
+        if (ui.combatHud) {
+            ui.combatHud.render(true);
+        }
     }
 
     static close() {

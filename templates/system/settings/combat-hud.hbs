@@ -80,6 +80,7 @@
         <p class="notes">{{localize "FU.CombatHudEffectsMarqueeModeHint"}}</p>
     </div>
     {{!-- optionCombatHudReordering --}}
+    {{#if isGM}}
     <div class="form-group">
         <label for="optionCombatHudReordering">{{localize "FU.CombatHudReordering"}}</label>
         <div class="form-fields">
@@ -87,6 +88,7 @@
         </div>
         <p class="notes">{{localize "FU.CombatHudReorderingHint"}}</p>
     </div>
+    {{/if}}
     {{!-- optionCombatHudShowOrderNumbers --}}
     <div class="form-group">
         <label for="optionCombatHudShowOrderNumbers">{{localize "FU.CombatHudShowOrderNumbers"}}</label>
