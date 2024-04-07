@@ -101,6 +101,10 @@
                 display: none;
             }
         }
+
+        &.window-drag {
+            left: 0em;
+        }
     }
 
     .faction-list {
@@ -252,6 +256,8 @@
                         justify-content: center;
                         align-items: center;
                         gap: 3px;
+                        height: auto;
+                        min-height: auto;
 
                         .bar {
                             width: 100%;

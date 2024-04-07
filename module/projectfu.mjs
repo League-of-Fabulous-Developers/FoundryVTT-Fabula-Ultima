@@ -358,6 +358,7 @@ Hooks.on('getSceneControlButtons', (controls) => {
 	if (!tokenButton) return;
 
 	tokenButton.tools.push(CombatHUD.getToggleControlButton());
+	tokenButton.tools.push(CombatHUD.getResetControlButton());
 });
 
 /* -------------------------------------------- */

@@ -4,6 +4,9 @@ export class CombatHUD extends Application {
     constructor(options) {
         super(options);
 
+        this._emptyImage = document.createElement('img');
+        this._emptyImage.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
         Hooks.callAll('combatHudInit', this);
         Hooks.on("createCombatant", this._onUpdateHUD.bind(this));
         Hooks.on("deleteCombatant", this._onUpdateHUD.bind(this));
@@ -22,6 +25,7 @@ export class CombatHUD extends Application {
         Hooks.on("deleteCombat", this._onCombatEnd.bind(this));
 
         Hooks.on("canvasDraw", this._onCanvasDraw.bind(this)); 
+        Hooks.once('ready', this._onGameReady.bind(this));
     }
 
     static get defaultOptions() {
@@ -44,13 +48,22 @@ export class CombatHUD extends Application {
 
         if (full) {
             game.settings.set(SYSTEM, SETTINGS.optionCombatHudCompact, false);
-            game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, []);
-        }
+            game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, {});
 
+            if (game.user.isGM) {
+                game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, []);
+            }
+        }
+    }
+
+    _resetButtons() {
         const tokenButton = ui.controls.controls.find((control) => control.name === 'token');
         if (tokenButton) {
-            const tool = tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-toggle');
+            let tool = tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-toggle');
             tool.active = false;
+            tool.visible = false;
+
+            tool = tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-reset');
             tool.visible = false;
 
             ui.controls.render(true);
@@ -124,9 +137,8 @@ export class CombatHUD extends Application {
 
         data.characters.sort((a, b) => a.order - b.order);
         data.npcs.sort((a, b) => a.order - b.order);
-
-        game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, ordering);
         
+        this._backupOrdering = ordering;
 		return data;
 	}
 
@@ -136,10 +148,10 @@ export class CombatHUD extends Application {
         const rows = html.find('.combat-row');
         rows.hover(this._onHoverIn.bind(this), this._onHoverOut.bind(this));
 
-        if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering)) {
-            rows.on('dragstart', this._doDragStart.bind(this));
+        if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering) && game.user.isGM) {
+            rows.on('dragstart', this._doCombatantDragStart.bind(this));
             //rows.on('dragover', this._doDragOver.bind(this));
-            rows.on('drop', this._doDrop.bind(this));
+            rows.on('drop', this._doCombatantDrop.bind(this));
         }
 
         const combatantImages = html.find('.combat-row .token-image');
@@ -153,21 +165,59 @@ export class CombatHUD extends Application {
 
         const minimizeButton = html.find('.window-minimize');
         minimizeButton.click(this._doMinimize.bind(this));
+
+        const dragButton = html.find('.window-drag');
+        dragButton.on('dragstart', this._doHudDragStart.bind(this));   
+        dragButton.on('drag', this._doHudDrag.bind(this));
+        dragButton.on('drop', this._doHudDrop.bind(this));
+
+        this._dragOffsetX = -dragButton.width() * 1.5;
+        this._dragOffsetY = dragButton.height() / 2;
+    }
+
+    _doHudDragStart(event) {
+        event.originalEvent.dataTransfer.setDragImage(this._emptyImage, 0, 0);
+    }
+
+    _doHudDrag(event) {
+        if (event.clientX <= 0 || event.clientY <= 0) return;
+
+        event.originalEvent.dataTransfer.dropEffect = "move";
+        this.element.css("left", this._dragOffsetX + event.clientX);
+
+        this.element.css("bottom", "initial");
+        this.element.css("top", this._dragOffsetY + event.clientY);
+    }
+
+    _doHudDrop(event) {
+        const draggedPosition = {
+            x: this.element.css('left'),
+            y: this.element.css('top'),
+        };
+        game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
+    }
+
+    _onGameReady() {    
+        if (!game.user.isGM) return;
+        game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, this._backupOrdering ?? []);
     }
 
     _onCanvasDraw(canvas) {
         setTimeout(() => {
-            console.log(game.combat);
             if (game.combat && game.combat.isActive) {
                 CombatHUD.init();
             } else {
                 this._resetCombatState(false);
+                this._resetButtons();
                 CombatHUD.close();
             }
         }, 300);
     }
 
-    _doDragStart(event) {
+    _doCombatantDragStart(event) {
+        if (!game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering)) return;
+        if (!game.user.isGM) return;
+
         event.originalEvent.dataTransfer.dropEffect = "move";
         event.originalEvent.dataTransfer.setData("text/plain", JSON.stringify({
             "token": event.currentTarget.dataset.tokenId,
@@ -180,7 +230,11 @@ export class CombatHUD extends Application {
         
     }
 
-    _doDrop(event) {
+    _doCombatantDrop(event) {
+        if (!event.currentTarget.classList.contains('combat-row')) return;
+        if (!game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering)) return;
+        if (!game.user.isGM) return;
+
         const combatRowOver = event.currentTarget.closest('.combat-row');
         const actorTypeOver = combatRowOver.dataset.type;
 
@@ -337,14 +391,20 @@ export class CombatHUD extends Application {
         const hudWidth = minWidth + (uiMiddle.width() - minWidth) * (game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100);
         this.element.css("width", hudWidth + hOffset);
 
-        this.element.css("left", uiMiddle.position().left);
-
-        if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top') {
-            const uiTop = $("#ui-top");
-            this.element.css("top", uiTop.height() + 2);
+        const draggedPosition = game.settings.get(SYSTEM, SETTINGS.optionCombatHudDraggedPosition);
+        if (draggedPosition && draggedPosition.x && draggedPosition.y) {
+            this.element.css("left", draggedPosition.x);
+            this.element.css("top", draggedPosition.y);
         } else {
-            const uiBottom = $("#ui-bottom");
-            this.element.css("bottom", uiBottom.height() + 10);
+            this.element.css("left", uiMiddle.position().left);
+
+            if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top') {
+                const uiTop = $("#ui-top");
+                this.element.css("top", uiTop.height() + 2);
+            } else {
+                const uiBottom = $("#ui-bottom");
+                this.element.css("bottom", uiBottom.height() + 10);
+            }
         }
     }
 
@@ -379,6 +439,7 @@ export class CombatHUD extends Application {
 
     _onCombatEnd() {
         this._resetCombatState();
+        this._resetButtons();
         this.close();
     }
 
@@ -404,12 +465,22 @@ export class CombatHUD extends Application {
         setTimeout(() => {
             const tokenButton = ui.controls.controls.find((control) => control.name === 'token');
             if (tokenButton) {
-                const tool = tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-toggle');
+                let tool = tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-toggle');
                 tool.active = !game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized);
                 tool.visible = true;
+
+                tool = tokenButton.tools.find((tool) => tool.name === 'projectfu-combathud-reset');
+                tool.visible = true;
+
                 ui.controls.render(true);
             }   
         }, 200);
+    }
+
+    static update() {
+        if (ui.combatHud) {
+            ui.combatHud.render(true);
+        }
     }
 
     static close() {
@@ -435,6 +506,13 @@ export class CombatHUD extends Application {
             CombatHUD.init();
     }
 
+    static reset() {
+        if (!ui.combat) return;
+
+        ui.combatHud._resetCombatState();
+        CombatHUD.update();
+    }
+
     static getToggleControlButton() {
         return {
             name: 'projectfu-combathud-toggle',
@@ -452,5 +530,18 @@ export class CombatHUD extends Application {
                 }
             },
         };  
+    }
+
+    static getResetControlButton() {
+        return {
+            name: 'projectfu-combathud-reset',
+            title: game.i18n.localize('FU.CombatHudResetButtonTitle'),
+            icon: 'fas fa-undo',
+            button: true,
+            visible: game.combat ? game.combat.isActive : false,
+            onClick: () => {
+                CombatHUD.reset();
+            },
+        }
     }
 }
