@@ -29,6 +29,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudReordering: 'optionCombatHudReordering',
 	optionCombatHudShowOrderNumbers: 'optionCombatHudShowOrderNumbers',
 	optionCombatHudActorOrdering: 'optionCombatHudActorOrdering',
+	optionCombatHudDraggedPosition: 'optionCombatHudDraggedPosition',
 });
 
 export const registerSystemSettings = async function () {
@@ -317,6 +318,15 @@ export const registerSystemSettings = async function () {
 		onChange: value => {
 			CombatHUD.update();
 		}
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, {
+		name: game.i18n.localize('FU.CombatHudDraggedPosition'),
+		hint: game.i18n.localize('FU.CombatHudDraggedPositionHint'),
+		scope: 'client',
+		config: false,
+		type: Object,
+		default: {},
 	});
 };
 

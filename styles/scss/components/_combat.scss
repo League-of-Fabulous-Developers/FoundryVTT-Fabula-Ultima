@@ -101,6 +101,10 @@
                 display: none;
             }
         }
+
+        &.window-drag {
+            left: 0em;
+        }
     }
 
     .faction-list {
