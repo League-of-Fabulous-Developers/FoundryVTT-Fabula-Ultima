@@ -848,6 +848,8 @@
         "TotalPartyMemberSettingsHint": "",
         "CollapseDescriptionSettings": "",
         "CollapseDescriptionSettingsHint": "",
+        "StudySavePathSettings": "",
+        "StudySavePathSettingsHint": "",
         "RevisedStudyRollSettings": "",
         "RevisedStudyRollSettingsHint": "",
         "PixelatedViewSettings": "",
@@ -866,6 +868,20 @@
         "CombatHudPortrait": "",
         "CombatHudPortraitHint": "",
         "CombatHudPortraitActor": "",
-        "CombatHudPortraitToken": ""
+        "CombatHudPortraitToken": "",
+        "CombatHudControlButtonTitle": "",
+        "CombatHudShowEffects": "",
+        "CombatHudShowEffectsHint": "",
+        "CombatHudEffectsMarqueeDuration": "",
+        "CombatHudEffectsMarqueeDurationHint": "",
+        "CombatHudEffectsMarqueeMode": "",
+        "CombatHudEffectsMarqueeModeHint": "",
+        "CombatHudEffectsMarqueeModeNormal": "",
+        "CombatHudEffectsMarqueeModeAlternate": "",
+        "CombatHudReordering": "",
+        "CombatHudReorderingHint": "",
+        "CombatHudShowOrderNumbers": "",
+        "CombatHudShowOrderNumbersHint": "",
+        "CombatHudResetButtonTitle": ""
       }
 }
