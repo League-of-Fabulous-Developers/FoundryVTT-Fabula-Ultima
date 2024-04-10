@@ -167,6 +167,8 @@
         "FavoriteStatus": "Favoris?",
         "Increase": "Augmenter",
         "Decrease": "Diminuer",
+        "IncreaseTooltip": "[Clic gauche] Augmenter de 1 <br> [Clic droit] Augmenter par étape",
+        "DecreaseTooltip": "[Clic gauche] Diminuer de 1 <br> [Clic droit] Diminuer par étape",      
         "Basic": "Base",
         "BasicAttack": "Attaque de base",
         "BasicAttacks": "Attaques de base",

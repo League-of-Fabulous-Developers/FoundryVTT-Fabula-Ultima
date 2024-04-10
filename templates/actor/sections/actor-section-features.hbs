@@ -134,27 +134,27 @@
 				<div class="item-m desc flexcol flex-group-center resource-content">
 					<label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
 					<div class="resource-text-m buttons-inc" style="padding: 0 4px;">
-						<a class="decrement-button" data-type="resourceCounter" data-item-id="{{ item._id }}">-</a>
+						<a class="decrement-button" data-type="resourceCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.rp.step}})">-</a>
 						<span data-resource="item.rp">{{ item.system.rp.current }}</span>
 						{{#if (gt item.system.rp.max 0)}}
 						<span>/</span>
 						<span>{{ item.system.rp.max }}</span>
 						{{/if}}
-						<a class="increment-button" data-type="resourceCounter" data-item-id="{{ item._id }}">+</a>
+						<a class="increment-button" data-type="resourceCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.rp.step}})">+</a>
 					</div>
 				</div>
 				{{/if}}
 				{{!-- Clocks --}}
 				{{#if item.system.hasClock.value}}
 				<div class="item-m desc" style="text-align: initial; padding: 1px;">
-					<a class="decrement-button align-left" data-type="clockCounter" data-item-id="{{ item._id }}"> <i
+					<a class="decrement-button align-left" data-type="clockCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})"> <i
 							class="fas fa-minus"></i></a>
 					<div class="progress-container">
 						{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
 						arr=item.progressArr
 						data=item.system.progress}}
 					</div>
-					<a class="increment-button align-right" data-type="clockCounter" data-item-id="{{ item._id }}"> <i
+					<a class="increment-button align-right" data-type="clockCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progress.step}})"> <i
 							class="fas fa-plus"></i></a>
 				</div>
 				{{/if}}
@@ -205,11 +205,11 @@
 				<div class="item-m desc flexcol flex-group-center resource-content"
 					style="padding: 0px; border-radius: 6px 12px 12px 6px;">
 					<div class="resource-text-m buttons-inc">
-						<a class="decrement-button" data-type="projectCounter" data-item-id="{{ item._id }}">-</a>
+						<a class="decrement-button" data-type="projectCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{system.progressPerDay.value}})">-</a>
 						<span data-resource="item.rp">{{ item.system.progress.current }}</span>
 						<span>/</span>
 						<span>{{ item.system.progress.max }}</span>
-						<a class="increment-button" data-type="projectCounter" data-item-id="{{ item._id }}">+</a>
+						<a class="increment-button" data-type="projectCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{system.progressPerDay.value}})">+</a>
 					</div>
 				</div>
 				{{!-- Item Control--}}

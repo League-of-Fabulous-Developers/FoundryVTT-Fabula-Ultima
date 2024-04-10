@@ -167,6 +167,8 @@
         "FavoriteStatus": "Favorit?",
         "Increase": "Erhöhen",
         "Decrease": "Verringern",
+        "IncreaseTooltip": "[Linksklick] Erhöhe um 1 <br> [Rechtsklick] Erhöhe um Schritt",
+        "DecreaseTooltip": "[Linksklick] Verringere um 1 <br> [Rechtsklick] Verringere um Schritt",        
         "Basic": "Standard",
         "BasicAttack": "Standardangriff",
         "BasicAttacks": "Standardangriffe",
