@@ -168,6 +168,8 @@ export async function handleStudyRoll(app) {
                                     const attributesDisplay = primaryAttribute && secondaryAttribute ? `【${primaryAttribute} + ${secondaryAttribute}】 ` : '';
                                     const accuracy = item.system.accuracy?.value ? `${attributesDisplay}+ ${item.system.accuracy.value}` : attributesDisplay;
                                     const description = item.system.description || '';
+                                    const qualText = item.system.quality?.value || '';
+                                    const opporText = item.system?.opportunity || '';
 
                                     const itemRow = `<tr>
                                     <td><strong>${name}</strong></td>
@@ -175,6 +177,8 @@ export async function handleStudyRoll(app) {
                                     <td><strong>${damage}</strong></td>
                                     <td>${damageType}</td>
                                     <td>${description}</td>
+                                    <td>${qualText} ${opporText}</td>
+
                                 </tr>`;
 
                                     if (item.type === 'basic') basicItems += itemRow;
@@ -200,6 +204,7 @@ export async function handleStudyRoll(app) {
                                                     <th style="text-align: center;">Damage</th>
                                                     <th style="text-align: center;">Damage Type</th>
                                                     <th style="text-align: left;">Description</th>
+                                                    <th style="text-align: left;">Special</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -227,6 +232,7 @@ export async function handleStudyRoll(app) {
                                                         <th style="text-align: center;">Damage</th>
                                                         <th style="text-align: center;">Damage Type</th>
                                                         <th style="text-align: left;">Description</th>
+                                                        <th style="text-align: left;">Quality</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -254,6 +260,7 @@ export async function handleStudyRoll(app) {
                                                         <th style="text-align: center;">Damage</th>
                                                         <th style="text-align: center;">Damage Type</th>
                                                         <th style="text-align: left;">Description</th>
+                                                        <th style="text-align: left;">Opportunity</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
