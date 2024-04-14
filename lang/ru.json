@@ -203,6 +203,8 @@
         "ConsumableCreate": "Создать расходник",
         "ConsumableEdit": "Редактировать расходник",
         "ConsumableDelete": "Удалить расходник",
+        "Potion": "Potion",
+        "Utility": "Utility",
         "Treasure": "Сокровище",
         "Treasures": "Сокровища",
         "TreasureCreate": "Создать сокровище",

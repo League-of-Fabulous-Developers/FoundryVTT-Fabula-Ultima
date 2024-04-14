@@ -201,6 +201,8 @@
         "ConsumableCreate": "",
         "ConsumableEdit": "",
         "ConsumableDelete": "",
+        "Potion": "",
+        "Utility": "",
         "Treasure": "",
         "Treasures": "",
         "TreasureCreate": "",

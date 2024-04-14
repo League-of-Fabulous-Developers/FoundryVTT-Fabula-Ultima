@@ -203,6 +203,8 @@
         "ConsumableCreate": "Criar Consumível",
         "ConsumableEdit": "Editar Consumível",
         "ConsumableDelete": "Deletar Consumível",
+        "Potion": "Potion",
+        "Utility": "Utility",
         "Treasure": "Tesouro",
         "Treasures": "Tesouros",
         "TreasureCreate": "Criar Tesouro",

@@ -263,6 +263,17 @@ FU.heroicType = {
 };
 
 /**
+ * @typedef {"potion", "utility"} consumableType
+ */
+/**
+ * @type {Object.<ConsumableType, string>}
+ */
+FU.consumableType = {
+	potion: 'FU.Potion',
+	utility: 'FU.Utility',
+};
+
+/**
  * @typedef {"treasure", "material", "artifact"} TreasureType
  */
 /**

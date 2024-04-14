@@ -203,6 +203,8 @@
         "ConsumableCreate": "Verbrauchsgegenstand erstellen",
         "ConsumableEdit": "Verbrauchsgegenstand bearbeiten",
         "ConsumableDelete": "Verbrauchsgegenstand löschen",
+        "Potion": "Potion",
+        "Utility": "Utility",
         "Treasure": "Kostbarkeit",
         "Treasures": "Kostbarkeiten",
         "TreasureCreate": "Kostbarkeit erstellen",
