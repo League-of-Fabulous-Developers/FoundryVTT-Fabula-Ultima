@@ -975,18 +975,10 @@ export class FUStandardActorSheet extends ActorSheet {
 		if (item) {
 			// Call the item's roll method
 			item.roll();
-		} else {
 		}
-		// Get the value of optionTargetPriority from game settings
-		const settingValue = game.settings.get('projectfu', 'optionTargetPriority');
 
-		// Prepare an array for target priority with a length equal to settingValue
-		const targetArray = Array.from({ length: settingValue }, (_, index) => index + 1);
-
-		shuffleArray(targetArray); // Assuming shuffleArray is defined elsewhere
-
-		// Prepare the content for the chat message
-		const content = `<b>Enemy:</b> ${this.actor.name}<br /><b>Selected behavior:</b> ${selected.name}<br /><b>Target priority:</b> ${targetArray.join(' -> ')}`;
+		// Call _targetPriority method passing the selected behavior
+		this._targetPriority(selected);
 
 		// Check if the selected behavior's type is "item"
 		if (selected.type === 'item') {
@@ -998,6 +990,40 @@ export class FUStandardActorSheet extends ActorSheet {
 				// Return the result of item.roll()
 				item._onRoll.bind(this);
 			}
+		}
+	}
+
+	_targetPriority(selected) {
+		// Get the array of targeted tokens
+		let targetedTokens = Array.from(game.user.targets);
+
+		// Define the content variable
+		let content;
+
+		// Extract the name of the selected behavior
+		const behaviorName = selected ? selected.name : "";
+
+		if (targetedTokens.length > 0) {
+			// Map targeted tokens to numbered tokens with actor names
+			const numberedTokens = targetedTokens.map((token, index) => `${index + 1} (${token.actor.name})`);
+
+			// Shuffle the array of numbered tokens
+			shuffleArray(numberedTokens);
+
+			// Prepare the content for the chat message
+			content = `<b>Actor:</b> ${this.actor.name}${behaviorName ? `<br /><b>Selected behavior:</b> ${behaviorName}` : ''}<br /><b>Target priority:</b> ${numberedTokens.join(' -> ')}`;
+		} else {
+			// Get the value of optionTargetPriority from game settings
+			const settingValue = game.settings.get('projectfu', 'optionTargetPriority');
+
+			// Prepare an array for target priority with a length equal to settingValue
+			const targetArray = Array.from({ length: settingValue }, (_, index) => index + 1);
+
+			// Shuffle the array of numbered tokens
+			shuffleArray(targetArray);
+
+			// Prepare the content for the chat message
+			content = `<b>Actor:</b> ${this.actor.name}${behaviorName ? `<br /><b>Selected behavior:</b> ${behaviorName}` : ''}<br /><b>Target priority:</b> ${targetArray.join(' -> ')}`;
 		}
 
 		// Prepare chat data for displaying the message
@@ -1245,13 +1271,24 @@ export class FUStandardActorSheet extends ActorSheet {
 		const dataset = element.dataset;
 
 		const isShift = event.shiftKey;
+		const isCtrl = event.ctrlKey;
+
+		// Get the value of optionTargetPriorityRules from game settings
+		const settingPriority = game.settings.get('projectfu', 'optionTargetPriorityRules');
 
 		// Handle item rolls.
 		if (dataset.rollType) {
 			if (dataset.rollType === 'item') {
 				const itemId = element.closest('.item').dataset.itemId;
 				const item = this.actor.items.get(itemId);
-				if (item) return item.roll(isShift);
+				if (item) {
+					// if (isCtrl) {
+					// 	return promptCheckCustomizer(this.actor, item);
+					// } else {
+						if (settingPriority) { this._targetPriority(); }
+						return item.roll(isShift);
+					// }
+				}
 			}
 			if (dataset.rollType === 'behavior') {
 				return this._rollBehavior();

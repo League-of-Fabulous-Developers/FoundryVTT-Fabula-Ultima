@@ -203,8 +203,10 @@
         "ConsumableCreate": "Crear consumible",
         "ConsumableEdit": "Editar consumible",
         "ConsumableDelete": "Eliminar consumible",
-        "Potion": "Potion",
-        "Utility": "Utility",
+        "Potion": "Poción",
+        "Potions": "Pociones",
+        "Utility": "Herramienta",
+        "Utilities": "Herramientas",
         "Treasure": "Tesoro",
         "Treasures": "Tesoros",
         "TreasureCreate": "Crear tesoro",
@@ -850,6 +852,8 @@
         "BehaviorRollsSettingsHint": "Juega con la regla de Apuntar al Azar de la página 297 del Core Rulebook.",
         "TotalPartyMemberSettings": "¿Número total de miembros del Grupo?",
         "TotalPartyMemberSettingsHint": "Cuántos miembros del grupo hay actualmente en tu grupo para la prioridad del objetivo.",
+        "TotalPartyMemberRulesSettings": "Enable Standalone Target Priority?",
+        "TotalPartyMemberRulesSettingsHint": "Add target priority to all item rolls.",
         "CollapseDescriptionSettings": "Contraer la descripción de los objetos",
         "CollapseDescriptionSettingsHint": "Las descripciones del chat de armas, objetos, hechizos y habilidades se contraerán por defecto.",
         "StudySavePathSettings": "Ruta de guardado de la tirada de Estudio",
@@ -887,5 +891,5 @@
         "CombatHudShowOrderNumbers": "Mostrar orden numérico",
         "CombatHudShowOrderNumbersHint": "Muestra el orden numérico de los participantes en el HUD de Combate.",
         "CombatHudResetButtonTitle": "Reiniciar HUD de Combate"
-      }
+    }
 }

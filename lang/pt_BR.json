@@ -168,7 +168,7 @@
         "Increase": "Aumentar",
         "Decrease": "Diminuir",
         "IncreaseTooltip": "[Clic Esquerdo] Aumentar en 1 <br> [Clic derecho] Aumentar por paso",
-        "DecreaseTooltip": "[Clic Esquerdo] Disminuir en 1 <br> [Clic derecho] Disminuir por paso",       
+        "DecreaseTooltip": "[Clic Esquerdo] Disminuir en 1 <br> [Clic derecho] Disminuir por paso",
         "Basic": "Básico",
         "BasicAttack": "Ataque Básico",
         "BasicAttacks": "Ataques Básicos",
@@ -203,8 +203,10 @@
         "ConsumableCreate": "Criar Consumível",
         "ConsumableEdit": "Editar Consumível",
         "ConsumableDelete": "Deletar Consumível",
-        "Potion": "Potion",
-        "Utility": "Utility",
+        "Potion": "Poção",
+        "Potions": "Poções",
+        "Utility": "Utilidade",
+        "Utilities": "Utilidades",
         "Treasure": "Tesouro",
         "Treasures": "Tesouros",
         "TreasureCreate": "Criar Tesouro",
@@ -850,6 +852,8 @@
         "BehaviorRollsSettingsHint": "Jogue com a regra de Seleção Aleatória de Alvo do Livro de Regras Básicas, página 297.",
         "TotalPartyMemberSettings": "Número Total de membros da equipe?",
         "TotalPartyMemberSettingsHint": "Quantos membros da equipe estão atualmente no seu grupo para prioridade de alvo.",
+        "TotalPartyMemberRulesSettings": "Enable Standalone Target Priority?",
+        "TotalPartyMemberRulesSettingsHint": "Add target priority to all item rolls.",
         "CollapseDescriptionSettings": "Compactar Descrições de Itens",
         "CollapseDescriptionSettingsHint": "As descrições no bate-papo de armas, itens, feitiços e habilidades serão compactadas por padrão.",
         "StudySavePathSettings": "Caminho para salvar testes de estudo",
@@ -887,5 +891,5 @@
         "CombatHudShowOrderNumbers": "Mostrar Ordenação Numérica",
         "CombatHudShowOrderNumbersHint": "Mostrar a ordem numérica dos participantes no HUD de Combate.",
         "CombatHudResetButtonTitle": "Reiniciar HUD de Combate"
-      }
+    }
 }

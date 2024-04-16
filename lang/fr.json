@@ -168,7 +168,7 @@
         "Increase": "Augmenter",
         "Decrease": "Diminuer",
         "IncreaseTooltip": "[Clic gauche] Augmenter de 1 <br> [Clic droit] Augmenter par étape",
-        "DecreaseTooltip": "[Clic gauche] Diminuer de 1 <br> [Clic droit] Diminuer par étape",      
+        "DecreaseTooltip": "[Clic gauche] Diminuer de 1 <br> [Clic droit] Diminuer par étape",
         "Basic": "Base",
         "BasicAttack": "Attaque de base",
         "BasicAttacks": "Attaques de base",
@@ -204,7 +204,9 @@
         "ConsumableEdit": "Editer un consommable",
         "ConsumableDelete": "Supprimer un consommable",
         "Potion": "Potion",
-        "Utility": "Utility",
+        "Potions": "Potions",
+        "Utility": "Utilitaire",
+        "Utilities": "Utilitaires",
         "Treasure": "Trésor",
         "Treasures": "Trésors",
         "TreasureCreate": "Créer un trésor",
@@ -850,6 +852,8 @@
         "BehaviorRollsSettingsHint": "Jouez avec la règle de ciblage aléatoire du livre de base page 297.",
         "TotalPartyMemberSettings": "Nombre de membres du groupe ?",
         "TotalPartyMemberSettingsHint": "Combien de membres du groupe se trouvent actuellement dans votre groupe pour la priorité de la cible.",
+        "TotalPartyMemberRulesSettings": "Enable Standalone Target Priority?",
+        "TotalPartyMemberRulesSettingsHint": "Add target priority to all item rolls.",
         "CollapseDescriptionSettings": "Réduire les descriptions des objets",
         "CollapseDescriptionSettingsHint": "Les descriptions de chat sur les armes, les objets, les sorts et les capacités seront réduites par défaut.",
         "StudySavePathSettings": "Chemin d'enregistrement des jets d'Analyses",
@@ -887,5 +891,5 @@
         "CombatHudShowOrderNumbers": "Montrer l'ordre des combattants",
         "CombatHudShowOrderNumbersHint": "Montrer l'ordre des combattants dans l'ATH de combat.",
         "CombatHudResetButtonTitle": "Réinitialiser l'ATH de combat"
-      }
+    }
 }

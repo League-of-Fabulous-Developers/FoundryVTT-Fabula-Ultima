@@ -168,7 +168,7 @@
         "Increase": "Aumenta",
         "Decrease": "Diminuisci",
         "IncreaseTooltip": "[Clic sinistro] Aumenta di 1 <br> [Clic destro] Aumenta di un passo",
-        "DecreaseTooltip": "[Clic sinistro] Diminuisci di 1 <br> [Clic destro] Diminuisci di un passo",        
+        "DecreaseTooltip": "[Clic sinistro] Diminuisci di 1 <br> [Clic destro] Diminuisci di un passo",
         "Basic": "Base",
         "BasicAttack": "Attacco Base",
         "BasicAttacks": "Attacchi Base",
@@ -204,7 +204,9 @@
         "ConsumableEdit": "Modifica Consumabile",
         "ConsumableDelete": "Cancella Consumabile",
         "Potion": "Potion",
+        "Potions": "Potions",
         "Utility": "Utility",
+        "Utilities": "Utilities",
         "Treasure": "Tesoro",
         "Treasures": "Tesori",
         "TreasureCreate": "Crea Tesoro",
@@ -850,6 +852,8 @@
         "BehaviorRollsSettingsHint": "Gioca con la regola dei Bersagli Casuali dal Manuale Base pg. 297.",
         "TotalPartyMemberSettings": "Numero Membri del Gruppo?",
         "TotalPartyMemberSettingsHint": "Quanti membri del party sono presenti attualmente per decidere la priorità di bersagliamento.",
+        "TotalPartyMemberRulesSettings": "Enable Standalone Target Priority?",
+        "TotalPartyMemberRulesSettingsHint": "Add target priority to all item rolls.",
         "CollapseDescriptionSettings": "Descrizioni Oggetti Contratte",
         "CollapseDescriptionSettingsHint": "Le descrizioni di armi, oggetti, incantesimi e abilità saranno contratte di default.",
         "StudySavePathSettings": "Percorso di Salvataggio Test di Studio",
@@ -887,5 +891,5 @@
         "CombatHudShowOrderNumbers": "Mostra Ordine",
         "CombatHudShowOrderNumbersHint": "Mostra i numeri indicanti l'ordine dei Partecipanti nell'Interfaccia di Conflitto.",
         "CombatHudResetButtonTitle": "Reset Interfaccia di Conflitto"
-      }
+    }
 }

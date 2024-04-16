@@ -8,6 +8,7 @@ export const SETTINGS = Object.freeze({
 	optionCampingRules: 'optionCampingRules',
 	optionBehaviorRoll: 'optionBehaviorRoll',
 	optionTargetPriority: 'optionTargetPriority',
+	optionTargetPriorityRules: 'optionTargetPriorityRules',
 	collapseDescriptions: 'collapseDescriptions',
 	experimentalCombatTracker: 'experimentalCombatTracker',
 	optionCombatMouseDown: 'optionCombatMouseDown',
@@ -97,6 +98,15 @@ export const registerSystemSettings = async function () {
 		scope: 'world',
 		config: false,
 		type: Number,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionTargetPriorityRules, {
+		name: game.i18n.localize('FU.TotalPartyMemberRulesSettings'),
+		hint: game.i18n.localize('FU.TotalPartyMemberRulesSettingsHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
 		default: false,
 	});
 
@@ -364,6 +374,7 @@ class myBehaviorRolls extends FormApplication {
 		return {
 			optionBehaviorRoll: game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll),
 			optionTargetPriority: game.settings.get(SYSTEM, SETTINGS.optionTargetPriority),
+			optionTargetPriorityRules: game.settings.get(SYSTEM, SETTINGS.optionTargetPriorityRules),
 		};
 	}
 
@@ -371,6 +382,7 @@ class myBehaviorRolls extends FormApplication {
 		const { optionBehaviorRoll, optionTargetPriority } = expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.optionBehaviorRoll, optionBehaviorRoll);
 		game.settings.set(SYSTEM, SETTINGS.optionTargetPriority, optionTargetPriority);
+		game.settings.set(SYSTEM, SETTINGS.optionTargetPriorityRules, optionTargetPriorityRules);
 	}
 }
 

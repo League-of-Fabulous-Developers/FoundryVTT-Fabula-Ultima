@@ -6,13 +6,23 @@
         <div class="form-fields">
             <input type="checkbox" name="optionBehaviorRoll" id="optionBehaviorRoll" {{checked optionBehaviorRoll}}>
         </div>
-        <p class="notes">{{localize "FU.BehaviorRollsSettingsHint"}}</p> 
+        <p class="notes">{{localize "FU.BehaviorRollsSettingsHint"}}</p>
+    </div>
+    <!-- optionTargetPriorityRules -->
+    <div class="form-group">
+        <label for="optionTargetPriorityRules">{{localize "FU.TotalPartyMemberRulesSettings"}}</label>
+        <div class="form-fields">
+            <input type="checkbox" name="optionTargetPriorityRules" id="optionTargetPriorityRules" {{checked
+                optionTargetPriorityRules}}>
+        </div>
+        <p class="notes">{{localize "FU.TotalPartyMemberRulesSettingsHint"}}</p>
     </div>
     <!-- optionTargetPriority -->
     <div class="form-group">
         <label for="optionTargetPriority">{{localize "FU.TotalPartyMemberSettings"}}</label>
         <div class="form-fields">
-            <input type="text" name="optionTargetPriority" id="optionTargetPriority" class="text" value="{{optionTargetPriority}}">
+            <input type="text" name="optionTargetPriority" id="optionTargetPriority" class="text"
+                value="{{optionTargetPriority}}">
         </div>
         <p class="notes">{{localize "FU.TotalPartyMemberSettingsHint"}}</p>
     </div>

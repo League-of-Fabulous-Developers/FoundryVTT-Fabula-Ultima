@@ -167,6 +167,8 @@
         "FavoriteStatus": "",
         "Increase": "",
         "Decrease": "",
+        "IncreaseTooltip": "",
+        "DecreaseTooltip": "",
         "Basic": "",
         "BasicAttack": "",
         "BasicAttacks": "",
@@ -202,7 +204,9 @@
         "ConsumableEdit": "",
         "ConsumableDelete": "",
         "Potion": "",
+        "Potions": "",
         "Utility": "",
+        "Utilities": "",
         "Treasure": "",
         "Treasures": "",
         "TreasureCreate": "",
@@ -848,6 +852,8 @@
         "BehaviorRollsSettingsHint": "",
         "TotalPartyMemberSettings": "",
         "TotalPartyMemberSettingsHint": "",
+        "TotalPartyMemberRulesSettings": "",
+        "TotalPartyMemberRulesSettingsHint": "",
         "CollapseDescriptionSettings": "",
         "CollapseDescriptionSettingsHint": "",
         "StudySavePathSettings": "",
@@ -885,5 +891,5 @@
         "CombatHudShowOrderNumbers": "",
         "CombatHudShowOrderNumbersHint": "",
         "CombatHudResetButtonTitle": ""
-      }
+    }
 }

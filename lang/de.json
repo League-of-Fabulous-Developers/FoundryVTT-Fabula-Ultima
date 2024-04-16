@@ -168,7 +168,7 @@
         "Increase": "Erhöhen",
         "Decrease": "Verringern",
         "IncreaseTooltip": "[Linksklick] Erhöhe um 1 <br> [Rechtsklick] Erhöhe um Schritt",
-        "DecreaseTooltip": "[Linksklick] Verringere um 1 <br> [Rechtsklick] Verringere um Schritt",        
+        "DecreaseTooltip": "[Linksklick] Verringere um 1 <br> [Rechtsklick] Verringere um Schritt",
         "Basic": "Standard",
         "BasicAttack": "Standardangriff",
         "BasicAttacks": "Standardangriffe",
@@ -204,7 +204,9 @@
         "ConsumableEdit": "Verbrauchsgegenstand bearbeiten",
         "ConsumableDelete": "Verbrauchsgegenstand löschen",
         "Potion": "Potion",
+        "Potions": "Potions",
         "Utility": "Utility",
+        "Utilities": "Utilities",
         "Treasure": "Kostbarkeit",
         "Treasures": "Kostbarkeiten",
         "TreasureCreate": "Kostbarkeit erstellen",
@@ -850,6 +852,8 @@
         "BehaviorRollsSettingsHint": "Spiele mit der Regel für zufällige Ziele aus dem Grundregelwerk.",
         "TotalPartyMemberSettings": "Anzahl Gruppenmitglieder?",
         "TotalPartyMemberSettingsHint": "Die Anzahl an Gruppenmitgliedern für die Bestimmung der Ziele.",
+        "TotalPartyMemberRulesSettings": "Enable Standalone Target Priority?",
+        "TotalPartyMemberRulesSettingsHint": "Add target priority to all item rolls.",
         "CollapseDescriptionSettings": "Gegenstandsbeschreibungen einklappen?",
         "CollapseDescriptionSettingsHint": "Gegenstandsbeschreibungen im Chat werden standardmäßig eingeklappt.",
         "StudySavePathSettings": "Ordner für Studierenproben",
@@ -887,5 +891,5 @@
         "CombatHudShowOrderNumbers": "Akteure nummerieren",
         "CombatHudShowOrderNumbersHint": "Nummeriert die Akteure im Konflikt-HUD.",
         "CombatHudResetButtonTitle": "Konflikt-HUD zurücksetzen"
-      }
+    }
 }

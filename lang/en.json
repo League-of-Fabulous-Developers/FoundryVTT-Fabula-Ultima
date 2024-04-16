@@ -204,7 +204,9 @@
         "ConsumableEdit": "Edit Consumable",
         "ConsumableDelete": "Delete Consumable",
         "Potion": "Potion",
+        "Potions": "Potions",
         "Utility": "Utility",
+        "Utilities": "Utilities",
         "Treasure": "Treasure",
         "Treasures": "Treasures",
         "TreasureCreate": "Create Treasure",
@@ -541,8 +543,6 @@
         "PaidVision": "Paid by Visionary",
         "Progress": "Progress",
         "ProgressPerDay": "Progress Per Day",
-        "ProgressPerDayTooltip": "[Left Click] Progress Per Day",
-        "ProgressIncreaseTooltip": "[Right Click] Progress by 1",
         "ProjectStatus": "Project Status",
         "CurrentProgress": "Current Progress",
         "Day": "Day",
@@ -852,6 +852,8 @@
         "BehaviorRollsSettingsHint": "Play with the Random Targeting rule from Core Rulebook page 297.",
         "TotalPartyMemberSettings": "Total Party Members?",
         "TotalPartyMemberSettingsHint": "How many party members are currently in your party for target priority.",
+        "TotalPartyMemberRulesSettings": "Enable Standalone Target Priority?",
+        "TotalPartyMemberRulesSettingsHint": "Add target priority to all item rolls.",
         "CollapseDescriptionSettings": "Collapse Item Descriptions",
         "CollapseDescriptionSettingsHint": "Chat descriptions on weapons, items, spells and abilities will be collapsed by default.",
         "StudySavePathSettings": "Study Roll Save Path",
@@ -889,5 +891,5 @@
         "CombatHudShowOrderNumbers": "Show Order Numbers",
         "CombatHudShowOrderNumbersHint": "Show the order numbers of the combatants in the Combat HUD.",
         "CombatHudResetButtonTitle": "Reset Combat HUD"
-      }
+    }
 }
