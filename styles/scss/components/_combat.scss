@@ -40,3 +40,285 @@
 
 }
 
+&#combat-hud {
+    --hud-height: auto;
+    --npc-width-percent: 30%;
+    --character-width-percent: calc(100% - var(--npc-width-percent));
+    --combat-info-height: auto;
+    --combat-info-content-padding: 5px;
+    --combat-info-image-size: calc(3.5em - var(--combat-info-content-padding) * 2);
+    --combat-info-image-size-compact: calc(2.0em - var(--combat-info-content-padding) * 2);
+    --combat-info-effects-icon-size: 1.5em;
+    --combat-info-character-width: 30%;
+    --combat-bars-right-margin: 2.5em;
+    --combat-bars-width: calc(100% - var(--combat-info-character-width) - var(--combat-info-image-size) - var(--combat-bars-right-margin));
+    --combat-bars-icon-width: 45%;
+    --combat-bars-text-width: calc(100% - var(--combat-bars-icon-width));
+    --hud-buttons-height: 2.2em;
+    --hud-opacity: 1;
+    --hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));
+    --hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));
+
+    @keyframes effects-marquee {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(-150%, 0);
+        }
+    }
+
+    position: fixed;
+    left: 0;
+    height: var(--hud-height);
+    display: flex;
+    gap: 4px;
+
+    .window-button {
+        position: absolute;
+        top: -1.5em;
+        color: $color-white;
+
+        text-shadow: 1px 1px 1px $color-black;
+        box-shadow: 3px 3px $color-secondary;
+        border-radius: 8px;
+        background: linear-gradient($color-tabStyle-gradient), $color-secondary;
+        padding: 0.5em 1em 0.5em 1em;
+        height: var(--hud-buttons-height);
+
+        &.window-minimize {
+            right: 0.5em;
+        }
+
+        &.window-popout {
+            right: 4em;   
+        }
+
+        &.window-compact {
+            right: 7.5em;
+
+            .fas.hidden {
+                display: none;
+            }
+        }
+
+        &.window-drag {
+            left: 0em;
+        }
+    }
+
+    .faction-list {
+        color: $color-primary;
+        text-shadow: 1px 1px 1px $color-black;
+        box-shadow: 3px 6px var(--hud-boxshadow-color);
+        border-radius: 8px;
+        background: var(--hud-background-gradient);
+        padding: 0.5em;
+        display: flex;
+        align-content: center;
+        flex-wrap: wrap;
+        gap: 2px;
+
+        &.compact {
+            .combat-row {
+                img {
+                    flex: 0 0 var(--combat-info-image-size-compact);
+                    height: var(--combat-info-image-size-compact);
+                    width: var(--combat-info-image-size-compact);
+                }
+                
+                .combat-info {
+                    .combat-name {
+                        height: 100%;
+                    }
+
+                    .combat-effects {
+                        height: 0;
+                    }
+                }
+            }
+        }
+
+        .combat-row {
+            flex: 0 0 100%;
+            height: var(--combat-info-height);
+            border-radius: 8px;
+            margin: 0 auto;
+            padding: var(--combat-info-content-padding);
+            background: $color-secondary;
+            color: $color-primary;
+            text-transform: uppercase;
+            display: flex;
+            gap: 4px;
+            //transition: all 0.5s ease-in-out;
+
+            img {
+                flex: 0 0 var(--combat-info-image-size);
+                height: var(--combat-info-image-size);
+                width: var(--combat-info-image-size);
+                object-fit: cover;
+                object-position: 50% 0;
+                border: none;
+                //transition: all 0.5s ease-in-out;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .combat-info {
+                overflow: hidden;
+
+                .combat-name {
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    height: auto;
+                    //transition: all 0.5s ease-in-out;
+    
+                    h2 {
+                        font-size: 1.1em;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        border: none;
+                    }
+
+                    &.crisis {
+                        color: $color-warning;
+                    }
+
+                    &.full-height {
+                        height: 100%;
+                    }
+                }
+
+                img {
+                    flex: 0 0 var(--combat-info-effects-icon-size);
+                    height: var(--combat-info-effects-icon-size);
+                    width: var(--combat-info-effects-icon-size);
+                    object-fit: cover;
+                    object-position: 50% 0;
+                    border: none;
+                }
+
+                .combat-effects {
+                    display: flex;
+                    gap: 1px;
+                    height: auto;
+                    flex-flow: row nowrap;
+                    overflow: hidden;
+                    max-width: 100%;
+                    align-items: center;
+
+                    .marquee {
+                        white-space: nowrap;
+                        display: inline-block;
+                        animation-name: effects-marquee;
+                        animation-timing-function: linear;
+                        animation-iteration-count: infinite;
+                        animation-delay: 0.5s;
+                        animation-play-state: running;
+                        
+                        img {
+                            display: inline-block;
+                        }
+
+                        &:hover {
+                            animation-play-state: paused;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.npcs {
+            flex: 0 0 var(--npc-width-percent);
+        }
+    
+        &.characters {
+            flex: 0 0 var(--character-width-percent);
+
+            .combat-row {
+                .combat-info {
+                    flex: 0 0 var(--combat-info-character-width);
+                }
+
+                .combat-bars {
+                    flex: 0 0 var(--combat-bars-width);
+                    display: flex;
+                    gap: 12px;
+
+                    .bar-container {
+                        flex: 0 0 calc(100% / 3);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 3px;
+                        height: auto;
+                        min-height: auto;
+
+                        .bar {
+                            width: 100%;
+                            height: 20px;
+                            position: relative;
+
+                            .resource-value-compact {
+                                position: absolute;
+                                display: none;
+                                margin-left: 0.3em;
+                            }
+                        }
+
+                        .resource-value {
+                            display: flex;
+                            width: 100%;
+                            height: auto;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 5px;
+                            //transition: all 0.5s ease-in-out;
+
+                            i.ra-gear-hammer {
+                                margin-right: -5px;
+                            }
+
+                            i {
+                                flex: 0 0 var(--combat-bars-icon-width);
+                                text-align: right;
+                            }
+
+                            .resource-text {
+                                flex: 0 0 var(--combat-bars-text-width);
+
+                                span {
+                                    text-align: left;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.characters.compact {
+            .combat-row {
+                .combat-bars {
+                    .bar-container {
+                        .bar {
+                            .resource-value-compact {
+                                display: block;
+                            }
+                        }
+                        
+                        .resource-value {
+                            height: 0;
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

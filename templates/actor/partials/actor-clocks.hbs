@@ -16,15 +16,14 @@
 			</span>
 		</h4>
 		<div class="item-sm buttons-inc" style="text-align: initial;">
-			<a class="decrement-button align-left" data-type="clockCounter" data-item-id="{{ item._id }}"> <i
+			<a class="decrement-button align-left" data-type="clockCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})"> <i
 					class="fas fa-minus"></i></a>
 			<div class="progress-container">
-
 				{{> "systems/projectfu/templates/actor/partials/actor-progress-clock-xl.hbs"
 				arr=item.progressArr
 				data=item.system.progress}}
 			</div>
-			<a class="increment-button align-right" data-type="clockCounter" data-item-id="{{ item._id }}">
+			<a class="increment-button align-right" data-type="clockCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progress.step}})">
 				<i class="fas fa-plus"></i></a>
 		</div>
 	</li>

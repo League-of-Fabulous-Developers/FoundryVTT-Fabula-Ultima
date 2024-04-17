@@ -1,8 +1,9 @@
-import {UseWeaponDataModel} from '../common/use-weapon-data-model.mjs';
-import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs';
-import {DamageDataModel} from '../common/damage-data-model.mjs';
-import {ImprovisedDamageDataModel} from '../common/improvised-damage-data-model.mjs';
-import {ProgressDataModel} from '../common/progress-data-model.mjs';
+import { UseWeaponDataModel } from '../common/use-weapon-data-model.mjs';
+import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
+import { DamageDataModel } from '../common/damage-data-model.mjs';
+import { ImprovisedDamageDataModel } from '../common/improvised-damage-data-model.mjs';
+import { ProgressDataModel } from '../common/progress-data-model.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 /**
  * @property {string} subtype.value
@@ -17,6 +18,7 @@ import {ProgressDataModel} from '../common/progress-data-model.mjs';
  * @property {UseWeaponDataModel} useWeapon
  * @property {ItemAttributesDataModel} attributes
  * @property {number} accuracy.value
+ * @property {Defense} defense
  * @property {DamageDataModel} damage
  * @property {ImprovisedDamageDataModel} impdamage
  * @property {string} source.value
@@ -44,6 +46,7 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 			useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
 			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'ins' }, secondary: { value: 'mig' } } }),
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
+			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses) }),
 			damage: new EmbeddedDataField(DamageDataModel, {}),
 			impdamage: new EmbeddedDataField(ImprovisedDamageDataModel, {}),
 			hasResource: new SchemaField({ value: new BooleanField() }),

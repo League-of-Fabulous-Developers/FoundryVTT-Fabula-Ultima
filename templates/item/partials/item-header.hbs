@@ -121,6 +121,13 @@
 					{{selectOptions miscCategories selected=system.subtype.value sort=true localize=true}}
 				</select>
 			</span>
+			{{else if (eq item.type "consumable")}}
+			<span>
+				<select type="select" value="" name="system.subtype.value" data-dtype="String"
+					class="resource-inputs select-dropdown-l">
+					{{selectOptions consumableType selected=system.subtype.value sort=true localize=true}}
+				</select>
+			</span>
 			{{else if (eq item.type "treasure")}}
 			<span>
 				<select type="select" value="" name="system.subtype.value" data-dtype="String"

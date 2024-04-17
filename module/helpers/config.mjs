@@ -27,7 +27,6 @@ FU.attributeAbbreviations = {
  * @type {Object<DamageType, string>}
  */
 FU.damageTypes = {
-	untyped: 'FU.DamageNone',
 	physical: 'FU.DamagePhysical',
 	air: 'FU.DamageAir',
 	bolt: 'FU.DamageBolt',
@@ -37,6 +36,7 @@ FU.damageTypes = {
 	ice: 'FU.DamageIce',
 	light: 'FU.DamageLight',
 	poison: 'FU.DamagePoison',
+	untyped: 'FU.DamageNone',
 };
 
 FU.affIcon = {
@@ -51,8 +51,32 @@ FU.affIcon = {
 	poison: 'fun fu-poison',
 };
 
+FU.allIcon = {
+	offensive: 'is-offensive',
+	martial: 'is-martial',
+	melee: "is-melee",
+	range: 'is-range',
+	spell: 'is-spell',
+	skill: 'is-skill',
+	twoweapon: 'is-two-weapon',
+	header: 'is-header',
+	diamond: 'is-diamond',
+	club: 'is-club',
+	heart: 'is-heart',
+	spade: 'is-spade',
+	physical: 'fun fu-phys',
+	air: 'fun fu-wind',
+	bolt: 'fun fu-bolt',
+	dark: 'fun fu-dark',
+	earth: 'fun fu-earth',
+	fire: 'fun fu-fire',
+	ice: 'fun fu-ice',
+	light: 'fun fu-light',
+	poison: 'fun fu-poison',
+};
+
 FU.affType = {
-	'-1': 'FU.AffinityVulnurable',
+	'-1': 'FU.AffinityVulnerable',
 	0: 'FU.AffinityNormal',
 	1: 'FU.AffinityResistance',
 	2: 'FU.AffinityImmune',
@@ -61,7 +85,7 @@ FU.affType = {
 };
 
 FU.affTypeAbbr = {
-	'-1': 'FU.AffinityVulnurableAbbr',
+	'-1': 'FU.AffinityVulnerableAbbr',
 	0: 'FU.AffinityNormalAbbr',
 	1: 'FU.AffinityResistanceAbbr',
 	2: 'FU.AffinityImmuneAbbr',
@@ -236,6 +260,17 @@ FU.weaponCategoriesWithoutCustom = {
 FU.heroicType = {
 	skill: 'FU.Heroic',
 	style: 'FU.HeroicStyle',
+};
+
+/**
+ * @typedef {"potion", "utility"} consumableType
+ */
+/**
+ * @type {Object.<ConsumableType, string>}
+ */
+FU.consumableType = {
+	potion: 'FU.Potion',
+	utility: 'FU.Utility',
 };
 
 /**

@@ -19,6 +19,10 @@
                 {{#if (eq (getGameSetting 'optionBehaviorRoll') true)}}
                 <a class="item rollable tab-style" data-tab="behavior">{{localize 'FU.Behavior'}}</a>
                 {{/if}}
+                {{#if (eq (getGameSetting 'optionNPCNotesTab') true)}}
+                <a class="item tab-style" data-tab="notes" data-tooltip="{{localize 'FU.BiographyInfo'}}">
+                    <i class="fas fa-file-pen"></i></a>
+                {{/if}}
                 <a class="item rollable tab-style" data-tab="effects" data-tooltip="{{localize 'FU.Effects'}}"
                     aria-describedby="tooltip"><i class="fas fa-wand-magic-sparkles"></i></a>
                 <a class="item rollable tab-style" data-tab="settings" data-tooltip="{{localize 'FU.Settings'}}"
@@ -80,8 +84,13 @@
                                         data-dtype="String" />
                                 </li>
                                 <section class="flex2 npc-desc">
+                                    {{#if (eq (getGameSetting 'optionNPCNotesTab') true)}}
+                                    {{editor enrichedHtml.description target="system.description" engine="prosemirror"
+                                    rollData=rollData button=false owner=owner editable=false }}
+                                    {{else}}
                                     {{editor enrichedHtml.description target="system.description" engine="prosemirror"
                                     rollData=rollData button=true owner=owner editable=editable }}
+                                    {{/if}}
                                 </section>
                             </section>
 
@@ -97,6 +106,10 @@
                 {{!-- Owned Spells Tab --}}
                 <div class="tab spells" data-group="primary" data-tab="spells">
                     {{>"systems/projectfu/templates/actor/sections/actor-section-spells.hbs" actor=actor}}</div>
+                {{!-- Owned Notes Tab --}}
+                <div class="tab notes" data-group="primary" data-tab="notes">
+                    {{>"systems/projectfu/templates/actor/sections/actor-section-notes.hbs" actor=actor}}
+                </div>
                 {{!-- Behavior Tab --}}
                 <div class="tab behavior" data-group="primary" data-tab="behavior">
                     {{>"systems/projectfu/templates/actor/sections/actor-section-behavior.hbs" actor=actor}}</div>

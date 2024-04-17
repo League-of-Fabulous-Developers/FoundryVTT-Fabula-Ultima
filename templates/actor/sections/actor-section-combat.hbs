@@ -83,9 +83,17 @@
                     <div class="item-quality">{{capitalize item.system.subtype.value}}</div>
                     {{/if}}
                 </div>
-                <div class="item-full start description-effect">
+                {{!-- <div class="item-full start description-effect">
                     <p>{{ item.system.summary.value}}</p>
+                </div> --}}
+               <div class="item-full start tiny-desc">
+                    <span class="description-effect">
+                        {{#if item.system.description}}
+                        {{{item.enrichedHtml.description}}}
+                        {{/if}}
+                    </span>
                 </div>
+
                 {{!-- Resource Points --}}
                 {{#if item.system.hasResource.value}}
                 <div class="item-m desc flexcol flex-group-center resource-content">
@@ -176,7 +184,7 @@
     <ol class="items-list">
         <li class="item flexrow items-header">
             <div class="item-name">{{localize "FU.Treasures"}}</div>
-            <div class="item-full start">{{localize "FU.Effect"}}</div>
+            <div class="item-full start">{{localize "FU.Summary"}}</div>
             <div class="item-xs">{{localize "FU.Quantity"}}</div>
             <div class="item-m end">
                 <a class="item-control item-create" data-tooltip="{{localize 'FU.TreasureCreate'}}"

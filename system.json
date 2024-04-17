@@ -4,9 +4,8 @@
 	"description": "An Unofficial Fabula Ultima system for FoundryVTT!",
 	"version": "#{VERSION}#",
 	"compatibility": {
-		"minimum": "10",
-		"verified": "11",
-		"maximum": "11"
+		"minimum": "11",
+		"verified": "11"
 	},
 	"authors": [
 		{

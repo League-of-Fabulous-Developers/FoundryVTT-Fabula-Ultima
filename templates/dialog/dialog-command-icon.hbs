@@ -1,0 +1,14 @@
+<div class="desc">
+    <fieldset class="title-fieldset resource-content flex-group-center">
+        <legend class="resource-label-sm">{{localize "FU.TextEditorButtonCommandIcon"}}</legend>
+        <div class="form-group icon-options grid grid-3col gap-5">
+            {{#each allIcon as |iconName iconValue|}}
+                <label class="icon-option">
+                    <input type="radio" name="iconType" class="icon-radio" value="{{iconValue}}" />
+                    <span class="icon-preview inline-icon {{iconName}}"></span>
+                    <span>{{capitalize iconValue}}</span>
+                </label>
+            {{/each}}
+        </div>
+    </fieldset>
+</div>

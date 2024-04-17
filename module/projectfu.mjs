@@ -39,13 +39,17 @@ import { FUClassFeatureSheet } from './documents/items/classFeature/class-featur
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
-import { FUActiveEffect } from './documents/effects/active-effect.mjs';
+import { FUActiveEffect, onRenderActiveEffectConfig } from './documents/effects/active-effect.mjs';
 import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
 import { InlineResources } from './helpers/inline-resources.mjs';
 import { Flags } from './helpers/flags.mjs';
 import { InlineElementsHowTo } from './helpers/inline-how-to.mjs';
+import { InlineIcon } from './helpers/inline-icons.mjs';
+import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
+import { CombatHUD } from './ui/combat-hud.mjs';
+import { promptCheck } from './helpers/checks.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -117,6 +121,7 @@ Hooks.once('init', async () => {
 		zeroPower: ZeroPowerDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
+	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
 	// Register system settings
 	registerSystemSettings();
@@ -133,7 +138,7 @@ Hooks.once('init', async () => {
 	}
 
 	// Register status effects
-	if (game.release.isNewer(11)) CONFIG.ActiveEffect.legacyTransferral = false;
+	CONFIG.ActiveEffect.legacyTransferral = false;
 	CONFIG.statusEffects = statusEffects;
 
 	// Register sheet application classes
@@ -176,7 +181,11 @@ Hooks.once('init', async () => {
 	Hooks.on('renderItemSheet', InlineResources.activateListeners);
 	Hooks.on('dropActorSheetData', InlineResources.onDropActor);
 
+	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
+
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
+
+	TextEditorCommandDropdown.initialize();
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
@@ -305,6 +314,23 @@ Hooks.once('ready', async function () {
 		// Call the rollEquipment function
 		rollEquipment(actor, slot);
 	});
+
+	Hooks.on('promptCheckCalled', (actor) => {
+		if (!actor) {
+			return ui.notification.error('No character for this user');
+		}
+		// Call promptCheck function
+		promptCheck(actor);
+	});
+
+	Hooks.on('promptGroupCheckCalled', (actor) => {
+		if (!actor) {
+			return ui.notification.error('No character for this user');
+		}
+		let isShift = true;
+		// Call Group Check promptCheck function
+		GroupCheck.promptCheck(actor, isShift);
+	});
 });
 
 Hooks.once('socketlib.ready', onSocketLibReady);
@@ -321,6 +347,18 @@ Hooks.once('ready', () => {
 	};
 	// Apply the style initially
 	applyPixelatedStyle();
+});
+
+/* -------------------------------------------- */
+/*  Other Hooks                                 */
+/* -------------------------------------------- */
+
+Hooks.on('getSceneControlButtons', (controls) => {
+	const tokenButton = controls.find((control) => control.name === 'token');
+	if (!tokenButton) return;
+
+	tokenButton.tools.push(CombatHUD.getToggleControlButton());
+	tokenButton.tools.push(CombatHUD.getResetControlButton());
 });
 
 /* -------------------------------------------- */

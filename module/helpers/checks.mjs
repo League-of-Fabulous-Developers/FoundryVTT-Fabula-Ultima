@@ -74,6 +74,7 @@
  * @property {string} mpCost
  * @property {string} target
  * @property {string} duration
+ * @property {"mdef"} defense
  * @property {string} opportunity
  * @property {string} summary
  * @property {string} description
@@ -104,6 +105,7 @@
  * @property {string} name
  * @property {string} img
  * @property {string} id
+ * @property {Defense} defense
  * @property {string} quality
  * @property {string} summary
  * @property {string} description
@@ -121,8 +123,9 @@
 /**
  * @typedef CheckTarget
  * @property {string} target
- * @property {string} uuid
+ * @property {string} link
  * @property {number} difficulty
+ * @property {"hit", "miss"} [result]
  */
 
 /**
@@ -219,8 +222,49 @@ export async function rollCheck(params) {
 
 	await handleRoll(check);
 	handleDamage(check);
+	handleTargets(check);
 
 	return check;
+}
+
+/**
+ * @param {CheckParameters} check
+ */
+function handleTargets(check) {
+	async function showFloatyText(target) {
+		const actor = await fromUuid(target.uuid);
+		if (actor instanceof FUActor) {
+			actor.showFloatyText(game.i18n.localize(target.result === 'hit' ? 'FU.Hit' : 'FU.Miss'));
+		}
+	}
+
+	for (const target of check.targets ?? []) {
+		let result;
+		if (check.result.crit) {
+			result = 'hit';
+		} else if (check.result.fumble) {
+			result = 'miss';
+		} else {
+			result = check.result.total >= target.difficulty ? 'hit' : 'miss';
+		}
+		target.result = result;
+		showFloatyText(target);
+	}
+}
+
+/**
+ * @param {Defense} targetedDefense
+ * @return {CheckTarget[]}
+ */
+export function getTargets(targetedDefense) {
+	return [...game.user.targets]
+		.filter((token) => !!token.actor)
+		.map((token) => ({
+			name: token.actor.name,
+			uuid: token.actor.uuid,
+			link: token.actor.link,
+			difficulty: token.actor.system.derived[targetedDefense].value,
+		}));
 }
 
 /**
@@ -624,7 +668,10 @@ export async function createCheckMessage(checkParams, additionalFlags = {}) {
 	/** @type Partial<ChatMessageData> */
 	const chatMessage = {
 		flavor: flavor,
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-check.hbs', { ...checkParams, translation: { damageTypes: FU.damageTypes } }),
+		content: await renderTemplate('systems/projectfu/templates/chat/chat-check.hbs', {
+			...checkParams,
+			translation: { damageTypes: FU.damageTypes },
+		}),
 		rolls: [checkParams.result.roll],
 		type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 		speaker: checkParams.speaker,

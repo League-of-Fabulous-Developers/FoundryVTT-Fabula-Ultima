@@ -1,4 +1,4 @@
-import { createCheckMessage, rollCheck } from '../../helpers/checks.mjs';
+import { createCheckMessage, getTargets, rollCheck } from '../../helpers/checks.mjs';
 import { RollableClassFeatureDataModel } from './classFeature/class-feature-data-model.mjs';
 import { SYSTEM } from '../../settings.js';
 import { Flags } from '../../helpers/flags.mjs';
@@ -46,8 +46,9 @@ export class FUItem extends Item {
 	getWeaponDisplayData() {
 		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
 		const isBasic = this.type === 'basic';
+		const isShield = this.type === 'shield' && !this.system.isDualShield?.value;
 		// Check if this item is not a weapon or not a weapon/shield with dual
-		if (!isBasic && !isWeaponOrShieldWithDual) {
+		if (!isBasic && !isWeaponOrShieldWithDual && !isShield) {
 			return false;
 		}
 
@@ -80,7 +81,9 @@ export class FUItem extends Item {
 			qualityString = [translate(this.system.category?.value), translate(this.system.hands?.value), translate(this.system.type?.value), qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
 			qualityString = [attackString, damageString, qualText].filter(Boolean).join(' ⬥ ');
-		}
+		} else if (isShield) {
+			qualityString = [qualText].filter(Boolean).join(' ⬥ ');
+		} 
 
 		return {
 			attackString,
@@ -112,7 +115,7 @@ export class FUItem extends Item {
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		}
 
-		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? 'HR0' : 'HR';
+		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
 		const qualText = this.system.quality?.value || '';
 		let qualityString = '';
 
@@ -179,6 +182,12 @@ export class FUItem extends Item {
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		}
 
+		function translate(string) {
+			const allTranslations = Object.assign({}, CONFIG.FU.attributeAbbreviations, CONFIG.FU.damageTypes);
+
+			return game.i18n.localize(allTranslations?.[string] ?? string);
+		}
+
 		let weaponMain = null;
 		const equippedWeapons = this.actor.items.filter(
 			(singleItem) => (singleItem.type === 'weapon' || singleItem.type === 'basic' || (singleItem.type === 'shield' && singleItem.system.isDualShield?.value)) && singleItem.system.isEquipped?.value,
@@ -192,20 +201,20 @@ export class FUItem extends Item {
 		const hasDamage = this.system.rollInfo?.damage?.hasDamage.value;
 		const usesWeapons = this.system.rollInfo?.useWeapon?.accuracy.value;
 		const usesWeaponsDamage = this.system.rollInfo?.useWeapon?.damage.value;
-		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero.value ? 'HR0 +' : 'HR +';
+		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
 
 		let attackWeaponAttributes, attackAttributes;
 		if (usesWeapons && weaponMain) {
-			attackWeaponAttributes = [weaponMain?.system?.attributes?.primary.value.toUpperCase(), weaponMain?.system?.attributes?.secondary.value.toUpperCase()].join(' + ');
+			attackWeaponAttributes = [translate(weaponMain?.system?.attributes?.primary.value).toUpperCase(), translate(weaponMain?.system?.attributes?.secondary.value).toUpperCase()].join(' + ');
 		} else {
 			attackWeaponAttributes = '';
 		}
 
 		if (hasRoll) {
-			attackAttributes = [this.system?.rollInfo?.attributes?.primary.value.toUpperCase(), this.system?.rollInfo?.attributes?.secondary.value.toUpperCase()].join(' + ');
+			attackAttributes = [translate(this.system?.rollInfo?.attributes?.primary.value).toUpperCase(), translate(this.system?.rollInfo?.attributes?.secondary.value).toUpperCase()].join(' + ');
 		}
 
-		const weaponString = usesWeapons ? (weaponMain ? weaponMain?.name : 'No weapon equipped!') : '';
+		const weaponString = usesWeapons ? (weaponMain ? weaponMain?.name : game.i18n.localize('FU.AbilityNoWeaponEquipped')) : '';
 
 		let attackString = '';
 		if (hasRoll || usesWeapons) {
@@ -217,8 +226,8 @@ export class FUItem extends Item {
 		let damageString = '';
 		if (hasDamage || usesWeaponsDamage) {
 			damageString = usesWeapons
-				? `【${hrZeroText} ${weaponMain ? `${weaponMain?.system?.damage.value}】 ${weaponMain?.system?.damageType.value}` : ''}`
-				: `【${hrZeroText} ${this.system?.rollInfo?.damage?.value > 0 ? ` ${this.system?.rollInfo?.damage?.value}` : '0'} 】${this.system?.rollInfo?.damage.type.value}`;
+				? `【${hrZeroText} ${weaponMain ? `${weaponMain?.system?.damage.value}】 ${translate(weaponMain?.system?.damageType.value)}` : ''}`
+				: `【${hrZeroText} ${this.system?.rollInfo?.damage?.value > 0 ? ` ${this.system?.rollInfo?.damage?.value}` : '0'} 】${translate(this.system?.rollInfo?.damage.type.value)}`;
 		}
 
 		const qualityString = [capitalizeFirst(this.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬥ ');
@@ -795,6 +804,7 @@ export class FUItem extends Item {
 			details,
 			damage: checkDamage,
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
+			targets: getTargets('mdef'),
 		});
 		return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 	}
@@ -806,7 +816,7 @@ export class FUItem extends Item {
 	async rollWeapon(hrZero) {
 		/** @type WeaponDataModel */
 		const dataModel = this.system;
-		const { accuracy, attributes, type, rollInfo, quality, damage, damageType, hands, description, category, summary } = dataModel;
+		const { accuracy, attributes, type, rollInfo, quality, damage, damageType, hands, description, category, summary, defense } = dataModel;
 		const { accuracyCheck = 0, [category.value]: categoryAccuracyBonus = 0 } = this.actor.system.bonuses.accuracy;
 		const { [type.value]: typeDamageBonus = 0, [category.value]: categoryDamageBonus = 0 } = this.actor.system.bonuses.damage;
 		/** @type CheckWeapon */
@@ -818,7 +828,7 @@ export class FUItem extends Item {
 			category: category.value,
 			type: type.value,
 			hands: hands.value,
-			defense: 'def', //TODO: targeted defense missing from weapon?
+			defense: defense,
 			quality: quality.value,
 			summary: summary.value,
 			description: await TextEditor.enrichHTML(description),
@@ -844,13 +854,15 @@ export class FUItem extends Item {
 				bonus: damage.value + categoryDamageBonus + typeDamageBonus,
 			},
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
+			targets: getTargets(defense),
 		});
 		return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 	}
 
 	async rollBasic(hrZero) {
-		const { accuracy, attributes, type, rollInfo, quality, damage, damageType, description, summary } = /** @type BasicItemDataModel */ this.system;
+		const { accuracy, attributes, type, rollInfo, quality, damage, damageType, description, summary, defense } = /** @type BasicItemDataModel */ this.system;
 		const { accuracyCheck } = this.actor.system.bonuses.accuracy;
+		const { [type.value]: typeDamageBonus = 0 } = this.actor.system.bonuses.damage;
 		/** @type CheckBasic */
 		const details = {
 			_type: 'basic',
@@ -858,7 +870,7 @@ export class FUItem extends Item {
 			img: this.img,
 			id: this.id,
 			type: type.value,
-			defense: 'def', //TODO: targeted defense missing from weapon?
+			defense: defense,
 			quality: quality.value,
 			summary: summary.value,
 			description: await TextEditor.enrichHTML(description),
@@ -881,27 +893,30 @@ export class FUItem extends Item {
 			damage: {
 				hrZero: rollInfo?.useWeapon?.hrZero?.value || hrZero,
 				type: damageType.value,
-				bonus: damage.value,
+				bonus: damage.value + typeDamageBonus,
 			},
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
+			targets: getTargets(defense),
 		});
 		return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 	}
 
 	async rollAbility(hrZero) {
-		const { summary, description, opportunity, rollInfo } = /** @type {MiscAbilityDataModel | SkillDataModel} */ this.system;
+		const { summary, description, opportunity, rollInfo, defense } = /** @type {MiscAbilityDataModel | SkillDataModel} */ this.system;
 		/** @type CheckAbility */
 		const details = {
 			_type: 'ability',
 			name: this.name,
 			img: this.img,
 			id: this.id,
+			defense: defense,
 			summary: summary.value,
 			opportunity: opportunity,
 			description: await TextEditor.enrichHTML(description),
 		};
 
 		const speaker = ChatMessage.implementation.getSpeaker({ actor: this.actor });
+		const targets = getTargets(defense);
 
 		if (rollInfo.useWeapon.accuracy.value || rollInfo.useWeapon.damage.value) {
 			const equippedWeapons = this.actor.items
@@ -915,7 +930,7 @@ export class FUItem extends Item {
 			const checks = [];
 			for (let [_, weapon] of Object.entries(equippedWeapons)) {
 				if (weapon) {
-					let params = this.#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo);
+					let params = this.#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo, targets);
 					checks.push(rollCheck(params).then((check) => createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } })));
 				}
 			}
@@ -947,6 +962,7 @@ export class FUItem extends Item {
 				details,
 				damage: checkDamage,
 				speaker: speaker,
+				targets: targets,
 			});
 			return createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } });
 		}
@@ -960,7 +976,7 @@ export class FUItem extends Item {
 	 * @param {{useWeapon: UseWeaponDataModel, attributes: ItemAttributesDataModel, accuracy: {value: number}, damage: DamageDataModel}} rollInfo
 	 * @return {CheckParameters}
 	 */
-	#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo) {
+	#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo, targets) {
 		const { useWeapon, accuracy, attributes, damage } = rollInfo;
 		const {
 			name: weaponName,
@@ -1014,6 +1030,7 @@ export class FUItem extends Item {
 			details: { ...details, weapon: { name: weaponName, slot: slot } },
 			damage: checkDamage,
 			speaker: speaker,
+			targets: targets,
 		};
 	}
 }
