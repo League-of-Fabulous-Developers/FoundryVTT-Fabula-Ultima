@@ -1272,7 +1272,6 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		const isShift = event.shiftKey;
 		const isCtrl = event.ctrlKey;
-
 		// Get the value of optionTargetPriorityRules from game settings
 		const settingPriority = game.settings.get('projectfu', 'optionTargetPriorityRules');
 
@@ -1285,7 +1284,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					// if (isCtrl) {
 					// 	return promptCheckCustomizer(this.actor, item);
 					// } else {
-						if (settingPriority) { this._targetPriority(); }
+						if (settingPriority && this.actor?.type === "npc") { this._targetPriority(); }
 						return item.roll(isShift);
 					// }
 				}
