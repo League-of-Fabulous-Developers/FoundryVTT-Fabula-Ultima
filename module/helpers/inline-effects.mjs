@@ -409,18 +409,15 @@ class InlineEffectConfiguration extends FormApplication {
 				activeEffectConfig.render(true);
 				const dispatch = this.#dispatch;
 				const state = this.#state;
-				const hookRef = Hooks.on('closeActiveEffectConfig', function (sheet, el) {
-					console.log(hookRef);
-                    console.log(sheet)
+				const hookRef = Hooks.on('closeActiveEffectConfig', function (sheet) {
 					if (sheet === activeEffectConfig) {
 						Hooks.off('closeActiveEffectConfig', hookRef);
-						if (sheet.wasSubmitted)
-                        {
-                            const effectData = sheet.document.toObject();
-                            delete effectData._id
-                            const encodedEffect = toBase64(effectData);
-                            dispatch(state.tr.insertText(` @EFFECT[${encodedEffect}] `));
-                        }
+						if (sheet.wasSubmitted) {
+							const effectData = sheet.document.toObject();
+							delete effectData._id;
+							const encodedEffect = toBase64(effectData);
+							dispatch(state.tr.insertText(` @EFFECT[${encodedEffect}] `));
+						}
 					}
 				});
 			}
@@ -430,16 +427,14 @@ class InlineEffectConfiguration extends FormApplication {
 
 class TempActiveEffectConfig extends ActiveEffectConfig {
 	async _updateObject(event, formData) {
-        console.log(this.object, formData)
 		this.object.updateSource(formData);
-        return this.render()
+		return this.render();
 	}
 
-
-    async close(options = {}) {
-        if (options.force) {
-            this.wasSubmitted = true;
-        }
-        return super.close(options);
-    }
+	async close(options = {}) {
+		if (options.force) {
+			this.wasSubmitted = true;
+		}
+		return super.close(options);
+	}
 }
