@@ -14,6 +14,7 @@
 @import "utils/icons";
 @import "utils/dialogs";
 @import "utils/sizing";
+@import "utils/display";
 
 /* Global styles */
 @import "global/defaults";
@@ -34,4 +35,5 @@
   @import "components/items";
   @import "components/resource";
   @import "components/combat";
+  @import "applications/inline-effect-config";
 }

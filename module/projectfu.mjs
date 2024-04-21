@@ -50,6 +50,7 @@ import { InlineIcon } from './helpers/inline-icons.mjs';
 import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
 import { CombatHUD } from './ui/combat-hud.mjs';
 import { promptCheck } from './helpers/checks.mjs';
+import { InlineEffects } from './helpers/inline-effects.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -183,6 +184,8 @@ Hooks.once('init', async () => {
 
 	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 
+	InlineEffects.initialize();
+
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
 
 	TextEditorCommandDropdown.initialize();
@@ -301,6 +304,10 @@ Handlebars.registerHelper('getIconClass', function (item) {
 	}
 	return 'fas fa-toolbox';
 });
+
+Handlebars.registerHelper("mathAbs", function (value) {
+    return Math.abs(value)
+})
 
 /* -------------------------------------------- */
 /*  Ready Hook                                  */

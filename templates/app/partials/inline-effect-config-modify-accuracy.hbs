@@ -1,0 +1,14 @@
+<div>
+    <label>
+        <span class="d-block">{{localize "FU.InlineEffectConfigModifyAccuracyCheckTypes"}}</span>
+        <select name="custom.changes.{{@index}}.check" class="w-100">
+            {{selectOptions templateData.checks selected=check localize=true}}
+        </select>
+    </label>
+</div>
+<div>
+    <label>
+        <span class="d-block">{{localize "FU.InlineEffectConfigBonusMalus"}}</span>
+        <input type="number" name="custom.changes.{{@index}}.value" value="{{#if value includeZero=true}}{{value}}{{else}}0{{/if}}">
+    </label>
+</div>

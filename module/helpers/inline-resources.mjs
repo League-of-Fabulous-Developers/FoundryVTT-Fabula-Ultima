@@ -99,13 +99,13 @@ function activateListeners(document, html) {
 		if (document instanceof FUActor || document instanceof FUItem) {
 			source = document.name;
 		} else if (document instanceof ChatMessage) {
-			var speakerActor = ChatMessage.getSpeakerActor(document.speaker);
+			const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
 			if (speakerActor) {
 				source = speakerActor.name;
-				const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-				if (item) {
-					source = item.name;
-				}
+			}
+			const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
+			if (item) {
+				source = item.name;
 			}
 		}
 

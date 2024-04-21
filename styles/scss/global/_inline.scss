@@ -4,7 +4,21 @@
 
     display: inline-block;
 
-    &.inline-damage, &.inline-recovery, &.inline-loss {
+    &.broken {
+        font-size: var(--font-size-14);
+        background: color-mix(in srgb, red, transparent 95%);
+        padding: 0.125em 0.25em;
+        border: 1px dashed var(--color-border-highlight-alt);
+        border-radius: 1px;
+        white-space: nowrap;
+        word-break: break-all;
+
+        .fas {
+            margin-right: 0.125rem;
+        }
+    }
+
+    &.inline-damage, &.inline-recovery, &.inline-loss, &.inline-effect {
         font-size: var(--font-size-14);
         background: #DDD;
         padding: 0.125em 0.25em;
@@ -78,6 +92,16 @@
 
         &:hover .indicator {
             animation: 0.5s infinite alternate linear loss-indicator-bobbing;
+        }
+    }
+
+    &.inline-effect {
+        .fun {
+            margin-right: 0.125rem;
+            display: inline-block;
+            width: var(--font-size-18);
+            height: var(--font-size-18);
+            filter: brightness(0.3);
         }
     }
 }

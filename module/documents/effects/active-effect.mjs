@@ -3,6 +3,8 @@ import { SYSTEM } from '../../settings.js';
 
 const CRISIS_INTERACTION = 'CrisisInteraction';
 
+const TEMPORARY = 'Temporary';
+
 const crisisInteractions = {
 	none: 'FU.EffectCrisisInteractionNone',
 	active: 'FU.EffectCrisisInteractionActive',
@@ -14,7 +16,7 @@ export function onRenderActiveEffectConfig(sheet, html) {
 	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(`
 	<div class="form-group">
         <label>${game.i18n.localize('FU.EffectCrisisInteraction')}</label>
-        <select name="flags.${SYSTEM}.${CRISIS_INTERACTION}">
+        <select name="flags.${SYSTEM}.${CRISIS_INTERACTION}" ${sheet.isEditable ? "" : "disabled"}>
           ${Object.entries(crisisInteractions).map(([key, value]) => `<option value="${key}" ${key === flag ? 'selected' : ''}>${game.i18n.localize(value)}</option>`)}
         </select>
     </div>
@@ -23,6 +25,11 @@ export function onRenderActiveEffectConfig(sheet, html) {
 }
 
 export class FUActiveEffect extends ActiveEffect {
+
+    static get TEMPORARY_FLAG() {
+        return TEMPORARY;
+    }
+
 	async _preCreate(data, options, user) {
 		this.updateSource({ name: game.i18n.localize(data.name) });
 		return super._preCreate(data, options, user);
@@ -40,6 +47,10 @@ export class FUActiveEffect extends ActiveEffect {
 			}
 		}
 		return false;
+	}
+
+	get isTemporary() {
+		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY);
 	}
 
 	apply(actor, change) {

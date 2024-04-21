@@ -56,10 +56,10 @@ function activateListeners(document, html) {
 			const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
 			if (speakerActor) {
 				source = speakerActor.name;
-				const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-				if (item) {
-					source = item.name;
-				}
+			}
+			const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
+			if (item) {
+				source = item.name;
 			}
 		}
 

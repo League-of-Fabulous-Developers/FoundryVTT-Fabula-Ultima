@@ -100,6 +100,10 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Applications
 		'systems/projectfu/templates/app/app-group-check.hbs',
+		'systems/projectfu/templates/app/partials/inline-effect-config-improve-attribute.hbs',
+		'systems/projectfu/templates/app/partials/inline-effect-config-grant-resistance.hbs',
+		'systems/projectfu/templates/app/partials/inline-effect-config-modify-damage-bonuses.hbs',
+		'systems/projectfu/templates/app/partials/inline-effect-config-modify-accuracy.hbs',
 
 		// Class Feature Templates
 		'systems/projectfu/templates/feature/feature-basic-preview.hbs',

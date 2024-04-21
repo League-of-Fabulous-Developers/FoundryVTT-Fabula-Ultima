@@ -176,7 +176,7 @@ FU.statusEffects = {
 	'wlp-up': 'FU.WLPUp',
 	'dex-down': 'FU.DEXDown',
 	'dex-up': 'FU.DEXUp',
-	'ins-up': 'FU.ISNUp',
+	'ins-up': 'FU.INSUp',
 	'ins-down': 'FU.INSDown',
 	'mig-up': 'FU.MIGUp',
 	'mig-down': 'FU.MIGDown',
@@ -196,7 +196,7 @@ FU.statusEffectRule = {
 	'dex-down': 'FU.DEXDownRule',
 	'dex-up': 'FU.DEXUpRule',
 	'ins-down': 'FU.INSDownRule',
-	'ins-up': 'FU.ISNUpRule',
+	'ins-up': 'FU.INSUpRule',
 	'mig-down': 'FU.MIGDownRule',
 	'mig-up': 'FU.MIGUpRule',
 };
@@ -263,7 +263,7 @@ FU.heroicType = {
 };
 
 /**
- * @typedef {"potion", "utility"} consumableType
+ * @typedef {"potion", "utility"} ConsumableType
  */
 /**
  * @type {Object.<ConsumableType, string>}
