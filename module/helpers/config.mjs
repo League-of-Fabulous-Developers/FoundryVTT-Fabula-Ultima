@@ -20,6 +20,15 @@ FU.attributeAbbreviations = {
 	wlp: 'FU.AttributeWlpAbbr',
 };
 
+FU.currencies = {
+	zenit: {
+	  label: "FU.Zenit",
+	  abbreviation: "FU.ZenitAbbr",
+	  conversion: 1
+	}
+  };
+
+
 /**
  * @typedef {"untyped", "physical","air","bolt","dark","earth","fire","ice","light","poison"} DamageType
  */
