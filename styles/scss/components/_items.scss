@@ -248,14 +248,16 @@
 /* ----------------------------------------- */
 $fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
 
-.items-list .item .item-name .item-image {
+.items-list .item .item-name .item-image,
+.items-list .effect .item-name .item-image {
   border: none;
   padding-right: 5px;
   flex: 0 0 30px;
   position: relative;
 }
 
-.items-list .item .item-name .item-image {
+.items-list .item .item-name .item-image,
+.items-list .effect .item-name .item-image {
   img {
     max-width: 100%;
     display: block;
@@ -347,7 +349,8 @@ $fu-d20: url("/systems/projectfu/styles/static/icons/fu-d20.svg");
   flex: 1;
 }
 
-.items-list .item {
+.items-list .item,
+.items-list .effect {
   align-items: center;
   padding: 1px 2px;
   transition:

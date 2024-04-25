@@ -65,6 +65,11 @@
 			</div>
 			<span class="item-quality">{{ item.quality }}</span>
 			<div class="individual-description align-left">
+				{{#if item.detail}}
+				<div class="item-quality align-left">
+					<strong>{{item.detail}}</strong>
+				</div>
+				{{/if}}
 				{{#if item.enrichedHtml.description}}
 				{{{item.enrichedHtml.description}}}
 				{{/if}}

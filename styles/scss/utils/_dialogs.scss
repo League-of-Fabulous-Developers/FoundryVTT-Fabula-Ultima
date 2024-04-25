@@ -73,3 +73,41 @@
         }
     }
 }
+
+.dialog-name .dialog-image {
+    border: none;
+    padding-right: 5px;
+    flex: 0 0 30px;
+    position: relative;
+}
+
+.dialog-name .dialog-image {
+    img {
+        max-width: 100%;
+        display: block;
+        height: 24px;
+        width: 24px;
+        overflow: hidden;
+        border-radius: 5px;
+        background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    &:hover {
+        img {
+            transform: scale(1.1);
+            transform-origin: center center;
+            opacity: 0.75;
+
+            &::before {
+                content: "";
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                background: $fu-d20 center/cover;
+                opacity: 0.75;
+                z-index: -1;
+            }
+        }
+    }
+}

@@ -43,7 +43,7 @@ export class FUItem extends Item {
 	 * @property {string} damageString - The weapon's damage description.
 	 * @property {string} qualityString - The weapon's quality description.
 	 */
-	getWeaponDisplayData() {
+	getWeaponDisplayData(actor) {
 		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
 		const isBasic = this.type === 'basic';
 		const isShield = this.type === 'shield' && !this.system.isDualShield?.value;
@@ -57,10 +57,10 @@ export class FUItem extends Item {
 
 			return game.i18n.localize(allTranslations?.[string] ?? string);
 		}
-
-		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? game.i18n.localize('FU.HRZero') : game.i18n.localize('FU.HighRollAbbr');
+		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
 		const qualText = this.system.quality?.value || '';
 		let qualityString = '';
+		let detailString = '';
 
 		const primaryAttribute = this.system.attributes?.primary?.value;
 		const secondaryAttribute = this.system.attributes?.secondary?.value;
@@ -68,26 +68,39 @@ export class FUItem extends Item {
 		const attackAttributes = [translate(primaryAttribute || '').toUpperCase(), translate(secondaryAttribute || '').toUpperCase()].join(' + ');
 
 		const accuracyValue = this.system.accuracy?.value ?? 0;
+		const accuracyGlobalValue = actor.system.bonuses.accuracy?.accuracyCheck ?? 0;
+		const accuracyTotal = accuracyValue + accuracyGlobalValue;
 		const damageValue = this.system.damage?.value ?? 0;
+		const weaponType = this.system.type?.value;
+		let damageGlobalValue = 0;
+		if (weaponType === "melee") {
+			damageGlobalValue = actor.system.bonuses.damage?.melee ?? 0;
+		} else if (weaponType === "ranged") {
+			damageGlobalValue = actor.system.bonuses.damage?.ranged ?? 0;
+		}
+		const damageTotal = damageValue + damageGlobalValue;
 
-		const attackString = `【${attackAttributes}】${accuracyValue > 0 ? ` +${accuracyValue}` : ''}`;
+		const attackString = `【${attackAttributes}】${accuracyTotal > 0 ? ` +${accuracyTotal}` : ''}`;
 
 		const hrZeroValue = this.system.rollInfo?.useWeapon?.hrZero?.value ?? false;
 		const damageTypeValue = translate(this.system.damageType?.value || '');
 
-		const damageString = `【${hrZeroText} + ${damageValue}】 ${damageTypeValue}`;
+		const damageString = `【${hrZeroText} ${damageTotal}】 ${damageTypeValue}`;
 
 		if (isWeaponOrShieldWithDual) {
+			detailString = [attackString, damageString].filter(Boolean).join('⬥');
 			qualityString = [translate(this.system.category?.value), translate(this.system.hands?.value), translate(this.system.type?.value), qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
+			detailString = [attackString, damageString].filter(Boolean).join('⬥');
 			qualityString = [attackString, damageString, qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isShield) {
 			qualityString = [qualText].filter(Boolean).join(' ⬥ ');
-		} 
+		}
 
 		return {
 			attackString,
 			damageString,
+			detailString: `${detailString}`,
 			qualityString: `${qualityString}`,
 		};
 	}
@@ -100,7 +113,7 @@ export class FUItem extends Item {
 	 * @property {string} damageString - The spell's damage description.
 	 * @property {string} qualityString - The spell's quality description.
 	 */
-	getSpellDisplayData() {
+	getSpellDisplayData(actor) {
 		const isSpell = this.type === 'spell';
 		// Check if this item is not a spell
 		if (!isSpell) {
@@ -118,19 +131,22 @@ export class FUItem extends Item {
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
 		const qualText = this.system.quality?.value || '';
 		let qualityString = '';
+		let detailString = '';
 
 		const attackAttributes = [this.system.attributes.primary.value.toUpperCase(), this.system.attributes.secondary.value.toUpperCase()].join(' + ');
+		const attackString = this.system.hasRoll.value ? `【${attackAttributes}${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}】` : '';
 
-		const attackString = `【${attackAttributes}】${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}`;
-		const damageString = `【${hrZeroText} + ${this.system.rollInfo?.damage?.type.value}】 ${this.system.rollInfo?.damage?.type.value}`;
-
+		const damageString = this.system.rollInfo.damage.hasDamage.value ? `【${hrZeroText} ${this.system.rollInfo?.damage?.value}】 ${this.system.rollInfo?.damage?.type.value}` : '';
+		
 		if (isSpell) {
+			detailString = [attackString, damageString].filter(Boolean).join('⬥');
 			qualityString = [capitalizeFirst(this.system.mpCost.value), capitalizeFirst(this.system.target.value), capitalizeFirst(this.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
 		}
 
 		return {
 			attackString,
 			damageString,
+			detailString: `${detailString}`,
 			qualityString: `${qualityString}`,
 		};
 	}
@@ -671,7 +687,7 @@ export class FUItem extends Item {
 		return '';
 	}
 
-	getClockString() {}
+	getClockString() { }
 
 	/**
 	 * Handle clickable rolls.

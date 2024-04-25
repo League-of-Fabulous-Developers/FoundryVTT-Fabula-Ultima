@@ -301,15 +301,17 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 			if (i.type === 'basic') {
 				const itemObj = context.actor.items.get(i._id);
-				const weapData = itemObj.getWeaponDisplayData();
+				const weapData = itemObj.getWeaponDisplayData(this.actor);
 				i.quality = weapData.qualityString;
+				i.detail = weapData.detailString;
 				i.attackString = weapData.attackString;
 				i.damageString = weapData.damageString;
 				basics.push(i);
 			} else if (i.type === 'weapon') {
 				const itemObj = context.actor.items.get(i._id);
-				const weapData = itemObj.getWeaponDisplayData();
+				const weapData = itemObj.getWeaponDisplayData(this.actor);
 				i.quality = weapData.qualityString;
+				i.detail = weapData.detailString;
 				i.attackString = weapData.attackString;
 				i.damageString = weapData.damageString;
 				weapons.push(i);
@@ -317,8 +319,9 @@ export class FUStandardActorSheet extends ActorSheet {
 				armor.push(i);
 			} else if (i.type === 'shield') {
 				const itemObj = context.actor.items.get(i._id);
-				const weapData = itemObj.getWeaponDisplayData();
+				const weapData = itemObj.getWeaponDisplayData(this.actor);
 				i.quality = weapData.qualityString;
+				i.detail = weapData.detailString;
 				i.attackString = weapData.attackString;
 				i.damageString = weapData.damageString;
 				shields.push(i);
@@ -335,8 +338,9 @@ export class FUStandardActorSheet extends ActorSheet {
 				heroics.push(i);
 			} else if (i.type === 'spell') {
 				const itemObj = context.actor.items.get(i._id);
-				const spellData = itemObj.getSpellDisplayData();
+				const spellData = itemObj.getSpellDisplayData(this.actor);
 				i.quality = spellData.qualityString;
+				i.detail = spellData.detailString;
 				i.attackString = spellData.attackString;
 				i.damageString = spellData.damageString;
 				spells.push(i);
@@ -416,6 +420,23 @@ export class FUStandardActorSheet extends ActorSheet {
 				const li = $(ev.currentTarget);
 				const item = this.actor.items.get(li.data('itemId'));
 				item.sheet.render(true);
+			}
+		});
+
+		// Open the active effect dialog when middle-clicking on an effect
+		html.find('.effect').mouseup((ev) => {
+			if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
+				const li = $(ev.currentTarget);
+				const effectId = li.data('effectId');
+				const owner = this.actor;
+				let effect;
+				if (owner instanceof FUActor) {
+					effect = Array.from(owner.allApplicableEffects()).find((value) => value.id === effectId);
+				} else {
+					effect = owner.effects.get(effectId);
+				}
+				// Render the sheet for the active effect
+				effect.sheet.render(true);
 			}
 		});
 

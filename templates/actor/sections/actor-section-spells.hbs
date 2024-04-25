@@ -50,7 +50,9 @@
 			</div>
 			<span>{{ item.quality }}</span>
 			<div class="individual-description align-left">
+				{{#if item.enrichedHtml.description}}
 				{{{item.enrichedHtml.description}}}
+				{{/if}}
 			</div>
 		</li>
 		{{/each}}
@@ -85,6 +87,11 @@
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 			<div class="individual-description align-left">
+				{{#if item.detail}}
+				<div class="item-quality align-left">
+					<strong>{{item.detail}}</strong>
+				</div>
+				{{/if}}
 				{{#if item.enrichedHtml.description}}
 				{{{item.enrichedHtml.description}}}
 				{{/if}}

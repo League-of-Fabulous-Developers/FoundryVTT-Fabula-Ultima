@@ -12,7 +12,7 @@
     {{/unless}}
     <ol class="items-list effects-list">
         {{#each effects as |section sid|}}
-            <li class="item items-header flexrow" data-effect-type="{{ section.type }}">
+            <li class="effect items-header flexrow" data-effect-type="{{ section.type }}">
                 <div class="item-name">{{localize section.label}}</div>
                 <div class="item-lg">{{localize 'FU.Source'}}</div>
                 <div class="item-lg">{{localize 'FU.Duration'}}</div>
@@ -24,7 +24,7 @@
 
             <ol class="item-list">
                 {{#each section.effects as |effect|}}
-                    <li class="item {{#if (and effect.isSuppressed (not effect.disabled))}}suppressed{{/if}}" data-effect-id="{{ effect.id }}">
+                    <li class="effect {{#if (and effect.isSuppressed (not effect.disabled))}}suppressed{{/if}}" data-effect-id="{{ effect.id }}">
                         <div class="flexrow">
                             {{!-- Item Name--}}
                             <div class="item-name">
