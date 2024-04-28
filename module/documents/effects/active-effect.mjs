@@ -32,7 +32,7 @@ export function onRenderActiveEffectConfig(sheet, html) {
  * @param delta
  */
 export function onApplyActiveEffect(actor, change, current, delta) {
-	if (current[delta] instanceof Function) {
+	if (change.key.startsWith("system.") && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, delta) && current[delta] instanceof Function) {
         console.debug(`applying ${delta} to ${change.key}`)
 		current[delta]();
 		return false;
