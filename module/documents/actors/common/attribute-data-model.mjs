@@ -1,3 +1,5 @@
+import { MathHelper } from '../../../helpers/math-helper.mjs';
+
 /**
  * @param {number} number
  * @return {boolean}
@@ -16,8 +18,35 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 		const { NumberField } = foundry.data.fields;
 		return {
 			base: new NumberField({ initial: 8, min: 6, max: 12, integer: true, nullable: false, validate: isEven }),
-			current: new NumberField({ initial: 8, min: 6, max: 12, integer: true, nullable: false, validate: isEven }),
-			bonus: new NumberField({ initial: 0, min: -6, max: 6, integer: true, nullable: false, validate: isEven }),
 		};
+	}
+
+	_initialize(options = {}) {
+		super._initialize(options);
+
+		let current = this.base;
+		Object.defineProperty(this, 'current', {
+			configurable: false,
+			enumerable: true,
+			get() {
+				const value = 2 * Math.floor(current / 2);
+				return MathHelper.clamp(value, 6, 12);
+			},
+			set(newValue) {
+				current = newValue;
+			},
+		});
+
+		Object.defineProperty(this, 'upgrade', {
+			value: () => {
+				current += 2;
+			},
+		});
+
+		Object.defineProperty(this, 'downgrade', {
+			value: () => {
+				current -= 2;
+			},
+		});
 	}
 }

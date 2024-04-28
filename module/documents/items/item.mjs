@@ -743,7 +743,8 @@ export class FUItem extends Item {
 			const attackString = Array.isArray(attackData) ? attackData.join('<br /><br />') : attackData;
 
 			// Prepare the content by filtering and joining various parts.
-			const content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
+			let content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
+            content = `<div data-item-id="${item.id}">${content}</div>`
 
 			// if (['consumable'].includes(type) {}
 			if (system.showTitleCard?.value) {

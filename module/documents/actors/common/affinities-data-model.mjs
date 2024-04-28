@@ -1,4 +1,5 @@
 import { AffinityDataModel } from './affinity-data-model.mjs';
+import {FU} from "../../../helpers/config.mjs";
 
 /**
  * @property {AffinityDataModel} phys
@@ -25,5 +26,16 @@ export class AffinitiesDataModel extends foundry.abstract.DataModel {
 			light: new EmbeddedDataField(AffinityDataModel, {}),
 			poison: new EmbeddedDataField(AffinityDataModel, {}),
 		};
+	}
+
+	handleGuard() {
+		const actor = this.parent.actor;
+		if (actor.statuses.has('guard')) {
+			Object.values(this).forEach((value) => {
+				if (value.current <= FU.affValue.none) {
+					value.upgrade();
+				}
+			});
+		}
 	}
 }

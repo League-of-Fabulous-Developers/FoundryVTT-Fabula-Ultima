@@ -47,85 +47,85 @@
 			<div class="flex-group-center">
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.HealthBonus'}}</label>
-					<input type="text" name="system.resources.hp.bonus" value="{{ system.resources.hp.bonus }}"
-						data-dtype="Number" class="resource-inputs bonus" />
+					<input type="number" name="system.resources.hp.bonus" value="{{ system.resources.hp.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" {{#if actor.overrides.system.resources.hp.bonus}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}  />
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.MindBonus'}}</label>
-					<input type="text" name="system.resources.mp.bonus" value="{{ system.resources.mp.bonus }}"
-						data-dtype="Number" class="resource-inputs bonus" />
+					<input type="number" name="system.resources.mp.bonus" value="{{ system.resources.mp.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" {{#if actor.overrides.system.resources.mp.bonus includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.InventoryBonus'}}</label>
-					<input type="text" name="system.resources.ip.bonus" value="{{ system.resources.ip.bonus }}"
-						data-dtype="Number" class="resource-inputs bonus" />
+					<input type="number" name="system.resources.ip.bonus" value="{{ system.resources.ip.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" {{#if actor.overrides.system.resources.ip.bonus includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.DefenseBonus'}}</label>
-					<input type="text" name="system.derived.def.bonus" value="{{ system.derived.def.bonus }}"
-						data-dtype="Number" class="resource-inputs bonus" />
+					<input type="number" name="system.derived.def.bonus" value="{{ system.derived.def.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" {{#if actor.overrides.system.derived.def.bonus includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.MagicDefenseBonus'}}</label>
-					<input type="text" name="system.derived.mdef.bonus" value="{{ system.derived.mdef.bonus }}"
-						data-dtype="Number" class="resource-inputs bonus" />
+					<input type="number" name="system.derived.mdef.bonus" value="{{ system.derived.mdef.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" {{#if actor.overrides.system.derived.mdef.bonus includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.InitiativeBonus'}}</label>
-					<input type="text" name="system.derived.init.bonus" value="{{ system.derived.init.bonus }}"
-						data-dtype="Number" class="resource-inputs bonus" />
+					<input type="number" name="system.derived.init.bonus" value="{{ system.derived.init.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" {{#if actor.overrides.system.derived.init.bonus includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.AccuracyBonus'}}</label>
-					<input type="text" name="system.bonuses.accuracy.accuracyCheck"
+					<input type="number" name="system.bonuses.accuracy.accuracyCheck"
 						value="{{ system.bonuses.accuracy.accuracyCheck }}" data-dtype="Number"
-						class="resource-inputs bonus" />
+						class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.accuracy.accuracyCheck includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.MagicCheckBonus'}}</label>
-					<input type="text" name="system.bonuses.accuracy.magicCheck"
+					<input type="number" name="system.bonuses.accuracy.magicCheck"
 						value="{{ system.bonuses.accuracy.magicCheck }}" data-dtype="Number"
-						class="resource-inputs bonus" />
+						class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.accuracy.magicCheck includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 			</div>
 			{{/if}} {{!-- NPC Relevent Bonuses --}} {{#if (eq actor.type "npc")}}
 			<div class="flex-group-center">
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.HealthBonus'}}</label>
-					<input type="text" name="system.resources.hp.bonus" value="{{ system.resources.hp.bonus }}"
-						data-dtype="Number" class="resource-inputs bonus" />
+					<input type="number" name="system.resources.hp.bonus" value="{{ system.resources.hp.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" {{#if actor.overrides.system.resources.hp.bonus}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.MindBonus'}}</label>
-					<input type="text" name="system.resources.mp.bonus" value="{{ system.resources.mp.bonus }}"
-						data-dtype="Number" class="resource-inputs bonus" />
+					<input type="number" name="system.resources.mp.bonus" value="{{ system.resources.mp.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" {{#if actor.overrides.system.resources.mp.bonus includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.DefenseBonus'}}</label>
-					<input type="text" name="system.derived.def.bonus" value="{{ system.derived.def.bonus }}"
-						data-dtype="Number" class="resource-inputs bonus" />
+					<input type="number" name="system.derived.def.bonus" value="{{ system.derived.def.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" {{#if actor.overrides.system.derived.def.bonus includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.MagicDefenseBonus'}}</label>
-					<input type="text" name="system.derived.mdef.bonus" value="{{ system.derived.mdef.bonus }}"
-						data-dtype="Number" class="resource-inputs bonus" />
+					<input type="number" name="system.derived.mdef.bonus" value="{{ system.derived.mdef.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" {{#if actor.overrides.system.derived.mdef.bonus includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.InitiativeBonus'}}</label>
-					<input type="text" name="system.derived.init.bonus" value="{{ system.derived.init.bonus }}"
-						data-dtype="Number" class="resource-inputs bonus" />
+					<input type="number" name="system.derived.init.bonus" value="{{ system.derived.init.bonus }}"
+						data-dtype="Number" class="resource-inputs bonus" {{#if actor.overrides.system.derived.init.bonus includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.AccuracyBonus'}}</label>
-					<input type="text" name="system.bonuses.accuracy.accuracyCheck"
+					<input type="number" name="system.bonuses.accuracy.accuracyCheck"
 						value="{{ system.bonuses.accuracy.accuracyCheck }}" data-dtype="Number"
-						class="resource-inputs bonus" />
+						class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.accuracy.accuracyCheck includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 				<div class="resource-content">
 					<label class="resource-label-sm">{{localize 'FU.MagicCheckBonus'}}</label>
-					<input type="text" name="system.bonuses.accuracy.magicCheck"
+					<input type="number" name="system.bonuses.accuracy.magicCheck"
 						value="{{ system.bonuses.accuracy.magicCheck }}" data-dtype="Number"
-						class="resource-inputs bonus" />
+						class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.accuracy.magicCheck includeZero=true}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
 				</div>
 			</div>
 

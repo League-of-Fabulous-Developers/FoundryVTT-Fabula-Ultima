@@ -45,7 +45,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		const context = super.getData();
 
 		// Use a safe clone of the actor data for further operations.
-		const actorData = this.actor.toObject(false);
+		const actorData = this.actor;
 
 		// Add the actor's data to context.data for easier access, as well as flags.
 		context.system = actorData.system;
@@ -256,10 +256,6 @@ export class FUStandardActorSheet extends ActorSheet {
 						});
 					}
 
-					if (rp.current === rp.max) {
-						// console.log(item.name + ' is MAXXED out!');
-					}
-
 					item.rpArr = rpArr.reverse();
 				}
 			}
@@ -275,10 +271,6 @@ export class FUStandardActorSheet extends ActorSheet {
 							id: i + 1,
 							checked: parseInt(level.value) === i + 1,
 						});
-					}
-
-					if (level.value === level.max) {
-						// console.log('Skill is MAXXED out!');
 					}
 
 					item.skillArr = skillArr;
@@ -537,16 +529,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			if (isRightClick) {
 				ev.preventDefault();
 			}
-
-			// Log information
-			// console.log('Item ID:', itemId);
-			// console.log('Item Type:', itemType);
-			// console.log('Equipped Slot:', slot);
-			// console.log('Current Equipped:', currentEquipped);
-			// console.log(
-			// 	`${slot} Equipped Items:`,
-			// 	this.actor.items.filter((i) => i.system.isEquipped && i.system.isEquipped.slot === slot).map((i) => i.name),
-			// );
 		}
 
 		// Helper function to get the icon class for an equipped item
@@ -796,7 +778,6 @@ export class FUStandardActorSheet extends ActorSheet {
 				}
 			});
 			// Log a message or perform other actions if needed
-			// console.log('All equipped items have been set to unequip.');
 		} else {
 			// Checkbox is checked
 		}

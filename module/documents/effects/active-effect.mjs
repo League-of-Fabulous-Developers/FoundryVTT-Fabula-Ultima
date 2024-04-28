@@ -25,6 +25,22 @@ export function onRenderActiveEffectConfig(sheet, html) {
 	sheet.setPosition({ ...sheet.position, height: 'auto' });
 }
 
+/**
+ * @param {FUActor} actor
+ * @param {EffectChangeData} change
+ * @param current
+ * @param delta
+ */
+export function onApplyActiveEffect(actor, change, current, delta) {
+	if (current[delta] instanceof Function) {
+        console.debug(`applying ${delta} to ${change.key}`)
+		current[delta]();
+		return false;
+	}
+}
+
+const PRIORITY_CHANGES = ['system.resources.hp.bonus', 'system.resources.hp.attribute', 'system.resources.mp.bonus', 'system.resources.mp.attribute', 'system.resources.ip.bonus'];
+
 export class FUActiveEffect extends ActiveEffect {
 	static get TEMPORARY_FLAG() {
 		return TEMPORARY;
@@ -61,6 +77,15 @@ export class FUActiveEffect extends ActiveEffect {
 
 	get isTemporary() {
 		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY);
+	}
+
+	prepareBaseData() {
+		super.prepareBaseData();
+		for (let change of this.changes) {
+			if (PRIORITY_CHANGES.includes(change.key)) {
+				change.priority = change.mode;
+			}
+		}
 	}
 
 	apply(target, change) {
