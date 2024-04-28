@@ -996,7 +996,7 @@ export class FUItem extends Item {
 		const { useWeapon, accuracy, attributes, damage } = rollInfo;
 		const {
 			name: weaponName,
-			system: { attributes: weaponAttributes, accuracy: weaponAccuracy, damage: weaponDamage, category: weaponCategory, damageType: weaponDamageType },
+			system: { attributes: weaponAttributes, accuracy: weaponAccuracy, damage: weaponDamage, category: weaponCategory, type: weaponType, damageType: weaponDamageType },
 		} = weapon;
 		let attr1 = attributes.primary.value;
 		let attr2 = attributes.secondary.value;
@@ -1014,10 +1014,11 @@ export class FUItem extends Item {
 		/** @type {CheckDamage | undefined} */
 		let checkDamage = undefined;
 		if (useWeapon.damage.value) {
+            const {[weaponCategory.value]: categoryDamageBonus, [weaponType.value]: typeDamageBonus} = this.actor.system.bonuses.damage;
 			checkDamage = {
 				hrZero: useWeapon.hrZero.value || useWeapon.hrZero.value,
 				type: weaponDamageType.value,
-				bonus: weaponDamage.value,
+				bonus: weaponDamage.value + categoryDamageBonus + typeDamageBonus,
 			};
 		} else if (damage.hasDamage.value) {
 			checkDamage = {
