@@ -136,7 +136,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 		let benefits = itemTypes.class.reduce(
 			(agg, curr) => {
 				if (curr.system.benefits.resources.hp.value) {
-					agg += CLASS_HP_BENEFITS;
+					agg.hp += CLASS_HP_BENEFITS;
 				}
 				if (curr.system.benefits.resources.mp.value) {
 					agg.mp += CLASS_MP_BENEFITS;
@@ -150,7 +150,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 		);
 		benefits = itemTypes.heroic.reduce((agg, curr) => {
 			if (curr.system.benefits.resources.hp.value) {
-				agg += heroicHpBenefits(this);
+				agg.hp += heroicHpBenefits(this);
 			}
 			if (curr.system.benefits.resources.mp.value) {
 				agg.mp += heroicMpBenefits(this);
