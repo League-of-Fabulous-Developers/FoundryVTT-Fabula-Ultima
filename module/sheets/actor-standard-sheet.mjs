@@ -457,11 +457,18 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('.item-create-dialog').click(this._onItemCreateDialog.bind(this));
 
 		// Delete Inventory Item
-		html.find('.item-delete').click((ev) => {
+		html.find('.item-delete').click(async (ev) => {
 			const li = $(ev.currentTarget).parents('.item');
 			const item = this.actor.items.get(li.data('itemId'));
-			item.delete();
-			li.slideUp(200, () => this.render(false));
+			const confirmation = await Dialog.confirm({
+				title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
+				content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
+				rejectClose: false,
+			});
+			if (confirmation) {
+				item.delete();
+				li.slideUp(200, () => this.render(false));
+			}
 		});
 
 		html.find('.study-button').click(() => handleStudyRoll.bind(this)());
@@ -1022,7 +1029,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		let content;
 
 		// Extract the name of the selected behavior
-		const behaviorName = selected ? selected.name : "";
+		const behaviorName = selected ? selected.name : '';
 
 		if (targetedTokens.length > 0) {
 			// Map targeted tokens to numbered tokens with actor names
@@ -1165,19 +1172,19 @@ export class FUStandardActorSheet extends ActorSheet {
 		const stepMultiplier = item.system.rp.step || 1;
 		const maxProgress = item.system.rp.max;
 		let newProgress;
-	
+
 		if (rightClick) {
 			newProgress = item.system.rp.current + increment * stepMultiplier;
 		} else {
 			newProgress = item.system.rp.current + increment;
 		}
-	
+
 		if (maxProgress !== 0) {
 			newProgress = Math.min(newProgress, maxProgress);
 		}
-	
+
 		await item.update({ 'system.rp.current': newProgress });
-	}	
+	}
 
 	async _updateClockProgress(item, increment, rightClick) {
 		const stepMultiplier = item.system.progress.step || 1;
@@ -1201,19 +1208,19 @@ export class FUStandardActorSheet extends ActorSheet {
 		const progressPerDay = item.system.progressPerDay.value || 1;
 		const maxProjectProgress = item.system.progress.max;
 		let currentProgress;
-	
+
 		if (rightClick) {
 			currentProgress = item.system.progress.current + increment * progressPerDay;
 		} else {
 			currentProgress = item.system.progress.current + increment;
 		}
-	
+
 		if (maxProjectProgress !== 0) {
 			currentProgress = Math.min(currentProgress, maxProjectProgress);
 		}
-	
+
 		await item.update({ 'system.progress.current': currentProgress });
-	}	
+	}
 
 	/**
 	 * Handles increment button click events for both level and resource progress.
@@ -1305,8 +1312,10 @@ export class FUStandardActorSheet extends ActorSheet {
 					// if (isCtrl) {
 					// 	return promptCheckCustomizer(this.actor, item);
 					// } else {
-						if (settingPriority && this.actor?.type === "npc") { this._targetPriority(); }
-						return item.roll(isShift);
+					if (settingPriority && this.actor?.type === 'npc') {
+						this._targetPriority();
+					}
+					return item.roll(isShift);
 					// }
 				}
 			}

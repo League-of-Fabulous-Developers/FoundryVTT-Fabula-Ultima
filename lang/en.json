@@ -923,6 +923,8 @@
         "InlineEffectConfigModifyAccuracyChecksAll": "Accuracy and Magic Checks",
         "InlineEffectConfigModifyAccuracyChecksAccuracy": "Accuracy Checks",
         "InlineEffectConfigModifyAccuracyChecksMagic": "Magic Checks",
-        "InlineEffectConfigModifyAccuracyCheckTypes": "Affected Checks"
+        "InlineEffectConfigModifyAccuracyCheckTypes": "Affected Checks",
+        "DialogDeleteItemTitle": "Delete {item}?",
+        "DialogDeleteItemDescription": "Do you really want to delete <strong>{item}</strong>? This action cannot be undone."
     }
 }
