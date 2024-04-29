@@ -4,7 +4,9 @@
         {{#if system.affinities}}
         {{#each system.affinities as |affinity key|}}
         <div class="affinity resource-content flex-group-center">
-            <label style="cursor: pointer;" data-label="{{ affinity.label }}"
+            <label class="rollable" style="cursor: pointer;" data-label="{{ affinity.label }}"
+                data-roll-type="affinity-type"
+                data-action='{"label": "{{ affinity.label }}", "affTypeCurr": "{{ affinity.affTypeCurr }}"}'
                 data-tooltip="{{ affinity.label }} <br> {{ affinity.affTypeCurr }}">
                 <span class="resource-label-m">
                     <i class="{{ affinity.icon }} icon-aff"></i>

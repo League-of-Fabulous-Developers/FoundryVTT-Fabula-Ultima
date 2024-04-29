@@ -1358,6 +1358,24 @@ export class FUStandardActorSheet extends ActorSheet {
 			if (item) return item.roll(isShift);
 		}
 
+		// Handle affinity-type rolls
+		if (dataset.rollType === 'affinity-type') {
+			const actor = this.actor;
+			const affinity = JSON.parse(dataset.action);
+
+			const affinityName = affinity.label;
+			const affinityValue = affinity.affTypeCurr;
+
+			let params = {
+				details: { name: affinityName },
+				description: affinityValue,
+				speaker: ChatMessage.getSpeaker({ actor }),
+			};
+
+			createChatMessage(params);
+			return;
+		}
+
 		// Handle action-type rolls.
 		if (dataset.rollType === 'action-type') {
 			// Get the actor that owns the item
