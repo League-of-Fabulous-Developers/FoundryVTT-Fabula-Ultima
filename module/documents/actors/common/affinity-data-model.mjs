@@ -1,4 +1,5 @@
 import { MathHelper } from '../../../helpers/math-helper.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 /**
  * @property {number} base
@@ -30,13 +31,17 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 
 		Object.defineProperty(this, 'upgrade', {
 			value: () => {
-				current += 1;
+				if (current < FU.affValue.resistance) {
+					current += 1;
+				}
 			},
 		});
 
 		Object.defineProperty(this, 'downgrade', {
 			value: () => {
-				current -= 1;
+                if (current <= FU.affValue.resistance) {
+                    current -= 1;
+                }
 			},
 		});
 	}
