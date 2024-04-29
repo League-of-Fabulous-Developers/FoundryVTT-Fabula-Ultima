@@ -8,6 +8,8 @@ import { Flags } from '../../helpers/flags.mjs';
  * @extends {Item}
  */
 export class FUItem extends Item {
+	overrides = this.overrides ?? {};
+
 	/**
 	 * Augment the basic Item data model with additional dynamic data.
 	 * This method is automatically called when an item is created or updated.
@@ -73,9 +75,9 @@ export class FUItem extends Item {
 		const damageValue = this.system.damage?.value ?? 0;
 		const weaponType = this.system.type?.value;
 		let damageGlobalValue = 0;
-		if (weaponType === "melee") {
+		if (weaponType === 'melee') {
 			damageGlobalValue = actor.system.bonuses.damage?.melee ?? 0;
-		} else if (weaponType === "ranged") {
+		} else if (weaponType === 'ranged') {
 			damageGlobalValue = actor.system.bonuses.damage?.ranged ?? 0;
 		}
 		const damageTotal = damageValue + damageGlobalValue;
@@ -137,7 +139,7 @@ export class FUItem extends Item {
 		const attackString = this.system.hasRoll.value ? `【${attackAttributes}${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}】` : '';
 
 		const damageString = this.system.rollInfo.damage.hasDamage.value ? `【${hrZeroText} ${this.system.rollInfo?.damage?.value}】 ${this.system.rollInfo?.damage?.type.value}` : '';
-		
+
 		if (isSpell) {
 			detailString = [attackString, damageString].filter(Boolean).join('⬥');
 			qualityString = [capitalizeFirst(this.system.mpCost.value), capitalizeFirst(this.system.target.value), capitalizeFirst(this.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
@@ -687,8 +689,6 @@ export class FUItem extends Item {
 		return '';
 	}
 
-	getClockString() { }
-
 	/**
 	 * Handle clickable rolls.
 	 * @param {Event} event The originating click event.
@@ -1014,7 +1014,7 @@ export class FUItem extends Item {
 		/** @type {CheckDamage | undefined} */
 		let checkDamage = undefined;
 		if (useWeapon.damage.value) {
-            const {[weaponCategory.value]: categoryDamageBonus, [weaponType.value]: typeDamageBonus} = this.actor.system.bonuses.damage;
+			const { [weaponCategory.value]: categoryDamageBonus, [weaponType.value]: typeDamageBonus } = this.actor.system.bonuses.damage;
 			checkDamage = {
 				hrZero: useWeapon.hrZero.value || useWeapon.hrZero.value,
 				type: weaponDamageType.value,
@@ -1049,5 +1049,44 @@ export class FUItem extends Item {
 			speaker: speaker,
 			targets: targets,
 		};
+	}
+
+	applyActiveEffects() {
+		const overrides = {};
+
+		// Organize non-disabled effects by their application priority
+		const changes = [];
+		for (const effect of this.allApplicableEffects()) {
+			if (!effect.active) continue;
+			changes.push(
+				...effect.changes.map((change) => {
+					const c = foundry.utils.deepClone(change);
+					c.effect = effect;
+					c.priority = c.priority ?? c.mode * 10;
+					return c;
+				}),
+			);
+		}
+		changes.sort((a, b) => a.priority - b.priority);
+
+		// Apply all changes
+		for (let change of changes) {
+			if (!change.key) continue;
+			const changes = change.effect.apply(this, change);
+			Object.assign(overrides, changes);
+		}
+
+		// Expand the set of final overrides
+		this.overrides = foundry.utils.expandObject(overrides);
+		this.render();
+	}
+
+	*allApplicableEffects() {
+		for (const effect of this.effects) {
+			// only yield effects that try to modify the item and not the actor
+			if (effect.target === this) {
+				yield effect;
+			}
+		}
 	}
 }

@@ -54,6 +54,7 @@ export class FUActor extends Actor {
 		this._calculateDefenses(actorData);
 		this._calculateInitOrInitMod(actorData);
 		this._handleCustomWeapon(actorData);
+        this.items.forEach((item) => item.applyActiveEffects())
 	}
 
 	/**

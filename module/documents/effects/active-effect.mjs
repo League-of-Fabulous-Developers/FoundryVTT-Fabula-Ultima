@@ -1,5 +1,6 @@
 import { FUActor } from '../actors/actor.mjs';
 import { SYSTEM } from '../../settings.js';
+import { FUItem } from '../items/item.mjs';
 
 const CRISIS_INTERACTION = 'CrisisInteraction';
 
@@ -16,7 +17,7 @@ export function onRenderActiveEffectConfig(sheet, html) {
 	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(`
 	<div class="form-group">
         <label>${game.i18n.localize('FU.EffectCrisisInteraction')}</label>
-        <select name="flags.${SYSTEM}.${CRISIS_INTERACTION}" ${sheet.isEditable ? "" : "disabled"}>
+        <select name="flags.${SYSTEM}.${CRISIS_INTERACTION}" ${sheet.isEditable ? '' : 'disabled'}>
           ${Object.entries(crisisInteractions).map(([key, value]) => `<option value="${key}" ${key === flag ? 'selected' : ''}>${game.i18n.localize(value)}</option>`)}
         </select>
     </div>
@@ -25,10 +26,9 @@ export function onRenderActiveEffectConfig(sheet, html) {
 }
 
 export class FUActiveEffect extends ActiveEffect {
-
-    static get TEMPORARY_FLAG() {
-        return TEMPORARY;
-    }
+	static get TEMPORARY_FLAG() {
+		return TEMPORARY;
+	}
 
 	async _preCreate(data, options, user) {
 		this.updateSource({ name: game.i18n.localize(data.name) });
@@ -46,6 +46,16 @@ export class FUActiveEffect extends ActiveEffect {
 				}
 			}
 		}
+		if (this.target instanceof FUItem && this.target.parent instanceof FUActor) {
+			const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
+			if (flag && flag !== 'none') {
+				if (this.target.parent.statuses.has('crisis')) {
+					return flag === 'inactive';
+				} else {
+					return flag === 'active';
+				}
+			}
+		}
 		return false;
 	}
 
@@ -53,7 +63,7 @@ export class FUActiveEffect extends ActiveEffect {
 		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY);
 	}
 
-	apply(actor, change) {
+	apply(target, change) {
 		if (change.value && typeof change.value === 'string') {
 			try {
 				const expression = Roll.replaceFormulaData(change.value, this.parent);
@@ -66,12 +76,13 @@ export class FUActiveEffect extends ActiveEffect {
 					game.i18n.format('FU.EffectChangeInvalidFormula', {
 						key: change.key,
 						effect: this.name,
-						target: actor.name,
+						target: target.name,
 					}),
 				);
+				return {};
 			}
 		}
 
-		return super.apply(actor, change);
+		return super.apply(target, change);
 	}
 }

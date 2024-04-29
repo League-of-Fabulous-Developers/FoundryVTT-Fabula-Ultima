@@ -133,4 +133,15 @@ export class FUItemSheet extends ItemSheet {
 			this.item.update({ [`system.${updateKey}.value`]: !system[updateKey].value });
 		}
 	}
+
+	_getSubmitData(updateData = {}) {
+		const data = super._getSubmitData(updateData);
+		// Prevent submitting overridden values
+		const overrides = foundry.utils.flattenObject(this.item.overrides);
+		for (let k of Object.keys(overrides)) {
+			if (k.startsWith('system.')) delete data[`data.${k.slice(7)}`]; // Band-aid for < v10 data
+			delete data[k];
+		}
+		return data;
+	}
 }
