@@ -4,14 +4,27 @@ import { AttributesDataModel } from '../common/attributes-data-model.mjs';
 import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
 import { BondDataModel } from '../common/bond-data-model.mjs';
 import { CharacterSkillTracker } from './character-skill-tracker.mjs';
+import { FU } from '../../../helpers/config.mjs';
+import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
+
+const CLASS_HP_BENEFITS = 5;
+const CLASS_MP_BENEFITS = 5;
+const CLASS_IP_BENEFITS = 2;
+const HEROIC_IP_BENEFITS = 4;
+
+function heroicHpBenefits(dataModel) {
+	return dataModel.level.value >= 40 ? 20 : 10;
+}
+
+function heroicMpBenefits(dataModel) {
+	return dataModel.level.value >= 40 ? 20 : 10;
+}
 
 /**
  * @property {number} level.value
- * @property {number} resources.hp.min
  * @property {number} resources.hp.max
  * @property {number} resources.hp.value
  * @property {number} resources.hp.bonus
- * @property {number} resources.mp.min
  * @property {number} resources.mp.max
  * @property {number} resources.mp.value
  * @property {number} resources.mp.bonus
@@ -36,16 +49,11 @@ import { CharacterSkillTracker } from './character-skill-tracker.mjs';
  * @property {string} resources.origin.value
  * @property {AffinitiesDataModel} affinities
  * @property {AttributesDataModel} attributes
- * @property {number} derived.init.value
- * @property {number} derived.init.bonus
- * @property {number} derived.def.value
- * @property {number} derived.def.bonus
- * @property {number} derived.mdef.value
- * @property {number} derived.mdef.bonus
+ * @property {DerivedValuesDataModel} derived
  * @property {BonusesDataModel} bonuses
  * @property {string} description
  * @property {CharacterSkillTracker} tlTracker
- * 
+ *
  */
 export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
@@ -54,14 +62,10 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
 				hp: new SchemaField({
-					min: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-					max: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
 				mp: new SchemaField({
-					min: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-					max: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
@@ -79,8 +83,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 				}),
 				zenit: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 				ip: new SchemaField({
-					min: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-					max: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
 					value: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
 					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
@@ -94,20 +96,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			}),
 			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
 			attributes: new EmbeddedDataField(AttributesDataModel, {}),
-			derived: new SchemaField({
-				init: new SchemaField({
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
-				}),
-				def: new SchemaField({
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
-				}),
-				mdef: new SchemaField({
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
-				}),
-			}),
+			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
 			description: new HTMLField(),
 		};
@@ -126,7 +115,93 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 		return this.parent;
 	}
 
-	prepareDerivedData() {
-		this.tlTracker = new CharacterSkillTracker(this);
+	prepareBaseData() {
+		this.resources.hp.attribute = 'mig';
+		this.resources.mp.attribute = 'wlp';
+	}
+
+	prepareEmbeddedData() {
+		this.#prepareBasicResources();
+		this.derived.prepareData();
+	}
+
+    prepareDerivedData() {
+        this.attributes.handleStatusEffects();
+        this.affinities.handleGuard()
+        this.tlTracker = new CharacterSkillTracker(this);
+    }
+
+	#prepareBasicResources() {
+		const itemTypes = this.actor.itemTypes;
+		let benefits = itemTypes.class.reduce(
+			(agg, curr) => {
+				if (curr.system.benefits.resources.hp.value) {
+					agg.hp += CLASS_HP_BENEFITS;
+				}
+				if (curr.system.benefits.resources.mp.value) {
+					agg.mp += CLASS_MP_BENEFITS;
+				}
+				if (curr.system.benefits.resources.ip.value) {
+					agg.ip += CLASS_IP_BENEFITS;
+				}
+				return agg;
+			},
+			{ hp: 0, mp: 0, ip: 0 },
+		);
+		benefits = itemTypes.heroic.reduce((agg, curr) => {
+			if (curr.system.benefits.resources.hp.value) {
+				agg.hp += heroicHpBenefits(this);
+			}
+			if (curr.system.benefits.resources.mp.value) {
+				agg.mp += heroicMpBenefits(this);
+			}
+			if (curr.system.benefits.resources.ip.value) {
+				agg.ip += HEROIC_IP_BENEFITS;
+			}
+			return agg;
+		}, benefits);
+
+		// Calculate multipliers based on actor type and attributes.
+		const data = this;
+		// Define maximum hit points (hp) calculation, replace calculation with actual value on write.
+		Object.defineProperty(this.resources.hp, 'max', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				const baseAttribute = Object.keys(FU.attributes).includes(this.attribute) ? data.attributes[this.attribute].base : data.attributes.mig.base;
+				return baseAttribute * 5 + data.level.value + benefits.hp + this.bonus;
+			},
+			set(newValue) {
+				delete this.max;
+				this.max = newValue;
+			},
+		});
+
+		// Define maximum mind points (mp) calculation, replace calculation with actual value on write.
+		Object.defineProperty(this.resources.mp, 'max', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				const baseAttribute = Object.keys(FU.attributes).includes(this.attribute) ? data.attributes[this.attribute].base : data.attributes.wlp.base;
+				return baseAttribute * 5 + benefits.mp + this.bonus;
+			},
+			set(newValue) {
+				delete this.max;
+				this.max = newValue;
+			},
+		});
+
+		// Define maximum mind points (mp) calculation, replace calculation with actual value on write.
+		Object.defineProperty(this.resources.ip, 'max', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				return 6 + benefits.ip + this.bonus;
+			},
+			set(newValue) {
+				delete this.max;
+				this.max = newValue;
+			},
+		});
 	}
 }

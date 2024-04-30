@@ -219,9 +219,9 @@ const SUPPORTED_CHANGE_TYPES = {
 			attributes: FU.attributes,
 		},
 		toChange: ({ attribute }) => ({
-			key: `system.attributes.${attribute}.bonus`,
-			mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-			value: '2',
+			key: `system.attributes.${attribute}`,
+			mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+			value: 'upgrade',
 		}),
 	},
 	resistance: {
@@ -231,9 +231,9 @@ const SUPPORTED_CHANGE_TYPES = {
 			damageTypes: (({ untyped, ...rest }) => rest)(FU.damageTypes),
 		},
 		toChange: ({ damageType }) => ({
-			key: `system.affinities.${damageType}.bonus`,
-			mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-			value: '1',
+			key: `system.affinities.${damageType}`,
+			mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+			value: 'upgrade',
 		}),
 	},
 	damage: {

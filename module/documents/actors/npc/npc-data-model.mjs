@@ -5,14 +5,13 @@ import { AttributesDataModel } from '../common/attributes-data-model.mjs';
 import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
 import { BondDataModel } from '../common/bond-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
+import {DerivedValuesDataModel} from "../common/derived-values-data-model.mjs";
 
 /**
  * @property {number} level.value
- * @property {number} resources.hp.min
  * @property {number} resources.hp.max
  * @property {number} resources.hp.value
  * @property {number} resources.hp.bonus
- * @property {number} resources.mp.min
  * @property {number} resources.mp.max
  * @property {number} resources.mp.value
  * @property {number} resources.mp.bonus
@@ -23,7 +22,6 @@ import { NpcSkillTracker } from './npc-skill-tracker.mjs';
  * @property {string} resources.rp2.name
  * @property {number} resources.rp2.value
  * @property {number} resources.zenit.value
- * @property {number} resources.ip.min
  * @property {number} resources.ip.max
  * @property {number} resources.ip.value
  * @property {number} resources.ip.bonus
@@ -59,14 +57,10 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
 				hp: new SchemaField({
-					min: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-					max: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
 				mp: new SchemaField({
-					min: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-					max: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
@@ -84,7 +78,6 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 				}),
 				zenit: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 				ip: new SchemaField({
-					min: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 					max: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
 					value: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
 				}),
@@ -93,20 +86,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			}),
 			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
 			attributes: new EmbeddedDataField(AttributesDataModel, {}),
-			derived: new SchemaField({
-				init: new SchemaField({
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
-				}),
-				def: new SchemaField({
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
-				}),
-				mdef: new SchemaField({
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
-				}),
-			}),
+			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
 			traits: new SchemaField({ value: new StringField({ initial: '' }) }),
 			species: new SchemaField({ value: new StringField({ initial: 'beast', choices: FU.species }) }),
@@ -139,7 +119,56 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 		return this.parent;
 	}
 
+	prepareBaseData() {
+
+    }
+
 	prepareDerivedData() {
+        this.attributes.handleStatusEffects()
+        this.affinities.handleGuard()
 		this.spTracker = new NpcSkillTracker(this);
+	}
+
+	prepareEmbeddedData() {
+		this.#prepareBasicResource();
+		this.derived.prepareData()
+	}
+
+	#prepareBasicResource() {
+		// Calculate multipliers based on actor type and attributes.
+		const data = this;
+
+		// Define maximum hit points (hp) calculation, replace calculation with actual value on write.
+		Object.defineProperty(this.resources.hp, 'max', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				if (data.isCompanion.value) {
+					// Companion calculation
+					return Math.floor(data.attributes.mig.base * data.companion.skillLevel) + Math.floor(data.companion.playerLevel / 2 + data.resources.hp.bonus);
+				}
+				// Default calculation
+				const hpMultiplier = data.isChampion.value !== 1 ? data.isChampion.value : data.isElite.value ? 2 : 1;
+				return (data.attributes.mig.base * 5 + data.level.value * 2 + data.resources.hp.bonus) * hpMultiplier;
+			},
+			set(newValue) {
+				delete this.max;
+				this.max = newValue;
+			},
+		});
+
+		// Define maximum mind points (mp) calculation, replace calculation with actual value on write.
+		Object.defineProperty(this.resources.mp, 'max', {
+			configurable: true,
+			enumerable: true,
+			get() {
+				const mpMultiplier = data.isChampion.value !== 1 ? 2 : 1;
+				return (data.attributes.wlp.base * 5 + data.level.value + data.resources.mp.bonus) * mpMultiplier;
+			},
+			set(newValue) {
+				delete this.max;
+				this.max = newValue;
+			},
+		});
 	}
 }

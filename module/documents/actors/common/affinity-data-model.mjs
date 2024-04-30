@@ -1,3 +1,6 @@
+import { MathHelper } from '../../../helpers/math-helper.mjs';
+import { FU } from '../../../helpers/config.mjs';
+
 /**
  * @property {number} base
  * @property {number} current
@@ -8,8 +11,38 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 		const { NumberField } = foundry.data.fields;
 		return {
 			base: new NumberField({ initial: 0, min: -1, max: 4, integer: true, nullable: false }),
-			current: new NumberField({ initial: 0, min: -1, max: 4, integer: true, nullable: false }),
-			bonus: new NumberField({ initial: 0, min: -5, max: 5, integer: true, nullable: false }),
 		};
+	}
+
+	_initialize(options = {}) {
+		super._initialize(options);
+
+		let current = this.base;
+		Object.defineProperty(this, 'current', {
+			configurable: false,
+			enumerable: true,
+			get() {
+				return MathHelper.clamp(current, -1, 4);
+			},
+			set(newValue) {
+				current = newValue;
+			},
+		});
+
+		Object.defineProperty(this, 'upgrade', {
+			value: () => {
+				if (current < FU.affValue.resistance) {
+					current += 1;
+				}
+			},
+		});
+
+		Object.defineProperty(this, 'downgrade', {
+			value: () => {
+                if (current <= FU.affValue.resistance) {
+                    current -= 1;
+                }
+			},
+		});
 	}
 }
