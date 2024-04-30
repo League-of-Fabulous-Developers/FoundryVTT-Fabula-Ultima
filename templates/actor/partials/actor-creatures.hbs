@@ -61,10 +61,10 @@
             class="resource-inputs"
             style="margin: 0 0 4px; border-radius: 0 0 0 14px; width: 100%; padding: 2px; border: 0.125em solid #c7c7c7;">
             {{#select system.villain.value}}
-            <option value="">Non-Villain</option>
-            <option value="minor">Minor Villain</option>
-            <option value="major">Major Villain</option>
-            <option value="supreme">Supreme Villain</option>
+            <option value="">{{ localize 'FU.VillainNone' }}</option>
+            <option value="minor">{{ localize 'FU.VillainMinor' }}</option>
+            <option value="major">{{ localize 'FU.VillainMajor' }}</option>
+            <option value="supreme">{{ localize 'FU.VillainSupreme' }}</option>
             {{/select}}
         </select>
         {{/if}}

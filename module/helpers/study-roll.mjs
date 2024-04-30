@@ -1,4 +1,29 @@
 /**
+ * Handle the study roll interaction with a targeted actor
+ * @param {DocumentSheet} app - The rendered NPC sheet
+ */
+export async function handleStudyTarget(app) {
+    // Get the currently targeted token
+    let targets = Array.from(game.user.targets);
+
+    if (targets.length === 0) {
+        ui.notifications.error("You must target an actor to study.");
+        return;
+    }
+    
+    // Get the actor from the targeted token
+    const actor = targets[0]?.actor;
+
+    if (!actor) {
+        ui.notifications.error("Targeted token does not have an associated actor.");
+        return;
+    }
+    
+    // Call handleStudyRoll with the targeted actor bound to it
+    await handleStudyRoll.bind({ actor: actor })(app);
+}
+
+/**
  * Handle the study roll interaction
  * @param {DocumentSheet} app - The rendered NPC sheet
  */
@@ -9,32 +34,44 @@ export async function handleStudyRoll(app) {
     const optionStudySavePath = game.settings.get('projectfu', 'optionStudySavePath');
     const difficultyThresholds = useRevisedStudyRule ? revisedRule : coreRule;
 
+    const update = game.i18n.localize(`FU.StudyJournalUpdate`);
+    const update2 = game.i18n.localize(`FU.StudyJournalUpdate2`);
+    const submit = game.i18n.localize(`FU.Submit`);
+    const folder = '';
+
+    const dataTitleResult = game.i18n.localize(`FU.StudyTitleResult`);
+    const dataTitle = game.i18n.localize(`FU.StudyTitle`);
+    const data1 = game.i18n.localize(`FU.StudyResultOne`);
+    const data2 = game.i18n.localize(`FU.StudyResultTwo`);
+    const data3 = game.i18n.localize(`FU.StudyResultThree`);
+    const dataResult = game.i18n.localize(`FU.StudyTotalField`);
+
     const contentRows = [
-        `<tr><td>${difficultyThresholds[0]}+</td><td>Rank, Species, HP, MP.</td></tr>`,
-        `<tr><td>${difficultyThresholds[1]}+</td><td>Traits, Attributes, Defense, Magic Defense, Affinities.</td></tr>`,
-        `<tr><td>${difficultyThresholds[2]}+</td><td>Basic Attacks and Spells.</td></tr>`,
+        `<tr><td>${difficultyThresholds[0]}+</td><td>${data1}</td></tr>`,
+        `<tr><td>${difficultyThresholds[1]}+</td><td>${data2}</td></tr>`,
+        `<tr><td>${difficultyThresholds[2]}+</td><td>${data3}</td></tr>`,
     ];
 
     const dialogContent = `
         <div class="desc mb-5">
             <table>
-                <tr><th>Result</th><th>Information Revealed</th></tr>
+                <tr><th>${dataTitleResult}</th><th>${dataTitle}</th></tr>
                 ${contentRows.map((row) => `<tr><td>${row}</td></tr>`).join('')}
             </table>
         </div>
         <div class="desc">
-            <p>Enter Study Check total:</p>
+            <p>${dataResult}</p>
             <input type="number" id="study-input">
         </div>
         <hr>`;
 
     const dialog = new Dialog(
         {
-            title: 'Study Check',
+            title: game.i18n.localize(`FU.StudyRoll`),
             content: dialogContent,
             buttons: {
                 ok: {
-                    label: 'Submit',
+                    label: submit,
                     callback: async (html) => {
                         const studyValue = parseInt(html.find('#study-input').val());
                         let difficulty;
@@ -67,37 +104,23 @@ export async function handleStudyRoll(app) {
 
                                 return `<div class="basic-info resource-content">
                                 <div class="resource-label-l grid grid-7col flex-group-center ${divideText}" style="padding: 5px;">
-                                    <label>LV ${system.level.value}</label>
+                                    <label>${game.i18n.localize(`FU.LevelAbbr`)} ${system.level.value}</label>
                                     <span class="diamond-symbol" style="color: #532853;">⬥</span>
-                                    <label>${system.species.value}</label>
+                                    <label>${game.i18n.localize(`FU.${system.species.value.charAt(0).toUpperCase()}${system.species.value.slice(1)}`)}</label>
                                     <span class="diamond-symbol" style="color: #532853;">⬥</span>
-                                    <label>${system.resources.hp.max} <span style="color: #cd1619;">HP</span></label>
+                                    <label>${system.resources.hp.max} <span style="color: #cd1619;">${game.i18n.localize(`FU.HealthAbbr`)}</span></label>
                                     <span class="diamond-symbol" style="color: #532853;">⬥</span>
-                                    <label>${system.resources.mp.max} <span style="color: #009ee3;">MP</span></label>
-                                </div>
-                            </div>`;
+                                    <label>${system.resources.mp.max} <span style="color: #009ee3;">${game.i18n.localize(`FU.MindAbbr`)}</span></label>
+                                    </div>
+                                </div>`;
                             }
 
                             function addNormalInfo() {
                                 const { system } = actorData;
-                                if (!(system && system.traits && system.attributes && system.derived)) {
-                                    console.error('Normal Info Error: Some properties are undefined.');
-                                    return '';
-                                }
-
-                                const affinityMap = { '-1': 'VU', 0: '-', 1: 'RS', 2: 'IM', 3: 'AB' };
-                                const affinityNameMap = { physical: 'Physical', air: 'Air', bolt: 'Bolt', dark: 'Dark', earth: 'Earth', fire: 'Fire', ice: 'Ice', light: 'Light', poison: 'Poison' };
-                                const affinityIconMap = {
-                                    physical: 'fun fu-phys',
-                                    air: 'fun fu-wind',
-                                    bolt: 'fun fu-bolt',
-                                    dark: 'fun fu-dark',
-                                    earth: 'fun fu-earth',
-                                    fire: 'fun fu-fire',
-                                    ice: 'fun fu-ice',
-                                    light: 'fun fu-light',
-                                    poison: 'fun fu-poison',
-                                };
+                                if (!(system && system.traits && system.attributes && system.derived)) return console.log("Normal Info Error: Some properties are undefined.");
+                                const affinityMap = { '-1': game.i18n.localize(`FU.AffinityVulnerableAbbr`), '0': '-', '1': game.i18n.localize(`FU.AffinityResistanceAbbr`), '2': game.i18n.localize(`FU.AffinityImmuneAbbr`), '3': game.i18n.localize(`FU.AffinityAbsorptionAbbr`) };
+                                const affinityNameMap = { 'physical': game.i18n.localize(`FU.DamagePhysical`), 'air': game.i18n.localize(`FU.DamageWind`), 'bolt': game.i18n.localize(`FU.DamageLightning`), 'dark': game.i18n.localize(`FU.DamageDark`), 'earth': game.i18n.localize(`FU.DamageEarth`), 'fire': game.i18n.localize(`FU.DamageFire`), 'ice': game.i18n.localize(`FU.DamageIce`), 'light': game.i18n.localize(`FU.DamageLight`), 'poison': game.i18n.localize(`FU.DamagePoison`) };
+                                const affinityIconMap = { 'physical': 'fun fu-phys', 'air': 'fun fu-wind', 'bolt': 'fun fu-bolt', 'dark': 'fun fu-dark', 'earth': 'fun fu-earth', 'fire': 'fun fu-fire', 'ice': 'fun fu-ice', 'light': 'fun fu-light', 'poison': 'fun fu-poison' };
 
                                 let affinitiesDisplay = '';
                                 if (system.affinities) {
@@ -123,21 +146,21 @@ export async function handleStudyRoll(app) {
                                 <div class="flex-group-center resource-content" style="line-height: 1.68;">
                                     <div class="flexrow ${divideText}">
                                         <div class="resource-label-m grid grid-4col flex-group-center">
-                                            <label style="${attrBoxStyle}">DEX d${system.attributes.dex.base}</label>
-                                            <label style="${attrBoxStyle}">INS d${system.attributes.ins.base}</label>
-                                            <label style="${attrBoxStyle}">MIG d${system.attributes.mig.base}</label>
-                                            <label style="${attrBoxStyle}">WLP d${system.attributes.wlp.base}</label>
+                                            <label style="${attrBoxStyle}">${game.i18n.localize(`FU.AttributeDexAbbr`)} d${system.attributes.dex.base}</label>
+                                            <label style="${attrBoxStyle}">${game.i18n.localize(`FU.AttributeInsAbbr`)} d${system.attributes.ins.base}</label>
+                                            <label style="${attrBoxStyle}">${game.i18n.localize(`FU.AttributeMigAbbr`)} d${system.attributes.mig.base}</label>
+                                            <label style="${attrBoxStyle}">${game.i18n.localize(`FU.AttributeWlpAbbr`)} d${system.attributes.wlp.base}</label>
                                         </div>
                                         
                                         <div class="resource-label-m grid grid-3col flex-group-center">
-                                            <div style="${attrBoxStyle}">DEF ${system.derived.def.value}</div>
-                                            <div style="${attrBoxStyle}">M.DEF ${system.derived.mdef.value}</div>
-                                            <div style="${attrBoxStyle}">INIT ${system.derived.init.value}</div>
+                                            <div style="${attrBoxStyle}">${game.i18n.localize(`FU.DefenseAbbr`)} ${system.derived.def.value}</div>
+                                            <div style="${attrBoxStyle}">${game.i18n.localize(`FU.MagicDefenseAbbr`)} ${system.derived.mdef.value}</div>
+                                            <div style="${attrBoxStyle}">${game.i18n.localize(`FU.InitiativeAbbr`).toUpperCase()} ${system.derived.init.value}</div>
                                         </div>
                                     </div>
                                     
                                     <li class="flex-group-center grid grid-6col ${divideText}">
-                                        <label class="resource-label-m">Traits</label>
+                                        <label class="resource-label-m">${game.i18n.localize(`FU.Traits`)}</label>
                                         <div class="grid-span-5">${system.traits.value}</div>
                                     </li>
 
@@ -161,11 +184,11 @@ export async function handleStudyRoll(app) {
                                 filteredItems.forEach((item) => {
                                     const itemType = item.type.charAt(0).toUpperCase() + item.type.slice(1);
                                     const name = item.name;
-                                    const damage = item.system.damage?.value ? `【HR + ${item.system.damage.value}】` : '';
-                                    const damageType = item.system.damageType?.value ? `<strong>${item.system.damageType.value}</strong> damage` : 'N/A';
+                                    const damage = item.system.damage?.value ? `【${game.i18n.localize(`FU.HighRollAbbr`)} + ${item.system.damage.value}】` : '';
+                                    const damageType = item.system.damageType?.value ? `<strong>${game.i18n.localize(`FU.Damage${item.system.damageType.value.charAt(0).toUpperCase()}${item.system.damageType.value.slice(1).toLowerCase()}`)}</strong>` : "-";
                                     const primaryAttribute = item.system.attributes?.primary?.value.toUpperCase();
                                     const secondaryAttribute = item.system.attributes?.secondary?.value.toUpperCase();
-                                    const attributesDisplay = primaryAttribute && secondaryAttribute ? `【${primaryAttribute} + ${secondaryAttribute}】 ` : '';
+                                    const attributesDisplay = primaryAttribute && secondaryAttribute ? `【${game.i18n.localize(`FU.Attribute${primaryAttribute.charAt(0).toUpperCase()}${primaryAttribute.slice(1).toLowerCase()}Abbr`)} + ${game.i18n.localize(`FU.Attribute${secondaryAttribute.charAt(0).toUpperCase()}${secondaryAttribute.slice(1).toLowerCase()}Abbr`)}】` : "";
                                     const accuracy = item.system.accuracy?.value ? `${attributesDisplay}+ ${item.system.accuracy.value}` : attributesDisplay;
                                     const description = item.system.description || '';
                                     const qualText = item.system.quality?.value || '';
@@ -192,19 +215,19 @@ export async function handleStudyRoll(app) {
                                         ? `
                                         <div style="${headerStyle}">
                                             <span style="${headerText}">
-                                                <strong>Basic Attacks</strong>
+                                                <strong>${game.i18n.localize(`FU.BasicAttacks`)}</strong>
                                             </span>
                                         </div>
                                         <div class="basic-content">
                                             <table>
                                                 <thead>
                                                 <tr>
-                                                    <th style="text-align: left;">Name</th>
-                                                    <th style="text-align: center;">Accuracy</th>
-                                                    <th style="text-align: center;">Damage</th>
-                                                    <th style="text-align: center;">Damage Type</th>
-                                                    <th style="text-align: left;">Description</th>
-                                                    <th style="text-align: left;">Special</th>
+                                                    <th style="text-align: left;">${game.i18n.localize(`FU.Name`)}</th>
+                                                    <th style="text-align: center;">${game.i18n.localize(`FU.Accuracy`)}</th>
+                                                    <th style="text-align: center;">${game.i18n.localize(`FU.Damage`)}</th>
+                                                    <th style="text-align: center;">${game.i18n.localize(`FU.DamageType`)}</th>
+                                                    <th style="text-align: left;">${game.i18n.localize(`FU.Description`)}</th>
+                                                    <th style="text-align: left;">${game.i18n.localize(`FU.Special`)}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -220,19 +243,19 @@ export async function handleStudyRoll(app) {
                                         ? `
                                         <div style="${headerStyle}">
                                             <span style="${headerText}">
-                                                <strong>Weapons</strong>
+                                                <strong>${game.i18n.localize(`FU.Weapons`)}</strong>
                                             </span>
                                         </div>
                                         <div class="weapon-content">
                                             <table>
                                                 <thead>
                                                     <tr>
-                                                        <th style="text-align: left;">Name</th>
-                                                        <th style="text-align: center;">Accuracy</th>
-                                                        <th style="text-align: center;">Damage</th>
-                                                        <th style="text-align: center;">Damage Type</th>
-                                                        <th style="text-align: left;">Description</th>
-                                                        <th style="text-align: left;">Quality</th>
+                                                        <th style="text-align: left;">${game.i18n.localize(`FU.Name`)}</th>
+                                                        <th style="text-align: center;">${game.i18n.localize(`FU.Accuracy`)}</th>
+                                                        <th style="text-align: center;">${game.i18n.localize(`FU.Damage`)}</th>
+                                                        <th style="text-align: center;">${game.i18n.localize(`FU.DamageType`)}</th>
+                                                        <th style="text-align: left;">${game.i18n.localize(`FU.Description`)}</th>
+                                                        <th style="text-align: left;">${game.i18n.localize(`FU.Quality`)}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -248,19 +271,19 @@ export async function handleStudyRoll(app) {
                                         ? `
                                         <div style="${headerStyle}">
                                             <span style="${headerText}">
-                                                <strong>Spells</strong>
+                                                <strong>${game.i18n.localize(`FU.Spells`)}</strong>
                                             </span>
                                         </div>
                                         <div class="spell-content">
                                             <table>
                                                 <thead>
                                                     <tr>
-                                                        <th style="text-align: left;">Name</th>
-                                                        <th style="text-align: center;">Accuracy</th>
-                                                        <th style="text-align: center;">Damage</th>
-                                                        <th style="text-align: center;">Damage Type</th>
-                                                        <th style="text-align: left;">Description</th>
-                                                        <th style="text-align: left;">Opportunity</th>
+                                                        <th style="text-align: left;">${game.i18n.localize(`FU.Name`)}</th>
+                                                        <th style="text-align: center;">${game.i18n.localize(`FU.Accuracy`)}</th>
+                                                        <th style="text-align: center;">${game.i18n.localize(`FU.Damage`)}</th>
+                                                        <th style="text-align: center;">${game.i18n.localize(`FU.DamageType`)}</th>
+                                                        <th style="text-align: left;">${game.i18n.localize(`FU.Description`)}</th>
+                                                        <th style="text-align: left;">${game.i18n.localize(`FU.Opportunity`)}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -290,10 +313,10 @@ export async function handleStudyRoll(app) {
 
                         const folderName = optionStudySavePath;
                         const folder = folderName ? game.folders.find(f => f.name === folderName && f.type === "JournalEntry") || await Folder.create({ name: folderName, type: "JournalEntry", parent: null }) : null;
-                        const folderId = folder?.id || null;      
-                        
+                        const folderId = folder?.id || null;
+
                         const imgSrc = this.actor.img;
-                        let tableContent = difficulty === 'Failed' ? '' : makeTable(this.actor, difficulty);                  
+                        let tableContent = difficulty === 'Failed' ? '' : makeTable(this.actor, difficulty);
 
                         const entry = await JournalEntry.create({
                             name: this.actor.name,
@@ -326,7 +349,7 @@ export async function handleStudyRoll(app) {
                         });
 
                         const entryLink = `@JournalEntry[${entry.id}]{${entry.name}}`;
-                        let msg = (replacement ? `Journal updated for ` : `You've learned more information about the `) + `${entryLink}.`;
+                        let msg = (replacement ? update : update2) + `${entryLink}.`;
 
                         ChatMessage.create({
                             speaker: ChatMessage.getSpeaker({
@@ -337,9 +360,7 @@ export async function handleStudyRoll(app) {
                     },
                 },
 
-                cancel: {
-                    label: 'Cancel',
-                },
+                cancel: { label: game.i18n.localize(`FU.Cancel`) }
             },
             default: 'ok',
         },
