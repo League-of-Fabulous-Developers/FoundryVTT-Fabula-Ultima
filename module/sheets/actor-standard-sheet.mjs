@@ -662,6 +662,22 @@ export class FUStandardActorSheet extends ActorSheet {
 			await onRest(this.actor, isRightClick);
 		});
 
+		async function hpCrisis(actor) {
+			const maxHP = actor.system.resources.hp.max;
+			const crisisHP = Math.ceil(maxHP / 2);
+
+			const updateData = {
+				'system.resources.hp.value': crisisHP
+			};
+
+			await actor.update(updateData);
+			actor.sheet.render(true);
+		}
+
+		html.find('.crisisHP').on('click', async (ev) => {
+			await hpCrisis(this.actor);
+		});
+
 		// Check if bonds object exists, if not, initialize
 		const bonds = this.actor.system.resources.bonds;
 		if (!bonds) {
