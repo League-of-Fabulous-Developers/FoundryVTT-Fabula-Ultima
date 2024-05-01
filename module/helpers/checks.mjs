@@ -340,6 +340,7 @@ export async function rerollCheck(params, reroll) {
 	check.reroll = reroll;
 	await handleReroll(check);
 	handleDamage(check);
+    handleTargets(check);
 
 	return check;
 }
@@ -482,6 +483,7 @@ async function pushCheck(params, push) {
 	check.push = push;
 
 	await handlePush(check);
+    handleTargets(check);
 
 	return check;
 }
