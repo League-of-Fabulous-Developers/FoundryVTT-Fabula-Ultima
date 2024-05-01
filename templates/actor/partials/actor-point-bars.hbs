@@ -38,9 +38,9 @@
                 }}" aria-describedby="tooltip">
             <div class="resource-label-l resource-content flex-group-center">
                 {{#if (lte system.resources.hp.value (half system.resources.hp.max))}}
-                <i class="fas fa-caret-up is-crisis float-text"></i>
+                <i class="fas fa-caret-up is-crisis crisisHP float-text"></i>
                 {{else}}
-                <i class="fas fa-caret-up"></i>
+                <i class="fas fa-caret-up crisisHP"></i>
                 {{/if}}
             </div>
         </span>
