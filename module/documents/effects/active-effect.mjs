@@ -32,14 +32,24 @@ export function onRenderActiveEffectConfig(sheet, html) {
  * @param delta
  */
 export function onApplyActiveEffect(actor, change, current, delta) {
-	if (change.key.startsWith("system.") && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, delta) && current[delta] instanceof Function) {
-        console.debug(`applying ${delta} to ${change.key}`)
+	if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, delta) && current[delta] instanceof Function) {
+		console.debug(`applying ${delta} to ${change.key}`);
 		current[delta]();
 		return false;
 	}
 }
 
-const PRIORITY_CHANGES = ['system.resources.hp.bonus', 'system.resources.hp.attribute', 'system.resources.mp.bonus', 'system.resources.mp.attribute', 'system.resources.ip.bonus'];
+const PRIORITY_CHANGES = [
+	'system.resources.hp.bonus',
+	'system.resources.hp.attribute',
+	'system.resources.mp.bonus',
+	'system.resources.mp.attribute',
+	'system.resources.ip.bonus',
+	'system.attributes.dex.base',
+	'system.attributes.ins.base',
+	'system.attributes.mig.base',
+	'system.attributes.wlp.base',
+];
 
 export class FUActiveEffect extends ActiveEffect {
 	static get TEMPORARY_FLAG() {
@@ -83,8 +93,10 @@ export class FUActiveEffect extends ActiveEffect {
 		super.prepareBaseData();
 		for (let change of this.changes) {
 			if (PRIORITY_CHANGES.includes(change.key)) {
-				change.priority = change.mode;
-			}
+                change.priority = change.mode;
+            } else {
+                change.priority = (change.mode + 1) * 10;
+            }
 		}
 	}
 

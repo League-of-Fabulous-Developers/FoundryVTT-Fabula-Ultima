@@ -23,29 +23,38 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 
 	_initialize(options = {}) {
 		super._initialize(options);
+        let thiz = this;
+		let holder = {
+            get current() {
+                return thiz.base
+            },
+            set current(value) {
+                delete this.current;
+                this.current = value;
+            }
+        };
 
-		let current = this.base;
 		Object.defineProperty(this, 'current', {
 			configurable: false,
 			enumerable: true,
 			get() {
-				const value = 2 * Math.floor(current / 2);
+				const value = 2 * Math.floor(holder.current / 2);
 				return MathHelper.clamp(value, 6, 12);
 			},
 			set(newValue) {
-				current = newValue;
+				holder.current = newValue;
 			},
 		});
 
 		Object.defineProperty(this, 'upgrade', {
 			value: () => {
-				current += 2;
+				holder.current += 2;
 			},
 		});
 
 		Object.defineProperty(this, 'downgrade', {
 			value: () => {
-				current -= 2;
+				holder.current -= 2;
 			},
 		});
 	}

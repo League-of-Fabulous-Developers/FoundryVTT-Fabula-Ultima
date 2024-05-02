@@ -5,8 +5,9 @@
         <label class="flexlarge align-left" data-label="{{ attribute.label }}">
             <span class="resource-label-sm">{{ attribute.abbr }}</span>
         </label>
-        <select class="resource-inputs" data-dtype="Number" value="{{ attribute.base }}"
-            name="system.attributes.{{ key }}.base">
+        <select class="resource-inputs" data-dtype="Number"
+            name="system.attributes.{{ key }}.base"
+            {{#if (lookup (lookup @root.actor.overrides.system.attributes key) "base")}}disabled data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}>
             {{#select attribute.base}}
             <option value="6">d6</option>
             <option value="8">d8</option>
