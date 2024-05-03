@@ -944,6 +944,11 @@
         "StudyTotalField": "Enter Study Check total:",
         "DialogDeleteItemTitle": "Delete {item}?",
         "DialogDeleteItemDescription": "Do you really want to delete <strong>{item}</strong>? This action cannot be undone.",
-        "DisabledByActiveEffect": "You cannot change this value while an Active Effect modifies it."
+        "DisabledByActiveEffect": "You cannot change this value while an Active Effect modifies it.",
+        "InlineEffectConfigCapAttribute": "Cap Attribute to Base",
+        "InlineEffectConfigApplyVulnerability": "Apply Vulnerability",
+        "InlineEffectConfigGrantImmunity": "Grant Immunity",
+        "InlineEffectConfigGrantAbsorption": "Grant Absorption",
+        "InlineEffectConfigBuffDefenses": "Improve Defenses"
     }
 }

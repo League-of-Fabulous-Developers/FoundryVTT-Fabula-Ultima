@@ -1,0 +1,14 @@
+<div>
+    <label>
+        <span class="d-block">{{localize "FU.InlineEffectConfigImproveDefensesDefense"}}</span>
+        <select name="guided.changes.{{@index}}.defense" class="w-100">
+            {{selectOptions templateData.defenses selected=defense localize=true labelAttr="name"}}
+        </select>
+    </label>
+</div>
+<div>
+    <label>
+        <span class="d-block">{{localize "FU.InlineEffectConfigImproveDefensesValue"}}</span>
+        <input type="number" name="guided.changes.{{@index}}.value" value="{{#if value includeZero=true}}{{value}}{{else}}0{{/if}}">
+    </label>
+</div>

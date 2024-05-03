@@ -187,16 +187,18 @@ export const InlineEffects = {
 
 /*
 possible changes from official effects:
-- improve attributes (add)
-- grant resistance (add)
-- upgrade def/mdef (upgrade)
-- apply vulnerability (override)
+- improve attributes (custom) ✔
+- cap attribute (downgrade) ✔
+- grant extra damage (add) -> missing generic damage ✔
+- improve accuracy (add) -> missing generic accuracy ✔
+- upgrade def/mdef (upgrade) ✔
+- grant resistance (custom) ✔
+- apply vulnerability (custom) ✔
+- grant immunity (upgrade) ✔
+- grant absorption (custom) ✔
 - grant status immunity (override)
 - change attack damage type (override)
 - grant additional actions (add) -> missing data field
-- improve accuracy (add) -> missing generic accuracy
-- cap attribute (downgrade)
-- grant extra damage (add) -> missing generic damage
 - lower crit threshold (override) -> not yet supported
  */
 /**
@@ -207,14 +209,16 @@ possible changes from official effects:
  * @property {(Object) => EffectChangeData | EffectChangeData[]} toChange
  */
 
+const damageTypes = (({ untyped, ...rest }) => rest)(FU.damageTypes);
+
 /**
  *
  * @type {Record<string, GuidedInlineEffectChangeTemplate>}
  */
 const SUPPORTED_CHANGE_TYPES = {
-	attribute: {
+	improveAttribute: {
 		label: 'FU.InlineEffectConfigImproveAttribute',
-		template: 'systems/projectfu/templates/app/partials/inline-effect-config-improve-attribute.hbs',
+		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-attribute.hbs',
 		templateData: {
 			attributes: FU.attributes,
 		},
@@ -224,16 +228,16 @@ const SUPPORTED_CHANGE_TYPES = {
 			value: 'upgrade',
 		}),
 	},
-	resistance: {
-		label: 'FU.InlineEffectConfigGrantResistance',
-		template: 'systems/projectfu/templates/app/partials/inline-effect-config-grant-resistance.hbs',
+	capAttribute: {
+		label: 'FU.InlineEffectConfigCapAttribute',
+		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-attribute.hbs',
 		templateData: {
-			damageTypes: (({ untyped, ...rest }) => rest)(FU.damageTypes),
+			attributes: FU.attributes,
 		},
-		toChange: ({ damageType }) => ({
-			key: `system.affinities.${damageType}`,
-			mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
-			value: 'upgrade',
+		toChange: ({ attribute }) => ({
+			key: `system.attributes.${attribute}.current`,
+			mode: CONST.ACTIVE_EFFECT_MODES.DOWNGRADE,
+			value: `@system.attributes.${attribute}.base`,
 		}),
 	},
 	damage: {
@@ -264,7 +268,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-accuracy.hbs',
 		templateData: {
 			checks: {
-				all: 'FU.InlineEffectConfigModifyAccuracyChecksAll',
+				accuracyAndMagic: 'FU.InlineEffectConfigModifyAccuracyChecksAll',
 				accuracyCheck: 'FU.InlineEffectConfigModifyAccuracyChecksAccuracy',
 				magicCheck: 'FU.InlineEffectConfigModifyAccuracyChecksMagic',
 			},
@@ -276,11 +280,71 @@ const SUPPORTED_CHANGE_TYPES = {
 				value,
 			});
 
-			if (check === 'all') {
+			if (check === 'accuracyAndMagic') {
 				return [createChange('accuracyCheck', value), createChange('magicCheck', value)];
 			}
 			return createChange(check, value);
 		},
+	},
+	improveDefenses: {
+		label: 'FU.InlineEffectConfigBuffDefenses',
+		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-defenses.hbs',
+		templateData: {
+			defenses: FU.defenses,
+		},
+		toChange: ({ defense, value }) => ({
+			key: `system.derived.${defense}.value`,
+			mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
+			value: value,
+		}),
+	},
+	vulnerability: {
+		label: 'FU.InlineEffectConfigApplyVulnerability',
+		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
+		templateData: {
+			damageTypes: damageTypes,
+		},
+		toChange: ({ damageType }) => ({
+			key: `system.affinities.${damageType}`,
+			mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+			value: 'downgrade',
+		}),
+	},
+	resistance: {
+		label: 'FU.InlineEffectConfigGrantResistance',
+		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
+		templateData: {
+			damageTypes: damageTypes,
+		},
+		toChange: ({ damageType }) => ({
+			key: `system.affinities.${damageType}`,
+			mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+			value: 'upgrade',
+		}),
+	},
+	immunity: {
+		label: 'FU.InlineEffectConfigGrantImmunity',
+		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
+		templateData: {
+			damageTypes: damageTypes,
+		},
+		toChange: ({ damageType }) => ({
+			key: `system.affinities.${damageType}.current`,
+			mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
+			value: String(FU.affValue.immunity),
+		}),
+	},
+	absorption: {
+		label: 'FU.InlineEffectConfigGrantAbsorption',
+		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
+		templateData: {
+			damageTypes: damageTypes,
+		},
+		toChange: ({ damageType }) => ({
+			key: `system.affinities.${damageType}.current`,
+			mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
+			value: String(FU.affValue.absorption),
+		}),
 	},
 };
 
@@ -336,7 +400,11 @@ class InlineEffectConfiguration extends FormApplication {
 	}
 
 	async _updateObject(event, formData) {
-		this.object = foundry.utils.expandObject(formData);
+		formData = foundry.utils.expandObject(formData);
+		if (formData.type === 'guided' && formData.type !== this.object.type) {
+			formData.guided ??= { changes: [{ type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) }] };
+		}
+		this.object = formData;
 		if (this.object?.guided?.changes) {
 			this.object.guided.changes = Array.from(Object.values(this.object.guided.changes));
 		}
