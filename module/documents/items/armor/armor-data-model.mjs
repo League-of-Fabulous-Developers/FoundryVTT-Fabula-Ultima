@@ -1,5 +1,5 @@
-import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs';
-import {IsEquippedDataModel} from '../common/is-equipped-data-model.mjs';
+import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
+import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
 
 /**
  * @property {string} subtype.value
@@ -46,5 +46,11 @@ export class ArmorDataModel extends foundry.abstract.TypeDataModel {
 				}),
 			}),
 		};
+	}
+
+	prepareBaseData() {
+		if (this.isMartial.value) {
+			this.attributes.primary.value = '';
+		}
 	}
 }

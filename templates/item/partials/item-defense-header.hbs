@@ -5,7 +5,7 @@
     <span>
         {{#if (eq item.type "armor")}}
         <select value="{{ system.attributes.primary.value }}" name="system.attributes.primary.value"
-            class="resource-inputs select-dropdown">
+            class="resource-inputs select-dropdown" {{#if system.isMartial.value}}disabled{{/if}}>
             {{selectOptions attrAbbr selected=system.attributes.primary.value blank='-' sort=true localize=true}}
         </select>
         {{/if}}

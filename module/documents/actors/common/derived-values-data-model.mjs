@@ -54,12 +54,8 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				equipmentMdef += shield.system.mdef.value;
 			});
 
-		let defCalculation = function () {
-			return attributes.dex.current + equipmentDef + data.def.bonus;
-		};
-		let mdefCalculation = function () {
-			return attributes.ins.current + equipmentMdef + data.mdef.bonus;
-		};
+		let defCalculation;
+		let mdefCalculation;
 
 		// Find the equipped armor
 		/** @type FUItem */
@@ -67,24 +63,25 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		if (armor) {
 			/** @type ArmorDataModel */
 			const armorData = armor.system;
-			if (armorData.isMartial.value) {
-				defCalculation = function () {
-					return armorData.def.value + equipmentDef + data.def.bonus;
-				};
-				mdefCalculation = function () {
-					return armorData.mdef.value + equipmentMdef + data.mdef.bonus;
-				};
-			} else {
-				equipmentDef += armorData.def.value;
-				equipmentMdef += armorData.mdef.value;
-				defCalculation = function () {
-					return attributes[armorData.attributes.primary.value].current + equipmentDef + data.def.bonus;
-				};
-				mdefCalculation = function () {
-					return attributes[armorData.attributes.secondary.value].current + equipmentMdef + data.mdef.bonus;
-				};
-			}
-		}
+
+			equipmentDef += armorData.def.value;
+			equipmentMdef += armorData.mdef.value;
+
+			defCalculation = function () {
+				return (attributes[armorData.attributes.primary.value]?.current ?? 0) + equipmentDef + data.def.bonus;
+			};
+			mdefCalculation = function () {
+				return (attributes[armorData.attributes.secondary.value]?.current ?? 0) + equipmentMdef + data.mdef.bonus;
+			};
+		} else {
+             defCalculation = function () {
+                return attributes.dex.current + equipmentDef + data.def.bonus;
+            };
+             mdefCalculation = function () {
+                return attributes.ins.current + equipmentMdef + data.mdef.bonus;
+            };
+
+        }
 
 		Object.defineProperty(this.def, 'value', {
 			configurable: true,
