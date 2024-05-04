@@ -31,7 +31,7 @@ import { createCheckMessage, rollCheck } from './checks.mjs';
  * @typedef SupportCheckFlag
  * @property {string} groupCheckId
  * @property {string} supporterId
- * @property {string} supporterName
+ * @property {number} difficulty
  * @property {boolean} result
  * @property {("Admiration"|"Inferiority"|"Loyalty"|"Mistrust"|"Affection"|"Hatred")[]} [bond]
  */
@@ -74,7 +74,7 @@ async function handleSupportCheck(groupCheck) {
 		bond = await Dialog.prompt({
 			title: game.i18n.localize('FU.GroupCheckBondDialogTitle'),
 			label: game.i18n.localize('FU.GroupCheckBondDialogLabel'),
-			options: { classes: ["unique-dialog", "backgroundstyle"] },
+			options: { classes: ['unique-dialog', 'backgroundstyle'] },
 			content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
 				leader: game.actors.get(groupCheck.leader).name,
 				bonds,
@@ -115,7 +115,7 @@ async function handleSupportCheck(groupCheck) {
 	const supportCheckFlag = {
 		groupCheckId: groupCheck.id,
 		supporterId: character.id,
-		result: check.result.crit || check.result.total >= groupCheck.difficulty.support,
+		difficulty: groupCheck.difficulty.support,
 		bond: bond,
 	};
 	await createCheckMessage(check, {
@@ -123,6 +123,27 @@ async function handleSupportCheck(groupCheck) {
 			[Flags.ChatMessage.SupportCheck]: supportCheckFlag,
 		},
 	});
+}
+
+Hooks.on('preCreateChatMessage', handleSupportCheckResults);
+
+/**
+ * @param {ChatMessage} message
+ */
+function handleSupportCheckResults(message) {
+	const check = message.flags[SYSTEM]?.[Flags.ChatMessage.CheckParams];
+	const support = message.flags[SYSTEM]?.[Flags.ChatMessage.SupportCheck];
+	if (check && support) {
+		message.updateSource({
+			flags: {
+				[SYSTEM]: {
+					[Flags.ChatMessage.SupportCheck]: {
+						result: check.result.crit || check.result.total >= support.difficulty,
+					},
+				},
+			},
+		});
+	}
 }
 
 /**
@@ -196,7 +217,7 @@ export class GroupCheck extends Application {
 			groupCheck = await Dialog.prompt({
 				title: game.i18n.localize('FU.DialogGroupCheckTitle'),
 				label: game.i18n.localize('FU.DialogGroupCheckLabel'),
-				options: { classes: ["unique-dialog", "backgroundstyle"] },
+				options: { classes: ['unique-dialog', 'backgroundstyle'] },
 				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check.hbs', {
 					attributes: FU.attributes,
 					difficulty: {
@@ -284,7 +305,7 @@ export class GroupCheck extends Application {
 			width: 300,
 			height: 500,
 			title: game.i18n.localize('FU.GroupCheck'),
-			classes: ["unique-dialog", "backgroundstyle"],
+			classes: ['unique-dialog', 'backgroundstyle'],
 		});
 	}
 
@@ -368,7 +389,7 @@ export class GroupCheck extends Application {
 		if (!options.roll) {
 			const cancel = await Dialog.confirm({
 				title: game.i18n.localize('FU.GroupCheckCancelDialogTitle'),
-				options: { classes: ["unique-dialog", "backgroundstyle"] },
+				options: { classes: ['unique-dialog', 'backgroundstyle'] },
 				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs'),
 				rejectClose: false,
 			});
@@ -429,6 +450,7 @@ export class GroupCheck extends Application {
 			if (!data.supporters.find((value) => value.messageId === message.id)) {
 				/** @type SupportCheckFlag */
 				const flag = message.getFlag(SYSTEM, Flags.ChatMessage.SupportCheck);
+				data.supporters = data.supporters.filter((value) => value.id !== flag.supporterId);
 				data.supporters.push({
 					messageId: message.id,
 					id: flag.supporterId,
@@ -442,15 +464,16 @@ export class GroupCheck extends Application {
 
 	/**
 	 * @param {ChatMessage} message
-	 * @param {jQuery} jQuery
 	 */
-	handleSupportCheck(message, jQuery) {
+	handleSupportCheck(message) {
 		/**
 		 * @type SupportCheckFlag
 		 */
 		const supportCheck = message.getFlag(SYSTEM, Flags.ChatMessage.SupportCheck);
 		const flag = this.groupCheckData;
 		if (supportCheck && supportCheck.groupCheckId === this.#groupCheckId && !flag.supporters.find((value) => value.messageId === message.id)) {
+			flag.supporters = flag.supporters.filter((value) => value.id !== supportCheck.supporterId);
+
 			flag.supporters.push({
 				id: supportCheck.supporterId,
 				messageId: message.id,
