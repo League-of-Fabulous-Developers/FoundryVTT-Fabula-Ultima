@@ -347,6 +347,7 @@
         "BenefitRanged": "Proeficiência com Arma à Distância Marcial",
         "BenefitArmor": "Proeficiência com Armadura Marcial",
         "BenefitShields": "Proeficiência com Escudo Marcial",
+        "Cover": "Dar cobertura",
         "Slow": "Lento",
         "Dazed": "Confuso",
         "Weak": "Fraco",
@@ -354,6 +355,7 @@
         "Enraged": "Furioso",
         "Flying": "Voando",
         "Poisoned": "Envenenado",
+        "CoverRule": "Até o início do seu próximo turno:<ul><li>Você está <b>coberto</b> por outra criatura, o que impede que inimigos realizem ataques corpo-a-corpo contra você.</li></ul>",
         "SlowRule": "Reduza o dado de Destreza em 1.",
         "DazedRule": "Reduza o dado de Intuição em 1.",
         "WeakRule": "Reduza o dado de Vigor em 1.",
@@ -410,10 +412,10 @@
         "AttackRule": "Você realiza um ataque corpo-a-corpo ou à distância",
         "SpellRule": "Você conjura um <b>feitiço</b> que você tenha aprendido.",
         "EquipmentRule": "Troque qualquer número de itens equipados com qualquer número de itens em seu inventário (exceto por <b>Armor</b>)",
-        "GuardRule": "Apenas <b>uma vez por turno</b>. Até o início do seu próximo turno:<ul><li>Você ganha <b>Resistência</b> a todos os tipos de dano.</li><li>Você ganha +2 de bônus em Testes Opostos.</li> <li>Você pode <b>dar cobertura</b> a outra criatura e impedir que inimigos realizem ataques corpo-a-corpo contra ela.</li></ul>",
+        "GuardRule": "Apenas <b>uma vez por turno</b>. Até o início do seu próximo turno:<ul><li>Você ganha <b>Resistência</b> a todos os tipos de dano.</li><li>Você ganha +2 de bônus em Testes Opostos.</li> <li>Você pode <b>@EFFECT[cover]</b> a outra criatura e impedir que inimigos realizem ataques corpo-a-corpo contra ela.</li></ul>",
         "StudyRule": "Você tenta obter informações sobre alguém ou alguma coisa. Geralmente um Teste Genérico <b>【INT + INT】</b>. Não é possível fazer a mesma pergunta duas vezes.",
         "InventoryRule": "Gaste Pontos de Inventário para produzir e usar imediatamente um item consumível.",
-        "HinderRule": "Você realiza uma Verificação (ND 10) contra um oponente. Se você tiver sucesso, inflija <b>Dazed, Shaken, Slow ou Weak</b> contra eles.",
+        "HinderRule": "Você realiza uma Verificação (ND 10) contra um oponente. Se você tiver sucesso, inflija <b>@EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow] ou @EFFECT[weak]</b>. contra eles.",
         "ObjectiveRule": "Trabalhe para cumprir um objetivo dentro do conflito. Requer um Teste de Atributo ou Teste Oposto. Metas complexas geralmente exigem um relógio.",
         "SkillRule": "Algumas Habilidades exigem que você gaste uma Ação. Fora de combate, as habilidades geralmente requerem de 5 a 10 segundos.",
         "MaxLevel": "Nível Máximo",
@@ -943,6 +945,14 @@
         "StudyResultThree": "Ataque Básico e Feitiços",
         "StudyTotalField": "Introduza o valor total do Teste de Estudo:",
         "DialogDeleteItemTitle": "Deletar {item}?",
-        "DialogDeleteItemDescription": "Você realmente quer deletar <strong>{item}</strong>? Essa ação não poderá ser desfeita."
-    }
+        "DialogDeleteItemDescription": "Você realmente quer deletar <strong>{item}</strong>? Essa ação não poderá ser desfeita.",
+        "DisabledByActiveEffect": "You cannot change this value while an Active Effect modifies it.",
+        "InlineEffectConfigCapAttribute": "Cap Attribute to Base",
+        "InlineEffectConfigApplyVulnerability": "Apply Vulnerability",
+        "InlineEffectConfigGrantImmunity": "Grant Immunity",
+        "InlineEffectConfigGrantAbsorption": "Grant Absorption",
+        "InlineEffectConfigBuffDefenses": "Improve Defenses",
+        "InlineEffectConfigImproveDefensesDefense": "Defense Type",
+        "InlineEffectConfigImproveDefensesValue": "Improve to:"
+      }
 }

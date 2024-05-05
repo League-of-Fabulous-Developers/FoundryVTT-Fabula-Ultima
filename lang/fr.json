@@ -347,6 +347,7 @@
         "BenefitRanged": "Maîtrise des armes martiales à distance",
         "BenefitArmor": "Maîtrise des armures martiales",
         "BenefitShields": "Maîtrise des boucliers martiaux",
+        "Cover": "Couvrir",
         "Slow": "Ralenti",
         "Dazed": "Etourdi",
         "Weak": "Affaibli",
@@ -354,6 +355,7 @@
         "Enraged": "Enragé",
         "Flying": "Volant",
         "Poisoned": "Empoisonné",
+        "CoverRule": "Jusqu'au début de votre prochain tour :<ul><li>Vous êtes <b>couvert</b> par une autre créature, ce qui empêche les ennemis d'effectuer des attaques de corps à corps contre vous.\n</li></ul>",
         "SlowRule": "Réduisez la taille du dé de Dextérité de 1.",
         "DazedRule": "Réduisez la taille du dé d'Intuition de 1.",
         "WeakRule": "Réduisez la taille du dé de Puissance de 1.",
@@ -410,10 +412,10 @@
         "AttackRule": "Vous effectuez une attaque au corps à corps ou à distance.",
         "SpellRule": "Vous lancez l'un des <b>sorts</b> que vous avez appris.",
         "EquipmentRule": "Échangez n'importe quel nombre d'objets équipés avec n'importe quel nombre d'objets dans votre sac à dos (sauf <b>Armure</b>).",
-        "GuardRule": "Seulement <b>une fois par tour</b>. Jusqu'au début de votre prochain tour :<ul><li>Vous gagnez <b>Résistance</b> à tous les types de dégâts.</li><li>Vous gagnez un bonus de +2 aux Tests Opposés.</li> <li>Vous pouvez <b>couvrir</b> une autre créature et empêcher les ennemis d'effectuer des attaques de de corps à corps contre elle.</li></ul>",
+        "GuardRule": "Seulement <b>une fois par tour</b>. Jusqu'au début de votre prochain tour :<ul><li>Vous gagnez <b>Résistance</b> à tous les types de dégâts.</li><li>Vous gagnez un bonus de +2 aux Tests Opposés.</li> <li>Vous pouvez <b>@EFFECT[cover]</b> une autre créature et empêcher les ennemis d'effectuer des attaques de de corps à corps contre elle.</li></ul>",
         "StudyRule": "Vous essayez d'obtenir des informations sur quelqu'un ou quelque chose. Généralement un test ouvert <b>【INT + INT】</b>. Vous ne pouvez pas poser deux fois la même question.",
         "InventoryRule": "Dépensez des points d'inventaire pour sortir et utiliser immédiatement un objet consommable.",
-        "HinderRule": "Vous effectuez un test (ND 10) contre un adversaire. Si vous réussissez, infligez-lui <b>Étourdi, Traumatisé, Ralenti ou Affaibli</b>.",
+        "HinderRule": "Vous effectuez un test (ND 10) contre un adversaire. Si vous réussissez, infligez-lui <b>@EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow] ou @EFFECT[weak]</b>.",
         "ObjectiveRule": "Travailler à atteindre un objectif dans le cadre du conflit. Nécessite une test d’attribut ou un test opposée. Les objectifs complexes nécessitent souvent un cadran.",
         "SkillRule": "Certaines compétences nécessitent de dépenser une action. Hors combat, les compétences nécessitent généralement 5 à 10 secondes.",
         "MaxLevel": "Niveau maximum",
@@ -943,6 +945,14 @@
         "StudyResultThree": "Attaque de base et Sorts.",
         "StudyTotalField": "Entrer le résultat du jet d'analyse :",
         "DialogDeleteItemTitle": "Supprimer {item}?",
-        "DialogDeleteItemDescription": "Voulez-vous vraiment supprimer <strong>{item}</strong> ? Cette action ne peut être annulée."
-    }
+        "DialogDeleteItemDescription": "Voulez-vous vraiment supprimer <strong>{item}</strong> ? Cette action ne peut être annulée.",
+        "DisabledByActiveEffect": "Vous ne pouvez pas modifier cette valeur pendant qu'un effet actif la modifie.",
+        "InlineEffectConfigCapAttribute": "Limiter l'Attribut à la valeure de Base",
+        "InlineEffectConfigApplyVulnerability": "Appliquer la Vulnérabilité",
+        "InlineEffectConfigGrantImmunity": "Accorder l'Immunité",
+        "InlineEffectConfigGrantAbsorption": "Accorder l'Absorption",
+        "InlineEffectConfigBuffDefenses": "Améliorer la Défense",
+        "InlineEffectConfigImproveDefensesDefense": "Type de Défense",
+        "InlineEffectConfigImproveDefensesValue": "Augmente de :"
+      }
 }

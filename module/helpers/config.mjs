@@ -174,6 +174,7 @@ FU.actionRule = {
 
 FU.statusEffects = {
 	crisis: 'FU.Crisis',
+	cover: 'FU.Cover',
 	guard: 'FU.Guard',
 	slow: 'FU.Slow',
 	dazed: 'FU.Dazed',
@@ -193,6 +194,7 @@ FU.statusEffects = {
 
 FU.statusEffectRule = {
 	crisis: 'FU.CrisisRule',
+	cover: 'FU.CoverRule',
 	guard: 'FU.GuardRule',
 	slow: 'FU.SlowRule',
 	dazed: 'FU.DazedRule',

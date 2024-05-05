@@ -24,6 +24,12 @@ export const statusEffects = [
 		statuses: ['berserk'],
 	},
 	{
+		id: 'cover',
+		name: 'FU.Cover',
+		icon: 'systems/projectfu/styles/static/statuses/Cover.webp',
+		statuses: ['cover'],
+	},
+	{
 		id: 'dazed',
 		name: 'FU.Dazed',
 		icon: 'systems/projectfu/styles/static/statuses/Dazed.webp',

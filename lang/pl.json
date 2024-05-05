@@ -347,6 +347,7 @@
         "BenefitRanged": "",
         "BenefitArmor": "",
         "BenefitShields": "",
+        "Cover": "",
         "Slow": "",
         "Dazed": "",
         "Weak": "",
@@ -354,6 +355,7 @@
         "Enraged": "",
         "Flying": "",
         "Poisoned": "",
+        "CoverRule": "",
         "SlowRule": "",
         "DazedRule": "",
         "WeakRule": "",
@@ -943,6 +945,14 @@
         "StudyResultThree": "",
         "StudyTotalField": "",
         "DialogDeleteItemTitle": "",
-        "DialogDeleteItemDescription": ""
-    }
+        "DialogDeleteItemDescription": "",
+        "DisabledByActiveEffect": "",
+        "InlineEffectConfigCapAttribute": "",
+        "InlineEffectConfigApplyVulnerability": "",
+        "InlineEffectConfigGrantImmunity": "",
+        "InlineEffectConfigGrantAbsorption": "",
+        "InlineEffectConfigBuffDefenses": "",
+        "InlineEffectConfigImproveDefensesDefense": "",
+        "InlineEffectConfigImproveDefensesValue": ""
+      }
 }

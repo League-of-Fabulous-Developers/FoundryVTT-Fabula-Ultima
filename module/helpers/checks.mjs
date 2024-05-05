@@ -624,9 +624,9 @@ async function EnrichHTML(htmlContent) {
 export async function createChatMessage(checkParams, additionalFlags = {}) {
 	const content = checkParams.description
 		? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
-				flavor: checkParams.details?.name || '',
-				description: await EnrichHTML(checkParams.description),
-		  })
+			flavor: checkParams.details?.name || '',
+			description: await EnrichHTML(checkParams.description),
+		})
 		: '';
 
 	/** @type Partial<ChatMessageData> */
@@ -769,11 +769,106 @@ export async function promptCheck(actor, title) {
 			difficulty: difficulty,
 			speaker: speaker,
 		};
-		const rolledCheck = await rollCheck(params);
+        const rolledCheck = await rollCheck(params);
+        
+        const rollResult = rolledCheck.result.total;
+        return { rollResult, message: await createCheckMessage(rolledCheck) };
+    } catch (e) {
+        console.log(e);
+        return { rollResult: 0, message: null };
+    }
+}
 
-		return await createCheckMessage(rolledCheck);
-	} catch (e) {
-		console.log(e);
-		// TODO
-	}
+
+// TODO: Combine promptOpenCheck & promptCheck, conditionally render template and bonuses based on selected check option
+/**
+ * @param {FUActor} actor
+ * @param {string} title
+ * @returns {Promise<ChatMessage|Object>}
+ */
+export async function promptOpenCheck(actor, title, action) {
+	const recentChecks = JSON.parse(sessionStorage.getItem(KEY_RECENT_CHECKS) || '{}');
+	const recentActorChecks = recentChecks[actor.uuid] || (recentChecks[actor.uuid] = {});
+	try {
+		const attributes = actor.system.attributes;
+		const bonus = actor.system.bonuses.accuracy.opposedCheck
+		
+		const titleMain = title || 'FU.DialogCheckOpenCheck';
+		const labelHeader = '';
+
+		if (action === 'study') {
+			recentActorChecks.attr1 = 'ins';
+			recentActorChecks.attr2 = 'ins';
+		}
+
+		const { attr1, attr2, modifier } = await Dialog.wait(
+			{
+				title: game.i18n.localize(titleMain),
+				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-opencheck.hbs', {
+					attributes: FU.attributes,
+					attributeAbbr: FU.attributeAbbreviations,
+					attributeValues: Object.entries(attributes).reduce(
+						(previousValue, [attribute, { current }]) => ({
+							...previousValue,
+							[attribute]: current,
+						}),
+						{},
+					),
+					attr1: recentActorChecks.attr1 || 'mig',
+					attr2: recentActorChecks.attr2 || 'mig',
+					modifier: recentActorChecks.modifier || 0,
+					bonus: bonus
+				}),
+				buttons: [
+					{
+						icon: '<i class="fas fa-dice"></i>',
+						label: game.i18n.localize('FU.DialogCheckRoll'),
+						callback: (jQuery) => {
+							return {
+								attr1: jQuery.find('*[name=attr1]:checked').val(),
+								attr2: jQuery.find('*[name=attr2]:checked').val(),
+								modifier: +jQuery.find('*[name=modifier]').val(),
+							};
+						},
+					},
+				],
+			},
+			{
+				classes: ['unique-dialog', 'backgroundstyle'],
+			},
+		);
+
+		recentActorChecks.attr1 = attr1;
+		recentActorChecks.attr2 = attr2;
+		recentActorChecks.modifier = modifier;
+		sessionStorage.setItem(KEY_RECENT_CHECKS, JSON.stringify(recentChecks));
+
+		const speaker = ChatMessage.implementation.getSpeaker({ actor });
+
+		/**
+		 * @type CheckParameters
+		 */
+		let params = {
+			check: {
+				attr1: {
+					attribute: attr1,
+					dice: attributes[attr1].current,
+				},
+				attr2: {
+					attribute: attr2,
+					dice: attributes[attr2].current,
+				},
+				modifier: modifier + bonus,
+				title: title || 'FU.DialogCheckOpenCheck',
+			},
+			speaker: speaker,
+		};
+        const rolledCheck = await rollCheck(params);
+        
+        const rollResult = rolledCheck.result.total;
+        return { rollResult, message: await createCheckMessage(rolledCheck) };
+    } catch (e) {
+        console.log(e);
+        return { rollResult: 0, message: null };
+    }
 }

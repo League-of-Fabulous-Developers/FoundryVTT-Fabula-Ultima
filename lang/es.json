@@ -347,6 +347,7 @@
         "BenefitRanged": "Competencia en armas a distancia marciales",
         "BenefitArmor": "Cometencia en armaduras marciales",
         "BenefitShields": "Competencia en escudos marciales",
+        "Cover": "Cubrir",
         "Slow": "Ralentizado",
         "Dazed": "Confuso",
         "Weak": "Débil",
@@ -354,6 +355,7 @@
         "Enraged": "Furioso",
         "Flying": "Volando",
         "Poisoned": "Envenenado",
+        "CoverRule": "Hasta el comienzo de tu siguiente turno:<ul><li>Estás <b>cubierto</b> por otra criatura, lo que evita que los enemigos realicen ataques cuerpo a cuerpo contra ti.</li></ul>",
         "SlowRule": "Reduce dado de Destreza en 1",
         "DazedRule": "Reduce dado de Intuición en 1",
         "WeakRule": "Reduce dado de Vigor en 1",
@@ -410,10 +412,10 @@
         "AttackRule": "Realizas un ataque cuerpo a cuerpo o a distancia",
         "SpellRule": "Lanzas un <b>hechizo</b> que has aprendido",
         "EquipmentRule": "Cambias cualquier cantidad de objetos equipados por cualquier cantidad de objetos en tu mochila (excepto <b>Armadura</b>)",
-        "GuardRule": "Solo <b>una vez por turno</b>. Hasta el comienzo de tu siguiente turno:<ul><li>Ganas <b>Resistencia</b> a todos los tipos de daño. </li><li>Obtienes una bonificación de +2 a Tiradas Enfrentadas.</li><li>Puedes <b>cubrir</b> otra criatura y evitar que los enemigos realicen ataques cuerpo a cuerpo contra ella. </li></ul>",
+        "GuardRule": "Solo <b>una vez por turno</b>. Hasta el comienzo de tu siguiente turno:<ul><li>Ganas <b>Resistencia</b> a todos los tipos de daño. </li><li>Obtienes una bonificación de +2 a Tiradas Enfrentadas.</li><li>Puedes <b>@EFFECT[cover]</b> otra criatura y evitar que los enemigos realicen ataques cuerpo a cuerpo contra ella. </li></ul>",
         "StudyRule": "Intentas obtener información sobre alguien o algo. Normalmente una Tirada Abierta de <b> INT + INT </b>. No puedes hacer la misma pregunta dos veces.",
         "InventoryRule": "Gastar Puntos de Inventario para producir y usar inmediatamente un objeto consumible.",
-        "HinderRule": "Haces una Prueba (ND 10) contra un Oponente. Si tienes éxito, inflige <b>Aturdido, Confuso, Débil o Ralentizado</b> contra ellos.",
+        "HinderRule": "Haces una Prueba (ND 10) contra un Oponente. Si tienes éxito, inflige <b>@EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow] o @EFFECT[weak]</b> contra ellos. ",
         "ObjectiveRule": "Trabajar para lograr un Objetivo dentro del Conflicto. Requiere una prueba de Atributos o Enfrentada. Los objetivos complejos a menudo requieren un reloj.",
         "SkillRule": "Algunas habilidades requieren que realices una acción. Fuera del combate, las habilidades generalmente requieren 5-10 segundos.",
         "MaxLevel": "Nivel máximo",
@@ -943,6 +945,14 @@
         "StudyResultThree": "Ataque básico y Hechizos",
         "StudyTotalField": "Introduce el total de la tirada de Estudio:",
         "DialogDeleteItemTitle": "Borrar {item}?",
-        "DialogDeleteItemDescription": "¿Realmente quieres borrar <strong>{ítem}</strong>? Esta acción no se puede deshacer."
-    }
+        "DialogDeleteItemDescription": "¿Realmente quieres borrar <strong>{ítem}</strong>? Esta acción no se puede deshacer.",
+        "DisabledByActiveEffect": "No puedes cambiar este valor mientras un Efecto Activo lo modifica.",
+        "InlineEffectConfigCapAttribute": "Limitar Valor Máximo a valor básico.",
+        "InlineEffectConfigApplyVulnerability": "Aplicar Vulnerabilidad",
+        "InlineEffectConfigGrantImmunity": "Gana Inmunidad",
+        "InlineEffectConfigGrantAbsorption": "Gana Absorción",
+        "InlineEffectConfigBuffDefenses": "Mejorar Defensas",
+        "InlineEffectConfigImproveDefensesDefense": "Tipo de Defensa",
+        "InlineEffectConfigImproveDefensesValue": "Mejorar a: "
+      }
 }

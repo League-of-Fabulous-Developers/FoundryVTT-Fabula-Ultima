@@ -1,6 +1,8 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
-import { createChatMessage, promptCheck } from '../helpers/checks.mjs';
+import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/checks.mjs';
+import { actionHandler, createActionMessage } from '../helpers/action-handler.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
+// import { OpposedCheck } from '../helpers/opposed-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
 import { SETTINGS, SYSTEM } from '../settings.js';
 
@@ -1320,7 +1322,13 @@ export class FUStandardActorSheet extends ActorSheet {
 				return this._rollBehavior();
 			}
 			if (dataset.rollType === 'roll-check' || dataset.rollType === 'roll-init') {
-				return promptCheck(this.actor);
+				if (isShift) {
+					return promptOpenCheck(this.actor);
+				} else if (isCtrl) {
+					// OpposedCheck.promptCheck(this.actor, isShift);
+				} else {
+					return promptCheck(this.actor);
+				}
 			}
 			if (dataset.rollType === 'group-check') {
 				GroupCheck.promptCheck(this.actor, isShift);
@@ -1375,71 +1383,8 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Handle action-type rolls.
 		if (dataset.rollType === 'action-type') {
-			// Get the actor that owns the item
-			const actor = this.actor;
 			// Determine the type based on the data-action attribute
-			let action = '';
-			switch (dataset.action) {
-				case 'equipmentAction':
-					action = 'equipment';
-					break;
-				case 'guardAction':
-					action = 'guard';
-					if (isShift) {
-						event.preventDefault();
-						toggleGuardEffect(actor);
-						return;
-					}
-					break;
-				case 'hinderAction':
-					action = 'hinder';
-					if (isShift) {
-						event.preventDefault();
-						promptCheck(this.actor, 'FU.Hinder');
-						return;
-					}
-					break;
-				case 'inventoryAction':
-					action = 'inventory';
-					break;
-				case 'objectiveAction':
-					action = 'objective';
-					break;
-				case 'spellAction':
-					action = 'spell';
-					break;
-				case 'studyAction':
-					action = 'study';
-					if (isShift) {
-						event.preventDefault();
-						promptCheck(this.actor, 'FU.StudyRoll');
-						return;
-					}
-					break;
-				case 'skillAction':
-					action = 'skill';
-					break;
-				default:
-					action = 'default';
-					break;
-			}
-
-			// Create a new check message using createChatMessage
-			if (action !== 'default') {
-				const actionName = game.i18n.localize(CONFIG.FU.actionTypes[action] || action);
-				const actionRule = game.i18n.localize(CONFIG.FU.actionRule[action] || action);
-
-				let params = {
-					details: {
-						name: actionName,
-					},
-					description: actionRule,
-					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-				};
-
-				// Call the createChatMessage function
-				createChatMessage(params);
-			}
+			actionHandler(this, dataset.action, isShift)
 		}
 
 		// Handle rolls that supply the formula directly.
@@ -1485,22 +1430,5 @@ function shuffleArray(array) {
 		var temp = array[i];
 		array[i] = array[j];
 		array[j] = temp;
-	}
-}
-
-async function toggleGuardEffect(actor) {
-	const GUARD_EFFECT_ID = 'guard';
-	const guardEffect = CONFIG.statusEffects.find((effect) => effect.id === GUARD_EFFECT_ID);
-
-	const guardActive = actor.effects.some((effect) => effect.statuses.has('guard'));
-
-	if (guardActive) {
-		// Delete existing guard effects
-		actor.effects.filter((effect) => effect.statuses.has('guard')).forEach((effect) => effect.delete());
-		ui.notifications.info('Guard is deactivated.');
-	} else {
-		// Create a new guard effect
-		await ActiveEffect.create(guardEffect, { parent: actor });
-		ui.notifications.info('Guard is activated.');
 	}
 }

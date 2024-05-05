@@ -347,6 +347,7 @@
         "BenefitRanged": "Übung mit kriegerischen Fernkampfwaffen",
         "BenefitArmor": "Übung mit kriegerischer Rüstung",
         "BenefitShields": "Übung mit kriegerischen Schilden",
+        "Cover": "Deckung geben",
         "Slow": "Langsam",
         "Dazed": "Benommen",
         "Weak": "Schwach",
@@ -354,6 +355,7 @@
         "Enraged": "Wütend",
         "Flying": "Fliegt",
         "Poisoned": "Vergiftet",
+        "CoverRule": "Bis zum Beginn deines nächsten Zuges:<ul><li>Du wirst von einer anderen Kreatur <b>gedeckt</b>, was verhindert, dass Feinde Nahkampfangriffe gegen dich ausführen können.</li></ul>",
         "SlowRule": "Reduziert die Würfelgröße für Geschicklichkeit um einen Schritt.",
         "DazedRule": "Reduziert die Würfelgröße für Verstand um einen Schritt.",
         "WeakRule": "Reduziert die Würfelgröße für Macht um einen Schritt.",
@@ -410,10 +412,10 @@
         "AttackRule": "Führen einen Nah- oder Fernkampfangriff aus.",
         "SpellRule": "Wirke einen dir bekannten <b>Zauber</b>.",
         "EquipmentRule": "Tausche eine beliebige Anzahl deiner ausgerüsteten Gegenstände mit Gegenständen aus deinem Inventar (ausgenommen <b>Rüstung</b>).",
-        "GuardRule": "Nur <b>einmal pro Zug</b>. Bis zum Beginn deines nächsten Zuges:<ul><li>Du erhältst <b>Resistenz</b> gegen alle Schadensarten.</li><li>Du erhältst einen +2 Bonus auf Vergleichende Proben.</li><li>Du kannst einer anderen Kreatur <b>Deckung geben</b> und verhindern das sie Ziel von von Nahkampfangriffen werden kann.</li></ul>",
+        "GuardRule": "Nur <b>einmal pro Zug</b>. Bis zum Beginn deines nächsten Zuges:<ul><li>Du erhältst <b>Resistenz</b> gegen alle Schadensarten.</li><li>Du erhältst einen +2 Bonus auf Vergleichende Proben.</li><li>Du kannst einer anderen Kreatur <b>@EFFECT[cover]</b> und verhindern das sie Ziel von von Nahkampfangriffen werden kann.</li></ul>",
         "StudyRule": "Du versuchst Informationen über jemand oder etwas zu erhalten. Normalerweise eine Offene Probe auf <b>【INS + INS】</b>. Du kannst die gleiche Frage nicht mehrfach stellen.",
         "InventoryRule": "Du zahlst Inventarpunkte, um einen Verbrauchsgegenstand zu erschaffen und sofort zu benutzen.",
-        "HinderRule": "Du würfelst eine Probe mit SW 10 gegen einen Gegner. Wenn du erfolgreich bist erleidet der Gegner einen der folgenden Statuseffekte: <b>Langsam</b>, <b>Benommen</b>, <b>Schwach</b> oder <b>Erschüttert</b>.",
+        "HinderRule": "Du würfelst eine Probe mit SW 10 gegen einen Gegner. Wenn du erfolgreich bist erleidet der Gegner einen der folgenden Statuseffekte: <b>@EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow] oder @EFFECT[weak]</b>.",
         "ObjectiveRule": "Du versuchst ein Ziel innerhalb der aktuellen Szene zu erreichen. Benötigt entweder eine normale oder vergleichende Probe. Für komplexere Ziele können Uhren zum Einsatz kommen.",
         "SkillRule": "Für manche Fähigkeiten musst du in Konflikten deine Aktion benutzen. Außerhalb eines Konflikts benötigt der Einsatz von Fähigkeiten generell 5 - 10 Sekunden.",
         "MaxLevel": "Maximale Stufe",
@@ -943,6 +945,14 @@
         "StudyResultThree": "Angriffe und Zauber.",
         "StudyTotalField": "Trage das Ergebnis der Studierenprobe ein:",
         "DialogDeleteItemTitle": "{item} löschen?",
-        "DialogDeleteItemDescription": "Willst du <strong>{item}</strong> wirklich löschen? Dieser Vorgang kann nicht rückgängig gemacht werden."
-    }
+        "DialogDeleteItemDescription": "Willst du <strong>{item}</strong> wirklich löschen? Dieser Vorgang kann nicht rückgängig gemacht werden.",
+        "DisabledByActiveEffect": "Dieser Wert nicht manuell verändert werden, solange er von einem Aktiven Effekt verändert wird.",
+        "InlineEffectConfigCapAttribute": "Attribut auf Basiswert beschränken",
+        "InlineEffectConfigApplyVulnerability": "Schwäche verursachen",
+        "InlineEffectConfigGrantImmunity": "Immunität gewähren",
+        "InlineEffectConfigGrantAbsorption": "Absorption gewährend",
+        "InlineEffectConfigBuffDefenses": "Verteidigung verbessern",
+        "InlineEffectConfigImproveDefensesDefense": "Verteidigungstyp",
+        "InlineEffectConfigImproveDefensesValue": "Verbessern auf:"
+      }
 }
