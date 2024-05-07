@@ -953,6 +953,8 @@
         "InlineEffectConfigGrantAbsorption": "Absorption gewährend",
         "InlineEffectConfigBuffDefenses": "Verteidigung verbessern",
         "InlineEffectConfigImproveDefensesDefense": "Verteidigungstyp",
-        "InlineEffectConfigImproveDefensesValue": "Verbessern auf:"
+        "InlineEffectConfigImproveDefensesValue": "Verbessern auf:",
+        "BondMax": "Max Bonds",
+        "BondMaxHint": "Maximum number of bonds available."
       }
 }

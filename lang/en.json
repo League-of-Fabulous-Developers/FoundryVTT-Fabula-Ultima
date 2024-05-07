@@ -415,7 +415,7 @@
         "GuardRule": "Only <b>once per turn</b>. Until the start of your next turn:<ul><li>You gain <b>Resistance</b> to all damage types.</li><li>You gain a +2 bonus to Opposed Checks.</li><li>You may <b>@EFFECT[cover]</b> another creature and prevent foes from performing melee attacks against them.</li></ul>",
         "StudyRule": "You attempt to gain information about someone or something. Usually an <b>【INS + INS】</b> Open Check. Can’t ask the same question twice.",
         "InventoryRule": "Spend Inventory Points to produce and immediately use a consumable item.",
-        "HinderRule": "You perform a Check (DL 10) against an Opponent. If you succeed, inflict <b>@EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow] or @EFFECT[weak]</b> against them.",
+        "HinderRule": "You perform a Check (DL 10) against an Opponent. If you succeed, inflict <b>Dazed, Shaken, Slow, or Weak</b> against them.",
         "ObjectiveRule": "Work towards accomplishing an objective within the conflict. Requires an Attribute Check or Opposed Check. Complex Goals often require a Clock.",
         "SkillRule": "Some Skills require you to spend an Action. Out of combat, Skills generally require 5-10 seconds.",
         "MaxLevel": "Maximum Level",
@@ -953,6 +953,8 @@
         "InlineEffectConfigGrantAbsorption": "Grant Absorption",
         "InlineEffectConfigBuffDefenses": "Improve Defenses",
         "InlineEffectConfigImproveDefensesDefense": "Defense Type",
-        "InlineEffectConfigImproveDefensesValue": "Improve to:"
+        "InlineEffectConfigImproveDefensesValue": "Improve to:",
+        "BondMax": "Max Bonds",
+        "BondMaxHint": "Maximum number of bonds available."
       }
 }

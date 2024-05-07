@@ -953,6 +953,8 @@
         "InlineEffectConfigGrantAbsorption": "Fornisce Assorbimento",
         "InlineEffectConfigBuffDefenses": "Aumenta le Difese",
         "InlineEffectConfigImproveDefensesDefense": "Tipo Difesa",
-        "InlineEffectConfigImproveDefensesValue": "Aumenta di:"
+        "InlineEffectConfigImproveDefensesValue": "Aumenta di:",
+        "BondMax": "Legami Massimi",
+        "BondMaxHint": "Numero massimo di legami disponibili."
       }
 }

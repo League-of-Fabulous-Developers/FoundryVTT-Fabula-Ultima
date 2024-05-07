@@ -946,13 +946,15 @@
         "StudyTotalField": "Introduza o valor total do Teste de Estudo:",
         "DialogDeleteItemTitle": "Deletar {item}?",
         "DialogDeleteItemDescription": "Você realmente quer deletar <strong>{item}</strong>? Essa ação não poderá ser desfeita.",
-        "DisabledByActiveEffect": "You cannot change this value while an Active Effect modifies it.",
-        "InlineEffectConfigCapAttribute": "Cap Attribute to Base",
-        "InlineEffectConfigApplyVulnerability": "Apply Vulnerability",
-        "InlineEffectConfigGrantImmunity": "Grant Immunity",
-        "InlineEffectConfigGrantAbsorption": "Grant Absorption",
-        "InlineEffectConfigBuffDefenses": "Improve Defenses",
-        "InlineEffectConfigImproveDefensesDefense": "Defense Type",
-        "InlineEffectConfigImproveDefensesValue": "Improve to:"
+        "DisabledByActiveEffect": "Você não pode alterar este valor enquanto um Efeito Ativo o modifica.",
+        "InlineEffectConfigCapAttribute": "Limitar Valor Máximo a Valor Básico",
+        "InlineEffectConfigApplyVulnerability": "Aplicar Vulnerabilidade",
+        "InlineEffectConfigGrantImmunity": "Conceder Imunidade",
+        "InlineEffectConfigGrantAbsorption": "Conceder Absorção",
+        "InlineEffectConfigBuffDefenses": "Melhorar Defesas",
+        "InlineEffectConfigImproveDefensesDefense": "Tipo de Defesa",
+        "InlineEffectConfigImproveDefensesValue": "Melhorar para:",
+        "BondMax": "Máximo de Laços",
+        "BondMaxHint": "Número máximo de Laços disponíveis"
       }
 }

@@ -17,6 +17,7 @@ export const SETTINGS = Object.freeze({
 	optionImagePixelated: 'optionImagePixelated',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	optionNPCNotesTab: 'optionNPCNotesTab',
+	optionBondMaxLength: 'optionBondMaxLength',
 	experimentalCombatHud: 'experimentalCombatHud',
 	optionCombatHudCompact: 'optionCombatHudCompact',
 	optionCombatHudMinimized: 'optionCombatHudMinimized',
@@ -181,6 +182,16 @@ export const registerSystemSettings = async function () {
 		config: true,
 		type: Boolean,
 		default: false,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionBondMaxLength, {
+		name: game.i18n.localize('FU.BondMax'),
+		hint: game.i18n.localize('FU.BondMaxHint'),
+		scope: 'world',
+		config: true,
+		type: Number,
+		default: 6,
 		requiresReload: true,
 	});
 

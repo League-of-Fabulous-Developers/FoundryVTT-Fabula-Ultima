@@ -953,6 +953,8 @@
         "InlineEffectConfigGrantAbsorption": "Наложить поглощение",
         "InlineEffectConfigBuffDefenses": "Увеличить показатели защиты",
         "InlineEffectConfigImproveDefensesDefense": "Тип защиты",
-        "InlineEffectConfigImproveDefensesValue": "Увеличить до:"
+        "InlineEffectConfigImproveDefensesValue": "Увеличить до:",
+        "BondMax": "Максимум связей",
+        "BondMaxHint": "Максимальное доступное количество связей."
       }
 }

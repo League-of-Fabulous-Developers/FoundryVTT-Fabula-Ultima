@@ -953,6 +953,8 @@
         "InlineEffectConfigGrantAbsorption": "",
         "InlineEffectConfigBuffDefenses": "",
         "InlineEffectConfigImproveDefensesDefense": "",
-        "InlineEffectConfigImproveDefensesValue": ""
+        "InlineEffectConfigImproveDefensesValue": "",
+        "BondMax": "",
+        "BondMaxHint": ""
       }
 }

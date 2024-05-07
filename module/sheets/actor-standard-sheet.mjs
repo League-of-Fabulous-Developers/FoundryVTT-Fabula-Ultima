@@ -700,8 +700,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('.bond-add').click(async (ev) => {
 			ev.preventDefault();
 			const bonds = this.actor.system.resources.bonds;
-			if (bonds.length >= 6) {
-				ui.notifications.warn('Maximum number of bonds (6) reached.');
+			const maxBondLength = game.settings.get('projectfu', 'optionBondMaxLength');
+			if (bonds.length >= maxBondLength) {
+				ui.notifications.warn(`Maximum number of bonds (${maxBondLength}) reached.`);
 				return;
 			}
 			const newBonds = [...bonds];

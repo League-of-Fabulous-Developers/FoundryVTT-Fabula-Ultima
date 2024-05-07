@@ -953,6 +953,8 @@
         "InlineEffectConfigGrantAbsorption": "Gana Absorción",
         "InlineEffectConfigBuffDefenses": "Mejorar Defensas",
         "InlineEffectConfigImproveDefensesDefense": "Tipo de Defensa",
-        "InlineEffectConfigImproveDefensesValue": "Mejorar a: "
+        "InlineEffectConfigImproveDefensesValue": "Mejorar a: ",
+        "BondMax": "Vínculos Máximos",
+        "BondMaxHint": "Número máximo de vínculos disponibles"
       }
 }
