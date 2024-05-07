@@ -183,7 +183,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			enumerable: true,
 			get() {
 				const baseAttribute = Object.keys(FU.attributes).includes(this.attribute) ? data.attributes[this.attribute].base : data.attributes.wlp.base;
-				return baseAttribute * 5 + benefits.mp + this.bonus;
+				return baseAttribute * 5 + data.level.value + benefits.mp + this.bonus;
 			},
 			set(newValue) {
 				delete this.max;
