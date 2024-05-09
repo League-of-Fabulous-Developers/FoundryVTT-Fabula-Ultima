@@ -6,9 +6,9 @@ import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
 import { FUItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
-import { FU } from './helpers/config.mjs';
-import { registerSystemSettings, SETTINGS, SYSTEM } from './settings.js';
-import { addRollContextMenuEntries, createCheckMessage, rollCheck } from './helpers/checks.mjs';
+import { FU, SYSTEM } from './helpers/config.mjs';
+import { registerSystemSettings, SETTINGS } from './settings.js';
+import { addRollContextMenuEntries, createCheckMessage, promptCheck, rollCheck } from './helpers/checks.mjs';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -39,7 +39,7 @@ import { FUClassFeatureSheet } from './documents/items/classFeature/class-featur
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
-import {FUActiveEffect, onApplyActiveEffect, onRenderActiveEffectConfig} from './documents/effects/active-effect.mjs';
+import { FUActiveEffect, onApplyActiveEffect, onRenderActiveEffectConfig } from './documents/effects/active-effect.mjs';
 import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
@@ -48,15 +48,15 @@ import { Flags } from './helpers/flags.mjs';
 import { InlineElementsHowTo } from './helpers/inline-how-to.mjs';
 import { InlineIcon } from './helpers/inline-icons.mjs';
 import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
-import { CombatHUD } from './ui/combat-hud.mjs';
-import { promptCheck } from './helpers/checks.mjs';
 import { InlineEffects } from './helpers/inline-effects.mjs';
+import { SystemControls } from './helpers/system-controls.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
 	RollableClassFeatureDataModel,
 	SYSTEM,
 	Flags,
+	SystemControls,
 };
 
 /* -------------------------------------------- */
@@ -191,6 +191,8 @@ Hooks.once('init', async () => {
 
 	TextEditorCommandDropdown.initialize();
 
+	SystemControls.initialize();
+
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
 });
@@ -306,9 +308,9 @@ Handlebars.registerHelper('getIconClass', function (item) {
 	return 'fas fa-toolbox';
 });
 
-Handlebars.registerHelper("mathAbs", function (value) {
-    return Math.abs(value)
-})
+Handlebars.registerHelper('mathAbs', function (value) {
+	return Math.abs(value);
+});
 
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
@@ -360,14 +362,6 @@ Hooks.once('ready', () => {
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
-
-Hooks.on('getSceneControlButtons', (controls) => {
-	const tokenButton = controls.find((control) => control.name === 'token');
-	if (!tokenButton) return;
-
-	tokenButton.tools.push(CombatHUD.getToggleControlButton());
-	tokenButton.tools.push(CombatHUD.getResetControlButton());
-});
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */

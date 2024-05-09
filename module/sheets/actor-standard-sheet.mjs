@@ -4,7 +4,8 @@ import { actionHandler, createActionMessage } from '../helpers/action-handler.mj
 import { GroupCheck } from '../helpers/group-check.mjs';
 // import { OpposedCheck } from '../helpers/opposed-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
-import { SETTINGS, SYSTEM } from '../settings.js';
+import { SETTINGS } from '../settings.js';
+import { SYSTEM } from '../helpers/config.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -669,7 +670,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			const crisisHP = Math.ceil(maxHP / 2);
 
 			const updateData = {
-				'system.resources.hp.value': crisisHP
+				'system.resources.hp.value': crisisHP,
 			};
 
 			await actor.update(updateData);
@@ -1385,7 +1386,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Handle action-type rolls.
 		if (dataset.rollType === 'action-type') {
 			// Determine the type based on the data-action attribute
-			actionHandler(this, dataset.action, isShift)
+			actionHandler(this, dataset.action, isShift);
 		}
 
 		// Handle rolls that supply the formula directly.

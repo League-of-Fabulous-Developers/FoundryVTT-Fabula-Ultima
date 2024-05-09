@@ -1,6 +1,6 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
-import { SYSTEM } from '../../../../settings.js';
 import { Flags } from '../../../../helpers/flags.mjs';
+import { SYSTEM } from '../../../../helpers/config.mjs';
 
 const durations = {
 	instant: 'FU.ClassFeatureDanceDurationInstant',

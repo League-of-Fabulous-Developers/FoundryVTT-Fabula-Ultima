@@ -1,7 +1,7 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { createCheckMessage, rollCheck } from '../../../../helpers/checks.mjs';
-import { SYSTEM } from '../../../../settings.js';
 import { Flags } from '../../../../helpers/flags.mjs';
+import { SYSTEM } from '../../../../helpers/config.mjs';
 
 export class MagitechDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {

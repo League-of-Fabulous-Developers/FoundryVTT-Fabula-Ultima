@@ -143,8 +143,8 @@
  * @property {boolean} [collapseDescriptions]
  */
 
-import { FU } from './config.mjs';
-import { SETTINGS, SYSTEM } from '../settings.js';
+import { FU, SYSTEM } from './config.mjs';
+import { SETTINGS } from '../settings.js';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { Flags } from './flags.mjs';
 
@@ -340,7 +340,7 @@ export async function rerollCheck(params, reroll) {
 	check.reroll = reroll;
 	await handleReroll(check);
 	handleDamage(check);
-    handleTargets(check);
+	handleTargets(check);
 
 	return check;
 }
@@ -483,7 +483,7 @@ async function pushCheck(params, push) {
 	check.push = push;
 
 	await handlePush(check);
-    handleTargets(check);
+	handleTargets(check);
 
 	return check;
 }
@@ -624,9 +624,9 @@ async function EnrichHTML(htmlContent) {
 export async function createChatMessage(checkParams, additionalFlags = {}) {
 	const content = checkParams.description
 		? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
-			flavor: checkParams.details?.name || '',
-			description: await EnrichHTML(checkParams.description),
-		})
+				flavor: checkParams.details?.name || '',
+				description: await EnrichHTML(checkParams.description),
+		  })
 		: '';
 
 	/** @type Partial<ChatMessageData> */
@@ -769,16 +769,15 @@ export async function promptCheck(actor, title) {
 			difficulty: difficulty,
 			speaker: speaker,
 		};
-        const rolledCheck = await rollCheck(params);
-        
-        const rollResult = rolledCheck.result.total;
-        return { rollResult, message: await createCheckMessage(rolledCheck) };
-    } catch (e) {
-        console.log(e);
-        return { rollResult: 0, message: null };
-    }
-}
+		const rolledCheck = await rollCheck(params);
 
+		const rollResult = rolledCheck.result.total;
+		return { rollResult, message: await createCheckMessage(rolledCheck) };
+	} catch (e) {
+		console.log(e);
+		return { rollResult: 0, message: null };
+	}
+}
 
 // TODO: Combine promptOpenCheck & promptCheck, conditionally render template and bonuses based on selected check option
 /**
@@ -791,8 +790,8 @@ export async function promptOpenCheck(actor, title, action) {
 	const recentActorChecks = recentChecks[actor.uuid] || (recentChecks[actor.uuid] = {});
 	try {
 		const attributes = actor.system.attributes;
-		const bonus = actor.system.bonuses.accuracy.opposedCheck
-		
+		const bonus = actor.system.bonuses.accuracy.opposedCheck;
+
 		const titleMain = title || 'FU.DialogCheckOpenCheck';
 		const labelHeader = '';
 
@@ -817,7 +816,7 @@ export async function promptOpenCheck(actor, title, action) {
 					attr1: recentActorChecks.attr1 || 'mig',
 					attr2: recentActorChecks.attr2 || 'mig',
 					modifier: recentActorChecks.modifier || 0,
-					bonus: bonus
+					bonus: bonus,
 				}),
 				buttons: [
 					{
@@ -863,12 +862,12 @@ export async function promptOpenCheck(actor, title, action) {
 			},
 			speaker: speaker,
 		};
-        const rolledCheck = await rollCheck(params);
-        
-        const rollResult = rolledCheck.result.total;
-        return { rollResult, message: await createCheckMessage(rolledCheck) };
-    } catch (e) {
-        console.log(e);
-        return { rollResult: 0, message: null };
-    }
+		const rolledCheck = await rollCheck(params);
+
+		const rollResult = rolledCheck.result.total;
+		return { rollResult, message: await createCheckMessage(rolledCheck) };
+	} catch (e) {
+		console.log(e);
+		return { rollResult: 0, message: null };
+	}
 }

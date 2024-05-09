@@ -2,8 +2,7 @@ import { statusEffects } from './statuses.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { Flags } from './flags.mjs';
-import { SYSTEM } from '../settings.js';
-import { FU } from './config.mjs';
+import { FU, SYSTEM } from './config.mjs';
 import { FUActiveEffect } from '../documents/effects/active-effect.mjs';
 
 const INLINE_EFFECT = 'InlineEffect';

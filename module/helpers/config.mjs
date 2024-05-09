@@ -1,5 +1,7 @@
 import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
 
+export const SYSTEM = 'projectfu';
+
 export const FU = {};
 
 /**
@@ -22,12 +24,11 @@ FU.attributeAbbreviations = {
 
 FU.currencies = {
 	zenit: {
-	  label: "FU.Zenit",
-	  abbreviation: "FU.ZenitAbbr",
-	  conversion: 1
-	}
-  };
-
+		label: 'FU.Zenit',
+		abbreviation: 'FU.ZenitAbbr',
+		conversion: 1,
+	},
+};
 
 /**
  * @typedef {"untyped", "physical","air","bolt","dark","earth","fire","ice","light","poison"} DamageType
@@ -63,7 +64,7 @@ FU.affIcon = {
 FU.allIcon = {
 	offensive: 'is-offensive',
 	martial: 'is-martial',
-	melee: "is-melee",
+	melee: 'is-melee',
 	range: 'is-range',
 	spell: 'is-spell',
 	skill: 'is-skill',

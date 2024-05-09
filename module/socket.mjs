@@ -1,5 +1,6 @@
-import { SYSTEM } from './settings.js';
 import { onMarkTurnTaken } from './ui/combat.mjs';
+
+import { SYSTEM } from './helpers/config.mjs';
 
 export const MESSAGES = Object.freeze({
 	ShowBanner: 'use',

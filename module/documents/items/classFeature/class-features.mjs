@@ -1,4 +1,3 @@
-import { SYSTEM } from '../../../settings.js';
 import { ArcanumDataModel } from './arcanist/arcanum-data-model.mjs';
 import { AlchemyDataModel } from './tinkerer/alchemy-data-model.mjs';
 import { MagitechDataModel } from './tinkerer/magitech-data-model.mjs';
@@ -8,6 +7,7 @@ import { ToneDataModel } from './chanter/tone-data-model.mjs';
 import { VerseDataModel } from './chanter/verse-data-model.mjs';
 import { DanceDataModel } from './dancer/dance-data-model.mjs';
 import { SymbolDataModel } from './symbolist/symbol-data-model.mjs';
+import { SYSTEM } from '../../../helpers/config.mjs';
 
 /**
  * Registers system-provided class features.

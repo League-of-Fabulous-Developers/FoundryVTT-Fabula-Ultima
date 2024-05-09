@@ -1,0 +1,19 @@
+.meta-currency-tracker {
+	.action-button {
+		min-width: 32px;
+		min-height: 32px;
+	}
+
+	.title-fieldset {
+		margin-bottom: 0.5em;
+	}
+
+	.characters {
+		grid-template-columns: 1fr 1fr auto auto;
+		column-gap: 0.5em;
+		row-gap: 0.25em;
+		.title {
+			font-weight: bold;
+		}
+	}
+}

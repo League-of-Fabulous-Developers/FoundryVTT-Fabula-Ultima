@@ -1,6 +1,5 @@
-import { FU } from './config.mjs';
+import { FU, SYSTEM } from './config.mjs';
 import { applyDamage } from './apply-damage.mjs';
-import { SYSTEM } from '../settings.js';
 import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
