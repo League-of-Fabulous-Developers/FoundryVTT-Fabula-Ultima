@@ -506,13 +506,13 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Update Progress - Click Event
 		html.find('.progress input').click((ev) => {
-			const dataType = $(ev.currentTarget).data('type');
+			const dataType = $(ev.currentTarget).closest('.progress').data('type');
 			this._onProgressUpdate(ev, dataType);
 		});
 
 		// Update Progress - Contextmenu Event
 		html.find('.progress input').contextmenu((ev) => {
-			const dataType = $(ev.currentTarget).data('type');
+			const dataType = $(ev.currentTarget).closest('.progress').data('type');
 			this._onProgressReset(ev, dataType);
 		});
 
@@ -1319,6 +1319,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 			if (dataType === 'feature') {
 				item.update({ 'system.data.progress.current': segment });
+				console.log("Test")
 			} else {
 				item.update({ 'system.progress.current': segment });
 			}
