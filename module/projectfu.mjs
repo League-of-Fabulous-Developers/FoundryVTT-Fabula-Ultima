@@ -100,6 +100,16 @@ Hooks.once('init', async () => {
 		character: CharacterDataModel,
 		npc: NpcDataModel,
 	};
+	CONFIG.Actor.trackableAttributes = {
+		character: {
+			bar: ['resources.hp', 'resources.mp', 'resources.ip'],
+			value: ['resources.fp.value'],
+		},
+		npc: {
+			bar: ['resources.hp', 'resources.mp'],
+			value: ['resources.fp.value'],
+		},
+	};
 	CONFIG.Item.documentClass = FUItem;
 	CONFIG.Item.dataModels = {
 		accessory: AccessoryDataModel,
