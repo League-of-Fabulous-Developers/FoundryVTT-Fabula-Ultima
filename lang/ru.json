@@ -21,7 +21,8 @@
         "TypeRitual": "Ритуал",
         "TypeProject": "Проект",
         "TypeZeroPower": "Нуль-сила",
-        "TypeClassFeature": "Черта класса"
+        "TypeClassFeature": "Черта класса",
+        "TypeOptionalFeature": "Опциональные возможности"
     },
     "TYPES": {
         "Actor": {
@@ -46,7 +47,8 @@
             "ritual": "Ритуал",
             "project": "Проект",
             "zeroPower": "Нуль-сила",
-            "classFeature": "Черта класса"
+            "classFeature": "Черта класса",
+            "optionalFeature": "Опциональные возможности"
         }
     },
     "FU": {

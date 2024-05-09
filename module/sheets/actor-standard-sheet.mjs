@@ -392,6 +392,15 @@ export class FUStandardActorSheet extends ActorSheet {
 			});
 			featureType.items[item.id] = { item, additionalData: await featureType.feature?.getAdditionalData(item.system.data) };
 		}
+
+		context.optionalFeatures = {};
+		for (const item of this.actor.itemTypes.optionalFeature) {
+			const optionalType = (context.optionalFeatures[item.system.optionalType] ??= {
+				optional: item.system.data?.constructor,
+				items: {},
+			});
+			optionalType.items[item.id] = { item, additionalData: await optionalType.optional?.getAdditionalData(item.system.data) };
+		}
 	}
 
 	/* -------------------------------------------- */

@@ -21,7 +21,8 @@
         "TypeRitual": "Ritual",
         "TypeProject": "Projekt",
         "TypeZeroPower": "Zero Power",
-        "TypeClassFeature": "Klassenmerkmal"
+        "TypeClassFeature": "Klassenmerkmal",
+        "TypeOptionalFeature": "Optionale Funktionen"
     },
     "TYPES": {
         "Actor": {
@@ -46,7 +47,8 @@
             "ritual": "Ritual",
             "project": "Projekt",
             "zeroPower": "Zero Power",
-            "classFeature": "Klassenmerkmal"
+            "classFeature": "Klassenmerkmal",
+            "optionalFeature": "Optionale Funktionen"
         }
     },
     "FU": {
