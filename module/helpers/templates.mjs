@@ -109,11 +109,13 @@ export const preloadHandlebarsTemplates = async function () {
 		// Optional Rule Templates
 		'systems/projectfu/templates/optional/feature-basic-preview.hbs',
 
+		'systems/projectfu/templates/optional/partials/feature-progress-clock.hbs',
+
 		'systems/projectfu/templates/optional/quirk/feature-quirk-sheet.hbs',
 		'systems/projectfu/templates/optional/quirk/feature-quirk-preview.hbs',
 		
-		'systems/projectfu/templates/optional/quirk/feature-zeroPower-sheet.hbs',
-		'systems/projectfu/templates/optional/quirk/feature-zeroPower-preview.hbs',
+		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-sheet.hbs',
+		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs',
 
 		// Class Feature Templates
 		'systems/projectfu/templates/feature/feature-basic-preview.hbs',
