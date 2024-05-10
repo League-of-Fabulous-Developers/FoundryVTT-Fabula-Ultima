@@ -1,0 +1,12 @@
+{{!-- Clocks --}}
+<div class="item-m desc" style="text-align: initial; padding: 1px;">
+    <a class="decrement-button align-left" data-type="featureCounter" data-item-id="{{ item._id }}"> <i
+            class="fas fa-minus"></i></a>
+    <div class="progress-container">
+        {{> "systems/projectfu/templates/optional/partials/feature-progress-clock.hbs"
+        arr=item.progressArr
+        data=item.system.data.progress}}
+    </div>
+    <a class="increment-button align-right" data-type="featureCounter" data-item-id="{{ item._id }}"> <i
+            class="fas fa-plus"></i></a>
+</div>

@@ -19,7 +19,7 @@
 			<div class="item-sm end">
 				<div class="item-controls">
 					<a class="item-control item-create" aria-describedby="tooltip"
-						data-tooltip="{{localize 'FU.ClassFeatureCreate' featureType=(localize feature.translation)}}"
+						data-tooltip="{{localize 'FU.FeatureCreate' featureType=(localize feature.translation)}}"
 						data-type="classFeature" data-feature-type="{{@key}}">
 						<i class="fas fa-plus icon"></i>{{localize 'FU.Add'}}</a>
 				</div>
@@ -31,6 +31,33 @@
 				{{!-- Item Name--}}
 				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 				{{> (lookup ../feature 'previewTemplate') item additionalData=additionalData item=item}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+			</div>
+		</li>
+		{{/each}}
+	</ol>
+	{{/each}}
+
+	{{!-- Optional Feature Sections --}}
+	{{#each optionalFeatures}}
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			<div class="item-name">{{localize optional.translation}}</div>
+			<div class="item-sm end">
+				<div class="item-controls">
+					<a class="item-control item-create" aria-describedby="tooltip"
+						data-tooltip="{{localize 'FU.FeatureCreate' optionalType=(localize optional.translation)}}"
+						data-type="optionalFeature" data-optional-type="{{@key}}">
+						<i class="fas fa-plus icon"></i>{{localize 'FU.Add'}}</a>
+				</div>
+			</div>
+		</li>
+		{{#each items }}
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow">
+				{{!-- Item Name--}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{> (lookup ../optional 'previewTemplate') item additionalData=additionalData item=item}}
 				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 			</div>
 		</li>

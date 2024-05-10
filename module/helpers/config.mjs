@@ -1,4 +1,5 @@
 import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
+import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
 
 export const SYSTEM = 'projectfu';
 
@@ -138,6 +139,7 @@ FU.itemTypes = {
 	treasure: 'TYPES.Item.treasure',
 	class: 'TYPES.Item.class',
 	classFeature: 'TYPES.Item.classFeature',
+	optionalFeature: 'TYPES.Item.optionalFeature',
 	skill: 'TYPES.Item.skill',
 	heroic: 'TYPES.Item.heroic',
 	spell: 'TYPES.Item.spell',
@@ -337,6 +339,7 @@ FU.handedness = {
 };
 
 FU.classFeatureRegistry = new ClassFeatureRegistry();
+FU.optionalFeatureRegistry = new OptionalFeatureRegistry();
 
 FU.resources = {
 	hp: 'FU.HealthPoints',

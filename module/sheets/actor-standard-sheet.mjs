@@ -393,6 +393,33 @@ export class FUStandardActorSheet extends ActorSheet {
 			});
 			featureType.items[item.id] = { item, additionalData: await featureType.feature?.getAdditionalData(item.system.data) };
 		}
+
+		context.optionalFeatures = {};
+		for (const item of this.actor.itemTypes.optionalFeature) {
+			const optionalType = (context.optionalFeatures[item.system.optionalType] ??= {
+				optional: item.system.data?.constructor,
+				items: {},
+			});
+			optionalType.items[item.id] = { item, additionalData: await optionalType.optional?.getAdditionalData(item.system.data) };
+
+			// Feature Clocks
+			const relevantTypes = ['optionalFeature'];
+
+			if (relevantTypes.includes(item.type)) {
+				const progressArr = [];
+				const progress = item.system.data.progress || { current: 0, max: 6 };
+
+				for (let i = 0; i < progress.max; i++) {
+					progressArr.push({
+						id: i + 1,
+						checked: parseInt(progress.current) === i + 1,
+					});
+				}
+
+				item.progressArr = progressArr.reverse();
+			}
+		}
+
 	}
 
 	/* -------------------------------------------- */
@@ -478,11 +505,17 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Update Skill Level
 		html.find('.skillLevel input').click((ev) => this._onSkillLevelUpdate(ev));
 
-		// Update Progress
-		html.find('.progress input').click((ev) => this._onProgressUpdate(ev));
+		// Update Progress - Click Event
+		html.find('.progress input').click((ev) => {
+			const dataType = $(ev.currentTarget).closest('.progress').data('type');
+			this._onProgressUpdate(ev, dataType);
+		});
 
-		// Update Progress
-		html.find('.progress input').contextmenu((ev) => this._onProgressReset(ev));
+		// Update Progress - Contextmenu Event
+		html.find('.progress input').contextmenu((ev) => {
+			const dataType = $(ev.currentTarget).closest('.progress').data('type');
+			this._onProgressReset(ev, dataType);
+		});
 
 		/**
 		 * Handles item click events, equipping or unequipping items based on the click type.
@@ -1147,6 +1180,9 @@ export class FUStandardActorSheet extends ActorSheet {
 							await this._updateClockProgress(item, increment, rightClick);
 							break;
 
+						case 'featureCounter':
+							await this._updateFeatureProgress(item, increment, rightClick);
+							break;
 						case 'projectCounter':
 							await this._updateProjectProgress(item, increment, rightClick);
 							break;
@@ -1205,6 +1241,24 @@ export class FUStandardActorSheet extends ActorSheet {
 		await item.update({ 'system.progress.current': newProgress });
 	}
 
+	async _updateFeatureProgress(item, increment, rightClick) {
+		const stepMultiplier = item.system.data.progress.step || 1;
+		const maxProgress = item.system.data.progress.max;
+		let newProgress;
+
+		if (rightClick) {
+			newProgress = item.system.data.progress.current + increment * stepMultiplier;
+		} else {
+			newProgress = item.system.data.progress.current + increment;
+		}
+
+		if (maxProgress !== 0) {
+			newProgress = Math.min(newProgress, maxProgress);
+		}
+
+		await item.update({ 'system.data.progress.current': newProgress });
+	}
+
 	async _updateProjectProgress(item, increment, rightClick) {
 		const progressPerDay = item.system.progressPerDay.value || 1;
 		const maxProjectProgress = item.system.progress.max;
@@ -1252,7 +1306,8 @@ export class FUStandardActorSheet extends ActorSheet {
 	 * @param {Event} ev - The input change event.
 	 * @private
 	 */
-	_onProgressUpdate(ev) {
+	_onProgressUpdate(ev, dataType) {
+
 		const input = ev.currentTarget;
 		const segment = input.value;
 
@@ -1262,9 +1317,15 @@ export class FUStandardActorSheet extends ActorSheet {
 			// If the clock is from an item
 			const itemId = li.data('itemId');
 			const item = this.actor.items.get(itemId);
-			item.update({ 'system.progress.current': segment });
+
+			if (dataType === 'feature') {
+				item.update({ 'system.data.progress.current': segment });
+				console.log("Test")
+			} else {
+				item.update({ 'system.progress.current': segment });
+			}
+
 		} else {
-			// If not from an item
 			this.actor.update({ 'system.progress.current': segment });
 		}
 	}
@@ -1274,7 +1335,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	 * @param {Event} ev - The input change event.
 	 * @private
 	 */
-	_onProgressReset(ev) {
+	_onProgressReset(ev, dataType) {
 		const input = ev.currentTarget;
 		const li = $(input).closest('.item');
 
@@ -1282,7 +1343,13 @@ export class FUStandardActorSheet extends ActorSheet {
 			// If the clock is from an item
 			const itemId = li.data('itemId');
 			const item = this.actor.items.get(itemId);
-			item.update({ 'system.progress.current': 0 });
+
+			if (dataType === 'feature') {
+				item.update({ 'system.data.progress.current': 0 });
+			} else {
+				item.update({ 'system.progress.current': 0 });
+			}
+
 		} else {
 			// If not from an item
 			this.actor.update({ 'system.progress.current': 0 });

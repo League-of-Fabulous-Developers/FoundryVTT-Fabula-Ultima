@@ -34,10 +34,17 @@ import { ZeroPowerDataModel } from './documents/items/zeropower/zero-power-data-
 import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs';
 import { onSocketLibReady } from './socket.mjs';
 import { statusEffects } from './helpers/statuses.mjs';
+
 import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-feature-type-data-model.mjs';
 import { FUClassFeatureSheet } from './documents/items/classFeature/class-feature-sheet.mjs';
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
+
+import { OptionalFeatureTypeDataModel } from './documents/items/optionalFeature/optional-feature-type-data-model.mjs';
+import { FUOptionalFeatureSheet } from './documents/items/optionalFeature/optional-feature-sheet.mjs';
+import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './documents/items/optionalFeature/optional-feature-data-model.mjs';
+import { registerOptionalFeatures } from './documents/items/optionalFeature/optional-features.mjs';
+
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
 import { FUActiveEffect, onApplyActiveEffect, onRenderActiveEffectConfig } from './documents/effects/active-effect.mjs';
 import { registerChatInteraction } from './helpers/apply-damage.mjs';
@@ -54,6 +61,8 @@ import { SystemControls } from './helpers/system-controls.mjs';
 globalThis.projectfu = {
 	ClassFeatureDataModel,
 	RollableClassFeatureDataModel,
+	OptionalFeatureDataModel,
+	RollableOptionalFeatureDataModel,
 	SYSTEM,
 	Flags,
 	SystemControls,
@@ -80,6 +89,8 @@ Hooks.once('init', async () => {
 		GroupCheck: GroupCheck,
 		ClassFeatureDataModel,
 		RollableClassFeatureDataModel,
+		OptionalFeatureDataModel,
+		RollableOptionalFeatureDataModel,
 	};
 
 	// Add custom constants for configuration.
@@ -118,6 +129,7 @@ Hooks.once('init', async () => {
 		behavior: BehaviorDataModel,
 		class: ClassDataModel,
 		classFeature: ClassFeatureTypeDataModel,
+		optionalFeature: OptionalFeatureTypeDataModel,
 		consumable: ConsumableDataModel,
 		heroic: HeroicSkillDataModel,
 		miscAbility: MiscAbilityDataModel,
@@ -166,11 +178,16 @@ Hooks.once('init', async () => {
 		types: ['classFeature'],
 		makeDefault: true,
 	});
+	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
+		types: ['optionalFeature'],
+		makeDefault: true,
+	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	registerChatInteraction();
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
+	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
 
 	Hooks.on('renderChatMessage', InlineElementsHowTo.activateListeners);
 	Hooks.on('renderApplication', InlineElementsHowTo.activateListeners);

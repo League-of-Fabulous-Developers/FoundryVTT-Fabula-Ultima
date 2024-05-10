@@ -106,6 +106,17 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-accuracy.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-defenses.hbs',
 
+		// Optional Rule Templates
+		'systems/projectfu/templates/optional/feature-basic-preview.hbs',
+
+		'systems/projectfu/templates/optional/partials/feature-progress-clock.hbs',
+
+		'systems/projectfu/templates/optional/quirk/feature-quirk-sheet.hbs',
+		'systems/projectfu/templates/optional/quirk/feature-quirk-preview.hbs',
+		
+		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-sheet.hbs',
+		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs',
+
 		// Class Feature Templates
 		'systems/projectfu/templates/feature/feature-basic-preview.hbs',
 
