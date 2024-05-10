@@ -1,4 +1,4 @@
-import { SYSTEM } from '../../../settings.js';
+import { SYSTEM } from '../../../helpers/config.mjs';
 import { QuirkDataModel } from './quirk/quirk-data-model.mjs';
 import { ZeroPowerDataModel } from './zeropower/zeropower-data-model.mjs';
 /**
