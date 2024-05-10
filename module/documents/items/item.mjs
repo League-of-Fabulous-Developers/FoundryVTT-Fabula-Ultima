@@ -1,8 +1,8 @@
 import { createCheckMessage, getTargets, rollCheck } from '../../helpers/checks.mjs';
 import { RollableClassFeatureDataModel } from './classFeature/class-feature-data-model.mjs';
 import { RollableOptionalFeatureDataModel } from './optionalFeature/optional-feature-data-model.mjs';
-import { SYSTEM } from '../../settings.js';
 import { Flags } from '../../helpers/flags.mjs';
+import { SYSTEM } from '../../helpers/config.mjs';
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -748,7 +748,7 @@ export class FUItem extends Item {
 
 			// Prepare the content by filtering and joining various parts.
 			let content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
-            content = `<div data-item-id="${item.id}">${content}</div>`
+			content = `<div data-item-id="${item.id}">${content}</div>`;
 
 			// if (['consumable'].includes(type) {}
 			if (system.showTitleCard?.value) {

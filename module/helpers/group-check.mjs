@@ -1,5 +1,4 @@
-import { FU } from './config.mjs';
-import { SYSTEM } from '../settings.js';
+import { FU, SYSTEM } from './config.mjs';
 import { Flags } from './flags.mjs';
 import { createCheckMessage, rollCheck } from './checks.mjs';
 

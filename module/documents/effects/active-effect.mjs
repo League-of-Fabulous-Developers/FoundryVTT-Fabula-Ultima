@@ -1,6 +1,6 @@
 import { FUActor } from '../actors/actor.mjs';
-import { SYSTEM } from '../../settings.js';
 import { FUItem } from '../items/item.mjs';
+import { SYSTEM } from '../../helpers/config.mjs';
 
 const CRISIS_INTERACTION = 'CrisisInteraction';
 
@@ -93,10 +93,10 @@ export class FUActiveEffect extends ActiveEffect {
 		super.prepareBaseData();
 		for (let change of this.changes) {
 			if (PRIORITY_CHANGES.includes(change.key)) {
-                change.priority = change.mode;
-            } else {
-                change.priority = (change.mode + 1) * 10;
-            }
+				change.priority = change.mode;
+			} else {
+				change.priority = (change.mode + 1) * 10;
+			}
 		}
 	}
 
