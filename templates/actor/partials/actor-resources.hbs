@@ -5,10 +5,10 @@
 
         <div class="grid grid-8col">
             {{#each statusEffectToggles as |statusEffect|}}
-            <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}"
-                data-status-id="{{statusEffect.id}}">
-                <img src="{{statusEffect.icon}}" data-tooltip="{{statusEffect.name}}">
-            </a>
+                <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}"
+                   data-status-id="{{statusEffect.id}}">
+                    <img src="{{statusEffect.icon}}" data-tooltip="{{statusEffect.name}}">
+                </a>
             {{/each}}
         </div>
 
@@ -21,13 +21,13 @@
     <div id="roll-section" class="resource-content flex-group-center desc grid grid-2col">
         {{!-- Group Check --}}
         <div class="flexcol rollable spin2win" data-roll-type="group-check"
-            data-tooltip="{{localize 'FU.GroupCheckTooltip'}}">
+             data-tooltip="{{localize 'FU.GroupCheckTooltip'}}">
             <i class="fas fa-dice-d20 spin2win ra-2x"></i>
             <label class="resource-label-sm">{{localize 'FU.GroupCheck'}}</label>
         </div>
         {{!-- Roll Check --}}
         <div class="flexcol rollable spin2win  grid-start-2" data-roll-type="roll-check"
-            data-tooltip="{{localize 'FU.RollCheckTooltip'}}">
+             data-tooltip="{{localize 'FU.RollCheckTooltip'}}">
             <i class="fas fa-dice-d20 spin2win ra-2x"></i>
             <label class="resource-label-sm">{{localize 'FU.RollCheck'}}</label>
         </div>

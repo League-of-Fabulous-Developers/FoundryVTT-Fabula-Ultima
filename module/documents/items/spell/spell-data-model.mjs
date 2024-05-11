@@ -1,8 +1,8 @@
-import {UseWeaponDataModel} from '../common/use-weapon-data-model.mjs';
-import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs';
-import {DamageDataModel} from '../common/damage-data-model.mjs';
-import {ImprovisedDamageDataModel} from '../common/improvised-damage-data-model.mjs';
-import {SpellMigrations} from "./spell-migrations.mjs";
+import { UseWeaponDataModel } from '../common/use-weapon-data-model.mjs';
+import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
+import { DamageDataModel } from '../common/damage-data-model.mjs';
+import { ImprovisedDamageDataModel } from '../common/improvised-damage-data-model.mjs';
+import { SpellMigrations } from './spell-migrations.mjs';
 
 /**
  * @property {string} subtype.value
@@ -65,8 +65,8 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 		};
 	}
 
-    static migrateData(source) {
-        SpellMigrations.run(source)
-        return source;
-    }
+	static migrateData(source) {
+		SpellMigrations.run(source);
+		return source;
+	}
 }

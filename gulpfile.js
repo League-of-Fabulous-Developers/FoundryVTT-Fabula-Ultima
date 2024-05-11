@@ -1,7 +1,10 @@
-const gulp = require('gulp');
-const prefix = require('gulp-autoprefixer');
-const sourcemaps = require('gulp-sourcemaps');
-const sass = require('gulp-sass')(require('sass'));
+import gulp from 'gulp';
+import prefix from 'gulp-autoprefixer';
+import sourcemaps from 'gulp-sourcemaps';
+import gulpSass from 'gulp-sass';
+import * as sassCompiler from 'sass';
+
+const sass = gulpSass(sassCompiler);
 
 /* ----------------------------------------- */
 /*  Compile Sass
@@ -31,20 +34,18 @@ function compileScss() {
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./styles/css'));
 }
-const css = gulp.series(compileScss);
 
 /* ----------------------------------------- */
 /*  Watch Updates
 /* ----------------------------------------- */
 
 function watchUpdates() {
-	gulp.watch(SYSTEM_SCSS, css);
+	gulp.watch(SYSTEM_SCSS, build);
 }
 
 /* ----------------------------------------- */
 /*  Export Tasks
 /* ----------------------------------------- */
 
-exports.default = gulp.series(compileScss, watchUpdates);
-exports.build = gulp.series(compileScss);
-exports.css = css;
+export default gulp.series(compileScss, watchUpdates);
+export const build = gulp.series(compileScss);

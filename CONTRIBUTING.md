@@ -8,8 +8,8 @@ Welcome to the contribution guidelines for Project FU! We appreciate your intere
 
 If you have any questions or concerns, feel free to reach out to us through the following channels:
 
-- Discord: [Rooster Games Discord](https://discord.gg/G9qGbn2) - `#bot-and-tool-discussion` channel
-- Discord: [Project FU Discord](https://discord.gg/SNuxpzCgVB) - `#support` channel
+-   Discord: [Rooster Games Discord](https://discord.gg/G9qGbn2) - `#bot-and-tool-discussion` channel
+-   Discord: [Project FU Discord](https://discord.gg/SNuxpzCgVB) - `#support` channel
 
 ## Submitting Issues
 
@@ -19,9 +19,9 @@ Issues reported on [GitHub](https://github.com/) and support channels will be re
 
 Before submitting a bug report, ensure the following:
 
-- Bugs are reproducible without active modules. If module-related, contact the module author.
-- Provide relevant hosting details.
-- Include clear instructions on reproducing the issue and the expected vs actual outcome.
+-   Bugs are reproducible without active modules. If module-related, contact the module author.
+-   Provide relevant hosting details.
+-   Include clear instructions on reproducing the issue and the expected vs actual outcome.
 
 ## Tooling and Setup
 
@@ -29,17 +29,17 @@ Project FU is based on the [Boilerplate Template](https://foundryvtt.wiki/en/dev
 
 ### Branches
 
-- **main:** Mainline branch for v11 releases and above.
-- **v10-maintenance:** Mainline branch for v10 builds.
-- **dev:** Primary development branch for V10 and V11.
+-   **main:** Mainline branch for v11 releases and above.
+-   **v10-maintenance:** Mainline branch for v10 builds.
+-   **dev:** Primary development branch for V10 and V11.
 
 When opening a PR, ensure it goes into the most relevant branch.
 
 ### Prerequisite Software
 
-- [Git](https://git-scm.com/)
-- [Node.js LTS](https://nodejs.org)
-- Code editor (recommended: [Visual Studio Code](https://code.visualstudio.com/))
+-   [Git](https://git-scm.com/)
+-   [Node.js LTS](https://nodejs.org)
+-   Code editor (recommended: [Visual Studio Code](https://code.visualstudio.com/))
 
 ### Setup
 

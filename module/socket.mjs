@@ -10,6 +10,7 @@ export const MESSAGES = Object.freeze({
 export let SOCKET;
 
 export function onSocketLibReady() {
+	/* globals socketlib */
 	SOCKET = socketlib.registerSystem(SYSTEM);
 
 	SOCKET.register(MESSAGES.ShowBanner, showBanner);

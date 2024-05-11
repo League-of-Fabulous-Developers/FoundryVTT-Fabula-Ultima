@@ -23,16 +23,16 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 
 	_initialize(options = {}) {
 		super._initialize(options);
-        let thiz = this;
+		let thiz = this;
 		let holder = {
-            get current() {
-                return thiz.base
-            },
-            set current(value) {
-                delete this.current;
-                this.current = value;
-            }
-        };
+			get current() {
+				return thiz.base;
+			},
+			set current(value) {
+				delete this.current;
+				this.current = value;
+			},
+		};
 
 		Object.defineProperty(this, 'current', {
 			configurable: false,

@@ -101,7 +101,7 @@ export class LocallyEmbeddedDocumentField extends foundry.data.fields.DocumentId
 		let collection = null;
 		{
 			let current = model;
-			while (!!current) {
+			while (current) {
 				if (current instanceof this.parentType) {
 					collection = current[this.embeddedType.metadata.collection];
 					break;

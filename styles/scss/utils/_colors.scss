@@ -36,7 +36,7 @@ $color-project: #d68931;
 $color-levelup: #ffd166;
 $color-levelup-gradient: #6ee36e;
 
-$background-core: url("/systems/projectfu/styles/static/ui/bg.webp");
+$background-core: url('/systems/projectfu/styles/static/ui/bg.webp');
 
 $color-background: $color-secondary;
 $color-background-inverted: $color-secondary-inverted;
@@ -46,19 +46,35 @@ $color-box-shadow: darken($color-secondary, 10%);
 $color-box-shadow-inverted: darken($color-primary-inverted, 10%);
 
 // Background for Actor Name & Levels
-$color-charname-gradient: to right, #532853, #bfb8c4;
-$color-charname-gradient-alt: to right, #2A4A41, #b9c4b8;
+$color-charname-gradient:
+	to right,
+	#532853,
+	#bfb8c4;
+$color-charname-gradient-alt:
+	to right,
+	#2a4a41,
+	#b9c4b8;
 
 // Background for Tabs
-$color-tabStyle-gradient: to bottom, #2c584d, #a0cdbc;
+$color-tabStyle-gradient:
+	to bottom,
+	#2c584d,
+	#a0cdbc;
 
 // Transparent Gradient
-$color-transparent-gradient: to right,
-  rgba(238, 244, 228, 0.5),
-  rgba(226, 237, 213, 0.5);
+$color-transparent-gradient:
+	to right,
+	rgba(238, 244, 228, 0.5),
+	rgba(226, 237, 213, 0.5);
 
-$color-header-gradient: to right, #e9f3ea, transparent;
-$color-quote-gradient: to right, #e1efe3, transparent;
+$color-header-gradient:
+	to right,
+	#e9f3ea,
+	transparent;
+$color-quote-gradient:
+	to right,
+	#e1efe3,
+	transparent;
 
 // Affinity icons colors
 $color-outline: black;

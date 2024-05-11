@@ -1,4 +1,4 @@
-import {ProgressDataModel} from '../common/progress-data-model.mjs';
+import { ProgressDataModel } from '../common/progress-data-model.mjs';
 
 /**
  * @property {string} subtype.value

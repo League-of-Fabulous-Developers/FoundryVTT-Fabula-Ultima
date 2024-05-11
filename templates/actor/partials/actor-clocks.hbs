@@ -1,32 +1,34 @@
 {{!-- Clock Template --}}
 <fieldset class="section-container title-fieldset desc resource-content">
-	<legend class="resource-label-m" aria-describedby="tooltip">
-		<a class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}"
-			style="width: 4.5em;" data-type="newClock">
-			<i class="fas fa-plus icon"></i>{{localize 'FU.Clocks'}}
-		</a>
-	</legend>
-	{{#each items as |item id|}}
-	{{#if (and item.system.isFavored.value item.system.hasClock.value)}}
-	<li class="item flexcol" data-item-id="{{ item._id }}">
-		{{!-- Item Name--}}
-		<h4 class="click-item resource-content">
+    <legend class="resource-label-m" aria-describedby="tooltip">
+        <a class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}"
+           style="width: 4.5em;" data-type="newClock">
+            <i class="fas fa-plus icon"></i>{{localize 'FU.Clocks'}}
+        </a>
+    </legend>
+    {{#each items as |item id|}}
+        {{#if (and item.system.isFavored.value item.system.hasClock.value)}}
+            <li class="item flexcol" data-item-id="{{ item._id }}">
+                {{!-- Item Name--}}
+                <h4 class="click-item resource-content">
 			<span class="resource-label-m">
-				{{ item.name }}
-			</span>
-		</h4>
-		<div class="item-sm buttons-inc" style="text-align: initial;">
-			<a class="decrement-button align-left" data-type="clockCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})"> <i
-					class="fas fa-minus"></i></a>
-			<div class="progress-container">
-				{{> "systems/projectfu/templates/actor/partials/actor-progress-clock-xl.hbs"
-				arr=item.progressArr
-				data=item.system.progress}}
-			</div>
-			<a class="increment-button align-right" data-type="clockCounter" data-item-id="{{ item._id }}" data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progress.step}})">
-				<i class="fas fa-plus"></i></a>
-		</div>
-	</li>
-	{{/if}}
-	{{/each}}
+                {{ item.name }}
+            </span>
+                </h4>
+                <div class="item-sm buttons-inc" style="text-align: initial;">
+                    <a class="decrement-button align-left" data-type="clockCounter" data-item-id="{{ item._id }}"
+                       data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})"> <i
+                     class="fas fa-minus"></i></a>
+                    <div class="progress-container">
+                        {{> "systems/projectfu/templates/actor/partials/actor-progress-clock-xl.hbs"
+                         arr=item.progressArr
+                         data=item.system.progress}}
+                    </div>
+                    <a class="increment-button align-right" data-type="clockCounter" data-item-id="{{ item._id }}"
+                       data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progress.step}})">
+                        <i class="fas fa-plus"></i></a>
+                </div>
+            </li>
+        {{/if}}
+    {{/each}}
 </fieldset>

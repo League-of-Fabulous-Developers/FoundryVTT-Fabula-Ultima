@@ -3,6 +3,7 @@ import { RollableClassFeatureDataModel } from './classFeature/class-feature-data
 import { RollableOptionalFeatureDataModel } from './optionalFeature/optional-feature-data-model.mjs';
 import { Flags } from '../../helpers/flags.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
+import { SOCKET } from '../../socket.mjs';
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -85,7 +86,6 @@ export class FUItem extends Item {
 
 		const attackString = `【${attackAttributes}】${accuracyTotal > 0 ? ` +${accuracyTotal}` : ''}`;
 
-		const hrZeroValue = this.system.rollInfo?.useWeapon?.hrZero?.value ?? false;
 		const damageTypeValue = translate(this.system.damageType?.value || '');
 
 		const damageString = `【${hrZeroText} ${damageTotal}】 ${damageTypeValue}`;
@@ -302,7 +302,6 @@ export class FUItem extends Item {
 		await roll.evaluate({ async: true });
 
 		const bonusAccVal = usedItem ? this.system.rollInfo.accuracy.value : 0;
-		const bonusAccValString = bonusAccVal ? ` + ${bonusAccVal} (${this.type})` : '';
 		const acc = roll.total + bonusAccVal;
 		const diceResults = roll.terms.filter((term) => term.results).map((die) => die.results[0].result);
 
@@ -322,7 +321,6 @@ export class FUItem extends Item {
 		const isFumble = diceResults[0] === 1 && diceResults[1] === 1;
 		const isCrit = !isFumble && diceResults[0] === diceResults[1] && diceResults[0] >= 6;
 
-		const accString = `${diceResults[0]} (${attrs.primary.value.toUpperCase()}) + ${diceResults[1]} (${attrs.secondary.value.toUpperCase()}) + ${accVal} (${item.type})${bonusAccValString}`;
 		const fumbleString = isFumble ? '<strong>FUMBLE!</strong><br />' : '';
 		const critString = isCrit ? '<strong>CRITICAL HIT!</strong><br />' : '';
 
@@ -354,7 +352,6 @@ export class FUItem extends Item {
 			let damVal = isWeapon ? item.system.damage.value : item.system.rollInfo.damage.value;
 			damVal = damVal || 0;
 			const bonusDamVal = usedItem ? this.system.rollInfo.damage.value : 0;
-			const bonusDamValString = bonusDamVal ? ` + ${bonusDamVal} (${this.type})` : '';
 			const damage = hr + damVal + bonusDamVal;
 			const damType = isWeapon ? item.system.damageType.value : item.system.rollInfo.damage.type.value;
 
@@ -622,7 +619,7 @@ export class FUItem extends Item {
 		}
 
 		if (item.type === 'project') {
-			const { cost, discount, progress, progressPerDay, days } = item.system;
+			const { cost, discount, progress, progressPerDay } = item.system;
 
 			const discountText = discount.value ? `<span><br>-${discount.value} Discount</span>` : '';
 
@@ -719,7 +716,7 @@ export class FUItem extends Item {
 		}
 
 		const item = this;
-		const { system, img, name, type } = item;
+		const { system, img, name } = item;
 		// Initialize chat data.
 		const speaker = ChatMessage.getSpeaker({ actor: item.actor });
 		const rollMode = game.settings.get('core', 'rollMode');
@@ -752,7 +749,7 @@ export class FUItem extends Item {
 
 			// if (['consumable'].includes(type) {}
 			if (system.showTitleCard?.value) {
-				socketlib.system.executeForEveryone('use', name);
+				SOCKET.executeForEveryone('use', name);
 			}
 
 			// Create a chat message.
@@ -949,7 +946,7 @@ export class FUItem extends Item {
 				return;
 			}
 			const checks = [];
-			for (let [_, weapon] of Object.entries(equippedWeapons)) {
+			for (let [, weapon] of Object.entries(equippedWeapons)) {
 				if (weapon) {
 					let params = this.#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo, targets);
 					checks.push(rollCheck(params).then((check) => createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } })));

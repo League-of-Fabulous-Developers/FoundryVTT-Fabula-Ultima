@@ -39,9 +39,9 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 
 		Object.defineProperty(this, 'downgrade', {
 			value: () => {
-                if (current <= FU.affValue.resistance) {
-                    current -= 1;
-                }
+				if (current <= FU.affValue.resistance) {
+					current -= 1;
+				}
 			},
 		});
 	}

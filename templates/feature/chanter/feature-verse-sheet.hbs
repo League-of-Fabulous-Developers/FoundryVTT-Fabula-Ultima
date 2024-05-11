@@ -21,7 +21,7 @@
                     <select class="resource-text-m" name='system.data.tone'>
                         <option value="">-</option>
                         {{selectOptions additionalData.tones selected=system.data.tone.id nameAttr='id'
-                        labelAttr='name'}}
+                                        labelAttr='name'}}
                     </select>
                 </label>
             </div>
@@ -33,13 +33,13 @@
         <div class="tab" data-group="verseTabs" data-tab="config">
             <div class="grid grid-3col gap-5">
                 {{#each system.data.config}}
-                <div>
-                    <label class="resource-label-sm">
-                        {{localize (lookup ../additionalData.volumes @key)}} {{localize 'FU.MindPointCost'}}:
-                        <input type="number" name="system.data.config.{{@key}}" value="{{this}}"
-                            class="resource-inputs select-dropdown-full resource-text-m">
-                    </label>
-                </div>
+                    <div>
+                        <label class="resource-label-sm">
+                            {{localize (lookup ../additionalData.volumes @key)}} {{localize 'FU.MindPointCost'}}:
+                            <input type="number" name="system.data.config.{{@key}}" value="{{this}}"
+                                   class="resource-inputs select-dropdown-full resource-text-m">
+                        </label>
+                    </div>
                 {{/each}}
             </div>
         </div>

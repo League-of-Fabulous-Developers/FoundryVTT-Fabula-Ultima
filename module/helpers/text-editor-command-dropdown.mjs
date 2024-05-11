@@ -83,11 +83,6 @@ async function promptIconSelectionDialog(state, dispatch, view) {
 			const icon = html.find('.icon-radio:checked').val();
 			return { icon };
 		},
-		render: (html) => {
-			html.find('.icon-radio').change(function () {
-				const icon = $(this).val();
-			});
-		},
 		rejectClose: false,
 	});
 

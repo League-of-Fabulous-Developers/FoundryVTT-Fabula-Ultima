@@ -1,4 +1,4 @@
-import {IsEquippedDataModel} from '../common/is-equipped-data-model.mjs';
+import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
 
 /**
  * @property {string} subtype.value

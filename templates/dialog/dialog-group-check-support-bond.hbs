@@ -1,24 +1,24 @@
 <div class='dialog-group-check-support'>
-	<div>
-		<p>{{localize 'FU.GroupCheckBondDialogContent'}} <span class='leader'>{{leader}}</span></p>
-	</div>
-	<div class='flexcol'>
-		<label class='bond'>
-			<input type='radio' name='bond' value='-1' checked />
-			{{localize 'FU.GroupCheckBondDialogNoBond'}}
-		</label>
-		{{#each bonds}}
-			<label class='bond'>
-				<input type='radio' name='bond' value='{{@index}}' />
-				<span>{{localize 'FU.GroupCheckBondDialogBond'}}</span>
-				{{#each feelings}}
-					<span class='feeling'>{{localize (concat 'FU.' this)}}</span>
-					{{#unless @last}}
-						<span>{{localize 'FU.GroupCheckBondDialogAnd'}}</span>
-					{{/unless}}
-				{{/each}}
-				<span>{{localize 'FU.GroupCheckBondDialogWith'}}</span><span class='bondWith'>{{name}}</span>
-			</label>
-		{{/each}}
-	</div>
+    <div>
+        <p>{{localize 'FU.GroupCheckBondDialogContent'}} <span class='leader'>{{leader}}</span></p>
+    </div>
+    <div class='flexcol'>
+        <label class='bond'>
+            <input type='radio' name='bond' value='-1' checked />
+            {{localize 'FU.GroupCheckBondDialogNoBond'}}
+        </label>
+        {{#each bonds}}
+            <label class='bond'>
+                <input type='radio' name='bond' value='{{@index}}' />
+                <span>{{localize 'FU.GroupCheckBondDialogBond'}}</span>
+                {{#each feelings}}
+                    <span class='feeling'>{{localize (concat 'FU.' this)}}</span>
+                    {{#unless @last}}
+                        <span>{{localize 'FU.GroupCheckBondDialogAnd'}}</span>
+                    {{/unless}}
+                {{/each}}
+                <span>{{localize 'FU.GroupCheckBondDialogWith'}}</span><span class='bondWith'>{{name}}</span>
+            </label>
+        {{/each}}
+    </div>
 </div>

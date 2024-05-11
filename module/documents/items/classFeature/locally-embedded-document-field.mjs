@@ -94,14 +94,14 @@ export class LocallyEmbeddedDocumentField extends foundry.data.fields.DocumentId
 	/* -------------------------------------------- */
 
 	/** @override */
-	initialize(value, model, options = {}) {
+	initialize(value, model) {
 		if (this.idOnly) {
 			return this.options.fallback || foundry.data.validators.isValidId(value) ? value : null;
 		}
 		let collection = null;
 		{
 			let current = model;
-			while (!!current) {
+			while (current) {
 				if (current instanceof this.parentType) {
 					collection = current[this.embeddedType.metadata.collection];
 					break;

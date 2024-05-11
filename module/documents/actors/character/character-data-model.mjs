@@ -125,11 +125,11 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 		this.derived.prepareData();
 	}
 
-    prepareDerivedData() {
-        this.attributes.handleStatusEffects();
-        this.affinities.handleGuard()
-        this.tlTracker = new CharacterSkillTracker(this);
-    }
+	prepareDerivedData() {
+		this.attributes.handleStatusEffects();
+		this.affinities.handleGuard();
+		this.tlTracker = new CharacterSkillTracker(this);
+	}
 
 	#prepareBasicResources() {
 		const itemTypes = this.actor.itemTypes;

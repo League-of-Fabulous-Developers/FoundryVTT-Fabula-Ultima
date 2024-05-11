@@ -439,13 +439,14 @@ class InlineEffectConfiguration extends FormApplication {
 	#onChangeControl(event) {
 		const action = event.currentTarget.dataset.action;
 		switch (action) {
-			case 'add':
+			case 'add': {
 				const idx = this.object?.guided?.changes?.length ?? 0;
 				return this.submit({
 					updateData: {
 						[`guided.changes.${idx}`]: { type: Object.keys(SUPPORTED_CHANGE_TYPES).at(0) },
 					},
 				});
+			}
 			case 'delete':
 				event.currentTarget.closest('.change').remove();
 				return this.submit().then(() => this.render());

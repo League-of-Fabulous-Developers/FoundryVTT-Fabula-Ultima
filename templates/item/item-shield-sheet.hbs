@@ -83,7 +83,7 @@
                             <div class="resource-content flexcol flex-group-center">
                                 <label for="system.hands.value" class="resource-label-m flexlarge align-left">{{localize
                                  'FU.Hand'}}</label>
-                                <select value="{{ system.hands.value }}" name="system.hands.value"
+                                <select name="system.hands.value"
                                         class="resource-inputs select-dropdown-m">
                                     {{selectOptions handedness selected=system.hands.value sort=true localize=true}}
                                 </select>
@@ -91,7 +91,7 @@
                             <div class="resource-content flexcol flex-group-center">
                                 <label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
                                  'FU.ItemType'}}</label>
-                                <select value="{{ system.type.value }}" name="system.type.value"
+                                <select name="system.type.value"
                                         class="resource-inputs select-dropdown-m">
                                     {{selectOptions wpnType selected=system.type.value sort=true localize=true}}
                                 </select>
@@ -112,9 +112,9 @@
                             <div class="resource-content flexcol flex-group-center">
                                 <label for="system.attributes.primary.value" class="resource-label-m">{{localize
                                  'FU.Primary'}} </label>
-                                <select value="{{ system.attributes.primary.value }}"
-                                        name="system.attributes.primary.value"
-                                        class="resource-inputs select-dropdown">
+                                <select
+                                 name="system.attributes.primary.value"
+                                 class="resource-inputs select-dropdown">
                                     {{selectOptions attrAbbr selected=system.attributes.primary.value sort=true
                                                     localize=true}}
                                 </select>
@@ -122,9 +122,9 @@
                             <div class="resource-content flexcol flex-group-center">
                                 <label for="system.attributes.secondary.value" class="resource-label-m">{{localize
                                  'FU.Secondary'}} </label>
-                                <select value="{{ system.attributes.secondary.value }}"
-                                        name="system.attributes.secondary.value"
-                                        class="resource-inputs select-dropdown">
+                                <select
+                                 name="system.attributes.secondary.value"
+                                 class="resource-inputs select-dropdown">
                                     {{selectOptions attrAbbr selected=system.attributes.secondary.value sort=true
                                                     localize=true}}
                                 </select>
@@ -135,9 +135,11 @@
                                        class="resource-inputs" data-dtype="Number" />
                             </div>
                             <div class="resource-content flexcol flex-group-center">
-                                <label for="system.defense" class="resource-label-m flexlarge align-left">{{localize 'FU.Defense'}}</label>
+                                <label for="system.defense" class="resource-label-m flexlarge align-left">{{localize
+                                 'FU.Defense'}}</label>
                                 <select name="system.defense" class="resource-inputs select-dropdown-m">
-                                    {{selectOptions defenses selected=system.defense sort=true localize=true labelAttr="abbr"}}
+                                    {{selectOptions defenses selected=system.defense sort=true localize=true
+                                                    labelAttr="abbr"}}
                                 </select>
                             </div>
                         </div>
@@ -153,7 +155,7 @@
                             <div class="resource-content flexcol flex-group-center">
                                 <label for="system.rollInfo.impdamage.type.value"
                                        class="resource-label-m flexlarge">{{localize 'FU.DamageType'}} </label>
-                                <select value="{{ system.damageType.value }}" name="system.damageType.value"
+                                <select name="system.damageType.value"
                                         class="resource-inputs select-dropdown-m">
                                     {{selectOptions damageTypes selected=system.damageType.value sort=true
                                                     localize=true}}

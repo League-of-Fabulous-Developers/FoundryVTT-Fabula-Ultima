@@ -5,7 +5,7 @@
 ![foundry-v10-green](https://img.shields.io/badge/foundry-v10-green)
 ![foundry-v11-green](https://img.shields.io/badge/foundry-v11-green)
 
-Welcome to the Unofficial Fabula Ultima System for the [Foundry Virtual Tabletop](<https://foundryvtt.com/>). This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
+Welcome to the Unofficial Fabula Ultima System for the [Foundry Virtual Tabletop](https://foundryvtt.com/). This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
 
 **Disclaimer:** This system has been tested and is ready for use. We recommend backing up your world before trying it.
 
@@ -24,9 +24,9 @@ Welcome to the Unofficial Fabula Ultima System for the [Foundry Virtual Tabletop
 
 ### Manual Installation
 
-1. Visit the [Release](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/releases "‌") page to find your desired version.
+1. Visit the [Release](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/releases '‌') page to find your desired version.
 2. Download the `projectfu.zip` file for your chosen version.
-3. Unzip the downloaded file to your FoundryVTT Data systems folder. (For more details, refer to the [FoundryVTT Configuration Guide](https://foundryvtt.com/article/configuration/#where-user-data "‌")).
+3. Unzip the downloaded file to your FoundryVTT Data systems folder. (For more details, refer to the [FoundryVTT Configuration Guide](https://foundryvtt.com/article/configuration/#where-user-data '‌')).
 4. [Mandatory] Ensure that you have the `socketLib` module installed.
 5. Restart FoundryVTT if necessary.
 
@@ -57,8 +57,8 @@ For detailed guidance, check out the [Project FU World Migration Guide](https://
 
 If you have any questions or concerns, feel free to reach out to us through the following channels:
 
-- Discord: [Rooster Games Discord](https://discord.gg/G9qGbn2) - `#bot-and-tool-discussion` channel
-- Discord: [Project FU Discord](https://discord.gg/SNuxpzCgVB) - `#support` channel
+-   Discord: [Rooster Games Discord](https://discord.gg/G9qGbn2) - `#bot-and-tool-discussion` channel
+-   Discord: [Project FU Discord](https://discord.gg/SNuxpzCgVB) - `#support` channel
 
 ## Submitting Issues
 
@@ -68,33 +68,33 @@ Issues reported on [GitHub](https://github.com/League-of-Fabulous-Developers/Fou
 
 Before submitting a bug report, ensure the following:
 
-- Bugs are reproducible without active modules. If module-related, contact the module author.
-- Provide relevant hosting details.
-- Include clear instructions on reproducing the issue and the expected vs actual outcome.
+-   Bugs are reproducible without active modules. If module-related, contact the module author.
+-   Provide relevant hosting details.
+-   Include clear instructions on reproducing the issue and the expected vs actual outcome.
 
 ## Project Contributors
 
 Major thanks to the following contributors:
 
-- [zarick1342](https://github.com/zarick1342/) - This system is a fork of their [Fabula Ultima Boilerplate System](https://github.com/zarick1342/fabula-ultima-system)
-- [serpuss](https://github.com/serpuss) - Various upgrades and CSS design improvements.
-- [spyrella](https://github.com/spyrella) - For ongoing updates to the system and maintaining the project.
-- [Savantford](https://github.com/Savantford) - For providing and allowing me to utilize their clock code.
-- [xeqi](https://github.com/xeqi) - Various fixes to the codebase (bonds, status effects, etc) + their fultimator importer module.
-- [Shourn](https://github.com/Shourn) - Refactoring of the codebase,setting up system data model, and implementing new features.
-- [Wigginns](https://github.com/Wigginns) - Various qol (collapsible descriptions) & fixes.
-- Special thanks to the following contributors found here: [Contributors Link](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/graphs/contributors)
+-   [zarick1342](https://github.com/zarick1342/) - This system is a fork of their [Fabula Ultima Boilerplate System](https://github.com/zarick1342/fabula-ultima-system)
+-   [serpuss](https://github.com/serpuss) - Various upgrades and CSS design improvements.
+-   [spyrella](https://github.com/spyrella) - For ongoing updates to the system and maintaining the project.
+-   [Savantford](https://github.com/Savantford) - For providing and allowing me to utilize their clock code.
+-   [xeqi](https://github.com/xeqi) - Various fixes to the codebase (bonds, status effects, etc) + their fultimator importer module.
+-   [Shourn](https://github.com/Shourn) - Refactoring of the codebase,setting up system data model, and implementing new features.
+-   [Wigginns](https://github.com/Wigginns) - Various qol (collapsible descriptions) & fixes.
+-   Special thanks to the following contributors found here: [Contributors Link](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/graphs/contributors)
 
 As well as the following localizers who translated to the system to their respective language:
 
-- Italian ([KzMz](https://github.com/KzMz), RaurosHuntor), German ([Shourn](https://github.com/Shourn)), French ([Zakarik](https://github.com/Zakarik)), Spanish (Jakob_LP), Brazilian Portuguese (Lamegal), Russian (FreeDay).
+-   Italian ([KzMz](https://github.com/KzMz), RaurosHuntor), German ([Shourn](https://github.com/Shourn)), French ([Zakarik](https://github.com/Zakarik)), Spanish (Jakob_LP), Brazilian Portuguese (Lamegal), Russian (FreeDay).
 
 The following assets/code were used from the following projects:
 
-- **Status Effect Icons**: [styles\static\icons] - default status effect icons from [@_t3nshi](https://twitter.com/_t3nshi). Explicit permission granted by t3nshi for the use of the Status Effect Icons exclusively in Fabula Ultima games. These icons are not authorized for use in other media without obtaining additional permission from t3nshi.
-- **game-icons**: [game-icons.net](https://game-icons.net), various icons were used from here, licensed under the  [CC-BY-3.0 license](https://creativecommons.org/licenses/by/3.0/).
-- **fultimator**: [fultimator](https://github.com/codeclysm/fultimator) by codeclysm, specifically project/ritual/sp counter code, licensed under the [MIT License](https://github.com/codeclysm/fultimator/blob/main/LICENSE.md)
-- **animate.css**: [animate.css](https://animate.style/) by Daniel Eden, licensed under the [Hippocratic License](https://github.com/animate-css/animate.css/blob/main/LICENSE-HIPPOCRATIC).
-- **RPG-Awesome**: [RPG-Awesome](https://nagoshiashumari.github.io/Rpg-Awesome/) by Daniela Howe and Ivan Montiel, licensed under the [BSD 2-Clause "Simplified" License](https://github.com/NagoshiAshumari/Rpg-Awesome/blob/master/LICENSE).
+-   **Status Effect Icons**: [styles\static\icons] - default status effect icons from [@\_t3nshi](https://twitter.com/_t3nshi). Explicit permission granted by t3nshi for the use of the Status Effect Icons exclusively in Fabula Ultima games. These icons are not authorized for use in other media without obtaining additional permission from t3nshi.
+-   **game-icons**: [game-icons.net](https://game-icons.net), various icons were used from here, licensed under the [CC-BY-3.0 license](https://creativecommons.org/licenses/by/3.0/).
+-   **fultimator**: [fultimator](https://github.com/codeclysm/fultimator) by codeclysm, specifically project/ritual/sp counter code, licensed under the [MIT License](https://github.com/codeclysm/fultimator/blob/main/LICENSE.md)
+-   **animate.css**: [animate.css](https://animate.style/) by Daniel Eden, licensed under the [Hippocratic License](https://github.com/animate-css/animate.css/blob/main/LICENSE-HIPPOCRATIC).
+-   **RPG-Awesome**: [RPG-Awesome](https://nagoshiashumari.github.io/Rpg-Awesome/) by Daniela Howe and Ivan Montiel, licensed under the [BSD 2-Clause "Simplified" License](https://github.com/NagoshiAshumari/Rpg-Awesome/blob/master/LICENSE).
 
 The complete list of utilized assets and their respective licenses is available [here](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/blob/main/COPYRIGHT.md)

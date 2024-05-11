@@ -2,56 +2,56 @@
 /* Item Card Structure                       */
 /* ----------------------------------------- */
 .chat-message .message-header .flavor-text {
-  font-size: 18px;
-  margin-top: 10px;
+	font-size: 18px;
+	margin-top: 10px;
 }
 
 .chat-message {
-  margin: 3px;
-  padding: 5px;
-  font-size: var(--font-size-14);
-  border: 2px solid #6f6c66;
-  background: url(/systems/fabulaultima/images/0.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 5px;
+	margin: 3px;
+	padding: 5px;
+	font-size: var(--font-size-14);
+	border: 2px solid #6f6c66;
+	background: url(/systems/fabulaultima/images/0.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	border-radius: 5px;
 }
 
 /* Description Detail */
 .detaildesc {
-  color: #1c1c1b;
-  box-shadow: 3px 6px darkslategrey;
-  background-image: linear-gradient(to right, rgba(211, 229, 230, 0.7), rgba(195, 219, 214, 0.8));
-  border-style: solid;
-  border-width: thin;
-  border-color: DarkSlateGray;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  position: relative;
-  overflow: hidden;
+	color: #1c1c1b;
+	box-shadow: 3px 6px darkslategrey;
+	background-image: linear-gradient(to right, rgba(211, 229, 230, 0.7), rgba(195, 219, 214, 0.8));
+	border-style: solid;
+	border-width: thin;
+	border-color: DarkSlateGray;
+	border-radius: 8px;
+	font-size: 14px;
+	font-weight: bold;
+	position: relative;
+	overflow: hidden;
 }
 
 .detaildesc:before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  background: linear-gradient(45deg, #f06, #e43);
-  z-index: -1;
+	content: '';
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	right: -10px;
+	bottom: -10px;
+	background: linear-gradient(45deg, #f06, #e43);
+	z-index: -1;
 }
 
 .detaildesc p {
-  margin: 0;
-  padding: 2px;
-  text-align: center;
+	margin: 0;
+	padding: 2px;
+	text-align: center;
 }
 
 .detaildesc p:last-child {
-  background: rgba(211, 229, 230, 0.7);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+	background: rgba(211, 229, 230, 0.7);
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 }

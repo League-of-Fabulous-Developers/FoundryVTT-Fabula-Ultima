@@ -626,7 +626,7 @@ export async function createChatMessage(checkParams, additionalFlags = {}) {
 		? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
 				flavor: checkParams.details?.name || '',
 				description: await EnrichHTML(checkParams.description),
-		  })
+			})
 		: '';
 
 	/** @type Partial<ChatMessageData> */
@@ -703,7 +703,6 @@ export async function promptCheck(actor, title) {
 	try {
 		const attributes = actor.system.attributes;
 		const titleMain = title || 'FU.DialogCheckTitle';
-		const labelHeader = '';
 		const { attr1, attr2, difficulty, modifier } = await Dialog.wait(
 			{
 				title: game.i18n.localize(titleMain),
@@ -793,7 +792,6 @@ export async function promptOpenCheck(actor, title, action) {
 		const bonus = actor.system.bonuses.accuracy.opposedCheck;
 
 		const titleMain = title || 'FU.DialogCheckOpenCheck';
-		const labelHeader = '';
 
 		if (action === 'study') {
 			recentActorChecks.attr1 = 'ins';

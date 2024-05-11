@@ -43,7 +43,7 @@ export class FUActor extends Actor {
 	 * is queried and has a roll executed directly from it).
 	 */
 	prepareDerivedData() {
-        this.items.forEach((item) => item.applyActiveEffects())
+		this.items.forEach((item) => item.applyActiveEffects());
 	}
 
 	get tlTracker() {
@@ -70,10 +70,7 @@ export class FUActor extends Actor {
 	/**
 	 * Prepare character roll data.
 	 */
-	_getCharacterRollData(data) {
-		if (this.type !== 'character') {
-		}
-
+	_getCharacterRollData() {
 		// Copy the ability scores to the top level, so that rolls can use
 		// formulas like `@str.mod + 4`.
 		// if (data.abilities) {
@@ -81,7 +78,6 @@ export class FUActor extends Actor {
 		//     data[k] = foundry.utils.deepClone(v);
 		//   }
 		// }
-
 		// Add level for easier access, or fall back to 0.
 		// if (data.attributes.level) {
 		//   data.lvl = data.attributes.level.value ?? 0;
@@ -91,10 +87,7 @@ export class FUActor extends Actor {
 	/**
 	 * Prepare NPC roll data.
 	 */
-	_getNpcRollData(data) {
-		if (this.type !== 'npc') {
-		}
-
+	_getNpcRollData() {
 		// Process additional NPC data here.
 	}
 
@@ -114,8 +107,6 @@ export class FUActor extends Actor {
 	async _preUpdate(changed, options, user) {
 		const changedHP = changed.system?.resources?.hp;
 		const currentHP = this.system.resources.hp;
-		const maxHP = this.system.resources.hp.max;
-		const crisis = maxHP / 2;
 
 		if (typeof changedHP?.value === 'number' && currentHP) {
 			const hpChange = changedHP.value - currentHP.value;

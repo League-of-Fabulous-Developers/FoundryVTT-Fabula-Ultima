@@ -1,139 +1,139 @@
 /* Increment/Decrement Buttons */
 .input-with-buttons {
-  display: flex;
-  align-items: center;
-  color: teal;
-  text-shadow: 3px 3px ivory;
+	display: flex;
+	align-items: center;
+	color: teal;
+	text-shadow: 3px 3px ivory;
 }
 
 input.fp-input-style {
-  height: auto;
-  color: teal;
-  text-shadow: 3px 3px ivory;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: transparent;
-  border-color: transparent;
-  vertical-align: middle;
-  padding: 5px;
+	height: auto;
+	color: teal;
+	text-shadow: 3px 3px ivory;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: transparent;
+	border-color: transparent;
+	vertical-align: middle;
+	padding: 5px;
 }
 
 .rp-labels {
-  color: seagreen;
-  font-weight: bold;
-  font-size: 18px;
-  margin: 5px;
-  padding: 2px;
+	color: seagreen;
+	font-weight: bold;
+	font-size: 18px;
+	margin: 5px;
+	padding: 2px;
 }
 
 .increment-button,
 .decrement-button {
-  width: 40px;
-  color: teal;
-  text-shadow: 3px 3px ivory;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  margin: 1%;
+	width: 40px;
+	color: teal;
+	text-shadow: 3px 3px ivory;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	margin: 1%;
 }
 
 .increment-button:hover,
 .decrement-button:hover {
-  background-color: rgba(0, 128, 128, 0.1);
-  /* Light teal background on hover */
+	background-color: rgba(0, 128, 128, 0.1);
+	/* Light teal background on hover */
 }
 
 .name-input input.rp-name {
-  color: seagreen;
-  font-weight: bold;
-  font-size: 16px;
-  border: transparent;
-  background: transparent;
-  margin: 5px;
+	color: seagreen;
+	font-weight: bold;
+	font-size: 16px;
+	border: transparent;
+	background: transparent;
+	margin: 5px;
 }
 
 .max-style {
-  color: teal;
-  font-size: 16px;
-  font-weight: bold;
-  margin-left: 5px;
-  height: auto;
-  color: teal;
-  text-shadow: 3px 3px ivory;
-  background-color: transparent;
-  border-color: transparent;
+	color: teal;
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 5px;
+	height: auto;
+	color: teal;
+	text-shadow: 3px 3px ivory;
+	background-color: transparent;
+	border-color: transparent;
 }
 
 input.max-style:disabled {
-  color: teal;
-  font-size: 16px;
-  cursor: not-allowed;
-  opacity: 0.8;
+	color: teal;
+	font-size: 16px;
+	cursor: not-allowed;
+	opacity: 0.8;
 }
 
 .def-style {
-  color: seagreen;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0.5em 0 0;
+	color: seagreen;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0.5em 0 0;
 }
 
 input.charname-input-style {
-  color: ivory;
-  font-size: 24x;
-  background-color: transparent;
-  border-color: transparent;
+	color: ivory;
+	font-size: 24x;
+	background-color: transparent;
+	border-color: transparent;
 }
 
 .input-style {
-  color: ivory;
-  font-size: 20x;
-  background-color: seagreen;
-  border-color: transparent;
-  padding: 5px;
+	color: ivory;
+	font-size: 20x;
+	background-color: seagreen;
+	border-color: transparent;
+	padding: 5px;
 }
 
 input.input-style {
-  display: flex;
-  align-items: center;
-  color: ivory;
-  font-size: 16px;
-  background-color: seagreen;
-  border-color: transparent;
-  padding: 5px;
+	display: flex;
+	align-items: center;
+	color: ivory;
+	font-size: 16px;
+	background-color: seagreen;
+	border-color: transparent;
+	padding: 5px;
 }
 
 .input-with-buttons input.resource-input {
-  color: ivory;
-  font-size: 16px;
-  background-color: seagreen;
-  border-color: transparent;
-  padding: 5px;
+	color: ivory;
+	font-size: 16px;
+	background-color: seagreen;
+	border-color: transparent;
+	padding: 5px;
 }
 
 input.inputdesc {
-  color: ivory;
-  font-size: 16px;
-  background-color: seagreen;
-  border-color: transparent;
+	color: ivory;
+	font-size: 16px;
+	background-color: seagreen;
+	border-color: transparent;
 }
 
 input.traitdesc {
-  color: ivory;
-  font-size: 14px;
-  background-color: seagreen;
-  border-color: transparent;
+	color: ivory;
+	font-size: 14px;
+	background-color: seagreen;
+	border-color: transparent;
 }
 
 .npc-border-col {
-  border: 4px double seagreen;
+	border: 4px double seagreen;
 }
 
 .auto-shrink {
-  width: 100%;
-  box-sizing: border-box;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+	width: 100%;
+	box-sizing: border-box;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }

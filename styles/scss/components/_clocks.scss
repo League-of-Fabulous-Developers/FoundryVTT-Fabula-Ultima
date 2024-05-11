@@ -1,81 +1,104 @@
 .progress {
-    --size: 50px;
-    --border-width: 2px;
-    width: var(--size);
-    height: var(--size);
-    position: relative;
-  }
+	--size: 50px;
+	--border-width: 2px;
+	width: var(--size);
+	height: var(--size);
+	position: relative;
+}
 
-  .progress[data-segments="1"] .divider { display: none; }
-  .progress[data-segments="2"] .pie { clip-path: polygon(50% -25%, 50% 125%, 120% 50%); }
-  .progress[data-segments="3"] .pie { clip-path: polygon(50% -50%, 50% 50%, 140% 100%); }
-  .progress[data-segments="4"] .pie { clip-path: polygon(50% -25%, 50% 50%, 120% 50%); }
-  .progress[data-segments="5"] .pie { clip-path: polygon(50% -10%, 50% 50%, 110% 30%); }
-  .progress[data-segments="6"] .pie { clip-path: polygon(50% -10%, 50% 50%, 100% 20%); }
-  .progress[data-segments="7"] .pie { clip-path: polygon(50% 0, 50% 50%, 110% 0); }
-  .progress[data-segments="8"] .pie { clip-path: polygon(50% 0, 50% 50%, 100% 0); }
-  .progress[data-segments="9"] .pie { clip-path: polygon(50% 0, 50% 50%, 95% 0); }
-  .progress[data-segments="10"] .pie { clip-path: polygon(50% 0, 50% 50%, 85% 0); }
-  .progress[data-segments="11"] .pie { clip-path: polygon(50% 0, 50% 50%, 85% 0); }
-  .progress[data-segments="12"] .pie { clip-path: polygon(50% 0, 50% 50%, 80% 0); }
-  
-  .progress .foreground {
-    pointer-events: none;
-    position: absolute;
-    width: var(--size);
-    height: var(--size);
-    border-radius: 50%;
-    border: var(--border-width) solid $color-secondary;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    z-index: 2;
-  }
-  
-  .progress .divider {
-    pointer-events: none;
-    position: absolute;
-    width: var(--border-width);
-    height: calc(50% - .5 * var(--border-width));
-    top: calc(.5 * var(--border-width));
-    right: calc(50% - var(--border-width) / 2);
-    background: $color-ternary;
-    transform-origin: center bottom;
-    transform: rotate(calc((var(--index) * 1turn) / var(--segments)));
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    z-index: 2;
-  }
-  
-  .progress input[type="radio"].pie {
-    position: absolute;
-    top: 0;
-    margin: 0;
-    appearance: none;
-    width: var(--size);
-    height: var(--size);
-    border-radius: 50%;
-    transform: rotate(calc(((var(--index) - 1) * 1turn) / var(--segments)));
-    z-index: 1;
-  }
-  
-  .progress .pie:hover {
-    cursor: pointer;
-  }
-  
-  .progress .pie:checked,
-  .progress .pie:checked ~ .pie {
-    background-color: $color-secondary;
-  }
-  
-  .progress .pie:hover,
-  .progress .pie:hover ~ .pie {
-    background-color: $color-secondary-inverted;
-  }
-  
-  .progress .pie:checked:hover,
-  .progress .pie:checked:hover ~ .pie,
-  .progress .pie:checked ~ .pie:hover,
-  .progress .pie:checked ~ .pie:hover ~ .pie,
-  .progress .pie:hover ~ .pie:checked,
-  .progress .pie:hover ~ .pie:checked ~ .pie {
-    background-color: $color-secondary;
-  }
-  
+.progress[data-segments='1'] .divider {
+	display: none;
+}
+.progress[data-segments='2'] .pie {
+	clip-path: polygon(50% -25%, 50% 125%, 120% 50%);
+}
+.progress[data-segments='3'] .pie {
+	clip-path: polygon(50% -50%, 50% 50%, 140% 100%);
+}
+.progress[data-segments='4'] .pie {
+	clip-path: polygon(50% -25%, 50% 50%, 120% 50%);
+}
+.progress[data-segments='5'] .pie {
+	clip-path: polygon(50% -10%, 50% 50%, 110% 30%);
+}
+.progress[data-segments='6'] .pie {
+	clip-path: polygon(50% -10%, 50% 50%, 100% 20%);
+}
+.progress[data-segments='7'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 110% 0);
+}
+.progress[data-segments='8'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 100% 0);
+}
+.progress[data-segments='9'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 95% 0);
+}
+.progress[data-segments='10'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 85% 0);
+}
+.progress[data-segments='11'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 85% 0);
+}
+.progress[data-segments='12'] .pie {
+	clip-path: polygon(50% 0, 50% 50%, 80% 0);
+}
+
+.progress .foreground {
+	pointer-events: none;
+	position: absolute;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	border: var(--border-width) solid $color-secondary;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	z-index: 2;
+}
+
+.progress .divider {
+	pointer-events: none;
+	position: absolute;
+	width: var(--border-width);
+	height: calc(50% - 0.5 * var(--border-width));
+	top: calc(0.5 * var(--border-width));
+	right: calc(50% - var(--border-width) / 2);
+	background: $color-ternary;
+	transform-origin: center bottom;
+	transform: rotate(calc((var(--index) * 1turn) / var(--segments)));
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	z-index: 2;
+}
+
+.progress input[type='radio'].pie {
+	position: absolute;
+	top: 0;
+	margin: 0;
+	appearance: none;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	transform: rotate(calc(((var(--index) - 1) * 1turn) / var(--segments)));
+	z-index: 1;
+}
+
+.progress .pie:hover {
+	cursor: pointer;
+}
+
+.progress .pie:checked,
+.progress .pie:checked ~ .pie {
+	background-color: $color-secondary;
+}
+
+.progress .pie:hover,
+.progress .pie:hover ~ .pie {
+	background-color: $color-secondary-inverted;
+}
+
+.progress .pie:checked:hover,
+.progress .pie:checked:hover ~ .pie,
+.progress .pie:checked ~ .pie:hover,
+.progress .pie:checked ~ .pie:hover ~ .pie,
+.progress .pie:hover ~ .pie:checked,
+.progress .pie:hover ~ .pie:checked ~ .pie {
+	background-color: $color-secondary;
+}

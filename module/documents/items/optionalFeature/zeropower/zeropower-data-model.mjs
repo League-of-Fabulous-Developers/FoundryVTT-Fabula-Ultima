@@ -17,30 +17,30 @@ import { ProgressDataModel } from '../../common/progress-data-model.mjs';
  * @property {string} source.value
  */
 export class ZeroPowerDataModel extends OptionalFeatureDataModel {
-    static defineSchema() {
-        const { SchemaField, StringField, HTMLField, EmbeddedDataField } = foundry.data.fields;
-        return {
-            progress: new EmbeddedDataField(ProgressDataModel, {}),
-            zeroTrigger: new SchemaField({
-                value: new StringField(),
-                description: new HTMLField(),
-            }),
-            zeroEffect: new SchemaField({
-                value: new StringField(),
-                description: new HTMLField(),
-            }),
-        };
-    }
+	static defineSchema() {
+		const { SchemaField, StringField, HTMLField, EmbeddedDataField } = foundry.data.fields;
+		return {
+			progress: new EmbeddedDataField(ProgressDataModel, {}),
+			zeroTrigger: new SchemaField({
+				value: new StringField(),
+				description: new HTMLField(),
+			}),
+			zeroEffect: new SchemaField({
+				value: new StringField(),
+				description: new HTMLField(),
+			}),
+		};
+	}
 
-    static get template() {
-        return 'systems/projectfu/templates/optional/zeropower/feature-zeroPower-sheet.hbs';
-    }
+	static get template() {
+		return 'systems/projectfu/templates/optional/zeropower/feature-zeroPower-sheet.hbs';
+	}
 
-    static get previewTemplate() {
-        return 'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs';
-    }
+	static get previewTemplate() {
+		return 'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs';
+	}
 
-    static get translation() {
-        return 'FU.Limit';
-    }
+	static get translation() {
+		return 'FU.Limit';
+	}
 }
