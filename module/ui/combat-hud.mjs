@@ -89,6 +89,13 @@ export class CombatHUD extends Application {
 		}
 	}
 
+	_getResourcePartial(resource) {
+		if (resource == 'none') return false;
+
+		const basePath = 'systems/projectfu/templates/ui/partials/combat-bar-';
+		return basePath + resource + '.hbs';
+	}
+
 	async getData(options = {}) {
 		const data = await super.getData(options);
 		data.cssClasses = this.options.classes.join(' ');
@@ -105,6 +112,20 @@ export class CombatHUD extends Application {
 
 		if (!game.combat) return data;
 
+		const trackedResourcePart1 = this._getResourcePartial(game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1));
+		const trackedResourcePart2 = this._getResourcePartial(game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2));
+		const trackedResourcePart3 = this._getResourcePartial(game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3));
+		let barCount = 0;
+		if (trackedResourcePart1) {
+			barCount++;
+		}
+		if (trackedResourcePart2) {
+			barCount++;
+		}
+		if (trackedResourcePart3) {
+			barCount++;
+		}
+
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
 
@@ -113,8 +134,37 @@ export class CombatHUD extends Application {
 				token: combatant.token,
 				effects: game.release.generation >= 11 ? Array.from(combatant.actor.allApplicableEffects()) : combatant.actor.effects,
 				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? combatant.token.texture.src : combatant.actor.img,
+				trackedResourcePart1: trackedResourcePart1,
+				trackedResourcePart2: trackedResourcePart2,
+				trackedResourcePart3: trackedResourcePart3,
+				zeropower: {
+					progress: {
+						current: 0,
+						max: 0,
+					}
+				}
 			};
 			actorData.hasEffects = actorData.effects.length > 0 && game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowEffects);
+
+			switch (barCount) {
+				case 1:
+					actorData.rowClass = 'one-bar';
+					break;
+				case 2:
+					actorData.rowClass = 'two-bars';
+					break;
+				case 3:
+					actorData.rowClass = 'three-bars';
+					break;
+				default:
+					actorData.rowClass = 'no-bars';
+					break;
+			}
+
+			const zeroPower = combatant.actor.items.find((i) => i.type === 'zeroPower');
+			if (zeroPower) {
+				actorData.zeropower = zeroPower.system;
+			}
 
 			if (actorData.hasEffects) {
 				const maxEffectsBeforeMarquee = 5;
@@ -430,6 +480,9 @@ export class CombatHUD extends Application {
 	}
 
 	_onUpdateHUD() {
+		if (!game.combat) return;
+		if (!game.combat.isActive) return;
+
 		this.render(true);
 	}
 
@@ -500,6 +553,9 @@ export class CombatHUD extends Application {
 	}
 
 	static update() {
+		if (!game.combat) return;
+		if (!game.combat.isActive) return;
+
 		if (ui.combatHud) {
 			ui.combatHud.render(true);
 		}

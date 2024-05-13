@@ -104,6 +104,38 @@
         </div>
         <p class="notes">{{localize "FU.CombatHudShowOrderNumbersHint"}}</p>
     </div>
+    {{#if isGM}}
+    {{!-- optionCombatHudTrackedResource1 --}}
+    <div class="form-group">
+        <label for="optionCombatHudTrackedResource1">{{localize "FU.CombatHudTrackedResource1"}}</label>
+        <div class="form-fields">
+            <select name="optionCombatHudTrackedResource1" id="optionCombatHudTrackedResource1">
+                {{selectOptions trackedResources selected=optionCombatHudTrackedResource1 localize=true}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudTrackedResource1Hint"}}</p>
+    </div>
+    {{!-- optionCombatHudTrackedResource2 --}}
+    <div class="form-group">
+        <label for="optionCombatHudTrackedResource2">{{localize "FU.CombatHudTrackedResource2"}}</label>
+        <div class="form-fields">
+            <select name="optionCombatHudTrackedResource2" id="optionCombatHudTrackedResource2">
+                {{selectOptions trackedResources selected=optionCombatHudTrackedResource2 localize=true}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudTrackedResource2Hint"}}</p>
+    </div>
+    {{!-- optionCombatHudTrackedResource3 --}}
+    <div class="form-group">
+        <label for="optionCombatHudTrackedResource3">{{localize "FU.CombatHudTrackedResource3"}}</label>
+        <div class="form-fields">
+            <select name="optionCombatHudTrackedResource3" id="optionCombatHudTrackedResource3">
+                {{selectOptions trackedResources selected=optionCombatHudTrackedResource3 localize=true}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudTrackedResource3Hint"}}</p>
+    </div>
+    {{/if}}
     <div class="form-group buttons">
         <button type="submit">
             <i class="fas fa-floppy-disk"></i>{{localize "FU.SettingsSave"}}

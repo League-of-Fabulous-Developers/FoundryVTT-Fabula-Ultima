@@ -358,3 +358,8 @@ FU.resourceIcons = {
 	mp: 'fas fa-hat-wizard',
 	ip: 'ra ra-gear-hammer',
 };
+
+FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
+	"zeropower": "ITEM.TypeZeroPower",
+	"none": "FU.None",
+});

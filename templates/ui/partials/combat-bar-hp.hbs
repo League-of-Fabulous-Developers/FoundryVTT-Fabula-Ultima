@@ -1,0 +1,29 @@
+<div class="bar-container">
+    <div class="bar bar-progress">
+        {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
+        <div class="bar-progress-bar bar-hp-crisis"
+            style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
+        <div class="center-line"></div>
+        {{else}}
+        <div class="bar-progress-bar bar-hp"
+            style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
+        {{/if}}
+        <span class="bar-value"></span>
+
+        <div class="resource-value-compact">
+            <div class="resource-text">
+                <span>{{ this.actor.system.resources.hp.value }} / {{ this.actor.system.resources.hp.max }}</span>
+            </div>
+        </div>
+    </div>  
+    <div class="resource-value">
+        {{#if (lte this.actor.system.resources.hp.value (half this.actor.system.resources.hp.max))}}
+        <i class="fa-solid fa-heart-crack is-crisis"></i>
+        {{else}}
+        <i class="fa-solid fa-heart"></i>
+        {{/if}}
+        <div class="resource-text">
+            <span>{{ this.actor.system.resources.hp.value }} / {{ this.actor.system.resources.hp.max }}</span>
+        </div>
+    </div>
+</div>

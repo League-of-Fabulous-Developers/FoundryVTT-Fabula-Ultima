@@ -981,6 +981,12 @@
 		"ConfigMetaCurrencyBaseExperienceHint": "The amount of experience a character earns per session before bonuses from spent Fabula or Ultima points.",
 		"ConfigMetaCurrencyKeepExcessFabula": "Keep Excess Fabula Points",
 		"ConfigMetaCurrencyKeepExcessFabulaHint": "Keep excess Fabula points, if they cannot be evenly distributed between active characters.",
-		"CombatHudPopoutNotInstalled": "The 'PopOut!' module is required for this functionality."
+		"CombatHudPopoutNotInstalled": "The 'PopOut!' module is required for this functionality.",
+        "CombatHudTrackedResource1": "First Tracked Resource",
+        "CombatHudTrackedResource1Hint": "Choose the first resource to be shown as a bar in the Combat HUD.",
+        "CombatHudTrackedResource2": "Second Tracked Resource",
+        "CombatHudTrackedResource2Hint": "Choose the second resource to be shown as a bar in the Combat HUD.",
+        "CombatHudTrackedResource3": "Third Tracked Resource",
+        "CombatHudTrackedResource3Hint": "Choose the third resource to be shown as a bar in the Combat HUD."
 	}
 }
