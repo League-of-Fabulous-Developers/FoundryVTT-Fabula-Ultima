@@ -137,5 +137,11 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/dancer/feature-dance-sheet.hbs',
 
 		'systems/projectfu/templates/feature/symbolist/feature-symbol-sheet.hbs',
+
+		// Combat HUD Partials
+		'systems/projectfu/templates/ui/partials/combat-bar-hp.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-mp.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-ip.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-zeropower.hbs',
 	]);
 };

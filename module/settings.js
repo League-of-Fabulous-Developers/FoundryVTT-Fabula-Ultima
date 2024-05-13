@@ -1,6 +1,6 @@
 import { CombatHUD } from './ui/combat-hud.mjs';
 import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
-import { SYSTEM } from './helpers/config.mjs';
+import { SYSTEM, FU } from './helpers/config.mjs';
 
 export const SETTINGS = Object.freeze({
 	optionQuirks: 'optionQuirks',
@@ -36,6 +36,9 @@ export const SETTINGS = Object.freeze({
 	metaCurrencyUltima: 'metaCurrencyUltima',
 	metaCurrencyBaseExperience: 'metaCurrencyBaseExperience',
 	metaCurrencyKeepExcessFabula: 'metaCurrencyKeepExcessFabula',
+	optionCombatHudTrackedResource1: 'optionCombatHudTrackedResource1',
+	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
+	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
 });
 
 export const registerSystemSettings = async function () {
@@ -408,6 +411,36 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: false,
 	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource1, { 
+		name: game.i18n.localize('FU.CombatHudTrackedResource1'), 
+		hint: game.i18n.localize('FU.CombatHudTrackedResource1Hint'), 
+		scope: 'world', 
+		config: false, 
+		type: String, 
+		choices: FU.combatHudResources, 
+		default: 'hp', 
+	}); 
+ 
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource2, { 
+		name: game.i18n.localize('FU.CombatHudTrackedResource2'), 
+		hint: game.i18n.localize('FU.CombatHudTrackedResource2Hint'), 
+		scope: 'world', 
+		config: false, 
+		type: String, 
+		choices: FU.combatHudResources, 
+		default: 'mp', 
+	}); 
+ 
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource3, { 
+		name: game.i18n.localize('FU.CombatHudTrackedResource3'), 
+		hint: game.i18n.localize('FU.CombatHudTrackedResource3Hint'), 
+		scope: 'world', 
+		config: false, 
+		type: String, 
+		choices: FU.combatHudResources, 
+		default: 'ip', 
+	}); 
 };
 
 class OptionalRules extends FormApplication {
@@ -476,6 +509,10 @@ class CombatHudSettings extends FormApplication {
 			optionCombatHudReordering: game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering),
 			optionCombatHudShowOrderNumbers: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers),
 			isGM: game.user.isGM,
+			optionCombatHudTrackedResource1: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1),
+			optionCombatHudTrackedResource2: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2),
+			optionCombatHudTrackedResource3: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3),
+			trackedResources: FU.combatHudResources,
 		};
 	}
 
@@ -492,6 +529,9 @@ class CombatHudSettings extends FormApplication {
 				optionCombatHudEffectsMarqueeMode,
 				optionCombatHudReordering,
 				optionCombatHudShowOrderNumbers,
+				optionCombatHudTrackedResource1,
+				optionCombatHudTrackedResource2,
+				optionCombatHudTrackedResource3,
 			} = foundry.utils.expandObject(formData);
 
 			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
@@ -504,6 +544,9 @@ class CombatHudSettings extends FormApplication {
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, optionCombatHudEffectsMarqueeMode);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudReordering, optionCombatHudReordering);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, optionCombatHudShowOrderNumbers);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource1, optionCombatHudTrackedResource1);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource2, optionCombatHudTrackedResource2);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource3, optionCombatHudTrackedResource3);
 		} else {
 			const {
 				experimentalCombatHud,
