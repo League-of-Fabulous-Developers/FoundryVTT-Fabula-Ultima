@@ -27,9 +27,9 @@
                 </a>
                 <a class="item zenit-style" data-tooltip="{{localize 'FU.Zenit'}}">
                     <i class="fas fa-coin"></i>
-                    
+
                     <input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}"
-                        data-dtype="Number" />
+                           data-dtype="Number" />
                 </a>
             </nav>
         </header>
@@ -51,10 +51,10 @@
                         <main class="grid-span-3">
                             {{!-- Bond Section --}}
                             {{>"systems/projectfu/templates/actor/partials/actor-bonds.hbs" bond=bond
-                            bondIndex=bondIndex}}
+                             bondIndex=bondIndex}}
                             {{!-- Favorite Section --}}
                             {{>"systems/projectfu/templates/actor/partials/actor-favorite.hbs" groups=systemData.bond
-                            dtypes=dtypes actor=actor}}
+                             dtypes=dtypes actor=actor}}
                         </main>
                     </section>
                 </div>

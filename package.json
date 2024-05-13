@@ -2,13 +2,17 @@
 	"name": "projectfu",
 	"version": "2.2.1",
 	"description": "CSS compiler for the Fabula Ultima system",
+	"type": "module",
 	"scripts": {
 		"build": "gulp build",
 		"compile": "gulp css",
+		"prettier": "prettier --write .",
+		"lint": "eslint --fix .",
 		"watch": "gulp",
 		"gulp": "gulp",
 		"pushLDBtoYML": "node ./tools/pushLDBtoYML.mjs",
-		"pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs"
+		"pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs",
+		"prepare": "husky"
 	},
 	"browserslist": [
 		"last 3 versions"
@@ -17,17 +21,21 @@
 	"license": "MIT",
 	"private": true,
 	"devDependencies": {
+		"@eslint/js": "^9.2.0",
 		"@foundryvtt/foundryvtt-cli": "^1.0.2",
-		"gulp": "^4.0.2",
-		"gulp-autoprefixer": "^6.1.0",
+		"eslint": "^9.2.0",
+		"eslint-config-prettier": "^9.1.0",
+		"globals": "^15.2.0",
+		"gulp": "^5.0.0",
+		"gulp-autoprefixer": "^9.0.0",
 		"gulp-sass": "^5.1.0",
 		"gulp-sourcemaps": "^3.0.0",
-		"sass": "^1.53.0"
+		"husky": "^9.0.11",
+		"prettier": "^3.2.5",
+		"sass": "^1.77.1"
 	},
 	"dependencies": {
 		"animate.css": "^4.1.1",
-		"eslint": "^8.7.0",
-		"prettier": "^2.5.1",
 		"rpg-awesome": "^0.2.0"
 	}
 }

@@ -5,7 +5,7 @@ import { AttributesDataModel } from '../common/attributes-data-model.mjs';
 import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
 import { BondDataModel } from '../common/bond-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
-import {DerivedValuesDataModel} from "../common/derived-values-data-model.mjs";
+import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
 
 /**
  * @property {number} level.value
@@ -119,19 +119,17 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 		return this.parent;
 	}
 
-	prepareBaseData() {
-
-    }
+	prepareBaseData() {}
 
 	prepareDerivedData() {
-        this.attributes.handleStatusEffects()
-        this.affinities.handleGuard()
+		this.attributes.handleStatusEffects();
+		this.affinities.handleGuard();
 		this.spTracker = new NpcSkillTracker(this);
 	}
 
 	prepareEmbeddedData() {
 		this.#prepareBasicResource();
-		this.derived.prepareData()
+		this.derived.prepareData();
 	}
 
 	#prepareBasicResource() {

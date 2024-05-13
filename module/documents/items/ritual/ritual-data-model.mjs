@@ -60,20 +60,20 @@ export class RitualDataModel extends foundry.abstract.TypeDataModel {
 
 	prepareBaseData() {
 		const potencyCosts = { minor: 20, medium: 30, major: 40, extreme: 50 };
-        const areaCosts = { individual: 1, small: 2, large: 3, huge: 4 };
-        const potencyDLs = { minor: 7, medium: 10, major: 13, extreme: 16 };
-        const potencyClocks = { minor: 4, medium: 6, major: 6, extreme: 8 };
+		const areaCosts = { individual: 1, small: 2, large: 3, huge: 4 };
+		const potencyDLs = { minor: 7, medium: 10, major: 13, extreme: 16 };
+		const potencyClocks = { minor: 4, medium: 6, major: 6, extreme: 8 };
 
-        const potency = this.potency.value;
-        const area = this.area.value;
+		const potency = this.potency.value;
+		const area = this.area.value;
 
-        const calcMP = potencyCosts[potency] * areaCosts[area];
+		const calcMP = potencyCosts[potency] * areaCosts[area];
 
-        const calcDL = potencyDLs[potency];
-        const calcClock = potencyClocks[potency];
+		const calcDL = potencyDLs[potency];
+		const calcClock = potencyClocks[potency];
 
-        (this.mpCost ??= {}).value = calcMP;
-        (this.dLevel ??= {}).value = calcDL;
-        (this.clock ??= {}).value = calcClock;
+		(this.mpCost ??= {}).value = calcMP;
+		(this.dLevel ??= {}).value = calcDL;
+		(this.clock ??= {}).value = calcClock;
 	}
 }

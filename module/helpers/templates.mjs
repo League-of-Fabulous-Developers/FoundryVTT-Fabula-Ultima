@@ -113,7 +113,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 		'systems/projectfu/templates/optional/quirk/feature-quirk-sheet.hbs',
 		'systems/projectfu/templates/optional/quirk/feature-quirk-preview.hbs',
-		
+
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-sheet.hbs',
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs',
 

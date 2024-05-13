@@ -4,17 +4,17 @@
         <fieldset class="section-container title-fieldset desc resource-content">
             <legend class="resource-label-m" aria-describedby="tooltip">
                 <a class="resource-inputs resource-label-m">
-                    </i>{{localize 'FU.BiographyInfo'}}
+                    {{localize 'FU.BiographyInfo'}}
                 </a>
             </legend>
 
             <section>
                 {{#if (or (eq (getGameSetting 'optionNPCNotesTab') true) (eq actor.type "character"))}}
-                {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-                button=true owner=owner editable=editable }}
+                    {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
+                             button=true owner=owner editable=editable }}
                 {{else}}
-                {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-                button=false owner=owner editable=false }}
+                    {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
+                             button=false owner=owner editable=false }}
                 {{/if}}
             </section>
 

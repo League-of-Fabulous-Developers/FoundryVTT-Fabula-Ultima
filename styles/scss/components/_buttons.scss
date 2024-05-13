@@ -33,7 +33,9 @@
 	margin: 12px 8px 8px;
 	background: linear-gradient($color-tabStyle-gradient, $color-secondary);
 	word-wrap: break-word;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
 
 	&:hover {
 		transform: translateY(-1px);
@@ -75,7 +77,9 @@
 	box-shadow: 3px 6px $color-secondary;
 	border-radius: 8px;
 	background: linear-gradient($color-tabStyle-gradient), $color-secondary;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
 
 	&.active {
 		border: 1px solid darkslategrey;
@@ -117,7 +121,9 @@
 	text-shadow: 1px 1px 1px $color-black;
 	box-shadow: 3px 6px $color-secondary;
 	border-radius: 8px;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
 	background-image: linear-gradient($color-tabStyle-gradient);
 
 	input,
@@ -167,7 +173,9 @@
 	background-color: $color-secondary;
 	background-image: linear-gradient($color-tabStyle-gradient);
 	word-wrap: break-word;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
 
 	&.active {
 		border: 1px solid darkslategrey;
@@ -202,7 +210,9 @@
 	margin: 12px 0;
 	background-color: $color-secondary;
 	background-image: linear-gradient($color-tabStyle-gradient);
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
 
 	&:active {
 		transform: translateY(3px);

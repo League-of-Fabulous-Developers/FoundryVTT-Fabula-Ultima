@@ -1,24 +1,23 @@
 .inline-effect-config {
+	h1 {
+		border-bottom: unset;
+	}
 
-    h1 {
-        border-bottom: unset;
-    }
-
-    .effect-icon {
-        width: 32px;
-        height: 32px;
-    }
+	.effect-icon {
+		width: 32px;
+		height: 32px;
+	}
 
 	.changes-legend {
-        padding: 0.25em 0.5em;
-        gap: 0.5em;
+		padding: 0.25em 0.5em;
+		gap: 0.5em;
 	}
 
 	.guided-change-legend {
-        padding: 0.25em 0.5em;
+		padding: 0.25em 0.5em;
 		display: flex;
 		flex-wrap: nowrap;
 		align-items: center;
-        gap: 0.5em;
+		gap: 0.5em;
 	}
 }

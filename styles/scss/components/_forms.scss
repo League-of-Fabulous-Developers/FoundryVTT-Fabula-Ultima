@@ -1,349 +1,349 @@
 /* Description Format */
 .desc {
-  background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
-  border-radius: 12px;
-  border: 1px solid #2c4a4254;
-  padding: 5px;
+	background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
+	border-radius: 12px;
+	border: 1px solid #2c4a4254;
+	padding: 5px;
 }
 
 /* Sheet Header */
 .sheet-header {
-  position: sticky;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column !important;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-bottom: 5px;
-  background-color: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
-  gap: 5px;
+	position: sticky;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column !important;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin-bottom: 5px;
+	background-color: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
+	gap: 5px;
 
-  /* Combine Header */
-  .combine-header {
-    flex: 0;
-    margin: 0;
-    overflow: visible;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    display: flex;
-  }
+	/* Combine Header */
+	.combine-header {
+		flex: 0;
+		margin: 0;
+		overflow: visible;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		display: flex;
+	}
 
-  /* Profile Image */
-  .profile-img {
-    flex: 0 0 200px;
-    height: 200px;
-    width: 200px;
-    margin-right: 0;
-    align-self: start;
-    background-image: linear-gradient(to right, $color-secondary, $color-ternary);
-    background-clip: content-box;
-    border: 1px solid #aeb8a8;
-    border-radius: 10px 0 0 10px;
-  }
+	/* Profile Image */
+	.profile-img {
+		flex: 0 0 200px;
+		height: 200px;
+		width: 200px;
+		margin-right: 0;
+		align-self: start;
+		background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+		background-clip: content-box;
+		border: 1px solid #aeb8a8;
+		border-radius: 10px 0 0 10px;
+	}
 
-  /* Character Name Container */
-  .charname-container {
-    background: linear-gradient($color-charname-gradient);
-    border-color: #c1b7c7;
-    border-radius: 0;
-    display: flex;
-    align-items: center;
-    padding: 0;
-    border-right: groove $color-white 3px;
-  }
+	/* Character Name Container */
+	.charname-container {
+		background: linear-gradient($color-charname-gradient);
+		border-color: #c1b7c7;
+		border-radius: 0;
+		display: flex;
+		align-items: center;
+		padding: 0;
+		border-right: groove $color-white 3px;
+	}
 
-  /* Character Name */
-  .charname-container input {
-    white-space: normal;
-  }
+	/* Character Name */
+	.charname-container input {
+		white-space: normal;
+	}
 
-  /* Header Fields */
-  .header-fields {
-    flex: 1;
+	/* Header Fields */
+	.header-fields {
+		flex: 1;
 
-    .header-start {
-      border-top-right-radius: 12px;
-      border: 1px solid rgba(44, 74, 66, 0.3294117647);
-    }
+		.header-start {
+			border-top-right-radius: 12px;
+			border: 1px solid rgba(44, 74, 66, 0.3294117647);
+		}
 
-    .header-center {
-      border-radius: 0 0 12px 0;
-      padding: 2px;
-      grid-row-gap: 2px;
-      height: 145px;
+		.header-center {
+			border-radius: 0 0 12px 0;
+			padding: 2px;
+			grid-row-gap: 2px;
+			height: 145px;
 
-      &.item-header {
-        padding: 3px 10px;
-        height: 148px !important;
-      }
+			&.item-header {
+				padding: 3px 10px;
+				height: 148px !important;
+			}
 
-      &.item-feature-header {
-        border-radius: 0 0 12px 0;
-        padding: 10px;
-        height: 85px !important;
-      }
-    }
+			&.item-feature-header {
+				border-radius: 0 0 12px 0;
+				padding: 10px;
+				height: 85px !important;
+			}
+		}
 
-    .header-end {
-      padding: 0;
-      align-self: baseline;
-      margin-bottom: 2px;
-    }
+		.header-end {
+			padding: 0;
+			align-self: baseline;
+			margin-bottom: 2px;
+		}
 
-    #status-section,
-    #subtype-section {
-      border-radius: 10px 0 0 10px;
-      display: flex;
-      align-items: center;
-    }
+		#status-section,
+		#subtype-section {
+			border-radius: 10px 0 0 10px;
+			display: flex;
+			align-items: center;
+		}
 
-    #attribute-section {
-      border-radius: 0;
-      display: flex;
-      align-items: center;
+		#attribute-section {
+			border-radius: 0;
+			display: flex;
+			align-items: center;
 
-      div {
-        gap: 2px;
-      }
-    }
+			div {
+				gap: 2px;
+			}
+		}
 
-    #roll-section {
-      border-radius: 0 10px 10px 0;
-    }
+		#roll-section {
+			border-radius: 0 10px 10px 0;
+		}
 
-    #item-navbar {
-      border-radius: 0 10px 10px 0;
-    }
-  }
+		#item-navbar {
+			border-radius: 0 10px 10px 0;
+		}
+	}
 
-  /* Select */
-  select {
-    margin: 0;
-    padding: 0;
-    border: none;
+	/* Select */
+	select {
+		margin: 0;
+		padding: 0;
+		border: none;
 
-    /* Select Option */
-    option {
-      background-color: $color-secondary;
-      color: $color-primary;
-    }
-  }
+		/* Select Option */
+		option {
+			background-color: $color-secondary;
+			color: $color-primary;
+		}
+	}
 
-  /* Character Name Heading */
-  h2.charname {
-    background-color: transparent;
-    border-color: transparent;
-    color: $color-black;
-    height: 50px;
-    padding-left: 8px;
-    border-bottom: 0;
+	/* Character Name Heading */
+	h2.charname {
+		background-color: transparent;
+		border-color: transparent;
+		color: $color-black;
+		height: 50px;
+		padding-left: 8px;
+		border-bottom: 0;
 
-    /* Character Name Input */
-    input {
-      color: $color-primary;
-      border: 0;
-      background-color: transparent;
-      text-shadow: 2px 2px 1px black;
-      width: 100%;
-      height: 100%;
-    }
-  }
+		/* Character Name Input */
+		input {
+			color: $color-primary;
+			border: 0;
+			background-color: transparent;
+			text-shadow: 2px 2px 1px black;
+			width: 100%;
+			height: 100%;
+		}
+	}
 
-  /* Pronoun Heading */
-  h4.pronouns {
-    background-color: transparent;
-    border-color: transparent;
-    color: $color-black;
-    height: 100%;
-    border-bottom: 0;
+	/* Pronoun Heading */
+	h4.pronouns {
+		background-color: transparent;
+		border-color: transparent;
+		color: $color-black;
+		height: 100%;
+		border-bottom: 0;
 
-    /* Pronoun Input */
-    input {
-      color: $color-primary;
-      text-shadow: 1px 1px 1px black;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      background-color: transparent;
-      text-align: center;
-    }
-  }
+		/* Pronoun Input */
+		input {
+			color: $color-primary;
+			text-shadow: 1px 1px 1px black;
+			width: 100%;
+			height: 100%;
+			border: 0;
+			background-color: transparent;
+			text-align: center;
+		}
+	}
 
-  /* Martial Heading */
-  h4.martials {
-    border-bottom: 0;
-    display: flex;
-    align-items: center;
-    height: 2em;
-    text-align: center;
-    flex-grow: 1;
+	/* Martial Heading */
+	h4.martials {
+		border-bottom: 0;
+		display: flex;
+		align-items: center;
+		height: 2em;
+		text-align: center;
+		flex-grow: 1;
 
-    /* Martial & Offensive Icon */
-    img#martial-header,
-    img#offensive-header {
-      flex: 0 0 48px;
-      height: 48px;
-      object-fit: contain;
-      vertical-align: middle;
-      background-position-x: center;
-      border: none;
-      background-repeat: no-repeat;
-      margin: auto;
-      opacity: 0.5;
-      cursor: pointer;
-      transition: opacity 0.7s ease;
+		/* Martial & Offensive Icon */
+		img#martial-header,
+		img#offensive-header {
+			flex: 0 0 48px;
+			height: 48px;
+			object-fit: contain;
+			vertical-align: middle;
+			background-position-x: center;
+			border: none;
+			background-repeat: no-repeat;
+			margin: auto;
+			opacity: 0.5;
+			cursor: pointer;
+			transition: opacity 0.7s ease;
 
-      &.active {
-        opacity: 1;
-      }
+			&.active {
+				opacity: 1;
+			}
 
-      &:not(.active):hover {
-        opacity: 0.8;
-      }
-    }
-  }
+			&:not(.active):hover {
+				opacity: 0.8;
+			}
+		}
+	}
 }
 
 /* Wrapper for Sheet Body */
 .sheet-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow-y: auto;
 
-  /* Sheet Body */
-  .sheet-body,
-  .tab {
-    flex: 1;
-    overflow-y: auto;
-  }
+	/* Sheet Body */
+	.sheet-body,
+	.tab {
+		flex: 1;
+		overflow-y: auto;
+	}
 
-  /* Tabs styling */
-  .sheet-tabs {
-    align-self: stretch;
-  }
+	/* Tabs styling */
+	.sheet-tabs {
+		align-self: stretch;
+	}
 
-  /* Footer styling */
-  /* Push the footer to the bottom */
-  >footer {
-    margin-top: auto;
-  }
+	/* Footer styling */
+	/* Push the footer to the bottom */
+	> footer {
+		margin-top: auto;
+	}
 }
 
 .body-section {
-  gap: 5px;
-  padding: 0 0.5rem 0.5rem 0;
+	gap: 5px;
+	padding: 0 0.5rem 0.5rem 0;
 }
 
 .section-container {
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 /* NPC Border Column */
 .npc-border-col {
-  background: linear-gradient(#{$color-transparent-gradient});
-  border-radius: 10px;
-  max-height: 17em;
-  min-height: 10em;
-  padding: 0;
+	background: linear-gradient(#{$color-transparent-gradient});
+	border-radius: 10px;
+	max-height: 17em;
+	min-height: 10em;
+	padding: 0;
 
-  /* NPC Description */
-  .npc-desc {
-    max-height: 14em;
-    min-height: 12em;
+	/* NPC Description */
+	.npc-desc {
+		max-height: 14em;
+		min-height: 12em;
 
-    /* Editor Styles */
-    .editor {
-      height: 100%;
-      max-height: 14em;
-      min-height: 12em;
+		/* Editor Styles */
+		.editor {
+			height: 100%;
+			max-height: 14em;
+			min-height: 12em;
 
-      /* Tox Tinymce Styles */
-      .tox-tinymce {
-        min-height: 10em;
-      }
-    }
-  }
+			/* Tox Tinymce Styles */
+			.tox-tinymce {
+				min-height: 10em;
+			}
+		}
+	}
 }
 
 /* Action Container */
 .action-container {
-  margin: 0 5px 5px 0px;
-  row-gap: 7px
+	margin: 0 5px 5px 0px;
+	row-gap: 7px;
 }
 
 /* Item Settings */
 .item-settings {
-  margin: -5px 5px 0;
+	margin: -5px 5px 0;
 }
 
 /* Tiny Description */
 .tiny-desc {
-  .editor {
-    height: 100%;
-    min-height: 1em;
-  }
+	.editor {
+		height: 100%;
+		min-height: 1em;
+	}
 }
 
 /* Half Description */
 .mid-desc {
-  .editor {
-    height: 100%;
-    min-height: 6em;
-  }
+	.editor {
+		height: 100%;
+		min-height: 6em;
+	}
 }
 
 /* Half Description */
 .half-desc {
-  .editor {
-    height: 100%;
-    min-height: 12em;
-  }
+	.editor {
+		height: 100%;
+		min-height: 12em;
+	}
 }
 
 /* Quarter Description */
 .quarter-desc {
-  .editor {
-    height: 100%;
-    min-height: 20em;
-  }
+	.editor {
+		height: 100%;
+		min-height: 20em;
+	}
 }
 
 /* Item Description Styles */
 .tab.desc.active {
-  margin-bottom: 5px;
-  height: 50%;
-  overflow-y: auto;
-  max-height: 28em;
-  min-height: 16em;
-  padding: 0.5em;
+	margin-bottom: 5px;
+	height: 50%;
+	overflow-y: auto;
+	max-height: 28em;
+	min-height: 16em;
+	padding: 0.5em;
 }
 
 /* General Editor Styles */
 .editor {
-  height: 100%;
-  min-height: 25em;
+	height: 100%;
+	min-height: 25em;
 }
 
 /* Editor Content Styles */
 .editor-content {
-  height: fit-content;
-  padding: 0 0.5em;
+	height: fit-content;
+	padding: 0 0.5em;
 }
 
 /* Prosemirror Editor Container Styles */
 .prosemirror .editor-container {
-  margin: 0;
+	margin: 0;
 }
 
 .sheet-content-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 
-  .sheet-header,
-  .sheet-footer {
-    flex: 0;
-  }
+	.sheet-header,
+	.sheet-footer {
+		flex: 0;
+	}
 }

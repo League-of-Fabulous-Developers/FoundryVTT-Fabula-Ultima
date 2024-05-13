@@ -4,7 +4,9 @@
 .chat-message,
 .chat-message.whisper {
 	// Styles for the chat card message
-	background: #{$background-core}, linear-gradient(to right, $color-beige, $color-faint);
+	background:
+		#{$background-core},
+		linear-gradient(to right, $color-beige, $color-faint);
 	background-blend-mode: multiply !important;
 	background-repeat: repeat-y;
 	background-position: right top;
@@ -144,7 +146,9 @@
 	box-shadow: 3px 6px $color-secondary;
 	border-radius: 8px;
 	background: linear-gradient($color-tabStyle-gradient), $color-secondary;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
 
 	&.active {
 		border: 1px solid darkslategrey;

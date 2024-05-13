@@ -338,7 +338,7 @@ export const registerSystemSettings = async function () {
 		type: Array,
 		default: [],
 		restricted: true,
-		onChange: (value) => {
+		onChange: () => {
 			CombatHUD.update();
 		},
 	});
@@ -529,7 +529,7 @@ class CombatHudSettings extends FormApplication {
 		}
 
 		const isCustomTrackerActive = game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker);
-		if (!isCustomTrackerActive && experimentalCombatHud) {
+		if (!isCustomTrackerActive && formData.experimentalCombatHud) {
 			const enableTracker = await Dialog.confirm({
 				title: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerTitle'),
 				content: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerContent'),

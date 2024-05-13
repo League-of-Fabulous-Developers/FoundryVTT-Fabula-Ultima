@@ -1,11 +1,11 @@
 <div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
-	<div>
-		{{localize 'FU.ChatCheckPushBond'}}
-		{{#each push.feelings}}
-			<u>{{localize (concat 'FU.' (capitalize this))}}</u>
-			{{#unless @last}}{{localize 'FU.ChatCheckPushAnd'}}{{/unless}}
-		{{/each}}
-		{{localize 'FU.ChatCheckPushWith'}}
+    <div>
+        {{localize 'FU.ChatCheckPushBond'}}
+        {{#each push.feelings}}
+            <u>{{localize (concat 'FU.' (capitalize this))}}</u>
+            {{#unless @last}}{{localize 'FU.ChatCheckPushAnd'}}{{/unless}}
+        {{/each}}
+        {{localize 'FU.ChatCheckPushWith'}}
         <u>{{push.with}}</u>
-	</div>
+    </div>
 </div>

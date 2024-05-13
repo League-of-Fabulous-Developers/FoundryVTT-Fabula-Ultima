@@ -1,4 +1,4 @@
-import {FU} from '../../../helpers/config.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 /**
  * @property {"dex", "ins", "mig", "wlp"} primary.value

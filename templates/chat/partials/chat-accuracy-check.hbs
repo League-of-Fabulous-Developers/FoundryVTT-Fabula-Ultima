@@ -4,11 +4,13 @@
     </div>
     <div class="accuracy-details">
         <span class="accuracy-detail-text">
-          {{result.attr1}} <strong>({{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}})</strong> +
-          {{result.attr2}} <strong>({{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute) 'Abbr')}})</strong>
-          {{#if result.modifier}}{{#if (gte result.modifier 0)}}+{{else}}-{{/if}} {{mathAbs result.modifier}}{{/if}}
-          {{#if result.bonus}}{{#if (gte result.bonus 0)}}+{{else}}-{{/if}} {{mathAbs result.bonus}}{{/if}}
-          {{#if result.push}}+ {{result.push}}{{/if}}
+          {{result.attr1}} <strong>({{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}}
+            )</strong> +
+            {{result.attr2}} <strong>({{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute) 'Abbr')}}
+            )</strong>
+            {{#if result.modifier}}{{#if (gte result.modifier 0)}}+{{else}}-{{/if}} {{mathAbs result.modifier}}{{/if}}
+            {{#if result.bonus}}{{#if (gte result.bonus 0)}}+{{else}}-{{/if}} {{mathAbs result.bonus}}{{/if}}
+            {{#if result.push}}+ {{result.push}}{{/if}}
         </span>
     </div>
     <div class="float-box acc-float">

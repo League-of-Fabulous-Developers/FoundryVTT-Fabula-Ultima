@@ -315,6 +315,7 @@ export class CombatHUD extends Application {
 	}
 
 	_doPopOut() {
+		/* globals PopoutModule */
 		if (typeof PopoutModule !== 'undefined' && PopoutModule.singleton) {
 			ui.windows[this.appId] = this;
 			this._poppedOut = true;

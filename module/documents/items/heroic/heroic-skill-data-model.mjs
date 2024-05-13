@@ -1,8 +1,8 @@
-import {UseWeaponDataModel} from '../common/use-weapon-data-model.mjs';
-import {ItemAttributesDataModel} from '../common/item-attributes-data-model.mjs';
-import {DamageDataModel} from '../common/damage-data-model.mjs';
-import {ImprovisedDamageDataModel} from '../common/improvised-damage-data-model.mjs';
-import {ProgressDataModel} from '../common/progress-data-model.mjs';
+import { UseWeaponDataModel } from '../common/use-weapon-data-model.mjs';
+import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
+import { DamageDataModel } from '../common/damage-data-model.mjs';
+import { ImprovisedDamageDataModel } from '../common/improvised-damage-data-model.mjs';
+import { ProgressDataModel } from '../common/progress-data-model.mjs';
 
 /**
  * @property {string} subtype.value

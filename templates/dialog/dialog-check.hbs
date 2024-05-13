@@ -1,14 +1,14 @@
 <section class="title-fieldset resource-content flex-group-center flexrow">
     {{#each attributes}}
-    <fieldset class="form-fields">
-        <label class="resource-label-sm">
-            <abbr title="{{localize this}}">
-                {{localize (lookup @root/attributeAbbr @key)}}
-            </abbr>
-            :
-        </label>
-        <span class="resource-label-m">D{{lookup @root/attributeValues @key}}</span>
-    </fieldset>
+        <fieldset class="form-fields">
+            <label class="resource-label-sm">
+                <abbr title="{{localize this}}">
+                    {{localize (lookup @root/attributeAbbr @key)}}
+                </abbr>
+                :
+            </label>
+            <span class="resource-label-m">D{{lookup @root/attributeValues @key}}</span>
+        </fieldset>
     {{/each}}
 </section>
 <hr>

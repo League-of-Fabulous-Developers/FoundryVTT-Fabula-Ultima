@@ -1,11 +1,12 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
 import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/checks.mjs';
-import { actionHandler, createActionMessage } from '../helpers/action-handler.mjs';
+import { actionHandler } from '../helpers/action-handler.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
 // import { OpposedCheck } from '../helpers/opposed-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
 import { SYSTEM } from '../helpers/config.mjs';
+import { FUActor } from '../documents/actors/actor.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -173,7 +174,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Iterate through items, allocating to containers
 		for (let i of context.items) {
-			i.img = i.img || DEFAULT_TOKEN;
+			i.img = i.img || CONST.DEFAULT_TOKEN;
 
 			if (i.system.quality?.value) {
 				i.quality = i.system.quality.value;
@@ -419,7 +420,6 @@ export class FUStandardActorSheet extends ActorSheet {
 				item.progressArr = progressArr.reverse();
 			}
 		}
-
 	}
 
 	/* -------------------------------------------- */
@@ -611,13 +611,6 @@ export class FUStandardActorSheet extends ActorSheet {
 				});
 				this._expanded.add(itemId);
 			}
-
-			updateDescVisibility(parentEl);
-		};
-
-		const updateDescVisibility = (parentEl) => {
-			const itemId = parentEl.data('item-id');
-			const isDescVisible = this._expanded.has(itemId);
 		};
 
 		html.find('.click-item').click(toggleDesc);
@@ -939,13 +932,20 @@ export class FUStandardActorSheet extends ActorSheet {
 					types = types.filter((item) => !dontShow.includes(item.type));
 				}
 				break;
-			case 'newClassFeatures':
+			case 'newClassFeatures': {
 				const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.features());
 				types = ['miscAbility', 'project'];
 				if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) types.push('zeroPower');
 				types = types.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
-				types.push(...classFeatureTypes.map(([key, feature]) => ({ type: 'classFeature', subtype: key, label: game.i18n.localize(feature.translation) })));
+				types.push(
+					...classFeatureTypes.map(([key, feature]) => ({
+						type: 'classFeature',
+						subtype: key,
+						label: game.i18n.localize(feature.translation),
+					})),
+				);
 				break;
+			}
 			default:
 				break;
 		}
@@ -1046,7 +1046,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		if (selected.type === 'item') {
 			// Get the item from the actor's items by id
 
-			const item = actor.items.get(selected.id);
+			const item = this.actor.items.get(selected.id);
 			// Check if the item exists
 			if (item) {
 				// Return the result of item.roll()
@@ -1307,7 +1307,6 @@ export class FUStandardActorSheet extends ActorSheet {
 	 * @private
 	 */
 	_onProgressUpdate(ev, dataType) {
-
 		const input = ev.currentTarget;
 		const segment = input.value;
 
@@ -1320,11 +1319,10 @@ export class FUStandardActorSheet extends ActorSheet {
 
 			if (dataType === 'feature') {
 				item.update({ 'system.data.progress.current': segment });
-				console.log("Test")
+				console.log('Test');
 			} else {
 				item.update({ 'system.progress.current': segment });
 			}
-
 		} else {
 			this.actor.update({ 'system.progress.current': segment });
 		}
@@ -1349,7 +1347,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			} else {
 				item.update({ 'system.progress.current': 0 });
 			}
-
 		} else {
 			// If not from an item
 			this.actor.update({ 'system.progress.current': 0 });

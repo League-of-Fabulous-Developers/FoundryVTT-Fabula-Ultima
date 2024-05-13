@@ -4,7 +4,7 @@ import { ZeroPowerDataModel } from './zeropower/zeropower-data-model.mjs';
 /**
  * Registers system-provided optional features.
  * @param {
- * 
+ *
  * } registry
  */
 export function registerOptionalFeatures(registry) {

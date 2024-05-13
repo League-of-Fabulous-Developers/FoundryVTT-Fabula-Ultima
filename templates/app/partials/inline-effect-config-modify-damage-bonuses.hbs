@@ -9,6 +9,7 @@
 <div>
     <label>
         <span class="d-block">{{localize "FU.InlineEffectConfigBonusMalus"}}</span>
-        <input type="number" name="guided.changes.{{@index}}.value" value="{{#if value includeZero=true}}{{value}}{{else}}0{{/if}}">
+        <input type="number" name="guided.changes.{{@index}}.value"
+               value="{{#if value includeZero=true}}{{value}}{{else}}0{{/if}}">
     </label>
 </div>

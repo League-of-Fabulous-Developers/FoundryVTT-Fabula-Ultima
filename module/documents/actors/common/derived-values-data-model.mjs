@@ -74,14 +74,13 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				return (attributes[armorData.attributes.secondary.value]?.current ?? 0) + equipmentMdef + data.mdef.bonus;
 			};
 		} else {
-             defCalculation = function () {
-                return attributes.dex.current + equipmentDef + data.def.bonus;
-            };
-             mdefCalculation = function () {
-                return attributes.ins.current + equipmentMdef + data.mdef.bonus;
-            };
-
-        }
+			defCalculation = function () {
+				return attributes.dex.current + equipmentDef + data.def.bonus;
+			};
+			mdefCalculation = function () {
+				return attributes.ins.current + equipmentMdef + data.mdef.bonus;
+			};
+		}
 
 		Object.defineProperty(this.def, 'value', {
 			configurable: true,

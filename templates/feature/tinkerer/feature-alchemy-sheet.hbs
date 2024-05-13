@@ -1,101 +1,103 @@
 <div class='resource-content desc'>
-	<div>
-		<label class='resource-label-m'>
-			{{localize 'FU.ClassFeatureGadgetsRank'}}:
-			<select name='system.data.rank' class="resource-inputs select-dropdown-m resource-text-m">
-				{{selectOptions additionalData.ranks selected=system.data.rank localize=true}}
-			</select>
-		</label>
-	</div>
-	<nav class='alchemy-tabs tabs flexrow' data-group='alchemyTabs'>
-		<a class='item tab-style' data-tab='description'>{{localize 'FU.Description'}}</a>
-		<a class='item tab-style' data-tab='basic'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</a>
-		<a class='item tab-style' data-tab='advanced'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</a>
-		<a class='item tab-style' data-tab='superior'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</a>
-		<a class='item tab-style' data-tab='config'>{{localize 'FU.ClassFeatureGadgetsConfig'}}</a>
-	</nav>
-	<hr />
-	<div class='alchemy-content'>
-		<div class='tab' data-group='alchemyTabs' data-tab='description'>
-			<label class='resource-label-m'>{{localize 'FU.Description'}}</label>
-			{{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
-		</div>
-		<div class='tab' data-group='alchemyTabs' data-tab='basic'>
-			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</label>
-			{{editor enrichedHtml.basic target='system.data.basic' engine='prosemirror' button=true}}
-		</div>
-		<div class='tab' data-group='alchemyTabs' data-tab='advanced'>
-			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</label>
-			{{editor enrichedHtml.advanced target='system.data.advanced' engine='prosemirror' button=true}}
-		</div>
-		<div class='tab' data-group='alchemyTabs' data-tab='superior'>
-			<label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</label>
-			{{editor enrichedHtml.superior target='system.data.superior' engine='prosemirror' button=true}}
-		</div>
-		<div class='tab' data-group='alchemyTabs' data-tab='config'>
+    <div>
+        <label class='resource-label-m'>
+            {{localize 'FU.ClassFeatureGadgetsRank'}}:
+            <select name='system.data.rank' class="resource-inputs select-dropdown-m resource-text-m">
+                {{selectOptions additionalData.ranks selected=system.data.rank localize=true}}
+            </select>
+        </label>
+    </div>
+    <nav class='alchemy-tabs tabs flexrow' data-group='alchemyTabs'>
+        <a class='item tab-style' data-tab='description'>{{localize 'FU.Description'}}</a>
+        <a class='item tab-style' data-tab='basic'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</a>
+        <a class='item tab-style' data-tab='advanced'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</a>
+        <a class='item tab-style' data-tab='superior'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</a>
+        <a class='item tab-style' data-tab='config'>{{localize 'FU.ClassFeatureGadgetsConfig'}}</a>
+    </nav>
+    <hr />
+    <div class='alchemy-content'>
+        <div class='tab' data-group='alchemyTabs' data-tab='description'>
+            <label class='resource-label-m'>{{localize 'FU.Description'}}</label>
+            {{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
+        </div>
+        <div class='tab' data-group='alchemyTabs' data-tab='basic'>
+            <label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</label>
+            {{editor enrichedHtml.basic target='system.data.basic' engine='prosemirror' button=true}}
+        </div>
+        <div class='tab' data-group='alchemyTabs' data-tab='advanced'>
+            <label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</label>
+            {{editor enrichedHtml.advanced target='system.data.advanced' engine='prosemirror' button=true}}
+        </div>
+        <div class='tab' data-group='alchemyTabs' data-tab='superior'>
+            <label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</label>
+            {{editor enrichedHtml.superior target='system.data.superior' engine='prosemirror' button=true}}
+        </div>
+        <div class='tab' data-group='alchemyTabs' data-tab='config'>
 
-			<div class="flexcol gap-3" style="margin: 3px;">
-				<label class="resource-label-m"
-					data-tooltip="{{localize 'FU.ClassFeatureAlchemyRollTableExplanation'}}">
-					{{localize 'FU.ClassFeatureAlchemyTargetRollTable'}}:
-					<select name='system.data.config.targetRollTable' class="resource-inputs resource-text-m">
-						<option value=''>-</option>
-						{{selectOptions additionalData.rollTables selected=system.data.config.targetRollTable.id
-						nameAttr='id' labelAttr='name'}}
-					</select>
-				</label>
+            <div class="flexcol gap-3" style="margin: 3px;">
+                <label class="resource-label-m"
+                       data-tooltip="{{localize 'FU.ClassFeatureAlchemyRollTableExplanation'}}">
+                    {{localize 'FU.ClassFeatureAlchemyTargetRollTable'}}:
+                    <select name='system.data.config.targetRollTable' class="resource-inputs resource-text-m">
+                        <option value=''>-</option>
+                        {{selectOptions additionalData.rollTables selected=system.data.config.targetRollTable.id
+                                        nameAttr='id' labelAttr='name'}}
+                    </select>
+                </label>
 
-				<label class="resource-label-m"
-					data-tooltip="{{localize 'FU.ClassFeatureAlchemyRollTableExplanation'}}">
-					{{localize 'FU.ClassFeatureAlchemyEffectRollTable'}}:
-					<select name='system.data.config.effectRollTable' class="resource-inputs resource-text-m">
-						<option value=''>-</option>
-						{{selectOptions additionalData.rollTables selected=system.data.config.effectRollTable.id
-						nameAttr='id' labelAttr='name'}}
-					</select>
-				</label>
-			</div>
+                <label class="resource-label-m"
+                       data-tooltip="{{localize 'FU.ClassFeatureAlchemyRollTableExplanation'}}">
+                    {{localize 'FU.ClassFeatureAlchemyEffectRollTable'}}:
+                    <select name='system.data.config.effectRollTable' class="resource-inputs resource-text-m">
+                        <option value=''>-</option>
+                        {{selectOptions additionalData.rollTables selected=system.data.config.effectRollTable.id
+                                        nameAttr='id' labelAttr='name'}}
+                    </select>
+                </label>
+            </div>
 
-			<hr />
-			<div class='grid grid-3col gap-5'>
-				{{#each system.data.config.ranks}}
-				<div>
-					<div class="resource-label-m">{{localize (lookup @root.additionalData.ranks @key)}}</div>
-					<div>
-						<label class="resource-label-sm">
-							{{localize 'FU.ClassFeatureAlchemyDice'}}
-							<input type='number' name='system.data.config.ranks.{{@key}}.dice' value='{{dice}}'
-								class="resource-inputs select-dropdown-full resource-text-m" />
-						</label>
-					</div>
-					<div>
-						<label class="resource-label-sm">
-							{{localize 'FU.ClassFeatureAlchemyCost'}}
-							<input type='number' name='system.data.config.ranks.{{@key}}.cost' value='{{cost}}'
-								class="resource-inputs select-dropdown-full resource-text-m" />
-						</label>
-					</div>
-				</div>
-				{{/each}}
-			</div>
-			<hr />
-			<div>
-				<div class='flexrow'>
-					<label>{{localize 'FU.ClassFeatureAlchemyAlwaysAvailableEffectsSection'}}</label>
-					<a class='flex0' data-action='addEffect'><i class='fas fa-plus'></i></a>
-				</div>
-				<div>
-					{{#each system.data.config.alwaysAvailableEffects}}
-					<div class='flexrow gap-5'>
-						<input class="resource-inputs select-dropdown-full resource-text-m" style="text-align: left;"
-							type='text' name='system.data.config.alwaysAvailableEffects.{{@index}}' value='{{this}}' />
-						<a class='flex0' data-action='deleteEffect' data-index='{{@index}}'
-							style="align-self: center;"><i class='fas fa-trash'></i></a>
-					</div>
-					<hr />
-					{{/each}}
-				</div>
-			</div>
-		</div>
-	</div>
+            <hr />
+            <div class='grid grid-3col gap-5'>
+                {{#each system.data.config.ranks}}
+                    <div>
+                        <div class="resource-label-m">{{localize (lookup @root.additionalData.ranks @key)}}</div>
+                        <div>
+                            <label class="resource-label-sm">
+                                {{localize 'FU.ClassFeatureAlchemyDice'}}
+                                <input type='number' name='system.data.config.ranks.{{@key}}.dice' value='{{dice}}'
+                                       class="resource-inputs select-dropdown-full resource-text-m" />
+                            </label>
+                        </div>
+                        <div>
+                            <label class="resource-label-sm">
+                                {{localize 'FU.ClassFeatureAlchemyCost'}}
+                                <input type='number' name='system.data.config.ranks.{{@key}}.cost' value='{{cost}}'
+                                       class="resource-inputs select-dropdown-full resource-text-m" />
+                            </label>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+            <hr />
+            <div>
+                <div class='flexrow'>
+                    <label>{{localize 'FU.ClassFeatureAlchemyAlwaysAvailableEffectsSection'}}</label>
+                    <a class='flex0' data-action='addEffect'><i class='fas fa-plus'></i></a>
+                </div>
+                <div>
+                    {{#each system.data.config.alwaysAvailableEffects}}
+                        <div class='flexrow gap-5'>
+                            <input class="resource-inputs select-dropdown-full resource-text-m"
+                                   style="text-align: left;"
+                                   type='text' name='system.data.config.alwaysAvailableEffects.{{@index}}'
+                                   value='{{this}}' />
+                            <a class='flex0' data-action='deleteEffect' data-index='{{@index}}'
+                               style="align-self: center;"><i class='fas fa-trash'></i></a>
+                        </div>
+                        <hr />
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
