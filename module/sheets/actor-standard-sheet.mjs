@@ -1010,12 +1010,9 @@ export class FUStandardActorSheet extends ActorSheet {
 				if (!game.settings.get(SYSTEM, SETTINGS.optionCampingRules)) {
 					dontShow.push('projectfu-playtest.camping');
 				}
-				console.log('dontShow array:', dontShow); // Check the contents of dontShow array
 
 				// Filter optionalFeatureTypes based on dontShow array
 				const filteredOptionalFeatureTypes = optionalFeatureTypes.filter(([key, optional]) => !dontShow.includes(key));
-
-				console.log('filteredOptionalFeatureTypes:', filteredOptionalFeatureTypes); // Check the filtered types
 
 				// Push filtered types to the types array
 				types.push(
@@ -1402,7 +1399,6 @@ export class FUStandardActorSheet extends ActorSheet {
 
 			if (dataType === 'feature') {
 				item.update({ 'system.data.progress.current': segment });
-				console.log('Test');
 			} else {
 				item.update({ 'system.progress.current': segment });
 			}

@@ -161,9 +161,9 @@ export class CombatHUD extends Application {
 					break;
 			}
 
-			const zeroPower = combatant.actor.items.find((i) => i.type === 'zeroPower');
+			const zeroPower = combatant.actor.items.find((i) => i.type === 'optionalFeature' && i.system.optionalType === 'projectfu.zeroPower');
 			if (zeroPower) {
-				actorData.zeropower = zeroPower.system;
+				actorData.zeropower = zeroPower.system.data;
 			}
 
 			if (actorData.hasEffects) {
