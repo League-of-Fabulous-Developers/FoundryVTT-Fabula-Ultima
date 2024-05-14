@@ -915,20 +915,30 @@ export class FUStandardActorSheet extends ActorSheet {
 				types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 				if (isCharacter) {
 					const options = ['miscAbility', 'ritual'];
-					//  TODO: Remove later
-					const dontShow = [];
-					dontShow.push('zeroPower');
-					// if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) options.push('zeroPower');
 
-					types = types.filter((item) => options.includes(item.type) && !dontShow.includes(item.type));
+					// Filter out old zeroPower item type (TODO: Delete later)
+					const dontShow = ['zeroPower'];
+
 					// Optional Features
-					types.push(
-						...optionalFeatureTypes.map(([key, optional]) => ({
+					const optionalFeatures = [];
+
+					// Check if the optionZeroPower setting is false, then add the zeroPower feature
+					if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
+						optionalFeatures.push({
 							type: 'optionalFeature',
-							subtype: key,
-							label: game.i18n.localize(optional.translation),
-						})),
-					);
+							subtype: 'projectfu.zeroPower',
+							label: game.i18n.localize('Zero Power'),
+						});
+					}
+
+					// Filter out items based on options and dontShow
+					types = types.filter((item) => options.includes(item.type) && !dontShow.includes(item.type));
+
+					// Filter out 'quirk' and 'camping' optional feature types
+					const filteredOptionalFeatures = optionalFeatures.filter((feature) => !['projectfu.quirk', 'projectfu-playtest.camping'].includes(feature.subtype));
+
+					// Push filtered optional features to types array
+					types.push(...filteredOptionalFeatures);
 				} else if (isNPC) {
 					types = types.filter((item) => ['miscAbility', 'rule'].includes(item.type));
 				}
@@ -936,32 +946,49 @@ export class FUStandardActorSheet extends ActorSheet {
 				break;
 			case 'newFavorite':
 				types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
-				if (isCharacter) {
-					const dontShow = ['rule', 'behavior', 'basic'];
-					//  TODO: Remove later
-					dontShow.push('zeroPower');
-					// if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) dontShow.push('zeroPower');
 
-					types = types.filter((item) => !dontShow.includes(item.type));
+				if (isCharacter) {
+					// Filter out old zeroPower item type (TODO: Delete later)
+					let dontShowCharacter = ['rule', 'behavior', 'basic', 'zeroPower']; // Default types to hide for characters
+					// Filter out default types to hide for characters
+					types = types.filter((item) => !dontShowCharacter.includes(item.type));
+
+					// Conditional rendering for optional features based on system settings
+					let dontShowOptional = [];
+					if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
+						dontShowOptional.push('projectfu.zeroPower');
+					}
+					if (!game.settings.get(SYSTEM, SETTINGS.optionQuirks)) {
+						dontShowOptional.push('projectfu.quirk');
+					}
+					if (!game.settings.get(SYSTEM, SETTINGS.optionCampingRules)) {
+						dontShowOptional.push('projectfu-playtest.camping');
+					}
+
 					// Optional Features
-					types.push(
-						...optionalFeatureTypes.map(([key, optional]) => ({
-							type: 'optionalFeature',
-							subtype: key,
-							label: game.i18n.localize(optional.translation),
-						})),
-					);
+					let optionalFeatures = optionalFeatureTypes.map(([key, optional]) => ({
+						type: 'optionalFeature',
+						subtype: key,
+						label: game.i18n.localize(optional.translation),
+					}));
+
+					// Filter out optional features based on system settings
+					let filteredOptionalFeatures = optionalFeatures.filter((feature) => !dontShowOptional.includes(feature.subtype));
+
+					// Push filtered optional features to types array
+					types.push(...filteredOptionalFeatures);
 				} else if (isNPC) {
-					const dontShow = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'zeroPower'];
-					if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShow.push('behavior');
-					types = types.filter((item) => !dontShow.includes(item.type));
+					let dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'zeroPower']; // Default types to hide for NPCs
+					if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShowNPC.push('behavior');
+					// Filter out default types to hide for NPCs
+					types = types.filter((item) => !dontShowNPC.includes(item.type));
 				}
 				break;
 			case 'newClassFeatures': {
 				const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.features());
 				types = ['miscAbility', 'project'];
-				//  TODO: Remove later
-				// if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) types.push('zeroPower'); TODO: Remove later
+				// Filter out old zeroPower item type (TODO: Delete later)
+				// if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) types.push('zeroPower');
 				types = types.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 				// Class Features
 				types.push(
@@ -971,9 +998,28 @@ export class FUStandardActorSheet extends ActorSheet {
 						label: game.i18n.localize(feature.translation),
 					})),
 				);
+
 				// Optional Features
+				const dontShow = [];
+				if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
+					dontShow.push('projectfu.zeroPower');
+				}
+				if (!game.settings.get(SYSTEM, SETTINGS.optionQuirks)) {
+					dontShow.push('projectfu.quirk');
+				}
+				if (!game.settings.get(SYSTEM, SETTINGS.optionCampingRules)) {
+					dontShow.push('projectfu-playtest.camping');
+				}
+				console.log('dontShow array:', dontShow); // Check the contents of dontShow array
+
+				// Filter optionalFeatureTypes based on dontShow array
+				const filteredOptionalFeatureTypes = optionalFeatureTypes.filter(([key, optional]) => !dontShow.includes(key));
+
+				console.log('filteredOptionalFeatureTypes:', filteredOptionalFeatureTypes); // Check the filtered types
+
+				// Push filtered types to the types array
 				types.push(
-					...optionalFeatureTypes.map(([key, optional]) => ({
+					...filteredOptionalFeatureTypes.map(([key, optional]) => ({
 						type: 'optionalFeature',
 						subtype: key,
 						label: game.i18n.localize(optional.translation),

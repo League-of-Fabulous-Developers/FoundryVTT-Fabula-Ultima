@@ -30,8 +30,12 @@
                 </div>
             </li>
         {{/if}}
-        {{#if (eq item.type 'optionalFeature')}}
-        {{#if (and item.system.isFavored.value item.system.data.progress)}}
+    {{/each}}
+
+    {{!-- Optional Feature Sections --}}
+    {{#each optionalFeatures}}
+        {{#each items }}
+            {{#if (and item.system.isFavored.value item.system.data.progress)}}
             <li class="item flexcol" data-item-id="{{ item._id }}">
                 {{!-- Item Name--}}
                 <h4 class="click-item resource-content">
@@ -53,7 +57,7 @@
                         <i class="fas fa-plus"></i></a>
                 </div>
             </li>
-        {{/if}}
-        {{/if}}
+            {{/if}}
+        {{/each}}
     {{/each}}
 </fieldset>
