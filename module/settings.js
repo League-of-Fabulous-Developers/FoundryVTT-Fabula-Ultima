@@ -412,35 +412,35 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource1, { 
-		name: game.i18n.localize('FU.CombatHudTrackedResource1'), 
-		hint: game.i18n.localize('FU.CombatHudTrackedResource1Hint'), 
-		scope: 'world', 
-		config: false, 
-		type: String, 
-		choices: FU.combatHudResources, 
-		default: 'hp', 
-	}); 
- 
-	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource2, { 
-		name: game.i18n.localize('FU.CombatHudTrackedResource2'), 
-		hint: game.i18n.localize('FU.CombatHudTrackedResource2Hint'), 
-		scope: 'world', 
-		config: false, 
-		type: String, 
-		choices: FU.combatHudResources, 
-		default: 'mp', 
-	}); 
- 
-	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource3, { 
-		name: game.i18n.localize('FU.CombatHudTrackedResource3'), 
-		hint: game.i18n.localize('FU.CombatHudTrackedResource3Hint'), 
-		scope: 'world', 
-		config: false, 
-		type: String, 
-		choices: FU.combatHudResources, 
-		default: 'ip', 
-	}); 
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource1, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource1'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource1Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: 'hp',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource2, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource2'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource2Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: 'mp',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource3, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource3'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource3Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: 'ip',
+	});
 };
 
 class OptionalRules extends FormApplication {

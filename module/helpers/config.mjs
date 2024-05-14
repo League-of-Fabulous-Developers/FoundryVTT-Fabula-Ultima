@@ -360,6 +360,6 @@ FU.resourceIcons = {
 };
 
 FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
-	"zeropower": "ITEM.TypeZeroPower",
-	"none": "FU.None",
+	zeropower: 'ITEM.TypeZeroPower',
+	none: 'FU.None',
 });

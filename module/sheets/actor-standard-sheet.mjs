@@ -909,25 +909,50 @@ export class FUStandardActorSheet extends ActorSheet {
 		const allItemTypes = Object.keys(CONFIG.Item.dataModels);
 		const isCharacter = this.actor.type === 'character';
 		const isNPC = this.actor.type === 'npc';
-
+		const optionalFeatureTypes = Object.entries(CONFIG.FU.optionalFeatureRegistry.optionals());
 		switch (dataType) {
 			case 'newClock':
 				types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 				if (isCharacter) {
 					const options = ['miscAbility', 'ritual'];
-					if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) options.push('zeroPower');
-					types = types.filter((item) => options.includes(item.type));
-				} else if (isNPC) types = types.filter((item) => ['miscAbility', 'rule'].includes(item.type));
+					//  TODO: Remove later
+					const dontShow = [];
+					dontShow.push('zeroPower');
+					// if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) options.push('zeroPower');
+
+					types = types.filter((item) => options.includes(item.type) && !dontShow.includes(item.type));
+					// Optional Features
+					types.push(
+						...optionalFeatureTypes.map(([key, optional]) => ({
+							type: 'optionalFeature',
+							subtype: key,
+							label: game.i18n.localize(optional.translation),
+						})),
+					);
+				} else if (isNPC) {
+					types = types.filter((item) => ['miscAbility', 'rule'].includes(item.type));
+				}
 				clock = true;
 				break;
 			case 'newFavorite':
 				types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 				if (isCharacter) {
 					const dontShow = ['rule', 'behavior', 'basic'];
-					if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) dontShow.push('zeroPower');
+					//  TODO: Remove later
+					dontShow.push('zeroPower');
+					// if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) dontShow.push('zeroPower');
+
 					types = types.filter((item) => !dontShow.includes(item.type));
+					// Optional Features
+					types.push(
+						...optionalFeatureTypes.map(([key, optional]) => ({
+							type: 'optionalFeature',
+							subtype: key,
+							label: game.i18n.localize(optional.translation),
+						})),
+					);
 				} else if (isNPC) {
-					const dontShow = ['class', 'classFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'zeroPower'];
+					const dontShow = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'zeroPower'];
 					if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShow.push('behavior');
 					types = types.filter((item) => !dontShow.includes(item.type));
 				}
@@ -935,13 +960,23 @@ export class FUStandardActorSheet extends ActorSheet {
 			case 'newClassFeatures': {
 				const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.features());
 				types = ['miscAbility', 'project'];
-				if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) types.push('zeroPower');
+				//  TODO: Remove later
+				// if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) types.push('zeroPower'); TODO: Remove later
 				types = types.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
+				// Class Features
 				types.push(
 					...classFeatureTypes.map(([key, feature]) => ({
 						type: 'classFeature',
 						subtype: key,
 						label: game.i18n.localize(feature.translation),
+					})),
+				);
+				// Optional Features
+				types.push(
+					...optionalFeatureTypes.map(([key, optional]) => ({
+						type: 'optionalFeature',
+						subtype: key,
+						label: game.i18n.localize(optional.translation),
 					})),
 				);
 				break;
@@ -969,10 +1004,11 @@ export class FUStandardActorSheet extends ActorSheet {
 		const itemData = {
 			name: name,
 			type: type,
-			data: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }) },
+			data: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }), ...(subtype && { optionalType: subtype }) },
 		};
 
 		// Check if the type is 'zeroPower' and set clock to true
+		//  TODO: Remove later
 		if (type === 'zeroPower') {
 			clock = true;
 		}
@@ -983,6 +1019,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				'data.hasClock.value': clock,
 				'data.isFavored.value': true,
 				'data.featureType': subtype,
+				'data.optionalType': subtype,
 			});
 			ui.notifications.info(`${name} created successfully.`);
 			item.sheet.render(true);

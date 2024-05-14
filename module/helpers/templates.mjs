@@ -110,6 +110,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/optional/feature-basic-preview.hbs',
 
 		'systems/projectfu/templates/optional/partials/feature-progress-clock.hbs',
+		'systems/projectfu/templates/optional/partials/feature-progress-clock-xl.hbs',
 
 		'systems/projectfu/templates/optional/quirk/feature-quirk-sheet.hbs',
 		'systems/projectfu/templates/optional/quirk/feature-quirk-preview.hbs',

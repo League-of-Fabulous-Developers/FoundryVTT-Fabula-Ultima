@@ -30,5 +30,30 @@
                 </div>
             </li>
         {{/if}}
+        {{#if (eq item.type 'optionalFeature')}}
+        {{#if (and item.system.isFavored.value item.system.data.progress)}}
+            <li class="item flexcol" data-item-id="{{ item._id }}">
+                {{!-- Item Name--}}
+                <h4 class="click-item resource-content">
+			<span class="resource-label-m">
+                {{ item.name }}
+            </span>
+                </h4>
+                <div class="item-sm buttons-inc" style="text-align: initial;">
+                    <a class="decrement-button align-left" data-type="featureCounter" data-item-id="{{ item._id }}"
+                       data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})"> <i
+                     class="fas fa-minus"></i></a>
+                    <div class="progress-container">
+                        {{> "systems/projectfu/templates/optional/partials/feature-progress-clock-xl.hbs"
+                        arr=item.progressArr
+                        data=item.system.data.progress}}
+                    </div>
+                    <a class="increment-button align-right" data-type="featureCounter" data-item-id="{{ item._id }}"
+                       data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.progress.step}})">
+                        <i class="fas fa-plus"></i></a>
+                </div>
+            </li>
+        {{/if}}
+        {{/if}}
     {{/each}}
 </fieldset>

@@ -141,8 +141,8 @@ export class CombatHUD extends Application {
 					progress: {
 						current: 0,
 						max: 0,
-					}
-				}
+					},
+				},
 			};
 			actorData.hasEffects = actorData.effects.length > 0 && game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowEffects);
 
