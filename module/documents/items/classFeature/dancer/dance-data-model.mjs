@@ -29,6 +29,10 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/dancer/feature-dance-sheet.hbs';
 	}
 
+	static get previewTemplate() {
+		return 'systems/projectfu/templates/feature/dancer/feature-dance-preview.hbs';
+	}
+
 	static async getAdditionalData() {
 		return {
 			durations,

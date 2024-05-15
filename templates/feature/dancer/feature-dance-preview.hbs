@@ -1,0 +1,12 @@
+<div class="item-full start gap-2 resource-content">
+    <div>
+        <div class="description-effect"><b>{{localize "FU.ClassFeatureDanceDuration"}}:</b>
+            {{#if (eq system.data.duration "instant")}}
+            {{localize "FU.ClassFeatureDanceDurationInstant"}}
+            {{else if (eq system.data.duration "nextTurn")}}
+            {{localize "FU.ClassFeatureDanceDurationNextTurn"}}
+            {{/if}}
+        </div>
+        <div class="description-effect">{{system.summary.value}}</div>
+    </div>
+</div>

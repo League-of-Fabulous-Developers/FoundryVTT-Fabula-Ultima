@@ -136,6 +136,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/chanter/feature-verse-preview.hbs',
 
 		'systems/projectfu/templates/feature/dancer/feature-dance-sheet.hbs',
+		'systems/projectfu/templates/feature/dancer/feature-dance-preview.hbs',
 
 		'systems/projectfu/templates/feature/symbolist/feature-symbol-sheet.hbs',
 
