@@ -49,7 +49,14 @@ function activateListeners(document, html) {
 			return;
 		}
 		let source = game.i18n.localize('FU.UnknownDamageSource');
-		if (document instanceof FUActor || document instanceof FUItem) {
+		if (document instanceof FUActor) {
+			const itemId = $(event.target).closest('[data-item-id]').data('itemId');
+			if (itemId) {
+				source = document.items.get(itemId).name;
+			} else {
+				source = document.name;
+			}
+		} else if (document instanceof FUItem) {
 			source = document.name;
 		} else if (document instanceof ChatMessage) {
 			const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
@@ -69,6 +76,7 @@ function activateListeners(document, html) {
 			amount: this.dataset.amount,
 		};
 		event.dataTransfer.setData('text/plain', JSON.stringify(data));
+		event.stopPropagation();
 	});
 }
 
