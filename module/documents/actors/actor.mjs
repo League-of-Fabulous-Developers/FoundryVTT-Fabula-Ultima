@@ -186,9 +186,10 @@ export class FUActor extends Actor {
 
 	*allApplicableEffects() {
 		for (const effect of super.allApplicableEffects()) {
-			if (effect.parent instanceof FUItem && effect.parent.system.isEquipped && !effect.parent.system.isEquipped.value) {
-				// skip equipable items that are NOT currently equipped
-				continue;
+			if (effect.parent instanceof FUItem && effect.parent.system.transferEffects instanceof Function) {
+				if (!effect.parent.system.transferEffects()) {
+					continue;
+				}
 			}
 			yield effect;
 		}

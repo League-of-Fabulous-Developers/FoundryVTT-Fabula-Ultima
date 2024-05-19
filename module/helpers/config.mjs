@@ -363,3 +363,5 @@ FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
 	zeropower: 'ITEM.TypeZeroPower',
 	none: 'FU.None',
 });
+
+FU.classFeatures = {};

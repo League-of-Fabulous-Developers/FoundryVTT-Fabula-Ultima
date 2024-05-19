@@ -6,6 +6,7 @@ import { BondDataModel } from '../common/bond-data-model.mjs';
 import { CharacterSkillTracker } from './character-skill-tracker.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
+import { PilotVehicleDataModel } from './pilot-vehicle-data-model.mjs';
 
 const CLASS_HP_BENEFITS = 5;
 const CLASS_MP_BENEFITS = 5;
@@ -51,6 +52,7 @@ function heroicMpBenefits(dataModel) {
  * @property {AttributesDataModel} attributes
  * @property {DerivedValuesDataModel} derived
  * @property {BonusesDataModel} bonuses
+ * @property {PilotVehicleDataModel} vehicle
  * @property {string} description
  * @property {CharacterSkillTracker} tlTracker
  *
@@ -98,6 +100,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			attributes: new EmbeddedDataField(AttributesDataModel, {}),
 			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
+			vehicle: new EmbeddedDataField(PilotVehicleDataModel, {}),
 			description: new HTMLField(),
 		};
 	}
@@ -122,6 +125,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 
 	prepareEmbeddedData() {
 		this.#prepareBasicResources();
+		this.vehicle.prepareData();
 		this.derived.prepareData();
 	}
 

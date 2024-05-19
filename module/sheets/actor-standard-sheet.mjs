@@ -785,6 +785,21 @@ export class FUStandardActorSheet extends ActorSheet {
 					});
 			}
 		}
+
+		const updatePilotVehicle = (func) => {
+			return (event) => {
+				const item = this.actor.items.get(event.currentTarget.dataset.itemId);
+				this.actor.update({
+					'system.vehicle': this.actor.system.vehicle[func](item),
+				});
+			};
+		};
+
+		html.find('.vehicle-section [data-action=toggleVehicleEmbarked]').on('click', updatePilotVehicle('updateEmbarked').bind(this));
+		html.find('[data-action=toggleActiveVehicle][data-item-id]').on('click', updatePilotVehicle('updateActiveVehicle').bind(this));
+		html.find('[data-action=toggleArmorModule][data-item-id]').on('click', updatePilotVehicle('updateActiveArmorModule').bind(this));
+		html.find('[data-action=toggleWeaponModule][data-item-id]').on('click', updatePilotVehicle('updateActiveWeaponModules').bind(this));
+		html.find('[data-action=toggleSupportModule][data-item-id]').on('click', updatePilotVehicle('updateActiveSupportModules').bind(this));
 	}
 
 	// Method to change the sort type

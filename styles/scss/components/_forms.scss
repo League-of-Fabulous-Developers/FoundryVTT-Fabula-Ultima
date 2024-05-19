@@ -347,3 +347,30 @@
 		flex: 0;
 	}
 }
+
+.vehicle-section,
+.associated-therioforms {
+	margin-bottom: 0.5em;
+}
+
+.vehicle-section .vehicle-header {
+	display: flex;
+	justify-content: center;
+	gap: 0.25em;
+}
+
+.vehicle-section .embark-button {
+	align-self: center;
+}
+
+.vehicle-section .items-list.disabled .item {
+	filter: opacity(50%);
+}
+
+.vehicle-section .over-capacity {
+	color: var(--color-level-error);
+}
+
+.class-feature fieldset {
+	margin-bottom: 0.5em;
+}

@@ -53,4 +53,8 @@ export class ArmorDataModel extends foundry.abstract.TypeDataModel {
 			this.attributes.primary.value = '';
 		}
 	}
+
+	transferEffects() {
+		return this.isEquipped.value;
+	}
 }

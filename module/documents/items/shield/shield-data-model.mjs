@@ -66,4 +66,8 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 			}),
 		};
 	}
+
+	transferEffects() {
+		return this.isEquipped.value;
+	}
 }

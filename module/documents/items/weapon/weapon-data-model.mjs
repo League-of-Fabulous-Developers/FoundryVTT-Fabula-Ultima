@@ -73,4 +73,8 @@ export class WeaponDataModel extends foundry.abstract.TypeDataModel {
 			this.cost.value = Math.max(300, this.cost.value);
 		}
 	}
+
+	transferEffects() {
+		return this.isEquipped.value;
+	}
 }

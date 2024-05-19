@@ -33,6 +33,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 		'systems/projectfu/templates/actor/partials/actor-item-name.hbs',
 		'systems/projectfu/templates/actor/partials/actor-actions.hbs',
+		'systems/projectfu/templates/actor/partials/actor-vehicle.hbs',
 		'systems/projectfu/templates/actor/partials/actor-clocks.hbs',
 		'systems/projectfu/templates/actor/partials/actor-npc-items.hbs',
 		'systems/projectfu/templates/actor/partials/actor-npc-skills.hbs',
@@ -139,6 +140,18 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/dancer/feature-dance-preview.hbs',
 
 		'systems/projectfu/templates/feature/symbolist/feature-symbol-sheet.hbs',
+
+		'systems/projectfu/templates/feature/esper/psychic-gift-sheet.hbs',
+		'systems/projectfu/templates/feature/esper/psychic-gift-preview.hbs',
+		'systems/projectfu/templates/feature/mutant/therioform-sheet.hbs',
+		'systems/projectfu/templates/feature/pilot/vehicle-sheet.hbs',
+		'systems/projectfu/templates/feature/pilot/vehicle-preview.hbs',
+		'systems/projectfu/templates/feature/pilot/armor-module-sheet.hbs',
+		'systems/projectfu/templates/feature/pilot/armor-module-preview.hbs',
+		'systems/projectfu/templates/feature/pilot/weapon-module-sheet.hbs',
+		'systems/projectfu/templates/feature/pilot/weapon-module-preview.hbs',
+		'systems/projectfu/templates/feature/pilot/support-module-sheet.hbs',
+		'systems/projectfu/templates/feature/pilot/support-module-preview.hbs',
 
 		// Combat HUD Partials
 		'systems/projectfu/templates/ui/partials/combat-bar-hp.hbs',

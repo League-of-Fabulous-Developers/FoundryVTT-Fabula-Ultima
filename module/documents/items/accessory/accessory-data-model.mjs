@@ -44,4 +44,8 @@ export class AccessoryDataModel extends foundry.abstract.TypeDataModel {
 			}),
 		};
 	}
+
+	transferEffects() {
+		return this.isEquipped.value;
+	}
 }

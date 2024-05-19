@@ -37,6 +37,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		const data = this;
 
 		const { armor: armors, accessory: acessories, shield: shields } = actor.itemTypes;
+		const vehicle = actor.system.vehicle;
 
 		let equipmentDef = 0;
 		let equipmentMdef = 0;
@@ -47,12 +48,21 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				equipmentDef += accessory.system.def.value;
 				equipmentMdef += accessory.system.mdef.value;
 			});
-		shields
-			.filter((item) => item.system.isEquipped.value)
-			.forEach((shield) => {
-				equipmentDef += shield.system.def.value;
-				equipmentMdef += shield.system.mdef.value;
-			});
+		if (vehicle && vehicle.embarked && vehicle.weapons.length) {
+			vehicle.weapons
+				.filter((value) => value.system.data.isShield)
+				.forEach((shieldModule) => {
+					equipmentDef += shieldModule.system.shield.defense;
+					equipmentMdef += shieldModule.system.shield.magicDefense;
+				});
+		} else {
+			shields
+				.filter((item) => item.system.isEquipped.value)
+				.forEach((shield) => {
+					equipmentDef += shield.system.def.value;
+					equipmentMdef += shield.system.mdef.value;
+				});
+		}
 
 		let defCalculation;
 		let mdefCalculation;
@@ -60,7 +70,29 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		// Find the equipped armor
 		/** @type FUItem */
 		const armor = armors.find((item) => item.system.isEquipped.value);
-		if (armor) {
+		if (vehicle && vehicle.embarked && vehicle.armor) {
+			/** @type ArmorModuleDataModel */
+			const armorData = vehicle.armor.system.data;
+
+			equipmentDef += armorData.defense.modifier;
+			equipmentMdef += armorData.magicDefense.modifier;
+
+			if (armorData.martial) {
+				defCalculation = function () {
+					return equipmentDef + data.def.bonus;
+				};
+				mdefCalculation = function () {
+					return equipmentMdef + data.mdef.bonus;
+				};
+			} else {
+				defCalculation = function () {
+					return (attributes[armorData.defense.attribute]?.current ?? 0) + equipmentDef + data.def.bonus;
+				};
+				mdefCalculation = function () {
+					return (attributes[armorData.magicDefense.attribute]?.current ?? 0) + equipmentMdef + data.mdef.bonus;
+				};
+			}
+		} else if (armor) {
 			/** @type ArmorDataModel */
 			const armorData = armor.system;
 

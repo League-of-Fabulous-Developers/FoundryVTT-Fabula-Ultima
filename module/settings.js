@@ -39,6 +39,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTrackedResource1: 'optionCombatHudTrackedResource1',
 	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
+	showAssociatedTherioforms: 'showAssociatedTherioforms',
 });
 
 export const registerSystemSettings = async function () {
@@ -440,6 +441,15 @@ export const registerSystemSettings = async function () {
 		type: String,
 		choices: FU.combatHudResources,
 		default: 'ip',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
+		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
+		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
+		scope: 'client',
+		config: true,
+		type: Boolean,
+		default: true,
 	});
 };
 

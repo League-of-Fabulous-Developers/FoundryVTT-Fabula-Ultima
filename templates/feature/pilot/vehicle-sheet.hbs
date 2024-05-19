@@ -1,0 +1,51 @@
+<div class="class-feature">
+    <fieldset class="title-fieldset desc resource-content">
+        <legend class="resource-label-full">
+            <label class="resource-label-m">
+                {{localize 'FU.ClassFeatureVehicleConfig'}}
+            </label>
+        </legend>
+        <div class="flexrow flex-group-center gap-5">
+            <label class="resource-label-m">
+                {{localize 'FU.ClassFeatureVehicleFrame'}}
+                <div>
+                    <select name="system.data.frame" class="resource-inputs select-dropdown-full resource-text-m">
+                        {{selectOptions additionalData.frames selected=system.data.frame localize=true}}
+                    </select>
+                </div>
+            </label>
+            <label class="resource-label-m">
+                {{localize 'FU.ClassFeatureVehicleModuleSlots'}}
+                <div>
+                    <input type="number" name="system.data.moduleSlots" value="{{system.data.moduleSlots}}"
+                        class="resource-inputs select-dropdown-full resource-text-m">
+                </div>
+            </label>
+        </div>
+        <div class="flexrow flex-group-center gap-5">
+            <label class="resource-label-m">
+                {{localize 'FU.ClassFeatureVehiclePassengers'}}
+                <div>
+                    <input type="number" name="system.data.passengers" value="{{system.data.passengers}}"
+                        class="resource-inputs select-dropdown-full resource-text-m">
+                </div>
+            </label>
+            <label class="resource-label-m">
+                {{localize 'FU.ClassFeatureVehicleDistanceMultiplier'}}
+                <div>
+                    <input type="number" name="system.data.distanceMultiplier"
+                        value="{{system.data.distanceMultiplier}}"
+                        class="resource-inputs select-dropdown-full resource-text-m">
+                </div>
+            </label>
+        </div>
+    </fieldset>
+    <fieldset class="title-fieldset desc resource-content">
+        <legend class="resource-label-full">
+            <label class="resource-label-m">{{localize 'FU.Description'}}</label>
+        </legend>
+        <div>
+            {{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
+        </div>
+    </fieldset>
+</div>

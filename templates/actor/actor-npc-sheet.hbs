@@ -96,6 +96,17 @@
                                 </section>
                             </section>
 
+                            {{#if (getGameSetting 'showAssociatedTherioforms')}}
+                            <fieldset class="desc resource-content title-fieldset associated-therioforms">
+                                <legend class="resource-label-m">
+                                    <label>{{localize 'FU.ClassFeatureTherioformAssociatedTherioforms'}}</label>
+                                </legend>
+                                <div>
+                                    <input type="text" name="system.associatedTherioforms" value="{{system.associatedTherioforms}}" class="resource-inputs select-dropdown-full resource-text-m">
+                                </div>
+                            </fieldset>
+                            {{/if}}
+
                             <!-- Favorite Section -->
                             {{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs" groups=systemData.bond
                              dtypes=dtypes actor=actor}}

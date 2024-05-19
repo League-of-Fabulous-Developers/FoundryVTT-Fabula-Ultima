@@ -47,6 +47,7 @@ import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs'
  * @property {number} companion.skillLevel
  * @property {boolean} useEquipment.value
  * @property {number} study.value
+ * @property {string} associatedTherioforms
  * @property {string} description
  * @property {NpcSkillTracker} spTracker
  */
@@ -102,6 +103,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			}),
 			useEquipment: new SchemaField({ value: new BooleanField({ initial: false }) }),
 			study: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 3, integer: true, nullable: false }) }),
+			associatedTherioforms: new StringField(),
 			description: new HTMLField(),
 		};
 	}

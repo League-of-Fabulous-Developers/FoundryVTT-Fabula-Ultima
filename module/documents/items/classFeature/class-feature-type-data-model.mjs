@@ -27,4 +27,8 @@ export class ClassFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 	get description() {
 		return this.data.description;
 	}
+
+	transferEffects() {
+		return this.data?.transferEffects() ?? true;
+	}
 }
