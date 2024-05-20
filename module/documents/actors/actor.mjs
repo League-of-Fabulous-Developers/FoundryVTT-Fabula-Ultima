@@ -201,4 +201,35 @@ export class FUActor extends Actor {
 		}
 		return super.applyActiveEffects();
 	}
+
+	async spendMetaCurrency() {
+		let metaCurrency;
+		if (this.type === 'character') {
+			metaCurrency = game.i18n.localize('FU.Fabula');
+		}
+		if (this.type === 'npc' && this.system.villain.value) {
+			metaCurrency = game.i18n.localize('FU.Ultima');
+		}
+		if (metaCurrency && this.system.resources.fp.value > 0) {
+			const confirmed = await Dialog.confirm({
+				title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }),
+				content: game.i18n.format('FU.UseMetaCurrencyDialogMessage', { type: metaCurrency }),
+				rejectClose: false,
+			});
+			if (confirmed && this.system.resources.fp.value > 0) {
+				/** @type ChatMessageData */
+				const data = {
+					speaker: ChatMessage.implementation.getSpeaker({ actor: this }),
+					flavor: game.i18n.format('FU.UseMetaCurrencyChatFlavor', { type: metaCurrency }),
+					content: game.i18n.format('FU.UseMetaCurrencyChatMessage', { actor: this.name, type: metaCurrency }),
+				};
+				ChatMessage.create(data);
+				await this.update({
+					'system.resources.fp.value': this.system.resources.fp.value - 1,
+				});
+			}
+		} else {
+			ui.notifications.info(game.i18n.format('FU.UseMetaCurrencyNotificationInsufficientPoints', { actor: this.name, type: metaCurrency }));
+		}
+	}
 }

@@ -46,16 +46,20 @@
 
     <!-- FU Points -->
     <div class="header-end flex-group-center resource-content" style="align-self: baseline;">
-        <label>
+        <a class="rollable" data-action="spendMetaCurrency">
             {{#if (eq actor.type "npc")}}
-                <span class="resource-label-l"> <i class="fas fa-feather icon"></i>{{localize
-                 'FU.UltimaPoints'}} </span>
+                <span class="resource-label-l">
+                    <i class="fas fa-feather icon"></i>
+                    {{localize 'FU.UltimaPoints'}}
+                </span>
             {{/if}}
             {{#if (eq actor.type "character")}}
-                <span class="resource-label-l"> <i class="fas fa-feather icon"></i>{{localize
-                 'FU.FabulaPoints'}} </span>
+                <span class="resource-label-l">
+                    <i class="fas fa-feather icon"></i>
+                    {{localize 'FU.FabulaPoints'}}
+                </span>
             {{/if}}
-        </label>
+        </a>
         <div class="buttons-inc">
             <input type="number" name="system.resources.fp.value" value="{{ system.resources.fp.value }}"
                    data-dtype="Number" id="fp-input" class="fp-resource-inputs" />

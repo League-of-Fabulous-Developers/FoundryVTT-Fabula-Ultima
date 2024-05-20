@@ -122,13 +122,13 @@
                     {{/if}}
 
                     <div class="token-initiative">
-                        {{#if (lookup @root.turnsLeft this.id)}}
+                        {{#if (and @root.round (lookup @root.turnsLeft this.id))}}
                             {{#if (and this.owner (eq faction @root.currentTurn))}}
                                 <a class="combatant-control take-turn" role="button" data-action="take-turn">
                                     {{#if (gt (lookup @root.totalTurns this.id) 1)}}
-                                        <i class="fas fa-2x fa-circle-{{lookup @root.turnsLeft this.id}}"></i>
+                                        <i class="mats-o mats-fill">counter_{{lookup @root.turnsLeft this.id}}</i>
                                     {{else}}
-                                        <i class="fas fa-2x fa-check-circle"></i>
+                                        <i class="mats-o mats-fill">check_circle</i>
                                     {{/if}}
                                 </a>
                             {{else}}
@@ -136,17 +136,15 @@
                                     <a class="combatant-control take-turn out-of-turn"
                                        data-action="take-turn-out-of-turn">
                                         {{# if (gt (lookup @root.totalTurns this.id) 1)}}
-                                        {{!-- TODO: Replace with free alternative --}}
-                                            <i
-                                             class="fas fa-thin fa-2x fa-circle-{{lookup @root.turnsLeft this.id}}"></i>
+                                            <i class="mats-o">counter_{{lookup @root.turnsLeft this.id}}</i>
                                         {{else}}
-                                            <i class="fas fa-thin fa-2x fa-check-circle"></i>
+                                            <i class="mats-o">check_circle</i>
                                         {{/if}}
                                     </a>
                                 {{else}}
                                     <span class="combatant-control take-turn">
-                    <i class="fas fa-thin fa-2x fa-check-circle"></i>
-                </span>
+                                        <i class="mats-o">check_circle</i>
+                                    </span>
                                 {{/if}}
                             {{/if}}
                         {{/if}}

@@ -53,6 +53,55 @@
 	symbols: '◆';
 }
 
+@font-face {
+	font-family: 'Material Symbols Outlined';
+	font-style: normal;
+	src: url('/systems/projectfu/styles/fonts/material-symbols/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2') format('woff');
+}
+
+@font-face {
+	font-family: 'Material Symbols Rounded';
+	font-style: normal;
+	src: url('/systems/projectfu/styles/fonts/material-symbols/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].woff2') format('woff');
+}
+
+@font-face {
+	font-family: 'Material Symbols Sharp';
+	font-style: normal;
+	src: url('/systems/projectfu/styles/fonts/material-symbols/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].woff2') format('woff');
+}
+
+.mats-o {
+	font-family: 'Material Symbols Outlined';
+}
+
+.mats-r {
+	font-family: 'Material Symbols Rounded';
+}
+
+.mats-s {
+	font-family: 'Material Symbols Sharp';
+}
+
+.mats-o,
+.mats-r,
+.mats-s {
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px; /* Preferred icon size */
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+}
+
+.mats-fill {
+	font-variation-settings: 'FILL' 1;
+}
+
 // Font Variables
 $font-title: 'CreditValleybold';
 $font-primary: 'PT Sans Narrow', sans-serif;
@@ -570,4 +619,12 @@ $font-quote: 'EB Garamond', sans-serif;
 .retrolabels {
 	color: $color-black;
 	font-family: 'old retro labels tfb';
+}
+
+$font-sizes: (10, 11, 12, 13, 14, 15, 16, 18, 20, 24, 28, 32, 36, 48, 64, 80);
+
+@each $size in $font-sizes {
+	.font-size-#{$size} {
+		font-size: var(--font-size-#{$size});
+	}
 }

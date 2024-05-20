@@ -1019,6 +1019,11 @@
 		"ClassFeatureWeaponModuleWeaponCategory": "Category",
 		"ClassFeatureWeaponModuleComplex": "Complex Module",
 		"Modifier": "Modifier",
-		"Martial": "Martial"
+		"Martial": "Martial",
+		"UseMetaCurrencyDialogTitle": "Use {type} point?",
+		"UseMetaCurrencyDialogMessage": "Do you want to use a {type} point?",
+		"UseMetaCurrencyChatFlavor": "{type} point used",
+		"UseMetaCurrencyChatMessage": "<b>{actor}</b> used a {type} point.",
+		"UseMetaCurrencyNotificationInsufficientPoints": "<b>{actor}</b> does not have enough {type} points."
 	}
 }

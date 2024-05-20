@@ -57,6 +57,7 @@ import { InlineIcon } from './helpers/inline-icons.mjs';
 import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
 import { InlineEffects } from './helpers/inline-effects.mjs';
 import { SystemControls } from './helpers/system-controls.mjs';
+import { PlayerListEnhancements } from './helpers/player-list-enhancements.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -219,6 +220,8 @@ Hooks.once('init', async () => {
 	TextEditorCommandDropdown.initialize();
 
 	SystemControls.initialize();
+
+	PlayerListEnhancements.initialize();
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
