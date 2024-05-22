@@ -59,11 +59,11 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			resources: new SchemaField({
 				hp: new SchemaField({
 					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
-					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
+					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
 				}),
 				mp: new SchemaField({
 					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
-					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
+					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
 				}),
 				rp1: new SchemaField({
 					name: new StringField({ initial: '' }),
