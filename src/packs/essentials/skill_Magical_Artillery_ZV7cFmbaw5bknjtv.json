@@ -1,6 +1,6 @@
 {
   "folder": "6gTO70HUAzfEfLY2",
-  "name": "Magic Artillery",
+  "name": "Magical Artillery",
   "type": "skill",
   "img": "icons/weapons/staves/staff-engraved-red.webp",
   "system": {
@@ -131,20 +131,24 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Magic Artillery",
+      "name": "Magical Artillery",
       "_id": "HmpPyOHEzMIoGVgk",
       "changes": [
         {
           "key": "system.bonuses.accuracy.magicCheck",
           "mode": 2,
-          "value": "2",
+          "value": "2*@system.level.value",
           "priority": null
         }
       ],
       "description": "<ul><li><p><strong>Trigger:</strong> <strong>Arcane</strong> weapon equipped.</p></li><li><p><strong>Effect:</strong> Magic Check +<span class=\"fontstyle0\"><strong>【</strong></span><span class=\"fontstyle1\"><strong>SL × 2</strong></span><span class=\"fontstyle0\"><strong>】</strong></span></p></li></ul><table><tbody><tr><td><p><strong>SL1: 2</strong></p></td><td><p><strong>SL: 4</strong></p></td><td><p><strong>SL: 6</strong></p></td></tr></tbody></table>",
       "transfer": true,
       "statuses": [],
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
       "tint": null,
       "_key": "!items.effects!ZV7cFmbaw5bknjtv.HmpPyOHEzMIoGVgk"
     }
@@ -162,8 +166,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706497996319,
-    "modifiedTime": 1712061618029,
-    "lastModifiedBy": "YN7AhHIwAZeH33Tw"
+    "modifiedTime": 1716339180931,
+    "lastModifiedBy": "CLAzxWQsDDB8fCLx"
   },
   "_id": "ZV7cFmbaw5bknjtv",
   "sort": 0,
