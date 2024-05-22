@@ -82,9 +82,12 @@ export class FUClassFeatureSheet extends ItemSheet {
 			data.enrichedHtml = {};
 			schema.apply(function () {
 				if (this instanceof foundry.data.fields.HTMLField) {
-					const path = this.fieldPath.split('.');
-					path.shift(); // remove data model name
-					path.pop(); // remove actual field name
+                    const path = this.fieldPath.split('.');
+                    if (!game.release.isNewer(12))
+                    {
+                        path.shift(); // remove data model name
+                    }
+                    path.pop(); // remove actual field name
 					let enrichedHtml = data.enrichedHtml;
 					let modelData = data.system.data;
 					for (let pathFragment of path) {
@@ -108,7 +111,7 @@ export class FUClassFeatureSheet extends ItemSheet {
 
 			await enrichRecursively(data.enrichedHtml);
 		}
-		data.features = CONFIG.FU.classFeatureRegistry.features();
+		data.features = Object.entries(CONFIG.FU.classFeatureRegistry.features()).reduce((agg,[key, value]) => (agg[key] = value.translation) && agg, {});
 		data.effects = prepareActiveEffectCategories(this.item.effects);
 		return data;
 	}
