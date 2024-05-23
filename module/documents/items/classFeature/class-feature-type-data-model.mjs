@@ -29,6 +29,6 @@ export class ClassFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	transferEffects() {
-		return this.data?.transferEffects() ?? true;
+		return (this.data?.transferEffects instanceof Function && this.data?.transferEffects()) ?? true;
 	}
 }
