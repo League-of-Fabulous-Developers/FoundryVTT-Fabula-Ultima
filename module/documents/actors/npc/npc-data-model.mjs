@@ -91,7 +91,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
 			traits: new SchemaField({ value: new StringField({ initial: '' }) }),
 			species: new SchemaField({ value: new StringField({ initial: 'beast', choices: Object.keys(FU.species) }) }),
-			villain: new SchemaField({ value: new StringField({ initial: '', blank: true, choices: FU.villainTypes }) }),
+			villain: new SchemaField({ value: new StringField({ initial: '', blank: true, choices: Object.keys(FU.villainTypes) }) }),
 			phases: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			multipart: new SchemaField({ value: new StringField({ initial: '' }) }),
 			isElite: new SchemaField({ value: new BooleanField({ initial: false }) }),

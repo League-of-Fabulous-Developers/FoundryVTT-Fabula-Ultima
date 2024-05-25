@@ -133,7 +133,11 @@ FU.companionSpecies = {
 	custom: 'FU.Custom',
 };
 
-FU.villainTypes = ['minor', 'major', 'supreme'];
+FU.villainTypes = {
+	minor: 'FU.VillainMinor',
+	major: 'FU.VillainMajor',
+	supreme: 'FU.VillainSupreme',
+};
 
 FU.speciesRule = {
 	beast: 'FU.BeastRule',
@@ -409,4 +413,29 @@ FU.bonds = {
 		Affection: 'FU.Affection',
 		Hatred: 'FU.Hatred',
 	},
+};
+
+FU.potency = {
+	minor: 'FU.PotencyMinor',
+	medium: 'FU.PotencyMedium',
+	major: 'FU.PotencyMajor',
+	extreme: 'FU.PotencyExtreme',
+};
+
+FU.area = {
+	individual: 'FU.AreaIndividual',
+	small: 'FU.AreaSmall',
+	large: 'FU.AreaLarge',
+	huge: 'FU.AreaHuge',
+};
+
+FU.uses = {
+	consumable: 'FU.Consumable',
+	permanent: 'FU.Permanent',
+};
+
+FU.improvisedEffect = {
+	minor: 'FU.ImprovisedEffectMinor',
+	heavy: 'FU.ImprovisedEffectHeavy',
+	massive: 'FU.ImprovisedEffectMassive',
 };

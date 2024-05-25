@@ -1,5 +1,6 @@
 import { ClassFeatureDataModel } from './class-feature-data-model.mjs';
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../../../helpers/effects.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 export class FUClassFeatureSheet extends ItemSheet {
 	static get defaultOptions() {
@@ -112,6 +113,9 @@ export class FUClassFeatureSheet extends ItemSheet {
 		}
 		data.features = Object.entries(CONFIG.FU.classFeatureRegistry.features()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
 		data.effects = prepareActiveEffectCategories(this.item.effects);
+
+		data.FU = FU;
+
 		return data;
 	}
 

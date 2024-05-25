@@ -85,11 +85,7 @@
                             <select
                              name="system.rollInfo.impdamage.impType.value"
                              class="resource-inputs select-dropdown-m">
-                                {{#select system.rollInfo.impdamage.impType.value}}
-                                    <option value="minor">Minor</option>
-                                    <option value="heavy">Heavy</option>
-                                    <option value="massive">Massive</option>
-                                {{/select}}
+                                {{selectOptions FU.improvisedEffect selected=system.rollInfo.impdamage.impType.value localize=true}}
                             </select>
                         </div>
                         <div class="resource-content flexcol flex-group-center">
@@ -116,24 +112,14 @@
                             <label class="resource-label-sm">{{localize 'FU.Potency'}}</label>
                             <select class="resource-inputs select-dropdown-m"
                                     name="system.potency.value">
-                                {{#select system.potency.value}}
-                                    <option value="minor">Minor</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="major">Major</option>
-                                    <option value="extreme">Extreme</option>
-                                {{/select}}
+                                {{selectOptions FU.potency selected=system.potency.value localize=true}}
                             </select>
                         </div>
                         <div class="resource-content flexcol flex-group-center">
                             <label class="resource-label-sm">{{localize 'FU.Area'}}</label>
                             <select class="resource-inputs select-dropdown-m"
                                     name="system.area.value">
-                                {{#select system.area.value}}
-                                    <option value="individual">Individual</option>
-                                    <option value="small">Small</option>
-                                    <option value="large">Large</option>
-                                    <option value="huge">Huge</option>
-                                {{/select}}
+                                {{selectOptions FU.area selected=system.area.value localize=true}}
                             </select>
                         </div>
                     </div>

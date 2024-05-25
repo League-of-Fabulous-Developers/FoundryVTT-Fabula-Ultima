@@ -1,4 +1,5 @@
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/effects.mjs';
+import { FU } from '../helpers/config.mjs';
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -80,6 +81,8 @@ export class FUItemSheet extends ItemSheet {
 			zeroTrigger: await TextEditor.enrichHTML(context.system?.zeroTrigger?.description ?? ''),
 			zeroEffect: await TextEditor.enrichHTML(context.system?.zeroEffect?.description ?? ''),
 		};
+
+		context.FU = FU;
 
 		return context;
 	}
