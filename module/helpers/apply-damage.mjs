@@ -119,7 +119,7 @@ async function handleDamageApplication(check, message, modifiers) {
 		if (game.user.character) {
 			targets.push(game.user.character);
 		} else {
-			ui.notifications.error('FU.ChatApplyDamageNoActorsSelected', { localize: true });
+			ui.notifications.warn('FU.ChatApplyDamageNoActorsSelected', { localize: true });
 			return;
 		}
 	}

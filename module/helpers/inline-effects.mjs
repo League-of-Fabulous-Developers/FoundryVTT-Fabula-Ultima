@@ -60,6 +60,31 @@ function inlineEffectEnricher(text, options) {
 
 /**
  * @param {ClientDocument} document
+ * @param {HTMLElement} element - The target HTML element associated with the event.
+ * @returns {string|null}
+ */
+function determineSource(document, element) {
+	if (document instanceof FUActor) {
+		const itemId = $(element).closest('[data-item-id]').data('itemId'); // Changed event.target to element
+		return itemId ? document.items.get(itemId).uuid : document.uuid;
+	} else if (document instanceof FUItem) {
+		return document.uuid;
+	} else if (document instanceof ChatMessage) {
+		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
+		if (speakerActor) {
+			return speakerActor.uuid;
+		}
+		const flagItem = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
+		if (flagItem && speakerActor) {
+			const item = speakerActor.items.get(flagItem._id);
+			return item ? item.uuid : null;
+		}
+	}
+	return null;
+}
+
+/**
+ * @param {ClientDocument} document
  * @param {jQuery} html
  */
 function activateListeners(document, html) {
@@ -68,35 +93,35 @@ function activateListeners(document, html) {
 	}
 
 	html.find('a.inline.inline-effect[draggable]')
+		.on('click', function () {
+			const source = determineSource(document, this);
+			const effectData = fromBase64(this.dataset.effect);
+			const controlledTokens = canvas.tokens.controlled;
+			let actors = [];
+
+			// Use selected token or owned actor
+			if (controlledTokens.length > 0) {
+				actors = controlledTokens.map((token) => token.actor);
+			} else {
+				const actor = game.user.character;
+				if (actor) {
+					actors.push(actor);
+				}
+			}
+
+			if (actors.length > 0) {
+				actors.forEach((actor) => onApplyEffectToActor(actor, source, effectData));
+			} else {
+				ui.notifications.warn(game.i18n.localize('FU.ChatApplyEffectNoActorsSelected'));
+			}
+		})
 		.on('dragstart', function (event) {
 			/** @type DragEvent */
 			event = event.originalEvent;
 			if (!(event.target instanceof HTMLElement) || !event.dataTransfer) {
 				return;
 			}
-			let source;
-			if (document instanceof FUActor) {
-				const itemId = $(event.target).closest('[data-item-id]').data('itemId');
-				if (itemId) {
-					source = document.items.get(itemId).uuid;
-				} else {
-					source = document.uuid;
-				}
-			} else if (document instanceof FUItem) {
-				source = document.uuid;
-			} else if (document instanceof ChatMessage) {
-				const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
-				if (speakerActor) {
-					source = speakerActor.uuid;
-				}
-				const flagItem = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-				if (flagItem && speakerActor) {
-					const item = speakerActor.items.get(flagItem._id);
-					if (item) {
-						source = item.uuid;
-					}
-				}
-			}
+			const source = determineSource(document, this);
 
 			const data = {
 				type: INLINE_EFFECT,
@@ -106,7 +131,9 @@ function activateListeners(document, html) {
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		})
-		.on('click', function (event) {
+		.on('contextmenu', function (event) {
+			event.preventDefault();
+			event.stopPropagation();
 			const effectData = fromBase64(this.dataset.effect);
 			const cls = getDocumentClass('ActiveEffect');
 			delete effectData.id;
@@ -121,6 +148,19 @@ function activateListeners(document, html) {
 					activeEffectConfig.render(true, { editable: false });
 				});
 		});
+}
+
+function onApplyEffectToActor(actor, source, effect) {
+	if (actor) {
+		ActiveEffect.create(
+			{
+				...effect,
+				origin: source,
+				flags: foundry.utils.mergeObject(effect.flags ?? {}, { [SYSTEM]: { [FUActiveEffect.TEMPORARY_FLAG]: true } }),
+			},
+			{ parent: actor },
+		);
+	}
 }
 
 function onDropActor(actor, sheet, { type, source, effect }) {

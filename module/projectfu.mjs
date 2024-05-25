@@ -52,7 +52,6 @@ import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
 import { InlineResources } from './helpers/inline-resources.mjs';
 import { Flags } from './helpers/flags.mjs';
-import { InlineElementsHowTo } from './helpers/inline-how-to.mjs';
 import { InlineIcon } from './helpers/inline-icons.mjs';
 import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
 import { InlineEffects } from './helpers/inline-effects.mjs';
@@ -189,11 +188,6 @@ Hooks.once('init', async () => {
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
-
-	Hooks.on('renderChatMessage', InlineElementsHowTo.activateListeners);
-	Hooks.on('renderApplication', InlineElementsHowTo.activateListeners);
-	Hooks.on('renderActorSheet', InlineElementsHowTo.activateListeners);
-	Hooks.on('renderItemSheet', InlineElementsHowTo.activateListeners);
 
 	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
 
