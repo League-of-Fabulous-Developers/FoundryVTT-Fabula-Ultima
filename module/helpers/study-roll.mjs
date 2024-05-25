@@ -1,3 +1,5 @@
+import { FU } from './config.mjs';
+
 /**
  * Handle the study roll interaction with targeted actors
  * @param {DocumentSheet} app - The rendered NPC sheet
@@ -33,10 +35,8 @@ export async function handleStudyTarget(app, studyValue) {
  * @param {DocumentSheet} app - The rendered NPC sheet
  */
 export async function handleStudyRoll(app) {
-	const coreRule = [10, 13, 16];
-	const revisedRule = [7, 10, 13];
 	const useRevisedStudyRule = game.settings.get('projectfu', 'useRevisedStudyRule');
-	const difficultyThresholds = useRevisedStudyRule ? revisedRule : coreRule;
+	const difficultyThresholds = useRevisedStudyRule ? FU.studyRoll.revised : FU.studyRoll.revised;
 
 	const submit = game.i18n.localize(`FU.Submit`);
 

@@ -5,7 +5,7 @@ import { GroupCheck } from '../helpers/group-check.mjs';
 // import { OpposedCheck } from '../helpers/opposed-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
-import { SYSTEM } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
@@ -109,6 +109,10 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.enrichedHtml = {
 			description: await TextEditor.enrichHTML(context.system.description ?? ''),
 		};
+
+		const studyRollTiers = game.settings.get(SYSTEM, SETTINGS.useRevisedStudyRule) ? FU.studyRoll.revised : FU.studyRoll.revised;
+		context.studyRoll = studyRollTiers.map((value) => value + '+');
+		context.studyRoll.unshift('-');
 
 		return context;
 	}

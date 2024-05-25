@@ -365,3 +365,8 @@ FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
 });
 
 FU.classFeatures = {};
+
+FU.studyRoll = {
+	core: [10, 13, 16],
+	revised: [7, 10, 13],
+};
