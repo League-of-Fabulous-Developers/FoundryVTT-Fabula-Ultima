@@ -113,7 +113,25 @@ FU.affValue = {
 	repulsion: 4,
 };
 
-FU.species = ['beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead', 'custom'];
+FU.species = {
+	beast: 'FU.Beast',
+	construct: 'FU.Construct',
+	demon: 'FU.Demon',
+	elemental: 'FU.Elemental',
+	humanoid: 'FU.Humanoid',
+	monster: 'FU.Monster',
+	plant: 'FU.Plant',
+	undead: 'FU.Undead',
+	custom: 'FU.Custom',
+};
+
+FU.companionSpecies = {
+	beast: 'FU.Beast',
+	construct: 'FU.Construct',
+	elemental: 'FU.Elemental',
+	plant: 'FU.Plant',
+	custom: 'FU.Custom',
+};
 
 FU.villainTypes = ['minor', 'major', 'supreme'];
 
