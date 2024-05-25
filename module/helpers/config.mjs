@@ -370,3 +370,25 @@ FU.studyRoll = {
 	core: [10, 13, 16],
 	revised: [7, 10, 13],
 };
+
+FU.attributeDice = {
+	6: 'FU.D6',
+	8: 'FU.D8',
+	10: 'FU.D10',
+	12: 'FU.D12',
+};
+
+FU.bonds = {
+	admInf: {
+		Admiration: 'FU.Admiration',
+		Inferiority: 'FU.Inferiority',
+	},
+	loyMis: {
+		Loyalty: 'FU.Loyalty',
+		Mistrust: 'FU.Mistrust',
+	},
+	affHat: {
+		Affection: 'FU.Affection',
+		Hatred: 'FU.Hatred',
+	},
+};

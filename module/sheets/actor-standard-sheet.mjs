@@ -114,6 +114,8 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.studyRoll = studyRollTiers.map((value) => value + '+');
 		context.studyRoll.unshift('-');
 
+		context.FU = FU;
+
 		return context;
 	}
 

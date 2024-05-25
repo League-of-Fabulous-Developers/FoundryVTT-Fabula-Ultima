@@ -1024,6 +1024,10 @@
 		"UseMetaCurrencyDialogMessage": "Do you want to use a {type} point?",
 		"UseMetaCurrencyChatFlavor": "{type} point used",
 		"UseMetaCurrencyChatMessage": "<b>{actor}</b> used a {type} point.",
-		"UseMetaCurrencyNotificationInsufficientPoints": "<b>{actor}</b> does not have enough {type} points."
+		"UseMetaCurrencyNotificationInsufficientPoints": "<b>{actor}</b> does not have enough {type} points.",
+		"D6": "d6",
+		"D8": "d8",
+		"D10": "d10",
+		"D12": "d12"
 	}
 }

@@ -12,27 +12,15 @@
                    class="bond-select resource-content resource-inputs" value="{{ bond.name }}" data-dtype="String" />
             <select name="system.resources.bonds.{{ bondIndex }}.admInf"
                     class="bond-select resource-content resource-inputs">
-                {{#select bond.admInf}}
-                    <option value=""></option>
-                    <option value="Admiration">{{localize 'FU.Admiration'}}</option>
-                    <option value="Inferiority">{{localize 'FU.Inferiority'}}</option>
-                {{/select}}
+                {{selectOptions @root.FU.bonds.admInf selected=bond.admInf blank="" localize=true}}
             </select>
             <select name="system.resources.bonds.{{ bondIndex }}.loyMis"
                     class="bond-select resource-content resource-inputs">
-                {{#select bond.loyMis}}
-                    <option value=""></option>
-                    <option value="Loyalty">{{localize 'FU.Loyalty'}}</option>
-                    <option value="Mistrust">{{localize 'FU.Mistrust'}}</option>
-                {{/select}}
+                {{selectOptions @root.FU.bonds.loyMis selected=bond.loyMis blank="" localize=true}}
             </select>
             <select name="system.resources.bonds.{{ bondIndex }}.affHat"
                     class="bond-select resource-content resource-inputs">
-                {{#select bond.affHat}}
-                    <option value=""></option>
-                    <option value="Affection">{{localize 'FU.Affection'}}</option>
-                    <option value="Hatred">{{localize 'FU.Hatred'}}</option>
-                {{/select}}
+                {{selectOptions @root.FU.bonds.affHat selected=bond.affHat blank="" localize=true}}
             </select>
             <div class="resource-content flexrow" style="gap: 2px;">
                 <input class="resource-inputs" data-tooltip="{{localize 'FU.BondStrength'}}"
