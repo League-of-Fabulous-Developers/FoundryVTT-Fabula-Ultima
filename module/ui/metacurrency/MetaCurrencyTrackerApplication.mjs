@@ -6,14 +6,25 @@ import { SYSTEM } from '../../helpers/config.mjs';
 Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, getTool);
 
 let app;
+const renderApp = () => (app ??= new MetaCurrencyTrackerApplication()).render(true);
 function getTool(tools) {
 	tools.push({
 		name: MetaCurrencyTrackerApplication.name,
 		title: 'FU.AppMetaCurrencyTrackerTitle',
 		icon: 'fa-solid fa-chart-line',
 		button: true,
-		onClick: () => (app ??= new MetaCurrencyTrackerApplication()).render(true),
+		onClick: renderApp,
 	});
+}
+
+Hooks.on('chatMessage', handleChatCommand);
+
+const regExp = /^\/(fabula|ultima|metacurrency)$/i;
+function handleChatCommand(chatLog, message, data) {
+	if (regExp.test(message)) {
+		renderApp();
+		return false;
+	}
 }
 
 export class MetaCurrencyTrackerApplication extends FormApplication {
