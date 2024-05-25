@@ -110,9 +110,13 @@ export class FUStandardActorSheet extends ActorSheet {
 			description: await TextEditor.enrichHTML(context.system.description ?? ''),
 		};
 
-		const studyRollTiers = game.settings.get(SYSTEM, SETTINGS.useRevisedStudyRule) ? FU.studyRoll.revised : FU.studyRoll.revised;
-		context.studyRoll = studyRollTiers.map((value) => value + '+');
-		context.studyRoll.unshift('-');
+		const studyRollTiers = game.settings.get(SYSTEM, SETTINGS.useRevisedStudyRule) ? FU.studyRoll.revised : FU.studyRoll.core;
+		let studyRoll;
+		studyRoll = studyRollTiers.map((value) => value + '+');
+		studyRoll.unshift('-');
+		studyRoll = studyRoll.reduce((agg, curr, idx) => (agg[idx] = curr) && agg, {});
+
+		context.studyRoll = studyRoll;
 
 		context.FU = FU;
 
