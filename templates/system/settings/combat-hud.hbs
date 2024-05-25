@@ -32,10 +32,7 @@
         <label for="optionCombatHudPosition">{{localize "FU.CombatHudPosition"}}</label>
         <div class="form-fields">
             <select name="optionCombatHudPosition" id="optionCombatHudPosition">
-                {{#select optionCombatHudPosition}}
-                    <option value="bottom">{{ localize "FU.CombatHudPositionBottom" }}</option>
-                    <option value="top">{{ localize "FU.CombatHudPositionTop" }}</option>
-                {{/select}}
+                {{selectOptions optionCombatHudPositionOptions selected=optionCombatHudPosition localize=true}}
             </select>
         </div>
         <p class="notes">{{localize "FU.CombatHudPositionHint"}}</p>
@@ -45,10 +42,7 @@
         <label for="optionCombatHudPortrait">{{localize "FU.CombatHudPortrait"}}</label>
         <div class="form-fields">
             <select name="optionCombatHudPortrait" id="optionCombatHudPortrait">
-                {{#select optionCombatHudPortrait}}
-                    <option value="actor">{{ localize "FU.CombatHudPortraitActor" }}</option>
-                    <option value="token">{{ localize "FU.CombatHudPortraitToken" }}</option>
-                {{/select}}
+                {{selectOptions optionCombatHudPortraitOptions selected=optionCombatHudPortrait localize=true}}
             </select>
         </div>
         <p class="notes">{{localize "FU.CombatHudPortraitHint"}}</p>
@@ -76,10 +70,7 @@
         <label for="optionCombatHudEffectsMarqueeMode">{{localize "FU.CombatHudEffectsMarqueeMode"}}</label>
         <div class="form-fields">
             <select name="optionCombatHudEffectsMarqueeMode" id="optionCombatHudEffectsMarqueeMode">
-                {{#select optionCombatHudEffectsMarqueeMode}}
-                    <option value="normal">{{ localize "FU.CombatHudEffectsMarqueeModeNormal" }}</option>
-                    <option value="alternate">{{ localize "FU.CombatHudEffectsMarqueeModeAlternate" }}</option>
-                {{/select}}
+                {{selectOptions optionCombatHudEffectsMarqueeModeOptions selected=optionCombatHudEffectsMarqueeMode localize=true}}
             </select>
         </div>
         <p class="notes">{{localize "FU.CombatHudEffectsMarqueeModeHint"}}</p>
