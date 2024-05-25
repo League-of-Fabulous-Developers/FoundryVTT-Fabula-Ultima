@@ -20,14 +20,7 @@
                             class="resource-inputs select-dropdown"
                             data-tooltip="{{ affinity.base }}: {{ affinity.affTypeBase }}"
                             data-dtype="Number">
-                        {{#select affinity.base}}
-                            <option value="0">{{localize "FU.AffinityNormalAbbr"}}</option>
-                            <option value="-1">{{localize "FU.AffinityVulnerableAbbr"}}</option>
-                            <option value="1">{{localize "FU.AffinityResistanceAbbr"}}</option>
-                            <option value="2">{{localize "FU.AffinityImmuneAbbr"}}</option>
-                            <option value="3">{{localize "FU.AffinityAbsorptionAbbr"}}</option>
-                            <option value="4">{{localize "FU.AffinityRepulsionAbbr"}}</option>
-                        {{/select}}
+                        {{selectOptions @root.FU.affTypeAbbr selected=affinity.base localize=true}}
                     </select>
                 </div>
             {{/each}}
