@@ -9,7 +9,7 @@
                     name="system.attributes.{{ key }}.base"
                 {{#if (lookup (lookup @root.actor.overrides.system.attributes key) "base")}}disabled
                     data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}>
-                {{selectOptions @root.FU.attributeDice localize=true}}
+                {{selectOptions @root.FU.attributeDice selected=attribute.base localize=true}}
             </select>
             <label class="ability-mod">
                 <span class="resource-label-m">{{ attribute.current }}</span>
