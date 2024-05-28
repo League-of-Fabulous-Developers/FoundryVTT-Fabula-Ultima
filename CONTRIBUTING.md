@@ -8,38 +8,37 @@ Welcome to the contribution guidelines for Project FU! We appreciate your intere
 
 If you have any questions or concerns, feel free to reach out to us through the following channels:
 
--   Discord: [Rooster Games Discord](https://discord.gg/G9qGbn2) - `#bot-and-tool-discussion` channel
--   Discord: [Project FU Discord](https://discord.gg/SNuxpzCgVB) - `#support` channel
+- Discord: [Rooster Games Discord](https://discord.gg/G9qGbn2) - `#bot-and-tool-discussion` channel
+- Discord: [Project FU Discord](https://discord.gg/SNuxpzCgVB) - `#support` channel
 
 ## Submitting Issues
 
-Issues reported on [GitHub](https://github.com/) and support channels will be reviewed and tracked on our [Trello Board](https://trello.com/b/VEa8VQHc/fabula-ultima-system). Please follow the guidelines below for different types of issues.
+Issues reported on [GitHub](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/issues) and support channels will be reviewed and tracked on our [Trello Board](https://trello.com/b/VEa8VQHc/fabula-ultima-system). Please follow the guidelines below for different types of issues.
 
 ### Bugs
 
 Before submitting a bug report, ensure the following:
 
--   Bugs are reproducible without active modules. If module-related, contact the module author.
--   Provide relevant hosting details.
--   Include clear instructions on reproducing the issue and the expected vs actual outcome.
+- Bugs are reproducible without active modules. If module-related, contact the module author.
+- Provide relevant hosting details.
+- Include clear instructions on reproducing the issue and the expected vs actual outcome.
 
 ## Tooling and Setup
 
-Project FU is based on the [Boilerplate Template](https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD01-Getting-started), using plain JavaScript and [Gulp](https://gulpjs.com/) for build tasks. Future plans include incorporating new frameworks such as [Tailwind](https://tailwindcss.com/)/[PostCSS](https://postcss.org/), migrating to [Vite](https://vitejs.dev/) as the default bundler, and using [Svelte](https://svelte.dev/)/[TyphonJS](https://github.com/typhonjs-fvtt-demo/template-svelte-esm) for UI components.
+Project FU is based on the [Boilerplate Template](https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD01-Getting-started), using plain JavaScript and [Gulp](https://gulpjs.com/) for build tasks. Future plans include incorporating new frameworks such as [Tailwind](https://tailwindcss.com/)/[PostCSS](https://postcss.org/), migrating to [Vite](https://vitejs.dev/) as the default bundler.
 
 ### Branches
 
--   **main:** Mainline branch for v11 releases and above.
--   **v10-maintenance:** Mainline branch for v10 builds.
--   **dev:** Primary development branch for V10 and V11.
+- **main:** Mainline branch for v11 releases and above.
+- **dev:** Primary development branch.
 
-When opening a PR, ensure it goes into the most relevant branch.
+When opening a PR, ensure it goes into the dev branch.
 
 ### Prerequisite Software
 
--   [Git](https://git-scm.com/)
--   [Node.js LTS](https://nodejs.org)
--   Code editor (recommended: [Visual Studio Code](https://code.visualstudio.com/))
+- [Git](https://git-scm.com/)
+- [Node.js LTS](https://nodejs.org)
+- Code editor (recommended: [Visual Studio Code](https://code.visualstudio.com/))
 
 ### Setup
 
