@@ -361,9 +361,16 @@ async function handleStudyRollCallback(app, actor, studyValue) {
 	const imgSrc = actor.img;
 	let tableContent = difficulty === 'Failed' ? '' : makeTable(actor, difficulty);
 
-	const entry = await JournalEntry.create({
+	const journalEntryData = {
 		name: actor.name,
-		content: `
+		folder: folderId,
+		permission: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER },
+	};
+
+	const JournalEntryClass = getDocumentClass('JournalEntry');
+	const journalEntry = await JournalEntryClass.create(journalEntryData);
+
+	const pageContent = `
         <div style="
             background-color: #fff;
             box-shadow: #1a1c1833 0px 2px 1px -1px, #1a1c1824 0px 1px 1px 0px, #1a1c181f 0px 1px 3px 0px;
@@ -384,14 +391,20 @@ async function handleStudyRollCallback(app, actor, studyValue) {
             ${tableContent}
           </div>
         </div>
-      `,
-		folder: folderId,
-		permission: {
-			default: 3,
-		},
-	});
+		`;
 
-	const entryLink = `@JournalEntry[${entry.id}]{${entry.name}}`;
+	const pageData = {
+		name: actor.name,
+		type: 'text',
+		text: {
+			content: pageContent,
+			format: CONST.JOURNAL_ENTRY_PAGE_FORMATS.HTML,
+		},
+	};
+
+	await journalEntry.createEmbeddedDocuments('JournalEntryPage', [pageData]);
+
+	const entryLink = `@JournalEntry[${journalEntry.id}]{${journalEntry.name}}`;
 	let msg = (replacement ? update : update2) + `${entryLink}.`;
 
 	ChatMessage.create({
