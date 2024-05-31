@@ -75,6 +75,6 @@ export class WeaponDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	transferEffects() {
-		return this.isEquipped.value;
+		return this.isEquipped.value && !this.parent.actor?.system.vehicle.weaponsActive;
 	}
 }

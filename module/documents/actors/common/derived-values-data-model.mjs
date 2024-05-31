@@ -48,7 +48,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				equipmentDef += accessory.system.def.value;
 				equipmentMdef += accessory.system.mdef.value;
 			});
-		if (vehicle && vehicle.embarked && vehicle.weapons.length) {
+		if (vehicle && vehicle.weaponsActive) {
 			vehicle.weapons
 				.filter((value) => value.system.data.isShield)
 				.forEach((shieldModule) => {
@@ -70,7 +70,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		// Find the equipped armor
 		/** @type FUItem */
 		const armor = armors.find((item) => item.system.isEquipped.value);
-		if (vehicle && vehicle.embarked && vehicle.armor) {
+		if (vehicle && vehicle.armorActive) {
 			/** @type ArmorModuleDataModel */
 			const armorData = vehicle.armor.system.data;
 
