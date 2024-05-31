@@ -31,12 +31,7 @@
                         <i class="study-button rollable fas fa-magnifying-glass icon"></i>
                         <select name="system.study.value" id="studySelect"
                                 data-dtype="Number" class="resource-label-l">
-                            {{#select system.study.value}}
-                                <option value="0">-</option>
-                                <option value="1">10+</option>
-                                <option value="2">13+</option>
-                                <option value="3">16+</option>
-                            {{/select}}
+                            {{selectOptions studyRoll selected=system.study.value}}
                         </select>
                     </a>
                 </nav>

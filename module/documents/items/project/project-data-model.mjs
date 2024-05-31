@@ -1,4 +1,5 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 /**
  * @property {string} subtype.value
@@ -34,9 +35,9 @@ export class ProjectDataModel extends foundry.abstract.TypeDataModel {
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 			hasClock: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
-			potency: new SchemaField({ value: new StringField({ initial: 'minor', choices: ['minor', 'medium', 'major', 'extreme'] }) }),
-			area: new SchemaField({ value: new StringField({ initial: 'individual', choices: ['individual', 'small', 'large', 'huge'] }) }),
-			use: new SchemaField({ value: new StringField({ initial: 'consumable', choices: ['consumable', 'permanent'] }) }),
+			potency: new SchemaField({ value: new StringField({ initial: 'minor', choices: Object.keys(FU.potency) }) }),
+			area: new SchemaField({ value: new StringField({ initial: 'individual', choices: Object.keys(FU.area) }) }),
+			use: new SchemaField({ value: new StringField({ initial: 'consumable', choices: Object.keys(FU.uses) }) }),
 			isFlawed: new SchemaField({ value: new BooleanField() }),
 			defectMod: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			numTinker: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),

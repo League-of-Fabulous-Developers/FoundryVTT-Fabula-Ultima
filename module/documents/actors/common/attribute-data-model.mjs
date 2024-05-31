@@ -24,9 +24,10 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 	_initialize(options = {}) {
 		super._initialize(options);
 		let thiz = this;
+		const { current } = options;
 		let holder = {
 			get current() {
-				return thiz.base;
+				return current ?? thiz.base;
 			},
 			set current(value) {
 				delete this.current;
@@ -57,5 +58,10 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 				holder.current -= 2;
 			},
 		});
+	}
+
+	clone(data = {}, context = {}) {
+		context.current = this.current;
+		return super.clone(data, context);
 	}
 }

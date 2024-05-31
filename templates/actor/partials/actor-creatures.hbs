@@ -9,25 +9,11 @@
             <span class="flexrow combineBar" style="border: 0.125em solid #c7c7c7;">
                 <select id="specieSelect" name="system.species.value"
                         class="resource-inputs">
-                    {{#select system.species.value}} {{#if system.isCompanion.value}}
-                    {{!-- Companion Options --}}
-                        <option value="beast">{{localize 'FU.Beast'}}</option>
-                    <option value="construct">{{localize 'FU.Construct'}}</option>
-                    <option value="elemental">{{localize 'FU.Elemental'}}</option>
-                    <option value="plant">{{localize 'FU.Plant'}}</option>
-                    <option value="custom">{{localize 'FU.Custom'}}</option>
+                    {{#if system.isCompanion.value}}
+                        {{selectOptions FU.companionSpecies selected=system.species.value localize=true}}
                     {{else}}
-                    {{!-- Creature Options --}}
-                        <option value="beast">{{localize 'FU.Beast'}}</option>
-                    <option value="construct">{{localize 'FU.Construct'}}</option>
-                    <option value="demon">{{localize 'FU.Demon'}}</option>
-                    <option value="elemental">{{localize 'FU.Elemental'}}</option>
-                    <option value="monster">{{localize 'FU.Monster'}}</option>
-                    <option value="plant">{{localize 'FU.Plant'}}</option>
-                    <option value="undead">{{localize 'FU.Undead'}}</option>
-                    <option value="humanoid">{{localize 'FU.Humanoid'}}</option>
-                    <option value="custom">{{localize 'FU.Custom'}}</option>
-                    {{/if}} {{/select}}
+                        {{selectOptions FU.species selected=system.species.value localize=true}}
+                    {{/if}}
                 </select>
                 <span class="resource-inputs">
                     <input type="checkbox" id="isCompanionCheckbox" data-tooltip="{{localize 'FU.isCompanion'}}"
@@ -60,12 +46,7 @@
                 <select name="system.villain.value" data-dtype="String"
                         class="resource-inputs"
                         style="margin: 0 0 4px; border-radius: 0 0 0 14px; width: 100%; padding: 2px; border: 0.125em solid #c7c7c7;">
-                    {{#select system.villain.value}}
-                        <option value="">{{ localize 'FU.VillainNone' }}</option>
-            <option value="minor">{{ localize 'FU.VillainMinor' }}</option>
-            <option value="major">{{ localize 'FU.VillainMajor' }}</option>
-            <option value="supreme">{{ localize 'FU.VillainSupreme' }}</option>
-                    {{/select}}
+                    {{selectOptions FU.villainTypes selected=system.villain.value blank='FU.VillainNone' localize=true}}
                 </select>
             {{/if}}
         </span>

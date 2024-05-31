@@ -16,7 +16,7 @@ export class ImprovisedDamageDataModel extends foundry.abstract.DataModel {
 		return {
 			hasImpDamage: new SchemaField({ value: new BooleanField() }),
 			value: new NumberField({ initial: 0, integer: true, nullable: false }),
-			impType: new SchemaField({ value: new StringField({ initial: 'minor', choices: ['minor', 'heavy', 'massive'] }) }),
+			impType: new SchemaField({ value: new StringField({ initial: 'minor', choices: Object.keys(FU.improvisedEffect) }) }),
 			type: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
 		};
 	}

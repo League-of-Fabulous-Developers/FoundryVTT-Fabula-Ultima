@@ -113,9 +113,31 @@ FU.affValue = {
 	repulsion: 4,
 };
 
-FU.species = ['beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead', 'custom'];
+FU.species = {
+	beast: 'FU.Beast',
+	construct: 'FU.Construct',
+	demon: 'FU.Demon',
+	elemental: 'FU.Elemental',
+	humanoid: 'FU.Humanoid',
+	monster: 'FU.Monster',
+	plant: 'FU.Plant',
+	undead: 'FU.Undead',
+	custom: 'FU.Custom',
+};
 
-FU.villainTypes = ['minor', 'major', 'supreme'];
+FU.companionSpecies = {
+	beast: 'FU.Beast',
+	construct: 'FU.Construct',
+	elemental: 'FU.Elemental',
+	plant: 'FU.Plant',
+	custom: 'FU.Custom',
+};
+
+FU.villainTypes = {
+	minor: 'FU.VillainMinor',
+	major: 'FU.VillainMajor',
+	supreme: 'FU.VillainSupreme',
+};
 
 FU.speciesRule = {
 	beast: 'FU.BeastRule',
@@ -365,3 +387,55 @@ FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
 });
 
 FU.classFeatures = {};
+
+FU.studyRoll = {
+	core: [10, 13, 16],
+	revised: [7, 10, 13],
+};
+
+FU.attributeDice = {
+	6: 'FU.D6',
+	8: 'FU.D8',
+	10: 'FU.D10',
+	12: 'FU.D12',
+};
+
+FU.bonds = {
+	admInf: {
+		Admiration: 'FU.Admiration',
+		Inferiority: 'FU.Inferiority',
+	},
+	loyMis: {
+		Loyalty: 'FU.Loyalty',
+		Mistrust: 'FU.Mistrust',
+	},
+	affHat: {
+		Affection: 'FU.Affection',
+		Hatred: 'FU.Hatred',
+	},
+};
+
+FU.potency = {
+	minor: 'FU.PotencyMinor',
+	medium: 'FU.PotencyMedium',
+	major: 'FU.PotencyMajor',
+	extreme: 'FU.PotencyExtreme',
+};
+
+FU.area = {
+	individual: 'FU.AreaIndividual',
+	small: 'FU.AreaSmall',
+	large: 'FU.AreaLarge',
+	huge: 'FU.AreaHuge',
+};
+
+FU.uses = {
+	consumable: 'FU.Consumable',
+	permanent: 'FU.Permanent',
+};
+
+FU.improvisedEffect = {
+	minor: 'FU.ImprovisedEffectMinor',
+	heavy: 'FU.ImprovisedEffectHeavy',
+	massive: 'FU.ImprovisedEffectMassive',
+};

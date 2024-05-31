@@ -158,6 +158,7 @@ export class FUCombat extends Combat {
 	}
 
 	setupTurns() {
+		this.previous ??= {};
 		return (this.turns = this.combatants.contents);
 	}
 

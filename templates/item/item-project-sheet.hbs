@@ -38,34 +38,21 @@
                             <label class="resource-label-m">{{localize 'FU.Potency'}}</label>
                             <select class="resource-inputs select-dropdown-m"
                                     name="system.potency.value">
-                                {{#select system.potency.value}}
-                                    <option value="minor">Minor</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="major">Major</option>
-                                    <option value="extreme">Extreme</option>
-                                {{/select}}
+                                {{selectOptions FU.potency selected=system.potency.value localize=true}}
                             </select>
                         </div>
                         <div class="resource-content flexcol flex-group-center">
                             <label class="resource-label-m">{{localize 'FU.Area'}}</label>
                             <select class="resource-inputs select-dropdown-m"
                                     name="system.area.value">
-                                {{#select system.area.value}}
-                                    <option value="individual">Individual</option>
-                                    <option value="small">Small</option>
-                                    <option value="large">Large</option>
-                                    <option value="huge">Huge</option>
-                                {{/select}}
+                                {{selectOptions FU.area selected=system.area.value localize=true}}
                             </select>
                         </div>
                         <div class="resource-content flexcol flex-group-center">
                             <label class="resource-label-m">{{localize 'FU.Uses'}}</label>
                             <select class="resource-inputs select-dropdown-m"
                                     name="system.use.value">
-                                {{#select system.use.value}}
-                                    <option value="consumable">{{localize 'FU.Consumable'}}</option>
-                                    <option value="permanent">{{localize 'FU.Permanent'}}</option>
-                                {{/select}}
+                                {{selectOptions FU.uses selected=system.use.value localize=true}}
                             </select>
                         </div>
                     </div>

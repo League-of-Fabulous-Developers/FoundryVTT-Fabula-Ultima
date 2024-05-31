@@ -17,12 +17,7 @@
             <label for="studySelect" style="padding-right: 5px; cursor: pointer;">{{localize 'FU.Study'}}</label>
             <select name="system.study.value" id="studySelect" data-dtype="Number"
                     class="resource-label-l" style="color:white;">
-                {{#select system.study.value}}
-                    <option value="0">-</option>
-                    <option value="1">10+</option>
-                    <option value="2">13+</option>
-                    <option value="3">16+</option>
-                {{/select}}
+                {{selectOptions studyRoll selected=system.study.value}}
             </select>
         </a>
     </nav>
