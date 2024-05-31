@@ -41,8 +41,8 @@ export class PilotVehicleDataModel extends foundry.abstract.DataModel {
 	}
 
 	prepareData() {
-		this.weapons.forEach((value, index, array) => (array[index] = value instanceof Function ? value() : value));
-		this.supports.forEach((value, index, array) => (array[index] = value instanceof Function ? value() : value));
+		this.weapons = this.weapons.map((value) => (value instanceof Function ? value() : value)).filter((value) => !!value);
+		this.supports = this.supports.map((value) => (value instanceof Function ? value() : value)).filter((value) => !!value);
 	}
 
 	get usedSlots() {
@@ -51,6 +51,14 @@ export class PilotVehicleDataModel extends foundry.abstract.DataModel {
 		const supportSlots = this.supports.map((value) => (value.system.data.complex ? 2 : 1)).reduce((agg, val) => agg + val, 0);
 
 		return weaponSlots + armorSlots + supportSlots;
+	}
+
+	get weaponsActive() {
+		return this.embarked && !!this.weapons.length;
+	}
+
+	get armorActive() {
+		return this.embarked && !!this.armor;
 	}
 
 	updateActiveVehicle(vehicle) {
@@ -111,9 +119,12 @@ export class PilotVehicleDataModel extends foundry.abstract.DataModel {
 	updateActiveWeaponModules(weapon) {
 		if (this.vehicle && weapon && weapon.system.data instanceof WeaponModuleDataModel) {
 			if (this.weapons.includes(weapon)) {
-				return this.updateSource({
-					weapons: this.weapons.filter((item) => item !== weapon),
-				});
+				return this.updateSource(
+					{
+						weapons: this.weapons.filter((item) => item !== weapon),
+					},
+					{ dryRun: true },
+				);
 			} else {
 				const complexWeapon = weapon.system.data.complex;
 				const complexWeaponEquipped = this.weapons.some((value) => value.system.data.complex);
