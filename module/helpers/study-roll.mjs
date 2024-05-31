@@ -36,7 +36,7 @@ export async function handleStudyTarget(app, studyValue) {
  */
 export async function handleStudyRoll(app) {
 	const useRevisedStudyRule = game.settings.get('projectfu', 'useRevisedStudyRule');
-	const difficultyThresholds = useRevisedStudyRule ? FU.studyRoll.revised : FU.studyRoll.revised;
+	const difficultyThresholds = useRevisedStudyRule ? FU.studyRoll.revised : FU.studyRoll.core;
 
 	const submit = game.i18n.localize(`FU.Submit`);
 
