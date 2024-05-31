@@ -32,10 +32,20 @@ export function onRenderActiveEffectConfig(sheet, html) {
  * @param delta
  */
 export function onApplyActiveEffect(actor, change, current, delta) {
-	if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, delta) && current[delta] instanceof Function) {
-		console.debug(`applying ${delta} to ${change.key}`);
-		current[delta]();
-		return false;
+	if (game.release.isNewer(12)) {
+		if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, change.value) && current[change.value] instanceof Function) {
+			console.debug(`applying ${change.value} to ${change.key}`);
+			const newValue = current.clone();
+			newValue[change.value]();
+			foundry.utils.setProperty(actor, change.key, newValue);
+			return false;
+		}
+	} else {
+		if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, delta) && current[delta] instanceof Function) {
+			console.debug(`applying ${delta} to ${change.key}`);
+			current[delta]();
+			return false;
+		}
 	}
 }
 

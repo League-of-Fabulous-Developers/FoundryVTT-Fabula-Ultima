@@ -17,7 +17,7 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 	_initialize(options = {}) {
 		super._initialize(options);
 
-		let current = this.base;
+		let current = options.current ?? this.base;
 		Object.defineProperty(this, 'current', {
 			configurable: false,
 			enumerable: true,
@@ -44,5 +44,10 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 				}
 			},
 		});
+	}
+
+	clone(data = {}, context = {}) {
+		context.current = this.current;
+		return super.clone(data, context);
 	}
 }
