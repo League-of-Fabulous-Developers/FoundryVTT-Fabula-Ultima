@@ -52,8 +52,8 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 			vehicle.weapons
 				.filter((value) => value.system.data.isShield)
 				.forEach((shieldModule) => {
-					equipmentDef += shieldModule.system.shield.defense;
-					equipmentMdef += shieldModule.system.shield.magicDefense;
+					equipmentDef += shieldModule.system.data.shield.defense;
+					equipmentMdef += shieldModule.system.data.shield.magicDefense;
 				});
 		} else {
 			shields
