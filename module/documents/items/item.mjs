@@ -693,6 +693,9 @@ export class FUItem extends Item {
 	 * @private
 	 */
 	async roll(isShift) {
+		if (this.system.showTitleCard?.value) {
+			SOCKET.executeForEveryone('use', this.name);
+		}
 		if (this.type === 'weapon') {
 			return this.rollWeapon(isShift);
 		}
@@ -748,9 +751,6 @@ export class FUItem extends Item {
 			content = `<div data-item-id="${item.id}">${content}</div>`;
 
 			// if (['consumable'].includes(type) {}
-			if (system.showTitleCard?.value) {
-				SOCKET.executeForEveryone('use', name);
-			}
 
 			// Create a chat message.
 			ChatMessage.create({
