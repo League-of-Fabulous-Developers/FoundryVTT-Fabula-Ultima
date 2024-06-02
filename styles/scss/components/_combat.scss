@@ -115,10 +115,10 @@
 	.faction-list {
 		color: $color-primary;
 		text-shadow: 1px 1px 1px $color-black;
-		box-shadow: 3px 6px var(--hud-boxshadow-color);
+		box-shadow: 2px 4px var(--hud-boxshadow-color);
 		border-radius: 8px;
 		background: var(--hud-background-gradient);
-		padding: 0.5em;
+		padding: 0.25em;
 		display: flex;
 		align-content: center;
 		flex-wrap: wrap;

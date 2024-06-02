@@ -38,7 +38,7 @@
                 <label class="resource-label-m"
                        data-tooltip="{{localize 'FU.ClassFeatureAlchemyRollTableExplanation'}}">
                     {{localize 'FU.ClassFeatureAlchemyTargetRollTable'}}:
-                    <select name='system.data.config.targetRollTable' class="resource-inputs resource-text-m">
+                    <select name='system.data.config.targetRollTable' class="resource-inputs select-dropdown-l resource-text-m">
                         <option value=''>-</option>
                         {{selectOptions additionalData.rollTables selected=system.data.config.targetRollTable.id
                                         nameAttr='id' labelAttr='name'}}
@@ -48,7 +48,7 @@
                 <label class="resource-label-m"
                        data-tooltip="{{localize 'FU.ClassFeatureAlchemyRollTableExplanation'}}">
                     {{localize 'FU.ClassFeatureAlchemyEffectRollTable'}}:
-                    <select name='system.data.config.effectRollTable' class="resource-inputs resource-text-m">
+                    <select name='system.data.config.effectRollTable' class="resource-inputs select-dropdown-l resource-text-m">
                         <option value=''>-</option>
                         {{selectOptions additionalData.rollTables selected=system.data.config.effectRollTable.id
                                         nameAttr='id' labelAttr='name'}}

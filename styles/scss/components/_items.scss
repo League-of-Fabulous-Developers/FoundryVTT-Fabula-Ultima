@@ -16,7 +16,7 @@
 	font-size: 14px;
 	background: linear-gradient($color-tabStyle-gradient);
 	border-radius: 4px;
-	box-shadow: 2px 4px $color-secondary;
+	box-shadow: 1px 2px $color-secondary;
 	text-align: center;
 }
 
@@ -62,11 +62,11 @@
 	text-shadow: 1px 1px 1px $color-black;
 	color: $color-primary;
 	font-size: 24px;
-	box-shadow: 3px 6px $color-secondary;
+	box-shadow: 2px 4px $color-secondary;
 	border: thin $color-shadow-inverted;
 	background: linear-gradient($color-tabStyle-gradient);
 	border-radius: 8px 30px 5px 5px;
-	padding: 5px;
+	padding: 4px;
 
 	&.items-label {
 		margin: 5em;

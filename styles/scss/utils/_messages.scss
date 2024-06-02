@@ -41,7 +41,7 @@
 			color: $color-primary;
 			font-size: 26px;
 			text-shadow: 2px 2px 4px $color-black;
-			box-shadow: 3px 6px $color-secondary;
+			box-shadow: 2px 4px $color-secondary;
 			border-style: solid;
 			border-width: thin;
 			border-color: $color-beige;
@@ -60,7 +60,7 @@
 		padding: 0.5em;
 		margin: 10px 0;
 		color: #272a2a;
-		box-shadow: 3px 6px $color-background-inverted;
+		box-shadow: 2px 4px $color-background-inverted;
 		background-image: linear-gradient(to right, rgba(211, 229, 230, 0.3), rgba(195, 219, 214, 0.8));
 		border-style: solid;
 		border-width: thin;
@@ -83,7 +83,7 @@
 // Styles for editing chat's item detail description
 .detail-desc {
 	color: $color-black;
-	box-shadow: 3px 6px $color-secondary;
+	box-shadow: 2px 4px $color-secondary;
 	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
 	border: thin solid $color-background-inverted;
 	border-radius: 8px;
@@ -143,7 +143,7 @@
 	justify-content: center;
 	color: $color-primary;
 	text-shadow: 1px 1px 1px $color-black;
-	box-shadow: 3px 6px $color-secondary;
+	box-shadow: 2px 4px $color-secondary;
 	border-radius: 8px;
 	background: linear-gradient($color-tabStyle-gradient), $color-secondary;
 	transition:
@@ -164,7 +164,7 @@
 
 	&:focus {
 		outline: none;
-		box-shadow: 3px 6px $color-success;
+		box-shadow: 2px 4px $color-success;
 	}
 
 	button {
@@ -197,7 +197,7 @@
 	color: $color-primary;
 	font-size: 16px;
 	text-shadow: 2px 2px 4px $color-black;
-	box-shadow: 3px 6px $color-secondary;
+	box-shadow: 2px 4px $color-secondary;
 	border-style: solid;
 	border-width: thin;
 	border-color: $color-beige;
@@ -213,7 +213,7 @@
 	color: $color-primary;
 	font-size: 16px;
 	text-shadow: 2px 2px 4px $color-black;
-	box-shadow: 3px 6px $color-secondary;
+	box-shadow: 2px 4px $color-secondary;
 	border-style: solid;
 	border-width: thin;
 	border-color: $color-beige;
@@ -259,7 +259,7 @@
 				color: $color-primary;
 				font-size: 16px;
 				text-shadow: 1px 2px 4px $color-black;
-				box-shadow: 3px 6px #2a4a41;
+				box-shadow: 2px 4px #2a4a41;
 				border-radius: 0px 8px 8px 8px;
 				padding: 2px 8px;
 				background-color: $color-ternary;
@@ -276,7 +276,7 @@
 			font-weight: bold;
 			border-radius: 8px;
 			color: $color-secondary;
-			box-shadow: 3px 6px $color-secondary;
+			box-shadow: 2px 4px $color-secondary;
 			background-color: rgba(225, 239, 227, 0.5);
 			border-style: solid;
 			border-width: thin;
@@ -331,7 +331,7 @@
 				color: $color-white;
 				font-size: 16px;
 				text-shadow: 1px 2px 4px $color-black;
-				box-shadow: 3px 6px $color-secondary;
+				box-shadow: 2px 4px $color-secondary;
 				border-radius: 0px 8px 8px 8px;
 				padding: 2px 8px;
 				background-color: $color-ternary;
@@ -350,7 +350,7 @@
 			font-weight: bold;
 			border-radius: 8px;
 			color: $color-secondary;
-			box-shadow: 3px 6px $color-secondary;
+			box-shadow: 2px 4px $color-secondary;
 			background-color: rgba(225, 239, 227, 0.5);
 			border-style: solid;
 			border-width: thin;
