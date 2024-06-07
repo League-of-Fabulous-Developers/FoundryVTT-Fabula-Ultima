@@ -49,7 +49,9 @@ export class FUClassFeatureSheet extends ItemSheet {
 			const schema = this.item.system.data.constructor.schema;
 			schema.apply(function () {
 				const path = this.fieldPath.split('.');
-				path.shift(); // remove data model name
+				if (!game.release.isNewer(12)) {
+					path.shift(); // remove data model name
+				}
 				path.unshift('system', 'data');
 				const field = path.pop();
 				path.push(`-=${field}`);

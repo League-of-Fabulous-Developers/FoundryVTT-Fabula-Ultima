@@ -48,7 +48,9 @@ export class FUOptionalFeatureSheet extends ItemSheet {
 			const schema = this.item.system.data.constructor.schema;
 			schema.apply(function () {
 				const path = this.fieldPath.split('.');
-				path.shift(); // remove data model name
+				if (!game.release.isNewer(12)) {
+					path.shift(); // remove data model name
+				}
 				path.unshift('system', 'data');
 				const field = path.pop();
 				path.push(`-=${field}`);
@@ -83,7 +85,9 @@ export class FUOptionalFeatureSheet extends ItemSheet {
 			schema.apply(function () {
 				if (this instanceof foundry.data.fields.HTMLField) {
 					const path = this.fieldPath.split('.');
-					path.shift(); // remove data model name
+					if (!game.release.isNewer(12)) {
+						path.shift(); // remove data model name
+					}
 					path.pop(); // remove actual field name
 					let enrichedHtml = data.enrichedHtml;
 					let modelData = data.system.data;
