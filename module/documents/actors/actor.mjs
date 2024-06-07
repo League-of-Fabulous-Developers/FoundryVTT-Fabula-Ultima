@@ -142,6 +142,22 @@ export class FUActor extends Actor {
 			} else if (!shouldBeInCrisis && isInCrisis) {
 				this.effects.filter((effect) => effect.statuses.has('crisis')).forEach((val) => val.delete());
 			}
+
+			// Handle KO status
+			const shouldBeKO = hp.value === 0; // KO when HP is 0
+			const isKO = this.statuses.has('ko');
+
+			if (shouldBeKO && !isKO) {
+				await ActiveEffect.create(
+					{
+						...CONFIG.statusEffects.find((val) => val.id === 'ko'),
+						origin: this.uuid,
+					},
+					{ parent: this },
+				);
+			} else if (!shouldBeKO && isKO) {
+				this.effects.filter((effect) => effect.statuses.has('ko')).forEach((val) => val.delete());
+			}
 		}
 		super._onUpdate(changed, options, userId);
 	}
