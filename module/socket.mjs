@@ -1,5 +1,6 @@
-import { SYSTEM } from './settings.js';
 import { onMarkTurnTaken } from './ui/combat.mjs';
+
+import { SYSTEM } from './helpers/config.mjs';
 
 export const MESSAGES = Object.freeze({
 	ShowBanner: 'use',
@@ -9,6 +10,7 @@ export const MESSAGES = Object.freeze({
 export let SOCKET;
 
 export function onSocketLibReady() {
+	/* globals socketlib */
 	SOCKET = socketlib.registerSystem(SYSTEM);
 
 	SOCKET.register(MESSAGES.ShowBanner, showBanner);

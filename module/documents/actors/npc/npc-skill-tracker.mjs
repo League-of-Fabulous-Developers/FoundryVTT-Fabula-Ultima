@@ -134,11 +134,11 @@ export class NpcSkillTracker {
 	}
 
 	#calcUsedSkillsFromExtraHP() {
-		return this.#data.resources.hp.bonus / 10;
+		return Math.max(0, this.#data.resources.hp.bonus) / 10;
 	}
 
 	#calcUsedSkillsFromExtraMP() {
-		return this.#data.resources.mp.bonus / 20;
+		return Math.max(0, this.#data.resources.mp.bonus) / 20;
 	}
 
 	#calcUsedSkillsFromExtraInit() {

@@ -137,14 +137,17 @@
         {
           "key": "system.resources.hp.bonus",
           "mode": 2,
-          "value": "3",
-          "priority": null
+          "value": "3*@system.level.value"
         }
       ],
       "description": "<ul><li><p><strong>Effect: </strong>HP Increase by<span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 3</strong></span><span class=\"fontstyle2\"><strong>】</strong></span></p><table><tbody><tr><td><p><strong>SL1: 3</strong></p></td><td><p><strong>SL2: 6</strong></p></td><td><p><strong>SL3: 9</strong></p></td><td><p><strong>SL4: 12</strong></p></td><td data-colwidth=\"108\"><p><strong>SL5: 15</strong></p></td></tr></tbody></table></li></ul>",
       "transfer": true,
       "statuses": [],
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
       "tint": null,
       "_key": "!items.effects!Rb77yoEzkbdSwUh2.6qHoygYUxyY8biDV"
     }
@@ -162,8 +165,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706503528196,
-    "modifiedTime": 1710516308293,
-    "lastModifiedBy": "YN7AhHIwAZeH33Tw"
+    "modifiedTime": 1716339081201,
+    "lastModifiedBy": "CLAzxWQsDDB8fCLx"
   },
   "_id": "Rb77yoEzkbdSwUh2",
   "sort": 0,

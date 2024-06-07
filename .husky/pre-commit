@@ -1,0 +1,12 @@
+# Stash unstaged files
+git stash -q --keep-index
+
+npm run lint
+npm run prettier
+npm run build
+
+# Stage changed files
+git add -u
+
+# Re-apply original unstaged changes
+git stash pop -q

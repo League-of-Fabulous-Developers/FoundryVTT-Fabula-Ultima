@@ -1,59 +1,59 @@
 <form class="{{ cssClass }} backgroundstyle" autocomplete="off">
-	{{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+    {{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}}
 
-	{{!-- Sheet Body --}}
-	<section class="sheet-body">
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
 
-		{{!-- Effects Tab --}}
-		<div class="tab effects" data-group="primary" data-tab="effects">
-			{{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
-		</div>
+        {{!-- Effects Tab --}}
+        <div class="tab effects" data-group="primary" data-tab="effects">
+            {{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
+        </div>
 
-		{{!-- Description Tab --}}
-		<div class="tab desc resource-content" data-group="primary" data-tab="description">
-			<label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
-				{{localize 'FU.Description'}}
-				<i class="fas fa-info-circle"></i>
-			</label>
-			{{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-			button=true owner=owner editable=editable }}
-		</div>
+        {{!-- Description Tab --}}
+        <div class="tab desc resource-content" data-group="primary" data-tab="description">
+            <label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
+                {{localize 'FU.Description'}}
+                <i class="fas fa-info-circle"></i>
+            </label>
+            {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
+                     button=true owner=owner editable=editable }}
+        </div>
 
-		{{!-- Attributes Tab --}}
-		<div class="tab attributes" data-group="primary" data-tab="attributes">
+        {{!-- Attributes Tab --}}
+        <div class="tab attributes" data-group="primary" data-tab="attributes">
 
-			<section class="grid grid-2col gap-5">
+            <section class="grid grid-2col gap-5">
 
-				{{!-- General Info Section --}}
-				<fieldset class="title-fieldset desc resource-content grid-span-2">
+                {{!-- General Info Section --}}
+                <fieldset class="title-fieldset desc resource-content grid-span-2">
 
-					{{!-- Item Controls --}}
-					<div class="item-settings">
-						{{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
-						<label class="checkbox resource-label-sm"> <span>{{localize "FU.HRZeroStatus"}}</span><input
-								type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
-								system.rollInfo.useWeapon.hrZero.value }} /> </label>
-						<label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsMartial'}}</span><input
-								type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} />
-						</label>
-					</div>
+                    {{!-- Item Controls --}}
+                    <div class="item-settings">
+                        {{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
+                        <label class="checkbox resource-label-sm"> <span>{{localize "FU.HRZeroStatus"}}</span><input
+                         type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
+                             system.rollInfo.useWeapon.hrZero.value }} /> </label>
+                        <label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsMartial'}}</span><input
+                         type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} />
+                        </label>
+                    </div>
 
-					<div class="grid grid-4col">
-						<div class="resource-content flexcol grid-span-3 flex-group-center">
-							<label class="resource-label-m">{{localize 'FU.Quality'}}</label>
-							<input type="text" name="system.quality.value" value="{{ system.quality.value }}"
-								class="resource-inputs select-dropdown-full grid-span-4" />
-						</div>
-						<div class="resource-content flexcol flex-group-center">
-							<label class="resource-label-m">{{localize 'FU.Cost'}}</label>
-							<input type="number" name="system.cost.value" value="{{ system.cost.value }}"
-								data-dtype="Number" class="resource-inputs select-dropdown-m" />
-						</div>
-					</div>
-				</fieldset>
-				{{!-- Behavior Field --}}
-				{{> "systems/projectfu/templates/item/partials/item-behavior-field.hbs"}}
-			</section>
-		</div>
-	</section>
+                    <div class="grid grid-4col">
+                        <div class="resource-content flexcol grid-span-3 flex-group-center">
+                            <label class="resource-label-m">{{localize 'FU.Quality'}}</label>
+                            <input type="text" name="system.quality.value" value="{{ system.quality.value }}"
+                                   class="resource-inputs select-dropdown-full grid-span-4" />
+                        </div>
+                        <div class="resource-content flexcol flex-group-center">
+                            <label class="resource-label-m">{{localize 'FU.Cost'}}</label>
+                            <input type="number" name="system.cost.value" value="{{ system.cost.value }}"
+                                   data-dtype="Number" class="resource-inputs select-dropdown-m" />
+                        </div>
+                    </div>
+                </fieldset>
+                {{!-- Behavior Field --}}
+                {{> "systems/projectfu/templates/item/partials/item-behavior-field.hbs"}}
+            </section>
+        </div>
+    </section>
 </form>

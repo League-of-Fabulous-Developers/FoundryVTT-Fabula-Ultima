@@ -1,579 +1,630 @@
 @font-face {
-  font-family: "CreditValley";
-  src: url('/systems/projectfu/styles/fonts/credit-valley/CreditValley.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'CreditValley';
+	src: url('/systems/projectfu/styles/fonts/credit-valley/CreditValley.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: "CreditValleybold";
-  src: url('/systems/projectfu/styles/fonts/credit-valley/CreditValleybold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'CreditValleybold';
+	src: url('/systems/projectfu/styles/fonts/credit-valley/CreditValleybold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: "Evilz";
-  src: url('/systems/projectfu/styles/fonts/evil-font/Evilz.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'Evilz';
+	src: url('/systems/projectfu/styles/fonts/evil-font/Evilz.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: "Heydings Icons";
-  src: url('/systems/projectfu/styles/fonts/heydings-icons/heydings_icons.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'Heydings Icons';
+	src: url('/systems/projectfu/styles/fonts/heydings-icons/heydings_icons.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: "FnT_BasicShapes1";
-  src: url('/systems/projectfu/styles/fonts/fnt-bs/FNT_BS.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'FnT_BasicShapes1';
+	src: url('/systems/projectfu/styles/fonts/fnt-bs/FNT_BS.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: "Web Symbols";
-  src: url('/systems/projectfu/styles/fonts/web-symbols/WebSymbols-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'Web Symbols';
+	src: url('/systems/projectfu/styles/fonts/web-symbols/WebSymbols-Regular.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: "old retro labels tfb";
-  src: url('/systems/projectfu/styles/fonts/old-retro-labels-tfb/old_retro_labels_tfb.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'old retro labels tfb';
+	src: url('/systems/projectfu/styles/fonts/old-retro-labels-tfb/old_retro_labels_tfb.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @counter-style diamonds {
-  system: cyclic;
-  suffix: " ";
-  symbols: "◆";
+	system: cyclic;
+	suffix: ' ';
+	symbols: '◆';
+}
+
+@font-face {
+	font-family: 'Material Symbols Outlined';
+	font-style: normal;
+	src: url('/systems/projectfu/styles/fonts/material-symbols/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2') format('woff');
+}
+
+@font-face {
+	font-family: 'Material Symbols Rounded';
+	font-style: normal;
+	src: url('/systems/projectfu/styles/fonts/material-symbols/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].woff2') format('woff');
+}
+
+@font-face {
+	font-family: 'Material Symbols Sharp';
+	font-style: normal;
+	src: url('/systems/projectfu/styles/fonts/material-symbols/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].woff2') format('woff');
+}
+
+.mats-o {
+	font-family: 'Material Symbols Outlined';
+}
+
+.mats-r {
+	font-family: 'Material Symbols Rounded';
+}
+
+.mats-s {
+	font-family: 'Material Symbols Sharp';
+}
+
+.mats-o,
+.mats-r,
+.mats-s {
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px; /* Preferred icon size */
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+}
+
+.mats-fill {
+	font-variation-settings: 'FILL' 1;
 }
 
 // Font Variables
-$font-title: "CreditValleybold";
-$font-primary: "PT Sans Narrow", sans-serif;
-$font-secondary: "Antonio", sans-serif;
-$font-quote: "EB Garamond", sans-serif;
+$font-title: 'CreditValleybold';
+$font-primary: 'PT Sans Narrow', sans-serif;
+$font-secondary: 'Antonio', sans-serif;
+$font-quote: 'EB Garamond', sans-serif;
 
 // Styles for .window-app class
 .window-app {
-  font-family: $font-primary;
+	font-family: $font-primary;
 
-  // Default styles for header
-  h1 {
-    font-family: $font-title;
-    font-size: 30px;
-    font-weight: 700;
-    color: $color-secondary;
-    text-transform: uppercase;
-  }
+	// Default styles for header
+	h1 {
+		font-family: $font-title;
+		font-size: 30px;
+		font-weight: 700;
+		color: $color-secondary;
+		text-transform: uppercase;
+	}
 
-  h2 {
-    font-family: $font-secondary;
-    font-size: 24px;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
+	h2 {
+		font-family: $font-secondary;
+		font-size: 24px;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
 
-  h3 {
-    font-family: $font-secondary;
-    font-size: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
+	h3 {
+		font-family: $font-secondary;
+		font-size: 20px;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
 
-  h4 {
-    font-family: $font-secondary;
-    font-size: 18px;
-    font-weight: 700;
-  }
+	h4 {
+		font-family: $font-secondary;
+		font-size: 18px;
+		font-weight: 700;
+	}
 
-  h5 {
-    font-family: $font-secondary;
-    font-size: 16px;
-    font-weight: 700;
-  }
+	h5 {
+		font-family: $font-secondary;
+		font-size: 16px;
+		font-weight: 700;
+	}
 
-  h6 {
-    font-family: $font-secondary;
-    font-size: 14px;
-    font-weight: 700;
-  }
+	h6 {
+		font-family: $font-secondary;
+		font-size: 14px;
+		font-weight: 700;
+	}
 
-  .sheet-body,
-  .journal-sheet-container {
+	.sheet-body,
+	.journal-sheet-container {
+		p,
+		li {
+			font-family: $font-primary;
+			font-style: normal;
+			font-size: 16px;
+		}
 
-    p,
-    li {
-      font-family: $font-primary;
-      font-style: normal;
-      font-size: 16px;
-    }
+		blockquote,
+		blockquote p {
+			font-family: $font-quote !important;
+			font-style: italic;
+			font-size: 16px;
+		}
 
-    blockquote,
-    blockquote p {
-      font-family: $font-quote !important;
-      font-style: italic;
-      font-size: 16px;
-    }
+		// Change bullet content for li
+		.editor,
+		.journal-page-content,
+		.editor-content,
+		.chat-desc {
+			ul {
+				list-style: diamonds;
 
-    // Change bullet content for li
-    .editor,
-    .journal-page-content,
-    .editor-content,
-    .chat-desc {
-      ul {
-        list-style: diamonds;
+				li,
+				.ProseMirror li {
+					&::marker {
+						color: $color-secondary;
+						font-size: 14px;
+					}
+				}
+			}
 
-        li,
-        .ProseMirror li {
-          &::marker {
-            color: $color-secondary;
-            font-size: 14px;
-          }
-        }
-      }
+			ol {
+				li,
+				.ProseMirror li {
+					&::marker {
+						color: $color-secondary;
+						font-size: 16px;
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
 
-      ol {
+	.label {
+		text-transform: uppercase;
+		border: none;
+	}
 
-        li,
-        .ProseMirror li {
-          &::marker {
-            color: $color-secondary;
-            font-size: 16px;
-            font-weight: bold;
-          }
-        }
-      }
-    }
-  }
+	// Navigation Styles
+	nav,
+	a.item {
+		font-weight: bold;
+	}
 
-  .label {
-    text-transform: uppercase;
-    border: none;
-  }
+	// Item and Zenit Content Styles
+	[class^='item-'] {
+		font-weight: bold;
+	}
 
-  // Navigation Styles
-  nav,
-  a.item {
-    font-weight: bold;
-  }
+	.item,
+	.zenit-content {
+		font-size: 16px;
 
-  // Item and Zenit Content Styles
-  [class^="item-"] {
-    font-weight: bold;
-  }
+		.item-name {
+			font-size: 16px;
+			font-weight: bold;
+		}
 
-  .item,
-  .zenit-content {
-    font-size: 16px;
+		.item-quality {
+			font-size: 14px;
+		}
+	}
 
-    .item-name {
-      font-size: 16px;
-      font-weight: bold;
-    }
+	// Item Summary Font Style
+	input.resource-inputs {
+		font-size: 14px;
 
-    .item-quality {
-      font-size: 14px;
-    }
-  }
+		&.summary {
+			font-family: $font-quote;
+			font-weight: 700;
+			font-style: italic;
+			font-size: 16px;
+			line-height: 1.45em;
+		}
+	}
 
-  // Item Summary Font Style
-  input.resource-inputs {
-    font-size: 14px;
+	// Resource Content Styles
+	.resource-content {
+		font-family: $font-primary;
 
-    &.summary {
-      font-family: $font-quote;
-      font-weight: 700;
-      font-style: italic;
-      font-size: 16px;
-      line-height: 1.45em;
-    }
-  }
+		&.affinity {
+			label {
+				font-family: 'Antonio', sans-serif;
+				line-height: 1.68em;
+				font-size: 18px;
+				color: $color-secondary;
+			}
+		}
 
-  // Resource Content Styles
-  .resource-content {
-    font-family: $font-primary;
+		// Resource Body Text Sizes
+		.resource-text-sm {
+			font-size: 14px;
+			font-family: $font-primary;
+		}
 
-    &.affinity {
-      label {
-        font-family: "Antonio", sans-serif;
-        line-height: 1.68em;
-        font-size: 18px;
-        color: $color-secondary;
-      }
-    }
+		.resource-text-m {
+			font-size: 16px;
+			line-height: 1.45em;
+			font-family: $font-primary;
+		}
 
-    // Resource Body Text Sizes
-    .resource-text-sm {
-      font-size: 14px;
-      font-family: $font-primary;
-    }
+		// Resource Label Sizes
+		.resource-label-t {
+			font-size: 12px;
+			line-height: 1.45em;
+			line-height: 1.45em;
+			font-weight: bold;
+			font-family: $font-secondary;
+			text-transform: uppercase;
+		}
 
-    .resource-text-m {
-      font-size: 16px;
-      line-height: 1.45em;
-      font-family: $font-primary;
-    }
+		.resource-label-sm {
+			font-size: 14px;
+			line-height: 1.45em;
+			font-weight: bold;
+			font-family: $font-secondary;
+			text-transform: uppercase;
+		}
 
-    // Resource Label Sizes
-    .resource-label-t {
-      font-size: 12px;
-      line-height: 1.45em;
-      line-height: 1.45em;
-      font-weight: bold;
-      font-family: $font-secondary;
-      text-transform: uppercase;
-    }
+		.resource-label-m {
+			font-size: 16px;
+			line-height: 1.45em;
+			font-weight: bold;
+			font-family: $font-secondary;
+			text-transform: uppercase;
+		}
 
-    .resource-label-sm {
-      font-size: 14px;
-      line-height: 1.45em;
-      font-weight: bold;
-      font-family: $font-secondary;
-      text-transform: uppercase;
-    }
+		.resource-label-l {
+			font-size: 18px;
+			line-height: 1.45em;
+			font-weight: bold;
+			font-family: $font-secondary;
+			text-transform: uppercase;
+		}
 
-    .resource-label-m {
-      font-size: 16px;
-      line-height: 1.45em;
-      font-weight: bold;
-      font-family: $font-secondary;
-      text-transform: uppercase;
-    }
+		.resource-label-xl {
+			font-size: 20px;
+			line-height: 1.45em;
+			font-weight: bold;
+			font-family: $font-secondary;
+			text-transform: uppercase;
+		}
+	}
 
-    .resource-label-l {
-      font-size: 18px;
-      line-height: 1.45em;
-      font-weight: bold;
-      font-family: $font-secondary;
-      text-transform: uppercase;
-    }
+	label.is-crisis {
+		font-size: 18px;
+		font-weight: bold;
+		font-family: $font-secondary;
+		text-transform: uppercase;
+		font-style: italic;
+	}
 
-    .resource-label-xl {
-      font-size: 20px;
-      line-height: 1.45em;
-      font-weight: bold;
-      font-family: $font-secondary;
-      text-transform: uppercase;
-    }
-  }
+	.action-button {
+		font-weight: bold;
+		font-size: 13px;
+		line-height: 1.2em;
+	}
 
-  label.is-crisis {
-    font-size: 18px;
-    font-weight: bold;
-    font-family: $font-secondary;
-    text-transform: uppercase;
-    font-style: italic;
-  }
+	.editor,
+	.journal-entry-content,
+	.editor-container {
+		.editor-edit,
+		.editor-content,
+		.journal-entry-page {
+			font-weight: normal;
 
-  .action-button {
-    font-weight: bold;
-    font-size: 13px;
-    line-height: 1.2em;
-  }
+			h1,
+			h2,
+			h3 {
+				border-bottom: 2px solid $color-secondary;
+			}
 
-  .editor,
-  .journal-entry-content,
-  .editor-container {
+			h1 {
+				line-height: 1.2em;
+			}
 
-    .editor-edit,
-    .editor-content,
-    .journal-entry-page {
+			h2,
+			h3,
+			h4 {
+				line-height: 1.45em;
+			}
 
-      font-weight: normal;
+			hr {
+				margin: 10px 0;
+			}
 
-      h1,
-      h2,
-      h3 {
-        border-bottom: 2px solid $color-secondary;
-      }
+			p {
+				margin: 0;
+				line-height: 1.45em;
+			}
 
-      h1 {
-        line-height: 1.2em;
-      }
+			h1 + p,
+			h2 + p,
+			h3 + p,
+			h4 + p,
+			h5 + p,
+			h6 + p,
+			p + p {
+				margin-top: 10px;
+			}
 
-      h2,
-      h3,
-      h4 {
-        line-height: 1.45em;
-      }
+			blockquote {
+				line-height: 1.45em;
+			}
 
-      hr {
-        margin: 10px 0;
-      }
+			.editor-content {
+				font-size: 16px;
+				line-height: 1.45em;
+				width: 100%;
+			}
+		}
+	}
 
-      p {
-        margin: 0;
-        line-height: 1.45em;
-      }
+	.charname input {
+		font-family: Antonio;
+		font-weight: bold;
+		font-size: 1.25rem;
+		text-transform: uppercase;
+	}
 
-      h1+p,
-      h2+p,
-      h3+p,
-      h4+p,
-      h5+p,
-      h6+p,
-      p+p {
-        margin-top: 10px;
-      }
+	.pronouns input {
+		font-family: Antonio;
+		font-size: 16px;
+		text-transform: uppercase;
+	}
 
-      blockquote {
-        line-height: 1.45em;
-      }
+	// Styles for .detail-desc class
+	.detail-desc {
+		font-size: 14px;
+		line-height: 1.45em;
+		font-weight: bold;
+		font-family: $font-primary;
 
-      .editor-content {
-        font-size: 16px;
-        line-height: 1.45em;
-        width: 100%;
-      }
-    }
-  }
+		div {
+			font-size: 14px;
+			padding: 5px 0;
+		}
+	}
 
-  .charname input {
-    font-family: Antonio;
-    font-weight: bold;
-    font-size: 1.25rem;
-    text-transform: uppercase;
-  }
+	.description-effect {
+		font-size: 15px;
+		line-height: 1.45em;
+		font-weight: normal !important;
+		font-family: $font-primary;
+	}
 
-  .pronouns input {
-    font-family: Antonio;
-    font-size: 16px;
-    text-transform: uppercase;
-  }
+	// Uppercase Text
+	.uppercase {
+		text-transform: uppercase;
+	}
 
-  // Styles for .detail-desc class
-  .detail-desc {
-    font-size: 14px;
-    line-height: 1.45em;
-    font-weight: bold;
-    font-family: $font-primary;
+	// Quote Styles
+	.quote {
+		border-left: 3px solid #999;
+		padding-left: 10px;
+		font-style: italic;
+	}
 
-    div {
-      font-size: 14px;
-      padding: 5px 0;
-    }
-  }
+	// Styles for Chat Description
+	.chat-desc {
+		.summary {
+			font-family: $font-quote;
+			font-weight: 700;
+			font-style: italic;
+			font-size: 16px;
+			line-height: 1.45em;
+			color: $color-ternary;
+		}
+	}
 
-  .description-effect {
-    font-size: 15px;
-    line-height: 1.45em;
-    font-weight: normal !important;
-    font-family: $font-primary;
-  }
+	// Styles for Chat Message
+	.chat-message {
+		.message-header {
+			.flavor-text {
+				font-size: 20px;
+				line-height: 1.45em;
+			}
+		}
+	}
 
-  // Uppercase Text
-  .uppercase {
-    text-transform: uppercase;
-  }
+	// Auto Shrink Text
+	.auto-shrink {
+		overflow: hidden;
+		width: 100%;
+		box-sizing: border-box;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
 
-  // Quote Styles
-  .quote {
-    border-left: 3px solid #999;
-    padding-left: 10px;
-    font-style: italic;
-  }
-
-  // Styles for Chat Description
-  .chat-desc {
-    .summary {
-      font-family: $font-quote;
-      font-weight: 700;
-      font-style: italic;
-      font-size: 16px;
-      line-height: 1.45em;
-      color: $color-ternary;
-    }
-  }
-
-  // Styles for Chat Message
-  .chat-message {
-    .message-header {
-      .flavor-text {
-        font-size: 20px;
-        line-height: 1.45em;
-      }
-    }
-  }
-
-  // Auto Shrink Text
-  .auto-shrink {
-    overflow: hidden;
-    width: 100%;
-    box-sizing: border-box;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  // Navbar Text
-  .sheet nav.sheet-tabs .item {
-    text-transform: uppercase;
-    font-size: 16px;
-    line-height: 1.45em;
-  }
+	// Navbar Text
+	.sheet nav.sheet-tabs .item {
+		text-transform: uppercase;
+		font-size: 16px;
+		line-height: 1.45em;
+	}
 }
 
 .is-offensive::before {
-  content: 'r';
+	content: 'r';
 }
 
 .is-offensive {
-  color: $color-danger !important;
-  font-family: "Heydings Icons";
-  font-size: 24px;
-  -webkit-text-stroke: 0.5px $color-black;
+	color: $color-danger !important;
+	font-family: 'Heydings Icons';
+	font-size: 24px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-martial::before {
-  content: 'E';
+	content: 'E';
 }
 
 .is-martial {
-  color: $color-danger !important;
-  font-family: "FnT_BasicShapes1";
-  font-size: 24px;
-  -webkit-text-stroke: 0.5px $color-black;
+	color: $color-danger !important;
+	font-family: 'FnT_BasicShapes1';
+	font-size: 24px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-melee::before {
-  content: '$';
+	content: '$';
 }
 
 .is-melee {
-  color: $color-black !important;
-  font-family: "Evilz";
-  font-size: 24px;
-  -webkit-text-stroke: 0.5px $color-black;
+	color: $color-black !important;
+	font-family: 'Evilz';
+	font-size: 24px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-range::before {
-  content: '9';
+	content: '9';
 }
 
 .is-range {
-  color: $color-black !important;
-  font-family: "Evilz";
-  font-size: 24px;
-  -webkit-text-stroke: 0.5px $color-black;
+	color: $color-black !important;
+	font-family: 'Evilz';
+	font-size: 24px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-spell::before {
-  content: 'h';
+	content: 'h';
 }
 
 .is-spell {
-  color: $color-black !important;
-  font-family: "Evilz";
-  font-size: 24px;
-  -webkit-text-stroke: 0.5px $color-black;
+	color: $color-black !important;
+	font-family: 'Evilz';
+	font-size: 24px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-skill::before {
-  content: 'S';
+	content: 'S';
 }
 
 .is-skill {
-  color: $color-black !important;
-  font-family: "Web Symbols";
-  font-size: 24px;
-  -webkit-text-stroke: 0.5px $color-black;
+	color: $color-black !important;
+	font-family: 'Web Symbols';
+	font-size: 24px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-two-weapon::before {
-  content: '4';
+	content: '4';
 }
 
 .is-two-weapon {
-  color: $color-black !important;
-  font-family: "Evilz";
-  font-size: 24px;
-  -webkit-text-stroke: 0.5px $color-black;
+	color: $color-black !important;
+	font-family: 'Evilz';
+	font-size: 24px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-header::before {
-  content: 'd';
+	content: 'd';
 }
 
 .is-header {
-  font-size: 24px;
-  color: $color-black;
-  font-family: "old retro labels tfb";
+	font-size: 24px;
+	color: $color-black;
+	font-family: 'old retro labels tfb';
 }
 
 .is-diamond::before {
-  content: 'Q';
+	content: 'Q';
 }
 
 .is-diamond {
-  color: $color-danger !important;
-  font-family: "FnT_BasicShapes1";
-  font-size: 24px;
-  -webkit-text-stroke: 0.5px $color-black;
+	color: $color-danger !important;
+	font-family: 'FnT_BasicShapes1';
+	font-size: 24px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-club::before {
-  content: 'P';
+	content: 'P';
 }
 
 .is-club {
-  font-family: "FnT_BasicShapes1";
-  font-size: 24px;
-  -webkit-text-stroke: 0.5px $color-black;
+	font-family: 'FnT_BasicShapes1';
+	font-size: 24px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-heart::before {
-  content: 'O';
+	content: 'O';
 }
 
 .is-heart {
-  color: $color-danger !important;
-  font-family: "FnT_BasicShapes1";
-  font-size: 24px;
-  -webkit-text-stroke: 0.5px $color-black;
+	color: $color-danger !important;
+	font-family: 'FnT_BasicShapes1';
+	font-size: 24px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-spade::before {
-  content: 'R';
+	content: 'R';
 }
 
 .is-spade {
-  font-family: "FnT_BasicShapes1";
-  font-size: 24px;
-  -webkit-text-stroke: 0.5px $color-black;
-
+	font-family: 'FnT_BasicShapes1';
+	font-size: 24px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .heydings {
-  font-family: "Heydings Icons";
-  font-size: 18px;
-  -webkit-text-stroke: 0.5px $color-black;
+	font-family: 'Heydings Icons';
+	font-size: 18px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .fnt {
-  font-family: "FnT_BasicShapes1";
-  font-size: 18px;
-  -webkit-text-stroke: 0.5px $color-black;
+	font-family: 'FnT_BasicShapes1';
+	font-size: 18px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .evil {
-  font-family: "Evilz";
-  font-size: 18px;
-  -webkit-text-stroke: 0.5px $color-black;
+	font-family: 'Evilz';
+	font-size: 18px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .websymbols {
-  font-family: "Web Symbols";
-  font-size: 18px;
-  -webkit-text-stroke: 0.5px $color-black;
-
+	font-family: 'Web Symbols';
+	font-size: 18px;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .retrolabels {
-  color: $color-black;
-  font-family: "old retro labels tfb";
+	color: $color-black;
+	font-family: 'old retro labels tfb';
+}
+
+$font-sizes: (10, 11, 12, 13, 14, 15, 16, 18, 20, 24, 28, 32, 36, 48, 64, 80);
+
+@each $size in $font-sizes {
+	.font-size-#{$size} {
+		font-size: var(--font-size-#{$size});
+	}
 }

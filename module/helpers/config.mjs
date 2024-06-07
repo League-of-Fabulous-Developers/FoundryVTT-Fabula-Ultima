@@ -1,4 +1,7 @@
 import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
+import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
+
+export const SYSTEM = 'projectfu';
 
 export const FU = {};
 
@@ -18,6 +21,14 @@ FU.attributeAbbreviations = {
 	ins: 'FU.AttributeInsAbbr',
 	mig: 'FU.AttributeMigAbbr',
 	wlp: 'FU.AttributeWlpAbbr',
+};
+
+FU.currencies = {
+	zenit: {
+		label: 'FU.Zenit',
+		abbreviation: 'FU.ZenitAbbr',
+		conversion: 1,
+	},
 };
 
 /**
@@ -54,7 +65,7 @@ FU.affIcon = {
 FU.allIcon = {
 	offensive: 'is-offensive',
 	martial: 'is-martial',
-	melee: "is-melee",
+	melee: 'is-melee',
 	range: 'is-range',
 	spell: 'is-spell',
 	skill: 'is-skill',
@@ -102,9 +113,31 @@ FU.affValue = {
 	repulsion: 4,
 };
 
-FU.species = ['beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead', 'custom'];
+FU.species = {
+	beast: 'FU.Beast',
+	construct: 'FU.Construct',
+	demon: 'FU.Demon',
+	elemental: 'FU.Elemental',
+	humanoid: 'FU.Humanoid',
+	monster: 'FU.Monster',
+	plant: 'FU.Plant',
+	undead: 'FU.Undead',
+	custom: 'FU.Custom',
+};
 
-FU.villainTypes = ['minor', 'major', 'supreme'];
+FU.companionSpecies = {
+	beast: 'FU.Beast',
+	construct: 'FU.Construct',
+	elemental: 'FU.Elemental',
+	plant: 'FU.Plant',
+	custom: 'FU.Custom',
+};
+
+FU.villainTypes = {
+	minor: 'FU.VillainMinor',
+	major: 'FU.VillainMajor',
+	supreme: 'FU.VillainSupreme',
+};
 
 FU.speciesRule = {
 	beast: 'FU.BeastRule',
@@ -128,6 +161,7 @@ FU.itemTypes = {
 	treasure: 'TYPES.Item.treasure',
 	class: 'TYPES.Item.class',
 	classFeature: 'TYPES.Item.classFeature',
+	optionalFeature: 'TYPES.Item.optionalFeature',
 	skill: 'TYPES.Item.skill',
 	heroic: 'TYPES.Item.heroic',
 	spell: 'TYPES.Item.spell',
@@ -165,6 +199,7 @@ FU.actionRule = {
 
 FU.statusEffects = {
 	crisis: 'FU.Crisis',
+	cover: 'FU.Cover',
 	guard: 'FU.Guard',
 	slow: 'FU.Slow',
 	dazed: 'FU.Dazed',
@@ -176,7 +211,7 @@ FU.statusEffects = {
 	'wlp-up': 'FU.WLPUp',
 	'dex-down': 'FU.DEXDown',
 	'dex-up': 'FU.DEXUp',
-	'ins-up': 'FU.ISNUp',
+	'ins-up': 'FU.INSUp',
 	'ins-down': 'FU.INSDown',
 	'mig-up': 'FU.MIGUp',
 	'mig-down': 'FU.MIGDown',
@@ -184,6 +219,7 @@ FU.statusEffects = {
 
 FU.statusEffectRule = {
 	crisis: 'FU.CrisisRule',
+	cover: 'FU.CoverRule',
 	guard: 'FU.GuardRule',
 	slow: 'FU.SlowRule',
 	dazed: 'FU.DazedRule',
@@ -196,7 +232,7 @@ FU.statusEffectRule = {
 	'dex-down': 'FU.DEXDownRule',
 	'dex-up': 'FU.DEXUpRule',
 	'ins-down': 'FU.INSDownRule',
-	'ins-up': 'FU.ISNUpRule',
+	'ins-up': 'FU.INSUpRule',
 	'mig-down': 'FU.MIGDownRule',
 	'mig-up': 'FU.MIGUpRule',
 };
@@ -263,7 +299,7 @@ FU.heroicType = {
 };
 
 /**
- * @typedef {"potion", "utility"} consumableType
+ * @typedef {"potion", "utility"} ConsumableType
  */
 /**
  * @type {Object.<ConsumableType, string>}
@@ -325,6 +361,7 @@ FU.handedness = {
 };
 
 FU.classFeatureRegistry = new ClassFeatureRegistry();
+FU.optionalFeatureRegistry = new OptionalFeatureRegistry();
 
 FU.resources = {
 	hp: 'FU.HealthPoints',
@@ -342,4 +379,63 @@ FU.resourceIcons = {
 	hp: 'fas fa-heart',
 	mp: 'fas fa-hat-wizard',
 	ip: 'ra ra-gear-hammer',
+};
+
+FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
+	zeropower: 'ITEM.TypeZeroPower',
+	none: 'FU.None',
+});
+
+FU.classFeatures = {};
+
+FU.studyRoll = {
+	core: [10, 13, 16],
+	revised: [7, 10, 13],
+};
+
+FU.attributeDice = {
+	6: 'FU.D6',
+	8: 'FU.D8',
+	10: 'FU.D10',
+	12: 'FU.D12',
+};
+
+FU.bonds = {
+	admInf: {
+		Admiration: 'FU.Admiration',
+		Inferiority: 'FU.Inferiority',
+	},
+	loyMis: {
+		Loyalty: 'FU.Loyalty',
+		Mistrust: 'FU.Mistrust',
+	},
+	affHat: {
+		Affection: 'FU.Affection',
+		Hatred: 'FU.Hatred',
+	},
+};
+
+FU.potency = {
+	minor: 'FU.PotencyMinor',
+	medium: 'FU.PotencyMedium',
+	major: 'FU.PotencyMajor',
+	extreme: 'FU.PotencyExtreme',
+};
+
+FU.area = {
+	individual: 'FU.AreaIndividual',
+	small: 'FU.AreaSmall',
+	large: 'FU.AreaLarge',
+	huge: 'FU.AreaHuge',
+};
+
+FU.uses = {
+	consumable: 'FU.Consumable',
+	permanent: 'FU.Permanent',
+};
+
+FU.improvisedEffect = {
+	minor: 'FU.ImprovisedEffectMinor',
+	heavy: 'FU.ImprovisedEffectHeavy',
+	massive: 'FU.ImprovisedEffectMassive',
 };

@@ -1,6 +1,6 @@
 import { CombatHUD } from './ui/combat-hud.mjs';
-
-export const SYSTEM = 'projectfu';
+import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
+import { SYSTEM, FU } from './helpers/config.mjs';
 
 export const SETTINGS = Object.freeze({
 	optionQuirks: 'optionQuirks',
@@ -17,6 +17,7 @@ export const SETTINGS = Object.freeze({
 	optionImagePixelated: 'optionImagePixelated',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	optionNPCNotesTab: 'optionNPCNotesTab',
+	optionBondMaxLength: 'optionBondMaxLength',
 	experimentalCombatHud: 'experimentalCombatHud',
 	optionCombatHudCompact: 'optionCombatHudCompact',
 	optionCombatHudMinimized: 'optionCombatHudMinimized',
@@ -31,6 +32,14 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudShowOrderNumbers: 'optionCombatHudShowOrderNumbers',
 	optionCombatHudActorOrdering: 'optionCombatHudActorOrdering',
 	optionCombatHudDraggedPosition: 'optionCombatHudDraggedPosition',
+	metaCurrencyFabula: 'metaCurrencyFabula',
+	metaCurrencyUltima: 'metaCurrencyUltima',
+	metaCurrencyBaseExperience: 'metaCurrencyBaseExperience',
+	metaCurrencyKeepExcessFabula: 'metaCurrencyKeepExcessFabula',
+	optionCombatHudTrackedResource1: 'optionCombatHudTrackedResource1',
+	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
+	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
+	showAssociatedTherioforms: 'showAssociatedTherioforms',
 });
 
 export const registerSystemSettings = async function () {
@@ -79,15 +88,13 @@ export const registerSystemSettings = async function () {
 		default: false,
 		requiresReload: true,
 	});
-	game.i18n.localize('FU.BehaviorRollsSettings'),
-	game.i18n.localize('FU.BehaviorRollsSettingsHint'),
 
 	game.settings.registerMenu(SYSTEM, 'myBehaviorRolls', {
 		name: game.i18n.localize('FU.BehaviorRolls'),
 		label: game.i18n.localize('FU.BehaviorRollsManage'),
 		hint: game.i18n.localize('FU.BehaviorRollsManageHint'),
 		icon: 'fas fa-book',
-		type: myBehaviorRolls,
+		type: BehaviorRollsConfig,
 		restricted: true,
 		requiresReload: true,
 	});
@@ -152,8 +159,8 @@ export const registerSystemSettings = async function () {
 		hint: game.i18n.localize('FU.StudySavePathSettingsHint'),
 		scope: 'world',
 		config: true,
-		type: String
-	});	
+		type: String,
+	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionImagePixelated, {
 		name: game.i18n.localize('FU.PixelatedViewSettings'),
@@ -184,7 +191,17 @@ export const registerSystemSettings = async function () {
 		requiresReload: true,
 	});
 
-	game.settings.registerMenu(SYSTEM, "combatHudSettings", {
+	game.settings.register(SYSTEM, SETTINGS.optionBondMaxLength, {
+		name: game.i18n.localize('FU.BondMax'),
+		hint: game.i18n.localize('FU.BondMaxHint'),
+		scope: 'world',
+		config: true,
+		type: Number,
+		default: 6,
+		requiresReload: true,
+	});
+
+	game.settings.registerMenu(SYSTEM, 'combatHudSettings', {
 		name: game.i18n.localize('FU.ExperimentalCombatHudSettings'),
 		hint: game.i18n.localize('FU.ExperimentalCombatHudSettingsHint'),
 		label: game.i18n.localize('FU.ExperimentalCombatHudSettingsLabel'),
@@ -231,8 +248,8 @@ export const registerSystemSettings = async function () {
 		type: String,
 		default: 'bottom',
 		choices: {
-			'bottom': game.i18n.localize('FU.CombatHudPositionBottom'),
-			'top': game.i18n.localize('FU.CombatHudPositionTop'),
+			bottom: game.i18n.localize('FU.CombatHudPositionBottom'),
+			top: game.i18n.localize('FU.CombatHudPositionTop'),
 		},
 		requiresReload: true,
 	});
@@ -245,14 +262,14 @@ export const registerSystemSettings = async function () {
 		type: String,
 		default: 'actor',
 		choices: {
-			'actor': game.i18n.localize('FU.CombatHudPortraitActor'),
-			'token': game.i18n.localize('FU.CombatHudPortraitToken'),
+			actor: game.i18n.localize('FU.CombatHudPortraitActor'),
+			token: game.i18n.localize('FU.CombatHudPortraitToken'),
 		},
 		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudCompact, {
-		name: "CombatHudCompact",
+		name: 'CombatHudCompact',
 		scope: 'client',
 		config: false,
 		type: Boolean,
@@ -260,7 +277,7 @@ export const registerSystemSettings = async function () {
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudMinimized, {
-		name: "CombatHudMinimized",
+		name: 'CombatHudMinimized',
 		scope: 'client',
 		config: false,
 		type: Boolean,
@@ -293,8 +310,8 @@ export const registerSystemSettings = async function () {
 		type: String,
 		default: 'alternate',
 		choices: {
-			'normal': game.i18n.localize('FU.CombatHudEffectsMarqueeModeNormal'),
-			'alternate': game.i18n.localize('FU.CombatHudEffectsMarqueeModeAlternate'),
+			normal: game.i18n.localize('FU.CombatHudEffectsMarqueeModeNormal'),
+			alternate: game.i18n.localize('FU.CombatHudEffectsMarqueeModeAlternate'),
 		},
 	});
 
@@ -325,9 +342,9 @@ export const registerSystemSettings = async function () {
 		type: Array,
 		default: [],
 		restricted: true,
-		onChange: value => {
+		onChange: () => {
 			CombatHUD.update();
-		}
+		},
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, {
@@ -337,6 +354,102 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Object,
 		default: {},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.metaCurrencyFabula, {
+		name: 'Count used Fabula Points',
+		scope: 'world',
+		config: false,
+		type: Number,
+		range: {
+			min: 0,
+			step: 1,
+		},
+		default: 0,
+		onChange: () => Hooks.callAll(MetaCurrencyTrackerApplication.HOOK_UPDATE_META_CURRENCY),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.metaCurrencyUltima, {
+		name: 'Count used Ultima Points',
+		scope: 'world',
+		config: false,
+		type: Number,
+		range: {
+			min: 0,
+			step: 1,
+		},
+		default: 0,
+		onChange: () => Hooks.callAll(MetaCurrencyTrackerApplication.HOOK_UPDATE_META_CURRENCY),
+	});
+
+	game.settings.registerMenu(SYSTEM, 'metaCurrencySettings', {
+		name: game.i18n.localize('FU.ConfigMetaCurrencySettings'),
+		hint: game.i18n.localize('FU.ConfigMetaCurrencySettingsHint'),
+		label: game.i18n.localize('FU.ConfigMetaCurrencySettingsLabel'),
+		icon: 'fas fa-chart-line',
+		type: MetaCurrencyTrackerOptions,
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.metaCurrencyBaseExperience, {
+		name: game.i18n.localize('FU.ConfigMetaCurrencyBaseExperience'),
+		hint: game.i18n.localize('FU.ConfigMetaCurrencyBaseExperienceHint'),
+		scope: 'world',
+		config: false,
+		type: Number,
+		range: {
+			min: 0,
+			step: 1,
+		},
+		default: 5,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula, {
+		name: game.i18n.localize('FU.ConfigMetaCurrencyKeepExcessFabula'),
+		hint: game.i18n.localize('FU.ConfigMetaCurrencyKeepExcessFabulaHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource1, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource1'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource1Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: 'hp',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource2, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource2'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource2Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: 'mp',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource3, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource3'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource3Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: 'ip',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.showAssociatedTherioforms, {
+		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
+		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
+		scope: 'client',
+		config: true,
+		type: Boolean,
+		default: true,
 	});
 };
 
@@ -363,7 +476,7 @@ class OptionalRules extends FormApplication {
 	}
 }
 
-class myBehaviorRolls extends FormApplication {
+class BehaviorRollsConfig extends FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			template: 'systems/projectfu/templates/system/settings/behavior-rolls.hbs',
@@ -379,7 +492,7 @@ class myBehaviorRolls extends FormApplication {
 	}
 
 	async _updateObject(event, formData) {
-		const { optionBehaviorRoll, optionTargetPriority } = expandObject(formData);
+		const { optionBehaviorRoll, optionTargetPriority, optionTargetPriorityRules } = foundry.utils.expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.optionBehaviorRoll, optionBehaviorRoll);
 		game.settings.set(SYSTEM, SETTINGS.optionTargetPriority, optionTargetPriority);
 		game.settings.set(SYSTEM, SETTINGS.optionTargetPriorityRules, optionTargetPriorityRules);
@@ -399,30 +512,40 @@ class CombatHudSettings extends FormApplication {
 			optionCombatHudOpacity: game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity),
 			optionCombatHudWidth: game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth),
 			optionCombatHudPosition: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition),
+			optionCombatHudPositionOptions: { bottom: 'FU.CombatHudPositionBottom', top: 'FU.CombatHudPositionTop' },
 			optionCombatHudPortrait: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait),
+			optionCombatHudPortraitOptions: { actor: 'FU.CombatHudPortraitActor', token: 'FU.CombatHudPortraitToken' },
 			optionCombatHudShowEffects: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowEffects),
 			optionCombatHudEffectsMarqueeDuration: game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration),
 			optionCombatHudEffectsMarqueeMode: game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode),
+			optionCombatHudEffectsMarqueeModeOptions: { normal: 'FU.CombatHudEffectsMarqueeModeNormal', alternate: 'FU.CombatHudEffectsMarqueeModeAlternate' },
 			optionCombatHudReordering: game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering),
 			optionCombatHudShowOrderNumbers: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers),
 			isGM: game.user.isGM,
-		}
+			optionCombatHudTrackedResource1: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1),
+			optionCombatHudTrackedResource2: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2),
+			optionCombatHudTrackedResource3: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3),
+			trackedResources: FU.combatHudResources,
+		};
 	}
 
 	async _updateObject(event, formData) {
 		if (game.user.isGM) {
-			const { 
-				experimentalCombatHud, 
-				optionCombatHudOpacity, 
-				optionCombatHudWidth, 
-				optionCombatHudPosition, 
+			const {
+				experimentalCombatHud,
+				optionCombatHudOpacity,
+				optionCombatHudWidth,
+				optionCombatHudPosition,
 				optionCombatHudPortrait,
 				optionCombatHudShowEffects,
 				optionCombatHudEffectsMarqueeDuration,
 				optionCombatHudEffectsMarqueeMode,
 				optionCombatHudReordering,
 				optionCombatHudShowOrderNumbers,
-			} = expandObject(formData);
+				optionCombatHudTrackedResource1,
+				optionCombatHudTrackedResource2,
+				optionCombatHudTrackedResource3,
+			} = foundry.utils.expandObject(formData);
 
 			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudOpacity, optionCombatHudOpacity);
@@ -434,18 +557,21 @@ class CombatHudSettings extends FormApplication {
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, optionCombatHudEffectsMarqueeMode);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudReordering, optionCombatHudReordering);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, optionCombatHudShowOrderNumbers);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource1, optionCombatHudTrackedResource1);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource2, optionCombatHudTrackedResource2);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource3, optionCombatHudTrackedResource3);
 		} else {
-			const { 
-				experimentalCombatHud, 
-				optionCombatHudOpacity, 
-				optionCombatHudWidth, 
-				optionCombatHudPosition, 
+			const {
+				experimentalCombatHud,
+				optionCombatHudOpacity,
+				optionCombatHudWidth,
+				optionCombatHudPosition,
 				optionCombatHudPortrait,
 				optionCombatHudShowEffects,
 				optionCombatHudEffectsMarqueeDuration,
 				optionCombatHudEffectsMarqueeMode,
 				optionCombatHudShowOrderNumbers,
-			} = expandObject(formData);
+			} = foundry.utils.expandObject(formData);
 
 			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudOpacity, optionCombatHudOpacity);
@@ -459,10 +585,10 @@ class CombatHudSettings extends FormApplication {
 		}
 
 		const isCustomTrackerActive = game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker);
-		if (!isCustomTrackerActive && experimentalCombatHud) {
+		if (!isCustomTrackerActive && formData.experimentalCombatHud) {
 			const enableTracker = await Dialog.confirm({
 				title: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerTitle'),
-				content: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerContent')
+				content: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerContent'),
 			});
 
 			if (enableTracker) {
@@ -471,5 +597,30 @@ class CombatHudSettings extends FormApplication {
 		}
 
 		await SettingsConfig.reloadConfirm({ world: game.user.isGM });
+	}
+}
+
+class MetaCurrencyTrackerOptions extends FormApplication {
+	static get defaultOptions() {
+		return foundry.utils.mergeObject(super.defaultOptions, {
+			title: game.i18n.localize('FU.ConfigMetaCurrencySettings'),
+		});
+	}
+
+	get template() {
+		return 'systems/projectfu/templates/system/settings/meta-currency.hbs';
+	}
+
+	getData(options = {}) {
+		return {
+			baseExperience: game.settings.get(SYSTEM, SETTINGS.metaCurrencyBaseExperience),
+			keepExcessFabula: game.settings.get(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula),
+		};
+	}
+
+	async _updateObject(event, formData) {
+		const { baseExperience, keepExcessFabula } = foundry.utils.expandObject(formData);
+		game.settings.set(SYSTEM, SETTINGS.metaCurrencyBaseExperience, baseExperience);
+		game.settings.set(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula, keepExcessFabula);
 	}
 }

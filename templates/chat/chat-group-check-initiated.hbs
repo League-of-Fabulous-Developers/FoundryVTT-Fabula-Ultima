@@ -1,58 +1,58 @@
 <div>
-	<div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
-		<div>{{localize 'FU.ChatGroupCheckInitiated' name=leader.name}}</div>
-	</div>
-	<div class='detail-desc flex-group-center grid grid-2col'>
-		<div class='spin2win'>
-			<i class='fas fa-dice-d6 ra-2x rollable'></i>
-			{{localize (concat 'FU.Attribute' (capitalize attributes.attr1) 'Abbr')}}
-		</div>
-		<div class='spin2win'>
-			<i class='fas fa-dice-d6 ra-2x rollable'></i>
-			{{localize (concat 'FU.Attribute' (capitalize attributes.attr2) 'Abbr')}}
-		</div>
-	</div>
-	{{#if supporters}}
-		<div class='detail-desc flexcol flex-group-center'>
-			<div class='flexcol group-check-supporters'>
-				<div class='flexrow group-check-supporters-title'>
-					<div>{{localize 'FU.ChatGroupCheckSupporter'}}</div>
-					<div>{{localize 'FU.ChatGroupCheckSupportResult'}}</div>
-					<div>{{localize 'FU.ChatGroupCheckSupportBond'}}</div>
-				</div>
-				{{#each supporters}}
-					<div class='flexrow group-check-supporters-supporter'>
-						<div>
-							<span>{{name}}</span>
-						</div>
-						<div>
+    <div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
+        <div>{{localize 'FU.ChatGroupCheckInitiated' name=leader.name}}</div>
+    </div>
+    <div class='detail-desc flex-group-center grid grid-2col'>
+        <div class='spin2win'>
+            <i class='fas fa-dice-d6 ra-2x rollable'></i>
+            {{localize (concat 'FU.Attribute' (capitalize attributes.attr1) 'Abbr')}}
+        </div>
+        <div class='spin2win'>
+            <i class='fas fa-dice-d6 ra-2x rollable'></i>
+            {{localize (concat 'FU.Attribute' (capitalize attributes.attr2) 'Abbr')}}
+        </div>
+    </div>
+    {{#if supporters}}
+        <div class='detail-desc flexcol flex-group-center'>
+            <div class='flexcol group-check-supporters'>
+                <div class='flexrow group-check-supporters-title'>
+                    <div>{{localize 'FU.ChatGroupCheckSupporter'}}</div>
+                    <div>{{localize 'FU.ChatGroupCheckSupportResult'}}</div>
+                    <div>{{localize 'FU.ChatGroupCheckSupportBond'}}</div>
+                </div>
+                {{#each supporters}}
+                    <div class='flexrow group-check-supporters-supporter'>
+                        <div>
+                            <span>{{name}}</span>
+                        </div>
+                        <div>
 							<span>
-								{{#if result}}
-									{{localize 'FU.Success'}}
-								{{else}}
-									{{localize 'FU.Failure'}}
-								{{/if}}
-							</span>
-						</div>
-						<div>
-							{{#each bond}}
-								<span>{{localize (concat 'FU.' this)}}</span>{{#unless @last}}<span>,</span>{{/unless}}
-							{{/each}}
-						</div>
-					</div>
-				{{/each}}
-			</div>
-		</div>
-	{{/if}}
-	<div class='action-button detail-desc flexrow flex-group-center'>
-		{{#if (eq status 'open')}}
-			<button type='button' data-support='{{groupCheckId}}'>{{localize 'FU.ChatGroupCheckSupport'}}</button>
-		{{/if}}
-		{{#if (eq status 'completed')}}
-			<button type='button' disabled>{{localize 'FU.ChatGroupCheckCompleted'}}</button>
-		{{/if}}
-		{{#if (eq status 'canceled')}}
+                                {{#if result}}
+                                    {{localize 'FU.Success'}}
+                                {{else}}
+                                    {{localize 'FU.Failure'}}
+                                {{/if}}
+                            </span>
+                        </div>
+                        <div>
+                            {{#each bond}}
+                                <span>{{localize (concat 'FU.' this)}}</span>{{#unless @last}}<span>,</span>{{/unless}}
+                            {{/each}}
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    {{/if}}
+    <div class='action-button detail-desc flexrow flex-group-center'>
+        {{#if (eq status 'open')}}
+            <button type='button' data-support='{{groupCheckId}}'>{{localize 'FU.ChatGroupCheckSupport'}}</button>
+        {{/if}}
+        {{#if (eq status 'completed')}}
+            <button type='button' disabled>{{localize 'FU.ChatGroupCheckCompleted'}}</button>
+        {{/if}}
+        {{#if (eq status 'canceled')}}
             <button type='button' disabled>{{localize 'FU.ChatGroupCheckCanceled'}}</button>
-		{{/if}}
-	</div>
+        {{/if}}
+    </div>
 </div>

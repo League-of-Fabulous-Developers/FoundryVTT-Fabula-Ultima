@@ -1,4 +1,5 @@
 import { FU } from './config.mjs';
+import { InlineEffects } from './inline-effects.mjs';
 
 async function promptDamageDialog(state, dispatch, view) {
 	const result = await Dialog.prompt({
@@ -73,26 +74,22 @@ async function promptResourceLossDialog(state, dispatch, view) {
 }
 
 async function promptIconSelectionDialog(state, dispatch, view) {
-    const result = await Dialog.prompt({
+	const result = await Dialog.prompt({
 		title: game.i18n.localize('FU.TextEditorDialogSelectIconTitle'),
-        content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-icon.hbs', { allIcon: FU.allIcon }),
-        options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-        callback: (html) => {
-            const icon = html.find('.icon-radio:checked').val();
-            return { icon };
-        },
-        render: (html) => {
-            html.find('.icon-radio').change(function () {
-                const icon = $(this).val();
-            });
-        },
-        rejectClose: false,
-    });
+		label: game.i18n.localize('FU.TextEditorDialogButtonInsert'),
+		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-icon.hbs', { allIcon: FU.allIcon }),
+		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
+		callback: (html) => {
+			const icon = html.find('.icon-radio:checked').val();
+			return { icon };
+		},
+		rejectClose: false,
+	});
 
-    if (result) {
-        const { icon } = result;
-        dispatch(state.tr.insertText(` @ICON[${icon}] `));
-    }
+	if (result) {
+		const { icon } = result;
+		dispatch(state.tr.insertText(` @ICON[${icon}] `));
+	}
 }
 
 function onGetProseMirrorMenuDropDowns(menu, config) {
@@ -124,6 +121,12 @@ function onGetProseMirrorMenuDropDowns(menu, config) {
 				title: 'FU.TextEditorButtonCommandLoss',
 				group: 1,
 				cmd: promptResourceLossDialog,
+			},
+			{
+				action: 'effect',
+				title: 'FU.TextEditorButtonCommandEffect',
+				group: 1,
+				cmd: InlineEffects.showEffectConfiguration,
 			},
 		],
 	};

@@ -1,224 +1,243 @@
 /* All Buttons */
 .buttons-inc {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
 
-  /* Increment/Decrement Buttons */
-  .increment-button,
-  .decrement-button {
-    color: $color-secondary;
-    font-size: 22px;
-    font-weight: bold;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    width: 25px;
-    margin: 1%;
+	/* Increment/Decrement Buttons */
+	.increment-button,
+	.decrement-button {
+		color: $color-secondary;
+		font-size: 22px;
+		font-weight: bold;
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		width: 25px;
+		margin: 1%;
 
-    &:hover {
-      background-color: rgba(0, 128, 128, 0.1);
-      border: 0;
-    }
-  }
+		&:hover {
+			background-color: rgba(0, 128, 128, 0.1);
+			border: 0;
+		}
+	}
 }
 
 .tab-style {
-  color: $color-primary;
-  font-size: 17px;
-  text-shadow: 1px 1px 1px $color-black;
-  box-shadow: 3px 6px $color-secondary;
-  border-radius: 8px;
-  margin: 12px 8px 8px;
-  background: linear-gradient($color-tabStyle-gradient, $color-secondary);
-  word-wrap: break-word;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	color: $color-primary;
+	font-size: 16px;
+	text-shadow: 1px 1px 1px $color-black;
+	box-shadow: 2px 4px $color-secondary;
+	border-radius: 8px;
+	margin: 12px 8px 8px;
+	background: linear-gradient($color-tabStyle-gradient, $color-secondary);
+	word-wrap: break-word;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
 
-  &:hover {
-    transform: translateY(-1px);
-    z-index: 1;
-    text-shadow: $color-info;
-  }
+	&:hover {
+		transform: translateY(-1px);
+		z-index: 1;
+		text-shadow: $color-info;
+	}
 
-  &.active {
-    border: 1px solid darkslategrey;
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    transform: translateY(3px);
-    border-radius: 8px;
-  }
+	&.active {
+		border: 1px solid darkslategrey;
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		transform: translateY(3px);
+		border-radius: 8px;
+	}
 
-  &:active {
-    transform: translateY(3px);
-    box-shadow: 1px 2px $color-secondary;
-  }
+	&:active {
+		transform: translateY(3px);
+		box-shadow: 1px 2px $color-secondary;
+	}
 
-  &:focus {
-    outline: none;
-    box-shadow: 3px 6px $color-info;
-  }
+	&:focus {
+		outline: none;
+		box-shadow: 2px 4px $color-info;
+	}
 }
 
 /* Action Buttons */
 .action-button {
-  gap: 1px;
-  height: 32px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: normal;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  color: $color-primary;
-  text-shadow: 1px 1px 1px $color-black;
-  box-shadow: 3px 6px $color-secondary;
-  border-radius: 8px;
-  background: linear-gradient($color-tabStyle-gradient), $color-secondary;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	gap: 1px;
+	height: 30px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: normal;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: left;
+	color: $color-primary;
+	text-shadow: 1px 1px 1px $color-black;
+	box-shadow: 2px 4px $color-secondary;
+	border-radius: 8px;
+	background: linear-gradient($color-tabStyle-gradient), $color-secondary;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
 
-  &.active {
-    border: 1px solid darkslategrey;
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    transform: translateY(3px);
-    border-radius: 8px;
-  }
+	&.active {
+		border: 1px solid darkslategrey;
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		transform: translateY(3px);
+		border-radius: 8px;
+	}
 
-  &:active {
-    transform: translateY(3px);
-    box-shadow: 1px 2px $color-secondary;
-  }
+	&:active {
+		transform: translateY(3px);
+		box-shadow: 1px 2px $color-secondary;
+	}
 
-  &:focus {
-    outline: none;
-    box-shadow: 3px 6px $color-success;
-  }
+	&:focus {
+		outline: none;
+		box-shadow: 2px 4px $color-success;
+	}
 
-  button {
-    background-color: transparent;
-    color: $color-white;
-  }
+	button {
+		background-color: transparent;
+		color: $color-white;
 
-  &#behavior-action {
-    padding: 5px;
-    font-size: 17px;
-  }
+		&:hover,
+		&:focus {
+			box-shadow: unset;
+		}
+	}
+
+	&#behavior-action {
+		padding: 5px;
+		font-size: 16px;
+	}
 }
 
 .zenit-style,
 .study-style {
-  color: $color-primary;
-  font-size: 16px;
-  text-shadow: 1px 1px 1px $color-black;
-  box-shadow: 3px 6px $color-secondary;
-  border-radius: 8px;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  background-image: linear-gradient($color-tabStyle-gradient);
+	color: $color-primary;
+	font-size: 16px;
+	text-shadow: 1px 1px 1px $color-black;
+	box-shadow: 2px 4px $color-secondary;
+	border-radius: 8px;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
+	background-image: linear-gradient($color-tabStyle-gradient);
 
-  input,
-  select,
-  .zenit-text,
-  .study-text {
-    font-size: 16px;
-    font-weight: bold;
-    text-shadow: 1px 1px 1px $color-black;
-    background: transparent;
-    color: $color-primary;
-    height: inherit;
-    background-color: transparent;
-    border-color: transparent;
-    text-align: right;
-    max-width: 78%;
-    padding: 0;
-  }
+	input,
+	select,
+	.zenit-text,
+	.study-text {
+		font-size: 16px;
+		font-weight: bold;
+		text-shadow: 1px 1px 1px $color-black;
+		background: transparent;
+		color: $color-primary;
+		height: inherit;
+		background-color: transparent;
+		border-color: transparent;
+		text-align: right;
+		max-width: 78%;
+		padding: 0;
+	}
 
-  &:focus {
-    outline: none;
-    box-shadow: 3px 6px $color-info;
-  }
+	&:focus {
+		outline: none;
+		box-shadow: 2px 4px $color-info;
+	}
 }
 
 .zenit-style {
-  flex: 0 0 150px;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  background-color: $color-secondary;
-  margin-right: 8px;
+	flex: 0 0 150px;
+	margin-top: 12px;
+	margin-bottom: 12px;
+	background-color: $color-secondary;
+	margin-right: 8px;
 }
 
 .study-style {
-  flex: 0 0 90px;
-  margin-right: 4px;
-  padding: 0;
+	flex: 0 0 90px;
+	margin-right: 4px;
+	padding: 0;
 }
 
 .tab-style {
-  color: $color-primary;
-  font-size: 17px;
-  text-shadow: 1px 1px 1px $color-black;
-  box-shadow: 3px 6px $color-secondary;
-  border-radius: 8px;
-  margin: 12px 8px 8px 0;
-  background-color: $color-secondary;
-  background-image: linear-gradient($color-tabStyle-gradient);
-  word-wrap: break-word;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	color: $color-primary;
+	font-size: 16px;
+	text-shadow: 1px 1px 1px $color-black;
+	box-shadow: 2px 4px $color-secondary;
+	border-radius: 8px;
+	margin: 12px 8px 8px 0;
+	background-color: $color-secondary;
+	background-image: linear-gradient($color-tabStyle-gradient);
+	word-wrap: break-word;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
 
-  &.active {
-    border: 1px solid darkslategrey;
-    border-radius: 8px;
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    transform: translateY(1px);
-  }
+	&.active {
+		border: 1px solid darkslategrey;
+		border-radius: 8px;
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		transform: translateY(1px);
+	}
 
-  &:hover {
-    transform: translateY(-1px);
-    z-index: 1;
-    text-shadow: $color-info;
-  }
+	&:hover {
+		transform: translateY(-1px);
+		z-index: 1;
+		text-shadow: $color-info;
+	}
 
-  &:active {
-    transform: translateY(2px);
-    box-shadow: 1px 2px $color-secondary;
-  }
+	&:active {
+		transform: translateY(2px);
+		box-shadow: 1px 2px $color-secondary;
+	}
 
-  &:focus {
-    outline: none;
-    box-shadow: 3px 6px $color-info;
-  }
+	&:focus {
+		outline: none;
+		box-shadow: 2px 4px $color-info;
+	}
 }
 
 // Slot styles
 .slot-style {
-  color: $color-primary;
-  font-size: 18px;
-  box-shadow: 3px 6px $color-secondary;
-  border-radius: 8px;
-  margin: 12px 0;
-  background-color: $color-secondary;
-  background-image: linear-gradient($color-tabStyle-gradient);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	color: $color-primary;
+	font-size: 18px;
+	box-shadow: 2px 4px $color-secondary;
+	border-radius: 8px;
+	margin: 12px 0;
+	background-color: $color-secondary;
+	background-image: linear-gradient($color-tabStyle-gradient);
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
 
-  &:active {
-    transform: translateY(3px);
-    box-shadow: 1px 2px $color-secondary;
-  }
+	&:active {
+		transform: translateY(3px);
+		box-shadow: 1px 2px $color-secondary;
+	}
 
-  &:focus {
-    outline: none;
-    box-shadow: 3px 6px $color-success;
-  }
+	&:focus {
+		outline: none;
+		box-shadow: 2px 4px $color-success;
+	}
 }
 
 // Item control styles
 .item-control {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 // SL Star counter styles
 .sl-stars {
-  gap: 2px;
-  margin: 2px 0;
+	gap: 2px;
+	margin: 2px 0;
+}
+
+.pointer {
+	cursor: pointer;
 }

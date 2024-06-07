@@ -7,25 +7,25 @@
             <div class="item-lg">{{localize "FU.Damage"}}</div>
             <div class="item-m end">
                 <a class="item-control item-create" data-tooltip="{{localize 'FU.BasicCreate'}}" data-type="basic"><i
-                        class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
+                 class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
             </div>
         </li>
         {{#each basics as |item id|}}
-        <li class="item" data-item-id="{{ item._id }}">
-            <div class="flexrow">
-                {{!-- Item Name--}}
-                {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                <div class="item-lg">{{ item.attackString }}</div>
-                <div class="item-lg">{{ item.damageString }}</div>
-                {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-            </div>
-            <span class="item-quality">{{ item.quality }}</span>
-            <div class="individual-description">
-                {{#if item.system.description}}
-                {{{item.enrichedHtml.description}}}
-                {{/if}}
-            </div>
-        </li>
+            <li class="item" data-item-id="{{ item._id }}">
+                <div class="flexrow">
+                    {{!-- Item Name--}}
+                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                    <div class="item-lg">{{ item.attackString }}</div>
+                    <div class="item-lg">{{ item.damageString }}</div>
+                    {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+                </div>
+                <span class="item-quality">{{ item.quality }}</span>
+                <div class="individual-description">
+                    {{#if item.system.description}}
+                        {{{item.enrichedHtml.description}}}
+                    {{/if}}
+                </div>
+            </li>
         {{/each}}
     </ol>
 
@@ -37,27 +37,27 @@
             <div class="item-m">{{localize 'FU.MindPointCost'}}</div>
             <div class="item-m end">
                 <a class="item-control item-create" title="Create Spell" data-type="spell"> <i
-                        class="fas fa-plus icon"></i>{{localize 'FU.Add'}} </a>
+                 class="fas fa-plus icon"></i>{{localize 'FU.Add'}} </a>
             </div>
         </li>
         {{#each spells as |item id|}}
-        <li class="item" data-item-id="{{ item._id }}">
-            <div class="flexrow">
-                {{!-- Item Name--}}
-                {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                <div class="item-m">{{ item.duration }}</div>
-                <div class="item-lg">{{ item.target }}</div>
-                <div class="item-m">
-                    <span>{{ item.mpCost }}</span>
+            <li class="item" data-item-id="{{ item._id }}">
+                <div class="flexrow">
+                    {{!-- Item Name--}}
+                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                    <div class="item-m">{{ item.duration }}</div>
+                    <div class="item-lg">{{ item.target }}</div>
+                    <div class="item-m">
+                        <span>{{ item.mpCost }}</span>
+                    </div>
+                    {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
-                {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-            </div>
-            <div class="individual-description align-left">
-                {{#if item.system.description}}
-                {{{item.enrichedHtml.description}}}
-                {{/if}}
-            </div>
-        </li>
+                <div class="individual-description align-left">
+                    {{#if item.system.description}}
+                        {{{item.enrichedHtml.description}}}
+                    {{/if}}
+                </div>
+            </li>
         {{/each}}
     </ol>
 
@@ -67,72 +67,76 @@
             <div class="item-full start">{{localize 'FU.Effect'}}</div>
             <div class="item-m end">
                 <a class="item-control item-create" aria-describedby="tooltip"
-                    data-tooltip="{{localize 'FU.MiscCreate'}}" data-type="miscAbility">
+                   data-tooltip="{{localize 'FU.MiscCreate'}}" data-type="miscAbility">
                     <i class="fas fa-plus icon"></i>
                     {{localize 'FU.Add'}}
                 </a>
             </div>
         </li>
         {{#each abilities as |item id|}}
-        <li class="item" data-item-id="{{ item._id }}">
-            <div class="flexrow" style="height: fit-content; align-items: flex-start;">
-                <div class="flexcol">
-                    {{!-- Item Name--}}
-                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                    {{#if item.system.subtype}}
-                    <div class="item-quality">{{capitalize item.system.subtype.value}}</div>
-                    {{/if}}
-                </div>
-                {{!-- <div class="item-full start description-effect">
-                    <p>{{ item.system.summary.value}}</p>
-                </div> --}}
-               <div class="item-full start tiny-desc">
+            <li class="item" data-item-id="{{ item._id }}">
+                <div class="flexrow" style="height: fit-content; align-items: flex-start;">
+                    <div class="flexcol">
+                        {{!-- Item Name--}}
+                        {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                        {{#if item.system.subtype}}
+                            <div class="item-quality">{{capitalize item.system.subtype.value}}</div>
+                        {{/if}}
+                    </div>
+                    {{!-- <div class="item-full start description-effect">
+                        <p>{{ item.system.summary.value}}</p>
+                    </div> --}}
+                    <div class="item-full start tiny-desc">
                     <span class="description-effect">
                         {{#if item.system.description}}
-                        {{{item.enrichedHtml.description}}}
+                            {{{item.enrichedHtml.description}}}
                         {{/if}}
                     </span>
-                </div>
+                    </div>
 
-                {{!-- Resource Points --}}
-                {{#if item.system.hasResource.value}}
-                <div class="item-m desc flexcol flex-group-center resource-content">
-                    <label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
-                    <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
-                        <a class="decrement-button" data-type="resourceCounter" data-item-id="{{ item._id }}">-</a>
-                        <span data-resource="item.rp">{{ item.system.rp.current }}</span>
-                        {{#if (gt item.system.rp.max 0)}}
-                        <span>/</span>
-                        <span>{{ item.system.rp.max }}</span>
-                        {{/if}}
-                        <a class="increment-button" data-type="resourceCounter" data-item-id="{{ item._id }}">+</a>
-                    </div>
+                    {{!-- Resource Points --}}
+                    {{#if item.system.hasResource.value}}
+                        <div class="item-m desc flexcol flex-group-center resource-content">
+                            <label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
+                            <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
+                                <a class="decrement-button" data-type="resourceCounter"
+                                   data-item-id="{{ item._id }}">-</a>
+                                <span data-resource="item.rp">{{ item.system.rp.current }}</span>
+                                {{#if (gt item.system.rp.max 0)}}
+                                    <span>/</span>
+                                    <span>{{ item.system.rp.max }}</span>
+                                {{/if}}
+                                <a class="increment-button" data-type="resourceCounter"
+                                   data-item-id="{{ item._id }}">+</a>
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{!-- Clocks --}}
+                    {{#if item.system.hasClock.value}}
+                        <div class="item-m desc" style="text-align: initial; padding: 1px;">
+                            <a class="decrement-button align-left" data-type="clockCounter"
+                               data-item-id="{{ item._id }}"> <i
+                             class="fas fa-minus"></i></a>
+                            <div class="progress-container">
+                                {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
+                                 arr=item.progressArr
+                                 data=item.system.progress}}
+                            </div>
+                            <a class="increment-button align-right" data-type="clockCounter"
+                               data-item-id="{{ item._id }}"> <i
+                             class="fas fa-plus"></i></a>
+                        </div>
+                    {{/if}}
+                    {{!-- Item Control--}}
+                    {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
-                {{/if}}
-                {{!-- Clocks --}}
-                {{#if item.system.hasClock.value}}
-                <div class="item-m desc" style="text-align: initial; padding: 1px;">
-                    <a class="decrement-button align-left" data-type="clockCounter" data-item-id="{{ item._id }}"> <i
-                            class="fas fa-minus"></i></a>
-                    <div class="progress-container">
-                        {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
-                        arr=item.progressArr
-                        data=item.system.progress}}
-                    </div>
-                    <a class="increment-button align-right" data-type="clockCounter" data-item-id="{{ item._id }}"> <i
-                            class="fas fa-plus"></i></a>
+                <span class="item-quality">{{ item.quality }}</span>
+                <div class="individual-description align-left">
+                    {{#if item.system.description}}
+                        {{{item.enrichedHtml.description}}}
+                    {{/if}}
                 </div>
-                {{/if}}
-                {{!-- Item Control--}}
-                {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-            </div>
-            <span class="item-quality">{{ item.quality }}</span>
-            <div class="individual-description align-left">
-                {{#if item.system.description}}
-                {{{item.enrichedHtml.description}}}
-                {{/if}}
-            </div>
-        </li>
+            </li>
         {{/each}}
     </ol>
 
@@ -142,7 +146,7 @@
             <div class="item-full start">{{localize 'FU.Effect'}}</div>
             <div class="item-m end">
                 <a class="item-control item-create" aria-describedby="tooltip"
-                    data-tooltip="{{localize 'FU.RuleCreate'}}" data-type="rule">
+                   data-tooltip="{{localize 'FU.RuleCreate'}}" data-type="rule">
                     <i class="fas fa-plus icon"></i>
                     {{localize 'FU.Add'}}
                 </a>
@@ -150,34 +154,36 @@
         </li>
         {{#each rules as |item id|}}
 
-        <li class="item" data-item-id="{{ item._id }}">
-            <div class="flexrow">
-                {{!-- Item Name--}}
-                {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                <div class="item-full start tiny-desc">
+            <li class="item" data-item-id="{{ item._id }}">
+                <div class="flexrow">
+                    {{!-- Item Name--}}
+                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                    <div class="item-full start tiny-desc">
                     <span class="description-effect">
                         {{#if item.system.description}}
-                        {{{item.enrichedHtml.description}}}
+                            {{{item.enrichedHtml.description}}}
                         {{/if}}
                     </span>
-                </div>
-                {{!-- Clocks --}}
-                {{#if item.system.hasClock.value}}
-                <div class="item-m desc" style="text-align: initial; padding: 1px;">
-                    <a class="decrement-button align-left" data-type="clockCounter" data-item-id="{{ item._id }}"> <i
-                            class="fas fa-minus"></i></a>
-                    <div class="progress-container">
-                        {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
-                        arr=item.progressArr
-                        data=item.system.progress}}
                     </div>
-                    <a class="increment-button align-right" data-type="clockCounter" data-item-id="{{ item._id }}"> <i
-                            class="fas fa-plus"></i></a>
+                    {{!-- Clocks --}}
+                    {{#if item.system.hasClock.value}}
+                        <div class="item-m desc" style="text-align: initial; padding: 1px;">
+                            <a class="decrement-button align-left" data-type="clockCounter"
+                               data-item-id="{{ item._id }}"> <i
+                             class="fas fa-minus"></i></a>
+                            <div class="progress-container">
+                                {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
+                                 arr=item.progressArr
+                                 data=item.system.progress}}
+                            </div>
+                            <a class="increment-button align-right" data-type="clockCounter"
+                               data-item-id="{{ item._id }}"> <i
+                             class="fas fa-plus"></i></a>
+                        </div>
+                    {{/if}}
+                    {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
-                {{/if}}
-                {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-            </div>
-        </li>
+            </li>
         {{/each}}
     </ol>
 
@@ -188,26 +194,26 @@
             <div class="item-xs">{{localize "FU.Quantity"}}</div>
             <div class="item-m end">
                 <a class="item-control item-create" data-tooltip="{{localize 'FU.TreasureCreate'}}"
-                    data-type="treasure"><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
+                   data-type="treasure"><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
             </div>
         </li>
         {{#each treasures as |item id|}}
-        <li class="item" data-item-id="{{ item._id }}">
-            <div class="flexrow">
-                {{!-- Item Name--}}
-                {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                <div class="item-full start"><span class="description-effect">{{ item.quality }}</span></div>
-                <div class="item-xs">{{ item.system.quantity.value }}</div>
-                {{!-- Item Control--}}
-                {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-            </div>
-        </li>
+            <li class="item" data-item-id="{{ item._id }}">
+                <div class="flexrow">
+                    {{!-- Item Name--}}
+                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                    <div class="item-full start"><span class="description-effect">{{ item.quality }}</span></div>
+                    <div class="item-xs">{{ item.system.quantity.value }}</div>
+                    {{!-- Item Control--}}
+                    {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+                </div>
+            </li>
         {{/each}}
     </ol>
 
 </section>
 {{#if actor.system.useEquipment.value}}
-<section class="desc">
-    {{> "systems/projectfu/templates/actor/partials/actor-npc-items.hbs" item=item}}
-</section>
+    <section class="desc">
+        {{> "systems/projectfu/templates/actor/partials/actor-npc-items.hbs" item=item}}
+    </section>
 {{/if}}

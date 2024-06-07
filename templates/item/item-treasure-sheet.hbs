@@ -1,49 +1,49 @@
 <form class="{{ cssClass }} backgroundstyle" autocomplete="off">
-	{{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+    {{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}}
 
-	{{!-- Sheet Body --}}
-	<section class="sheet-body">
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
 
-		{{!-- Effects Tab --}}
-		<div class="tab effects" data-group="primary" data-tab="effects">
-			{{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
-		</div>
+        {{!-- Effects Tab --}}
+        <div class="tab effects" data-group="primary" data-tab="effects">
+            {{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
+        </div>
 
-		{{!-- Description Tab --}}
-		<div class="tab description" data-group="primary" data-tab="description">
+        {{!-- Description Tab --}}
+        <div class="tab description" data-group="primary" data-tab="description">
 
-			<section class="grid grid-2col gap-5">
+            <section class="grid grid-2col gap-5">
 
-				{{!-- Description --}}
-				<div class="grid-span-2 desc flex-between">
-					{{editor enrichedHtml.description target="system.description" engine="prosemirror"
-					rollData=rollData button=true owner=owner editable=editable }}
-				</div>
+                {{!-- Description --}}
+                <div class="grid-span-2 desc flex-between">
+                    {{editor enrichedHtml.description target="system.description" engine="prosemirror"
+                             rollData=rollData button=true owner=owner editable=editable }}
+                </div>
 
-			</section>
-		</div>
+            </section>
+        </div>
 
-		{{!-- Attributes Tab --}}
-		<div class="tab attributes" data-group="primary" data-tab="attributes">
+        {{!-- Attributes Tab --}}
+        <div class="tab attributes" data-group="primary" data-tab="attributes">
 
-			<section class="grid grid-2col gap-5">
+            <section class="grid grid-2col gap-5">
 
-				{{!-- General Info Section --}}
-				<fieldset class="title-fieldset desc resource-content grid-span-2">
+                {{!-- General Info Section --}}
+                <fieldset class="title-fieldset desc resource-content grid-span-2">
 
-					{{!-- Item Controls --}}
-					<div class="item-settings">
-						{{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
-					</div>
-					<div class="grid grid-4col">
+                    {{!-- Item Controls --}}
+                    <div class="item-settings">
+                        {{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
+                    </div>
+                    <div class="grid grid-4col">
 
-						{{!-- Behavior Field --}}
-						{{> "systems/projectfu/templates/item/partials/item-behavior-field.hbs"}}
-					</div>
+                        {{!-- Behavior Field --}}
+                        {{> "systems/projectfu/templates/item/partials/item-behavior-field.hbs"}}
+                    </div>
 
-				</fieldset>
-			</section>
-		</div>
+                </fieldset>
+            </section>
+        </div>
 
-	</section>
+    </section>
 </form>

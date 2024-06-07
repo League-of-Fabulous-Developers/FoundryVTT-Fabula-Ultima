@@ -1,5 +1,4 @@
-import { FU } from './config.mjs';
-import { SYSTEM } from '../settings.js';
+import { FU, SYSTEM } from './config.mjs';
 import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
@@ -82,6 +81,35 @@ function lossEnricher(text, options) {
 
 /**
  * @param {ClientDocument} document
+ * @param {HTMLElement} element
+ * @returns {string}
+ */
+function determineSource(document, element) {
+	let source = game.i18n.localize('FU.UnknownRecoverySource');
+	if (document instanceof FUActor) {
+		const itemId = $(element).closest('[data-item-id]').data('itemId');
+		if (itemId) {
+			source = document.items.get(itemId).name;
+		} else {
+			source = document.name;
+		}
+	} else if (document instanceof FUItem) {
+		source = document.name;
+	} else if (document instanceof ChatMessage) {
+		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
+		if (speakerActor) {
+			source = speakerActor.name;
+		}
+		const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
+		if (item) {
+			source = item.name;
+		}
+	}
+	return source;
+}
+
+/**
+ * @param {ClientDocument} document
  * @param {jQuery} html
  */
 function activateListeners(document, html) {
@@ -89,34 +117,52 @@ function activateListeners(document, html) {
 		document = document.document;
 	}
 
-	html.find('a.inline.inline-recovery[draggable], a.inline.inline-loss[draggable]').on('dragstart', function (event) {
-		/** @type DragEvent */
-		event = event.originalEvent;
-		if (!(event.target instanceof HTMLElement) || !event.dataTransfer) {
-			return;
-		}
-		let source = game.i18n.localize('FU.UnknownRecoverySource');
-		if (document instanceof FUActor || document instanceof FUItem) {
-			source = document.name;
-		} else if (document instanceof ChatMessage) {
-			var speakerActor = ChatMessage.getSpeakerActor(document.speaker);
-			if (speakerActor) {
-				source = speakerActor.name;
-				const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-				if (item) {
-					source = item.name;
+	html.find('a.inline.inline-recovery[draggable], a.inline.inline-loss[draggable]')
+		.on('click', function () {
+			const amount = Number(this.dataset.amount);
+			const type = this.dataset.type;
+			const user = game.user;
+			const source = determineSource(document, this);
+			const controlledTokens = canvas.tokens.controlled;
+			let actors = [];
+
+			// Use selected token or owned actor
+			if (controlledTokens.length > 0) {
+				actors = controlledTokens.map((token) => token.actor);
+			} else {
+				const actor = user.character;
+				if (actor) {
+					actors.push(actor);
 				}
 			}
-		}
 
-		const data = {
-			type: this.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
-			source: source,
-			recoveryType: this.dataset.type,
-			amount: this.dataset.amount,
-		};
-		event.dataTransfer.setData('text/plain', JSON.stringify(data));
-	});
+			if (actors.length > 0) {
+				if (this.classList.contains(classInlineRecovery)) {
+					actors.forEach((actor) => applyRecovery(actor, type, amount, source || 'inline recovery'));
+				} else if (this.classList.contains(classInlineLoss)) {
+					actors.forEach((actor) => applyLoss(actor, type, amount, source || 'inline loss'));
+				}
+			} else {
+				ui.notifications.warn('FU.ChatApplyEffectNoActorsSelected', { localize: true });
+			}
+		})
+		.on('dragstart', function (event) {
+			/** @type DragEvent */
+			event = event.originalEvent;
+			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
+				return;
+			}
+			const source = determineSource(document, this);
+
+			const data = {
+				type: this.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
+				source: source,
+				recoveryType: this.dataset.type,
+				amount: this.dataset.amount,
+			};
+			event.dataTransfer.setData('text/plain', JSON.stringify(data));
+			event.stopPropagation();
+		});
 }
 
 function onDropActor(actor, sheet, { type, recoveryType, amount, source }) {

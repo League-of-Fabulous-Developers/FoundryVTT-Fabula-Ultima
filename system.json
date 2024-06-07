@@ -5,7 +5,8 @@
 	"version": "#{VERSION}#",
 	"compatibility": {
 		"minimum": "11",
-		"verified": "11"
+		"verified": "11",
+		"maximum": "12"
 	},
 	"authors": [
 		{
@@ -25,13 +26,8 @@
 		}
 	],
 	"scripts": [],
-	"esmodules": [
-		"module/projectfu.mjs"
-	],
-	"styles": [
-		"styles/css/projectfu.css",
-		"styles/css/rpg-awesome.css"
-	],
+	"esmodules": ["module/projectfu.mjs"],
+	"styles": ["styles/css/projectfu.css"],
 	"packs": [
 		{
 			"label": "Essentials",
@@ -92,16 +88,8 @@
 	},
 	"flags": {
 		"hotReload": {
-			"extensions": [
-				"css",
-				"hbs",
-				"json"
-			],
-			"paths": [
-				"css",
-				"lang",
-				"templates"
-			]
+			"extensions": ["css", "hbs", "json"],
+			"paths": ["css", "lang", "templates"]
 		}
 	},
 	"socket": true,

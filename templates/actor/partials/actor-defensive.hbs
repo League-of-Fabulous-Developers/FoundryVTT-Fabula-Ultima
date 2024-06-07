@@ -1,61 +1,68 @@
 {{#if (or (eq actor.type "character")(eq system.study.value 0)(eq system.study.value 2) (eq
-system.study.value 3))}}
-<div class="header-fields flex-group-center grid grid-2col">
-    <div class="grid grid-3col" style="align-self: baseline;">
-        {{!-- DEF --}}
-        <div class="resource-content flex-group-center">
-            <label class="resource-label-l"> <i class="fas fa-shield icon"></i>{{localize
-                'FU.DefenseAbbr'}}
-            </label>
-            <div class="resource-content flex-center">
-                <input class="resource-inputs" id="def-input" name="system.derived.def.value"
-                    value="{{ system.derived.def.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.Defense'}}<br>Current: {{
-              system.derived.def.value
-            }}<br>Bonus: {{ system.derived.def.bonus }}" aria-describedby="tooltip" disabled />
+ system.study.value 3))}}
+    <div class="header-fields flex-group-center grid grid-2col">
+        <div class="grid grid-3col" style="align-self: baseline;">
+            {{!-- DEF --}}
+            <div class="resource-content flex-group-center">
+                <label class="resource-label-l"> <i class="fas fa-shield icon"></i>{{localize
+                 'FU.DefenseAbbr'}}
+                </label>
+                <div class="resource-content flex-center">
+                    <input class="resource-inputs" id="def-input" name="system.derived.def.value"
+                           value="{{ system.derived.def.value }}" data-dtype="Number"
+                           data-tooltip="{{localize 'FU.Defense'}}<br>Current: {{
+                           system.derived.def.value
+                           }}<br>Bonus: {{ system.derived.def.bonus }}" aria-describedby="tooltip" disabled />
+                </div>
             </div>
-        </div>
 
-        {{!-- MDEF --}}
-        <div class="resource-content flex-group-center">
-            <label class="resource-label-l"> <i class="fas fa-shield-halved icon"></i>{{localize
-                'FU.MagicDefenseAbbr'}} </label>
-            <div class="resource-content flex-center">
-                <input class="resource-inputs" id="mdef-input" name="system.derived.mdef.value"
-                    value="{{ system.derived.mdef.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.MagicDefense'}}<br>Current: {{
-              system.derived.mdef.value
-            }}<br>Bonus: {{ system.derived.mdef.bonus }}" aria-describedby="tooltip" disabled />
+            {{!-- MDEF --}}
+            <div class="resource-content flex-group-center">
+                <label class="resource-label-l"> <i class="fas fa-shield-halved icon"></i>{{localize
+                 'FU.MagicDefenseAbbr'}} </label>
+                <div class="resource-content flex-center">
+                    <input class="resource-inputs" id="mdef-input" name="system.derived.mdef.value"
+                           value="{{ system.derived.mdef.value }}" data-dtype="Number"
+                           data-tooltip="{{localize 'FU.MagicDefense'}}<br>Current: {{
+                           system.derived.mdef.value
+                           }}<br>Bonus: {{ system.derived.mdef.bonus }}" aria-describedby="tooltip" disabled />
+                </div>
             </div>
-        </div>
 
-        {{!-- Initiative --}}
-        <div class="resource-content flex-group-center">
-            <label class="rollable resource-label-l" data-roll-type="roll-init"> <i
-                    class="fas fa-clock icon"></i>{{localize 'FU.InitiativeAbbr'}} </label>
-            <div class="resource-content flex-center">
-                <input class="resource-inputs" id="init-input" name="system.derived.init.value"
-                    value="{{ system.derived.init.value }}" data-dtype="Number" data-tooltip="{{localize 'FU.Initiative'}}<br>Current: {{
-              system.derived.init.value
-            }}<br>Bonus: {{ system.derived.init.bonus }}" aria-describedby="tooltip" disabled />
+            {{!-- Initiative --}}
+            <div class="resource-content flex-group-center">
+                <label class="rollable resource-label-l" data-roll-type="roll-init"> <i
+                 class="fas fa-clock icon"></i>{{localize 'FU.InitiativeAbbr'}} </label>
+                <div class="resource-content flex-center">
+                    <input class="resource-inputs" id="init-input" name="system.derived.init.value"
+                           value="{{ system.derived.init.value }}" data-dtype="Number"
+                           data-tooltip="{{localize 'FU.Initiative'}}<br>Current: {{
+                           system.derived.init.value
+                           }}<br>Bonus: {{ system.derived.init.bonus }}" aria-describedby="tooltip" disabled />
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- FU Points -->
-<div class="header-end flex-group-center resource-content" style="align-self: baseline;">
-    <label>
-        {{#if (eq actor.type "npc")}}
-        <span class="resource-label-l"> <i class="fas fa-feather icon"></i>{{localize
-            'FU.UltimaPoints'}} </span>
-        {{/if}}
-        {{#if (eq actor.type "character")}}
-        <span class="resource-label-l"> <i class="fas fa-feather icon"></i>{{localize
-            'FU.FabulaPoints'}} </span>
-        {{/if}}
-    </label>
-    <div class="buttons-inc">
-        <input type="number" name="system.resources.fp.value" value="{{ system.resources.fp.value }}"
-            data-dtype="Number" id="fp-input" class="fp-resource-inputs" />
+    <!-- FU Points -->
+    <div class="header-end flex-group-center resource-content" style="align-self: baseline;">
+        <a class="rollable" data-action="spendMetaCurrency">
+            {{#if (eq actor.type "npc")}}
+                <span class="resource-label-l">
+                    <i class="fas fa-feather icon"></i>
+                    {{localize 'FU.UltimaPoints'}}
+                </span>
+            {{/if}}
+            {{#if (eq actor.type "character")}}
+                <span class="resource-label-l">
+                    <i class="fas fa-feather icon"></i>
+                    {{localize 'FU.FabulaPoints'}}
+                </span>
+            {{/if}}
+        </a>
+        <div class="buttons-inc">
+            <input type="number" name="system.resources.fp.value" value="{{ system.resources.fp.value }}"
+                   data-dtype="Number" id="fp-input" class="fp-resource-inputs" />
+        </div>
     </div>
-</div>
 {{/if}}

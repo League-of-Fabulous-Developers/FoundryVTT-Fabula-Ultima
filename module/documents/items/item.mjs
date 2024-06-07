@@ -1,13 +1,17 @@
 import { createCheckMessage, getTargets, rollCheck } from '../../helpers/checks.mjs';
 import { RollableClassFeatureDataModel } from './classFeature/class-feature-data-model.mjs';
-import { SYSTEM } from '../../settings.js';
+import { RollableOptionalFeatureDataModel } from './optionalFeature/optional-feature-data-model.mjs';
 import { Flags } from '../../helpers/flags.mjs';
+import { SYSTEM } from '../../helpers/config.mjs';
+import { SOCKET } from '../../socket.mjs';
 
 /**
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
  */
 export class FUItem extends Item {
+	overrides = this.overrides ?? {};
+
 	/**
 	 * Augment the basic Item data model with additional dynamic data.
 	 * This method is automatically called when an item is created or updated.
@@ -43,7 +47,7 @@ export class FUItem extends Item {
 	 * @property {string} damageString - The weapon's damage description.
 	 * @property {string} qualityString - The weapon's quality description.
 	 */
-	getWeaponDisplayData() {
+	getWeaponDisplayData(actor) {
 		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
 		const isBasic = this.type === 'basic';
 		const isShield = this.type === 'shield' && !this.system.isDualShield?.value;
@@ -57,10 +61,10 @@ export class FUItem extends Item {
 
 			return game.i18n.localize(allTranslations?.[string] ?? string);
 		}
-
-		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? game.i18n.localize('FU.HRZero') : game.i18n.localize('FU.HighRollAbbr');
+		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
 		const qualText = this.system.quality?.value || '';
 		let qualityString = '';
+		let detailString = '';
 
 		const primaryAttribute = this.system.attributes?.primary?.value;
 		const secondaryAttribute = this.system.attributes?.secondary?.value;
@@ -68,26 +72,38 @@ export class FUItem extends Item {
 		const attackAttributes = [translate(primaryAttribute || '').toUpperCase(), translate(secondaryAttribute || '').toUpperCase()].join(' + ');
 
 		const accuracyValue = this.system.accuracy?.value ?? 0;
+		const accuracyGlobalValue = actor.system.bonuses.accuracy?.accuracyCheck ?? 0;
+		const accuracyTotal = accuracyValue + accuracyGlobalValue;
 		const damageValue = this.system.damage?.value ?? 0;
+		const weaponType = this.system.type?.value;
+		let damageGlobalValue = 0;
+		if (weaponType === 'melee') {
+			damageGlobalValue = actor.system.bonuses.damage?.melee ?? 0;
+		} else if (weaponType === 'ranged') {
+			damageGlobalValue = actor.system.bonuses.damage?.ranged ?? 0;
+		}
+		const damageTotal = damageValue + damageGlobalValue;
 
-		const attackString = `【${attackAttributes}】${accuracyValue > 0 ? ` +${accuracyValue}` : ''}`;
+		const attackString = `【${attackAttributes}】${accuracyTotal > 0 ? ` +${accuracyTotal}` : ''}`;
 
-		const hrZeroValue = this.system.rollInfo?.useWeapon?.hrZero?.value ?? false;
 		const damageTypeValue = translate(this.system.damageType?.value || '');
 
-		const damageString = `【${hrZeroText} + ${damageValue}】 ${damageTypeValue}`;
+		const damageString = `【${hrZeroText} ${damageTotal}】 ${damageTypeValue}`;
 
 		if (isWeaponOrShieldWithDual) {
+			detailString = [attackString, damageString].filter(Boolean).join('⬥');
 			qualityString = [translate(this.system.category?.value), translate(this.system.hands?.value), translate(this.system.type?.value), qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
+			detailString = [attackString, damageString].filter(Boolean).join('⬥');
 			qualityString = [attackString, damageString, qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isShield) {
 			qualityString = [qualText].filter(Boolean).join(' ⬥ ');
-		} 
+		}
 
 		return {
 			attackString,
 			damageString,
+			detailString: `${detailString}`,
 			qualityString: `${qualityString}`,
 		};
 	}
@@ -100,7 +116,7 @@ export class FUItem extends Item {
 	 * @property {string} damageString - The spell's damage description.
 	 * @property {string} qualityString - The spell's quality description.
 	 */
-	getSpellDisplayData() {
+	getSpellDisplayData(actor) {
 		const isSpell = this.type === 'spell';
 		// Check if this item is not a spell
 		if (!isSpell) {
@@ -118,19 +134,22 @@ export class FUItem extends Item {
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
 		const qualText = this.system.quality?.value || '';
 		let qualityString = '';
+		let detailString = '';
 
 		const attackAttributes = [this.system.attributes.primary.value.toUpperCase(), this.system.attributes.secondary.value.toUpperCase()].join(' + ');
+		const attackString = this.system.hasRoll.value ? `【${attackAttributes}${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}】` : '';
 
-		const attackString = `【${attackAttributes}】${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}`;
-		const damageString = `【${hrZeroText} + ${this.system.rollInfo?.damage?.type.value}】 ${this.system.rollInfo?.damage?.type.value}`;
+		const damageString = this.system.rollInfo.damage.hasDamage.value ? `【${hrZeroText} ${this.system.rollInfo?.damage?.value}】 ${this.system.rollInfo?.damage?.type.value}` : '';
 
 		if (isSpell) {
+			detailString = [attackString, damageString].filter(Boolean).join('⬥');
 			qualityString = [capitalizeFirst(this.system.mpCost.value), capitalizeFirst(this.system.target.value), capitalizeFirst(this.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
 		}
 
 		return {
 			attackString,
 			damageString,
+			detailString: `${detailString}`,
 			qualityString: `${qualityString}`,
 		};
 	}
@@ -283,7 +302,6 @@ export class FUItem extends Item {
 		await roll.evaluate({ async: true });
 
 		const bonusAccVal = usedItem ? this.system.rollInfo.accuracy.value : 0;
-		const bonusAccValString = bonusAccVal ? ` + ${bonusAccVal} (${this.type})` : '';
 		const acc = roll.total + bonusAccVal;
 		const diceResults = roll.terms.filter((term) => term.results).map((die) => die.results[0].result);
 
@@ -303,7 +321,6 @@ export class FUItem extends Item {
 		const isFumble = diceResults[0] === 1 && diceResults[1] === 1;
 		const isCrit = !isFumble && diceResults[0] === diceResults[1] && diceResults[0] >= 6;
 
-		const accString = `${diceResults[0]} (${attrs.primary.value.toUpperCase()}) + ${diceResults[1]} (${attrs.secondary.value.toUpperCase()}) + ${accVal} (${item.type})${bonusAccValString}`;
 		const fumbleString = isFumble ? '<strong>FUMBLE!</strong><br />' : '';
 		const critString = isCrit ? '<strong>CRITICAL HIT!</strong><br />' : '';
 
@@ -335,7 +352,6 @@ export class FUItem extends Item {
 			let damVal = isWeapon ? item.system.damage.value : item.system.rollInfo.damage.value;
 			damVal = damVal || 0;
 			const bonusDamVal = usedItem ? this.system.rollInfo.damage.value : 0;
-			const bonusDamValString = bonusDamVal ? ` + ${bonusDamVal} (${this.type})` : '';
 			const damage = hr + damVal + bonusDamVal;
 			const damType = isWeapon ? item.system.damageType.value : item.system.rollInfo.damage.type.value;
 
@@ -603,7 +619,7 @@ export class FUItem extends Item {
 		}
 
 		if (item.type === 'project') {
-			const { cost, discount, progress, progressPerDay, days } = item.system;
+			const { cost, discount, progress, progressPerDay } = item.system;
 
 			const discountText = discount.value ? `<span><br>-${discount.value} Discount</span>` : '';
 
@@ -671,14 +687,15 @@ export class FUItem extends Item {
 		return '';
 	}
 
-	getClockString() {}
-
 	/**
 	 * Handle clickable rolls.
 	 * @param {Event} event The originating click event.
 	 * @private
 	 */
 	async roll(isShift) {
+		if (this.system.showTitleCard?.value) {
+			SOCKET.executeForEveryone('use', this.name);
+		}
 		if (this.type === 'weapon') {
 			return this.rollWeapon(isShift);
 		}
@@ -697,9 +714,12 @@ export class FUItem extends Item {
 		if (this.type === 'classFeature' && this.system.data instanceof RollableClassFeatureDataModel) {
 			return this.system.data.constructor.roll(this.system.data, this, isShift);
 		}
+		if (this.type === 'optionalFeature' && this.system.data instanceof RollableOptionalFeatureDataModel) {
+			return this.system.data.constructor.roll(this.system.data, this, isShift);
+		}
 
 		const item = this;
-		const { system, img, name, type } = item;
+		const { system, img, name } = item;
 		// Initialize chat data.
 		const speaker = ChatMessage.getSpeaker({ actor: item.actor });
 		const rollMode = game.settings.get('core', 'rollMode');
@@ -727,12 +747,10 @@ export class FUItem extends Item {
 			const attackString = Array.isArray(attackData) ? attackData.join('<br /><br />') : attackData;
 
 			// Prepare the content by filtering and joining various parts.
-			const content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
+			let content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
+			content = `<div data-item-id="${item.id}">${content}</div>`;
 
 			// if (['consumable'].includes(type) {}
-			if (system.showTitleCard?.value) {
-				socketlib.system.executeForEveryone('use', name);
-			}
 
 			// Create a chat message.
 			ChatMessage.create({
@@ -928,7 +946,7 @@ export class FUItem extends Item {
 				return;
 			}
 			const checks = [];
-			for (let [_, weapon] of Object.entries(equippedWeapons)) {
+			for (let [, weapon] of Object.entries(equippedWeapons)) {
 				if (weapon) {
 					let params = this.#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo, targets);
 					checks.push(rollCheck(params).then((check) => createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } })));
@@ -980,7 +998,7 @@ export class FUItem extends Item {
 		const { useWeapon, accuracy, attributes, damage } = rollInfo;
 		const {
 			name: weaponName,
-			system: { attributes: weaponAttributes, accuracy: weaponAccuracy, damage: weaponDamage, category: weaponCategory, damageType: weaponDamageType },
+			system: { attributes: weaponAttributes, accuracy: weaponAccuracy, damage: weaponDamage, category: weaponCategory, type: weaponType, damageType: weaponDamageType },
 		} = weapon;
 		let attr1 = attributes.primary.value;
 		let attr2 = attributes.secondary.value;
@@ -998,10 +1016,11 @@ export class FUItem extends Item {
 		/** @type {CheckDamage | undefined} */
 		let checkDamage = undefined;
 		if (useWeapon.damage.value) {
+			const { [weaponCategory.value]: categoryDamageBonus, [weaponType.value]: typeDamageBonus } = this.actor.system.bonuses.damage;
 			checkDamage = {
 				hrZero: useWeapon.hrZero.value || useWeapon.hrZero.value,
 				type: weaponDamageType.value,
-				bonus: weaponDamage.value,
+				bonus: weaponDamage.value + categoryDamageBonus + typeDamageBonus,
 			};
 		} else if (damage.hasDamage.value) {
 			checkDamage = {
@@ -1032,5 +1051,44 @@ export class FUItem extends Item {
 			speaker: speaker,
 			targets: targets,
 		};
+	}
+
+	applyActiveEffects() {
+		const overrides = {};
+
+		// Organize non-disabled effects by their application priority
+		const changes = [];
+		for (const effect of this.allApplicableEffects()) {
+			if (!effect.active) continue;
+			changes.push(
+				...effect.changes.map((change) => {
+					const c = foundry.utils.deepClone(change);
+					c.effect = effect;
+					c.priority = c.priority ?? c.mode * 10;
+					return c;
+				}),
+			);
+		}
+		changes.sort((a, b) => a.priority - b.priority);
+
+		// Apply all changes
+		for (let change of changes) {
+			if (!change.key) continue;
+			const changes = change.effect.apply(this, change);
+			Object.assign(overrides, changes);
+		}
+
+		// Expand the set of final overrides
+		this.overrides = foundry.utils.expandObject(overrides);
+		this.render();
+	}
+
+	*allApplicableEffects() {
+		for (const effect of this.effects) {
+			// only yield effects that try to modify the item and not the actor
+			if (effect.target === this) {
+				yield effect;
+			}
+		}
 	}
 }

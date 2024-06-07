@@ -1,0 +1,7 @@
+$displayStates: block, inline, inline-block, flex, none, contents;
+
+@each $displayState in $displayStates {
+	.d-#{$displayState} {
+		display: $displayState;
+	}
+}

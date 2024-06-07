@@ -1,4 +1,5 @@
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/effects.mjs';
+import { FU } from '../helpers/config.mjs';
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -81,6 +82,8 @@ export class FUItemSheet extends ItemSheet {
 			zeroEffect: await TextEditor.enrichHTML(context.system?.zeroEffect?.description ?? ''),
 		};
 
+		context.FU = FU;
+
 		return context;
 	}
 
@@ -132,5 +135,16 @@ export class FUItemSheet extends ItemSheet {
 			const updateKey = type === 'offensive' ? 'isOffensive' : 'isMartial';
 			this.item.update({ [`system.${updateKey}.value`]: !system[updateKey].value });
 		}
+	}
+
+	_getSubmitData(updateData = {}) {
+		const data = super._getSubmitData(updateData);
+		// Prevent submitting overridden values
+		const overrides = foundry.utils.flattenObject(this.item.overrides);
+		for (let k of Object.keys(overrides)) {
+			if (k.startsWith('system.')) delete data[`data.${k.slice(7)}`]; // Band-aid for < v10 data
+			delete data[k];
+		}
+		return data;
 	}
 }

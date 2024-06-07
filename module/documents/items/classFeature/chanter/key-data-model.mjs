@@ -53,7 +53,7 @@ export class KeyDataModel extends ClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/chanter/feature-key-preview.hbs';
 	}
 
-	static getAdditionalData(model) {
+	static getAdditionalData() {
 		return {
 			types: FU.damageTypes,
 			statuses: KeyDataModel.statuses,

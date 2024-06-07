@@ -33,6 +33,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 		'systems/projectfu/templates/actor/partials/actor-item-name.hbs',
 		'systems/projectfu/templates/actor/partials/actor-actions.hbs',
+		'systems/projectfu/templates/actor/partials/actor-vehicle.hbs',
 		'systems/projectfu/templates/actor/partials/actor-clocks.hbs',
 		'systems/projectfu/templates/actor/partials/actor-npc-items.hbs',
 		'systems/projectfu/templates/actor/partials/actor-npc-skills.hbs',
@@ -100,6 +101,23 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Applications
 		'systems/projectfu/templates/app/app-group-check.hbs',
+		'systems/projectfu/templates/app/partials/inline-effect-config-modify-attribute.hbs',
+		'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
+		'systems/projectfu/templates/app/partials/inline-effect-config-modify-damage-bonuses.hbs',
+		'systems/projectfu/templates/app/partials/inline-effect-config-modify-accuracy.hbs',
+		'systems/projectfu/templates/app/partials/inline-effect-config-modify-defenses.hbs',
+
+		// Optional Rule Templates
+		'systems/projectfu/templates/optional/feature-basic-preview.hbs',
+
+		'systems/projectfu/templates/optional/partials/feature-progress-clock.hbs',
+		'systems/projectfu/templates/optional/partials/feature-progress-clock-xl.hbs',
+
+		'systems/projectfu/templates/optional/quirk/feature-quirk-sheet.hbs',
+		'systems/projectfu/templates/optional/quirk/feature-quirk-preview.hbs',
+
+		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-sheet.hbs',
+		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs',
 
 		// Class Feature Templates
 		'systems/projectfu/templates/feature/feature-basic-preview.hbs',
@@ -119,7 +137,26 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/chanter/feature-verse-preview.hbs',
 
 		'systems/projectfu/templates/feature/dancer/feature-dance-sheet.hbs',
+		'systems/projectfu/templates/feature/dancer/feature-dance-preview.hbs',
 
 		'systems/projectfu/templates/feature/symbolist/feature-symbol-sheet.hbs',
+
+		'systems/projectfu/templates/feature/esper/psychic-gift-sheet.hbs',
+		'systems/projectfu/templates/feature/esper/psychic-gift-preview.hbs',
+		'systems/projectfu/templates/feature/mutant/therioform-sheet.hbs',
+		'systems/projectfu/templates/feature/pilot/vehicle-sheet.hbs',
+		'systems/projectfu/templates/feature/pilot/vehicle-preview.hbs',
+		'systems/projectfu/templates/feature/pilot/armor-module-sheet.hbs',
+		'systems/projectfu/templates/feature/pilot/armor-module-preview.hbs',
+		'systems/projectfu/templates/feature/pilot/weapon-module-sheet.hbs',
+		'systems/projectfu/templates/feature/pilot/weapon-module-preview.hbs',
+		'systems/projectfu/templates/feature/pilot/support-module-sheet.hbs',
+		'systems/projectfu/templates/feature/pilot/support-module-preview.hbs',
+
+		// Combat HUD Partials
+		'systems/projectfu/templates/ui/partials/combat-bar-hp.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-mp.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-ip.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-zeropower.hbs',
 	]);
 };

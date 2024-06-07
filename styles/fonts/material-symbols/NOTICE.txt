@@ -1,0 +1,2 @@
+Material Symbols fonts by Google, licensed under Apache 2.0
+see https://github.com/google/material-design-icons

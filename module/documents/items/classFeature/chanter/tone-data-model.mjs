@@ -20,7 +20,7 @@ export class ToneDataModel extends ClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/chanter/feature-tone-sheet.hbs';
 	}
 
-	static async getAdditionalData(model) {
+	static async getAdditionalData() {
 		return {
 			rollData: {
 				key: {

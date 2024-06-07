@@ -1,4 +1,4 @@
-import {IsEquippedDataModel} from '../common/is-equipped-data-model.mjs';
+import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
 
 /**
  * @property {string} subtype.value
@@ -43,5 +43,9 @@ export class AccessoryDataModel extends foundry.abstract.TypeDataModel {
 				}),
 			}),
 		};
+	}
+
+	transferEffects() {
+		return this.isEquipped.value;
 	}
 }

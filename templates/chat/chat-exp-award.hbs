@@ -1,0 +1,45 @@
+<div class='exp-award projectfu'>
+    <fieldset class='title-fieldset'>
+        <legend class='resource-text-sm'>
+            {{localize 'FU.ChatExpAwardEarnedExp'}}
+        </legend>
+        <div class='grid exp-calculation'>
+            <div class='d-contents'>
+                <span>{{localize 'FU.ChatExpAwardBaseExp'}}:</span>
+                <span>{{baseExp}}</span>
+            </div>
+            <div class='d-contents'>
+                <span>{{localize 'FU.ChatExpAwardUltimaExp'}}:</span>
+                <span>{{ultimaExp}}</span>
+            </div>
+            <div class='d-contents'>
+                <span>{{localize 'FU.ChatExpAwardSpentFabula'}}:</span>
+                <span>{{spentFabula}}</span>
+            </div>
+            <div class='d-contents'>
+                <span>{{localize 'FU.ChatExpAwardActiveCharacters'}}:</span>
+                <span>{{activeCharacters.length}}</span>
+            </div>
+            <div class='d-contents'>
+                <span>{{localize 'FU.ChatExpAwardFabulaExp'}}:</span>
+                <span>{{fabulaExp}}</span>
+            </div>
+            <div class='d-contents exp-total'>
+                <strong>{{localize 'FU.ChatExpAwardTotalExp'}}:</strong>
+                <strong>{{totalExp}}</strong>
+            </div>
+        </div>
+    </fieldset>
+    <hr />
+    <fieldset class='active-characters title-fieldset'>
+        <legend class='resource-text-sm'>{{localize 'FU.ChatExpAwardActiveCharacters'}}:</legend>
+        <div>
+            {{#each activeCharacters}}
+                <div class='character'>
+                    <a class='content-link' data-id='{{this.id}}' data-type='{{this.type}}' data-uuid='{{this.uuid}}'><i
+                     class='fas fa-user'></i>{{this.name}}</a>
+                </div>
+            {{/each}}
+        </div>
+    </fieldset>
+</div>

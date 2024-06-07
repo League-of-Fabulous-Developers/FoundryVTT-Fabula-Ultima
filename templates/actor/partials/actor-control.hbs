@@ -1,26 +1,27 @@
 <div class="item-sm end">
-  {{#if (eq @root.actor.type "npc")}}
-  {{#if (eq (getGameSetting 'optionBehaviorRoll') true)}}
-  <a class="item-control item-behavior"
-    data-tooltip="{{#if item.system.isBehavior.value}}{{ localize 'FU.BehaviorRemove' }}{{else}}{{ localize 'FU.BehaviorAdd' }}{{/if}}"
-    aria-describedby="tooltip">
-    <i class="{{#if item.system.isBehavior.value}}fas{{else}}far{{/if}} fa-address-book"></i>
-  </a>
-  {{/if}}
-  {{/if}}
+    {{#if (eq @root.actor.type "npc")}}
+        {{#if (eq (getGameSetting 'optionBehaviorRoll') true)}}
+            <a class="item-control item-behavior"
+               data-tooltip="{{#if item.system.isBehavior.value}}{{localize 'FU.BehaviorRemove'}}{{else}}{{localize
+                'FU.BehaviorAdd'}}{{/if}}"
+               aria-describedby="tooltip">
+                <i class="{{#if item.system.isBehavior.value}}fas{{else}}far{{/if}} fa-address-book"></i>
+            </a>
+        {{/if}}
+    {{/if}}
 
-  <a class="item-control item-favored"
-    data-tooltip="{{#if item.system.isFavored.value}}{{ localize 'FU.FavoriteRemove' }}{{else}}{{ localize 'FU.Favorite' }}{{/if}}"
-    aria-describedby="tooltip">
-    <i class="{{#if item.system.isFavored.value}}fas{{else}}far{{/if}} fa-star"></i>
-  </a>
-  <a class="item-control item-duplicate" data-tooltip="{{ localize 'FU.Duplicate' }}" aria-describedby="tooltip">
-    <i class="fas fa-copy"></i>
-  </a>
-  <a class="item-control item-edit" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
-    <i class="fas fa-edit"></i>
-  </a>
-  <a class="item-control item-delete" data-tooltip="{{ localize 'FU.Delete' }}" aria-describedby="tooltip">
-    <i class="fas fa-trash"></i>
-  </a>
+    <a class="item-control item-favored"
+       data-tooltip="{{#if item.system.isFavored.value}}{{ localize 'FU.FavoriteRemove' }}{{else}}{{ localize
+        'FU.Favorite' }}{{/if}}" aria-describedby="tooltip">
+        <i class="{{#if item.system.isFavored.value}}fas{{else}}far{{/if}} fa-star"></i>
+    </a>
+    <a class="item-control item-edit" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
+        <i class="fas fa-edit"></i>
+    </a>
+    <a class="item-control item-duplicate" data-tooltip="{{ localize 'FU.Duplicate' }}" aria-describedby="tooltip">
+        <i class="fas fa-copy"></i>
+    </a>
+    <a class="item-control item-delete" data-tooltip="{{ localize 'FU.Delete' }}" aria-describedby="tooltip">
+        <i class="fas fa-trash"></i>
+    </a>
 </div>

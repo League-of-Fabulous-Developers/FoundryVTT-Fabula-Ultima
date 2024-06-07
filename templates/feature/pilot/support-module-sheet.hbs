@@ -1,0 +1,23 @@
+<div class="class-feature">
+    <fieldset class="title-fieldset desc resource-content">
+        <legend class="resource-label-full">
+            <label class="resource-label-m">{{localize 'FU.ClassFeatureSupportModuleConfig'}}</label>
+        </legend>
+        <div class="flexrow flex-group-center">
+            <label class="resource-label-m">
+                {{localize 'FU.ClassFeatureSupportModuleComplex'}}
+                <div>
+                    <input type="checkbox" name="system.data.complex" {{checked system.data.complex}}>
+                </div>
+            </label>
+        </div>
+    </fieldset>
+    <fieldset class="title-fieldset desc resource-content">
+        <legend class="resource-label-full">
+            <label class="resource-label-m">{{localize 'FU.Description'}}</label>
+        </legend>
+        <div>
+        {{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
+        </div>
+    </fieldset>
+</div>

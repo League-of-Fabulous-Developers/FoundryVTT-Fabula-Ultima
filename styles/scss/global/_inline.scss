@@ -1,95 +1,123 @@
-@import "../utils/colors";
+@import '../utils/colors';
 
 .inline {
+	display: inline-block;
 
-    display: inline-block;
+	&.broken {
+		font-size: var(--font-size-14);
+		background: color-mix(in srgb, red, transparent 95%);
+		padding: 0.125em 0.25em;
+		border: 1px dashed var(--color-border-highlight-alt);
+		border-radius: 1px;
+		white-space: nowrap;
+		word-break: break-all;
 
-    &.inline-damage, &.inline-recovery, &.inline-loss {
-        font-size: var(--font-size-14);
-        background: #DDD;
-        padding: 0.125em 0.25em;
-        border: 1px solid var(--color-border-dark-tertiary);
-        border-radius: 2px;
-        white-space: nowrap;
-        word-break: break-all;
-    }
+		.fas {
+			margin-right: 0.125rem;
+		}
+	}
 
-    &.inline-damage {
-        .fun {
-            margin-left: 0.125rem;
-            display: inline-block;
-            width: var(--font-size-18);
-            height: var(--font-size-18);
-        }
-    }
+	&.inline-damage,
+	&.inline-recovery,
+	&.inline-loss,
+	&.inline-effect {
+		font-size: var(--font-size-14);
+		background: #ddd;
+		padding: 0.125em 0.25em;
+		border: 1px solid var(--color-border-dark-tertiary);
+		border-radius: 2px;
+		white-space: nowrap;
+		word-break: break-all;
+	}
 
-    &.inline-recovery, &.inline-loss {
-        .fas, .ra {
-            margin-left: 0.125rem;
-            vertical-align: middle;
-            font-size: var(--font-size-16);
-        }
+	&.inline-damage {
+		.fun {
+			margin-left: 0.125rem;
+			display: inline-block;
+			width: var(--font-size-18);
+			height: var(--font-size-18);
+		}
+	}
 
-        .indicator {
-            width: 0;
-            height: 0;
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: 0.125em;
-            border-left: calc(var(--font-size-16) / 2) solid transparent;
-            border-right: calc(var(--font-size-16) / 2) solid transparent;
-            filter: drop-shadow(0px 1px 1px black);
-        }
+	&.inline-recovery,
+	&.inline-loss {
+		.fas,
+		.ra {
+			margin-left: 0.125rem;
+			vertical-align: middle;
+			font-size: var(--font-size-16);
+		}
 
-        .hp {
-            background: linear-gradient(to right, $color-hp, color-mix(in srgb, $color-hp, black 30%));
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+		.indicator {
+			width: 0;
+			height: 0;
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 0.125em;
+			border-left: calc(var(--font-size-16) / 2) solid transparent;
+			border-right: calc(var(--font-size-16) / 2) solid transparent;
+			filter: drop-shadow(0px 1px 1px black);
+		}
 
-        .mp {
-            background: linear-gradient(to right, $color-mp, color-mix(in srgb, $color-mp, black 30%));
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+		.hp {
+			background: linear-gradient(to right, $color-hp, color-mix(in srgb, $color-hp, black 30%));
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
 
-        .ip {
-            background: linear-gradient(to right, $color-ip, color-mix(in srgb, $color-ip, black 30%));
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    }
+		.mp {
+			background: linear-gradient(to right, $color-mp, color-mix(in srgb, $color-mp, black 30%));
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
 
-    &.inline-recovery {
-        .indicator {
-            border-bottom: calc(var(--font-size-16) * 0.866) solid $color-success;
-        }
+		.ip {
+			background: linear-gradient(to right, $color-ip, color-mix(in srgb, $color-ip, black 30%));
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	}
 
-        &:hover .indicator {
-            animation: 0.5s infinite alternate linear recovery-indicator-bobbing;
-        }
-    }
+	&.inline-recovery {
+		.indicator {
+			border-bottom: calc(var(--font-size-16) * 0.866) solid $color-success;
+		}
 
-    &.inline-loss  {
-        .indicator {
-            border-top: calc(var(--font-size-16) * 0.866) solid $color-danger;
-            border-bottom: calc(var(--font-size-16) * 0.134) solid transparent;
-        }
+		&:hover .indicator {
+			animation: 0.5s infinite alternate linear recovery-indicator-bobbing;
+		}
+	}
 
-        &:hover .indicator {
-            animation: 0.5s infinite alternate linear loss-indicator-bobbing;
-        }
-    }
+	&.inline-loss {
+		.indicator {
+			border-top: calc(var(--font-size-16) * 0.866) solid $color-danger;
+			border-bottom: calc(var(--font-size-16) * 0.134) solid transparent;
+		}
+
+		&:hover .indicator {
+			animation: 0.5s infinite alternate linear loss-indicator-bobbing;
+		}
+	}
+
+	&.inline-effect {
+		.fun {
+			margin-right: 0.125rem;
+			display: inline-block;
+			width: var(--font-size-18);
+			height: var(--font-size-18);
+			filter: brightness(0.3);
+		}
+	}
 }
 
 @keyframes recovery-indicator-bobbing {
-    to {
-        translate: 0 -2px;
-    }
+	to {
+		translate: 0 -2px;
+	}
 }
 
 @keyframes loss-indicator-bobbing {
-    to {
-        translate: 0 2px;
-    }
+	to {
+		translate: 0 2px;
+	}
 }

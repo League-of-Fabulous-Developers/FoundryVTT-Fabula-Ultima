@@ -1,4 +1,5 @@
-import {ProgressDataModel} from '../common/progress-data-model.mjs';
+import { ProgressDataModel } from '../common/progress-data-model.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 /**
  * @property {string} subtype.value
@@ -34,20 +35,31 @@ export class ProjectDataModel extends foundry.abstract.TypeDataModel {
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 			hasClock: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
-			potency: new SchemaField({ value: new StringField({ initial: 'minor', choices: ['minor', 'medium', 'major', 'extreme'] }) }),
-			area: new SchemaField({ value: new StringField({ initial: 'individual', choices: ['individual', 'small', 'large', 'huge'] }) }),
-			use: new SchemaField({ value: new StringField({ initial: 'consumable', choices: ['consumable', 'permanent'] }) }),
+			potency: new SchemaField({ value: new StringField({ initial: 'minor', choices: Object.keys(FU.potency) }) }),
+			area: new SchemaField({ value: new StringField({ initial: 'individual', choices: Object.keys(FU.area) }) }),
+			use: new SchemaField({ value: new StringField({ initial: 'consumable', choices: Object.keys(FU.uses) }) }),
 			isFlawed: new SchemaField({ value: new BooleanField() }),
 			defectMod: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			numTinker: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			numHelper: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			lvlVision: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 5, integer: true, nullable: false }) }),
-			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
-			progressPerDay: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			days: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			discount: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 			clock: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 			source: new SchemaField({ value: new StringField() }),
 		};
+	}
+
+	prepareBaseData() {
+		const potencyCosts = { minor: 100, medium: 200, major: 400, extreme: 800 };
+		const areaCosts = { individual: 1, small: 2, large: 3, huge: 4 };
+		const usesCosts = { consumable: 1, permanent: 5 };
+
+		const flawedMod = this.isFlawed.value ? 0.75 : 1;
+
+		// Update system values
+		(this.cost ??= {}).value = potencyCosts[this.potency.value] * areaCosts[this.area.value] * usesCosts[this.use.value] * flawedMod;
+		this.progress.max = Math.max(Math.ceil(this.cost.value / 100), 1);
+		(this.discount ??= {}).value = this.lvlVision.value * 100;
+		(this.progressPerDay ??= {}).value = this.numTinker.value * 2 + this.numHelper.value + this.lvlVision.value;
+		(this.days ??= {}).value = Math.ceil(this.progress.max / (this.numTinker.value * 2 + this.numHelper.value + this.lvlVision.value));
 	}
 }

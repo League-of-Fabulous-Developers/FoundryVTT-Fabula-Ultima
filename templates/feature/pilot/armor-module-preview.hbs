@@ -1,0 +1,10 @@
+<div class="flexrow item-full start">
+    <span class="description-effect">{{system.summary.value}}</span>
+    {{#if additionalData.vehicle}}
+        <div class="flex0">
+            <a data-action="toggleArmorModule" data-item-id="{{item.id}}">
+                <i class="fas {{#if additionalData.active}}fa-circle-check{{else}}fa-circle fa-thin{{/if}}"></i>
+            </a>
+        </div>
+    {{/if}}
+</div>

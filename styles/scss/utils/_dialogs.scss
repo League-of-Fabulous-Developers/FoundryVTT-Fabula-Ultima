@@ -1,75 +1,123 @@
 .dialog-content {
+	.resource-content {
+		color: $color-secondary;
+		background-color: transparent;
+	}
 
-    .resource-content {
-        color: $color-secondary;
-        background-color: transparent;
-    }
+	/* Description Format */
+	.desc {
+		background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
+		border-radius: 12px;
+		border: 1px solid #2c4a4254;
+		padding: 5px;
+		.inline-desc {
+			background: linear-gradient(to right, rgb(233, 243, 234), rgb(233, 243, 234, 0.5));
+			border-radius: 12px;
+			border: 1px solid #a2b29f;
+			padding: 5px;
+		}
+	}
 
-    /* Description Format */
-    .desc {
-        background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
-        border-radius: 12px;
-        border: 1px solid #2c4a4254;
-        padding: 5px;
-    }
+	fieldset {
+		background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
+		border-radius: 12px;
+		border: 1px solid #2c4a4254;
+		padding: 5px;
+		margin-bottom: 5px;
 
-    fieldset {
-        background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
-        border-radius: 12px;
-        border: 1px solid #2c4a4254;
-        padding: 5px;
-        margin-bottom: 5px;
+		legend {
+			border-radius: 10px;
+			margin: 0 auto;
+			padding: 0px 15px;
+			background: $color-secondary;
+			color: $color-primary;
+			position: relative;
+			text-align: left;
+			width: auto;
+		}
+	}
 
-        legend {
-            border-radius: 10px;
-            margin: 0 auto;
-            padding: 0px 15px;
-            background: $color-secondary;
-            color: $color-primary;
-            position: relative;
-            text-align: left;
-            width: auto;
-        }
-    }
+	.radio-container {
+		display: inline-flex;
+		gap: 5px;
 
-    .radio-container {
-        display: inline-flex;
-        gap: 5px;
-
-        label {
-            font-size: 16px;
-            line-height: 1.45em;
-            font-family: "PT Sans Narrow", sans-serif;
-        }
-    }
-
+		label {
+			font-size: 16px;
+			line-height: 1.45em;
+			font-family: 'PT Sans Narrow', sans-serif;
+		}
+	}
 }
 
 .dialog-buttons {
-    margin-top: 5px;
+	margin-top: 5px;
 }
 
 .dialog-group-check-cancel {
-    padding: 0.5em;
+	padding: 0.5em;
 }
 
 .dialog-group-check-support {
-    &>* {
-        margin: 0.5em;
-    }
+	& > * {
+		margin: 0.5em;
+	}
 
-    .leader {
-        font-weight: bold;
-    }
+	.leader {
+		font-weight: bold;
+	}
 
-    .bond {
-        padding: 0.25em;
-        border: 1px solid gray;
-        margin-bottom: 0.25em;
+	.bond {
+		padding: 0.25em;
+		border: 1px solid gray;
+		margin-bottom: 0.25em;
 
-        .feeling,
-        .bondWith {
-            font-weight: bold;
-        }
-    }
+		.feeling,
+		.bondWith {
+			font-weight: bold;
+		}
+	}
+}
+
+.dialog-name .dialog-image {
+	border: none;
+	padding-right: 5px;
+	flex: 0 0 30px;
+	position: relative;
+}
+
+.dialog-name .dialog-image {
+	img {
+		max-width: 100%;
+		display: block;
+		height: 24px;
+		width: 24px;
+		overflow: hidden;
+		border-radius: 5px;
+		background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+		transition:
+			transform 0.3s ease,
+			opacity 0.3s ease;
+	}
+
+	&:hover {
+		img {
+			transform: scale(1.1);
+			transform-origin: center center;
+			opacity: 0.75;
+
+			&::before {
+				content: '';
+				position: absolute;
+				width: 24px;
+				height: 24px;
+				background: $fu-d20 center/cover;
+				opacity: 0.75;
+				z-index: -1;
+			}
+		}
+	}
+}
+
+.active-effect-sheet .editor {
+	height: 200px;
 }

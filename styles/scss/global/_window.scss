@@ -1,120 +1,119 @@
 .window-app .window-content {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  color: var(--color-text-dark-primary);
-  overflow-y: auto !important;
-  overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	color: var(--color-text-dark-primary);
+	overflow-y: auto !important;
+	overflow-x: hidden;
 }
 
 .window-app .window-header {
-  background: rgba($color-secondary, 0.95);
+	background: rgba($color-secondary, 0.95);
 }
 
 /* Sheet Background */
 .backgroundstyle {
-  background: #{$background-core},
-  linear-gradient(to right, $color-beige, $color-faint);
-  background-blend-mode: multiply;
-  background-repeat: repeat-y;
-  background-position: right top;
-  background-color: transparent !important;
-  .window-content {
-    background: none;
-  }
+	background:
+		#{$background-core},
+		linear-gradient(to right, $color-beige, $color-faint);
+	background-blend-mode: multiply;
+	background-repeat: repeat-y;
+	background-position: right top;
+	background-color: transparent !important;
+	.window-content {
+		background: none;
+	}
 }
 
 .sheet nav.sheet-tabs .item {
-  margin-block: auto;
-  padding: 4px 0 4px 4px;
+	margin-block: auto;
+	padding: 4px 0 4px 4px;
 }
 
 .selectable {
-
-  &:hover,
-  &:focus {
-    color: #000;
-    text-shadow: 0 0 10px $color-danger;
-    cursor: pointer;
-  }
+	&:hover,
+	&:focus {
+		color: #000;
+		text-shadow: 0 0 10px $color-danger;
+		cursor: pointer;
+	}
 }
 
 .rollable {
-
-  &:hover,
-  &:focus {
-    color: #000;
-    text-shadow: 2px 2px 12px $color-info;
-    cursor: pointer;
-  }
+	&:hover,
+	&:focus {
+		color: #000;
+		text-shadow: 2px 2px 12px $color-info;
+		cursor: pointer;
+	}
 }
 
 .tabs .item.active {
-  text-shadow: 2px 2px 12px $color-info !important;
+	text-shadow: 2px 2px 12px $color-info !important;
 }
 
 /* Apply focus style to checkboxes */
-input[type="checkbox"]:focus {
-  box-shadow: 0 0 5px $color-danger;
-  outline: none;
+input[type='checkbox']:focus {
+	box-shadow: 0 0 5px $color-danger;
+	outline: none;
 }
 
 @keyframes zoomOutUp {
-  40% {
-    opacity: 1;
-    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
+	40% {
+		opacity: 1;
+		transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+		animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	}
 
-  to {
-    opacity: 0;
-    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0);
-    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
-  }
+	to {
+		opacity: 0;
+		transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0);
+		animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+	}
 }
 
 .zoomOutUp {
-  animation-name: zoomOutUp;
-  transform-origin: center bottom;
+	animation-name: zoomOutUp;
+	transform-origin: center bottom;
 }
 
 @keyframes floating {
-  0% {
-    transform: translate(0, 0px);
-  }
+	0% {
+		transform: translate(0, 0px);
+	}
 
-  50% {
-    transform: translate(0, 6px);
-  }
+	50% {
+		transform: translate(0, 6px);
+	}
 
-  100% {
-    transform: translate(0, -0px);
-  }
+	100% {
+		transform: translate(0, -0px);
+	}
 }
 
 .notification.projectfu-spellname {
-  animation: zoomOutUp;
-  animation-delay: 4s;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-in-out;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 45px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-  box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.3);
-  background-image: linear-gradient($color-charname-gradient);
-  border-style: solid;
-  border-width: thin;
-  border-color: $color-secondary;
-  padding: 24px;
-  margin: auto;
-  border-radius: 24px;
+	animation: zoomOutUp;
+	animation-delay: 4s;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 45px;
+	text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+	box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.3);
+	background-image: linear-gradient($color-charname-gradient);
+	border-style: solid;
+	border-width: thin;
+	border-color: $color-secondary;
+	padding: 24px;
+	margin: auto;
+	border-radius: 24px;
 }
 
 .notification.projectfu-spellname .close {
-  opacity: 0;
-  /* Hide the notification by reducing opacity */
-  pointer-events: none;
-  /* Disable interactions with hidden notifications */
+	opacity: 0;
+	/* Hide the notification by reducing opacity */
+	pointer-events: none;
+	/* Disable interactions with hidden notifications */
 }

@@ -1,6 +1,6 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
-import { SYSTEM } from '../../../../settings.js';
 import { Flags } from '../../../../helpers/flags.mjs';
+import { SYSTEM } from '../../../../helpers/config.mjs';
 
 const durations = {
 	instant: 'FU.ClassFeatureDanceDurationInstant',
@@ -29,7 +29,11 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/dancer/feature-dance-sheet.hbs';
 	}
 
-	static async getAdditionalData(model) {
+	static get previewTemplate() {
+		return 'systems/projectfu/templates/feature/dancer/feature-dance-preview.hbs';
+	}
+
+	static async getAdditionalData() {
 		return {
 			durations,
 		};

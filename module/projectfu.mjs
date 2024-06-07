@@ -6,9 +6,9 @@ import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
 import { FUItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
-import { FU } from './helpers/config.mjs';
-import { registerSystemSettings, SETTINGS, SYSTEM } from './settings.js';
-import { addRollContextMenuEntries, createCheckMessage, rollCheck } from './helpers/checks.mjs';
+import { FU, SYSTEM } from './helpers/config.mjs';
+import { registerSystemSettings, SETTINGS } from './settings.js';
+import { addRollContextMenuEntries, createCheckMessage, promptCheck, rollCheck } from './helpers/checks.mjs';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -34,28 +34,38 @@ import { ZeroPowerDataModel } from './documents/items/zeropower/zero-power-data-
 import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs';
 import { onSocketLibReady } from './socket.mjs';
 import { statusEffects } from './helpers/statuses.mjs';
+
 import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-feature-type-data-model.mjs';
 import { FUClassFeatureSheet } from './documents/items/classFeature/class-feature-sheet.mjs';
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
+
+import { OptionalFeatureTypeDataModel } from './documents/items/optionalFeature/optional-feature-type-data-model.mjs';
+import { FUOptionalFeatureSheet } from './documents/items/optionalFeature/optional-feature-sheet.mjs';
+import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './documents/items/optionalFeature/optional-feature-data-model.mjs';
+import { registerOptionalFeatures } from './documents/items/optionalFeature/optional-features.mjs';
+
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
-import { FUActiveEffect, onRenderActiveEffectConfig } from './documents/effects/active-effect.mjs';
+import { FUActiveEffect, onApplyActiveEffect, onRenderActiveEffectConfig } from './documents/effects/active-effect.mjs';
 import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
 import { InlineResources } from './helpers/inline-resources.mjs';
 import { Flags } from './helpers/flags.mjs';
-import { InlineElementsHowTo } from './helpers/inline-how-to.mjs';
 import { InlineIcon } from './helpers/inline-icons.mjs';
 import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
-import { CombatHUD } from './ui/combat-hud.mjs';
-import { promptCheck } from './helpers/checks.mjs';
+import { InlineEffects } from './helpers/inline-effects.mjs';
+import { SystemControls } from './helpers/system-controls.mjs';
+import { PlayerListEnhancements } from './helpers/player-list-enhancements.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
 	RollableClassFeatureDataModel,
+	OptionalFeatureDataModel,
+	RollableOptionalFeatureDataModel,
 	SYSTEM,
 	Flags,
+	SystemControls,
 };
 
 /* -------------------------------------------- */
@@ -79,6 +89,8 @@ Hooks.once('init', async () => {
 		GroupCheck: GroupCheck,
 		ClassFeatureDataModel,
 		RollableClassFeatureDataModel,
+		OptionalFeatureDataModel,
+		RollableOptionalFeatureDataModel,
 	};
 
 	// Add custom constants for configuration.
@@ -99,6 +111,16 @@ Hooks.once('init', async () => {
 		character: CharacterDataModel,
 		npc: NpcDataModel,
 	};
+	CONFIG.Actor.trackableAttributes = {
+		character: {
+			bar: ['resources.hp', 'resources.mp', 'resources.ip'],
+			value: ['resources.fp.value'],
+		},
+		npc: {
+			bar: ['resources.hp', 'resources.mp'],
+			value: ['resources.fp.value'],
+		},
+	};
 	CONFIG.Item.documentClass = FUItem;
 	CONFIG.Item.dataModels = {
 		accessory: AccessoryDataModel,
@@ -107,6 +129,7 @@ Hooks.once('init', async () => {
 		behavior: BehaviorDataModel,
 		class: ClassDataModel,
 		classFeature: ClassFeatureTypeDataModel,
+		optionalFeature: OptionalFeatureTypeDataModel,
 		consumable: ConsumableDataModel,
 		heroic: HeroicSkillDataModel,
 		miscAbility: MiscAbilityDataModel,
@@ -122,6 +145,7 @@ Hooks.once('init', async () => {
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
 	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
+	Hooks.on('applyActiveEffect', onApplyActiveEffect);
 
 	// Register system settings
 	registerSystemSettings();
@@ -154,16 +178,16 @@ Hooks.once('init', async () => {
 		types: ['classFeature'],
 		makeDefault: true,
 	});
+	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
+		types: ['optionalFeature'],
+		makeDefault: true,
+	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	registerChatInteraction();
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
-
-	Hooks.on('renderChatMessage', InlineElementsHowTo.activateListeners);
-	Hooks.on('renderApplication', InlineElementsHowTo.activateListeners);
-	Hooks.on('renderActorSheet', InlineElementsHowTo.activateListeners);
-	Hooks.on('renderItemSheet', InlineElementsHowTo.activateListeners);
+	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
 
 	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
 
@@ -183,9 +207,15 @@ Hooks.once('init', async () => {
 
 	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 
+	InlineEffects.initialize();
+
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
 
 	TextEditorCommandDropdown.initialize();
+
+	SystemControls.initialize();
+
+	PlayerListEnhancements.initialize();
 
 	// Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
@@ -302,6 +332,10 @@ Handlebars.registerHelper('getIconClass', function (item) {
 	return 'fas fa-toolbox';
 });
 
+Handlebars.registerHelper('mathAbs', function (value) {
+	return Math.abs(value);
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
@@ -352,14 +386,6 @@ Hooks.once('ready', () => {
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
-
-Hooks.on('getSceneControlButtons', (controls) => {
-	const tokenButton = controls.find((control) => control.name === 'token');
-	if (!tokenButton) return;
-
-	tokenButton.tools.push(CombatHUD.getToggleControlButton());
-	tokenButton.tools.push(CombatHUD.getResetControlButton());
-});
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */

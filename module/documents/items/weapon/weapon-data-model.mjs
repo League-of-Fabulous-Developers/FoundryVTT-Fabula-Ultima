@@ -66,4 +66,15 @@ export class WeaponDataModel extends foundry.abstract.TypeDataModel {
 		WeaponMigrations.run(source);
 		return source;
 	}
+
+	prepareBaseData() {
+		if (this.isCustomWeapon.value) {
+			this.hands.value = 'two-handed';
+			this.cost.value = Math.max(300, this.cost.value);
+		}
+	}
+
+	transferEffects() {
+		return this.isEquipped.value && !this.parent.actor?.system.vehicle.weaponsActive;
+	}
 }

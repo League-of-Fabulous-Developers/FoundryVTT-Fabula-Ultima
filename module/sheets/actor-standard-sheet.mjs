@@ -1,8 +1,12 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
-import { createChatMessage, promptCheck } from '../helpers/checks.mjs';
+import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/checks.mjs';
+import { actionHandler } from '../helpers/action-handler.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
+// import { OpposedCheck } from '../helpers/opposed-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
-import { SETTINGS, SYSTEM } from '../settings.js';
+import { SETTINGS } from '../settings.js';
+import { FU, SYSTEM } from '../helpers/config.mjs';
+import { FUActor } from '../documents/actors/actor.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -45,7 +49,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		const context = super.getData();
 
 		// Use a safe clone of the actor data for further operations.
-		const actorData = this.actor.toObject(false);
+		const actorData = this.actor;
 
 		// Add the actor's data to context.data for easier access, as well as flags.
 		context.system = actorData.system;
@@ -105,6 +109,16 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.enrichedHtml = {
 			description: await TextEditor.enrichHTML(context.system.description ?? ''),
 		};
+
+		const studyRollTiers = game.settings.get(SYSTEM, SETTINGS.useRevisedStudyRule) ? FU.studyRoll.revised : FU.studyRoll.core;
+		let studyRoll;
+		studyRoll = studyRollTiers.map((value) => value + '+');
+		studyRoll.unshift('-');
+		studyRoll = studyRoll.reduce((agg, curr, idx) => (agg[idx] = curr) && agg, {});
+
+		context.studyRoll = studyRoll;
+
+		context.FU = FU;
 
 		return context;
 	}
@@ -170,7 +184,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Iterate through items, allocating to containers
 		for (let i of context.items) {
-			i.img = i.img || DEFAULT_TOKEN;
+			i.img = i.img || CONST.DEFAULT_TOKEN;
 
 			if (i.system.quality?.value) {
 				i.quality = i.system.quality.value;
@@ -256,10 +270,6 @@ export class FUStandardActorSheet extends ActorSheet {
 						});
 					}
 
-					if (rp.current === rp.max) {
-						// console.log(item.name + ' is MAXXED out!');
-					}
-
 					item.rpArr = rpArr.reverse();
 				}
 			}
@@ -275,10 +285,6 @@ export class FUStandardActorSheet extends ActorSheet {
 							id: i + 1,
 							checked: parseInt(level.value) === i + 1,
 						});
-					}
-
-					if (level.value === level.max) {
-						// console.log('Skill is MAXXED out!');
 					}
 
 					item.skillArr = skillArr;
@@ -301,15 +307,17 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 			if (i.type === 'basic') {
 				const itemObj = context.actor.items.get(i._id);
-				const weapData = itemObj.getWeaponDisplayData();
+				const weapData = itemObj.getWeaponDisplayData(this.actor);
 				i.quality = weapData.qualityString;
+				i.detail = weapData.detailString;
 				i.attackString = weapData.attackString;
 				i.damageString = weapData.damageString;
 				basics.push(i);
 			} else if (i.type === 'weapon') {
 				const itemObj = context.actor.items.get(i._id);
-				const weapData = itemObj.getWeaponDisplayData();
+				const weapData = itemObj.getWeaponDisplayData(this.actor);
 				i.quality = weapData.qualityString;
+				i.detail = weapData.detailString;
 				i.attackString = weapData.attackString;
 				i.damageString = weapData.damageString;
 				weapons.push(i);
@@ -317,8 +325,9 @@ export class FUStandardActorSheet extends ActorSheet {
 				armor.push(i);
 			} else if (i.type === 'shield') {
 				const itemObj = context.actor.items.get(i._id);
-				const weapData = itemObj.getWeaponDisplayData();
+				const weapData = itemObj.getWeaponDisplayData(this.actor);
 				i.quality = weapData.qualityString;
+				i.detail = weapData.detailString;
 				i.attackString = weapData.attackString;
 				i.damageString = weapData.damageString;
 				shields.push(i);
@@ -335,8 +344,9 @@ export class FUStandardActorSheet extends ActorSheet {
 				heroics.push(i);
 			} else if (i.type === 'spell') {
 				const itemObj = context.actor.items.get(i._id);
-				const spellData = itemObj.getSpellDisplayData();
+				const spellData = itemObj.getSpellDisplayData(this.actor);
 				i.quality = spellData.qualityString;
+				i.detail = spellData.detailString;
 				i.attackString = spellData.attackString;
 				i.damageString = spellData.damageString;
 				spells.push(i);
@@ -394,6 +404,32 @@ export class FUStandardActorSheet extends ActorSheet {
 			});
 			featureType.items[item.id] = { item, additionalData: await featureType.feature?.getAdditionalData(item.system.data) };
 		}
+
+		context.optionalFeatures = {};
+		for (const item of this.actor.itemTypes.optionalFeature) {
+			const optionalType = (context.optionalFeatures[item.system.optionalType] ??= {
+				optional: item.system.data?.constructor,
+				items: {},
+			});
+			optionalType.items[item.id] = { item, additionalData: await optionalType.optional?.getAdditionalData(item.system.data) };
+
+			// Feature Clocks
+			const relevantTypes = ['optionalFeature'];
+
+			if (relevantTypes.includes(item.type)) {
+				const progressArr = [];
+				const progress = item.system.data.progress || { current: 0, max: 6 };
+
+				for (let i = 0; i < progress.max; i++) {
+					progressArr.push({
+						id: i + 1,
+						checked: parseInt(progress.current) === i + 1,
+					});
+				}
+
+				item.progressArr = progressArr.reverse();
+			}
+		}
 	}
 
 	/* -------------------------------------------- */
@@ -419,6 +455,23 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 		});
 
+		// Open the active effect dialog when middle-clicking on an effect
+		html.find('.effect').mouseup((ev) => {
+			if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
+				const li = $(ev.currentTarget);
+				const effectId = li.data('effectId');
+				const owner = this.actor;
+				let effect;
+				if (owner instanceof FUActor) {
+					effect = Array.from(owner.allApplicableEffects()).find((value) => value.id === effectId);
+				} else {
+					effect = owner.effects.get(effectId);
+				}
+				// Render the sheet for the active effect
+				effect.sheet.render(true);
+			}
+		});
+
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
@@ -436,11 +489,18 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('.item-create-dialog').click(this._onItemCreateDialog.bind(this));
 
 		// Delete Inventory Item
-		html.find('.item-delete').click((ev) => {
+		html.find('.item-delete').click(async (ev) => {
 			const li = $(ev.currentTarget).parents('.item');
 			const item = this.actor.items.get(li.data('itemId'));
-			item.delete();
-			li.slideUp(200, () => this.render(false));
+			const confirmation = await Dialog.confirm({
+				title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
+				content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
+				rejectClose: false,
+			});
+			if (confirmation) {
+				item.delete();
+				li.slideUp(200, () => this.render(false));
+			}
 		});
 
 		html.find('.study-button').click(() => handleStudyRoll.bind(this)());
@@ -455,11 +515,17 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Update Skill Level
 		html.find('.skillLevel input').click((ev) => this._onSkillLevelUpdate(ev));
 
-		// Update Progress
-		html.find('.progress input').click((ev) => this._onProgressUpdate(ev));
+		// Update Progress - Click Event
+		html.find('.progress input').click((ev) => {
+			const dataType = $(ev.currentTarget).closest('.progress').data('type');
+			this._onProgressUpdate(ev, dataType);
+		});
 
-		// Update Progress
-		html.find('.progress input').contextmenu((ev) => this._onProgressReset(ev));
+		// Update Progress - Contextmenu Event
+		html.find('.progress input').contextmenu((ev) => {
+			const dataType = $(ev.currentTarget).closest('.progress').data('type');
+			this._onProgressReset(ev, dataType);
+		});
 
 		/**
 		 * Handles item click events, equipping or unequipping items based on the click type.
@@ -509,16 +575,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			if (isRightClick) {
 				ev.preventDefault();
 			}
-
-			// Log information
-			// console.log('Item ID:', itemId);
-			// console.log('Item Type:', itemType);
-			// console.log('Equipped Slot:', slot);
-			// console.log('Current Equipped:', currentEquipped);
-			// console.log(
-			// 	`${slot} Equipped Items:`,
-			// 	this.actor.items.filter((i) => i.system.isEquipped && i.system.isEquipped.slot === slot).map((i) => i.name),
-			// );
 		}
 
 		// Helper function to get the icon class for an equipped item
@@ -565,13 +621,6 @@ export class FUStandardActorSheet extends ActorSheet {
 				});
 				this._expanded.add(itemId);
 			}
-
-			updateDescVisibility(parentEl);
-		};
-
-		const updateDescVisibility = (parentEl) => {
-			const itemId = parentEl.data('item-id');
-			const isDescVisible = this._expanded.has(itemId);
 		};
 
 		html.find('.click-item').click(toggleDesc);
@@ -652,6 +701,22 @@ export class FUStandardActorSheet extends ActorSheet {
 			await onRest(this.actor, isRightClick);
 		});
 
+		async function hpCrisis(actor) {
+			const maxHP = actor.system.resources.hp.max;
+			const crisisHP = Math.ceil(maxHP / 2);
+
+			const updateData = {
+				'system.resources.hp.value': crisisHP,
+			};
+
+			await actor.update(updateData);
+			actor.sheet.render(true);
+		}
+
+		html.find('.crisisHP').on('click', async (ev) => {
+			await hpCrisis(this.actor);
+		});
+
 		// Check if bonds object exists, if not, initialize
 		const bonds = this.actor.system.resources.bonds;
 		if (!bonds) {
@@ -672,8 +737,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('.bond-add').click(async (ev) => {
 			ev.preventDefault();
 			const bonds = this.actor.system.resources.bonds;
-			if (bonds.length >= 6) {
-				ui.notifications.warn('Maximum number of bonds (6) reached.');
+			const maxBondLength = game.settings.get('projectfu', 'optionBondMaxLength');
+			if (bonds.length >= maxBondLength) {
+				ui.notifications.warn(`Maximum number of bonds (${maxBondLength}) reached.`);
 				return;
 			}
 			const newBonds = [...bonds];
@@ -729,6 +795,23 @@ export class FUStandardActorSheet extends ActorSheet {
 					});
 			}
 		}
+
+		const updatePilotVehicle = (func) => {
+			return (event) => {
+				const item = this.actor.items.get(event.currentTarget.dataset.itemId);
+				this.actor.update({
+					'system.vehicle': this.actor.system.vehicle[func](item),
+				});
+			};
+		};
+
+		html.find('.vehicle-section [data-action=toggleVehicleEmbarked]').on('click', updatePilotVehicle('updateEmbarked').bind(this));
+		html.find('[data-action=toggleActiveVehicle][data-item-id]').on('click', updatePilotVehicle('updateActiveVehicle').bind(this));
+		html.find('[data-action=toggleArmorModule][data-item-id]').on('click', updatePilotVehicle('updateActiveArmorModule').bind(this));
+		html.find('[data-action=toggleWeaponModule][data-item-id]').on('click', updatePilotVehicle('updateActiveWeaponModules').bind(this));
+		html.find('[data-action=toggleSupportModule][data-item-id]').on('click', updatePilotVehicle('updateActiveSupportModules').bind(this));
+
+		html.find('a[data-action=spendMetaCurrency]').on('click', () => this.actor.spendMetaCurrency());
 	}
 
 	// Method to change the sort type
@@ -768,7 +851,6 @@ export class FUStandardActorSheet extends ActorSheet {
 				}
 			});
 			// Log a message or perform other actions if needed
-			// console.log('All equipped items have been set to unequip.');
 		} else {
 			// Checkbox is checked
 		}
@@ -854,36 +936,121 @@ export class FUStandardActorSheet extends ActorSheet {
 		const allItemTypes = Object.keys(CONFIG.Item.dataModels);
 		const isCharacter = this.actor.type === 'character';
 		const isNPC = this.actor.type === 'npc';
-
+		const optionalFeatureTypes = Object.entries(CONFIG.FU.optionalFeatureRegistry.optionals());
 		switch (dataType) {
 			case 'newClock':
 				types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 				if (isCharacter) {
 					const options = ['miscAbility', 'ritual'];
-					if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) options.push('zeroPower');
-					types = types.filter((item) => options.includes(item.type));
-				} else if (isNPC) types = types.filter((item) => ['miscAbility', 'rule'].includes(item.type));
+
+					// Filter out old zeroPower item type (TODO: Delete later)
+					const dontShow = ['zeroPower'];
+
+					// Optional Features
+					const optionalFeatures = [];
+
+					// Check if the optionZeroPower setting is false, then add the zeroPower feature
+					if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
+						optionalFeatures.push({
+							type: 'optionalFeature',
+							subtype: 'projectfu.zeroPower',
+							label: game.i18n.localize('Zero Power'),
+						});
+					}
+
+					// Filter out items based on options and dontShow
+					types = types.filter((item) => options.includes(item.type) && !dontShow.includes(item.type));
+
+					// Filter out 'quirk' and 'camping' optional feature types
+					const filteredOptionalFeatures = optionalFeatures.filter((feature) => !['projectfu.quirk', 'projectfu-playtest.camping'].includes(feature.subtype));
+
+					// Push filtered optional features to types array
+					types.push(...filteredOptionalFeatures);
+				} else if (isNPC) {
+					types = types.filter((item) => ['miscAbility', 'rule'].includes(item.type));
+				}
 				clock = true;
 				break;
 			case 'newFavorite':
 				types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
+
 				if (isCharacter) {
-					const dontShow = ['rule', 'behavior', 'basic'];
-					if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) dontShow.push('zeroPower');
-					types = types.filter((item) => !dontShow.includes(item.type));
+					// Filter out old zeroPower item type (TODO: Delete later)
+					let dontShowCharacter = ['rule', 'behavior', 'basic', 'zeroPower']; // Default types to hide for characters
+					// Filter out default types to hide for characters
+					types = types.filter((item) => !dontShowCharacter.includes(item.type));
+
+					// Conditional rendering for optional features based on system settings
+					let dontShowOptional = [];
+					if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
+						dontShowOptional.push('projectfu.zeroPower');
+					}
+					if (!game.settings.get(SYSTEM, SETTINGS.optionQuirks)) {
+						dontShowOptional.push('projectfu.quirk');
+					}
+					if (!game.settings.get(SYSTEM, SETTINGS.optionCampingRules)) {
+						dontShowOptional.push('projectfu-playtest.camping');
+					}
+
+					// Optional Features
+					let optionalFeatures = optionalFeatureTypes.map(([key, optional]) => ({
+						type: 'optionalFeature',
+						subtype: key,
+						label: game.i18n.localize(optional.translation),
+					}));
+
+					// Filter out optional features based on system settings
+					let filteredOptionalFeatures = optionalFeatures.filter((feature) => !dontShowOptional.includes(feature.subtype));
+
+					// Push filtered optional features to types array
+					types.push(...filteredOptionalFeatures);
 				} else if (isNPC) {
-					const dontShow = ['class', 'classFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'zeroPower'];
-					if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShow.push('behavior');
-					types = types.filter((item) => !dontShow.includes(item.type));
+					let dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'zeroPower']; // Default types to hide for NPCs
+					if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShowNPC.push('behavior');
+					// Filter out default types to hide for NPCs
+					types = types.filter((item) => !dontShowNPC.includes(item.type));
 				}
 				break;
-			case 'newClassFeatures':
+			case 'newClassFeatures': {
 				const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.features());
 				types = ['miscAbility', 'project'];
-				if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) types.push('zeroPower');
+				// Filter out old zeroPower item type (TODO: Delete later)
+				// if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) types.push('zeroPower');
 				types = types.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
-				types.push(...classFeatureTypes.map(([key, feature]) => ({ type: 'classFeature', subtype: key, label: game.i18n.localize(feature.translation) })));
+				// Class Features
+				types.push(
+					...classFeatureTypes.map(([key, feature]) => ({
+						type: 'classFeature',
+						subtype: key,
+						label: game.i18n.localize(feature.translation),
+					})),
+				);
+
+				// Optional Features
+				const dontShow = [];
+				if (!game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) {
+					dontShow.push('projectfu.zeroPower');
+				}
+				if (!game.settings.get(SYSTEM, SETTINGS.optionQuirks)) {
+					dontShow.push('projectfu.quirk');
+				}
+				if (!game.settings.get(SYSTEM, SETTINGS.optionCampingRules)) {
+					dontShow.push('projectfu-playtest.camping');
+				}
+
+				// Filter optionalFeatureTypes based on dontShow array
+				const filteredOptionalFeatureTypes = optionalFeatureTypes.filter(([key, optional]) => !dontShow.includes(key));
+
+				// Push filtered types to the types array
+				types.push(
+					...filteredOptionalFeatureTypes.map(([key, optional]) => ({
+						type: 'optionalFeature',
+						subtype: key,
+						label: game.i18n.localize(optional.translation),
+					})),
+				);
 				break;
+			}
 			default:
 				break;
 		}
@@ -907,10 +1074,11 @@ export class FUStandardActorSheet extends ActorSheet {
 		const itemData = {
 			name: name,
 			type: type,
-			data: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }) },
+			data: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }), ...(subtype && { optionalType: subtype }) },
 		};
 
 		// Check if the type is 'zeroPower' and set clock to true
+		//  TODO: Remove later
 		if (type === 'zeroPower') {
 			clock = true;
 		}
@@ -921,6 +1089,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				'data.hasClock.value': clock,
 				'data.isFavored.value': true,
 				'data.featureType': subtype,
+				'data.optionalType': subtype,
 			});
 			ui.notifications.info(`${name} created successfully.`);
 			item.sheet.render(true);
@@ -984,7 +1153,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		if (selected.type === 'item') {
 			// Get the item from the actor's items by id
 
-			const item = actor.items.get(selected.id);
+			const item = this.actor.items.get(selected.id);
 			// Check if the item exists
 			if (item) {
 				// Return the result of item.roll()
@@ -1001,7 +1170,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		let content;
 
 		// Extract the name of the selected behavior
-		const behaviorName = selected ? selected.name : "";
+		const behaviorName = selected ? selected.name : '';
 
 		if (targetedTokens.length > 0) {
 			// Map targeted tokens to numbered tokens with actor names
@@ -1118,6 +1287,9 @@ export class FUStandardActorSheet extends ActorSheet {
 							await this._updateClockProgress(item, increment, rightClick);
 							break;
 
+						case 'featureCounter':
+							await this._updateFeatureProgress(item, increment, rightClick);
+							break;
 						case 'projectCounter':
 							await this._updateProjectProgress(item, increment, rightClick);
 							break;
@@ -1144,19 +1316,19 @@ export class FUStandardActorSheet extends ActorSheet {
 		const stepMultiplier = item.system.rp.step || 1;
 		const maxProgress = item.system.rp.max;
 		let newProgress;
-	
+
 		if (rightClick) {
 			newProgress = item.system.rp.current + increment * stepMultiplier;
 		} else {
 			newProgress = item.system.rp.current + increment;
 		}
-	
+
 		if (maxProgress !== 0) {
 			newProgress = Math.min(newProgress, maxProgress);
 		}
-	
+
 		await item.update({ 'system.rp.current': newProgress });
-	}	
+	}
 
 	async _updateClockProgress(item, increment, rightClick) {
 		const stepMultiplier = item.system.progress.step || 1;
@@ -1176,23 +1348,41 @@ export class FUStandardActorSheet extends ActorSheet {
 		await item.update({ 'system.progress.current': newProgress });
 	}
 
+	async _updateFeatureProgress(item, increment, rightClick) {
+		const stepMultiplier = item.system.data.progress.step || 1;
+		const maxProgress = item.system.data.progress.max;
+		let newProgress;
+
+		if (rightClick) {
+			newProgress = item.system.data.progress.current + increment * stepMultiplier;
+		} else {
+			newProgress = item.system.data.progress.current + increment;
+		}
+
+		if (maxProgress !== 0) {
+			newProgress = Math.min(newProgress, maxProgress);
+		}
+
+		await item.update({ 'system.data.progress.current': newProgress });
+	}
+
 	async _updateProjectProgress(item, increment, rightClick) {
 		const progressPerDay = item.system.progressPerDay.value || 1;
 		const maxProjectProgress = item.system.progress.max;
 		let currentProgress;
-	
+
 		if (rightClick) {
 			currentProgress = item.system.progress.current + increment * progressPerDay;
 		} else {
 			currentProgress = item.system.progress.current + increment;
 		}
-	
+
 		if (maxProjectProgress !== 0) {
 			currentProgress = Math.min(currentProgress, maxProjectProgress);
 		}
-	
+
 		await item.update({ 'system.progress.current': currentProgress });
-	}	
+	}
 
 	/**
 	 * Handles increment button click events for both level and resource progress.
@@ -1223,7 +1413,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	 * @param {Event} ev - The input change event.
 	 * @private
 	 */
-	_onProgressUpdate(ev) {
+	_onProgressUpdate(ev, dataType) {
 		const input = ev.currentTarget;
 		const segment = input.value;
 
@@ -1233,9 +1423,13 @@ export class FUStandardActorSheet extends ActorSheet {
 			// If the clock is from an item
 			const itemId = li.data('itemId');
 			const item = this.actor.items.get(itemId);
-			item.update({ 'system.progress.current': segment });
+
+			if (dataType === 'feature') {
+				item.update({ 'system.data.progress.current': segment });
+			} else {
+				item.update({ 'system.progress.current': segment });
+			}
 		} else {
-			// If not from an item
 			this.actor.update({ 'system.progress.current': segment });
 		}
 	}
@@ -1245,7 +1439,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	 * @param {Event} ev - The input change event.
 	 * @private
 	 */
-	_onProgressReset(ev) {
+	_onProgressReset(ev, dataType) {
 		const input = ev.currentTarget;
 		const li = $(input).closest('.item');
 
@@ -1253,7 +1447,12 @@ export class FUStandardActorSheet extends ActorSheet {
 			// If the clock is from an item
 			const itemId = li.data('itemId');
 			const item = this.actor.items.get(itemId);
-			item.update({ 'system.progress.current': 0 });
+
+			if (dataType === 'feature') {
+				item.update({ 'system.data.progress.current': 0 });
+			} else {
+				item.update({ 'system.progress.current': 0 });
+			}
 		} else {
 			// If not from an item
 			this.actor.update({ 'system.progress.current': 0 });
@@ -1284,8 +1483,10 @@ export class FUStandardActorSheet extends ActorSheet {
 					// if (isCtrl) {
 					// 	return promptCheckCustomizer(this.actor, item);
 					// } else {
-						if (settingPriority && this.actor?.type === "npc") { this._targetPriority(); }
-						return item.roll(isShift);
+					if (settingPriority && this.actor?.type === 'npc') {
+						this._targetPriority();
+					}
+					return item.roll(isShift);
 					// }
 				}
 			}
@@ -1293,7 +1494,13 @@ export class FUStandardActorSheet extends ActorSheet {
 				return this._rollBehavior();
 			}
 			if (dataset.rollType === 'roll-check' || dataset.rollType === 'roll-init') {
-				return promptCheck(this.actor);
+				if (isShift) {
+					return promptOpenCheck(this.actor);
+				} else if (isCtrl) {
+					// OpposedCheck.promptCheck(this.actor, isShift);
+				} else {
+					return promptCheck(this.actor);
+				}
 			}
 			if (dataset.rollType === 'group-check') {
 				GroupCheck.promptCheck(this.actor, isShift);
@@ -1328,73 +1535,28 @@ export class FUStandardActorSheet extends ActorSheet {
 			if (item) return item.roll(isShift);
 		}
 
+		// Handle affinity-type rolls
+		if (dataset.rollType === 'affinity-type') {
+			const actor = this.actor;
+			const affinity = JSON.parse(dataset.action);
+
+			const affinityName = affinity.label;
+			const affinityValue = affinity.affTypeCurr;
+
+			let params = {
+				details: { name: affinityName },
+				description: affinityValue,
+				speaker: ChatMessage.getSpeaker({ actor }),
+			};
+
+			createChatMessage(params);
+			return;
+		}
+
 		// Handle action-type rolls.
 		if (dataset.rollType === 'action-type') {
-			// Get the actor that owns the item
-			const actor = this.actor;
 			// Determine the type based on the data-action attribute
-			let action = '';
-			switch (dataset.action) {
-				case 'equipmentAction':
-					action = 'equipment';
-					break;
-				case 'guardAction':
-					action = 'guard';
-					if (isShift) {
-						event.preventDefault();
-						toggleGuardEffect(actor);
-						return;
-					}
-					break;
-				case 'hinderAction':
-					action = 'hinder';
-					if (isShift) {
-						event.preventDefault();
-						promptCheck(this.actor, 'FU.Hinder');
-						return;
-					}
-					break;
-				case 'inventoryAction':
-					action = 'inventory';
-					break;
-				case 'objectiveAction':
-					action = 'objective';
-					break;
-				case 'spellAction':
-					action = 'spell';
-					break;
-				case 'studyAction':
-					action = 'study';
-					if (isShift) {
-						event.preventDefault();
-						promptCheck(this.actor, 'FU.StudyRoll');
-						return;
-					}
-					break;
-				case 'skillAction':
-					action = 'skill';
-					break;
-				default:
-					action = 'default';
-					break;
-			}
-
-			// Create a new check message using createChatMessage
-			if (action !== 'default') {
-				const actionName = game.i18n.localize(CONFIG.FU.actionTypes[action] || action);
-				const actionRule = game.i18n.localize(CONFIG.FU.actionRule[action] || action);
-
-				let params = {
-					details: {
-						name: actionName,
-					},
-					description: actionRule,
-					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-				};
-
-				// Call the createChatMessage function
-				createChatMessage(params);
-			}
+			actionHandler(this, dataset.action, isShift);
 		}
 
 		// Handle rolls that supply the formula directly.
@@ -1440,22 +1602,5 @@ function shuffleArray(array) {
 		var temp = array[i];
 		array[i] = array[j];
 		array[j] = temp;
-	}
-}
-
-async function toggleGuardEffect(actor) {
-	const GUARD_EFFECT_ID = 'guard';
-	const guardEffect = CONFIG.statusEffects.find((effect) => effect.id === GUARD_EFFECT_ID);
-
-	const guardActive = actor.effects.some((effect) => effect.statuses.has('guard'));
-
-	if (guardActive) {
-		// Delete existing guard effects
-		actor.effects.filter((effect) => effect.statuses.has('guard')).forEach((effect) => effect.delete());
-		ui.notifications.info('Guard is deactivated.');
-	} else {
-		// Create a new guard effect
-		await ActiveEffect.create(guardEffect, { parent: actor });
-		ui.notifications.info('Guard is activated.');
 	}
 }

@@ -137,20 +137,17 @@
         {
           "key": "system.bonuses.damage.melee",
           "mode": 2,
-          "value": "2",
-          "priority": null
+          "value": "2*@system.level.value"
         },
         {
           "key": "system.bonuses.damage.ranged",
           "mode": 2,
-          "value": "2",
-          "priority": null
+          "value": "2*@system.level.value"
         },
         {
           "key": "system.bonuses.damage.spell",
           "mode": 2,
-          "value": "2",
-          "priority": null
+          "value": "2*@system.level.value"
         }
       ],
       "description": "<ol><li><p><strong>Trigger:</strong> On <strong>Crisis</strong></p></li><li><p><strong>Effect:</strong> Deals<span class=\"fontstyle3\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong>【</strong></span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong>SL × 2</strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong>】</strong> extra damage.</span></p></li></ol><table><tbody><tr><td><p><strong>SL1: 2</strong></p></td><td><p><strong>SL2: 4</strong></p></td><td><p><strong>SL3: 6</strong></p></td><td><p><strong>SL4: 8</strong></p></td><td data-colwidth=\"108\"><p><strong>SL5: 10</strong></p></td></tr></tbody></table>",
@@ -178,8 +175,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706502375594,
-    "modifiedTime": 1712061845290,
-    "lastModifiedBy": "YN7AhHIwAZeH33Tw"
+    "modifiedTime": 1716338714159,
+    "lastModifiedBy": "CLAzxWQsDDB8fCLx"
   },
   "_id": "yfx2RrnxSnU7OVPK",
   "sort": 100000,

@@ -1,76 +1,78 @@
 {{!-- Actions Template --}}
 <fieldset class="section-container title-fieldset desc resource-content">
-    <legend class="resource-label-m" data-tooltip="[Left Click] Send Description<br>[Shift+Click] Perform Action">
+    <legend class="resource-label-m" data-tooltip="[Left Click] Perform Action <br>[Shift+Click] Send Description">
         {{localize 'FU.Actions'}}
     </legend>
     {{#if (eq actor.type "character")}}
-    <div class="action-container grid grid-2col gap-5">
+        <div class="action-container grid grid-2col gap-5">
 
         <span class="action-button rollable" id="guardAction" data-action="guardAction" data-roll-type="action-type"
-            data-tooltip="{{localize 'FU.GuardRule'}}">
+              data-tooltip="{{localize 'FU.GuardRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Guard"}}
         </span>
 
-        <span class="action-button rollable " id="equipmentAction" data-action="equipmentAction"
-            data-roll-type="action-type" data-tooltip="{{localize 'FU.EquipmentRule'}}">
+            <span class="action-button rollable " id="equipmentAction" data-action="equipmentAction"
+                  data-roll-type="action-type" data-tooltip="{{localize 'FU.EquipmentRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Equipment"}}
         </span>
 
-        <span class="action-button rollable " id="hinderAction" data-action="hinderAction" data-roll-type="action-type"
-            data-tooltip="{{localize 'FU.HinderRule'}}">
+            <span class="action-button rollable " id="hinderAction" data-action="hinderAction"
+                  data-roll-type="action-type"
+                  data-tooltip="{{localize 'FU.HinderRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Hinder"}}
         </span>
 
-        <span class="action-button rollable" id="inventoryAction" data-action="inventoryAction"
-            data-roll-type="action-type" data-tooltip="{{localize 'FU.InventoryRule'}}">
+            <span class="action-button rollable" id="inventoryAction" data-action="inventoryAction"
+                  data-roll-type="action-type" data-tooltip="{{localize 'FU.InventoryRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Inventory"}}
         </span>
 
-        <span class="action-button rollable " id="objectiveAction" data-action="objectiveAction"
-            data-roll-type="action-type" data-tooltip="{{localize 'FU.ObjectiveRule'}}">
+            <span class="action-button rollable " id="objectiveAction" data-action="objectiveAction"
+                  data-roll-type="action-type" data-tooltip="{{localize 'FU.ObjectiveRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Objective"}}
         </span>
 
-        <span class="action-button rollable" id="spellAction" data-action="spellAction" data-roll-type="action-type"
-            data-tooltip="{{localize 'FU.SpellRule'}}">
+            <span class="action-button rollable" id="spellAction" data-action="spellAction" data-roll-type="action-type"
+                  data-tooltip="{{localize 'FU.SpellRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Spell"}}
         </span>
 
-        <span class="action-button rollable " id="studyAction" data-action="studyAction" data-roll-type="action-type"
-            data-tooltip="{{localize 'FU.StudyRule'}}">
+            <span class="action-button rollable " id="studyAction" data-action="studyAction"
+                  data-roll-type="action-type"
+                  data-tooltip="{{localize 'FU.StudyRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Study"}}
         </span>
 
-        <span class="action-button rollable" id="skillAction" data-action="skillAction" data-roll-type="action-type"
-            data-tooltip="{{localize 'FU.SkillRule'}}">
+            <span class="action-button rollable" id="skillAction" data-action="skillAction" data-roll-type="action-type"
+                  data-tooltip="{{localize 'FU.SkillRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Skill"}}
         </span>
-    </div>
+        </div>
     {{/if}}
-    <div class="action-container grid grid-2col gap-5">
-        {{#if (eq @root.actor.type "npc")}}
+<div class="action-container grid grid-2col gap-5">
+    {{#if (eq @root.actor.type "npc")}}
         <span class="action-button rollable" id="guardAction" data-action="guardAction" data-roll-type="action-type"
-            data-tooltip="{{localize 'FU.GuardRule'}}">
+              data-tooltip="{{localize 'FU.GuardRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Guard"}}
         </span>
 
         <span class="action-button rollable " id="hinderAction" data-action="hinderAction" data-roll-type="action-type"
-            data-tooltip="{{localize 'FU.HinderRule'}}">
+              data-tooltip="{{localize 'FU.HinderRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Hinder"}}
         </span>
 
         <span class="action-button rollable " id="objectiveAction" data-action="objectiveAction"
-            data-roll-type="action-type" data-tooltip="{{localize 'FU.ObjectiveRule'}}">
+              data-roll-type="action-type" data-tooltip="{{localize 'FU.ObjectiveRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Objective"}}
         </span>
 
         <span class="action-button rollable" id="skillAction" data-action="skillAction" data-roll-type="action-type"
-            data-tooltip="{{localize 'FU.SkillRule'}}">
+              data-tooltip="{{localize 'FU.SkillRule'}}">
             <span class="icon-letter">{{localize 'FU.ActionAbbr'}}</span>{{localize "FU.Skill"}}
         </span>
 
         {{#if (eq (getGameSetting 'optionBehaviorRoll') true)}}
-        <span id="behavior-action" class="action-button spin2win rollable grid-span-2" data-roll-type="behavior">
+            <span id="behavior-action" class="action-button spin2win rollable grid-span-2" data-roll-type="behavior">
             <i class="fas fa-dice-d20 ra-1x icon"></i>
             <label class="items-label">{{ localize "FU.Behavior" }}</label>
         </span>

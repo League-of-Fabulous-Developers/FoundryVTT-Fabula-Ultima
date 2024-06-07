@@ -1,4 +1,4 @@
-import {ClassMigrations} from './class-migrations.mjs';
+import { ClassMigrations } from './class-migrations.mjs';
 
 /**
  * @property {string} subtype.value

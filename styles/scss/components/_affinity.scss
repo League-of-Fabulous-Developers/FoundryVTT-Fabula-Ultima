@@ -3,63 +3,62 @@ $color-outline: #000;
 $color-text-shadow: #333;
 
 .affinities {
-  padding: 2px;
-  width: 100%;
+	padding: 2px;
+	width: 100%;
 }
 
 .icon-aff {
-  display: inline-block;
-  position: relative;
-  z-index: 1;
-  margin-bottom: -2px;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	margin-bottom: -2px;
 
-  &.fa-guard {
-    color: $color-icon-guard;
-  }
+	&.fa-guard {
+		color: $color-icon-guard;
+	}
 
-  &.fa-sword {
-    color: $color-icon-sword;
-  }
+	&.fa-sword {
+		color: $color-icon-sword;
+	}
 
-  &.fa-wind {
-    color: $color-icon-wind;
-  }
+	&.fa-wind {
+		color: $color-icon-wind;
+	}
 
-  &.fa-bolt-lightning {
-    color: $color-icon-bolt-lightning;
-  }
+	&.fa-bolt-lightning {
+		color: $color-icon-bolt-lightning;
+	}
 
-  &.fa-moon {
-    color: $color-icon-moon;
-  }
+	&.fa-moon {
+		color: $color-icon-moon;
+	}
 
-  &.fa-hill-rockslide {
-    color: $color-icon-hill-rockslide;
-  }
+	&.fa-hill-rockslide {
+		color: $color-icon-hill-rockslide;
+	}
 
-  &.fa-fire {
-    color: $color-icon-fire;
-  }
+	&.fa-fire {
+		color: $color-icon-fire;
+	}
 
-  &.fa-snowflake {
-    color: $color-icon-snowflake;
-  }
+	&.fa-snowflake {
+		color: $color-icon-snowflake;
+	}
 
-  &.fa-sun {
-    color: $color-icon-sun;
-  }
+	&.fa-sun {
+		color: $color-icon-sun;
+	}
 
-  &.fa-skull-crossbones {
-    color: $color-icon-skull-crossbones;
-  }
+	&.fa-skull-crossbones {
+		color: $color-icon-skull-crossbones;
+	}
 
-  &:before {
-    text-shadow:
-      $size-outline $size-outline 1px $color-outline;
-  }
+	&:before {
+		text-shadow: $size-outline $size-outline 1px $color-outline;
+	}
 
-  &:after {
-    z-index: 2;
-    outline: $size-outline solid $color-outline;
-  }
+	&:after {
+		z-index: 2;
+		outline: $size-outline solid $color-outline;
+	}
 }
