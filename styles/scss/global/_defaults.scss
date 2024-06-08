@@ -45,16 +45,20 @@ select {
 }
 
 // Reset table styles
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
+// table {
+// 	border-collapse: collapse;
+// 	width: 100%;
+// }
 
-th,
-td {
-	border: 1px solid #e2e8f0;
-	padding: 8px;
-	text-align: left;
+// th,
+// td {
+// 	border: 1px solid #e2e8f0;
+// 	padding: 8px;
+// 	text-align: left;
+// }
+
+table td {
+	padding-left: 2px;
 }
 
 // Define additional custom styles as needed
