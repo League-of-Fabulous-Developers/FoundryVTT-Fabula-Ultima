@@ -442,3 +442,60 @@
 		}
 	}
 }
+
+.editor,
+.journal-entry-content,
+.editor-container,
+.chat-message {
+	.editor-edit,
+	.editor-content,
+	.journal-entry-page,
+	.message-content {
+		font-weight: normal;
+
+		h1,
+		h2,
+		h3 {
+			border-bottom: 2px solid $color-secondary;
+		}
+
+		h1 {
+			line-height: 1.2em;
+		}
+
+		h2,
+		h3,
+		h4 {
+			line-height: 1.45em;
+		}
+
+		hr {
+			margin: 10px 0;
+		}
+
+		p {
+			margin: 0;
+			line-height: 1.45em;
+		}
+
+		h1 + p,
+		h2 + p,
+		h3 + p,
+		h4 + p,
+		h5 + p,
+		h6 + p,
+		p + p {
+			margin-top: 10px;
+		}
+
+		blockquote {
+			line-height: 1.45em;
+		}
+
+		.editor-content {
+			font-size: 16px;
+			line-height: 1.45em;
+			width: 100%;
+		}
+	}
+}
