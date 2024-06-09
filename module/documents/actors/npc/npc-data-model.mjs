@@ -124,8 +124,6 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	prepareBaseData() {}
 
 	prepareDerivedData() {
-		this.attributes.handleStatusEffects();
-		this.affinities.handleGuard();
 		this.spTracker = new NpcSkillTracker(this);
 	}
 

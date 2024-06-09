@@ -1,5 +1,6 @@
 import { createChatMessage, promptCheck, promptOpenCheck } from './checks.mjs';
 import { handleStudyTarget } from './study-roll.mjs';
+import { toggleStatusEffect } from './effects.mjs';
 
 export async function actionHandler(life, actionType, isShift) {
 	const actor = life.actor;
@@ -81,17 +82,12 @@ export async function createActionMessage(actor, action) {
 
 async function toggleGuardEffect(actor) {
 	const GUARD_EFFECT_ID = 'guard';
-	const guardEffect = CONFIG.statusEffects.find((effect) => effect.id === GUARD_EFFECT_ID);
-
-	const guardActive = actor.effects.some((effect) => effect.statuses.has('guard'));
-
-	if (guardActive) {
+	const guardActive = await toggleStatusEffect(actor, GUARD_EFFECT_ID);
+	if (!guardActive) {
 		// Delete existing guard effects
-		actor.effects.filter((effect) => effect.statuses.has('guard')).forEach((effect) => effect.delete());
 		ui.notifications.info('Guard is deactivated.');
 	} else {
 		// Create a new guard effect
-		await ActiveEffect.create(guardEffect, { parent: actor });
 		ui.notifications.info('Guard is activated.');
 		createActionMessage(actor, 'guard');
 	}
