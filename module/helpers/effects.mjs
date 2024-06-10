@@ -73,21 +73,20 @@ export function prepareActiveEffectCategories(effects) {
 /**
  * A helper function to toggle a status effect on an Actor.
  * Designed based off TokenDocument#toggleActiveEffect to properly interact with token hud.
- * @param {string} statusEffectId 								 The status effect id based on CONFIG.statusEffects
- * @returns {Promise<boolean>}                                   Whether the ActiveEffect is now on or off
+ * @param {FUActor} actor the actor the status should get applied to
+ * @param {string} statusEffectId The status effect id based on CONFIG.statusEffects
+ * @param {string} [source] the UUID of the document that caused the effect
+ * @returns {Promise<boolean>} Whether the ActiveEffect is now on or off
  */
-export async function toggleStatusEffect(actor, statusEffectId) {
-	const existing = actor.effects.reduce((arr, e) => {
-		if (isActiveEffectForStatusEffectId(e, statusEffectId)) arr.push(e);
-		return arr;
-	}, []);
+export async function toggleStatusEffect(actor, statusEffectId, source = undefined) {
+	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
 	if (existing.length > 0) {
 		await Promise.all(existing.map((e) => e.delete()));
 		return false;
 	} else {
-		const statusEffect = CONFIG.statusEffects.find((e) => e.statuses.includes(statusEffectId));
+		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId);
 		if (statusEffect) {
-			await ActiveEffect.create(statusEffect, { parent: actor });
+			await ActiveEffect.create({ ...statusEffect, statuses: [statusEffectId], origin: source }, { parent: actor });
 		}
 		return true;
 	}
