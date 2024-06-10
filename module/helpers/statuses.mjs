@@ -1,186 +1,305 @@
+/**
+ * @type {ActiveEffectData[]}
+ */
 export const statusEffects = [
 	{
 		id: 'accelerated',
 		name: 'FU.Accelerated',
 		icon: 'systems/projectfu/styles/static/statuses/Accelerated.webp',
-		statuses: ['accelerated'],
 	},
 	{
 		id: 'aura',
 		name: 'FU.Aura',
 		icon: 'systems/projectfu/styles/static/statuses/Aura.webp',
-		statuses: ['aura'],
+		changes: [
+			{
+				key: 'system.derived.mdef.value',
+				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
+				value: '12',
+			},
+		],
 	},
 	{
 		id: 'barrier',
 		name: 'FU.Barrier',
 		icon: 'systems/projectfu/styles/static/statuses/Barrier.webp',
-		statuses: ['barrier'],
+		changes: [
+			{
+				key: 'system.derived.def.value',
+				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
+				value: '12',
+			},
+		],
 	},
 	{
 		id: 'beserk',
 		name: 'FU.Beserk',
 		icon: 'systems/projectfu/styles/static/statuses/Beserk.webp',
-		statuses: ['berserk'],
 	},
 	{
 		id: 'cover',
 		name: 'FU.Cover',
 		icon: 'systems/projectfu/styles/static/statuses/Cover.webp',
-		statuses: ['cover'],
 	},
 	{
 		id: 'dazed',
 		name: 'FU.Dazed',
 		icon: 'systems/projectfu/styles/static/statuses/Dazed.webp',
-		stats: ['ins'],
-		mod: -2,
-		statuses: ['dazed'],
+		changes: [
+			{
+				key: 'system.attributes.ins',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+		],
 	},
 	{
 		id: 'dex-down',
 		name: 'FU.DEXDown',
 		icon: 'systems/projectfu/styles/static/statuses/DexDown.webp',
-		stats: ['dex'],
-		mod: -2,
-		statuses: ['dex-down'],
+		changes: [
+			{
+				key: 'system.attributes.dex',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+		],
 	},
 	{
 		id: 'dex-up',
 		name: 'FU.DEXUp',
 		icon: 'systems/projectfu/styles/static/statuses/DexUp.webp',
-		stats: ['dex'],
-		mod: 2,
-		statuses: ['dex-up'],
+		changes: [
+			{
+				key: 'system.attributes.dex',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+		],
 	},
 	{
 		id: 'enraged',
 		name: 'FU.Enraged',
 		icon: 'systems/projectfu/styles/static/statuses/Enraged.webp',
-		stats: ['dex', 'ins'],
-		mod: -2,
-		statuses: ['enraged'],
+		changes: [
+			{
+				key: 'system.attributes.ins',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+			{
+				key: 'system.attributes.dex',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+		],
 	},
 	{
 		id: 'flying',
 		name: 'FU.Flying',
 		icon: 'systems/projectfu/styles/static/statuses/Flying.webp',
-		statuses: ['flying'],
 	},
 	{
 		id: 'guard',
 		name: 'FU.Guard',
 		icon: 'systems/projectfu/styles/static/statuses/Guard.webp',
-		statuses: ['guard'],
+		changes: [
+			{
+				key: 'system.affinities.physical',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+
+			{
+				key: 'system.affinities.air',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+			{
+				key: 'system.affinities.bolt',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+			{
+				key: 'system.affinities.dark',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+			{
+				key: 'system.affinities.earth',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+			{
+				key: 'system.affinities.fire',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+			{
+				key: 'system.affinities.ice',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+			{
+				key: 'system.affinities.light',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+			{
+				key: 'system.affinities.poison',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+		],
 	},
 	{
 		id: 'ins-down',
 		name: 'FU.INSDown',
 		icon: 'systems/projectfu/styles/static/statuses/InsDown.webp',
-		stats: ['ins'],
-		mod: -2,
-		statuses: ['ins-down'],
+		changes: [
+			{
+				key: 'system.attributes.ins',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+		],
 	},
 	{
 		id: 'ins-up',
 		name: 'FU.INSUp',
 		icon: 'systems/projectfu/styles/static/statuses/InsUp.webp',
-		stats: ['ins'],
-		mod: 2,
-		statuses: ['ins-up'],
+		changes: [
+			{
+				key: 'system.attributes.ins',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+		],
 	},
 	{
 		id: 'ko',
 		name: 'FU.KO',
 		icon: 'systems/projectfu/styles/static/statuses/KO.webp',
-		statuses: ['ko'],
 	},
 	{
 		id: 'mig-down',
 		name: 'FU.MIGDown',
 		icon: 'systems/projectfu/styles/static/statuses/MigDown.webp',
-		stats: ['mig'],
-		mod: -2,
-		statuses: ['mig-down'],
+		changes: [
+			{
+				key: 'system.attributes.mig',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+		],
 	},
 	{
 		id: 'mig-up',
 		name: 'FU.MIGUp',
 		icon: 'systems/projectfu/styles/static/statuses/MigUp.webp',
-		stats: ['mig'],
-		mod: 2,
-		statuses: ['mig-up'],
+		changes: [
+			{
+				key: 'system.attributes.mig',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+		],
 	},
 	{
 		id: 'reflect',
 		name: 'FU.Reflect',
 		icon: 'systems/projectfu/styles/static/statuses/Reflect.webp',
-		statuses: ['reflect'],
 	},
 	{
 		id: 'regen',
 		name: 'FU.Regen',
 		icon: 'systems/projectfu/styles/static/statuses/Regen.webp',
-		statuses: ['regen'],
 	},
 	{
 		id: 'shaken',
 		name: 'FU.Shaken',
 		icon: 'systems/projectfu/styles/static/statuses/Shaken.webp',
-		stats: ['wlp'],
-		mod: -2,
-		statuses: ['shaken'],
+		changes: [
+			{
+				key: 'system.attributes.wlp',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+		],
 	},
 	{
 		id: 'sleep',
 		name: 'FU.Sleep',
 		icon: 'systems/projectfu/styles/static/statuses/Sleep.webp',
-		statuses: ['sleep'],
 	},
 	{
 		id: 'slow',
 		name: 'FU.Slow',
 		icon: 'systems/projectfu/styles/static/statuses/Slow.webp',
-		stats: ['dex'],
-		mod: -2,
-		statuses: ['slow'],
+		changes: [
+			{
+				key: 'system.attributes.dex',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+		],
 	},
 	{
 		id: 'poisoned',
 		name: 'FU.Poisoned',
 		icon: 'systems/projectfu/styles/static/statuses/Poisoned.webp',
-		stats: ['mig', 'wlp'],
-		mod: -2,
-		statuses: ['poisoned'],
+		changes: [
+			{
+				key: 'system.attributes.mig',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+			{
+				key: 'system.attributes.wlp',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+		],
 	},
 	{
 		id: 'weak',
 		name: 'FU.Weak',
 		icon: 'systems/projectfu/styles/static/statuses/Weak.webp',
-		stats: ['mig'],
-		mod: -2,
-		statuses: ['weak'],
+		changes: [
+			{
+				key: 'system.attributes.mig',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+		],
 	},
 	{
 		id: 'wlp-down',
 		name: 'FU.WLPDown',
 		icon: 'systems/projectfu/styles/static/statuses/WlpDown.webp',
-		stats: ['wlp'],
-		mod: -2,
-		statuses: ['wlp-down'],
+		changes: [
+			{
+				key: 'system.attributes.wlp',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'downgrade',
+			},
+		],
 	},
 	{
 		id: 'wlp-up',
 		name: 'FU.WLPUp',
 		icon: 'systems/projectfu/styles/static/statuses/WlpUp.webp',
-		stats: ['wlp'],
-		mod: 2,
-		statuses: ['wlp-up'],
+		changes: [
+			{
+				key: 'system.attributes.wlp',
+				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
+				value: 'upgrade',
+			},
+		],
 	},
 	{
 		id: 'crisis',
 		name: 'FU.Crisis',
 		icon: 'systems/projectfu/styles/static/statuses/Crisis.webp',
-		statuses: ['crisis'],
 	},
 ];

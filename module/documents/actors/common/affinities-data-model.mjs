@@ -26,11 +26,4 @@ export class AffinitiesDataModel extends foundry.abstract.DataModel {
 			poison: new EmbeddedDataField(AffinityDataModel, {}),
 		};
 	}
-
-	handleGuard() {
-		const actor = this.parent.actor;
-		if (actor.statuses.has('guard')) {
-			Object.values(this).forEach((value) => value.upgrade());
-		}
-	}
 }

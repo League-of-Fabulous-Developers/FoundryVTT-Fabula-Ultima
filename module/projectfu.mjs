@@ -164,6 +164,7 @@ Hooks.once('init', async () => {
 	// Register status effects
 	CONFIG.ActiveEffect.legacyTransferral = false;
 	CONFIG.statusEffects = statusEffects;
+	CONFIG.specialStatusEffects.DEFEATED = 'ko';
 
 	// Register sheet application classes
 	Actors.unregisterSheet('core', ActorSheet);

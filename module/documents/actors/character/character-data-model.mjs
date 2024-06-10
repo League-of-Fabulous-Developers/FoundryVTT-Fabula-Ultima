@@ -130,8 +130,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	prepareDerivedData() {
-		this.attributes.handleStatusEffects();
-		this.affinities.handleGuard();
 		this.tlTracker = new CharacterSkillTracker(this);
 	}
 

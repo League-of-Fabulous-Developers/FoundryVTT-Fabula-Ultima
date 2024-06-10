@@ -1,4 +1,5 @@
 import { FUItem } from '../items/item.mjs';
+import { toggleStatusEffect } from '../../helpers/effects.mjs';
 
 /**
  * Extend the base Actor document by defining a custom roll data structure
@@ -130,33 +131,15 @@ export class FUActor extends Actor {
 			const crisisThreshold = Math.floor(hp.max / 2);
 			const shouldBeInCrisis = hp.value <= crisisThreshold;
 			const isInCrisis = this.statuses.has('crisis');
-
-			if (shouldBeInCrisis && !isInCrisis) {
-				await ActiveEffect.create(
-					{
-						...CONFIG.statusEffects.find((val) => val.id === 'crisis'),
-						origin: this.uuid,
-					},
-					{ parent: this },
-				);
-			} else if (!shouldBeInCrisis && isInCrisis) {
-				this.effects.filter((effect) => effect.statuses.has('crisis')).forEach((val) => val.delete());
+			if (shouldBeInCrisis !== isInCrisis) {
+				await toggleStatusEffect(this, 'crisis');
 			}
 
 			// Handle KO status
 			const shouldBeKO = hp.value === 0; // KO when HP is 0
 			const isKO = this.statuses.has('ko');
-
-			if (shouldBeKO && !isKO) {
-				await ActiveEffect.create(
-					{
-						...CONFIG.statusEffects.find((val) => val.id === 'ko'),
-						origin: this.uuid,
-					},
-					{ parent: this },
-				);
-			} else if (!shouldBeKO && isKO) {
-				this.effects.filter((effect) => effect.statuses.has('ko')).forEach((val) => val.delete());
+			if (shouldBeKO !== isKO) {
+				await toggleStatusEffect(this, 'ko');
 			}
 		}
 		super._onUpdate(changed, options, userId);

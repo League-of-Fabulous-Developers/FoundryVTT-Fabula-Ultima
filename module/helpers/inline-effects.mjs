@@ -4,6 +4,7 @@ import { FUItem } from '../documents/items/item.mjs';
 import { Flags } from './flags.mjs';
 import { FU, SYSTEM } from './config.mjs';
 import { FUActiveEffect } from '../documents/effects/active-effect.mjs';
+import { toggleStatusEffect } from './effects.mjs';
 
 const INLINE_EFFECT = 'InlineEffect';
 const INLINE_EFFECT_CLASS = 'inline-effect';
@@ -16,6 +17,40 @@ const enricher = {
 	enricher: inlineEffectEnricher,
 };
 
+function createEffectAnchor(effect) {
+	const anchor = document.createElement('a');
+	anchor.draggable = true;
+	anchor.dataset.effect = toBase64(effect);
+	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
+	const icon = document.createElement('i');
+	icon.classList.add('fun', 'fu-aura');
+	anchor.append(icon);
+	anchor.append(effect.name);
+	return anchor;
+}
+
+function createBrokenAnchor() {
+	const anchor = document.createElement('a');
+	anchor.classList.add('inline', 'broken');
+	const icon = document.createElement('i');
+	icon.classList.add('fas', 'fa-chain-broken');
+	anchor.append(icon);
+	anchor.append(game.i18n.localize('FU.InlineEffectInvalid'));
+	return anchor;
+}
+
+function createStatusAnchor(effectValue, status) {
+	const anchor = document.createElement('a');
+	anchor.draggable = true;
+	anchor.dataset.status = effectValue;
+	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
+	const icon = document.createElement('i');
+	icon.classList.add('fun', 'fu-aura');
+	anchor.append(icon);
+	anchor.append(game.i18n.localize(status.name));
+	return anchor;
+}
+
 /**
  * @param text
  * @param options
@@ -23,39 +58,20 @@ const enricher = {
 function inlineEffectEnricher(text, options) {
 	/** @type string */
 	const effectValue = text[1];
-	let effect;
+
 	if (SUPPORTED_STATUSES.includes(effectValue) || BOONS_AND_BANES.includes(effectValue)) {
 		const status = statusEffects.find((value) => value.id === effectValue);
 		if (status) {
-			status.name = game.i18n.localize(status.name);
-			effect = status;
+			return createStatusAnchor(effectValue, status);
 		}
 	} else {
 		const decodedEffect = fromBase64(effectValue);
 		if (decodedEffect && decodedEffect.name && decodedEffect.changes) {
-			effect = decodedEffect;
+			return createEffectAnchor(decodedEffect);
 		}
 	}
 
-	if (effect) {
-		const anchor = document.createElement('a');
-		anchor.draggable = true;
-		anchor.dataset.effect = toBase64(effect);
-		anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
-		const icon = document.createElement('i');
-		icon.classList.add('fun', 'fu-aura');
-		anchor.append(icon);
-		anchor.append(effect.name);
-		return anchor;
-	} else {
-		const anchor = document.createElement('a');
-		anchor.classList.add('inline', 'broken');
-		const icon = document.createElement('i');
-		icon.classList.add('fas', 'fa-chain-broken');
-		anchor.append(icon);
-		anchor.append(game.i18n.localize('FU.InlineEffectInvalid'));
-		return anchor;
-	}
+	return createBrokenAnchor();
 }
 
 /**
@@ -71,13 +87,13 @@ function determineSource(document, element) {
 		return document.uuid;
 	} else if (document instanceof ChatMessage) {
 		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
-		if (speakerActor) {
-			return speakerActor.uuid;
-		}
 		const flagItem = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
 		if (flagItem && speakerActor) {
 			const item = speakerActor.items.get(flagItem._id);
 			return item ? item.uuid : null;
+		}
+		if (speakerActor) {
+			return speakerActor.uuid;
 		}
 	}
 	return null;
@@ -96,6 +112,7 @@ function activateListeners(document, html) {
 		.on('click', function () {
 			const source = determineSource(document, this);
 			const effectData = fromBase64(this.dataset.effect);
+			const status = this.dataset.status;
 			const controlledTokens = canvas.tokens.controlled;
 			let actors = [];
 
@@ -110,7 +127,15 @@ function activateListeners(document, html) {
 			}
 
 			if (actors.length > 0) {
-				actors.forEach((actor) => onApplyEffectToActor(actor, source, effectData));
+				if (effectData) {
+					actors.forEach((actor) => onApplyEffectToActor(actor, source, effectData));
+				} else if (status) {
+					actors.forEach((actor) => {
+						if (!actor.statuses.has(status)) {
+							toggleStatusEffect(actor, status, source);
+						}
+					});
+				}
 			} else {
 				ui.notifications.warn(game.i18n.localize('FU.ChatApplyEffectNoActorsSelected'));
 			}
@@ -127,6 +152,7 @@ function activateListeners(document, html) {
 				type: INLINE_EFFECT,
 				source: source,
 				effect: fromBase64(this.dataset.effect),
+				status: this.dataset.status,
 			};
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
@@ -134,19 +160,31 @@ function activateListeners(document, html) {
 		.on('contextmenu', function (event) {
 			event.preventDefault();
 			event.stopPropagation();
-			const effectData = fromBase64(this.dataset.effect);
-			const cls = getDocumentClass('ActiveEffect');
-			delete effectData.id;
-			cls.migrateDataSafe(effectData);
-			cls.cleanData(effectData);
-			Actor.create({ name: 'Temp Actor', type: 'character' }, { temporary: true })
-				.then((value) => {
-					return cls.create(effectData, { temporary: true, render: true, parent: value });
-				})
-				.then((value) => {
-					const activeEffectConfig = new ActiveEffectConfig(value);
-					activeEffectConfig.render(true, { editable: false });
-				});
+			let effectData;
+			if (this.dataset.status) {
+				const status = this.dataset.status;
+				const statusEffect = CONFIG.statusEffects.find((value) => value.id === status);
+				if (statusEffect) {
+					effectData = { ...statusEffect, statuses: [status] };
+				}
+			} else {
+				effectData = fromBase64(this.dataset.effect);
+			}
+			if (effectData) {
+				effectData.origin = determineSource(document, this);
+				const cls = getDocumentClass('ActiveEffect');
+				delete effectData.id;
+				cls.migrateDataSafe(effectData);
+				cls.cleanData(effectData);
+				Actor.create({ name: 'Temp Actor', type: 'character' }, { temporary: true })
+					.then((value) => {
+						return cls.create(effectData, { temporary: true, render: true, parent: value });
+					})
+					.then((value) => {
+						const activeEffectConfig = new ActiveEffectConfig(value);
+						activeEffectConfig.render(true, { editable: false });
+					});
+			}
 		});
 }
 
@@ -163,16 +201,22 @@ function onApplyEffectToActor(actor, source, effect) {
 	}
 }
 
-function onDropActor(actor, sheet, { type, source, effect }) {
+function onDropActor(actor, sheet, { type, source, effect, status }) {
 	if (type === INLINE_EFFECT) {
-		ActiveEffect.create(
-			{
-				...effect,
-				origin: source,
-				flags: foundry.utils.mergeObject(effect.flags ?? {}, { [SYSTEM]: { [FUActiveEffect.TEMPORARY_FLAG]: true } }),
-			},
-			{ parent: actor },
-		);
+		if (status) {
+			if (!actor.statuses.has(status)) {
+				toggleStatusEffect(actor, status, source);
+			}
+		} else if (effect) {
+			ActiveEffect.create(
+				{
+					...effect,
+					origin: source,
+					flags: foundry.utils.mergeObject(effect.flags ?? {}, { [SYSTEM]: { [FUActiveEffect.TEMPORARY_FLAG]: true } }),
+				},
+				{ parent: actor },
+			);
+		}
 		return false;
 	}
 }
@@ -520,7 +564,14 @@ class InlineEffectConfiguration extends FormApplication {
 			if (this.object.type === 'custom') {
 				const cls = getDocumentClass('ActiveEffect');
 				const tempActor = await Actor.create({ name: 'Temp Actor', type: 'character' }, { temporary: true });
-				const tempEffect = await cls.create({ _id: foundry.utils.randomID(), name: game.i18n.localize(this.#defaultName), icon: this.#defaultIcon }, { temporary: true, parent: tempActor });
+				const tempEffect = await cls.create(
+					{
+						_id: foundry.utils.randomID(),
+						name: game.i18n.localize(this.#defaultName),
+						icon: this.#defaultIcon,
+					},
+					{ temporary: true, parent: tempActor },
+				);
 				const activeEffectConfig = new TempActiveEffectConfig(tempEffect);
 				activeEffectConfig.render(true);
 				const dispatch = this.#dispatch;
