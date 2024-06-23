@@ -1,13 +1,17 @@
-# Unofficial Fabula Ultima System (Project FU)
+# Project FU
 
-![fu-sitecover.jpg](https://trello.com/1/cards/64db0994c4a8791322c8b2e2/attachments/64f476a7f1dc332714f44c8c/download/fu-sitecover.jpg)
+![Fabula Ultima Mod Logo - White Background](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/assets/16845165/040a116d-3419-47ee-af36-5aed128bdb2d)
 
 ![foundry-v11-green](https://img.shields.io/badge/foundry-v11-green)
-![foundry-v12-red](https://img.shields.io/badge/foundry-v12-red)
+![foundry-v12-yellow](https://img.shields.io/badge/foundry-v12-yellow)
 
-Welcome to the Unofficial Fabula Ultima System for the [Foundry Virtual Tabletop](https://foundryvtt.com/). This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
+Welcome to the ProjectFU system for [Foundry Virtual Tabletop](https://foundryvtt.com/).
 
-**Disclaimer:** This system has been tested and is ready for use. We recommend backing up your world before trying it.
+ProjectFU is an independent production by the [League of Fabulous Developers](https://github.com/League-of-Fabulous-Developers) and is not affiliated with Need Games or Rooster Games. Supplied game rules in the system compendium adhere to and are published under the [Fabula Ultima Third Party Tabletop License 1.0](https://need.games/wp-content/uploads/2024/06/Fabula-Ultima-Third-Party-Tabletop-License-1.0.pdf). We adhere to RoosterEma's guidelines, ensuring that the core book and its supplements remain integral to your experience. To fully utilize this system, you will need the [Fabula Ultima Core Rulebook](https://www.needgames.it/fabula-ultima-en/).
+
+This repository's source code is subject to the terms of the [MIT License](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/blob/main/LICENSE.md). For further details, please refer to the [LICENSE](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/blob/main/LICENSE.md) file included in this repository.
+
+Fabula Ultima is a roleplaying game created by Emanuele Galletto and published by [Need Games](https://www.needgames.it/). Fabula Ultima is © Need Games and Rooster Games.
 
 ## Preview
 
@@ -34,24 +38,7 @@ Welcome to the Unofficial Fabula Ultima System for the [Foundry Virtual Tabletop
 
 1. Uninstall any previous versions of the system in FoundryVTT.
 2. Refer to `Semi-Automatic Installation` above.
-3. Refer to the [Project FU World Migration Guide](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/wiki/Migration-Tutorial) on how to migrate pre-existing worlds to the latest version.
-
-### Migrating Pre-Existing Worlds to New System
-
-To avoid any clashes with developers of other unofficial fabula ultima systems, we're making a small change. We need to switch the package ID from `fabulaultima` to `projectfu`. This ensures smooth updates for users who want both systems installed on Forge/Foundry without any conflicts. For users with pre-existing worlds, this involves editing a JSON file to make your world compatible with the new system. Make sure to back up your world before making any changes.
-
-**Changes:**
-
-1. Package ID: `fabulaultima` ➔ `projectfu`
-2. Path: Update records to point to `systems/projectfu/`
-
-**For World Migration:**
-
-1. Open your world's folder.
-2. Edit `world.json`.
-3. Change `"system": "fabulaultima"` to `"system": "projectfu"`.
-
-For detailed guidance, check out the [Project FU World Migration Guide](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/wiki/Migration-Tutorial).
+3. Refer to the [Project FU Migration Tutorial](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/wiki/Migration-Tutorial) on how to migrate pre-existing worlds or older system version to the latest version.
 
 ## Communication Channels
 
@@ -78,20 +65,21 @@ Major thanks to the following contributors:
 
 - [zarick1342](https://github.com/zarick1342/) - This system is a fork of their [Fabula Ultima Boilerplate System](https://github.com/zarick1342/fabula-ultima-system)
 - [serpuss](https://github.com/serpuss) - Various upgrades and CSS design improvements.
-- [spyrella](https://github.com/spyrella) - For ongoing updates to the system and maintaining the project.
-- [Savantford](https://github.com/Savantford) - For providing and allowing me to utilize their clock code.
+- [spyrella](https://github.com/spyrella) - For ongoing updates to the system and maintainence of the project.
+- [Savantford](https://github.com/Savantford) - For providing and allowing us to utilize their clock code.
 - [xeqi](https://github.com/xeqi) - Various fixes to the codebase (bonds, status effects, etc) + their fultimator importer module.
-- [Shourn](https://github.com/Shourn) - Refactoring of the codebase,setting up system data model, and implementing new features.
-- [Wigginns](https://github.com/Wigginns) - Various qol (collapsible descriptions) & fixes.
+- [Shourn](https://github.com/Shourn) - Refactoring of code infrastructure, the establishment of the system data model, and implementing new features.
+- [Wigginns](https://github.com/Wigginns) - Various improvements (collapsible descriptions) & fixes.
 - [KzMz](https://github.com/KzMz) - Combat HUD.
 - Special thanks to the following contributors found here: [Contributors Link](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/graphs/contributors)
 
-As well as the following localizers who translated to the system to their respective language:
+As well as the following localizers who translated the system to their respective language:
 
-- Italian ([KzMz](https://github.com/KzMz), RaurosHuntor), German ([Shourn](https://github.com/Shourn)), French ([Zakarik](https://github.com/Zakarik)), Spanish (Jakob_LP), Brazilian Portuguese (Lamegal), Russian (FreeDay).
+- Italian ([KzMz](https://github.com/KzMz), RaurosHuntor), German ([Shourn](https://github.com/Shourn)), French ([Zakarik](https://github.com/Zakarik)), Spanish (Jakob_LP, Alejabar), Brazilian Portuguese (Lamegal), Russian (FreeDay).
 
 The following assets/code were used from the following projects:
 
+- **
 - **Status Effect Icons**: [styles\static\icons] - default status effect icons from [@\_t3nshi](https://twitter.com/_t3nshi). Explicit permission granted by t3nshi for the use of the Status Effect Icons exclusively in Fabula Ultima games. These icons are not authorized for use in other media without obtaining additional permission from t3nshi.
 - **game-icons**: [game-icons.net](https://game-icons.net), various icons were used from here, licensed under the [CC-BY-3.0 license](https://creativecommons.org/licenses/by/3.0/).
 - **fultimator**: [fultimator](https://github.com/codeclysm/fultimator) by codeclysm, specifically project/ritual/sp counter code, licensed under the [MIT License](https://github.com/codeclysm/fultimator/blob/main/LICENSE.md)

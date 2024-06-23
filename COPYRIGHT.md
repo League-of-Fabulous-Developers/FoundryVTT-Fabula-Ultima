@@ -1,14 +1,20 @@
 # Copyright
 
-This repository is subject to the terms of the [MIT License](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/blob/main/LICENSE.md). For further details, please refer to the [LICENSE](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/blob/main/LICENSE.md) file included in this repository.
+This repository's source code is subject to the terms of the [MIT License](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/blob/main/LICENSE.md). For further details, please refer to the [LICENSE](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/blob/main/LICENSE.md) file included in this repository.
 
 ## Fabula Ultima
 
-[Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) is a fantasy tabletop role-playing game created by Emanuele Galleto and published by [Need Games](https://www.needgames.it/). A copy of the Core Rulebook can be purchased at [DriveThruRPG](https://preview.drivethrurpg.com/en/product/410108/Fabula-Ultima-TTJRPG).
+ProjectFU is an independent production by the [League of Fabulous Developers](https://github.com/League-of-Fabulous-Developers) and is not affiliated with Need Games or Rooster Games.
+
+Fabula Ultima is a roleplaying game created by Emanuele Galletto and published by [Need Games](https://www.needgames.it/). Fabula Ultima is © Need Games and Rooster Games.
 
 ## Foundry VTT License
 
 This code uses the Foundry VTT and its API under the terms of the Limited License Agreement for Module Development. Foundry VTT is a Copyright of Foundry Gaming, LLC.
+
+## ProjectFU System Compendium
+
+Supplied game rules in the system compendium adhere to and are published under the [Fabula Ultima Third Party Tabletop License 1.0](https://need.games/wp-content/uploads/2024/06/Fabula-Ultima-Third-Party-Tabletop-License-1.0.pdf). We adhere to RoosterEma's guidelines, ensuring that the core book and its supplements remain integral to your experience. To fully utilize this system, you will need the [Fabula Ultima Core Rulebook](https://www.needgames.it/fabula-ultima-en/).
 
 ## External Code
 
@@ -18,6 +24,7 @@ This code uses the Foundry VTT and its API under the terms of the Limited Licens
 
 ## Fonts
 
+- **FabulaUltimaIcons-Regular.otf** font from the [License kit](https://need.games/wp-content/uploads/2024/06/Fabula-Ultima-Third-Party-Tabletop-License-Kit.zip), under Public Domain
 - [Material Symbols](https://developers.google.com/fonts/) under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
 - [Credit Valley](https://www.fontsquirrel.com/fonts/credit-valley) under the [Larabie Fonts License](https://www.fontsquirrel.com/license/Credit-Valley)
 - [Antonio](https://fonts.google.com/specimen/Antonio) under the [Open Font License](https://openfontlicense.org/)
@@ -34,7 +41,7 @@ This code uses the Foundry VTT and its API under the terms of the Limited Licens
 
 [npc action icons]
 
-- fu-action-melee.svg:[Evilz Font](https://www.fontspace.com/evilz-font-f4530 '‌') by N+ under Freeware - Personal & Commercial Use
+- fu-action-melee.svg: [Evilz Font](https://www.fontspace.com/evilz-font-f4530 '‌') by N+ under Freeware - Personal & Commercial Use
 - fu-action-ranged.svg: [Evilz Font](https://www.fontspace.com/evilz-font-f4530 '‌') by N+ under Freeware - Personal & Commercial Use
 - fu-action-skill.svg: [Evilz Font](https://www.fontspace.com/evilz-font-f4530 '‌') by N+ under Freeware - Personal & Commercial Use
 - fu-action-spell.svg: [Evilz Font](https://www.fontspace.com/evilz-font-f4530 '‌') by N+ under Freeware - Personal & Commercial Use
@@ -65,11 +72,11 @@ This code uses the Foundry VTT and its API under the terms of the Limited Licens
 - **Status Effect Icons**: [styles\static\icons] - default status effect icons from [@\_t3nshi](https://twitter.com/_t3nshi).
   - Explicit permission granted by t3nshi for the use of the Status Effect Icons exclusively in Fabula Ultima games. These icons are not authorized for use in other media without obtaining additional permission from t3nshi.
 
-## Extra icons
+## Extra Icons
 
 [styles\static\icons]
 
-- Created with Inkscape by [Spyrella](https://github.com/spyrella '‌') under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en '‌')
+- Created by [Spyrella](https://github.com/spyrella '‌') under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en '‌')
   - fus-sl-star.svg
   - ful-sl-star.svg
   - fus-star.svg
@@ -78,8 +85,9 @@ This code uses the Foundry VTT and its API under the terms of the Limited Licens
   - fus-star2.svg
   - fus-star2-border.svg
 
-## Background
+## Other
 
 [styles\static\ui]
 
+- Fabula Ultima Mod Logo - White Background.png from the [License kit](https://need.games/wp-content/uploads/2024/06/Fabula-Ultima-Third-Party-Tabletop-License-Kit.zip), under the [Fabula Ultima Third Party Tabletop License 1.0](https://need.games/wp-content/uploads/2024/06/Fabula-Ultima-Third-Party-Tabletop-License-1.0.pdf)
 - bg.png & bg.webp: The following art is from Fabula Ultima Core Rulebook, so it will need to be replaced.

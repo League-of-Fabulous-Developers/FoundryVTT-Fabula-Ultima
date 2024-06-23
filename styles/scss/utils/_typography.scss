@@ -1,4 +1,11 @@
 @font-face {
+	font-family: 'Fabula Ultima icons';
+	src: url('/systems/projectfu/styles/fonts/FabulaUltimaIcons-Regular.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
 	font-family: 'CreditValley';
 	src: url('/systems/projectfu/styles/fonts/credit-valley/CreditValley.ttf') format('truetype');
 	font-weight: normal;
@@ -340,12 +347,14 @@ $font-quote: 'EB Garamond', sans-serif;
 
 			h1 {
 				line-height: 1.2em;
+				margin-bottom: 5px;
 			}
 
 			h2,
 			h3,
 			h4 {
 				line-height: 1.45em;
+				margin-bottom: 5px;
 			}
 
 			hr {
@@ -486,47 +495,43 @@ $font-quote: 'EB Garamond', sans-serif;
 }
 
 .is-melee::before {
-	content: '$';
+	content: 'm';
 }
 
 .is-melee {
 	color: $color-black !important;
-	font-family: 'Evilz';
+	font-family: 'Fabula Ultima icons';
 	font-size: 24px;
-	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-range::before {
-	content: '9';
+	content: 'r';
 }
 
 .is-range {
 	color: $color-black !important;
-	font-family: 'Evilz';
+	font-family: 'Fabula Ultima icons';
 	font-size: 24px;
-	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-spell::before {
-	content: 'h';
+	content: 'c';
 }
 
 .is-spell {
 	color: $color-black !important;
-	font-family: 'Evilz';
+	font-family: 'Fabula Ultima icons';
 	font-size: 24px;
-	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-skill::before {
-	content: 'S';
+	content: 's';
 }
 
 .is-skill {
 	color: $color-black !important;
-	font-family: 'Web Symbols';
+	font-family: 'Fabula Ultima icons';
 	font-size: 24px;
-	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-two-weapon::before {
