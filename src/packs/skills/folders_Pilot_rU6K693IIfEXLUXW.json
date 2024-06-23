@@ -1,0 +1,19 @@
+{
+  "name": "Pilot",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "rU6K693IIfEXLUXW",
+  "sort": 100000,
+  "color": "#773531",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711422383011,
+    "modifiedTime": 1719126428368,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!rU6K693IIfEXLUXW"
+}

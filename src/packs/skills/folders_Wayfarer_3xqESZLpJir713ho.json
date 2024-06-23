@@ -1,0 +1,19 @@
+{
+  "name": "Wayfarer",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "3xqESZLpJir713ho",
+  "sort": 200000,
+  "color": "#0e3f69",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706486455877,
+    "modifiedTime": 1719126182055,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!3xqESZLpJir713ho"
+}

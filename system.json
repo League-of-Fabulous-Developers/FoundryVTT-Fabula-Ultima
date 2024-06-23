@@ -39,6 +39,126 @@
 				"PLAYER": "OBSERVER",
 				"ASSISTANT": "OWNER"
 			}
+		},
+		{
+			"label": "Classes",
+			"type": "Item",
+			"name": "classes",
+			"path": "packs/classes",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Skills",
+			"type": "Item",
+			"name": "skills",
+			"path": "packs/skills",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Heroic Skills",
+			"type": "Item",
+			"name": "heroic-skills",
+			"path": "packs/heroic-skills",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Spells",
+			"type": "Item",
+			"name": "spells",
+			"path": "packs/spells",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Basic Equipment",
+			"type": "Item",
+			"name": "basic-equipment",
+			"path": "packs/basic-equipment",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Consumables",
+			"type": "Item",
+			"name": "consumables",
+			"path": "packs/consumables",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Rollable Tables",
+			"type": "RollTable",
+			"name": "rollable-tables",
+			"path": "packs/rollable-tables",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Handouts",
+			"type": "JournalEntry",
+			"name": "handouts",
+			"path": "packs/handouts",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		}
+	],
+	"packFolders": [
+		{
+			"name": "Bestiary",
+			"sorting": "a",
+			"color": "#532853",
+			"packs": []
+		},
+		{
+			"name": "Character Creation",
+			"sorting": "a",
+			"color": "#276625",
+			"packs": ["classes", "skills", "heroic-skills", "spells"]
+		},
+		{
+			"name": "Equipment",
+			"sorting": "a",
+			"color": "#005390",
+			"packs": ["basic-equipment", "consumables"]
+		},
+		{
+			"name": "GM Tools",
+			"sorting": "a",
+			"color": "#831101",
+			"packs": ["rollable-tables"]
+		},
+		{
+			"name": "Journals",
+			"sorting": "a",
+			"color": "#237B71",
+			"packs": ["handouts"]
 		}
 	],
 	"languages": [

@@ -1,0 +1,19 @@
+{
+  "name": "Arcanist",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "oFTBItb16ggocf8g",
+  "sort": 1300000,
+  "color": "#1B7E62",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706486355864,
+    "modifiedTime": 1719126182055,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!oFTBItb16ggocf8g"
+}

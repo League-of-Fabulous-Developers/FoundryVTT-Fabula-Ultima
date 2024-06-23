@@ -1,0 +1,19 @@
+{
+  "name": "Mutant",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "ADSrT7dY3syrqW73",
+  "sort": 100000,
+  "color": "#AB5F8B",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711422313538,
+    "modifiedTime": 1719126391155,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!ADSrT7dY3syrqW73"
+}

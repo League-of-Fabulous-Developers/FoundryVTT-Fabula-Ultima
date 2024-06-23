@@ -1,0 +1,19 @@
+{
+  "name": "Chimerist",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "yUO3Uvha7Nasdw3w",
+  "sort": 1600000,
+  "color": "#72714F",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706486361913,
+    "modifiedTime": 1719126182055,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!yUO3Uvha7Nasdw3w"
+}

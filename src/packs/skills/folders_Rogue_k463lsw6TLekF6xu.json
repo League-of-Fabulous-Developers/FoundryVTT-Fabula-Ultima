@@ -1,0 +1,19 @@
+{
+  "name": "Rogue",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "k463lsw6TLekF6xu",
+  "sort": 1000000,
+  "color": "#AD4D48",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706486434566,
+    "modifiedTime": 1719126182055,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!k463lsw6TLekF6xu"
+}

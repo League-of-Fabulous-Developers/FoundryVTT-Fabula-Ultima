@@ -1,0 +1,19 @@
+{
+  "name": "Dancer",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "DqGud3mw8MwZ6P5l",
+  "sort": 100000,
+  "color": "#C62FB5",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706518482790,
+    "modifiedTime": 1719126185330,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!DqGud3mw8MwZ6P5l"
+}

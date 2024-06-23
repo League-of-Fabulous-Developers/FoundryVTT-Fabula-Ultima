@@ -1,0 +1,19 @@
+{
+  "name": "Keys",
+  "sorting": "a",
+  "folder": "NSF7G1xLIJ71r9qX",
+  "type": "Item",
+  "_id": "iZnEw7B6koQcAdRk",
+  "sort": 100000,
+  "color": "#9109EC",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706552300736,
+    "modifiedTime": 1708922525962,
+    "lastModifiedBy": "ebg6FQH2cPZYwDuu"
+  },
+  "_key": "!folders!iZnEw7B6koQcAdRk"
+}

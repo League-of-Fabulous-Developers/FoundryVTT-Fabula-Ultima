@@ -1,0 +1,19 @@
+{
+  "name": "Fury",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "gf9uvRkGXGXrNE9W",
+  "sort": 900000,
+  "color": "#A22F2F",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706486417307,
+    "modifiedTime": 1719126182055,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!gf9uvRkGXGXrNE9W"
+}

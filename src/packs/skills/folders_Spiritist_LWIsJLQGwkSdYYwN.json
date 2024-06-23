@@ -1,0 +1,19 @@
+{
+  "name": "Spiritist",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "LWIsJLQGwkSdYYwN",
+  "sort": 500000,
+  "color": "#17635F",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706486446040,
+    "modifiedTime": 1719126182055,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!LWIsJLQGwkSdYYwN"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Guardian",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "BdAXAA3IkZnarpJX",
+  "sort": 300000,
+  "color": "#0056B3",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706486422464,
+    "modifiedTime": 1719126182055,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!BdAXAA3IkZnarpJX"
+}
