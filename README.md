@@ -1,6 +1,6 @@
 # Project FU
 
-![Fabula Ultima Mod Logo - White Background]()
+![Fabula Ultima Mod Logo - White Background](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/assets/16845165/040a116d-3419-47ee-af36-5aed128bdb2d)
 
 ![foundry-v11-green](https://img.shields.io/badge/foundry-v11-green)
 ![foundry-v12-yellow](https://img.shields.io/badge/foundry-v12-yellow)
