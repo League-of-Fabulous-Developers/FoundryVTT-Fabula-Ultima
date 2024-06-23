@@ -1,0 +1,96 @@
+{
+  "name": "Dancer",
+  "type": "class",
+  "img": "icons/magic/control/control-influence-crown-yellow.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": "My story? Dance with me and you shall know it."
+    },
+    "description": "<div class=\"stackedit__html\"><h1>CHANTER</h1><h5><strong>ALSO: Acrobat, Jester, Swashbuckler</strong></h5><p><strong>Dancers</strong> are those who have trained their bodies to achieve exceptional coordination and flexibility, be it to impress a crowd with their gymnastics or to perform ancient steps meant to keep evil at bay. The more gifted Dancers may direct the flow of spiritual force through repeated and precise motions, enhancing their physical abilities and manifesting magical effects. They are surprisingly capable combatants, if sometimes a little... overdramatic.</p><ul><li>Permanently increase your maximum Hit Points <strong>or</strong> Mind Points by 5 (your choice).</li></ul><h3 id=\"dancer-skills\"><strong>DANCER SKILLS</strong></h3><h4><strong>@UUID[Compendium.projectfu.skills.Item.y0dACFzoQBBMZOEk]{Dance} (SL10)</strong></h4><p>Each time you take this Skill, you learn a <strong>@UUID[Compendium.projectfu.skills.Item.kTJhhmUgvlOMSgKh]{Dance}.</strong> On your turn during a conflict scene, if you have no <strong>martial armor</strong> equipped, you may spend 10 Mind Points to perform a dance you have learned. This doesn't require an action but can only be done before or after an action, and only once per turn. If you already performed a different dance during your previous turn in this scene, the cost of the new dance is reduced to 5 Mind Points. Some <strong>dances</strong> are <strong>instantaneous</strong> and resolve immediately, while others have effects that last <strong>until the start of your next turn</strong>.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.3mqtdzwMU62J1ogW]{Follow My Lead}</strong></h4><p>When you perform a <strong>dance</strong> with a <strong>duration</strong> of \"Until the start of your next turn,\" you may spend 10 additional Mind Points. If you do, choose one ally you can see towards whom you have a Bond of <strong>affection</strong>: apply the benefits of the <strong>dance</strong> to that ally as well as yourself (the benefits still last until the start of your next turn).</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.R0F1K6i1gjNWNklq]{Frenetic Footwork}</strong></h4><p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of \"Until the start of your next turn,\" you gain a bonus equal to<strong>【SL × 2】</strong>to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.DF1eCfsBw1kYOAH6]{Quick-Change}</strong></h4><p>After you perform a <strong>dance</strong>, you may perform the <strong>Equipment</strong> action for free.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.L4LqyZu7NPjavyaf]{Wardancer} (SL5)</strong></h4><p><span class=\"fontstyle0\">After you perform a </span><span class=\"fontstyle2\"><strong>dance</strong></span><span class=\"fontstyle0\">, your attacks with </span><span class=\"fontstyle2\"><strong>brawling</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>dagger</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>flail</strong>, </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>thrown </strong></span><span class=\"fontstyle0\"><strong>weapons</strong> deal </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">extra damage until the start of your next turn. If you have an </span><span class=\"fontstyle2\"><strong>arcane </strong></span><span class=\"fontstyle0\">weapon equipped, offensive spells </span><span style=\"font-family:'PT Sans Narrow', sans-serif\">( <strong>@ICON[offensive]</strong> )</span><span class=\"fontstyle0\"> you cast also deal </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">extra damage until the start of your next turn.</span> </p><p></p><h3><strong>DANCES</strong></h3><p><strong>@UUID[Compendium.projectfu.skills.Item.kTJhhmUgvlOMSgKh]{[Handout: All Dances]}</strong></p></div>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": false
+        },
+        "shields": {
+          "value": false
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": false
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF142"
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706516939683,
+    "modifiedTime": 1719172183110,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "KoQ2Q4mPVC7cpts7",
+  "sort": 0,
+  "_key": "!items!KoQ2Q4mPVC7cpts7"
+}

@@ -1,0 +1,48 @@
+{
+  "folder": "YWYLzP3o7HKQtEAC",
+  "name": "Runic Plating Module",
+  "type": "classFeature",
+  "img": "icons/equipment/chest/breastplate-layered-leather-green.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.armorModule",
+    "data": {
+      "martial": true,
+      "quality": "",
+      "defense": {
+        "modifier": 10,
+        "attribute": "dex"
+      },
+      "magicDefense": {
+        "modifier": 11,
+        "attribute": "ins"
+      },
+      "description": ""
+    },
+    "source": "FUTF165"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711473999877,
+    "modifiedTime": 1719173179841,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "008QW2xjRc0BT2Az",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!008QW2xjRc0BT2Az"
+}

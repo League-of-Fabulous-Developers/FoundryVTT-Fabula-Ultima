@@ -1,0 +1,39 @@
+{
+  "folder": "OcoOq5td7Ya9GOPU",
+  "name": "Expanded Plating Module",
+  "type": "classFeature",
+  "img": "icons/skills/melee/shield-block-gray-yellow.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.supportModule",
+    "data": {
+      "description": "<h5 style=\"box-sizing: border-box; user-select: text; font-size: 16px; font-weight: 700; margin: 0px; font-family: Antonio, sans-serif; color: rgb(43, 74, 66); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\"><span style=\"font-family: Antonio, sans-serif\"><strong>(MECHA AND STEED FRAMES ONLY)</strong></span></h5><p style=\"box-sizing: border-box; user-select: text; margin: 10px 0px 0px; font-family: 'PT Sans Narrow', sans-serif; font-style: normal; font-size: 16px; line-height: 1.45em; color: rgb(43, 74, 66); font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">While you are driving this <strong>personal vehicle</strong>, if it has an active <strong style=\"box-sizing: border-box; user-select: text;\">Heavy</strong>, <strong style=\"box-sizing: border-box; user-select: text;\">Runic</strong>, or <strong style=\"box-sizing: border-box; user-select: text;\">Standard</strong> <strong style=\"box-sizing: border-box; user-select: text;\">Plating</strong> module, all passengers aboard may treat their Defense and Magic Defense scores as being equal to those provided by the <strong style=\"box-sizing: border-box; user-select: text;\">armor module</strong> in question (they may still use their normal scores if those would be better).</span></p>",
+      "complex": false
+    },
+    "source": "FUTF168"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711477016894,
+    "modifiedTime": 1719173179841,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "Fa1V1JIKwTD1uMqY",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!Fa1V1JIKwTD1uMqY"
+}

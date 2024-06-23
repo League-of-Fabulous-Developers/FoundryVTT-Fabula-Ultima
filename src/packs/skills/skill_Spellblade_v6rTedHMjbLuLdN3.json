@@ -1,0 +1,143 @@
+{
+  "folder": "laGyUtQnXPDC2pZG",
+  "name": "Spellblade",
+  "type": "skill",
+  "_id": "v6rTedHMjbLuLdN3",
+  "img": "icons/magic/fire/dagger-rune-enchant-flame-purple-orange.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">When you cast an offensive </span>( <strong>@ICON[offensive]</strong> ) <span class=\"fontstyle0\">spell targeting </span><span class=\"fontstyle3\">a <strong>single creature</strong></span><span class=\"fontstyle0\">, if the spell has a </span><span class=\"fontstyle3\"><strong>total Mind Point cost of </strong></span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 10</strong></span><span class=\"fontstyle4\"><strong>】 </strong></span><span class=\"fontstyle3\"><strong>or lower </strong></span><span class=\"fontstyle0\">and you have one or more </span><span class=\"fontstyle3\"><strong>bow</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle3\"><strong>brawling</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle3\"><strong>dagger</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle3\"><strong>flail</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle3\"><strong>spear</strong>, </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle3\"><strong>sword</strong> </span><span class=\"fontstyle0\">weapons equipped, you may choose one of those weapons. If you do, your Magic Check for the spell will use the chosen weapon's Accuracy Check formula; for instance, the Magic Check for an Elementalist spell cast through a </span><span class=\"fontstyle3\"><strong>bronze sword</strong> </span><span class=\"fontstyle0\">(<strong>Core Rulebook</strong>, page </span><span class=\"fontstyle3\"><strong>131</strong></span><span class=\"fontstyle0\">) will be </span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>DEX + MIG</strong></span><span class=\"fontstyle4\"><strong>】</strong></span><span class=\"fontstyle3\"><strong>+1</strong> </span><span class=\"fontstyle0\">instead of </span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>INS + WLP</strong></span><span class=\"fontstyle4\"><strong>】</strong></span><span class=\"fontstyle0\">.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR187"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": true
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.v6rTedHMjbLuLdN3"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706498028252,
+    "modifiedTime": 1719160056108,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 500000,
+  "_key": "!items!v6rTedHMjbLuLdN3"
+}

@@ -1,0 +1,141 @@
+{
+  "folder": "9Hit5mtbXhSe0Dht",
+  "name": "Resonance",
+  "type": "skill",
+  "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">After you affect one or more enemies with a </span><span class=\"fontstyle2\"><strong>verse</strong></span><span class=\"fontstyle0\">, if you have an </span><span class=\"fontstyle2\"><strong>arcane </strong></span><span class=\"fontstyle0\">weapon equipped, you may choose one option: until the start of your next turn, your allies deal</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">extra damage to those enemies; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">until the start of your next turn, you recover</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">Mind Points </span><span class=\"fontstyle2\"><strong>every time</strong> </span><span class=\"fontstyle0\">one of those enemies suffers damage (if the same source deals damage to two or more of those enemies at the same time, you recover</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">MP for each damaged enemy).</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@GAIN[1 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@GAIN[2 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@GAIN[3 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Chanter"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUHF137"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706551588442,
+    "modifiedTime": 1719157045160,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "kdL9oQYefqNlWqyD",
+  "sort": 0,
+  "_key": "!items!kdL9oQYefqNlWqyD"
+}

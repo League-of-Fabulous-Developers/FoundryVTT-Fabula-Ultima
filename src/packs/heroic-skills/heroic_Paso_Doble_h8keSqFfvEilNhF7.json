@@ -1,0 +1,149 @@
+{
+  "name": "Paso Doble",
+  "type": "heroic",
+  "img": "icons/magic/control/control-influence-crown-yellow.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Ignore the MP cost of Follow My Lead when you are in Crisis."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Dancer </strong></span><span class=\"fontstyle2\">Class, and must have acquired the </span><span class=\"fontstyle0\"><strong>Follow My Lead</strong> </span><span class=\"fontstyle2\">Skill.</span></p></blockquote><p><span class=\"fontstyle2\">While you are in </span><span class=\"fontstyle0\"><strong>Crisis</strong></span><span class=\"fontstyle2\">, you ignore the MP cost for your </span><span class=\"fontstyle0\"><strong>Follow My Lead</strong> </span><span class=\"fontstyle2\">Skill.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Dancer"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF158"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [
+    {
+      "icon": "icons/magic/control/control-influence-crown-yellow.webp",
+      "origin": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.mbndm83EQjfSZWet",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Paso Doble",
+      "_id": "P4N97na5vkpFiDXp",
+      "changes": [],
+      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">While you are in <strong style=\"box-sizing:border-box;user-select:text\">Crisis</strong>, you ignore the MP cost for your <strong style=\"box-sizing:border-box;user-select:text\">Follow My Lead</strong> Skill. </span></p>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "active"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!h8keSqFfvEilNhF7.P4N97na5vkpFiDXp"
+    }
+  ],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.mbndm83EQjfSZWet"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706684669665,
+    "modifiedTime": 1719170716535,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "h8keSqFfvEilNhF7",
+  "sort": 0,
+  "_key": "!items!h8keSqFfvEilNhF7"
+}

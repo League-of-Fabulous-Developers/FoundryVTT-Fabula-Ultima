@@ -1,0 +1,137 @@
+{
+  "folder": "ADSrT7dY3syrqW73",
+  "name": "Genoclepsis",
+  "type": "skill",
+  "img": "icons/creatures/abilities/wolf-heads-swirl-purple.webp",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<div class=\"stackedit__html\"><p>When you deal damage to one or more NPCs, you learn their <strong>Species and the GM chooses 【SL】 therioforms </strong><span class=\"fontstyle0\">appropriate to those NPCs (see next page): if you have acquired the </span><span class=\"fontstyle2\"><strong>@UUID[Compendium.fabula-ultima-techno-fantasy.techno-fantasy-skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis}</strong> </span><span class=\"fontstyle0\">Skill, you may immediately pay its HP cost and use it to manifest those </span><span class=\"fontstyle2\"><strong>therioforms</strong> </span><span class=\"fontstyle0\">(even if they are not among those you have learned).</span></p></div>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 2,
+      "min": 0
+    },
+    "class": {
+      "value": "Mutant"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUTF155"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "mig"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711429218464,
+    "modifiedTime": 1719165640551,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "mWqx8pto9gbbwMoG",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!mWqx8pto9gbbwMoG"
+}

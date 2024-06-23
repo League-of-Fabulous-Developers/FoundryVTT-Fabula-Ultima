@@ -1,0 +1,55 @@
+{
+  "folder": "BJhRf9J1K7HT9EQu",
+  "name": "Shield Module",
+  "type": "classFeature",
+  "img": "systems/projectfu/styles/static/compendium/Weapon%20Modules/Shield%20Module.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.weaponModule",
+    "data": {
+      "complex": false,
+      "quality": "",
+      "type": "shield",
+      "description": "<h5 style=\"box-sizing: border-box; user-select: text; font-size: 16px; font-weight: 700; margin: 0px; font-family: Antonio, sans-serif; color: rgb(43, 74, 66); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\"><span style=\"font-family: Antonio, sans-serif\"><strong>(EXOSKELETON AND MECHA ONLY)</strong></span></h5><p style=\"box-sizing: border-box; user-select: text; margin: 10px 0px 0px; font-family: 'PT Sans Narrow', sans-serif; font-style: normal; font-size: 16px; line-height: 1.45em; color: rgb(43, 74, 66); font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start\"><span class=\"fontstyle0\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">While driving this </span></span><span class=\"fontstyle2\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong>personal vehicle</strong></span></span><span class=\"fontstyle0\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">, you gain a +2 bonus to Defense and a +2 bonus to Magic Defense. Additionally, this weapon module </span></span><span class=\"fontstyle2\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong>does not</strong> </span></span><span class=\"fontstyle0\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">count as a “weapon”: instead, it counts as an equipped </span></span><span class=\"fontstyle2\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong>shield</strong></span></span><span class=\"fontstyle0\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">. This module </span></span><span class=\"fontstyle2\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong>cannot</strong> </span></span><span class=\"fontstyle0\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">be equipped in your </span></span><span class=\"fontstyle2\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong>main hand slot</strong></span></span><span class=\"fontstyle0\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">, unless you have acquired the </span></span><span class=\"fontstyle2\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">Dual Shieldbearer </span></span><span class=\"fontstyle0\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">Skill (see </span></span><span class=\"fontstyle2\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong>Core Rulebook</strong></span></span><span class=\"fontstyle0\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">, page </span></span><span class=\"fontstyle2\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong>197</strong></span></span><span class=\"fontstyle0\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">). If you have, your </span></span><span class=\"fontstyle2\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong>Twin Shields</strong> </span></span><span class=\"fontstyle0\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">deal 2 extra damage (this is cumulative if you have two </span></span><span class=\"fontstyle2\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong>Shield modules</strong> </span></span><span class=\"fontstyle0\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">enabled at the same time).</span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\"> <br style=\" font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; \"></span></p>",
+      "accuracy": {
+        "attr1": "dex",
+        "attr2": "ins",
+        "modifier": 0
+      },
+      "damage": {
+        "type": "physical",
+        "bonus": 0
+      },
+      "category": "arcane",
+      "shield": {
+        "defense": 2,
+        "magicDefense": 2
+      }
+    },
+    "source": "FUTF167"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711474486592,
+    "modifiedTime": 1719173944195,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "TWzSnTRW9frKW1CO",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!TWzSnTRW9frKW1CO"
+}

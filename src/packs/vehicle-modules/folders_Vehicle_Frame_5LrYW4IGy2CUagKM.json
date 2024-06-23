@@ -1,0 +1,19 @@
+{
+  "name": "Vehicle Frame",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "5LrYW4IGy2CUagKM",
+  "sort": 0,
+  "color": "#5e7c8d",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1712878313690,
+    "modifiedTime": 1719173179821,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!5LrYW4IGy2CUagKM"
+}

@@ -1,0 +1,121 @@
+{
+  "folder": "NWyKWh1qGp8D9yvJ",
+  "name": "Greater Theriomorphosis",
+  "type": "heroic",
+  "img": "icons/creatures/abilities/wolf-howl-moon-white.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Act after Theriomorphosis."
+    },
+    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements:</strong> you must have mastered the Mutant Class.</span></p></blockquote><p><span class=\"fontstyle0\">When you use the </span><span class=\"fontstyle2\"><strong>Theriomorphosis</strong> </span><span class=\"fontstyle0\">Skill on your turn during a conflict, if this </span><span class=\"fontstyle2\"><strong>did not</strong> </span><span class=\"fontstyle0\">happen through the <strong>G</strong></span><span class=\"fontstyle2\"><strong>enoclepsis</strong> </span><span class=\"fontstyle0\">Skill, you may manifest the effects of </span><span class=\"fontstyle2\"><strong>up to three therioforms</strong> </span><span class=\"fontstyle0\">from those you have learned (instead of two); then, you may immediately perform an additional action. This additional action </span><span class=\"fontstyle2\"><strong>cannot</strong> </span><span class=\"fontstyle0\">be used for the </span><span class=\"fontstyle2\"><strong>Theriomorphosis</strong> </span><span class=\"fontstyle0\">Skill.</span> <br style=\"font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;orphans:2;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-size-adjust:auto;-webkit-text-stroke-width:0px\" /></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Mutant"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": "Sharpshooter, Weaponmaster"
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUTF174"
+    }
+  },
+  "effects": [],
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-heroic-skills.Item.o99VrBeMJeV8epR3"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711473807263,
+    "modifiedTime": 1719170718289,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "vwygOswBPj5vyiWN",
+  "sort": 0,
+  "_key": "!items!vwygOswBPj5vyiWN"
+}

@@ -1,0 +1,139 @@
+{
+  "folder": "KUerX2dLyeZ8A3Xw",
+  "name": "Torpor",
+  "type": "spell",
+  "_id": "9ENpDMvIOH9FJAka",
+  "img": "icons/magic/control/debuff-energy-hold-pink.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You smother the soul energy coursing through the bodies of your foes, hindering their movements. <br />Choose </span><span class=\"fontstyle2\"><strong>@EFFECT[slow] </strong></span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>@EFFECT[weak]</strong></span><span class=\"fontstyle0\">: you inflict the chosen status effect on each target hit by this spell.</span> </p><hr /><p><strong>@LOSS[5 mp]</strong> for <strong>one</strong> target.</p><p><strong>@LOSS[10 mp]</strong> for <strong>two</strong> targets.</p><p><strong>@LOSS[15 mp]</strong> for <strong>three</strong> targets.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Spiritist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "mpCost": {
+      "value": "5 x T"
+    },
+    "target": {
+      "value": "Up to three creatures"
+    },
+    "duration": {
+      "value": "Instantaneous"
+    },
+    "isOffensive": {
+      "value": true
+    },
+    "source": {
+      "value": "FUCR209"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "opportunity": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706573295761,
+    "modifiedTime": 1719161667025,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 200000,
+  "_key": "!items!9ENpDMvIOH9FJAka"
+}

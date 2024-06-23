@@ -1,0 +1,96 @@
+{
+  "name": "Symbol Rules",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Symbols Rules",
+      "type": "text",
+      "_id": "vK1pdg5bGSKX9Jr4",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><span class=\"fontstyle0\"><strong>Symbols </strong></span><span class=\"fontstyle2\">follow a set of special rules.</span></p><ul><li><p><span class=\"fontstyle2\">A creature may </span><span class=\"fontstyle0\"><strong>only bear one symbol at a time</strong> </span><span class=\"fontstyle2\">— if they receive a new </span><span class=\"fontstyle0\"><strong>symbol</strong></span><span class=\"fontstyle2\">, regardless of source, any previous </span><span class=\"fontstyle0\">symbol </span><span class=\"fontstyle2\">is destroyed.</span></p></li><li><p><strong>Symbols </strong><span class=\"fontstyle2\">and their effects have unlimited durations until destroyed.</span></p></li><li><p><span class=\"fontstyle2\">If a Symbolist dies, each </span><span class=\"fontstyle0\"><strong>symbol </strong></span><span class=\"fontstyle2\">they created is immediately and automatically destroyed.</span></p></li><li><p><span class=\"fontstyle2\">If a creature bearing a </span><span class=\"fontstyle0\"><strong>symbol </strong></span><span class=\"fontstyle2\">dies, that </span><span class=\"fontstyle0\"><strong>symbol </strong></span><span class=\"fontstyle2\">is also destroyed. </span>However, if the creature is a NPC that simply changes its form and statistics when reduced to 0 Hit Points, that does not remove the <span style=\"font-family:var(--font-primary)\"><strong>symbol</strong>: </span>in short, the symbol is “narratively” tied to that specific character, not to their current manifestation and parameters.</p></li><li><p><span class=\"fontstyle2\">A Villain may, during a Game Master scene, spend 1 Ultima Point to destroy any number of </span><span class=\"fontstyle0\"><strong>symbols </strong></span><span class=\"fontstyle2\">borne by themselves and by any of their allies that are present during that scene. </span>This is the <strong>only possible way to remove a </strong><span style=\"font-family:var(--font-primary)\"><strong>symbol</strong> </span>against the will of the Symbolist who created it, save for the use of an <strong>opportunity </strong>appropriate to the scene or an NPC Skill specifically created by the GM (but this should be done no more than two or three times per campaign).</p></li><li><p>A Symbolist may destroy any number of their <strong>symbols</strong> at any time, no action required.</p></li><li><p><span class=\"fontstyle0\">If a </span><strong>symbol </strong><span class=\"fontstyle0\">requires you to make a choice when it is created, that choice applies to all copies of the </span><strong>symbol </strong><span class=\"fontstyle0\">created with that action (but does not affect any copies of that </span><strong>symbol </strong><span class=\"fontstyle0\">created through previous actions).</span> </p></li></ul><blockquote><p><span class=\"fontstyle2\"><em>For instance, if a Symbolist applies two </em></span><span class=\"fontstyle0\"><em><strong>symbols of weakness (fire)</strong> </em></span><span class=\"fontstyle2\"><em>through the </em></span><span class=\"fontstyle0\"><em><strong>Symbolism </strong></em></span><span class=\"fontstyle2\"><em>Skill, combining it with an attack with the </em></span><span class=\"fontstyle0\"><em><strong>multi (2)</strong> </em></span><span class=\"fontstyle2\"><em>property, the creatures who receive those </em></span><span class=\"fontstyle0\"><em><strong>symbols </strong></em></span><span class=\"fontstyle2\"><em>will suffer extra damage from </em></span><span class=\"fontstyle0\"><em><strong>fire</strong></em></span><span class=\"fontstyle2\"><em>. If shortly afterwards the Symbolist applies a </em></span><span class=\"fontstyle0\"><em><strong>symbol of weakness (bolt)</strong> </em></span><span class=\"fontstyle2\"><em>on a third creature, the two previous creatures will still receive extra damage from </em></span><span class=\"fontstyle0\"><em><strong>fire</strong></em></span><span class=\"fontstyle2\"><em>, not </em></span><span class=\"fontstyle0\"><em><strong>bolt</strong></em></span><span class=\"fontstyle2\"><em>.</em></span></p></blockquote><p><span class=\"fontstyle2\">Remember that the maximum number of </span><span class=\"fontstyle0\"><strong>symbols </strong></span><span class=\"fontstyle2\">you may have active at the same time is based on your Skill Level in </span><span class=\"fontstyle0\"><strong>Symbolism</strong></span><span class=\"fontstyle2\">.</span> </p><h3 id=\"elementalist-skills\"><strong>ALL SYMBOLS</strong></h3><p><strong>@UUID[.lC3Sy7JKjVLVGRax]{Symbols List}</strong></p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "11.315",
+        "createdTime": 1711758472181,
+        "modifiedTime": 1719172768017,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+      },
+      "_key": "!journal.pages!t38IeNrS9T7NQspT.vK1pdg5bGSKX9Jr4"
+    },
+    {
+      "sort": 200000,
+      "name": "Symbols List",
+      "type": "text",
+      "_id": "lC3Sy7JKjVLVGRax",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.C8Erod4IEe7SCEGF]{Symbol of Binding}</strong></td></tr></tbody></table><p>The <strong>current </strong>Attribute die sizes of the creature bearing this <strong>symbol </strong>can <strong>never </strong>be <strong>higher </strong>than that creature’s corresponding <strong>base </strong>Attribute die sizes (this does <strong>not </strong>end any spells or effects, but it will negate their influence over the creature’s Attributes).</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.5PBHJ7pd0OQlnIoa]{Symbol of Creation}</strong></td></tr></tbody></table><p>When the creature bearing this <strong>symbol </strong>needs to spend Inventory Points during a conflict, they may instead destroy this <strong>symbol </strong>to spend no Inventory Points.</p><table style=\"width:100%;height:34px\" border=\"1\"><colgroup><col style=\"width:99.8408%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><strong>SYMBOL</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><strong>@UUID[Compendium.projectfu.skills.Item.Tr7be00yVo0KtNvA]{Symbol of Despair}</strong></td></tr></tbody></table><p>When the creature bearing this <strong>symbol </strong>recovers Hit Points and/or Mind Points during conflicts, instead they only recover <strong>half </strong>the normal amount of Hit Points and/or Mind Points, respectively.</p><table style=\"width:100%;height:34px\" border=\"1\"><colgroup><col style=\"width:99.8408%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><strong>SYMBOL</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><strong>@UUID[Compendium.projectfu.skills.Item.iHSsrs2yonFdBM6g]{Symbol of Destiny}</strong></td></tr></tbody></table><p>After the creature bearing this <strong>symbol </strong>makes a Check, if you are able to see them, you may spend 1 Fabula Point to force that creature to reroll both dice. You may only do so once per Check, and only if the Result was not a <strong>critical success</strong> or <strong>fumble</strong>.</p><table style=\"width:100%;height:34px\" border=\"1\"><colgroup><col style=\"width:99.8408%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><strong>SYMBOL</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><strong>@UUID[Compendium.projectfu.skills.Item.urIOyQRzl8QncNxx]{Symbol of Elements}</strong></td></tr></tbody></table><p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. When the creature bearing this <strong>symbol </strong>deals damage to one or more creatures, if you can see the creature bearing this <strong>symbol</strong>, you may spend an amount of Mind Points equal to <strong>one third of the total damage being inflicted to those creatures</strong>. (including any sources of extra damage). If you do, all damage dealt this way changes type to the type chosen when you created this <strong>symbol</strong>.</p><table style=\"width:100%;height:51px\" border=\"1\"><colgroup><col style=\"width:99.8408%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><strong>SYMBOL</strong></td></tr><tr style=\"height:34px\"><td style=\"height:34px\"><strong>@UUID[Compendium.projectfu.skills.Item.3J1BQmBqy0Eik9vs]{Symbol of Enmity}</strong></td></tr></tbody></table><p>As long as the creature bearing this <strong>symbol </strong>is in <strong>Crisis</strong>, any of that creature’s enemies who are able to see them must include them among the targets of their attacks and offensive spells ( <strong>@ICON[offensive]</strong> ), if possible.</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.Ux5c14Qc2z8CM45R]{Symbol of Flux}</strong></td></tr></tbody></table><p>When you create this <strong>symbol</strong>, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this <strong>symbol </strong>gains immunity to the chosen status effect; or the creature bearing this <strong>symbol </strong>loses immunity to the chosen status effect and cannot gain it.</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.Z0eCInqiNK4Pn877]{Symbol of Forbiddance}</strong></td></tr></tbody></table><p>When you create this symbol, choose an action type: <strong>Attack</strong>, <strong>Guard</strong>, <strong>Objective</strong>, <strong>Spell</strong>, or <strong>Skill</strong>. When the creature bearing this <strong>symbol </strong>performs the chosen action, they lose 5 Hit Points and 5 Mind Points (<strong>before </strong>performing that action). Both amounts increase to 10 if you are <strong>level 20 or higher</strong>, or to 20 if you are <strong>level 40 or higher</strong>.</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.CP9b72ogOaEdOfMg]{Symbol of Growth}</strong></td></tr></tbody></table><p>Spells with a <strong>target </strong>of “Up to three creatures” cast by the creature bearing this <strong>symbol </strong>have a <strong>target </strong>of “Up to four creatures” instead. The creature still needs to spend additional Mind Points for a fourth target.</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.cdGykEcach4ktPAV]{Symbol of Metamorphosis}</strong></td></tr></tbody></table><p>When you create this symbol, choose a Species: <strong>beast</strong>, <strong>construct</strong>, <strong>demon</strong>, <strong>elemental</strong>, <strong>monster</strong>, <strong>plant</strong>, or <strong>undead</strong>. The creature bearing this <strong>symbol </strong>is treated as belonging to the chosen Species for the sake of Skills and effects, instead of their normal Species (this does <strong>not </strong>otherwise alter any of the creature’s profile, such as their Affinities or any special rules they may have). This <strong>symbol cannot</strong> be applied to Player Characters</p><table style=\"width:100%;height:51px\" border=\"1\"><colgroup><col style=\"width:99.8408%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><strong>SYMBOL</strong></td></tr><tr style=\"height:34px\"><td style=\"height:34px\"><strong>@UUID[Compendium.projectfu.skills.Item.KKldqSKGvST62xI1]{Symbol of Prosperity}</strong></td></tr></tbody></table><p>When the creature bearing this <strong>symbol </strong>spends 1 Fabula Point to <strong>invoke a Trait or Bond</strong>, they also receive 100 zenit.</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.8ZSKkQu1aIZzVl1x]{Symbol of Protection}</strong></td></tr></tbody></table><p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol </strong>gains Resistance to the chosen damage type.</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.9nJVufRrPpqtlnqM]{Symbol of Rebellion}</strong></td></tr></tbody></table><p>If a <strong>Villain </strong>is present on the scene, any Opposed Checks made by the creature bearing this <strong>symbol </strong>trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.9jbjucRoYnGMzhrX]{Symbol of Rebirth}</strong></td></tr></tbody></table><p>If the creature bearing this <strong>symbol </strong>is about to be reduced to 0 Hit Points, they may destroy this <strong>symbol</strong>: if they do, they are instead reduced to exactly 1 Hit Point.</p><table style=\"width:100%;height:51px\" border=\"1\"><colgroup><col style=\"width:99.8408%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><strong>SYMBOL</strong></td></tr><tr style=\"height:34px\"><td style=\"height:34px\"><strong>@UUID[Compendium.projectfu.skills.Item.WaUaCDP2JzHSLbTy]{Symbol of Revenge}</strong></td></tr></tbody></table><p>When a creature in <strong>Crisis </strong>hits the creature bearing this <strong>symbol </strong>with an attack or offensive spell ( <strong>@ICON[offensive]</strong> ), the creature in <strong>Crisis </strong>recovers 5 Hit Points and 5 Mind Points.</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.XOrWUE6boHzXhAdF]{Symbol of Sacrifice}</strong></td></tr></tbody></table><p>When the creature bearing this <strong>symbol </strong>suffers damage, if you are able to see them, you may destroy this <strong>symbol</strong>: if you do, you suffer the same amount of damage instead<br />of that creature.</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.SWhDqdjU2KYWDRK5]{Symbol of Sorcery}</strong></td></tr></tbody></table><p>The total Mind Point cost of spells that target the creature bearing this <strong>symbol </strong>is reduced by 5 MP (to a minimum total cost of 5 MP). If a spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.FqGCSJ0ZIHp3p8tQ]{Symbol of Truth}</strong></td></tr></tbody></table><p>Checks performed to examine or locate the creature bearing this <strong>symbol</strong>, as well as Accuracy Checks and Magic Checks for attacks and offensive spells (r) that include the creature bearing this <strong>symbol </strong>among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p><table border=\"1\"><colgroup><col></col></colgroup><tbody><tr><td><strong>SYMBOL</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.mP9ngLOdPcZfCyoM]{Symbol of Weakness}</strong></td></tr></tbody></table><p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol </strong>suffers 5 extra damage from sources dealing damage of the chosen type.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "11.315",
+        "createdTime": 1711758487626,
+        "modifiedTime": 1719172781199,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+      },
+      "_key": "!journal.pages!t38IeNrS9T7NQspT.lC3Sy7JKjVLVGRax"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711758455747,
+    "modifiedTime": 1719172781199,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "t38IeNrS9T7NQspT",
+  "sort": 300000,
+  "_key": "!journal!t38IeNrS9T7NQspT"
+}

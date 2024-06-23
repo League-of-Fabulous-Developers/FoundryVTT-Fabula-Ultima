@@ -1,0 +1,86 @@
+{
+  "name": "Sage Robe",
+  "type": "armor",
+  "img": "systems/projectfu/styles/static/compendium/Armor/Sage%20Robe.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 200
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": ""
+    },
+    "isEquipped": {
+      "value": false,
+      "slot": ""
+    },
+    "def": {
+      "value": 1
+    },
+    "mdef": {
+      "value": 2
+    },
+    "init": {
+      "value": -2
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "source": {
+      "value": "FUCR132"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "05D3J15J6lL30XAq",
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706646363915,
+    "modifiedTime": 1719174414423,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "7OuAqOQEwAhZyyJq",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!7OuAqOQEwAhZyyJq"
+}

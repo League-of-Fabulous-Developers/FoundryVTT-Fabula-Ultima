@@ -1,0 +1,121 @@
+{
+  "name": "Revelation",
+  "type": "heroic",
+  "img": "icons/creatures/magical/spirit-fire-orange.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Bind a previously unknown Arcanum, and improve dismiss effects."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Arcanist </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle2\">You make contact with an unknown Arcanum and bind it to your soul. This Arcanum must be something you design together with the rest of the group; as long as you live, no one else in your world will be able to bind that Arcanum.</span></p><p><span class=\"fontstyle2\">Once per scene while you are </span><span class=\"fontstyle0\"><strong>merged </strong></span><span class=\"fontstyle2\">with an Arcanum, you may use an action and spend 2 Fabula Points to </span><span class=\"fontstyle0\"><strong>trigger </strong></span><span class=\"fontstyle2\">that Arcanum's </span><span class=\"fontstyle0\"><strong>dismiss </strong></span><span class=\"fontstyle2\">effect (if any) without dismissing them. Doing so </span><span class=\"fontstyle0\"><strong>does not</strong> </span><span class=\"fontstyle2\">trigger the </span><span class=\"fontstyle0\"><strong>@UUID[Compendium.fabula-ultima-core-rulebook.skills.Item.hEj8s21iAOPhDtJN]{Arcane Circle}</strong> </span><span class=\"fontstyle2\">Skill (<strong>Core Rulebook</strong>, page </span><span class=\"fontstyle0\"><strong>177</strong></span><span class=\"fontstyle2\">).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Arcanist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR240"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.nH5F1xUtAfd0dYnv"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706586656617,
+    "modifiedTime": 1719170713744,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "tY6Y0EW7JPP80flT",
+  "sort": 0,
+  "_key": "!items!tY6Y0EW7JPP80flT"
+}

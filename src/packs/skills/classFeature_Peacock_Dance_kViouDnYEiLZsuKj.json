@@ -1,0 +1,43 @@
+{
+  "folder": "MF2GB42tc5t7uxF8",
+  "name": "Peacock Dance",
+  "type": "classFeature",
+  "_id": "kViouDnYEiLZsuKj",
+  "img": "icons/commodities/materials/feather-colored-blue.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.dance",
+    "data": {
+      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">Choose another creature that is able to see you. The next time that creature performs an attack or casts an offensive spell (</span><span style=\"font-family: inherit\">@ICON[offensive])</span><span style=\"font-family: 'PT Sans Narrow', sans-serif\"> during this scene, that attack or spell must include you among its targets if possible. </span></p><hr><p><strong>@LOSS[10 mp]</strong></p>",
+      "duration": "instant"
+    },
+    "source": "FUHF145"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-class-features.Item.kViouDnYEiLZsuKj"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710176414684,
+    "modifiedTime": 1719158402374,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!kViouDnYEiLZsuKj"
+}

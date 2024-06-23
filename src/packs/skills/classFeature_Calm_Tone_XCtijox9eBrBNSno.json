@@ -1,0 +1,38 @@
+{
+  "folder": "GvkyB5G9bl9LjwcL",
+  "name": "Calm Tone",
+  "type": "classFeature",
+  "_id": "XCtijox9eBrBNSno",
+  "img": "icons/magic/light/orbs-firefly-hand-yellow.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.tone",
+    "data": {
+      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">Each target recovers </span></span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px; color: rgb(25, 24, 19); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">【</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong>@DATA[key.recovery]</strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">】</strong></span><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">equal to </span></span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">【</strong></span></span><span class=\"fontstyle3\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">10 + twice your current Willpower die size</strong></span></span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">】</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">. This amount increases by 10 if you are </span></span><span class=\"fontstyle3\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">level 20 or higher</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">, or by 20 if you are </span></span><span class=\"fontstyle3\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">level 40 or higher</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">.</span></span></p><p><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">If this tone causes MP recovery, it has </span></span><span class=\"fontstyle3\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">no effect</strong> </span></span><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">on the character who sings it.</span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\"> </span></p>"
+    },
+    "source": "FUHF139"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710038336377,
+    "modifiedTime": 1719156204348,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!items!XCtijox9eBrBNSno"
+}

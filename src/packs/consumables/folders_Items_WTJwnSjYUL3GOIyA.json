@@ -1,0 +1,19 @@
+{
+  "name": "Items",
+  "sorting": "m",
+  "folder": null,
+  "type": "Item",
+  "_id": "WTJwnSjYUL3GOIyA",
+  "sort": 100000,
+  "color": "#ffaf0e",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1714778922863,
+    "modifiedTime": 1719169673825,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!WTJwnSjYUL3GOIyA"
+}

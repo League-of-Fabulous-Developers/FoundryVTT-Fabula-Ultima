@@ -1,0 +1,139 @@
+{
+  "folder": "DSK88QwlFKfnapAU",
+  "name": "Magic Cards",
+  "type": "skill",
+  "img": "icons/sundries/gaming/playing-cards-black.webp",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle2\">You gain a </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">, a </span><span class=\"fontstyle4\"><strong>hand </strong></span><span class=\"fontstyle2\">and a </span><span class=\"fontstyle4\"><strong>discard pile </strong></span><span class=\"fontstyle2\">(see next page).</span></p><p><span class=\"fontstyle2\">During a conflict, you may use an action and spend up to</span><span class=\"fontstyle7\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>10 + (SL × 5)</strong></span><span class=\"fontstyle7\"><strong>】</strong></span><span class=\"fontstyle2\">Mind Points (minimum 10). If you do, </span><span class=\"fontstyle4\"><strong>resolve 1 card</strong> </span><span class=\"fontstyle2\">from your </span><span class=\"fontstyle4\"><strong>hand </strong></span><span class=\"fontstyle2\">for every 5 MP spent this way (to a maximum of 5 cards; these cards form a </span><span class=\"fontstyle4\"><strong>set</strong></span><span class=\"fontstyle2\">). After you resolve the effect of the </span><span class=\"fontstyle4\"><strong>set </strong></span><span class=\"fontstyle2\">(if any), </span><span class=\"fontstyle4\"><strong>discard </strong></span><span class=\"fontstyle2\">these cards and draw that many cards from your </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">.</span></p><hr /><p>Skill Level <strong>1</strong> - <strong>@LOSS[15 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@LOSS[20 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@LOSS[25 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Ace of Cards"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUAC3"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "mig"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1707643024284,
+    "modifiedTime": 1719156946128,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "5zF6JTf6nhKbXr69",
+  "sort": 100000,
+  "_key": "!items!5zF6JTf6nhKbXr69"
+}

@@ -1,0 +1,94 @@
+default: rpg - Pixeltiers' 16x16 RPG Icon Pack
+modern-rpg - Pixeltier's Modern RPG Icon Pack
+alchemy-rpg - Pixeltier's Alchemy RPG Icon Pack
+
+----------------------------------------------------
+Weapon Assets:
+Steel Dagger (sword_88)
+Chain Whip (recolor of weapon_74)
+Iron Hammer (hammer_14)
+Bronze Sword (sword_136)
+Katana (sword_130)
+Rapier (sword_153)
+Improvised - Ranged (fabric3_3)
+Staff (magicweapon_28)
+Crossbow (bow_20)
+Shortbow (bow_2)
+Unarmed Strike (glove_1)
+Improvied - Melee (log_7)
+Pistol (gun_1)
+Broadaxe (axe_40)
+Waraxe (axe_16)
+Light Spear (weapon_3)
+Heavy Spear (weapon_25)
+Greatsword (sword_159)
+Shuriken (weapon_199)
+Tome (book_11)
+ 
+Weapon Assets Needed:
+Iron Knuckles
+----------------------------------------------------
+Armor/Shield Assets:
+No Armor (modern-rpg, shirt_063)
+Travel Garb (jacket_1)
+Combat Tunic (armor_85)
+Sage Robe (cloak_1)
+Runic Shield (shield_66)
+Silk Shirt (modern-rpg, shirt_133)
+Brigadine (armor_36)
+Bronze Plate (armor_69)
+Runic Plate (armor_5)
+Steel Plate (armor_72)
+Bronze Shield (shield_65)
+---------------------------------------------------
+Consumables Assets:
+Elixir (alchemy-rpg, bottle_002)
+Remedy (alchemy-rpg, bottle_001)
+Tonic (alchemy-rpg, bottle_004)
+Elemental Shard (crystal_7)
+Tent (custom-made by Drak)
+--------------------------------------------------
+Arcanum Assets:
+Arcanum of the Frost (gem_7)
+Arcanum of the Grimoire (gem_9)
+Arcanum of the Oak (gem_09)
+Arcanum of the Sword (gem_05)
+Arcanum of the Tower (gem_02)
+Arcanum of the Wheel (gem_10)
+Arcanum of the Forge (recolor of gem_*)
+Arcanum of the Gate (recolor of gem_*)
+Arcanum of the Sky (recolor of gem_*)
+--------------------------------------------------
+Twin Shield Assets:
+Twin Shield (recolor of shield_110)
+--------------------------------------------------
+Twin Shield Assets Replacements:
+Magicannon (replaced with recolor modern-rpg,-rpg, gun_004)
+Magicannon Air (recolor of modern-rpg, gun_004)
+Magicannon Bolt (recolor of modern-rpg, gun_004)
+Magicannon Earth (recolor of modern-rpg, gun_004)
+Magicannon Fire (recolor of modern-rpg, gun_004)
+Magicannon Ice (recolor of modern-rpg, gun_004)
+Magicannon Physical (recolor of modern-rpg, gun_004)
+--------------------------------------------------
+Weapon Module Assets:
+Arcane Module (magicweapon_20)
+Axe Module (axe_122)
+Blade Module (sword_164)
+Bow Module (bow_25)
+Claymore Module (sword_166)
+Esoteric Module (magicweapon_3)
+Flail Module (weapon_182)
+Flamer Module (modern-flaregun)
+Machine Gun Module (modern-gun_002)
+Rifle Module (modern-gun_005)
+Shield Module (shield_13)
+Spear Module (misc-weapon-weapon_27)
+Sword Module (sword_165)
+Trident Module (misc-weapon-weapon_94)
+
+Weapon Module Assets Needed:
+Cannon Module
+Claw Module
+Scythe Module
+--------------------------------------------------

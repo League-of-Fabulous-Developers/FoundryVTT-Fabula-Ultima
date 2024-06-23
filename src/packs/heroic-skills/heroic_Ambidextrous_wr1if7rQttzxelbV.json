@@ -1,0 +1,121 @@
+{
+  "name": "Ambidextrous",
+  "type": "heroic",
+  "img": "icons/skills/melee/weapons-crossed-daggers-orange.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Fight with two weapons of different categories."
+    },
+    "description": "<p><span class=\"fontstyle0\">You may apply the benefits of </span><span class=\"fontstyle2\"><strong>two-weapon fighting</strong> </span><span class=\"fontstyle0\">(<strong>Core Rulebook</strong>, page </span><span class=\"fontstyle2\"><strong>69</strong></span><span class=\"fontstyle0\">) to weapons belonging to different categories, even if one is a </span><span class=\"fontstyle2\"><strong>melee</strong> </span><span class=\"fontstyle0\">weapon and the other is a </span><span class=\"fontstyle2\"><strong>ranged </strong></span><span class=\"fontstyle0\">weapon (such as a </span><span class=\"fontstyle2\"><strong>dagger </strong></span><span class=\"fontstyle0\">and a </span><span class=\"fontstyle2\"><strong>firearm</strong></span><span class=\"fontstyle0\">, for instance).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR234"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.TabUmzIFSRlQgP1M"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706583614340,
+    "modifiedTime": 1719170713744,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "wr1if7rQttzxelbV",
+  "sort": 0,
+  "_key": "!items!wr1if7rQttzxelbV"
+}

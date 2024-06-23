@@ -1,0 +1,152 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "[Handout: Arcana Rules]",
+  "type": "miscAbility",
+  "img": "icons/creatures/magical/spirit-undead-horned-blue.webp",
+  "system": {
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<h2><span class=\"fontstyle0\"><strong>MERGING WITH AN ARCANUM</strong></span></h2><p><span class=\"fontstyle2\">When you summon an Arcanum, you gain its </span><span class=\"fontstyle3\"><strong>merge </strong></span><span class=\"fontstyle2\">benefits; those benefits last until the Arcanum is dismissed (see </span><span class=\"fontstyle0\">page 179</span>).</p><p><span class=\"fontstyle2\">You cannot summon an Arcanum while already merged with one; you must first dismiss the current Arcanum.</span></p><h2><span class=\"fontstyle0\"><strong>DISMISSING AN ARCANUM</strong></span></h2><p><span class=\"fontstyle2\">An Arcanum can be dismissed in several ways:</span></p><ul><li><span class=\"fontstyle2\">Once the current scene ends, all Arcana are automatically dismissed.</span></li><li><span class=\"fontstyle2\">If you die or fall unconscious while merged with an Arcanum, they are dismissed.</span></li><li><span class=\"fontstyle2\">If you leave the scene while merged with an Arcanum, they are dismissed.</span></li><li><span class=\"fontstyle2\">You may </span><span class=\"fontstyle4\"><strong>willingly </strong></span><span class=\"fontstyle2\">dismiss your Arcanum: this doesn't require an action, but during a conflict it can only be done on your turn, </span><span class=\"fontstyle4\"><strong>before or after</strong> </span><span class=\"fontstyle2\">an action.</span> </li></ul><h2><span class=\"fontstyle0\"><strong>DISMISS EFFECTS</strong></span></h2><p><span class=\"fontstyle2\">Most Arcana have a powerful </span><span class=\"fontstyle3\"><strong>dismiss </strong></span><span class=\"fontstyle2\">effect, which may only be activated when you </span><span class=\"fontstyle3\"><strong>willingly </strong></span><span class=\"fontstyle2\">dismiss the Arcanum as described above — if the Arcanum is dismissed for any other reason, the </span><span class=\"fontstyle3\"><strong>dismiss </strong></span><span class=\"fontstyle2\">effect cannot be triggered.</span></p><p><span class=\"fontstyle2\">If the </span><span class=\"fontstyle3\"><strong>dismiss </strong></span><span class=\"fontstyle2\">effect of an Arcanum deals damage, it will deal 10 extra damage if you are<strong> </strong></span><span class=\"fontstyle3\"><strong>level 20 or higher</strong></span><span class=\"fontstyle2\">, or 20 extra damage if you are </span><span class=\"fontstyle3\"><strong>level 40 or higher</strong></span><span class=\"fontstyle2\">.</span></p><p><span class=\"fontstyle2\">You are also free to ignore the </span><span class=\"fontstyle3\"><strong>dismiss </strong></span><span class=\"fontstyle2\">effect if you don't want to use it.</span></p><h2><span class=\"fontstyle0\"><strong>DOMAINS</strong></span></h2><p><span class=\"fontstyle1\">Each Arcanum is associated with a few key concepts or </span><span class=\"fontstyle3\"><strong>domains</strong></span><span class=\"fontstyle1\">. The Game Master should use these to establish the trials needed to bind the Arcanum, and to adjudicate Rituals performed through the </span><span class=\"fontstyle3\"><strong>Ritual Arcanism</strong> </span><span class=\"fontstyle1\">Skill. </span></p><p><span class=\"fontstyle1\">If you create new Arcana for your world, make sure to associate them with domains that allow for interesting Rituals.</span> </p><h2><span class=\"fontstyle0\"><strong>ALL ARCANA</strong></span></h2><p><strong>@UUID[Compendium.projectfu.skills.Item.8ySmNzjYisVduHWP]{[Handout: Arcanums]}</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "progress": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "name": "Name"
+    },
+    "source": {
+      "value": "FUCR178"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": null
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu-playtest": {
+      "growthClock": false
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706574599766,
+    "modifiedTime": 1719153881173,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "7Hw8p7ZefudMdCxV",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!7Hw8p7ZefudMdCxV"
+}

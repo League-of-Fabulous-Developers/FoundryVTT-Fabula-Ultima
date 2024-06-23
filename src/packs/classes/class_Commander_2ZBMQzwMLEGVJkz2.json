@@ -1,0 +1,96 @@
+{
+  "name": "Commander",
+  "type": "class",
+  "img": "icons/sundries/gaming/chess-knight-white-glass.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": "War has no victors."
+    },
+    "description": "<div class=\"stackedit__html\"><h1>COMMANDER</h1><h4><span dir=\"ltr\"><strong>ALSO: Prince, Queen, Shōgun</strong></span></h4><p><strong>Commanders </strong>are leaders and inspiring figures. Some are of noble blood, but a majority have earned the loyalty of their comrades on the battlefield, where their iron resolve and tactical prowess were tested time and time again. When thinking about what a Commander might look like, don’t feel bound to the idea of a knight in shining armor: bandit captains, fallen nobles and students of warfare are all perfect examples of what this Class may represent.</p><p><strong>COMMANDER BENEFITS</strong></p><ul><li><span dir=\"ltr\">Permanently increase your maximum Hit Points by 5.</span></li><li>Gain the ability to equip <strong>martial melee weapons</strong> and <strong>martial armor</strong>.</li></ul><h3 id=\"darkblade-skills\"><strong>COMMANDER SKILLS</strong></h3><h4><strong>@UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict} (SL5)</strong></h4><p><span dir=\"ltr\">During a conflict, you may use an action and spend 10 Mind Points to choose one option: all MP costs are doubled;</span> <span dir=\"ltr\"><strong>or</strong></span><strong> </strong><span dir=\"ltr\">all sources of damage deal <strong>【SL × 3】</strong>extra damage.</span></p><p><span dir=\"ltr\">The chosen effect lasts until the start of your next turn.</span></p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry} (SL5)</strong></h4><p><span dir=\"ltr\">During a conflict, you may use an action and spend 10 MP to choose one ally that can hear you. That ally may immediately perform a</span> <span dir=\"ltr\"><strong>free attack</strong></span> <span dir=\"ltr\">with a weapon they have equipped (or with a</span> <span dir=\"ltr\"><strong>basic attack</strong></span> <span dir=\"ltr\">if they are an NPC). They gain a bonus equal to <strong>【SL 3】 </strong>to the Accuracy Check, but treat their</span><strong> </strong><span dir=\"ltr\"><strong>High Roll (HR)</strong></span> <span dir=\"ltr\">as 0 when calculating damage.</span></p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.4ymBr3vRdPHNxIKC]{Crushing Chariot}</strong></h4><p><span dir=\"ltr\">After you use</span> <span dir=\"ltr\"><strong>Bishop’s Edict</strong>,</span> <span dir=\"ltr\"><strong>Charging Cavalry</strong></span> <span dir=\"ltr\">or</span> <span dir=\"ltr\"><strong>King’s Castle</strong>, you may choose another Player Character that can hear you who has yet to take a turn during this round. That character may take their turn immediately after yours during this round.</span></p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle}</strong></h4><p><span dir=\"ltr\">During a conflict, you may use an action and spend 10 Mind Points to choose one option: no creature can recover Hit Points or Mind Points;</span> <span dir=\"ltr\">or</span> <span dir=\"ltr\">all effects that restore Mind Points restore <strong>【SL × 5】 </strong>additional Mind Points. The chosen effect lasts until the start of your next turn.</span></p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.HC27DMHBE4M54y6Y]{Queen's Gambit} (SL6)</strong></h4><p><span dir=\"ltr\">During a conflict, you may use an action to perform a</span> <span dir=\"ltr\"><strong>free attack</strong></span> <span dir=\"ltr\">with a weapon you have equipped, treating your</span> <span dir=\"ltr\"><strong>High Roll (HR)</strong></span><strong> </strong><span dir=\"ltr\">as 0 when calculating damage. After the attack is resolved, choose one option: one ally who is able to hear you recovers <strong>【5 + (SL × 5)】 </strong>Hit Points;</span> <span dir=\"ltr\">or</span> <span dir=\"ltr\">you may immediately use a Skill you acquired among</span> <span dir=\"ltr\"><strong>Bishop’s Edict</strong>,</span> <span dir=\"ltr\"><strong>Charging Cavalry</strong></span> <span dir=\"ltr\">or</span> <span dir=\"ltr\"><strong>King’s Castle</strong></span> <span dir=\"ltr\">for free (spending the appropriate MP).</span></p></div>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": true
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": false
+        },
+        "shields": {
+          "value": false
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": false
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF140"
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706516915910,
+    "modifiedTime": 1719159230278,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "2ZBMQzwMLEGVJkz2",
+  "sort": 50000,
+  "_key": "!items!2ZBMQzwMLEGVJkz2"
+}

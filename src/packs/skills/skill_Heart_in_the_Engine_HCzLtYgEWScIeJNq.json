@@ -1,0 +1,139 @@
+{
+  "folder": "rU6K693IIfEXLUXW",
+  "name": "Heart in the Engine",
+  "type": "skill",
+  "img": "icons/commodities/tech/furnace-modern.webp",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">At the start of your turn during a conflict, if you are driving your </span><span class=\"fontstyle2\"><strong>personal vehicle</strong></span><span class=\"fontstyle0\">, you may spend <strong>@LOSS[10 mp].</strong> If you do, choose one option: the next time you deal damage during this turn, deal </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">extra damage; </span><span class=\"fontstyle2\"><strong>or</strong></span><span class=\"fontstyle0\">, the next time you suffer damage before the start of your next turn, that damage is reduced by </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">(applied </span><span class=\"fontstyle2\"><strong>before</strong> </span><span class=\"fontstyle0\">damage Affinities); </span><span class=\"fontstyle2\"><strong>or</strong></span><span class=\"fontstyle0\">, you recover from a status effect of your choice among </span><span class=\"fontstyle2\"><strong>slow</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>weak</strong></span><span class=\"fontstyle0\">.</span></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Pilot"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUTF159"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "mig"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711431286236,
+    "modifiedTime": 1719168012941,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "HCzLtYgEWScIeJNq",
+  "sort": 0,
+  "_key": "!items!HCzLtYgEWScIeJNq"
+}

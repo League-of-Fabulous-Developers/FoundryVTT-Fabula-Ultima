@@ -1,0 +1,49 @@
+{
+  "folder": "fzwKXW1w0wvmyDbk",
+  "name": "Superior Alchemy",
+  "type": "consumable",
+  "_id": "fsP24Whi7SVZ79R3",
+  "img": "icons/consumables/potions/flask-corked-purple-glow.webp",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p><span style=\"font-family:'PT Sans Narrow', sans-serif\">For </span><strong>@LOSS[5 ip]</strong><span style=\"font-family:'PT Sans Narrow', sans-serif\"> roll <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">four d20s</strong> and assign one to <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">target </strong>and one to <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">effect</strong>. </span></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 5
+    },
+    "source": {
+      "value": "FUCR212"
+    }
+  },
+  "effects": [],
+  "sort": 168750,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.consumables.Item.UaJk0ghcAFDxG7QK"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1707098245589,
+    "modifiedTime": 1719171647544,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!items!fsP24Whi7SVZ79R3"
+}

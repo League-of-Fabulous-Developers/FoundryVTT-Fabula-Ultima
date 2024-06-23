@@ -1,0 +1,47 @@
+{
+  "name": "Remedy",
+  "type": "consumable",
+  "img": "systems/projectfu/styles/static/compendium/Consumables/Remedy.png",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "One creature recovers 50 HP."
+    },
+    "description": "<p>For <strong>@LOSS[3 ip]</strong> one creature recovers <strong>@HEAL[50 hp]</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 3
+    },
+    "source": {
+      "value": "FUCR104"
+    }
+  },
+  "effects": [],
+  "folder": "WTJwnSjYUL3GOIyA",
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706516053996,
+    "modifiedTime": 1719169686785,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "iLidslBpjoLfrsT9",
+  "sort": 0,
+  "_key": "!items!iLidslBpjoLfrsT9"
+}

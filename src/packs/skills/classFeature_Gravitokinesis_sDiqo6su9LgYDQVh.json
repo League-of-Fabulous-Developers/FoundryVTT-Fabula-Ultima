@@ -1,0 +1,40 @@
+{
+  "folder": "E9XrzgvAjI4iW0aE",
+  "name": "Gravitokinesis",
+  "type": "classFeature",
+  "img": "icons/magic/earth/projectile-stone-landslide.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.psychicGift",
+    "data": {
+      "trigger": "When you deal damage",
+      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">That damage becomes <strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">earth</strong> or <strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">physical</strong>, and its source deals extra damage equal to  <strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">【2 + the number of filled sections in your Brainwave Clock】</strong>. If the source deals damage to one or more <strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">flying</strong> creatures, they are forced to land immediately.</span></p>"
+    },
+    "source": "FUTF153"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711423314741,
+    "modifiedTime": 1719164134543,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "sDiqo6su9LgYDQVh",
+  "sort": 600000,
+  "_key": "!items!sDiqo6su9LgYDQVh"
+}

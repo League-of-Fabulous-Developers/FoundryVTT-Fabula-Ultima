@@ -1,0 +1,143 @@
+{
+  "folder": "k463lsw6TLekF6xu",
+  "name": "Soul Steal",
+  "type": "skill",
+  "_id": "bpCv5Vkr1aWZiFSw",
+  "img": "icons/containers/bags/pouch-simple-brown.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You may use an action to perform a </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>DEX + WLP</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Check against the Magic Defense of a creature you can see. If you succeed and the target is a </span><span class=\"fontstyle3\"><strong>soldier</strong></span><span class=\"fontstyle0\">, you recover </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Inventory Points; if they are an </span><span class=\"fontstyle3\"><strong>elite </strong></span><span class=\"fontstyle0\">or </span><span class=\"fontstyle3\"><strong>champion</strong></span><span class=\"fontstyle0\">, the GM gives you the target’s </span><span class=\"fontstyle3\"><strong>soul treasure</strong></span><span class=\"fontstyle0\">, an item worth an amount of zenit </span><span class=\"fontstyle3\"><strong>equal to or lower than </strong></span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>the target's level multiplied by 30, or by 50 if they are a Villain</strong></span><span class=\"fontstyle2\"><strong>】</strong></span><span class=\"fontstyle0\">. This </span><span class=\"fontstyle3\"><strong>soul treasure</strong> </span><span class=\"fontstyle0\">will appear inside your </span><span class=\"fontstyle3\"><strong>backpack</strong></span><span class=\"fontstyle0\">; a creature can be successfully stolen from with this Skill only once. </span></p><p><span class=\"fontstyle0\">You gain a bonus equal to </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">to your </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>DEX + WLP</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Checks for this Skill.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Rogue"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR203"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 1
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "mdef"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.bpCv5Vkr1aWZiFSw"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706504776432,
+    "modifiedTime": 1719168626349,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 500000,
+  "_key": "!items!bpCv5Vkr1aWZiFSw"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Armor Modules",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "YWYLzP3o7HKQtEAC",
+  "sort": 100000,
+  "color": "#5e7c8d",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711434171630,
+    "modifiedTime": 1719173179821,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!YWYLzP3o7HKQtEAC"
+}

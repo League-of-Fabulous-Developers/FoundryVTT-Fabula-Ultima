@@ -1,0 +1,49 @@
+{
+  "name": "Infusion: Basic",
+  "type": "consumable",
+  "_id": "VXWexBALs5Uysi2k",
+  "img": "icons/skills/ranged/arrows-flying-salvo-blue-light.webp",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "For 2 IP, the attack deals 5 extra damage, and its damage becomes: ice, fire, or bolt."
+    },
+    "description": "<h5>Required: Basic Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p><span class=\"fontstyle0\">For </span><strong>@LOSS[2 ip]</strong> the attack deals 5 extra damage, and its damage becomes: <strong>ice</strong>, <strong>fire</strong>, OR <strong>bolt</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 2
+    },
+    "source": {
+      "value": "FUCR114"
+    }
+  },
+  "effects": [],
+  "folder": "fzwKXW1w0wvmyDbk",
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.consumables.Item.5G0lFdFSB2X1utQR"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1707096616536,
+    "modifiedTime": 1719170100912,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!items!VXWexBALs5Uysi2k"
+}

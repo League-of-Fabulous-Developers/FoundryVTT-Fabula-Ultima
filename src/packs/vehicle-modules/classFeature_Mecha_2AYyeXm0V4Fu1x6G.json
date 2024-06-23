@@ -1,0 +1,42 @@
+{
+  "folder": "5LrYW4IGy2CUagKM",
+  "name": "Mecha",
+  "type": "classFeature",
+  "img": "icons/commodities/tech/cog-copper.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.vehicle",
+    "data": {
+      "frame": "mech",
+      "passengers": 0,
+      "distanceMultiplier": 2,
+      "moduleSlots": 3,
+      "description": "<p>This personal vehicle may have up to <strong>2 weapon modules, 1 armor module, </strong>and <strong>any number of support modules</strong> enabled.</p>"
+    },
+    "source": "FUTF165"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1712878359536,
+    "modifiedTime": 1719173179841,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "2AYyeXm0V4Fu1x6G",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!2AYyeXm0V4Fu1x6G"
+}

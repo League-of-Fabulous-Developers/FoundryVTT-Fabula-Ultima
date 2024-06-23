@@ -1,0 +1,39 @@
+{
+  "folder": "OcoOq5td7Ya9GOPU",
+  "name": "Secondary Offensive Module",
+  "type": "classFeature",
+  "img": "icons/commodities/tech/metal-jaws.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.supportModule",
+    "data": {
+      "description": "<h5 style=\"box-sizing: border-box; user-select: text; font-size: 16px; font-weight: 700; margin: 0px; font-family: Antonio, sans-serif; color: rgb(43, 74, 66); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\"><span style=\"font-family: Antonio, sans-serif\"><strong>(EXOSKELETON AND MECHA FRAMES ONLY)</strong></span></h5><p style=\"box-sizing: border-box; user-select: text; margin: 10px 0px 0px; font-family: 'PT Sans Narrow', sans-serif; font-style: normal; font-size: 16px; line-height: 1.45em; color: rgb(43, 74, 66); font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">Each time you enable this module on your <strong>personal vehicle</strong>, choose one <strong style=\"box-sizing: border-box; user-select: text;\">disabled weapon module</strong>. As long as the chosen module is disabled and this module is enabled, you may use an action to perform a <strong style=\"box-sizing: border-box; user-select: text;\">free attack</strong> with that <strong style=\"box-sizing: border-box; user-select: text;\">weapon module</strong>.</span></p>",
+      "complex": false
+    },
+    "source": "FUTF169"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711477104179,
+    "modifiedTime": 1719173179841,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "7qyCrf1eK0X6bYTH",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!7qyCrf1eK0X6bYTH"
+}

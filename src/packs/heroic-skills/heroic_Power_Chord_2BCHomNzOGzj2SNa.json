@@ -1,0 +1,121 @@
+{
+  "name": "Power Chord",
+  "type": "heroic",
+  "img": "icons/tools/instruments/harp-yellow-teal.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Improve allies’ critical success chance with songs."
+    },
+    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><strong><span class=\"fontstyle0\">Chanter </span></strong><span class=\"fontstyle2\">Class.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">When you sing a </span><strong><span class=\"fontstyle0\">verse </span></strong><span class=\"fontstyle2\">with </span><strong><span class=\"fontstyle0\">medium </span></strong><span class=\"fontstyle2\">or </span><strong><span class=\"fontstyle0\">high volume</span></strong><span class=\"fontstyle2\">, you may may double the </span><strong><span class=\"fontstyle0\">verse</span></strong><span class=\"fontstyle2\">’s cost in Mind Points, </span><strong><span class=\"fontstyle0\">OR </span></strong><span class=\"fontstyle2\">spend 1 Fabula Point. If you do, you and every ally that is able to hear you gain the following benefit until the start of your next turn: your Accuracy Checks trigger a </span><span class=\"fontstyle0\"><strong>critical success</strong> </span><span class=\"fontstyle2\">when both dice show the same number (as long as the Check is not a </span><strong><span class=\"fontstyle0\">fumble</span></strong><span class=\"fontstyle2\">).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Chanter"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF158"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.15A3H1fUtVCFPoAJ"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706684677557,
+    "modifiedTime": 1719170716535,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "2BCHomNzOGzj2SNa",
+  "sort": 0,
+  "_key": "!items!2BCHomNzOGzj2SNa"
+}

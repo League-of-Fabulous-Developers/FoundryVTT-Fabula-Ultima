@@ -1,0 +1,121 @@
+{
+  "name": "Duel Master",
+  "type": "heroic",
+  "img": "icons/commodities/currency/coin-embossed-sword-copper.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> you must have mastered one or more Classes among </span><span class=\"fontstyle2\"><strong>Ace of Cards</strong></span>, <span class=\"fontstyle2\"><strong>Fury</strong></span>, <span class=\"fontstyle2\"><strong>Rogue</strong></span>, <span class=\"fontstyle2\"><strong>Sharpshooter</strong></span>, and <span class=\"fontstyle2\"><strong>Weaponmaster</strong></span>, and you must have acquired the <span class=\"fontstyle2\"><strong>Magic Cards</strong> </span>Skill. </p></blockquote><p><span class=\"fontstyle0\">When you resolve the </span><span class=\"fontstyle2\"><strong>Magic Pair</strong> </span><span class=\"fontstyle0\">effect, if you attack with a weapon belonging to the </span><span class=\"fontstyle2\"><strong>arcane </strong></span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>thrown </strong></span><span class=\"fontstyle0\">Category, you deal extra damage equal to</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>the common value of the resolved cards</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">and regain an amount of Mind Points equal to</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>twice the common value of the resolved cards</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">(for instance, resolving a pair of </span><span class=\"fontstyle2\"><strong>5s</strong> </span><span class=\"fontstyle0\">will allow you to deal 5 extra damage and regain 10 Mind Points).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNM6"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "1Ky2u7fi2lfxr4JB",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-bonus-content.bonus-heroic-skills.Item.NpoV4F8dfR1w1kjz"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1708940657180,
+    "modifiedTime": 1719170711750,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "ngt7aBn7AykfzJDg",
+  "sort": 0,
+  "_key": "!items!ngt7aBn7AykfzJDg"
+}

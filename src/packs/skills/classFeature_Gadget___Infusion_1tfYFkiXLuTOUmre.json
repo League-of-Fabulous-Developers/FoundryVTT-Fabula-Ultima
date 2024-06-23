@@ -1,0 +1,101 @@
+{
+  "name": "Gadget - Infusion",
+  "type": "classFeature",
+  "system": {
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.infusions",
+    "summary": {
+      "value": ""
+    },
+    "data": {
+      "rank": "basic",
+      "description": "<h3>INFUSIONS</h3><p><span class=\"fontstyle0\"><strong>Also:</strong> </span><span class=\"fontstyle2\">Arcane Ammunition, Blade Coatings, Combat Runes</span></p><hr><p><span class=\"fontstyle0\">When you successfully hit one or more targets with an attack, you may spend </span><span class=\"fontstyle2\"><strong>@LOSS[2 ip]</strong></span><span class=\"fontstyle0\"> to produce a special </span><strong>infusion </strong><span class=\"fontstyle0\">and apply the corresponding effect to that attack (if the attack had the </span><strong>multi </strong><span class=\"fontstyle0\">property, apply the effects of the infusion to each target).</span></p><hr><p><span class=\"fontstyle0\">You cannot apply more than one infusion to the same attack; producing and using an infusion are both part of the action you used to attack with the weapon.</span> </p><hr><p><span class=\"fontstyle2\"><strong>BASIC INFUSIONS</strong></span></p><table style=\"width:97.2093%\" border=\"1\"><colgroup><col style=\"width:17.4333%\"><col style=\"width:82.4937%\"></colgroup><tbody><tr><td><strong>INFUSIONS</strong></td><td> <strong>EFFECT</strong></td></tr><tr><td><strong>Cryo</strong></td><td> <span class=\"fontstyle0\">The attack deals 5 extra damage, and its damage becomes </span><span class=\"fontstyle2\"><strong>ice @ICON[ice]</strong></span><span class=\"fontstyle0\">.</span> </td></tr><tr><td><strong>Pyro</strong></td><td> <span class=\"fontstyle0\">The attack deals 5 extra damage, and its damage becomes </span><span class=\"fontstyle2\"><strong>fire @ICON[fire]</strong></span><span class=\"fontstyle0\">.</span> </td></tr><tr><td><strong>Volt</strong></td><td> <span class=\"fontstyle0\">The attack deals 5 extra damage, and its damage becomes </span><span class=\"fontstyle2\"><strong>bolt @ICON[bolt]</strong></span><span class=\"fontstyle0\">.</span> </td></tr></tbody></table><p></p><p><strong>ADVANCED INFUSIONS</strong></p><table style=\"width:96.5571%\" border=\"1\"><colgroup><col style=\"width:17.2065%\"><col style=\"width:82.7935%\"></colgroup><tbody><tr><td><strong>INFUSIONS</strong></td><td><strong> EFFECT</strong></td></tr><tr><td><strong>Cyclone</strong></td><td> <span class=\"fontstyle0\">The attack deals 5 extra damage, and its damage becomes </span><span class=\"fontstyle2\"><strong>air @ICON[air]</strong></span><span class=\"fontstyle0\">.</span> </td></tr><tr><td><strong>Exorcism</strong></td><td> <span class=\"fontstyle0\">The attack deals 5 extra damage, and its damage becomes </span><span class=\"fontstyle2\"><strong>light @ICON[light]</strong></span><span class=\"fontstyle0\">.</span> </td></tr><tr><td><strong>Seismic</strong></td><td> <span class=\"fontstyle0\">The attack deals 5 extra damage, and its damage becomes </span><span class=\"fontstyle2\"><strong>earth @ICON[earth]</strong></span><span class=\"fontstyle0\">.</span> </td></tr><tr><td><strong>Shadow</strong></td><td> <span class=\"fontstyle0\">The attack deals 5 extra damage, and its damage becomes </span><span class=\"fontstyle2\"><strong>dark @ICON[dark]</strong></span><span class=\"fontstyle0\">.</span> </td></tr></tbody></table><p> </p><p><strong>SUPERIOR INFUSIONS</strong></p><table style=\"width:95.9311%\" border=\"1\"><colgroup><col style=\"width:17.3909%\"><col style=\"width:82.6091%\"></colgroup><tbody><tr><td><strong>INFUSIONS</strong></td><td><strong> EFFECT</strong></td></tr><tr><td><strong>Vampire</strong></td><td><p> <span class=\"fontstyle0\">Choose one option: you recover an amount of HP equal to half the HP loss suffered by the target of the attack; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">you recover an amount of MP equal to half the HP loss suffered by the target of the attack. </span></p><p><span class=\"fontstyle0\"> This infusion can only be used if the attack targeted </span><span class=\"fontstyle2\"><strong>a single</strong> </span><span class=\"fontstyle0\">creature.</span> </p></td></tr><tr><td><strong>Venom</strong></td><td> <span class=\"fontstyle0\">The attack deals 5 extra damage, its damage becomes </span><span class=\"fontstyle2\"><strong>poison @ICON[poison]</strong></span><span class=\"fontstyle0\">, and each creature hit by the attack suffers </span><span class=\"fontstyle2\"><strong>poisoned</strong></span><span class=\"fontstyle0\">.</span> </td></tr></tbody></table>",
+      "basicInfusions": [
+        {
+          "name": "Cryo",
+          "extraDamage": 5,
+          "changedDamageType": "ice",
+          "description": "The attack deals 5 extra damage, and its damage becomes ice."
+        },
+        {
+          "name": "Pyro",
+          "extraDamage": 5,
+          "changedDamageType": "fire",
+          "description": "The attack deals 5 extra damage, and its damage becomes fire."
+        },
+        {
+          "name": "Volt",
+          "extraDamage": 5,
+          "changedDamageType": "bolt",
+          "description": "The attack deals 5 extra damage, and its damage becomes bolt."
+        }
+      ],
+      "advancedInfusions": [
+        {
+          "name": "Cyclone",
+          "extraDamage": 5,
+          "changedDamageType": "air",
+          "description": "The attack deals 5 extra damage, and its damage becomes air."
+        },
+        {
+          "name": "Exorcism",
+          "extraDamage": 5,
+          "changedDamageType": "light",
+          "description": "The attack deals 5 extra damage, and its damage becomes light."
+        },
+        {
+          "name": "Seismic",
+          "extraDamage": 5,
+          "changedDamageType": "earth",
+          "description": "The attack deals 5 extra damage, and its damage becomes earth."
+        },
+        {
+          "name": "Shadow",
+          "extraDamage": 5,
+          "changedDamageType": "dark",
+          "description": "The attack deals 5 extra damage, and its damage becomes dark."
+        }
+      ],
+      "superiorInfusions": [
+        {
+          "name": "Vampire",
+          "extraDamage": null,
+          "changedDamageType": "",
+          "description": "Choose one option: you recover an amount of HP equal to half the HP loss suffered by the target of the attack; OR you recover an amount of MP equal to half the HP loss suffered by the target of the attack. This infusion can only be used if the attack targeted a single creature."
+        },
+        {
+          "name": "Venom",
+          "extraDamage": 5,
+          "changedDamageType": "poison",
+          "description": "The attack deals 5 extra damage, its damage becomes poison, and each creature hit by the attack suffers poisoned."
+        }
+      ]
+    },
+    "source": "FUCR214"
+  },
+  "img": "icons/weapons/ammunition/arrow-broadhead-bent-teal.webp",
+  "effects": [],
+  "folder": "deLkolgURtb8RMPr",
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710468163039,
+    "modifiedTime": 1719169551811,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "CLAzxWQsDDB8fCLx": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "1tfYFkiXLuTOUmre",
+  "sort": 0,
+  "_key": "!items!1tfYFkiXLuTOUmre"
+}

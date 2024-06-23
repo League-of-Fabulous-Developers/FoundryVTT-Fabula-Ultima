@@ -1,0 +1,122 @@
+{
+  "name": "Birth of the Cruel",
+  "type": "heroic",
+  "img": "icons/magic/death/skull-horned-white-purple.webp",
+  "system": {
+    "summary": {
+      "value": "Turn dead NPC into a Minion"
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Necromancer</strong> Class.</p></blockquote><p>When a non-<strong>Villain </strong>NPC you can see that belongs to the <strong>beast</strong>, <strong>humanoid</strong>, <strong>monster</strong>, or <strong>plant </strong>Species dies, you may spend 2 Grave Points and <strong>reduce your maximum Hit Points and Mind Points</strong> by an amount equal to that NPC's <strong>level</strong>. If you do, their corpse becomes a <strong>Minion </strong>who obeys your telepathic commands:</p><ul><li>Its Species becomes <strong>undead </strong>and it receives all <strong>Undead rules</strong> (<strong>Core Rulebook</strong>, <span class=\"fontstyle0\">page <strong>305</strong></span>). The new Affinities to <strong>dark</strong>, <strong>light</strong>, and <strong>poison </strong>damage overwrite any preexisting Affinity, but the original Species' rules are otherwise <strong>maintained</strong>.</li><li>Its <strong>Rank </strong>becomes <strong>soldier</strong>; if the original creature was an <strong>élite </strong>or <strong>champion</strong>, the GM must reduce the Minion's HP and MP accordingly (Skills are <strong>maintained</strong>).</li><li> The newly created Minion is a completely new creature and has full HP, full MP, and no status effects. It retains the original creature's <strong>equipment</strong>.</li><li>Your Minion takes its own turn during conflicts, and the Game Master must count it as an<strong> additional Player Character</strong> when designing a conflict.</li><li>When you <strong>rest</strong>, your Minion also gains the full benefits of resting.</li><li>If your Minion is reduced to 0 Hit Points, if you are <strong>more than 1 travel day</strong> away from it, or if you die or fall unconscious, your Minion is immediately <strong>destroyed</strong>.</li><li>You may also destroy your Minion <strong>at any time</strong>; if you want to create a new Minion, you must first destroy the current one.</li><li>If your Minion is destroyed, your maximum HP and MP scores <strong>return to normal</strong>.</li></ul>",
+    "isFavored": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Necromancer"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "subtype": {
+      "value": "skill"
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNM4"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "flags": {
+    "cf": null,
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-bonus-content.bonus-heroic-skills.Item.e9j21UlW1Ha9FLn2"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1697668153306,
+    "modifiedTime": 1719170745501,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "folder": "1Ky2u7fi2lfxr4JB",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "iTh63cnp8IVawDwH",
+  "sort": 0,
+  "_key": "!items!iTh63cnp8IVawDwH"
+}

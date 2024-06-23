@@ -1,0 +1,139 @@
+{
+  "folder": "NZHiCa0mU3DKOiVo",
+  "name": "Elemental Weapon",
+  "type": "spell",
+  "_id": "AIqyQ1m2hpX27rsd",
+  "img": "icons/magic/fire/dagger-rune-enchant-flame-purple-orange.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You imbue a weapon with elemental energy. Choose a damage type: </span><strong><span class=\"fontstyle2\">air</span></strong><span class=\"fontstyle0\">, </span><strong><span class=\"fontstyle2\">bolt</span></strong><span class=\"fontstyle0\">, </span><strong><span class=\"fontstyle2\">earth</span></strong><span class=\"fontstyle0\">, </span><strong><span class=\"fontstyle2\">fire</span></strong><span class=\"fontstyle0\">, or </span><strong><span class=\"fontstyle2\">ice</span></strong><span class=\"fontstyle0\">. Until this spell ends, all damage dealt by the weapon becomes of the chosen damage type. If you have that weapon equipped while you cast this spell, you may perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with it as part of the same action.</span></p>\n<p><span class=\"fontstyle0\">This spell can only be cast on a weapon equipped by a willing creature.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "mpCost": {
+      "value": "10"
+    },
+    "target": {
+      "value": "One weapon"
+    },
+    "duration": {
+      "value": "Scene"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "source": {
+      "value": "FUCR188"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706564486966,
+    "modifiedTime": 1719160074886,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!AIqyQ1m2hpX27rsd"
+}

@@ -1,0 +1,121 @@
+{
+  "name": "Magic Guard",
+  "type": "heroic",
+  "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Negate enemy spells while you are in Guard."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><span class=\"fontstyle0\"><strong>Chimerist</strong></span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\"><strong>Elementalist</strong></span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\"><strong>Entropist</strong></span><span class=\"fontstyle2\">, and </span><span class=\"fontstyle0\"><strong>Spiritist</strong></span><span class=\"fontstyle2\">.</span></p></blockquote><p><span class=\"fontstyle2\">When you perform the </span><span class=\"fontstyle0\"><strong>Guard </strong></span><span class=\"fontstyle2\">action, if you choose </span><span class=\"fontstyle0\">not </span><span class=\"fontstyle2\">to provide cover to another creature, you gain the following benefit until the start of your next turn: when a creature you can see casts a spell, after that creature pays for the spell’s MP cost, you may spend an amount of Mind Points equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle0\"><strong>10 + the spell’s total MP cost</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle2\">in order to completely stop the casting of the spell and negate its effects (the spell isn’t cast, but the creature is still considered to have spent their action).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF157"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.DUHzb4SoLQDFgz3P"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706684656698,
+    "modifiedTime": 1719171340559,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "dwmA3TWb8Ya3VSDZ",
+  "sort": 0,
+  "_key": "!items!dwmA3TWb8Ya3VSDZ"
+}

@@ -1,0 +1,96 @@
+{
+  "name": "Ace of Cards",
+  "type": "class",
+  "img": "icons/sundries/gaming/dice-pair-white-green.webp",
+  "system": {
+    "summary": {
+      "value": "Don't look away!"
+    },
+    "description": "<div class=\"stackedit__html\"><h1>ACE OF CARDS</h1><h5><strong>ALSO: Deckmancer, Destiny Duelist, High Roller</strong></h5><p><strong>Aces of Cards </strong>make use of special decks to perceive the constant fluctuations of the stream of souls. Each deck is inextricably connected to its user and reflects their taste and personality: by drawing specific combinations at the right moment, an Ace of Cards manipulates magical energy to produce supernatural effects. In some worlds, Aces of Cards duel against each other using their personal decks, in a quest for glory or in order to obtain precious artifacts</p><p><strong>ACE OF CARDS FREE BENEFITS</strong></p><ul><li>Permanently increase your maximum Hit Points <strong>or </strong>Mind Points by 5 (your choice).</li></ul><h3 id=\"chimerist-skills\"><strong>ACE OF CARDS SKILLS</strong></h3><h4><strong>@UUID[Compendium.projectfu.skills.Item.sfIxI8t0XlJMMVFC]{Double or Nothing}</strong></h4><p><span class=\"fontstyle2\">Before you perform an Accuracy Check, a Magic Check for an offensive spell ( </span><span style=\"font-family:inherit\"><strong>@ICON[offensive] </strong>)</span><span class=\"fontstyle2\">, or a Check to advance or turn back a Clock, you may declare </span><span class=\"fontstyle4\"><strong>double or nothing</strong></span><span class=\"fontstyle2\">. If you do and the Check triggers a </span><span class=\"fontstyle4\"><strong>critical success</strong></span><span class=\"fontstyle2\">, </span><span class=\"fontstyle4\"><strong>double </strong></span><span class=\"fontstyle2\">the damage dealt by that attack or spell or the filled or erased sections of that Clock, respectively; however, any other Result is considered a </span><span class=\"fontstyle4\"><strong>critical failure</strong></span><span class=\"fontstyle2\">.</span></p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.tFbGtEfIudpck8vL]{High or Low}</strong></h4><p><span class=\"fontstyle2\">When you generate a </span><span class=\"fontstyle4\"><strong>critical success</strong> </span><span class=\"fontstyle2\">or a </span><span class=\"fontstyle4\"><strong>critical failure</strong></span><span class=\"fontstyle2\">, you may draw 1 card from your </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">. If you do, discard 1 card from your </span><span class=\"fontstyle4\"><strong>hand</strong></span><span class=\"fontstyle2\">.</span></p><hr /><h4><span class=\"fontstyle5\"><strong>@UUID[Compendium.projectfu.skills.Item.5zF6JTf6nhKbXr69]{Magic Cards} (</strong></span><span class=\"fontstyle6\"><strong>SL</strong></span><span class=\"fontstyle5\"><strong>3)</strong></span></h4><p><span class=\"fontstyle2\">You gain a </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">, a </span><span class=\"fontstyle4\"><strong>hand </strong></span><span class=\"fontstyle2\">and a </span><span class=\"fontstyle4\"><strong>discard pile </strong></span><span class=\"fontstyle2\">(see next page).</span></p><p><span class=\"fontstyle2\">During a conflict, you may use an action and spend up to</span><span class=\"fontstyle7\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>10 + (SL × 5)</strong></span><span class=\"fontstyle7\"><strong>】</strong></span><span class=\"fontstyle2\">Mind Points (minimum 10). If you do, </span><span class=\"fontstyle4\"><strong>resolve 1 card</strong> </span><span class=\"fontstyle2\">from your </span><span class=\"fontstyle4\"><strong>hand </strong></span><span class=\"fontstyle2\">for every 5 MP spent this way (to a maximum of 5 cards; these cards form a </span><span class=\"fontstyle4\"><strong>set</strong></span><span class=\"fontstyle2\">). After you resolve the effect of the </span><span class=\"fontstyle4\"><strong>set </strong></span><span class=\"fontstyle2\">(if any), </span><span class=\"fontstyle4\"><strong>discard </strong></span><span class=\"fontstyle2\">these cards and draw that many cards from your </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">.</span></p><hr /><h4><span class=\"fontstyle5\"><strong>@UUID[Compendium.projectfu.skills.Item.ry0CUZsygSpySLBZ]{Mulligan} (SL5)</strong></span></h4><p><span class=\"fontstyle2\">At the end of your turn during a conflict, you may discard up to </span><span class=\"fontstyle7\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>SL</strong></span><span class=\"fontstyle7\"><strong>】 </strong></span><span class=\"fontstyle2\">cards from your </span><span class=\"fontstyle4\"><strong>hand</strong></span><span class=\"fontstyle2\">. If you do, draw that many cards from your </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">.</span></p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.dHurcgjvmwVBJPvM]{Trap Card} </strong><span class=\"fontstyle5\"><strong>(SL4)</strong></span></h4><p><span class=\"fontstyle2\">After an enemy you can see performs an action during a conflict, you may declare one of your </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">'s </span><span class=\"fontstyle4\"><strong>suits </strong></span><span class=\"fontstyle2\">(after the action has been resolved) and put the first card on the bottom of your </span><span class=\"fontstyle4\"><strong>deck </strong></span><span class=\"fontstyle2\">in your </span><span class=\"fontstyle4\"><strong>discard pile</strong></span><span class=\"fontstyle2\">, face up. If that card is a </span><span class=\"fontstyle4\"><strong>joker </strong></span><span class=\"fontstyle2\">or its </span><span class=\"fontstyle4\"><strong>suit </strong></span><span class=\"fontstyle2\">matches the one you declared, you may immediately perform the </span><span class=\"fontstyle4\"><strong>Spell </strong></span><span class=\"fontstyle2\">action for free, casting a spell with a </span><span class=\"fontstyle4\"><strong>total Mind Point cost equal to or lower than </strong></span><span class=\"fontstyle7\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>SL × 5</strong></span><span class=\"fontstyle7\"><strong>】</strong></span><span class=\"fontstyle2\">(you must still pay its MP cost).</span> </p><p></p><h3><strong>Managing The Deck</strong></h3></div><p><strong>@UUID[Compendium.projectfu.skills.Item.z3xhzflevgPyf7ah]{[Managing The Deck]}</strong></p><p></p><h3><strong>Effects</strong></h3><div class=\"stackedit__html\"><p><strong>@UUID[Compendium.projectfu.skills.Item.FVmAbnxp6kZyoqkN]{[Handout: Deck]}</strong></p></div>",
+    "isFavored": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": false
+        },
+        "shields": {
+          "value": false
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": false
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUAC2"
+    },
+    "subtype": {},
+    "showTitleCard": {
+      "value": false
+    }
+  },
+  "effects": [],
+  "flags": {
+    "cf": null,
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1685059788199,
+    "modifiedTime": 1719159112125,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "ebg6FQH2cPZYwDuu": 3,
+    "Vk2gQrsAJ2GZ8hcN": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "R6Wcc6Gcf27yWalj",
+  "sort": 600000,
+  "_key": "!items!R6Wcc6Gcf27yWalj"
+}

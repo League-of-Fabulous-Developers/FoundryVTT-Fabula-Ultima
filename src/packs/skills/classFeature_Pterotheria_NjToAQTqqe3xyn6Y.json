@@ -1,0 +1,39 @@
+{
+  "folder": "6hLDMWrdgLLCVK8G",
+  "name": "Pterotheria",
+  "type": "classFeature",
+  "img": "icons/creatures/abilities/wing-batlike-white-blue.webp",
+  "system": {
+    "summary": {
+      "value": "Bats, birds, winged insects, flying creatures."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.therioform",
+    "data": {
+      "description": "<p style=\"box-sizing: border-box; user-select: text; margin: 0px; font-family: 'PT Sans Narrow', sans-serif; font-style: normal; font-size: 16px; line-height: 1.45em; color: rgb(43, 74, 66); font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start\"><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">You are able to fly. In addition to the obvious advantages in mobility, your <strong style=\"box-sizing: border-box; user-select: text;\">melee</strong> attacks can target <strong style=\"box-sizing: border-box; user-select: text;\">flying</strong> creatures and you cannot be targeted by <strong style=\"box-sizing: border-box; user-select: text;\">melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</span></span></p><p style=\"box-sizing: border-box; user-select: text; margin: 10px 0px 0px; font-family: 'PT Sans Narrow', sans-serif; font-style: normal; font-size: 16px; line-height: 1.45em; color: rgb(43, 74, 66); font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start\"><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">These benefits do not apply while you are unable to fly freely (such as when inside a vehicle designed for human-sized creatures, or inside a narrow corridor). Additionally, when you suffer <strong style=\"box-sizing: border-box; user-select: text;\">air</strong>, <strong style=\"box-sizing: border-box; user-select: text;\">bolt</strong> or <strong style=\"box-sizing: border-box; user-select: text;\">ice</strong> damage during a conflict scene, you lose these benefits until the start of your next turn.</span></span></p>"
+    },
+    "source": "FUTF157"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711428338643,
+    "modifiedTime": 1719165640551,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "NjToAQTqqe3xyn6Y",
+  "sort": 0,
+  "_key": "!items!NjToAQTqqe3xyn6Y"
+}

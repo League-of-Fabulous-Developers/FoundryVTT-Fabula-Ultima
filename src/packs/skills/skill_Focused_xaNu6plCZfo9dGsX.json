@@ -1,0 +1,178 @@
+{
+  "folder": "kDKKcLwB0Ut9ynTR",
+  "name": "Focused",
+  "type": "skill",
+  "_id": "xaNu6plCZfo9dGsX",
+  "img": "icons/sundries/documents/document-symbol-eye.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">Permanently increase your maximum Mind Points by </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 3</strong></span><span class=\"fontstyle2\"><strong>】</strong></span><span class=\"fontstyle0\">. </span></p><p><span class=\"fontstyle0\">When you perform an Open Check using </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>INS + INS</strong></span><span class=\"fontstyle2\"><strong>】</strong></span><span class=\"fontstyle0\">, you gain a bonus equal to </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">on that Check (this </span><span class=\"fontstyle3\"><strong>only </strong></span><span class=\"fontstyle0\">applies to Open Checks).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Loremaster"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR199"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [
+    {
+      "icon": "icons/sundries/documents/document-symbol-eye.webp",
+      "origin": "Item.xaNu6plCZfo9dGsX",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Focused",
+      "_id": "xbzOApLkBkOo2YeB",
+      "changes": [
+        {
+          "key": "system.resources.mp.bonus",
+          "mode": 2,
+          "value": "3*@system.level.value",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p><strong>Effect: </strong>HP Increase by<span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 3</strong></span><span class=\"fontstyle2\"><strong>】</strong></span></p><table><tbody><tr><td><p><strong>SL1: 3</strong></p></td><td><p><strong>SL2: 6</strong></p></td><td><p><strong>SL3: 9</strong></p></td><td><p><strong>SL4: 12</strong></p></td><td data-colwidth=\"108\"><p><strong>SL5: 15</strong></p></td></tr></tbody></table></li></ul>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!xaNu6plCZfo9dGsX.xbzOApLkBkOo2YeB"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.xaNu6plCZfo9dGsX"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706487322210,
+    "modifiedTime": 1719165436878,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!xaNu6plCZfo9dGsX"
+}

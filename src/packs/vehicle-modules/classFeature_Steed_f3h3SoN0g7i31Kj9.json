@@ -1,0 +1,42 @@
+{
+  "folder": "5LrYW4IGy2CUagKM",
+  "name": "Steed",
+  "type": "classFeature",
+  "img": "icons/commodities/tech/cog-copper.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.vehicle",
+    "data": {
+      "frame": "steed",
+      "passengers": 1,
+      "distanceMultiplier": 2,
+      "moduleSlots": 3,
+      "description": "<p><span class=\"fontstyle0\">This </span><span class=\"fontstyle2\">personal vehicle </span><span class=\"fontstyle0\">may have up to </span><span class=\"fontstyle2\"><strong>1 weapon module</strong></span><span class=\"fontstyle0\"><strong>, </strong></span><span class=\"fontstyle2\"><strong>1 armor module </strong></span><span class=\"fontstyle0\">and<strong> </strong></span><span class=\"fontstyle2\"><strong>any number of support modules</strong> </span><span class=\"fontstyle0\">enabled.</span></p><p><span class=\"fontstyle0\">If you use the </span><strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong><span class=\"fontstyle2\"> </span><span class=\"fontstyle0\">Skill with this </span><span class=\"fontstyle2\"><strong>personal vehicle</strong></span><span class=\"fontstyle0\">, ignore the MP cost.</span></p>"
+    },
+    "source": "FUTF165"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1712878359536,
+    "modifiedTime": 1719174023985,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "f3h3SoN0g7i31Kj9",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!f3h3SoN0g7i31Kj9"
+}

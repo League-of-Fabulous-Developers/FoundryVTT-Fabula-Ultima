@@ -1,0 +1,121 @@
+{
+  "name": "Monkey Grip",
+  "type": "heroic",
+  "img": "icons/weapons/axes/axe-crooked-crystal-pink.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Equip some two-handed weapons in a single-hand slot."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Fury </strong></span><span class=\"fontstyle2\">Class.</span> </p></blockquote><p><span class=\"fontstyle0\">You may equip two-handed weapons belonging to the </span><span class=\"fontstyle2\"><strong>flail</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>heavy</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>spear</strong></span><span class=\"fontstyle0\">, or </span><span class=\"fontstyle2\"><strong>sword </strong></span><span class=\"fontstyle0\">Categories in a single hand slot.</span></p><p><span class=\"fontstyle0\">This allows you, for instance, to enjoy the benefits of </span><span class=\"fontstyle2\"><strong>two-weapon fighting</strong> </span><span class=\"fontstyle0\">(<strong>Core Rulebook</strong>, page </span><span class=\"fontstyle2\"><strong>69</strong></span><span class=\"fontstyle0\">) while wielding a pair of two-handed weapons, </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">to equip a two-handed weapon in your </span><span class=\"fontstyle2\"><strong>main hand slot</strong> </span><span class=\"fontstyle0\">and a shield in your </span><span class=\"fontstyle2\"><strong>off-hand slot</strong></span><span class=\"fontstyle0\">.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Fury"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR238"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.u7dZCXudMwSmPONT"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706584997270,
+    "modifiedTime": 1719170713744,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "zwoUkVKrKQHZzVHV",
+  "sort": 0,
+  "_key": "!items!zwoUkVKrKQHZzVHV"
+}

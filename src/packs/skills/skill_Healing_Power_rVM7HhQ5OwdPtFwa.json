@@ -1,0 +1,143 @@
+{
+  "folder": "LWIsJLQGwkSdYYwN",
+  "name": "Healing Power",
+  "type": "skill",
+  "_id": "rVM7HhQ5OwdPtFwa",
+  "img": "icons/magic/life/cross-area-circle-green-white.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">When you cast a spell that targets one or more allies, if you have an </span><span class=\"fontstyle2\"><strong>arcane </strong></span><span class=\"fontstyle0\">weapon equipped, you may have each of those allies recover an amount of Hit Points equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL, multiplied by the number of Bonds you have</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">.</span></p><p><span class=\"fontstyle0\">This healing is separate from any healing caused by the effects of the spell.</span> </p><hr /><table><tbody><tr><td data-colwidth=\"161\"><p>Additional HP regained…</p></td><td><p><strong>Skill Level 1</strong></p></td><td><p><strong>Skill 2</strong></p></td></tr><tr><td data-colwidth=\"161\"><p><strong>One</strong> Bond</p></td><td><p><strong>@GAIN[1 hp]</strong></p></td><td><p><strong>@GAIN[2 hp]</strong></p></td></tr><tr><td data-colwidth=\"161\"><p><strong>Two</strong> Bonds</p></td><td><p><strong>@GAIN[2 hp]</strong></p></td><td><p><strong>@GAIN[4 hp]</strong></p></td></tr><tr><td data-colwidth=\"161\"><p><strong>Three</strong> Bonds</p></td><td><p><strong>@GAIN[3 hp]</strong></p></td><td><p><strong>@GAIN[6 hp]</strong></p></td></tr><tr><td data-colwidth=\"161\"><p><strong>Four</strong> Bonds</p></td><td><p><strong>@GAIN[4 hp]</strong></p></td><td><p><strong>@GAIN[8 hp]</strong></p></td></tr><tr><td data-colwidth=\"161\"><p><strong>Five</strong> Bonds</p></td><td><p><strong>@GAIN[5 hp]</strong></p></td><td><p><strong>@GAIN[10 hp]</strong></p></td></tr><tr><td data-colwidth=\"161\"><p><strong>Six</strong> Bonds</p></td><td><p><strong>@GAIN[6 hp]</strong></p></td><td><p><strong>@GAIN[12 hp]</strong></p></td></tr></tbody></table>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 2,
+      "min": 0
+    },
+    "class": {
+      "value": "Spiritist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR207"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.world.skills.Item.HLqxhHVGoEk69bKX"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706507903931,
+    "modifiedTime": 1719168836765,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!items!rVM7HhQ5OwdPtFwa"
+}

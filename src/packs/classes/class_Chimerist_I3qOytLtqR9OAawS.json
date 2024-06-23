@@ -1,0 +1,96 @@
+{
+  "name": "Chimerist",
+  "type": "class",
+  "img": "icons/creatures/abilities/paw-print-yellow.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": "Power without harmony will only lead to suffering."
+    },
+    "description": "<div class=\"stackedit__html\"><h1>CHIMERIST</h1><h5><strong>ALSO:</strong> Druid, Shapeshifter, Wild Mage</h5><p><strong>Chimerists</strong> gather their power from the souls of the monsters and beasts they encounter. By manipulating their inner wild energy, these mages may mimic the magical abilities of monsters and have reached a supernatural understanding of feral creatures. Chimerists frequently rely on their toughness and physical prowess in addition to magic; they are often seen traveling the world in search of rare and enchanted creatures.</p><p><strong>CHIMERIST FREE BENEFITS</strong></p><ul><li>Permanently increase your maximum Mind Points by 5.</li><li>You may perform Rituals whose effects fall within the <strong>Ritualism</strong> discipline.</li></ul><h3 id=\"chimerist-skills\"><strong>CHIMERIST SKILLS</strong></h3><h4><strong>@UUID[Compendium.projectfu.skills.Item.c46SCybV1gtiHbL4]{Consume} (SL5)</strong></h4><p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.YLWWM3IqnFCAGoUc]{Feral Speech}</strong></h4><p>You can communicate with creatures of the <strong>beast, monster</strong>, and <strong>plant</strong> Species.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.EBbeGD1rgPmN6Y6R]{Pathogenesis}</strong></h4><p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.99bT5ymNnmR60Kmf]{Ritual Chimerism}</strong></h4><p>You may perform Rituals whose effects fall within the <strong>Chimerism</strong> discipline. When you acquire this Skill, choose <strong>【INS + WLP】 or 【MIG + WLP】</strong>.</p><p>From now on, your Chimerism Rituals will use the chosen Attributes for the Magic Check.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.yiX5sLJLKBh3UMmz]{Spell Mimic} (SL10)</strong></h4><p>When you see a creature belonging to the <strong>beast, monster</strong>, or <strong>plant</strong> Species cast a spell, you may immediately choose to learn that spell as a Chimerist spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from. When you first acquire this Skill, choose <strong>【INS + WLP】 or 【MIG + WLP】</strong>. From now on, your offensive <br />( <strong>@ICON[offensive]</strong> ) Chimerist spells will use the chosen Attributes for the Magic Check, regardless of the Attributes used by the creature you learned the spell from. You may have <strong>up to 【SL + 2】 different Chimerist spells</strong> memorized this way. If you want to memorize a new Chimerist spell but are already at your limit, you must forget one of your old spells and replace it with the new spell.</p></div>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": true
+        },
+        "ip": {
+          "value": false
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": false
+        },
+        "shields": {
+          "value": false
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": true
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR182"
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706437323799,
+    "modifiedTime": 1719159136641,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "I3qOytLtqR9OAawS",
+  "sort": 1000000,
+  "_key": "!items!I3qOytLtqR9OAawS"
+}

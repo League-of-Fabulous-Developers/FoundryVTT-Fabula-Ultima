@@ -1,0 +1,43 @@
+{
+  "folder": "MF2GB42tc5t7uxF8",
+  "name": "Unicorn Dance",
+  "type": "classFeature",
+  "_id": "4WuCxVpwfqDLPx02",
+  "img": "icons/creatures/mammals/unicorn-horned-white.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.dance",
+    "data": {
+      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">Choose an ally that is able to see you and has a Bond towards you: you and that ally both recover an amount of Hit Points equal to your current </span></span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">Dexterity </strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">die size.</span></p><p><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">The restored amount increases by 5 Hit Points if you are </span></span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">level 20 or higher</strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">, or by 10 Hit Points if you are<strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"> </strong></span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">level 40 or higher</strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">. </span></p><hr><p><strong>@LOSS[10 mp]</strong></p>",
+      "duration": "instant"
+    },
+    "source": "FUHF145"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-class-features.Item.4WuCxVpwfqDLPx02"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710176668051,
+    "modifiedTime": 1719158402374,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!4WuCxVpwfqDLPx02"
+}

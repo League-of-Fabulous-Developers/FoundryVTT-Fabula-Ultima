@@ -1,0 +1,121 @@
+{
+  "name": "Chimeric Mastery",
+  "type": "heroic",
+  "img": "icons/creatures/abilities/paw-print-yellow.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Learn spells from new Species and increase spell limit."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered the </span><strong>Chimerist </strong><span class=\"fontstyle2\">Class.</span> </p></blockquote><p><span class=\"fontstyle0\">Choose two creature Species among </span><span class=\"fontstyle2\"><strong>construct</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>demon</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>elemental</strong></span><span class=\"fontstyle0\">, and </span><span class=\"fontstyle2\"><strong>undead</strong></span><span class=\"fontstyle0\">. You can now use </span><span class=\"fontstyle2\"><strong>spell mimic</strong> </span><span class=\"fontstyle0\">to learn spells from creatures of the chosen Species. </span></p><p><span class=\"fontstyle0\">This Heroic Skill </span><span class=\"fontstyle2\"><strong>may be acquired up to twice</strong></span><span class=\"fontstyle0\">, each time selecting two Species from the list above.</span></p><p><span class=\"fontstyle0\">Whenever you acquire this Skill, you also increase your upper limit for memorized Chimerist spells by 2.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Chimerist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR234"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.uYwHZMoxa3kMDYYT"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706583718474,
+    "modifiedTime": 1719170713744,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "S64viyPBB8VsH9cQ",
+  "sort": 0,
+  "_key": "!items!S64viyPBB8VsH9cQ"
+}

@@ -1,0 +1,82 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "Arcanum of the Oak",
+  "type": "classFeature",
+  "_id": "Y3OzDHLCogR32RlH",
+  "img": "systems/projectfu/styles/static/compendium/Arcanum/Arcanum%20of%20the%20Oak.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<ul><li><p><span class=\"fontstyle0\">You have Resistance to </span><span class=\"fontstyle2\"><strong>earth </strong></span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>poison </strong></span><span class=\"fontstyle0\">damage and are immune to </span><span class=\"fontstyle2\"><strong>poisoned</strong></span><span class=\"fontstyle0\">.</span></p></li><li><p><span class=\"fontstyle0\">Whenever you recover Hit Points, you recover 5 extra Hit Points.</span> </p></li></ul>",
+      "dismiss": "<ul><li><p><span class=\"fontstyle0\"><strong>Blossom.</strong> </span><span class=\"fontstyle2\">Choose any number of creatures you can see (you may also choose yourself): each of them recovers from the </span><span class=\"fontstyle0\"><strong>poisoned</strong> </span><span class=\"fontstyle2\">status effect and recovers <strong>@GAIN[40 hp]</strong>. This amount increases to <strong>@GAIN[50 hp]</strong> if you are </span><span class=\"fontstyle0\"><strong>level 20 or higher</strong></span><span class=\"fontstyle2\">, or to <strong>@GAIN[60 hp]</strong> if you are </span><span class=\"fontstyle0\"><strong>level 40 or higher</strong></span><span class=\"fontstyle2\">.</span> </p></li></ul>",
+      "domains": "earth, plants, poison"
+    },
+    "source": "FUCR180"
+  },
+  "effects": [
+    {
+      "icon": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Oak.png",
+      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.Y3OzDHLCogR32RlH",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Merged: Oak",
+      "_id": "5F6pyGuB395tUkMT",
+      "changes": [
+        {
+          "key": "system.affinities.earth.bonus",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.poison.bonus",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You have Resistance to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">earth </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">and </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">poison </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage and are immune to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">poisoned</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">.</span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">Whenever you recover Hit Points, you recover 5 extra Hit Points.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p></li></ul>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!Y3OzDHLCogR32RlH.5F6pyGuB395tUkMT"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710464030279,
+    "modifiedTime": 1719153978928,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 800000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!Y3OzDHLCogR32RlH"
+}

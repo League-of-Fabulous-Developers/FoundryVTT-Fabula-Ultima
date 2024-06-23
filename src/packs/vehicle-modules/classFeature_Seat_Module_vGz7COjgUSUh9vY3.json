@@ -1,0 +1,39 @@
+{
+  "folder": "OcoOq5td7Ya9GOPU",
+  "name": "Seat Module",
+  "type": "classFeature",
+  "img": "icons/environment/people/commoner.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.supportModule",
+    "data": {
+      "description": "<h5 style=\"box-sizing: border-box; user-select: text; font-size: 16px; font-weight: 700; margin: 0px; font-family: Antonio, sans-serif; color: rgb(43, 74, 66); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\"><span style=\"font-family: Antonio, sans-serif\"><strong>(MECHA AND STEED FRAMES ONLY)</strong></span></h5><p style=\"box-sizing: border-box; user-select: text; margin: 10px 0px 0px; font-family: 'PT Sans Narrow', sans-serif; font-style: normal; font-size: 16px; line-height: 1.45em; color: rgb(43, 74, 66); font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">This <strong>personal vehicle</strong> can transport an additional human-sized passenger.</span></p>",
+      "complex": false
+    },
+    "source": "FUTF169"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711477056500,
+    "modifiedTime": 1719173179841,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "vGz7COjgUSUh9vY3",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!vGz7COjgUSUh9vY3"
+}

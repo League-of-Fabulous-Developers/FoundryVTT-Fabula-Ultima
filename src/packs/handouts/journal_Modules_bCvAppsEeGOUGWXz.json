@@ -1,0 +1,165 @@
+{
+  "name": "Modules",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Armor Modules",
+      "type": "text",
+      "_id": "wBCYNr46jgIGc2mv",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.kohdoUC4txAMLWDy]{Flexible Plating Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.TpTXbLUkL3Pu19Cd]{Heavy Plating Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.008QW2xjRc0BT2Az]{Runic Plating Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.RjB4wyGuxUBc9fgu]{Standard Plating Module}</strong></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "cTJapdwJt4TsRMZa": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "11.315",
+        "createdTime": 1711766987175,
+        "modifiedTime": 1719174070684,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+      },
+      "_key": "!journal.pages!bCvAppsEeGOUGWXz.wBCYNr46jgIGc2mv"
+    },
+    {
+      "sort": 200000,
+      "name": "Support Modules",
+      "type": "text",
+      "_id": "wDbsFhkIQPr6k3OJ",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.9YM4VR2e6Y4MgmJ2]{Advanced Targeting Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.76ieutWWlthLOXap]{Aerial Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.nFC5y451Xd24hlM7]{Anti-Element Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.zhzy9ZWLUwZc0BKg]{Counterstrike Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.Hi6V9QoWjKofxZkQ]{Excavation Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.Fa1V1JIKwTD1uMqY]{Expanded Plating Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.CVQO5xvCXzTCc7ca]{Magistatic Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.qzvVPIVFgZ9jtOYT]{Power Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.hTpTh6WA2AGkRymI]{Rapid Interface Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.P1Vw28xK0NzPydqG]{Seafarer Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.vGz7COjgUSUh9vY3]{Seat Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.7qyCrf1eK0X6bYTH]{Secondary Offensive Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.F281qYUhqNxVoSk3]{Sensor Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.OEgMfny6AwrXCkEg]{Turbo Module}</strong></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "cTJapdwJt4TsRMZa": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "11.315",
+        "createdTime": 1711767023272,
+        "modifiedTime": 1719174101649,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+      },
+      "_key": "!journal.pages!bCvAppsEeGOUGWXz.wDbsFhkIQPr6k3OJ"
+    },
+    {
+      "sort": 300000,
+      "name": "Weapon Module",
+      "type": "text",
+      "_id": "N35dxArmg5KRWCn7",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.Z8bDTwdrcscxD95M]{Arcane Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.I1TuBl0LhTTIm545]{Axe Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.gccAPML5zrH5uLPh]{Blade Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.xOzJFrDQH2gSYv5Z]{Bow Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.7PYahPoPOTdySS6Q]{Cannon Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.yn1PgUZxCTogRUH0]{Claw Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.LaoOQ7H1L1OVsFjP]{Claymore Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.Ia44SEoL7RRZ7YJo]{Esoteric Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.tAkb5tqWhOzreNEo]{Flail Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.U0ttIqfIfPVblhCn]{Flamer Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.rDwGqp1qnTHu6x0h]{Machine Gun Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.DvqMM22TCEeoZH8e]{Rifle Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.dn8VdDcxLU8bnAQp]{Scythe Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.TWzSnTRW9frKW1CO]{Shield Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.Af7Wr82RhDrIeTVZ]{Spear Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.9BOhSIzlTAv51Zge]{Sword Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.N8msUv4FMNAqKBTb]{Trident Module}</strong></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "cTJapdwJt4TsRMZa": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "11.315",
+        "createdTime": 1711767113525,
+        "modifiedTime": 1719174164020,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+      },
+      "_key": "!journal.pages!bCvAppsEeGOUGWXz.N35dxArmg5KRWCn7"
+    },
+    {
+      "sort": 400000,
+      "name": "Vehicle Frames",
+      "type": "text",
+      "_id": "YHjjLLO5io3WFkbH",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.WG1xG12wMYh2ROoP]{Exoskeleton}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.2AYyeXm0V4Fu1x6G]{Mecha}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.f3h3SoN0g7i31Kj9]{Steed}</strong></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "BwRsFvMHAq9vUtEO": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "11.315",
+        "createdTime": 1719174113792,
+        "modifiedTime": 1719174124135,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+      },
+      "_key": "!journal.pages!bCvAppsEeGOUGWXz.YHjjLLO5io3WFkbH"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "cTJapdwJt4TsRMZa": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711766975584,
+    "modifiedTime": 1719174164020,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "bCvAppsEeGOUGWXz",
+  "sort": 0,
+  "_key": "!journal!bCvAppsEeGOUGWXz"
+}

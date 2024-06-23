@@ -1,0 +1,90 @@
+{
+  "name": "Alchemy: Target",
+  "img": "icons/consumables/potions/potion-flash-open-blue.webp",
+  "description": "<p><span class=\"fontstyle0\">When you create a mix, roll the amount of twenty-sided dice indicated by that mix, then assign one of those rolls to the </span><span class=\"fontstyle2\"><strong>target</strong> </span><span class=\"fontstyle0\">table (below) and one to the </span><span class=\"fontstyle2\">effect </span><span class=\"fontstyle0\">table <strong>@UUID[Compendium.projectfu.rollable-tables.RollTable.TvH7gOE0xQYeimUF]{Alchemy: Effect}</strong>. Discard all remaining dice, then describe the effects of the mix!</span> <br style=\"font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;orphans:2;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-size-adjust:auto;-webkit-text-stroke-width:0px\" /></p>",
+  "results": [
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        1,
+        6
+      ],
+      "drawn": false,
+      "_id": "XgGLKpsOv9luRBck",
+      "text": "... you or one ally you can see that is present on the scene.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!vZa3GMOzrEVma2Hv.XgGLKpsOv9luRBck"
+    },
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        7,
+        11
+      ],
+      "drawn": false,
+      "_id": "mRhNxnilSDSIMH8w",
+      "text": "... you or one ally you can see that is present on the scene.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!vZa3GMOzrEVma2Hv.mRhNxnilSDSIMH8w"
+    },
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        12,
+        16
+      ],
+      "drawn": false,
+      "_id": "BnBOQIJYo4CO2pNh",
+      "text": "... you and every ally present on the scene.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!vZa3GMOzrEVma2Hv.BnBOQIJYo4CO2pNh"
+    },
+    {
+      "type": 0,
+      "weight": 1,
+      "range": [
+        17,
+        20
+      ],
+      "drawn": false,
+      "_id": "FteL00ZCRQnqU7uh",
+      "text": "... every enemy present on the scene.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!vZa3GMOzrEVma2Hv.FteL00ZCRQnqU7uh"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710031308833,
+    "modifiedTime": 1719171731031,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "formula": "1d20",
+  "_id": "vZa3GMOzrEVma2Hv",
+  "sort": 0,
+  "_key": "!tables!vZa3GMOzrEVma2Hv"
+}

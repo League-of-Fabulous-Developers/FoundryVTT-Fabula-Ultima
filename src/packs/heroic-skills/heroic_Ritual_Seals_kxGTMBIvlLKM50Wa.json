@@ -1,0 +1,121 @@
+{
+  "name": "Ritual Seals",
+  "type": "heroic",
+  "img": "icons/magic/symbols/rune-sigil-horned-blue.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Place Rituals into seals."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Symbolist </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle2\">When you perform a Ritual outside a conflict scene, if that Ritual has a </span><span class=\"fontstyle0\"><strong>total cost equal to or lower than 60 Mind Points</strong></span><span class=\"fontstyle2\">, you may stop the process immediately before the Magic Check and store the Ritual’s effect inside a </span><span class=\"fontstyle0\"><strong>Ritual seal</strong> </span><span class=\"fontstyle2\">placed on a surface you can touch. If you do, name a </span><span class=\"fontstyle0\"><strong>condition </strong></span><span class=\"fontstyle2\">— this can be anything from “when I enter </span><span class=\"fontstyle0\"><strong>Crisis</strong></span><span class=\"fontstyle2\">” to “as soon as I snap my fingers”. When that condition is met, the </span><span class=\"fontstyle0\"><strong>seal </strong></span><span class=\"fontstyle2\">vanishes and the Ritual is unleashed at the </span><span class=\"fontstyle0\"><strong>seal</strong></span><span class=\"fontstyle2\">’s location: you perform the Magic Check and resolve the effects as normal (even if you are unconscious or not present on the scene).</span></p><p><span class=\"fontstyle2\">You may only have<strong> </strong></span><span class=\"fontstyle0\"><strong>one Ritual seal</strong> </span><span class=\"fontstyle2\">active at the same time — if you die or create a new </span><span class=\"fontstyle0\"><strong>Ritual seal</strong></span><span class=\"fontstyle2\">, the one you previously created will vanish.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Symbolist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF159"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.Nbk1KFUZNCNkOsrs"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706684704873,
+    "modifiedTime": 1719170716535,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "kxGTMBIvlLKM50Wa",
+  "sort": 0,
+  "_key": "!items!kxGTMBIvlLKM50Wa"
+}

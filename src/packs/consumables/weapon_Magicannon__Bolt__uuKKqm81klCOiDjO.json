@@ -1,0 +1,102 @@
+{
+  "folder": "hOHl36gua4Qp55SR",
+  "name": "Magicannon (Bolt)",
+  "type": "weapon",
+  "img": "systems/projectfu/styles/static/compendium/Magicannon/Magicannon%20(Bolt).png",
+  "system": {
+    "source": {
+      "value": "FUCR215"
+    },
+    "summary": {
+      "value": "A magitech firearm that deals bolt damage."
+    },
+    "category": {
+      "value": "firearm"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "type": {
+      "value": "ranged"
+    },
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "isMartial": {
+      "value": false
+    },
+    "isCustomWeapon": {
+      "value": false
+    },
+    "quality": {
+      "value": "No Quality"
+    },
+    "cost": {
+      "value": 100
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 1
+    },
+    "damageType": {
+      "value": "bolt"
+    },
+    "damage": {
+      "value": 10
+    },
+    "subtype": {},
+    "description": "<p>A magitech firearm that deals <strong>bolt</strong> @ICON[bolt] damage.</p>",
+    "isEquipped": {
+      "value": false
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.consumables.Item.MnQx0zq7xH2tr1YE"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1707097873590,
+    "modifiedTime": 1719169823553,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "uuKKqm81klCOiDjO",
+  "_key": "!items!uuKKqm81klCOiDjO"
+}

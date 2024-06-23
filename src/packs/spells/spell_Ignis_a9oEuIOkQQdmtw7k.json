@@ -1,0 +1,139 @@
+{
+  "folder": "NZHiCa0mU3DKOiVo",
+  "name": "Ignis",
+  "type": "spell",
+  "_id": "a9oEuIOkQQdmtw7k",
+  "img": "icons/magic/fire/projectile-fireball-sparks-orange.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You unleash a searing barrage against your foes, conjuring flames out of thin air. Each target hit by this spell suffers </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>HR + 15</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle3\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p><p><span class=\"fontstyle3\"><strong>Opportunity:</strong> </span><span class=\"fontstyle0\">Each target hit by this spell suffers </span><span class=\"fontstyle3\"><strong>@EFFECT[shaken]</strong></span><span class=\"fontstyle0\">.</span> </p><hr /><p><strong>@LOSS[10 mp]</strong> for <strong>one</strong> target.</p><p><strong>@LOSS[20 mp]</strong> for <strong>two</strong> targets.</p><p><strong>@LOSS[30 mp]</strong> for <strong>three</strong> targets.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "mpCost": {
+      "value": "10 × T"
+    },
+    "target": {
+      "value": "Up to three creatures"
+    },
+    "duration": {
+      "value": "Instantaneous"
+    },
+    "isOffensive": {
+      "value": true
+    },
+    "source": {
+      "value": "FUCR189"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": true
+        },
+        "type": {
+          "value": "fire"
+        },
+        "value": 15
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "opportunity": "Opportunity: Each target hit by this spell suffers shaken."
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706565586057,
+    "modifiedTime": 1719160074886,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!a9oEuIOkQQdmtw7k"
+}

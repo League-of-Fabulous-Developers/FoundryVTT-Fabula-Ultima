@@ -1,0 +1,139 @@
+{
+  "folder": "NZHiCa0mU3DKOiVo",
+  "name": "Elemental Shroud",
+  "type": "spell",
+  "_id": "jyakaYH34Wp0AlVZ",
+  "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-purple-orange.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You weave magical energy and protect the targets from the fury of the elements. Choose a damage type: </span><span class=\"fontstyle2\"><strong>air</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>bolt</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>earth</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>fire</strong>, </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>ice</strong></span><span class=\"fontstyle0\">. Until this spell ends, each target gains Resistance against the chosen damage type.</span> </p><hr /><p><span class=\"fontstyle2\"><strong>@EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogQWlyIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuYWlyIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvbWFnaWMvZGVmZW5zaXZlL3NoaWVsZC1iYXJyaWVyLWZsYW1pbmctcGVudGFnb24tdGVhbC1wdXJwbGUud2VicCJ9] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogQm9sdCIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmJvbHQiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi1ibHVlLXllbGxvdy53ZWJwIn0=] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogRWFydGgiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5lYXJ0aCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9zaGllbGQtYmFycmllci1mbGFtaW5nLXBlbnRhZ29uLW9yYW5nZS53ZWJwIn0=] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogRmlyZSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmZpcmUiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi1yZWQud2VicCJ9] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogSWNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuaWNlIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvbWFnaWMvZGVmZW5zaXZlL3NoaWVsZC1iYXJyaWVyLWZsYW1pbmctcGVudGFnb24tYmx1ZS53ZWJwIn0=]</strong></span></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "mpCost": {
+      "value": "5 × T"
+    },
+    "target": {
+      "value": "Up to three creatures"
+    },
+    "duration": {
+      "value": "Scene"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "source": {
+      "value": "FUCR188"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706564403943,
+    "modifiedTime": 1719160074886,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!jyakaYH34Wp0AlVZ"
+}

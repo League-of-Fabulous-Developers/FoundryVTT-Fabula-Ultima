@@ -1,0 +1,121 @@
+{
+  "name": "Rampart",
+  "type": "heroic",
+  "img": "icons/equipment/shield/heater-crystal-blue.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Resist damage and status effects during the first round."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Guardian </strong></span><span class=\"fontstyle2\">Class.</span> </p></blockquote><p><span class=\"fontstyle0\">During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects (you </span><span class=\"fontstyle2\"><strong>do not</strong> </span><span class=\"fontstyle0\">recover from preexisting status effects, however). These benefits only last until the end of the first round.</span> </p><hr /><p><strong>@EFFECT[eyJuYW1lIjoiUmFtcGFydCIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLnBoeXNpY2FsIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5haXIiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmJvbHQiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmRhcmsiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmVhcnRoIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5maXJlIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5pY2UiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmxpZ2h0IiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5wb2lzb24iLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9lcXVpcG1lbnQvc2hpZWxkL2hlYXRlci1jcnlzdGFsLWJsdWUud2VicCJ9]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Guardian"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR239"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.ZG2AnEPyqoLMwX9h"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706586488889,
+    "modifiedTime": 1719171070030,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "RhoZgyaCPn1IPixe",
+  "sort": 0,
+  "_key": "!items!RhoZgyaCPn1IPixe"
+}

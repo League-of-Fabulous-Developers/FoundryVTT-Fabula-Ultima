@@ -1,0 +1,143 @@
+{
+  "folder": "SBAHplvEYQmgs8Po",
+  "name": "Symbolism",
+  "type": "skill",
+  "_id": "Twj3wpoMzSpUE3Go",
+  "img": "icons/sundries/books/book-rounded-teal.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">Each time you acquire this Skill, you learn </span><span class=\"fontstyle2\"><strong>two symbols</strong></span><span class=\"fontstyle0\">.</span></p><p><span class=\"fontstyle0\">You may have </span><span class=\"fontstyle2\"><strong>up to </strong></span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL + 1</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle2\"><strong>symbols active at the same time</strong></span><span class=\"fontstyle0\">; if you create more while at your limit, you must first choose and destroy some of your previous </span><span class=\"fontstyle2\"><strong>symbols</strong></span><span class=\"fontstyle0\">. </span></p><p><span class=\"fontstyle0\">You may perform the </span><span class=\"fontstyle2\"><strong>Inventory </strong></span><span class=\"fontstyle0\">action and spend </span><strong>@LOSS[2 ip]</strong><span class=\"fontstyle0\"> to create a </span><span class=\"fontstyle2\"><strong>symbol </strong></span><span class=\"fontstyle0\">you have learned and choose one option: apply that </span><span class=\"fontstyle2\"><strong>symbol </strong></span><span class=\"fontstyle0\">to yourself; <strong>OR </strong>apply that </span><span class=\"fontstyle2\"><strong>symbol </strong></span><span class=\"fontstyle0\">to an ally you can see; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with a weapon you have equipped. This attack deals no damage, but you apply a copy of the chosen </span><span class=\"fontstyle2\"><strong>symbol </strong></span><span class=\"fontstyle0\">to each enemy hit by the attack (each copy counts as a separate </span><span class=\"fontstyle2\">symbol </span><span class=\"fontstyle0\">towards your limit or </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle0\"><strong> </strong></span><span class=\"fontstyle2\"><strong>SL + 1</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">active </span><span class=\"fontstyle2\"><strong>symbols</strong></span><span class=\"fontstyle0\">).</span> </p><p>Descriptions, as well as all of the rules, for all of the symbols can be found in this handout: <strong>@UUID[Compendium.fabula-ultima-high-fantasy.high-fantasy-handouts.JournalEntry.lGFZstyMAxdpTjzp]{Symbol Rules}</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Symbolist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUHF147"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": true
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-skills.Item.Twj3wpoMzSpUE3Go"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706563320133,
+    "modifiedTime": 1719159763066,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!Twj3wpoMzSpUE3Go"
+}

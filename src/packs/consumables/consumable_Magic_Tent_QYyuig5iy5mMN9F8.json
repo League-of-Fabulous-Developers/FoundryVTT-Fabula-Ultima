@@ -1,0 +1,47 @@
+{
+  "name": "Magic Tent",
+  "type": "consumable",
+  "img": "systems/projectfu/styles/static/compendium/Consumables/Magic%20Tent.png",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "This allows the entire group to rest in the wilderness and at sea."
+    },
+    "description": "<p><span class=\"fontstyle0\">For </span><strong>@LOSS[4 ip]</strong>, <span class=\"fontstyle0\">this allows the entire group to </span><span class=\"fontstyle2\"><strong>rest </strong></span><span class=\"fontstyle0\">in the wilderness and at sea.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 4
+    },
+    "source": {
+      "value": "FUCR104"
+    }
+  },
+  "effects": [],
+  "folder": "WTJwnSjYUL3GOIyA",
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706516284047,
+    "modifiedTime": 1719169731633,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "QYyuig5iy5mMN9F8",
+  "sort": 100000,
+  "_key": "!items!QYyuig5iy5mMN9F8"
+}

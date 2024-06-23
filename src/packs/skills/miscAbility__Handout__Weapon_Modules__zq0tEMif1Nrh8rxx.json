@@ -1,0 +1,152 @@
+{
+  "folder": "yCXSZM7ZMwwwYKhA",
+  "name": "[Handout: Weapon Modules]",
+  "type": "miscAbility",
+  "img": "icons/commodities/tech/levers-colored.webp",
+  "system": {
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>While driving a <strong>personal vehicle</strong> with one or more <strong>weapon modules</strong> enabled, a Pilot does not have access to the normal contents of their <strong>hand slots</strong>. Instead, those slots are considered occupied by the <strong>personal vehicle’s weapon modules</strong>. If the <strong>personal vehicle</strong> has no weapon modules enabled, the Pilot can keep using their equipped weapons and shields as normal.</p><ul><li><p>As soon as the Pilot stops driving a <strong>personal vehicle</strong> with <strong>weapon modules</strong> enabled, they immediately regain access to all normal equipped weapons and shields.</p></li><li><p>Each weapon module counts as a <strong>one-handed, non-martial weapon</strong> for the sake of character Skills and effects (with the exception of the <strong>Shield module</strong>, which is treated as a shield). When you set up your <strong>personal vehicle</strong>’s weapon modules, declare which module will occupy your <strong>main hand slot</strong> and which will occupy your <strong>off-hand slot</strong>.</p></li><li><p>Some weapon modules are cumbersome and prevent you from having other weapon modules (including <strong>Shield modules</strong>!) enabled on the same <strong>personal vehicle</strong>.</p></li></ul><blockquote><p><em>For instance, an <strong>Axe module</strong> can be used with the <strong>Counterattack</strong> Skill, and a <strong>Rifle module</strong> can be used with the <strong>Crossfire</strong> Skill (see <strong>Core Rulebook</strong>, pages <strong>219</strong> and <strong>205</strong>).</em></p></blockquote><p>Because each weapon module is treated as a one-handed weapon, a Pilot driving a <strong>personal vehicle</strong> with two enabled weapon modules that share the same Category benefits from the rules for <strong>two-weapon fighting</strong> – and if they have the <strong>Ambidexterous</strong> Heroic Skill (see <strong>Core Rulebook</strong>, page <strong>234</strong>), this can be done with any two enabled weapon modules!</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUTF161"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "projectfu-playtest": {
+      "growthClock": false
+    },
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711431619011,
+    "modifiedTime": 1719168012941,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "zq0tEMif1Nrh8rxx",
+  "sort": 0,
+  "_key": "!items!zq0tEMif1Nrh8rxx"
+}

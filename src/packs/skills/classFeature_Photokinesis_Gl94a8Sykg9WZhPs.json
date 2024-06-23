@@ -1,0 +1,40 @@
+{
+  "folder": "E9XrzgvAjI4iW0aE",
+  "name": "Photokinesis",
+  "type": "classFeature",
+  "img": "icons/magic/light/hand-sparks-smoke-green.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.psychicGift",
+    "data": {
+      "trigger": "When you deal damage",
+      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">That damage becomes <strong style=\"box-sizing: border-box; user-select: text;\">dark</strong> or <strong style=\"box-sizing: border-box; user-select: text;\">light</strong>, and its source deals extra damage equal to <strong style=\"box-sizing: border-box; user-select: text;\">【2 + the number of filled sections in your Brainwave Clock】.</strong></span></span></p>"
+    },
+    "source": "FUTF153"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711423314741,
+    "modifiedTime": 1719164122286,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "Gl94a8Sykg9WZhPs",
+  "sort": 0,
+  "_key": "!items!Gl94a8Sykg9WZhPs"
+}

@@ -30,17 +30,6 @@
 	"styles": ["styles/css/projectfu.css"],
 	"packs": [
 		{
-			"label": "Essentials",
-			"type": "Item",
-			"name": "essentials",
-			"path": "packs/essentials",
-			"system": "projectfu",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			}
-		},
-		{
 			"label": "Classes",
 			"type": "Item",
 			"name": "classes",
@@ -107,6 +96,17 @@
 			}
 		},
 		{
+			"label": "Vehicle Modules",
+			"type": "Item",
+			"name": "vehicle-modules",
+			"path": "packs/vehicle-modules",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
 			"label": "Rollable Tables",
 			"type": "RollTable",
 			"name": "rollable-tables",
@@ -146,7 +146,7 @@
 			"name": "Equipment",
 			"sorting": "a",
 			"color": "#005390",
-			"packs": ["basic-equipment", "consumables"]
+			"packs": ["basic-equipment", "consumables", "vehicle-modules"]
 		},
 		{
 			"name": "GM Tools",

@@ -1,0 +1,140 @@
+{
+  "folder": "DSK88QwlFKfnapAU",
+  "name": "Trap Card",
+  "type": "skill",
+  "img": "icons/sundries/gaming/playing-cards-grey.webp",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle2\">After an enemy you can see performs an action during a conflict, you may declare one of your </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">'s </span><span class=\"fontstyle4\"><strong>suits </strong></span><span class=\"fontstyle2\">(after the action has been resolved) and put the first card on the bottom of your </span><span class=\"fontstyle4\"><strong>deck </strong></span><span class=\"fontstyle2\">in your </span><span class=\"fontstyle4\"><strong>discard pile</strong></span><span class=\"fontstyle2\">, face up. If that card is a </span><span class=\"fontstyle4\"><strong>joker </strong></span><span class=\"fontstyle2\">or its </span><span class=\"fontstyle4\"><strong>suit </strong></span><span class=\"fontstyle2\">matches the one you declared, you may immediately perform the </span><span class=\"fontstyle4\"><strong>Spell </strong></span><span class=\"fontstyle2\">action for free, casting a spell with a </span><span class=\"fontstyle4\"><strong>total Mind Point cost equal to or lower than</strong></span><span class=\"fontstyle7\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>SL × 5</strong></span><span class=\"fontstyle7\"><strong>】</strong></span><span class=\"fontstyle2\">(you must still pay its MP cost).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Ace of Cards"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUAC3"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "mig"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "defense": "def",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "ebg6FQH2cPZYwDuu": 3,
+    "Vk2gQrsAJ2GZ8hcN": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1707643024284,
+    "modifiedTime": 1719130052422,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "dHurcgjvmwVBJPvM",
+  "sort": 0,
+  "_key": "!items!dHurcgjvmwVBJPvM"
+}

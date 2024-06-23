@@ -79,7 +79,7 @@ As well as the following localizers who translated the system to their respectiv
 
 The following assets/code were used from the following projects:
 
-- **
+- **Pixeltier** - All art referenced in the system compendium are purchased from [Pixeltier](https://itch.io/s/39748/pixeltiers-complete-asset-bundle).
 - **Status Effect Icons**: [styles\static\icons] - default status effect icons from [@\_t3nshi](https://twitter.com/_t3nshi). Explicit permission granted by t3nshi for the use of the Status Effect Icons exclusively in Fabula Ultima games. These icons are not authorized for use in other media without obtaining additional permission from t3nshi.
 - **game-icons**: [game-icons.net](https://game-icons.net), various icons were used from here, licensed under the [CC-BY-3.0 license](https://creativecommons.org/licenses/by/3.0/).
 - **fultimator**: [fultimator](https://github.com/codeclysm/fultimator) by codeclysm, specifically project/ritual/sp counter code, licensed under the [MIT License](https://github.com/codeclysm/fultimator/blob/main/LICENSE.md)

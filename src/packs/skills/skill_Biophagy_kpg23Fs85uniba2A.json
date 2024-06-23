@@ -1,0 +1,165 @@
+{
+  "folder": "ADSrT7dY3syrqW73",
+  "name": "Biophagy",
+  "type": "skill",
+  "img": "icons/magic/control/debuff-energy-hold-yellow.webp",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<div class=\"stackedit__html\"><p><span class=\"fontstyle0\">After one of your attacks or offensive spells ( </span><span class=\"fontstyle2\"><strong>@ICON[offensive] </strong></span><span class=\"fontstyle0\">) causes one or more enemies to lose Hit Points, if you are in </span><span class=\"fontstyle3\"><strong>Crisis</strong></span><span class=\"fontstyle0\">, you may recover </span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 5</strong></span><span class=\"fontstyle4\"><strong>】 </strong></span><span class=\"fontstyle0\">Hit Points.</span></p></div>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Mutant"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUTF155"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "mig"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "defense": "def"
+  },
+  "effects": [
+    {
+      "icon": "icons/magic/control/debuff-energy-hold-yellow.webp",
+      "origin": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-skills.Item.kpg23Fs85uniba2A",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Biophagy",
+      "_id": "RF4MLdS4Z8HonPLy",
+      "changes": [],
+      "description": "<div class=\"stackedit__html\"><p><span class=\"fontstyle0\">After one of your attacks or offensive spells (</span><span class=\"fontstyle2\">@ICON[offensive]</span><span class=\"fontstyle0\">) causes one or more enemies to lose Hit Points, if you are in </span><span class=\"fontstyle3\"><strong>Crisis</strong></span><span class=\"fontstyle0\">, you may recover</span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 5</strong></span><span class=\"fontstyle4\"><strong>】</strong></span><span class=\"fontstyle0\">Hit Points.</span></p></div>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "active"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!kpg23Fs85uniba2A.RF4MLdS4Z8HonPLy"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711429218464,
+    "modifiedTime": 1719165640551,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "kpg23Fs85uniba2A",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!kpg23Fs85uniba2A"
+}

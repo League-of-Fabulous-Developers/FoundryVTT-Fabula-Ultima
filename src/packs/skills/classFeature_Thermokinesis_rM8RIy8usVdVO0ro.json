@@ -1,0 +1,40 @@
+{
+  "folder": "E9XrzgvAjI4iW0aE",
+  "name": "Thermokinesis",
+  "type": "classFeature",
+  "img": "icons/magic/fire/orb-fireball-puzzle.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.psychicGift",
+    "data": {
+      "trigger": "When you deal damage",
+      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">That damage becomes <strong style=\"box-sizing: border-box; user-select: text;\">fire</strong> or <strong style=\"box-sizing: border-box; user-select: text;\">ice</strong>, and its source deals extra damage equal to <strong style=\"box-sizing: border-box; user-select: text;\">【2 + the number of filled sections in your Brainwave Clock】</strong>.</span></p>"
+    },
+    "source": "FUTF152"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711423314741,
+    "modifiedTime": 1719164097389,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "rM8RIy8usVdVO0ro",
+  "sort": 0,
+  "_key": "!items!rM8RIy8usVdVO0ro"
+}

@@ -1,0 +1,143 @@
+{
+  "folder": "gf9uvRkGXGXrNE9W",
+  "name": "Provoke",
+  "type": "skill",
+  "_id": "XaopYEAay9e86srI",
+  "img": "icons/skills/social/intimidation-impressing.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You may use an action and spend </span><strong>@LOSS[5 mp]</strong><span class=\"fontstyle0\"> to perform an Opposed </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>MIG + WLP</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Check against a creature you can see — describe how you taunt them! If you succeed, the target suffers </span><span class=\"fontstyle3\"><strong>@EFFECT[enraged] </strong></span><span class=\"fontstyle0\">and is compelled to focus their attention on you (their attacks and offensive spells must include you among the targets if possible). This compulsion ends if you fall unconscious or leave the scene, if the creature is no longer </span><span class=\"fontstyle3\">enraged</span><span class=\"fontstyle0\">, or if they are successfully </span><span class=\"fontstyle3\">provoked </span><span class=\"fontstyle0\">by someone else.</span></p><p><span class=\"fontstyle0\">You gain a bonus equal to </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">to your </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>MIG + WLP</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Checks for this Skill.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Fury"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR195"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "mig"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 1
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.XaopYEAay9e86srI"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706502413549,
+    "modifiedTime": 1719164244642,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 400000,
+  "_key": "!items!XaopYEAay9e86srI"
+}

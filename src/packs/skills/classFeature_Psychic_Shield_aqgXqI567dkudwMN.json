@@ -1,0 +1,40 @@
+{
+  "folder": "E9XrzgvAjI4iW0aE",
+  "name": "Psychic Shield",
+  "type": "classFeature",
+  "img": "icons/equipment/shield/heater-steel-gray.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.psychicGift",
+    "data": {
+      "trigger": "After an enemy you can see performs an  Accuracy Check or a Magic Check",
+      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">You may treat your Defense and Magic Defense scores as being equal to <strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】 </strong>against that Check (you may still use your normal scores if better).</span></p>"
+    },
+    "source": "FUTF153"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711423314741,
+    "modifiedTime": 1719164110482,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "aqgXqI567dkudwMN",
+  "sort": 0,
+  "_key": "!items!aqgXqI567dkudwMN"
+}
