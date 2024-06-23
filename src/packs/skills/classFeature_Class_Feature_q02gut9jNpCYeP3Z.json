@@ -1,0 +1,40 @@
+{
+  "name": "Class Feature",
+  "type": "classFeature",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "",
+      "dismiss": "",
+      "domains": ""
+    },
+    "source": ""
+  },
+  "effects": [],
+  "folder": "MF2GB42tc5t7uxF8",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1719128005210,
+    "modifiedTime": 1719128033723,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "q02gut9jNpCYeP3Z",
+  "sort": 0,
+  "_key": "!items!q02gut9jNpCYeP3Z"
+}

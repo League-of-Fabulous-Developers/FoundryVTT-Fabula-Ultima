@@ -1,0 +1,25 @@
+{
+  "name": "Table",
+  "_id": "oCK6sbg1AWF8zyBr",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1719128173906,
+    "modifiedTime": 1719128173906,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!tables!oCK6sbg1AWF8zyBr"
+}
