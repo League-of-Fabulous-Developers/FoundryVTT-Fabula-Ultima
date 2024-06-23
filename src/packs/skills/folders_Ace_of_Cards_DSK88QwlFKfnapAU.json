@@ -1,0 +1,19 @@
+{
+  "name": "Ace of Cards",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "DSK88QwlFKfnapAU",
+  "sort": 100000,
+  "color": "#bb1e1e",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1708926509410,
+    "modifiedTime": 1719128994180,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!DSK88QwlFKfnapAU"
+}

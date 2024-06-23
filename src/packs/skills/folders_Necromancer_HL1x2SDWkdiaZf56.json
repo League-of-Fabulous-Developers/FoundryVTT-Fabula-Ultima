@@ -1,0 +1,19 @@
+{
+  "name": "Necromancer",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "HL1x2SDWkdiaZf56",
+  "sort": 100000,
+  "color": "#363e52",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1708927642917,
+    "modifiedTime": 1719128996064,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!HL1x2SDWkdiaZf56"
+}
