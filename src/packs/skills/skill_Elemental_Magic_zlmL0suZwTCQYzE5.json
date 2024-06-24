@@ -1,0 +1,140 @@
+{
+  "folder": "laGyUtQnXPDC2pZG",
+  "name": "Elemental Magic",
+  "type": "skill",
+  "img": "icons/sundries/books/book-symbol-fire-gold-orange.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">Each time you acquire this Skill, learn one Elementalist spell (<strong>Core Rulebook</strong>, page <strong>188</strong> or <strong>@UUID[Compendium.projectfu.spells.Item.GOEbYMBu3cGnszWt]{[Elementalist Spells]}).</strong></span></p><p><span class=\"fontstyle0\">Offensive </span>( <strong>@ICON[offensive]</strong> ) <span class=\"fontstyle0\">Elementalist spells use </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>INS + WLP</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">for the Magic Check.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR187"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "6utNKI7T4Vq4KjiR": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1706497980288,
+    "modifiedTime": 1719181016949,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "zlmL0suZwTCQYzE5",
+  "sort": 0,
+  "_key": "!items!zlmL0suZwTCQYzE5"
+}

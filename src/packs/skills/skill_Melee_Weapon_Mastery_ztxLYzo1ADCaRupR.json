@@ -1,0 +1,215 @@
+{
+  "folder": "t0can7tJoRis1H3f",
+  "name": "Melee Weapon Mastery",
+  "type": "skill",
+  "img": "icons/skills/melee/weapons-crossed-swords-pink.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a bonus equal to </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">【</strong></span></span><span class=\"fontstyle3\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">SL</strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">】 </strong>to all Accuracy Checks with </span><span class=\"fontstyle3\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">melee </strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">weapons. </span></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Weaponmaster"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR219"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [
+    {
+      "icon": "icons/skills/melee/weapons-crossed-swords-pink.webp",
+      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.I5IuMtOaPji0mAVi",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Melee Weapon Mastery",
+      "_id": "Sks7cSsjFlEgMg53",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.arcane",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.brawling",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.dagger",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.flail",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.heavy",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.spear",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.sword",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        }
+      ],
+      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a bonus equal to<strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">【SL</strong><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">】</strong>to all Accuracy Checks with <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">melee </strong>weapons. </span></p>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!ztxLYzo1ADCaRupR.Sks7cSsjFlEgMg53"
+    }
+  ],
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.projectfu.essentials.Item.HHMMW8MumsMWI27u"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706514138632,
+    "modifiedTime": 1719170632986,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "ztxLYzo1ADCaRupR",
+  "sort": 500000,
+  "_key": "!items!ztxLYzo1ADCaRupR"
+}

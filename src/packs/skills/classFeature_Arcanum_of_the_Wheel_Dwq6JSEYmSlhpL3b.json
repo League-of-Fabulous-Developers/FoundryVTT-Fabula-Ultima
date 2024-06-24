@@ -1,0 +1,76 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "Arcanum of the Wheel",
+  "type": "classFeature",
+  "_id": "Dwq6JSEYmSlhpL3b",
+  "img": "systems/projectfu/styles/static/compendium/Arcanum/arcanum-of-the-wheel.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<ul><li><p><span class=\"fontstyle0\">You are immune to </span><span class=\"fontstyle2\"><strong>slow</strong></span><span class=\"fontstyle0\">.</span></p></li><li><p><span class=\"fontstyle0\">You gain a +1 bonus to your Defense.</span> </p></li></ul>",
+      "dismiss": "<ul><li><p><span class=\"fontstyle0\"><strong>Time Freeze.</strong> </span><span class=\"fontstyle2\">Choose any number of creatures you can see: each of them suffers </span><span class=\"fontstyle0\"><strong>slow</strong></span><span class=\"fontstyle2\">. If a creature chosen this way is already </span><span class=\"fontstyle0\"><strong>slow</strong></span><span class=\"fontstyle2\">, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</span> </p></li></ul>",
+      "domains": "destiny, speed, time"
+    },
+    "source": "FUCR181"
+  },
+  "effects": [
+    {
+      "icon": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Wheel.png",
+      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.Dwq6JSEYmSlhpL3b",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Merged: Wheel",
+      "_id": "1iKpZOSNd8g7Q6Dn",
+      "changes": [
+        {
+          "key": "system.derived.def.bonus",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You are immune to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">slow</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">.</span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a +1 bonus to your Defense.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p></li></ul>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!Dwq6JSEYmSlhpL3b.1iKpZOSNd8g7Q6Dn"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710464120707,
+    "modifiedTime": 1719225637456,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!Dwq6JSEYmSlhpL3b"
+}

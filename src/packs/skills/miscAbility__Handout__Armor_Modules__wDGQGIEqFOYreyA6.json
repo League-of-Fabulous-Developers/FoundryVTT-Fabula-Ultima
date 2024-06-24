@@ -1,0 +1,152 @@
+{
+  "folder": "yCXSZM7ZMwwwYKhA",
+  "name": "[Handout: Armor Modules]",
+  "type": "miscAbility",
+  "img": "icons/commodities/tech/levers-colored.webp",
+  "system": {
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>While driving a <strong>personal vehicle</strong> with an <strong>armor module</strong> enabled, a Pilot does not have access to the normal contents of their <strong>armor slot</strong>. Instead, that slot is considered occupied by the <strong>personal vehicle’s armor module</strong>. If the <strong>personal vehicle</strong> has no armor module enabled, the Pilot can keep using their equipped armor as normal.</p><ul><li><p>As soon as the Pilot stops driving a <strong>personal vehicle</strong> with an enabled <strong>armor module</strong>, they immediately regain access to their normal equipped armor.</p></li><li><p>Armor modules marked with <strong>@ICON[martial]</strong> are considered to be <strong>martial</strong> armor for the sake of Skills and other effects, and they set the Pilot’s Defense and Magic Defense to <strong>fixed scores</strong> (bonuses from shields and other effects still apply). Note that a Pilot can still equip these modules <strong>even if they normally lack the ability</strong> to equip martial armor.</p></li></ul><blockquote><p><em>For instance, a Pilot with the <strong>Guardian</strong> Class can gain the benefits of <strong>Defensive Mastery</strong> while driving a vehicle with a <strong>Heavy Plating module</strong> enabled, but they do not benefit from the <strong>Dodge</strong> Skill granted by the <strong>Rogue</strong> Class.</em></p></blockquote>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUTF161"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "projectfu-playtest": {
+      "growthClock": false
+    },
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711431619011,
+    "modifiedTime": 1719168012941,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "wDGQGIEqFOYreyA6",
+  "sort": 300000,
+  "_key": "!items!wDGQGIEqFOYreyA6"
+}

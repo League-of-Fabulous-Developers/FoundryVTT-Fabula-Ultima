@@ -1,0 +1,121 @@
+{
+  "name": "Arcane Mark",
+  "type": "heroic",
+  "img": "icons/magic/symbols/runes-carved-stone-red.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Improve spells’ critical chance with arcane weapons."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><span class=\"fontstyle0\"><strong>Sharpshooter</strong></span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\"><strong>Symbolist</strong></span><span class=\"fontstyle2\">, and </span><span class=\"fontstyle0\"><strong>Weaponmaster</strong></span><span class=\"fontstyle2\">.</span></p></blockquote><p><span class=\"fontstyle2\">When you hit one or more creatures with an attack using a weapon that belongs to the </span><span class=\"fontstyle0\"><strong>arcane </strong></span><span class=\"fontstyle2\">Category, the attack deals 5 extra damage and you may choose one of those creatures. If the next offensive spell </span><span style=\"font-family:'PT Sans Narrow', sans-serif\">(@ICON[offensive])</span><span style=\"font-family:inherit\"> </span><span class=\"fontstyle2\">you cast during this scene </span><span class=\"fontstyle0\"><strong>only </strong></span><span class=\"fontstyle2\">targets the chosen creature, its Magic Check will trigger a </span><span class=\"fontstyle0\"><strong>critical success</strong> </span><span class=\"fontstyle2\">if both dice show the same number (and the Check is not a </span><span class=\"fontstyle0\"><strong>fumble</strong></span><span class=\"fontstyle2\">)</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF153"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.GaJdOztwrFJnxT3b"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706684532126,
+    "modifiedTime": 1719170716535,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "hH6SHCiX0HAdXugI",
+  "sort": 0,
+  "_key": "!items!hH6SHCiX0HAdXugI"
+}

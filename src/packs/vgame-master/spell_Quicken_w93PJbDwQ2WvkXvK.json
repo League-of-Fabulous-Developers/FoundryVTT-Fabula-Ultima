@@ -1,0 +1,137 @@
+{
+  "name": "Quicken",
+  "type": "spell",
+  "img": "icons/magic/time/arrows-circling-pink.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">The target may immediately perform a </span><span class=\"fontstyle2\"><strong>free attack </strong></span><span class=\"fontstyle0\">with a weapon they have equipped (or with a </span><span class=\"fontstyle2\"><strong>basic attack</strong></span><span class=\"fontstyle0\">, if the target is an NPC).</span></p><hr /><p><strong>@LOSS[20 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "class": {
+      "value": "NPC"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "mpCost": {
+      "value": "20"
+    },
+    "target": {
+      "value": "One creature"
+    },
+    "duration": {
+      "value": "Instantaneous"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "rollInfo": {
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      },
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR311"
+    },
+    "subtype": {},
+    "opportunity": ""
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": null
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1690417015023,
+    "modifiedTime": 1719224647253,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "folder": "PpBzAnM7EK75ayIT",
+  "_id": "w93PJbDwQ2WvkXvK",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!w93PJbDwQ2WvkXvK"
+}

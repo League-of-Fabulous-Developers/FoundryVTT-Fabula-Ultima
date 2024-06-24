@@ -1,0 +1,143 @@
+{
+  "folder": "t0can7tJoRis1H3f",
+  "name": "Bone Crusher",
+  "type": "skill",
+  "_id": "7jWycVYFgZ1BMxch",
+  "img": "icons/skills/wounds/bone-broken-marrow-red.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">When you hit one or more targets with a </span><span class=\"fontstyle2\"><strong>melee </strong></span><span class=\"fontstyle0\">attack that would deal damage, you may have the attack deal no damage. If you do, choose one option: inflict </span><span class=\"fontstyle2\"><strong> @EFFECT[dazed] </strong></span><span class=\"fontstyle0\">on each target hit by the attack; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">inflict </span><span class=\"fontstyle2\"><strong>@EFFECT[weak] </strong></span><span class=\"fontstyle0\">on each target hit by the attack; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">each target hit by the attack loses </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 10</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">Mind Points. Describe your maneuver!</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@LOSS[10 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@LOSS[20 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@LOSS[30 mp]</strong></p><p>Skill Level <strong>4</strong> - <strong>@LOSS[40 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Weaponmaster"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR219"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.7jWycVYFgZ1BMxch"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706514091257,
+    "modifiedTime": 1719170582776,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 200000,
+  "_key": "!items!7jWycVYFgZ1BMxch"
+}

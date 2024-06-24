@@ -1,0 +1,139 @@
+{
+  "name": "Hypercognition",
+  "type": "skill",
+  "img": "icons/magic/control/debuff-energy-hold-blue-yellow.webp",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<div class=\"stackedit__html\"><p><span class=\"fontstyle0\">The total MP cost of your </span><span class=\"fontstyle2\"><strong>spells</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>verses</strong> </span><span class=\"fontstyle0\">(</span><span class=\"fontstyle2\"><strong>High Fantasy</strong></span><span class=\"fontstyle0\">, page </span><span class=\"fontstyle2\"><strong>138</strong></span><span class=\"fontstyle0\">) that include your </span><span class=\"fontstyle2\"><strong>focus</strong> </span><span class=\"fontstyle0\">among their targets is reduced by </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">, or by </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">if your </span><span class=\"fontstyle2\"><strong>focus</strong> </span><span class=\"fontstyle0\">is the </span><span class=\"fontstyle2\"><strong>only</strong> </span><span class=\"fontstyle0\">target (up to a minimum cost of 0 Mind Points).</span></p></div>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Esper"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUTF151"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "mig"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "folder": "KIqoW0FNwwyC7ygb",
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711424945464,
+    "modifiedTime": 1719163694654,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "P0oD7KQA9ipYWU8o",
+  "sort": 300000,
+  "_key": "!items!P0oD7KQA9ipYWU8o"
+}

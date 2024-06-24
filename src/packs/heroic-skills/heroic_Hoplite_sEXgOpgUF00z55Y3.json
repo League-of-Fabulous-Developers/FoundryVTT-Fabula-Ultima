@@ -1,0 +1,168 @@
+{
+  "name": "Hoplite",
+  "type": "heroic",
+  "img": "icons/equipment/shield/buckler-boss-iron-wood-brown.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Strenghten attacks when you fight with weapon and shield."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><span class=\"fontstyle0\"><strong>Commander </strong></span><span class=\"fontstyle2\">and </span><span class=\"fontstyle0\"><strong>Guardian</strong></span><span class=\"fontstyle2\">.</span></p></blockquote><p><span class=\"fontstyle2\">As long as you have a </span><span class=\"fontstyle0\"><strong>weapon </strong></span><span class=\"fontstyle2\">equipped in your </span><span class=\"fontstyle0\"><strong>main hand slot</strong> </span><span class=\"fontstyle2\">and a </span><span class=\"fontstyle0\"><strong>shield </strong></span><span class=\"fontstyle2\">equipped in your </span><span class=\"fontstyle0\"><strong>off-hand slot</strong></span><span class=\"fontstyle2\">, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</span></p><p><span class=\"fontstyle2\">This Skill </span><span class=\"fontstyle0\"><strong>cannot </strong></span><span class=\"fontstyle2\">be combined with </span><span class=\"fontstyle0\"><strong>custom weapons </strong></span><span class=\"fontstyle2\">with the </span><span class=\"fontstyle0\"><strong>defence boost</strong> </span><span class=\"fontstyle2\">customization (</span><span class=\"fontstyle0\"><strong>High Fantasy</strong>, page <strong>106</strong></span><span class=\"fontstyle2\">), </span><span class=\"fontstyle0\"><strong>nor </strong></span><span class=\"fontstyle2\">with the </span><span class=\"fontstyle0\"><strong>Dual Shieldbearer</strong> </span><span class=\"fontstyle2\">Skill (</span><span class=\"fontstyle0\"><strong>Core Rulebook</strong>, page <strong>197</strong></span><span class=\"fontstyle2\">).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF157"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [
+    {
+      "icon": "icons/equipment/shield/buckler-boss-iron-wood-brown.webp",
+      "origin": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.ryJxkf7svEYHBDur",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Hoplite",
+      "_id": "RSUwGO4cqpoKBEPB",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.melee",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.ranged",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        },
+        {
+          "key": "system.derived.def.bonus",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!sEXgOpgUF00z55Y3.RSUwGO4cqpoKBEPB"
+    }
+  ],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.ryJxkf7svEYHBDur"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706684635660,
+    "modifiedTime": 1719170716535,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "sEXgOpgUF00z55Y3",
+  "sort": 0,
+  "_key": "!items!sEXgOpgUF00z55Y3"
+}

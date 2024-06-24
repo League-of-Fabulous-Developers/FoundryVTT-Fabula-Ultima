@@ -1,0 +1,137 @@
+{
+  "folder": "KUerX2dLyeZ8A3Xw",
+  "name": "Hope",
+  "type": "spell",
+  "_id": "xp65Fb9BoQuEN6hC",
+  "img": "icons/magic/life/heart-cross-strong-flame-blue.webp",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<h4>Required Heroic Skill: Hope</h4><p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You rekindle the flames of courage and hope within a defeated hero. Choose a Player Character who </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">surrendered </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">but is still present on the scene: that Player Character immediately regains consciousness and recovers an amount of Hit Points equal to their </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">Crisis </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">score. Note that this spell will not undo the </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">consequences </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">of the character's surrender and is of no use if the character left the scene as part of their surrender — such as if they were captured and dragged away, or if they were trapped in a parallel dimension, and so on.</span></span></p><p style=\"box-sizing:border-box;user-select:text;margin:5px 0px 0px;padding:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em;color:rgb(25, 24, 19);font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;text-align:start\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">A Player Character may only be affected by this spell once per scene; if a character is brought back into the conflict by this spell and is subsequently reduced to 0 Hit Points again, they must </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">sacrifice </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">themselves or </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">surrender </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">as per the normal rules (including a new </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">consequence </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">and 2 more Fabula Points if they surrender).</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p><hr /><p><strong>@LOSS[40 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Spiritist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "mpCost": {
+      "value": "40"
+    },
+    "target": {
+      "value": "Surrendered PC"
+    },
+    "duration": {
+      "value": "Instantaneous"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "source": {
+      "value": "FUCR237"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "mig"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": ""
+  },
+  "effects": [],
+  "sort": 1400000,
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710549080835,
+    "modifiedTime": 1719161667025,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!items!xp65Fb9BoQuEN6hC"
+}

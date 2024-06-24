@@ -1,0 +1,143 @@
+{
+  "folder": "SBAHplvEYQmgs8Po",
+  "name": "Mirage",
+  "type": "skill",
+  "_id": "mqwu1cSVPhWdT2Mt",
+  "img": "icons/magic/perception/orb-crystal-ball-scrying-blue.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You gain the ability to perform Rituals of the </span><strong><span class=\"fontstyle2\">Ritualism </span></strong><span class=\"fontstyle0\">discipline; </span><span class=\"fontstyle2\">additionally</span><span class=\"fontstyle0\">, you may use </span><strong><span class=\"fontstyle2\">Ritualism </span></strong><span class=\"fontstyle0\">to create </span><strong><span class=\"fontstyle2\">sight-based illusions</span></strong><span class=\"fontstyle0\">.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 1,
+      "min": 0
+    },
+    "class": {
+      "value": "Symbolist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUHF147"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-skills.Item.mqwu1cSVPhWdT2Mt"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706563070199,
+    "modifiedTime": 1719159763066,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!mqwu1cSVPhWdT2Mt"
+}

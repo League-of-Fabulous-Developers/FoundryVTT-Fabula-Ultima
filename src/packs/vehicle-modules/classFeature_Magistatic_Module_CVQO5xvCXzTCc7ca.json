@@ -1,0 +1,39 @@
+{
+  "folder": "OcoOq5td7Ya9GOPU",
+  "name": "Magistatic Module",
+  "type": "classFeature",
+  "img": "icons/commodities/treasure/stone-cracked-lightning-blue.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.supportModule",
+    "data": {
+      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">After you pay the MP cost of an <strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">Arcanum</strong></span>, <span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">spell</strong></span>, or <span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">verse</strong></span> (<span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">High Fantasy</strong></span>, page <span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">138</strong></span>), if you are driving this <strong>personal vehicle</strong> and have an <span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">arcane</strong></span> weapon equipped, you recover <strong>@GAIN[5 mp],</strong> or <strong>@GAIN[10 mp]</strong> if the cost was <span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">equal to or higher than 30 MP</strong></span>.</p>",
+      "complex": false
+    },
+    "source": "FUTF169"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711477024972,
+    "modifiedTime": 1719173179841,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "CVQO5xvCXzTCc7ca",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!CVQO5xvCXzTCc7ca"
+}

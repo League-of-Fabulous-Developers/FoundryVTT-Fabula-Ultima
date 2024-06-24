@@ -1,0 +1,45 @@
+{
+  "name": "Verse",
+  "type": "classFeature",
+  "system": {
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.verse",
+    "summary": {
+      "value": ""
+    },
+    "data": {
+      "key": "",
+      "tone": "",
+      "config": {
+        "low": 10,
+        "medium": 20,
+        "high": 30
+      }
+    },
+    "source": "FUHF138"
+  },
+  "img": "icons/tools/instruments/harp-gold-glowing.webp",
+  "effects": [],
+  "folder": "NSF7G1xLIJ71r9qX",
+  "ownership": {
+    "default": 0,
+    "CLAzxWQsDDB8fCLx": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1717279270211,
+    "modifiedTime": 1719156180543,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "nu7QnUu7tmVv6zxU",
+  "sort": 0,
+  "_key": "!items!nu7QnUu7tmVv6zxU"
+}

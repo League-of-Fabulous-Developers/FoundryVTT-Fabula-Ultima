@@ -1,0 +1,121 @@
+{
+  "folder": "NWyKWh1qGp8D9yvJ",
+  "name": "Decoy Bait",
+  "type": "heroic",
+  "img": "icons/magic/perception/eye-ringed-green.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Hawkeye creates a decoy and grants a punishing attack."
+    },
+    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements: </strong>you must have mastered the <strong>Sharpshooter</strong> Class, and must have acquired the <strong>Hawkeye</strong> Skill.</span></p></blockquote><p><span class=\"fontstyle0\">When you use your </span><span class=\"fontstyle2\"><strong>Hawkeye</strong> </span><span class=\"fontstyle0\">Skill and choose the </span><span class=\"fontstyle2\"><strong>first option</strong></span><span class=\"fontstyle0\">, if no </span><span class=\"fontstyle2\"><strong>decoy bait</strong> </span><span class=\"fontstyle0\">is present on the scene, you may spend <strong> @LOSS[10 mp] </strong>. If you do, you create a </span><span class=\"fontstyle2\"><strong>decoy bait</strong> </span><span class=\"fontstyle0\">with Hit Points equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>half your level + (your SL in Hawkeye, multiplied by 5)</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">.</span></p><p><span class=\"fontstyle0\">When an enemy who can see your </span><span class=\"fontstyle2\"><strong>decoy bait</strong> </span><span class=\"fontstyle0\">deals damage to one or more creatures, your </span><span class=\"fontstyle2\"><strong>decoy bait</strong> </span><span class=\"fontstyle0\">automatically suffers damage </span><span class=\"fontstyle2\"><strong>in place of one of those creatures</strong></span><span class=\"fontstyle0\">, chosen </span><span class=\"fontstyle2\"><strong>randomly</strong> </span><span class=\"fontstyle0\">(your </span><span class=\"fontstyle2\"><strong>decoy bait</strong> </span><span class=\"fontstyle0\">is always treated as having neutral Affinity towards all damage types, and cannot gain any other Affinity).</span></p><p><span class=\"fontstyle0\">When an enemy reduces your </span><span class=\"fontstyle2\"><strong>decoy bait</strong> </span><span class=\"fontstyle0\">to 0 Hit Points, your </span><span class=\"fontstyle2\"><strong>decoy bait</strong> </span><span class=\"fontstyle0\">is automatically destroyed and you roll </span><span class=\"fontstyle2\"><strong>1d10</strong></span><span class=\"fontstyle0\">. If the number rolled is equal to or lower than </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>3 + your SL in Hawkeye</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">, you may immediately perform a </span><span class=\"fontstyle2\">free attack </span><span class=\"fontstyle0\">with a </span><span class=\"fontstyle2\"><strong>bow</strong> </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>firearm</strong> </span><span class=\"fontstyle0\">weapon you have equipped. This attack may </span><span class=\"fontstyle2\"><strong>only</strong> </span><span class=\"fontstyle0\">target that enemy, gains a bonus equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>your SL in Hawkeye</strong></span><span class=\"fontstyle3\"><strong>】</strong> </span><span class=\"fontstyle0\">to its Accuracy Check, and its damage ignores Immunities and Resistances.</span></p><p><span class=\"fontstyle0\">Your </span><span class=\"fontstyle2\"><strong>decoy bait</strong> </span><span class=\"fontstyle0\">cannot recover Hit Points and is automatically destroyed at the end of the scene. Make sure to describe what it looks like!</span></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Sharpshooter"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": "Sharpshooter, Weaponmaster"
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUTF172"
+    }
+  },
+  "effects": [],
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-heroic-skills.Item.MHNUwcMmylNhGhae"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1711473807263,
+    "modifiedTime": 1719187713173,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "18sj4s6SHmfIicUj",
+  "sort": 0,
+  "_key": "!items!18sj4s6SHmfIicUj"
+}

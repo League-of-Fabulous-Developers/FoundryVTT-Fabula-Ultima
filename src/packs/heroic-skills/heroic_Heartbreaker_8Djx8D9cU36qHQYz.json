@@ -1,0 +1,121 @@
+{
+  "name": "Heartbreaker",
+  "type": "heroic",
+  "img": "icons/weapons/daggers/dagger-ritual-crooked-crystal.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Sacrifice HP for massive damage."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered the </span><strong>Darkblade </strong><span class=\"fontstyle2\">Class.</span> </p></blockquote><p><span class=\"fontstyle0\">When you hit a creature with an attack, if that attack </span><span class=\"fontstyle2\"><strong>only </strong></span><span class=\"fontstyle0\">targeted that creature and you have a </span><span class=\"fontstyle2\"><strong>Bond </strong></span><span class=\"fontstyle0\">towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>10 multiplied by the strength of your Bond towards the target</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">.</span></p><p><span class=\"fontstyle0\">You may use this Skill only on your turn during a conflict, and </span><span class=\"fontstyle2\"><strong>only once per turn</strong></span><span class=\"fontstyle0\">.</span> </p><hr /><p><strong>@DMG[10 untyped] @DMG[20 untyped] @DMG[30 untyped]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Darkblade"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR236"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.Ml8zNLlitCxLQvFP"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1706584345254,
+    "modifiedTime": 1719186689277,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "8Djx8D9cU36qHQYz",
+  "sort": 100000,
+  "_key": "!items!8Djx8D9cU36qHQYz"
+}

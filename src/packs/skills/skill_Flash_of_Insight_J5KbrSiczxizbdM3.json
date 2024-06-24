@@ -1,0 +1,143 @@
+{
+  "folder": "kDKKcLwB0Ut9ynTR",
+  "name": "Flash of Insight",
+  "type": "skill",
+  "_id": "J5KbrSiczxizbdM3",
+  "img": "icons/sundries/documents/document-symbol-skull-tan.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">When you roll a </span><span class=\"fontstyle2\"><strong>13 or higher</strong> </span><span class=\"fontstyle0\">on a Check performed to investigate a creature, item or location — this includes using the </span><span class=\"fontstyle2\"><strong>Study </strong></span><span class=\"fontstyle0\">action during a conflict — you may ask the Game Master up to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character's deductive process.</span></p><p><span class=\"fontstyle0\">This Skill may only be used once on the same creature, item or location.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Loremaster"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR199"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.J5KbrSiczxizbdM3"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706487096304,
+    "modifiedTime": 1719165426843,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!J5KbrSiczxizbdM3"
+}

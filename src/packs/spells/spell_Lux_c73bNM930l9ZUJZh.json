@@ -1,0 +1,139 @@
+{
+  "folder": "KUerX2dLyeZ8A3Xw",
+  "name": "Lux",
+  "type": "spell",
+  "_id": "c73bNM930l9ZUJZh",
+  "img": "icons/magic/light/projectile-stars-blue.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You focus your inner energy into a barrage of blinding soul rays. Each target hit by this spell suffers </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>HR + 15</strong></span><span class=\"fontstyle2\"><strong>】</strong></span><span class=\"fontstyle3\"><strong>light</strong> </span><span class=\"fontstyle0\">damage.</span></p><p><span class=\"fontstyle3\"><strong>Opportunity:</strong> </span><span class=\"fontstyle0\">Each target hit by this spell suffers </span><span class=\"fontstyle3\"><strong>@EFFECT[dazed]</strong></span><span class=\"fontstyle0\">.</span> </p><hr /><p><strong>@LOSS[10 mp]</strong> for <strong>one</strong> target.</p><p><strong>@LOSS[20 mp]</strong> for <strong>two</strong> targets.</p><p><strong>@LOSS[30 mp]</strong> for <strong>three</strong> targets.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Spiritist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "mpCost": {
+      "value": "10 x T"
+    },
+    "target": {
+      "value": "Up to three creatures"
+    },
+    "duration": {
+      "value": "Instantaneous"
+    },
+    "isOffensive": {
+      "value": true
+    },
+    "source": {
+      "value": "FUCR209"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": true
+        },
+        "type": {
+          "value": "light"
+        },
+        "value": 15
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "opportunity": "Each target hit by this spell suffers dazed."
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706572797059,
+    "modifiedTime": 1719161667025,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 800000,
+  "_key": "!items!c73bNM930l9ZUJZh"
+}

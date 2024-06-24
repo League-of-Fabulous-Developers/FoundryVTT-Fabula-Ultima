@@ -1,0 +1,48 @@
+{
+  "folder": "YWYLzP3o7HKQtEAC",
+  "name": "Standard Plating Module",
+  "type": "classFeature",
+  "img": "icons/equipment/chest/breastplate-layered-steel-green.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.armorModule",
+    "data": {
+      "martial": true,
+      "quality": "",
+      "defense": {
+        "modifier": 11,
+        "attribute": "dex"
+      },
+      "magicDefense": {
+        "modifier": 10,
+        "attribute": "ins"
+      },
+      "description": ""
+    },
+    "source": "FUTF165"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711474045273,
+    "modifiedTime": 1719173179841,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "RjB4wyGuxUBc9fgu",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!RjB4wyGuxUBc9fgu"
+}

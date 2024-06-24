@@ -1,0 +1,143 @@
+{
+  "folder": "3xqESZLpJir713ho",
+  "name": "Treasure Hunter",
+  "type": "skill",
+  "_id": "rsGhkElIiEBgN5zA",
+  "img": "icons/tools/navigation/map-marked-red.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">When your group journeys on the world map, you will make a </span><span class=\"fontstyle2\"><strong>discovery </strong></span><span class=\"fontstyle0\">on a roll of </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL + 1</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle2\"><strong>or lower </strong></span><span class=\"fontstyle0\">on the </span><span class=\"fontstyle2\"><strong>travel roll</strong> </span><span class=\"fontstyle0\">(instead of only on a </span><span class=\"fontstyle2\"><strong>1</strong></span><span class=\"fontstyle0\">).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 2,
+      "min": 0
+    },
+    "class": {
+      "value": "Wayfarer"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR217"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.rsGhkElIiEBgN5zA"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706513097437,
+    "modifiedTime": 1719170176638,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!rsGhkElIiEBgN5zA"
+}

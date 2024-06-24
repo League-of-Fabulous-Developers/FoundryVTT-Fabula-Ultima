@@ -1,0 +1,121 @@
+{
+  "name": "Card Vanguard",
+  "type": "heroic",
+  "img": "icons/commodities/currency/coin-inset-snail-silver.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Place cards as Vanguard Cards."
+    },
+    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> you must have mastered the <span class=\"fontstyle2\"><strong>Ace of Cards</strong> </span>Class, and must have acquired the <span class=\"fontstyle2\"><strong>Magic Cards</strong> </span>Skill. <br /></span></p>\n</blockquote>\n<p><span class=\"fontstyle0\">During a conflict, if you have </span><span class=\"fontstyle2\"><strong>two or fewer vanguard cards</strong> </span><span class=\"fontstyle0\">in play, you can use an action to choose </span><span class=\"fontstyle2\"><strong>1 card</strong> </span><span class=\"fontstyle0\">from your </span><strong><span class=\"fontstyle2\">hand </span></strong><span class=\"fontstyle0\">and place it face down as a </span><strong><span class=\"fontstyle2\">vanguard card</span></strong><span class=\"fontstyle0\">; if you do, draw 1 card from your </span><strong><span class=\"fontstyle2\">deck</span></strong><span class=\"fontstyle0\">. </span></p>\n<p><span class=\"fontstyle0\">When you suffer damage, if you have one or more </span><span class=\"fontstyle2\"><strong>vanguard cards</strong> </span><span class=\"fontstyle0\">in play, you may </span><span class=\"fontstyle0\">reveal one of them and place it on top of your </span><strong><span class=\"fontstyle2\">discard pile</span></strong><span class=\"fontstyle0\">: if you do and that card is a </span><strong><span class=\"fontstyle2\">joker </span></strong><span class=\"fontstyle0\">or its </span><span class=\"fontstyle2\"><strong>suit</strong> </span><span class=\"fontstyle0\">matches the type of the damage you suffered, you instead suffer no damage and regain an equal amount of Mind Points. At the end of each conflict, if you have one or more </span><span class=\"fontstyle2\"><strong>vanguard cards</strong> </span><span class=\"fontstyle0\">in play, shuffle them back into your </span><strong><span class=\"fontstyle2\">deck</span></strong><span class=\"fontstyle0\">.</span> <br /><br /></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNM6"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "1Ky2u7fi2lfxr4JB",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-bonus-content.bonus-heroic-skills.Item.JU9izOPIr6f1BbDb"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1708940657180,
+    "modifiedTime": 1719187211293,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "6xjSns6UPuZcIbXs",
+  "sort": 0,
+  "_key": "!items!6xjSns6UPuZcIbXs"
+}

@@ -1,0 +1,102 @@
+{
+  "name": "Heavy Spear",
+  "type": "weapon",
+  "img": "systems/projectfu/styles/static/compendium/weapons/heavy-spear.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 200
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": ""
+    },
+    "isEquipped": {
+      "value": false,
+      "slot": ""
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "value": 12
+    },
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "spear"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "isCustomWeapon": {
+      "value": false
+    },
+    "source": {
+      "value": "FUCR131"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "folder": "SnyIBMif9646gEkD",
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706648989601,
+    "modifiedTime": 1719222823708,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "BNAc3NDKhvZsjwRQ",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!BNAc3NDKhvZsjwRQ"
+}

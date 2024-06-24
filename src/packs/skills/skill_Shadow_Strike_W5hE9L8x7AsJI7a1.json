@@ -1,0 +1,143 @@
+{
+  "folder": "PqJcRIXUf6qGtSrm",
+  "name": "Shadow Strike",
+  "type": "skill",
+  "_id": "W5hE9L8x7AsJI7a1",
+  "img": "icons/skills/melee/blade-tip-chipped-blood-red.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<div class=\"stackedit__html\"><p>You have learned to channel your vital force into your attacks. You may use an action to perform a <strong>Shadow Strike</strong>: roll your current <strong>Might</strong> die and lose an amount of Hit Points equal to <strong>【the number rolled on your Might die】</strong>. If this didn’t reduce your Hit Points to 0, you may perform a <strong>free attack</strong> with a weapon you have equipped: if this attack hits one or more targets, it deals extra damage equal to <strong>【SL + the number rolled on your Might die】</strong>. However, all damage dealt by this attack becomes <strong>dark</strong> and its damage type cannot be changed.</p></div>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Darkblade"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR185"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": true
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": true
+        },
+        "type": {
+          "value": "dark"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.W5hE9L8x7AsJI7a1"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706496911469,
+    "modifiedTime": 1719158845391,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 150000,
+  "_key": "!items!W5hE9L8x7AsJI7a1"
+}

@@ -1,0 +1,143 @@
+{
+  "folder": "BdAXAA3IkZnarpJX",
+  "name": "Dual Shieldbearer",
+  "type": "skill",
+  "_id": "aPQXTQegswRisA1R",
+  "img": "icons/equipment/shield/buckler-wooden-boss-glowing-blue.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You may now equip a </span><span class=\"fontstyle2\">shield </span><span class=\"fontstyle0\">in your </span><span class=\"fontstyle2\">main hand </span><span class=\"fontstyle0\">slot. As long as you have two shields equipped, you gain the benefits of both items and may treat them as the following combined two-handed melee </span><span class=\"fontstyle2\">brawling </span><span class=\"fontstyle0\">weapon:</span> </p><table style=\"width:98.7597%\" border=\"1\"><colgroup><col style=\"width:14.4654%\"></col><col style=\"width:20.7547%\"></col><col style=\"width:23.2618%\"></col><col style=\"width:41.5181%\"></col></colgroup><tbody><tr><td><strong>WEAPON</strong></td><td><strong> ACCURACY</strong></td><td><strong> DAMAGE</strong></td><td><strong> QUALITY</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields}</strong></td><td><span class=\"fontstyle0\">【</span><span class=\"fontstyle1\"><strong>MIG + MIG</strong></span><span class=\"fontstyle0\"><strong>】</strong></span></td><td><span class=\"fontstyle0\"><strong>【</strong></span><span class=\"fontstyle1\"><strong>HR + 5</strong></span><span class=\"fontstyle0\"><strong>】 </strong></span><span class=\"fontstyle1\"><strong>physical</strong></span> </td><td><span class=\"fontstyle0\">Deals extra damage equal to your </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">in <strong>@UUID[Compendium.fabula-ultima-core-rulebook.skills.Item.7wF1oulk0Zn7ITTF]{Defensive Mastery}</strong> (above).</span></td></tr></tbody></table><p> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 1,
+      "min": 0
+    },
+    "class": {
+      "value": "Guardian"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR196"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.aPQXTQegswRisA1R"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706503515397,
+    "modifiedTime": 1719164533560,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 300000,
+  "_key": "!items!aPQXTQegswRisA1R"
+}

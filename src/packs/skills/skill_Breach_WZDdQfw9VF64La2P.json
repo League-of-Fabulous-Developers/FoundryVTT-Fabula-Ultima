@@ -1,0 +1,143 @@
+{
+  "folder": "t0can7tJoRis1H3f",
+  "name": "Breach",
+  "type": "skill",
+  "_id": "WZDdQfw9VF64La2P",
+  "img": "icons/skills/melee/shield-damaged-broken-gold.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You may use an action and spend <strong>@LOSS[5 mp]</strong> to perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with a </span><span class=\"fontstyle2\"><strong>melee </strong></span><span class=\"fontstyle0\">weapon you have equipped. This attack must target </span><span class=\"fontstyle2\">a <strong>single creature</strong></span><span class=\"fontstyle0\">. If the attack is successful, it deals no damage and you choose one option: you destroy one shield equipped by the target; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">you destroy the target's equipped armor; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">whenever the target suffers damage from a source before the start of your next turn, that source deals </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">extra damage to them.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Weaponmaster"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR219"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": true
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.WZDdQfw9VF64La2P"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706514105557,
+    "modifiedTime": 1719170367665,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 300000,
+  "_key": "!items!WZDdQfw9VF64La2P"
+}

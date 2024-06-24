@@ -1,0 +1,48 @@
+{
+  "folder": "YWYLzP3o7HKQtEAC",
+  "name": "Heavy Plating Module",
+  "type": "classFeature",
+  "img": "icons/equipment/chest/breastplate-banded-steel-grey.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.armorModule",
+    "data": {
+      "martial": true,
+      "quality": "",
+      "defense": {
+        "modifier": 12,
+        "attribute": "dex"
+      },
+      "magicDefense": {
+        "modifier": 8,
+        "attribute": "ins"
+      },
+      "description": ""
+    },
+    "source": "FUTF165"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711473944656,
+    "modifiedTime": 1719173179841,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "TpTXbLUkL3Pu19Cd",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!TpTXbLUkL3Pu19Cd"
+}

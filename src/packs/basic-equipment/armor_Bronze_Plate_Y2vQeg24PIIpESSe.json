@@ -1,0 +1,86 @@
+{
+  "name": "Bronze Plate",
+  "type": "armor",
+  "img": "systems/projectfu/styles/static/compendium/Armor/bronze-plate.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 200
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": ""
+    },
+    "isEquipped": {
+      "value": false,
+      "slot": ""
+    },
+    "def": {
+      "value": 11
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": -3
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "attributes": {
+      "primary": {
+        "value": ""
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "source": {
+      "value": "FUCR132"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "05D3J15J6lL30XAq",
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706646537342,
+    "modifiedTime": 1719222907167,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "Y2vQeg24PIIpESSe",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!Y2vQeg24PIIpESSe"
+}

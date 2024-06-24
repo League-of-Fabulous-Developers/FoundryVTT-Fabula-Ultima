@@ -1,0 +1,74 @@
+{
+  "folder": "6hLDMWrdgLLCVK8G",
+  "name": "Placophora",
+  "type": "classFeature",
+  "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+  "system": {
+    "summary": {
+      "value": "Crustaceans, turtles, armored creatures and vehicles."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.therioform",
+    "data": {
+      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">You may treat your Defense score as being equal to <strong style=\"box-sizing: border-box; user-select: text;\">【13 + (half your Skill Level in Theriomorphosis)】</strong>(you may still use your normal scores if better).</span></span></p>"
+    },
+    "source": "FUTF157"
+  },
+  "effects": [
+    {
+      "icon": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+      "origin": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-skills.Item.aAmIBca4b150uuAH",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Placophora",
+      "_id": "ZDcnVoPzAVT9GcRO",
+      "changes": [
+        {
+          "key": "system.derived.def.value",
+          "mode": 5,
+          "value": "13 + (0 / 2)",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!aAmIBca4b150uuAH.ZDcnVoPzAVT9GcRO"
+    }
+  ],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711428338643,
+    "modifiedTime": 1719165640551,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "aAmIBca4b150uuAH",
+  "sort": 0,
+  "_key": "!items!aAmIBca4b150uuAH"
+}

@@ -1,0 +1,143 @@
+{
+  "folder": "WH4WJHFmGxDGZgfQ",
+  "name": "King's Castle",
+  "type": "skill",
+  "_id": "79xGJD8jn4zGzYpX",
+  "img": "icons/sundries/gaming/chess-king-gray.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action and spend </span><strong>@LOSS[10 mp]</strong><span class=\"fontstyle0\"> to choose one option: no creature can recover Hit Points or Mind Points; </span><span class=\"fontstyle2\"><strong>OR</strong> </span><span class=\"fontstyle0\">all effects that restore Mind Points restore</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">additional Mind Points. The chosen effect lasts until the start of your next turn.</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@GAIN[5 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@GAIN[10 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@GAIN[15 mp]</strong></p><p>Skill Level <strong>4</strong> - <strong>@GAIN[20 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Commander"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUHF141"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-skills.Item.79xGJD8jn4zGzYpX"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706555549756,
+    "modifiedTime": 1719156433496,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!79xGJD8jn4zGzYpX"
+}

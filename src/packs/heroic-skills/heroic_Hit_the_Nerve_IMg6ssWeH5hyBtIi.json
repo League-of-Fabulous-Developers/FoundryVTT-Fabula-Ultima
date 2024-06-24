@@ -1,0 +1,121 @@
+{
+  "folder": "NWyKWh1qGp8D9yvJ",
+  "name": "Hit the Nerve",
+  "type": "heroic",
+  "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Use Condemn to inﬂict enraged and gain beneﬁts against enraged creatures."
+    },
+    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements: </strong></span><span class=\"fontstyle0\">you must have mastered one or more Classes among </span><span class=\"fontstyle2\"><strong>Chanter</strong> </span><span class=\"fontstyle0\">(</span><span class=\"fontstyle2\"><strong>High Fantasy</strong></span><span class=\"fontstyle0\">, page </span><span class=\"fontstyle2\"><strong>136</strong></span><span class=\"fontstyle0\">) and </span><span class=\"fontstyle2\"><strong>Orator</strong></span><span class=\"fontstyle0\">, and must have acquired the </span><span class=\"fontstyle2\"><strong>Condemn</strong> </span><span class=\"fontstyle0\">Skill.</span></p></blockquote><p>When you successfully use the <strong>Condemn</strong> Skill against an enemy you know <strong>one or more Traits of</strong>, you recover an amount of Mind Points equal to <strong>half</strong> the amount of MP lost by the target, and you may have them suffer <strong>@EFFECT[enraged] </strong>instead of the normal status effects.</p><p>Additionally, when you perform an <strong>Opposed Check</strong> against an <strong>enraged</strong> creature, or an <strong>Accuracy Check or Magic Check</strong> for an attack or offensive spell ( <strong>@ICON[offensive] </strong>) that includes one or more <strong>enraged</strong> creatures among its targets, you trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>)</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": "Sharpshooter, Weaponmaster"
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUTF174"
+    }
+  },
+  "effects": [],
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-heroic-skills.Item.M7oOVnw05HyjCTvv"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711473807263,
+    "modifiedTime": 1719171579246,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "IMg6ssWeH5hyBtIi",
+  "sort": 0,
+  "_key": "!items!IMg6ssWeH5hyBtIi"
+}

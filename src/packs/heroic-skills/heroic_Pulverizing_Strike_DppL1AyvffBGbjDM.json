@@ -1,0 +1,121 @@
+{
+  "name": "Pulverizing Strike",
+  "type": "heroic",
+  "img": "icons/skills/melee/shield-damaged-broken-orange.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Breach deals more damage with heavy weapons."
+    },
+    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><strong><span class=\"fontstyle0\">Darkblade</span></strong><span class=\"fontstyle2\">, </span><strong><span class=\"fontstyle0\">Fury</span></strong><span class=\"fontstyle2\">, and </span><strong><span class=\"fontstyle0\">Weaponmaster</span></strong><span class=\"fontstyle2\">.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">After you hit a creature with </span><strong><span class=\"fontstyle0\">Breach</span></strong><span class=\"fontstyle2\">, if you attacked with a </span><strong><span class=\"fontstyle0\">melee </span></strong><span class=\"fontstyle2\">weapon that belongs to the </span><strong><span class=\"fontstyle0\">heavy </span></strong><span class=\"fontstyle2\">Category, you may have the attack deal damage equal to your </span><span class=\"fontstyle0\"><strong>High Roll (HR)</strong> </span><span class=\"fontstyle2\">instead of dealing no damage. Any source of extra damage, including the extra damage from the third option of the Breach Skill itself, still applies — ignore the damage dealt by the weapon.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF158"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.ckja52CK6Pm37BBS"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1706684687580,
+    "modifiedTime": 1719185888451,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "DppL1AyvffBGbjDM",
+  "sort": 0,
+  "_key": "!items!DppL1AyvffBGbjDM"
+}

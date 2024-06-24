@@ -1,0 +1,139 @@
+{
+  "folder": "NZHiCa0mU3DKOiVo",
+  "name": "Fulgur",
+  "type": "spell",
+  "_id": "YV1OL72oIzseoLbd",
+  "img": "icons/magic/lightning/bolts-forked-large-blue.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You weave electricity into a wave of crackling bolts. Each target hit by this spell suffers </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>HR + 15</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle3\"><strong>bolt </strong></span><span class=\"fontstyle0\">damage.</span></p><p><span class=\"fontstyle3\"><strong>Opportunity:</strong> </span><span class=\"fontstyle0\">Each target hit by this spell suffers</span><span class=\"fontstyle3\"><strong> @EFFECT[dazed]</strong></span><span class=\"fontstyle0\">.</span> </p><hr /><p><strong>@LOSS[20 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "mpCost": {
+      "value": "10 × T"
+    },
+    "target": {
+      "value": "Up to three creatures"
+    },
+    "duration": {
+      "value": "Instantaneous"
+    },
+    "isOffensive": {
+      "value": true
+    },
+    "source": {
+      "value": "FUCR188"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": true
+        },
+        "type": {
+          "value": "bolt"
+        },
+        "value": 15
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "opportunity": "Opportunity: Each target hit by this spell suffers dazed."
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706565033495,
+    "modifiedTime": 1719160074886,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!YV1OL72oIzseoLbd"
+}

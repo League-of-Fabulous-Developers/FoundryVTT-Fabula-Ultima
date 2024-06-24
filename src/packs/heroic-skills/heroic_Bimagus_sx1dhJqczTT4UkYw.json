@@ -1,0 +1,121 @@
+{
+  "name": "Bimagus",
+  "type": "heroic",
+  "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Cast one spell right after another, saving MP."
+    },
+    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered </span><span class=\"fontstyle0\">two or more </span><span class=\"fontstyle2\">Classes among </span><strong><span class=\"fontstyle0\">Elementalist</span></strong><span class=\"fontstyle2\">, </span><strong><span class=\"fontstyle0\">Entropist</span></strong><span class=\"fontstyle2\">, and </span><strong><span class=\"fontstyle0\">Spiritist</span></strong><span class=\"fontstyle2\">, and your character must be </span><strong><span class=\"fontstyle0\">level 30 or higher</span></strong><span class=\"fontstyle2\">.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">Once per turn during a conflict, if you have an </span><strong><span class=\"fontstyle0\">arcane </span></strong><span class=\"fontstyle2\">weapon equipped, you may use an action and spend </span><span class=\"fontstyle0\"><strong>20 to 50 Mind Points</strong> </span><span class=\"fontstyle2\">to perform the </span><strong><span class=\"fontstyle0\">Spell </span></strong><span class=\"fontstyle2\">action for free </span><strong><span class=\"fontstyle0\">twice</span></strong><span class=\"fontstyle2\">, casting two spells without needing to pay their MP costs. If you do, the two spells must have a </span><strong><span class=\"fontstyle0\">combined total MP cost equal to or lower than</span><span class=\"fontstyle3\">【</span><span class=\"fontstyle0\">20 + the amount of MP you spent to use this Skill</span><span class=\"fontstyle3\">】</span></strong><span class=\"fontstyle2\">, and the second spell must have </span><span class=\"fontstyle0\">a <strong>total MP cost that is equal to or lower than half the total MP cost</strong> </span><span class=\"fontstyle2\">of the first spell.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF154"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.2QJxSNdP70uUlFNk"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706684543795,
+    "modifiedTime": 1719170716535,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "sx1dhJqczTT4UkYw",
+  "sort": 0,
+  "_key": "!items!sx1dhJqczTT4UkYw"
+}

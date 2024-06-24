@@ -1,0 +1,143 @@
+{
+  "folder": "bqBl8kPDVcWqosfM",
+  "name": "Ritual Entropism",
+  "type": "skill",
+  "_id": "Ko2QCUw6qbxhufwE",
+  "img": "icons/magic/symbols/runes-star-magenta.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You may perform Rituals whose effects fall within the </span><span class=\"fontstyle2\"><strong>Entropism </strong></span><span class=\"fontstyle0\">discipline. </span></p><p><span class=\"fontstyle0\"><strong>Entropism</strong> Rituals use </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>INS + WLP</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">for the Magic Check.</span> </p><p>Rules for <strong>Rituals</strong> can be found on (<strong>Core Rulebook</strong>, page <strong>118</strong>) of the core rulebook.</p><p> </p><p> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 1,
+      "min": 0
+    },
+    "class": {
+      "value": "Entropist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR191"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.Ko2QCUw6qbxhufwE"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706486739037,
+    "modifiedTime": 1719162659022,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 300000,
+  "_key": "!items!Ko2QCUw6qbxhufwE"
+}

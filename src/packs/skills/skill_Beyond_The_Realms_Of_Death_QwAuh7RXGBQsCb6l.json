@@ -1,0 +1,141 @@
+{
+  "name": "Beyond The Realms Of Death",
+  "type": "skill",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When another creature you can see loses Hit Points while in Crisis, if they are not undead, you gain <strong>1 Grave Point</strong>. You may never have more than <strong>【SL + 1】 </strong>Grave Points.</p><p>When you are reduced to 0 Hit Points, you <strong>lose all Grave Points</strong>; then, if you lost at least 1 Grave Point this way and this is the <strong>first time</strong> you are reduced to 0 HP during this scene, you do not <strong>Surrender</strong> nor <strong>Sacrifice</strong> yourself: instead, you recover an amount of HP equal to <strong>【SL, multiplied by the amount of Grave Points you lost this way】</strong> .</p>",
+    "isFavored": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Necromancers"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "source": {
+      "value": "FUNM3"
+    },
+    "subtype": {},
+    "hasResource": {
+      "value": true
+    },
+    "rp": {
+      "name": "Grave Points",
+      "max": 2,
+      "current": 0,
+      "step": 1
+    },
+    "defense": "def"
+  },
+  "img": "icons/magic/death/skull-trio-badge-purple.webp",
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": null
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1684757023667,
+    "modifiedTime": 1719167833857,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "folder": "HL1x2SDWkdiaZf56",
+  "ownership": {
+    "default": 0,
+    "ebg6FQH2cPZYwDuu": 3,
+    "Vk2gQrsAJ2GZ8hcN": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "QwAuh7RXGBQsCb6l",
+  "sort": 200000,
+  "_key": "!items!QwAuh7RXGBQsCb6l"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Support Modules",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "OcoOq5td7Ya9GOPU",
+  "sort": 100000,
+  "color": "#5e7c8d",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711476962518,
+    "modifiedTime": 1719173179821,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!OcoOq5td7Ya9GOPU"
+}

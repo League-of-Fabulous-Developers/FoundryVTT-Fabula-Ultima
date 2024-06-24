@@ -1,0 +1,151 @@
+{
+  "folder": "yCXSZM7ZMwwwYKhA",
+  "name": "[Handout: Vehicle Rules]",
+  "type": "miscAbility",
+  "_id": "O0imCVrWFpJgpQ0b",
+  "img": "icons/commodities/tech/levers-colored.webp",
+  "system": {
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>A Pilot's <strong>personal vehicle</strong> follows a set of special rules.</p><ul><li><p><span class=\"fontstyle2\">Entering </span><span class=\"fontstyle3\">the </span><span class=\"fontstyle2\"><strong>personal vehicle</strong> </span><span class=\"fontstyle3\">during a conflict requires the </span><span class=\"fontstyle2\"><strong>Objective</strong> </span><span class=\"fontstyle3\">action.<br />Normally there is no Check required, but the Game Master may introduce a </span><span class=\"fontstyle2\"><strong>Clock</strong> </span><span class=\"fontstyle3\">if there are serious dangers or obstacles. If the </span><span class=\"fontstyle2\"><strong>personal vehicle</strong> </span><span class=\"fontstyle3\">is accessible when the conflict begins, characters may </span><span class=\"fontstyle2\"><strong>enter it immediately</strong> </span><span class=\"fontstyle3\">before the Initiative Check (see </span><span class=\"fontstyle2\"><strong>Core Rulebook</strong></span><span class=\"fontstyle3\">, page </span><span class=\"fontstyle2\"><strong>59</strong></span><span class=\"fontstyle3\">).</span></p></li><li><p><span class=\"fontstyle2\"><strong>Leaving</strong> </span><span class=\"fontstyle3\">the </span><span class=\"fontstyle2\"><strong>personal vehicle</strong> </span><span class=\"fontstyle3\">doesn’t require an action, but during a conflict it can only be done on your turn, </span><span class=\"fontstyle2\"><strong>before or after</strong> </span><span class=\"fontstyle3\">an action.</span></p></li><li><p><span class=\"fontstyle3\">The </span><span class=\"fontstyle2\"><strong>personal vehicle</strong> </span><span class=\"fontstyle3\">can contain a variable number of human-sized creatures depending on its </span><span class=\"fontstyle2\"><strong>frame</strong> </span><span class=\"fontstyle3\">and </span><span class=\"fontstyle2\"><strong>modules</strong></span><span class=\"fontstyle3\">, but </span><span class=\"fontstyle2\"><strong>only its Pilot may drive it</strong></span><span class=\"fontstyle3\">. Additionally, the other passengers </span><span class=\"fontstyle2\"><strong>cannot cover creatures</strong> </span><span class=\"fontstyle3\">when they perform the </span><span class=\"fontstyle2\"><strong>Guard</strong> </span><span class=\"fontstyle3\">action.</span></p></li><li><p><span class=\"fontstyle3\">The </span><span class=\"fontstyle2\"><strong>maximum number of modules enabled at the same time</strong> </span><span class=\"fontstyle3\">on a </span><span class=\"fontstyle2\"><strong>personal vehicle </strong></span><span class=\"fontstyle3\">is equal to </span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>3 + its Pilot’s SL in Personal Vehicle</strong></span><span class=\"fontstyle4\"><strong>】</strong> </span><span class=\"fontstyle3\">. The Pilot may freely reassign their personal vehicle’s enabled and disabled modules outside conflicts.</span></p></li></ul><p><span class=\"fontstyle0\">A </span><span class=\"fontstyle2\">personal vehicle </span><span class=\"fontstyle0\">is made of the following elements:</span></p><ul><li><p><span class=\"fontstyle0\">A </span><span class=\"fontstyle2\">frame </span><span class=\"fontstyle0\">that informs its general shape: </span><span class=\"fontstyle2\"><strong>Steed</strong> </span><span class=\"fontstyle0\">for riding animals, bikes, small fighters, skateboards and the likes; </span><span class=\"fontstyle2\"><strong>Exoskeleton</strong> </span><span class=\"fontstyle0\">for power armor and mechanical limbs; </span><span class=\"fontstyle2\"><strong>Mecha</strong> </span><span class=\"fontstyle0\">for large combat robots piloted from within. Each Pilot must pick the </span><span class=\"fontstyle2\"><strong>frame</strong> </span><span class=\"fontstyle0\">for their </span><span class=\"fontstyle2\"><strong>personal vehicle</strong> </span><span class=\"fontstyle0\">when they obtain the Skill. This remains unchanged for the rest of the game, so make sure to choose carefully based on your character’s style and personality, and consider the role they will have in the campaign. For instance, choosing a fighter plane doesn’t make much sense if your story takes place in the slums of a cyberpunk megalopolis (how about an anti-gravity bike instead?).</span></p></li><li><p><span class=\"fontstyle0\">A variable number of </span><span class=\"fontstyle2\"><strong>weapon modules</strong></span><span class=\"fontstyle0\"><strong>, </strong></span><span class=\"fontstyle2\"><strong>armor modules</strong></span><span class=\"fontstyle0\"><strong>, </strong>and </span><span class=\"fontstyle2\"><strong>support modules</strong> </span><span class=\"fontstyle0\">that can be connected to the </span><span class=\"fontstyle2\"><strong>personal vehicle</strong></span><span class=\"fontstyle0\">’s control systems (enabled) or kept inactive but still attached to the frame (disabled). Some options, such as the </span><span class=\"fontstyle2\"><strong>Flexible Configuration</strong> </span><span class=\"fontstyle0\">Skill and the </span><span class=\"fontstyle2\"><strong>Secondary Offensive</strong> module</span><span class=\"fontstyle0\">, may allow you to quickly enable and disable modules, or to briefly activate a disabled module.</span></p></li></ul><p><span class=\"fontstyle0\">The upcoming pages contain a detailed explanation of the various module types and the rules governing them, followed by lists of standard </span><span class=\"fontstyle2\"><strong>frames</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>modules</strong></span><span class=\"fontstyle0\">.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUTF160"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "defense": "def"
+  },
+  "effects": [],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "projectfu-playtest": {
+      "growthClock": false
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711431619011,
+    "modifiedTime": 1719168012941,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!items!O0imCVrWFpJgpQ0b"
+}

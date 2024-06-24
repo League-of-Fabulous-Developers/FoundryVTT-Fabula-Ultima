@@ -1,0 +1,86 @@
+{
+  "name": "Steel Plate",
+  "type": "armor",
+  "img": "systems/projectfu/styles/static/compendium/Armor/steel-plate.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 300
+    },
+    "isMartial": {
+      "value": true
+    },
+    "quality": {
+      "value": ""
+    },
+    "isEquipped": {
+      "value": false,
+      "slot": ""
+    },
+    "def": {
+      "value": 12
+    },
+    "mdef": {
+      "value": 0
+    },
+    "init": {
+      "value": -4
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "attributes": {
+      "primary": {
+        "value": ""
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "source": {
+      "value": "FUCR132"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": "05D3J15J6lL30XAq",
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706646625151,
+    "modifiedTime": 1719222943499,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "3CGBfWi3HRQeCoqg",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!3CGBfWi3HRQeCoqg"
+}

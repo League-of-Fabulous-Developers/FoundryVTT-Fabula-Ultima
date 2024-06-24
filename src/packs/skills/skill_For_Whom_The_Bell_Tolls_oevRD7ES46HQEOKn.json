@@ -1,0 +1,141 @@
+{
+  "name": "For Whom The Bell Tolls",
+  "type": "skill",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you <strong>deal damage to a creature with a spell</strong>, if that spell <strong>only deals damage to that creature</strong>, you may spend 1 Grave Point. If you do, choose one option: if that creature is suffering from one or more status effects, the spell deals extra damage equal to <strong>【(SL × 2) + the number of status effects on that creature】</strong>; or if that creature is suffering from no status effects, they suffer <strong>@EFFECT[shaken]</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Necromancers"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "showTitleCard": {
+      "value": true
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "source": {
+      "value": "FUNM3"
+    },
+    "subtype": {},
+    "defense": "def",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "img": "icons/magic/death/skull-flames-white-blue.webp",
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": null
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1684757022676,
+    "modifiedTime": 1719167790145,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "folder": "HL1x2SDWkdiaZf56",
+  "ownership": {
+    "default": 0,
+    "ebg6FQH2cPZYwDuu": 3,
+    "Vk2gQrsAJ2GZ8hcN": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "oevRD7ES46HQEOKn",
+  "sort": 0,
+  "_key": "!items!oevRD7ES46HQEOKn"
+}

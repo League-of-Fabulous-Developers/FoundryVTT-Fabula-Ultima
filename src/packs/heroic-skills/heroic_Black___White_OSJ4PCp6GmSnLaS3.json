@@ -1,0 +1,121 @@
+{
+  "name": "Black & White",
+  "type": "heroic",
+  "img": "icons/commodities/currency/coin-yingyang.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Modify your Double Trouble Set; Jokers become stronger."
+    },
+    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> you must have mastered one or more Classes among <strong><span class=\"fontstyle2\">Ace of Cards</span></strong>, <strong><span class=\"fontstyle2\">Darkblade</span></strong>, <strong><span class=\"fontstyle2\">Entropist</span></strong>, and <strong><span class=\"fontstyle2\">Spiritist</span></strong>, and you must have acquired the <span class=\"fontstyle2\"><strong>Magic Cards</strong> </span>Skill. <br /></span></p>\n</blockquote>\n<p><span class=\"fontstyle0\">When you resolve the </span><span class=\"fontstyle2\"><strong>Double Trouble</strong> </span><span class=\"fontstyle0\">effect, you may have all of its damage become </span><strong><span class=\"fontstyle2\">light </span></strong><span class=\"fontstyle0\">or </span><strong><span class=\"fontstyle2\">dark </span></strong><span class=\"fontstyle0\">(instead of being of a type matching the </span><strong><span class=\"fontstyle2\">suits </span></strong><span class=\"fontstyle0\">of the resolved cards). </span></p>\n<p><span class=\"fontstyle0\">Additionally, as long as there is a </span><strong><span class=\"fontstyle2\">joker </span></strong><span class=\"fontstyle0\">in your </span><strong><span class=\"fontstyle2\">discard pile</span></strong><span class=\"fontstyle0\">, all damage dealt by your </span><strong><span class=\"fontstyle2\">Blinding Flush</span></strong><span class=\"fontstyle0\">, </span><strong><span class=\"fontstyle2\">Double Trouble</span></strong><span class=\"fontstyle0\">, and </span><span class=\"fontstyle2\"><strong>Magic Flush</strong> </span><span class=\"fontstyle0\">effects ignores Immunities and Resistances.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNM6"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "1Ky2u7fi2lfxr4JB",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-bonus-content.bonus-heroic-skills.Item.M0yD3Fo9OlgQy5So"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1708940657180,
+    "modifiedTime": 1719188230961,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "OSJ4PCp6GmSnLaS3",
+  "sort": 0,
+  "_key": "!items!OSJ4PCp6GmSnLaS3"
+}

@@ -1,0 +1,137 @@
+{
+  "name": "Lick Wounds",
+  "type": "spell",
+  "img": "icons/magic/life/cross-explosion-burst-green.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You recover <strong>@GAIN[20 hp]</strong> Hit Points. This amount increases to <strong>@GAIN[30 hp]</strong> Hit Points if you are </span><span class=\"fontstyle2\"><strong>level 20 or higher</strong></span><span class=\"fontstyle0\">, to <strong>@GAIN[40 hp]</strong> Hit Points if you are<strong> </strong></span><span class=\"fontstyle2\"><strong>level 40</strong> or higher</span><span class=\"fontstyle0\">, or to <strong>@GAIN[50 hp]</strong> Hit Points if you are </span><span class=\"fontstyle2\"><strong>level 60</strong> </span><span class=\"fontstyle0\">or higher.</span></p><hr /><p><strong>@LOSS[5 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "class": {
+      "value": "NPC"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "mpCost": {
+      "value": "5"
+    },
+    "target": {
+      "value": "Self"
+    },
+    "duration": {
+      "value": "Instantaneous"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "rollInfo": {
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      },
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR311"
+    },
+    "subtype": {},
+    "opportunity": ""
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": null
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1690417015023,
+    "modifiedTime": 1719224647253,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "folder": "PpBzAnM7EK75ayIT",
+  "_id": "Up14pnEa8pWzGkDD",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!Up14pnEa8pWzGkDD"
+}

@@ -1,0 +1,121 @@
+{
+  "folder": "NWyKWh1qGp8D9yvJ",
+  "name": "Make it or Break it",
+  "type": "heroic",
+  "img": "icons/skills/melee/sword-damaged-broken-glow-red.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Double the HR of an attack but risk damaging the weapon."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><span class=\"fontstyle0\"><strong>Darkblade</strong> </span><span class=\"fontstyle2\">and </span><span class=\"fontstyle0\"><strong>Fury</strong></span><span class=\"fontstyle2\">.</span></p></blockquote><p>When you attack with a weapon, you may declare \"make it or break it!\" before the Accuracy Check. If you do, the Check's <strong>High Roll (HR)</strong> is <strong>doubled</strong> when determining damage, and you apply the following penalties if the Result is an <strong>even</strong> number:</p><ul><li><p> If the weapon you used is <strong>transforming</strong> (see page <strong>113),</strong> it <strong>immediately changes form</strong> and <strong>it cannot change form again</strong> until the end of the scene.</p></li><li><p>If the weapon you used <strong>is not transforming,</strong> or if it is a <strong>transforming</strong> weapon that <strong>cannot change form</strong> (see above), it is <strong>placed inside your backpack</strong> and <strong>cannot be equipped</strong> until the end of the scene; however, you may <strong>immediately</strong> perform the <strong>Equipment</strong> action <strong>for free</strong>.</p></li></ul><p>This Heroic Skill does not apply to attacks with <strong>unarmed strikes</strong>, <strong>improvised weapons</strong>, <strong>weapon modules</strong> (see page <strong>161</strong>), or <strong>Twin Shields</strong> (see <strong>Core Rulebook</strong>, page <strong>197</strong>)</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUTF175"
+    }
+  },
+  "effects": [],
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-heroic-skills.Item.PeJOEd7xrCIUg3cd"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711519472393,
+    "modifiedTime": 1719170718289,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "p8vmh280ByFh88tK",
+  "sort": 0,
+  "_key": "!items!p8vmh280ByFh88tK"
+}

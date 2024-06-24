@@ -1,0 +1,143 @@
+{
+  "folder": "3SZiWPJ5zkuKH7Pj",
+  "name": "Hawkeye",
+  "type": "skill",
+  "_id": "hmDCgX5OEk5l4uXW",
+  "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">When you perform the </span><span class=\"fontstyle2\"><strong>Guard </strong></span><span class=\"fontstyle0\">action, if you choose </span><span class=\"fontstyle2\"><strong>not </strong></span><span class=\"fontstyle0\">to provide cover to another creature, you may choose one option: the next </span><span class=\"fontstyle2\"><strong>ranged </strong></span><span class=\"fontstyle0\">attack you perform before the end of the current scene will deal </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">extra damage; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">you may immediately perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with a </span><span class=\"fontstyle2\"><strong>bow </strong></span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>firearm </strong></span><span class=\"fontstyle0\">you have equipped, treating your </span><span class=\"fontstyle2\"><strong>High Roll (HR</strong>) </span><span class=\"fontstyle0\">as <strong>0</strong> when calculating damage dealt by this attack.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Sharpshooter"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR205"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": true
+        },
+        "accuracy": {
+          "value": true
+        },
+        "damage": {
+          "value": true
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.hmDCgX5OEk5l4uXW"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706506760285,
+    "modifiedTime": 1719168717611,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 300000,
+  "_key": "!items!hmDCgX5OEk5l4uXW"
+}

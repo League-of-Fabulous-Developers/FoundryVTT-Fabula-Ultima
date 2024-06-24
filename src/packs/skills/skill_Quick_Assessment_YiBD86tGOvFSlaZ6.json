@@ -1,0 +1,143 @@
+{
+  "folder": "kDKKcLwB0Ut9ynTR",
+  "name": "Quick Assessment",
+  "type": "skill",
+  "_id": "YiBD86tGOvFSlaZ6",
+  "img": "icons/tools/scribal/magnifying-glass.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">At the start of a conflict, you may spend up to </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 5</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Mind Points. For every 5 Mind Points you spend this way, choose one option: choose a creature you can see and the GM reveals one of their </span><span class=\"fontstyle3\"><strong>Traits</strong></span><span class=\"fontstyle0\">; </span><span class=\"fontstyle3\">or </span><span class=\"fontstyle0\">name a damage type and choose a creature you can see, and the GM reveals that creature's </span><span class=\"fontstyle3\"><strong>Affinity </strong></span><span class=\"fontstyle0\">towards that damage type.</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@LOSS[5 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@LOSS[10 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@LOSS[15 mp]</strong></p><p>Skill Level <strong>4</strong> - <strong>@LOSS[20 mp]</strong></p><p>Skill Level <strong>5</strong> - <strong>@LOSS[25 mp]</strong></p><p>Skill Level <strong>6</strong> - <strong>@LOSS[30 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 6,
+      "min": 0
+    },
+    "class": {
+      "value": "Loremaster"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR199"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.YiBD86tGOvFSlaZ6"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706487865484,
+    "modifiedTime": 1719165151699,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!YiBD86tGOvFSlaZ6"
+}

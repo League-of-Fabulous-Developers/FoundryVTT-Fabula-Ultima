@@ -1,0 +1,152 @@
+{
+  "folder": "NSF7G1xLIJ71r9qX",
+  "name": "[Handout: Tone List]",
+  "type": "miscAbility",
+  "_id": "dzv1DzQ6N3FKATek",
+  "img": "icons/tools/instruments/harp-red.webp",
+  "system": {
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<table style=\"width:100%;height:34px\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>CALM TONE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>@UUID[Compendium.projectfu.skills.Item.XCtijox9eBrBNSno]{Calm Tone}</strong></p></td></tr></tbody></table><p>Each target recovers <strong>【key recovery】</strong> equal to<strong>【10 + twice your current Willpower die size】</strong>. This amount increases by 10 if you are level <strong>20 or higher</strong>, or by 20 if you are level 40 or higher.</p><p>If this tone causes MP recovery, it has <strong>no effect</strong> on the character who sings it. </p><table style=\"width:100%;height:34px\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>ENERGETIC TONE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>@UUID[Compendium.projectfu.skills.Item.XvkMOHPXUg0ikDkf]{Energetic Tone}</strong></p></td></tr></tbody></table><p>Until the start of your next turn, when a target succeeds on a Check that includes <strong>【key Attribute】</strong> and that Check allows them to advance or turn back a Clock, they may fill or erase an additional section of that Clock. </p><table style=\"width:100%;height:34px\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>FRANTIC TONE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>@UUID[Compendium.projectfu.skills.Item.mtKts9zjHlweSVk4]{Frantic Tone}</strong></p></td></tr></tbody></table><p>Each target suffers <strong>【key type】</strong> damage equal to <strong>twice</strong> your current <strong>Willpower</strong> die size. This tone deals 10 extra damage if you are level 20 or higher, or 20 extra damage if you are level 40 or higher.</p><table style=\"width:100%;height:34px\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>HAUNTING TONE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>@UUID[Compendium.projectfu.skills.Item.CynydNkxJS1HZVlJ]{Haunting Tune}</strong></p></td></tr></tbody></table><p>Each target suffers <strong>【key status effect】</strong>. Each target also loses Resistance to <strong>【key type】</strong> damage (if they have it) until the start of your next turn. </p><table style=\"width:100%;height:34px\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>LIVELY TONE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>@UUID[Compendium.projectfu.skills.Item.zLxqETSi6zbRkWKu]{Lively Tone}</strong></p></td></tr></tbody></table><p>Each target treats their <strong>【key Attribute】 </strong>as being one die size higher (up to a maximum of<strong>【d12】</strong>) until the start of your next turn. </p><table style=\"width:100%;height:34px\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>MENACING TONE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>@UUID[Compendium.projectfu.skills.Item.8QMh3jUtgmIMy9Jb]{Menacing Tone}</strong></p></td></tr></tbody></table><p>The first time each target suffers damage before the start of your next turn, that damage becomes <strong>【key type】</strong>. This can trigger once for each target of the verse, separately.</p><table style=\"width:100%;height:34px\" border=\"1\"><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>SOLEMN TONE</strong></p></td></tr><tr style=\"height:17px\"><td style=\"height:17px\"><p><strong>@UUID[Compendium.projectfu.skills.Item.yidpNKJQMA7dSBsc]{Solemn Tone}</strong></p></td></tr></tbody></table><p>Each target recovers from <strong>【key status effect】</strong>. Each target also gains Resistance to <strong>【key type】 </strong>damage until the start of your next turn. </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "progress": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "name": "Name"
+    },
+    "source": {
+      "value": "FUHF139"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "ebg6FQH2cPZYwDuu": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "projectfu-playtest": {
+      "growthClock": false
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1707814122369,
+    "modifiedTime": 1719226179506,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!items!dzv1DzQ6N3FKATek"
+}

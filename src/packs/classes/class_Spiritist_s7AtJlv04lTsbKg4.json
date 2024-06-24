@@ -1,0 +1,96 @@
+{
+  "name": "Spiritist",
+  "type": "class",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": "Show me the truth in your heart."
+    },
+    "description": "<div class=\"stackedit__html\"><h1>SPIRITIST</h1><h5><strong>ALSO:</strong> Healer, Priest, Witch</h5><p><strong>Spiritists </strong>have developed a powerful connection with the raw aspects of soul: emotion, energy, life, and death. They wield power both miraculous and frightening, and are quite often affiliated with cults or religions. Several worlds see the powers of Spiritism as gifts from a deity or proof that a person’s heart is pure; however, there is no definite proof of these abilities coming from anything but discipline, empathy, and focus.</p><p><strong>SPIRITIST FREE BENEFITS</strong></p><ul><li>Permanently increase your maximum Mind Points by 5.</li><li>You may perform Rituals whose effects fall within the <strong>Ritualism </strong>discipline.</li></ul><h3 id=\"spiritist-skills\"><strong>SPIRITIST SKILLS</strong></h3><h4><strong>@UUID[Compendium.projectfu.skills.Item.rVM7HhQ5OwdPtFwa]{Healing Power} (SL2)</strong></h4><p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may have each of those allies recover an amount of Hit Points equal to <strong>【SL, multiplied by the number of Bonds you have】</strong>.</p><p>This healing is separate from any healing caused by the effects of the spell.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.ek0pzfo1bSWGHfzb]{Ritual Spiritism}</strong></h4><p>You may perform Rituals whose effects fall within the Spiritism discipline.</p><p>Spiritism Rituals use <strong>【INS + WLP】 </strong>for the Magic Check.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.dwVQpxDTOZeNbcjy]{Spiritual Magic} (SL10)</strong></h4><p>Each time you acquire this Skill, learn one Spiritist spell (see <strong>@UUID[Compendium.projectfu.spells.Item.fIzsuP7ro97Xc8H0]{[Spiritist Spells]})</strong>.</p><p>Offensive ( <strong>@ICON[offensive]</strong> ) Spiritist spells use <strong>【INS + WLP】 </strong>for the Magic Check.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.pIkEDFcA5pnIpsu3]{Support Magic}</strong></h4><p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may choose one of those allies you have a <strong>Bond </strong>towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the <strong>strength </strong>of your Bond towards them.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.affUHtuCYoDxmO4h]{Vismagus}</strong></h4><p>When you cast a spell, if you don’t have enough Mind Points to pay for its total cost, you may choose to spend <strong>twice as many</strong> Hit Points instead. You cannot use this Skill if doing so would reduce you to 0 Hit Points. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</p><p></p><h3 id=\"spiritist-skills\"><strong>SPIRITIST SPELLS</strong></h3><p><strong>@UUID[Compendium.projectfu.spells.Item.fIzsuP7ro97Xc8H0]{[Spiritist Spells]}</strong></p></div>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": true
+        },
+        "ip": {
+          "value": false
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": false
+        },
+        "shields": {
+          "value": false
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": true
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR206"
+    }
+  },
+  "img": "icons/magic/life/cross-yellow-green.webp",
+  "effects": [],
+  "folder": null,
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706418604181,
+    "modifiedTime": 1719168881808,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "s7AtJlv04lTsbKg4",
+  "sort": 200000,
+  "_key": "!items!s7AtJlv04lTsbKg4"
+}

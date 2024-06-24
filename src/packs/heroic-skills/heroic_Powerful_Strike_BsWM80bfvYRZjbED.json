@@ -1,0 +1,152 @@
+{
+  "name": "Powerful Strike",
+  "type": "heroic",
+  "img": "icons/skills/melee/strike-weapons-orange.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Deal extra damage in melee."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered one or more Classes among the following: </span><span class=\"fontstyle0\"><strong>Fury </strong></span><span class=\"fontstyle2\">or </span><span class=\"fontstyle0\"><strong>Weaponmaster</strong></span><span class=\"fontstyle2\">.</span></p></blockquote><p><span class=\"fontstyle2\">When you hit one or more creatures with a </span><span class=\"fontstyle0\"><strong>melee </strong></span><span class=\"fontstyle2\">attack, that attack deals 5 extra damage to each creature. </span></p><p><span class=\"fontstyle2\">The amount of extra damage increases to 10 if you are </span><span class=\"fontstyle0\"><strong>level 40 or higher</strong></span><span class=\"fontstyle2\">.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Fury or Weaponmaster"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR239"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [
+    {
+      "icon": "icons/skills/melee/strike-weapons-orange.webp",
+      "origin": "Item.rff3iIPDKsYvCOh5",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Powerful Strike",
+      "_id": "hhp24GomB53QJvQY",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.melee",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!BsWM80bfvYRZjbED.hhp24GomB53QJvQY"
+    }
+  ],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.ekISJTSrp61cEXyS"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1706585658140,
+    "modifiedTime": 1719186689277,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "BsWM80bfvYRZjbED",
+  "sort": 300000,
+  "_key": "!items!BsWM80bfvYRZjbED"
+}

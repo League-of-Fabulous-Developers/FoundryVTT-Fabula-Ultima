@@ -1,0 +1,102 @@
+{
+  "name": "Staff",
+  "type": "weapon",
+  "img": "systems/projectfu/styles/static/compendium/weapons/staff.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 100
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": ""
+    },
+    "isEquipped": {
+      "value": false,
+      "slot": ""
+    },
+    "attributes": {
+      "primary": {
+        "value": "wlp"
+      },
+      "secondary": {
+        "value": "wlp"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "value": 6
+    },
+    "type": {
+      "value": "melee"
+    },
+    "category": {
+      "value": "arcane"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "isCustomWeapon": {
+      "value": false
+    },
+    "source": {
+      "value": "FUCR130"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "folder": "SnyIBMif9646gEkD",
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706648302926,
+    "modifiedTime": 1719222626361,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "yPIyB7tBCD4ZVP4C",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!yPIyB7tBCD4ZVP4C"
+}

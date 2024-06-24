@@ -1,0 +1,19 @@
+{
+  "name": "Entropist",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "3BdwBwfSnD04VRAz",
+  "sort": 100000,
+  "color": "#240059",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706564362253,
+    "modifiedTime": 1719161665288,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!3BdwBwfSnD04VRAz"
+}

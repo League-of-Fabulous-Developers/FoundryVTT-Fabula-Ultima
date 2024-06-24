@@ -1,0 +1,121 @@
+{
+  "name": "Deep Pockets",
+  "type": "heroic",
+  "img": "icons/magic/symbols/cog-orange-red.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Reduce Inventory Point costs."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered the </span><strong>Tinkerer </strong><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle0\">When you spend Inventory Points, you spend 1 less Inventory Point (minimum 1).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Tinker"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR235"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.BoEDnD4mxzoPUPBF"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1706584047656,
+    "modifiedTime": 1719186689277,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "ca4n2hFwIzfP4F12",
+  "sort": 1500000,
+  "_key": "!items!ca4n2hFwIzfP4F12"
+}

@@ -1,0 +1,143 @@
+{
+  "folder": "laGyUtQnXPDC2pZG",
+  "name": "Cataclysm",
+  "type": "skill",
+  "_id": "muhtqtJ6av32K34Z",
+  "img": "icons/magic/control/silhouette-hold-beam-blue.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">When you cast an </span><span class=\"fontstyle2\"><strong>instantaneous </strong></span><span class=\"fontstyle0\">spell, if you have an </span><span class=\"fontstyle2\"><strong>arcane </strong></span><span class=\"fontstyle0\">weapon equipped, you may </span><span class=\"fontstyle2\"><strong>increase the spell's total MP cost</strong> </span><span class=\"fontstyle0\">by up to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 10</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">Mind Points. If you do so and the spell deals damage to one or more creatures, it will deal 5 extra damage to each creature for every 10 Mind Points by which you increased its total MP cost.</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@LOSS[10 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@LOSS[20 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@LOSS[30 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR187"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.muhtqtJ6av32K34Z"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706497962110,
+    "modifiedTime": 1719160056108,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 100000,
+  "_key": "!items!muhtqtJ6av32K34Z"
+}

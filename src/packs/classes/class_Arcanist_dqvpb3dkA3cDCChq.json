@@ -1,0 +1,96 @@
+{
+  "name": "Arcanist",
+  "type": "class",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": "Some fates are not so easily avoided."
+    },
+    "description": "<div class=\"stackedit__html\"><h1>ARCANIST</h1><div class=\"stackedit__html\"><h5><strong>ALSO:</strong> Avatar, Chosen, Summoner</h5><p><strong>Arcanists </strong>can fall into a deep trance and temporarily project a considerable portion of their soul outside the body, giving it physical form. Surrounded by this magical shroud, the Arcanist gains a variety of supernatural abilities; these summoned forms are said to be manifestations of the ancestral souls belonging to mythical entities of legend, known as the Arcana. In some worlds, the Arcana are even worshiped as deities.</p><p><strong>ARCANIST FREE BENEFITS</strong></p><ul><li><p>Permanently increase your maximum Mind Points by 5.</p></li></ul><h3 id=\"arcanist-skills\"><strong>ARCANIST SKILLS</strong></h3><h4><strong>@UUID[Compendium.projectfu.skills.Item.hEj8s21iAOPhDtJN]{Arcane Circle} (SL4)</strong></h4><p>After you willingly dismiss an Arcanum on your turn during a conflict (see next page), if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free. The spell you cast this way must have a <strong>total Mind Point cost of 【SL × 5】 or lower</strong> (you must still pay the spell’s MP cost).</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.ZTEuKRcX9erp1NDC]{Arcane Regeneration} (SL2)</strong></h4><p>When you summon an Arcanum, you immediately recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.gbkA1CRgQ9OxPstd]{Bind and Summon}</strong></h4><p>You may <strong>bind</strong> Arcana to your soul and <strong>summon</strong> them later. The Game Master will tell you the details of each binding process when you first encounter the Arcanum in question. You may use an action and spend 40 Mind Points to <strong>summon</strong> an Arcanum you have bound: the details of this process are explained on the next page. If you take this Skill at character creation, you begin play with one Arcanum of your choice already bound to you, chosen from the list on the next pages. Other than that, you may only obtain new Arcana through exploration and story progression.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.aIbwfdDFTSRgKxxx]{Emergency Arcanum} (SL6)</strong></h4><p>As long as you are in <strong>Crisis</strong>, the cost for summoning your Arcana is reduced by <strong>【SL × 5】</strong> Mind Points.</p><hr /><h4><strong>@UUID[Compendium.projectfu.skills.Item.Jaxs87P2Q8AfKwWO]{Ritual Arcanism}</strong></h4><p>You may perform Rituals of the Arcanism discipline, as long as their effects fall within the domains of one or more Arcana you have bound (see next pages). Arcanism Rituals use <strong>【WLP + WLP】</strong> for the Magic Check.</p><p></p><h2><strong>The Arcana</strong></h2></div><p><strong>@UUID[Compendium.projectfu.skills.Item.7Hw8p7ZefudMdCxV]{[Handout: Arcana Rules]}</strong></p><p></p><h3 id=\"the-arcana\"><strong>ARCANUMs</strong></h3><div class=\"stackedit__html\"><p><strong>@UUID[Compendium.projectfu.skills.Item.8ySmNzjYisVduHWP]{[Handout: Arcanums]}</strong></p></div></div>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": true
+        },
+        "ip": {
+          "value": false
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": false
+        },
+        "shields": {
+          "value": false
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": false
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR176"
+    }
+  },
+  "img": "icons/creatures/magical/spirit-fire-orange.webp",
+  "effects": [],
+  "folder": null,
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706417334170,
+    "modifiedTime": 1719172588315,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "dqvpb3dkA3cDCChq",
+  "sort": 900000,
+  "_key": "!items!dqvpb3dkA3cDCChq"
+}

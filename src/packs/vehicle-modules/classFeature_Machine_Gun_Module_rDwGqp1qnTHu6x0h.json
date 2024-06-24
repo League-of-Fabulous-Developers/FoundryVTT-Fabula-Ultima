@@ -1,0 +1,55 @@
+{
+  "folder": "BJhRf9J1K7HT9EQu",
+  "name": "Machine Gun Module",
+  "type": "classFeature",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/machine-gun-module.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.weaponModule",
+    "data": {
+      "quality": "",
+      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">This weapon belongs to the <strong style=\"box-sizing: border-box; user-select: text;\">firearm</strong> Category. </span></p><p style=\"box-sizing: border-box; user-select: text; margin: 10px 0px 0px; font-family: 'PT Sans Narrow', sans-serif; font-style: normal; font-size: 16px; line-height: 1.45em; color: rgb(43, 74, 66); font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start\"><span class=\"fontstyle0\">A </span><span class=\"fontstyle2\"><strong>personal vehicle</strong> </span><span class=\"fontstyle0\">with this module enabled cannot have any other </span><span class=\"fontstyle2\"><strong>weapon modules</strong> </span><span class=\"fontstyle0\">enabled.  Additionally, when you perform the </span><span class=\"fontstyle2\"><strong>Attack</strong> </span><span class=\"fontstyle0\">action and attack with this weapon module, you may perform two separate attacks instead of one (against the same target or against different targets). If you do, both attacks follow the rules for </span><span class=\"fontstyle2\"><strong>two-weapon fighting</strong></span><span class=\"fontstyle0\">: each attack loses the </span><span class=\"fontstyle2\">multi </span><span class=\"fontstyle0\">property and cannot gain it, and you treat the High Roll of each Accuracy Check as being equal to 0 when determining damage.</span> <br style=\" font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; \"></p>",
+      "complex": true,
+      "damage": {
+        "bonus": 10,
+        "type": "physical"
+      },
+      "category": "firearm",
+      "type": "ranged",
+      "accuracy": {
+        "attr1": "dex",
+        "attr2": "ins",
+        "modifier": 0
+      },
+      "shield": {
+        "defense": 2,
+        "magicDefense": 2
+      }
+    },
+    "source": "FUTF167"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711474446389,
+    "modifiedTime": 1719223219943,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "rDwGqp1qnTHu6x0h",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!rDwGqp1qnTHu6x0h"
+}

@@ -1,0 +1,49 @@
+{
+  "folder": "fzwKXW1w0wvmyDbk",
+  "name": "Infusion: Venom (Superior)",
+  "type": "consumable",
+  "_id": "l9v6v93YjT26B1sT",
+  "img": "icons/skills/melee/blade-tip-energy-green.webp",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p><span class=\"fontstyle0\">For </span><strong>@LOSS[2 ip]</strong> <span class=\"fontstyle0\">the attack deals 5 extra damage, its damage becomes </span><span class=\"fontstyle2\">poison</span><span class=\"fontstyle0\">, and each creature hit by the attack suffers </span><span class=\"fontstyle2\">poisoned</span><span class=\"fontstyle0\">.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 2
+    },
+    "source": {
+      "value": "FUCR214"
+    }
+  },
+  "effects": [],
+  "sort": 175000,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.consumables.Item.BbIgneb44n1XHZQB"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1707097217470,
+    "modifiedTime": 1719170083212,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!items!l9v6v93YjT26B1sT"
+}

@@ -1,0 +1,121 @@
+{
+  "name": "Repetition",
+  "type": "heroic",
+  "img": "icons/skills/social/diplomacy-handshake-yellow.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Condemn or Encourage twice."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Orator </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle2\">Once per turn during a conflict, after you use the </span><span class=\"fontstyle0\"><strong>@UUID[Compendium.projectfu.skills.Item.DtEiCkDsC1amYABn]{Condemn} </strong></span><span class=\"fontstyle2\">Skill or the <strong>@UUID[Compendium.projectfu.skills.Item.04DiGVKhF3DtmJ4n]{Encourage}</strong> </span><span class=\"fontstyle0\">S</span><span class=\"fontstyle2\">kill, you may immediately perform that same Skill again (on the same target or a different one). You must still pay the Mind Point cost for the second use of the Skill.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Orator"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR240"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.YJzukAzaPnq7FAYs"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1706586578358,
+    "modifiedTime": 1719186689277,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "qi4qlidm2Dg7R99X",
+  "sort": 2500000,
+  "_key": "!items!qi4qlidm2Dg7R99X"
+}

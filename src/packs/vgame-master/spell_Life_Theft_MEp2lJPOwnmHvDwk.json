@@ -1,0 +1,137 @@
+{
+  "name": "Life Theft",
+  "type": "spell",
+  "img": "icons/magic/control/energy-stream-link-large-orange.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">The target suffers</span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>HR + 15</strong></span><span class=\"fontstyle2\"><strong>】</strong> </span><span class=\"fontstyle3\">(<strong>choose type</strong>) </span><span class=\"fontstyle0\">damage. Then, you recover an amount of Hit Points equal to half the Hit Point loss they suffered.</span></p><hr /><p><strong>@LOSS[10 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "class": {
+      "value": "NPC"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "mpCost": {
+      "value": "10"
+    },
+    "target": {
+      "value": "One creature"
+    },
+    "duration": {
+      "value": "Instantaneous"
+    },
+    "isOffensive": {
+      "value": true
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "rollInfo": {
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": true
+        },
+        "type": {
+          "value": "untyped"
+        },
+        "value": 15
+      },
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "subtype": {},
+    "source": {
+      "value": "FUCR311"
+    },
+    "opportunity": ""
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": null
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1690417015023,
+    "modifiedTime": 1719224647253,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "folder": "PpBzAnM7EK75ayIT",
+  "_id": "MEp2lJPOwnmHvDwk",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!MEp2lJPOwnmHvDwk"
+}

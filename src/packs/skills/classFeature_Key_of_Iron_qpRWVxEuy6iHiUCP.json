@@ -1,0 +1,41 @@
+{
+  "folder": "iZnEw7B6koQcAdRk",
+  "name": "Key of Iron",
+  "type": "classFeature",
+  "_id": "qpRWVxEuy6iHiUCP",
+  "img": "icons/commodities/metal/clasp-skull.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.key",
+    "data": {
+      "attribute": "wlp",
+      "recovery": "mp",
+      "type": "physical",
+      "status": "slow"
+    },
+    "source": "FUHF138"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710038845065,
+    "modifiedTime": 1719154985470,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!items!qpRWVxEuy6iHiUCP"
+}

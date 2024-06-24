@@ -1,0 +1,43 @@
+{
+  "folder": "MF2GB42tc5t7uxF8",
+  "name": "Hydra Dance",
+  "type": "classFeature",
+  "_id": "tu1dSPyWiUl8DMUY",
+  "img": "icons/creatures/reptiles/serpent-horned-green.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.dance",
+    "data": {
+      "duration": "nextTurn",
+      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">After you suffer damage, choose one option: you recover </span><strong>@GAIN[5 hp]</strong><span style=\"font-family: 'PT Sans Narrow', sans-serif\">, </span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px; color: rgb(25, 24, 19); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">OR </strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">you recover </span><strong>@GAIN[5 mp]</strong><span style=\"font-family: 'PT Sans Narrow', sans-serif\">. </span></p><hr><p><strong>@LOSS[10 mp]</strong></p>"
+    },
+    "source": "FUHF144"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-class-features.Item.tu1dSPyWiUl8DMUY"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710175574863,
+    "modifiedTime": 1719158402374,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!tu1dSPyWiUl8DMUY"
+}

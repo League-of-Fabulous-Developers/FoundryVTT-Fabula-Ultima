@@ -1,0 +1,142 @@
+{
+  "folder": "rh1Z5dIGbWFOZSll",
+  "name": "Twin Shields (Runic)",
+  "type": "weapon",
+  "img": "systems/projectfu/styles/static/compendium/twin-shields/twin-shields.png",
+  "system": {
+    "source": {
+      "value": "FUCR196"
+    },
+    "summary": {
+      "value": ""
+    },
+    "category": {
+      "value": "brawling"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "type": {
+      "value": "melee"
+    },
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "isMartial": {
+      "value": false
+    },
+    "isCustomWeapon": {
+      "value": false
+    },
+    "quality": {
+      "value": "Deals extra damage equal to your【SL】in defensive mastery (above)."
+    },
+    "cost": {
+      "value": 100
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "damage": {
+      "value": 5
+    },
+    "subtype": {},
+    "description": "",
+    "isEquipped": {
+      "value": false
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "defense": "def"
+  },
+  "effects": [
+    {
+      "icon": "modules/fabula-ultima-core-rulebook/artwork/items/Twin%20Shields.png",
+      "origin": "Item.2LyT2btVVPDPYY4h",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Twin Shields (Runic)",
+      "_id": "oaHQT6sqi0iC32QB",
+      "changes": [
+        {
+          "key": "system.derived.def.bonus",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.derived.mdef.bonus",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!G7ia7CUo4fzXL4Lo.oaHQT6sqi0iC32QB"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "q7If7bbltkFLUNCj": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1707628405753,
+    "modifiedTime": 1719225927959,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "G7ia7CUo4fzXL4Lo",
+  "sort": 0,
+  "_key": "!items!G7ia7CUo4fzXL4Lo"
+}

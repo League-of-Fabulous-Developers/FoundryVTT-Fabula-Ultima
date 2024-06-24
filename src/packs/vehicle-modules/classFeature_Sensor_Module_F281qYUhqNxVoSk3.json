@@ -1,0 +1,39 @@
+{
+  "folder": "OcoOq5td7Ya9GOPU",
+  "name": "Sensor Module",
+  "type": "classFeature",
+  "img": "icons/commodities/tech/sensor-brown.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.supportModule",
+    "data": {
+      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items and locations.</span></p>",
+      "complex": false
+    },
+    "source": "FUTF169"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711477115279,
+    "modifiedTime": 1719173179841,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "F281qYUhqNxVoSk3",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!F281qYUhqNxVoSk3"
+}

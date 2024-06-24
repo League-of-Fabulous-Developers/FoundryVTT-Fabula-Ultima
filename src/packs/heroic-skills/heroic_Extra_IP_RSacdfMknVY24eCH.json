@@ -1,0 +1,156 @@
+{
+  "name": "Extra IP",
+  "type": "heroic",
+  "img": "icons/commodities/currency/coins-plain-pouch-gold.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Increase your maximum Inventory Points."
+    },
+    "description": "<p><span class=\"fontstyle0\">Permanently increase your maximum Inventory Points by 4.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": true
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR235"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [
+    {
+      "icon": "icons/commodities/currency/coins-plain-pouch-gold.webp",
+      "origin": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.oMrW59API4hTOpCv",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Heroic: Extra IP",
+      "_id": "n53BCw7AN0raKFxE",
+      "changes": [
+        {
+          "key": "system.resources.ip.bonus",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!RSacdfMknVY24eCH.n53BCw7AN0raKFxE"
+    }
+  ],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.oMrW59API4hTOpCv"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1706584237881,
+    "modifiedTime": 1719186689277,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "RSacdfMknVY24eCH",
+  "sort": 800000,
+  "_key": "!items!RSacdfMknVY24eCH"
+}

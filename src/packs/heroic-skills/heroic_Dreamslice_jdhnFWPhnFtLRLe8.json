@@ -1,0 +1,121 @@
+{
+  "folder": "NWyKWh1qGp8D9yvJ",
+  "name": "Dreamslice",
+  "type": "heroic",
+  "img": "icons/skills/melee/strike-blade-scimitar-green-purple.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Shadow Strike reduces MP and causes action loss with swords."
+    },
+    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements: </strong></span><span class=\"fontstyle0\">you must have mastered one or more Classes among </span><span class=\"fontstyle2\"><strong>Darkblade</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>Esper</strong>.</span></p></blockquote><p><span class=\"fontstyle0\">When you hit one or more creatures with an attack from your </span><span class=\"fontstyle2\"><strong>Shadow Strike</strong> </span><span class=\"fontstyle0\">Skill using a weapon that belongs to the </span><span class=\"fontstyle2\"><strong>sword</strong> </span><span class=\"fontstyle0\">Category, each of those creatures loses an amount of Mind Points equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>the number you rolled on your Might die for Shadow Strike</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">. Then, if </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>the number you rolled on your Might die for Shadow Strike</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle2\"><strong>was 8 or higher</strong></span><span class=\"fontstyle0\">, you may choose one creature hit by the attack: if that creature is your </span><span class=\"fontstyle2\"><strong>focus</strong> </span><span class=\"fontstyle0\">or you have a </span><span class=\"fontstyle2\"><strong>Bond</strong> </span><span class=\"fontstyle0\">towards them, that creature will perform one fewer action during their next turn (to a minimum of zero actions).</span></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": "Sharpshooter, Weaponmaster"
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUTF173"
+    }
+  },
+  "effects": [],
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-heroic-skills.Item.xELUCyfIZ59ErV2Q"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711473807263,
+    "modifiedTime": 1719171516782,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "jdhnFWPhnFtLRLe8",
+  "sort": 0,
+  "_key": "!items!jdhnFWPhnFtLRLe8"
+}

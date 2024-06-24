@@ -1,0 +1,121 @@
+{
+  "name": "Iron Forest",
+  "type": "heroic",
+  "img": "icons/skills/melee/spear-tips-quintuple-orange.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Force enemies to spend MP to act after hitting with a spear."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><span class=\"fontstyle0\"><strong>Commander </strong></span><span class=\"fontstyle2\">and </span><span class=\"fontstyle0\"><strong>Weaponmaster</strong></span><span class=\"fontstyle2\">.</span></p></blockquote><p><span class=\"fontstyle2\">After you hit one or more creatures with a </span><span class=\"fontstyle0\"><strong>melee </strong></span><span class=\"fontstyle2\">attack using a weapon that belongs to the </span><span class=\"fontstyle0\"><strong>spear </strong></span><span class=\"fontstyle2\">Category, if you have </span><span class=\"fontstyle0\"><strong>no other weapon equipped</strong></span><span class=\"fontstyle2\">, you may spend <strong>@LOSS[20 mp]</strong> and choose one of those creatures. If you do so, the attack deals </span><span class=\"fontstyle0\"><strong>half </strong></span><span class=\"fontstyle2\">the normal amount of damage to each of its targets, and you choose one type of action among the following: </span><span class=\"fontstyle0\"><strong>Attack</strong></span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\"><strong>Guard</strong></span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\"><strong>Objective</strong></span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\"><strong>Spell</strong></span><span class=\"fontstyle2\">, or </span><span class=\"fontstyle0\"><strong>Skill</strong></span><span class=\"fontstyle2\">. From now on, the chosen creature must spend <strong>@LOSS[10 mp]</strong> whenever they wish to perform that type of action. If they can’t, they must perform a different type of action. This effect lasts until the start of your next turn, or until you use this Skill again.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF157"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.pah6SgW05ytAXNsm"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706684646291,
+    "modifiedTime": 1719170716535,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "9ga5k07i5o6nEE1c",
+  "sort": 0,
+  "_key": "!items!9ga5k07i5o6nEE1c"
+}

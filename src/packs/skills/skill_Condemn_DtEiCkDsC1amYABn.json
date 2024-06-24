@@ -1,0 +1,143 @@
+{
+  "folder": "XoV1kgCfYBfAuPoU",
+  "name": "Condemn",
+  "type": "skill",
+  "_id": "DtEiCkDsC1amYABn",
+  "img": "icons/creatures/magical/spirit-fear-energy-pink.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">You may use an action and spend </span><strong>@LOSS[5 mp]</strong><span class=\"fontstyle0\"> to perform an Opposed </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>INS + WLP</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Check against a creature that can hear and understand you — describe your accusations! If you succeed, the target loses </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 10</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Mind Points and suffers </span><span class=\"fontstyle3\"><strong>@EFFECT[dazed] </strong></span><span class=\"fontstyle0\">or</span><span class=\"fontstyle3\"><strong> @EFFECT[shaken] </strong></span><span class=\"fontstyle0\">(your choice).</span></p><p><span class=\"fontstyle0\">You gain a bonus equal to </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">to your </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>INS + WLP</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Checks for this Skill.</span> </p><hr /><p>Skill Level <strong>1</strong> - Target loses <strong>@LOSS[10 mp]</strong></p><p>Skill Level <strong>2</strong> - Target loses <strong>@LOSS[20 mp]</strong></p><p>Skill Level <strong>3</strong> - Target loses <strong>@LOSS[30 mp]</strong></p><p>Skill Level <strong>4</strong> - Target loses <strong>@LOSS[40 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Orator"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR201"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 1
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.DtEiCkDsC1amYABn"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706504101200,
+    "modifiedTime": 1719171006936,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!DtEiCkDsC1amYABn"
+}

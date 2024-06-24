@@ -1,0 +1,102 @@
+{
+  "folder": "hOHl36gua4Qp55SR",
+  "name": "Magicannon (Earth)",
+  "type": "weapon",
+  "img": "systems/projectfu/styles/static/compendium/Magicannon/magicannon-earth.png",
+  "system": {
+    "source": {
+      "value": "FUCR215"
+    },
+    "summary": {
+      "value": "A magitech firearm that deals earth damage."
+    },
+    "category": {
+      "value": "firearm"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "type": {
+      "value": "ranged"
+    },
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "isMartial": {
+      "value": false
+    },
+    "isCustomWeapon": {
+      "value": false
+    },
+    "quality": {
+      "value": "No Quality"
+    },
+    "cost": {
+      "value": 100
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 1
+    },
+    "damageType": {
+      "value": "earth"
+    },
+    "damage": {
+      "value": 10
+    },
+    "subtype": {},
+    "description": "<p>A magitech firearm that deals <strong>earth </strong>@ICON[earth] damage.</p>",
+    "isEquipped": {
+      "value": false
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.consumables.Item.MnQx0zq7xH2tr1YE"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1707097873590,
+    "modifiedTime": 1719223020488,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "sREYRTy6TfK8fe53",
+  "_key": "!items!sREYRTy6TfK8fe53"
+}

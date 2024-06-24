@@ -1,0 +1,76 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "Arcanum of the Frost",
+  "type": "classFeature",
+  "_id": "TKOESZqheitutkKB",
+  "img": "systems/projectfu/styles/static/compendium/Arcanum/arcanum-of-the-frost.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<ul><li><p><span class=\"fontstyle0\">You have Resistance to </span><span class=\"fontstyle2\"><strong>ice </strong></span><span class=\"fontstyle0\">damage and are immune to </span><span class=\"fontstyle2\"><strong>enraged</strong></span><span class=\"fontstyle0\">.</span></p></li><li><p><span class=\"fontstyle0\">Any </span><span class=\"fontstyle2\"><strong>ice </strong></span><span class=\"fontstyle0\">damage you deal <strong>ignores Resistances</strong>.</span> </p></li></ul>",
+      "dismiss": "<ul><li><p><span class=\"fontstyle0\"><strong>Ice Age.</strong> </span><span class=\"fontstyle2\">Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 ice]</strong></span><span class=\"fontstyle0\"><strong> </strong></span><span class=\"fontstyle2\">damage. This damage <strong>ignores Resistances</strong>.</span></p></li></ul>",
+      "domains": "cold, ice, silence"
+    },
+    "source": "FUCR179"
+  },
+  "effects": [
+    {
+      "icon": "icons/magic/water/ice-snowman.webp",
+      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.TKOESZqheitutkKB",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Merged: Frost",
+      "_id": "sHrfDIwt5EVpBL5E",
+      "changes": [
+        {
+          "key": "system.affinities.ice.bonus",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p>You have Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p></li><li><p>Any <strong>ice</strong> damage you deal ignores Resistances. </p></li></ul>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!TKOESZqheitutkKB.sHrfDIwt5EVpBL5E"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710463982993,
+    "modifiedTime": 1719225588973,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 600000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!TKOESZqheitutkKB"
+}

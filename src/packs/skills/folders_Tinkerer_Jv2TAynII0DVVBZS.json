@@ -1,0 +1,19 @@
+{
+  "name": "Tinkerer",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "Jv2TAynII0DVVBZS",
+  "sort": 100000,
+  "color": "#A16608",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706486452615,
+    "modifiedTime": 1719168419351,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!Jv2TAynII0DVVBZS"
+}

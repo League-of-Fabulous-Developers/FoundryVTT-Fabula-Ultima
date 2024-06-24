@@ -1,0 +1,143 @@
+{
+  "folder": "PqJcRIXUf6qGtSrm",
+  "name": "Painful Lessons",
+  "type": "skill",
+  "_id": "YkMaFGnNoWMo6k1U",
+  "img": "icons/magic/perception/eye-ringed-glow-angry-large-red.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">After another creature causes you to lose Hit Points (with an attack, a spell or any other method), you may immediately perform the </span><span class=\"fontstyle2\"><strong>Study </strong></span><span class=\"fontstyle0\">action on that creature (see page </span><span class=\"fontstyle2\">74</span><span class=\"fontstyle0\">) for free. If you do, gain a bonus equal to</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">to your Check. Remember, you can study the same aspect of a creature only once.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Darkblade"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR185"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "ins"
+        }
+      },
+      "accuracy": {
+        "value": 1
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.YkMaFGnNoWMo6k1U"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706496896843,
+    "modifiedTime": 1719154626378,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 500000,
+  "_key": "!items!YkMaFGnNoWMo6k1U"
+}

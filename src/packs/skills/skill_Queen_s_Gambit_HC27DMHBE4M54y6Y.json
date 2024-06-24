@@ -1,0 +1,143 @@
+{
+  "folder": "WH4WJHFmGxDGZgfQ",
+  "name": "Queen's Gambit",
+  "type": "skill",
+  "_id": "HC27DMHBE4M54y6Y",
+  "img": "icons/sundries/gaming/chess-queen-gray.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action to perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with a weapon you have equipped, treating your </span><span class=\"fontstyle2\"><strong>High Roll (HR)</strong> </span><span class=\"fontstyle0\">as 0 when calculating damage. After the attack is resolved, choose one option: one ally who is able to hear you recovers </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>5 + (SL × 5)</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">Hit Points; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">you may immediately use a Skill you acquired among </span><span class=\"fontstyle2\"><strong>@UUID[Compendium.fabula-ultima-high-fantasy.high-fantasy-skills.Item.FGihIPfif7yWsBCp]{Bishop’s Edict}</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>@UUID[Compendium.fabula-ultima-high-fantasy.high-fantasy-skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}</strong>, </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>@UUID[Compendium.fabula-ultima-high-fantasy.high-fantasy-skills.Item.79xGJD8jn4zGzYpX]{King’s Castle}</strong> </span><span class=\"fontstyle0\">for free (spending the appropriate MP).</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@GAIN[10 hp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@GAIN[15 hp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@GAIN[20 hp]</strong></p><p>Skill Level <strong>4</strong> - <strong>@GAIN[25 hp]</strong></p><p>Skill Level <strong>5</strong> - <strong>@GAIN[30 hp]</strong></p><p>Skill Level <strong>6</strong> - <strong>@GAIN[35 hp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 6,
+      "min": 0
+    },
+    "class": {
+      "value": "Commander"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUHF141"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": true
+        },
+        "accuracy": {
+          "value": true
+        },
+        "damage": {
+          "value": true
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-skills.Item.HC27DMHBE4M54y6Y"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706555569192,
+    "modifiedTime": 1719156917318,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 0,
+  "_key": "!items!HC27DMHBE4M54y6Y"
+}

@@ -1,0 +1,143 @@
+{
+  "folder": "PqJcRIXUf6qGtSrm",
+  "name": "Agony",
+  "type": "skill",
+  "_id": "JPVEY9p8zsGidKJq",
+  "img": "icons/magic/control/energy-stream-link-blue.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">After you deal damage to one or more creatures, if you have a </span><span class=\"fontstyle2\"><strong>Bond</strong> </span><span class=\"fontstyle0\">towards at least one of those creatures, you may recover</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">Hit Points and</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">Mind Points.</span> </p><hr /><p>Skill Level 1 - <strong>@GAIN[2 hp] </strong>and<strong> @GAIN[2 mp]</strong></p><p>Skill Level 2 - <strong>@GAIN[4 hp] </strong>and<strong> @GAIN[4 mp]</strong></p><p>Skill Level 3 - <strong>@GAIN[6 hp] </strong>and<strong> @GAIN[6 mp]</strong></p><p>Skill Level 4 - <strong>@GAIN[8 hp] </strong>and<strong> @GAIN[8 mp]</strong></p><p>Skill Level 5 - <strong>@GAIN[10 hp] </strong>and<strong> @GAIN[10 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Darkblade"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR185"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.JPVEY9p8zsGidKJq"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706496854934,
+    "modifiedTime": 1719154626378,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 100000,
+  "_key": "!items!JPVEY9p8zsGidKJq"
+}

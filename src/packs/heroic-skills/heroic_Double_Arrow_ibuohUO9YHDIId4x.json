@@ -1,0 +1,121 @@
+{
+  "name": "Double Arrow",
+  "type": "heroic",
+  "img": "icons/skills/ranged/arrows-flying-triple-gray.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Attack twice with bows"
+    },
+    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><strong><span class=\"fontstyle0\">Commander </span></strong><span class=\"fontstyle2\">and </span><strong><span class=\"fontstyle0\">Sharpshooter</span></strong><span class=\"fontstyle2\">.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">When you perform the </span><strong><span class=\"fontstyle0\">Attack </span></strong><span class=\"fontstyle2\">action with a </span><strong><span class=\"fontstyle0\">ranged </span></strong><span class=\"fontstyle2\">weapon that belongs to the </span><strong><span class=\"fontstyle0\">bow </span></strong><span class=\"fontstyle2\">Category, if you have </span><strong><span class=\"fontstyle0\">no other weapon equipped</span></strong><span class=\"fontstyle2\">, you may perform two separate attacks instead of one (against the same target or against different targets). If you do, both attacks follow the rules for </span><strong><span class=\"fontstyle0\">two-weapon fighting</span></strong><span class=\"fontstyle2\">: each attack loses the </span><strong><span class=\"fontstyle0\">multi </span></strong><span class=\"fontstyle2\">property and cannot gain it, and you treat the High Roll of each Accuracy Check as being equal to 0 when determining damage. </span></p>\n<p><span class=\"fontstyle2\">Note that this Heroic Skill </span><span class=\"fontstyle0\"><strong>does not stack</strong> </span><span class=\"fontstyle2\">with a custom weapon’s </span><strong><span class=\"fontstyle0\">quick </span></strong><span class=\"fontstyle2\">customization (using </span><span class=\"fontstyle0\"><strong>Double Arrows</strong> </span><span class=\"fontstyle2\">with a </span><strong><span class=\"fontstyle0\">quick </span></strong><span class=\"fontstyle2\">bow doesn’t allow more than two attacks, in short).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF155"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.kVl7K1um2ZtgK7Qe"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706684593529,
+    "modifiedTime": 1719170716535,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "ibuohUO9YHDIId4x",
+  "sort": 0,
+  "_key": "!items!ibuohUO9YHDIId4x"
+}

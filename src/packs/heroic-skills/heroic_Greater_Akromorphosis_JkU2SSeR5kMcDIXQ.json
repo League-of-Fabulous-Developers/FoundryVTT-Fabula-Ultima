@@ -1,0 +1,121 @@
+{
+  "folder": "NWyKWh1qGp8D9yvJ",
+  "name": "Greater Akromorphosis",
+  "type": "heroic",
+  "img": "icons/creatures/abilities/wolf-howl-moon-white.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Gain different benefits based on the Category of your unarmed strikes."
+    },
+    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements: </strong></span><span class=\"fontstyle0\">you must have mastered the </span><span class=\"fontstyle2\"><strong>Mutant</strong> </span><span class=\"fontstyle0\">Class, and must have acquired the </span><span class=\"fontstyle2\"><strong>Akromorphosis</strong> </span><span class=\"fontstyle0\">Skill.</span></p></blockquote><p>You gain the following benefits based on the current Category of your <strong>unarmed strikes</strong>.</p><ul><li><p><strong>Arcane, brawling, dagger, thrown</strong>: your attacks with unarmed strikes treat the Defense of each target as being equal to their current Insight die size.</p></li><li><p><strong>Bow, sword</strong>: your attacks with <strong>unarmed strikes</strong> that target <strong>two or more creatures</strong> deal 5 extra damage.</p></li><li><p><strong>Firearm, heavy</strong>: your <strong>unarmed strikes</strong> deal 5 extra damage to <strong>constructs</strong>, and deal 5 extra damage to non-<strong>construct</strong> creatures who have at least one <strong>shield</strong> and/or <strong>martial armor</strong> equipped.</p></li><li><p><strong>Flail, spear</strong>: you gain a +2 bonus to Defense, and your attacks with <strong>unarmed strikes</strong> may target <strong>flying</strong> creatures.</p></li></ul><p>If your <strong>unarmed strikes</strong> are treated as belonging to <strong>more than one Category</strong> (for instance due to the <strong>Blade Adept</strong> Heroic Skill; see <strong>High Fantasy Atlas, </strong>page <strong>154</strong>), you gain all the benefits of the corresponding Categories.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Mutant"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": "Sharpshooter, Weaponmaster"
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUTF174"
+    }
+  },
+  "effects": [],
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-heroic-skills.Item.QvKK9Nh9ljIioYK2"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711473807263,
+    "modifiedTime": 1719170718289,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "JkU2SSeR5kMcDIXQ",
+  "sort": 0,
+  "_key": "!items!JkU2SSeR5kMcDIXQ"
+}

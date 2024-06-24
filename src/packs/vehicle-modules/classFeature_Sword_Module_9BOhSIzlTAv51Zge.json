@@ -1,0 +1,55 @@
+{
+  "folder": "BJhRf9J1K7HT9EQu",
+  "name": "Sword Module",
+  "type": "classFeature",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/sword-module.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.weaponModule",
+    "data": {
+      "quality": "",
+      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">This weapon belongs to the <strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">sword</strong> Category.</span></p>",
+      "accuracy": {
+        "modifier": 1,
+        "attr1": "dex",
+        "attr2": "ins"
+      },
+      "damage": {
+        "bonus": 8,
+        "type": "physical"
+      },
+      "category": "sword",
+      "type": "melee",
+      "complex": false,
+      "shield": {
+        "defense": 2,
+        "magicDefense": 2
+      }
+    },
+    "source": "FUTF167"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711474515059,
+    "modifiedTime": 1719223514673,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "9BOhSIzlTAv51Zge",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!9BOhSIzlTAv51Zge"
+}

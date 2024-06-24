@@ -1,0 +1,152 @@
+{
+  "name": "Powerful Shot",
+  "type": "heroic",
+  "img": "icons/skills/ranged/target-bullseye-arrow-blue.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Deal extra damage at range."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Sharpshooter </strong></span><span class=\"fontstyle2\">Class.</span> </p></blockquote><p><span class=\"fontstyle0\">When you hit one or more creatures with a </span><span class=\"fontstyle2\"><strong>ranged </strong></span><span class=\"fontstyle0\">attack, that attack deals 5 extra damage to each creature.</span></p><p><span class=\"fontstyle0\">The amount of extra damage increases to 10 if you are </span><span class=\"fontstyle2\"><strong>level 40 or higher</strong></span><span class=\"fontstyle0\">.</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Sharpshooter"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR238"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [
+    {
+      "icon": "icons/skills/ranged/target-bullseye-arrow-blue.webp",
+      "origin": "Item.DDxQZ5Yd6MEgZooj",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Powerful Shot",
+      "_id": "q2KbPvYEiWB2lHFu",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.ranged",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!LDgRVXFVnUdJTvit.q2KbPvYEiWB2lHFu"
+    }
+  ],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.P3Tb2EF5aZanwwfi"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1706585303870,
+    "modifiedTime": 1719186689277,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "LDgRVXFVnUdJTvit",
+  "sort": 1900000,
+  "_key": "!items!LDgRVXFVnUdJTvit"
+}

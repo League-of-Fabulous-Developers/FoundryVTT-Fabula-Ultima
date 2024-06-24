@@ -1,0 +1,166 @@
+{
+  "name": "Heroic Companion",
+  "type": "heroic",
+  "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Your Companion grows stronger."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Wayfarer </strong></span><span class=\"fontstyle2\">Class, and must have acquired the </span><span class=\"fontstyle0\"><strong>Faithful Companion</strong> </span><span class=\"fontstyle2\">Skill.</span> </p></blockquote><p><span class=\"fontstyle0\">Your bond with your companion grows stronger. You gain the following benefits:</span></p><ul><li><span class=\"fontstyle0\">The companion's maximum Hit Points increase by 10.</span></li><li><span class=\"fontstyle0\">Choose one of the companion's Attributes: </span><span class=\"fontstyle3\"><strong>Dexterity</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle3\"><strong>Insight</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle3\"><strong>Might</strong></span><span class=\"fontstyle0\">, or </span><span class=\"fontstyle3\"><strong>Willpower</strong></span><span class=\"fontstyle0\">. The chosen Attribute is permanently increased by one die size (up to a maximum size of </span><span class=\"fontstyle3\"><strong>d12</strong></span><span class=\"fontstyle0\">).</span></li><li><span class=\"fontstyle0\">The companion gains an additional Skill. When you reach level </span><span class=\"fontstyle3\"><strong>40</strong></span><span class=\"fontstyle0\">, or if you have already reached it, the companion gains an additional Skill. Make sure to discuss your Skill choices with the Game Master and the other Players.</span> </li></ul><hr /><p><strong>@UUID[Compendium.fabula-ultima-core-rulebook.game-master.Item.fL4p3H7d4e6wUeSB]{Heroic Companion}</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Wayfarer"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR236"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [
+    {
+      "icon": "icons/svg/aura.svg",
+      "origin": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.NYq9nobPs1im2am1",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "New Effect",
+      "_id": "eBfGfyGF9ONepPa7",
+      "changes": [],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "_key": "!items.effects!BD2TjjMN3s8DfZEu.eBfGfyGF9ONepPa7"
+    },
+    {
+      "icon": "icons/svg/aura.svg",
+      "origin": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.NYq9nobPs1im2am1",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "New Effect",
+      "_id": "jt7gXeEGO17e2mjv",
+      "changes": [],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "_key": "!items.effects!BD2TjjMN3s8DfZEu.jt7gXeEGO17e2mjv"
+    }
+  ],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.NYq9nobPs1im2am1"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1706584415337,
+    "modifiedTime": 1719186689277,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "BD2TjjMN3s8DfZEu",
+  "sort": 200000,
+  "_key": "!items!BD2TjjMN3s8DfZEu"
+}

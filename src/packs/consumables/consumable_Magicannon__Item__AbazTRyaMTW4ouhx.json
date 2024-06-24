@@ -1,0 +1,49 @@
+{
+  "folder": "hOHl36gua4Qp55SR",
+  "name": "Magicannon (Item)",
+  "type": "consumable",
+  "_id": "AbazTRyaMTW4ouhx",
+  "img": "systems/projectfu/styles/static/compendium/Magicannon/magicannon.png",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "Create a firearm that deals air, bolt, earth, fire, ice, or physical."
+    },
+    "description": "<h5>Required: Advanced Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</h5><p>For <strong>@LOSS[3 ip]</strong> creates a firearm that deals <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, OR <strong>physical </strong>damage. Drag and drop the one you create onto your character sheet.</p><p><strong>@UUID[Compendium.projectfu.consumables.Item.EGvZsEWEhaTqoCgG]{Magicannon (Air)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.uuKKqm81klCOiDjO]{Magicannon (Bolt)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.sREYRTy6TfK8fe53]{Magicannon (Earth)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.jHbcjw8RW9Ywesyu]{Magicannon (Fire)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.eVOnHgRLTnL695cP]{Magicannon (Ice)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.MJoIwfTvo0FHcDqL]{Magicannon (Physical)}</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 3
+    },
+    "source": {
+      "value": "FUCR215"
+    }
+  },
+  "effects": [],
+  "sort": 25000,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.consumables.Item.smcs7h8t7Mlx5zP2"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1707097652124,
+    "modifiedTime": 1719223032648,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!items!AbazTRyaMTW4ouhx"
+}

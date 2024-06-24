@@ -1,0 +1,82 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "Arcanum of the Sky",
+  "type": "classFeature",
+  "_id": "zabsA5F47r9B5h4f",
+  "img": "systems/projectfu/styles/static/compendium/arcanum/arcanum-of-the-sky.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<ul><li><p><span class=\"fontstyle0\">You have Resistance to </span><span class=\"fontstyle2\"><strong>air </strong></span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>bolt </strong></span><span class=\"fontstyle0\">damage.</span></p></li><li><p><span class=\"fontstyle0\">You may use an action to accurately predict weather conditions for the next day within a range of </span><span class=\"fontstyle2\"><strong>two travel days</strong> </span><span class=\"fontstyle0\">— the Game Master will tell you what the weather conditions will be.</span> </p></li></ul>",
+      "dismiss": "<ul><li><p><span class=\"fontstyle0\"><strong>Thunderstorm.</strong> </span><span class=\"fontstyle2\">Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 bolt]</strong> damage. This damage<strong> ignores Resistances</strong>.</span> </p></li></ul>",
+      "domains": "fog, rain, storms"
+    },
+    "source": "FUCR180"
+  },
+  "effects": [
+    {
+      "icon": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Sky.png",
+      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.zabsA5F47r9B5h4f",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Merged: Sky",
+      "_id": "cIBHjOjwpWhhnx2h",
+      "changes": [
+        {
+          "key": "system.affinities.air.bonus",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.bolt.bonus",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You have Resistance to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">air </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">and </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">bolt </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage.</span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You may use an action to accurately predict weather conditions for the next day within a range of </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">two travel days</strong> </span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">— the Game Master will tell you what the weather conditions will be.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p></li></ul>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!zabsA5F47r9B5h4f.cIBHjOjwpWhhnx2h"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710464043159,
+    "modifiedTime": 1719225618333,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 1200000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!zabsA5F47r9B5h4f"
+}

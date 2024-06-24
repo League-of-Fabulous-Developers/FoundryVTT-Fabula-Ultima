@@ -72,11 +72,29 @@ Supplied game rules in the system compendium adhere to and are published under t
 - **Status Effect Icons**: [styles\static\icons] - default status effect icons from [@\_t3nshi](https://twitter.com/_t3nshi).
   - Explicit permission granted by t3nshi for the use of the Status Effect Icons exclusively in Fabula Ultima games. These icons are not authorized for use in other media without obtaining additional permission from t3nshi.
 
+## Compendium Assets
+
+[styles\static\compendium*]
+
+- **Pixeltier** - All art referenced here are used in the system compendium and are purchased from [Pixeltier](https://itch.io/s/39748/pixeltiers-complete-asset-bundle).
+
+  This icon pack may be used in whatever project you are working on.
+
+  You can:
+
+  - ✔️ Use the icon pack in your free or commercial projects.
+  - ✔️ Modify the assets.
+  - ✔️ Credit Pixeltier in your game (optional but appreciated).
+
+  You can’t:
+
+  - ❌ Repackage, redistribute, or resell the assets in any way, even if you’ve heavily modified them.
+
 ## Extra Icons
 
 [styles\static\icons]
 
-- Created by [Spyrella](https://github.com/spyrella '‌') under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en '‌')
+- Created by [Spyrella](https://github.com/spyrella '‌') under [CC0](https://creativecommons.org/public-domain/cc0/ '‌')
   - fus-sl-star.svg
   - ful-sl-star.svg
   - fus-star.svg
@@ -84,6 +102,10 @@ Supplied game rules in the system compendium adhere to and are published under t
 - Created by [Shourn](https://github.com/Shourn '‌') under [CC0](https://creativecommons.org/public-domain/cc0/)
   - fus-star2.svg
   - fus-star2-border.svg
+
+[styles\static\compendium\Magic Tent.png]
+
+- Magic Tent.png icon from drak273 under [CC0](https://creativecommons.org/public-domain/cc0/ '‌')
 
 ## Other
 

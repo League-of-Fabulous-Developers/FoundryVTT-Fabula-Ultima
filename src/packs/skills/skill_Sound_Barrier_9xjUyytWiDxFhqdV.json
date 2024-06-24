@@ -1,0 +1,139 @@
+{
+  "folder": "9Hit5mtbXhSe0Dht",
+  "name": "Sound Barrier",
+  "type": "skill",
+  "_id": "9xjUyytWiDxFhqdV",
+  "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">After you sing a </span><strong><span class=\"fontstyle2\">verse </span></strong><span class=\"fontstyle0\">with </span><span class=\"fontstyle2\"><strong>medium</strong> </span><span class=\"fontstyle0\">or </span><strong><span class=\"fontstyle2\">high volume</span></strong><span class=\"fontstyle0\">, all </span><strong><span class=\"fontstyle2\">physical </span></strong><span class=\"fontstyle0\">damage you suffer until the start of your next turn is reduced by</span><strong><span class=\"fontstyle3\">【</span><span class=\"fontstyle2\">SL</span></strong><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">(applied </span><strong><span class=\"fontstyle2\">before </span></strong><span class=\"fontstyle0\">Affinities).</span> </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Chanter"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUHF137"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "defense": "def",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706551847928,
+    "modifiedTime": 1719154985470,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!items!9xjUyytWiDxFhqdV"
+}

@@ -1,0 +1,42 @@
+{
+  "folder": "jAg187YJhvEkI5uc",
+  "name": "Symbol of Enmity",
+  "type": "classFeature",
+  "_id": "3J1BQmBqy0Eik9vs",
+  "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.symbol",
+    "data": {
+      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">As long as the creature bearing this </span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px; color: rgb(25, 24, 19); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">symbol </strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">is in </span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px; color: rgb(25, 24, 19); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">Crisis</strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">, any of that creature’s enemies who are able to see them must include them among the targets of their attacks and offensive spells ( </span><span style=\"font-family: inherit\"><strong>@ICON[offensive] </strong>)</span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">, if possible. </span></p><hr><p><strong>@LOSS[2 ip]</strong></p>"
+    },
+    "source": "FUHF149"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-class-features.Item.3J1BQmBqy0Eik9vs"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710177511545,
+    "modifiedTime": 1719169213383,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 100000,
+  "_key": "!items!3J1BQmBqy0Eik9vs"
+}

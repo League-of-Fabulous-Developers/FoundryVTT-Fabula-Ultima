@@ -1,0 +1,69 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "Arcanum of the Tower",
+  "type": "classFeature",
+  "_id": "stLDj4YpAoyQFFid",
+  "img": "systems/projectfu/styles/static/compendium/arcanum/arcanum-of-the-tower.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<ul><li><p><span class=\"fontstyle0\">When you summon this Arcanum, choose a damage type: </span><span class=\"fontstyle2\"><strong>air</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>bolt</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>dark</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>earth</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>fire</strong></span><span class=\"fontstyle0\">, or </span><span class=\"fontstyle2\"><strong>ice</strong></span><span class=\"fontstyle0\">. Until this Arcanum is dismissed, each of your allies present on the scene has Resistance to the chosen damage type (you </span><span class=\"fontstyle2\"><strong>do not</strong> </span><span class=\"fontstyle0\">gain this Resistance).</span> </p></li></ul><hr><p><strong>@EFFECT[eyJuYW1lIjoiQWlyIFJlc2lzdGFuY2UiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5haXIiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi10ZWFsLXB1cnBsZS53ZWJwIn0=] @EFFECT[eyJuYW1lIjoiQm9sdCBSZXNpc3RhbmNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuYm9sdCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9zaGllbGQtYmFycmllci1mbGFtaW5nLXBlbnRhZ29uLWJsdWUteWVsbG93LndlYnAifQ==] @EFFECT[eyJuYW1lIjoiRGFyayBSZXNpc3RhbmNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuZGFyayIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9zaGllbGQtYmFycmllci1mbGFtaW5nLXBlbnRhZ29uLW1hZ2VudGEud2VicCJ9] @EFFECT[eyJuYW1lIjoiRWFydGggUmVzaXN0YW5jZSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmVhcnRoIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvbWFnaWMvZGVmZW5zaXZlL3NoaWVsZC1iYXJyaWVyLWZsYW1pbmctcGVudGFnb24tb3JhbmdlLndlYnAifQ==] @EFFECT[eyJuYW1lIjoiRmlyZSBSZXNpc3RhbmNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuZmlyZSIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9zaGllbGQtYmFycmllci1mbGFtaW5nLXBlbnRhZ29uLXJlZC53ZWJwIn0=] @EFFECT[eyJuYW1lIjoiSWNlIFJlc2lzdGFuY2UiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5pY2UiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi1ibHVlLndlYnAifQ==]</strong></p><p></p>",
+      "dismiss": "<ul><li><p><span class=\"fontstyle0\"><strong>Judgment.</strong> </span><span class=\"fontstyle2\">Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 light]</strong> damage. This damage <strong>ignores Resistances</strong>.</span> </p></li></ul>",
+      "domains": "judgment, protection, sacrifice"
+    },
+    "source": "FUCR181"
+  },
+  "effects": [
+    {
+      "icon": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Tower.png",
+      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.stLDj4YpAoyQFFid",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Merge: Tower",
+      "_id": "STu4aCoMtt69ouFm",
+      "changes": [],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!stLDj4YpAoyQFFid.STu4aCoMtt69ouFm"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1710464096011,
+    "modifiedTime": 1719225630619,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "sort": 1100000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!stLDj4YpAoyQFFid"
+}

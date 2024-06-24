@@ -1,0 +1,95 @@
+{
+  "name": "Arcana Rules",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "ARCANA RULES",
+      "type": "text",
+      "_id": "f0x6JHPWDm0cf2hi",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h2><span class=\"fontstyle0\"><strong>MERGING WITH AN ARCANUM</strong></span></h2><p><span class=\"fontstyle2\">When you summon an Arcanum, you gain its </span><span class=\"fontstyle3\"><strong>merge </strong></span><span class=\"fontstyle2\">benefits; those benefits last until the Arcanum is dismissed (see </span><span class=\"fontstyle0\">page 179</span>).</p><p><span class=\"fontstyle2\">You cannot summon an Arcanum while already merged with one; you must first dismiss the current Arcanum.</span></p><h2><span class=\"fontstyle0\"><strong>DISMISSING AN ARCANUM</strong></span></h2><p><span class=\"fontstyle2\">An Arcanum can be dismissed in several ways:</span></p><ul><li><span class=\"fontstyle2\">Once the current scene ends, all Arcana are automatically dismissed.</span></li><li><span class=\"fontstyle2\">If you die or fall unconscious while merged with an Arcanum, they are dismissed.</span></li><li><span class=\"fontstyle2\">If you leave the scene while merged with an Arcanum, they are dismissed.</span></li><li><span class=\"fontstyle2\">You may </span><span class=\"fontstyle4\"><strong>willingly </strong></span><span class=\"fontstyle2\">dismiss your Arcanum: this doesn't require an action, but during a conflict it can only be done on your turn, </span><span class=\"fontstyle4\"><strong>before or after</strong> </span><span class=\"fontstyle2\">an action.</span> </li></ul><h2><span class=\"fontstyle0\"><strong>DISMISS EFFECTS</strong></span></h2><p><span class=\"fontstyle2\">Most Arcana have a powerful </span><span class=\"fontstyle3\"><strong>dismiss </strong></span><span class=\"fontstyle2\">effect, which may only be activated when you </span><span class=\"fontstyle3\"><strong>willingly </strong></span><span class=\"fontstyle2\">dismiss the Arcanum as described above — if the Arcanum is dismissed for any other reason, the </span><span class=\"fontstyle3\"><strong>dismiss </strong></span><span class=\"fontstyle2\">effect cannot be triggered.</span></p><p><span class=\"fontstyle2\">If the </span><span class=\"fontstyle3\"><strong>dismiss </strong></span><span class=\"fontstyle2\">effect of an Arcanum deals damage, it will deal 10 extra damage if you are<strong> </strong></span><span class=\"fontstyle3\"><strong>level 20 or higher</strong></span><span class=\"fontstyle2\">, or 20 extra damage if you are </span><span class=\"fontstyle3\"><strong>level 40 or higher</strong></span><span class=\"fontstyle2\">.</span></p><p><span class=\"fontstyle2\">You are also free to ignore the </span><span class=\"fontstyle3\"><strong>dismiss </strong></span><span class=\"fontstyle2\">effect if you don't want to use it.</span></p><h2><span class=\"fontstyle0\"><strong>DOMAINS</strong></span></h2><p><span class=\"fontstyle1\">Each Arcanum is associated with a few key concepts or </span><span class=\"fontstyle3\"><strong>domains</strong></span><span class=\"fontstyle1\">. The Game Master should use these to establish the trials needed to bind the Arcanum, and to adjudicate Rituals performed through the </span><span class=\"fontstyle3\"><strong>Ritual Arcanism</strong> </span><span class=\"fontstyle1\">Skill. </span></p><p><span class=\"fontstyle1\">If you create new Arcana for your world, make sure to associate them with domains that allow for interesting Rituals.</span> </p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "11.315",
+        "createdTime": 1711758795157,
+        "modifiedTime": 1719192623745,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+      },
+      "_key": "!journal.pages!sO33zynz6ZsBDpFR.f0x6JHPWDm0cf2hi"
+    },
+    {
+      "sort": 200000,
+      "name": "ARCANUM LIST",
+      "type": "text",
+      "_id": "ldBTUg43es8ZUaMN",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</strong></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "11.315",
+        "createdTime": 1711758808592,
+        "modifiedTime": 1719192612015,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+      },
+      "_key": "!journal.pages!sO33zynz6ZsBDpFR.ldBTUg43es8ZUaMN"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1711758758790,
+    "modifiedTime": 1719192623745,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "sO33zynz6ZsBDpFR",
+  "sort": 400000,
+  "_key": "!journal!sO33zynz6ZsBDpFR"
+}

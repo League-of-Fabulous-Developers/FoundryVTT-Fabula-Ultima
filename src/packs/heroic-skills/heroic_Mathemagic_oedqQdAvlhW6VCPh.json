@@ -1,0 +1,121 @@
+{
+  "name": "Mathemagic",
+  "type": "heroic",
+  "img": "icons/sundries/books/book-open-purple.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Extend single-target spells."
+    },
+    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Loremaster </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle0\">When you cast a spell with a </span><strong>target </strong><span class=\"fontstyle0\">of \"One creature\", you may </span><strong>double the spell's total MP cost</strong><span class=\"fontstyle0\">. If you do, choose an Attribute (</span><strong>Dexterity</strong><span class=\"fontstyle0\">, </span><strong>Insight</strong><span class=\"fontstyle0\">, </span><strong>Might</strong><span class=\"fontstyle0\">, or </span><strong>Willpower</strong><span class=\"fontstyle0\">) and a die size (</span><strong>d6</strong><span class=\"fontstyle0\">, </span><strong>d8</strong><span class=\"fontstyle0\">, </span><strong>d10 </strong><span class=\"fontstyle0\">or </span><strong>d12</strong><span class=\"fontstyle0\">). The spell now targets </span><strong>all </strong><span class=\"fontstyle0\">creatures present on the scene whose </span><strong>current </strong><span class=\"fontstyle0\">Attribute die size matches your choice, regardless of whether they are friends or foes (you might even end up targeting yourself). The effects of the spell are fully applied to every target.</span></p><p><span class=\"fontstyle0\">If the spell is an offensive ( <strong>@ICON[offensive]</strong> ) spell, it follows the normal rules: you perform a single Magic Check and confront it with the Magic Defense of each target to determine who is hit by the spell.</span> <br /></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Loremaster"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR237"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    }
+  },
+  "effects": [],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.8Kto53hZP6Hp7Zf6"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "2.4.0-alpha.2",
+    "coreVersion": "11.315",
+    "createdTime": 1706584898728,
+    "modifiedTime": 1719186689277,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+  },
+  "_id": "oedqQdAvlhW6VCPh",
+  "sort": 2200000,
+  "_key": "!items!oedqQdAvlhW6VCPh"
+}

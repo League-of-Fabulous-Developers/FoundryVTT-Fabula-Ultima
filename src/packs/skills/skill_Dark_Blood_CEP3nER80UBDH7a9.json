@@ -1,0 +1,185 @@
+{
+  "folder": "PqJcRIXUf6qGtSrm",
+  "name": "Dark Blood",
+  "type": "skill",
+  "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">As long as you are in Crisis, you have Resistance to </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">dark </strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage and </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">poison </strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage. </span></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 1,
+      "min": 0
+    },
+    "class": {
+      "value": "Darkblade"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR185"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [
+    {
+      "icon": "icons/skills/wounds/blood-drip-droplet-red.webp",
+      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.CEP3nER80UBDH7a9",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Dark Blood",
+      "_id": "Iut1nlmgSnsh7FEY",
+      "changes": [
+        {
+          "key": "system.affinities.dark.bonus",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.poison.bonus",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">As long as you are in Crisis, you have Resistance to <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">dark </strong>damage and <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">poison </strong>damage. </span></p>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "active"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!CEP3nER80UBDH7a9.Iut1nlmgSnsh7FEY"
+    }
+  ],
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.projectfu.essentials.Item.NOJ4atrXwmrwWYwc"
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706496871786,
+    "modifiedTime": 1719154626378,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "CEP3nER80UBDH7a9",
+  "sort": 200000,
+  "_key": "!items!CEP3nER80UBDH7a9"
+}
