@@ -27,7 +27,7 @@
       ],
       "drawn": false,
       "_id": "mRhNxnilSDSIMH8w",
-      "text": "... you or one ally you can see that is present on the scene.",
+      "text": "... one enemy you can see that is present on the scene.",
       "documentId": null,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -80,7 +80,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710031308833,
-    "modifiedTime": 1719171731031,
+    "modifiedTime": 1719246622021,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "formula": "1d20",
