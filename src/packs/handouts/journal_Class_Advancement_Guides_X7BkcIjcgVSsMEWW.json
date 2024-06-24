@@ -1027,6 +1027,41 @@
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.lALTvRZ0c2AryoeY"
+    },
+    {
+      "sort": -100000,
+      "name": "CLASSES BY BOOK",
+      "type": "text",
+      "_id": "ueaaCyhyfAJnXx6s",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Fabula Ultima has released numerous Atlases and supplements to further inspire certain types of worlds. The classes have been sorted by their origin here to help GMs and players better disseminate which options they want present in their games.</p><p></p><h3>CORE RULEBOOK</h3><table><tbody><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.dqvpb3dkA3cDCChq]{Arcanist}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>176</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.I3qOytLtqR9OAawS]{Chimerist}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>182</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.AgYLSVuJduaQBja0]{Darkblade}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>184</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.vSE3PMoHTGLC1yzG]{Elementalist}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>186</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.A24rkaeNHdKThN4N]{Entropist}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>190</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.JqjAUSTgQyZdfAML]{Fury}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>194</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.ARBTZXtCwUzlyIyy]{Guardian}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>196</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.CCSYiJBV0Ce69JOp]{Loremaster}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>198</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.8HxmAoTTwLlmQ8Fc]{Orator}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>200</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><span class=\"fontstyle0\"><strong>@UUID[Compendium.projectfu.classes.Item.q7ak4N89Makw4jiJ]{Rogue}</strong></span></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>202</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.eO37Jm8x3VaGmE7c]{Sharpshooter}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>204</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.s7AtJlv04lTsbKg4]{Spiritist}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>206</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.Zmqvu8QKmgyIci7C]{Tinkerer}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>210</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.EWKUOGOMmyHfgOJm]{Wayfarer}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>216</strong></span><span class=\"fontstyle2\">)</span></p></td></tr><tr><td data-colwidth=\"96\"><p><strong>@UUID[Compendium.projectfu.classes.Item.kVSzbabb2AUviwnH]{Weaponmaster}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Core Rulebook</strong> </span><span class=\"fontstyle2\">(page </span><span class=\"fontstyle0\"><strong>218</strong></span><span class=\"fontstyle2\">)</span></p></td></tr></tbody></table><p></p><h3>ATLAS HIGH FANTASY</h3><table><tbody><tr><td data-colwidth=\"98\"><p><strong>@UUID[Compendium.projectfu.classes.Item.hgYU8yjiz01xB6Zj]{Chanter}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>High Fantasy Atlas</strong></span><span class=\"fontstyle2\"> (page </span><span class=\"fontstyle0\"><strong>136</strong>)</span></p></td></tr><tr><td data-colwidth=\"98\"><p><strong>@UUID[Compendium.projectfu.classes.Item.2ZBMQzwMLEGVJkz2]{Commander}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>High Fantasy Atlas</strong></span><span class=\"fontstyle2\"> (page </span><span class=\"fontstyle0\"><strong>140</strong>)</span></p></td></tr><tr><td data-colwidth=\"98\"><p><strong>@UUID[Compendium.projectfu.classes.Item.KoQ2Q4mPVC7cpts7]{Dancer}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>High Fantasy Atlas</strong></span><span class=\"fontstyle2\"> (page </span><span class=\"fontstyle0\"><strong>142</strong>)</span></p></td></tr><tr><td data-colwidth=\"98\"><p><strong>@UUID[Compendium.projectfu.classes.Item.m2nmisQnnkVKowT7]{Symbolist}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>High Fantasy Atlas</strong></span><span class=\"fontstyle2\"> (page </span><span class=\"fontstyle0\"><strong>146</strong>)</span></p></td></tr></tbody></table><p></p><h3>ATLAS TECHNO FANTASY</h3><table><tbody><tr><td data-colwidth=\"98\"><p><strong>@UUID[Compendium.projectfu.classes.Item.hgYU8yjiz01xB6Zj]{Chanter}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Techno Fantasy Atlas</strong></span><span class=\"fontstyle2\"> (page </span><span class=\"fontstyle0\"><strong>136</strong>)</span></p></td></tr><tr><td data-colwidth=\"98\"><p><strong>@UUID[Compendium.projectfu.classes.Item.2ZBMQzwMLEGVJkz2]{Commander}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Techno Fantasy Atlas</strong></span><span class=\"fontstyle2\"> (page </span><span class=\"fontstyle0\"><strong>140</strong>)</span></p></td></tr><tr><td data-colwidth=\"98\"><p><strong>@UUID[Compendium.projectfu.classes.Item.KoQ2Q4mPVC7cpts7]{Dancer}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Techno Fantasy Atlas</strong></span><span class=\"fontstyle2\"> (page </span><span class=\"fontstyle0\"><strong>142</strong>)</span></p></td></tr><tr><td data-colwidth=\"98\"><p><strong>@UUID[Compendium.projectfu.classes.Item.m2nmisQnnkVKowT7]{Symbolist}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Techno Fantasy Atlas</strong></span><span class=\"fontstyle2\"> (page </span><span class=\"fontstyle0\"><strong>146</strong>)</span></p></td></tr></tbody></table><p></p><h3>BONUS CONTENT</h3><table><tbody><tr><td data-colwidth=\"98\"><p><strong>@UUID[Compendium.projectfu.classes.Item.R6Wcc6Gcf27yWalj]{Ace of Cards}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>April Fool's Special 2023</strong></span><span class=\"fontstyle2\"> (page </span><span class=\"fontstyle0\"><strong>2</strong>)</span></p></td></tr><tr><td data-colwidth=\"98\"><p><strong>@UUID[Compendium.projectfu.classes.Item.hAaL90nfamx7FfrY]{Necromancer}</strong></p></td><td><p><span class=\"fontstyle0\"><strong>Halloween Special 2022</strong></span><span class=\"fontstyle2\"> (page </span><span class=\"fontstyle0\"><strong>2</strong>)</span></p></td></tr></tbody></table>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "BwRsFvMHAq9vUtEO": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "11.315",
+        "createdTime": 1719246858001,
+        "modifiedTime": 1719249893253,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+      },
+      "_key": "!journal.pages!X7BkcIjcgVSsMEWW.ueaaCyhyfAJnXx6s"
     }
   ],
   "folder": null,
@@ -1035,7 +1070,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711296188058,
-    "modifiedTime": 1719226576756,
+    "modifiedTime": 1719249893253,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "X7BkcIjcgVSsMEWW",
