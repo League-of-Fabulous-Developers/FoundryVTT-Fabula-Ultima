@@ -1,6 +1,6 @@
 {
   "folder": "hOHl36gua4Qp55SR",
-  "name": "Magicannon (Phsyical)",
+  "name": "Magicannon (Physical)",
   "type": "weapon",
   "_id": "MJoIwfTvo0FHcDqL",
   "img": "systems/projectfu/styles/static/compendium/Magicannon/Magicannon%20(Physical).png",
@@ -92,11 +92,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "#{VERSION}#",
+    "systemVersion": "2.4.0-alpha.2",
     "coreVersion": "11.315",
     "createdTime": 1707097873590,
-    "modifiedTime": 1719169789973,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1719186177725,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
   },
   "_key": "!items!MJoIwfTvo0FHcDqL"
 }

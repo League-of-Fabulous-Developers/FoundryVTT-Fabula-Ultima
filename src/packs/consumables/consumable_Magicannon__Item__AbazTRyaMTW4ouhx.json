@@ -11,7 +11,7 @@
     "summary": {
       "value": "Create a firearm that deals air, bolt, earth, fire, ice, or physical."
     },
-    "description": "<h5>Required: Advanced Benefits in @UUID[Compendium.fabula-ultima-core-rulebook.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</h5><p>For <strong>@LOSS[3 ip]</strong> creates a firearm that deals <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, OR <strong>physical </strong>damage. Drag and drop the one you create onto your character sheet.</p><p><strong>@UUID[Compendium.fabula-ultima-core-rulebook.consumables.Item.EGvZsEWEhaTqoCgG]{Magicannon (Air @ICON[air])}</strong></p><p><strong>@UUID[Compendium.fabula-ultima-core-rulebook.consumables.Item.uuKKqm81klCOiDjO]{Magicannon (Bolt @ICON[bolt])}</strong></p><p><strong>@UUID[Compendium.fabula-ultima-core-rulebook.consumables.Item.sREYRTy6TfK8fe53]{Magicannon (Earth @ICON[earth])}</strong></p><p><strong>@UUID[Compendium.fabula-ultima-core-rulebook.consumables.Item.jHbcjw8RW9Ywesyu]{Magicannon (Fire @ICON[fire])}</strong></p><p><strong>@UUID[Compendium.fabula-ultima-core-rulebook.consumables.Item.eVOnHgRLTnL695cP]{Magicannon (Ice @ICON[ice])}</strong></p><p><strong>@UUID[Compendium.fabula-ultima-core-rulebook.consumables.Item.MJoIwfTvo0FHcDqL]{Magicannon (Physical @ICON[physical])}</strong></p>",
+    "description": "<h5>Required: Advanced Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</h5><p>For <strong>@LOSS[3 ip]</strong> creates a firearm that deals <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, OR <strong>physical </strong>damage. Drag and drop the one you create onto your character sheet.</p><p><strong>@UUID[Compendium.projectfu.consumables.Item.EGvZsEWEhaTqoCgG]{Magicannon (Air)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.uuKKqm81klCOiDjO]{Magicannon (Bolt)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.sREYRTy6TfK8fe53]{Magicannon (Earth)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.jHbcjw8RW9Ywesyu]{Magicannon (Fire)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.eVOnHgRLTnL695cP]{Magicannon (Ice)}</strong></p><p><strong>@UUID[Compendium.projectfu.consumables.Item.MJoIwfTvo0FHcDqL]{Magicannon (Physical)}</strong></p>",
     "isFavored": {
       "value": false
     },
@@ -39,11 +39,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "#{VERSION}#",
+    "systemVersion": "2.4.0-alpha.2",
     "coreVersion": "11.315",
     "createdTime": 1707097652124,
-    "modifiedTime": 1719169797623,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1719186185234,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
   },
   "_key": "!items!AbazTRyaMTW4ouhx"
 }

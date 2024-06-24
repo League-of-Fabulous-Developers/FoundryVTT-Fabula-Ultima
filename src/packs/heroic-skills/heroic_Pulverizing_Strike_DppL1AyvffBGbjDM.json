@@ -7,7 +7,7 @@
       "value": "skill"
     },
     "summary": {
-      "value": "Breach deals damage with heavy weapons."
+      "value": "Breach deals more damage with heavy weapons."
     },
     "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><strong><span class=\"fontstyle0\">Darkblade</span></strong><span class=\"fontstyle2\">, </span><strong><span class=\"fontstyle0\">Fury</span></strong><span class=\"fontstyle2\">, and </span><strong><span class=\"fontstyle0\">Weaponmaster</span></strong><span class=\"fontstyle2\">.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">After you hit a creature with </span><strong><span class=\"fontstyle0\">Breach</span></strong><span class=\"fontstyle2\">, if you attacked with a </span><strong><span class=\"fontstyle0\">melee </span></strong><span class=\"fontstyle2\">weapon that belongs to the </span><strong><span class=\"fontstyle0\">heavy </span></strong><span class=\"fontstyle2\">Category, you may have the attack deal damage equal to your </span><span class=\"fontstyle0\"><strong>High Roll (HR)</strong> </span><span class=\"fontstyle2\">instead of dealing no damage. Any source of extra damage, including the extra damage from the third option of the Breach Skill itself, still applies — ignore the damage dealt by the weapon.</span> </p>",
     "isFavored": {
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "#{VERSION}#",
+    "systemVersion": "2.4.0-alpha.2",
     "coreVersion": "11.315",
     "createdTime": 1706684687580,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1719185888451,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
   },
   "_id": "DppL1AyvffBGbjDM",
   "sort": 0,

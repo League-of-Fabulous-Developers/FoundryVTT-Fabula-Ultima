@@ -3,7 +3,7 @@
   "pages": [
     {
       "sort": 100000,
-      "name": "Symbols Rules",
+      "name": "SYMBOL RULES",
       "type": "text",
       "_id": "vK1pdg5bGSKX9Jr4",
       "title": {
@@ -32,14 +32,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758472181,
-        "modifiedTime": 1719172768017,
+        "modifiedTime": 1719192902953,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!t38IeNrS9T7NQspT.vK1pdg5bGSKX9Jr4"
     },
     {
       "sort": 200000,
-      "name": "Symbols List",
+      "name": "SYMBOLS LIST",
       "type": "text",
       "_id": "lC3Sy7JKjVLVGRax",
       "title": {
@@ -67,7 +67,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758487626,
-        "modifiedTime": 1719172781199,
+        "modifiedTime": 1719192917374,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!t38IeNrS9T7NQspT.lC3Sy7JKjVLVGRax"
@@ -87,7 +87,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711758455747,
-    "modifiedTime": 1719172781199,
+    "modifiedTime": 1719192917374,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "t38IeNrS9T7NQspT",

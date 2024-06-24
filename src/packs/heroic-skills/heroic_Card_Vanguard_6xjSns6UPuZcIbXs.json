@@ -7,7 +7,7 @@
       "value": "skill"
     },
     "summary": {
-      "value": ""
+      "value": "Place cards as Vanguard Cards."
     },
     "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> you must have mastered the <span class=\"fontstyle2\"><strong>Ace of Cards</strong> </span>Class, and must have acquired the <span class=\"fontstyle2\"><strong>Magic Cards</strong> </span>Skill. <br /></span></p>\n</blockquote>\n<p><span class=\"fontstyle0\">During a conflict, if you have </span><span class=\"fontstyle2\"><strong>two or fewer vanguard cards</strong> </span><span class=\"fontstyle0\">in play, you can use an action to choose </span><span class=\"fontstyle2\"><strong>1 card</strong> </span><span class=\"fontstyle0\">from your </span><strong><span class=\"fontstyle2\">hand </span></strong><span class=\"fontstyle0\">and place it face down as a </span><strong><span class=\"fontstyle2\">vanguard card</span></strong><span class=\"fontstyle0\">; if you do, draw 1 card from your </span><strong><span class=\"fontstyle2\">deck</span></strong><span class=\"fontstyle0\">. </span></p>\n<p><span class=\"fontstyle0\">When you suffer damage, if you have one or more </span><span class=\"fontstyle2\"><strong>vanguard cards</strong> </span><span class=\"fontstyle0\">in play, you may </span><span class=\"fontstyle0\">reveal one of them and place it on top of your </span><strong><span class=\"fontstyle2\">discard pile</span></strong><span class=\"fontstyle0\">: if you do and that card is a </span><strong><span class=\"fontstyle2\">joker </span></strong><span class=\"fontstyle0\">or its </span><span class=\"fontstyle2\"><strong>suit</strong> </span><span class=\"fontstyle0\">matches the type of the damage you suffered, you instead suffer no damage and regain an equal amount of Mind Points. At the end of each conflict, if you have one or more </span><span class=\"fontstyle2\"><strong>vanguard cards</strong> </span><span class=\"fontstyle0\">in play, shuffle them back into your </span><strong><span class=\"fontstyle2\">deck</span></strong><span class=\"fontstyle0\">.</span> <br /><br /></p>",
     "isFavored": {
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "#{VERSION}#",
+    "systemVersion": "2.4.0-alpha.2",
     "coreVersion": "11.315",
     "createdTime": 1708940657180,
-    "modifiedTime": 1719170711750,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1719187211293,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
   },
   "_id": "6xjSns6UPuZcIbXs",
   "sort": 0,

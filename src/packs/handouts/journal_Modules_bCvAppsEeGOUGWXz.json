@@ -3,7 +3,7 @@
   "pages": [
     {
       "sort": 100000,
-      "name": "Armor Modules",
+      "name": "ARMOR MODULES",
       "type": "text",
       "_id": "wBCYNr46jgIGc2mv",
       "title": {
@@ -31,14 +31,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711766987175,
-        "modifiedTime": 1719174070684,
+        "modifiedTime": 1719192796041,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!bCvAppsEeGOUGWXz.wBCYNr46jgIGc2mv"
     },
     {
       "sort": 200000,
-      "name": "Support Modules",
+      "name": "SUPPORT MODULES",
       "type": "text",
       "_id": "wDbsFhkIQPr6k3OJ",
       "title": {
@@ -66,14 +66,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711767023272,
-        "modifiedTime": 1719174101649,
+        "modifiedTime": 1719192786921,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!bCvAppsEeGOUGWXz.wDbsFhkIQPr6k3OJ"
     },
     {
       "sort": 300000,
-      "name": "Weapon Module",
+      "name": "WEAPON MODULE",
       "type": "text",
       "_id": "N35dxArmg5KRWCn7",
       "title": {
@@ -101,14 +101,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711767113525,
-        "modifiedTime": 1719174164020,
+        "modifiedTime": 1719192778055,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!bCvAppsEeGOUGWXz.N35dxArmg5KRWCn7"
     },
     {
       "sort": 400000,
-      "name": "Vehicle Frames",
+      "name": "VEHICLE FRAMES",
       "type": "text",
       "_id": "YHjjLLO5io3WFkbH",
       "title": {
@@ -136,7 +136,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1719174113792,
-        "modifiedTime": 1719174124135,
+        "modifiedTime": 1719192768679,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!bCvAppsEeGOUGWXz.YHjjLLO5io3WFkbH"
@@ -156,7 +156,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711766975584,
-    "modifiedTime": 1719174164020,
+    "modifiedTime": 1719192796041,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "bCvAppsEeGOUGWXz",

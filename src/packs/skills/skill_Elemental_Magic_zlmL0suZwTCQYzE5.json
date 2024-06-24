@@ -2,7 +2,6 @@
   "folder": "laGyUtQnXPDC2pZG",
   "name": "Elemental Magic",
   "type": "skill",
-  "_id": "73RbqZcndgS97kF3",
   "img": "icons/sundries/books/book-symbol-fire-gold-orange.webp",
   "system": {
     "subtype": {
@@ -11,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">Each time you acquire this Skill, learn one Elementalist spell (<strong>Core Rulebook</strong>, page <strong>188</strong> or <strong>@UUID[Compendium.fabula-ultima-core-rulebook.spells.Item.GOEbYMBu3cGnszWt]{[Elementalist Spells]}</strong>).</span></p><p><span class=\"fontstyle0\">Offensive </span>( <strong>@ICON[offensive]</strong> ) <span class=\"fontstyle0\">Elementalist spells use </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>INS + WLP</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">for the Magic Check.</span> </p>",
+    "description": "<p><span class=\"fontstyle0\">Each time you acquire this Skill, learn one Elementalist spell (<strong>Core Rulebook</strong>, page <strong>188</strong> or <strong>@UUID[Compendium.projectfu.spells.Item.GOEbYMBu3cGnszWt]{[Elementalist Spells]}).</strong></span></p><p><span class=\"fontstyle0\">Offensive </span>( <strong>@ICON[offensive]</strong> ) <span class=\"fontstyle0\">Elementalist spells use </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>INS + WLP</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">for the Magic Check.</span> </p>",
     "isFavored": {
       "value": false
     },
@@ -121,23 +120,21 @@
   },
   "effects": [],
   "ownership": {
-    "default": 2,
-    "hYECXwi6O8UUBuN4": 3,
-    "BwRsFvMHAq9vUtEO": 3
+    "default": 0,
+    "6utNKI7T4Vq4KjiR": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.73RbqZcndgS97kF3"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "#{VERSION}#",
+    "systemVersion": "2.4.0-alpha.2",
     "coreVersion": "11.315",
     "createdTime": 1706497980288,
-    "modifiedTime": 1719160056108,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1719181016949,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
   },
-  "sort": 200000,
-  "_key": "!items!73RbqZcndgS97kF3"
+  "_id": "zlmL0suZwTCQYzE5",
+  "sort": 0,
+  "_key": "!items!zlmL0suZwTCQYzE5"
 }

@@ -4,7 +4,7 @@
   "img": "icons/magic/death/skull-horned-white-purple.webp",
   "system": {
     "summary": {
-      "value": ""
+      "value": "Grave Points modify your Affinities."
     },
     "description": "<blockquote>\n<p><strong>Requirements</strong>: you must have mastered the Necromancer Class.</p>\n</blockquote>\n<p>As long as you have <strong>at least 1 Grave Point</strong>, you gain Immunity to <strong>dark </strong>and <strong>poison </strong>damage, Resistance to <strong>physical </strong>damage, and Vulnerability to <strong>light </strong>damage. These Affinities <strong>overwrite </strong>any other Affinity for those damage types, and cannot be altered <strong>in any way</strong> as long as you have at least 1 Grave Point.</p>",
     "isFavored": {
@@ -158,11 +158,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "#{VERSION}#",
+    "systemVersion": "2.4.0-alpha.2",
     "coreVersion": "11.315",
     "createdTime": 1697668153306,
-    "modifiedTime": 1719170711750,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1719187470781,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
   },
   "folder": "1Ky2u7fi2lfxr4JB",
   "ownership": {

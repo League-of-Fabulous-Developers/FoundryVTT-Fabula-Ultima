@@ -3,7 +3,7 @@
   "pages": [
     {
       "sort": 100000,
-      "name": "Arcana Rules",
+      "name": "ARCANA RULES",
       "type": "text",
       "_id": "f0x6JHPWDm0cf2hi",
       "title": {
@@ -31,14 +31,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758795157,
-        "modifiedTime": 1719172579218,
+        "modifiedTime": 1719192623745,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!sO33zynz6ZsBDpFR.f0x6JHPWDm0cf2hi"
     },
     {
       "sort": 200000,
-      "name": "Arcanum List",
+      "name": "ARCANUM LIST",
       "type": "text",
       "_id": "ldBTUg43es8ZUaMN",
       "title": {
@@ -66,7 +66,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758808592,
-        "modifiedTime": 1719172597924,
+        "modifiedTime": 1719192612015,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!sO33zynz6ZsBDpFR.ldBTUg43es8ZUaMN"
@@ -86,7 +86,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711758758790,
-    "modifiedTime": 1719172597924,
+    "modifiedTime": 1719192623745,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "sO33zynz6ZsBDpFR",

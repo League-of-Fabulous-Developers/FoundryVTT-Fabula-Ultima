@@ -3,7 +3,7 @@
   "pages": [
     {
       "sort": 100000,
-      "name": "Alchemy Rules",
+      "name": "ALCHEMY RULES",
       "type": "text",
       "_id": "3zBjpRrVsFaRlvEZ",
       "title": {
@@ -32,14 +32,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758863175,
-        "modifiedTime": 1719172661788,
+        "modifiedTime": 1719192674608,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!TV4Cj3UI0LWNZaOk.3zBjpRrVsFaRlvEZ"
     },
     {
       "sort": 200000,
-      "name": "Infusion Rules",
+      "name": "INFUSION RULES",
       "type": "text",
       "_id": "cEyBUimlpc1aKiM1",
       "title": {
@@ -68,14 +68,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758878151,
-        "modifiedTime": 1719172673669,
+        "modifiedTime": 1719192684482,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!TV4Cj3UI0LWNZaOk.cEyBUimlpc1aKiM1"
     },
     {
       "sort": 300000,
-      "name": "Magitech Rules",
+      "name": "MAGITECH RULES",
       "type": "text",
       "_id": "jRPW1Qwvn38vRL8r",
       "title": {
@@ -104,7 +104,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758900256,
-        "modifiedTime": 1719172686395,
+        "modifiedTime": 1719192695001,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!TV4Cj3UI0LWNZaOk.jRPW1Qwvn38vRL8r"
@@ -124,7 +124,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711758846086,
-    "modifiedTime": 1719172686395,
+    "modifiedTime": 1719192695001,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "TV4Cj3UI0LWNZaOk",

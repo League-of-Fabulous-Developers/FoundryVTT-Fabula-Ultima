@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action to interfere with the flow of time by spending up to </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 5</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Mind Points. For every 5 Mind Points you spend this way, choose one option: one creature you can see suffers </span><span class=\"fontstyle3\"><strong>@EFFECT[slow]</strong></span><span class=\"fontstyle0\">; </span><span class=\"fontstyle3\">or </span><span class=\"fontstyle0\">one creature you can see recovers from </span><span class=\"fontstyle3\"><strong>slow</strong></span><span class=\"fontstyle0\">; </span><span class=\"fontstyle3\">or </span><span class=\"fontstyle0\">one creature you can see may immediately perform the </span><span class=\"fontstyle3\"><strong>Equipment </strong></span><span class=\"fontstyle0\"><strong>action</strong> for free; </span><span class=\"fontstyle3\"><strong>OR</strong> </span><span class=\"fontstyle0\">choose one ally you can see who has yet to take a turn during this round: that ally may take their turn immediately after yours during this round.</span></p><p><span class=\"fontstyle0\">Each option can only be chosen once per use of this Skill.</span> </p><hr /><p>One option - <strong>@LOSS[5 mp]</strong></p><p>Two options - <strong>@LOSS[10 mp]</strong></p><p>Three options - <strong>@LOSS[15 mp]</strong></p><p>Four options - <strong>@LOSS[20 mp]</strong></p>",
+    "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action to interfere with the flow of time by spending up to </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 5</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Mind Points. For every 5 Mind Points you spend this way, choose one option: one creature you can see suffers </span><span class=\"fontstyle3\"><strong>@EFFECT[slow]</strong></span><span class=\"fontstyle0\">; </span><span class=\"fontstyle3\">or </span><span class=\"fontstyle0\">one creature you can see recovers from </span><span class=\"fontstyle3\"><strong>slow</strong></span><span class=\"fontstyle0\">; </span><span class=\"fontstyle3\">or </span><span class=\"fontstyle0\">one creature you can see may immediately perform the </span><span class=\"fontstyle3\"><strong>Equipment </strong></span><span class=\"fontstyle0\"><strong>action</strong> for free; </span><span class=\"fontstyle3\"><strong>OR</strong> </span><span class=\"fontstyle0\">choose one ally you can see who has yet to take a turn during this round: that ally may take their turn immediately after yours during this round.</span></p><p><span class=\"fontstyle0\">Each option can only be chosen once per use of this Skill.</span> </p><hr /><p><strong>One</strong> option - <strong>@LOSS[5 mp]</strong></p><p><strong>Two</strong> options - <strong>@LOSS[10 mp]</strong></p><p><strong>Three</strong> options - <strong>@LOSS[15 mp]</strong></p><p><strong>Four</strong> options - <strong>@LOSS[20 mp]</strong></p>",
     "isFavored": {
       "value": false
     },
@@ -132,11 +132,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "#{VERSION}#",
+    "systemVersion": "2.4.0-alpha.2",
     "coreVersion": "11.315",
     "createdTime": 1706486840722,
-    "modifiedTime": 1719162659022,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1719188858047,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
   },
   "sort": 100000,
   "_key": "!items!84JARbmkQ5r0j39r"

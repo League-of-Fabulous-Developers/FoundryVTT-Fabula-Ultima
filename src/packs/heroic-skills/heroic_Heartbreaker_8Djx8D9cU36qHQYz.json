@@ -109,13 +109,13 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "#{VERSION}#",
+    "systemVersion": "2.4.0-alpha.2",
     "coreVersion": "11.315",
     "createdTime": 1706584345254,
-    "modifiedTime": 1719171210027,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1719186689277,
+    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
   },
   "_id": "8Djx8D9cU36qHQYz",
-  "sort": 0,
+  "sort": 100000,
   "_key": "!items!8Djx8D9cU36qHQYz"
 }
