@@ -2,7 +2,7 @@
   "folder": "hOHl36gua4Qp55SR",
   "name": "Magicannon (Ice)",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Magicannon/magicannon-ice.png",
+  "img": "systems/projectfu/styles/static/compendium/magicannon/magicannon-ice.png",
   "system": {
     "source": {
       "value": "FUCR215"
@@ -94,7 +94,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707097873590,
-    "modifiedTime": 1719223026619,
+    "modifiedTime": 1719259597846,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "eVOnHgRLTnL695cP",

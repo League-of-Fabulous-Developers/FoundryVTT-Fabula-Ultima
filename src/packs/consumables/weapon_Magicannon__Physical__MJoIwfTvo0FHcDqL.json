@@ -3,7 +3,7 @@
   "name": "Magicannon (Physical)",
   "type": "weapon",
   "_id": "MJoIwfTvo0FHcDqL",
-  "img": "systems/projectfu/styles/static/compendium/Magicannon/magicannon-physical.png",
+  "img": "systems/projectfu/styles/static/compendium/magicannon/magicannon-physical.png",
   "system": {
     "source": {
       "value": "FUCR215"
@@ -95,7 +95,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707097873590,
-    "modifiedTime": 1719223035443,
+    "modifiedTime": 1719259601411,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_key": "!items!MJoIwfTvo0FHcDqL"

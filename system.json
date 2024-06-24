@@ -110,7 +110,7 @@
 			"label": "Game Master",
 			"type": "Item",
 			"name": "game-master",
-			"path": "packs/vgame-master",
+			"path": "packs/game-master",
 			"system": "projectfu",
 			"ownership": {
 				"PLAYER": "OBSERVER",

@@ -2,7 +2,7 @@
   "folder": "hOHl36gua4Qp55SR",
   "name": "Magicannon (Air)",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Magicannon/magicannon-air.png",
+  "img": "systems/projectfu/styles/static/compendium/magicannon/magicannon-air.png",
   "system": {
     "source": {
       "value": "FUCR215"
@@ -94,7 +94,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707097873590,
-    "modifiedTime": 1719223014722,
+    "modifiedTime": 1719259583318,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "EGvZsEWEhaTqoCgG",
