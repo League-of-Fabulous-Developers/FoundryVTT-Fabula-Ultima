@@ -1,7 +1,7 @@
 {
   "name": "Tonic",
   "type": "consumable",
-  "img": "systems/projectfu/styles/static/compendium/Consumables/Tonic.png",
+  "img": "systems/projectfu/styles/static/compendium/consumables/tonic.png",
   "system": {
     "subtype": {
       "value": "potion"
@@ -38,7 +38,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706516094485,
-    "modifiedTime": 1719169705401,
+    "modifiedTime": 1719222992460,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "mZPZqpxSMxzpQ8uX",

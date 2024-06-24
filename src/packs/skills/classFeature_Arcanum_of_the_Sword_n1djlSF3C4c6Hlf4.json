@@ -3,7 +3,7 @@
   "name": "Arcanum of the Sword",
   "type": "classFeature",
   "_id": "n1djlSF3C4c6Hlf4",
-  "img": "systems/projectfu/styles/static/compendium/Arcanum/Arcanum%20of%20the%20Tower.png",
+  "img": "systems/projectfu/styles/static/compendium/arcanum/arcanum-of-the-sword.png",
   "system": {
     "summary": {
       "value": ""
@@ -75,7 +75,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710464055145,
-    "modifiedTime": 1719154049867,
+    "modifiedTime": 1719225625713,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "sort": 1000000,

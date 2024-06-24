@@ -1,7 +1,7 @@
 {
   "name": "Silk Shirt",
   "type": "armor",
-  "img": "systems/projectfu/styles/static/compendium/Armor/Silk%20Shirt.png",
+  "img": "systems/projectfu/styles/static/compendium/Armor/silk-shirt.png",
   "system": {
     "subtype": {
       "value": ""
@@ -73,7 +73,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706589281049,
-    "modifiedTime": 1719174409903,
+    "modifiedTime": 1719222939432,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "23VCQdoqi2lYsVbS",

@@ -1,6 +1,6 @@
 {
   "folder": "jAg187YJhvEkI5uc",
-  "name": "[Handout: All Symbols]",
+  "name": "[Handout: Symbol List]",
   "type": "miscAbility",
   "img": "icons/tools/hand/brush-paint-brown-white.webp",
   "system": {
@@ -146,7 +146,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707718165836,
-    "modifiedTime": 1719172776431,
+    "modifiedTime": 1719225971723,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "v1HYJJsqOzPWrYv8",

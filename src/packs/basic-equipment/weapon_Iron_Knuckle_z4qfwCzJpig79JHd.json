@@ -1,7 +1,7 @@
 {
   "name": "Iron Knuckle",
   "type": "weapon",
-  "img": "modules/fabula-ultima-core-rulebook/artwork/items/Basic%20Weapons/Iron%20Knuckle.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/unarmed-strike.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648561339,
-    "modifiedTime": 1719174355357,
+    "modifiedTime": 1719222797433,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "z4qfwCzJpig79JHd",

@@ -2,7 +2,7 @@
   "folder": "BJhRf9J1K7HT9EQu",
   "name": "Machine Gun Module",
   "type": "classFeature",
-  "img": "systems/projectfu/styles/static/compendium/Weapon%20Modules/Machine%20Gun%20Module.png",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/machine-gun-module.png",
   "system": {
     "summary": {
       "value": ""
@@ -42,7 +42,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711474446389,
-    "modifiedTime": 1719173898684,
+    "modifiedTime": 1719223219943,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "rDwGqp1qnTHu6x0h",

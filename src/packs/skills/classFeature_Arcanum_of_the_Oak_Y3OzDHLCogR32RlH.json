@@ -3,7 +3,7 @@
   "name": "Arcanum of the Oak",
   "type": "classFeature",
   "_id": "Y3OzDHLCogR32RlH",
-  "img": "systems/projectfu/styles/static/compendium/Arcanum/Arcanum%20of%20the%20Oak.png",
+  "img": "systems/projectfu/styles/static/compendium/arcanum/arcanum-of-the-oak.png",
   "system": {
     "summary": {
       "value": ""
@@ -69,7 +69,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710464030279,
-    "modifiedTime": 1719153978928,
+    "modifiedTime": 1719225610230,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "sort": 800000,

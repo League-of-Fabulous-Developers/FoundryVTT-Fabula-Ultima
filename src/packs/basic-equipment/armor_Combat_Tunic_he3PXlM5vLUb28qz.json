@@ -1,7 +1,7 @@
 {
   "name": "Combat Tunic",
   "type": "armor",
-  "img": "systems/projectfu/styles/static/compendium/Armor/Combat%20Tunic.png",
+  "img": "systems/projectfu/styles/static/compendium/Armor/combat-tunic.png",
   "system": {
     "subtype": {
       "value": ""
@@ -73,7 +73,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706646338093,
-    "modifiedTime": 1719174428719,
+    "modifiedTime": 1719222911758,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "he3PXlM5vLUb28qz",

@@ -1,7 +1,7 @@
 {
   "name": "Magic Tent",
   "type": "consumable",
-  "img": "systems/projectfu/styles/static/compendium/Consumables/Magic%20Tent.png",
+  "img": "systems/projectfu/styles/static/compendium/Consumables/magic-tent.png",
   "system": {
     "subtype": {
       "value": "potion"
@@ -38,7 +38,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706516284047,
-    "modifiedTime": 1719169731633,
+    "modifiedTime": 1719223002097,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "QYyuig5iy5mMN9F8",

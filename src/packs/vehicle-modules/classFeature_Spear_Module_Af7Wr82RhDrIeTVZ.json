@@ -2,7 +2,7 @@
   "folder": "BJhRf9J1K7HT9EQu",
   "name": "Spear Module",
   "type": "classFeature",
-  "img": "systems/projectfu/styles/static/compendium/Weapon%20Modules/Spear%20Module.png",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/spear-module.png",
   "system": {
     "summary": {
       "value": ""
@@ -42,7 +42,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711474503402,
-    "modifiedTime": 1719173951317,
+    "modifiedTime": 1719223510315,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "Af7Wr82RhDrIeTVZ",

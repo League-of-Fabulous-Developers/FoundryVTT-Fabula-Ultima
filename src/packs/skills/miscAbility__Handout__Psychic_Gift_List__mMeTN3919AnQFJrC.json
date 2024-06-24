@@ -1,6 +1,6 @@
 {
   "folder": "E9XrzgvAjI4iW0aE",
-  "name": "[Handout: All Gifts]",
+  "name": "[Handout: Psychic Gift List]",
   "type": "miscAbility",
   "_id": "mMeTN3919AnQFJrC",
   "img": "icons/magic/control/hypnosis-mesmerism-eye-tan.webp",
@@ -144,7 +144,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711423290912,
-    "modifiedTime": 1719172729673,
+    "modifiedTime": 1719226099500,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_key": "!items!mMeTN3919AnQFJrC"

@@ -3,7 +3,7 @@
   "name": "Magicannon (Item)",
   "type": "consumable",
   "_id": "AbazTRyaMTW4ouhx",
-  "img": "systems/projectfu/styles/static/compendium/Magicannon/Magicannon.png",
+  "img": "systems/projectfu/styles/static/compendium/Magicannon/magicannon.png",
   "system": {
     "subtype": {
       "value": "potion"
@@ -39,11 +39,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707097652124,
-    "modifiedTime": 1719186185234,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1719223032648,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_key": "!items!AbazTRyaMTW4ouhx"
 }

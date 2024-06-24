@@ -2,7 +2,7 @@
   "folder": "BJhRf9J1K7HT9EQu",
   "name": "Sword Module",
   "type": "classFeature",
-  "img": "systems/projectfu/styles/static/compendium/Weapon%20Modules/Sword%20Module.png",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/sword-module.png",
   "system": {
     "summary": {
       "value": ""
@@ -42,7 +42,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711474515059,
-    "modifiedTime": 1719173955636,
+    "modifiedTime": 1719223514673,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "9BOhSIzlTAv51Zge",

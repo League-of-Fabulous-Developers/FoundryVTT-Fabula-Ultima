@@ -2,7 +2,7 @@
   "folder": "BJhRf9J1K7HT9EQu",
   "name": "Flamer Module",
   "type": "classFeature",
-  "img": "systems/projectfu/styles/static/compendium/Weapon%20Modules/Flamer%20Module.png",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/flamer-module.png",
   "system": {
     "summary": {
       "value": ""
@@ -42,7 +42,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711474433793,
-    "modifiedTime": 1719173885321,
+    "modifiedTime": 1719223214315,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "U0ttIqfIfPVblhCn",

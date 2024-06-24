@@ -1,7 +1,7 @@
 {
-  "name": "Spear, Heavy",
+  "name": "Heavy Spear",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Heavy%20Spear.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/heavy-spear.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648989601,
-    "modifiedTime": 1719174754035,
+    "modifiedTime": 1719222823708,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "BNAc3NDKhvZsjwRQ",

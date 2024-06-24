@@ -1,7 +1,7 @@
 {
   "name": "Bronze Shield",
   "type": "shield",
-  "img": "systems/projectfu/styles/static/compendium/Armor/Bronze%20Shield.png",
+  "img": "systems/projectfu/styles/static/compendium/armor/bronze-shield.png",
   "system": {
     "subtype": {
       "value": ""
@@ -98,7 +98,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706646757491,
-    "modifiedTime": 1719174489351,
+    "modifiedTime": 1719222871075,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "feOCNmJ5WS9VF9q7",

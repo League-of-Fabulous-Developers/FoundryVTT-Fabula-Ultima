@@ -3,7 +3,7 @@
   "pages": [
     {
       "sort": 100000,
-      "name": "Vehicle Rules",
+      "name": "VEHICLE RULES",
       "type": "text",
       "_id": "SVx2yyYXsusN8729",
       "title": {
@@ -32,14 +32,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758081637,
-        "modifiedTime": 1715918540593,
-        "lastModifiedBy": "pBweP8B18hmB7U1j"
+        "modifiedTime": 1719225212093,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!JtN1YEB5uhn9JMUG.SVx2yyYXsusN8729"
     },
     {
       "sort": 200000,
-      "name": "Armor Modules",
+      "name": "ARMOR MODULES",
       "type": "text",
       "_id": "THCQYFOKa24yrqRr",
       "title": {
@@ -68,14 +68,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758089782,
-        "modifiedTime": 1715918603016,
-        "lastModifiedBy": "pBweP8B18hmB7U1j"
+        "modifiedTime": 1719225201980,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!JtN1YEB5uhn9JMUG.THCQYFOKa24yrqRr"
     },
     {
       "sort": 300000,
-      "name": "Other Rules",
+      "name": "OTHER RULES",
       "type": "text",
       "_id": "Srt7P0ejhXs3Csnl",
       "title": {
@@ -104,14 +104,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758104002,
-        "modifiedTime": 1715918524459,
-        "lastModifiedBy": "pBweP8B18hmB7U1j"
+        "modifiedTime": 1719225193158,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!JtN1YEB5uhn9JMUG.Srt7P0ejhXs3Csnl"
     },
     {
       "sort": 400000,
-      "name": "Support Modules",
+      "name": "SUPPORT MODULES",
       "type": "text",
       "_id": "rCJqLbCs08x91Erb",
       "title": {
@@ -140,14 +140,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758136226,
-        "modifiedTime": 1715918535168,
-        "lastModifiedBy": "pBweP8B18hmB7U1j"
+        "modifiedTime": 1719225186206,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!JtN1YEB5uhn9JMUG.rCJqLbCs08x91Erb"
     },
     {
       "sort": 500000,
-      "name": "Vehicle Rules",
+      "name": "VEHICLE RULES",
       "type": "text",
       "_id": "nLLRBe45Q0QXV3J1",
       "title": {
@@ -176,14 +176,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758145426,
-        "modifiedTime": 1711758153763,
-        "lastModifiedBy": "YN7AhHIwAZeH33Tw"
+        "modifiedTime": 1719225177672,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!JtN1YEB5uhn9JMUG.nLLRBe45Q0QXV3J1"
     },
     {
       "sort": 600000,
-      "name": "Weapon Modules",
+      "name": "WEAPON MODULES",
       "type": "text",
       "_id": "bNOBwtRpSWOXRFX2",
       "title": {
@@ -212,10 +212,45 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758160714,
-        "modifiedTime": 1715917459346,
-        "lastModifiedBy": "pBweP8B18hmB7U1j"
+        "modifiedTime": 1719225165895,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!JtN1YEB5uhn9JMUG.bNOBwtRpSWOXRFX2"
+    },
+    {
+      "sort": 700000,
+      "name": "MODULE LIST",
+      "type": "text",
+      "_id": "6Bi4ff2JPBOV5HIO",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h3>VEHICLE FRAMES</h3><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.WG1xG12wMYh2ROoP]{Exoskeleton}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.2AYyeXm0V4Fu1x6G]{Mecha}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.f3h3SoN0g7i31Kj9]{Steed}</strong></p><p></p><h3>ARMOR MODULES</h3><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.kohdoUC4txAMLWDy]{Flexible Plating Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.TpTXbLUkL3Pu19Cd]{Heavy Plating Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.008QW2xjRc0BT2Az]{Runic Plating Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.RjB4wyGuxUBc9fgu]{Standard Plating Module}</strong></p><p></p><h3>WEAPON MODULES</h3><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.Z8bDTwdrcscxD95M]{Arcane Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.I1TuBl0LhTTIm545]{Axe Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.gccAPML5zrH5uLPh]{Blade Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.xOzJFrDQH2gSYv5Z]{Bow Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.7PYahPoPOTdySS6Q]{Cannon Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.yn1PgUZxCTogRUH0]{Claw Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.LaoOQ7H1L1OVsFjP]{Claymore Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.Ia44SEoL7RRZ7YJo]{Esoteric Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.tAkb5tqWhOzreNEo]{Flail Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.U0ttIqfIfPVblhCn]{Flamer Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.rDwGqp1qnTHu6x0h]{Machine Gun Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.DvqMM22TCEeoZH8e]{Rifle Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.dn8VdDcxLU8bnAQp]{Scythe Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.TWzSnTRW9frKW1CO]{Shield Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.Af7Wr82RhDrIeTVZ]{Spear Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.9BOhSIzlTAv51Zge]{Sword Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.N8msUv4FMNAqKBTb]{Trident Module}</strong></p><p></p><h3>SUPPORT MODULES</h3><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.9YM4VR2e6Y4MgmJ2]{Advanced Targeting Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.76ieutWWlthLOXap]{Aerial Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.nFC5y451Xd24hlM7]{Anti-Element Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.zhzy9ZWLUwZc0BKg]{Counterstrike Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.Hi6V9QoWjKofxZkQ]{Excavation Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.Fa1V1JIKwTD1uMqY]{Expanded Plating Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.CVQO5xvCXzTCc7ca]{Magistatic Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.qzvVPIVFgZ9jtOYT]{Power Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.hTpTh6WA2AGkRymI]{Rapid Interface Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.P1Vw28xK0NzPydqG]{Seafarer Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.vGz7COjgUSUh9vY3]{Seat Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.7qyCrf1eK0X6bYTH]{Secondary Offensive Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.F281qYUhqNxVoSk3]{Sensor Module}</strong></p><p><strong>@UUID[Compendium.projectfu.vehicle-modules.Item.OEgMfny6AwrXCkEg]{Turbo Module}</strong></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "BwRsFvMHAq9vUtEO": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "11.315",
+        "createdTime": 1719225016322,
+        "modifiedTime": 1719225151936,
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+      },
+      "_key": "!journal.pages!JtN1YEB5uhn9JMUG.6Bi4ff2JPBOV5HIO"
     }
   ],
   "folder": null,
@@ -232,7 +267,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711758065717,
-    "modifiedTime": 1719171808799,
+    "modifiedTime": 1719225212093,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "JtN1YEB5uhn9JMUG",

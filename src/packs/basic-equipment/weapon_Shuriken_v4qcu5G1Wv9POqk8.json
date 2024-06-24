@@ -1,7 +1,7 @@
 {
   "name": "Shuriken",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Shuriken.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/shuriken.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706649037181,
-    "modifiedTime": 1719174760438,
+    "modifiedTime": 1719222752335,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "v4qcu5G1Wv9POqk8",

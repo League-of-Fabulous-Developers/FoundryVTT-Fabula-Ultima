@@ -1,7 +1,7 @@
 {
   "name": "Katana",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Katana.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/katana.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706649013373,
-    "modifiedTime": 1719174787434,
+    "modifiedTime": 1719222782617,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "Gs9HmStYrBeB3eN1",

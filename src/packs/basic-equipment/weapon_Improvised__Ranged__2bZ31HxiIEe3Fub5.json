@@ -1,7 +1,7 @@
 {
   "name": "Improvised (Ranged)",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Improvised%20(Ranged).png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/improvised-ranged.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706649030547,
-    "modifiedTime": 1719174806268,
+    "modifiedTime": 1719222814016,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "2bZ31HxiIEe3Fub5",

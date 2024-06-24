@@ -1,7 +1,7 @@
 {
   "name": "Crossbow",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Crossbow.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/crossbow.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648527935,
-    "modifiedTime": 1719174825707,
+    "modifiedTime": 1719222833279,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "tgl2JjjQEqX78BRn",

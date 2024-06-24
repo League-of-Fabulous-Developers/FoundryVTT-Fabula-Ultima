@@ -1,7 +1,7 @@
 {
   "name": "Elixir",
   "type": "consumable",
-  "img": "systems/projectfu/styles/static/compendium/Consumables/Elixir.png",
+  "img": "systems/projectfu/styles/static/compendium/consumables/elixir.png",
   "system": {
     "subtype": {
       "value": "potion"
@@ -38,7 +38,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706515894820,
-    "modifiedTime": 1719169695787,
+    "modifiedTime": 1719222988618,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "mn3F6qOfdVYM405v",

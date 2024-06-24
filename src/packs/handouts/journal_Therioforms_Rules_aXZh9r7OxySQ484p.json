@@ -13,7 +13,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>Therioforms are mutations that grant powerful abilities; the way they manifest on your character is completely up to you - <strong>Pterotheria</strong>, for instance, might turn you into a person-sized bat or simply give you feathered wings.</p><ul><li><p>Once you use the <strong>Theriomorphosis</strong> Skill, the chosen <strong>therioforms</strong> last until the end of the scene. They also end if you die or fall unconscious, perform the Guard action, or use the <strong>Theriomorphosis</strong> Skill again (this includes using it through <strong>Genoclepsis</strong>).</p></li><li><p>You may end the effects of your <strong>Theriomorphosis</strong> at any time, but during a conflict you can only do so on your turn, <strong>before or after</strong> an action.</p></li><li><p>When a scene ends, if you are under the effects of <strong>Theriomorphosis</strong>, you may spend <strong>@LOSS[10 mp]</strong> to extend your <strong>current therioforms</strong> to the next scene you will be in.</p></li></ul><h3>All THERIFORMS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.9ww1Sa24R1VsLqgA]{[Handout: All Therioforms]}</strong></p>"
+        "content": "<p>Therioforms are mutations that grant powerful abilities; the way they manifest on your character is completely up to you - <strong>Pterotheria</strong>, for instance, might turn you into a person-sized bat or simply give you feathered wings.</p><ul><li><p>Once you use the <strong>Theriomorphosis</strong> Skill, the chosen <strong>therioforms</strong> last until the end of the scene. They also end if you die or fall unconscious, perform the Guard action, or use the <strong>Theriomorphosis</strong> Skill again (this includes using it through <strong>Genoclepsis</strong>).</p></li><li><p>You may end the effects of your <strong>Theriomorphosis</strong> at any time, but during a conflict you can only do so on your turn, <strong>before or after</strong> an action.</p></li><li><p>When a scene ends, if you are under the effects of <strong>Theriomorphosis</strong>, you may spend <strong>@LOSS[10 mp]</strong> to extend your <strong>current therioforms</strong> to the next scene you will be in.</p></li></ul>"
       },
       "video": {
         "controls": true,
@@ -31,14 +31,14 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758036829,
-        "modifiedTime": 1719193000607,
+        "modifiedTime": 1719225259713,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!aXZh9r7OxySQ484p.HY2vK4UYPzKKZXrk"
     },
     {
       "sort": 200000,
-      "name": "THERIOFORMS LIST",
+      "name": "THERIOFORM LIST",
       "type": "text",
       "_id": "wqYn1exwMeGFp9yr",
       "title": {
@@ -66,7 +66,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711758543312,
-        "modifiedTime": 1719192942119,
+        "modifiedTime": 1719225421520,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!aXZh9r7OxySQ484p.wqYn1exwMeGFp9yr"
@@ -86,7 +86,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711757990294,
-    "modifiedTime": 1719193000607,
+    "modifiedTime": 1719225421520,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "aXZh9r7OxySQ484p",

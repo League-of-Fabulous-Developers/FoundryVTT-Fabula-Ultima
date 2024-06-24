@@ -2,7 +2,7 @@
   "folder": "BJhRf9J1K7HT9EQu",
   "name": "Blade Module",
   "type": "classFeature",
-  "img": "systems/projectfu/styles/static/compendium/Weapon%20Modules/Blade%20Module.png",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/blade-module.png",
   "system": {
     "summary": {
       "value": ""
@@ -42,7 +42,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711474343031,
-    "modifiedTime": 1719173844123,
+    "modifiedTime": 1719223093300,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "gccAPML5zrH5uLPh",

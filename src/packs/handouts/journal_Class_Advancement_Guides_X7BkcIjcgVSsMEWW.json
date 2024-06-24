@@ -20,7 +20,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Some fates are not easily avoided.\"</strong></em></p><p></p><h5>Also: Avatar, Chosen, Summoner</h5><p></p><ul><li><p>Where do your powers come from? Are they a gift from your bloodline?</p></li><li><p>Have you ever communicated with an Arcanum, or are they silent and distant?</p></li><li><p>Do people see you as mysterious, powerful, or otherworldly?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li></ul><p></p><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.dqvpb3dkA3cDCChq]{Arcanist}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.hEj8s21iAOPhDtJN]{Arcane Circle}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ZTEuKRcX9erp1NDC]{Arcane Regeneration}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.gbkA1CRgQ9OxPstd]{Bind and Summon}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.aIbwfdDFTSRgKxxx]{Emergency Arcanum}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Jaxs87P2Q8AfKwWO]{Ritual Arcanism}</strong></p><p></p><h3>ARCANUM RULES</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.7Hw8p7ZefudMdCxV]{[Handout: Arcana Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.8ySmNzjYisVduHWP]{[Handout: Arcanums]}</strong></p><p></p><h3><strong>SAMPLE ARCANUM</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</strong></p>",
+        "content": "<p style=\"text-align:center\"><em><strong>\"Some fates are not easily avoided.\"</strong></em></p><p></p><h5>Also: Avatar, Chosen, Summoner</h5><p></p><ul><li><p>Where do your powers come from? Are they a gift from your bloodline?</p></li><li><p>Have you ever communicated with an Arcanum, or are they silent and distant?</p></li><li><p>Do people see you as mysterious, powerful, or otherworldly?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li></ul><p></p><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.dqvpb3dkA3cDCChq]{Arcanist}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.hEj8s21iAOPhDtJN]{Arcane Circle}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ZTEuKRcX9erp1NDC]{Arcane Regeneration}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.gbkA1CRgQ9OxPstd]{Bind and Summon}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.aIbwfdDFTSRgKxxx]{Emergency Arcanum}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Jaxs87P2Q8AfKwWO]{Ritual Arcanism}</strong></p><p></p><h3>ARCANUM RULES</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.sO33zynz6ZsBDpFR]{Arcana Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.7Hw8p7ZefudMdCxV]{[Handout: Arcana Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.8ySmNzjYisVduHWP]{[Handout: Arcanum List]}</strong></p><p></p><h3><strong>SAMPLE ARCANUM</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</strong></p>",
         "markdown": ""
       },
       "video": {
@@ -45,7 +45,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296240420,
-        "modifiedTime": 1719191138932,
+        "modifiedTime": 1719226306185,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.7ixLUaryAAvDNVMD"
@@ -643,7 +643,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Show’s just begun, and it’s lights out for you already!\"</strong></em></p><p></p><h5>ALSO: Bard, Idol, Troubadour</h5><p></p><ul><li><p>Who taught you how to combine magic and music? Is it a natural talent?</p></li><li><p>Are you a celebrity, or more of a traveling musician?</p></li><li><p>Who is your greatest music rival? Who inspires you to be who you are?</p></li><li><p>What do your instruments and singing style look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.hgYU8yjiz01xB6Zj]{Chanter}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.bt4jQZ557iLHlazO]{Magichant}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.kdL9oQYefqNlWqyD]{Resonance}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.huB2uoP2PAHoOp8T]{Siren's Song}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.9xjUyytWiDxFhqdV]{Sound Barrier}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.pQVuklFnMKXxHTFr]{Vibrato}</strong></p><p></p><h3>VERSES</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.c8jU0AIm1nOBRQaX]{[Handout: All Keys]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.dzv1DzQ6N3FKATek]{[Handout: All Tones]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.8d9spHVFrK4kyLsd]{[Handout: Verses Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.nu7QnUu7tmVv6zxU]{Verse}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"Show’s just begun, and it’s lights out for you already!\"</strong></em></p><p></p><h5>ALSO: Bard, Idol, Troubadour</h5><p></p><ul><li><p>Who taught you how to combine magic and music? Is it a natural talent?</p></li><li><p>Are you a celebrity, or more of a traveling musician?</p></li><li><p>Who is your greatest music rival? Who inspires you to be who you are?</p></li><li><p>What do your instruments and singing style look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.hgYU8yjiz01xB6Zj]{Chanter}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.bt4jQZ557iLHlazO]{Magichant}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.kdL9oQYefqNlWqyD]{Resonance}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.huB2uoP2PAHoOp8T]{Siren's Song}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.9xjUyytWiDxFhqdV]{Sound Barrier}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.pQVuklFnMKXxHTFr]{Vibrato}</strong></p><p></p><h3>VERSES</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.c8jU0AIm1nOBRQaX]{[Handout: Key List]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.dzv1DzQ6N3FKATek]{[Handout: Tone List]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.8d9spHVFrK4kyLsd]{[Handout: Verses Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.nu7QnUu7tmVv6zxU]{Verse}</strong></p>"
       },
       "video": {
         "controls": true,
@@ -670,7 +670,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711768931919,
-        "modifiedTime": 1719192255729,
+        "modifiedTime": 1719226363283,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.59JPMkRvJ97uwSZj"
@@ -732,7 +732,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"My story? Dance with me and you shall know it.\"</strong></em></p><p></p><h5>ALSO: Acrobat, Jester, Swashbuckler</h5><p></p><ul><li><p>Your abilities require great focus and discipline. Who was your teacher?</p></li><li><p>Why do you dance? Is it an art form, a profession, or something else?</p></li><li><p>Are you graceful and charming, or roguish and boisterous?</p></li><li><p>What do your stunts and performances look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.KoQ2Q4mPVC7cpts7]{Dancer}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.y0dACFzoQBBMZOEk]{Dance}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.3mqtdzwMU62J1ogW]{Follow My Lead}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.R0F1K6i1gjNWNklq]{Frenetic Footwork}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.DF1eCfsBw1kYOAH6]{Quick-Change}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.L4LqyZu7NPjavyaf]{Wardancer}</strong></p><p></p><h3>DANCES</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.kTJhhmUgvlOMSgKh]{[Handout: All Dances]}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"My story? Dance with me and you shall know it.\"</strong></em></p><p></p><h5>ALSO: Acrobat, Jester, Swashbuckler</h5><p></p><ul><li><p>Your abilities require great focus and discipline. Who was your teacher?</p></li><li><p>Why do you dance? Is it an art form, a profession, or something else?</p></li><li><p>Are you graceful and charming, or roguish and boisterous?</p></li><li><p>What do your stunts and performances look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.KoQ2Q4mPVC7cpts7]{Dancer}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.y0dACFzoQBBMZOEk]{Dance}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.3mqtdzwMU62J1ogW]{Follow My Lead}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.R0F1K6i1gjNWNklq]{Frenetic Footwork}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.DF1eCfsBw1kYOAH6]{Quick-Change}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.L4LqyZu7NPjavyaf]{Wardancer}</strong></p><p></p><h3>DANCES</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.cH2N0pg4NeNZpaM5]{Dances Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.kTJhhmUgvlOMSgKh]{[Handout: Dance List]}</strong></p>"
       },
       "video": {
         "controls": true,
@@ -759,7 +759,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711784883343,
-        "modifiedTime": 1719192254601,
+        "modifiedTime": 1719226411877,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.iSy69U9hvLVcw2KB"
@@ -776,7 +776,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"What good is a brush if your heart is not in the right place?\"</strong></em></p><p></p><h5>ALSO: Calligrapher, Painter, Runemaker</h5><p></p><ul><li><p>Who or what taught you how to weave magic into symbols?</p></li><li><p>Do you consider yourself more of a spellcaster or an artist?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li><li><p>What do your symbols look like, and how do you place them on creatures?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.m2nmisQnnkVKowT7]{Symbolist}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.ffgsQbg3SuWBUUS2]{Magic Symbols}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.mqwu1cSVPhWdT2Mt]{Mirage}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.nAX4AsRoQhmO6gnf]{Personal Touch}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.h6ynrwX1sUsBQYAE]{Symbolic Connection}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Twj3wpoMzSpUE3Go]{Symbolism}</strong></p><p></p><h3>SYMBOLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.v1HYJJsqOzPWrYv8]{[Handout: All Symbols]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.E0m9ZsyQ5HG8k77Y]{[Handout: Symbols Rules]}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"What good is a brush if your heart is not in the right place?\"</strong></em></p><p></p><h5>ALSO: Calligrapher, Painter, Runemaker</h5><p></p><ul><li><p>Who or what taught you how to weave magic into symbols?</p></li><li><p>Do you consider yourself more of a spellcaster or an artist?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li><li><p>What do your symbols look like, and how do you place them on creatures?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.m2nmisQnnkVKowT7]{Symbolist}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.ffgsQbg3SuWBUUS2]{Magic Symbols}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.mqwu1cSVPhWdT2Mt]{Mirage}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.nAX4AsRoQhmO6gnf]{Personal Touch}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.h6ynrwX1sUsBQYAE]{Symbolic Connection}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Twj3wpoMzSpUE3Go]{Symbolism}</strong></p><p></p><h3>SYMBOLS</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.t38IeNrS9T7NQspT]{Symbol Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.E0m9ZsyQ5HG8k77Y]{[Handout: Symbol Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.v1HYJJsqOzPWrYv8]{[Handout: Symbol List]}</strong></p><p></p>"
       },
       "video": {
         "controls": true,
@@ -803,7 +803,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711787644340,
-        "modifiedTime": 1719192252043,
+        "modifiedTime": 1719226576756,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.uZn5IoChHnZhrfNU"
@@ -908,7 +908,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\">\"<strong>Within this steel beat the hearts and hopes of all of Minerva IV. The Empire has already lost, they just don’t know it yet.\"</strong></p><p></p><h5>Also: Biker, Mech Pilot, Sky Pirate</h5><p></p><ul><li><p>Where did you learn to pilot? Is your teacher still alive?</p></li><li><p>How did you obtain your vehicle? Did you build it yourself? Did you inherit it?</p></li><li><p>What personal touch makes your vehicle stand out from the rest?</p></li><li><p>Who or what would you never allow aboard your vehicle?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.BpzqLw0tPg39wrUF]{Pilot}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.kMQH13lhWY4Mlbh8]{Compression Tech}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.BuqR9EZDFMn5lDGG]{Flexible Configuration}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.wGzSaXFjLlQIAAxk]{Personal Vehicle}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.rTqtsfBemOKLgWuN]{Strong Grip}</strong></p><p></p><h3>A PILOT'S VEHICLE</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.O0imCVrWFpJgpQ0b]{[Handout: Vehicle Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.wDGQGIEqFOYreyA6]{[Handout: Armor Modules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.QUtsK2Mh1gSqCb47]{[Handout: Support Modules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.zq0tEMif1Nrh8rxx]{[Handout: Weapon Modules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ZvzMIq1aj9Alanui]{[Handout: Other Rules]}</strong></p>"
+        "content": "<p style=\"text-align:center\">\"<strong>Within this steel beat the hearts and hopes of all of Minerva IV. The Empire has already lost, they just don’t know it yet.\"</strong></p><p></p><h5>Also: Biker, Mech Pilot, Sky Pirate</h5><p></p><ul><li><p>Where did you learn to pilot? Is your teacher still alive?</p></li><li><p>How did you obtain your vehicle? Did you build it yourself? Did you inherit it?</p></li><li><p>What personal touch makes your vehicle stand out from the rest?</p></li><li><p>Who or what would you never allow aboard your vehicle?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.BpzqLw0tPg39wrUF]{Pilot}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.kMQH13lhWY4Mlbh8]{Compression Tech}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.BuqR9EZDFMn5lDGG]{Flexible Configuration}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.wGzSaXFjLlQIAAxk]{Personal Vehicle}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.rTqtsfBemOKLgWuN]{Strong Grip}</strong></p><p></p><h3>A PILOT'S VEHICLE</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.JtN1YEB5uhn9JMUG]{Vehicle Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.O0imCVrWFpJgpQ0b]{[Handout: Vehicle Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.wDGQGIEqFOYreyA6]{[Handout: Armor Modules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.QUtsK2Mh1gSqCb47]{[Handout: Support Modules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.zq0tEMif1Nrh8rxx]{[Handout: Weapon Modules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ZvzMIq1aj9Alanui]{[Handout: Other Rules]}</strong></p>"
       },
       "video": {
         "controls": true,
@@ -935,7 +935,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1719181946519,
-        "modifiedTime": 1719191783595,
+        "modifiedTime": 1719226536939,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.NdvzsNEBxQUorHpp"
@@ -952,7 +952,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><strong>\"Look at me, coward! Behold what your silence allowed them to create.\"</strong></p><p></p><h5><strong>Also: Abomination, Experiment, Lycanthrope</strong></h5><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.IgNtSZfLvEcUAcqA]{Mutant}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.7ZIT4N07zc2yWsre]{Akromorphosis}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.kpg23Fs85uniba2A]{Biophagy}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis}</strong></p><p></p><h3>THERIOFORMS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.cAQOA27jqgLEwKlt]{[Handout: Therioforms Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.9ww1Sa24R1VsLqgA]{[Handout: All Therioforms]}</strong></p>"
+        "content": "<p style=\"text-align:center\"><strong>\"Look at me, coward! Behold what your silence allowed them to create.\"</strong></p><p></p><h5><strong>Also: Abomination, Experiment, Lycanthrope</strong></h5><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.IgNtSZfLvEcUAcqA]{Mutant}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.7ZIT4N07zc2yWsre]{Akromorphosis}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.kpg23Fs85uniba2A]{Biophagy}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis}</strong></p><p></p><h3>THERIOFORMS</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.aXZh9r7OxySQ484p]{Therioforms Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.cAQOA27jqgLEwKlt]{[Handout: Therioform Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.9ww1Sa24R1VsLqgA]{[Handout: Therioform List]}</strong></p><p></p>"
       },
       "video": {
         "controls": true,
@@ -979,7 +979,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1719182306992,
-        "modifiedTime": 1719191685850,
+        "modifiedTime": 1719226505094,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.lWpMgTN24fJqU4U6"
@@ -996,7 +996,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><strong>\"Peace dictated by a single will is no peace at all: it is merely a form of submission.\"</strong></p><p></p><h5><strong>Also</strong>: Empath, Psion, Soul Hacker</h5><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.XxUUexPvdDjoieG2]{Esper}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.idQdS82bEICiB0zL]{Cognitive Focus}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.P0oD7KQA9ipYWU8o]{Hypercognition}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.51Ws5AS0aD5MTJRI]{Navigator}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.uiXJvj0qK0pVfnwY]{Psychic Gifts}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.eU0lW3S2AcGj8BoD]{Psychokinesis}</strong></p><p></p><h3>PSYCHIC GIFTS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.3wujzPJj4dyCUUHX]{[Handout: Psychic Gifts Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.mMeTN3919AnQFJrC]{[Handout: All Gifts]}</strong></p>"
+        "content": "<p style=\"text-align:center\"><strong>\"Peace dictated by a single will is no peace at all: it is merely a form of submission.\"</strong></p><p></p><h5><strong>Also</strong>: Empath, Psion, Soul Hacker</h5><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.XxUUexPvdDjoieG2]{Esper}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.idQdS82bEICiB0zL]{Cognitive Focus}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.P0oD7KQA9ipYWU8o]{Hypercognition}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.51Ws5AS0aD5MTJRI]{Navigator}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.uiXJvj0qK0pVfnwY]{Psychic Gifts}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.eU0lW3S2AcGj8BoD]{Psychokinesis}</strong></p><p></p><h3>PSYCHIC GIFTS</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.3wujzPJj4dyCUUHX]{[Handout: Psychic Gifts Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.mMeTN3919AnQFJrC]{[Handout: Psychic Gift List]}</strong></p><p></p>"
       },
       "video": {
         "controls": true,
@@ -1023,7 +1023,7 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1719182478386,
-        "modifiedTime": 1719192253976,
+        "modifiedTime": 1719226462761,
         "lastModifiedBy": "BwRsFvMHAq9vUtEO"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.lALTvRZ0c2AryoeY"
@@ -1035,7 +1035,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711296188058,
-    "modifiedTime": 1719192256039,
+    "modifiedTime": 1719226576756,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "X7BkcIjcgVSsMEWW",

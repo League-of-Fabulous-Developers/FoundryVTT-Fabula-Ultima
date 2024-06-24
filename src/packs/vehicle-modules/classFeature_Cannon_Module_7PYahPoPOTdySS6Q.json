@@ -2,7 +2,7 @@
   "folder": "BJhRf9J1K7HT9EQu",
   "name": "Cannon Module",
   "type": "classFeature",
-  "img": "modules/fabula-ultima-techno-fantasy/artwork/Weapon%20Modules/cannon_module.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/pistol.png",
   "system": {
     "summary": {
       "value": ""
@@ -42,7 +42,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711474376466,
-    "modifiedTime": 1719173179841,
+    "modifiedTime": 1719223181514,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "7PYahPoPOTdySS6Q",

@@ -2,7 +2,7 @@
   "folder": "hOHl36gua4Qp55SR",
   "name": "Magicannon (Fire)",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Magicannon/Magicannon%20(Fire).png",
+  "img": "systems/projectfu/styles/static/compendium/Magicannon/magicannon-fire.png",
   "system": {
     "source": {
       "value": "FUCR215"
@@ -94,7 +94,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707097873590,
-    "modifiedTime": 1719169810098,
+    "modifiedTime": 1719223023257,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "jHbcjw8RW9Ywesyu",

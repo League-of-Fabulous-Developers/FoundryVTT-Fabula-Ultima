@@ -1,7 +1,7 @@
 {
   "name": "Iron Hammer",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Iron%20Hammer.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/iron-hammer.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648965710,
-    "modifiedTime": 1719174801720,
+    "modifiedTime": 1719222808531,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "MgTLIL0OHNjazL4U",

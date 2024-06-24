@@ -107,6 +107,17 @@
 			}
 		},
 		{
+			"label": "Game Master",
+			"type": "Item",
+			"name": "game-master",
+			"path": "packs/vgame-master",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
 			"label": "Rollable Tables",
 			"type": "RollTable",
 			"name": "rollable-tables",
@@ -152,7 +163,7 @@
 			"name": "GM Tools",
 			"sorting": "a",
 			"color": "#831101",
-			"packs": ["rollable-tables"]
+			"packs": ["rollable-tables", "game-master"]
 		},
 		{
 			"name": "Journals",

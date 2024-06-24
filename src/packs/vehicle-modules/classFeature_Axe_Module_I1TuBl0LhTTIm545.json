@@ -2,7 +2,7 @@
   "folder": "BJhRf9J1K7HT9EQu",
   "name": "Axe Module",
   "type": "classFeature",
-  "img": "systems/projectfu/styles/static/compendium/Weapon%20Modules/Axe%20Module.png",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/axe-module.png",
   "system": {
     "summary": {
       "value": ""
@@ -42,7 +42,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711474298848,
-    "modifiedTime": 1719173839300,
+    "modifiedTime": 1719223086696,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "I1TuBl0LhTTIm545",

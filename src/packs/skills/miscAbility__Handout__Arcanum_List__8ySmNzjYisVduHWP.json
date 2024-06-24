@@ -1,8 +1,9 @@
 {
-  "folder": "6hLDMWrdgLLCVK8G",
-  "name": "[Handout: Therioforms Rules]",
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "[Handout: Arcanum List]",
   "type": "miscAbility",
-  "img": "icons/sundries/books/book-eye-red.webp",
+  "_id": "8ySmNzjYisVduHWP",
+  "img": "icons/creatures/magical/spirit-fire-orange.webp",
   "system": {
     "subtype": {
       "value": "other"
@@ -10,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h3>THERIOFORMS</h3><p>Therioforms are mutations that grant powerful abilities; the way they manifest on your character is completely up to you - <strong>Pterotheria</strong>, for instance, might turn you into a person-sized bat or simply give you feathered wings.</p><ul><li><p>Once you use the <strong>Theriomorphosis</strong> Skill, the chosen <strong>therioforms</strong> last until the end of the scene. They also end if you die or fall unconscious, perform the Guard action, or use the <strong>Theriomorphosis</strong> Skill again (this includes using it through <strong>Genoclepsis</strong>).</p></li><li><p>You may end the effects of your <strong>Theriomorphosis</strong> at any time, but during a conflict you can only do so on your turn, <strong>before or after</strong> an action.</p></li><li><p>When a scene ends, if you are under the effects of <strong>Theriomorphosis</strong>, you may spend <strong>@LOSS[10 mp]</strong> to extend your <strong>current therioforms</strong> to the next scene you will be in.</p></li></ul><h3>Theriforms</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.9ww1Sa24R1VsLqgA]{[Handout: All Therioforms]}</strong></p>",
+    "description": "<p><strong>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</strong></p>",
     "isFavored": {
       "value": false
     },
@@ -85,7 +86,7 @@
       "max": 6
     },
     "source": {
-      "value": "FUTF156"
+      "value": "FUCR179"
     },
     "rollInfo": {
       "useWeapon": {
@@ -127,26 +128,25 @@
     "defense": "def"
   },
   "effects": [],
-  "ownership": {
-    "default": 0,
-    "YN7AhHIwAZeH33Tw": 3,
-    "BwRsFvMHAq9vUtEO": 3
-  },
   "flags": {
+    "core": {},
     "projectfu-playtest": {
       "growthClock": false
-    },
-    "core": {}
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
-    "createdTime": 1711422481438,
-    "modifiedTime": 1719165842130,
+    "createdTime": 1710465708129,
+    "modifiedTime": 1719226232911,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
-  "_id": "cAQOA27jqgLEwKlt",
-  "sort": 100000,
-  "_key": "!items!cAQOA27jqgLEwKlt"
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!8ySmNzjYisVduHWP"
 }

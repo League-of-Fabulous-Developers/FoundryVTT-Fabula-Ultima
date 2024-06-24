@@ -1,7 +1,7 @@
 {
   "name": "Greatsword",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Greatsword.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/greatsword.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706649007862,
-    "modifiedTime": 1719174815972,
+    "modifiedTime": 1719222827707,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "ZhUOJC4AYqGtteQa",

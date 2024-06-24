@@ -1,7 +1,7 @@
 {
   "name": "Tome",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Tome.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/tome.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648474149,
-    "modifiedTime": 1719174700305,
+    "modifiedTime": 1719222649351,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "5M41BRhqgnUY1X8y",

@@ -2,7 +2,7 @@
   "folder": "BJhRf9J1K7HT9EQu",
   "name": "Shield Module",
   "type": "classFeature",
-  "img": "systems/projectfu/styles/static/compendium/Weapon%20Modules/Shield%20Module.png",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/shield-module.png",
   "system": {
     "summary": {
       "value": ""
@@ -42,7 +42,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711474486592,
-    "modifiedTime": 1719173944195,
+    "modifiedTime": 1719223504742,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "TWzSnTRW9frKW1CO",

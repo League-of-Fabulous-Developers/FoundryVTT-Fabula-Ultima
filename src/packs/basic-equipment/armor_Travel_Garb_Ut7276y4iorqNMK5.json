@@ -1,7 +1,7 @@
 {
   "name": "Travel Garb",
   "type": "armor",
-  "img": "systems/projectfu/styles/static/compendium/Armor/Travel%20Garb.png",
+  "img": "systems/projectfu/styles/static/compendium/Armor/travel-garb.png",
   "system": {
     "subtype": {
       "value": ""
@@ -73,7 +73,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706646301321,
-    "modifiedTime": 1719174391485,
+    "modifiedTime": 1719222947718,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "Ut7276y4iorqNMK5",

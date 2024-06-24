@@ -1,7 +1,7 @@
 {
   "name": "Pistol",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Pistol.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/pistol.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648575499,
-    "modifiedTime": 1719174780344,
+    "modifiedTime": 1719222769613,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "Mn8dvssoXj3cjGKw",

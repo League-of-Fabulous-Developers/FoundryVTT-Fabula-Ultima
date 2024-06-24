@@ -1,7 +1,7 @@
 {
   "name": "Waraxe",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Waraxe.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/waraxe.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648977152,
-    "modifiedTime": 1719174526785,
+    "modifiedTime": 1719222705760,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "uflwG9W4gIA9Iz0Q",

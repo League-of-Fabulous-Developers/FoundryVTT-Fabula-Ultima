@@ -1,7 +1,7 @@
 {
   "name": "Staff",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Staff.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/staff.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648302926,
-    "modifiedTime": 1719174715737,
+    "modifiedTime": 1719222626361,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "yPIyB7tBCD4ZVP4C",

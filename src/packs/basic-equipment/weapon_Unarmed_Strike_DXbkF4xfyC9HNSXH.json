@@ -1,7 +1,7 @@
 {
   "name": "Unarmed Strike",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Unarmed%20Strike.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/unarmed-strike.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648543764,
-    "modifiedTime": 1719174533189,
+    "modifiedTime": 1719222656287,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "DXbkF4xfyC9HNSXH",

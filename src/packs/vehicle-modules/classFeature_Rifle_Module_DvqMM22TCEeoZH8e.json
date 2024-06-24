@@ -2,7 +2,7 @@
   "folder": "BJhRf9J1K7HT9EQu",
   "name": "Rifle Module",
   "type": "classFeature",
-  "img": "systems/projectfu/styles/static/compendium/Weapon%20Modules/Rifle%20Module.png",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/rifle-module.png",
   "system": {
     "summary": {
       "value": ""
@@ -42,7 +42,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711474454209,
-    "modifiedTime": 1719173906381,
+    "modifiedTime": 1719223229356,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "DvqMM22TCEeoZH8e",

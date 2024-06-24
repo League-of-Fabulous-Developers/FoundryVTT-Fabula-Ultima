@@ -1,0 +1,137 @@
+{
+  "name": "Devastation",
+  "type": "spell",
+  "img": "icons/magic/fire/explosion-mushroom-nuke-yellow.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span class=\"fontstyle0\">Choose any number of creatures you can see: each of them suffers <strong>HR0 </strong>+ 30 </span><span class=\"fontstyle2\"><strong>(choose type) </strong></span><span class=\"fontstyle0\">damage. You may only cast this spell </span><span class=\"fontstyle2\"><strong>once per turn</strong></span><span class=\"fontstyle0\">. This spell should only be given to </span><span class=\"fontstyle2\"><strong>champion </strong></span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>elite </strong></span><span class=\"fontstyle0\">creatures </span><span class=\"fontstyle2\"><strong>level 30 or higher</strong></span><span class=\"fontstyle0\">, and said creatures can only cast this spell during their<strong> </strong></span><span class=\"fontstyle2\"><strong>last turn in the round</strong></span><span class=\"fontstyle0\">.</span></p><hr /><p><strong>@LOSS[30 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "class": {
+      "value": "NPC"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "mpCost": {
+      "value": "30"
+    },
+    "target": {
+      "value": "Special"
+    },
+    "duration": {
+      "value": "Instantaneous"
+    },
+    "isOffensive": {
+      "value": true
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "rollInfo": {
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": true
+        },
+        "type": {
+          "value": "untyped"
+        },
+        "value": 30
+      },
+      "useWeapon": {
+        "hrZero": {
+          "value": true
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR310"
+    },
+    "subtype": {},
+    "opportunity": ""
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": null
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1690417015023,
+    "modifiedTime": 1719224647253,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "folder": "PpBzAnM7EK75ayIT",
+  "_id": "32sA6nb1MVPzP8lc",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!32sA6nb1MVPzP8lc"
+}

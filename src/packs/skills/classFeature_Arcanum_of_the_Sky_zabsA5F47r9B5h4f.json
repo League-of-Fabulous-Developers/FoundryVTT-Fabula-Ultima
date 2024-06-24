@@ -3,7 +3,7 @@
   "name": "Arcanum of the Sky",
   "type": "classFeature",
   "_id": "zabsA5F47r9B5h4f",
-  "img": "systems/projectfu/styles/static/compendium/Arcanum/Arcanum%20of%20the%20Sky.png",
+  "img": "systems/projectfu/styles/static/compendium/arcanum/arcanum-of-the-sky.png",
   "system": {
     "summary": {
       "value": ""
@@ -69,7 +69,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710464043159,
-    "modifiedTime": 1719153969367,
+    "modifiedTime": 1719225618333,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "sort": 1200000,

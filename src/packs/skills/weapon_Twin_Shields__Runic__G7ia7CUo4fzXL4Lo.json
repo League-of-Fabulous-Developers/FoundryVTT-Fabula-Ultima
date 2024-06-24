@@ -2,7 +2,7 @@
   "folder": "rh1Z5dIGbWFOZSll",
   "name": "Twin Shields (Runic)",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Twin%20Shields/Twin%20Shields.png",
+  "img": "systems/projectfu/styles/static/compendium/twin-shields/twin-shields.png",
   "system": {
     "source": {
       "value": "FUCR196"
@@ -133,7 +133,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707628405753,
-    "modifiedTime": 1719164557115,
+    "modifiedTime": 1719225927959,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "G7ia7CUo4fzXL4Lo",

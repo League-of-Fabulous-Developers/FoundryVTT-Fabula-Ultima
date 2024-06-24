@@ -3,7 +3,7 @@
   "name": "Arcanum of the Tower",
   "type": "classFeature",
   "_id": "stLDj4YpAoyQFFid",
-  "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Tower.png",
+  "img": "systems/projectfu/styles/static/compendium/arcanum/arcanum-of-the-tower.png",
   "system": {
     "summary": {
       "value": ""
@@ -56,7 +56,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710464096011,
-    "modifiedTime": 1719130316250,
+    "modifiedTime": 1719225630619,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "sort": 1100000,

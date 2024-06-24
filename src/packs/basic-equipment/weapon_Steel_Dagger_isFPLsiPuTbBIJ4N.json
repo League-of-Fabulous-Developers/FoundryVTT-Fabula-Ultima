@@ -1,7 +1,7 @@
 {
   "name": "Steel Dagger",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Steel%20Dagger.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/steel-dagger.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648567819,
-    "modifiedTime": 1719174707621,
+    "modifiedTime": 1719222637998,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "isFPLsiPuTbBIJ4N",

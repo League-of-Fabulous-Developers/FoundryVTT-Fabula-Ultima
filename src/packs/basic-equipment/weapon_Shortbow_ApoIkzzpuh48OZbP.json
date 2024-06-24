@@ -1,7 +1,7 @@
 {
   "name": "Shortbow",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Shortbow.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/shortbow.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648536558,
-    "modifiedTime": 1719174766370,
+    "modifiedTime": 1719222759740,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "ApoIkzzpuh48OZbP",

@@ -1,7 +1,7 @@
 {
   "name": "Broadaxe",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Broadaxe.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/broadaxe.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648971619,
-    "modifiedTime": 1719174845643,
+    "modifiedTime": 1719222849821,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "Ndr43q7lAY3ZieSD",

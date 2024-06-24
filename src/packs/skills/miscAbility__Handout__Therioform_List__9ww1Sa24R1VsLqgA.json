@@ -1,6 +1,6 @@
 {
   "folder": "6hLDMWrdgLLCVK8G",
-  "name": "[Handout: All Therioforms]",
+  "name": "[Handout: Therioform List]",
   "type": "miscAbility",
   "img": "icons/sundries/books/book-eye-red.webp",
   "system": {
@@ -143,7 +143,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711423290912,
-    "modifiedTime": 1719172807935,
+    "modifiedTime": 1719226040035,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "9ww1Sa24R1VsLqgA",

@@ -3,7 +3,7 @@
   "name": "Arcanum of the Frost",
   "type": "classFeature",
   "_id": "TKOESZqheitutkKB",
-  "img": "systems/projectfu/styles/static/compendium/Arcanum/Arcanum%20of%20the%20Frost.png",
+  "img": "systems/projectfu/styles/static/compendium/Arcanum/arcanum-of-the-frost.png",
   "system": {
     "summary": {
       "value": ""
@@ -63,7 +63,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710463982993,
-    "modifiedTime": 1719132421102,
+    "modifiedTime": 1719225588973,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "sort": 600000,

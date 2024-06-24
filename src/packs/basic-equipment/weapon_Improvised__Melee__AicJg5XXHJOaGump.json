@@ -1,7 +1,7 @@
 {
   "name": "Improvised (Melee)",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Improvied%20-%20Melee.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/improvied-melee.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648554389,
-    "modifiedTime": 1719174810935,
+    "modifiedTime": 1719222819353,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "AicJg5XXHJOaGump",

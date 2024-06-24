@@ -1,7 +1,7 @@
 {
   "name": "Rapier",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Rapier.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/rapier.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706649018107,
-    "modifiedTime": 1719174772918,
+    "modifiedTime": 1719222765381,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "CgzOruOUPActk6gT",

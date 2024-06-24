@@ -1,7 +1,7 @@
 {
   "name": "Runic Plate",
   "type": "armor",
-  "img": "systems/projectfu/styles/static/compendium/Armor/Runic%20Plate.png",
+  "img": "systems/projectfu/styles/static/compendium/Armor/runic-plate.png",
   "system": {
     "subtype": {
       "value": ""
@@ -73,7 +73,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706646590065,
-    "modifiedTime": 1719174422243,
+    "modifiedTime": 1719222917841,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "WQOsQfBec08zOYgc",

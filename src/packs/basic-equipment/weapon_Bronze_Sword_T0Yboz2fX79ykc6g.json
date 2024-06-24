@@ -1,7 +1,7 @@
 {
   "name": "Bronze Sword",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Bronze%20Sword.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/bronze-sword.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706649002401,
-    "modifiedTime": 1719174837959,
+    "modifiedTime": 1719222845820,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "T0Yboz2fX79ykc6g",

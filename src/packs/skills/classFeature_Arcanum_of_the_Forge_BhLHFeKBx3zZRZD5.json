@@ -2,7 +2,7 @@
   "folder": "FyNc3kVrHbI4wz0q",
   "name": "Arcanum of the Forge",
   "type": "classFeature",
-  "img": "systems/projectfu/styles/static/compendium/Arcanum/Arcanum%20of%20the%20Forge.png",
+  "img": "systems/projectfu/styles/static/compendium/arcanum/arcanum-of-the-forge.png",
   "system": {
     "summary": {
       "value": ""
@@ -67,7 +67,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710029700564,
-    "modifiedTime": 1719132396100,
+    "modifiedTime": 1719225583615,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "BhLHFeKBx3zZRZD5",

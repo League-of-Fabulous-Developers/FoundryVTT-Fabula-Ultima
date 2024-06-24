@@ -1,7 +1,7 @@
 {
   "name": "Light Spear",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Weapons/Light%20Spear.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/light-spear.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,7 +89,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648984350,
-    "modifiedTime": 1719174742238,
+    "modifiedTime": 1719222775095,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "cnWRIdOdoWVxf8q2",
