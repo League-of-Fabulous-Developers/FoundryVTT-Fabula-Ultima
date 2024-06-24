@@ -1,7 +1,7 @@
 {
   "name": "Elemental Shard",
   "type": "consumable",
-  "img": "systems/projectfu/styles/static/compendium/Consumables/elemental-shard.png",
+  "img": "systems/projectfu/styles/static/compendium/consumables/elemental-shard.png",
   "system": {
     "subtype": {
       "value": "potion"
@@ -38,7 +38,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706516143319,
-    "modifiedTime": 1719222999259,
+    "modifiedTime": 1719259128314,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "00h8sKH3ktIFF5ei",

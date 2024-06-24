@@ -2,7 +2,7 @@
   "folder": "hOHl36gua4Qp55SR",
   "name": "Magicannon (Bolt)",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/Magicannon/magicannon-bolt.png",
+  "img": "systems/projectfu/styles/static/compendium/magicannon/magicannon-bolt.png",
   "system": {
     "source": {
       "value": "FUCR215"
@@ -94,7 +94,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707097873590,
-    "modifiedTime": 1719223017620,
+    "modifiedTime": 1719259587259,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "uuKKqm81klCOiDjO",

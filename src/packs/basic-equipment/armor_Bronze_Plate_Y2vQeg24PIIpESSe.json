@@ -1,7 +1,7 @@
 {
   "name": "Bronze Plate",
   "type": "armor",
-  "img": "systems/projectfu/styles/static/compendium/Armor/bronze-plate.png",
+  "img": "systems/projectfu/styles/static/compendium/armor/bronze-plate.png",
   "system": {
     "subtype": {
       "value": ""
@@ -73,7 +73,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706646537342,
-    "modifiedTime": 1719222907167,
+    "modifiedTime": 1719259728861,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "Y2vQeg24PIIpESSe",

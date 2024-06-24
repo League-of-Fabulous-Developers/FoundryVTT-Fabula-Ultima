@@ -1,7 +1,7 @@
 {
   "name": "Sage Robe",
   "type": "armor",
-  "img": "systems/projectfu/styles/static/compendium/Armor/sage-robe.png",
+  "img": "systems/projectfu/styles/static/compendium/armor/sage-robe.png",
   "system": {
     "subtype": {
       "value": ""
@@ -73,7 +73,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706646363915,
-    "modifiedTime": 1719222934580,
+    "modifiedTime": 1719259718241,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "7OuAqOQEwAhZyyJq",
