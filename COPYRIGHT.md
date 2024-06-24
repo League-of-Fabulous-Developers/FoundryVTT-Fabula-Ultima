@@ -76,25 +76,25 @@ Supplied game rules in the system compendium adhere to and are published under t
 
 [styles\static\compendium*]
 
-- **Pixeltier** - All art referenced in the system compendium are purchased from [Pixeltier](https://itch.io/s/39748/pixeltiers-complete-asset-bundle).
+- **Pixeltier** - All art referenced here are used in the system compendium and are purchased from [Pixeltier](https://itch.io/s/39748/pixeltiers-complete-asset-bundle).
 
-This icon pack may be used in whatever project you are working on.
+  This icon pack may be used in whatever project you are working on.
 
-You can:
+  You can:
 
-- ✔️ Use the icon pack in your free or commercial projects.
-- ✔️ Modify the assets.
-- ✔️ Credit Pixeltier in your game (optional but appreciated).
+  - ✔️ Use the icon pack in your free or commercial projects.
+  - ✔️ Modify the assets.
+  - ✔️ Credit Pixeltier in your game (optional but appreciated).
 
-You can’t:
+  You can’t:
 
-- ❌ Repackage, redistribute, or resell the assets in any way, even if you’ve heavily modified them.
+  - ❌ Repackage, redistribute, or resell the assets in any way, even if you’ve heavily modified them.
 
 ## Extra Icons
 
 [styles\static\icons]
 
-- Created by [Spyrella](https://github.com/spyrella '‌') under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en '‌')
+- Created by [Spyrella](https://github.com/spyrella '‌') under [CC0](https://creativecommons.org/public-domain/cc0/ '‌')
   - fus-sl-star.svg
   - ful-sl-star.svg
   - fus-star.svg
@@ -105,7 +105,7 @@ You can’t:
 
 [styles\static\compendium\Magic Tent.png]
 
-- Magic Tent.png icon from drak273 under No License
+- Magic Tent.png icon from drak273 under [CC0](https://creativecommons.org/public-domain/cc0/ '‌')
 
 ## Other
 

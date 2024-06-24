@@ -71,6 +71,9 @@ Major thanks to the following contributors:
 - [Shourn](https://github.com/Shourn) - Refactoring of code infrastructure, the establishment of the system data model, and implementing new features.
 - [Wigginns](https://github.com/Wigginns) - Various improvements (collapsible descriptions) & fixes.
 - [KzMz](https://github.com/KzMz) - Combat HUD.
+- drak273 - Assisted with system compendium setup and selection of item art.
+- nyxthegender (SPG: [Link](https://startplaying.games/gm/nyxthegender)) - Assisted with restructuring system compendium and setting up journal entries.
+
 - Special thanks to the following contributors found here: [Contributors Link](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/graphs/contributors)
 
 As well as the following localizers who translated the system to their respective language:
