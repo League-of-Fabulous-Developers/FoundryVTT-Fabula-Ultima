@@ -1,5 +1,5 @@
 {
-  "name": "Weapon Master",
+  "name": "Weaponmaster",
   "type": "class",
   "system": {
     "subtype": {
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706418412468,
-    "modifiedTime": 1719288827316,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1719340953264,
+    "lastModifiedBy": "B6evqtezy9ZsGZG3"
   },
   "ownership": {
     "default": 0,

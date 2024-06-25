@@ -602,7 +602,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"The wiser blade remains unsheathed.\"</strong></em></p><p></p><h5>Also: Fighter, Ronin, Warrior</h5><p></p><ul><li><p>What is your relationship with weapons? Are they mere objects, or something more?</p></li><li><p>Is battle something you seek, or something you strive to avoid?</p></li><li><p>Are you, or have you ever been, the servant of a Lady or Lord? What were they like?</p></li><li><p>What do your weapons and fighting style look like?</p><p></p></li></ul><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.kVSzbabb2AUviwnH]{Weapon Master}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.IhBCZsilt0bj5RJK]{Bladestorm}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.7jWycVYFgZ1BMxch]{Bone Crusher}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.WZDdQfw9VF64La2P]{Breach}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.XhcTVGtGEk7L2Ddq]{Counterattack}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ztxLYzo1ADCaRupR]{Melee Weapon Mastery}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"The wiser blade remains unsheathed.\"</strong></em></p><p></p><h5>Also: Fighter, Ronin, Warrior</h5><p></p><ul><li><p>What is your relationship with weapons? Are they mere objects, or something more?</p></li><li><p>Is battle something you seek, or something you strive to avoid?</p></li><li><p>Are you, or have you ever been, the servant of a Lady or Lord? What were they like?</p></li><li><p>What do your weapons and fighting style look like?</p><p></p></li></ul><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.kVSzbabb2AUviwnH]{Weaponmaster}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.IhBCZsilt0bj5RJK]{Bladestorm}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.7jWycVYFgZ1BMxch]{Bone Crusher}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.WZDdQfw9VF64La2P]{Breach}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.XhcTVGtGEk7L2Ddq]{Counterattack}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ztxLYzo1ADCaRupR]{Melee Weapon Mastery}</strong></p>"
       },
       "video": {
         "controls": true,
@@ -626,8 +626,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296523803,
-        "modifiedTime": 1719192181719,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1719340974122,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.6XscDSIkn5keSROm"
     },
@@ -1070,8 +1070,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711296188058,
-    "modifiedTime": 1719333403470,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1719340974122,
+    "lastModifiedBy": "B6evqtezy9ZsGZG3"
   },
   "_id": "X7BkcIjcgVSsMEWW",
   "sort": 0,
