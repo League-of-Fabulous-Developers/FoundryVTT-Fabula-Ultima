@@ -84,7 +84,7 @@
       }
     },
     "source": {
-      "value": "FUNM6"
+      "value": "FUAC6"
     },
     "hasResource": {
       "value": false
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1708940657180,
-    "modifiedTime": 1719185265315,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1719333481637,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "ngt7aBn7AykfzJDg",
   "sort": 0,
