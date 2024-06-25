@@ -1,7 +1,7 @@
 {
   "name": "Heroic Skills [CR]",
   "type": "Item",
-  "color": null,
+  "color": "#2b4a42",
   "folder": null,
   "_id": "z63bpKominWoy7Nw",
   "sorting": "a",
@@ -12,7 +12,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1719170698861,
-    "modifiedTime": 1719170713777,
+    "modifiedTime": 1719342088251,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_key": "!folders!z63bpKominWoy7Nw"
