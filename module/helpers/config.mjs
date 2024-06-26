@@ -439,3 +439,8 @@ FU.improvisedEffect = {
 	heavy: 'FU.ImprovisedEffectHeavy',
 	massive: 'FU.ImprovisedEffectMassive',
 };
+
+FU.duration = {
+	instantaneous: 'FU.Instantaneous',
+	scene: 'FU.Scene',
+};
