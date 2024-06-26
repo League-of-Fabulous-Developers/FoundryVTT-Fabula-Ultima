@@ -1033,6 +1033,7 @@
 		"AreaHuge": "Huge",
 		"ImprovisedEffectMinor": "Minor",
 		"ImprovisedEffectHeavy": "Heavy",
-		"ImprovisedEffectMassive": "Massive"
+		"ImprovisedEffectMassive": "Massive",
+		"CombatTokenWithoutActor": "Token does not represent an actor. Unable to add to combat."
 	}
 }
