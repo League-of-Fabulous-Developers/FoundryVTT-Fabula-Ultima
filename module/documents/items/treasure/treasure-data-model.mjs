@@ -1,3 +1,11 @@
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+
+Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+	if (item?.system instanceof TreasureDataModel) {
+		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+	}
+});
+
 /**
  * @property {string} subtype.value
  * @property {string} summary.value

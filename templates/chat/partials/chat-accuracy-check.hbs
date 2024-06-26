@@ -2,7 +2,7 @@
     <div class="accuracy-box">
         <span class="accuracy-title">{{localize 'FU.Accuracy'}}</span>
     </div>
-    <div class="accuracy-details">
+    <div class="accuracy-details" {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
         <span class="accuracy-detail-text">
           {{result.attr1}} <strong>({{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}}
             )</strong> +

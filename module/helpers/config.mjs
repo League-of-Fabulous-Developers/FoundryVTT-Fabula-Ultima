@@ -6,8 +6,11 @@ export const SYSTEM = 'projectfu';
 export const FU = {};
 
 /**
- * The set of Ability Scores used within the sytem.
- * @type {Object}
+ * The set of Ability Scores used within the system.
+ * @typedef {"dex", "ins", "mig", "wlp"} Attribute
+ */
+/**
+ * @type {Object<Attribute, string>}
  */
 FU.attributes = {
 	dex: 'FU.AttributeDex',
@@ -16,6 +19,9 @@ FU.attributes = {
 	wlp: 'FU.AttributeWlp',
 };
 
+/**
+ * @type {Object<Attribute, string>}
+ */
 FU.attributeAbbreviations = {
 	dex: 'FU.AttributeDexAbbr',
 	ins: 'FU.AttributeInsAbbr',
@@ -385,6 +391,24 @@ FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
 	zeropower: 'ITEM.TypeZeroPower',
 	none: 'FU.None',
 });
+
+/**
+ * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "initiative", "display"} CheckType
+ */
+/**
+ * @type {Object<CheckType, string>}
+ */
+FU.checkTypes = {
+	accuracy: 'FU.AccuracyCheck',
+	attribute: 'FU.AttributeCheck',
+	group: 'FU.GroupCheck',
+	magic: 'FU.MagicCheck',
+	open: 'FU.OpenCheck',
+	opposed: 'FU.OpposedCheck',
+	support: 'FU.SupportCheck',
+	initiative: 'FU.InitiativeCheck',
+	display: 'FU.DisplayItem',
+};
 
 FU.classFeatures = {};
 

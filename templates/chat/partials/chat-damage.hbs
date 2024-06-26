@@ -2,7 +2,7 @@
     <div class='damage-box'>
         <span class='damage-title'>{{localize 'FU.Damage'}}</span>
     </div>
-    <div class='damage-details'>
+    <div class='damage-details' {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
 		<span class='damage-detail-text'>
 			{{#if (not damage.hrZero)}}
                 {{#if (gte result.attr1 result.attr2)}}

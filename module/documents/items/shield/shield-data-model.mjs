@@ -1,6 +1,73 @@
-import { FU } from '../../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
 import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { SETTINGS } from '../../../settings.js';
+import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
+import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
+
+/**
+ * @param {Check} check
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallbackRegistration} registerCallback
+ */
+const prepareCheck = (check, actor, item, registerCallback) => {
+	if (check.type === 'accuracy' && item.system instanceof ShieldDataModel) {
+		check.primary = item.system.attributes.primary.value;
+		check.secondary = item.system.attributes.secondary.value;
+		check.modifiers.push({
+			label: 'FU.AccuracyCheckBaseAccuracy',
+			value: item.system.accuracy.value,
+		});
+
+		const configurer = AccuracyCheck.configure(check)
+			.setDamage(item.system.damageType.value, item.system.damage.value)
+			.setTargetedDefense(item.system.defense)
+			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
+
+		const attackTypeBonus = actor.system.bonuses.damage[item.system.type.value] ?? 0;
+		if (attackTypeBonus) {
+			configurer.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
+		}
+		const weaponCategoryBonus = actor.system.bonuses.damage[item.system.category.value] ?? 0;
+		if (weaponCategoryBonus) {
+			configurer.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
+		}
+	}
+};
+
+Hooks.on(CheckHooks.prepareCheck, prepareCheck);
+
+/**
+ * @param {CheckRenderData} data
+ * @param {CheckResultV2} result
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ */
+function onRenderCheck(data, result, actor, item) {
+	if (item && item.system instanceof ShieldDataModel) {
+		data.push(async () => ({
+			order: CHECK_DETAILS,
+			partial: 'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
+			data: {
+				weapon: {
+					category: item.system.category.value,
+					hands: item.system.hands.value,
+					type: item.system.type.value,
+					quality: item.system.quality.value,
+					summary: item.system.summary.value,
+					description: await TextEditor.enrichHTML(item.system.description),
+				},
+				collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
+			},
+		}));
+	}
+}
+
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @property {string} subtype.value
@@ -68,6 +135,18 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	transferEffects() {
-		return this.isEquipped.value;
+		return this.isEquipped.value && !this.parent.actor?.system.vehicle.weaponsActive;
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {Promise<void>}
+	 */
+	async roll(modifiers) {
+		if (this.isDualShield.value) {
+			return ChecksV2.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+		} else {
+			return ChecksV2.display(this.parent.actor, this.parent);
+		}
 	}
 }

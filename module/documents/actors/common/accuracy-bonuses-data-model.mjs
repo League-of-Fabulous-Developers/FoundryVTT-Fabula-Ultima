@@ -1,5 +1,7 @@
 /**
  * @property {number} accuracyCheck
+ * @property {number} accuracyMelee
+ * @property {number} accuracyRanged
  * @property {number} magicCheck
  * @property {number} opposedCheck
  * @property {number} openCheck
@@ -19,6 +21,8 @@ export class AccuracyBonusesDataModel extends foundry.abstract.DataModel {
 		const { NumberField } = foundry.data.fields;
 		return {
 			accuracyCheck: new NumberField({ initial: 0, integer: true, nullable: false }),
+			accuracyMelee: new NumberField({ initial: 0, integer: true, nullable: false }),
+			accuracyRanged: new NumberField({ initial: 0, integer: true, nullable: false }),
 			magicCheck: new NumberField({ initial: 0, integer: true, nullable: false }),
 			opposedCheck: new NumberField({ initial: 0, integer: true, nullable: false }),
 			openCheck: new NumberField({ initial: 0, integer: true, nullable: false }),

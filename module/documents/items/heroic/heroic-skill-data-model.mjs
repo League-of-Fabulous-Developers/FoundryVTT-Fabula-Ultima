@@ -3,6 +3,13 @@ import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mj
 import { DamageDataModel } from '../common/damage-data-model.mjs';
 import { ImprovisedDamageDataModel } from '../common/improvised-damage-data-model.mjs';
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+
+Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+	if (item?.system instanceof HeroicSkillDataModel) {
+		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+	}
+});
 
 /**
  * @property {string} subtype.value

@@ -1,7 +1,97 @@
-import { FU } from '../../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { WeaponMigrations } from './weapon-migrations.mjs';
 import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
 import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
+import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { SETTINGS } from '../../../settings.js';
+import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
+
+/**
+ * @param {Check} check
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallbackRegistration} registerCallback
+ */
+const prepareCheck = (check, actor, item, registerCallback) => {
+	if (check.type === 'accuracy' && item.system instanceof WeaponDataModel) {
+		check.primary = item.system.attributes.primary.value;
+		check.secondary = item.system.attributes.secondary.value;
+		const baseAccuracy = item.system.accuracy.value;
+		if (baseAccuracy) {
+			check.modifiers.push({
+				label: 'FU.AccuracyCheckBaseAccuracy',
+				value: baseAccuracy,
+			});
+		}
+		const category = item.system.category?.value;
+		if (category && actor.system.bonuses.accuracy[category]) {
+			check.modifiers.push({
+				label: `FU.AccuracyCheckBonus${category.capitalize()}`,
+				value: actor.system.bonuses.accuracy[category],
+			});
+		}
+
+		const attackType = item.system.type?.value;
+		if (attackType === 'melee' && actor.system.bonuses.accuracy.accuracyMelee) {
+			check.modifiers.push({
+				label: 'FU.AccuracyCheckBonusMelee',
+				value: actor.system.bonuses.accuracy.accuracyMelee,
+			});
+		} else if (attackType === 'ranged' && actor.system.bonuses.accuracy.accuracyRanged) {
+			check.modifiers.push({
+				label: 'FU.AccuracyCheckBonusRanged',
+				value: actor.system.bonuses.accuracy.accuracyRanged,
+			});
+		}
+
+		const configurer = AccuracyCheck.configure(check)
+			.setDamage(item.system.damageType.value, item.system.damage.value)
+			.setTargetedDefense(item.system.defense)
+			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
+
+		const attackTypeBonus = actor.system.bonuses.damage[item.system.type.value] ?? 0;
+		if (attackTypeBonus) {
+			configurer.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
+		}
+		const weaponCategoryBonus = actor.system.bonuses.damage[item.system.category.value] ?? 0;
+		if (weaponCategoryBonus) {
+			configurer.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
+		}
+	}
+};
+
+Hooks.on(CheckHooks.prepareCheck, prepareCheck);
+
+/**
+ * @param {CheckRenderData} data
+ * @param {CheckResultV2} result
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ */
+function onRenderCheck(data, result, actor, item) {
+	if (item && item.system instanceof WeaponDataModel) {
+		data.push(async () => ({
+			order: CHECK_DETAILS,
+			partial: 'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
+			data: {
+				weapon: {
+					category: item.system.category.value,
+					hands: item.system.hands.value,
+					type: item.system.type.value,
+					quality: item.system.quality.value,
+					summary: item.system.summary.value,
+					description: await TextEditor.enrichHTML(item.system.description),
+				},
+				collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
+			},
+		}));
+	}
+}
+
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @property {string} subtype.value
@@ -76,5 +166,13 @@ export class WeaponDataModel extends foundry.abstract.TypeDataModel {
 
 	transferEffects() {
 		return this.isEquipped.value && !this.parent.actor?.system.vehicle.weaponsActive;
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {Promise<void>}
+	 */
+	async roll(modifiers) {
+		return ChecksV2.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
 	}
 }

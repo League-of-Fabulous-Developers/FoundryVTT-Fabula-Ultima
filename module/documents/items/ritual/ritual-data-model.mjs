@@ -4,6 +4,18 @@ import { DamageDataModel } from '../common/damage-data-model.mjs';
 import { ImprovisedDamageDataModel } from '../common/improvised-damage-data-model.mjs';
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+
+Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+	if (item?.system instanceof RitualDataModel) {
+		sections.push(
+			item.createChatMessage(item, false).then((v) => {
+				check.additionalRolls.push(...v.rolls);
+				return { content: v.content };
+			}),
+		);
+	}
+});
 
 /**
  * @property {string} subtype.value

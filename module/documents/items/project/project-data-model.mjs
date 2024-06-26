@@ -1,5 +1,12 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+
+Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+	if (item?.system instanceof ProjectDataModel) {
+		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+	}
+});
 
 /**
  * @property {string} subtype.value

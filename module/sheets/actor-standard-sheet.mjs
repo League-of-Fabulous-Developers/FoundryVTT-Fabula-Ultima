@@ -1461,7 +1461,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 	/**
 	 * Handles clickable rolls based on different roll types.
-	 * @param {Event} event   The originating click event
+	 * @param {MouseEvent} event   The originating click event
 	 * @private
 	 */
 	_onRoll(event) {
@@ -1486,7 +1486,12 @@ export class FUStandardActorSheet extends ActorSheet {
 					if (settingPriority && this.actor?.type === 'npc') {
 						this._targetPriority();
 					}
-					return item.roll(isShift);
+					return item.roll({
+						shift: isShift,
+						alt: event.altKey,
+						ctrl: event.ctrlKey,
+						meta: event.metaKey,
+					});
 					// }
 				}
 			}
@@ -1532,7 +1537,13 @@ export class FUStandardActorSheet extends ActorSheet {
 			const item = sameSlotItems.find((i) => true);
 
 			// Check if the item exists and call its roll method
-			if (item) return item.roll(isShift);
+			if (item)
+				return item.roll({
+					shift: isShift,
+					alt: event.altKey,
+					ctrl: event.ctrlKey,
+					meta: event.metaKey,
+				});
 		}
 
 		// Handle affinity-type rolls

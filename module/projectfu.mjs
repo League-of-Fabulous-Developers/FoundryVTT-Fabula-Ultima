@@ -57,6 +57,8 @@ import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdow
 import { InlineEffects } from './helpers/inline-effects.mjs';
 import { SystemControls } from './helpers/system-controls.mjs';
 import { PlayerListEnhancements } from './helpers/player-list-enhancements.mjs';
+import { ChecksV2 } from './checks/checks-v2.mjs';
+import { CheckConfiguration } from './checks/check-configuration.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -66,6 +68,8 @@ globalThis.projectfu = {
 	SYSTEM,
 	Flags,
 	SystemControls,
+	ChecksV2,
+	CheckConfiguration,
 };
 
 /* -------------------------------------------- */
@@ -91,6 +95,8 @@ Hooks.once('init', async () => {
 		RollableClassFeatureDataModel,
 		OptionalFeatureDataModel,
 		RollableOptionalFeatureDataModel,
+		ChecksV2,
+		CheckConfiguration,
 	};
 
 	// Add custom constants for configuration.

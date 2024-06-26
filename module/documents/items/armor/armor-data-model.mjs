@@ -1,5 +1,12 @@
 import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
 import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+
+Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+	if (item?.system instanceof ArmorDataModel) {
+		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+	}
+});
 
 /**
  * @property {string} subtype.value

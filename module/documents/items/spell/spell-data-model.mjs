@@ -3,6 +3,69 @@ import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mj
 import { DamageDataModel } from '../common/damage-data-model.mjs';
 import { ImprovisedDamageDataModel } from '../common/improvised-damage-data-model.mjs';
 import { SpellMigrations } from './spell-migrations.mjs';
+import { MagicCheck } from '../../../checks/magic-check.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { SYSTEM } from '../../../helpers/config.mjs';
+import { SETTINGS } from '../../../settings.js';
+import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
+
+/**
+ * @param {Check} check
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallbackRegistration} registerCallback
+ */
+const prepareCheck = (check, actor, item, registerCallback) => {
+	if (check.type === 'magic' && item.system instanceof SpellDataModel) {
+		check.primary = item.system.attributes.primary.value;
+		check.secondary = item.system.attributes.secondary.value;
+		check.modifiers.push({
+			label: 'FU.MagicCheckBaseAccuracy',
+			value: item.system.accuracy.value,
+		});
+		const configurer = MagicCheck.configure(check)
+			.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
+			.setTargetedDefense('mdef')
+			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
+
+		const spellBonus = actor.system.bonuses.damage.spell;
+		if (spellBonus) {
+			configurer.addDamageBonus('FU.DamageBonusTypeSpell', spellBonus);
+		}
+	}
+};
+
+Hooks.on(CheckHooks.prepareCheck, prepareCheck);
+
+/**
+ * @param {CheckRenderData} data
+ * @param {CheckResultV2} result
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ */
+function onRenderCheck(data, result, actor, item) {
+	if (item && item.system instanceof SpellDataModel) {
+		data.push(async () => ({
+			order: CHECK_DETAILS,
+			partial: 'systems/projectfu/templates/chat/partials/chat-spell-details.hbs',
+			data: {
+				spell: {
+					duration: item.system.duration.value,
+					target: item.system.target.value,
+					mpCost: item.system.mpCost.value,
+					opportunity: item.system.opportunity,
+					summary: item.system.summary.value,
+					description: await TextEditor.enrichHTML(item.system.description),
+				},
+				collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
+			},
+		}));
+	}
+}
+
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @property {string} subtype.value
@@ -68,5 +131,17 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 	static migrateData(source) {
 		SpellMigrations.run(source);
 		return source;
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {Promise<void>}
+	 */
+	async roll(modifiers) {
+		if (this.hasRoll.value) {
+			return ChecksV2.magicCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+		} else {
+			return ChecksV2.display(this.parent.actor, this.parent);
+		}
 	}
 }

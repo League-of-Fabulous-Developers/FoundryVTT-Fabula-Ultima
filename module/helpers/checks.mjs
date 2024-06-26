@@ -147,6 +147,9 @@ import { FU, SYSTEM } from './config.mjs';
 import { SETTINGS } from '../settings.js';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { Flags } from './flags.mjs';
+import { ChecksV2 } from '../checks/checks-v2.mjs';
+import { CheckHooks } from '../checks/check-hooks.mjs';
+import { CheckConfiguration } from '../checks/check-configuration.mjs';
 
 /**
  *
@@ -747,6 +750,17 @@ export async function promptCheck(actor, title) {
 		recentActorChecks.difficulty = difficulty;
 		sessionStorage.setItem(KEY_RECENT_CHECKS, JSON.stringify(recentChecks));
 
+		if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
+			if (modifier) {
+				Hooks.once(CheckHooks.prepareCheck, (check) =>
+					check.modifiers.push({
+						value: modifier,
+						label: 'FU.CheckSituationalModifier',
+					}),
+				);
+			}
+			return ChecksV2.attributeCheck(actor, { primary: attr1, secondary: attr2 }, CheckConfiguration.initDifficulty(difficulty));
+		}
 		const speaker = ChatMessage.implementation.getSpeaker({ actor });
 
 		/**

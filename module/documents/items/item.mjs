@@ -4,6 +4,16 @@ import { RollableOptionalFeatureDataModel } from './optionalFeature/optional-fea
 import { Flags } from '../../helpers/flags.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { SOCKET } from '../../socket.mjs';
+import { SETTINGS } from '../../settings.js';
+import { ChecksV2 } from '../../checks/checks-v2.mjs';
+
+/**
+ * @typedef KeyboardModifiers
+ * @property {boolean} shift
+ * @property {boolean} alt
+ * @property {boolean} ctrl
+ * @property {boolean} meta
+ */
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -481,46 +491,6 @@ export class FUItem extends Item {
 		}
 	}
 
-	getItemString() {
-		const isValid = ['basic', 'weapon', 'shield', 'armor', 'accessory'];
-		const DEF = game.i18n.localize('FU.DefenseAbbr');
-		const MDEF = game.i18n.localize('FU.MagicDefenseAbbr');
-		const INIT = game.i18n.localize('FU.InitiativeAbbr');
-		const hasQualityValue = this.system.quality.value.trim() !== '';
-		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
-
-		function capitalizeFirst(string) {
-			return typeof string !== 'string' ? string : string.charAt(0).toUpperCase() + string.slice(1);
-		}
-
-		if (!isValid.includes(this.type)) {
-			return '';
-		}
-
-		let content = '';
-
-		if (['weapon', 'shield', 'armor', 'accessory'].includes(this.type)) {
-			content += `
-			<div class="detail-desc flex-group-center grid grid-3col">
-			  ${isWeaponOrShieldWithDual && this.system.category ? `<div>${capitalizeFirst(this.system.category.value)}</div>` : ''}
-			  ${isWeaponOrShieldWithDual && this.system.hands ? `<div>${capitalizeFirst(this.system.hands.value)}</div>` : ''}
-			  ${isWeaponOrShieldWithDual && this.system.type ? `<div>${capitalizeFirst(this.system.type.value)}</div>` : ''}
-			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${DEF} ${this.system.def.value}</div>` : ''}
-			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${MDEF} ${this.system.mdef.value}</div>` : ''}
-			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${INIT} ${this.system.init.value}</div>` : ''}
-			</div>`;
-
-			if (hasQualityValue) {
-				content += `
-				<div class="detail-desc flexrow flex-group-center" style="padding: 0 2px;">
-				  <div>Quality: ${this.system.quality.value}</div>
-				</div>`;
-			}
-		}
-
-		return content;
-	}
-
 	getQualityString() {
 		const validTypes = ['basic', 'weapon', 'shield', 'armor', 'accessory'];
 		if (!validTypes.includes(this.type)) {
@@ -689,12 +659,15 @@ export class FUItem extends Item {
 
 	/**
 	 * Handle clickable rolls.
-	 * @param {Event} event The originating click event.
-	 * @private
+	 * @param {KeyboardModifiers} modifiers
 	 */
-	async roll(isShift) {
+	async roll(modifiers = { shift: false, alt: false, ctrl: false, meta: false }) {
+		const isShift = modifiers.shift;
 		if (this.system.showTitleCard?.value) {
 			SOCKET.executeForEveryone('use', this.name);
+		}
+		if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
+			return this.handleCheckV2(modifiers);
 		}
 		if (this.type === 'weapon') {
 			return this.rollWeapon(isShift);
@@ -735,20 +708,7 @@ export class FUItem extends Item {
 
 		// Check if there's no roll data
 		if (!system.formula) {
-			const chatdesc = item.getDescriptionString();
-			const [attackData, rolls] = await item.getRollString(isShift);
-			const spellString = item.getSpellDataString();
-			const ritualString = item.getRitualDataString();
-			const projectString = item.getProjectDataString();
-			const heroicString = item.getHeroicDataString();
-			const zeroString = item.getZeroDataString();
-			const qualityString = item.getQualityString();
-
-			const attackString = Array.isArray(attackData) ? attackData.join('<br /><br />') : attackData;
-
-			// Prepare the content by filtering and joining various parts.
-			let content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
-			content = `<div data-item-id="${item.id}">${content}</div>`;
+			let { rolls, content } = await this.createChatMessage(item, isShift);
 
 			// if (['consumable'].includes(type) {}
 
@@ -773,6 +733,36 @@ export class FUItem extends Item {
 				flavor: label,
 			});
 			return roll;
+		}
+	}
+
+	async createChatMessage(item, isShift) {
+		const chatdesc = item.getDescriptionString();
+		const [attackData, rolls] = await item.getRollString(isShift);
+		const spellString = item.getSpellDataString();
+		const ritualString = item.getRitualDataString();
+		const projectString = item.getProjectDataString();
+		const heroicString = item.getHeroicDataString();
+		const zeroString = item.getZeroDataString();
+		const qualityString = item.getQualityString();
+
+		const attackString = Array.isArray(attackData) ? attackData.join('<br /><br />') : attackData;
+
+		// Prepare the content by filtering and joining various parts.
+		let content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
+		content = `<div data-item-id="${item.id}">${content}</div>`;
+		return { rolls, content };
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {Promise<undefined>}
+	 */
+	async handleCheckV2(modifiers) {
+		if (this.system.roll instanceof Function) {
+			return this.system.roll(modifiers);
+		} else {
+			return ChecksV2.display(this.actor, this);
 		}
 	}
 
@@ -1064,12 +1054,12 @@ export class FUItem extends Item {
 				...effect.changes.map((change) => {
 					const c = foundry.utils.deepClone(change);
 					c.effect = effect;
-					c.priority = c.priority ?? c.mode * 10;
+					c.order = c.priority ?? c.mode * 10;
 					return c;
 				}),
 			);
 		}
-		changes.sort((a, b) => a.priority - b.priority);
+		changes.sort((a, b) => a.order - b.order);
 
 		// Apply all changes
 		for (let change of changes) {

@@ -4,6 +4,7 @@ import { toggleStatusEffect } from '../../helpers/effects.mjs';
 /**
  * Extend the base Actor document by defining a custom roll data structure
  * @extends {Actor}
+ * @property {CharacterDataModel | NpcDataModel} system
  */
 export class FUActor extends Actor {
 	/** @override */

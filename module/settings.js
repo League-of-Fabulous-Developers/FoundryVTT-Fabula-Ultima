@@ -40,6 +40,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
+	checksV2: 'checksV2',
 });
 
 export const registerSystemSettings = async function () {
@@ -447,6 +448,14 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
 		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
 		scope: 'client',
+		config: true,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.checksV2, {
+		name: game.i18n.localize('FU.SettingChecksV2'),
+		hint: game.i18n.localize('FU.SettingChecksV2Hint'),
 		config: true,
 		type: Boolean,
 		default: true,

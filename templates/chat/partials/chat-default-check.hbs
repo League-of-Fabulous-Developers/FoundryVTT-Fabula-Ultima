@@ -18,7 +18,8 @@
     </div>
 {{/if}}
 <div class='detail-desc flexrow' style='padding:0 2px'>
-    <div class='spin2win'><i class='fas fa-dice-d20 ra-2x rollable'></i>
+    <div class='spin2win' {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
+        <i class='fas fa-dice-d20 ra-2x rollable'></i>
         {{#if result.modifier}}
             Modifier:
             {{result.modifier}}
