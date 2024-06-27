@@ -1075,6 +1075,12 @@
 		"DamageBonusCategoryThrown": "Thrown Damage Bonus",
 		"CheckSituationalModifier": "Situational Modifier",
 		"GroupCheckSupportCheckBonus": "Support Checks Bonus",
-		"GroupCheckSupportCheckStrongestBondBonus": "Strongest Bond Bonus"
+		"GroupCheckSupportCheckStrongestBondBonus": "Strongest Bond Bonus",
+		"ChatContextOppose": "Oppose Check",
+		"OpposedCheckBonusGeneric": "Generic Opposed Check Bonus",
+		"OpposedCheckDetailsActors": "<b>{opposingActor}</b> is opposing <b>{sourceActor}</b>",
+		"OpposedCheckDetailsSourceResult": "Result to beat: <b>{result}</b>",
+		"OpposedCheckWinner": "Winner: <b>{winner}</b>",
+		"OpposedCheckDraw": "Draw"
 	}
 }

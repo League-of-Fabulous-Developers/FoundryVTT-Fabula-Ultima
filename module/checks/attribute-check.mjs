@@ -31,6 +31,7 @@ const onRenderCheck = (data, checkResult, actor, item) => {
 					},
 				},
 				difficulty: inspector.getDifficulty(),
+				modifiers: checkResult.modifiers,
 			},
 		});
 	}

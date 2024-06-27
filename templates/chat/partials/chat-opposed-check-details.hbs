@@ -1,0 +1,22 @@
+<div class='detail-desc flexrow flex-group-center' style='padding: 0 2px; margin-top: 1em'>
+    <div class="flexcol">
+        <div>
+		<span class='result-text'>
+            {{{localize 'FU.OpposedCheckDetailsActors' sourceActor=source opposingActor=opponent}}}
+        </span>
+        </div>
+        <div>
+        <span class='result-text'>
+            {{#unless (or fumble critical)}}
+                {{{localize 'FU.OpposedCheckDetailsSourceResult' result=result}}}
+            {{/unless}}
+            {{#if fumble}}
+                {{{localize 'FU.OpposedCheckDetailsSourceResult' result=(localize 'FU.Fumble')}}}
+            {{/if}}
+            {{#if critical}}
+                {{{localize 'FU.OpposedCheckDetailsSourceResult' result=(localize 'FU.Critical')}}}
+            {{/if}}
+        </span>
+        </div>
+    </div>
+</div>
