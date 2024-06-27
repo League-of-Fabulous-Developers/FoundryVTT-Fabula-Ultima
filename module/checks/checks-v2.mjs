@@ -13,6 +13,7 @@ import { CheckReroll } from './check-reroll.mjs';
 import { AccuracyCheck } from './accuracy-check.mjs';
 import { MagicCheck } from './magic-check.mjs';
 import { SpecialResults } from './special-results.mjs';
+import { Support } from './support/support.mjs';
 
 /**
  * @param {FUActor} actor
@@ -419,3 +420,4 @@ SpecialResults.initialize();
 AccuracyCheck.initialize();
 AttributeCheck.initialize();
 MagicCheck.initialize();
+Support.initialize();
