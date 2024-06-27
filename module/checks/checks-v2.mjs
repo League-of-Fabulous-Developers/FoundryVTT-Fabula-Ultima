@@ -46,17 +46,11 @@ const attributeCheck = async (actor, attributes, configCallback) => {
 
 /**
  * @param {FUActor} actor
- * @param {CheckAttributes} attributes
+ * @param {CheckAttributes | CheckId} attributesOrId
  * @param {CheckCallback} [configCallback]
  */
-const groupCheck = async (actor, attributes, configCallback) => {
-	const check = {
-		type: 'group',
-		primary: attributes.primary,
-		secondary: attributes.secondary,
-	};
-
-	return performCheck(check, actor, null, configCallback);
+const groupCheck = async (actor, attributesOrId, configCallback) => {
+	throw new Error('Not yet implemented');
 };
 
 /**

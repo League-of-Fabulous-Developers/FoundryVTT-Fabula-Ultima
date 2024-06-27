@@ -1,39 +1,6 @@
 import { FU, SYSTEM } from './config.mjs';
 import { Flags } from './flags.mjs';
 import { createCheckMessage, rollCheck } from './checks.mjs';
-import { SETTINGS } from '../settings.js';
-import { ChecksV2 } from '../checks/checks-v2.mjs';
-import { CheckConfiguration } from '../checks/check-configuration.mjs';
-import { CheckHooks } from '../checks/check-hooks.mjs';
-import { CHECK_ROLL } from '../checks/default-section-order.mjs';
-
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor) => {
-	if (check.type === 'group' || check.type === 'initiative') {
-		const inspector = CheckConfiguration.inspect(check);
-		sections.push({
-			order: CHECK_ROLL,
-			partial: 'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
-			data: {
-				result: {
-					attr1: check.primary.result,
-					attr2: check.secondary.result,
-					modifier: check.modifierTotal,
-					total: check.result,
-				},
-				check: {
-					attr1: {
-						attribute: check.primary.attribute,
-					},
-					attr2: {
-						attribute: check.secondary.attribute,
-					},
-				},
-				difficulty: inspector.getDifficulty(),
-				modifiers: check.modifiers,
-			},
-		});
-	}
-});
 
 /**
  * @typedef Supporter
@@ -89,10 +56,6 @@ async function handleSupportCheck(groupCheck) {
 	if (groupCheck.supporters.find((supporter) => supporter.id === character.id)) {
 		ui.notifications.error('FU.GroupCheckAlreadySupported', { localize: true });
 		return;
-	}
-
-	if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
-		return ChecksV2.supportCheck(character, groupCheck.id);
 	}
 
 	const bonds = (character.system.resources.bonds ?? [])
@@ -435,102 +398,40 @@ export class GroupCheck extends Application {
 		}
 		Hooks.off('renderChatMessage', this.#hookId);
 		if (options.roll) {
-			if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
-				this.#rollCheckV2();
-			} else {
-				/** @type GroupCheckFlag */
-				const flag = this.groupCheckData;
-				const { attr1, attr2 } = flag.attributes;
-				const successfulSupports = flag.supporters.filter((value) => value.result);
-				let leader = game.actors.get(flag.leader);
-				const {
-					system: { attributes, derived },
-				} = leader;
-				/**
-				 * @type {CheckParameters}
-				 */
-				const check = {
-					check: {
-						attr1: {
-							attribute: attr1,
-							dice: attributes[attr1].current,
-						},
-						attr2: {
-							attribute: attr2,
-							dice: attributes[attr2].current,
-						},
-						modifier: flag.initiative ? derived.init.value + successfulSupports.length : successfulSupports.length,
-						bonus: successfulSupports.reduce((biggestBond, currentValue) => Math.max(biggestBond, currentValue.bond?.length ?? 0), 0),
-						title: flag.initiative ? 'FU.InitiativeCheck' : 'FU.GroupRollCheck',
+			/** @type GroupCheckFlag */
+			const flag = this.groupCheckData;
+			const { attr1, attr2 } = flag.attributes;
+			const successfulSupports = flag.supporters.filter((value) => value.result);
+			let leader = game.actors.get(flag.leader);
+			const {
+				system: { attributes, derived },
+			} = leader;
+			/**
+			 * @type {CheckParameters}
+			 */
+			const check = {
+				check: {
+					attr1: {
+						attribute: attr1,
+						dice: attributes[attr1].current,
 					},
-					difficulty: flag.difficulty.check,
-					speaker: ChatMessage.implementation.getSpeaker({ actor: leader }),
-				};
-				await createCheckMessage(await rollCheck(check));
-				this.groupCheckData = { ...flag, status: 'completed' };
-			}
+					attr2: {
+						attribute: attr2,
+						dice: attributes[attr2].current,
+					},
+					modifier: flag.initiative ? derived.init.value + successfulSupports.length : successfulSupports.length,
+					bonus: successfulSupports.reduce((biggestBond, currentValue) => Math.max(biggestBond, currentValue.bond?.length ?? 0), 0),
+					title: flag.initiative ? 'FU.InitiativeCheck' : 'FU.GroupRollCheck',
+				},
+				difficulty: flag.difficulty.check,
+				speaker: ChatMessage.implementation.getSpeaker({ actor: leader }),
+			};
+			await createCheckMessage(await rollCheck(check));
+			this.groupCheckData = { ...flag, status: 'completed' };
 		} else {
 			this.groupCheckData = { ...this.groupCheckData, status: 'canceled' };
 		}
 		await super.close(options);
-	}
-
-	#rollCheckV2() {
-		const flag = this.groupCheckData;
-		const leader = game.actors.get(flag.leader);
-		ChecksV2.groupCheck(
-			leader,
-			{
-				primary: flag.attributes.attr1,
-				secondary: flag.attributes.attr2,
-			},
-			(check) => {
-				check.id = flag.id;
-
-				if (flag.initiative) {
-					check.type = 'initiative';
-					check.modifiers.push({
-						label: 'FU.InitiativeBonus',
-						value: leader.system.derived.init.value,
-					});
-				}
-
-				CheckConfiguration.configure(check).setDifficulty(flag.difficulty.check);
-
-				flag.supporters
-					.filter((value) => value.result)
-					.forEach((value) =>
-						check.modifiers.push({
-							label: game.i18n.format('FU.GroupCheckSupportCheckBonus', { actor: game.actors.get(value.id).name }),
-							value: 1,
-						}),
-					);
-
-				const strongestBond = flag.supporters
-					.filter((value) => value.result)
-					.reduce((agg, curr) => {
-						if (agg) {
-							if (!curr.result || agg.bond.length >= curr.bond.length) {
-								return agg;
-							} else {
-								return curr;
-							}
-						} else {
-							if (curr.result) {
-								return curr;
-							} else {
-								return null;
-							}
-						}
-					});
-
-				check.modifiers.push({
-					label: game.i18n.format('FU.GroupCheckSupportCheckStrongestBondBonus', { actor: game.actors.get(strongestBond.id).name }),
-					value: strongestBond.bond.length,
-				});
-			},
-		);
-		this.groupCheckData = { ...flag, status: 'completed' };
 	}
 
 	#synchronize() {
