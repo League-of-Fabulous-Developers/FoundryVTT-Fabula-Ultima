@@ -72,10 +72,10 @@
       "value": "40"
     },
     "target": {
-      "value": "Surrendered PC"
+      "value": "Special"
     },
     "duration": {
-      "value": "Instantaneous"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": false
@@ -130,7 +130,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710549080835,
-    "modifiedTime": 1719161667025,
+    "modifiedTime": 1719444713007,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_key": "!items!xp65Fb9BoQuEN6hC"

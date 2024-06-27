@@ -77,7 +77,7 @@
       "value": "Special"
     },
     "duration": {
-      "value": "Instantaneous"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": false
@@ -131,7 +131,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706571324381,
-    "modifiedTime": 1719161665307,
+    "modifiedTime": 1719435195419,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "sort": 0,

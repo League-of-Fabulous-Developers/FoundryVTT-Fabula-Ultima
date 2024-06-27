@@ -467,4 +467,5 @@ FU.improvisedEffect = {
 FU.duration = {
 	instantaneous: 'FU.Instantaneous',
 	scene: 'FU.Scene',
+	special: 'FU.Special',
 };

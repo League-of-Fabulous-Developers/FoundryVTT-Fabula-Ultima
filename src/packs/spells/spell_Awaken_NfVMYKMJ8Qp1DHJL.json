@@ -77,7 +77,7 @@
       "value": "One creature"
     },
     "duration": {
-      "value": "Scene"
+      "value": "scene"
     },
     "isOffensive": {
       "value": false
@@ -131,7 +131,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706572044662,
-    "modifiedTime": 1719161667025,
+    "modifiedTime": 1719435265414,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "sort": 400000,

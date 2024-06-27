@@ -77,7 +77,7 @@
       "value": "Up to three creatures"
     },
     "duration": {
-      "value": "Instantaneous"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": true
@@ -131,7 +131,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706565033495,
-    "modifiedTime": 1719160074886,
+    "modifiedTime": 1719433035314,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "sort": 0,

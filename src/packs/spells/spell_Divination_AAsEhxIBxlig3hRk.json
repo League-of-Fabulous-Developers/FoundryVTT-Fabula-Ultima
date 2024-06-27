@@ -77,7 +77,7 @@
       "value": "Self"
     },
     "duration": {
-      "value": "Scene"
+      "value": "scene"
     },
     "isOffensive": {
       "value": false
@@ -131,7 +131,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706570972318,
-    "modifiedTime": 1719161665307,
+    "modifiedTime": 1719435181203,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "sort": 0,

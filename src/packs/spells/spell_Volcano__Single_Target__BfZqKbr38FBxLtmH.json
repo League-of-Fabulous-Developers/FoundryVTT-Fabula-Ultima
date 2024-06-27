@@ -75,7 +75,7 @@
       "value": "One Creature"
     },
     "duration": {
-      "value": "Instantaneous"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": true
@@ -130,7 +130,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710548265766,
-    "modifiedTime": 1719160074886,
+    "modifiedTime": 1719433150175,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_key": "!items!BfZqKbr38FBxLtmH"

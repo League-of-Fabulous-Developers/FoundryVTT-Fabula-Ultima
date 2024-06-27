@@ -74,7 +74,7 @@
       "value": "Any creature you can see"
     },
     "duration": {
-      "value": "Instantaneous"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": true
@@ -129,7 +129,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710548265766,
-    "modifiedTime": 1719160074886,
+    "modifiedTime": 1719433148267,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO"
   },
   "_id": "Tp1aelw8OYtmPpQi",
