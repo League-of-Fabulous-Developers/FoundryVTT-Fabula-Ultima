@@ -115,7 +115,7 @@
     "hasRoll": {
       "value": true
     },
-    "opportunity": "Opportunity: Each flying target hit by this spell is forced to land immediately."
+    "opportunity": "Each flying target hit by this spell is forced to land immediately."
   },
   "effects": [],
   "ownership": {

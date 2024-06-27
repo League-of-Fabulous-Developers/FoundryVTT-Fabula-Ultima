@@ -115,7 +115,7 @@
     "hasRoll": {
       "value": true
     },
-    "opportunity": "Opportunity: Each target hit by this spell suffers shaken."
+    "opportunity": "Each target hit by this spell suffers shaken."
   },
   "effects": [],
   "ownership": {

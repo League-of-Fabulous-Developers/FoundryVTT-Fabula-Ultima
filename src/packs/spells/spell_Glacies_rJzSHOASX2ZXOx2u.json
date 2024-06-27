@@ -115,7 +115,7 @@
     "hasRoll": {
       "value": true
     },
-    "opportunity": "Opportunity: Each target hit by this spell suffers slow."
+    "opportunity": "Each target hit by this spell suffers slow."
   },
   "effects": [],
   "ownership": {
