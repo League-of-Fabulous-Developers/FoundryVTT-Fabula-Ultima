@@ -26,6 +26,7 @@ import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs'
  * @property {number} resources.ip.value
  * @property {number} resources.ip.bonus
  * @property {number} resources.fp.value
+ * @property {string} resources.pronouns.name
  * @property {AffinitiesDataModel} affinities
  * @property {AttributesDataModel} attributes
  * @property {number} derived.init.value
@@ -84,6 +85,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 				}),
 				fp: new SchemaField({ value: new NumberField({ initial: 3, min: 0, integer: true, nullable: false }) }),
 				bonds: new ArrayField(new EmbeddedDataField(BondDataModel, {})),
+				pronouns: new SchemaField({ name: new StringField() }),
 			}),
 			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
 			attributes: new EmbeddedDataField(AttributesDataModel, {}),

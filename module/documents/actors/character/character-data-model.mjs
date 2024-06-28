@@ -44,10 +44,10 @@ function heroicMpBenefits(dataModel) {
  * @property {number} resources.fp.value
  * @property {BondDataModel[]} resources.bonds
  * @property {number} resources.exp.value
- * @property {string} resources.identity.value
- * @property {string} resources.pronouns.value
- * @property {string} resources.theme.value
- * @property {string} resources.origin.value
+ * @property {string} resources.identity.name
+ * @property {string} resources.pronouns.name
+ * @property {string} resources.theme.name
+ * @property {string} resources.origin.name
  * @property {AffinitiesDataModel} affinities
  * @property {AttributesDataModel} attributes
  * @property {DerivedValuesDataModel} derived
