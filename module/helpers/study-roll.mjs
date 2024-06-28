@@ -214,10 +214,9 @@ async function handleStudyRollCallback(app, actor, studyValue) {
 				return '';
 			}
 
-			const filteredItems = items.filter((item) => ['basic', 'weapon', 'spell'].includes(item.type));
+			const filteredItems = items.filter((item) => ['basic', 'weapon'].includes(item.type));
 			let basicItems = '';
 			let weaponItems = '';
-			let spellItems = '';
 
 			filteredItems.forEach((item) => {
 				const name = item.name;
@@ -241,12 +240,40 @@ async function handleStudyRollCallback(app, actor, studyValue) {
                 <td>${damageType}</td>
                 <td>${description}</td>
                 <td>${qualText} ${opporText}</td>
-
-            </tr>`;
+                </tr>`;
 
 				if (item.type === 'basic') basicItems += itemRow;
 				else if (item.type === 'weapon') weaponItems += itemRow;
 				else if (item.type === 'spell') spellItems += itemRow;
+			});
+
+			const spells = items.filter((item) => item.type === 'spell');
+			let spellItems = '';
+			spells.forEach((item) => {
+				const name = item.name;
+				const damage = item.system.rollInfo.damage?.value ? `【${game.i18n.localize(`FU.HighRollAbbr`)} + ${item.system.rollInfo.damage.value}】` : '';
+				const damageType = damage ? `<strong>${game.i18n.localize(`FU.Damage${item.system.rollInfo.damage.type.value.toLowerCase().capitalize()}`)}</strong>` : '-';
+				const primaryAttribute = item.system.rollInfo.attributes?.primary?.value.toUpperCase();
+				const secondaryAttribute = item.system.rollInfo.attributes?.secondary?.value.toUpperCase();
+				const attributesDisplay =
+					primaryAttribute && secondaryAttribute
+						? `【${game.i18n.localize(`FU.Attribute${primaryAttribute.toLowerCase().capitalize()}Abbr`)} + ${game.i18n.localize(`FU.Attribute${secondaryAttribute.toLowerCase().capitalize()}Abbr`)}】`
+						: '';
+				const accuracy = item.system.rollInfo.accuracy?.value ? `${attributesDisplay}+ ${item.system.accuracy.value}` : attributesDisplay;
+				const description = item.system.description || '';
+				const qualText = item.system.quality?.value || '';
+				const opporText = item.system?.opportunity || '';
+
+				const itemRow = `<tr>
+                <td><strong>${name}</strong></td>
+                <td><strong>${accuracy}</strong></td>
+                <td><strong>${damage}</strong></td>
+                <td>${damageType}</td>
+                <td>${description}</td>
+                <td>${qualText} ${opporText}</td>
+                </tr>`;
+
+				spellItems += itemRow;
 			});
 
 			return `<div class="hard-info">

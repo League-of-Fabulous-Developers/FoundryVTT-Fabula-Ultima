@@ -1081,6 +1081,7 @@
 		"OpposedCheckDetailsActors": "<b>{opposingActor}</b> is opposing <b>{sourceActor}</b>",
 		"OpposedCheckDetailsSourceResult": "Result to beat: <b>{result}</b>",
 		"OpposedCheckWinner": "Winner: <b>{winner}</b>",
-		"OpposedCheckDraw": "Draw"
+		"OpposedCheckDraw": "Draw",
+		"DamageUntyped": "Untyped"
 	}
 }
