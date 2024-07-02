@@ -1,3 +1,6 @@
+import { SYSTEM } from '../helpers/config.mjs';
+import { Flags } from '../helpers/flags.mjs';
+
 const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
 const DIFFICULTY = 'difficulty';
@@ -168,10 +171,13 @@ class CheckConfigurer {
 }
 
 /**
- * @param {Check, CheckResultV2} check
+ * @param {Check, CheckResultV2, ChatMessage} check
  * @return {CheckInspector}
  */
 const inspect = (check) => {
+	if (check instanceof ChatMessage) {
+		check = check.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+	}
 	return new CheckInspector(check);
 };
 

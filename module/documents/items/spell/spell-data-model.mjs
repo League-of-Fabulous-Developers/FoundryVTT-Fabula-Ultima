@@ -19,8 +19,8 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
  */
 const prepareCheck = (check, actor, item, registerCallback) => {
 	if (check.type === 'magic' && item.system instanceof SpellDataModel) {
-		check.primary = item.system.attributes.primary.value;
-		check.secondary = item.system.attributes.secondary.value;
+		check.primary = item.system.rollInfo.attributes.primary.value;
+		check.secondary = item.system.rollInfo.attributes.secondary.value;
 		check.modifiers.push({
 			label: 'FU.MagicCheckBaseAccuracy',
 			value: item.system.accuracy.value,

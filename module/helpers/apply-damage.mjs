@@ -1,5 +1,7 @@
 import { FU, SYSTEM } from './config.mjs';
 import { Flags } from './flags.mjs';
+import { ChecksV2 } from '../checks/checks-v2.mjs';
+import { CheckConfiguration } from '../checks/check-configuration.mjs';
 
 export function registerChatInteraction() {
 	Hooks.on('renderChatMessage', attachDamageApplicationHandler);
@@ -19,14 +21,51 @@ function attachDamageApplicationHandler(message, jQuery) {
 		jQuery.find(`a[data-action=applyDamage]`).click(async function (event) {
 			if (!disabled) {
 				disabled = true;
-				await handleDamageApplication(check, message, {
-					alt: event.altKey,
-					ctrl: event.ctrlKey || event.metaKey,
-					shift: event.shiftKey,
-				});
+				const targets = getTargets();
+				if (targets) {
+					const { total = 0, type: damageType } = check.damage;
+					return applyDamage(
+						targets,
+						damageType,
+						total,
+						{
+							alt: event.altKey,
+							ctrl: event.ctrlKey || event.metaKey,
+							shift: event.shiftKey,
+						},
+						check.details.name,
+					);
+				}
 				disabled = false;
 			}
 		});
+	}
+
+	if (ChecksV2.isCheck(message)) {
+		const damage = CheckConfiguration.inspect(message).getDamage();
+		if (damage) {
+			let disabled = false;
+			jQuery.find(`a[data-action=applyDamage]`).click(async function (event) {
+				if (!disabled) {
+					disabled = true;
+					const targets = getTargets();
+					if (targets) {
+						await applyDamage(
+							targets,
+							damage.type,
+							damage.total,
+							{
+								alt: event.altKey,
+								ctrl: event.ctrlKey || event.metaKey,
+								shift: event.shiftKey,
+							},
+							message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name,
+						);
+					}
+					disabled = false;
+				}
+			});
+		}
 	}
 }
 
@@ -107,22 +146,15 @@ export async function applyDamage(targets, damageType, total, modifiers, sourceN
 	return Promise.all(updates);
 }
 
-/**
- * @param {CheckParameters} check
- * @param {ChatMessage} message
- * @param {ClickModifiers} modifiers
- * @return {Promise}
- */
-async function handleDamageApplication(check, message, modifiers) {
+function getTargets() {
 	const targets = canvas.tokens.controlled.map((value) => value.document.actor).filter((value) => value);
 	if (!targets.length) {
 		if (game.user.character) {
 			targets.push(game.user.character);
 		} else {
 			ui.notifications.warn('FU.ChatApplyDamageNoActorsSelected', { localize: true });
-			return;
+			return null;
 		}
 	}
-	const { total = 0, type: damageType } = check.damage;
-	return applyDamage(targets, damageType, total, modifiers, check.details.name);
+	return targets;
 }

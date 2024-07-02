@@ -340,7 +340,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 				},
 			},
 			foundry.utils.mergeObject(additionalFlags, flags, { overwrite: false }),
-			{ overwrite: false },
+			{ overwrite: false, recursive: true },
 		),
 	};
 

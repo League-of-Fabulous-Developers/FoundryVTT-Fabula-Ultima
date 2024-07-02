@@ -98,6 +98,7 @@ function processCheck(check, actor, item) {}
  * @param {CheckResultV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]
+ * @param {Object} additionalFlags
  */
 // eslint-disable-next-line no-unused-vars
-function renderCheck(sections, check, actor, item) {}
+function renderCheck(sections, check, actor, item, additionalFlags) {}

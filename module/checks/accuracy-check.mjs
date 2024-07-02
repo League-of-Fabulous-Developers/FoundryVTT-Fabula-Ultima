@@ -1,8 +1,9 @@
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_DAMAGE, CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
-import { FU } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
+import { Flags } from '../helpers/flags.mjs';
 
 /**
  * @typedef TargetData
@@ -91,8 +92,9 @@ const onProcessCheck = (check, actor, item) => {
  * @param {CheckResultV2} checkResult
  * @param {FUActor} actor
  * @param {FUItem} [item]
+ * @param {Object} flags
  */
-function onRenderCheck(data, checkResult, actor, item) {
+function onRenderCheck(data, checkResult, actor, item, flags) {
 	const { type, primary, modifierTotal, secondary, result, modifiers } = checkResult;
 
 	if (type === 'accuracy') {
@@ -172,6 +174,8 @@ function onRenderCheck(data, checkResult, actor, item) {
 				}
 			}
 		}
+
+		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();
 	}
 }
 
