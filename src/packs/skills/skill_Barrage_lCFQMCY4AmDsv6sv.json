@@ -3,7 +3,7 @@
   "name": "Barrage",
   "type": "skill",
   "_id": "lCFQMCY4AmDsv6sv",
-  "img": "icons/skills/ranged/arrows-flying-salvo-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_barrage.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706506734196,
-    "modifiedTime": 1719168406738,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812757727,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 100000,
   "_key": "!items!lCFQMCY4AmDsv6sv"

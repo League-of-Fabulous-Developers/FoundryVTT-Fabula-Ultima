@@ -1,0 +1,212 @@
+{
+  "folder": "6gTO70HUAzfEfLY2",
+  "name": "Melee Weapon Mastery",
+  "type": "skill",
+  "img": "icons/skills/melee/weapons-crossed-swords-pink.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Weaponmaster"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR219"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def"
+  },
+  "effects": [
+    {
+      "icon": "icons/skills/melee/weapons-crossed-swords-pink.webp",
+      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.I5IuMtOaPji0mAVi",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Melee Weapon Mastery",
+      "_id": "Sks7cSsjFlEgMg53",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.arcane",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.brawling",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.dagger",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.flail",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.heavy",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.spear",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.sword",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p><strong>Effect:</strong> <span class=\"fontstyle0\"><strong>【</strong></span><span class=\"fontstyle1\"><strong>SL</strong></span><span class=\"fontstyle0\"><strong>】 </strong>bonus to <strong>Accuracy Checks</strong> with <strong>melee </strong>weapons.</span></p></li></ul>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": null,
+      "_key": "!items.effects!QcTHEWL3xEos1UyO.Sks7cSsjFlEgMg53"
+    }
+  ],
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706514138632,
+    "modifiedTime": 1712061991295,
+    "lastModifiedBy": "YN7AhHIwAZeH33Tw"
+  },
+  "_id": "QcTHEWL3xEos1UyO",
+  "sort": 0,
+  "_key": "!items!QcTHEWL3xEos1UyO"
+}

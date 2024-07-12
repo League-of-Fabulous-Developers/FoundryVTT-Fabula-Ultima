@@ -3,7 +3,7 @@
   "name": "Bladestorm",
   "type": "skill",
   "_id": "IhBCZsilt0bj5RJK",
-  "img": "icons/skills/melee/swords-triple-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_bladestorm.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706514077118,
-    "modifiedTime": 1719168422163,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813370579,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 100000,
   "_key": "!items!IhBCZsilt0bj5RJK"

@@ -71,7 +71,7 @@
       "value": "FUCR198"
     }
   },
-  "img": "icons/sundries/books/book-open-purple.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster.png",
   "effects": [],
   "folder": null,
   "flags": {
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706416470290,
-    "modifiedTime": 1719165416520,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808261183,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

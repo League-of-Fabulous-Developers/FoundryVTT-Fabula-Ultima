@@ -71,7 +71,7 @@
       "value": "FUCR203"
     }
   },
-  "img": "icons/weapons/daggers/knife-kitchen-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue.png",
   "effects": [],
   "folder": null,
   "flags": {
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706419959470,
-    "modifiedTime": 1719168651565,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808321103,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

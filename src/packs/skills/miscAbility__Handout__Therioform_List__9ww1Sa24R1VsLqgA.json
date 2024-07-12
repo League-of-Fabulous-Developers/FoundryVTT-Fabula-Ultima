@@ -2,7 +2,7 @@
   "folder": "6hLDMWrdgLLCVK8G",
   "name": "[Handout: Therioform List]",
   "type": "miscAbility",
-  "img": "icons/sundries/books/book-eye-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_teriomorphosis.png",
   "system": {
     "subtype": {
       "value": "other"
@@ -143,8 +143,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711423290912,
-    "modifiedTime": 1719226040035,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720815445439,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "9ww1Sa24R1VsLqgA",
   "sort": 0,

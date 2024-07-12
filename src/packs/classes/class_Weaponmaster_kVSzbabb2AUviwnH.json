@@ -71,7 +71,7 @@
       "value": "FUCR218"
     }
   },
-  "img": "icons/skills/melee/weapons-crossed-swords-purple.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster.png",
   "effects": [],
   "folder": null,
   "flags": {
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706418412468,
-    "modifiedTime": 1719340953264,
-    "lastModifiedBy": "B6evqtezy9ZsGZG3"
+    "modifiedTime": 1720808382584,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

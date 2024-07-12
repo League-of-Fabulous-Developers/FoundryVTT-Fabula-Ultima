@@ -71,7 +71,7 @@
       "value": "FUCR194"
     }
   },
-  "img": "icons/weapons/axes/axe-crooked-crystal-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/fury/fury.png",
   "effects": [],
   "folder": null,
   "flags": {
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706417489590,
-    "modifiedTime": 1719164360280,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808230678,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

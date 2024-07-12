@@ -3,7 +3,7 @@
   "name": "Heart of Darkness",
   "type": "skill",
   "_id": "e6ids95gOPher40d",
-  "img": "icons/magic/life/heart-cross-purple-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_heart_of_darkness.png",
   "system": {
     "subtype": {
       "value": ""
@@ -163,8 +163,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706496883354,
-    "modifiedTime": 1719154626378,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810253961,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,
   "_key": "!items!e6ids95gOPher40d"

@@ -71,7 +71,7 @@
       "value": "FUCR210"
     }
   },
-  "img": "icons/magic/symbols/cog-orange-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer.png",
   "effects": [],
   "folder": null,
   "flags": {
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706416691918,
-    "modifiedTime": 1719172391082,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808364347,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

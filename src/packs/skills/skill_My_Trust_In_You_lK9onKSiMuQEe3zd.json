@@ -3,7 +3,7 @@
   "name": "My Trust In You",
   "type": "skill",
   "_id": "lK9onKSiMuQEe3zd",
-  "img": "icons/skills/social/diplomacy-handshake.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_my_trust_in_you.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504129588,
-    "modifiedTime": 1719170964660,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812396787,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!lK9onKSiMuQEe3zd"

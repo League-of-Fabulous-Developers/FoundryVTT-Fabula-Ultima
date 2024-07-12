@@ -2,7 +2,7 @@
   "folder": "laGyUtQnXPDC2pZG",
   "name": "Magic Artillery",
   "type": "skill",
-  "img": "icons/weapons/staves/staff-engraved-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_magical_artillery.png",
   "system": {
     "subtype": {
       "value": ""
@@ -170,8 +170,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706497996319,
-    "modifiedTime": 1719160056108,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810359474,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "b5zzfsWN7h5ugrnW",
   "sort": 300000,

@@ -3,7 +3,7 @@
   "name": "Siren's Song",
   "type": "skill",
   "_id": "huB2uoP2PAHoOp8T",
-  "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_sirens_song.png",
   "system": {
     "subtype": {
       "value": ""
@@ -132,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706551707225,
-    "modifiedTime": 1719154985470,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720809877452,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!huB2uoP2PAHoOp8T"
 }

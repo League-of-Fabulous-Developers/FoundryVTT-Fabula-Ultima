@@ -3,7 +3,7 @@
   "name": "Frenzy",
   "type": "skill",
   "_id": "oi2LgAoLN5IyuBG3",
-  "img": "icons/skills/wounds/injury-face-impact-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_frenzy.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706502388707,
-    "modifiedTime": 1719164181640,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811286347,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 200000,
   "_key": "!items!oi2LgAoLN5IyuBG3"

@@ -74,7 +74,7 @@ Supplied game rules in the system compendium adhere to and are published under t
 
 ## Compendium Assets
 
-[styles\static\compendium*]
+[styles\static\compendium\ *]  - Refer to art-reference-master-list.txt for reference master list.
 
 - **Pixeltier** - All art referenced here are used in the system compendium and are purchased from [Pixeltier](https://itch.io/s/39748/pixeltiers-complete-asset-bundle).
 
@@ -90,6 +90,18 @@ Supplied game rules in the system compendium adhere to and are published under t
 
   - ❌ Repackage, redistribute, or resell the assets in any way, even if you’ve heavily modified them.
 
+[styles\static\compendium\classes\ *]
+
+**Javier Aumente (Tarot)** (**Email:** <jaauvel@gmail.com>) - A majority of the pixel art found in this folder was provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.
+
+[styles\static\compendium\consumables\magic-tent.png]
+
+- magic-tent.png icon from **drak273** under [CC0](https://creativecommons.org/public-domain/cc0/ '‌')
+
+[styles\static\compendium\weapons\iron-knuckle.png]
+
+- iron-knuckle.png icon from **RubenE** (**Social:** @/only_ruben_draw) with explicit permission to use for ProjectFU project.
+
 ## Extra Icons
 
 [styles\static\icons]
@@ -102,10 +114,6 @@ Supplied game rules in the system compendium adhere to and are published under t
 - Created by [Shourn](https://github.com/Shourn '‌') under [CC0](https://creativecommons.org/public-domain/cc0/)
   - fus-star2.svg
   - fus-star2-border.svg
-
-[styles\static\compendium\Magic Tent.png]
-
-- Magic Tent.png icon from drak273 under [CC0](https://creativecommons.org/public-domain/cc0/ '‌')
 
 ## Other
 

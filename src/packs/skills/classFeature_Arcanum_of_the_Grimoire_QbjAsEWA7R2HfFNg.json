@@ -3,7 +3,7 @@
   "name": "Arcanum of the Grimoire",
   "type": "classFeature",
   "_id": "QbjAsEWA7R2HfFNg",
-  "img": "systems/projectfu/styles/static/compendium/arcanum/arcanum-of-the-grimoire.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-grimoire.png",
   "system": {
     "summary": {
       "value": ""
@@ -63,8 +63,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710464015009,
-    "modifiedTime": 1719225602726,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813523945,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,
   "ownership": {

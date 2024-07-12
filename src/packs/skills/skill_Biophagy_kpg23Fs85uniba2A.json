@@ -2,7 +2,7 @@
   "folder": "ADSrT7dY3syrqW73",
   "name": "Biophagy",
   "type": "skill",
-  "img": "icons/magic/control/debuff-energy-hold-yellow.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_biophagy.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -151,8 +151,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711429218464,
-    "modifiedTime": 1719165640551,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812264054,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "kpg23Fs85uniba2A",
   "sort": 0,

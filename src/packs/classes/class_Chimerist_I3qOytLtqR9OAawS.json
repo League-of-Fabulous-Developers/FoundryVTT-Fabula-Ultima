@@ -1,7 +1,7 @@
 {
   "name": "Chimerist",
   "type": "class",
-  "img": "icons/creatures/abilities/paw-print-yellow.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist.png",
   "system": {
     "subtype": {
       "value": ""
@@ -87,8 +87,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706437323799,
-    "modifiedTime": 1719159136641,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808093359,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "I3qOytLtqR9OAawS",
   "sort": 1000000,

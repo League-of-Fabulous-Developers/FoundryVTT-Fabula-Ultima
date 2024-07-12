@@ -3,7 +3,7 @@
   "name": "High Speed",
   "type": "skill",
   "_id": "tiu0D74YNxirN6Tr",
-  "img": "icons/skills/movement/feet-winged-sandals-tan.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_high_speed.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504755033,
-    "modifiedTime": 1719168607223,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812702654,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 300000,
   "_key": "!items!tiu0D74YNxirN6Tr"

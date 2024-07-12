@@ -2,7 +2,7 @@
   "folder": "6hLDMWrdgLLCVK8G",
   "name": "[Handout: Therioform Rules]",
   "type": "miscAbility",
-  "img": "icons/sundries/books/book-eye-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_teriomorphosis.png",
   "system": {
     "subtype": {
       "value": "other"
@@ -143,8 +143,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711422481438,
-    "modifiedTime": 1719226055131,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720815453319,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "cAQOA27jqgLEwKlt",
   "sort": 100000,

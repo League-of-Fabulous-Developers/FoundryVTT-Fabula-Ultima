@@ -2,7 +2,7 @@
   "folder": "yCXSZM7ZMwwwYKhA",
   "name": "[Handout: Weapon Modules]",
   "type": "miscAbility",
-  "img": "icons/commodities/tech/levers-colored.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_personal_vehicle.png",
   "system": {
     "subtype": {
       "value": "other"
@@ -143,8 +143,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711431619011,
-    "modifiedTime": 1719168012941,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812613677,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "zq0tEMif1Nrh8rxx",
   "sort": 0,

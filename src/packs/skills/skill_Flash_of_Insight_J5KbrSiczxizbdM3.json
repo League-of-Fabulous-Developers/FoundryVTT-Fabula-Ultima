@@ -3,7 +3,7 @@
   "name": "Flash of Insight",
   "type": "skill",
   "_id": "J5KbrSiczxizbdM3",
-  "img": "icons/sundries/documents/document-symbol-skull-tan.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_flash_of_insight.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706487096304,
-    "modifiedTime": 1719165426843,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811980828,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!J5KbrSiczxizbdM3"

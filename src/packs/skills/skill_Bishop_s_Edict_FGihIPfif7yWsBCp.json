@@ -3,7 +3,7 @@
   "name": "Bishop's Edict",
   "type": "skill",
   "_id": "FGihIPfif7yWsBCp",
-  "img": "icons/sundries/gaming/chess-bishop-gray.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_bishops_edict.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706555501421,
-    "modifiedTime": 1719156433496,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810088661,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!FGihIPfif7yWsBCp"

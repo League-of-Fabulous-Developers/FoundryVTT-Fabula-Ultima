@@ -3,7 +3,7 @@
   "name": "Knowledge Is Power",
   "type": "skill",
   "_id": "XNAHXFdVPKiABegZ",
-  "img": "icons/sundries/documents/document-official-capital.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_knowledge_is_power.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706487511681,
-    "modifiedTime": 1719165186749,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811994738,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!XNAHXFdVPKiABegZ"

@@ -1,0 +1,99 @@
+{
+  "folder": "vsRiR5VfAOG3CwZh",
+  "name": "Twin Shields",
+  "type": "weapon",
+  "img": "icons/equipment/shield/heater-steel-segmented-purple.webp",
+  "system": {
+    "source": {
+      "value": "FUCR196"
+    },
+    "summary": {
+      "value": ""
+    },
+    "category": {
+      "value": "brawling"
+    },
+    "hands": {
+      "value": "one-handed"
+    },
+    "type": {
+      "value": "melee"
+    },
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "isMartial": {
+      "value": false
+    },
+    "isCustomWeapon": {
+      "value": false
+    },
+    "quality": {
+      "value": "Deals extra damage equal to your【SL】in defensive mastery (above)."
+    },
+    "cost": {
+      "value": 100
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "damage": {
+      "value": 5
+    },
+    "subtype": {},
+    "description": "",
+    "isEquipped": {
+      "value": false
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1707628405753,
+    "modifiedTime": 1714824886733,
+    "lastModifiedBy": "B6evqtezy9ZsGZG3"
+  },
+  "_id": "WlR40kRhk6vfc5Xv",
+  "sort": 0,
+  "_key": "!items!WlR40kRhk6vfc5Xv"
+}

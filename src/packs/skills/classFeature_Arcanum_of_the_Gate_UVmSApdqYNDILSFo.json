@@ -3,7 +3,7 @@
   "name": "Arcanum of the Gate",
   "type": "classFeature",
   "_id": "UVmSApdqYNDILSFo",
-  "img": "systems/projectfu/styles/static/compendium/arcanum/arcanum-of-the-gate.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-gate.png",
   "system": {
     "summary": {
       "value": ""
@@ -69,8 +69,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710463996976,
-    "modifiedTime": 1719225596106,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813516479,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 700000,
   "ownership": {

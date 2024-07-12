@@ -3,7 +3,7 @@
   "name": "Spiritual Magic",
   "type": "skill",
   "_id": "dwVQpxDTOZeNbcjy",
-  "img": "icons/sundries/books/book-red-cross.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_spiritual_magic.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706507930339,
-    "modifiedTime": 1719163543308,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812826611,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 300000,
   "_key": "!items!dwVQpxDTOZeNbcjy"

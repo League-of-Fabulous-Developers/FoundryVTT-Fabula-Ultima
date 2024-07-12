@@ -1,7 +1,7 @@
 {
   "name": "Navigator",
   "type": "skill",
-  "img": "icons/magic/control/silhouette-grow-shrink-tan.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_navigator.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -130,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711424945464,
-    "modifiedTime": 1719163694654,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810721728,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "51Ws5AS0aD5MTJRI",
   "sort": 100000,

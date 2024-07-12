@@ -3,7 +3,7 @@
   "name": "Mirage",
   "type": "skill",
   "_id": "mqwu1cSVPhWdT2Mt",
-  "img": "icons/magic/perception/orb-crystal-ball-scrying-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_mirages.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706563070199,
-    "modifiedTime": 1719159763066,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812895604,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!mqwu1cSVPhWdT2Mt"

@@ -1,7 +1,7 @@
 {
   "name": "Commander",
   "type": "class",
-  "img": "icons/sundries/gaming/chess-knight-white-glass.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/commander/commander.png",
   "system": {
     "subtype": {
       "value": ""
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706516915910,
-    "modifiedTime": 1719159230278,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808110321,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

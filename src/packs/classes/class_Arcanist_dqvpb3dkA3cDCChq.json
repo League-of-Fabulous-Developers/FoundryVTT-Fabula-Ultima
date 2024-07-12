@@ -71,7 +71,7 @@
       "value": "FUCR176"
     }
   },
-  "img": "icons/creatures/magical/spirit-fire-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist.png",
   "effects": [],
   "folder": null,
   "flags": {
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706417334170,
-    "modifiedTime": 1719172588315,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808074261,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

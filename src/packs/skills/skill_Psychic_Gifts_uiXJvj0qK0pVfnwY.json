@@ -1,13 +1,13 @@
 {
   "name": "Psychic Gifts",
   "type": "skill",
-  "img": "icons/magic/control/hypnosis-mesmerism-eye-tan.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_psychic_gifts.png",
   "system": {
     "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<div class=\"stackedit__html\"><p>Each time you take this Skill, you gain a <strong>@UUID[Compendium.fabula-ultima-techno-fantasy.techno-fantasy-skills.Item.mMeTN3919AnQFJrC]{gift}</strong>. The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p></div>",
+    "description": "<div class=\"stackedit__html\"><p>Each time you take this Skill, you gain a <strong>gift</strong> (see<strong> @UUID[Compendium.projectfu.skills.Item.mMeTN3919AnQFJrC]{[Handout: Psychic Gift List]}</strong>). The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p></div>",
     "isFavored": {
       "value": false
     },
@@ -130,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711424945464,
-    "modifiedTime": 1719163694654,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720815943899,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "uiXJvj0qK0pVfnwY",
   "sort": 0,

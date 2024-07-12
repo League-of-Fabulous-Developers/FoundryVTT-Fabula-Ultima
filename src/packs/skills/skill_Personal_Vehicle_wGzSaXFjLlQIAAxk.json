@@ -2,13 +2,13 @@
   "folder": "rU6K693IIfEXLUXW",
   "name": "Personal Vehicle",
   "type": "skill",
-  "img": "icons/commodities/tech/cog-gold.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_personal_vehicle.png",
   "system": {
     "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<div class=\"stackedit__html\"><p>When you acquire this Skill, you gain a <strong>personal vehicle</strong> with a <strong>frame</strong> of your choice and <strong>three different modules</strong> of your choice (see<strong> @UUID[Compendium.fabula-ultima-techno-fantasy.techno-fantasy-handouts.JournalEntry.Hox1fYpNIbaBuZIj]{Modules}</strong>)</p><p>Whenever you acquire this Skill again, you acquire <strong>two additional modules</strong> of your choice.</p></div>",
+    "description": "<div class=\"stackedit__html\"><p>When you acquire this Skill, you gain a <strong>personal vehicle</strong> with a <strong>frame</strong> of your choice and <strong>three different modules</strong> of your choice (see<strong> @UUID[Compendium.projectfu.handouts.JournalEntry.JtN1YEB5uhn9JMUG]{Vehicle Rules}</strong>)</p><p>Whenever you acquire this Skill again, you acquire <strong>two additional modules</strong> of your choice.</p></div>",
     "isFavored": {
       "value": false
     },
@@ -130,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711431286236,
-    "modifiedTime": 1719168012941,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812582939,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "wGzSaXFjLlQIAAxk",
   "sort": 0,

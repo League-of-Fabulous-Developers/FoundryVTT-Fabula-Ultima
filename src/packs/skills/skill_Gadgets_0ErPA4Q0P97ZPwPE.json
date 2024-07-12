@@ -3,7 +3,7 @@
   "name": "Gadgets",
   "type": "skill",
   "_id": "0ErPA4Q0P97ZPwPE",
-  "img": "icons/commodities/tech/blueprint.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer_gadgets.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706508711403,
-    "modifiedTime": 1719169385943,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813207292,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!0ErPA4Q0P97ZPwPE"

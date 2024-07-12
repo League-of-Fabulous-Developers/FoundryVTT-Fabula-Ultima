@@ -71,7 +71,7 @@
       "value": "FUCR216"
     }
   },
-  "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/wayfarer/wayfarer.png",
   "effects": [],
   "folder": null,
   "flags": {
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706420441002,
-    "modifiedTime": 1719288862828,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808371892,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

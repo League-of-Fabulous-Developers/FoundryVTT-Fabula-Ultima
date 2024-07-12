@@ -2,7 +2,7 @@
   "folder": "jAg187YJhvEkI5uc",
   "name": "[Handout: Symbol Rules]",
   "type": "miscAbility",
-  "img": "icons/tools/hand/brush-paint-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_symbolism.png",
   "system": {
     "subtype": {
       "value": "other"
@@ -146,8 +146,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706573669651,
-    "modifiedTime": 1719225987566,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813156062,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "E0m9ZsyQ5HG8k77Y",
   "sort": 700000,

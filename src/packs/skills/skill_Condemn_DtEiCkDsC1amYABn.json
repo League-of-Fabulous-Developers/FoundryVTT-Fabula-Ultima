@@ -3,7 +3,7 @@
   "name": "Condemn",
   "type": "skill",
   "_id": "DtEiCkDsC1amYABn",
-  "img": "icons/creatures/magical/spirit-fear-energy-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_condemn.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504101200,
-    "modifiedTime": 1719171006936,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812383889,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!DtEiCkDsC1amYABn"

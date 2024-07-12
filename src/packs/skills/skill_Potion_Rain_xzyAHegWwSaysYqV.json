@@ -3,7 +3,7 @@
   "name": "Potion Rain",
   "type": "skill",
   "_id": "xzyAHegWwSaysYqV",
-  "img": "icons/skills/toxins/poison-bottle-open-blood-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer_potion_rain.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706508730921,
-    "modifiedTime": 1719169285380,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813217360,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!xzyAHegWwSaysYqV"

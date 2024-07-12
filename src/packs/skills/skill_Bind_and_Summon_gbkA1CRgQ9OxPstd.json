@@ -3,7 +3,7 @@
   "name": "Bind and Summon",
   "type": "skill",
   "_id": "gbkA1CRgQ9OxPstd",
-  "img": "icons/magic/control/debuff-chains-orb-movement-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_bind_and_summon.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706494654131,
-    "modifiedTime": 1719130316250,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808505671,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!gbkA1CRgQ9OxPstd"

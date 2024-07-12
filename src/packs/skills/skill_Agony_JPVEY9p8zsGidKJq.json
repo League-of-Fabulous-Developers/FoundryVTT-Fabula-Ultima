@@ -3,7 +3,7 @@
   "name": "Agony",
   "type": "skill",
   "_id": "JPVEY9p8zsGidKJq",
-  "img": "icons/magic/control/energy-stream-link-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_agony.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706496854934,
-    "modifiedTime": 1719154626378,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810239253,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 100000,
   "_key": "!items!JPVEY9p8zsGidKJq"

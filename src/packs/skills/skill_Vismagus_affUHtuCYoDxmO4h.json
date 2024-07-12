@@ -3,7 +3,7 @@
   "name": "Vismagus",
   "type": "skill",
   "_id": "affUHtuCYoDxmO4h",
-  "img": "icons/magic/control/debuff-energy-hold-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_vismagus.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706507954756,
-    "modifiedTime": 1719163013206,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812840293,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 500000,
   "_key": "!items!affUHtuCYoDxmO4h"

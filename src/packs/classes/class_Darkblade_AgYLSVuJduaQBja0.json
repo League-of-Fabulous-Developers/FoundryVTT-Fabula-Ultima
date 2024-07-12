@@ -1,7 +1,7 @@
 {
   "name": "Darkblade",
   "type": "class",
-  "img": "icons/weapons/daggers/dagger-ritual-crooked-crystal.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade.png",
   "system": {
     "subtype": {
       "value": ""
@@ -87,8 +87,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706437489836,
-    "modifiedTime": 1719159785211,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808163766,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "AgYLSVuJduaQBja0",
   "sort": 1100000,

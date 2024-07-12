@@ -3,7 +3,7 @@
   "name": "Ritual Elementalism",
   "type": "skill",
   "_id": "qgy43lWGmJ2YGhTp",
-  "img": "icons/magic/symbols/elements-air-earth-fire-water.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_ritual_elementalism.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706498017708,
-    "modifiedTime": 1719160056108,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810369433,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,
   "_key": "!items!qgy43lWGmJ2YGhTp"

@@ -2,7 +2,7 @@
   "folder": "jAg187YJhvEkI5uc",
   "name": "[Handout: Symbol List]",
   "type": "miscAbility",
-  "img": "icons/tools/hand/brush-paint-brown-white.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_symbolism.png",
   "system": {
     "subtype": {
       "value": "other"
@@ -146,8 +146,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707718165836,
-    "modifiedTime": 1719225971723,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813150107,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "v1HYJJsqOzPWrYv8",
   "sort": 2100000,

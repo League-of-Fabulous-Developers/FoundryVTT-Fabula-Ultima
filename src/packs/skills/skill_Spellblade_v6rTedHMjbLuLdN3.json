@@ -3,7 +3,7 @@
   "name": "Spellblade",
   "type": "skill",
   "_id": "v6rTedHMjbLuLdN3",
-  "img": "icons/magic/fire/dagger-rune-enchant-flame-purple-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_spellblade.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706498028252,
-    "modifiedTime": 1719160056108,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810386658,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 500000,
   "_key": "!items!v6rTedHMjbLuLdN3"

@@ -2,7 +2,7 @@
   "folder": "t0can7tJoRis1H3f",
   "name": "Melee Weapon Mastery",
   "type": "skill",
-  "img": "icons/skills/melee/weapons-crossed-swords-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_melee_weapon_mastery.png",
   "system": {
     "subtype": {
       "value": ""
@@ -206,8 +206,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706514138632,
-    "modifiedTime": 1719170632986,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813405707,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "ztxLYzo1ADCaRupR",
   "sort": 500000,

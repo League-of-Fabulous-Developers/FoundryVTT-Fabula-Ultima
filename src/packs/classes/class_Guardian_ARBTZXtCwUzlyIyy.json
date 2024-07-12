@@ -1,7 +1,7 @@
 {
   "name": "Guardian",
   "type": "class",
-  "img": "icons/equipment/shield/heater-crystal-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian.png",
   "system": {
     "subtype": {
       "value": ""
@@ -87,8 +87,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706437992957,
-    "modifiedTime": 1719164835330,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808239896,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "ARBTZXtCwUzlyIyy",
   "sort": 700000,

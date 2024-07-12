@@ -3,7 +3,7 @@
   "name": "Pathogenesis",
   "type": "skill",
   "_id": "EBbeGD1rgPmN6Y6R",
-  "img": "icons/creatures/abilities/stinger-poison-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_pathogenesis.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706495623351,
-    "modifiedTime": 1719154380472,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810039828,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!EBbeGD1rgPmN6Y6R"

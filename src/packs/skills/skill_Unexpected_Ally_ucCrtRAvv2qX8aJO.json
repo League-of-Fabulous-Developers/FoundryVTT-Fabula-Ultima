@@ -3,7 +3,7 @@
   "name": "Unexpected Ally",
   "type": "skill",
   "_id": "ucCrtRAvv2qX8aJO",
-  "img": "icons/skills/melee/maneuver-sword-katana-yellow.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_unexpected_ally.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504159609,
-    "modifiedTime": 1719170939094,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812446372,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!ucCrtRAvv2qX8aJO"

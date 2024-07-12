@@ -3,7 +3,7 @@
   "name": "Focused",
   "type": "skill",
   "_id": "xaNu6plCZfo9dGsX",
-  "img": "icons/sundries/documents/document-symbol-eye.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_focused.png",
   "system": {
     "subtype": {
       "value": ""
@@ -170,8 +170,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706487322210,
-    "modifiedTime": 1719165436878,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811986781,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!xaNu6plCZfo9dGsX"

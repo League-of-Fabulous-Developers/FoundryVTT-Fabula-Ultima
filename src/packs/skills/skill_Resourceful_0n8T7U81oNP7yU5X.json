@@ -3,7 +3,7 @@
   "name": "Resourceful",
   "type": "skill",
   "_id": "0n8T7U81oNP7yU5X",
-  "img": "icons/commodities/currency/coins-stitched-pouch-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/wayfarer/wayfarer_resourceful.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706513073568,
-    "modifiedTime": 1719170166665,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813317930,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!0n8T7U81oNP7yU5X"

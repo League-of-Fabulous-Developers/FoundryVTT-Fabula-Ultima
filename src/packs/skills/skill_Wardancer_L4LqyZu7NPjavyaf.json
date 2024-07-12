@@ -3,7 +3,7 @@
   "name": "Wardancer",
   "type": "skill",
   "_id": "L4LqyZu7NPjavyaf",
-  "img": "icons/skills/ranged/daggers-thrown-salvo-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_wardancer.png",
   "system": {
     "subtype": {
       "value": ""
@@ -191,8 +191,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706560640482,
-    "modifiedTime": 1719158694462,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810181933,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!L4LqyZu7NPjavyaf"
 }

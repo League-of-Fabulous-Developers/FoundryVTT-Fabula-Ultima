@@ -3,7 +3,7 @@
   "name": "Sound Barrier",
   "type": "skill",
   "_id": "9xjUyytWiDxFhqdV",
-  "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_sound_barrier.png",
   "system": {
     "subtype": {
       "value": ""
@@ -132,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706551847928,
-    "modifiedTime": 1719154985470,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720809885115,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!9xjUyytWiDxFhqdV"
 }

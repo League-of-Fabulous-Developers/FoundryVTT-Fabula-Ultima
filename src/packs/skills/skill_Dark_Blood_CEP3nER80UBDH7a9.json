@@ -2,7 +2,7 @@
   "folder": "PqJcRIXUf6qGtSrm",
   "name": "Dark Blood",
   "type": "skill",
-  "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_dark_blood.png",
   "system": {
     "subtype": {
       "value": ""
@@ -176,8 +176,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706496871786,
-    "modifiedTime": 1719154626378,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810247501,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "CEP3nER80UBDH7a9",
   "sort": 200000,

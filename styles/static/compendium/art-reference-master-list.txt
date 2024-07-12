@@ -1,3 +1,4 @@
+Pixeltier - All art referenced here are used in the system compendium and are purchased from Pixeltier.
 default: rpg - Pixeltiers' 16x16 RPG Icon Pack
 modern-rpg - Pixeltier's Modern RPG Icon Pack
 alchemy-rpg - Pixeltier's Alchemy RPG Icon Pack
@@ -27,8 +28,7 @@ tome (book_11)
 unarmed-strike (glove_1)
 waraxe (axe_16)
  
-Weapon Assets Needed:
-iron-knuckles
+iron-knuckles by RubenE (Social: @/only_ruben_draw)
 
 --------------------------------------------------
 [projectfu\styles\static\compendium\weapon-modules\*]
@@ -81,20 +81,6 @@ elemental-shard (crystal_7)
 tent (custom-made by drak)
 
 --------------------------------------------------
-[projectfu\styles\static\compendium\arcanum\*]
-
-Arcanum Assets:
-arcanum-of-the-frost (gem_7)
-arcanum-of-the-grimoire (gem_9)
-arcanum-of-the-oak (gem_09)
-arcanum-of-the-sword (gem_05)
-arcanum-of-the-tower (gem_02)
-arcanum-of-the-wheel (gem_10)
-arcanum-of-the-forge (recolor of gem_*)
-arcanum-of-the-gate (recolor of gem_*)
-arcanum-of-the-sky (recolor of gem_*)
-
---------------------------------------------------
 [projectfu\styles\static\compendium\twin-shields\*]
 
 Twin Shield Assets:
@@ -113,3 +99,22 @@ magicannon-ice (recolor of modern-rpg, gun_004)
 magicannon-physical (recolor of modern-rpg, gun_004)
 
 --------------------------------------------------
+[projectfu\styles\static\compendium\classes\arcanum\*]
+
+Arcanum Assets:
+arcanum-of-the-frost (gem_7)
+arcanum-of-the-grimoire (gem_9)
+arcanum-of-the-oak (gem_09)
+arcanum-of-the-sword (gem_05)
+arcanum-of-the-tower (gem_02)
+arcanum-of-the-wheel (gem_10)
+arcanum-of-the-forge (recolor of gem_*)
+arcanum-of-the-gate (recolor of gem_*)
+arcanum-of-the-sky (recolor of gem_*)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\classes\*]
+
+A majority of the pixel art found in this folder was provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.
+Javier Aumente (Tarot) (Contact Email: <jaauvel@gmail.com>)
+With the exception of [projectfu\styles\static\compendium\classes\arcanum\*]

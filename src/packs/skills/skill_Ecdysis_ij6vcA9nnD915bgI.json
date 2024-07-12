@@ -2,7 +2,7 @@
   "folder": "ADSrT7dY3syrqW73",
   "name": "Ecdysis",
   "type": "skill",
-  "img": "icons/magic/defensive/shield-barrier-glowing-triangle-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_ecdysis.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -123,8 +123,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711429218464,
-    "modifiedTime": 1719165640551,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812280605,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "ij6vcA9nnD915bgI",
   "sort": 0,

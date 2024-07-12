@@ -3,7 +3,7 @@
   "name": "King's Castle",
   "type": "skill",
   "_id": "79xGJD8jn4zGzYpX",
-  "img": "icons/sundries/gaming/chess-king-gray.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_kings_castle.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706555549756,
-    "modifiedTime": 1719156433496,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810105520,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!79xGJD8jn4zGzYpX"

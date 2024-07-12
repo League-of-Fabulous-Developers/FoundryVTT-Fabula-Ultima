@@ -3,7 +3,7 @@
   "name": "Bodyguard",
   "type": "skill",
   "_id": "ZvZT5jWlBZVm1Gmd",
-  "img": "icons/skills/melee/sword-shield-stylized-white.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_bodyguard.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706503483660,
-    "modifiedTime": 1719164409815,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811338640,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 100000,
   "_key": "!items!ZvZT5jWlBZVm1Gmd"

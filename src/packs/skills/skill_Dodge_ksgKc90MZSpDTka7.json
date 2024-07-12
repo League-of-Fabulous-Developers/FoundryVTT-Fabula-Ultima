@@ -3,7 +3,7 @@
   "name": "Dodge",
   "type": "skill",
   "_id": "ksgKc90MZSpDTka7",
-  "img": "icons/skills/movement/arrow-down-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_dodge.png",
   "system": {
     "subtype": {
       "value": ""
@@ -172,8 +172,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504745151,
-    "modifiedTime": 1719168601464,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812690846,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!ksgKc90MZSpDTka7"
 }

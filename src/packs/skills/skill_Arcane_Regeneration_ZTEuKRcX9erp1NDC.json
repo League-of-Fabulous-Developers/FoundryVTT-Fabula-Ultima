@@ -3,7 +3,7 @@
   "name": "Arcane Regeneration",
   "type": "skill",
   "_id": "ZTEuKRcX9erp1NDC",
-  "img": "icons/magic/life/heart-area-circle-red-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_arcane_regeneration.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706494639713,
-    "modifiedTime": 1719156998104,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808497646,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!ZTEuKRcX9erp1NDC"

@@ -3,7 +3,7 @@
   "name": "Protect",
   "type": "skill",
   "_id": "Z4WIA15aR4uLL5ES",
-  "img": "icons/skills/melee/shield-block-fire-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_protect.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706503541194,
-    "modifiedTime": 1719164409815,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811450063,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 500000,
   "_key": "!items!Z4WIA15aR4uLL5ES"

@@ -3,7 +3,7 @@
   "name": "Withstand",
   "type": "skill",
   "_id": "OW3xxi09kANGy2ZO",
-  "img": "icons/skills/melee/shield-block-bash-yellow.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_withstand.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706502423483,
-    "modifiedTime": 1719164231667,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811305245,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 500000,
   "_key": "!items!OW3xxi09kANGy2ZO"

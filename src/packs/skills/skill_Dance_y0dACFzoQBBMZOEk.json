@@ -2,7 +2,7 @@
   "folder": "DqGud3mw8MwZ6P5l",
   "name": "Dance",
   "type": "skill",
-  "img": "icons/skills/social/diplomacy-unity-alliance.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_dance.png",
   "system": {
     "subtype": {
       "value": ""
@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">Each time you take this Skill, you learn a </span><span class=\"fontstyle2\"><strong>dance</strong></span><span class=\"fontstyle0\">.</span></p><p><span class=\"fontstyle0\">On your turn during a conflict scene, if you have no </span><span class=\"fontstyle2\"><strong>martial armor</strong> </span><span class=\"fontstyle0\">equipped, you may spend </span><strong>@LOSS[10 mp]</strong><span class=\"fontstyle0\"> to </span><span class=\"fontstyle2\"><strong>perform a dance</strong> </span><span class=\"fontstyle0\">you have learned. This doesn’t require an action, but it can only be done </span><span class=\"fontstyle2\"><strong>before or after</strong> </span><span class=\"fontstyle0\">an action, and only </span><span class=\"fontstyle2\"><strong>once per turn</strong></span><span class=\"fontstyle0\">. If you already performed a </span><span class=\"fontstyle2\"><strong>different dance</strong> </span><span class=\"fontstyle0\">during your previous turn in this scene, the cost of the new </span><span class=\"fontstyle2\"><strong>dance </strong></span><span class=\"fontstyle0\">is reduced to </span><strong>@LOSS[5 mp]</strong><span class=\"fontstyle0\">. </span></p><p><span class=\"fontstyle0\">Some </span><span class=\"fontstyle2\"><strong>dances </strong></span><span class=\"fontstyle0\">are </span><span class=\"fontstyle2\"><strong>instantaneous </strong></span><span class=\"fontstyle0\">and resolve immediately, while others have effects that last </span><span class=\"fontstyle2\"><strong>until the start of your next turn</strong></span><span class=\"fontstyle0\">.</span> </p><p>A full list of all of the dances can be found in this handout: <strong>@UUID[Compendium.fabula-ultima-high-fantasy.high-fantasy-handouts.JournalEntry.9yIo9kJFbh0o53tx]{Dances Rules}</strong></p>",
+    "description": "<p><span class=\"fontstyle0\">Each time you take this Skill, you learn a </span><span class=\"fontstyle2\"><strong>dance</strong></span><span class=\"fontstyle0\">.</span></p><p><span class=\"fontstyle0\">On your turn during a conflict scene, if you have no </span><span class=\"fontstyle2\"><strong>martial armor</strong> </span><span class=\"fontstyle0\">equipped, you may spend </span><strong>@LOSS[10 mp]</strong><span class=\"fontstyle0\"> to </span><span class=\"fontstyle2\"><strong>perform a dance</strong> </span><span class=\"fontstyle0\">you have learned. This doesn’t require an action, but it can only be done </span><span class=\"fontstyle2\"><strong>before or after</strong> </span><span class=\"fontstyle0\">an action, and only </span><span class=\"fontstyle2\"><strong>once per turn</strong></span><span class=\"fontstyle0\">. If you already performed a </span><span class=\"fontstyle2\"><strong>different dance</strong> </span><span class=\"fontstyle0\">during your previous turn in this scene, the cost of the new </span><span class=\"fontstyle2\"><strong>dance </strong></span><span class=\"fontstyle0\">is reduced to </span><strong>@LOSS[5 mp]</strong><span class=\"fontstyle0\">. </span></p><p><span class=\"fontstyle0\">Some </span><span class=\"fontstyle2\"><strong>dances </strong></span><span class=\"fontstyle0\">are </span><span class=\"fontstyle2\"><strong>instantaneous </strong></span><span class=\"fontstyle0\">and resolve immediately, while others have effects that last </span><span class=\"fontstyle2\"><strong>until the start of your next turn</strong></span><span class=\"fontstyle0\">.</span> </p><p>A full list of all of the dances can be found in this handout: <strong>@UUID[Compendium.projectfu.handouts.JournalEntry.cH2N0pg4NeNZpaM5]{Dances Rules}</strong></p>",
     "isFavored": {
       "value": false
     },
@@ -132,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706558084944,
-    "modifiedTime": 1719158402374,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810149987,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "y0dACFzoQBBMZOEk",
   "sort": 0,

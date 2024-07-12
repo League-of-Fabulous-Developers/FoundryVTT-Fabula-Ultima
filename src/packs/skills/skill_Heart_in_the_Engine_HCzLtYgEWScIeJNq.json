@@ -2,7 +2,7 @@
   "folder": "rU6K693IIfEXLUXW",
   "name": "Heart in the Engine",
   "type": "skill",
-  "img": "icons/commodities/tech/furnace-modern.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_heart_in_the_engine.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -130,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711431286236,
-    "modifiedTime": 1719168012941,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812530703,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "HCzLtYgEWScIeJNq",
   "sort": 0,

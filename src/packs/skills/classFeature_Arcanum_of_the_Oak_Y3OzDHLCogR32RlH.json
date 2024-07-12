@@ -3,7 +3,7 @@
   "name": "Arcanum of the Oak",
   "type": "classFeature",
   "_id": "Y3OzDHLCogR32RlH",
-  "img": "systems/projectfu/styles/static/compendium/arcanum/arcanum-of-the-oak.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-oak.png",
   "system": {
     "summary": {
       "value": ""
@@ -69,8 +69,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710464030279,
-    "modifiedTime": 1719225610230,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813532371,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 800000,
   "ownership": {

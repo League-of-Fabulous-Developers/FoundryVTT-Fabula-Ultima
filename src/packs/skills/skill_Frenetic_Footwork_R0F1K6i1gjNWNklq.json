@@ -3,7 +3,7 @@
   "name": "Frenetic Footwork",
   "type": "skill",
   "_id": "R0F1K6i1gjNWNklq",
-  "img": "icons/magic/control/debuff-energy-snare-purple-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_frenetic_footwork.png",
   "system": {
     "subtype": {
       "value": ""
@@ -132,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706560364056,
-    "modifiedTime": 1719158402374,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810165704,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!R0F1K6i1gjNWNklq"
 }

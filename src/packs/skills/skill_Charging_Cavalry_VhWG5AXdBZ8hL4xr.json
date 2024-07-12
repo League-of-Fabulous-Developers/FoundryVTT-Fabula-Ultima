@@ -3,7 +3,7 @@
   "name": "Charging Cavalry",
   "type": "skill",
   "_id": "VhWG5AXdBZ8hL4xr",
-  "img": "icons/sundries/gaming/chess-knite-gray.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_charging_cavalry.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706555516636,
-    "modifiedTime": 1719156740345,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810095354,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!VhWG5AXdBZ8hL4xr"

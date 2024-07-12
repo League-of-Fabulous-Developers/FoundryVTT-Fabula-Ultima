@@ -3,7 +3,7 @@
   "name": "Ranged Weapon Mastery",
   "type": "skill",
   "_id": "0UxTgrag7cE4M1oc",
-  "img": "icons/skills/ranged/target-bullseye-arrow-glowing.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_ranged_weapon_mastery.png",
   "system": {
     "subtype": {
       "value": ""
@@ -184,8 +184,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706506773814,
-    "modifiedTime": 1719168728820,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812783165,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!0UxTgrag7cE4M1oc"
 }

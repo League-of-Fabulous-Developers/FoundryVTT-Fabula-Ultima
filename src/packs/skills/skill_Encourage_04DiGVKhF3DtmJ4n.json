@@ -3,7 +3,7 @@
   "name": "Encourage",
   "type": "skill",
   "_id": "04DiGVKhF3DtmJ4n",
-  "img": "icons/skills/social/thumbsup-approval-like.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_encourage.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504115400,
-    "modifiedTime": 1719170984175,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812389855,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!04DiGVKhF3DtmJ4n"

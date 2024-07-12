@@ -3,7 +3,7 @@
   "name": "[Handout: Psychic Gifts Rules]",
   "type": "miscAbility",
   "_id": "3wujzPJj4dyCUUHX",
-  "img": "icons/magic/control/hypnosis-mesmerism-eye-tan.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_psychic_gifts.png",
   "system": {
     "subtype": {
       "value": "other"
@@ -144,8 +144,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711422481438,
-    "modifiedTime": 1719226121043,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720815822734,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!3wujzPJj4dyCUUHX"
 }

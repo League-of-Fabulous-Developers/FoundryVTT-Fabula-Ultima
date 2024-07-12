@@ -3,7 +3,7 @@
   "name": "Indomitable Spirit",
   "type": "skill",
   "_id": "wezEekAOYfbxrt74",
-  "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_indomitable_spirit.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706502402161,
-    "modifiedTime": 1719164299227,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811292598,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 300000,
   "_key": "!items!wezEekAOYfbxrt74"

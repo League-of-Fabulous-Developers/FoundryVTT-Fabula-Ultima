@@ -3,7 +3,7 @@
   "name": "Well-Traveled",
   "type": "skill",
   "_id": "fuPzuDHzaKUgbvL2",
-  "img": "icons/tools/navigation/map-chart-tan.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/wayfarer/wayfarer_well_traveled.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706513112507,
-    "modifiedTime": 1719168420751,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813343370,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!fuPzuDHzaKUgbvL2"

@@ -71,7 +71,7 @@
       "value": "FUCR186"
     }
   },
-  "img": "icons/magic/lightning/bolt-cloud-sky-white.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist.png",
   "effects": [],
   "folder": null,
   "flags": {
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706417336064,
-    "modifiedTime": 1719254946562,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808177024,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

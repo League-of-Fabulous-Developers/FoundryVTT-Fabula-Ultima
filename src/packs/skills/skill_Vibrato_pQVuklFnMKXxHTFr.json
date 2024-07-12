@@ -3,7 +3,7 @@
   "name": "Vibrato",
   "type": "skill",
   "_id": "pQVuklFnMKXxHTFr",
-  "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_vibrato.png",
   "system": {
     "subtype": {
       "value": ""
@@ -132,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706551925144,
-    "modifiedTime": 1719154985470,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720809892282,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!pQVuklFnMKXxHTFr"
 }

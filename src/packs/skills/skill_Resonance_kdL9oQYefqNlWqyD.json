@@ -2,7 +2,7 @@
   "folder": "9Hit5mtbXhSe0Dht",
   "name": "Resonance",
   "type": "skill",
-  "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_resonance.png",
   "system": {
     "subtype": {
       "value": ""
@@ -132,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706551588442,
-    "modifiedTime": 1719157045160,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720809867771,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "kdL9oQYefqNlWqyD",
   "sort": 0,

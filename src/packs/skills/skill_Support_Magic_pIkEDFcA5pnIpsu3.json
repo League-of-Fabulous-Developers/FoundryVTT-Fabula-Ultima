@@ -3,7 +3,7 @@
   "name": "Support Magic",
   "type": "skill",
   "_id": "pIkEDFcA5pnIpsu3",
-  "img": "icons/magic/control/energy-stream-link-spiral-white.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_support_magic.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706507941545,
-    "modifiedTime": 1719163013206,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812834202,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,
   "_key": "!items!pIkEDFcA5pnIpsu3"

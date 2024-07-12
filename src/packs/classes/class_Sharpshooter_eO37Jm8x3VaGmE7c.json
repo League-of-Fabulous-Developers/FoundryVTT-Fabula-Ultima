@@ -71,7 +71,7 @@
       "value": "FUCR204"
     }
   },
-  "img": "icons/skills/ranged/target-bullseye-arrow-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter.png",
   "effects": [],
   "folder": null,
   "flags": {
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706417554502,
-    "modifiedTime": 1719168742300,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808327560,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

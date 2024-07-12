@@ -3,7 +3,7 @@
   "name": "[Handout: Tone List]",
   "type": "miscAbility",
   "_id": "dzv1DzQ6N3FKATek",
-  "img": "icons/tools/instruments/harp-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_magichant.png",
   "system": {
     "subtype": {
       "value": "other"
@@ -145,8 +145,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707814122369,
-    "modifiedTime": 1719226179506,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720815623803,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!dzv1DzQ6N3FKATek"
 }

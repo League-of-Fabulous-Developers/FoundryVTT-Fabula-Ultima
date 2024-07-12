@@ -3,7 +3,7 @@
   "name": "Quick-Change",
   "type": "skill",
   "_id": "DF1eCfsBw1kYOAH6",
-  "img": "icons/containers/bags/satchel-worn-leather-teal.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_quick-change.png",
   "system": {
     "subtype": {
       "value": ""
@@ -132,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706560456464,
-    "modifiedTime": 1719158402374,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810174486,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!DF1eCfsBw1kYOAH6"
 }

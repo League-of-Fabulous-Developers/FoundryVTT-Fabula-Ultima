@@ -3,7 +3,7 @@
   "name": "Akromorphosis",
   "type": "skill",
   "_id": "7ZIT4N07zc2yWsre",
-  "img": "icons/creatures/claws/claw-talons-glowing-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_akromorphosis.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -124,8 +124,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711429218464,
-    "modifiedTime": 1719165640551,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812257642,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "ownership": {

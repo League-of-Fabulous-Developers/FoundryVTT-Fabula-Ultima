@@ -3,7 +3,7 @@
   "name": "Provoke",
   "type": "skill",
   "_id": "XaopYEAay9e86srI",
-  "img": "icons/skills/social/intimidation-impressing.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706502413549,
-    "modifiedTime": 1719164244642,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811299406,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,
   "_key": "!items!XaopYEAay9e86srI"

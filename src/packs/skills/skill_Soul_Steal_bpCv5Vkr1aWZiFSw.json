@@ -3,7 +3,7 @@
   "name": "Soul Steal",
   "type": "skill",
   "_id": "bpCv5Vkr1aWZiFSw",
-  "img": "icons/containers/bags/pouch-simple-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_soul_steal.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504776432,
-    "modifiedTime": 1719168626349,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812723902,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 500000,
   "_key": "!items!bpCv5Vkr1aWZiFSw"

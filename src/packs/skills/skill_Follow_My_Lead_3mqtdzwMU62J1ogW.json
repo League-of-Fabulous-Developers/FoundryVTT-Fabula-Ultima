@@ -2,7 +2,7 @@
   "folder": "DqGud3mw8MwZ6P5l",
   "name": "Follow My Lead",
   "type": "skill",
-  "img": "icons/magic/control/energy-stream-link-spiral-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_follow_my_lead.png",
   "system": {
     "subtype": {
       "value": ""
@@ -132,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706560181599,
-    "modifiedTime": 1719158402374,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810158531,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "3mqtdzwMU62J1ogW",
   "sort": 100000,

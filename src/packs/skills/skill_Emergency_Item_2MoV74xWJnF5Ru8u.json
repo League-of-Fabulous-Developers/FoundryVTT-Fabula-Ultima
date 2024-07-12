@@ -3,7 +3,7 @@
   "name": "Emergency Item",
   "type": "skill",
   "_id": "2MoV74xWJnF5Ru8u",
-  "img": "icons/consumables/potions/vial-cork-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer_emergency_item.png",
   "system": {
     "subtype": {
       "value": ""
@@ -163,8 +163,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706508694101,
-    "modifiedTime": 1719168419392,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813199374,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!2MoV74xWJnF5Ru8u"

@@ -3,7 +3,7 @@
   "name": "Defensive Mastery",
   "type": "skill",
   "_id": "7wF1oulk0Zn7ITTF",
-  "img": "icons/skills/melee/shield-block-gray-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_defensive_mastery.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706503498917,
-    "modifiedTime": 1719164786921,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811343472,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 200000,
   "_key": "!items!7wF1oulk0Zn7ITTF"

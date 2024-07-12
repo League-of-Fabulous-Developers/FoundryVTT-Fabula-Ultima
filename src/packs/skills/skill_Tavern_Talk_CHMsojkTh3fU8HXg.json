@@ -3,7 +3,7 @@
   "name": "Tavern Talk",
   "type": "skill",
   "_id": "CHMsojkTh3fU8HXg",
-  "img": "icons/consumables/drinks/alcohol-beer-stein-wooden-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/wayfarer/wayfarer_tavern_talk.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706513085705,
-    "modifiedTime": 1719170171646,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813327622,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!CHMsojkTh3fU8HXg"

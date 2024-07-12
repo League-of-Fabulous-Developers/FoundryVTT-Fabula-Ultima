@@ -2,7 +2,7 @@
   "folder": "FyNc3kVrHbI4wz0q",
   "name": "[Handout: Arcana Rules]",
   "type": "miscAbility",
-  "img": "icons/creatures/magical/spirit-undead-horned-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_bind_and_summon.png",
   "system": {
     "subtype": {
       "value": "other"
@@ -138,8 +138,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706574599766,
-    "modifiedTime": 1719226247258,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808955784,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "7Hw8p7ZefudMdCxV",
   "sort": 100000,

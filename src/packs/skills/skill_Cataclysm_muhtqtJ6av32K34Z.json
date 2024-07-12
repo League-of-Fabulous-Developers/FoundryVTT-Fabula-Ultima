@@ -3,7 +3,7 @@
   "name": "Cataclysm",
   "type": "skill",
   "_id": "muhtqtJ6av32K34Z",
-  "img": "icons/magic/control/silhouette-hold-beam-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_cataclysm.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706497962110,
-    "modifiedTime": 1719160056108,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810336598,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 100000,
   "_key": "!items!muhtqtJ6av32K34Z"

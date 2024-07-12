@@ -2,13 +2,13 @@
   "folder": "ADSrT7dY3syrqW73",
   "name": "Genoclepsis",
   "type": "skill",
-  "img": "icons/creatures/abilities/wolf-heads-swirl-purple.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_genoclepsis.png",
   "system": {
     "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<div class=\"stackedit__html\"><p>When you deal damage to one or more NPCs, you learn their <strong>Species and the GM chooses 【SL】 therioforms </strong><span class=\"fontstyle0\">appropriate to those NPCs (see next page): if you have acquired the </span><span class=\"fontstyle2\"><strong>@UUID[Compendium.fabula-ultima-techno-fantasy.techno-fantasy-skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis}</strong> </span><span class=\"fontstyle0\">Skill, you may immediately pay its HP cost and use it to manifest those </span><span class=\"fontstyle2\"><strong>therioforms</strong> </span><span class=\"fontstyle0\">(even if they are not among those you have learned).</span></p></div>",
+    "description": "<div class=\"stackedit__html\"><p>When you deal damage to one or more NPCs, you learn their <strong>Species and the GM chooses 【SL】 therioforms </strong><span class=\"fontstyle0\">appropriate to those NPCs (see next page): if you have acquired the </span><span class=\"fontstyle2\"><strong>@UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis}</strong> </span><span class=\"fontstyle0\">Skill, you may immediately pay its HP cost and use it to manifest those </span><span class=\"fontstyle2\"><strong>therioforms</strong> </span><span class=\"fontstyle0\">(even if they are not among those you have learned).</span></p></div>",
     "isFavored": {
       "value": false
     },
@@ -123,8 +123,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711429218464,
-    "modifiedTime": 1719165640551,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812306539,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "mWqx8pto9gbbwMoG",
   "sort": 0,

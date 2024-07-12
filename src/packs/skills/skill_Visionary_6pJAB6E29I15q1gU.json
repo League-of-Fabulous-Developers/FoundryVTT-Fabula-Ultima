@@ -3,7 +3,7 @@
   "name": "Visionary",
   "type": "skill",
   "_id": "6pJAB6E29I15q1gU",
-  "img": "icons/sundries/documents/blueprint-helmet.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer_visionary.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706508759212,
-    "modifiedTime": 1719169257752,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813272081,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!6pJAB6E29I15q1gU"

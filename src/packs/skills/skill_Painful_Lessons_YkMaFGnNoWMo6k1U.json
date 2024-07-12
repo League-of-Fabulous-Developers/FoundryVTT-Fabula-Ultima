@@ -3,7 +3,7 @@
   "name": "Painful Lessons",
   "type": "skill",
   "_id": "YkMaFGnNoWMo6k1U",
-  "img": "icons/magic/perception/eye-ringed-glow-angry-large-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_painful_lesson.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706496896843,
-    "modifiedTime": 1719154626378,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810266087,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 500000,
   "_key": "!items!YkMaFGnNoWMo6k1U"

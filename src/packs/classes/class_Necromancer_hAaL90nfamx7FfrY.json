@@ -1,7 +1,7 @@
 {
   "name": "Necromancer",
   "type": "class",
-  "img": "icons/magic/death/skull-horned-white-purple.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/necromancer.png",
   "system": {
     "summary": {
       "value": "Waste not, want not."
@@ -80,8 +80,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1684756578950,
-    "modifiedTime": 1719167906725,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808283944,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": null,
   "ownership": {

@@ -2,7 +2,7 @@
   "folder": "gf9uvRkGXGXrNE9W",
   "name": "Adrenaline",
   "type": "skill",
-  "img": "icons/commodities/biological/organ-heart-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_adrenaline.png",
   "system": {
     "subtype": {
       "value": ""
@@ -182,8 +182,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706502375594,
-    "modifiedTime": 1719164181640,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811280632,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "DniA4VMTBNhk5a1v",
   "sort": 100000,

@@ -3,7 +3,7 @@
   "name": "Lucky Seven",
   "type": "skill",
   "_id": "HgxY0x6jUjS6ppBc",
-  "img": "icons/commodities/currency/coin-engraved-sun-smile-copper.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_lucky_seven.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706486624955,
-    "modifiedTime": 1719162659022,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810573703,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 200000,
   "_key": "!items!HgxY0x6jUjS6ppBc"

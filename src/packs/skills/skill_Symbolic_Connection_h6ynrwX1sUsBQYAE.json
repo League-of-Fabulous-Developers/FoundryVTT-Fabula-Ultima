@@ -3,7 +3,7 @@
   "name": "Symbolic Connection",
   "type": "skill",
   "_id": "h6ynrwX1sUsBQYAE",
-  "img": "icons/tools/navigation/compass-plain-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_symbolic_connection.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706563239413,
-    "modifiedTime": 1719159763066,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812930887,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!h6ynrwX1sUsBQYAE"

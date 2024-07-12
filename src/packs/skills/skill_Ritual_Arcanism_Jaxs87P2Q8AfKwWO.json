@@ -3,7 +3,7 @@
   "name": "Ritual Arcanism",
   "type": "skill",
   "_id": "Jaxs87P2Q8AfKwWO",
-  "img": "icons/magic/water/heart-ice-freeze.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_ritual_arcanism.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706494680646,
-    "modifiedTime": 1719130316250,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808545414,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!Jaxs87P2Q8AfKwWO"

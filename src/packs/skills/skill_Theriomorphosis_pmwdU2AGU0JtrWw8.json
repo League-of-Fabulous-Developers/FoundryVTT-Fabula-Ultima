@@ -2,7 +2,7 @@
   "folder": "ADSrT7dY3syrqW73",
   "name": "Theriomorphosis",
   "type": "skill",
-  "img": "icons/sundries/books/book-eye-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant_teriomorphosis.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -123,8 +123,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711429218464,
-    "modifiedTime": 1719585423174,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812319065,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "pmwdU2AGU0JtrWw8",
   "sort": 0,

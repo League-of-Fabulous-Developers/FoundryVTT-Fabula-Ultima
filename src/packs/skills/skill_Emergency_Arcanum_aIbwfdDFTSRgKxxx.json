@@ -3,7 +3,7 @@
   "name": "Emergency Arcanum",
   "type": "skill",
   "_id": "aIbwfdDFTSRgKxxx",
-  "img": "icons/magic/defensive/armor-stone-skin.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_emergency_arcanum.png",
   "system": {
     "subtype": {
       "value": ""
@@ -163,8 +163,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706494667215,
-    "modifiedTime": 1719130316250,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808770183,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!aIbwfdDFTSRgKxxx"

@@ -1,7 +1,7 @@
 {
   "name": "Dancer",
   "type": "class",
-  "img": "icons/magic/control/control-influence-crown-yellow.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer.png",
   "system": {
     "subtype": {
       "value": ""
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706516939683,
-    "modifiedTime": 1719172183110,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808118570,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

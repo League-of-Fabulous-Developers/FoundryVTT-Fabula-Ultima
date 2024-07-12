@@ -1,7 +1,7 @@
 {
   "name": "Symbolist",
   "type": "class",
-  "img": "icons/magic/symbols/rune-sigil-horned-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist.png",
   "system": {
     "subtype": {
       "value": ""
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706517543185,
-    "modifiedTime": 1719172443132,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808357634,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

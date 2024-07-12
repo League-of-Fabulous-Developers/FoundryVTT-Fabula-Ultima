@@ -3,7 +3,7 @@
   "name": "Trained Memory",
   "type": "skill",
   "_id": "NseNebtgAwSF7pM6",
-  "img": "icons/magic/perception/third-eye-blue-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/loremaster/loremaster_trained_memory.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706487946943,
-    "modifiedTime": 1719164982015,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812044206,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!NseNebtgAwSF7pM6"

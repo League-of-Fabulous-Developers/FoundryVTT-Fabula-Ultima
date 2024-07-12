@@ -2,7 +2,7 @@
   "folder": "BdAXAA3IkZnarpJX",
   "name": "Fortress",
   "type": "skill",
-  "img": "icons/magic/earth/strike-fist-stone.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_fortress.png",
   "system": {
     "subtype": {
       "value": ""
@@ -170,8 +170,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706503528196,
-    "modifiedTime": 1719164443125,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811432429,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "X4KdFiQmzikrsM6v",
   "sort": 400000,

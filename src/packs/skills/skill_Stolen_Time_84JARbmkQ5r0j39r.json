@@ -3,7 +3,7 @@
   "name": "Stolen Time",
   "type": "skill",
   "_id": "84JARbmkQ5r0j39r",
-  "img": "icons/magic/time/clock-spinning-gold-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_stolen_time.png",
   "system": {
     "subtype": {
       "value": ""
@@ -132,11 +132,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706486840722,
-    "modifiedTime": 1719188858047,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1720810584731,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 100000,
   "_key": "!items!84JARbmkQ5r0j39r"

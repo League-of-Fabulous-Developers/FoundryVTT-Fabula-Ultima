@@ -3,7 +3,7 @@
   "name": "See You Later",
   "type": "skill",
   "_id": "cHKzZJBYjwLuRfDL",
-  "img": "icons/skills/social/peace-luck-insult.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_see_you_later.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504765560,
-    "modifiedTime": 1719168392722,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812708651,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,
   "_key": "!items!cHKzZJBYjwLuRfDL"

@@ -3,7 +3,7 @@
   "name": "Bone Crusher",
   "type": "skill",
   "_id": "7jWycVYFgZ1BMxch",
-  "img": "icons/skills/wounds/bone-broken-marrow-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_bone_crusher.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706514091257,
-    "modifiedTime": 1719170582776,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813440081,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 200000,
   "_key": "!items!7jWycVYFgZ1BMxch"

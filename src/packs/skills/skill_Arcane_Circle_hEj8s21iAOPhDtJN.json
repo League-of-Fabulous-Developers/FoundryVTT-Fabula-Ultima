@@ -3,7 +3,7 @@
   "name": "Arcane Circle",
   "type": "skill",
   "_id": "hEj8s21iAOPhDtJN",
-  "img": "icons/magic/symbols/ring-circle-smoke-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanist_arcane_circle.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706494627418,
-    "modifiedTime": 1719130316250,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808486638,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!hEj8s21iAOPhDtJN"

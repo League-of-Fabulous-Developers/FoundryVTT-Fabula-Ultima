@@ -3,7 +3,7 @@
   "name": "Crossfire",
   "type": "skill",
   "_id": "sIkQa2NzkqsvczBr",
-  "img": "icons/skills/ranged/bullets-triple-ball-yellow.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_crossfire.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706506746453,
-    "modifiedTime": 1719168406738,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812768568,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 200000,
   "_key": "!items!sIkQa2NzkqsvczBr"

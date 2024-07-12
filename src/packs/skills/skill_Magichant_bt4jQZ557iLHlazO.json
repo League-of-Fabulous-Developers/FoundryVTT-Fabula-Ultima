@@ -3,7 +3,7 @@
   "name": "Magichant",
   "type": "skill",
   "_id": "bt4jQZ557iLHlazO",
-  "img": "icons/tools/instruments/harp-gold-glowing.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_magichant.png",
   "system": {
     "subtype": {
       "value": ""
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">On your turn during a conflict scene, you may use an action and spend a variable amount of MP to weave voice and music into a magical effect known as a </span><span class=\"fontstyle2\"><strong>verse</strong></span><span class=\"fontstyle0\">.</span></p><p><span class=\"fontstyle0\">You may only sing </span><span class=\"fontstyle2\"><strong>one verse</strong> </span><span class=\"fontstyle0\">per turn, even if you have access to multiple actions.</span></p><p><span class=\"fontstyle0\">When you first acquire this Skill, you learn </span><span class=\"fontstyle2\"><strong>all three volumes</strong></span><span class=\"fontstyle0\">, plus </span><span class=\"fontstyle2\"><strong>one key</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>one tone</strong></span><span class=\"fontstyle0\">. Whenever you acquire this Skill again, you may learn </span><span class=\"fontstyle2\"><strong>one key or one tone</strong> </span><span class=\"fontstyle0\">(your choice).</span> </p><p>For descriptions of how <strong>Verses</strong> are broken down as well as a list of all of the <strong>Keys</strong> and <strong>Tones</strong>, please refer to the following handout: <strong>@UUID[Compendium.fabula-ultima-high-fantasy.high-fantasy-handouts.JournalEntry.wDBKJYF61kJRgsp2]{Verses Rules}</strong></p>",
+    "description": "<p><span class=\"fontstyle0\">On your turn during a conflict scene, you may use an action and spend a variable amount of MP to weave voice and music into a magical effect known as a </span><span class=\"fontstyle2\"><strong>verse</strong></span><span class=\"fontstyle0\">.</span></p><p><span class=\"fontstyle0\">You may only sing </span><span class=\"fontstyle2\"><strong>one verse</strong> </span><span class=\"fontstyle0\">per turn, even if you have access to multiple actions.</span></p><p><span class=\"fontstyle0\">When you first acquire this Skill, you learn </span><span class=\"fontstyle2\"><strong>all three volumes</strong></span><span class=\"fontstyle0\">, plus </span><span class=\"fontstyle2\"><strong>one key</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>one tone</strong></span><span class=\"fontstyle0\">. Whenever you acquire this Skill again, you may learn </span><span class=\"fontstyle2\"><strong>one key or one tone</strong> </span><span class=\"fontstyle0\">(your choice).</span> </p><p>For descriptions of how <strong>Verses</strong> are broken down as well as a list of all of the <strong>Keys</strong> and <strong>Tones</strong>, please refer to the following handout: <strong>@UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</strong></p>",
     "isFavored": {
       "value": false
     },
@@ -132,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706550402521,
-    "modifiedTime": 1719154985470,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720809815202,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!bt4jQZ557iLHlazO"
 }

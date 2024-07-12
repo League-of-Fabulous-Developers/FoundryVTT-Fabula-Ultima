@@ -116,7 +116,7 @@
     },
     "defense": "def"
   },
-  "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_absorb_mp.png",
   "effects": [],
   "folder": "bqBl8kPDVcWqosfM",
   "flags": {
@@ -129,8 +129,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706421327382,
-    "modifiedTime": 1719162659022,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720810562120,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "jgGLuOvN8xCSQWLK",
   "ownership": {

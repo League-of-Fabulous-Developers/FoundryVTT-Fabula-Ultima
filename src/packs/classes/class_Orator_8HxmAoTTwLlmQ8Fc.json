@@ -71,7 +71,7 @@
       "value": "FUCR200"
     }
   },
-  "img": "icons/skills/social/diplomacy-handshake-yellow.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/orator/orator.png",
   "effects": [],
   "folder": null,
   "flags": {
@@ -82,8 +82,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706416689988,
-    "modifiedTime": 1719172511058,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808292373,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

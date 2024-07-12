@@ -3,7 +3,7 @@
   "name": "Feral Speech",
   "type": "skill",
   "_id": "YLWWM3IqnFCAGoUc",
-  "img": "icons/creatures/abilities/bear-roar-bite-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_feral_speech.png",
   "system": {
     "subtype": {
       "value": ""
@@ -163,8 +163,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706495600774,
-    "modifiedTime": 1719154380472,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720809934158,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!YLWWM3IqnFCAGoUc"

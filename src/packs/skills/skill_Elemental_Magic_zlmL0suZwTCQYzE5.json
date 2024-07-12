@@ -2,7 +2,7 @@
   "folder": "laGyUtQnXPDC2pZG",
   "name": "Elemental Magic",
   "type": "skill",
-  "img": "icons/sundries/books/book-symbol-fire-gold-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_elemental_magic.png",
   "system": {
     "subtype": {
       "value": ""
@@ -128,11 +128,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706497980288,
-    "modifiedTime": 1719181016949,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1720810349811,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "zlmL0suZwTCQYzE5",
   "sort": 0,

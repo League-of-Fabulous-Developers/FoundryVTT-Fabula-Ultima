@@ -3,7 +3,7 @@
   "name": "Arcanum of the Tower",
   "type": "classFeature",
   "_id": "stLDj4YpAoyQFFid",
-  "img": "systems/projectfu/styles/static/compendium/arcanum/arcanum-of-the-tower.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-tower.png",
   "system": {
     "summary": {
       "value": ""
@@ -56,8 +56,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710464096011,
-    "modifiedTime": 1719225630619,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720813549826,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 1100000,
   "ownership": {

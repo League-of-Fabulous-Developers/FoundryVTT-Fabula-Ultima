@@ -1,7 +1,7 @@
 {
   "name": "Iron Knuckle",
   "type": "weapon",
-  "img": "systems/projectfu/styles/static/compendium/weapons/unarmed-strike.png",
+  "img": "systems/projectfu/styles/static/compendium/weapons/iron-knuckle.png",
   "system": {
     "subtype": {
       "value": ""
@@ -89,8 +89,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706648561339,
-    "modifiedTime": 1719222797433,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720811719973,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "z4qfwCzJpig79JHd",
   "sort": 0,

@@ -1,7 +1,7 @@
 {
   "name": "Mutant",
   "type": "class",
-  "img": "icons/creatures/abilities/wolf-howl-moon-white.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/mutant/mutant.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -85,8 +85,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711425234462,
-    "modifiedTime": 1719167382341,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720808273580,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "IgNtSZfLvEcUAcqA",
   "sort": 0,

@@ -3,7 +3,7 @@
   "name": "Persuasive",
   "type": "skill",
   "_id": "GjmqoWAJ4szsk0om",
-  "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_persuasive.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504145803,
-    "modifiedTime": 1719170958749,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812402319,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!GjmqoWAJ4szsk0om"

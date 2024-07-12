@@ -3,7 +3,7 @@
   "name": "Warning Shot",
   "type": "skill",
   "_id": "Ovmw7cMrN6qvagG4",
-  "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_warning_shot.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706506787857,
-    "modifiedTime": 1719168739480,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720812791277,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 600000,
   "_key": "!items!Ovmw7cMrN6qvagG4"
