@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You unleash a searing barrage against your foes, conjuring flames out of thin air. Each target hit by this spell suffers </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>HR + 15</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle3\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p><p><span class=\"fontstyle3\"><strong>Opportunity:</strong> </span><span class=\"fontstyle0\">Each target hit by this spell suffers </span><span class=\"fontstyle3\"><strong>@EFFECT[shaken]</strong></span><span class=\"fontstyle0\">.</span> </p><hr /><p><strong>@LOSS[10 mp]</strong> for <strong>one</strong> target.</p><p><strong>@LOSS[20 mp]</strong> for <strong>two</strong> targets.</p><p><strong>@LOSS[30 mp]</strong> for <strong>three</strong> targets.</p>",
+    "description": "<p>You unleash a searing barrage against your foes, conjuring flames out of thin air. Each target hit by this spell suffers <strong>【HR + 15】 fire</strong> damage.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers <strong>@EFFECT[shaken]</strong>.</p><hr /><p>@LOSS[10 mp] for <strong>one</strong> target.</p><p>@LOSS[20 mp] for <strong>two</strong> targets.</p><p>@LOSS[30 mp] for <strong>three</strong> targets.</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706565586057,
-    "modifiedTime": 1719433044008,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721098559904,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!a9oEuIOkQQdmtw7k"

@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h4>Required Heroic Skill: Comet</h4><p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose on option: one creature you can see suffers <strong>@DMG[60 untyped]</strong> damage; </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">or </span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">you choose any number of creatures you can see, and each of them suffers <strong>@DMG[40 untyped]</strong> damage. These amounts increase by 5 if you are </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">level 20 or higher</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">, or by 10 if you are<strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"> </strong></span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">level 40 or higher</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">.<br />Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p><hr /><p><strong>@LOSS[50 mp]</strong></p>",
+    "description": "<h4>Required Heroic Skill: Comet</h4><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option: one creature you can see suffers @DMG[60 untyped] damage; or you choose any number of creatures you can see, and each of them suffers @DMG[40 untyped] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.<br />Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p><hr /><p>@LOSS[50 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -129,8 +129,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710548744272,
-    "modifiedTime": 1719433318875,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721097735365,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "Vem0KAbARyK1FtPk",
   "_key": "!items!Vem0KAbARyK1FtPk"

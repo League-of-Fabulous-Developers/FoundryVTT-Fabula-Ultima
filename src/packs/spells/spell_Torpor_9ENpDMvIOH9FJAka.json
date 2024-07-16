@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You smother the soul energy coursing through the bodies of your foes, hindering their movements. <br />Choose </span><span class=\"fontstyle2\"><strong>@EFFECT[slow] </strong></span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>@EFFECT[weak]</strong></span><span class=\"fontstyle0\">: you inflict the chosen status effect on each target hit by this spell.</span> </p><hr /><p><strong>@LOSS[5 mp]</strong> for <strong>one</strong> target.</p><p><strong>@LOSS[10 mp]</strong> for <strong>two</strong> targets.</p><p><strong>@LOSS[15 mp]</strong> for <strong>three</strong> targets.</p>",
+    "description": "<p>You smother the soul energy coursing through the bodies of your foes, hindering their movements. <br />Choose @EFFECT[slow] or @EFFECT[weak]: you inflict the chosen status effect on each target hit by this spell.</p><hr /><p>@LOSS[5 mp] for <strong>one</strong> target.</p><p>@LOSS[10 mp] for <strong>two</strong> targets.</p><p>@LOSS[15 mp] for <strong>three</strong> targets.</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706573295761,
-    "modifiedTime": 1719444717466,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721097214293,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 200000,
   "_key": "!items!9ENpDMvIOH9FJAka"

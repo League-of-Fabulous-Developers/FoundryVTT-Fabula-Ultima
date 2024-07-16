@@ -10,7 +10,7 @@
     "summary": {
       "value": "Gain several benefits from Dodge and Stolen Time."
     },
-    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements: </strong>you must have mastered one or more Classes among <strong>Entropist</strong> and <strong>Rogue</strong>, and must have acquired one or more Skills among <strong>Dodge</strong> and <strong>Stolen Time</strong>.</span></p></blockquote><p>You gain a bonus to your Initiative modiﬁer equal to <strong>【your Skill Level in Dodge + your Skill Level in Stolen Time】</strong>.</p><p>As long as you have no <strong>shield</strong> and no <strong>martial armor</strong> equipped, all damage you suffer is reduced by an amount equal to <strong>【your SL in Dodge】 </strong>(applied <strong>before</strong> damage Afﬁnities) and you deal extra damage equal to <strong>【your SL in Stolen Time】</strong>.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist</strong> and <strong>Rogue</strong>, and must have acquired one or more Skills among <strong>Dodge</strong> and <strong>Stolen Time</strong>.</p></blockquote><p>You gain a bonus to your Initiative modiﬁer equal to <strong>【your Skill Level in Dodge + your Skill Level in Stolen Time】</strong>.</p><p>As long as you have no <strong>shield</strong> and no <strong>martial armor</strong> equipped, all damage you suffer is reduced by an amount equal to <strong>【your SL in Dodge】 </strong>(applied <strong>before</strong> damage Afﬁnities) and you deal extra damage equal to <strong>【your SL in Stolen Time】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -108,8 +108,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711473807263,
-    "modifiedTime": 1719171539327,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721104169943,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">As long as you are in Crisis, you have Resistance to </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">dark </strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage and </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">poison </strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage. </span></p>",
+    "description": "<p>As long as you are in Crisis, you have Resistance to <strong>dark</strong> damage and <strong>poison</strong> damage.</p>",
     "isFavored": {
       "value": false
     },
@@ -176,7 +176,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706496871786,
-    "modifiedTime": 1720810247501,
+    "modifiedTime": 1721093956931,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "CEP3nER80UBDH7a9",

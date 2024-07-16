@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">Choose any number of creatures you can see: each of them suffers </span><span class=\"fontstyle2\">(<strong>choose one: dazed, shaken, slow, weak</strong>)</span><span class=\"fontstyle0\">.</span></p><hr /><p><strong>@EFFECT[dazed] @EFFECT[shaken] @EFFECT[slow] @EFFECT[weak]</strong></p><p><strong>@LOSS[20 mp]</strong></p>",
+    "description": "<p>Choose any number of creatures you can see: each of them suffers <strong>(choose one: dazed, shaken, slow, weak)</strong>.</p><hr /><p>@EFFECT[dazed] @EFFECT[shaken] @EFFECT[slow] @EFFECT[weak]</p><p>@LOSS[20 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -72,7 +72,7 @@
       "value": "Special"
     },
     "duration": {
-      "value": "Instantaneous"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": false
@@ -123,8 +123,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1690417015023,
-    "modifiedTime": 1719224647253,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721100129545,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "PpBzAnM7EK75ayIT",
   "_id": "1JaRWZz48d1dtVN0",

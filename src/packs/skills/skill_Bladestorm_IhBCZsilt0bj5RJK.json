@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you perform a </span><span class=\"fontstyle2\"><strong>melee </strong></span><span class=\"fontstyle0\">attack, you may spend <strong>@LOSS[10 mp]</strong> to choose one option: the attack gains </span><span class=\"fontstyle2\"><strong>multi (2)</strong></span><span class=\"fontstyle0\">; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">you increase the attack's </span><span class=\"fontstyle2\"><strong>multi </strong></span><span class=\"fontstyle0\">property by one, up to a maximum of </span><span class=\"fontstyle2\"><strong>multi (3)</strong></span><span class=\"fontstyle0\">.</span> </p>",
+    "description": "<p>When you perform a <strong>melee</strong> attack, you may spend <strong>@LOSS[10 mp]</strong> to choose one option: the attack gains <strong>multi (2)</strong>; <strong>OR</strong> you increase the attack's <strong>multi</strong> property by one, up to a maximum of <strong>multi (3)</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706514077118,
-    "modifiedTime": 1720813370579,
+    "modifiedTime": 1721088146184,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 100000,

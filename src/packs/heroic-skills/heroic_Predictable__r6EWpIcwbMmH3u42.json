@@ -9,7 +9,7 @@
     "summary": {
       "value": "Force an enemy to spend MP to perform specific actions."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\">Requirements: </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Loremaster </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle2\">During a conflict, you may use an action and spend <strong>@LOSS[20 mp]</strong> to anticipate the upcoming moves of a creature you can see, as long as you know </span><span class=\"fontstyle0\">two or more </span><span class=\"fontstyle2\">of that creature's </span><span class=\"fontstyle0\">Traits</span><span class=\"fontstyle2\">. If you do so, choose one type of action among the following: </span><span class=\"fontstyle0\">Attack</span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\">Guard</span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\">Objective</span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\">Spell</span><span class=\"fontstyle2\">, or </span><span class=\"fontstyle0\">Skill</span><span class=\"fontstyle2\">. Until the start of your next turn, the creature must spend <strong>@LOSS[20 mp]</strong> whenever they wish to perform that action. If they can't, they must perform a different action.</span> </p>",
+    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Loremaster</strong> Class.</span></p></blockquote><p><span>During a conflict, you may use an action and spend @LOSS[20 mp] to anticipate the upcoming moves of a creature you can see, as long as you know two or more of that creature's Traits. If you do so, choose one type of action among the following: Attack, Guard, Objective, Spell, or Skill. Until the start of your next turn, the creature must spend @LOSS[20 mp] whenever they wish to perform that action. If they can't, they must perform a different action.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706585767184,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721101621519,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "r6EWpIcwbMmH3u42",
   "sort": 2600000,

@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improve your magicannon and use it for an explosive attack."
     },
-    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements: </strong>you must have mastered the <strong>Tinkerer</strong> Class, and must have acquired the <strong>advanced Magitech</strong> benefit from the <strong>Gadget</strong> Skill.</span></p></blockquote><p>Your attacks with the <strong>magicannon</strong> deal 5 extra damage.</p><p>When you perform the <strong>Attack</strong> action with your <strong>magicannon</strong>, you may choose one option: destroy the magicannon and <strong>immediately</strong> create and equip a new one <strong>for free</strong> (ignore the IP cost), using this newly equipped <strong>magicannon</strong> for your attack; <strong>or</strong> the attack gains <strong>multi (3)</strong>; <strong>or</strong> you perform two separate attacks instead of one, following the rules for <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>).</p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Tinkerer</strong> Class, and must have acquired the <strong>advanced Magitech</strong> benefit from the <strong>Gadget</strong> Skill.</p></blockquote><p>Your attacks with the <strong>magicannon</strong> deal 5 extra damage.</p><p>When you perform the <strong>Attack</strong> action with your <strong>magicannon</strong>, you may choose one option: destroy the magicannon and <strong>immediately</strong> create and equip a new one <strong>for free</strong> (ignore the IP cost), using this newly equipped <strong>magicannon</strong> for your attack; <strong>or</strong> the attack gains <strong>multi (3)</strong>; <strong>or</strong> you perform two separate attacks instead of one, following the rules for <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -108,8 +108,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711473807263,
-    "modifiedTime": 1719170718289,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721104611210,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

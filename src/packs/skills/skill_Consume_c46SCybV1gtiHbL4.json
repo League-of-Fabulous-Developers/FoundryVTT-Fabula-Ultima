@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After you deal damage to one or more creatures with a spell, if you have an </span><span class=\"fontstyle2\"><strong>arcane</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>dagger</strong>, </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>flail </strong></span><span class=\"fontstyle0\">weapon equipped, you recover</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">Mind Points.</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@GAIN[2 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@GAIN[4 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@GAIN[6 mp]</strong></p><p>Skill Level <strong>4</strong> - <strong>@GAIN[8 mp]</strong></p><p>Skill Level b - <strong>@GAIN[10 mp]</strong></p>",
+    "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[2 mp]</p><p>Skill Level <strong>2</strong> - @GAIN[4 mp]</p><p>Skill Level <strong>3</strong> - @GAIN[6 mp]</p><p>Skill Level <strong>4</strong> - @GAIN[8 mp]</p><p>Skill Level <strong>5</strong> - @GAIN[10 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706495586490,
-    "modifiedTime": 1720814738038,
+    "modifiedTime": 1721095686052,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

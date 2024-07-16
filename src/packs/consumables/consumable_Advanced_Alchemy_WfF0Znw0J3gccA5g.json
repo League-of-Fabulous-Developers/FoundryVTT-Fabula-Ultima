@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Advanced Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p><span style=\"font-family:'PT Sans Narrow', sans-serif\">For </span><strong>@LOSS[4 ip]</strong><span style=\"font-family:'PT Sans Narrow', sans-serif\"> roll <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">three d20s</strong> and assign one to <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">target </strong>and one to <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">effect</strong>. </span></p>",
+    "description": "<h5>Required: Advanced Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p>For <strong>@LOSS[4 ip]</strong> roll <strong>three d20s</strong> and assign one to <strong>target </strong>and one to <strong>effect</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -42,8 +42,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707098208405,
-    "modifiedTime": 1719171628742,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721099034668,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!WfF0Znw0J3gccA5g"
 }

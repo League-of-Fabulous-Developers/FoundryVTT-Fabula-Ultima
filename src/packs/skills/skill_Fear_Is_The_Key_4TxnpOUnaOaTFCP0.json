@@ -5,7 +5,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you cause one or more enemies to lose Hit Points, if you have acquired the <strong>Beyond the Realms of Death</strong> Skill and at least one of them is suffering from shaken and/or <strong>weak</strong>, you gain 1 Grave Point and recover <strong>【SL × 2】 </strong>Hit Points and Mind Points.</p><hr /><p>Skill Level <strong>1</strong> - <strong>@GAIN[2 hp]</strong> &amp; <strong>@GAIN[2 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@GAIN[4 hp]</strong> &amp; <strong>@GAIN[4 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@GAIN[6 hp]</strong> &amp; <strong>@GAIN[6 mp]</strong></p>",
+    "description": "<p>After you cause one or more enemies to lose Hit Points, if you have acquired the <strong>Beyond the Realms of Death</strong> Skill and at least one of them is suffering from shaken and/or <strong>weak</strong>, you gain 1 Grave Point and recover <strong>【SL × 2】 </strong>Hit Points and Mind Points.</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[2 hp] &amp; @GAIN[2 mp]</p><p>Skill Level <strong>2</strong> - @GAIN[4 hp] &amp; @GAIN[4 mp]</p><p>Skill Level <strong>3</strong> - @GAIN[6 hp] &amp; @GAIN[6 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -125,8 +125,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1684757022310,
-    "modifiedTime": 1719167812555,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721091754699,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "HL1x2SDWkdiaZf56",
   "ownership": {

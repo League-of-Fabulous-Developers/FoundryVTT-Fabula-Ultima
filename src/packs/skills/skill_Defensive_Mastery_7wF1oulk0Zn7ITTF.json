@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">As long as you have a </span><span class=\"fontstyle2\"><strong>shield </strong></span><span class=\"fontstyle0\">or a </span><span class=\"fontstyle2\"><strong>martial armor</strong> </span><span class=\"fontstyle0\">equipped, all damage you suffer is reduced by </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">(applied </span><span class=\"fontstyle2\"><strong>before </strong></span><span class=\"fontstyle0\">damage Affinities).</span> </p>",
+    "description": "<p>As long as you have a <strong>shield</strong> or <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong> (applied before damage Affinities).</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706503498917,
-    "modifiedTime": 1720811343472,
+    "modifiedTime": 1721092893738,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 200000,

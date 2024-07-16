@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You glimpse briefly into the future. Until this spell ends, after a creature you can see performs a Check, if it was not a </span><span class=\"fontstyle2\"><strong>fumble </strong></span><span class=\"fontstyle0\">nor a </span><span class=\"fontstyle2\"><strong>critical success</strong></span><span class=\"fontstyle0\">, you may force that creature to reroll </span><span class=\"fontstyle2\"><strong>both </strong></span><span class=\"fontstyle0\">dice. Once you have forced </span><span class=\"fontstyle2\"><strong>two </strong></span><span class=\"fontstyle0\">rerolls this way, this spell ends.</span> </p><hr /><p><strong>@LOSS[10 mp]</strong></p>",
+    "description": "<p>You glimpse briefly into the future. Until this spell ends, after a creature you can see performs a Check, if it was not a <strong>fumble</strong> nor a <strong>critical success</strong>, you may force that creature to reroll both dice. Once you have forced <strong>two</strong> rerolls this way, this spell ends.</p><hr /><p>@LOSS[10 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706570972318,
-    "modifiedTime": 1719435181203,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721097860415,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!AAsEhxIBxlig3hRk"

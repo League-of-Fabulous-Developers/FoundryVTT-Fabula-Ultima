@@ -9,7 +9,7 @@
     "summary": {
       "value": "Attack twice with bows"
     },
-    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><strong><span class=\"fontstyle0\">Commander </span></strong><span class=\"fontstyle2\">and </span><strong><span class=\"fontstyle0\">Sharpshooter</span></strong><span class=\"fontstyle2\">.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">When you perform the </span><strong><span class=\"fontstyle0\">Attack </span></strong><span class=\"fontstyle2\">action with a </span><strong><span class=\"fontstyle0\">ranged </span></strong><span class=\"fontstyle2\">weapon that belongs to the </span><strong><span class=\"fontstyle0\">bow </span></strong><span class=\"fontstyle2\">Category, if you have </span><strong><span class=\"fontstyle0\">no other weapon equipped</span></strong><span class=\"fontstyle2\">, you may perform two separate attacks instead of one (against the same target or against different targets). If you do, both attacks follow the rules for </span><strong><span class=\"fontstyle0\">two-weapon fighting</span></strong><span class=\"fontstyle2\">: each attack loses the </span><strong><span class=\"fontstyle0\">multi </span></strong><span class=\"fontstyle2\">property and cannot gain it, and you treat the High Roll of each Accuracy Check as being equal to 0 when determining damage. </span></p>\n<p><span class=\"fontstyle2\">Note that this Heroic Skill </span><span class=\"fontstyle0\"><strong>does not stack</strong> </span><span class=\"fontstyle2\">with a custom weapon’s </span><strong><span class=\"fontstyle0\">quick </span></strong><span class=\"fontstyle2\">customization (using </span><span class=\"fontstyle0\"><strong>Double Arrows</strong> </span><span class=\"fontstyle2\">with a </span><strong><span class=\"fontstyle0\">quick </span></strong><span class=\"fontstyle2\">bow doesn’t allow more than two attacks, in short).</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander </strong>and <strong>Sharpshooter</strong>.</p></blockquote><p>When you perform the <strong>Attack </strong>action with a <strong>ranged </strong>weapon that belongs to the <strong>bow </strong>Category, if you have <strong>no other weapon equipped</strong>, you may perform two separate attacks instead of one (against the same target or against different targets). If you do, both attacks follow the rules for <strong>two-weapon fighting</strong>: each attack loses the <strong>multi </strong>property and cannot gain it, and you treat the High Roll of each Accuracy Check as being equal to 0 when determining damage.</p><p>Note that this Heroic Skill <strong>does not stack</strong> with a custom weapon’s <strong>quick </strong>customization (using <strong>Double Arrows</strong> with a <strong>quick </strong>bow doesn’t allow more than two attacks, in short).</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684593529,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721103087115,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "ibuohUO9YHDIId4x",
   "sort": 0,

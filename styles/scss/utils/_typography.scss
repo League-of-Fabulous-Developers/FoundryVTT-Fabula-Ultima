@@ -1,6 +1,14 @@
 @font-face {
+	font-family: 'Yanone Kaffeesatz';
+	src: url('/systems/projectfu/styles/fonts/yanone-kafffeesatz/YanoneKaffeesatz-VariableFont_wght.ttf') format('truetype');
+	font-optical-sizing: auto;
+	font-weight: 200 700;
+	font-style: normal;
+}
+
+@font-face {
 	font-family: 'Fabula Ultima icons';
-	src: url('/systems/projectfu/styles/fonts/FabulaUltimaIcons-Regular.otf') format('opentype');
+	src: url('/systems/projectfu/styles/fonts/fabula-ultima/FabulaUltimaIcons-Regular.otf') format('opentype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -95,7 +103,7 @@
 .mats-s {
 	font-weight: normal;
 	font-style: normal;
-	font-size: 24px; /* Preferred icon size */
+	font-size: 1.5rem; /* Preferred icon size */
 	display: inline-block;
 	line-height: 1;
 	text-transform: none;
@@ -112,7 +120,7 @@
 // Font Variables
 $font-title: 'CreditValleybold';
 $font-primary: 'PT Sans Narrow', sans-serif;
-$font-secondary: 'Antonio', sans-serif;
+$font-secondary: 'Yanone Kaffeesatz', sans-serif;
 $font-quote: 'EB Garamond', sans-serif;
 
 // Styles for .window-app class
@@ -122,42 +130,45 @@ $font-quote: 'EB Garamond', sans-serif;
 	// Default styles for header
 	h1 {
 		font-family: $font-title;
-		font-size: 30px;
+		font-size: 2rem !important;
 		font-weight: 700;
 		color: $color-secondary;
-		text-transform: uppercase;
+		font-variant: all-small-caps;
 	}
 
 	h2 {
 		font-family: $font-secondary;
-		font-size: 24px;
+		font-size: 1.75rem !important;
 		font-weight: 700;
-		text-transform: uppercase;
+		font-variant: all-small-caps;
 	}
 
 	h3 {
 		font-family: $font-secondary;
-		font-size: 20px;
+		font-size: 1.625rem !important;
 		font-weight: 700;
-		text-transform: uppercase;
+		font-variant: all-small-caps;
 	}
 
 	h4 {
 		font-family: $font-secondary;
-		font-size: 18px;
+		font-size: 1.5rem !important;
 		font-weight: 700;
+		font-variant: all-small-caps;
 	}
 
 	h5 {
 		font-family: $font-secondary;
-		font-size: 16px;
+		font-size: 1.375rem !important;
 		font-weight: 700;
+		font-variant: all-small-caps;
 	}
 
 	h6 {
 		font-family: $font-secondary;
-		font-size: 14px;
+		font-size: 1.25rem !important;
 		font-weight: 700;
+		font-variant: all-small-caps;
 	}
 
 	.sheet-body,
@@ -166,14 +177,14 @@ $font-quote: 'EB Garamond', sans-serif;
 		li {
 			font-family: $font-primary;
 			font-style: normal;
-			font-size: 16px;
+			font-size: 1rem;
 		}
 
 		blockquote,
 		blockquote p {
 			font-family: $font-quote !important;
 			font-style: italic;
-			font-size: 16px;
+			font-size: 1rem;
 		}
 
 		// Change bullet content for li
@@ -188,7 +199,7 @@ $font-quote: 'EB Garamond', sans-serif;
 				.ProseMirror li {
 					&::marker {
 						color: $color-secondary;
-						font-size: 14px;
+						font-size: 0.875rem;
 					}
 				}
 			}
@@ -198,7 +209,7 @@ $font-quote: 'EB Garamond', sans-serif;
 				.ProseMirror li {
 					&::marker {
 						color: $color-secondary;
-						font-size: 16px;
+						font-size: 1rem;
 						font-weight: bold;
 					}
 				}
@@ -207,7 +218,7 @@ $font-quote: 'EB Garamond', sans-serif;
 	}
 
 	.label {
-		text-transform: uppercase;
+		font-variant: all-small-caps;
 		border: none;
 	}
 
@@ -224,27 +235,27 @@ $font-quote: 'EB Garamond', sans-serif;
 
 	.item,
 	.zenit-content {
-		font-size: 16px;
+		font-size: 1rem;
 
 		.item-name {
-			font-size: 16px;
+			font-size: 1rem;
 			font-weight: bold;
 		}
 
 		.item-quality {
-			font-size: 14px;
+			font-size: 0.875rem;
 		}
 	}
 
 	// Item Summary Font Style
 	input.resource-inputs {
-		font-size: 14px;
+		font-size: 0.875rem;
 
 		&.summary {
 			font-family: $font-quote;
 			font-weight: 700;
 			font-style: italic;
-			font-size: 16px;
+			font-size: 1rem;
 			line-height: 1.45em;
 		}
 	}
@@ -255,79 +266,78 @@ $font-quote: 'EB Garamond', sans-serif;
 
 		&.affinity {
 			label {
-				font-family: 'Antonio', sans-serif;
-				line-height: 1.68em;
-				font-size: 18px;
+				font-family: 'Yanone Kaffeesatz', sans-serif;
+				// line-height: 1.68em;
+				font-size: 1.125rem;
 				color: $color-secondary;
 			}
 		}
 
 		// Resource Body Text Sizes
 		.resource-text-sm {
-			font-size: 14px;
+			font-size: 0.875rem;
 			font-family: $font-primary;
 		}
 
 		.resource-text-m {
-			font-size: 16px;
-			line-height: 1.45em;
+			font-size: 1rem;
+			// line-height: 1.45em;
 			font-family: $font-primary;
 		}
 
 		// Resource Label Sizes
 		.resource-label-t {
-			font-size: 12px;
-			line-height: 1.45em;
-			line-height: 1.45em;
+			font-size: 1rem;
+			// line-height: 1.45em;
 			font-weight: bold;
 			font-family: $font-secondary;
-			text-transform: uppercase;
+			font-variant: all-small-caps;
 		}
 
 		.resource-label-sm {
-			font-size: 14px;
-			line-height: 1.45em;
+			font-size: 1.125rem;
+			// line-height: 1.45em;
 			font-weight: bold;
 			font-family: $font-secondary;
-			text-transform: uppercase;
+			font-variant: all-small-caps;
 		}
 
 		.resource-label-m {
-			font-size: 16px;
-			line-height: 1.45em;
+			font-size: 1.25rem;
+			// line-height: 1.45em;
 			font-weight: bold;
 			font-family: $font-secondary;
-			text-transform: uppercase;
+			font-variant: all-small-caps;
 		}
 
 		.resource-label-l {
-			font-size: 18px;
-			line-height: 1.45em;
+			font-size: 1.25rem;
+			// line-height: 1.45em;
 			font-weight: bold;
 			font-family: $font-secondary;
-			text-transform: uppercase;
+			font-variant: all-small-caps;
 		}
 
 		.resource-label-xl {
-			font-size: 20px;
-			line-height: 1.45em;
+			font-size: 1.25rem;
+			// line-height: 1.45em;
 			font-weight: bold;
 			font-family: $font-secondary;
-			text-transform: uppercase;
+			font-variant: all-small-caps;
 		}
 	}
 
 	label.is-crisis {
-		font-size: 18px;
+		font-size: 1.125rem;
 		font-weight: bold;
 		font-family: $font-secondary;
-		text-transform: uppercase;
+		font-variant: all-small-caps;
 		font-style: italic;
 	}
 
 	.action-button {
 		font-weight: bold;
-		font-size: 13px;
+		font-size: 0.813rem;
 		line-height: 1.2em;
 	}
 
@@ -363,7 +373,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 			p {
 				margin: 0;
-				line-height: 1.45em;
+				line-height: 1.6em;
 			}
 
 			h1 + p,
@@ -373,7 +383,7 @@ $font-quote: 'EB Garamond', sans-serif;
 			h5 + p,
 			h6 + p,
 			p + p {
-				margin-top: 5px;
+				margin-top: 0.5rem;
 			}
 
 			blockquote {
@@ -381,7 +391,7 @@ $font-quote: 'EB Garamond', sans-serif;
 			}
 
 			.editor-content {
-				font-size: 16px;
+				font-size: 1rem;
 				line-height: 1.45em;
 				width: 100%;
 			}
@@ -389,33 +399,35 @@ $font-quote: 'EB Garamond', sans-serif;
 	}
 
 	.charname input {
-		font-family: Antonio;
-		font-weight: bold;
-		font-size: 1.25rem;
-		text-transform: uppercase;
+		font-family: $font-secondary;
+		font-weight: 500;
+		font-size: 2.25rem;
+		text-transform: none;
+		font-variant: all-small-caps;
 	}
 
 	.pronouns input {
-		font-family: Antonio;
-		font-size: 16px;
-		text-transform: uppercase;
+		font-family: $font-secondary;
+		font-size: 1.35rem;
+		padding-top: 0.3rem;
+		font-variant: all-small-caps;
 	}
 
 	// Styles for .detail-desc class
 	.detail-desc {
-		font-size: 14px;
+		font-size: 0.875rem;
 		line-height: 1.45em;
 		font-weight: bold;
 		font-family: $font-primary;
 
 		div {
-			font-size: 14px;
+			font-size: 0.875rem;
 			padding: 5px 0;
 		}
 	}
 
 	.description-effect {
-		font-size: 15px;
+		font-size: 0.938rem;
 		line-height: 1.45em;
 		font-weight: normal !important;
 		font-family: $font-primary;
@@ -423,7 +435,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 	// Uppercase Text
 	.uppercase {
-		text-transform: uppercase;
+		font-variant: all-small-caps;
 	}
 
 	// Quote Styles
@@ -439,7 +451,7 @@ $font-quote: 'EB Garamond', sans-serif;
 			font-family: $font-quote;
 			font-weight: 700;
 			font-style: italic;
-			font-size: 16px;
+			font-size: 1rem;
 			line-height: 1.45em;
 			color: $color-ternary;
 		}
@@ -449,7 +461,7 @@ $font-quote: 'EB Garamond', sans-serif;
 	.chat-message {
 		.message-header {
 			.flavor-text {
-				font-size: 20px;
+				font-size: 1.25rem;
 				line-height: 1.45em;
 			}
 		}
@@ -466,8 +478,8 @@ $font-quote: 'EB Garamond', sans-serif;
 
 	// Navbar Text
 	.sheet nav.sheet-tabs .item {
-		text-transform: uppercase;
-		font-size: 16px;
+		font-variant: all-small-caps;
+		font-size: 1rem;
 		line-height: 1.45em;
 	}
 }
@@ -479,7 +491,7 @@ $font-quote: 'EB Garamond', sans-serif;
 .is-offensive {
 	color: $color-danger !important;
 	font-family: 'Heydings Icons';
-	font-size: 24px;
+	font-size: 1.5rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
@@ -490,7 +502,7 @@ $font-quote: 'EB Garamond', sans-serif;
 .is-martial {
 	color: $color-danger !important;
 	font-family: 'FnT_BasicShapes1';
-	font-size: 24px;
+	font-size: 1.5rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
@@ -501,7 +513,7 @@ $font-quote: 'EB Garamond', sans-serif;
 .is-melee {
 	color: $color-black !important;
 	font-family: 'Fabula Ultima icons';
-	font-size: 24px;
+	font-size: 1.5rem;
 }
 
 .is-range::before {
@@ -511,7 +523,7 @@ $font-quote: 'EB Garamond', sans-serif;
 .is-range {
 	color: $color-black !important;
 	font-family: 'Fabula Ultima icons';
-	font-size: 24px;
+	font-size: 1.5rem;
 }
 
 .is-spell::before {
@@ -521,7 +533,7 @@ $font-quote: 'EB Garamond', sans-serif;
 .is-spell {
 	color: $color-black !important;
 	font-family: 'Fabula Ultima icons';
-	font-size: 24px;
+	font-size: 1.5rem;
 }
 
 .is-skill::before {
@@ -531,7 +543,7 @@ $font-quote: 'EB Garamond', sans-serif;
 .is-skill {
 	color: $color-black !important;
 	font-family: 'Fabula Ultima icons';
-	font-size: 24px;
+	font-size: 1.5rem;
 }
 
 .is-two-weapon::before {
@@ -541,7 +553,7 @@ $font-quote: 'EB Garamond', sans-serif;
 .is-two-weapon {
 	color: $color-black !important;
 	font-family: 'Evilz';
-	font-size: 24px;
+	font-size: 1.5rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
@@ -550,7 +562,7 @@ $font-quote: 'EB Garamond', sans-serif;
 }
 
 .is-header {
-	font-size: 24px;
+	font-size: 1.5rem;
 	color: $color-black;
 	font-family: 'old retro labels tfb';
 }
@@ -562,7 +574,7 @@ $font-quote: 'EB Garamond', sans-serif;
 .is-diamond {
 	color: $color-danger !important;
 	font-family: 'FnT_BasicShapes1';
-	font-size: 24px;
+	font-size: 1.5rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
@@ -572,7 +584,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 .is-club {
 	font-family: 'FnT_BasicShapes1';
-	font-size: 24px;
+	font-size: 1.5rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
@@ -583,7 +595,7 @@ $font-quote: 'EB Garamond', sans-serif;
 .is-heart {
 	color: $color-danger !important;
 	font-family: 'FnT_BasicShapes1';
-	font-size: 24px;
+	font-size: 1.5rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
@@ -593,31 +605,31 @@ $font-quote: 'EB Garamond', sans-serif;
 
 .is-spade {
 	font-family: 'FnT_BasicShapes1';
-	font-size: 24px;
+	font-size: 1.5rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .heydings {
 	font-family: 'Heydings Icons';
-	font-size: 18px;
+	font-size: 1.125rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .fnt {
 	font-family: 'FnT_BasicShapes1';
-	font-size: 18px;
+	font-size: 1.125rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .evil {
 	font-family: 'Evilz';
-	font-size: 18px;
+	font-size: 1.125rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .websymbols {
 	font-family: 'Web Symbols';
-	font-size: 18px;
+	font-size: 1.125rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 

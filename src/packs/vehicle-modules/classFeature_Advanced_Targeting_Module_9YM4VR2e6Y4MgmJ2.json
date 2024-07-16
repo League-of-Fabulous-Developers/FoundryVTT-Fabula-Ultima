@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells (<span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong>@ICON[offensive]</strong></span>) you cast.</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiQWNjdXJhY3kvTWFnaWMgVXAiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYm9udXNlcy5hY2N1cmFjeS5hY2N1cmFjeUNoZWNrIiwibW9kZSI6MiwidmFsdWUiOjJ9LHsia2V5Ijoic3lzdGVtLmJvbnVzZXMuYWNjdXJhY3kubWFnaWNDaGVjayIsIm1vZGUiOjIsInZhbHVlIjoyfV0sImljb24iOiJpY29ucy9jb21tb2RpdGllcy90ZWNoL21ldGFsLWJsdWUud2VicCJ9]</strong></p>",
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells ( @ICON[offensive] ) you cast.</p><hr><p>@EFFECT[eyJuYW1lIjoiQWNjdXJhY3kvTWFnaWMgVXAiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYm9udXNlcy5hY2N1cmFjeS5hY2N1cmFjeUNoZWNrIiwibW9kZSI6MiwidmFsdWUiOjJ9LHsia2V5Ijoic3lzdGVtLmJvbnVzZXMuYWNjdXJhY3kubWFnaWNDaGVjayIsIm1vZGUiOjIsInZhbHVlIjoyfV0sImljb24iOiJpY29ucy9jb21tb2RpdGllcy90ZWNoL21ldGFsLWJsdWUud2VicCJ9]</p>",
       "complex": false
     },
     "source": "FUTF168"
@@ -26,8 +26,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711476994639,
-    "modifiedTime": 1719173179841,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721099748233,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "9YM4VR2e6Y4MgmJ2",
   "sort": 0,

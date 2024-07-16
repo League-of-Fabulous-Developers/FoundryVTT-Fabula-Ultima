@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle2\">After an enemy you can see performs an action during a conflict, you may declare one of your </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">'s </span><span class=\"fontstyle4\"><strong>suits </strong></span><span class=\"fontstyle2\">(after the action has been resolved) and put the first card on the bottom of your </span><span class=\"fontstyle4\"><strong>deck </strong></span><span class=\"fontstyle2\">in your </span><span class=\"fontstyle4\"><strong>discard pile</strong></span><span class=\"fontstyle2\">, face up. If that card is a </span><span class=\"fontstyle4\"><strong>joker </strong></span><span class=\"fontstyle2\">or its </span><span class=\"fontstyle4\"><strong>suit </strong></span><span class=\"fontstyle2\">matches the one you declared, you may immediately perform the </span><span class=\"fontstyle4\"><strong>Spell </strong></span><span class=\"fontstyle2\">action for free, casting a spell with a </span><span class=\"fontstyle4\"><strong>total Mind Point cost equal to or lower than</strong></span><span class=\"fontstyle7\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>SL × 5</strong></span><span class=\"fontstyle7\"><strong>】</strong></span><span class=\"fontstyle2\">(you must still pay its MP cost).</span> </p>",
+    "description": "<p>After an enemy you can see performs an action during a conflict, you may declare one of your <strong>deck</strong>'s <strong>suits</strong> (after the action has been resolved) and put the first card on the bottom of your <strong>deck</strong> in your <strong>discard pile</strong>, face up. If that card is a <strong>joker</strong> or its <strong>suit</strong> matches the one you declared, you may immediately perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total Mind Point cost equal to or lower than</strong> <strong>【SL × 5】</strong> (you must still pay its MP cost).</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707643024284,
-    "modifiedTime": 1719130052422,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721096684365,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "dHurcgjvmwVBJPvM",
   "sort": 0,

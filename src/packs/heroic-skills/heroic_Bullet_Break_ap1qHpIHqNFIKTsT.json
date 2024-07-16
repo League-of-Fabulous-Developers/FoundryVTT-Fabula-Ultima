@@ -9,7 +9,7 @@
     "summary": {
       "value": "Counterattack with firearms after using Crossfire."
     },
-    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><strong><span class=\"fontstyle0\">Sharpshooter </span></strong><span class=\"fontstyle2\">Class.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">After you negate a </span><strong><span class=\"fontstyle0\">ranged </span></strong><span class=\"fontstyle2\">attack with the </span><strong><span class=\"fontstyle0\">Crossfire </span></strong><span class=\"fontstyle2\">Skill, if the Result of the Accuracy Check was an </span><strong><span class=\"fontstyle0\">even number</span></strong><span class=\"fontstyle2\">, you may perform a </span><span class=\"fontstyle0\"><strong>free attack</strong> </span><span class=\"fontstyle2\">against the attacker with a </span><span class=\"fontstyle0\"><strong>ranged firearm</strong> </span><span class=\"fontstyle2\">weapon you have equipped. This attack must have that enemy as its </span><strong><span class=\"fontstyle0\">only </span></strong><span class=\"fontstyle2\">target; treat your </span><strong><span class=\"fontstyle0\">High Roll (HR) </span></strong><span class=\"fontstyle2\">as 0 when calculating damage dealt by it.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Sharpshooter </strong>Class.</p></blockquote><p>After you negate a <strong>ranged </strong>attack with the <strong>Crossfire </strong>Skill, if the Result of the Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against the attacker with a <strong>ranged firearm</strong> weapon you have equipped. This attack must have that enemy as its <strong>only </strong>target; treat your <strong>High Roll (HR) </strong>as 0 when calculating damage dealt by it. </p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684563458,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721102991753,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "ap1qHpIHqNFIKTsT",
   "sort": 0,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">As long as you have no <strong style=\"box-sizing:border-box;user-select:text\">shields</strong> and no <strong style=\"box-sizing:border-box;user-select:text\">martial armor</strong> equipped, your Defense score is increased by <strong style=\"box-sizing:border-box;user-select:text\">【SL】</strong>. </span></p>",
+    "description": "<p><span>As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by <strong>【SL】</strong>.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -172,7 +172,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504745151,
-    "modifiedTime": 1720812690846,
+    "modifiedTime": 1721090300712,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!ksgKc90MZSpDTka7"

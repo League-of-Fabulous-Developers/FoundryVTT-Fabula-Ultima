@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">Each time you acquire this Skill, learn one <strong>Spiritist</strong> spell (<strong>Core Rulebook</strong>, page <strong>208 </strong>or<strong> </strong></span><strong>@UUID[Compendium.projectfu.spells.Item.fIzsuP7ro97Xc8H0]{[Spiritist Spells]}</strong><span class=\"fontstyle0\">).</span></p><p><span class=\"fontstyle0\">Offensive </span>( <strong>@ICON[offensive]</strong> ) <span class=\"fontstyle0\">Spiritist spells use </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>INS + WLP</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">for the Magic Check.</span> </p>",
+    "description": "<p>Each time you acquire this Skill, learn one <strong>Spiritist</strong> spell (<strong>Core Rulebook</strong>, page <strong>208 </strong>or<strong> </strong>@UUID[Compendium.projectfu.spells.Item.fIzsuP7ro97Xc8H0]{[Spiritist Spells]}).</p><p>Offensive ( @ICON[offensive] ) Spiritist spells use <strong>【INS + WLP】 </strong>for the Magic Check.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706507930339,
-    "modifiedTime": 1720812826611,
+    "modifiedTime": 1721090077723,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 300000,

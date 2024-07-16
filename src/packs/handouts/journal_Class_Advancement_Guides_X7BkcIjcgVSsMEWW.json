@@ -20,7 +20,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Some fates are not easily avoided.\"</strong></em></p><p></p><h5>Also: Avatar, Chosen, Summoner</h5><p></p><ul><li><p>Where do your powers come from? Are they a gift from your bloodline?</p></li><li><p>Have you ever communicated with an Arcanum, or are they silent and distant?</p></li><li><p>Do people see you as mysterious, powerful, or otherworldly?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li></ul><p></p><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.dqvpb3dkA3cDCChq]{Arcanist}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.hEj8s21iAOPhDtJN]{Arcane Circle}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ZTEuKRcX9erp1NDC]{Arcane Regeneration}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.gbkA1CRgQ9OxPstd]{Bind and Summon}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.aIbwfdDFTSRgKxxx]{Emergency Arcanum}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Jaxs87P2Q8AfKwWO]{Ritual Arcanism}</strong></p><p></p><h3>ARCANUM RULES</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.sO33zynz6ZsBDpFR]{Arcana Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.7Hw8p7ZefudMdCxV]{[Handout: Arcana Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.8ySmNzjYisVduHWP]{[Handout: Arcanum List]}</strong></p><p></p><h3><strong>SAMPLE ARCANUM</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</strong></p>",
+        "content": "<p style=\"text-align:center\"><em><strong>\"Some fates are not easily avoided.\"</strong></em></p><p></p><h5>Also: Avatar, Chosen, Summoner</h5><p></p><ul><li><p>Where do your powers come from? Are they a gift from your bloodline?</p></li><li><p>Have you ever communicated with an Arcanum, or are they silent and distant?</p></li><li><p>Do people see you as mysterious, powerful, or otherworldly?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><p><strong>@UUID[Compendium.projectfu.classes.Item.dqvpb3dkA3cDCChq]{Arcanist}</strong></p><p></p><h3><strong>SKILLS</strong></h3><p>@UUID[Compendium.projectfu.skills.Item.hEj8s21iAOPhDtJN]{Arcane Circle}</p><p>@UUID[Compendium.projectfu.skills.Item.ZTEuKRcX9erp1NDC]{Arcane Regeneration}</p><p>@UUID[Compendium.projectfu.skills.Item.gbkA1CRgQ9OxPstd]{Bind and Summon}</p><p>@UUID[Compendium.projectfu.skills.Item.aIbwfdDFTSRgKxxx]{Emergency Arcanum}</p><p>@UUID[Compendium.projectfu.skills.Item.Jaxs87P2Q8AfKwWO]{Ritual Arcanism}</p><p></p><h3>ARCANUM RULES</h3><p>@UUID[Compendium.projectfu.handouts.JournalEntry.sO33zynz6ZsBDpFR]{Arcana Rules}</p><p>@UUID[Compendium.projectfu.skills.Item.7Hw8p7ZefudMdCxV]{[Handout: Arcana Rules]}</p><p>@UUID[Compendium.projectfu.skills.Item.8ySmNzjYisVduHWP]{[Handout: Arcanum List]}</p><p></p><h3><strong>SAMPLE ARCANUM</strong></h3><p>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</p><p>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</p><p>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</p><p>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</p><p>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</p><p>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</p><p>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</p><p>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</p><p>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</p>",
         "markdown": ""
       },
       "video": {
@@ -45,8 +45,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296240420,
-        "modifiedTime": 1719226306185,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720837755837,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.7ixLUaryAAvDNVMD"
     },
@@ -62,7 +62,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Power without harmony will only lead to suffering.\"</strong></em></p><p></p><h5>Also: Druid, Shapeshifter, Wild Mage</h5><p></p><ul><li><p>Who taught you the art of Chimerism? Is your mentor human or monstrous?</p></li><li><p>Can people and monsters live in harmony, or are they bound to threaten each other?</p></li><li><p>What does your magic look like?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><p><strong>@UUID[Compendium.projectfu.classes.Item.I3qOytLtqR9OAawS]{Chimerist}</strong></p><p></p><h3><strong>SKILLS</strong></h3><p><strong>@UUID[Compendium.projectfu.skills.Item.c46SCybV1gtiHbL4]{Consume}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.YLWWM3IqnFCAGoUc]{Feral Speech}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.EBbeGD1rgPmN6Y6R]{Pathogenesis}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.99bT5ymNnmR60Kmf]{Ritual Chimerism}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.yiX5sLJLKBh3UMmz]{Spell Mimic}</strong></p>",
+        "content": "<p style=\"text-align:center\"><em><strong>\"Power without harmony will only lead to suffering.\"</strong></em></p><p></p><h5>Also: Druid, Shapeshifter, Wild Mage</h5><p></p><ul><li><p>Who taught you the art of Chimerism? Is your mentor human or monstrous?</p></li><li><p>Can people and monsters live in harmony, or are they bound to threaten each other?</p></li><li><p>What does your magic look like?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.I3qOytLtqR9OAawS]{Chimerist}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.c46SCybV1gtiHbL4]{Consume}</p><p>@UUID[Compendium.projectfu.skills.Item.YLWWM3IqnFCAGoUc]{Feral Speech}</p><p>@UUID[Compendium.projectfu.skills.Item.EBbeGD1rgPmN6Y6R]{Pathogenesis}</p><p>@UUID[Compendium.projectfu.skills.Item.99bT5ymNnmR60Kmf]{Ritual Chimerism}</p><p>@UUID[Compendium.projectfu.skills.Item.yiX5sLJLKBh3UMmz]{Spell Mimic}</p>",
         "markdown": ""
       },
       "video": {
@@ -87,8 +87,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296252270,
-        "modifiedTime": 1719192255361,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720837793687,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.ucVhWPgNjIk6xFkb"
     },
@@ -104,7 +104,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Today you shall know the full extent of my suffering.\"</strong></em></p><p></p><h5>Also: Avenger, Black Knight, Death Knight</h5><p></p><ul><li><p>What tragic experience awakened your abilities?</p></li><li><p>Many would regard your powers as evil. How do you feel about them?</p></li><li><p>What do your weapons and fighting style look like?</p></li><li><p>Are there many practicing your art, or are you the exception?</p><p></p></li></ul><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.AgYLSVuJduaQBja0]{Darkblade}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.JPVEY9p8zsGidKJq]{Agony}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.CEP3nER80UBDH7a9]{Dark Blood}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.e6ids95gOPher40d]{Heart of Darkness}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.YkMaFGnNoWMo6k1U]{Painful Lessons}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike}</strong></p>",
+        "content": "<p style=\"text-align:center\"><em><strong>\"Today you shall know the full extent of my suffering.\"</strong></em></p><p></p><h5>Also: Avenger, Black Knight, Death Knight</h5><p></p><ul><li><p>What tragic experience awakened your abilities?</p></li><li><p>Many would regard your powers as evil. How do you feel about them?</p></li><li><p>What do your weapons and fighting style look like?</p></li><li><p>Are there many practicing your art, or are you the exception?</p><p></p></li></ul><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.AgYLSVuJduaQBja0]{Darkblade}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.JPVEY9p8zsGidKJq]{Agony}</p><p>@UUID[Compendium.projectfu.skills.Item.CEP3nER80UBDH7a9]{Dark Blood}</p><p>@UUID[Compendium.projectfu.skills.Item.e6ids95gOPher40d]{Heart of Darkness}</p><p>@UUID[Compendium.projectfu.skills.Item.YkMaFGnNoWMo6k1U]{Painful Lessons}</p><p>@UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike}</p>",
         "markdown": ""
       },
       "video": {
@@ -129,8 +129,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296418094,
-        "modifiedTime": 1719191402506,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720837891647,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.TCuwys7OlHJ6DPtW"
     },
@@ -146,7 +146,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Ignore the warnings of the World at your own risk.\"</strong></em></p><p></p><h5>Also: Battle Mage, Geomancer, Sorcerer</h5><p></p><ul><li><p>Who trained you in the way of the Elements?</p></li><li><p>Your magic can be devastating... are you afraid of yourself?</p></li><li><p>Elemental magic is often used in war. Did you serve in the military?</p></li><li><p>What does your magic look like?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.vSE3PMoHTGLC1yzG]{Elementalist}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.muhtqtJ6av32K34Z]{Cataclysm}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.zlmL0suZwTCQYzE5]{Elemental Magic}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.b5zzfsWN7h5ugrnW]{Magic Artillery}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.qgy43lWGmJ2YGhTp]{Ritual Elementalism}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.v6rTedHMjbLuLdN3]{Spellblade}</strong></p><p></p><h3><strong>SPELLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.spells.Item.GOEbYMBu3cGnszWt]{[Elementalist Spells]}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"Ignore the warnings of the World at your own risk.\"</strong></em></p><p></p><h5>Also: Battle Mage, Geomancer, Sorcerer</h5><p></p><ul><li><p>Who trained you in the way of the Elements?</p></li><li><p>Your magic can be devastating... are you afraid of yourself?</p></li><li><p>Elemental magic is often used in war. Did you serve in the military?</p></li><li><p>What does your magic look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.vSE3PMoHTGLC1yzG]{Elementalist}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.muhtqtJ6av32K34Z]{Cataclysm}</p><p>@UUID[Compendium.projectfu.skills.Item.zlmL0suZwTCQYzE5]{Elemental Magic}</p><p>@UUID[Compendium.projectfu.skills.Item.b5zzfsWN7h5ugrnW]{Magic Artillery}</p><p>@UUID[Compendium.projectfu.skills.Item.qgy43lWGmJ2YGhTp]{Ritual Elementalism}</p><p>@UUID[Compendium.projectfu.skills.Item.v6rTedHMjbLuLdN3]{Spellblade}</p><p></p><h3><strong>SPELLS</strong></h3><p>@UUID[Compendium.projectfu.spells.Item.GOEbYMBu3cGnszWt]{[Elementalist Spells]}</p>"
       },
       "video": {
         "controls": true,
@@ -170,8 +170,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296427199,
-        "modifiedTime": 1719192254329,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720837923024,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.Sll1MAiykznBYKpG"
     },
@@ -187,7 +187,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"The cold between the stars… it does not frighten me.\"</strong></em></p><h5></h5><p></p><h5><strong>ALSO: Astromancer, Chaos Mage, Gambler</strong></h5><p></p><ul><li><p>Who taught you to channel the reality-bending powers of the Cosmos?</p></li><li><p>What do you know of the Cosmos? Are they the end of reality, or a new beginning?</p></li><li><p>What does your magic look like?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.A24rkaeNHdKThN4N]{Entropist}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.jgGLuOvN8xCSQWLK]{Absorb MP}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.vtmxLTltA4JvXFXu]{Entropic Magic}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.HgxY0x6jUjS6ppBc]{Lucky Seven}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Ko2QCUw6qbxhufwE]{Ritual Entropism}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.84JARbmkQ5r0j39r]{Stolen Time}</strong></p><p></p><h3><strong>SPELLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.spells.Item.W9ZYH88gvlcg7atp]{[Entropist Spells]}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"The cold between the stars… it does not frighten me.\"</strong></em></p><h5></h5><p></p><h5><strong>ALSO: Astromancer, Chaos Mage, Gambler</strong></h5><p></p><ul><li><p>Who taught you to channel the reality-bending powers of the Cosmos?</p></li><li><p>What do you know of the Cosmos? Are they the end of reality, or a new beginning?</p></li><li><p>What does your magic look like?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.A24rkaeNHdKThN4N]{Entropist}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.jgGLuOvN8xCSQWLK]{Absorb MP}</p><p>@UUID[Compendium.projectfu.skills.Item.vtmxLTltA4JvXFXu]{Entropic Magic}</p><p>@UUID[Compendium.projectfu.skills.Item.HgxY0x6jUjS6ppBc]{Lucky Seven}</p><p>@UUID[Compendium.projectfu.skills.Item.Ko2QCUw6qbxhufwE]{Ritual Entropism}</p><p>@UUID[Compendium.projectfu.skills.Item.84JARbmkQ5r0j39r]{Stolen Time}</p><p></p><h3><strong>SPELLS</strong></h3><p>@UUID[Compendium.projectfu.spells.Item.W9ZYH88gvlcg7atp]{[Entropist Spells]}</p>"
       },
       "video": {
         "controls": true,
@@ -211,8 +211,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296437859,
-        "modifiedTime": 1719191516876,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838689130,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.zklWasG5n1Zwzu5K"
     },
@@ -228,7 +228,8 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"I'll just have to become stronger than you!\"</strong></em></p><p></p><h5>Also: Berserker, Brawler, Viking</h5><p></p><ul><li><p>Do you rely on your burning passion, or do you strive to keep it under control?</p></li><li><p>There’s that one thing that always makes you lose it. What is it?</p></li><li><p>In the past, your lack of control had tragic consequences. What have you lost?</p></li><li><p>What do your weapons and fighting style look like?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.JqjAUSTgQyZdfAML]{Fury}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.DniA4VMTBNhk5a1v]{Adrenaline}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.oi2LgAoLN5IyuBG3]{Frenzy}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.wezEekAOYfbxrt74]{Indomitable Spirit}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.XaopYEAay9e86srI]{Provoke}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.OW3xxi09kANGy2ZO]{Withstand}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"I'll just have to become stronger than you!\"</strong></em></p><p></p><h5>Also: Berserker, Brawler, Viking</h5><p></p><ul><li><p>Do you rely on your burning passion, or do you strive to keep it under control?</p></li><li><p>There’s that one thing that always makes you lose it. What is it?</p></li><li><p>In the past, your lack of control had tragic consequences. What have you lost?</p></li><li><p>What do your weapons and fighting style look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.JqjAUSTgQyZdfAML]{Fury}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.DniA4VMTBNhk5a1v]{Adrenaline}</p><p>@UUID[Compendium.projectfu.skills.Item.oi2LgAoLN5IyuBG3]{Frenzy}</p><p>@UUID[Compendium.projectfu.skills.Item.wezEekAOYfbxrt74]{Indomitable Spirit}</p><p>@UUID[Compendium.projectfu.skills.Item.XaopYEAay9e86srI]{Provoke}</p><p>@UUID[Compendium.projectfu.skills.Item.OW3xxi09kANGy2ZO]{Withstand}</p>",
+        "markdown": ""
       },
       "video": {
         "controls": true,
@@ -252,8 +253,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296446910,
-        "modifiedTime": 1719192253620,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838702524,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.XFXooTKbjGFyH1VE"
     },
@@ -269,7 +270,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Let me be your shield.\"</strong></em></p><p></p><h5>Also: Paladin, Soldier, Yōjinbō</h5><p></p><ul><li><p>Who or what is it you would gladly give your life to protect?</p></li><li><p>Are you, or have you ever been, the servant of a Lady or Lord? What were they like?</p></li><li><p>What is it you were unable to protect? What have you lost?</p></li><li><p>What are you using as your armor and/or shield?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.ARBTZXtCwUzlyIyy]{Guardian}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.ZvZT5jWlBZVm1Gmd]{Bodyguard}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.7wF1oulk0Zn7ITTF]{Defensive Mastery}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.X4KdFiQmzikrsM6v]{Fortress}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Z4WIA15aR4uLL5ES]{Protect}</strong></p><p></p><h3>TWIN SHIELDS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.G7ia7CUo4fzXL4Lo]{Twin Shields (Runic)}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"Let me be your shield.\"</strong></em></p><p></p><h5>Also: Paladin, Soldier, Yōjinbō</h5><p></p><ul><li><p>Who or what is it you would gladly give your life to protect?</p></li><li><p>Are you, or have you ever been, the servant of a Lady or Lord? What were they like?</p></li><li><p>What is it you were unable to protect? What have you lost?</p></li><li><p>What are you using as your armor and/or shield?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.ARBTZXtCwUzlyIyy]{Guardian}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.ZvZT5jWlBZVm1Gmd]{Bodyguard}</p><p>@UUID[Compendium.projectfu.skills.Item.7wF1oulk0Zn7ITTF]{Defensive Mastery}</p><p>@UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer}</p><p>@UUID[Compendium.projectfu.skills.Item.X4KdFiQmzikrsM6v]{Fortress}</p><p>@UUID[Compendium.projectfu.skills.Item.Z4WIA15aR4uLL5ES]{Protect}</p><p></p><h3>TWIN SHIELDS</h3><p>@UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields}</p><p>@UUID[Compendium.projectfu.skills.Item.G7ia7CUo4fzXL4Lo]{Twin Shields (Runic)}</p>"
       },
       "video": {
         "controls": true,
@@ -293,8 +294,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296454120,
-        "modifiedTime": 1719191631650,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838708345,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.0etJ7RfReCmErYj5"
     },
@@ -310,7 +311,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Ah, I knew this was going to happen.\"</strong></em></p><p></p><h5>Also: Archivist, Sage, Scholar</h5><p></p><ul><li><p>Who is (or was) your mentor? What is (or was) your relationship with them?</p></li><li><p>Did you attend an academy or college? What kind of people did you meet there?</p></li><li><p>There is this centuries-old mystery you’re obsessed with. What is it?</p></li><li><p>Is it true that some things are better left buried beneath the sands of time?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.CCSYiJBV0Ce69JOp]{Loremaster}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.J5KbrSiczxizbdM3]{Flash of Insight}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.xaNu6plCZfo9dGsX]{Focused}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.XNAHXFdVPKiABegZ]{Knowledge Is Power}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.YiBD86tGOvFSlaZ6]{Quick Assessment}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.NseNebtgAwSF7pM6]{Trained Memory}</strong></p>",
+        "content": "<p style=\"text-align:center\"><em><strong>\"Ah, I knew this was going to happen.\"</strong></em></p><p></p><h5>Also: Archivist, Sage, Scholar</h5><p></p><ul><li><p>Who is (or was) your mentor? What is (or was) your relationship with them?</p></li><li><p>Did you attend an academy or college? What kind of people did you meet there?</p></li><li><p>There is this centuries-old mystery you’re obsessed with. What is it?</p></li><li><p>Is it true that some things are better left buried beneath the sands of time?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.CCSYiJBV0Ce69JOp]{Loremaster}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.J5KbrSiczxizbdM3]{Flash of Insight}</p><p>@UUID[Compendium.projectfu.skills.Item.xaNu6plCZfo9dGsX]{Focused}</p><p>@UUID[Compendium.projectfu.skills.Item.XNAHXFdVPKiABegZ]{Knowledge Is Power}</p><p>@UUID[Compendium.projectfu.skills.Item.YiBD86tGOvFSlaZ6]{Quick Assessment}</p><p>@UUID[Compendium.projectfu.skills.Item.NseNebtgAwSF7pM6]{Trained Memory}</p>",
         "markdown": ""
       },
       "video": {
@@ -335,8 +336,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296461259,
-        "modifiedTime": 1719191653772,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838717866,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.dnSdRiwpCSzIiMQR"
     },
@@ -352,7 +353,8 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Words are only as good as the actions that follow.\"</strong></em></p><p></p><h5>Also: Ambassador, Diplomat, Entertainer</h5><p></p><ul><li><p>Do you think everyone can be persuaded? Is it true that everyone has a price?</p></li><li><p>You thought someone was on your side, but they betrayed you. Who are they?</p></li><li><p>How do you feel about manipulating people, even if it is for a good cause?</p></li><li><p>In the past, your words ended up putting you in trouble. What happened?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.8HxmAoTTwLlmQ8Fc]{Orator}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.DtEiCkDsC1amYABn]{Condemn}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.04DiGVKhF3DtmJ4n]{Encourage}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.lK9onKSiMuQEe3zd]{My Trust In You}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.GjmqoWAJ4szsk0om]{Persuasive}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ucCrtRAvv2qX8aJO]{Unexpected Ally}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"Words are only as good as the actions that follow.\"</strong></em></p><p></p><h5>Also: Ambassador, Diplomat, Entertainer</h5><p></p><ul><li><p>Do you think everyone can be persuaded? Is it true that everyone has a price?</p></li><li><p>You thought someone was on your side, but they betrayed you. Who are they?</p></li><li><p>How do you feel about manipulating people, even if it is for a good cause?</p></li><li><p>In the past, your words ended up putting you in trouble. What happened?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.8HxmAoTTwLlmQ8Fc]{Orator}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.DtEiCkDsC1amYABn]{Condemn}</p><p>@UUID[Compendium.projectfu.skills.Item.04DiGVKhF3DtmJ4n]{Encourage}</p><p>@UUID[Compendium.projectfu.skills.Item.lK9onKSiMuQEe3zd]{My Trust In You}</p><p>@UUID[Compendium.projectfu.skills.Item.GjmqoWAJ4szsk0om]{Persuasive}</p><p>@UUID[Compendium.projectfu.skills.Item.ucCrtRAvv2qX8aJO]{Unexpected Ally}</p>",
+        "markdown": ""
       },
       "video": {
         "controls": true,
@@ -376,8 +378,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296469037,
-        "modifiedTime": 1719191734384,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838771433,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.LazQsDjHBfxQqBY0"
     },
@@ -393,7 +395,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"I will find my own justice.\"</strong></em></p><p></p><h5>Also: Bandit, Ninja, Thief</h5><p></p><ul><li><p>What drives you? Is it desire, vengeance, or a burning need for freedom?</p></li><li><p>Are you part of a criminal gang or guild, or do you work on your own?</p></li><li><p>Is there a place you can call home? Or is it true that, in the end, we all die alone?</p></li><li><p>What is the most important rule in your personal code?</p><p></p></li></ul><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.q7ak4N89Makw4jiJ]{Rogue}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.c2XRt5pvOab25Tbe]{Cheap Shot}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ksgKc90MZSpDTka7]{Dodge}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.tiu0D74YNxirN6Tr]{High Speed}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.cHKzZJBYjwLuRfDL]{See You Later}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.bpCv5Vkr1aWZiFSw]{Soul Steal}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"I will find my own justice.\"</strong></em></p><p></p><h5>Also: Bandit, Ninja, Thief</h5><p></p><ul><li><p>What drives you? Is it desire, vengeance, or a burning need for freedom?</p></li><li><p>Are you part of a criminal gang or guild, or do you work on your own?</p></li><li><p>Is there a place you can call home? Or is it true that, in the end, we all die alone?</p></li><li><p>What is the most important rule in your personal code?</p><p></p></li></ul><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.q7ak4N89Makw4jiJ]{Rogue}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.c2XRt5pvOab25Tbe]{Cheap Shot}</p><p>@UUID[Compendium.projectfu.skills.Item.ksgKc90MZSpDTka7]{Dodge}</p><p>@UUID[Compendium.projectfu.skills.Item.tiu0D74YNxirN6Tr]{High Speed}</p><p>@UUID[Compendium.projectfu.skills.Item.cHKzZJBYjwLuRfDL]{See You Later}</p><p>@UUID[Compendium.projectfu.skills.Item.bpCv5Vkr1aWZiFSw]{Soul Steal}</p>"
       },
       "video": {
         "controls": true,
@@ -417,8 +419,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296479970,
-        "modifiedTime": 1719191875858,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838789467,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.R65Forq4BBq69ot1"
     },
@@ -434,7 +436,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Flee to the other end of the world; my arrow shall find you.\"</strong></em></p><p></p><h5>Also: Archer, Gunslinger, Sniper</h5><p></p><ul><li><p>Some believe arrows and bullets to be a coward's weapons. What's your opinion?</p></li><li><p>When caught unprepared, do you improvise or do you retreat?</p></li><li><p>Are you quiet and reserved, confident and cunning, or boisterous and reckless?</p></li><li><p>What do your weapons and fighting style look like?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.eO37Jm8x3VaGmE7c]{Sharpshooter}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.lCFQMCY4AmDsv6sv]{Barrage}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.sIkQa2NzkqsvczBr]{Crossfire}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.hmDCgX5OEk5l4uXW]{Hawkeye}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.0UxTgrag7cE4M1oc]{Ranged Weapon Mastery}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Ovmw7cMrN6qvagG4]{Warning Shot}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"Flee to the other end of the world; my arrow shall find you.\"</strong></em></p><p></p><h5>Also: Archer, Gunslinger, Sniper</h5><p></p><ul><li><p>Some believe arrows and bullets to be a coward's weapons. What's your opinion?</p></li><li><p>When caught unprepared, do you improvise or do you retreat?</p></li><li><p>Are you quiet and reserved, confident and cunning, or boisterous and reckless?</p></li><li><p>What do your weapons and fighting style look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.eO37Jm8x3VaGmE7c]{Sharpshooter}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.lCFQMCY4AmDsv6sv]{Barrage}</p><p>@UUID[Compendium.projectfu.skills.Item.sIkQa2NzkqsvczBr]{Crossfire}</p><p>@UUID[Compendium.projectfu.skills.Item.hmDCgX5OEk5l4uXW]{Hawkeye}</p><p>@UUID[Compendium.projectfu.skills.Item.0UxTgrag7cE4M1oc]{Ranged Weapon Mastery}</p><p>@UUID[Compendium.projectfu.skills.Item.Ovmw7cMrN6qvagG4]{Warning Shot}</p>"
       },
       "video": {
         "controls": true,
@@ -458,8 +460,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296486718,
-        "modifiedTime": 1719191933354,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838820168,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.1NzKxR4Zk5YZLhnI"
     },
@@ -475,7 +477,8 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Show me the truths of your heart.\"</strong></em></p><p></p><h5>Also: Healer, Priest, Witch</h5><p></p><ul><li><p>Where does your magic come from? What are your beliefs concerning life and death?</p></li><li><p>How do you feel about manipulating other people’s emotions and vital energy?</p></li><li><p>What do you think of religion? Are you part of a specific cult, church or institution?</p></li><li><p>What does your magic look like?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.s7AtJlv04lTsbKg4]{Spiritist}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.rVM7HhQ5OwdPtFwa]{Healing Power}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ek0pzfo1bSWGHfzb]{Ritual Spiritism}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.dwVQpxDTOZeNbcjy]{Spiritual Magic}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.pIkEDFcA5pnIpsu3]{Support Magic}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.affUHtuCYoDxmO4h]{Vismagus}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.spells.Item.fIzsuP7ro97Xc8H0]{[Spiritist Spells]}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"Show me the truths of your heart.\"</strong></em></p><p></p><h5>Also: Healer, Priest, Witch</h5><p></p><ul><li><p>Where does your magic come from? What are your beliefs concerning life and death?</p></li><li><p>How do you feel about manipulating other people’s emotions and vital energy?</p></li><li><p>What do you think of religion? Are you part of a specific cult, church or institution?</p></li><li><p>What does your magic look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.s7AtJlv04lTsbKg4]{Spiritist}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.rVM7HhQ5OwdPtFwa]{Healing Power}</p><p>@UUID[Compendium.projectfu.skills.Item.ek0pzfo1bSWGHfzb]{Ritual Spiritism}</p><p>@UUID[Compendium.projectfu.skills.Item.dwVQpxDTOZeNbcjy]{Spiritual Magic}</p><p>@UUID[Compendium.projectfu.skills.Item.pIkEDFcA5pnIpsu3]{Support Magic}</p><p>@UUID[Compendium.projectfu.skills.Item.affUHtuCYoDxmO4h]{Vismagus}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.spells.Item.fIzsuP7ro97Xc8H0]{[Spiritist Spells]}</p>",
+        "markdown": ""
       },
       "video": {
         "controls": true,
@@ -502,8 +505,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296496093,
-        "modifiedTime": 1719192253219,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838798463,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.a8bJb9it4QB5suXM"
     },
@@ -519,7 +522,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"I like to think that what we have today is not a gift from the Gods.\"</strong></em></p><p></p><h5>Also: Alchemist, Magitech Engineer, Mechanic</h5><p></p><ul><li><p>Did you learn your craft from someone? What is your relationship with them?</p></li><li><p>What have you lost in the pursuit of progress and innovation?</p></li><li><p>Is your craft something revolutionary, or is it an established field of work?</p></li><li><p>When an item or effect is created through your abilities, what does it look like?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.Zmqvu8QKmgyIci7C]{Tinkerer}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.2MoV74xWJnF5Ru8u]{Emergency Item}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.0ErPA4Q0P97ZPwPE]{Gadgets}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.xzyAHegWwSaysYqV]{Potion Rain}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.S64zqBVdaYA3I5LW]{Secret Formula}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.6pJAB6E29I15q1gU]{Visionary}</strong></p><p></p><h3><strong>GADGETS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.aPfawWXZqKuHAAqj]{Magitech Override}</strong></p>",
+        "content": "<p style=\"text-align:center\"><em><strong>\"I like to think that what we have today is not a gift from the Gods.\"</strong></em></p><p></p><h5>Also: Alchemist, Magitech Engineer, Mechanic</h5><p></p><ul><li><p>Did you learn your craft from someone? What is your relationship with them?</p></li><li><p>What have you lost in the pursuit of progress and innovation?</p></li><li><p>Is your craft something revolutionary, or is it an established field of work?</p></li><li><p>When an item or effect is created through your abilities, what does it look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.Zmqvu8QKmgyIci7C]{Tinkerer}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.2MoV74xWJnF5Ru8u]{Emergency Item}</p><p>@UUID[Compendium.projectfu.skills.Item.0ErPA4Q0P97ZPwPE]{Gadgets}</p><p>@UUID[Compendium.projectfu.skills.Item.xzyAHegWwSaysYqV]{Potion Rain}</p><p>@UUID[Compendium.projectfu.skills.Item.S64zqBVdaYA3I5LW]{Secret Formula}</p><p>@UUID[Compendium.projectfu.skills.Item.6pJAB6E29I15q1gU]{Visionary}</p><p></p><h3>GADGETS</h3><p>@UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</p><p>@UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</p><p>@UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</p><p>@UUID[Compendium.projectfu.skills.Item.aPfawWXZqKuHAAqj]{Magitech Override}</p>",
         "markdown": ""
       },
       "video": {
@@ -544,8 +547,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296504629,
-        "modifiedTime": 1719192012383,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838864887,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.EPxqCtfoDUMGm0fM"
     },
@@ -561,7 +564,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Borders are a trick of the mind.\"</strong></em></p><p></p><h5>Also: Adventurer, Explorer, Treasure Hunter</h5><p></p><ul><li><p>What led you to live a life of endless travels? Was it your choice? ...are you tired?</p></li><li><p>Is there a place or person that feels like “home” to you?</p></li><li><p>You have met many people and visited many places. Is there one you can’t forget?</p></li><li><p>You lost something or someone because of your travels. What happened?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.EWKUOGOMmyHfgOJm]{Wayfarer}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.L34pOGhdH0ZwV4Bt]{Faithful Companion}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.0n8T7U81oNP7yU5X]{Resourceful}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.CHMsojkTh3fU8HXg]{Tavern Talk}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.rsGhkElIiEBgN5zA]{Treasure Hunter}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.fuPzuDHzaKUgbvL2]{Well-Traveled}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"Borders are a trick of the mind.\"</strong></em></p><p></p><h5>Also: Adventurer, Explorer, Treasure Hunter</h5><p></p><ul><li><p>What led you to live a life of endless travels? Was it your choice? ...are you tired?</p></li><li><p>Is there a place or person that feels like “home” to you?</p></li><li><p>You have met many people and visited many places. Is there one you can’t forget?</p></li><li><p>You lost something or someone because of your travels. What happened?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.EWKUOGOMmyHfgOJm]{Wayfarer}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.L34pOGhdH0ZwV4Bt]{Faithful Companion}</p><p>@UUID[Compendium.projectfu.skills.Item.0n8T7U81oNP7yU5X]{Resourceful}</p><p>@UUID[Compendium.projectfu.skills.Item.CHMsojkTh3fU8HXg]{Tavern Talk}</p><p>@UUID[Compendium.projectfu.skills.Item.rsGhkElIiEBgN5zA]{Treasure Hunter}</p><p>@UUID[Compendium.projectfu.skills.Item.fuPzuDHzaKUgbvL2]{Well-Traveled}</p>"
       },
       "video": {
         "controls": true,
@@ -585,8 +588,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296516541,
-        "modifiedTime": 1719192144827,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838889012,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.GyZ2x8TsEkZKV6EK"
     },
@@ -602,7 +605,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"The wiser blade remains unsheathed.\"</strong></em></p><p></p><h5>Also: Fighter, Ronin, Warrior</h5><p></p><ul><li><p>What is your relationship with weapons? Are they mere objects, or something more?</p></li><li><p>Is battle something you seek, or something you strive to avoid?</p></li><li><p>Are you, or have you ever been, the servant of a Lady or Lord? What were they like?</p></li><li><p>What do your weapons and fighting style look like?</p><p></p></li></ul><h3><strong>BASE CLASS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.classes.Item.kVSzbabb2AUviwnH]{Weaponmaster}</strong></p><p></p><h3><strong>SKILLS</strong></h3><hr /><p><strong>@UUID[Compendium.projectfu.skills.Item.IhBCZsilt0bj5RJK]{Bladestorm}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.7jWycVYFgZ1BMxch]{Bone Crusher}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.WZDdQfw9VF64La2P]{Breach}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.XhcTVGtGEk7L2Ddq]{Counterattack}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ztxLYzo1ADCaRupR]{Melee Weapon Mastery}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"The wiser blade remains unsheathed.\"</strong></em></p><h5></h5><h5>Also: Fighter, Ronin, Warrior</h5><p></p><ul><li><p>What is your relationship with weapons? Are they mere objects, or something more?</p></li><li><p>Is battle something you seek, or something you strive to avoid?</p></li><li><p>Are you, or have you ever been, the servant of a Lady or Lord? What were they like?</p></li><li><p>What do your weapons and fighting style look like?</p><p></p></li></ul><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.kVSzbabb2AUviwnH]{Weaponmaster}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.IhBCZsilt0bj5RJK]{Bladestorm}</p><p>@UUID[Compendium.projectfu.skills.Item.7jWycVYFgZ1BMxch]{Bone Crusher}</p><p>@UUID[Compendium.projectfu.skills.Item.WZDdQfw9VF64La2P]{Breach}</p><p>@UUID[Compendium.projectfu.skills.Item.XhcTVGtGEk7L2Ddq]{Counterattack}</p><p>@UUID[Compendium.projectfu.skills.Item.ztxLYzo1ADCaRupR]{Melee Weapon Mastery}</p>"
       },
       "video": {
         "controls": true,
@@ -626,8 +629,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711296523803,
-        "modifiedTime": 1719340974122,
-        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+        "modifiedTime": 1720839095981,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.6XscDSIkn5keSROm"
     },
@@ -643,7 +646,8 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Show’s just begun, and it’s lights out for you already!\"</strong></em></p><p></p><h5>ALSO: Bard, Idol, Troubadour</h5><p></p><ul><li><p>Who taught you how to combine magic and music? Is it a natural talent?</p></li><li><p>Are you a celebrity, or more of a traveling musician?</p></li><li><p>Who is your greatest music rival? Who inspires you to be who you are?</p></li><li><p>What do your instruments and singing style look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.hgYU8yjiz01xB6Zj]{Chanter}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.bt4jQZ557iLHlazO]{Magichant}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.kdL9oQYefqNlWqyD]{Resonance}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.huB2uoP2PAHoOp8T]{Siren's Song}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.9xjUyytWiDxFhqdV]{Sound Barrier}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.pQVuklFnMKXxHTFr]{Vibrato}</strong></p><p></p><h3>VERSES</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.c8jU0AIm1nOBRQaX]{[Handout: Key List]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.dzv1DzQ6N3FKATek]{[Handout: Tone List]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.8d9spHVFrK4kyLsd]{[Handout: Verses Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.nu7QnUu7tmVv6zxU]{Verse}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"Show’s just begun, and it’s lights out for you already!\"</strong></em></p><p></p><h5>ALSO: Bard, Idol, Troubadour</h5><p></p><ul><li><p>Who taught you how to combine magic and music? Is it a natural talent?</p></li><li><p>Are you a celebrity, or more of a traveling musician?</p></li><li><p>Who is your greatest music rival? Who inspires you to be who you are?</p></li><li><p>What do your instruments and singing style look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.hgYU8yjiz01xB6Zj]{Chanter}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.bt4jQZ557iLHlazO]{Magichant}</p><p>@UUID[Compendium.projectfu.skills.Item.kdL9oQYefqNlWqyD]{Resonance}</p><p>@UUID[Compendium.projectfu.skills.Item.huB2uoP2PAHoOp8T]{Siren's Song}</p><p>@UUID[Compendium.projectfu.skills.Item.9xjUyytWiDxFhqdV]{Sound Barrier}</p><p>@UUID[Compendium.projectfu.skills.Item.pQVuklFnMKXxHTFr]{Vibrato}</p><p></p><h3>VERSES</h3><p>@UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</p><p>@UUID[Compendium.projectfu.skills.Item.c8jU0AIm1nOBRQaX]{[Handout: Key List]}</p><p>@UUID[Compendium.projectfu.skills.Item.dzv1DzQ6N3FKATek]{[Handout: Tone List]}</p><p>@UUID[Compendium.projectfu.skills.Item.8d9spHVFrK4kyLsd]{[Handout: Verses Rules]}</p><p>@UUID[Compendium.projectfu.skills.Item.nu7QnUu7tmVv6zxU]{Verse}</p>",
+        "markdown": ""
       },
       "video": {
         "controls": true,
@@ -670,8 +674,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711768931919,
-        "modifiedTime": 1719226363283,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720837771417,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.59JPMkRvJ97uwSZj"
     },
@@ -687,7 +691,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><strong>\"War has no victors.\"</strong></p><h5></h5><h5>ALSO: Prince, Queen, Shōgun</h5><p></p><ul><li><p>Are you of noble birth? Or perhaps a hero of humble beginnings?</p></li><li><p>Is battle something you seek, or something you strive to avoid?</p></li><li><p>Are there any sacrifices you would never be willing to make to achieve victory?</p></li><li><p>How do you manifest your abilities? Are they visibly supernatural?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.2ZBMQzwMLEGVJkz2]{Commander}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.4ymBr3vRdPHNxIKC]{Crushing Chariot}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.HC27DMHBE4M54y6Y]{Queen's Gambit}</strong></p>",
+        "content": "<p style=\"text-align:center\"><strong>\"War has no victors.\"</strong></p><h5></h5><h5>ALSO: Prince, Queen, Shōgun</h5><p></p><ul><li><p>Are you of noble birth? Or perhaps a hero of humble beginnings?</p></li><li><p>Is battle something you seek, or something you strive to avoid?</p></li><li><p>Are there any sacrifices you would never be willing to make to achieve victory?</p></li><li><p>How do you manifest your abilities? Are they visibly supernatural?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.2ZBMQzwMLEGVJkz2]{Commander}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}</p><p>@UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}</p><p>@UUID[Compendium.projectfu.skills.Item.4ymBr3vRdPHNxIKC]{Crushing Chariot}</p><p>@UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle}</p><p>@UUID[Compendium.projectfu.skills.Item.HC27DMHBE4M54y6Y]{Queen's Gambit}</p>",
         "markdown": ""
       },
       "video": {
@@ -715,8 +719,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711773631601,
-        "modifiedTime": 1719192254909,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720837821171,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.ktpBbGY4C4ZOfo8p"
     },
@@ -732,7 +736,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"My story? Dance with me and you shall know it.\"</strong></em></p><p></p><h5>ALSO: Acrobat, Jester, Swashbuckler</h5><p></p><ul><li><p>Your abilities require great focus and discipline. Who was your teacher?</p></li><li><p>Why do you dance? Is it an art form, a profession, or something else?</p></li><li><p>Are you graceful and charming, or roguish and boisterous?</p></li><li><p>What do your stunts and performances look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.KoQ2Q4mPVC7cpts7]{Dancer}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.y0dACFzoQBBMZOEk]{Dance}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.3mqtdzwMU62J1ogW]{Follow My Lead}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.R0F1K6i1gjNWNklq]{Frenetic Footwork}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.DF1eCfsBw1kYOAH6]{Quick-Change}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.L4LqyZu7NPjavyaf]{Wardancer}</strong></p><p></p><h3>DANCES</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.cH2N0pg4NeNZpaM5]{Dances Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.kTJhhmUgvlOMSgKh]{[Handout: Dance List]}</strong></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"My story? Dance with me and you shall know it.\"</strong></em></p><p></p><h5>ALSO: Acrobat, Jester, Swashbuckler</h5><p></p><ul><li><p>Your abilities require great focus and discipline. Who was your teacher?</p></li><li><p>Why do you dance? Is it an art form, a profession, or something else?</p></li><li><p>Are you graceful and charming, or roguish and boisterous?</p></li><li><p>What do your stunts and performances look like?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.KoQ2Q4mPVC7cpts7]{Dancer}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.y0dACFzoQBBMZOEk]{Dance}</p><p>@UUID[Compendium.projectfu.skills.Item.3mqtdzwMU62J1ogW]{Follow My Lead}</p><p>@UUID[Compendium.projectfu.skills.Item.R0F1K6i1gjNWNklq]{Frenetic Footwork}</p><p>@UUID[Compendium.projectfu.skills.Item.DF1eCfsBw1kYOAH6]{Quick-Change}</p><p>@UUID[Compendium.projectfu.skills.Item.L4LqyZu7NPjavyaf]{Wardancer}</p><p></p><h3>DANCES</h3><p>@UUID[Compendium.projectfu.handouts.JournalEntry.cH2N0pg4NeNZpaM5]{Dances Rules}</p><p>@UUID[Compendium.projectfu.skills.Item.kTJhhmUgvlOMSgKh]{[Handout: Dance List]}</p>"
       },
       "video": {
         "controls": true,
@@ -759,8 +763,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711784883343,
-        "modifiedTime": 1719226411877,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720837840918,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.iSy69U9hvLVcw2KB"
     },
@@ -776,7 +780,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"What good is a brush if your heart is not in the right place?\"</strong></em></p><p></p><h5>ALSO: Calligrapher, Painter, Runemaker</h5><p></p><ul><li><p>Who or what taught you how to weave magic into symbols?</p></li><li><p>Do you consider yourself more of a spellcaster or an artist?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li><li><p>What do your symbols look like, and how do you place them on creatures?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.m2nmisQnnkVKowT7]{Symbolist}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.ffgsQbg3SuWBUUS2]{Magic Symbols}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.mqwu1cSVPhWdT2Mt]{Mirage}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.nAX4AsRoQhmO6gnf]{Personal Touch}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.h6ynrwX1sUsBQYAE]{Symbolic Connection}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.Twj3wpoMzSpUE3Go]{Symbolism}</strong></p><p></p><h3>SYMBOLS</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.t38IeNrS9T7NQspT]{Symbol Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.E0m9ZsyQ5HG8k77Y]{[Handout: Symbol Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.v1HYJJsqOzPWrYv8]{[Handout: Symbol List]}</strong></p><p></p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"What good is a brush if your heart is not in the right place?\"</strong></em></p><p></p><h5>ALSO: Calligrapher, Painter, Runemaker</h5><p></p><ul><li><p>Who or what taught you how to weave magic into symbols?</p></li><li><p>Do you consider yourself more of a spellcaster or an artist?</p></li><li><p>Are there many practicing your art, or are you the exception?</p></li><li><p>What do your symbols look like, and how do you place them on creatures?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.m2nmisQnnkVKowT7]{Symbolist}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.ffgsQbg3SuWBUUS2]{Magic Symbols}</p><p>@UUID[Compendium.projectfu.skills.Item.mqwu1cSVPhWdT2Mt]{Mirage}</p><p>@UUID[Compendium.projectfu.skills.Item.nAX4AsRoQhmO6gnf]{Personal Touch}</p><p>@UUID[Compendium.projectfu.skills.Item.h6ynrwX1sUsBQYAE]{Symbolic Connection}</p><p>@UUID[Compendium.projectfu.skills.Item.Twj3wpoMzSpUE3Go]{Symbolism}</p><p></p><h3>SYMBOLS</h3><p>@UUID[Compendium.projectfu.handouts.JournalEntry.t38IeNrS9T7NQspT]{Symbol Rules}</p><p>@UUID[Compendium.projectfu.skills.Item.E0m9ZsyQ5HG8k77Y]{[Handout: Symbol Rules]}</p><p>@UUID[Compendium.projectfu.skills.Item.v1HYJJsqOzPWrYv8]{[Handout: Symbol List]}</p><p></p>"
       },
       "video": {
         "controls": true,
@@ -803,8 +807,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1711787644340,
-        "modifiedTime": 1719226576756,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838836551,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.uZn5IoChHnZhrfNU"
     },
@@ -820,7 +824,8 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><strong>\"Don't look away.\"</strong></p><p></p><h5><strong>Also: Deckmancer, Destiny Duelist, High Roller</strong></h5><p></p><ul><li><p>When did you first manifest your magic powers?</p></li><li><p>Are you cold and perceptive, or brash and lively? What does your deck look like?</p></li><li><p>What was the most unfortunate event in your life? What did you learn from it?</p></li><li><p>How do you combine your deck with other abilities?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.R6Wcc6Gcf27yWalj]{Ace of Cards}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.sfIxI8t0XlJMMVFC]{Double or Nothing}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.tFbGtEfIudpck8vL]{High or Low}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.5zF6JTf6nhKbXr69]{Magic Cards}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ry0CUZsygSpySLBZ]{Mulligan}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.dHurcgjvmwVBJPvM]{Trap Card}</strong></p><p></p><h3>THE DECK</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.FVmAbnxp6kZyoqkN]{[Handout: Deck]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.z3xhzflevgPyf7ah]{[Handout: Managing The Deck]}</strong></p>"
+        "content": "<p style=\"text-align:center\"><strong>\"Don't look away.\"</strong></p><p></p><h5>Also: Deckmancer, Destiny Duelist, High Roller</h5><p></p><ul><li><p>When did you first manifest your magic powers?</p></li><li><p>Are you cold and perceptive, or brash and lively? What does your deck look like?</p></li><li><p>What was the most unfortunate event in your life? What did you learn from it?</p></li><li><p>How do you combine your deck with other abilities?</p></li></ul><p></p><h3><strong>BASE CLASS</strong></h3><p>@UUID[Compendium.projectfu.classes.Item.R6Wcc6Gcf27yWalj]{Ace of Cards}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.sfIxI8t0XlJMMVFC]{Double or Nothing}</p><p>@UUID[Compendium.projectfu.skills.Item.tFbGtEfIudpck8vL]{High or Low}</p><p>@UUID[Compendium.projectfu.skills.Item.5zF6JTf6nhKbXr69]{Magic Cards}</p><p>@UUID[Compendium.projectfu.skills.Item.ry0CUZsygSpySLBZ]{Mulligan}</p><p>@UUID[Compendium.projectfu.skills.Item.dHurcgjvmwVBJPvM]{Trap Card}</p><p></p><h3>THE DECK</h3><p>@UUID[Compendium.projectfu.skills.Item.FVmAbnxp6kZyoqkN]{[Handout: Deck]}</p><p>@UUID[Compendium.projectfu.skills.Item.z3xhzflevgPyf7ah]{[Handout: Managing The Deck]}</p>",
+        "markdown": ""
       },
       "video": {
         "controls": true,
@@ -847,8 +852,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1719179837326,
-        "modifiedTime": 1719192256039,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720837543412,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.ENpij3lG0UclSOej"
     },
@@ -864,7 +869,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><strong>\"Waste not, want not.\"</strong></p><p></p><h5><strong>Also: Grave Queen, Reanimator, Vampire</strong></h5><p></p><ul><li><p>Who taught you in the ways of necromancy? Are they living or (un)dead?</p></li><li><p>Your powers act against the natural soul cycle. How do you feel about this?</p></li><li><p>Are you cold and grim, or decadent and sardonic?</p></li><li><p>Who have you lost? Who would you resurrect, given the power to do so?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.hAaL90nfamx7FfrY]{Necromancer}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.QwAuh7RXGBQsCb6l]{Beyond The Realms Of Death}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.kOEljjCw7bS9FyJv]{Children Of The Grave}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.4TxnpOUnaOaTFCP0]{Fear Is The Key}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.oevRD7ES46HQEOKn]{For Whom The Bell Tolls}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.VSWCJDqDERswimf0]{Rondo Of Nightmare}</strong></p>"
+        "content": "<p style=\"text-align:center\"><strong>\"Waste not, want not.\"</strong></p><p></p><h5>Also: Grave Queen, Reanimator, Vampire</h5><p></p><ul><li><p>Who taught you in the ways of necromancy? Are they living or (un)dead?</p></li><li><p>Your powers act against the natural soul cycle. How do you feel about this?</p></li><li><p>Are you cold and grim, or decadent and sardonic?</p></li><li><p>Who have you lost? Who would you resurrect, given the power to do so?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.hAaL90nfamx7FfrY]{Necromancer}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.QwAuh7RXGBQsCb6l]{Beyond The Realms Of Death}</p><p>@UUID[Compendium.projectfu.skills.Item.kOEljjCw7bS9FyJv]{Children Of The Grave}</p><p>@UUID[Compendium.projectfu.skills.Item.4TxnpOUnaOaTFCP0]{Fear Is The Key}</p><p>@UUID[Compendium.projectfu.skills.Item.oevRD7ES46HQEOKn]{For Whom The Bell Tolls}</p><p>@UUID[Compendium.projectfu.skills.Item.VSWCJDqDERswimf0]{Rondo Of Nightmare}</p>"
       },
       "video": {
         "controls": true,
@@ -891,8 +896,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1719181749019,
-        "modifiedTime": 1719191709844,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838744826,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.NIehjwCvWhQd3G4H"
     },
@@ -908,7 +913,8 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\">\"<strong>Within this steel beat the hearts and hopes of all of Minerva IV. The Empire has already lost, they just don’t know it yet.\"</strong></p><p></p><h5>Also: Biker, Mech Pilot, Sky Pirate</h5><p></p><ul><li><p>Where did you learn to pilot? Is your teacher still alive?</p></li><li><p>How did you obtain your vehicle? Did you build it yourself? Did you inherit it?</p></li><li><p>What personal touch makes your vehicle stand out from the rest?</p></li><li><p>Who or what would you never allow aboard your vehicle?</p></li></ul><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.BpzqLw0tPg39wrUF]{Pilot}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.kMQH13lhWY4Mlbh8]{Compression Tech}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.BuqR9EZDFMn5lDGG]{Flexible Configuration}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.wGzSaXFjLlQIAAxk]{Personal Vehicle}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.rTqtsfBemOKLgWuN]{Strong Grip}</strong></p><p></p><h3>A PILOT'S VEHICLE</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.JtN1YEB5uhn9JMUG]{Vehicle Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.O0imCVrWFpJgpQ0b]{[Handout: Vehicle Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.wDGQGIEqFOYreyA6]{[Handout: Armor Modules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.QUtsK2Mh1gSqCb47]{[Handout: Support Modules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.zq0tEMif1Nrh8rxx]{[Handout: Weapon Modules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ZvzMIq1aj9Alanui]{[Handout: Other Rules]}</strong></p>"
+        "content": "<p style=\"text-align:center\">\"<strong>Within this steel beat the hearts and hopes of all of Minerva IV. The Empire has already lost, they just don’t know it yet.\"</strong></p><p></p><h5>Also: Biker, Mech Pilot, Sky Pirate</h5><p></p><ul><li><p>Where did you learn to pilot? Is your teacher still alive?</p></li><li><p>How did you obtain your vehicle? Did you build it yourself? Did you inherit it?</p></li><li><p>What personal touch makes your vehicle stand out from the rest?</p></li><li><p>Who or what would you never allow aboard your vehicle?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.BpzqLw0tPg39wrUF]{Pilot}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.kMQH13lhWY4Mlbh8]{Compression Tech}</p><p>@UUID[Compendium.projectfu.skills.Item.BuqR9EZDFMn5lDGG]{Flexible Configuration}</p><p>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</p><p>@UUID[Compendium.projectfu.skills.Item.wGzSaXFjLlQIAAxk]{Personal Vehicle}</p><p>@UUID[Compendium.projectfu.skills.Item.rTqtsfBemOKLgWuN]{Strong Grip}</p><p></p><h3>A PILOT'S VEHICLE</h3><p>@UUID[Compendium.projectfu.handouts.JournalEntry.JtN1YEB5uhn9JMUG]{Vehicle Rules}</p><p>@UUID[Compendium.projectfu.skills.Item.O0imCVrWFpJgpQ0b]{[Handout: Vehicle Rules]}</p><p>@UUID[Compendium.projectfu.skills.Item.wDGQGIEqFOYreyA6]{[Handout: Armor Modules]}</p><p>@UUID[Compendium.projectfu.skills.Item.QUtsK2Mh1gSqCb47]{[Handout: Support Modules]}</p><p>@UUID[Compendium.projectfu.skills.Item.zq0tEMif1Nrh8rxx]{[Handout: Weapon Modules]}</p><p>@UUID[Compendium.projectfu.skills.Item.ZvzMIq1aj9Alanui]{[Handout: Other Rules]}</p>",
+        "markdown": ""
       },
       "video": {
         "controls": true,
@@ -935,8 +941,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1719181946519,
-        "modifiedTime": 1719226536939,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838781666,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.NdvzsNEBxQUorHpp"
     },
@@ -952,7 +958,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><strong>\"Look at me, coward! Behold what your silence allowed them to create.\"</strong></p><p></p><h5><strong>Also: Abomination, Experiment, Lycanthrope</strong></h5><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.IgNtSZfLvEcUAcqA]{Mutant}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.7ZIT4N07zc2yWsre]{Akromorphosis}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.kpg23Fs85uniba2A]{Biophagy}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis}</strong></p><p></p><h3>THERIOFORMS</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.aXZh9r7OxySQ484p]{Therioforms Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.cAQOA27jqgLEwKlt]{[Handout: Therioform Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.9ww1Sa24R1VsLqgA]{[Handout: Therioform List]}</strong></p><p></p>"
+        "content": "<p style=\"text-align:center\"><strong>\"Look at me, coward! Behold what your silence allowed them to create.\"</strong></p><p></p><h5>Also: Abomination, Experiment, Lycanthrope</h5><p></p><ul><li><p>Were your mutations caused by a scientific experiment or by some kind of magic?</p></li><li><p>Who is responsible for your mutations? What are your feelings towards them?</p></li><li><p>Who was the first person to show you kindness? What did it cost them?</p></li><li><p>How do your mutations manifest? What makes them eerily beautiful?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.IgNtSZfLvEcUAcqA]{Mutant}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.7ZIT4N07zc2yWsre]{Akromorphosis}</p><p>@UUID[Compendium.projectfu.skills.Item.kpg23Fs85uniba2A]{Biophagy}</p><p>@UUID[Compendium.projectfu.skills.Item.ij6vcA9nnD915bgI]{Ecdysis}</p><p>@UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis}</p><p>@UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis}</p><p></p><h3>THERIOFORMS</h3><p>@UUID[Compendium.projectfu.handouts.JournalEntry.aXZh9r7OxySQ484p]{Therioforms Rules}</p><p>@UUID[Compendium.projectfu.skills.Item.cAQOA27jqgLEwKlt]{[Handout: Therioform Rules]}</p><p>@UUID[Compendium.projectfu.skills.Item.9ww1Sa24R1VsLqgA]{[Handout: Therioform List]}</p><p></p>"
       },
       "video": {
         "controls": true,
@@ -979,8 +985,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1719182306992,
-        "modifiedTime": 1719226505094,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838735251,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.lWpMgTN24fJqU4U6"
     },
@@ -996,7 +1002,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><strong>\"Peace dictated by a single will is no peace at all: it is merely a form of submission.\"</strong></p><p></p><h5><strong>Also</strong>: Empath, Psion, Soul Hacker</h5><p></p><h3>BASE CLASS</h3><p><strong>@UUID[Compendium.projectfu.classes.Item.XxUUexPvdDjoieG2]{Esper}</strong></p><p></p><h3>SKILLS</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.idQdS82bEICiB0zL]{Cognitive Focus}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.P0oD7KQA9ipYWU8o]{Hypercognition}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.51Ws5AS0aD5MTJRI]{Navigator}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.uiXJvj0qK0pVfnwY]{Psychic Gifts}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.eU0lW3S2AcGj8BoD]{Psychokinesis}</strong></p><p></p><h3>PSYCHIC GIFTS</h3><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.3wujzPJj4dyCUUHX]{[Handout: Psychic Gifts Rules]}</strong></p><p><strong>@UUID[Compendium.projectfu.skills.Item.mMeTN3919AnQFJrC]{[Handout: Psychic Gift List]}</strong></p><p></p>"
+        "content": "<p style=\"text-align:center\"><strong>\"Peace dictated by a single will is no peace at all: it is merely a form of submission.\"</strong></p><p></p><h5><strong>Also</strong>: Empath, Psion, Soul Hacker</h5><p></p><ul><li><p>How did you develop your psychic abilities? Did someone train you?</p></li><li><p>Are your abilities relatively common, or are you the exception?</p></li><li><p>Which of your attributes or skills can you strengthen with your psychic arts?</p></li><li><p>Which unsettling or unusual quality do your powers possess?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.XxUUexPvdDjoieG2]{Esper}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.idQdS82bEICiB0zL]{Cognitive Focus}</p><p>@UUID[Compendium.projectfu.skills.Item.P0oD7KQA9ipYWU8o]{Hypercognition}</p><p>@UUID[Compendium.projectfu.skills.Item.51Ws5AS0aD5MTJRI]{Navigator}</p><p>@UUID[Compendium.projectfu.skills.Item.uiXJvj0qK0pVfnwY]{Psychic Gifts}</p><p>@UUID[Compendium.projectfu.skills.Item.eU0lW3S2AcGj8BoD]{Psychokinesis}</p><p></p><h3>PSYCHIC GIFTS</h3><p>@UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</p><p>@UUID[Compendium.projectfu.skills.Item.3wujzPJj4dyCUUHX]{[Handout: Psychic Gifts Rules]}</p><p>@UUID[Compendium.projectfu.skills.Item.mMeTN3919AnQFJrC]{[Handout: Psychic Gift List]}</p><p></p>"
       },
       "video": {
         "controls": true,
@@ -1023,8 +1029,8 @@
         "systemVersion": "#{VERSION}#",
         "coreVersion": "11.315",
         "createdTime": 1719182478386,
-        "modifiedTime": 1719226462761,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "modifiedTime": 1720838694834,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
       },
       "_key": "!journal.pages!X7BkcIjcgVSsMEWW.lALTvRZ0c2AryoeY"
     },
@@ -1070,8 +1076,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711296188058,
-    "modifiedTime": 1719340974122,
-    "lastModifiedBy": "B6evqtezy9ZsGZG3"
+    "modifiedTime": 1720839095981,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "X7BkcIjcgVSsMEWW",
   "sort": 0,

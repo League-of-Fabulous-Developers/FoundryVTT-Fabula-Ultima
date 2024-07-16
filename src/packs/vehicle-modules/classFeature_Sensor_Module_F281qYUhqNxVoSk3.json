@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items and locations.</span></p>",
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items, and locations.</p>",
       "complex": false
     },
     "source": "FUTF169"
@@ -26,8 +26,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711477115279,
-    "modifiedTime": 1719173179841,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721100058058,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "F281qYUhqNxVoSk3",
   "sort": 0,

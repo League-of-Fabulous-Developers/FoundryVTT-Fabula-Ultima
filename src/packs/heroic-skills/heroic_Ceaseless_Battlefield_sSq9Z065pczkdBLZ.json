@@ -9,7 +9,7 @@
     "summary": {
       "value": "Halve the MP cost of Commander Skills."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Commander </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle2\">The MP costs for your </span><span class=\"fontstyle0\"><strong>@UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}</strong></span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\"><strong>@UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}</strong>, </span><span class=\"fontstyle2\">and </span><span class=\"fontstyle0\"><strong>@UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle}</strong> </span><span class=\"fontstyle2\">are halved.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p></blockquote><p>The MP costs for your @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop's Edict}, @UUID[Compendium.projectfu.skills.Item.VhWG5AXdBZ8hL4xr]{Charging Cavalry}, and @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King's Castle} are halved. </p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684572929,
-    "modifiedTime": 1719171410943,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721103028009,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "sSq9Z065pczkdBLZ",
   "sort": 0,

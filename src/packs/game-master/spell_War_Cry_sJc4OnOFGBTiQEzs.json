@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">Until this spell ends, each target gains a +1 bonus to Accuracy Checks.</span></p><hr /><p><strong>@EFFECT[eyJuYW1lIjoiV2FyIENyeSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5ib251c2VzLmFjY3VyYWN5LmFjY3VyYWN5Q2hlY2siLCJtb2RlIjoyLCJ2YWx1ZSI6MX1dLCJpY29uIjoiaWNvbnMvc2tpbGxzL3dvdW5kcy9pbmp1cnktZmFjZS1pbXBhY3Qtb3JhbmdlLndlYnAifQ==]</strong> </p><p><strong>@LOSS[10 mp]</strong> for <strong>one</strong> target.</p><p><strong>@LOSS[20 mp]</strong> for <strong>two</strong> targets.</p><p><strong>@LOSS[30 mp]</strong> for <strong>three</strong> targets.</p>",
+    "description": "<p>Until this spell ends, each target gains a +1 bonus to Accuracy Checks</p><hr /><p>@EFFECT[eyJuYW1lIjoiV2FyIENyeSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5ib251c2VzLmFjY3VyYWN5LmFjY3VyYWN5Q2hlY2siLCJtb2RlIjoyLCJ2YWx1ZSI6MX1dLCJpY29uIjoiaWNvbnMvc2tpbGxzL3dvdW5kcy9pbmp1cnktZmFjZS1pbXBhY3Qtb3JhbmdlLndlYnAifQ==]</p><p>@LOSS[10 mp] for <strong>one</strong> target.</p><p>@LOSS[20 mp] for <strong>two</strong> targets.</p><p>@LOSS[30 mp] for <strong>three</strong> targets.</p>",
     "isFavored": {
       "value": false
     },
@@ -72,7 +72,7 @@
       "value": "Up to three creatures"
     },
     "duration": {
-      "value": "Scene"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": false
@@ -123,8 +123,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1690417015023,
-    "modifiedTime": 1719224647253,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721100652806,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "PpBzAnM7EK75ayIT",
   "_id": "sJc4OnOFGBTiQEzs",

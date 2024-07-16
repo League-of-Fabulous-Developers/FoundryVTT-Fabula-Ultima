@@ -9,7 +9,7 @@
     "summary": {
       "value": "Place Rituals into seals."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Symbolist </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle2\">When you perform a Ritual outside a conflict scene, if that Ritual has a </span><span class=\"fontstyle0\"><strong>total cost equal to or lower than 60 Mind Points</strong></span><span class=\"fontstyle2\">, you may stop the process immediately before the Magic Check and store the Ritual’s effect inside a </span><span class=\"fontstyle0\"><strong>Ritual seal</strong> </span><span class=\"fontstyle2\">placed on a surface you can touch. If you do, name a </span><span class=\"fontstyle0\"><strong>condition </strong></span><span class=\"fontstyle2\">— this can be anything from “when I enter </span><span class=\"fontstyle0\"><strong>Crisis</strong></span><span class=\"fontstyle2\">” to “as soon as I snap my fingers”. When that condition is met, the </span><span class=\"fontstyle0\"><strong>seal </strong></span><span class=\"fontstyle2\">vanishes and the Ritual is unleashed at the </span><span class=\"fontstyle0\"><strong>seal</strong></span><span class=\"fontstyle2\">’s location: you perform the Magic Check and resolve the effects as normal (even if you are unconscious or not present on the scene).</span></p><p><span class=\"fontstyle2\">You may only have<strong> </strong></span><span class=\"fontstyle0\"><strong>one Ritual seal</strong> </span><span class=\"fontstyle2\">active at the same time — if you die or create a new </span><span class=\"fontstyle0\"><strong>Ritual seal</strong></span><span class=\"fontstyle2\">, the one you previously created will vanish.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Symbolist </strong>Class.</p></blockquote><p>When you perform a Ritual outside a conflict scene, if that Ritual has a <strong>total cost equal to or lower than 60 Mind Points</strong>, you may stop the process immediately before the Magic Check and store the Ritual's effect inside a <strong>Ritual seal</strong> placed on a surface you can touch. If you do, name a <strong>condition </strong>— this can be anything from “when I enter <strong>Crisis</strong>” to “as soon as I snap my fingers”. When that condition is met, the <strong>seal </strong>vanishes and the Ritual is unleashed at the <strong>seal</strong>'s location: you perform the Magic Check and resolve the effects as normal (even if you are unconscious or not present on the scene).</p><p>You may only have<strong> one Ritual seal</strong> active at the same time — if you die or create a new <strong>Ritual seal</strong>, the one you previously created will vanish.</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684704873,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721103695101,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "kxGTMBIvlLKM50Wa",
   "sort": 0,

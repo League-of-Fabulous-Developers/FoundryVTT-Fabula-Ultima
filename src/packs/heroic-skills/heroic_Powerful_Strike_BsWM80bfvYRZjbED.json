@@ -9,7 +9,7 @@
     "summary": {
       "value": "Deal extra damage in melee."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered one or more Classes among the following: </span><span class=\"fontstyle0\"><strong>Fury </strong></span><span class=\"fontstyle2\">or </span><span class=\"fontstyle0\"><strong>Weaponmaster</strong></span><span class=\"fontstyle2\">.</span></p></blockquote><p><span class=\"fontstyle2\">When you hit one or more creatures with a </span><span class=\"fontstyle0\"><strong>melee </strong></span><span class=\"fontstyle2\">attack, that attack deals 5 extra damage to each creature. </span></p><p><span class=\"fontstyle2\">The amount of extra damage increases to 10 if you are </span><span class=\"fontstyle0\"><strong>level 40 or higher</strong></span><span class=\"fontstyle2\">.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among the following: <strong>Fury </strong>or <strong>Weaponmaster</strong>.</p></blockquote><p>When you hit one or more creatures with a <strong>melee </strong>attack, that attack deals 5 extra damage to each creature. </p><p>The amount of extra damage increases to 10 if you are <strong>level 40 or higher</strong>. </p>",
     "isFavored": {
       "value": false
     },
@@ -140,11 +140,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706585658140,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721102830735,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "BsWM80bfvYRZjbED",
   "sort": 300000,

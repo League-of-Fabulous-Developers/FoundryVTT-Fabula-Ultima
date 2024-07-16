@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you see a creature belonging to the </span><span class=\"fontstyle2\"><strong>beast</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>monster</strong>, </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>plant </strong></span><span class=\"fontstyle0\">Species cast a spell, you may immediately choose to learn that spell as a Chimerist spell of your own: if you do, record the </span><span class=\"fontstyle2\"><strong>Species </strong></span><span class=\"fontstyle0\">of the creature you learned it from.</span></p><p><span class=\"fontstyle0\">When you first acquire this Skill, choose </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>INS + WLP</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle2\">or </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>MIG + WLP</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">. From now on, your offensive </span>( <strong>@ICON[offensive]</strong> ) <span class=\"fontstyle0\">Chimerist spells will use the chosen Attributes for the Magic Check, regardless of the Attributes used by the creature you learned the spell from.</span></p><p><span class=\"fontstyle0\">You may have </span><span class=\"fontstyle2\"><strong>up to </strong></span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL + 2</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle2\"><strong>different Chimerist spells</strong> </span><span class=\"fontstyle0\">memorized this way. If you want to memorize a new Chimerist spell but are already at your limit, you must forget one of your old spells and replace it with the new spell.</span> </p>",
+    "description": "<p>When you see a creature belonging to the <strong>beast</strong>, <strong>monster</strong>, or <strong>plant</strong> Species cast a spell, you may immediately choose to learn that spell as a Chimerist spell of your own: if you do, record the <strong>Species</strong> of the creature you learned it from.</p><p>When you first acquire this Skill, choose <strong>【INS + WLP】</strong> or <strong>【MIG + WLP】</strong>. From now on, your offensive ( @ICON[offensive] ) Chimerist spells will use the chosen Attributes for the Magic Check, regardless of the Attributes used by the creature you learned the spell from.</p><p>You may have up to <strong>【SL + 2】</strong> different Chimerist spells memorized this way. If you want to memorize a new Chimerist spell but are already at your limit, you must forget one of your old spells and replace it with the new spell.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706495666417,
-    "modifiedTime": 1720810057487,
+    "modifiedTime": 1721095570278,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

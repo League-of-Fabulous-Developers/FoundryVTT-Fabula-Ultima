@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You release a wave of negative energy and cleanse all magic from a creature. If the target is affected by one or more spells with a </span><span class=\"fontstyle2\"><strong>duration </strong></span><span class=\"fontstyle0\">of Scene, they are no longer affected by any of those spells instead.</span> </p><hr /><p><strong>@LOSS[10 mp]</strong></p>",
+    "description": "<p>You release a wave of negative energy and cleanse all magic from a creature. If the target is affected by one or more spells with a <strong>duration</strong> of Scene, they are no longer affected by any of those spells instead.</p><hr /><p>@LOSS[10 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706570865794,
-    "modifiedTime": 1719435176269,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721097824628,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!6QG5ZZgRs4xnxlVl"

@@ -13,8 +13,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p><span class=\"fontstyle0\">You are immune to </span><span class=\"fontstyle2\"><strong>slow</strong></span><span class=\"fontstyle0\">.</span></p></li><li><p><span class=\"fontstyle0\">You gain a +1 bonus to your Defense.</span> </p></li></ul>",
-      "dismiss": "<ul><li><p><span class=\"fontstyle0\"><strong>Time Freeze.</strong> </span><span class=\"fontstyle2\">Choose any number of creatures you can see: each of them suffers </span><span class=\"fontstyle0\"><strong>slow</strong></span><span class=\"fontstyle2\">. If a creature chosen this way is already </span><span class=\"fontstyle0\"><strong>slow</strong></span><span class=\"fontstyle2\">, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</span> </p></li></ul>",
+      "merge": "<ul><li><p>You are immune to <strong>slow</strong>.</p></li><li><p>You gain a +1 bonus to your Defense.</p></li></ul>",
+      "dismiss": "<ul><li><p><strong>Time Freeze.</strong> Choose any number of creatures you can see: each of them suffers <strong>slow</strong>. If a creature chosen this way is already <strong>slow</strong>, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</p></li></ul>",
       "domains": "destiny, speed, time"
     },
     "source": "FUCR181"
@@ -63,7 +63,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710464120707,
-    "modifiedTime": 1720813556228,
+    "modifiedTime": 1721096603946,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 300000,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After you perform a </span><strong><span class=\"fontstyle2\">dance</span></strong><span class=\"fontstyle0\">, you may perform the </span><strong><span class=\"fontstyle2\">Equipment </span></strong><span class=\"fontstyle0\"><strong>action</strong> for free.</span> </p>",
+    "description": "<p>After you perform a <strong>dance</strong>, you may perform the <strong>Equipment action</strong> for free.</p>",
     "isFavored": {
       "value": false
     },
@@ -132,7 +132,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706560456464,
-    "modifiedTime": 1720810174486,
+    "modifiedTime": 1721094140187,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!DF1eCfsBw1kYOAH6"

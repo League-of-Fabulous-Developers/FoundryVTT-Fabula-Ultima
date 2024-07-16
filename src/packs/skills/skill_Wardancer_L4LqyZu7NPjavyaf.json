@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After you perform a </span><span class=\"fontstyle2\"><strong>dance</strong></span><span class=\"fontstyle0\">, your attacks with </span><span class=\"fontstyle2\"><strong>brawling</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>dagger</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>flail</strong>, </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>thrown </strong></span><span class=\"fontstyle0\"><strong>weapons</strong> deal </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">extra damage until the start of your next turn. If you have an </span><span class=\"fontstyle2\"><strong>arcane </strong></span><span class=\"fontstyle0\">weapon equipped, offensive spells </span><span style=\"font-family:'PT Sans Narrow', sans-serif\">( <strong>@ICON[offensive]</strong> )</span><span class=\"fontstyle0\"> you cast also deal </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">extra damage until the start of your next turn.</span> </p>",
+    "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped, </strong>offensive spells ( @ICON[offensive] ) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -191,7 +191,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706560640482,
-    "modifiedTime": 1720810181933,
+    "modifiedTime": 1721094167948,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!L4LqyZu7NPjavyaf"

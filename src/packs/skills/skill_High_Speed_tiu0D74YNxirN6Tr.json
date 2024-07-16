@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">At the start of a conflict, you may spend </span><strong>@LOSS[10 mp]</strong><span class=\"fontstyle0\">. If you do, choose one option and apply it before the start of the first round: perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with a weapon you have equipped; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">perform a </span><span class=\"fontstyle2\"><strong>Hinder </strong></span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>Objective </strong></span><span class=\"fontstyle0\">action. You also gain a bonus equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">to all Checks you perform as part of the chosen option.</span> </p>",
+    "description": "<p><span>At the start of a conflict, you may spend @LOSS[10 mp]. If you do, choose one option and apply it before the start of the first round: perform a <strong>free attack</strong> with a weapon you have equipped; <strong>OR </strong>perform a <strong>Hinder </strong>or <strong>Objective </strong>action. You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504755033,
-    "modifiedTime": 1720812702654,
+    "modifiedTime": 1721090317165,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 300000,

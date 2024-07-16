@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">Permanently increase your maximum Mind Points by </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 3</strong></span><span class=\"fontstyle2\"><strong>】</strong></span><span class=\"fontstyle0\">. </span></p><p><span class=\"fontstyle0\">When you perform an Open Check using </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>INS + INS</strong></span><span class=\"fontstyle2\"><strong>】</strong></span><span class=\"fontstyle0\">, you gain a bonus equal to </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">on that Check (this </span><span class=\"fontstyle3\"><strong>only </strong></span><span class=\"fontstyle0\">applies to Open Checks).</span> </p>",
+    "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this only applies to Open Checks).</p>",
     "isFavored": {
       "value": false
     },
@@ -170,7 +170,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706487322210,
-    "modifiedTime": 1720811986781,
+    "modifiedTime": 1721092769495,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

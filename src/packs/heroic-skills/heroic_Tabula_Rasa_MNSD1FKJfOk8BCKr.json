@@ -9,7 +9,7 @@
     "summary": {
       "value": "Your Skills cause HP loss."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Commander </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle2\">After you use </span><span class=\"fontstyle0\"><strong>Bishop’s Edict</strong> </span><span class=\"fontstyle2\">or </span><span class=\"fontstyle0\"><strong>King’s Castle</strong> </span><span class=\"fontstyle2\">Skills, if you are in </span><span class=\"fontstyle0\"><strong>Crisis</strong></span><span class=\"fontstyle2\">, you may have every enemy creature present on the scene lose <strong>@LOSS[10 hp]</strong>. This amount increases to <strong>@LOSS[20 hp]</strong> if you are </span><span class=\"fontstyle0\"><strong>level 20 or higher</strong></span><span class=\"fontstyle2\">, or <strong>@LOSS[30 hp]</strong> if you are<strong> </strong></span><span class=\"fontstyle0\"><strong>level 40 or higher</strong></span><span class=\"fontstyle2\">.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p></blockquote><p>After you use <strong>Bishop's Edict</strong> or <strong>King's Castle</strong> Skills, if you are in <strong>Crisis</strong>, you may have every enemy creature present on the scene lose @LOSS[10 hp]. This amount increases to @LOSS[20 hp] if you are <strong>level 20 or higher</strong>, or @LOSS[30 hp] if you are<strong> level 40 or higher</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -140,8 +140,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684758296,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721103929137,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "MNSD1FKJfOk8BCKr",
   "sort": 0,

@@ -9,7 +9,7 @@
     "summary": {
       "value": "Equip three daggers/swords and perform triple attacks."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span>you must have mastered one or more Classes among <span class=\"fontstyle0\"><strong>Dancer </strong></span>and <span class=\"fontstyle0\"><strong>Weaponmaster</strong></span>.</p></blockquote><p><span class=\"fontstyle2\">As long as you have a one-handed </span><span class=\"fontstyle0\"><strong>melee </strong></span>weapon that belongs to the <span class=\"fontstyle0\"><strong>dagger </strong></span>or <span class=\"fontstyle0\"><strong>sword </strong></span>Categories equipped in each of your normal hand slots, you may treat your <span class=\"fontstyle0\"><strong>armor </strong></span>slot as if it were a second <span class=\"fontstyle0\"><strong>off-hand</strong> </span>slot. You may only use this special slot to equip a one-handed <span class=\"fontstyle0\"><strong>melee </strong></span>weapon that belongs to the <span class=\"fontstyle0\"><strong>dagger </strong></span>or <span class=\"fontstyle0\"><strong>sword </strong></span>Categories — note that the <span class=\"fontstyle0\"><strong>Monkey Grip</strong> </span>Skill <span class=\"fontstyle0\">does not </span>turn two-handed weapons into one-handed weapons, and thus cannot be used in combination with <span class=\"fontstyle0\"><strong>Triple Slash</strong></span>.</p><p><span class=\"fontstyle2\">When you perform the </span><span class=\"fontstyle0\"><strong>Attack </strong></span>action while you have three <span class=\"fontstyle0\"><strong>daggers </strong></span>and/or <span class=\"fontstyle0\"><strong>swords </strong></span>equipped, you may attack once with each weapon. This follows the normal rules for <span class=\"fontstyle0\"><strong>two-weapon fighting</strong></span>: each of the three attacks loses the <span class=\"fontstyle0\">multi </span>property and cannot gain it, and you treat the <span class=\"fontstyle0\"><strong>High Roll (HR)</strong> </span>of each Accuracy Check as being equal to 0 when determining damage. <br /></p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Dancer </strong>and <strong>Weaponmaster</strong>.</p></blockquote><p>As long as you have a one-handed <strong>melee </strong>weapon that belongs to the <strong>dagger </strong>or <strong>sword </strong>Categories equipped in each of your normal hand slots, you may treat your <strong>armor </strong>slot as if it were a second <strong>off-hand</strong> slot. You may only use this special slot to equip a one-handed <strong>melee </strong>weapon that belongs to the <strong>dagger </strong>or <strong>sword </strong>Categories — note that the <strong>Monkey Grip</strong> Skill does not turn two-handed weapons into one-handed weapons, and thus cannot be used in combination with <strong>Triple Slash</strong>.</p><p>When you perform the <strong>Attack </strong>action while you have three <strong>daggers </strong>and/or <strong>swords </strong>equipped, you may attack once with each weapon. This follows the normal rules for <strong>two-weapon fighting</strong>: each of the three attacks loses the multi property and cannot gain it, and you treat the <strong>High Roll (HR)</strong> of each Accuracy Check as being equal to 0 when determining damage. <br /></p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684778697,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721104022295,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "awqSSh3rbNZW8L5V",
   "sort": 0,

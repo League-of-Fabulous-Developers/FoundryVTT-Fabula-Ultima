@@ -13,7 +13,7 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "When an NPC becomes your focus or when you create a Bond towards an NPC",
-      "description": "<p><span class=\"fontstyle0\">You ask the Game Master a single question about that NPC, and the Game Master must answers truthfully. Then, describe what sensation revealed this information to you. You may use this gift </span><span class=\"fontstyle2\"><strong>only once</strong> </span><span class=\"fontstyle0\">on each NPC.</span></p>"
+      "description": "<p>You ask the Game Master a single question about that NPC, and the Game Master must answer truthfully. Then, describe what sensation revealed this information to you. You may use this gift <strong>only once</strong> on each NPC.</p>"
     },
     "source": "FUTF152"
   },
@@ -31,8 +31,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711423314741,
-    "modifiedTime": 1719163694654,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720885585442,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "SbBJH4ofSkOHZ7Mo",
   "sort": 500000,

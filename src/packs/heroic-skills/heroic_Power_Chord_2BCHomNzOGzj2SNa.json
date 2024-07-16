@@ -9,7 +9,7 @@
     "summary": {
       "value": "Improve allies’ critical success chance with songs."
     },
-    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><strong><span class=\"fontstyle0\">Chanter </span></strong><span class=\"fontstyle2\">Class.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">When you sing a </span><strong><span class=\"fontstyle0\">verse </span></strong><span class=\"fontstyle2\">with </span><strong><span class=\"fontstyle0\">medium </span></strong><span class=\"fontstyle2\">or </span><strong><span class=\"fontstyle0\">high volume</span></strong><span class=\"fontstyle2\">, you may may double the </span><strong><span class=\"fontstyle0\">verse</span></strong><span class=\"fontstyle2\">’s cost in Mind Points, </span><strong><span class=\"fontstyle0\">OR </span></strong><span class=\"fontstyle2\">spend 1 Fabula Point. If you do, you and every ally that is able to hear you gain the following benefit until the start of your next turn: your Accuracy Checks trigger a </span><span class=\"fontstyle0\"><strong>critical success</strong> </span><span class=\"fontstyle2\">when both dice show the same number (as long as the Check is not a </span><strong><span class=\"fontstyle0\">fumble</span></strong><span class=\"fontstyle2\">).</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Chanter </strong>Class.</p></blockquote><p>When you sing a <strong>verse </strong>with <strong>medium </strong>or <strong>high volume</strong>, you may may double the <strong>verse</strong>'s cost in Mind Points, <strong>OR </strong>spend 1 Fabula Point. If you do, you and every ally that is able to hear you gain the following benefit until the start of your next turn: your Accuracy Checks trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684677557,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721103552103,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "2BCHomNzOGzj2SNa",
   "sort": 0,

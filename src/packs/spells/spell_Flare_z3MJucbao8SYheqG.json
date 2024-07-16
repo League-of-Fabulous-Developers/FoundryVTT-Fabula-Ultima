@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You channel a single ray of fire towards your foe, its temperature so high that it will pierce through most defenses. The target suffers </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>HR + 25</strong></span><span class=\"fontstyle2\"><strong>】 </strong> </span><span class=\"fontstyle3\"><strong>fire </strong></span><span class=\"fontstyle0\">damage.</span></p><p><span class=\"fontstyle0\">Damage dealt by this spell <strong>ignores Resistances</strong>.</span> </p><hr /><p><strong>@LOSS[20 mp]</strong></p>",
+    "description": "<p>You channel a single ray of fire towards your foe, its temperature so high that it will pierce through most defenses. The target suffers <strong>【HR + 25】 fire</strong> damage.</p><p>Damage dealt by this spell <strong>ignores Resistances</strong>.</p><hr /><p>@LOSS[20 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706564602981,
-    "modifiedTime": 1719433032416,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721098446505,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!z3MJucbao8SYheqG"

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You may perform Rituals whose effects fall within the </span><span class=\"fontstyle2\"><strong>Chimerism </strong></span><span class=\"fontstyle0\">discipline.</span></p><p><span class=\"fontstyle0\">When you acquire this Skill, choose</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>INS + WLP</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle2\">or</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>MIG + WLP</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">. From now on, your Chimerism Rituals will use the chosen Attributes for the Magic Check.</span> </p>",
+    "description": "<p>You may perform Rituals whose effects fall within the <strong>Chimerism</strong> discipline.</p><p>When you acquire this Skill, choose <strong>【INS + WLP】</strong> or <strong>【MIG + WLP】</strong>. From now on, your Chimerism Rituals will use the chosen Attributes for the Magic Check.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706495654796,
-    "modifiedTime": 1720810049433,
+    "modifiedTime": 1721095454484,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

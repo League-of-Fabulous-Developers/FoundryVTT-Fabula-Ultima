@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">Until this spell ends, you gain Resistance to </span><span class=\"fontstyle2\"><strong>physical </strong></span><span class=\"fontstyle0\">damage.</span></p><hr /><p><strong>@EFFECT[eyJuYW1lIjoiU2hlbGwiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5waHlzaWNhbCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9iYXJyaWVyLXNoaWVsZC1kb21lLXBpbmsud2VicCJ9]</strong> </p><p><strong>@LOSS[10 mp]</strong></p>",
+    "description": "<p>Until this spell ends, you gain Resistance to <strong>physical</strong> damage.</p><hr /><p>@EFFECT[eyJuYW1lIjoiU2hlbGwiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5waHlzaWNhbCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9iYXJyaWVyLXNoaWVsZC1kb21lLXBpbmsud2VicCJ9]</p><p>@LOSS[10 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -72,7 +72,7 @@
       "value": "Self"
     },
     "duration": {
-      "value": "Scene"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": false
@@ -123,8 +123,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1690417015023,
-    "modifiedTime": 1719224647253,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721100633338,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "PpBzAnM7EK75ayIT",
   "_id": "zf8HeDLrqXVMhGt4",

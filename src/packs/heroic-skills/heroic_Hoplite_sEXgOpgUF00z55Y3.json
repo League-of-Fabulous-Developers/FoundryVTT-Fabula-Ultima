@@ -9,7 +9,7 @@
     "summary": {
       "value": "Strenghten attacks when you fight with weapon and shield."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><span class=\"fontstyle0\"><strong>Commander </strong></span><span class=\"fontstyle2\">and </span><span class=\"fontstyle0\"><strong>Guardian</strong></span><span class=\"fontstyle2\">.</span></p></blockquote><p><span class=\"fontstyle2\">As long as you have a </span><span class=\"fontstyle0\"><strong>weapon </strong></span><span class=\"fontstyle2\">equipped in your </span><span class=\"fontstyle0\"><strong>main hand slot</strong> </span><span class=\"fontstyle2\">and a </span><span class=\"fontstyle0\"><strong>shield </strong></span><span class=\"fontstyle2\">equipped in your </span><span class=\"fontstyle0\"><strong>off-hand slot</strong></span><span class=\"fontstyle2\">, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</span></p><p><span class=\"fontstyle2\">This Skill </span><span class=\"fontstyle0\"><strong>cannot </strong></span><span class=\"fontstyle2\">be combined with </span><span class=\"fontstyle0\"><strong>custom weapons </strong></span><span class=\"fontstyle2\">with the </span><span class=\"fontstyle0\"><strong>defence boost</strong> </span><span class=\"fontstyle2\">customization (</span><span class=\"fontstyle0\"><strong>High Fantasy</strong>, page <strong>106</strong></span><span class=\"fontstyle2\">), </span><span class=\"fontstyle0\"><strong>nor </strong></span><span class=\"fontstyle2\">with the </span><span class=\"fontstyle0\"><strong>Dual Shieldbearer</strong> </span><span class=\"fontstyle2\">Skill (</span><span class=\"fontstyle0\"><strong>Core Rulebook</strong>, page <strong>197</strong></span><span class=\"fontstyle2\">).</span> </p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Commander </strong>and <strong>Guardian</strong>.</p></blockquote><p>As long as you have a <strong>weapon </strong>equipped in your <strong>main hand slot</strong> and a <strong>shield </strong>equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p><p>This Skill <strong>cannot </strong>be combined with <strong>custom weapons </strong>with the <strong>defence boost</strong> customization (<strong>High Fantasy</strong>, page <strong>106</strong>), <strong>nor </strong>with the <strong>Dual Shieldbearer</strong> Skill (<strong>Core Rulebook</strong>, page <strong>197</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -159,8 +159,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684635660,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721103299623,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "sEXgOpgUF00z55Y3",
   "sort": 0,

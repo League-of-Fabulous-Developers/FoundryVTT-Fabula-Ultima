@@ -6,7 +6,7 @@
     "summary": {
       "value": "Increase the potency of Drain spells."
     },
-    "description": "<blockquote>\n<p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist </strong>and <strong>Necromancer</strong>, and must have learned both the <strong>Drain Spirit</strong> and <strong>Drain Vigor</strong> spells.</p>\n</blockquote>\n<p>When you cast the <strong>Drain Spirit</strong> or <strong>Drain Vigor</strong> spells, the amount of Mind Points or Hit Points you recover is <strong>equal </strong>to the MP or HP loss suffered by the target, respectively (instead of being halved).</p>\n<p>Additionally, your <strong>Drain Spirit</strong> causes the target to lose<strong>【HR + 20】</strong> Mind Points if you are <strong>level 20 or higher</strong>, or <strong>【HR + 25】</strong> Mind Points if you are <strong>level 40 or higher</strong>, instead of the normal<strong>【HR + 15】</strong>.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist </strong>and <strong>Necromancer</strong>, and must have learned both the <strong>Drain Spirit</strong> and <strong>Drain Vigor</strong> spells.</p></blockquote><p>When you cast the <strong>Drain Spirit</strong> or <strong>Drain Vigor</strong> spells, the amount of Mind Points or Hit Points you recover is <strong>equal </strong>to the MP or HP loss suffered by the target, respectively (instead of being halved).</p><p>Additionally, your <strong>Drain Spirit</strong> causes the target to lose<strong>【HR + 20】</strong> Mind Points if you are <strong>level 20 or higher</strong>, or <strong>【HR + 25】</strong> Mind Points if you are <strong>level 40 or higher</strong>, instead of the normal<strong>【HR + 15】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -105,11 +105,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1697668153306,
-    "modifiedTime": 1719185400257,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721101575558,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "1Ky2u7fi2lfxr4JB",
   "ownership": {

@@ -9,7 +9,7 @@
     "summary": {
       "value": "Persuade enemies to retreat."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><strong>Orator</strong> <span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle0\">During a conflict scene, you may use an action and choose a </span><span class=\"fontstyle2\"><strong>soldier</strong></span><span class=\"fontstyle0\">-rank creature that can hear and understand you (the Game Master must tell you who is a valid target). If that creature is </span><span class=\"fontstyle2\"><strong>shaken </strong></span><span class=\"fontstyle0\">or in </span><span class=\"fontstyle2\"><strong>Crisis</strong></span><span class=\"fontstyle0\">, you may spend an amount of Mind Points equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>20 + half that creature's level</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">to have them peacefully leave the conflict.</span></p><p><span class=\"fontstyle0\">Describe how you convince them to desist.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Orator</strong> Class.</p></blockquote><p>During a conflict scene, you may use an action and choose a <strong>soldier</strong>-rank creature that can hear and understand you (the Game Master must tell you who is a valid target). If that creature is <strong>shaken</strong> or in <strong>Crisis</strong>, you may spend an amount of Mind Points equal to <strong>【20 + half that creature's level】</strong> to have them peacefully leave the conflict.</p><p>Describe how you convince them to desist.</p>",
     "isFavored": {
       "value": false
     },
@@ -137,11 +137,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706584078929,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721102266938,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "pcqTER5q2Mrcq0r4",
   "sort": 2400000,

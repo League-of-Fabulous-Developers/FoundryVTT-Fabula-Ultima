@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you successfully perform a Check to fill or erase sections of a Clock, if your approach relied on </span><span class=\"fontstyle2\"><strong>charm</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>diplomacy</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>deception</strong>, </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>intimidation</strong></span><span class=\"fontstyle0\">, you may spend up to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 20</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">Mind Points. If you do, fill or erase an additional section of that Clock for every 20 Mind Points you spend this way.</span> </p><hr /><p><strong>One</strong> Section - <strong>@LOSS[20 mp]</strong></p><p><strong>Two</strong> Sections - <strong>@LOSS[40 mp]</strong></p>",
+    "description": "<p>When you successfully perform a Check to fill or erase sections of a Clock, if your approach relied on <strong>charm</strong>, <strong>diplomacy</strong>, <strong>deception</strong>, or <strong>intimidation</strong>, you may spend up to <strong>【SL × 20】</strong> Mind Points. If you do, fill or erase an additional section of that Clock for every 20 Mind Points you spend this way.</p><hr /><p><strong>One</strong> Section - @LOSS[20 mp]</p><p><strong>Two</strong> Sections - @LOSS[40 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504145803,
-    "modifiedTime": 1720812402319,
+    "modifiedTime": 1721091710663,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

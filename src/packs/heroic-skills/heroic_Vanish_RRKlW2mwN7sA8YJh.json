@@ -9,7 +9,7 @@
     "summary": {
       "value": "Disappear after an attack."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Rogue </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle2\">When you hit one or more creatures with an attack, you may spend 1 Fabula Point. If you do, each of those creatures will be unable to perform any action that requires them to be able to see you until the start of your next turn.</span></p><p></p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Rogue</strong> Class.</p></blockquote><p><span>When you hit one or more creatures with an attack, you may spend 1 Fabula Point. If you do, each of those creatures will be unable to perform any action that requires them to be able to see you until the start of your next turn.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706587099416,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721101857443,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "RRKlW2mwN7sA8YJh",
   "sort": 700000,

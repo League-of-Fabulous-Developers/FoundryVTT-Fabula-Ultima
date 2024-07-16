@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">Permanently increase your maximum Hit Points by </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;color:rgb(43, 74, 66);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">【</strong></span></span><span class=\"fontstyle3\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;color:rgb(43, 74, 66);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">SL × 3</strong></span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;color:rgb(43, 74, 66);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">】</strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">. </span></p>",
+    "description": "<p>Permanently increase your maximum Hit Points by <strong>【SL × 3】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -170,7 +170,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706503528196,
-    "modifiedTime": 1720811432429,
+    "modifiedTime": 1721092952849,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "X4KdFiQmzikrsM6v",

@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<div class=\"stackedit__html\"><p>Each time you take this Skill, you gain a <strong>gift</strong> (see<strong> @UUID[Compendium.projectfu.skills.Item.mMeTN3919AnQFJrC]{[Handout: Psychic Gift List]}</strong>). The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p></div>",
+    "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong> (see @UUID[Compendium.projectfu.skills.Item.mMeTN3919AnQFJrC]{[Handout: Psychic Gift List]}). The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p>",
     "isFavored": {
       "value": false
     },
@@ -130,7 +130,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711424945464,
-    "modifiedTime": 1720815943899,
+    "modifiedTime": 1720885516270,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "uiXJvj0qK0pVfnwY",

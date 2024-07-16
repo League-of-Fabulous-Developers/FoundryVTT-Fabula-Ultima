@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You recover <strong>@GAIN[20 hp]</strong> Hit Points. This amount increases to <strong>@GAIN[30 hp]</strong> Hit Points if you are </span><span class=\"fontstyle2\"><strong>level 20 or higher</strong></span><span class=\"fontstyle0\">, to <strong>@GAIN[40 hp]</strong> Hit Points if you are<strong> </strong></span><span class=\"fontstyle2\"><strong>level 40</strong> or higher</span><span class=\"fontstyle0\">, or to <strong>@GAIN[50 hp]</strong> Hit Points if you are </span><span class=\"fontstyle2\"><strong>level 60</strong> </span><span class=\"fontstyle0\">or higher.</span></p><hr /><p><strong>@LOSS[5 mp]</strong></p>",
+    "description": "<p>You recover @GAIN[20 hp] Hit Points. This amount increases to @GAIN[30 hp] Hit Points if you are <strong>level 20 or higher</strong>, to @GAIN[40 hp] Hit Points if you are <strong>level 40</strong> or higher, or to @GAIN[50 hp] Hit Points if you are <strong>level 60</strong> or higher.</p><hr /><p>@LOSS[5 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -72,7 +72,7 @@
       "value": "Self"
     },
     "duration": {
-      "value": "Instantaneous"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": false
@@ -123,8 +123,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1690417015023,
-    "modifiedTime": 1719224647253,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721100356278,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "PpBzAnM7EK75ayIT",
   "_id": "Up14pnEa8pWzGkDD",

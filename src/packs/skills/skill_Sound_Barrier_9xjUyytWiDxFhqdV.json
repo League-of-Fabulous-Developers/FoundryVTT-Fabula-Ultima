@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After you sing a </span><strong><span class=\"fontstyle2\">verse </span></strong><span class=\"fontstyle0\">with </span><span class=\"fontstyle2\"><strong>medium</strong> </span><span class=\"fontstyle0\">or </span><strong><span class=\"fontstyle2\">high volume</span></strong><span class=\"fontstyle0\">, all </span><strong><span class=\"fontstyle2\">physical </span></strong><span class=\"fontstyle0\">damage you suffer until the start of your next turn is reduced by</span><strong><span class=\"fontstyle3\">【</span><span class=\"fontstyle2\">SL</span></strong><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">(applied </span><strong><span class=\"fontstyle2\">before </span></strong><span class=\"fontstyle0\">Affinities).</span> </p>",
+    "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>SL</strong> (applied before Affinities).</p>",
     "isFavored": {
       "value": false
     },
@@ -132,7 +132,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706551847928,
-    "modifiedTime": 1720809885115,
+    "modifiedTime": 1721095840472,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!9xjUyytWiDxFhqdV"

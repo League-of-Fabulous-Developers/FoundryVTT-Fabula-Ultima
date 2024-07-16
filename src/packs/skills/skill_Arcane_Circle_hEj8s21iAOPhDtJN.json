@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After you willingly </span><span class=\"fontstyle2\"><strong>dismiss </strong></span><span class=\"fontstyle0\">an Arcanum on your turn during a conflict (see next page), if that Arcanum had not been </span><span class=\"fontstyle2\"><strong>summoned </strong></span><span class=\"fontstyle0\">during this same turn and you have an </span><span class=\"fontstyle2\"><strong>arcane </strong></span><span class=\"fontstyle0\">weapon equipped, you may immediately perform the </span><span class=\"fontstyle2\"><strong>Spell</strong> </span><span class=\"fontstyle0\">action for free. The spell you cast this way must have a </span><span class=\"fontstyle2\"><strong>total Mind Point cost of</strong></span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle2\"><strong>or lower</strong> </span><span class=\"fontstyle0\">(you must still pay the spell's MP cost).</span> </p>",
+    "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum on your turn during a conflict (see next page), if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free. The spell you cast this way must have a <strong>total Mind Point cost of 【SL × 5】 or lower</strong> (you must still pay the spell's MP cost).</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706494627418,
-    "modifiedTime": 1720808486638,
+    "modifiedTime": 1721096037639,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

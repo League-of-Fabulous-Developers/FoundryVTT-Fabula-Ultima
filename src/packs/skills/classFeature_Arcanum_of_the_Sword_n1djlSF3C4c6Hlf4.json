@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p><span class=\"fontstyle0\">Your attacks deal 5 extra damage, and all damage dealt by your attacks is treated as having no type (thus being unaffected by damage Affinities). Damage dealt by your attacks cannot gain a type as long as you are merged with this Arcanum. </span></p></li><li><p><span class=\"fontstyle0\">When you perform an attack, you may have that attack gain the </span><span class=\"fontstyle2\"><strong>multi (any number of targets)</strong> </span><span class=\"fontstyle0\">property. If you do, this Arcanum will be automatically dismissed after the attack is resolved (this is </span><span class=\"fontstyle2\"><strong>not </strong></span><span class=\"fontstyle0\">considered a willing dismiss).</span> </p></li></ul>",
+      "merge": "<ul><li><p>Your attacks deal 5 extra damage, and all damage dealt by your attacks is treated as having no type (thus being unaffected by damage Affinities). Damage dealt by your attacks cannot gain a type as long as you are merged with this Arcanum.</p></li><li><p>When you perform an attack, you may have that attack gain the <strong>multi (any number of targets)</strong> property. If you do, this Arcanum will be automatically dismissed after the attack is resolved (this is not considered a willing dismiss).</p></li></ul>",
       "dismiss": "",
       "domains": "conquest, heroism, leadership"
     },
@@ -75,7 +75,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710464055145,
-    "modifiedTime": 1720813543172,
+    "modifiedTime": 1721096462713,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 1000000,

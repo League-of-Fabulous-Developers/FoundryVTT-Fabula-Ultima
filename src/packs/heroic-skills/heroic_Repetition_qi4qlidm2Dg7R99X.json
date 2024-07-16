@@ -9,7 +9,7 @@
     "summary": {
       "value": "Condemn or Encourage twice."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Orator </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle2\">Once per turn during a conflict, after you use the </span><span class=\"fontstyle0\"><strong>@UUID[Compendium.projectfu.skills.Item.DtEiCkDsC1amYABn]{Condemn} </strong></span><span class=\"fontstyle2\">Skill or the <strong>@UUID[Compendium.projectfu.skills.Item.04DiGVKhF3DtmJ4n]{Encourage}</strong> </span><span class=\"fontstyle0\">S</span><span class=\"fontstyle2\">kill, you may immediately perform that same Skill again (on the same target or a different one). You must still pay the Mind Point cost for the second use of the Skill.</span> </p>",
+    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Orator</strong> Class.</span></p></blockquote><p><span>Once per turn during a conflict, after you use the <strong>Condemn</strong> Skill or the <strong>Encourage</strong> Skill, you may immediately perform that same Skill again (on the same target or a different one). You must still pay the Mind Point cost for the second use of the Skill.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706586578358,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721101678490,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "qi4qlidm2Dg7R99X",
   "sort": 2500000,

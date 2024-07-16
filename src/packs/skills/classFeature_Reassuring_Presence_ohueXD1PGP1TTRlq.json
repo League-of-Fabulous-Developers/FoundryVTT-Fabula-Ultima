@@ -13,7 +13,7 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "After you cover an ally with the Guard action",
-      "description": "<p><span class=\"fontstyle0\">That ally recovers an amount of Mind Points equal to </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>10 + (the number of filled sections in your Brainwave Clock, multiplied by 5)</strong></span><span class=\"fontstyle2\"><strong>】</strong>. If that ally is your <strong>focus</strong>, they heal from a single status effect of their choice out of <strong>dazed</strong>, <strong>enraged</strong>, and <strong>shaken</strong>.</span></p>"
+      "description": "<p>That ally recovers an amount of Mind Points equal to <strong>【10 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】</strong>. If that ally is your <strong>focus</strong>, they heal from a single status effect of their choice out of <strong>dazed</strong>, <strong>enraged</strong>, and <strong>shaken</strong>.</p>"
     },
     "source": "FUTF153"
   },
@@ -31,8 +31,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711423314741,
-    "modifiedTime": 1719164101862,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720885833385,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "ohueXD1PGP1TTRlq",
   "sort": 0,

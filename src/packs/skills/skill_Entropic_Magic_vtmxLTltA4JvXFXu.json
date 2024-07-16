@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, learn one Entropist spell <span style=\"font-family:'PT Sans Narrow', sans-serif\">(<strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Core Rulebook</strong></span>, page <strong>192</strong> or <strong>@UUID[Compendium.projectfu.spells.Item.W9ZYH88gvlcg7atp]{[Entropist Spells]}</strong>). </p><p>Offensive ( <strong>@ICON[offensive]</strong> ) Entropist spells use <strong>【INS + WLP】 </strong>for the Magic Check.</p><p> </p>",
+    "description": "<p>Each time you acquire this Skill, learn one Entropist spell (@UUID[Compendium.projectfu.spells.Item.W9ZYH88gvlcg7atp]{[Entropist Spells]}, Core Rulebook, page <strong>192</strong>).</p><p>Offensive ( @ICON[offensive] ) Entropist spells use <strong>【INS + WLP】</strong> for the Magic Check.</p><p> </p>",
     "isFavored": {
       "value": false
     },
@@ -129,7 +129,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706421766290,
-    "modifiedTime": 1720810567669,
+    "modifiedTime": 1721093327514,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "vtmxLTltA4JvXFXu",

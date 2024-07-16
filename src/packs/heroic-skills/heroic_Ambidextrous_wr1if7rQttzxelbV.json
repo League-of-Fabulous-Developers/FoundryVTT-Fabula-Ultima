@@ -9,7 +9,7 @@
     "summary": {
       "value": "Fight with two weapons of different categories."
     },
-    "description": "<p><span class=\"fontstyle0\">You may apply the benefits of </span><span class=\"fontstyle2\"><strong>two-weapon fighting</strong> </span><span class=\"fontstyle0\">(<strong>Core Rulebook</strong>, page </span><span class=\"fontstyle2\"><strong>69</strong></span><span class=\"fontstyle0\">) to weapons belonging to different categories, even if one is a </span><span class=\"fontstyle2\"><strong>melee</strong> </span><span class=\"fontstyle0\">weapon and the other is a </span><span class=\"fontstyle2\"><strong>ranged </strong></span><span class=\"fontstyle0\">weapon (such as a </span><span class=\"fontstyle2\"><strong>dagger </strong></span><span class=\"fontstyle0\">and a </span><span class=\"fontstyle2\"><strong>firearm</strong></span><span class=\"fontstyle0\">, for instance).</span> </p>",
+    "description": "<p>You may apply the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) to weapons belonging to different categories, even if one is a <strong>melee</strong> weapon and the other is a <strong>ranged</strong> weapon (such as a <strong>dagger</strong> and a <strong>firearm</strong>, for instance).</p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706583614340,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721102147703,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "wr1if7rQttzxelbV",
   "sort": 2800000,

@@ -9,7 +9,7 @@
     "summary": {
       "value": "Deal extra damage at range."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Sharpshooter </strong></span><span class=\"fontstyle2\">Class.</span> </p></blockquote><p><span class=\"fontstyle0\">When you hit one or more creatures with a </span><span class=\"fontstyle2\"><strong>ranged </strong></span><span class=\"fontstyle0\">attack, that attack deals 5 extra damage to each creature.</span></p><p><span class=\"fontstyle0\">The amount of extra damage increases to 10 if you are </span><span class=\"fontstyle2\"><strong>level 40 or higher</strong></span><span class=\"fontstyle0\">.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Sharpshooter</strong> Class.</p></blockquote><p>When you hit one or more creatures with a <strong>ranged </strong>attack, that attack deals 5 extra damage to each creature.</p><p>The amount of extra damage increases to 10 if you are <strong>level 40 or higher</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -140,11 +140,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706585303870,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721102756472,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "LDgRVXFVnUdJTvit",
   "sort": 1900000,

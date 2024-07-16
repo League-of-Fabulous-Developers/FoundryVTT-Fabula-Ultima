@@ -10,7 +10,7 @@
     "summary": {
       "value": "Perform a free attack against a target, then immediately cast an offensive spell against them."
     },
-    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements: </strong></span><span class=\"fontstyle0\">you must have mastered one or more Classes out of </span><span class=\"fontstyle2\"><strong>Elementalist</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>Sharpshooter</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>Weaponmaster</strong></span><span class=\"fontstyle0\">, and must know at least </span><span class=\"fontstyle2\">two </span><span class=\"fontstyle0\">offensive ( </span><span class=\"fontstyle3\"><strong>@ICON[offensive] </strong></span><span class=\"fontstyle0\">) spells.</span></p></blockquote><p><span class=\"fontstyle0\">You may use an action to perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with a weapon you have equipped. This attack must target </span><span class=\"fontstyle2\"><strong>a single enemy</strong></span><span class=\"fontstyle0\">. If the attack is successful, treat your </span><span class=\"fontstyle2\"><strong>High Roll</strong> </span><span class=\"fontstyle0\">as 0 when determining damage dealt by it. After the attack has been resolved, if it was successful, you may immediately perform the </span><span class=\"fontstyle2\"><strong>Spell</strong> </span><span class=\"fontstyle0\">action for free: the spell you cast this way </span><span class=\"fontstyle2\"><strong>must</strong> </span><span class=\"fontstyle0\">be an offensive ( </span><span class=\"fontstyle3\"><strong>@ICON[offensive] </strong></span><span class=\"fontstyle0\">) spell with a total MP cost </span><span class=\"fontstyle2\"><strong>equal to or lower than 20</strong></span><span class=\"fontstyle0\"><strong>,</strong> and it may </span><span class=\"fontstyle2\"><strong>only</strong> </span><span class=\"fontstyle0\">target the enemy you attacked (you must still spend the appropriate Mind Points and perform the Magic Check). Treat your Magic Check’s </span><span class=\"fontstyle2\"><strong>High Roll</strong> </span><span class=\"fontstyle0\">as 0 when determining damage or other effects caused by this spell.</span> <br style=\"font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;orphans:2;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-size-adjust:auto;-webkit-text-stroke-width:0px\" /></p>",
+    "description": "<blockquote><p>Requirements: you must have mastered one or more Classes out of <strong>Elementalist</strong>, <strong>Sharpshooter</strong> and <strong>Weaponmaster</strong>, and must know at least two offensive ( @ICON[offensive] ) spells.</p></blockquote><p>You may use an action to perform a <strong>free attack</strong> with a weapon you have equipped. This attack must target <strong>a single enemy</strong>. If the attack is successful, treat your <strong>High Roll</strong> as 0 when determining damage dealt by it. After the attack has been resolved, if it was successful, you may immediately perform the <strong>Spell</strong> action for free: the spell you cast this way <strong>must</strong> be an offensive ( @ICON[offensive] ) spell with a total MP cost <strong>equal to or lower than 20,</strong> and it may <strong>only</strong> target the enemy you attacked (you must still spend the appropriate Mind Points and perform the Magic Check). Treat your Magic Check's <strong>High Roll</strong> as 0 when determining damage or other effects caused by this spell.</p>",
     "isFavored": {
       "value": false
     },
@@ -105,11 +105,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711473807263,
-    "modifiedTime": 1719187557618,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721104114701,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

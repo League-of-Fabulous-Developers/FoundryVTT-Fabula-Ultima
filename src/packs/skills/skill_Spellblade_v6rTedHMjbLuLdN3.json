@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you cast an offensive </span>( <strong>@ICON[offensive]</strong> ) <span class=\"fontstyle0\">spell targeting </span><span class=\"fontstyle3\">a <strong>single creature</strong></span><span class=\"fontstyle0\">, if the spell has a </span><span class=\"fontstyle3\"><strong>total Mind Point cost of </strong></span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 10</strong></span><span class=\"fontstyle4\"><strong>】 </strong></span><span class=\"fontstyle3\"><strong>or lower </strong></span><span class=\"fontstyle0\">and you have one or more </span><span class=\"fontstyle3\"><strong>bow</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle3\"><strong>brawling</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle3\"><strong>dagger</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle3\"><strong>flail</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle3\"><strong>spear</strong>, </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle3\"><strong>sword</strong> </span><span class=\"fontstyle0\">weapons equipped, you may choose one of those weapons. If you do, your Magic Check for the spell will use the chosen weapon's Accuracy Check formula; for instance, the Magic Check for an Elementalist spell cast through a </span><span class=\"fontstyle3\"><strong>bronze sword</strong> </span><span class=\"fontstyle0\">(<strong>Core Rulebook</strong>, page </span><span class=\"fontstyle3\"><strong>131</strong></span><span class=\"fontstyle0\">) will be </span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>DEX + MIG</strong></span><span class=\"fontstyle4\"><strong>】</strong></span><span class=\"fontstyle3\"><strong>+1</strong> </span><span class=\"fontstyle0\">instead of </span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>INS + WLP</strong></span><span class=\"fontstyle4\"><strong>】</strong></span><span class=\"fontstyle0\">.</span> </p>",
+    "description": "<p>When you cast an offensive @ICON[offensive] spell targeting <strong>a single creature</strong>, if the spell has a <strong>total Mind Point cost of 【SL × 10】 or lower</strong> and you have one or more <strong>bow, brawling, dagger, flail, spear, or sword weapons</strong> equipped, you may choose one of those weapons. If you do, your Magic Check for the spell will use the chosen weapon's Accuracy Check formula; for instance, the Magic Check for an Elementalist spell cast through a <strong>bronze sword</strong> (<strong>Core Rulebook</strong>, page <strong>131</strong>) will be <strong>【DEX + MIG】 + 1</strong> instead of <strong>【INS + WLP】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706498028252,
-    "modifiedTime": 1720810386658,
+    "modifiedTime": 1721093894758,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 500000,

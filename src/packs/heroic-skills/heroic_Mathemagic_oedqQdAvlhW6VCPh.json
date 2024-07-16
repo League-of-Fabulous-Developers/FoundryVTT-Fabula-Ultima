@@ -9,7 +9,7 @@
     "summary": {
       "value": "Extend single-target spells."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Loremaster </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle0\">When you cast a spell with a </span><strong>target </strong><span class=\"fontstyle0\">of \"One creature\", you may </span><strong>double the spell's total MP cost</strong><span class=\"fontstyle0\">. If you do, choose an Attribute (</span><strong>Dexterity</strong><span class=\"fontstyle0\">, </span><strong>Insight</strong><span class=\"fontstyle0\">, </span><strong>Might</strong><span class=\"fontstyle0\">, or </span><strong>Willpower</strong><span class=\"fontstyle0\">) and a die size (</span><strong>d6</strong><span class=\"fontstyle0\">, </span><strong>d8</strong><span class=\"fontstyle0\">, </span><strong>d10 </strong><span class=\"fontstyle0\">or </span><strong>d12</strong><span class=\"fontstyle0\">). The spell now targets </span><strong>all </strong><span class=\"fontstyle0\">creatures present on the scene whose </span><strong>current </strong><span class=\"fontstyle0\">Attribute die size matches your choice, regardless of whether they are friends or foes (you might even end up targeting yourself). The effects of the spell are fully applied to every target.</span></p><p><span class=\"fontstyle0\">If the spell is an offensive ( <strong>@ICON[offensive]</strong> ) spell, it follows the normal rules: you perform a single Magic Check and confront it with the Magic Defense of each target to determine who is hit by the spell.</span> <br /></p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Loremaster</strong> Class.</p></blockquote><p>When you cast a spell with a <strong>target</strong> of \"One creature\", you may <strong>double the spell's total MP cost</strong>. If you do, choose an Attribute (<strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>) and a die size (<strong>d6</strong>, <strong>d8</strong>, <strong>d10</strong>, or <strong>d12</strong>). The spell now targets <strong>all</strong> creatures present on the scene whose <strong>current</strong> Attribute die size matches your choice, regardless of whether they are friends or foes (you might even end up targeting yourself). The effects of the spell are fully applied to every target.</p><p>If the spell is an offensive ( @ICON[offensive] ) spell, it follows the normal rules: you perform a single Magic Check and confront it with the Magic Defense of each target to determine who is hit by the spell.</p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706584898728,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721102545678,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "oedqQdAvlhW6VCPh",
   "sort": 2200000,

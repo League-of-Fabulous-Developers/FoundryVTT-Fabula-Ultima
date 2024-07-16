@@ -9,7 +9,7 @@
     "summary": {
       "value": "Gain bonuses with daggers and treat them as brawling, sword, and thrown weapons."
     },
-    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><strong><span class=\"fontstyle0\">Rogue </span></strong><span class=\"fontstyle2\">and </span><strong><span class=\"fontstyle0\">Weaponmaster</span></strong><span class=\"fontstyle2\">.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">While you have one or more </span><span class=\"fontstyle0\"><strong>melee dagger</strong> </span><span class=\"fontstyle2\">weapons equipped, you gain a +1 bonus to Defense and Magic Defense, and you treat those weapons as also belonging to the </span><strong><span class=\"fontstyle0\">brawling</span></strong><span class=\"fontstyle2\">, </span><strong><span class=\"fontstyle0\">sword</span></strong><span class=\"fontstyle2\">, and </span><span class=\"fontstyle0\"><strong>thrown</strong> </span><span class=\"fontstyle2\">Categories for the purpose of Skills and effects. </span></p>\n<p><span class=\"fontstyle2\">Additionally, your attacks with weapons that belong to the </span><strong><span class=\"fontstyle0\">dagger </span></strong><span class=\"fontstyle2\">Category may target creatures that cannot normally be targeted by </span><strong><span class=\"fontstyle0\">melee </span></strong><span class=\"fontstyle2\">attacks.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Rogue </strong>and <strong>Weaponmaster</strong> .</p></blockquote><p>While you have one or more <strong>melee dagger</strong> weapons equipped, you gain a +1 bonus to Defense and Magic Defense, and you treat those weapons as also belonging to the <strong>brawling</strong> , <strong>sword</strong> , and <strong>thrown</strong> Categories for the purpose of Skills and effects.</p><p>Additionally, your attacks with weapons that belong to the <strong>dagger </strong>Category may target creatures that cannot normally be targeted by <strong>melee </strong>attacks.</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684553854,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721102967697,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "s316rQUTr3lgeTx7",
   "sort": 0,

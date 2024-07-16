@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">Your Accuracy Checks with </span><strong><span class=\"fontstyle2\">brawling</span></strong><span class=\"fontstyle0\">, </span><strong><span class=\"fontstyle2\">dagger</span></strong><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>flail</strong>, </span><span class=\"fontstyle0\">and </span><strong><span class=\"fontstyle2\">thrown </span></strong><span class=\"fontstyle0\"><strong>weapons</strong> trigger a </span><span class=\"fontstyle2\"><strong>critical success</strong> </span><span class=\"fontstyle0\">if both dice show the same number (and the Check is not a </span><strong><span class=\"fontstyle2\">fumble</span></strong><span class=\"fontstyle0\">).</span> </p>",
+    "description": "<p>Your Accuracy Checks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> trigger a <strong>critical success</strong> if both dice show the same number (and the Check is not a <strong>fumble</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706502388707,
-    "modifiedTime": 1720811286347,
+    "modifiedTime": 1721093062814,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 200000,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you perform an Accuracy Check, you may replace </span><span class=\"fontstyle2\"><strong>one </strong></span><span class=\"fontstyle0\">of the Attribute dice with </span><span class=\"fontstyle2\"><strong>Insight</strong> </span><span class=\"fontstyle0\">(such as </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>INS + INS</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">for a </span><span class=\"fontstyle2\">pistol </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>INS + MIG</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">for a </span><span class=\"fontstyle2\">waraxe</span><span class=\"fontstyle0\">).</span> </p>",
+    "description": "<p>When you perform an Accuracy Check, you may replace <strong>one</strong> of the Attribute dice with <strong>Insight</strong> (such as <strong>【INS + INS】</strong> for a pistol or <strong>【INS + MIG】</strong> for a waraxe).</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706487511681,
-    "modifiedTime": 1720811994738,
+    "modifiedTime": 1721092787185,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

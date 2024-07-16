@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, you learn a <strong>therioform</strong> (see <span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong>@UUID[Compendium.projectfu.skills.Item.9ww1Sa24R1VsLqgA]{[Handout: Therioform List]}</strong></span>)</p><div class=\"stackedit__html\"><p>You may use an action and spend <strong>one third of your current Hit Points</strong> (rounded down) to manifest the effects of <strong>up to two therioforms</strong> you have learned. The details of this transformation are explained on the next page.</p></div>",
+    "description": "<p>Each time you acquire this Skill, you learn a <strong>therioform</strong> (see @UUID[Compendium.projectfu.skills.Item.9ww1Sa24R1VsLqgA]{[Handout: Therioform List]})</p><p>You may use an action and spend <strong>one third of your current Hit Points</strong> (rounded down) to manifest the effects of <strong>up to two therioforms</strong> you have learned. The details of this transformation are explained on the next page.</p>",
     "isFavored": {
       "value": false
     },
@@ -123,7 +123,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711429218464,
-    "modifiedTime": 1720812319065,
+    "modifiedTime": 1721085509625,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "pmwdU2AGU0JtrWw8",

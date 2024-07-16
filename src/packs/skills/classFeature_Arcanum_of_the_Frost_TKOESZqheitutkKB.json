@@ -13,8 +13,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p><span class=\"fontstyle0\">You have Resistance to </span><span class=\"fontstyle2\"><strong>ice </strong></span><span class=\"fontstyle0\">damage and are immune to </span><span class=\"fontstyle2\"><strong>enraged</strong></span><span class=\"fontstyle0\">.</span></p></li><li><p><span class=\"fontstyle0\">Any </span><span class=\"fontstyle2\"><strong>ice </strong></span><span class=\"fontstyle0\">damage you deal <strong>ignores Resistances</strong>.</span> </p></li></ul>",
-      "dismiss": "<ul><li><p><span class=\"fontstyle0\"><strong>Ice Age.</strong> </span><span class=\"fontstyle2\">Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 ice]</strong></span><span class=\"fontstyle0\"><strong> </strong></span><span class=\"fontstyle2\">damage. This damage <strong>ignores Resistances</strong>.</span></p></li></ul>",
+      "merge": "<ul><li><p>You have Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p></li><li><p>Any <strong>ice</strong> damage you deal <strong>ignores Resistances</strong>.</p></li></ul>",
+      "dismiss": "<ul><li><p><strong>Ice Age.</strong> Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 ice]</strong> damage. This damage ignores Resistances.</p></li></ul>",
       "domains": "cold, ice, silence"
     },
     "source": "FUCR179"
@@ -63,7 +63,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710463982993,
-    "modifiedTime": 1720813510903,
+    "modifiedTime": 1721096243032,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 600000,

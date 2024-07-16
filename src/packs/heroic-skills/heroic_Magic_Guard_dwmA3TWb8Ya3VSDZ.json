@@ -9,7 +9,7 @@
     "summary": {
       "value": "Negate enemy spells while you are in Guard."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><span class=\"fontstyle0\"><strong>Chimerist</strong></span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\"><strong>Elementalist</strong></span><span class=\"fontstyle2\">, </span><span class=\"fontstyle0\"><strong>Entropist</strong></span><span class=\"fontstyle2\">, and </span><span class=\"fontstyle0\"><strong>Spiritist</strong></span><span class=\"fontstyle2\">.</span></p></blockquote><p><span class=\"fontstyle2\">When you perform the </span><span class=\"fontstyle0\"><strong>Guard </strong></span><span class=\"fontstyle2\">action, if you choose </span><span class=\"fontstyle0\">not </span><span class=\"fontstyle2\">to provide cover to another creature, you gain the following benefit until the start of your next turn: when a creature you can see casts a spell, after that creature pays for the spell’s MP cost, you may spend an amount of Mind Points equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle0\"><strong>10 + the spell’s total MP cost</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle2\">in order to completely stop the casting of the spell and negate its effects (the spell isn’t cast, but the creature is still considered to have spent their action).</span> </p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Elementalist</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>.</p></blockquote><p>When you perform the <strong>Guard </strong>action, if you choose not to provide cover to another creature, you gain the following benefit until the start of your next turn: when a creature you can see casts a spell, after that creature pays for the spell's MP cost, you may spend an amount of Mind Points equal to <strong>【10 + the spell's total MP cost】</strong> in order to completely stop the casting of the spell and negate its effects (the spell isn't cast, but the creature is still considered to have spent their action).</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684656698,
-    "modifiedTime": 1719171340559,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721103481100,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "dwmA3TWb8Ya3VSDZ",
   "sort": 0,

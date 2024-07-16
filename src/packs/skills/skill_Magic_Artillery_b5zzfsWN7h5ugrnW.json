@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you cast an offensive </span>( <strong>@ICON[offensive] </strong>) <span class=\"fontstyle0\">spell, if you have an </span><span class=\"fontstyle3\"><strong>arcane </strong></span><span class=\"fontstyle0\">weapon equipped, you gain a bonus to your Magic Check equal to </span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 2</strong></span><span class=\"fontstyle4\"><strong>】</strong></span><span class=\"fontstyle0\">.</span> <br /></p>",
+    "description": "<p>When you cast an offensive ( @ICON[offensive] ) spell, if you have an <strong>arcane</strong> weapon equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -170,7 +170,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706497996319,
-    "modifiedTime": 1720810359474,
+    "modifiedTime": 1721093851210,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "b5zzfsWN7h5ugrnW",

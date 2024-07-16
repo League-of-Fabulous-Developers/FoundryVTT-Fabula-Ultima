@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You may perfectly recall the details of any scene you have visited within the past week. You can \"go back in time\" within your mind in order to examine and investigate such scenes again — your </span><span class=\"fontstyle2\"><strong>Flash of Insight</strong> </span><span class=\"fontstyle0\">Skill will apply to these memories as well.</span> </p>",
+    "description": "<p>You may perfectly recall the details of any scene you have visited within the past week. You can \"go back in time\" within your mind in order to examine and investigate such scenes again — your <strong>Flash of Insight</strong> Skill will apply to these memories as well.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706487946943,
-    "modifiedTime": 1720812044206,
+    "modifiedTime": 1721092830824,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

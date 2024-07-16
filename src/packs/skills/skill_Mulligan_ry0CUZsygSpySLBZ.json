@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle2\">At the end of your turn during a conflict, you may discard up to</span><span class=\"fontstyle7\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>SL</strong></span><span class=\"fontstyle7\"><strong>】</strong></span><span class=\"fontstyle2\">cards from your </span><span class=\"fontstyle4\"><strong>hand</strong></span><span class=\"fontstyle2\">. If you do, draw that many cards from your </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">.</span></p>",
+    "description": "<p>At the end of your turn during a conflict, you may discard up to <strong>【SL】</strong> cards from your <strong>hand</strong>. If you do, draw that many cards from your <strong>deck</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707643024284,
-    "modifiedTime": 1719130052422,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720884198489,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "ry0CUZsygSpySLBZ",
   "sort": 0,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You invigorate your companions, soothing their pain and healing their fatigue. Each target recovers </span><strong>@HEAL[40 hp]</strong><span class=\"fontstyle0\">. This amount increases to </span><strong>@HEAL[50 hp]</strong><span class=\"fontstyle0\"> if you are </span><span class=\"fontstyle2\"><strong>level 20 or higher</strong></span><span class=\"fontstyle0\">, or to </span><strong>@HEAL[60 hp]</strong><span class=\"fontstyle0\"> if you are </span><span class=\"fontstyle2\"><strong>level 40 or higher</strong></span><span class=\"fontstyle0\">.</span> </p><hr /><p><strong>@LOSS[10 mp]</strong> for <strong>one</strong> target.</p><p><strong>@LOSS[20 mp]</strong> for <strong>two</strong> targets.</p><p><strong>@LOSS[30 mp]</strong> for <strong>three</strong> targets.</p>",
+    "description": "<p>You invigorate your companions, soothing their pain and healing their fatigue. Each target recovers @HEAL[40 hp]<span>. This amount increases to </span>@HEAL[50 hp] <span>if you are <strong>level 20 or higher</strong>, or to </span>@HEAL[60 hp] <span>if you are <strong>level 40 or higher</strong>.</span></p><hr /><p>@LOSS[10 mp] for <strong>one</strong> target.</p><p>@LOSS[20 mp] for <strong>two</strong> targets.</p><p>@LOSS[30 mp] for <strong>three</strong> targets.</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706572719338,
-    "modifiedTime": 1719435636508,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721097005200,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 1300000,
   "_key": "!items!uQd6aE423mPv12Vc"

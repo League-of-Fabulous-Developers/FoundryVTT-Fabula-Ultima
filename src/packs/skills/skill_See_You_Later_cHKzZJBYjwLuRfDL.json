@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You may use an action and spend 1 Fabula Point to vanish from the current scene, reappearing whenever you want during a </span><strong><span class=\"fontstyle2\">different </span></strong><span class=\"fontstyle0\">scene in which another Player Character is present. Describe how you escaped and miraculously got here!</span> </p>",
+    "description": "<p><span>You may use an action and spend 1 Fabula Point to vanish from the current scene, reappearing whenever you want during a <strong>different </strong>scene in which another Player Character is present. Describe how you escaped and miraculously got here!</span></p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504765560,
-    "modifiedTime": 1720812708651,
+    "modifiedTime": 1721090341519,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,

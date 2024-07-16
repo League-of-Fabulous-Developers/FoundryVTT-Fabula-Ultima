@@ -9,7 +9,7 @@
     "summary": {
       "value": "Gain benefits for consecutive attacks with thrown weapons."
     },
-    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><strong><span class=\"fontstyle0\">Dancer</span></strong><span class=\"fontstyle2\">, </span><strong><span class=\"fontstyle0\">Fury</span></strong><span class=\"fontstyle2\">, and </span><strong><span class=\"fontstyle0\">Sharpshooter</span></strong><span class=\"fontstyle2\">.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">When you perform a </span><strong><span class=\"fontstyle0\">ranged </span></strong><span class=\"fontstyle2\">attack using a weapon that belongs to the </span><strong><span class=\"fontstyle0\">thrown </span></strong><span class=\"fontstyle2\">Category, </span><strong><span class=\"fontstyle0\">if you have no martial armor and no shields equipped</span></strong><span class=\"fontstyle2\">, you gain </span><strong><span class=\"fontstyle0\">1 Momentum Point</span></strong><span class=\"fontstyle2\">.</span></p>\n<p><span class=\"fontstyle2\">You may never have more than </span><strong><span class=\"fontstyle0\">5 Momentum Points</span></strong><span class=\"fontstyle2\">.</span></p>\n<p><span class=\"fontstyle2\">Your </span><strong><span class=\"fontstyle0\">ranged </span></strong><span class=\"fontstyle2\">attacks using weapons that belong to the </span><strong><span class=\"fontstyle0\">thrown </span></strong><span class=\"fontstyle2\">Category deal extra damage equal to your current </span><strong><span class=\"fontstyle0\">Momentum Points</span></strong><span class=\"fontstyle2\">.</span></p>\n<p><span class=\"fontstyle2\">When a creature hits you with an attack targeting your </span><strong><span class=\"fontstyle0\">Defense</span></strong><span class=\"fontstyle2\">, you </span><strong><span class=\"fontstyle0\">must </span></strong><span class=\"fontstyle2\">spend all your accumulated </span><span class=\"fontstyle0\"><strong>Momentum Points</strong> </span><span class=\"fontstyle2\">and increase your Defense score by an equal amount against that attack (this may turn the hit into a miss).</span></p>\n<p><span class=\"fontstyle2\">You also lose all </span><span class=\"fontstyle0\"><strong>Momentum Points</strong> </span><span class=\"fontstyle2\">at the end of each scene.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Dancer</strong>, <strong>Fury</strong>, and <strong>Sharpshooter</strong>.</p></blockquote><p>When you perform a <strong>ranged </strong>attack using a weapon that belongs to the <strong>thrown </strong>Category, <strong>if you have no martial armor and no shields equipped</strong>, you gain <strong>1 Momentum Point</strong>.</p><p>You may never have more than <strong>5 Momentum Points</strong>.</p><p>Your <strong>ranged </strong>attacks using weapons that belong to the <strong>thrown </strong>Category deal extra damage equal to your current <strong>Momentum Points</strong>.</p><p>When a creature hits you with an attack targeting your <strong>Defense</strong>, you <strong>must </strong>spend all your accumulated <strong>Momentum Points</strong> and increase your Defense score by an equal amount against that attack (this may turn the hit into a miss).</p><p>You also lose all <strong>Momentum Points</strong> at the end of each scene.</p>",
     "isFavored": {
       "value": false
     },
@@ -181,8 +181,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684737113,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721103882195,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "WKJ4ZSPBnlg4U3qt",
   "sort": 0,

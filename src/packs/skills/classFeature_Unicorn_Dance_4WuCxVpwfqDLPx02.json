@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">Choose an ally that is able to see you and has a Bond towards you: you and that ally both recover an amount of Hit Points equal to your current </span></span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">Dexterity </strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">die size.</span></p><p><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">The restored amount increases by 5 Hit Points if you are </span></span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">level 20 or higher</strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">, or by 10 Hit Points if you are<strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"> </strong></span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\">level 40 or higher</strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">. </span></p><hr><p><strong>@LOSS[10 mp]</strong></p>",
+      "description": "<p>Choose an ally that is able to see you and has a Bond towards you: you and that ally both recover an amount of Hit Points equal to your current <strong>Dexterity</strong> die size.</p><p>The restored amount increases by 5 Hit Points if you are <strong>level 20 or higher</strong>, or by 10 Hit Points if you are <strong>level 40 or higher</strong>.</p><hr><p>@LOSS[10 mp]</p>",
       "duration": "instant"
     },
     "source": "FUHF145"
@@ -35,8 +35,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710176668051,
-    "modifiedTime": 1719158402374,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721094918601,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!4WuCxVpwfqDLPx02"

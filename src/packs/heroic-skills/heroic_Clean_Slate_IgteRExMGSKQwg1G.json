@@ -9,7 +9,7 @@
     "summary": {
       "value": "Remove spells and status effects from creatures."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Symbolist </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle2\">You may use an action and spend up to 30 Mind Points to choose one creature you can see for every 5 MP spent this way. Each creature chosen this way recovers from all status effects and is no longer affected by any spells with a </span><span class=\"fontstyle0\"><strong>duration </strong></span><span class=\"fontstyle2\">of “Scene” that were affecting them.</span> </p><hr /><p><strong>@LOSS[5 mp]</strong></p><p><strong>@LOSS[10 mp]</strong></p><p><strong>@LOSS[15 mp]</strong></p><p><strong>@LOSS[20 mp]</strong></p><p><strong>@LOSS[25 mp]</strong></p><p><strong>@LOSS[30 mp]</strong></p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Symbolist </strong>Class.</p></blockquote><p>You may use an action and spend up to 30 Mind Points to choose one creature you can see for every 5 MP spent this way. Each creature chosen this way recovers from all status effects and is no longer affected by any spells with a <strong>duration </strong>of “Scene” that were affecting them. </p><hr /><p>@LOSS[5 mp]</p><p>@LOSS[10 mp]</p><p>@LOSS[15 mp]</p><p>@LOSS[20 mp]</p><p>@LOSS[25 mp]</p><p>@LOSS[30 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684583539,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721103056736,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "IgteRExMGSKQwg1G",
   "sort": 0,

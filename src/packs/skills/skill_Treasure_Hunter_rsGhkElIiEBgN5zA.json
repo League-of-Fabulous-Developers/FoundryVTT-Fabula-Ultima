@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When your group journeys on the world map, you will make a </span><span class=\"fontstyle2\"><strong>discovery </strong></span><span class=\"fontstyle0\">on a roll of </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL + 1</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle2\"><strong>or lower </strong></span><span class=\"fontstyle0\">on the </span><span class=\"fontstyle2\"><strong>travel roll</strong> </span><span class=\"fontstyle0\">(instead of only on a </span><span class=\"fontstyle2\"><strong>1</strong></span><span class=\"fontstyle0\">).</span> </p>",
+    "description": "<p>When your group journeys on the world map, you will make a <strong>discovery </strong>on a roll of <strong>【SL + 1】</strong> or lower on the <strong>travel roll </strong>(instead of only on a <strong>1</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706513097437,
-    "modifiedTime": 1720813336994,
+    "modifiedTime": 1721088329894,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

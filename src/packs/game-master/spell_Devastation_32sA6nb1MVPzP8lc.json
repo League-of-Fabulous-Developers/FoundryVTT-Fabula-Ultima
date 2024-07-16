@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">Choose any number of creatures you can see: each of them suffers <strong>HR0 </strong>+ 30 </span><span class=\"fontstyle2\"><strong>(choose type) </strong></span><span class=\"fontstyle0\">damage. You may only cast this spell </span><span class=\"fontstyle2\"><strong>once per turn</strong></span><span class=\"fontstyle0\">. This spell should only be given to </span><span class=\"fontstyle2\"><strong>champion </strong></span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>elite </strong></span><span class=\"fontstyle0\">creatures </span><span class=\"fontstyle2\"><strong>level 30 or higher</strong></span><span class=\"fontstyle0\">, and said creatures can only cast this spell during their<strong> </strong></span><span class=\"fontstyle2\"><strong>last turn in the round</strong></span><span class=\"fontstyle0\">.</span></p><hr /><p><strong>@LOSS[30 mp]</strong></p>",
+    "description": "<p>Choose any number of creatures you can see: each of them suffers <strong>HR0 </strong>+ 30 <strong>(choose type) </strong>damage. You may only cast this spell <strong>once per turn</strong>. This spell should only be given to <strong>champion </strong>and <strong>elite </strong>creatures <strong>level 30 or higher</strong>, and said creatures can only cast this spell during their <strong>last turn in the round</strong>.</p><hr /><p>@LOSS[30 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -72,7 +72,7 @@
       "value": "Special"
     },
     "duration": {
-      "value": "Instantaneous"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": true
@@ -123,8 +123,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1690417015023,
-    "modifiedTime": 1719224647253,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721100276732,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "PpBzAnM7EK75ayIT",
   "_id": "32sA6nb1MVPzP8lc",

@@ -5,7 +5,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you cast an offensive spell ( <strong>@ICON[offensive]</strong> ) with a <strong>target</strong> of “One creature”, you may spend 2 Grave Points to have it target <strong>all</strong> creatures you can see that are present on the scene (perform a single Magic Check and confront it with the Magic Defense of each target). If you do, all damage dealt by the spell becomes <strong>dark</strong> and its type cannot change.</p>",
+    "description": "<p>When you cast an offensive spell ( @ICON[offensive] ) with a <strong>target</strong> of “One creature”, you may spend 2 Grave Points to have it target <strong>all</strong> creatures you can see that are present on the scene (perform a single Magic Check and confront it with the Magic Defense of each target). If you do, all damage dealt by the spell becomes <strong>dark</strong> and its type cannot change.</p>",
     "isFavored": {
       "value": false
     },
@@ -125,8 +125,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1684757023346,
-    "modifiedTime": 1719167779090,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721091766078,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "HL1x2SDWkdiaZf56",
   "ownership": {

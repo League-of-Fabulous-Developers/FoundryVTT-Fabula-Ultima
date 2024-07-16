@@ -9,7 +9,7 @@
     "summary": {
       "value": "This allows the entire group to rest in the wilderness and at sea."
     },
-    "description": "<p><span class=\"fontstyle0\">For </span><strong>@LOSS[4 ip]</strong>, <span class=\"fontstyle0\">this allows the entire group to </span><span class=\"fontstyle2\"><strong>rest </strong></span><span class=\"fontstyle0\">in the wilderness and at sea.</span> </p>",
+    "description": "<p>For @LOSS[4 ip], this allows the entire group to <strong>rest</strong> in the wilderness and at sea.</p>",
     "isFavored": {
       "value": false
     },
@@ -38,8 +38,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706516284047,
-    "modifiedTime": 1719358980559,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721098911614,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "QYyuig5iy5mMN9F8",
   "sort": 100000,

@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After you affect one or more enemies with a </span><span class=\"fontstyle2\"><strong>verse</strong></span><span class=\"fontstyle0\">, if you have an </span><span class=\"fontstyle2\"><strong>arcane </strong></span><span class=\"fontstyle0\">weapon equipped, you may choose one option: until the start of your next turn, your allies deal</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">extra damage to those enemies; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">until the start of your next turn, you recover</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">Mind Points </span><span class=\"fontstyle2\"><strong>every time</strong> </span><span class=\"fontstyle0\">one of those enemies suffers damage (if the same source deals damage to two or more of those enemies at the same time, you recover</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">MP for each damaged enemy).</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@GAIN[1 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@GAIN[2 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@GAIN[3 mp]</strong></p>",
+    "description": "<p>After you affect one or more enemies with a <strong>verse</strong>, if you have an <strong>arcane</strong> weapon equipped, you may choose one option: until the start of your next turn, your allies deal <strong>【SL】</strong> extra damage to those enemies; <strong>OR</strong> until the start of your next turn, you recover <strong>【SL】</strong> Mind Points every time one of those enemies suffers damage (if the same source deals damage to two or more of those enemies at the same time, you recover <strong>【SL】</strong> MP for each damaged enemy).</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[1 mp]</p><p>Skill Level <strong>2</strong> - @GAIN[2 mp]</p><p>Skill Level <strong>3</strong> - @GAIN[3 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -132,7 +132,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706551588442,
-    "modifiedTime": 1720809867771,
+    "modifiedTime": 1721095803378,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "kdL9oQYefqNlWqyD",

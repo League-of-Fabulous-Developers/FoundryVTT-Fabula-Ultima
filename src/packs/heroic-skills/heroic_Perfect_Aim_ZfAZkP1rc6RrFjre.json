@@ -9,7 +9,7 @@
     "summary": {
       "value": "Choose two options when using Warning Shot."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Sharpshooter </strong></span><span class=\"fontstyle2\">Class, and must have acquired the </span><span class=\"fontstyle0\"><strong>Warning Shot</strong> </span><span class=\"fontstyle2\">Skill.</span> </p></blockquote><p><span class=\"fontstyle0\">When you hit one or more creatures with a </span><span class=\"fontstyle2\"><strong>ranged </strong></span><span class=\"fontstyle0\">attack and choose to deal no damage in order to gain the benefits of the </span><span class=\"fontstyle2\"><strong>@UUID[Compendium.projectfu.skills.Item.Ovmw7cMrN6qvagG4]{Warning Shot}</strong> </span><span class=\"fontstyle0\">Skill, you may choose </span><span class=\"fontstyle2\"><strong>two </strong></span><span class=\"fontstyle0\">options instead of one (for instance, you could inflict both </span><span class=\"fontstyle2\"><strong>@EFFECT[shaken] </strong></span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>@EFFECT[slow] </strong></span><span class=\"fontstyle0\">on each creature, or inflict a status effect on each creature while also lowering their Mind Points).</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Sharpshooter </strong>Class, and must have acquired the <strong>Warning Shot</strong> Skill.</p></blockquote><p>When you hit one or more creatures with a <strong>ranged </strong>attack and choose to deal no damage in order to gain the benefits of the @UUID[Compendium.projectfu.skills.Item.Ovmw7cMrN6qvagG4]{Warning Shot} Skill, you may choose <strong>two </strong>options instead of one (for instance, you could inflict both @EFFECT[shaken] and @EFFECT[slow] on each creature, or inflict a status effect on each creature while also lowering their Mind Points).</p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706585143889,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721102659474,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "ZfAZkP1rc6RrFjre",
   "sort": 1200000,

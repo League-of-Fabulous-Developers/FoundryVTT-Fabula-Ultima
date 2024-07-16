@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You send lightning striking at your foe. The target suffers</span><strong><span class=\"fontstyle2\">【</span><span class=\"fontstyle3\">HR + 25</span><span class=\"fontstyle2\">】</span></strong><span class=\"fontstyle3\"><strong>bolt</strong> </span><span class=\"fontstyle0\">damage.</span></p>\n<p><span class=\"fontstyle0\">Damage dealt by this spell <strong>ignores Resistances</strong>.</span> </p>",
+    "description": "<p>You send lightning striking at your foe. The target suffers <strong>【HR + 25】bolt</strong> damage.</p><p>Damage dealt by this spell <strong>ignores Resistances</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706567202542,
-    "modifiedTime": 1719433069297,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721098666436,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!I4DfvMXCmGMkuXKB"

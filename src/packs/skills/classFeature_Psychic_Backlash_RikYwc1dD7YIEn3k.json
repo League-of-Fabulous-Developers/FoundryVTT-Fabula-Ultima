@@ -13,7 +13,7 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "After an enemy succeeds on an Opposed Check  against you or causes you to lose Hit Points",
-      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">That enemy loses an amount of Mind Points equal to <strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">【5 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】</strong>. Then, choose one option: that enemy suffers <strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">@EFFECT[dazed]</strong>; or that enemy suffers <strong style=\"box-sizing: border-box; user-select: text; color: rgb(43, 74, 66); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">@EFFECT[shaken]</strong>.</span></p>"
+      "description": "<p>That enemy loses an amount of Mind Points equal to <strong>【5 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】</strong>. Then, choose one option: that enemy suffers @EFFECT[dazed]; or that enemy suffers @EFFECT[shaken].</p>"
     },
     "source": "FUTF153"
   },
@@ -31,8 +31,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711423314741,
-    "modifiedTime": 1719164115372,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720885788461,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "RikYwc1dD7YIEn3k",
   "sort": 0,

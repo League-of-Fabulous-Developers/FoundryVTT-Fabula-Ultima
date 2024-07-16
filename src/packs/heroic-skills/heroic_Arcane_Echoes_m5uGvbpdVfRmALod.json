@@ -9,7 +9,7 @@
     "summary": {
       "value": "Arcana help you influence Clocks."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered the </span><strong>Arcanist </strong><span class=\"fontstyle2\">Class.</span> </p></blockquote><p><span class=\"fontstyle0\">When you successfully perform a Check to fill or erase one or more sections of a Clock, if the </span><span class=\"fontstyle2\"><strong>domains </strong></span><span class=\"fontstyle0\">of one or more Arcana you have bound are applicable to the Check in question, you may fill or erase an additional section of that Clock.</span></p><p><span class=\"fontstyle0\">The Game Master has final say on whether a given domain applies or not.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Arcanist </strong>Class. </p></blockquote><p>When you successfully perform a Check to fill or erase one or more sections of a Clock, if the <strong>domains </strong>of one or more Arcana you have bound are applicable to the Check in question, you may fill or erase an additional section of that Clock.</p><p>The Game Master has final say on whether a given domain applies or not. </p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706583645856,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721102178566,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "m5uGvbpdVfRmALod",
   "sort": 2100000,

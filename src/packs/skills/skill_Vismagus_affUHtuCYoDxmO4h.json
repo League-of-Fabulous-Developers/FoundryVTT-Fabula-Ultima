@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you cast a spell, if you don't have enough Mind Points to pay for its total cost, you may choose to spend </span><span class=\"fontstyle2\"><strong>twice as many </strong></span><span class=\"fontstyle0\">Hit Points instead. You cannot use this Skill if doing so would reduce you to 0 Hit Points. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</span> </p>",
+    "description": "<p>When you cast a spell, if you don't have enough Mind Points to pay for its total cost, you may choose to spend <strong>twice as many</strong> Hit Points instead. You cannot use this Skill if doing so would reduce you to 0 Hit Points. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706507954756,
-    "modifiedTime": 1720812840293,
+    "modifiedTime": 1721090112092,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 500000,

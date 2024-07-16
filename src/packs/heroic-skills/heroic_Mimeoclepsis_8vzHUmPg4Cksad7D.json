@@ -10,7 +10,7 @@
     "summary": {
       "value": "Learn spells through the Mutant's Genoclepsis."
     },
-    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements: </strong></span>you must have mastered one or more Classes between <strong>Chimerist</strong> and <strong>Mutant</strong>, and have acquired the <span class=\"fontstyle0\"><strong>Genoclepsis</strong></span> and <strong>Spell Mimic</strong> Skill of the two Classes.</p></blockquote><p>When you use the <strong>Genoclepsis</strong> Skill on an NPC, if that NPC's Species is among the ones you can learn spells from with the <strong>Spell Mimic</strong> Skill (<strong>Core Rulebook</strong>, page <strong>183</strong>), the Game Master must reveal all <strong>spells</strong> known by that NPC. Then, if that NPC knows one or more spell, you may <strong>learn one of those spells</strong> as a Chimerist spell of your own.</p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes between <strong>Chimerist</strong> and <strong>Mutant</strong>, and have acquired the <strong>Genoclepsis</strong> and <strong>Spell Mimic</strong> Skill of the two Classes.</p></blockquote><p>When you use the <strong>Genoclepsis</strong> Skill on an NPC, if that NPC's Species is among the ones you can learn spells from with the <strong>Spell Mimic</strong> Skill (<strong>Core Rulebook</strong>, page <strong>183</strong>), the Game Master must reveal all <strong>spells</strong> known by that NPC. Then, if that NPC knows one or more spell, you may <strong>learn one of those spells</strong> as a Chimerist spell of your own.</p>",
     "isFavored": {
       "value": false
     },
@@ -108,8 +108,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711473807263,
-    "modifiedTime": 1719170718289,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721104507925,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

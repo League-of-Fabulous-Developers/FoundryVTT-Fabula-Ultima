@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">The target may immediately perform a </span><span class=\"fontstyle2\"><strong>free attack </strong></span><span class=\"fontstyle0\">with a weapon they have equipped (or with a </span><span class=\"fontstyle2\"><strong>basic attack</strong></span><span class=\"fontstyle0\">, if the target is an NPC).</span></p><hr /><p><strong>@LOSS[20 mp]</strong></p>",
+    "description": "<p>The target may immediately perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong>, if the target is an NPC).</p><hr /><p>@LOSS[20 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -72,7 +72,7 @@
       "value": "One creature"
     },
     "duration": {
-      "value": "Instantaneous"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": false
@@ -123,8 +123,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1690417015023,
-    "modifiedTime": 1719224647253,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721100546635,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "PpBzAnM7EK75ayIT",
   "_id": "w93PJbDwQ2WvkXvK",

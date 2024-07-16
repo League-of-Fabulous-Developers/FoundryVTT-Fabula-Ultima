@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You imbue a weapon with dark energy. Until this spell ends, all damage dealt by the weapon becomes of the </span><span class=\"fontstyle2\"><strong>dark </strong></span><span class=\"fontstyle0\">type. If you have that weapon equipped while you cast this spell, you may perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with it as part of the same action. This spell can only be cast on a weapon equipped by a willing creature.</span> </p><hr /><p><strong>@LOSS[10 mp]</strong></p>",
+    "description": "<p>You imbue a weapon with dark energy. Until this spell ends, all damage dealt by the weapon becomes of the <strong>dark</strong> type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action. This spell can only be cast on a weapon equipped by a willing creature.</p><hr /><p><strong>@LOSS[10 mp]</strong></p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706568328188,
-    "modifiedTime": 1719433322482,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721097786090,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!S5jyPShQHxqZdKZB"

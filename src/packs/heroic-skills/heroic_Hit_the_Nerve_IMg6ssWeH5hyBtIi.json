@@ -10,7 +10,7 @@
     "summary": {
       "value": "Use Condemn to inﬂict enraged and gain beneﬁts against enraged creatures."
     },
-    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements: </strong></span><span class=\"fontstyle0\">you must have mastered one or more Classes among </span><span class=\"fontstyle2\"><strong>Chanter</strong> </span><span class=\"fontstyle0\">(</span><span class=\"fontstyle2\"><strong>High Fantasy</strong></span><span class=\"fontstyle0\">, page </span><span class=\"fontstyle2\"><strong>136</strong></span><span class=\"fontstyle0\">) and </span><span class=\"fontstyle2\"><strong>Orator</strong></span><span class=\"fontstyle0\">, and must have acquired the </span><span class=\"fontstyle2\"><strong>Condemn</strong> </span><span class=\"fontstyle0\">Skill.</span></p></blockquote><p>When you successfully use the <strong>Condemn</strong> Skill against an enemy you know <strong>one or more Traits of</strong>, you recover an amount of Mind Points equal to <strong>half</strong> the amount of MP lost by the target, and you may have them suffer <strong>@EFFECT[enraged] </strong>instead of the normal status effects.</p><p>Additionally, when you perform an <strong>Opposed Check</strong> against an <strong>enraged</strong> creature, or an <strong>Accuracy Check or Magic Check</strong> for an attack or offensive spell ( <strong>@ICON[offensive] </strong>) that includes one or more <strong>enraged</strong> creatures among its targets, you trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>)</p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Chanter</strong> (<strong>High Fantasy</strong>, page <strong>136</strong>) and <strong>Orator</strong>, and must have acquired the <strong>Condemn</strong> Skill.</p></blockquote><p>When you successfully use the <strong>Condemn</strong> Skill against an enemy you know <strong>one or more Traits of</strong>, you recover an amount of Mind Points equal to <strong>half</strong> the amount of MP lost by the target, and you may have them suffer @EFFECT[enraged] instead of the normal status effects.</p><p>Additionally, when you perform an <strong>Opposed Check</strong> against an <strong>enraged</strong> creature, or an <strong>Accuracy Check or Magic Check</strong> for an attack or offensive spell ( @ICON[offensive] ) that includes one or more <strong>enraged</strong> creatures among its targets, you trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>)</p>",
     "isFavored": {
       "value": false
     },
@@ -108,8 +108,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711473807263,
-    "modifiedTime": 1719171579246,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721104455138,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

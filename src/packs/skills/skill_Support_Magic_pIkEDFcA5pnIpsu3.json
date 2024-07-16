@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you cast a spell that targets one or more allies, if you have an </span><strong><span class=\"fontstyle2\">arcane </span></strong><span class=\"fontstyle0\">weapon equipped, you may choose one of those allies you have a </span><strong><span class=\"fontstyle2\">Bond </span></strong><span class=\"fontstyle0\">towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the </span><strong><span class=\"fontstyle2\">strength </span></strong><span class=\"fontstyle0\">of your Bond towards them.</span> </p>",
+    "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may choose one of those allies you have a <strong>Bond</strong> towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the <strong>strength</strong> of your Bond towards them.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706507941545,
-    "modifiedTime": 1720812834202,
+    "modifiedTime": 1721090097283,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,

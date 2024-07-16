@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you </span><span class=\"fontstyle2\"><strong>rest </strong></span><span class=\"fontstyle0\">inside an inn or tavern, you may ask the Game Master up to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">questions about your surroundings and the people who live here; the Game Master will answer truthfully and you describe how you gathered the information.</span> </p>",
+    "description": "<p>When you <strong>rest </strong>inside an inn or tavern, you may ask the Game Master up to <strong>【SL】</strong> questions about your surroundings and the people who live here; the Game Master will answer truthfully and you describe how you gathered the information.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706513085705,
-    "modifiedTime": 1720813327622,
+    "modifiedTime": 1721088317212,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

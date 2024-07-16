@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p><span class=\"fontstyle0\">Choose one option: you gain Resistance to </span><span class=\"fontstyle2\"><strong>dark </strong></span>damage; <span class=\"fontstyle2\"><strong>OR </strong></span>all damage dealt by your attacks and spells becomes <span class=\"fontstyle2\"><strong>dark</strong></span>. </p><hr><p><strong>@LOSS[10 mp] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogRGFyayIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmRhcmsiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi1tYWdlbnRhLndlYnAifQ==]</strong></p>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>dark</strong> damage; <strong>OR</strong> all damage dealt by your attacks and spells becomes <strong>dark</strong>.</p><hr><p>@LOSS[10 mp] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogRGFyayIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmRhcmsiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi1tYWdlbnRhLndlYnAifQ==]</p>",
       "duration": "nextTurn"
     },
     "source": "FUHF144"
@@ -35,8 +35,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710041957610,
-    "modifiedTime": 1719158402374,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721094346221,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!71Cr58HNhFHtzTqN"

@@ -9,7 +9,7 @@
     "summary": {
       "value": "Perform three dances, then take a temporary break."
     },
-    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><strong><span class=\"fontstyle0\">Dancer </span></strong><span class=\"fontstyle2\">Class.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">At the start of your turn during a conflict, if you have <strong>no </strong></span><span class=\"fontstyle0\"><strong>martial armor </strong></span><span class=\"fontstyle2\">equipped, you may spend 1 Fabula Point to immediately perform<strong> </strong></span><span class=\"fontstyle0\"><strong>up to three different dances </strong></span><span class=\"fontstyle2\">among those you know, in the order you prefer and without paying their MP cost. If you do, you </span><span class=\"fontstyle0\"><strong>cannot perform dances in any way</strong> </span><span class=\"fontstyle2\">until the end of your next turn.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Dancer</strong> Class.</p></blockquote><p>At the start of your turn during a conflict, if you have <strong>nomartial armor </strong>equipped, you may spend 1 Fabula Point to immediately perform<strong> up to three different dances </strong>among those you know, in the order you prefer and without paying their MP cost. If you do, you <strong>cannot perform dances in any way</strong> until the end of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684713224,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721103757597,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "A0NEGshlzb52Tv7h",
   "sort": 0,

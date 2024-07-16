@@ -13,8 +13,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p><span class=\"fontstyle0\">You have Resistance to </span><span class=\"fontstyle2\"><strong>dark</strong> </span><span class=\"fontstyle0\">damage.</span></p></li><li><p><span class=\"fontstyle0\">You gain a +1 bonus to your Magic Defense.</span></p></li></ul>",
-      "dismiss": "<p><span class=\"fontstyle0\">When you </span><span class=\"fontstyle2\"><strong>dismiss </strong></span><span class=\"fontstyle0\">this Arcanum, choose </span><span class=\"fontstyle2\"><strong>Oblivion </strong></span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>Warp</strong></span><span class=\"fontstyle0\">:</span></p><ul><li><p><span class=\"fontstyle2\"><strong>Oblivion.</strong> </span><span class=\"fontstyle0\">Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 dark]</strong> damage. This damage ignores Resistances.</span></p></li><li><p><span class=\"fontstyle2\"><strong>Warp.</strong> </span><span class=\"fontstyle0\">You teleport yourself and up to five other nearby willing creatures to a location you previously visited, if that location is within </span><span class=\"fontstyle2\"><strong>1 travel day</strong></span><span class=\"fontstyle0\">.</span> </p></li></ul>",
+      "merge": "<ul><li><p>You have Resistance to <strong>dark</strong> damage.</p></li><li><p>You gain a +1 bonus to your Magic Defense.</p></li></ul>",
+      "dismiss": "<p>When you <strong>dismiss</strong> this Arcanum, choose <strong>Oblivion</strong> or <strong>Warp</strong>:</p><ul><li><p><strong>Oblivion.</strong> Choose any number of creatures you can see: each of them suffers @DMG[30 dark] damage. This damage ignores Resistances.</p></li><li><p><strong>Warp.</strong> You teleport yourself and up to five other nearby willing creatures to a location you previously visited, if that location is within <strong>1 travel day</strong>.</p></li></ul>",
       "domains": "space, travel, void"
     },
     "source": "FUCR179"
@@ -69,7 +69,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710463996976,
-    "modifiedTime": 1720813516479,
+    "modifiedTime": 1721096284388,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 700000,

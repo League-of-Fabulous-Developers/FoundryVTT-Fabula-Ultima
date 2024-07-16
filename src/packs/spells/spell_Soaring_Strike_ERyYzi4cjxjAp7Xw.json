@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">The wind carries your strikes across the battlefield. You may immediately perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with a </span><span class=\"fontstyle2\"><strong>melee </strong></span><span class=\"fontstyle0\">weapon you have equipped. This attack may target creatures that can only be targeted by </span><span class=\"fontstyle2\"><strong>ranged </strong></span><span class=\"fontstyle0\">attacks.</span></p><p><span class=\"fontstyle0\">If you used a weapon belonging to the </span><span class=\"fontstyle2\"><strong>brawling </strong></span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>spear </strong></span><span class=\"fontstyle0\">Category for this attack, it deals 5 extra damage.</span></p><p><span class=\"fontstyle0\">If you hit a flying target with this attack, you may force them to land immediately.</span> </p><hr /><p><strong>@LOSS[10 mp]</strong></p>",
+    "description": "<p>The wind carries your strikes across the battlefield. You may immediately perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack may target creatures that can only be targeted by <strong>ranged</strong> attacks.</p><p>If you used a weapon belonging to the <strong>brawling</strong> or <strong>spear</strong> Category for this attack, it deals 5 extra damage.</p><p>If you hit a flying target with this attack, you may force them to land immediately.</p><hr /><p>@LOSS[10 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706566647080,
-    "modifiedTime": 1719433048868,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721098597268,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!ERyYzi4cjxjAp7Xw"

@@ -9,7 +9,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<div class=\"stackedit__html\"><p><span class=\"fontstyle0\">Your </span><span class=\"fontstyle2\"><strong>unarmed strikes</strong> </span><span class=\"fontstyle0\">deal </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>6 + (SL × 2)</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">extra damage, and you gain a bonus equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">to your Accuracy Checks with them.</span></p><p><span class=\"fontstyle0\">At the start of your turn during a conflict, you may choose a weapon Category other than </span><span class=\"fontstyle2\"><strong>brawling</strong></span><span class=\"fontstyle0\">. If you do, your </span><span class=\"fontstyle2\"><strong>unarmed strikes</strong> </span><span class=\"fontstyle0\">now belong to the chosen Category; if you choose </span><span class=\"fontstyle2\"><strong>bow</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>firearm</strong> </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>thrown</strong></span><span class=\"fontstyle0\">, they become </span><span class=\"fontstyle2\"><strong>ranged</strong> </span><span class=\"fontstyle0\">weapons instead of </span><span class=\"fontstyle2\"><strong>melee</strong></span><span class=\"fontstyle0\">; if you choose </span><span class=\"fontstyle2\"><strong>dagger</strong> </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>sword</strong></span><span class=\"fontstyle0\">, they </span><span class=\"fontstyle2\">cannot </span><span class=\"fontstyle0\">be used with </span><span class=\"fontstyle2\"><strong>Triple Slash </strong></span><span class=\"fontstyle0\"><strong>(</strong>see </span><span class=\"fontstyle2\"><strong>High Fantasy Atlas</strong></span><span class=\"fontstyle0\"><strong>, </strong>page<strong> </strong></span><span class=\"fontstyle2\"><strong>161</strong></span><span class=\"fontstyle0\"><strong>)</strong>. These changes last until the start of your next turn.</span></p></div>",
+    "description": "<p>Your <strong>unarmed strikes</strong> deal <strong>【6 + (SL × 2)】</strong> extra damage, and you gain a bonus equal to <strong>【SL】</strong> to your Accuracy Checks with them.</p><p>At the start of your turn during a conflict, you may choose a weapon Category other than <strong>brawling</strong>. If you do, your <strong>unarmed strikes</strong> now belong to the chosen Category; if you choose <strong>bow</strong>, <strong>firearm</strong> or <strong>thrown</strong>, they become <strong>ranged</strong> weapons instead of <strong>melee</strong>; if you choose <strong>dagger</strong> or <strong>sword</strong>, they cannot be used with <strong>Triple Slash</strong> (see <strong>High Fantasy Atlas</strong>, page <strong>161</strong>). These changes last until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -124,7 +124,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711429218464,
-    "modifiedTime": 1720812257642,
+    "modifiedTime": 1721091829504,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

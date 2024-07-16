@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p><span class=\"fontstyle0\">For </span><strong>@LOSS[2 ip]</strong> <span class=\"fontstyle0\">the attack deals 5 extra damage, its damage becomes </span><span class=\"fontstyle2\">poison</span><span class=\"fontstyle0\">, and each creature hit by the attack suffers </span><span class=\"fontstyle2\">poisoned</span><span class=\"fontstyle0\">.</span> </p>",
+    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p>For <strong>@LOSS[2 ip]</strong> the attack deals 5 extra damage, its damage becomes <strong>poison</strong>, and each creature hit by the attack suffers <strong>poisoned</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -42,8 +42,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707097217470,
-    "modifiedTime": 1719170083212,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721099288917,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!l9v6v93YjT26B1sT"
 }

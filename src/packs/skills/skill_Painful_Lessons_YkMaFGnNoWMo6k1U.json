@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After another creature causes you to lose Hit Points (with an attack, a spell or any other method), you may immediately perform the </span><span class=\"fontstyle2\"><strong>Study </strong></span><span class=\"fontstyle0\">action on that creature (see page </span><span class=\"fontstyle2\">74</span><span class=\"fontstyle0\">) for free. If you do, gain a bonus equal to</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">to your Check. Remember, you can study the same aspect of a creature only once.</span> </p>",
+    "description": "<p>After another creature causes you to lose Hit Points (with an attack, a spell or any other method), you may immediately perform the <strong>Study</strong> action on that creature (see page 74) for free. If you do, gain a bonus equal to <strong>【SL】</strong> to your Check. Remember, you can study the same aspect of a creature only once.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706496896843,
-    "modifiedTime": 1720810266087,
+    "modifiedTime": 1721094052124,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 500000,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You allow a creature to focus their vital energy into accomplishing what they previously could not. Choose one Attribute: </span><span class=\"fontstyle2\"><strong>Dexterity</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>Insight</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>Might</strong></span><span class=\"fontstyle0\">, or </span><span class=\"fontstyle2\"><strong>Willpower</strong></span><span class=\"fontstyle0\">. Until this spell ends, the target treats the chosen Attribute as if it were one die size higher (up to a maximum of </span><span class=\"fontstyle2\"><strong>d12</strong></span><span class=\"fontstyle0\">).</span> </p><hr /><p><strong>@LOSS[20 mp] | @EFFECT[dex-up] @EFFECT[ins-up] @EFFECT[mig-up] @EFFECT[wlp-up]</strong></p>",
+    "description": "<p>You allow a creature to focus their vital energy into accomplishing what they previously could not. Choose one Attribute: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. Until this spell ends, the target treats the chosen Attribute as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p><hr /><p>@LOSS[20 mp] | @EFFECT[dex-up] @EFFECT[ins-up] @EFFECT[mig-up] @EFFECT[wlp-up]</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706572044662,
-    "modifiedTime": 1719435265414,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721096932323,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,
   "_key": "!items!NfVMYKMJ8Qp1DHJL"

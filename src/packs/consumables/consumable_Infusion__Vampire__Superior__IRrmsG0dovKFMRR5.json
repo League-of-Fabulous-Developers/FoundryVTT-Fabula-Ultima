@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p><span class=\"fontstyle0\">For </span><strong>@LOSS[2 ip]</strong> <span class=\"fontstyle0\">choose one option: you recover an amount of HP equal to half the HP loss suffered by the target of the attack; </span><span class=\"fontstyle2\">OR </span><span class=\"fontstyle0\">you recover an amount of MP equal to half the HP loss suffered by the target of the attack. </span></p><p><span class=\"fontstyle0\">This infusion can only be used if the attack targeted </span><span class=\"fontstyle2\">a single </span><span class=\"fontstyle0\">creature.</span> </p>",
+    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p>For <strong>@LOSS[2 ip]</strong> choose one option: you recover an amount of HP equal to half the HP loss suffered by the target of the attack; <strong>or</strong> you recover an amount of MP equal to half the HP loss suffered by the target of the attack.</p><p>This infusion can only be used if the attack targeted a single creature.</p>",
     "isFavored": {
       "value": false
     },
@@ -42,8 +42,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707096643714,
-    "modifiedTime": 1719170090968,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721099264997,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!IRrmsG0dovKFMRR5"
 }

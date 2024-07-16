@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle2\">When you generate a </span><span class=\"fontstyle4\"><strong>critical success</strong> </span><span class=\"fontstyle2\">or a </span><strong><span class=\"fontstyle4\">critical failure</span></strong><span class=\"fontstyle2\">, you may draw 1 card from your </span><strong><span class=\"fontstyle4\">deck</span></strong><span class=\"fontstyle2\">. If you do, discard 1 card from your </span><strong><span class=\"fontstyle4\">hand</span></strong><span class=\"fontstyle2\">.</span></p>",
+    "description": "<p>When you generate a <strong>critical success</strong> or a <strong>critical failure</strong>, you may draw 1 card from your <strong>deck</strong>. If you do, discard 1 card from your <strong>hand</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707643024284,
-    "modifiedTime": 1719130052422,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720884234401,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "tFbGtEfIudpck8vL",
   "sort": 300000,

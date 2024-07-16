@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you work on a </span><span class=\"fontstyle2\"><strong>Project</strong></span><span class=\"fontstyle0\">, up to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 100</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">zenit of material costs are automatically paid; additionally, you generate an additional </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle2\"><strong>progress</strong> </span><span class=\"fontstyle0\">every day. If multiple characters with this Skill work on the same Project, the effects will be cumulative.</span> </p>",
+    "description": "<p>When you work on a <strong>Project</strong>, up to <strong>【SL × 100】</strong> zenit of material costs are automatically paid; additionally, you generate an additional <strong>【SL】</strong> <strong>progress</strong> every day. If multiple characters with this Skill work on the same Project, the effects will be cumulative.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706508759212,
-    "modifiedTime": 1720813272081,
+    "modifiedTime": 1721088424816,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

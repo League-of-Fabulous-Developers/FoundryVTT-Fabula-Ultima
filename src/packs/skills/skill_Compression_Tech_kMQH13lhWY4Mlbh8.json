@@ -9,7 +9,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p style=\"box-sizing:border-box;user-select:text;margin:10px 0px 0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em;color:rgb(25, 24, 19);font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;text-align:start\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">As long as there is no one aboard your <strong style=\"box-sizing:border-box;user-select:text\">personal vehicle</strong>, you may have it safely disappear from the game world at any time. What magic or technology allows it?</span></p><p style=\"box-sizing:border-box;user-select:text;margin:10px 0px 0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em;color:rgb(25, 24, 19);font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;text-align:start\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">If your <strong style=\"box-sizing:border-box;user-select:text\">personal vehicle</strong> is not present in the game world and you are in a space big enough to contain it, you may perform the <strong style=\"box-sizing:border-box;user-select:text\">Inventory</strong> action and spend  <strong>@LOSS[2 ip]</strong>  to have the vehicle appear near you and <strong style=\"box-sizing:border-box;user-select:text\">enter</strong> it for free.</span></p>",
+    "description": "<p><span>As long as there is no one aboard your <strong>personal vehicle</strong>, you may have it safely disappear from the game world at any time. What magic or technology allows it?</span></p><p><span>If your <strong>personal vehicle</strong> is not present in the game world and you are in a space big enough to contain it, you may perform the <strong>Inventory</strong> action and spend @LOSS[2 ip] to have the vehicle appear near you and <strong>enter</strong> it for free.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -130,7 +130,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711431286236,
-    "modifiedTime": 1720812496004,
+    "modifiedTime": 1721091571023,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!kMQH13lhWY4Mlbh8"

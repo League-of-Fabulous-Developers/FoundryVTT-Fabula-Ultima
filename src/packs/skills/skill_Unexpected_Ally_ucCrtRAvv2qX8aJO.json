@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You may use an action and spend 1 Fabula Point to choose a </span><span class=\"fontstyle2\"><strong>non-hostile</strong> </span><span class=\"fontstyle0\">creature able to hear and understand you. If you do, that creature becomes helpful towards you so long as you are kind and respectful to them and your requests are reasonable.</span> </p>",
+    "description": "<p>You may use an action and spend 1 Fabula Point to choose a <strong>non-hostile</strong> creature able to hear and understand you. If you do, that creature becomes helpful towards you so long as you are kind and respectful to them and your requests are reasonable.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504159609,
-    "modifiedTime": 1720812446372,
+    "modifiedTime": 1721091725343,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

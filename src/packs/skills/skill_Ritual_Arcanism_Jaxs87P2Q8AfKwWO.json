@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You may perform Rituals of the </span><span class=\"fontstyle2\"><strong>Arcanism</strong> </span><span class=\"fontstyle0\">discipline, as long as their effects fall within the </span><span class=\"fontstyle2\"><strong>domains </strong></span><span class=\"fontstyle0\">of one or more Arcana you have bound (see next pages). </span></p><p><span class=\"fontstyle0\">Arcanism Rituals use</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>WLP + WLP</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">for the Magic Check.</span> </p>",
+    "description": "<p>You may perform Rituals of the <strong>Arcanism</strong> discipline, as long as their effects fall within the <strong>domains</strong> of one or more Arcana you have bound (see next pages).</p><p><span>Arcanism Rituals use <strong>【WLP + WLP】</strong> for the Magic Check.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706494680646,
-    "modifiedTime": 1720808545414,
+    "modifiedTime": 1720884707919,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

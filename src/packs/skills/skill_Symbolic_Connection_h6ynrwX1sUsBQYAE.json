@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You always know the exact direction in which to find any creature bearing one of your </span><strong><span class=\"fontstyle2\">symbols</span></strong><span class=\"fontstyle0\">, as long as that creature is within </span><span class=\"fontstyle2\"><strong>2 travel days</strong> </span><span class=\"fontstyle0\">of your position.</span> </p>",
+    "description": "<p>You always know the exact direction in which to find any creature bearing one of your <strong>symbols</strong>, as long as that creature is within <strong>2 travel days</strong> of your position.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706563239413,
-    "modifiedTime": 1720812930887,
+    "modifiedTime": 1721089607492,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">If you perform the </span><strong>@EFFECT[guard]</strong><span class=\"fontstyle2\"> </span><span class=\"fontstyle0\">action and choose to provide cover to another creature, that creature gains <strong>Resistance </strong>to all damage types until the start of your next turn.</span> </p><p></p><p></p>",
+    "description": "<p>If you perform the @EFFECT[guard] action and choose to provide cover to another creature, that creature gains <strong>Resistance</strong> to all damage types until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706503483660,
-    "modifiedTime": 1720811338640,
+    "modifiedTime": 1721092879482,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 100000,

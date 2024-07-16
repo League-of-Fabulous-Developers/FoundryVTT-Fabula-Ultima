@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<div class=\"stackedit__html\"><p><span class=\"fontstyle0\">After one of your attacks or offensive spells ( </span><span class=\"fontstyle2\"><strong>@ICON[offensive] </strong></span><span class=\"fontstyle0\">) causes one or more enemies to lose Hit Points, if you are in </span><span class=\"fontstyle3\"><strong>Crisis</strong></span><span class=\"fontstyle0\">, you may recover </span><span class=\"fontstyle4\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 5</strong></span><span class=\"fontstyle4\"><strong>】 </strong></span><span class=\"fontstyle0\">Hit Points.</span></p></div>",
+    "description": "<p>After one of your attacks or offensive spells ( @ICON[offensive] ) causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p>",
     "isFavored": {
       "value": false
     },
@@ -151,7 +151,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711429218464,
-    "modifiedTime": 1720812264054,
+    "modifiedTime": 1721092672001,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "kpg23Fs85uniba2A",

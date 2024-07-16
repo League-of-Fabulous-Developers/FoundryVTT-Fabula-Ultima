@@ -1,5 +1,25 @@
 @import '../utils/colors';
 
+a.content-link,
+a.inline-roll {
+	background: #3d665a;
+	border: 0.05rem solid #f5f5dc;
+	border-radius: 0.5rem;
+	-webkit-box-shadow: 0.05rem 0.1rem #2b4a42;
+	box-shadow: 0.05rem 0.1rem #2b4a42;
+	color: #ffffff;
+	font-weight: bold;
+	margin: 0.04rem 0.15rem;
+	padding: 0 0.3rem;
+	// text-shadow: 0.07rem 0.07rem 0.07rem #000000;
+	white-space: nowrap;
+	word-break: break-all;
+
+	i {
+		color: #ffffff;
+	}
+}
+
 .inline {
 	display: inline-block;
 
@@ -21,11 +41,17 @@
 	&.inline-recovery,
 	&.inline-loss,
 	&.inline-effect {
+		background: #3d665a;
+		border: 0.05rem solid #f5f5dc;
+		border-radius: 0.5rem;
+		-webkit-box-shadow: 0.05rem 0.1rem #2b4a42;
+		box-shadow: 0.05rem 0.1rem #2b4a42;
+		color: #ffffff;
 		font-size: var(--font-size-14);
-		background: #ddd;
-		padding: 0.125em 0.25em;
-		border: 1px solid var(--color-border-dark-tertiary);
-		border-radius: 2px;
+		font-weight: bold;
+		margin: 0.04rem 0.15rem;
+		padding: 0 0.3rem;
+		text-shadow: 0.07rem 0.07rem 0.07rem #000000;
 		white-space: nowrap;
 		word-break: break-all;
 	}
@@ -60,21 +86,21 @@
 		}
 
 		.hp {
-			background: linear-gradient(to right, $color-hp, color-mix(in srgb, $color-hp, black 30%));
+			// background: linear-gradient(to right, $color-hp, color-mix(in srgb, $color-hp, black 30%));
 			background-clip: text;
-			-webkit-text-fill-color: transparent;
+			// -webkit-text-fill-color: transparent;
 		}
 
 		.mp {
-			background: linear-gradient(to right, $color-mp, color-mix(in srgb, $color-mp, black 30%));
+			// background: linear-gradient(to right, $color-mp, color-mix(in srgb, $color-mp, black 30%));
 			background-clip: text;
-			-webkit-text-fill-color: transparent;
+			// -webkit-text-fill-color: transparent;
 		}
 
 		.ip {
-			background: linear-gradient(to right, $color-ip, color-mix(in srgb, $color-ip, black 30%));
+			// background: linear-gradient(to right, $color-ip, color-mix(in srgb, $color-ip, black 30%));
 			background-clip: text;
-			-webkit-text-fill-color: transparent;
+			// -webkit-text-fill-color: transparent;
 		}
 	}
 

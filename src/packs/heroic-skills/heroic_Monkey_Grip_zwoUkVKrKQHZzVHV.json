@@ -9,7 +9,7 @@
     "summary": {
       "value": "Equip some two-handed weapons in a single-hand slot."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Fury </strong></span><span class=\"fontstyle2\">Class.</span> </p></blockquote><p><span class=\"fontstyle0\">You may equip two-handed weapons belonging to the </span><span class=\"fontstyle2\"><strong>flail</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>heavy</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>spear</strong></span><span class=\"fontstyle0\">, or </span><span class=\"fontstyle2\"><strong>sword </strong></span><span class=\"fontstyle0\">Categories in a single hand slot.</span></p><p><span class=\"fontstyle0\">This allows you, for instance, to enjoy the benefits of </span><span class=\"fontstyle2\"><strong>two-weapon fighting</strong> </span><span class=\"fontstyle0\">(<strong>Core Rulebook</strong>, page </span><span class=\"fontstyle2\"><strong>69</strong></span><span class=\"fontstyle0\">) while wielding a pair of two-handed weapons, </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">to equip a two-handed weapon in your </span><span class=\"fontstyle2\"><strong>main hand slot</strong> </span><span class=\"fontstyle0\">and a shield in your </span><span class=\"fontstyle2\"><strong>off-hand slot</strong></span><span class=\"fontstyle0\">.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Fury </strong>Class. </p></blockquote><p>You may equip two-handed weapons belonging to the <strong>flail</strong>, <strong>heavy</strong>, <strong>spear</strong>, or <strong>sword </strong>Categories in a single hand slot.</p><p>This allows you, for instance, to enjoy the benefits of <strong>two-weapon fighting</strong> (<strong>Core Rulebook</strong>, page <strong>69</strong>) while wielding a pair of two-handed weapons, <strong>or </strong>to equip a two-handed weapon in your <strong>main hand slot</strong> and a shield in your <strong>off-hand slot</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706584997270,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721102611109,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "zwoUkVKrKQHZzVHV",
   "sort": 3100000,

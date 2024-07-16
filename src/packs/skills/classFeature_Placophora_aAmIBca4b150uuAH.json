@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p><span class=\"fontstyle0\" style=\"box-sizing: border-box; user-select: text;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\">You may treat your Defense score as being equal to <strong style=\"box-sizing: border-box; user-select: text;\">【13 + (half your Skill Level in Theriomorphosis)】</strong>(you may still use your normal scores if better).</span></span></p>"
+      "description": "<p>You may treat your Defense score as being equal to <strong>【13 + (half your Skill Level in Theriomorphosis)】</strong>(you may still use your normal scores if better).</p>"
     },
     "source": "FUTF157"
   },
@@ -65,8 +65,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711428338643,
-    "modifiedTime": 1719165640551,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720880159209,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "aAmIBca4b150uuAH",
   "sort": 0,

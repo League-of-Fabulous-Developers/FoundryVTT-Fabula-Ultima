@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">The target suffers </span><span class=\"fontstyle2\">(<strong>choose two: dazed, shaken, slow, weak</strong>)</span><span class=\"fontstyle0\">.</span></p><hr /><p><strong>@EFFECT[dazed] @EFFECT[shaken] @EFFECT[slow] @EFFECT[weak]</strong></p><p><strong>@LOSS[10 mp]</strong></p>",
+    "description": "<p>The target suffers (<strong>choose two: dazed, shaken, slow, weak</strong>).</p><hr /><p>@EFFECT[dazed] @EFFECT[shaken] @EFFECT[slow] @EFFECT[weak]</p><p>@LOSS[10 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -72,7 +72,7 @@
       "value": "One creature"
     },
     "duration": {
-      "value": "Instantaneous"
+      "value": "instantaneous"
     },
     "isOffensive": {
       "value": true
@@ -123,8 +123,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1690417015023,
-    "modifiedTime": 1719224647253,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721100192186,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "PpBzAnM7EK75ayIT",
   "_id": "S291phTQNL0qbGYa",

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action and spend </span><strong>@LOSS[10 mp]</strong><span class=\"fontstyle0\"> to choose one option: all MP costs are doubled; </span><span class=\"fontstyle2\"><strong>OR</strong> </span><span class=\"fontstyle0\">all sources of damage deal </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 3</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">extra damage. </span></p><p><span class=\"fontstyle0\">The chosen effect lasts until the start of your next turn.</span> </p>",
+    "description": "<p>During a conflict, you may use an action and spend @LOSS[10 mp] to choose one option: all MP costs are doubled; <strong>or</strong> all sources of damage deal <strong>【SL × 3】</strong> extra damage.</p><p>The chosen effect lasts until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706555501421,
-    "modifiedTime": 1720810088661,
+    "modifiedTime": 1721095115914,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

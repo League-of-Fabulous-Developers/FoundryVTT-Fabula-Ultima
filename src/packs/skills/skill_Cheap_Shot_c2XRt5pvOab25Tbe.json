@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you hit a creature with an attack, if the attack </span><span class=\"fontstyle2\"><strong>only </strong></span><span class=\"fontstyle0\">targeted that creature and they are suffering from </span><span class=\"fontstyle2\"><strong>one or more status effects</strong></span><span class=\"fontstyle0\">, you may have it deal extra damage equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL + the number of status effects on the creature</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">.</span> </p>",
+    "description": "<p>When you hit a creature with an attack, if the attack <strong>only</strong> targeted that creature and they are suffering from <strong>one or more status effects</strong>, you may have it deal extra damage equal to <strong>【SL + the number of status effects on the creature】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504733585,
-    "modifiedTime": 1720812681097,
+    "modifiedTime": 1721090290246,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 100000,

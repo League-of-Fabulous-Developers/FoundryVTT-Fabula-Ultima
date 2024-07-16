@@ -9,7 +9,7 @@
     "summary": {
       "value": "Modify your Double Trouble Set; Jokers become stronger."
     },
-    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> you must have mastered one or more Classes among <strong><span class=\"fontstyle2\">Ace of Cards</span></strong>, <strong><span class=\"fontstyle2\">Darkblade</span></strong>, <strong><span class=\"fontstyle2\">Entropist</span></strong>, and <strong><span class=\"fontstyle2\">Spiritist</span></strong>, and you must have acquired the <span class=\"fontstyle2\"><strong>Magic Cards</strong> </span>Skill. <br /></span></p>\n</blockquote>\n<p><span class=\"fontstyle0\">When you resolve the </span><span class=\"fontstyle2\"><strong>Double Trouble</strong> </span><span class=\"fontstyle0\">effect, you may have all of its damage become </span><strong><span class=\"fontstyle2\">light </span></strong><span class=\"fontstyle0\">or </span><strong><span class=\"fontstyle2\">dark </span></strong><span class=\"fontstyle0\">(instead of being of a type matching the </span><strong><span class=\"fontstyle2\">suits </span></strong><span class=\"fontstyle0\">of the resolved cards). </span></p>\n<p><span class=\"fontstyle0\">Additionally, as long as there is a </span><strong><span class=\"fontstyle2\">joker </span></strong><span class=\"fontstyle0\">in your </span><strong><span class=\"fontstyle2\">discard pile</span></strong><span class=\"fontstyle0\">, all damage dealt by your </span><strong><span class=\"fontstyle2\">Blinding Flush</span></strong><span class=\"fontstyle0\">, </span><strong><span class=\"fontstyle2\">Double Trouble</span></strong><span class=\"fontstyle0\">, and </span><span class=\"fontstyle2\"><strong>Magic Flush</strong> </span><span class=\"fontstyle0\">effects ignores Immunities and Resistances.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong>, <strong>Darkblade</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>, and you must have acquired the <strong>Magic Cards</strong> Skill. <br /></p></blockquote><p>When you resolve the <strong>Double Trouble</strong> effect, you may have all of its damage become <strong>light</strong> or <strong>dark</strong> (instead of being of a type matching the <strong>suits</strong> of the resolved cards).</p><p>Additionally, as long as there is a <strong>joker</strong> in your <strong>discard pile</strong>, all damage dealt by your <strong>Blinding Flush</strong>, <strong>Double Trouble</strong>, and <strong>Magic Flush</strong> effects ignores Immunities and Resistances.</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1708940657180,
-    "modifiedTime": 1719333493874,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721101430866,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "OSJ4PCp6GmSnLaS3",
   "sort": 0,

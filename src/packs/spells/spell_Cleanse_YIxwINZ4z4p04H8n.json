@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You strengthen and purify the soul energy coursing through your companions. Each target recovers from all status effects.</span> </p><hr /><p><strong>@LOSS[5 mp]</strong> for <strong>one</strong> target.</p><p><strong>@LOSS[10 mp]</strong> for <strong>two</strong> targets.</p><p><strong>@LOSS[15 mp]</strong> for <strong>three</strong> targets.</p>",
+    "description": "<p>You strengthen and purify the soul energy coursing through your companions. Each target recovers from all status effects.</p><hr /><p>@LOSS[5 mp] for <strong>one</strong> target.</p><p>@LOSS[10 mp] for <strong>two</strong> targets.</p><p>@LOSS[15 mp] for <strong>three</strong> targets.</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706572278932,
-    "modifiedTime": 1719435617953,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721096978368,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 600000,
   "_key": "!items!YIxwINZ4z4p04H8n"

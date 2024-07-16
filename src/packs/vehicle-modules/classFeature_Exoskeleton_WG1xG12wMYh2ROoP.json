@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.vehicle",
     "data": {
-      "description": "<p>This <strong>personal vehicle</strong> may have up to <strong>2 weapon modules, 1 armor module </strong>and<strong> any number of support modules</strong> enabled.</p><p>If you use the <strong>@UUID[Compendium.projectfu.skills.Item.kMQH13lhWY4Mlbh8]{Compression Tech}</strong> Skill with this personal vehicle, ignore the IP cost.</p>",
+      "description": "<p>This <strong>personal vehicle</strong> may have up to <strong>2 weapon modules, 1 armor module </strong>and<strong> any number of support modules</strong> enabled.</p><p>If you use the @UUID[Compendium.projectfu.skills.Item.kMQH13lhWY4Mlbh8]{Compression Tech} Skill with this personal vehicle, ignore the IP cost.</p>",
       "frame": "exoskeleton",
       "passengers": 0,
       "distanceMultiplier": 1,
@@ -29,8 +29,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1712878359536,
-    "modifiedTime": 1719174009615,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721099662735,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "WG1xG12wMYh2ROoP",
   "sort": 0,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You gain the ability to perform Rituals of the </span><strong><span class=\"fontstyle2\">Ritualism </span></strong><span class=\"fontstyle0\">discipline; </span><strong><span class=\"fontstyle2\">additionally</span></strong><span class=\"fontstyle0\">, you may use </span><strong><span class=\"fontstyle2\">Ritualism </span></strong><span class=\"fontstyle0\">to create </span><strong><span class=\"fontstyle2\">hearing-based illusions</span></strong><span class=\"fontstyle0\">.</span> </p>",
+    "description": "<p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline; <strong>additionally</strong>, you may use <strong>Ritualism</strong> to create <strong>hearing-based illusions</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -132,7 +132,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706551707225,
-    "modifiedTime": 1720809877452,
+    "modifiedTime": 1721095818534,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!huB2uoP2PAHoOp8T"

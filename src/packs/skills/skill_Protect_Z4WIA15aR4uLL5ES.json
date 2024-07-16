@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When another creature is threatened by an </span><strong><span class=\"fontstyle2\">attack</span></strong><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>spell</strong>, </span><span class=\"fontstyle0\">or other </span><strong><span class=\"fontstyle2\">danger</span></strong><span class=\"fontstyle0\">, you may take their place (any Checks that are part of the danger will be performed against you; you may declare the use of this Skill </span><span class=\"fontstyle2\"><strong>before </strong>or <strong>after </strong></span><span class=\"fontstyle0\">the Checks have been made). If the danger already affected you, it affects you </span><span class=\"fontstyle2\"><strong>twice</strong> </span><span class=\"fontstyle0\">(resolve both instances separately); you also cannot protect multiple creatures from the same danger. If you use this Skill during a conflict, you cannot use it again until the start of your next turn.</span> </p>",
+    "description": "<p>When another creature is threatened by an <strong>attack</strong>, <strong>spell</strong>, or other <strong>danger</strong>, you may take their place (any Checks that are part of the danger will be performed against you; you may declare the use of this Skill <strong>before</strong> or <strong>after</strong> the Checks have been made). If the danger already affected you, it affects you <strong>twice</strong> (resolve both instances separately); you also cannot protect multiple creatures from the same danger. If you use this Skill during a conflict, you cannot use it again until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706503541194,
-    "modifiedTime": 1720811450063,
+    "modifiedTime": 1721092975241,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 500000,

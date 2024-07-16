@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you spend one or more Fabula Points, you get an additional benefit — choose one option: you recover </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 5</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Hit Points; </span><span class=\"fontstyle3\"><strong>OR </strong></span><span class=\"fontstyle0\">you recover </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 5</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Mind Points; </span><span class=\"fontstyle3\">or </span><span class=\"fontstyle0\">you recover from a single status effect of your choice.</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@GAIN[5 hp]</strong> or <strong>@GAIN[5 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@GAIN[10 hp]</strong> or <strong>@GAIN[10 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@GAIN[15 hp]</strong> or <strong>@GAIN[15 mp]</strong></p><p>Skill Level <strong>4</strong> - <strong>@GAIN[20 hp]</strong> or <strong>@GAIN[20 mp]</strong></p>",
+    "description": "<p>When you spend one or more Fabula Points, you get an additional benefit — choose one option: you recover <strong>【SL × 5】</strong> Hit Points; <strong>OR</strong> you recover <strong>【SL × 5】</strong> Mind Points; or you recover from a single status effect of your choice.</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[5 hp] or @GAIN[5 mp]</p><p>Skill Level <strong>2</strong> - @GAIN[10 hp] or @GAIN[10 mp]</p><p>Skill Level <strong>3</strong> - @GAIN[15 hp] or @GAIN[15 mp]</p><p>Skill Level <strong>4</strong> - @GAIN[20 hp] or @GAIN[20 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706502402161,
-    "modifiedTime": 1720811292598,
+    "modifiedTime": 1721093097430,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 300000,

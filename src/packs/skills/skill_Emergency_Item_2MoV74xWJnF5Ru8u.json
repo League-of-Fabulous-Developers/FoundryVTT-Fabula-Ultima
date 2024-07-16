@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">Once per conflict scene, if you are in </span><span class=\"fontstyle2\"><strong>Crisis</strong></span><span class=\"fontstyle0\">, you may perform an additional action on your turn. This action </span><span class=\"fontstyle2\"><strong>must </strong></span><span class=\"fontstyle0\">be the </span><span class=\"fontstyle2\"><strong>Inventory </strong></span><span class=\"fontstyle0\">action.</span> </p>",
+    "description": "<p>Once per conflict scene, if you are in <strong>Crisis</strong>, you may perform an additional action on your turn. This action must be the <strong>Inventory</strong> action.</p>",
     "isFavored": {
       "value": false
     },
@@ -163,7 +163,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706508694101,
-    "modifiedTime": 1720813199374,
+    "modifiedTime": 1721088361526,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

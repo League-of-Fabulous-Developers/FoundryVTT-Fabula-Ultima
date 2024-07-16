@@ -9,7 +9,7 @@
     "summary": {
       "value": "Steal from multiple creatures."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Rogue</strong> </span><span class=\"fontstyle2\">Class, and must have acquired the </span><span class=\"fontstyle0\"><strong>Soul Steal</strong> </span><span class=\"fontstyle2\">Skill.</span></p></blockquote><p><span class=\"fontstyle0\">When you use the </span><span class=\"fontstyle2\"><strong>@UUID[Compendium.projectfu.skills.Item.bpCv5Vkr1aWZiFSw]{Soul Steal}</strong> </span><span class=\"fontstyle0\">Skill, you may target any number of creatures at the same time (you perform a single Check and compare it to the Magic Defense of each creature you are attempting to steal from).</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Rogue</strong> Class, and must have acquired the <strong>Soul Steal</strong> Skill.</p></blockquote><p>When you use the @UUID[Compendium.projectfu.skills.Item.bpCv5Vkr1aWZiFSw]{Soul Steal} Skill, you may target any number of creatures at the same time (you perform a single Check and compare it to the Magic Defense of each creature you are attempting to steal from).  </p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706585210863,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721102695148,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "ZwYXOZJHtRxsmHXl",
   "sort": 1300000,

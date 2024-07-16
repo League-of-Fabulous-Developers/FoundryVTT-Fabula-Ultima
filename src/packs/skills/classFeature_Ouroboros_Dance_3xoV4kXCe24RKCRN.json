@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">Choose one ally you can see who has yet to take a turn during this round. That ally may take their turn immediately after yours during this round. </span></p><hr><p><strong>@LOSS[10 mp]</strong></p>",
+      "description": "<p>Choose one ally you can see who has yet to take a turn during this round. That ally may take their turn immediately after yours during this round.</p><hr><p>@LOSS[10 mp]</p>",
       "duration": "instant"
     },
     "source": "FUHF145"
@@ -35,8 +35,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710176357999,
-    "modifiedTime": 1719158402374,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721094677227,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!3xoV4kXCe24RKCRN"

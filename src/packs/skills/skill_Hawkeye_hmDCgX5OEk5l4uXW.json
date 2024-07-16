@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you perform the </span><span class=\"fontstyle2\"><strong>Guard </strong></span><span class=\"fontstyle0\">action, if you choose </span><span class=\"fontstyle2\"><strong>not </strong></span><span class=\"fontstyle0\">to provide cover to another creature, you may choose one option: the next </span><span class=\"fontstyle2\"><strong>ranged </strong></span><span class=\"fontstyle0\">attack you perform before the end of the current scene will deal </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">extra damage; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">you may immediately perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with a </span><span class=\"fontstyle2\"><strong>bow </strong></span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>firearm </strong></span><span class=\"fontstyle0\">you have equipped, treating your </span><span class=\"fontstyle2\"><strong>High Roll (HR</strong>) </span><span class=\"fontstyle0\">as <strong>0</strong> when calculating damage dealt by this attack.</span> </p>",
+    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you may choose one option: the next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 2】</strong> extra damage; <strong>OR</strong> you may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> you have equipped, treating your <strong>High Roll (HR)</strong> as <strong>0</strong> when calculating damage dealt by this attack.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706506760285,
-    "modifiedTime": 1720812775220,
+    "modifiedTime": 1721090186948,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 300000,

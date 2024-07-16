@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You may perform Rituals whose effects fall within the </span><span class=\"fontstyle2\"><strong>Spiritism </strong></span><span class=\"fontstyle0\">discipline.</span></p><p><span class=\"fontstyle0\">Spiritism Rituals use</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>INS + WLP</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">for the Magic Check.</span> </p>",
+    "description": "<p>You may perform Rituals whose effects fall within the <strong>Spiritism</strong> discipline.</p><p>Spiritism Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706507916684,
-    "modifiedTime": 1720812818414,
+    "modifiedTime": 1721089965719,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 100000,

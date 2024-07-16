@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle2\">You gain a </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">, a </span><span class=\"fontstyle4\"><strong>hand </strong></span><span class=\"fontstyle2\">and a </span><span class=\"fontstyle4\"><strong>discard pile </strong></span><span class=\"fontstyle2\">(see next page).</span></p><p><span class=\"fontstyle2\">During a conflict, you may use an action and spend up to</span><span class=\"fontstyle7\"><strong>【</strong></span><span class=\"fontstyle4\"><strong>10 + (SL × 5)</strong></span><span class=\"fontstyle7\"><strong>】</strong></span><span class=\"fontstyle2\">Mind Points (minimum 10). If you do, </span><span class=\"fontstyle4\"><strong>resolve 1 card</strong> </span><span class=\"fontstyle2\">from your </span><span class=\"fontstyle4\"><strong>hand </strong></span><span class=\"fontstyle2\">for every 5 MP spent this way (to a maximum of 5 cards; these cards form a </span><span class=\"fontstyle4\"><strong>set</strong></span><span class=\"fontstyle2\">). After you resolve the effect of the </span><span class=\"fontstyle4\"><strong>set </strong></span><span class=\"fontstyle2\">(if any), </span><span class=\"fontstyle4\"><strong>discard </strong></span><span class=\"fontstyle2\">these cards and draw that many cards from your </span><span class=\"fontstyle4\"><strong>deck</strong></span><span class=\"fontstyle2\">.</span></p><hr /><p>Skill Level <strong>1</strong> - <strong>@LOSS[15 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@LOSS[20 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@LOSS[25 mp]</strong></p>",
+    "description": "<p>You gain a <strong>deck</strong>, a <strong>hand</strong>, and a <strong>discard pile</strong> (see next page).</p><p>During a conflict, you may use an action and spend up to <strong>【10 + (SL × 5)】</strong> Mind Points (minimum 10). If you do, <strong>resolve 1 card</strong> from your <strong>hand</strong> for every 5 MP spent this way (to a maximum of 5 cards; these cards form a <strong>set</strong>). After you resolve the effect of the <strong>set</strong> (if any), <strong>discard</strong> these cards and draw that many cards from your <strong>deck</strong>.</p><hr /><p>Skill Level <strong>1</strong> - @LOSS[15 mp]</p><p>Skill Level <strong>2</strong> - @LOSS[20 mp]</p><p>Skill Level <strong>3</strong> - @LOSS[25 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -130,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707643024284,
-    "modifiedTime": 1719156946128,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721096648678,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "5zF6JTf6nhKbXr69",
   "sort": 100000,

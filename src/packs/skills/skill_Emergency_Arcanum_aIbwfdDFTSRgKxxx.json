@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">As long as you are in </span><span class=\"fontstyle2\"><strong>Crisis</strong></span><span class=\"fontstyle0\">, the cost for summoning your Arcana is reduced by</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">Mind Points.</span> </p>",
+    "description": "<p>As long as you are in <strong>Crisis</strong>, the cost for summoning your Arcana is reduced by <strong>【SL × 5】</strong> Mind Points.</p>",
     "isFavored": {
       "value": false
     },
@@ -163,7 +163,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706494667215,
-    "modifiedTime": 1720808770183,
+    "modifiedTime": 1720884693247,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

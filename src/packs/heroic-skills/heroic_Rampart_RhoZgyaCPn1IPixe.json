@@ -9,7 +9,7 @@
     "summary": {
       "value": "Resist damage and status effects during the first round."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Guardian </strong></span><span class=\"fontstyle2\">Class.</span> </p></blockquote><p><span class=\"fontstyle0\">During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects (you </span><span class=\"fontstyle2\"><strong>do not</strong> </span><span class=\"fontstyle0\">recover from preexisting status effects, however). These benefits only last until the end of the first round.</span> </p><hr /><p><strong>@EFFECT[eyJuYW1lIjoiUmFtcGFydCIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLnBoeXNpY2FsIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5haXIiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmJvbHQiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmRhcmsiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmVhcnRoIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5maXJlIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5pY2UiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmxpZ2h0IiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5wb2lzb24iLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9lcXVpcG1lbnQvc2hpZWxkL2hlYXRlci1jcnlzdGFsLWJsdWUud2VicCJ9]</strong></p>",
+    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Guardian</strong> Class.</span></p></blockquote><p><span>During the first round of each conflict scene, you have Resistance to all damage types and cannot suffer status effects (you do not recover from preexisting status effects, however). These benefits only last until the end of the first round.</span></p><hr /><p>@EFFECT[eyJuYW1lIjoiUmFtcGFydCIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLnBoeXNpY2FsIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5haXIiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmJvbHQiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmRhcmsiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmVhcnRoIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5maXJlIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5pY2UiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifSx7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmxpZ2h0IiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5wb2lzb24iLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9lcXVpcG1lbnQvc2hpZWxkL2hlYXRlci1jcnlzdGFsLWJsdWUud2VicCJ9]</p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706586488889,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721101653889,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "RhoZgyaCPn1IPixe",
   "sort": 900000,

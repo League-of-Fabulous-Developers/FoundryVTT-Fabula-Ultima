@@ -10,7 +10,7 @@
     "summary": {
       "value": "Perform an additional action, then leave the vehicle."
     },
-    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements: </strong>you must have mastered the <strong>Pilot</strong> Class, and must have acquired the <strong>Compression Tech</strong> Skill.</span></p></blockquote><p>Choose a damage type among <strong>bolt</strong>, <strong>dark</strong>, <strong>fire</strong>, <strong>ice</strong>, and <strong>light</strong>.</p><p>When you are reduced to 0 Hit Points for the first time during a scene, if you are driving your <strong>personal vehicle</strong>, you may choose to be reduced to exactly 1 Hit Point instead. If you do, you and any passengers <strong>leave</strong> your <strong>personal vehicle</strong>, which <strong>disappears</strong> from the game world. Then, you may deal an amount of damage equal to your <strong>Crisis</strong> score to a single creature you can see. This damage is of the type you have chosen from the list above. If your <strong>personal vehicle</strong> disappears from the game world this way, the next use of your <strong>Compression Tech</strong> Skill will have an additional cost of 1 Fabula Point.</p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Pilot</strong> Class, and must have acquired the <strong>Compression Tech</strong> Skill.</p></blockquote><p>Choose a damage type among <strong>bolt</strong>, <strong>dark</strong>, <strong>fire</strong>, <strong>ice</strong>, and <strong>light</strong>.</p><p>When you are reduced to 0 Hit Points for the first time during a scene, if you are driving your <strong>personal vehicle</strong>, you may choose to be reduced to exactly 1 Hit Point instead. If you do, you and any passengers <strong>leave</strong> your <strong>personal vehicle</strong>, which <strong>disappears</strong> from the game world. Then, you may deal an amount of damage equal to your <strong>Crisis</strong> score to a single creature you can see. This damage is of the type you have chosen from the list above. If your <strong>personal vehicle</strong> disappears from the game world this way, the next use of your <strong>Compression Tech</strong> Skill will have an additional cost of 1 Fabula Point.</p>",
     "isFavored": {
       "value": false
     },
@@ -108,8 +108,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711473807263,
-    "modifiedTime": 1719170718289,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721104571725,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you perform a </span><span class=\"fontstyle2\"><strong>dance </strong></span><span class=\"fontstyle0\">with a </span><span class=\"fontstyle2\"><strong>duration </strong></span><span class=\"fontstyle0\">of “Until the start of your next turn”, you may spend <strong>@LOSS[10 mp]</strong>. If you do, choose one ally you can see towards whom you have a Bond of </span><span class=\"fontstyle2\"><strong>affection</strong></span><span class=\"fontstyle0\">: apply the benefits of the </span><span class=\"fontstyle2\"><strong>dance </strong></span><span class=\"fontstyle0\">to that ally as well as yourself (the benefits still last until the start of </span><span class=\"fontstyle2\"><strong>your </strong></span><span class=\"fontstyle0\">next turn).</span> </p>",
+    "description": "<p>When you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you may spend @LOSS[10 mp]. If you do, choose one ally you can see towards whom you have a Bond of <strong>affection</strong>: apply the benefits of the <strong>dance</strong> to that ally as well as yourself (the benefits still last until the start of <strong>your</strong> next turn).</p>",
     "isFavored": {
       "value": false
     },
@@ -132,7 +132,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706560181599,
-    "modifiedTime": 1720810158531,
+    "modifiedTime": 1721094113154,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "3mqtdzwMU62J1ogW",

@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<div class=\"stackedit__html\"><p>When you deal damage to one or more NPCs, you learn their <strong>Species and the GM chooses 【SL】 therioforms </strong><span class=\"fontstyle0\">appropriate to those NPCs (see next page): if you have acquired the </span><span class=\"fontstyle2\"><strong>@UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis}</strong> </span><span class=\"fontstyle0\">Skill, you may immediately pay its HP cost and use it to manifest those </span><span class=\"fontstyle2\"><strong>therioforms</strong> </span><span class=\"fontstyle0\">(even if they are not among those you have learned).</span></p></div>",
+    "description": "<p>When you deal damage to one or more NPCs, you learn their <strong>Species</strong> and the GM chooses <strong>【SL】 therioforms</strong> appropriate to those NPCs (see next page): if you have acquired the <strong>Theriomorphosis</strong> Skill (@UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]), you may immediately pay its HP cost and use it to manifest those <strong>therioforms</strong> (even if they are not among those you have learned).</p>",
     "isFavored": {
       "value": false
     },
@@ -123,7 +123,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711429218464,
-    "modifiedTime": 1720812306539,
+    "modifiedTime": 1721092696249,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "mWqx8pto9gbbwMoG",

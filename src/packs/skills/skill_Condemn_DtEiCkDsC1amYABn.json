@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You may use an action and spend </span><strong>@LOSS[5 mp]</strong><span class=\"fontstyle0\"> to perform an Opposed </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>INS + WLP</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Check against a creature that can hear and understand you — describe your accusations! If you succeed, the target loses </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 10</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Mind Points and suffers </span><span class=\"fontstyle3\"><strong>@EFFECT[dazed] </strong></span><span class=\"fontstyle0\">or</span><span class=\"fontstyle3\"><strong> @EFFECT[shaken] </strong></span><span class=\"fontstyle0\">(your choice).</span></p><p><span class=\"fontstyle0\">You gain a bonus equal to </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">to your </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>INS + WLP</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Checks for this Skill.</span> </p><hr /><p>Skill Level <strong>1</strong> - Target loses <strong>@LOSS[10 mp]</strong></p><p>Skill Level <strong>2</strong> - Target loses <strong>@LOSS[20 mp]</strong></p><p>Skill Level <strong>3</strong> - Target loses <strong>@LOSS[30 mp]</strong></p><p>Skill Level <strong>4</strong> - Target loses <strong>@LOSS[40 mp]</strong></p>",
+    "description": "<p>You may use an action and spend @LOSS[5 mp] to perform an Opposed <strong>【INS + WLP】</strong> Check against a creature that can hear and understand you — describe your accusations! If you succeed, the target loses <strong>【SL × 10】</strong> Mind Points and suffers @EFFECT[dazed] or @EFFECT[shaken] (your choice).</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【INS + WLP】</strong> Checks for this Skill.</p><hr /><p>Skill Level <strong>1</strong> - Target loses @LOSS[10 mp]</p><p>Skill Level <strong>2</strong> - Target loses @LOSS[20 mp]</p><p>Skill Level <strong>3</strong> - Target loses @LOSS[30 mp]</p><p>Skill Level <strong>4</strong> - Target loses @LOSS[40 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504101200,
-    "modifiedTime": 1720812383889,
+    "modifiedTime": 1721091614348,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h4>Required Heroic Skill: Volcano</h4><p><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: one creature you can see suffers <strong>@DMG[50 fire]</strong></span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"> </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage; </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">OR </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">you choose any number of creatures you can see, and each of them suffers <strong>@DMG[30 fire]</strong> damage. These amounts increase by 5 if you are </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">level 20 or higher</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">, or by 10 if you are </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">level <strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\">40 or higher</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">. </span></span></p><p>Damage dealt by this spell <strong>ignores Resistances and Immunities</strong>. </p><hr /><p><strong>@LOSS[40 mp]</strong></p>",
+    "description": "<h4>Required Heroic Skill: Volcano</h4><p>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: one creature you can see suffers <strong>@DMG[50 fire]</strong> damage; <strong>or</strong> you choose any number of creatures you can see, and each of them suffers <strong>@DMG[30 fire]</strong> damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell <strong>ignores Resistances and Immunities</strong>.</p><hr /><p>@LOSS[40 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -129,8 +129,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710548265766,
-    "modifiedTime": 1719433148267,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721098728747,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "Tp1aelw8OYtmPpQi",
   "_key": "!items!Tp1aelw8OYtmPpQi"

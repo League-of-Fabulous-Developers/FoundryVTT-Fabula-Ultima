@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you hit one or more targets with a </span><span class=\"fontstyle2\"><strong>melee </strong></span><span class=\"fontstyle0\">attack that would deal damage, you may have the attack deal no damage. If you do, choose one option: inflict </span><span class=\"fontstyle2\"><strong> @EFFECT[dazed] </strong></span><span class=\"fontstyle0\">on each target hit by the attack; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">inflict </span><span class=\"fontstyle2\"><strong>@EFFECT[weak] </strong></span><span class=\"fontstyle0\">on each target hit by the attack; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">each target hit by the attack loses </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 10</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">Mind Points. Describe your maneuver!</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@LOSS[10 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@LOSS[20 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@LOSS[30 mp]</strong></p><p>Skill Level <strong>4</strong> - <strong>@LOSS[40 mp]</strong></p>",
+    "description": "<p>When you hit one or more targets with a <strong>melee</strong> attack that would deal damage, you may have the attack deal no damage. If you do, choose one option: inflict <strong>@EFFECT[dazed]</strong> on each target hit by the attack; <strong>OR</strong> inflict <strong>@EFFECT[weak]</strong> on each target hit by the attack; <strong>OR</strong> each target hit by the attack loses <strong>【SL × 10】</strong> Mind Points. Describe your maneuver!</p><hr /><p>Skill Level <strong>1</strong> - @LOSS[10 mp]</p><p>Skill Level <strong>2</strong> - @LOSS[20 mp]</p><p>Skill Level <strong>3</strong> - @LOSS[30 mp]</p><p>Skill Level <strong>4</strong> - @LOSS[40 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706514091257,
-    "modifiedTime": 1720813440081,
+    "modifiedTime": 1721088178756,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 200000,

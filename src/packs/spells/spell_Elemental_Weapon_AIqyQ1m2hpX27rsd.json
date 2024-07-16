@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You imbue a weapon with elemental energy. Choose a damage type: </span><strong><span class=\"fontstyle2\">air</span></strong><span class=\"fontstyle0\">, </span><strong><span class=\"fontstyle2\">bolt</span></strong><span class=\"fontstyle0\">, </span><strong><span class=\"fontstyle2\">earth</span></strong><span class=\"fontstyle0\">, </span><strong><span class=\"fontstyle2\">fire</span></strong><span class=\"fontstyle0\">, or </span><strong><span class=\"fontstyle2\">ice</span></strong><span class=\"fontstyle0\">. Until this spell ends, all damage dealt by the weapon becomes of the chosen damage type. If you have that weapon equipped while you cast this spell, you may perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with it as part of the same action.</span></p>\n<p><span class=\"fontstyle0\">This spell can only be cast on a weapon equipped by a willing creature.</span> </p>",
+    "description": "<p>You imbue a weapon with elemental energy. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, all damage dealt by the weapon becomes of the chosen damage type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a weapon equipped by a willing creature.</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706564486966,
-    "modifiedTime": 1719431971731,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721098406836,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!AIqyQ1m2hpX27rsd"

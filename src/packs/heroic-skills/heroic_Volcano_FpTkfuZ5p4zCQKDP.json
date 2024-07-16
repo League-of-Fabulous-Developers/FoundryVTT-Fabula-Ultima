@@ -9,7 +9,7 @@
     "summary": {
       "value": "Learn the Volcano spell."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered the </span><span class=\"fontstyle0\"><strong>Elementalist </strong></span><span class=\"fontstyle2\">Class.</span></p></blockquote><p><span class=\"fontstyle2\">You learn the ultimate </span><span class=\"fontstyle0\"><strong>Elementalist </strong></span><span class=\"fontstyle2\">spell: </span><span class=\"fontstyle0\"><strong>Volcano</strong></span><span class=\"fontstyle2\">.</span> </p><table style=\"width:96.2791%\" border=\"1\"><colgroup><col style=\"width:15.3584%\"></col><col style=\"width:12.9693%\"></col><col style=\"width:27.3038%\"></col><col style=\"width:44.3686%\"></col></colgroup><tbody><tr><td style=\"text-align:center\"><strong>Volcano</strong></td><td style=\"text-align:center\"><strong>MP:</strong> 40</td><td style=\"text-align:center\"><strong>Target:</strong> Special</td><td style=\"text-align:center\"><strong>Duration:</strong> Instantaneous</td></tr></tbody></table><p><span class=\"fontstyle0\">You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: one creature you can see suffers <strong>@DMG[10 fire]</strong> damage; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">you choose any number of creatures you can see, and each of them suffers <strong>@DMG[30 fire]</strong> damage. These amounts increase by 5 if you are </span><span class=\"fontstyle2\"><strong>level 20 or higher</strong></span><span class=\"fontstyle0\">, or by 10 if you are </span><span class=\"fontstyle2\">level <strong>40 or higher</strong></span><span class=\"fontstyle0\">. </span></p><p><span class=\"fontstyle0\">Damage dealt by this spell ignores Resistances and Immunities.</span> </p><p>Add both <strong>@UUID[Compendium.projectfu.spells.Item.BfZqKbr38FBxLtmH]{Volcano (Single Target)} </strong>and <strong>@UUID[Compendium.projectfu.spells.Item.Tp1aelw8OYtmPpQi]{Volcano (Multi Target)}</strong> spells to your character sheet from the <strong>Elementalist</strong> spell list.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Elementalist</strong> Class.</p></blockquote><p><span>You learn the ultimate <strong>Elementalist</strong> spell: <strong>Volcano</strong>.</span></p><table style=\"width:96.2791%\" border=\"1\"><colgroup><col style=\"width:15.3584%\"></col><col style=\"width:12.9693%\"></col><col style=\"width:27.3038%\"></col><col style=\"width:44.3686%\"></col></colgroup><tbody><tr><td style=\"text-align:center\"><strong>Volcano</strong></td><td style=\"text-align:center\"><strong>MP:</strong> 40</td><td style=\"text-align:center\"><strong>Target:</strong> Special</td><td style=\"text-align:center\"><strong>Duration:</strong> Instantaneous</td></tr></tbody></table><p><span>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: one creature you can see suffers @DMG[10 fire] damage; <strong>or</strong> you choose any number of creatures you can see, and each of them suffers @DMG[30 fire] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</span></p><p><span>Damage dealt by this spell ignores Resistances and Immunities.</span></p><p>Add both @UUID[Compendium.projectfu.spells.Item.BfZqKbr38FBxLtmH]{Volcano (Single Target)} and @UUID[Compendium.projectfu.spells.Item.Tp1aelw8OYtmPpQi]{Volcano (Multi Target)} spells to your character sheet from the <strong>Elementalist</strong> spell list.</p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706587625271,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721101909737,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "FpTkfuZ5p4zCQKDP",
   "sort": 400000,

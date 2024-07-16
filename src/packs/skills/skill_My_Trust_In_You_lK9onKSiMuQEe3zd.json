@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After another Player Character who is able to hear you performs a Check, you may spend 1 Fabula Point and invoke one of their </span><span class=\"fontstyle2\"><strong>Traits</strong> </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>Bonds </strong></span><span class=\"fontstyle0\">in order to let them reroll dice or improve the Result of the Check (following the normal rules). Then, if you have a </span><span class=\"fontstyle2\"><strong>Bond </strong></span><span class=\"fontstyle0\">towards that character, they recover </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 10</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">Mind Points.</span> </p><hr /><p>Skill Level 1 - <strong>@GAIN[10 mp]</strong></p><p>Skill Level 2 - <strong>@GAIN[20 mp]</strong></p>",
+    "description": "<p>After another Player Character who is able to hear you performs a Check, you may spend 1 Fabula Point and invoke one of their <strong>Traits</strong> or <strong>Bonds</strong> in order to let them reroll dice or improve the Result of the Check (following the normal rules). Then, if you have a <strong>Bond</strong> towards that character, they recover <strong>【SL × 10】</strong> Mind Points.</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[10 mp]</p><p>Skill Level <strong>2</strong> - @GAIN[20 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706504129588,
-    "modifiedTime": 1720812396787,
+    "modifiedTime": 1721091659788,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

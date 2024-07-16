@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you roll a </span><span class=\"fontstyle2\"><strong>13 or higher</strong> </span><span class=\"fontstyle0\">on a Check performed to investigate a creature, item or location — this includes using the </span><span class=\"fontstyle2\"><strong>Study </strong></span><span class=\"fontstyle0\">action during a conflict — you may ask the Game Master up to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character's deductive process.</span></p><p><span class=\"fontstyle0\">This Skill may only be used once on the same creature, item or location.</span> </p>",
+    "description": "<p>When you roll a <strong>13 or higher</strong> on a Check performed to investigate a creature, item or location — this includes using the <strong>Study </strong>action during a conflict — you may ask the Game Master up to <strong>【SL】</strong> questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character's deductive process.</p><p>This Skill may only be used once on the same creature, item or location.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706487096304,
-    "modifiedTime": 1720811980828,
+    "modifiedTime": 1721092749804,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

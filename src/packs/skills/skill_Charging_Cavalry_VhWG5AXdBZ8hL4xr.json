@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action and spend </span><strong>@LOSS[10 mp]</strong><span class=\"fontstyle0\"> to choose one ally that can hear you. That ally may immediately perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">with a weapon they have equipped (or with a </span><span class=\"fontstyle2\"><strong>basic attack</strong> </span><span class=\"fontstyle0\">if they are an NPC). They gain a bonus equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">to the Accuracy Check, but treat their </span><span class=\"fontstyle2\"><strong>High Roll (HR)</strong> </span><span class=\"fontstyle0\">as 0 when calculating damage.</span> </p>",
+    "description": "<p>During a conflict, you may use an action and spend @LOSS[10 mp] to choose one ally that can hear you. That ally may immediately perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong> if they are an NPC). They gain a bonus equal to <strong>【SL】</strong> to the Accuracy Check, but treat their <strong>High Roll (HR)</strong> as 0 when calculating damage.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706555516636,
-    "modifiedTime": 1720810095354,
+    "modifiedTime": 1721095227574,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

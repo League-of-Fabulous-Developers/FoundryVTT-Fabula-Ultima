@@ -9,7 +9,7 @@
     "summary": {
       "value": "Learn two spells from a Class of your choice."
     },
-    "description": "<p><span class=\"fontstyle0\">When you acquire this Skill, learn any two spells from one of the following lists: </span><span class=\"fontstyle2\"><strong>Elementalist</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>Entropist</strong>, </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>Spiritist</strong></span><span class=\"fontstyle0\">. Both spells chosen this way must come from the same list, and they follow the standard rules for casting spells of that Class.</span> </p>",
+    "description": "<p>When you acquire this Skill, learn any two spells from one of the following lists: <strong>Elementalist</strong>, <strong>Entropist</strong>, or <strong>Spiritist</strong>. Both spells chosen this way must come from the same list, and they follow the standard rules for casting spells of that Class.</p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706584300733,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721102400445,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "eNGAXzS3LaIrSukF",
   "sort": 1600000,

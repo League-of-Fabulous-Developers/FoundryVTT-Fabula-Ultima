@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After you deal damage to one or more creatures, if you have a </span><span class=\"fontstyle2\"><strong>Bond</strong> </span><span class=\"fontstyle0\">towards at least one of those creatures, you may recover</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">Hit Points and</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">Mind Points.</span> </p><hr /><p>Skill Level 1 - <strong>@GAIN[2 hp] </strong>and<strong> @GAIN[2 mp]</strong></p><p>Skill Level 2 - <strong>@GAIN[4 hp] </strong>and<strong> @GAIN[4 mp]</strong></p><p>Skill Level 3 - <strong>@GAIN[6 hp] </strong>and<strong> @GAIN[6 mp]</strong></p><p>Skill Level 4 - <strong>@GAIN[8 hp] </strong>and<strong> @GAIN[8 mp]</strong></p><p>Skill Level 5 - <strong>@GAIN[10 hp] </strong>and<strong> @GAIN[10 mp]</strong></p>",
+    "description": "<p>After you deal damage to one or more creatures, if you have a <strong>Bond</strong> towards at least one of those creatures, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p><hr /><p>Skill Level 1 - @GAIN[2 hp] and @GAIN[2 mp]</p><p>Skill Level 2 - @GAIN[4 hp] and @GAIN[4 mp]</p><p>Skill Level 3 - @GAIN[6 hp] and @GAIN[6 mp]</p><p>Skill Level 4 - @GAIN[8 hp] and @GAIN[8 mp]</p><p>Skill Level 5 - @GAIN[10 hp] and @GAIN[10 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706496854934,
-    "modifiedTime": 1720810239253,
+    "modifiedTime": 1721093929236,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 100000,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You weave magical energy and protect the targets from the fury of the elements. Choose a damage type: </span><span class=\"fontstyle2\"><strong>air</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>bolt</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>earth</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>fire</strong>, </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>ice</strong></span><span class=\"fontstyle0\">. Until this spell ends, each target gains Resistance against the chosen damage type.</span> </p><hr /><p><span class=\"fontstyle2\"><strong>@EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogQWlyIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuYWlyIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvbWFnaWMvZGVmZW5zaXZlL3NoaWVsZC1iYXJyaWVyLWZsYW1pbmctcGVudGFnb24tdGVhbC1wdXJwbGUud2VicCJ9] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogQm9sdCIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmJvbHQiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi1ibHVlLXllbGxvdy53ZWJwIn0=] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogRWFydGgiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5lYXJ0aCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9zaGllbGQtYmFycmllci1mbGFtaW5nLXBlbnRhZ29uLW9yYW5nZS53ZWJwIn0=] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogRmlyZSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmZpcmUiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi1yZWQud2VicCJ9] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogSWNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuaWNlIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvbWFnaWMvZGVmZW5zaXZlL3NoaWVsZC1iYXJyaWVyLWZsYW1pbmctcGVudGFnb24tYmx1ZS53ZWJwIn0=]</strong></span></p>",
+    "description": "<p>You weave magical energy and protect the targets from the fury of the elements. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, each target gains Resistance against the chosen damage type.</p><hr /><p>@EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogQWlyIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuYWlyIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvbWFnaWMvZGVmZW5zaXZlL3NoaWVsZC1iYXJyaWVyLWZsYW1pbmctcGVudGFnb24tdGVhbC1wdXJwbGUud2VicCJ9] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogQm9sdCIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmJvbHQiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi1ibHVlLXllbGxvdy53ZWJwIn0=] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogRWFydGgiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5lYXJ0aCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9zaGllbGQtYmFycmllci1mbGFtaW5nLXBlbnRhZ29uLW9yYW5nZS53ZWJwIn0=] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogRmlyZSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmZpcmUiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi1yZWQud2VicCJ9] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogSWNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuaWNlIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvbWFnaWMvZGVmZW5zaXZlL3NoaWVsZC1iYXJyaWVyLWZsYW1pbmctcGVudGFnb24tYmx1ZS53ZWJwIn0=]</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706564403943,
-    "modifiedTime": 1719430481492,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721098384260,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!jyakaYH34Wp0AlVZ"

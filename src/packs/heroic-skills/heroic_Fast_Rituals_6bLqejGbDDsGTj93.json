@@ -9,7 +9,7 @@
     "summary": {
       "value": "Reduce the number of sections for Ritual Clocks in conflicts."
     },
-    "description": "<blockquote>\n<p><span class=\"fontstyle0\"><strong>Requirements:</strong> </span><span class=\"fontstyle2\">you must have mastered one or more Classes among </span><strong><span class=\"fontstyle0\">Chimerist</span></strong><span class=\"fontstyle2\">, </span><strong><span class=\"fontstyle0\">Elementalist</span></strong><span class=\"fontstyle2\">, </span><strong><span class=\"fontstyle0\">Entropist</span></strong><span class=\"fontstyle2\">, and </span><strong><span class=\"fontstyle0\">Spiritist</span></strong><span class=\"fontstyle2\">.</span></p>\n</blockquote>\n<p><span class=\"fontstyle2\">When you initiate a Ritual during a conflict scene, its Ritual Clock is created with </span><span class=\"fontstyle0\"><strong>two fewer sections </strong></span><span class=\"fontstyle2\">than normal, to a minimum of </span><strong><span class=\"fontstyle0\">four sections</span></strong><span class=\"fontstyle2\">.</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Elementalist</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>.</p></blockquote><p>When you initiate a Ritual during a conflict scene, its Ritual Clock is created with <strong>two fewer sections </strong>than normal, to a minimum of <strong>four sections</strong>. </p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706684602733,
-    "modifiedTime": 1719170716535,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721103114062,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "6bLqejGbDDsGTj93",
   "sort": 0,

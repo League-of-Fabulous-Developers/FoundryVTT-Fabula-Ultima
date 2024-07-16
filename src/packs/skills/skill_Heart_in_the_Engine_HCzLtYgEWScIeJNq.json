@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">At the start of your turn during a conflict, if you are driving your </span><span class=\"fontstyle2\"><strong>personal vehicle</strong></span><span class=\"fontstyle0\">, you may spend <strong>@LOSS[10 mp].</strong> If you do, choose one option: the next time you deal damage during this turn, deal </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">extra damage; </span><span class=\"fontstyle2\"><strong>or</strong></span><span class=\"fontstyle0\">, the next time you suffer damage before the start of your next turn, that damage is reduced by </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">(applied </span><span class=\"fontstyle2\"><strong>before</strong> </span><span class=\"fontstyle0\">damage Affinities); </span><span class=\"fontstyle2\"><strong>or</strong></span><span class=\"fontstyle0\">, you recover from a status effect of your choice among </span><span class=\"fontstyle2\"><strong>slow</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>weak</strong></span><span class=\"fontstyle0\">.</span></p>",
+    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend <strong>@LOSS[10 mp].</strong> If you do, choose one option: the next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage; <strong>or</strong>, the next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities); <strong>or</strong>, you recover from a status effect of your choice among <strong>slow</strong> and <strong>weak</strong>.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -130,7 +130,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711431286236,
-    "modifiedTime": 1720812530703,
+    "modifiedTime": 1721090681182,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "HCzLtYgEWScIeJNq",

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After a creature you can see performs a </span><strong><span class=\"fontstyle2\">ranged </span></strong><span class=\"fontstyle0\">attack, you may spend an amount of Mind Points equal to the total Result of their Accuracy Check in order to have the attack fail automatically against all targets. You can only use this Skill if you have a </span><strong><span class=\"fontstyle2\">ranged </span></strong><span class=\"fontstyle0\">weapon equipped, and it has no effect if the Accuracy Check was a </span><strong><span class=\"fontstyle2\">critical success</span></strong><span class=\"fontstyle0\">.</span> </p>",
+    "description": "<p>After a creature you can see performs a <strong>ranged</strong> attack, you may spend an amount of Mind Points equal to the total Result of their Accuracy Check in order to have the attack fail automatically against all targets. You can only use this Skill if you have a <strong>ranged</strong> weapon equipped, and it has no effect if the Accuracy Check was a <strong>critical success</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706506746453,
-    "modifiedTime": 1720812768568,
+    "modifiedTime": 1721090164109,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 200000,

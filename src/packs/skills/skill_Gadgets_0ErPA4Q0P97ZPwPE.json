@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you first acquire this Skill, choose a gadget type: <strong>@UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Alchemy}, @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Infusion}</strong></span><span class=\"fontstyle2\"><strong>, </strong></span><span class=\"fontstyle0\">or <strong>@UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Magitech} </strong>(<strong>Core Rulebook</strong>, page <strong>212</strong>). You gain its </span><span class=\"fontstyle2\"><strong>basic benefits</strong></span><span class=\"fontstyle0\">.</span></p><p><span class=\"fontstyle0\">Whenever you take this Skill again, choose one option: you gain the </span><span class=\"fontstyle2\"><strong>basic benefits</strong> </span><span class=\"fontstyle0\">of a new gadget type; </span><span class=\"fontstyle2\"><strong>OR</strong> </span><span class=\"fontstyle0\">you gain the </span><span class=\"fontstyle2\"><strong>advanced benefits</strong> </span><span class=\"fontstyle0\">of a gadget type whose </span><span class=\"fontstyle2\"><strong>basic benefits</strong> </span><span class=\"fontstyle0\">you already obtained; </span><span class=\"fontstyle2\"><strong>OR </strong></span><span class=\"fontstyle0\">you gain the </span><span class=\"fontstyle2\"><strong>superior benefits</strong> </span><span class=\"fontstyle0\">of a gadget type whose </span><span class=\"fontstyle2\"><strong>advanced benefits</strong> </span><span class=\"fontstyle0\">you already obtained.</span> </p>",
+    "description": "<p>When you first acquire this Skill, choose a gadget type: <strong>@UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Alchemy}, @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Infusion}</strong>, or <strong>@UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Magitech}</strong> (<strong>Core Rulebook</strong>, page <strong>212</strong>). You gain its basic benefits.</p><p>Whenever you take this Skill again, choose one option: you gain the basic benefits of a new gadget type; or you gain the advanced benefits of a gadget type whose basic benefits you already obtained; or you gain the superior benefits of a gadget type whose advanced benefits you already obtained.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706508711403,
-    "modifiedTime": 1720813207292,
+    "modifiedTime": 1721088379102,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

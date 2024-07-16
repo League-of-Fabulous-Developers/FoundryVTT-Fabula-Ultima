@@ -9,7 +9,7 @@
     "summary": {
       "value": "Your Magic Pairs enhance your attacks."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements:</strong> you must have mastered one or more Classes among </span><span class=\"fontstyle2\"><strong>Ace of Cards</strong></span>, <span class=\"fontstyle2\"><strong>Fury</strong></span>, <span class=\"fontstyle2\"><strong>Rogue</strong></span>, <span class=\"fontstyle2\"><strong>Sharpshooter</strong></span>, and <span class=\"fontstyle2\"><strong>Weaponmaster</strong></span>, and you must have acquired the <span class=\"fontstyle2\"><strong>Magic Cards</strong> </span>Skill. </p></blockquote><p><span class=\"fontstyle0\">When you resolve the </span><span class=\"fontstyle2\"><strong>Magic Pair</strong> </span><span class=\"fontstyle0\">effect, if you attack with a weapon belonging to the </span><span class=\"fontstyle2\"><strong>arcane </strong></span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>thrown </strong></span><span class=\"fontstyle0\">Category, you deal extra damage equal to</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>the common value of the resolved cards</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">and regain an amount of Mind Points equal to</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>twice the common value of the resolved cards</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">(for instance, resolving a pair of </span><span class=\"fontstyle2\"><strong>5s</strong> </span><span class=\"fontstyle0\">will allow you to deal 5 extra damage and regain 10 Mind Points).</span> </p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong>, <strong>Fury</strong>, <strong>Rogue</strong>, <strong>Sharpshooter</strong>, and <strong>Weaponmaster</strong>, and you must have acquired the <strong>Magic Cards</strong> Skill.</p></blockquote><p>When you resolve the <strong>Magic Pair</strong> effect, if you attack with a weapon belonging to the <strong>arcane</strong> or <strong>thrown</strong> Category, you deal extra damage equal to the common value of the resolved cards and regain an amount of Mind Points equal to twice the common value of the resolved cards (for instance, resolving a pair of <strong>5s</strong> will allow you to deal 5 extra damage and regain 10 Mind Points).</p>",
     "isFavored": {
       "value": false
     },
@@ -112,8 +112,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1708940657180,
-    "modifiedTime": 1719333481637,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721101496945,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "ngt7aBn7AykfzJDg",
   "sort": 0,

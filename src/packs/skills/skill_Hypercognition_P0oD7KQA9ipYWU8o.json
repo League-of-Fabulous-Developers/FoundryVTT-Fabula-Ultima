@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<div class=\"stackedit__html\"><p><span class=\"fontstyle0\">The total MP cost of your </span><span class=\"fontstyle2\"><strong>spells</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>verses</strong> </span><span class=\"fontstyle0\">(</span><span class=\"fontstyle2\"><strong>High Fantasy</strong></span><span class=\"fontstyle0\">, page </span><span class=\"fontstyle2\"><strong>138</strong></span><span class=\"fontstyle0\">) that include your </span><span class=\"fontstyle2\"><strong>focus</strong> </span><span class=\"fontstyle0\">among their targets is reduced by </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">, or by </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">if your </span><span class=\"fontstyle2\"><strong>focus</strong> </span><span class=\"fontstyle0\">is the </span><span class=\"fontstyle2\"><strong>only</strong> </span><span class=\"fontstyle0\">target (up to a minimum cost of 0 Mind Points).</span></p></div>",
+    "description": "<p>The total MP cost of your <strong>spells</strong> and <strong>verses</strong> (High Fantasy, page <strong>138</strong>) that include your <strong>focus</strong> among their targets is reduced by <strong>【SL】</strong>, or by <strong>【SL × 2】</strong> if your <strong>focus</strong> is the <strong>only</strong> target (up to a minimum cost of 0 Mind Points).</p>",
     "isFavored": {
       "value": false
     },
@@ -130,7 +130,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711424945464,
-    "modifiedTime": 1720810706158,
+    "modifiedTime": 1720885455801,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "P0oD7KQA9ipYWU8o",

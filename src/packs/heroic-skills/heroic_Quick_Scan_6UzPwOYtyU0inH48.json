@@ -10,7 +10,7 @@
     "summary": {
       "value": "Examine multiple creatures."
     },
-    "description": "<blockquote><p><span style=\"font-family:'EB Garamond', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Requirements: </strong></span><span class=\"fontstyle0\">you must have mastered the </span><span class=\"fontstyle2\"><strong>Loremaster</strong> </span><span class=\"fontstyle0\">Class</span>.</p></blockquote><p>When you perform the <strong>Study</strong> action during a conflict, you may examine the <strong>profiles </strong>of <strong>all enemies</strong> you can see. If you do, you perform a single <strong>【INS + INS】</strong> Open Check and apply the Result <strong>separately</strong> to each enemy (<strong>Core Rulebook</strong>, page <strong>319</strong>).</p><p>However, this Check <strong>cannot</strong> trigger your <strong>@UUID[Compendium.projectfu.skills.Item.J5KbrSiczxizbdM3]{Flash of Insight}</strong> Skill (if you have it).</p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Loremaster</strong> Class.</p></blockquote><p>When you perform the <strong>Study</strong> action during a conflict, you may examine the <strong>profiles </strong>of <strong>all enemies</strong> you can see. If you do, you perform a single <strong>【INS + INS】</strong> Open Check and apply the Result <strong>separately</strong> to each enemy (<strong>Core Rulebook</strong>, page <strong>319</strong>).</p><p>However, this Check <strong>cannot</strong> trigger your @UUID[Compendium.projectfu.skills.Item.J5KbrSiczxizbdM3]{Flash of Insight} Skill (if you have it).</p>",
     "isFavored": {
       "value": false
     },
@@ -108,8 +108,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711473807263,
-    "modifiedTime": 1719171458866,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721104641079,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "ownership": {
     "default": 0,

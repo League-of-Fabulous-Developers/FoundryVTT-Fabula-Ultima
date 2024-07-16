@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You invoke doom on your foe, turning strength into frailty. The target loses an amount of Hit Points equal to</span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>20 + half the target's level</strong></span><span class=\"fontstyle2\"><strong>】</strong></span><span class=\"fontstyle0\">.</span> </p><hr /><p><strong>@LOSS[20 mp]</strong></p>",
+    "description": "<p>You invoke doom on your foe, turning strength into frailty. The target loses an amount of Hit Points equal to <strong>【20 + half the target's level】</strong>.</p><hr /><p>@LOSS[20 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706571698922,
-    "modifiedTime": 1719435205244,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721098113468,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
   "_key": "!items!XJM910rLM6sj55Uf"

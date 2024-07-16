@@ -10,7 +10,7 @@
     "summary": {
       "value": "For 2 IP, the attack deals 5 extra damage, and its damage becomes: ice, fire, or bolt."
     },
-    "description": "<h5>Required: Basic Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p><span class=\"fontstyle0\">For </span><strong>@LOSS[2 ip]</strong> the attack deals 5 extra damage, and its damage becomes: <strong>ice</strong>, <strong>fire</strong>, OR <strong>bolt</strong>.</p>",
+    "description": "<h5>Required: Basic Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p>For <strong>@LOSS[2 ip]</strong> the attack deals 5 extra damage, and its damage becomes: <strong>ice</strong>, <strong>fire</strong>, or <strong>bolt</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -42,8 +42,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707096616536,
-    "modifiedTime": 1719170100912,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721099101703,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!VXWexBALs5Uysi2k"
 }

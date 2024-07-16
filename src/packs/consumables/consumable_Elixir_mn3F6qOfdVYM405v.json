@@ -9,7 +9,7 @@
     "summary": {
       "value": "One creature recovers 50 MP."
     },
-    "description": "<p>For <strong>@LOSS[3 ip]</strong> one creature recovers <strong>@HEAL[50 mp]</strong>.</p>",
+    "description": "<p>For @LOSS[3 ip] one creature recovers @HEAL[50 mp].</p>",
     "isFavored": {
       "value": false
     },
@@ -38,8 +38,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706515894820,
-    "modifiedTime": 1719222988618,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721098957270,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "mn3F6qOfdVYM405v",
   "sort": 50000,

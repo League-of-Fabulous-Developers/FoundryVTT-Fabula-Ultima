@@ -13,8 +13,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p><span class=\"fontstyle0\">You are able to read, write, speak and understand all languages.</span></p></li><li><p><span class=\"fontstyle0\">You treat your </span><span class=\"fontstyle2\"><strong>Insight </strong></span><span class=\"fontstyle0\">as if it were one die size higher (up to a maximum of </span><span class=\"fontstyle2\"><strong>d12</strong></span><span class=\"fontstyle0\">).</span> </p></li></ul>",
-      "dismiss": "<ul><li><p><span class=\"fontstyle0\"><strong>Oracle. </strong></span><span class=\"fontstyle2\">You ask the Game Master a single question. The Game Master must answer truthfully, describing the vision shown to you by the Grimoire.</span></p></li><li><p><span class=\"fontstyle2\">Once used, this </span><span class=\"fontstyle0\"><strong>dismiss </strong></span><span class=\"fontstyle2\">effect will not be available until the next dawn. Furthermore, the same question may never be asked more than once. The Game Master has final say on which questions are too similar to be asked again.</span> </p></li></ul>",
+      "merge": "<ul><li><p>You are able to read, write, speak and understand all languages.</p></li><li><p>You treat your <strong>Insight</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p></li></ul>",
+      "dismiss": "<ul><li><p><strong>Oracle.</strong> You ask the Game Master a single question. The Game Master must answer truthfully, describing the vision shown to you by the Grimoire.</p></li><li><p>Once used, this <strong>dismiss</strong> effect will not be available until the next dawn. Furthermore, the same question may never be asked more than once. The Game Master has final say on which questions are too similar to be asked again.</p></li></ul>",
       "domains": "knowledge, revelations, understanding"
     },
     "source": "FUCR180"
@@ -63,7 +63,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710464015009,
-    "modifiedTime": 1720813523945,
+    "modifiedTime": 1721096323412,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,

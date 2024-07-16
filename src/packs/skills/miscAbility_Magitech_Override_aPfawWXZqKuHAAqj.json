@@ -9,7 +9,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Basic Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</h5><p><span class=\"fontstyle0\">You may use an action and spend </span><strong>@LOSS[10 mp]</strong><span class=\"fontstyle0\"> to perform an Opposed </span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>INS + INS</strong></span><span class=\"fontstyle2\"><strong>】 </strong></span><span class=\"fontstyle0\">Check against a nearby </span><span class=\"fontstyle3\"><strong>soldier</strong></span><span class=\"fontstyle0\">-rank </span><span class=\"fontstyle3\"><strong>construct </strong></span><span class=\"fontstyle0\">you can see (the Game Master must tell you who is a valid target). If you succeed, you gain control of the creature until the end of the scene (the Game Master gives you its profile). You may only control <strong>one </strong></span><span class=\"fontstyle3\"><strong>construct </strong></span><span class=\"fontstyle0\"><strong>at any given time</strong>, but may set it free whenever you want; the </span><span class=\"fontstyle3\"><strong>construct </strong></span><span class=\"fontstyle0\">is also set free as soon as it is harmed by you or by one of your allies. Once free, the </span><span class=\"fontstyle3\">construct </span><span class=\"fontstyle0\">is again in control of its actions and might turn against you.</span> </p><hr /><p></p>",
+    "description": "<p><strong>Required:</strong> Basic Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</p><p>You may use an action and spend <strong>@LOSS[10 mp]</strong> to perform an Opposed <strong>【INS + INS】 </strong>Check against a nearby <strong>soldier</strong>-rank <strong>construct </strong>you can see (the Game Master must tell you who is a valid target). If you succeed, you gain control of the creature until the end of the scene (the Game Master gives you its profile). You may only control <strong>one construct at any given time</strong>, but may set it free whenever you want; the <strong>construct </strong>is also set free as soon as it is harmed by you or by one of your allies. Once free, the construct is again in control of its actions and might turn against you. </p><p></p>",
     "isFavored": {
       "value": false
     },
@@ -143,8 +143,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711293254460,
-    "modifiedTime": 1719169416110,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721089499656,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "aPfawWXZqKuHAAqj",
   "sort": 0,

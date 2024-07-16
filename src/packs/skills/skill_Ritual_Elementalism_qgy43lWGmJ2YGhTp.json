@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You may perform Rituals whose effects fall within the </span><span class=\"fontstyle2\"><strong>Elementalism </strong></span><span class=\"fontstyle0\">discipline.</span></p><p><span class=\"fontstyle0\">Elementalism Rituals use</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>INS + WLP</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">for the Magic Check.</span> </p>",
+    "description": "<p>You may perform Rituals whose effects fall within the <strong>Elementalism</strong> discipline.</p><p>Elementalism Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706498017708,
-    "modifiedTime": 1720810369433,
+    "modifiedTime": 1721093856577,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their </span><span class=\"fontstyle2\"><strong>Species </strong></span><span class=\"fontstyle0\">with the creature you originally learned that spell from suffers</span><span class=\"fontstyle2\"><strong> @EFFECT[poisoned]</strong></span><span class=\"fontstyle0\">.</span> </p>",
+    "description": "<p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers @EFFECT[poisoned].</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706495623351,
-    "modifiedTime": 1720810039828,
+    "modifiedTime": 1721095700145,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

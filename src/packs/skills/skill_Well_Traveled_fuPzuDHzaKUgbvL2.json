@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You reduce the die rolled for your </span><span class=\"fontstyle2\"><strong>travel rolls</strong> </span><span class=\"fontstyle0\">by one size (to a minimum of </span><strong><span class=\"fontstyle2\">d6</span></strong><span class=\"fontstyle0\">).</span></p>\n<p><span class=\"fontstyle0\">If multiple characters have this Skill, the effects are </span><strong><span class=\"fontstyle2\">not </span></strong><span class=\"fontstyle0\">cumulative.</span> </p>",
+    "description": "<p>You reduce the die rolled for your <strong>travel rolls</strong> by one size (to a minimum of <strong>d6</strong>).</p><p>If multiple characters have this Skill, the effects are <strong>not</strong> cumulative.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706513112507,
-    "modifiedTime": 1720813343370,
+    "modifiedTime": 1721088342997,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You can communicate with creatures of the </span><strong><span class=\"fontstyle2\">beast</span></strong><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>monster</strong>, </span><span class=\"fontstyle0\">and </span><strong><span class=\"fontstyle2\">plant </span></strong><span class=\"fontstyle0\">Species.</span> </p>",
+    "description": "<p>You can communicate with creatures of the <strong>beast</strong>, <strong>monster</strong>, and <strong>plant</strong> Species.</p>",
     "isFavored": {
       "value": false
     },
@@ -163,7 +163,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706495600774,
-    "modifiedTime": 1720809934158,
+    "modifiedTime": 1721095412952,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

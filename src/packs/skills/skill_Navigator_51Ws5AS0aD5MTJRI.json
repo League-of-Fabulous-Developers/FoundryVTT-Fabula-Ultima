@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<div class=\"stackedit__html\"><p>You can communicate telepathically with any conscious ally <strong>within 1 travel day</strong> of you; you are <strong>able to hear each other </strong>for the sake of Skills and effects.</p><p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline. Additionally, you may use <strong>Ritualism</strong> to <strong>transport creatures</strong> in and out of the soul network, and to <strong>gain information </strong>and track entities while inside the soul network.</p></div>",
+    "description": "<p>You can communicate telepathically with any conscious ally <strong>within 1 travel day</strong> of you; you are <strong>able to hear each other </strong>for the sake of Skills and effects.</p><p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline. Additionally, you may use <strong>Ritualism</strong> to <strong>transport creatures</strong> in and out of the soul network, and to <strong>gain information </strong>and track entities while inside the soul network.</p>",
     "isFavored": {
       "value": false
     },
@@ -130,7 +130,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711424945464,
-    "modifiedTime": 1720810721728,
+    "modifiedTime": 1720885480141,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "51Ws5AS0aD5MTJRI",

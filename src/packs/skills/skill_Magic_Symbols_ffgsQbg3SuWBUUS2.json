@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">If an ally bears one of your </span><span class=\"fontstyle2\"><strong>symbols</strong></span><span class=\"fontstyle0\">, that ally may perform the </span><span class=\"fontstyle2\"><strong>Spell </strong></span><span class=\"fontstyle0\">action and destroy that symbol to cast a single spell among those </span><span class=\"fontstyle2\"><strong>you </strong></span><span class=\"fontstyle0\">know, as long as it has a </span><span class=\"fontstyle2\"><strong>total Mind Point cost equal to or lower than </strong></span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 10</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">(that ally must still pay the MP cost).</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>10 MP</strong></p><p>Skill Level <strong>2</strong> - <strong>20 MP</strong></p><p>Skill Level <strong>3</strong> - <strong>30 MP</strong></p>",
+    "description": "<p>If an ally bears one of your <strong>symbols</strong>, that ally may perform the <strong>Spell</strong> action and destroy that symbol to cast a single spell among those <strong>you</strong> know, as long as it has a <strong>total Mind Point cost equal to or lower than SL × 10</strong> (that ally must still pay the MP cost).</p><hr /><p>Skill Level <strong>1</strong> - <strong>10 MP</strong></p><p>Skill Level <strong>2</strong> - <strong>20 MP</strong></p><p>Skill Level <strong>3</strong> - <strong>30 MP</strong></p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706562979546,
-    "modifiedTime": 1720812883397,
+    "modifiedTime": 1721089547438,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

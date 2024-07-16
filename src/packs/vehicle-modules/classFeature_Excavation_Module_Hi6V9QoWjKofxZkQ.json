@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">This <strong>personal vehicle</strong> can burrow through the ground and is equipped with powerful lights.</span></p>",
+      "description": "<p>This <strong>personal vehicle</strong> can burrow through the ground and is equipped with powerful lights.</p>",
       "complex": false
     },
     "source": "FUTF168"
@@ -26,8 +26,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1711477009006,
-    "modifiedTime": 1719173179841,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721099841443,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "Hi6V9QoWjKofxZkQ",
   "sort": 0,

@@ -13,8 +13,8 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p><span class=\"fontstyle0\">You have Resistance to </span><span class=\"fontstyle2\"><strong>earth </strong></span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>poison </strong></span><span class=\"fontstyle0\">damage and are immune to </span><span class=\"fontstyle2\"><strong>poisoned</strong></span><span class=\"fontstyle0\">.</span></p></li><li><p><span class=\"fontstyle0\">Whenever you recover Hit Points, you recover 5 extra Hit Points.</span> </p></li></ul>",
-      "dismiss": "<ul><li><p><span class=\"fontstyle0\"><strong>Blossom.</strong> </span><span class=\"fontstyle2\">Choose any number of creatures you can see (you may also choose yourself): each of them recovers from the </span><span class=\"fontstyle0\"><strong>poisoned</strong> </span><span class=\"fontstyle2\">status effect and recovers <strong>@GAIN[40 hp]</strong>. This amount increases to <strong>@GAIN[50 hp]</strong> if you are </span><span class=\"fontstyle0\"><strong>level 20 or higher</strong></span><span class=\"fontstyle2\">, or to <strong>@GAIN[60 hp]</strong> if you are </span><span class=\"fontstyle0\"><strong>level 40 or higher</strong></span><span class=\"fontstyle2\">.</span> </p></li></ul>",
+      "merge": "<ul><li><p>You have Resistance to <strong>earth</strong> and <strong>poison</strong> damage and are immune to <strong>poisoned</strong>.</p></li><li><p>Whenever you recover Hit Points, you recover 5 extra Hit Points.</p></li></ul>",
+      "dismiss": "<ul><li><p><strong>Blossom.</strong> Choose any number of creatures you can see (you may also choose yourself): each of them recovers from the <strong>poisoned</strong> status effect and recovers <span>@GAIN[40 hp]</span>. This amount increases to <span>@GAIN[50 hp]</span> if you are <strong>level 20 or higher</strong>, or to <span>@GAIN[60 hp]</span> if you are <strong>level 40 or higher</strong>.</p></li></ul>",
       "domains": "earth, plants, poison"
     },
     "source": "FUCR180"
@@ -69,7 +69,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710464030279,
-    "modifiedTime": 1720813532371,
+    "modifiedTime": 1721096408219,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 800000,

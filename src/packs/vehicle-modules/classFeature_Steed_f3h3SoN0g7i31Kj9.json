@@ -16,7 +16,7 @@
       "passengers": 1,
       "distanceMultiplier": 2,
       "moduleSlots": 3,
-      "description": "<p><span class=\"fontstyle0\">This </span><span class=\"fontstyle2\">personal vehicle </span><span class=\"fontstyle0\">may have up to </span><span class=\"fontstyle2\"><strong>1 weapon module</strong></span><span class=\"fontstyle0\"><strong>, </strong></span><span class=\"fontstyle2\"><strong>1 armor module </strong></span><span class=\"fontstyle0\">and<strong> </strong></span><span class=\"fontstyle2\"><strong>any number of support modules</strong> </span><span class=\"fontstyle0\">enabled.</span></p><p><span class=\"fontstyle0\">If you use the </span><strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong><span class=\"fontstyle2\"> </span><span class=\"fontstyle0\">Skill with this </span><span class=\"fontstyle2\"><strong>personal vehicle</strong></span><span class=\"fontstyle0\">, ignore the MP cost.</span></p>"
+      "description": "<p>This <strong>personal vehicle </strong>may have up to <strong>1 weapon module</strong>, <strong>1 armor module </strong>and<strong> any number of support modules </strong>enabled.</p><p>If you use the <strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong> Skill with this <strong>personal vehicle</strong>, ignore the MP cost.</p>"
     },
     "source": "FUTF165"
   },
@@ -29,8 +29,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1712878359536,
-    "modifiedTime": 1719174023985,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721099711319,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "f3h3SoN0g7i31Kj9",
   "sort": 0,

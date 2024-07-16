@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You protect the targets from attacks that would corrupt their body and spirit. Choose </span><span class=\"fontstyle2\"><strong>dazed</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>enraged</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>poisoned</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>shaken</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>slow</strong></span><span class=\"fontstyle0\">, or </span><span class=\"fontstyle2\"><strong>weak</strong></span><span class=\"fontstyle0\">. Until this spell ends, each target becomes immune to the chosen status effect.</span> </p><hr /><p><strong>@LOSS[5 mp]</strong> for <strong>one</strong> target.</p><p><strong>@LOSS[10 mp]</strong> for <strong>two</strong> targets.</p><p><strong>@LOSS[15 mp]</strong> for <strong>three</strong> targets.</p>",
+    "description": "<p>You protect the targets from attacks that would corrupt their body and spirit. Choose <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Until this spell ends, each target becomes immune to the chosen status effect.</p><hr /><p>@LOSS[5 mp] for <strong>one</strong> target.</p><p>@LOSS[10 mp] for <strong>two</strong> targets.</p><p>@LOSS[15 mp] for <strong>three</strong> targets.</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706573024313,
-    "modifiedTime": 1719445171106,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1721097141484,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 700000,
   "_key": "!items!ZxDpmAqbYQqDULxd"

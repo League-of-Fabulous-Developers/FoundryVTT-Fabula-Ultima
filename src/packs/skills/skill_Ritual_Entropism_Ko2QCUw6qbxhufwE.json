@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">You may perform Rituals whose effects fall within the </span><span class=\"fontstyle2\"><strong>Entropism </strong></span><span class=\"fontstyle0\">discipline. </span></p><p><span class=\"fontstyle0\"><strong>Entropism</strong> Rituals use </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>INS + WLP</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">for the Magic Check.</span> </p><p>Rules for <strong>Rituals</strong> can be found on (<strong>Core Rulebook</strong>, page <strong>118</strong>) of the core rulebook.</p><p> </p><p> </p>",
+    "description": "<p>You may perform Rituals whose effects fall within the <strong>Entropism </strong>discipline.</p><p><strong>Entropism</strong> Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p><p>Rules for <strong>Rituals</strong> can be found in the <strong>Core Rulebook</strong>, page <strong>118</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706486739037,
-    "modifiedTime": 1720810579475,
+    "modifiedTime": 1721093560627,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 300000,

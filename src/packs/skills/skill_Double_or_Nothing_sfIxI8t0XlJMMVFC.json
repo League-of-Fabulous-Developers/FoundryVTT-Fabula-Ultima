@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle2\">Before you perform an Accuracy Check, a Magic Check for an offensive spell ( </span><span style=\"font-family:inherit\"><strong>@ICON[offensive] </strong>)</span><span class=\"fontstyle2\">, or a Check to advance or turn back a Clock, you may declare </span><span class=\"fontstyle4\"><strong>double or nothing</strong></span><span class=\"fontstyle2\">. If you do and the Check triggers a </span><span class=\"fontstyle4\"><strong>critical success</strong></span><span class=\"fontstyle2\">, </span><span class=\"fontstyle4\"><strong>double </strong></span><span class=\"fontstyle2\">the damage dealt by that attack or spell or the filled or erased sections of that Clock, respectively; however, any other Result is considered a </span><span class=\"fontstyle4\"><strong>critical failure</strong></span><span class=\"fontstyle2\">.</span></p>",
+    "description": "<p>Before you perform an Accuracy Check, a Magic Check for an offensive spell ( @ICON[offensive] ), or a Check to advance or turn back a Clock, you may declare <strong>double or nothing</strong>. If you do and the Check triggers a <strong>critical success</strong>, double the damage dealt by that attack or spell or the filled or erased sections of that Clock, respectively; however, any other Result is considered a <strong>critical failure</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -131,8 +131,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1707643024284,
-    "modifiedTime": 1719153575324,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1720884303140,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "sfIxI8t0XlJMMVFC",
   "sort": 200000,

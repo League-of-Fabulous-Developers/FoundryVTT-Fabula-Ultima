@@ -9,7 +9,7 @@
     "summary": {
       "value": "Sacrifice HP for massive damage."
     },
-    "description": "<blockquote><p><span class=\"fontstyle0\"><strong>Requirements: </strong></span><span class=\"fontstyle2\">you must have mastered the </span><strong>Darkblade </strong><span class=\"fontstyle2\">Class.</span> </p></blockquote><p><span class=\"fontstyle0\">When you hit a creature with an attack, if that attack </span><span class=\"fontstyle2\"><strong>only </strong></span><span class=\"fontstyle0\">targeted that creature and you have a </span><span class=\"fontstyle2\"><strong>Bond </strong></span><span class=\"fontstyle0\">towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>10 multiplied by the strength of your Bond towards the target</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">.</span></p><p><span class=\"fontstyle0\">You may use this Skill only on your turn during a conflict, and </span><span class=\"fontstyle2\"><strong>only once per turn</strong></span><span class=\"fontstyle0\">.</span> </p><hr /><p><strong>@DMG[10 untyped] @DMG[20 untyped] @DMG[30 untyped]</strong></p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Darkblade </strong>Class.</p></blockquote><p>When you hit a creature with an attack, if that attack <strong>only </strong>targeted that creature and you have a <strong>Bond </strong>towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p><p>You may use this Skill only on your turn during a conflict, and <strong>only once per turn</strong>.</p><hr /><p>@DMG[10 untyped] @DMG[20 untyped] @DMG[30 untyped]</p>",
     "isFavored": {
       "value": false
     },
@@ -109,11 +109,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "2.4.0-alpha.2",
+    "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706584345254,
-    "modifiedTime": 1719186689277,
-    "lastModifiedBy": "6utNKI7T4Vq4KjiR"
+    "modifiedTime": 1721102428636,
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_id": "8Djx8D9cU36qHQYz",
   "sort": 100000,

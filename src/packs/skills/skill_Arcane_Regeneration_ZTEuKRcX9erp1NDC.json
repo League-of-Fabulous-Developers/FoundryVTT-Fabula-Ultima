@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">When you summon an Arcanum, you immediately recover</span><span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 5</strong></span><span class=\"fontstyle2\"><strong>】</strong></span><span class=\"fontstyle0\">Hit Points.</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@GAIN[5 hp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@GAIN[10 hp]</strong></p>",
+    "description": "<p>When you summon an Arcanum, you immediately recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[5 hp]</p><p>Skill Level <strong>2</strong> - @GAIN[10 hp]</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706494639713,
-    "modifiedTime": 1720808497646,
+    "modifiedTime": 1721096066339,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

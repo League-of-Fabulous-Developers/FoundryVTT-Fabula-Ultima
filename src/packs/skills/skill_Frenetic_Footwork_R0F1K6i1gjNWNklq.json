@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After you perform a </span><span class=\"fontstyle2\"><strong>dance </strong></span><span class=\"fontstyle0\">with a </span><span class=\"fontstyle2\"><strong>duration </strong></span><span class=\"fontstyle0\">of “Until the start of your next turn”, you gain a bonus equal to </span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 2</strong></span><span class=\"fontstyle3\"><strong>】 </strong></span><span class=\"fontstyle0\">to all Opposed Checks that rely on </span><span class=\"fontstyle2\"><strong>acrobatics</strong></span><span class=\"fontstyle0\">, </span><span class=\"fontstyle2\"><strong>coordination</strong>, </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>speed </strong></span><span class=\"fontstyle0\">until the start of your next turn.</span> </p>",
+    "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -132,7 +132,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706560364056,
-    "modifiedTime": 1720810165704,
+    "modifiedTime": 1721094127796,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!R0F1K6i1gjNWNklq"

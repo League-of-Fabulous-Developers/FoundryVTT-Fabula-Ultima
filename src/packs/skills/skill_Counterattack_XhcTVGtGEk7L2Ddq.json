@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">After an enemy </span><strong><span class=\"fontstyle2\">hits or misses you with a melee attack</span></strong><span class=\"fontstyle0\">, if the Result of their Accuracy Check was an </span><strong><span class=\"fontstyle2\">even number</span></strong><span class=\"fontstyle0\">, you may perform a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">against that enemy (after their attack has been fully resolved). This attack must be a </span><span class=\"fontstyle2\"><strong>melee</strong> </span><span class=\"fontstyle0\">attack and must have that enemy as its </span><strong><span class=\"fontstyle2\">only </span></strong><span class=\"fontstyle0\">target; treat your </span><strong><span class=\"fontstyle2\">High Roll (HR) </span></strong><span class=\"fontstyle0\"><strong>as 0</strong> when calculating damage dealt by this attack.</span> </p>",
+    "description": "<p>After an enemy <strong>hits or misses you with a melee attack</strong>, if the Result of their Accuracy Check was an <strong>even number</strong>, you may perform a <strong>free attack</strong> against that enemy (after their attack has been fully resolved). This attack must be a <strong>melee</strong> attack and must have that enemy as its only target; treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack.</p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706514121336,
-    "modifiedTime": 1720813396186,
+    "modifiedTime": 1721088207936,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,
