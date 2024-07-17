@@ -111,6 +111,7 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			mpCost: new SchemaField({ value: new StringField() }),
+			maxTargets: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			target: new SchemaField({ value: new StringField() }),
 			duration: new SchemaField({ value: new StringField() }),
 			isOffensive: new SchemaField({ value: new BooleanField() }),

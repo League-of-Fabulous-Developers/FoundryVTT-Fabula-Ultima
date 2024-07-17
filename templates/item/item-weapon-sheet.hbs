@@ -4,6 +4,44 @@
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
+        {{!-- Main Attributes --}}
+        <section class="resource-content summary gap-5 desc mb-5">
+            <label class="resource-label-sm" style="position: sticky;" for="system.summary.value"> <i
+                    class="fas fa-chart-simple icon"></i>{{localize
+                'FU.AttributesKey'}}
+            </label>
+            <div class="grid grid-3col">
+                <div class="resource-content flexcol flex-group-center">
+                    <label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+                        'FU.Category'}}</label>
+                    <select name="system.category.value" class="resource-inputs select-dropdown-m">
+                        {{selectOptions weaponCategoriesWithoutCustom selected=system.category.value sort=true
+                        localize=true}}
+                    </select>
+                </div>
+                <div class="resource-content flexcol flex-group-center">
+                    <label for="system.hands.value" class="resource-label-m flexlarge align-left">{{localize
+                        'FU.Hand'}}</label>
+                    {{#if system.isCustomWeapon.value}}
+                    <select name="system.hands.value" class="resource-inputs select-dropdown-m" disabled>
+                        <option value="two-handed">{{localize 'FU.TwoHanded'}}</option>
+                    </select>
+                    {{else}}
+                    <select name="system.hands.value" class="resource-inputs select-dropdown-m">
+                        {{selectOptions handedness selected=system.hands.value sort=true localize=true}}
+                    </select>
+                    {{/if}}
+                </div>
+                <div class="resource-content flexcol flex-group-center">
+                    <label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+                        'FU.ItemType'}}</label>
+                    <select name="system.type.value" class="resource-inputs select-dropdown-m">
+                        {{selectOptions wpnType selected=system.type.value sort=true localize=true}}
+                    </select>
+                </div>
+            </div>
+        </section>
+
         {{!-- Effects Tab --}}
         <div class="tab effects" data-group="primary" data-tab="effects">
             {{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
@@ -16,7 +54,7 @@
                 <i class="fas fa-info-circle"></i>
             </label>
             {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-                     button=true owner=owner editable=editable }}
+            button=true owner=owner editable=editable }}
         </div>
 
         {{!-- Attributes Tab --}}
@@ -31,14 +69,14 @@
                     <div class="item-settings">
                         {{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
                         <label class="checkbox resource-label-sm"> <span>{{localize 'FU.HRZeroStatus'}}</span><input
-                         type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
-                             system.rollInfo.useWeapon.hrZero.value }} /> </label>
+                                type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
+                                system.rollInfo.useWeapon.hrZero.value }} /> </label>
                         <label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsMartial'}}</span><input
-                         type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} />
+                                type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} />
                         </label>
                         <label class="checkbox resource-label-sm"> <span>{{localize 'FU.CustomWeapon'}}</span><input
-                         type="checkbox" name="system.isCustomWeapon.value" {{ checked
-                             system.isCustomWeapon.value }} />
+                                type="checkbox" name="system.isCustomWeapon.value" {{ checked
+                                system.isCustomWeapon.value }} />
                         </label>
                     </div>
 
@@ -46,12 +84,12 @@
                         <div class="resource-content flexcol grid-span-3 flex-group-center">
                             <label class="resource-label-m">{{localize 'FU.Quality'}}</label>
                             <input type="text" name="system.quality.value" value="{{ system.quality.value }}"
-                                   class="resource-inputs select-dropdown-full grid-span-4" />
+                                class="resource-inputs select-dropdown-full grid-span-4" />
                         </div>
                         <div class="resource-content flexcol flex-group-center">
                             <label class="resource-label-m">{{localize 'FU.Cost'}}</label>
                             <input type="number" name="system.cost.value" value="{{ system.cost.value }}"
-                                   data-dtype="Number" class="resource-inputs select-dropdown-m" />
+                                data-dtype="Number" class="resource-inputs select-dropdown-m" />
                         </div>
                     </div>
                 </fieldset>
@@ -60,22 +98,22 @@
                 <fieldset class="title-fieldset desc resource-content">
                     <legend class="resource-label-full">
                         <label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize
-                         'FU.Accuracy'}}</label>
+                            'FU.Accuracy'}}</label>
                     </legend>
                     <div class="grid grid-5col gap-5">
                         <label class="grid-span-2 resource-label-m flex-group-center">
                             {{localize 'FU.Attributes'}}
                             <div class="resource-content flexrow flex-group-center gap-2">
                                 <select name="system.attributes.primary.value"
-                                        class="resource-inputs select-dropdown-m resource-text-m">
+                                    class="resource-inputs select-dropdown-m resource-text-m">
                                     {{selectOptions attrAbbr selected=system.attributes.primary.value sort=true
-                                                    localize=true}}
+                                    localize=true}}
                                 </select>
                                 <span class="flex0">+</span>
                                 <select name="system.attributes.secondary.value"
-                                        class="resource-inputs select-dropdown-m resource-text-m">
+                                    class="resource-inputs select-dropdown-m resource-text-m">
                                     {{selectOptions attrAbbr selected=system.attributes.secondary.value sort=true
-                                                    localize=true}}
+                                    localize=true}}
                                 </select>
                             </div>
                         </label>
@@ -83,7 +121,7 @@
                             {{localize 'FU.Bonus'}}
                             <div class="resource-content flexcol flex-group-center">
                                 <input type="number" name="system.accuracy.value" value="{{ system.accuracy.value }}"
-                                       class="resource-inputs resource-text-m" />
+                                    class="resource-inputs resource-text-m" />
                             </div>
                         </label>
                         <label class="grid-span-2 resource-label-m flex-group-center">
@@ -91,7 +129,7 @@
                             <div class="resource-content flexrow flex-group-center">
                                 <select name="system.defense" class="resource-inputs select-dropdown-m resource-text-m">
                                     {{selectOptions defenses selected=system.defense sort=true localize=true
-                                                    labelAttr="abbr"}}
+                                    labelAttr="abbr"}}
                                 </select>
                             </div>
                         </label>
@@ -102,21 +140,20 @@
                 <fieldset class="title-fieldset desc resource-content">
                     <legend class="resource-label-full">
                         <label class="resource-label-m"><i class="fas fa-bullseye icon"></i>{{localize
-                         'FU.Damage'}}</label>
+                            'FU.Damage'}}</label>
                     </legend>
                     <div class="grid grid-2col">
                         <div class="resource-content flexcol flex-group-center">
                             <label for="system.damageType.value" class="resource-label-m flexlarge">{{localize
-                             'FU.DamageType'}} </label>
-                            <select name="system.damageType.value"
-                                    class="resource-inputs select-dropdown-m">
+                                'FU.DamageType'}} </label>
+                            <select name="system.damageType.value" class="resource-inputs select-dropdown-m">
                                 {{selectOptions damageTypes selected=system.damageType.value sort=true localize=true}}
                             </select>
                         </div>
                         <div class="resource-content flexcol flex-group-center">
                             <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
                             <input type="number" name="system.damage.value" value="{{ system.damage.value }}"
-                                   class="resource-inputs" data-dtype="Number" />
+                                class="resource-inputs" data-dtype="Number" />
                         </div>
                     </div>
                 </fieldset>

@@ -4,6 +4,52 @@
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
+        {{!-- Main Attributes --}}
+        <section class="resource-content summary gap-5 desc mb-5">
+            <label class="resource-label-sm" style="position: sticky;" for="system.summary.value"> <i
+                    class="fas fa-chart-simple icon"></i>{{localize
+                'FU.AttributesKey'}}
+            </label>
+            <div class="grid grid-3col">
+                <div class="resource-content flexcol flex-group-center">
+                    <label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+                        'FU.DefenseAbbr'}}
+                    </label>
+                    <span>
+                        {{#if (eq item.type "armor")}}
+                        <select name="system.attributes.primary.value" class="resource-inputs select-dropdown" {{#if
+                            system.isMartial.value}}disabled{{/if}}>
+                            {{selectOptions attrAbbr selected=system.attributes.primary.value blank='-' sort=true
+                            localize=true}}
+                        </select>
+                        {{/if}}
+                        <input type="number" name="system.def.value" value="{{ system.def.value }}" data-dtype="Number"
+                            class="resource-inputs select-dropdown-sm" />
+                    </span>
+                </div>
+                <div class="resource-content flexcol flex-group-center">
+                    <label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
+                        'FU.MagicDefenseAbbr'}}</label>
+                    <span>
+                        {{#if (eq item.type "armor")}}
+                        <select name="system.attributes.secondary.value" class="resource-inputs select-dropdown">
+                            {{selectOptions attrAbbr selected=system.attributes.secondary.value blank='-' sort=true
+                            localize=true}}
+                        </select>
+                        {{/if}}
+                        <input type="number" name="system.mdef.value" value="{{ system.mdef.value }}"
+                            data-dtype="Number" class="resource-inputs select-dropdown-sm" />
+                    </span>
+                </div>
+                <div class="resource-content flexcol flex-group-center">
+                    <label for="system.hands.value" class="resource-label-m flexlarge align-left">{{localize
+                        'FU.InitiativeAbbr'}}</label>
+                    <input type="number" name="system.init.value" value="{{ system.init.value }}" data-dtype="Number"
+                        class="resource-inputs select-dropdown-sm" />
+                </div>
+            </div>
+        </section>
+
         {{!-- Effects Tab --}}
         <div class="tab effects" data-group="primary" data-tab="effects">
             {{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
@@ -16,7 +62,7 @@
                 <i class="fas fa-info-circle"></i>
             </label>
             {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-                     button=true owner=owner editable=editable }}
+            button=true owner=owner editable=editable }}
         </div>
 
         {{!-- Attributes Tab --}}
@@ -31,10 +77,10 @@
                     <div class="item-settings">
                         {{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
                         <label class="checkbox resource-label-sm"> <span>{{localize "FU.HRZeroStatus"}}</span><input
-                         type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
-                             system.rollInfo.useWeapon.hrZero.value }} /> </label>
+                                type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
+                                system.rollInfo.useWeapon.hrZero.value }} /> </label>
                         <label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsMartial'}}</span><input
-                         type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} />
+                                type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} />
                         </label>
                     </div>
 
@@ -42,12 +88,12 @@
                         <div class="resource-content flexcol grid-span-3 flex-group-center">
                             <label class="resource-label-m">{{localize 'FU.Quality'}}</label>
                             <input type="text" name="system.quality.value" value="{{ system.quality.value }}"
-                                   class="resource-inputs select-dropdown-full grid-span-4" />
+                                class="resource-inputs select-dropdown-full grid-span-4" />
                         </div>
                         <div class="resource-content flexcol flex-group-center">
                             <label class="resource-label-m">{{localize 'FU.Cost'}}</label>
                             <input type="number" name="system.cost.value" value="{{ system.cost.value }}"
-                                   data-dtype="Number" class="resource-inputs select-dropdown-m" />
+                                data-dtype="Number" class="resource-inputs select-dropdown-m" />
                         </div>
                     </div>
                 </fieldset>

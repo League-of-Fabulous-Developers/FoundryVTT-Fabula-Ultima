@@ -561,6 +561,7 @@
 		"ClockStatus": "Clock?",
 		"ClockAdd": "Add Clock",
 		"Target": "Target",
+		"MaxTargets": "Max Targets",
 		"Duration": "Duration",
 		"Instantaneous": "Instantaneous",
 		"Scene": "Scene",

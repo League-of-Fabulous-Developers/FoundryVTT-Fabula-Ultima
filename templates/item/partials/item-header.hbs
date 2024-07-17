@@ -1,6 +1,6 @@
 <header class="sheet-header desc">
     <div class="combine-header">
-        <img class="profile-img" src="{{ item.img }}" data-edit="img" title="{{ item.name }}" />
+        <img class="item-profile-img" src="{{ item.img }}" data-edit="img" title="{{ item.name }}" />
         <div class="header-fields">
             <div class="header-start grid grid-6col">
                 <div class="charname-container flexrow grid-span-4">
@@ -71,7 +71,7 @@
                 </div>
 
                 {{!-- Key Attributes --}}
-                <div class="resource-content summary grid-span-3">
+                {{!-- <div class="resource-content summary grid-span-3">
                     <label class="resource-label-sm" style="position: sticky;" for="system.summary.value"> <i
                      class="fas fa-chart-simple icon"></i>{{localize
                      'FU.AttributesKey'}}
@@ -101,7 +101,7 @@
                             {{> "systems/projectfu/templates/item/partials/item-progress-header.hbs" dtypes=dtype }}
                         {{/if}}
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

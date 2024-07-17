@@ -48,6 +48,19 @@
 		border-radius: 10px 0 0 10px;
 	}
 
+	/* Item Profile Image */
+	.item-profile-img {
+		height: 137px;
+		width: auto;
+		flex: 0;
+		margin-right: 0;
+		align-self: start;
+		background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+		background-clip: content-box;
+		border: 1px solid #aeb8a8;
+		border-radius: 10px 0 0 10px;
+	}
+
 	/* Character Name Container */
 	.charname-container {
 		background: linear-gradient($color-charname-gradient);
@@ -80,8 +93,9 @@
 			height: 145px;
 
 			&.item-header {
-				padding: 3px 10px;
-				height: 148px !important;
+				border-radius: 0 0 12px 0;
+				padding: 10px;
+				height: 85px !important;
 			}
 
 			&.item-feature-header {
@@ -281,7 +295,7 @@
 
 /* Item Settings */
 .item-settings {
-	margin: -5px 5px 0;
+	margin: 0px 5px 0;
 }
 
 /* Tiny Description */
