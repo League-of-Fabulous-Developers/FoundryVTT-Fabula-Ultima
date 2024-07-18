@@ -32,6 +32,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudShowOrderNumbers: 'optionCombatHudShowOrderNumbers',
 	optionCombatHudActorOrdering: 'optionCombatHudActorOrdering',
 	optionCombatHudDraggedPosition: 'optionCombatHudDraggedPosition',
+	optionRenameCurrency: 'optionRenameCurrency',
 	metaCurrencyFabula: 'metaCurrencyFabula',
 	metaCurrencyUltima: 'metaCurrencyUltima',
 	metaCurrencyBaseExperience: 'metaCurrencyBaseExperience',
@@ -355,6 +356,15 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Object,
 		default: {},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionRenameCurrency, {
+		name: game.i18n.localize('FU.RenameCurrency'),
+		hint: game.i18n.localize('FU.RenameCurrencyHint'),
+		scope: 'world',
+		config: true,
+		type: String,
+		default: 'Zenit',
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.metaCurrencyFabula, {

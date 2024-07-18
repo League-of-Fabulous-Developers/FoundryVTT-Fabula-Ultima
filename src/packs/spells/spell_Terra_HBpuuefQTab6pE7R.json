@@ -71,7 +71,7 @@
       "value": 1
     },
     "mpCost": {
-      "value": "10 × T"
+      "value": "10"
     },
     "target": {
       "value": "Up to three creatures"
@@ -115,7 +115,10 @@
     "hasRoll": {
       "value": true
     },
-    "opportunity": "Each target hit by this spell performs one fewer action on their next turn (to a minimum of 0 actions)."
+    "opportunity": "Each target hit by this spell performs one fewer action on their next turn (to a minimum of 0 actions).",
+    "maxTargets": {
+      "value": 3
+    }
   },
   "effects": [],
   "ownership": {
@@ -131,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706567040241,
-    "modifiedTime": 1721098626265,
+    "modifiedTime": 1721232022584,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

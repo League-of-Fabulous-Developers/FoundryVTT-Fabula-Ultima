@@ -3,7 +3,7 @@
         {{#if (or (eq system.study.value 1) (eq system.study.value 2) (eq system.study.value 3))}}
             {{>"systems/projectfu/templates/actor/partials/actor-study.hbs" actor=actor}}
         {{else}}
-            <header class="sheet-header desc">
+            <header class="sheet-header">
                 {{!-- Name/HP/Level Section --}}
                 {{>"systems/projectfu/templates/actor/partials/actor-header.hbs" actor=actor}}
                 {{!-- Statuses/Attributes/RollCheck Section --}}

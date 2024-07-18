@@ -956,6 +956,8 @@
 		"InlineEffectConfigImproveDefensesDefense": "Тип защиты",
 		"InlineEffectConfigImproveDefensesValue": "Увеличить до:",
 		"UiControlTitle": "Project FU",
+		"RenameCurrency": "RenameCurrency",
+		"RenameCurrencyHint": "RenameCurrencyHint",
 		"AppMetaCurrencyTrackerTitle": "Трекер мета-валюты",
 		"AppMetaCurrencyTrackerFabula": "Потраченная Ультима",
 		"AppMetaCurrencyTrackerUltima": "Потраченная Фабула",

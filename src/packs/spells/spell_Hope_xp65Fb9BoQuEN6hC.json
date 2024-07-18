@@ -113,7 +113,10 @@
     "hasRoll": {
       "value": false
     },
-    "opportunity": ""
+    "opportunity": "",
+    "maxTargets": {
+      "value": 1
+    }
   },
   "effects": [],
   "sort": 1400000,
@@ -130,7 +133,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1710549080835,
-    "modifiedTime": 1721097054858,
+    "modifiedTime": 1721232345580,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!xp65Fb9BoQuEN6hC"

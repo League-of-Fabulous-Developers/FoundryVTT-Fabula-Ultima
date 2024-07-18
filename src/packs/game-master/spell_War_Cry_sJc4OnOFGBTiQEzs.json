@@ -66,7 +66,7 @@
       "value": false
     },
     "mpCost": {
-      "value": "10 × T"
+      "value": "10"
     },
     "target": {
       "value": "Up to three creatures"
@@ -111,7 +111,10 @@
       "value": "FUCR311"
     },
     "subtype": {},
-    "opportunity": ""
+    "opportunity": "",
+    "maxTargets": {
+      "value": 3
+    }
   },
   "effects": [],
   "flags": {
@@ -123,7 +126,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1690417015023,
-    "modifiedTime": 1721100652806,
+    "modifiedTime": 1721232486865,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "PpBzAnM7EK75ayIT",

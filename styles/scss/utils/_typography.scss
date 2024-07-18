@@ -35,22 +35,8 @@
 }
 
 @font-face {
-	font-family: 'Heydings Icons';
-	src: url('/systems/projectfu/styles/fonts/heydings-icons/heydings_icons.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
 	font-family: 'FnT_BasicShapes1';
 	src: url('/systems/projectfu/styles/fonts/fnt-bs/FNT_BS.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Web Symbols';
-	src: url('/systems/projectfu/styles/fonts/web-symbols/WebSymbols-Regular.otf') format('opentype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -281,14 +267,13 @@ $font-quote: 'EB Garamond', sans-serif;
 
 		.resource-text-m {
 			font-size: 1rem;
-			// line-height: 1.45em;
+
 			font-family: $font-primary;
 		}
 
 		// Resource Label Sizes
 		.resource-label-t {
 			font-size: 1rem;
-			// line-height: 1.45em;
 			font-weight: bold;
 			font-family: $font-secondary;
 			font-variant: all-small-caps;
@@ -296,7 +281,6 @@ $font-quote: 'EB Garamond', sans-serif;
 
 		.resource-label-sm {
 			font-size: 1.125rem;
-			// line-height: 1.45em;
 			font-weight: bold;
 			font-family: $font-secondary;
 			font-variant: all-small-caps;
@@ -304,23 +288,20 @@ $font-quote: 'EB Garamond', sans-serif;
 
 		.resource-label-m {
 			font-size: 1.25rem;
-			// line-height: 1.45em;
 			font-weight: bold;
 			font-family: $font-secondary;
 			font-variant: all-small-caps;
 		}
 
 		.resource-label-l {
-			font-size: 1.25rem;
-			// line-height: 1.45em;
+			font-size: 1.5rem;
 			font-weight: bold;
 			font-family: $font-secondary;
 			font-variant: all-small-caps;
 		}
 
 		.resource-label-xl {
-			font-size: 1.25rem;
-			// line-height: 1.45em;
+			font-size: 1.5rem;
 			font-weight: bold;
 			font-family: $font-secondary;
 			font-variant: all-small-caps;
@@ -328,7 +309,7 @@ $font-quote: 'EB Garamond', sans-serif;
 	}
 
 	label.is-crisis {
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 		font-weight: bold;
 		font-family: $font-secondary;
 		font-variant: all-small-caps;
@@ -484,135 +465,210 @@ $font-quote: 'EB Garamond', sans-serif;
 	}
 }
 
-.is-offensive::before {
-	content: 'r';
+@mixin martial-icon {
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
+	color: $color-danger !important;
+	-webkit-text-stroke: 0.5px $color-black;
 }
 
 .is-offensive {
-	color: $color-danger !important;
-	font-family: 'Heydings Icons';
-	font-size: 1.5rem;
-	-webkit-text-stroke: 0.5px $color-black;
-}
+	@include martial-icon;
 
-.is-martial::before {
-	content: 'E';
+	&::before {
+		content: 'o';
+	}
 }
 
 .is-martial {
-	color: $color-danger !important;
-	font-family: 'FnT_BasicShapes1';
-	font-size: 1.5rem;
-	-webkit-text-stroke: 0.5px $color-black;
+	@include martial-icon;
+
+	&::before {
+		content: 'w';
+	}
 }
 
-.is-melee::before {
-	content: 'm';
+@mixin action-icon {
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
+	color: $color-black !important;
 }
 
 .is-melee {
-	color: $color-black !important;
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.5rem;
-}
+	@include action-icon;
 
-.is-range::before {
-	content: 'r';
+	&::before {
+		content: 'm';
+	}
 }
 
 .is-range {
-	color: $color-black !important;
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.5rem;
-}
+	@include action-icon;
 
-.is-spell::before {
-	content: 'c';
+	&::before {
+		content: 'r';
+	}
 }
 
 .is-spell {
-	color: $color-black !important;
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.5rem;
-}
+	@include action-icon;
 
-.is-skill::before {
-	content: 's';
+	&::before {
+		content: 'c';
+	}
 }
 
 .is-skill {
-	color: $color-black !important;
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.5rem;
-}
+	@include action-icon;
 
-.is-two-weapon::before {
-	content: '4';
+	&::before {
+		content: 's';
+	}
 }
 
 .is-two-weapon {
 	color: $color-black !important;
 	font-family: 'Evilz';
-	font-size: 1.5rem;
+	font-size: 1.75rem;
 	-webkit-text-stroke: 0.5px $color-black;
-}
 
-.is-header::before {
-	content: 'd';
+	&::before {
+		content: '4';
+	}
 }
 
 .is-header {
-	font-size: 1.5rem;
+	font-size: 1.75rem;
 	color: $color-black;
 	font-family: 'old retro labels tfb';
+
+	&::before {
+		content: 'd';
+	}
 }
 
-.is-diamond::before {
-	content: 'Q';
+@mixin aff-icon {
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
+
+	&::before {
+		content: '';
+	}
 }
 
-.is-diamond {
-	color: $color-danger !important;
+.fu-phys {
+	@include aff-icon;
+
+	&::before {
+		content: 'P';
+	}
+}
+
+.fu-wind {
+	@include aff-icon;
+
+	&::before {
+		content: 'A';
+	}
+}
+
+.fu-bolt {
+	@include aff-icon;
+
+	&::before {
+		content: 'B';
+	}
+}
+
+.fu-dark {
+	@include aff-icon;
+
+	&::before {
+		content: 'D';
+	}
+}
+
+.fu-earth {
+	@include aff-icon;
+
+	&::before {
+		content: 'E';
+	}
+}
+
+.fu-fire {
+	@include aff-icon;
+
+	&::before {
+		content: 'F';
+	}
+}
+
+.fu-ice {
+	@include aff-icon;
+
+	&::before {
+		content: 'I';
+	}
+}
+
+.fu-light {
+	@include aff-icon;
+
+	&::before {
+		content: 'L';
+	}
+}
+
+.fu-poison {
+	@include aff-icon;
+
+	&::before {
+		content: 'T';
+	}
+}
+
+@mixin card-suit-icon {
 	font-family: 'FnT_BasicShapes1';
-	font-size: 1.5rem;
+	font-size: 1.75rem;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
-.is-club::before {
-	content: 'P';
+// Specific styles for each card suit
+.is-diamond {
+	@include card-suit-icon;
+	color: $color-danger !important;
+
+	&::before {
+		content: 'Q';
+	}
 }
 
 .is-club {
-	font-family: 'FnT_BasicShapes1';
-	font-size: 1.5rem;
-	-webkit-text-stroke: 0.5px $color-black;
-}
+	@include card-suit-icon;
+	color: $color-black !important;
 
-.is-heart::before {
-	content: 'O';
+	&::before {
+		content: 'P';
+	}
 }
 
 .is-heart {
+	@include card-suit-icon;
 	color: $color-danger !important;
-	font-family: 'FnT_BasicShapes1';
-	font-size: 1.5rem;
-	-webkit-text-stroke: 0.5px $color-black;
-}
 
-.is-spade::before {
-	content: 'R';
+	&::before {
+		content: 'O';
+	}
 }
 
 .is-spade {
-	font-family: 'FnT_BasicShapes1';
-	font-size: 1.5rem;
-	-webkit-text-stroke: 0.5px $color-black;
-}
+	@include card-suit-icon;
+	color: $color-black !important;
 
-.heydings {
-	font-family: 'Heydings Icons';
-	font-size: 1.125rem;
-	-webkit-text-stroke: 0.5px $color-black;
+	&::before {
+		content: 'R';
+	}
 }
 
 .fnt {
@@ -621,21 +677,15 @@ $font-quote: 'EB Garamond', sans-serif;
 	-webkit-text-stroke: 0.5px $color-black;
 }
 
+.retrolabels {
+	color: $color-black;
+	font-family: 'old retro labels tfb';
+}
+
 .evil {
 	font-family: 'Evilz';
 	font-size: 1.125rem;
 	-webkit-text-stroke: 0.5px $color-black;
-}
-
-.websymbols {
-	font-family: 'Web Symbols';
-	font-size: 1.125rem;
-	-webkit-text-stroke: 0.5px $color-black;
-}
-
-.retrolabels {
-	color: $color-black;
-	font-family: 'old retro labels tfb';
 }
 
 $font-sizes: (10, 11, 12, 13, 14, 15, 16, 18, 20, 24, 28, 32, 36, 48, 64, 80);

@@ -1,6 +1,6 @@
 {{!-- Affinity Template --}}
-<div class="affinities">
-    <div class="grid grid-9col">
+<div class="affinities desc">
+    <div class="grid grid-9col" style="margin-left: -5px;margin-bottom: -5px;">
         {{#if system.affinities}}
             {{#each system.affinities as |affinity key|}}
                 <div class="affinity resource-content flex-group-center">
@@ -8,11 +8,10 @@
                            data-roll-type="affinity-type"
                            data-action='{"label": "{{ affinity.label }}", "affTypeCurr": "{{ affinity.affTypeCurr }}"}'
                            data-tooltip="{{ affinity.label }} <br> {{ affinity.affTypeCurr }}">
-                <span class="resource-label-m">
-                    <i class="{{ affinity.icon }} icon-aff"></i>
-                    {{ affinity.affTypeCurrAbbr }}
-                    <br />
-                </span>
+
+                    <i class="{{ affinity.icon }}"></i>
+                    <span class="resource-label-l">{{ affinity.affTypeCurrAbbr }}</span>
+
                     </label>
                 </div>
             {{/each}}

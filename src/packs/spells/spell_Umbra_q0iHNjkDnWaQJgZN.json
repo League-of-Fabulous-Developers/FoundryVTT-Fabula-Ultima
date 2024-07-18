@@ -71,7 +71,7 @@
       "value": 1
     },
     "mpCost": {
-      "value": "10 x T"
+      "value": "10"
     },
     "target": {
       "value": "Up to three creatures"
@@ -115,7 +115,10 @@
     "hasRoll": {
       "value": true
     },
-    "opportunity": "Each target hit by this spell suffers weak."
+    "opportunity": "Each target hit by this spell suffers weak.",
+    "maxTargets": {
+      "value": 3
+    }
   },
   "effects": [],
   "ownership": {
@@ -131,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706571857966,
-    "modifiedTime": 1721098201212,
+    "modifiedTime": 1721232223488,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

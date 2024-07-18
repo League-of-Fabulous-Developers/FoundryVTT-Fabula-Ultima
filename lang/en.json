@@ -956,6 +956,8 @@
 		"InlineEffectConfigImproveDefensesDefense": "Defense Type",
 		"InlineEffectConfigImproveDefensesValue": "Improve to:",
 		"UiControlTitle": "Project FU",
+		"RenameCurrency": "Rename Currency",
+		"RenameCurrencyHint": "Rename the primary currency (Zenit).",
 		"AppMetaCurrencyTrackerTitle": "Meta-Currency Tracker",
 		"AppMetaCurrencyTrackerFabula": "Spent Fabula Points",
 		"AppMetaCurrencyTrackerUltima": "Spent Ultima Points",

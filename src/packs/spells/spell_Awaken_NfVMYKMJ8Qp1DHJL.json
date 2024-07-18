@@ -115,7 +115,10 @@
     "hasRoll": {
       "value": false
     },
-    "opportunity": ""
+    "opportunity": "",
+    "maxTargets": {
+      "value": 1
+    }
   },
   "effects": [],
   "ownership": {
@@ -131,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706572044662,
-    "modifiedTime": 1721096932323,
+    "modifiedTime": 1721232279544,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 400000,

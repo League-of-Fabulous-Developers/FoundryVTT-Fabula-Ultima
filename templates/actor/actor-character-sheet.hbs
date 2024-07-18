@@ -1,6 +1,6 @@
 <form class="{{ cssClass }} {{ actor.type }} projectfu-actor-sheet h-100" autocomplete="off">
     <div class="sheet-content-wrapper">
-        <header class="sheet-header desc">
+        <header class="sheet-header">
             {{!-- Name/HP/Level Section --}}
             {{>"systems/projectfu/templates/actor/partials/actor-header.hbs" actor=actor}}
             {{!-- Statuses/Attributes/RollCheck Section --}}
@@ -24,9 +24,9 @@
                 </a>
                 <a class="item tab-style" data-tab="settings" data-tooltip="{{localize 'FU.Settings'}}">
                     <i class="fas fa-sliders"></i>
-                </a>
-                <a class="item zenit-style" data-tooltip="{{localize 'FU.Zenit'}}">
-                    <i class="fas fa-coin"></i>
+                </a> 
+                <a class="item zenit-style" data-tooltip="{{getGameSetting 'optionRenameCurrency'}}">
+                    <i class="fuk fu-zenit icon-aff" style="margin-bottom: -4px;"></i>
 
                     <input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}"
                            data-dtype="Number" />

@@ -111,7 +111,10 @@
       "value": "FUCR311"
     },
     "subtype": {},
-    "opportunity": ""
+    "opportunity": "",
+    "maxTargets": {
+      "value": 1
+    }
   },
   "effects": [],
   "flags": {
@@ -123,7 +126,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1690417015023,
-    "modifiedTime": 1721100546635,
+    "modifiedTime": 1721232466218,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "folder": "PpBzAnM7EK75ayIT",

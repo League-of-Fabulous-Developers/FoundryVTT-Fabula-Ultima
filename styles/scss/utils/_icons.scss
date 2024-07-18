@@ -4,102 +4,62 @@ $fus-star: url('/systems/projectfu/styles/static/icons/fus-star.svg');
 $fus-star2: url('/systems/projectfu/styles/static/icons/fus-star2.svg');
 $fus-star2-border: url('/systems/projectfu/styles/static/icons/fus-star2-border.svg');
 
-$fu-action-melee: url('/systems/projectfu/styles/static/icons/fu-action-melee.svg');
-$fu-action-ranged: url('/systems/projectfu/styles/static/icons/fu-action-ranged.svg');
-$fu-action-skill: url('/systems/projectfu/styles/static/icons/fu-action-skill.svg');
-$fu-action-spell: url('/systems/projectfu/styles/static/icons/fu-action-spell.svg');
-$fus-offensive: url('/systems/projectfu/styles/static/icons/fus-offensive.svg');
-$fus-martial: url('/systems/projectfu/styles/static/icons/fus-martial.svg');
-$ful-offensive: url('/systems/projectfu/styles/static/icons/ful-offensive.svg');
-$ful-martial: url('/systems/projectfu/styles/static/icons/ful-martial.svg');
+// $fu-action-melee: url('/systems/projectfu/styles/static/icons/fu-action-melee.svg');
+// $fu-action-ranged: url('/systems/projectfu/styles/static/icons/fu-action-ranged.svg');
+// $fu-action-skill: url('/systems/projectfu/styles/static/icons/fu-action-skill.svg');
+// $fu-action-spell: url('/systems/projectfu/styles/static/icons/fu-action-spell.svg');
+// $fus-offensive: url('/systems/projectfu/styles/static/icons/fus-offensive.svg');
+// $fus-martial: url('/systems/projectfu/styles/static/icons/fus-martial.svg');
+// $ful-offensive: url('/systems/projectfu/styles/static/icons/ful-offensive.svg');
+// $ful-martial: url('/systems/projectfu/styles/static/icons/ful-martial.svg');
+// $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
+// $fu-guard: url('/systems/projectfu/styles/static/icons/fu-guard.svg');
 
-$fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
-$fu-guard: url('/systems/projectfu/styles/static/icons/fu-guard.svg');
-$fu-phys: url('/systems/projectfu/styles/static/icons/fu-phys.svg');
-$fu-wind: url('/systems/projectfu/styles/static/icons/fu-wind.svg');
-$fu-bolt: url('/systems/projectfu/styles/static/icons/fu-bolt.svg');
-$fu-dark: url('/systems/projectfu/styles/static/icons/fu-dark.svg');
-$fu-earth: url('/systems/projectfu/styles/static/icons/fu-earth.svg');
-$fu-fire: url('/systems/projectfu/styles/static/icons/fu-fire.svg');
-$fu-ice: url('/systems/projectfu/styles/static/icons/fu-ice.svg');
-$fu-light: url('/systems/projectfu/styles/static/icons/fu-light.svg');
-$fu-poison: url('/systems/projectfu/styles/static/icons/fu-poison.svg');
+$fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 
-.fu-action-melee {
-	background-image: $fu-action-melee;
+.fu-zenit {
+	background-image: $fu-zenit;
 }
 
-.fu-action-ranged {
-	background-image: $fu-action-ranged;
-}
+// .fu-action-melee {
+// 	background-image: $fu-action-melee;
+// }
 
-.fu-action-skill {
-	background-image: $fu-action-skill;
-}
+// .fu-action-ranged {
+// 	background-image: $fu-action-ranged;
+// }
 
-.fu-action-spell {
-	background-image: $fu-action-spell;
-}
+// .fu-action-skill {
+// 	background-image: $fu-action-skill;
+// }
 
-.fus-offensive {
-	background-image: $fus-offensive;
-}
+// .fu-action-spell {
+// 	background-image: $fu-action-spell;
+// }
 
-.ful-offensive {
-	background-image: $ful-offensive;
-}
+// .fus-offensive {
+// 	background-image: $fus-offensive;
+// }
 
-.fus-martial {
-	background-image: $fus-martial;
-}
+// .ful-offensive {
+// 	background-image: $ful-offensive;
+// }
 
-.ful-martial {
-	background-image: $ful-martial;
-}
+// .fus-martial {
+// 	background-image: $fus-martial;
+// }
 
-.fu-d20 {
-	background-image: $fu-d20;
-}
+// .ful-martial {
+// 	background-image: $ful-martial;
+// }
 
-.fu-guard {
-	background-image: $fu-guard;
-}
+// .fu-d20 {
+// 	background-image: $fu-d20;
+// }
 
-.fu-phys {
-	background-image: $fu-phys;
-}
-
-.fu-wind {
-	background-image: $fu-wind;
-}
-
-.fu-bolt {
-	background-image: $fu-bolt;
-}
-
-.fu-dark {
-	background-image: $fu-dark;
-}
-
-.fu-earth {
-	background-image: $fu-earth;
-}
-
-.fu-fire {
-	background-image: $fu-fire;
-}
-
-.fu-ice {
-	background-image: $fu-ice;
-}
-
-.fu-light {
-	background-image: $fu-light;
-}
-
-.fu-poison {
-	background-image: $fu-poison;
-}
+// .fu-guard {
+// 	background-image: $fu-guard;
+// }
 
 .fu-aura {
 	background-image: url('/icons/svg/aura.svg');
@@ -109,8 +69,9 @@ $fu-poison: url('/systems/projectfu/styles/static/icons/fu-poison.svg');
 	width: 24px;
 	height: 24px;
 	background-size: cover;
-	margin: -4px 0px;
 	fill: $color-secondary;
+	font-style: normal;
+	font-style: normal;
 }
 
 .fusl {
@@ -124,8 +85,8 @@ $fu-poison: url('/systems/projectfu/styles/static/icons/fu-poison.svg');
 	width: 18px;
 	height: 18px;
 	background-size: cover;
-	margin: -4px 0px;
 	fill: $color-secondary;
+	font-style: normal;
 }
 
 .ful-sl-star {

@@ -956,6 +956,8 @@
 		"InlineEffectConfigImproveDefensesDefense": "Tipo de Defesa",
 		"InlineEffectConfigImproveDefensesValue": "Melhorar para:",
 		"UiControlTitle": "Project FU",
+		"RenameCurrency": "RenameCurrency",
+		"RenameCurrencyHint": "RenameCurrencyHint",
 		"AppMetaCurrencyTrackerTitle": "Rastreador de Meta-Recurso",
 		"AppMetaCurrencyTrackerFabula": "Pontos Fabulas Gastos",
 		"AppMetaCurrencyTrackerUltima": "Pontos Ultima Gastos",

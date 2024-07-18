@@ -31,8 +31,6 @@ Supplied game rules in the system compendium adhere to and are published under t
 - [PT Sans Narrow](https://fonts.google.com/specimen/PT+Sans+Narrow) under the [Open Font License](https://openfontlicense.org/)
 - [Evilz Font](https://www.fontspace.com/evilz-font-f4530) by N+ under Freeware - Personal & Commercial Use
 - [FnT Basic Shapes 1](https://www.fonts4free.net/fnt-basic-shapes-1-font.html) by Fonts & Things @ <info@fontsnthings.com> under Freeware - Personal & Commercial Use
-- [Heydings Icons](https://www.dafont.com/heydings-icons.font) by [Heydon Pickering](https://heydonworks.com/) @ <heydon@heydonworks.com> under the [Open Font License](https://openfontlicense.org/)
-- [WebSymbols-Regular] by Just Be Nice studio under Freeware - Personal & Commercial Use
 - [Old Retro Labels TFB](https://www.dafont.com/old-retro-labels-tfb.font) by [zanatlija](https://www.dafont.com/kaiser-zhar-khan.d2400) under Freeware - Personal & Commercial Use
 
 ## The following icons are sourced by [game-icons.net](https://game-icons.net)

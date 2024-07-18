@@ -71,7 +71,7 @@
       "value": 1
     },
     "mpCost": {
-      "value": "10 × T"
+      "value": "10"
     },
     "target": {
       "value": "Up to three creatures"
@@ -115,7 +115,10 @@
     "hasRoll": {
       "value": true
     },
-    "opportunity": "Each target hit by this spell suffers shaken."
+    "opportunity": "Each target hit by this spell suffers shaken.",
+    "maxTargets": {
+      "value": 3
+    }
   },
   "effects": [],
   "ownership": {
@@ -131,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706565586057,
-    "modifiedTime": 1721098559904,
+    "modifiedTime": 1721232017125,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

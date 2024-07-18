@@ -71,10 +71,10 @@
       "value": 1
     },
     "mpCost": {
-      "value": "Up to three creatures"
+      "value": "5"
     },
     "target": {
-      "value": "5 x T"
+      "value": "Up to three creatures"
     },
     "duration": {
       "value": "instantaneous"
@@ -115,7 +115,10 @@
     "hasRoll": {
       "value": true
     },
-    "opportunity": ""
+    "opportunity": "",
+    "maxTargets": {
+      "value": 3
+    }
   },
   "effects": [],
   "ownership": {
@@ -131,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706572612784,
-    "modifiedTime": 1721096993415,
+    "modifiedTime": 1721232315623,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 300000,

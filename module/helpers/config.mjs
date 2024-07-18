@@ -98,7 +98,6 @@ FU.affType = {
 	1: 'FU.AffinityResistance',
 	2: 'FU.AffinityImmune',
 	3: 'FU.AffinityAbsorption',
-	4: 'FU.AffinityRepulsion',
 };
 
 FU.affTypeAbbr = {
@@ -107,7 +106,6 @@ FU.affTypeAbbr = {
 	1: 'FU.AffinityResistanceAbbr',
 	2: 'FU.AffinityImmuneAbbr',
 	3: 'FU.AffinityAbsorptionAbbr',
-	4: 'FU.AffinityRepulsionAbbr',
 };
 
 FU.affValue = {
@@ -116,7 +114,6 @@ FU.affValue = {
 	resistance: 1,
 	immunity: 2,
 	absorption: 3,
-	repulsion: 4,
 };
 
 FU.species = {

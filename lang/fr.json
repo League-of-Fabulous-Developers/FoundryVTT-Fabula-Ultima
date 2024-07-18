@@ -956,6 +956,8 @@
 		"InlineEffectConfigImproveDefensesDefense": "Type de Défense",
 		"InlineEffectConfigImproveDefensesValue": "Augmente de :",
 		"UiControlTitle": "Project FU",
+		"RenameCurrency": "RenameCurrency",
+		"RenameCurrencyHint": "RenameCurrencyHint",
 		"AppMetaCurrencyTrackerTitle": "Suivie des Méta-Monnaie",
 		"AppMetaCurrencyTrackerFabula": "Dépenser des Points Fabula",
 		"AppMetaCurrencyTrackerUltima": "Dépenser des Points Ultima",
