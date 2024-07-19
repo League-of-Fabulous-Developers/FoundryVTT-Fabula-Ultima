@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>On your turn during a conflict scene, you may use an action and spend a variable amount of MP to weave voice and music into a magical effect known as a <strong>verse</strong>.</p><p>You may only sing <strong>one verse</strong> per turn, even if you have access to multiple actions.</p><p>When you first acquire this Skill, you learn all three volumes, plus one key and one tone. Whenever you acquire this Skill again, you may learn one key or one tone (your choice).</p><p>For descriptions of how Verses are broken down as well as a list of all of the Keys and Tones, please refer to the following handout: @UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</p>",
+    "description": "<p>On your turn during a conflict scene, you may use an action and spend a variable amount of MP to weave voice and music into a magical effect known as a <strong>verse</strong>.</p><p>You may only sing <strong>one verse</strong> per turn, even if you have access to multiple actions.</p><p>When you first acquire this Skill, you learn <strong>all three volumes</strong>, plus <strong>one key</strong> and <strong>one tone</strong>. Whenever you acquire this Skill again, you may learn <strong>one key</strong> or <strong>one tone</strong> (your choice).</p><p>For descriptions of how <strong>verses</strong> are broken down as well as a list of all of the Keys and Tones, please refer to the following handout: @UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</p>",
     "isFavored": {
       "value": false
     },
@@ -132,7 +132,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706550402521,
-    "modifiedTime": 1721095740852,
+    "modifiedTime": 1721272042400,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "_key": "!items!bt4jQZ557iLHlazO"

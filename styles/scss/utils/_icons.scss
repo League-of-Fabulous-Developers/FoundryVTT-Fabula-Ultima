@@ -4,14 +4,10 @@ $fus-star: url('/systems/projectfu/styles/static/icons/fus-star.svg');
 $fus-star2: url('/systems/projectfu/styles/static/icons/fus-star2.svg');
 $fus-star2-border: url('/systems/projectfu/styles/static/icons/fus-star2-border.svg');
 
-// $fu-action-melee: url('/systems/projectfu/styles/static/icons/fu-action-melee.svg');
-// $fu-action-ranged: url('/systems/projectfu/styles/static/icons/fu-action-ranged.svg');
-// $fu-action-skill: url('/systems/projectfu/styles/static/icons/fu-action-skill.svg');
-// $fu-action-spell: url('/systems/projectfu/styles/static/icons/fu-action-spell.svg');
-// $fus-offensive: url('/systems/projectfu/styles/static/icons/fus-offensive.svg');
-// $fus-martial: url('/systems/projectfu/styles/static/icons/fus-martial.svg');
-// $ful-offensive: url('/systems/projectfu/styles/static/icons/ful-offensive.svg');
-// $ful-martial: url('/systems/projectfu/styles/static/icons/ful-martial.svg');
+$fus-offensive: url('/systems/projectfu/styles/static/icons/fus-offensive.svg');
+$fus-martial: url('/systems/projectfu/styles/static/icons/fus-martial.svg');
+$ful-offensive: url('/systems/projectfu/styles/static/icons/ful-offensive.svg');
+$ful-martial: url('/systems/projectfu/styles/static/icons/ful-martial.svg');
 // $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 // $fu-guard: url('/systems/projectfu/styles/static/icons/fu-guard.svg');
 
@@ -21,48 +17,31 @@ $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 	background-image: $fu-zenit;
 }
 
-// .fu-action-melee {
-// 	background-image: $fu-action-melee;
-// }
+.fus-offensive {
+	background-image: $fus-offensive;
+}
 
-// .fu-action-ranged {
-// 	background-image: $fu-action-ranged;
-// }
+.ful-offensive {
+	background-image: $ful-offensive;
+}
 
-// .fu-action-skill {
-// 	background-image: $fu-action-skill;
-// }
+.fus-martial {
+	background-image: $fus-martial;
+}
 
-// .fu-action-spell {
-// 	background-image: $fu-action-spell;
-// }
-
-// .fus-offensive {
-// 	background-image: $fus-offensive;
-// }
-
-// .ful-offensive {
-// 	background-image: $ful-offensive;
-// }
-
-// .fus-martial {
-// 	background-image: $fus-martial;
-// }
-
-// .ful-martial {
-// 	background-image: $ful-martial;
-// }
-
-// .fu-d20 {
-// 	background-image: $fu-d20;
-// }
-
-// .fu-guard {
-// 	background-image: $fu-guard;
-// }
+.ful-martial {
+	background-image: $ful-martial;
+}
 
 .fu-aura {
 	background-image: url('/icons/svg/aura.svg');
+}
+
+.fua {
+	width: 24px;
+	height: 24px;
+	background-size: cover;
+	font-style: normal;
 }
 
 .fun {
@@ -70,7 +49,6 @@ $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 	height: 24px;
 	background-size: cover;
 	fill: $color-secondary;
-	font-style: normal;
 	font-style: normal;
 }
 

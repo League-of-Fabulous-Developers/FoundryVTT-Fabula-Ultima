@@ -1,6 +1,6 @@
 {{!-- Affinity Template --}}
 <div class="affinities desc">
-    <div class="grid grid-9col" style="margin-left: -5px;margin-bottom: -5px;">
+    <div class="grid grid-9col" style="margin-left: -5px; margin-bottom: -5px;">
         {{#if system.affinities}}
             {{#each system.affinities as |affinity key|}}
                 <div class="affinity resource-content flex-group-center">
@@ -11,7 +11,6 @@
 
                     <i class="{{ affinity.icon }}"></i>
                     <span class="resource-label-l">{{ affinity.affTypeCurrAbbr }}</span>
-
                     </label>
                 </div>
             {{/each}}

@@ -10,10 +10,11 @@
             {{#each system.affinities as |affinity key|}}
                 <div class="affinity resource-content flex-group-center flexcol">
                     <label data-label="{{ affinity.label }}" style="line-height: 1.2em">
-				<span class="resource-label-sm">
-					<i class="{{ affinity.icon }} icon-aff"></i>
+				<span>
+					<i class="{{ affinity.icon }}"></i>
 					<br />
-                    {{affinity.label}}
+                    <span class="resource-label-sm">{{affinity.label}}</span>
+                    
 				</span>
                     </label>
                     <select name="system.affinities.{{ key }}.base"
@@ -29,7 +30,7 @@
     {{!-- End Affinity Section --}}
 </fieldset>
 
-<section class="grid grid-3col gap-5">
+<section class="body-section grid grid-4col">
     <aside class="sidebar flex-group-center">
         {{!-- Global Bonus Sidebar --}}
     <fieldset class="section-container title-fieldset desc affinities resource-content">
@@ -164,7 +165,7 @@
 
     </aside>
 
-    <div class="grid-span-2">
+    <main class="grid-span-3">
         <fieldset class="section-container title-fieldset desc flex-group-center resource-content">
             <legend class="resource-label-m">
                 {{localize 'FU.ResourcePoints'}}
@@ -194,5 +195,5 @@
                 </div>
             {{/if}}
         </fieldset>
-    </div>
+    </main>
 </section>

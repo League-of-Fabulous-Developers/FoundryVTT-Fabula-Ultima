@@ -57,15 +57,15 @@ FU.damageTypes = {
 };
 
 FU.affIcon = {
-	physical: 'fun fu-phys',
-	air: 'fun fu-wind',
-	bolt: 'fun fu-bolt',
-	dark: 'fun fu-dark',
-	earth: 'fun fu-earth',
-	fire: 'fun fu-fire',
-	ice: 'fun fu-ice',
-	light: 'fun fu-light',
-	poison: 'fun fu-poison',
+	physical: 'fua fu-phys',
+	air: 'fua fu-wind',
+	bolt: 'fua fu-bolt',
+	dark: 'fua fu-dark',
+	earth: 'fua fu-earth',
+	fire: 'fua fu-fire',
+	ice: 'fua fu-ice',
+	light: 'fua fu-light',
+	poison: 'fua fu-poison',
 };
 
 FU.allIcon = {
@@ -81,15 +81,15 @@ FU.allIcon = {
 	club: 'is-club',
 	heart: 'is-heart',
 	spade: 'is-spade',
-	physical: 'fun fu-phys',
-	air: 'fun fu-wind',
-	bolt: 'fun fu-bolt',
-	dark: 'fun fu-dark',
-	earth: 'fun fu-earth',
-	fire: 'fun fu-fire',
-	ice: 'fun fu-ice',
-	light: 'fun fu-light',
-	poison: 'fun fu-poison',
+	physical: 'fua fu-phys',
+	air: 'fua fu-wind',
+	bolt: 'fua fu-bolt',
+	dark: 'fua fu-dark',
+	earth: 'fua fu-earth',
+	fire: 'fua fu-fire',
+	ice: 'fua fu-ice',
+	light: 'fua fu-light',
+	poison: 'fua fu-poison',
 };
 
 FU.affType = {
@@ -465,4 +465,14 @@ FU.duration = {
 	instantaneous: 'FU.Instantaneous',
 	scene: 'FU.Scene',
 	special: 'FU.Special',
+};
+
+FU.target = {
+	self: 'FU.Self',
+	oneCreature: 'FU.OneCreature',
+	twoCreature: 'FU.TwoCreatures',
+	threeCreature: 'FU.ThreeCreatures',
+	fourCreature: 'FU.FourCreatures',
+	fiveCreature: 'FU.FiveCreatures',
+	oneWeapon: 'FU.OneWeapon',
 };

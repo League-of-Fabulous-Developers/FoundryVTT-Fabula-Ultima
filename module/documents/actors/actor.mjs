@@ -202,6 +202,30 @@ export class FUActor extends Actor {
 		return super.applyActiveEffects();
 	}
 
+	async gainMetaCurrency() {
+		let metaCurrency;
+		if (this.type === 'character') {
+			metaCurrency = game.i18n.localize('FU.Fabula');
+		}
+		if (this.type === 'npc' && this.system.villain.value) {
+			metaCurrency = game.i18n.localize('FU.Ultima');
+		}
+
+		if (metaCurrency) {
+			await this.update({
+				'system.resources.fp.value': this.system.resources.fp.value + 1,
+			});
+			/** @type ChatMessageData */
+			const chatData = {
+				user: game.user.id,
+				speaker: ChatMessage.getSpeaker({ actor: this.name }),
+				flavor: game.i18n.format('FU.GainMetaCurrencyChatFlavor', { type: metaCurrency }),
+				content: game.i18n.format('FU.GainMetaCurrencyChatMessage', { actor: this.name, type: metaCurrency }),
+			};
+			ChatMessage.create(chatData);
+		}
+	}
+
 	async spendMetaCurrency() {
 		let metaCurrency;
 		if (this.type === 'character') {

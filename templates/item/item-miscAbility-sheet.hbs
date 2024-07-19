@@ -1,164 +1,172 @@
-<form class="{{ cssClass }} backgroundstyle" autocomplete="off">
-    {{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+<form class="{{ cssClass }} h-100 backgroundstyle" autocomplete="off">
+    <div class="sheet-content-wrapper">
+        {{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}}
 
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
+        {{!-- Sheet Wrapper --}}
+        <div class="sheet-wrapper">
 
-        {{!-- Effects Tab --}}
-        <div class="tab effects" data-group="primary" data-tab="effects">
-            {{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
-        </div>
+            {{!-- Sheet Body --}}
+            <section class="sheet-body">
 
-        {{!-- Description Tab --}}
-        <div class="tab desc resource-content" data-group="primary" data-tab="description">
-            <label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
-                {{localize 'FU.Description'}}
-                <i class="fas fa-info-circle"></i>
-            </label>
-            {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-                     button=true owner=owner editable=editable }}
-        </div>
+                {{!-- Effects Tab --}}
+                <div class="tab effects" data-group="primary" data-tab="effects">
+                    {{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
+                </div>
 
-        {{!-- Attributes Tab --}}
-        <div class="tab attributes resource-content" data-group="primary" data-tab="attributes">
-
-            <div class="grid grid-2col gap-5">
-
-                {{!-- Global Info --}}
-                <fieldset class="title-fieldset desc grid-span-2	">
-
-                    {{!-- Item Settings --}}
-                    <div class="item-settings">
-                        {{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
-                        <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ClockStatus'}}">
-							<span>
-                                {{#if item.system.hasClock.value}}
-                                    <i class="fas fa-clock"></i>
-                                {{else}}
-                                    <i class="far fa-clock"></i>
-                                {{/if}}
-                            </span><input type="checkbox" name="system.hasClock.value" {{ checked system.hasClock.value
-                        }} />
+                {{!-- Description Tab --}}
+                <div class="tab" data-group="primary" data-tab="description">
+                    <fieldset class="desc title-fieldset resource-content">
+                        <label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
+                            {{localize 'FU.Description'}}
+                            <i class="fas fa-info-circle"></i>
                         </label>
-                        <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ResourceStatus'}}">
-							<span>
-                                {{#if item.system.hasResource.value}}
-                                    <i class="fas fa-hashtag"></i>
-                                {{else}}
-                                    <i class="far fa-hashtag"></i>
-                                {{/if}}
-                            </span><input type="checkbox" name="system.hasResource.value" {{ checked
-                         system.hasResource.value }} />
-                        </label>
+                    {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
+                    button=true owner=owner editable=editable }}
+                    </fieldset>
+                </div>
 
-                        <label class="checkbox resource-label-sm"> <span>{{localize 'FU.HRZeroStatus'}}</span><input
-                         type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
-                             system.rollInfo.useWeapon.hrZero.value }} /> </label>
+                {{!-- Attributes Tab --}}
+                <div class="tab attributes resource-content" data-group="primary" data-tab="attributes">
+
+                    <div class="grid grid-2col gap-5">
+
+                        {{!-- Global Info --}}
+                        <fieldset class="title-fieldset desc grid-span-2	">
+
+                            {{!-- Item Settings --}}
+                            <div class="item-settings">
+                                {{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
+                                <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ClockStatus'}}">
+                                    <span>
+                                        {{#if item.system.hasClock.value}}
+                                            <i class="fas fa-clock"></i>
+                                        {{else}}
+                                            <i class="far fa-clock"></i>
+                                        {{/if}}
+                                    </span><input type="checkbox" name="system.hasClock.value" {{ checked system.hasClock.value
+                                }} />
+                                </label>
+                                <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ResourceStatus'}}">
+                                    <span>
+                                        {{#if item.system.hasResource.value}}
+                                            <i class="fas fa-hashtag"></i>
+                                        {{else}}
+                                            <i class="far fa-hashtag"></i>
+                                        {{/if}}
+                                    </span><input type="checkbox" name="system.hasResource.value" {{ checked
+                                system.hasResource.value }} />
+                                </label>
+
+                                <label class="checkbox resource-label-sm"> <span>{{localize 'FU.HRZeroStatus'}}</span><input
+                                type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
+                                    system.rollInfo.useWeapon.hrZero.value }} /> </label>
+                            </div>
+
+                            <div class=" flexcol flex-group-center">
+                                <label class="resource-label-m">{{localize 'FU.Opportunity'}}</label>
+                                <input type="text" name="system.opportunity" value="{{ system.opportunity }}"
+                                    class="resource-inputs select-dropdown-full grid-span-4" />
+                            </div>
+                        </fieldset>
+
+                        {{!-- Accuracy --}}
+                        <fieldset class="title-fieldset desc ">
+                            <legend>
+                                <label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize
+                                'FU.Accuracy'}}</label>
+                            </legend>
+                            <div class="item-settings  flex-group-center">
+                                <label class="checkbox resource-label-sm"> <span>{{localize 'FU.HasAccuracy'}}</span><input
+                                type="checkbox" name="system.hasRoll.value" {{ checked system.hasRoll.value }} />
+                                </label>
+                                |
+                                <label class="checkbox resource-label-sm"> <span>{{localize
+                                'FU.UseWeaponAccuracy'}}</span><input type="checkbox"
+                                                                    name="system.rollInfo.useWeapon.accuracy.value" {{ checked
+                                    system.rollInfo.useWeapon.accuracy.value }} /> </label>
+                            </div>
+
+                            <div class="grid grid-3col">
+                                <div class=" flexcol flex-group-center">
+                                    <label for="system.rollInfo.attributes.primary.value" class="resource-label-m">{{localize
+                                    'FU.Primary'}} </label>
+                                    <select
+                                    name="system.rollInfo.attributes.primary.value"
+                                    class="resource-inputs select-dropdown">
+                                        {{selectOptions attrAbbr selected=system.rollInfo.attributes.primary.value sort=true
+                                                        localize=true}}
+                                    </select>
+                                </div>
+                                <div class=" flexcol flex-group-center">
+                                    <label for="system.rollInfo.attributes.secondary.value" class="resource-label-m">{{localize
+                                    'FU.Secondary'}} </label>
+                                    <select
+                                    name="system.rollInfo.attributes.secondary.value"
+                                    class="resource-inputs select-dropdown">
+                                        {{selectOptions attrAbbr selected=system.rollInfo.attributes.secondary.value sort=true
+                                                        localize=true}}
+                                    </select>
+                                </div>
+                                <div class=" flexcol flex-group-center">
+                                    <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
+                                    <input type="number" name="system.rollInfo.accuracy.value"
+                                        value="{{ system.rollInfo.accuracy.value }}" class="resource-inputs"
+                                        data-dtype="Number" />
+                                </div>
+                                <div class="resource-content flexcol flex-group-center">
+                                    <label for="system.defense" class="resource-label-m flexlarge align-left">{{localize
+                                    'FU.Defense'}}</label>
+                                    <select name="system.defense" class="resource-inputs select-dropdown-m">
+                                        {{selectOptions defenses selected=system.defense sort=true localize=true
+                                                        labelAttr="abbr"}}
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        {{!-- Damage --}}
+                        <fieldset class="title-fieldset desc ">
+                            <legend>
+                                <label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize 'FU.Damage'}}</label>
+                            </legend>
+                            <div class="item-settings  flex-group-center">
+                                <label class="checkbox resource-label-sm"> <span>{{localize 'FU.HasDamage'}}</span><input
+                                type="checkbox" name="system.rollInfo.damage.hasDamage.value" {{ checked
+                                    system.rollInfo.damage.hasDamage.value }} /> </label>
+                                <label class="checkbox resource-label-sm"> <span>{{localize 'FU.UseWeaponDamage'}}</span><input
+                                type="checkbox" name="system.rollInfo.useWeapon.damage.value" {{ checked
+                                    system.rollInfo.useWeapon.damage.value }} /> </label>
+                            </div>
+                            <div class="grid grid-2col">
+                                <div class=" flexcol flex-group-center">
+                                    <label for="system.rollInfo.impdamage.type.value"
+                                        class="resource-label-m flexlarge">{{localize 'FU.DamageType'}} </label>
+                                    <select
+                                    name="system.rollInfo.damage.type.value" class="resource-inputs select-dropdown-m">
+                                        {{selectOptions damageTypes selected=system.rollInfo.damage.type.value sort=true
+                                                        localize=true}}
+                                    </select>
+                                </div>
+                                <div class=" flexcol flex-group-center">
+                                    <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
+                                    <input type="number" name="system.rollInfo.damage.value"
+                                        value="{{ system.rollInfo.damage.value }}" class="resource-inputs"
+                                        data-dtype="Number" />
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        {{!-- Resource Pointts --}}
+                        {{> "systems/projectfu/templates/item/partials/item-resource-points.hbs"}}
+
+                        {{!-- Clocks --}}
+                        {{> "systems/projectfu/templates/item/partials/item-progress-clock.hbs"}}
+
+                        {{!-- Behavior Field --}}
+                        {{> "systems/projectfu/templates/item/partials/item-behavior-field.hbs"}}
                     </div>
-
-                    <div class=" flexcol flex-group-center">
-                        <label class="resource-label-m">{{localize 'FU.Opportunity'}}</label>
-                        <input type="text" name="system.opportunity" value="{{ system.opportunity }}"
-                               class="resource-inputs select-dropdown-full grid-span-4" />
-                    </div>
-                </fieldset>
-
-                {{!-- Accuracy --}}
-                <fieldset class="title-fieldset desc ">
-                    <legend>
-                        <label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize
-                         'FU.Accuracy'}}</label>
-                    </legend>
-                    <div class="item-settings  flex-group-center">
-                        <label class="checkbox resource-label-sm"> <span>{{localize 'FU.HasAccuracy'}}</span><input
-                         type="checkbox" name="system.hasRoll.value" {{ checked system.hasRoll.value }} />
-                        </label>
-                        |
-                        <label class="checkbox resource-label-sm"> <span>{{localize
-                         'FU.UseWeaponAccuracy'}}</span><input type="checkbox"
-                                                               name="system.rollInfo.useWeapon.accuracy.value" {{ checked
-                             system.rollInfo.useWeapon.accuracy.value }} /> </label>
-                    </div>
-
-                    <div class="grid grid-3col">
-                        <div class=" flexcol flex-group-center">
-                            <label for="system.rollInfo.attributes.primary.value" class="resource-label-m">{{localize
-                             'FU.Primary'}} </label>
-                            <select
-                             name="system.rollInfo.attributes.primary.value"
-                             class="resource-inputs select-dropdown">
-                                {{selectOptions attrAbbr selected=system.rollInfo.attributes.primary.value sort=true
-                                                localize=true}}
-                            </select>
-                        </div>
-                        <div class=" flexcol flex-group-center">
-                            <label for="system.rollInfo.attributes.secondary.value" class="resource-label-m">{{localize
-                             'FU.Secondary'}} </label>
-                            <select
-                             name="system.rollInfo.attributes.secondary.value"
-                             class="resource-inputs select-dropdown">
-                                {{selectOptions attrAbbr selected=system.rollInfo.attributes.secondary.value sort=true
-                                                localize=true}}
-                            </select>
-                        </div>
-                        <div class=" flexcol flex-group-center">
-                            <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
-                            <input type="number" name="system.rollInfo.accuracy.value"
-                                   value="{{ system.rollInfo.accuracy.value }}" class="resource-inputs"
-                                   data-dtype="Number" />
-                        </div>
-                        <div class="resource-content flexcol flex-group-center">
-                            <label for="system.defense" class="resource-label-m flexlarge align-left">{{localize
-                             'FU.Defense'}}</label>
-                            <select name="system.defense" class="resource-inputs select-dropdown-m">
-                                {{selectOptions defenses selected=system.defense sort=true localize=true
-                                                labelAttr="abbr"}}
-                            </select>
-                        </div>
-                    </div>
-                </fieldset>
-
-                {{!-- Damage --}}
-                <fieldset class="title-fieldset desc ">
-                    <legend>
-                        <label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize 'FU.Damage'}}</label>
-                    </legend>
-                    <div class="item-settings  flex-group-center">
-                        <label class="checkbox resource-label-sm"> <span>{{localize 'FU.HasDamage'}}</span><input
-                         type="checkbox" name="system.rollInfo.damage.hasDamage.value" {{ checked
-                             system.rollInfo.damage.hasDamage.value }} /> </label>
-                        <label class="checkbox resource-label-sm"> <span>{{localize 'FU.UseWeaponDamage'}}</span><input
-                         type="checkbox" name="system.rollInfo.useWeapon.damage.value" {{ checked
-                             system.rollInfo.useWeapon.damage.value }} /> </label>
-                    </div>
-                    <div class="grid grid-2col">
-                        <div class=" flexcol flex-group-center">
-                            <label for="system.rollInfo.impdamage.type.value"
-                                   class="resource-label-m flexlarge">{{localize 'FU.DamageType'}} </label>
-                            <select
-                             name="system.rollInfo.damage.type.value" class="resource-inputs select-dropdown-m">
-                                {{selectOptions damageTypes selected=system.rollInfo.damage.type.value sort=true
-                                                localize=true}}
-                            </select>
-                        </div>
-                        <div class=" flexcol flex-group-center">
-                            <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
-                            <input type="number" name="system.rollInfo.damage.value"
-                                   value="{{ system.rollInfo.damage.value }}" class="resource-inputs"
-                                   data-dtype="Number" />
-                        </div>
-                    </div>
-                </fieldset>
-
-                {{!-- Resource Pointts --}}
-                {{> "systems/projectfu/templates/item/partials/item-resource-points.hbs"}}
-
-                {{!-- Clocks --}}
-                {{> "systems/projectfu/templates/item/partials/item-progress-clock.hbs"}}
-
-                {{!-- Behavior Field --}}
-                {{> "systems/projectfu/templates/item/partials/item-behavior-field.hbs"}}
-            </div>
+                </div>
+            </section>
         </div>
-    </section>
+    </div>
 </form>

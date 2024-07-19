@@ -11,7 +11,6 @@ export class FUItemSheet extends ItemSheet {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['projectfu', 'sheet', 'item', 'backgroundstyle'],
 			width: 700,
-			height: 700,
 			tabs: [
 				{
 					navSelector: '.sheet-tabs',

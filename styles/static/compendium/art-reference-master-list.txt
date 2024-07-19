@@ -4,31 +4,54 @@ modern-rpg - Pixeltier's Modern RPG Icon Pack
 alchemy-rpg - Pixeltier's Alchemy RPG Icon Pack
 
 ----------------------------------------------------
-[projectfu\styles\static\compendium\weapons\*]
+[projectfu\styles\static\compendium\armor\*]
 
-Weapon Assets:
-broadaxe (axe_40)
-bronze-sword (sword_136)
-chain-whip (recolor of weapon_74)
-crossbow (bow_20)
-greatsword (sword_159)
-heavy-spear (weapon_25)
-improvied-melee (log_7)
-improvised-ranged (fabric3_3)
-iron-hammer (hammer_14)
-katana (sword_130)
-light-spear (weapon_3)
-pistol (gun_1)
-rapier (sword_153)
-shortbow (bow_2)
-shuriken (weapon_199)
-staff (magicweapon_28)
-steel-dagger (sword_88)
-tome (book_11)
-unarmed-strike (glove_1)
-waraxe (axe_16)
- 
-iron-knuckles by RubenE (Social: @/only_ruben_draw)
+Armor/Shield Assets:
+no-armor (modern-rpg, shirt_063)
+travel-garb (jacket_1)
+combat-tunic (armor_85)
+sage-robe (cloak_1)
+runic-shield (shield_66)
+silk-shirt (modern-rpg, shirt_133)
+brigadine (armor_36)
+bronze-plate (armor_69)
+runic-plate (armor_5)
+steel-plate (armor_72)
+bronze-shield (shield_65)
+
+---------------------------------------------------
+[projectfu\styles\static\compendium\consumables\*]
+
+Consumables Assets:
+elixir (alchemy-rpg, bottle_002)
+remedy (alchemy-rpg, bottle_001)
+tonic (alchemy-rpg, bottle_004)
+elemental-shard (crystal_7)
+tent (custom-made by drak)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\twin-shields\*]
+
+Twin Shield Assets:
+twin-shield (recolor of shield_110)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\magicannon\*]
+
+Magicannon Assets:
+magicannon (replaced with recolor modern-rpg,-rpg, gun_004)
+magicannon-air (recolor of modern-rpg, gun_004)
+magicannon-bolt (recolor of modern-rpg, gun_004)
+magicannon-earth (recolor of modern-rpg, gun_004)
+magicannon-fire (recolor of modern-rpg, gun_004)
+magicannon-ice (recolor of modern-rpg, gun_004)
+magicannon-physical (recolor of modern-rpg, gun_004)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\ui\*]
+
+UI Assets:
+coins_5 (coins_5)
 
 --------------------------------------------------
 [projectfu\styles\static\compendium\weapon-modules\*]
@@ -55,48 +78,31 @@ claw_module
 scythe-module
 
 ----------------------------------------------------
-[projectfu\styles\static\compendium\armor\*]
+[projectfu\styles\static\compendium\weapons\*]
 
-Armor/Shield Assets:
-no-armor (modern-rpg, shirt_063)
-travel-garb (jacket_1)
-combat-tunic (armor_85)
-sage-robe (cloak_1)
-runic-shield (shield_66)
-silk-shirt (modern-rpg, shirt_133)
-brigadine (armor_36)
-bronze-plate (armor_69)
-runic-plate (armor_5)
-steel-plate (armor_72)
-bronze-shield (shield_65)
-
----------------------------------------------------
-[projectfu\styles\static\compendium\consumables\*]
-
-consumables-assets:
-elixir (alchemy-rpg, bottle_002)
-remedy (alchemy-rpg, bottle_001)
-tonic (alchemy-rpg, bottle_004)
-elemental-shard (crystal_7)
-tent (custom-made by drak)
-
---------------------------------------------------
-[projectfu\styles\static\compendium\twin-shields\*]
-
-Twin Shield Assets:
-twin-shield (recolor of shield_110)
-
---------------------------------------------------
-[projectfu\styles\static\compendium\magicannon\*]
-
-Magicannon Assets:
-magicannon (replaced with recolor modern-rpg,-rpg, gun_004)
-magicannon-air (recolor of modern-rpg, gun_004)
-magicannon-bolt (recolor of modern-rpg, gun_004)
-magicannon-earth (recolor of modern-rpg, gun_004)
-magicannon-fire (recolor of modern-rpg, gun_004)
-magicannon-ice (recolor of modern-rpg, gun_004)
-magicannon-physical (recolor of modern-rpg, gun_004)
+Weapon Assets:
+broadaxe (axe_40)
+bronze-sword (sword_136)
+chain-whip (recolor of weapon_74)
+crossbow (bow_20)
+greatsword (sword_159)
+heavy-spear (weapon_25)
+improvied-melee (log_7)
+improvised-ranged (fabric3_3)
+iron-hammer (hammer_14)
+katana (sword_130)
+light-spear (weapon_3)
+pistol (gun_1)
+rapier (sword_153)
+shortbow (bow_2)
+shuriken (weapon_199)
+staff (magicweapon_28)
+steel-dagger (sword_88)
+tome (book_11)
+unarmed-strike (glove_1)
+waraxe (axe_16)
+ 
+iron-knuckles by RubenE (Social: @/only_ruben_draw)
 
 --------------------------------------------------
 [projectfu\styles\static\compendium\classes\arcanum\*]

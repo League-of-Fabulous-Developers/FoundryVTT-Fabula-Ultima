@@ -1,75 +1,78 @@
-<form class="{{ cssClass }} backgroundstyle" autocomplete="off">
-    {{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+<form class="{{ cssClass }} h-100 backgroundstyle" autocomplete="off">
+    <div class="sheet-content-wrapper">
+        {{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}}
 
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
+        {{!-- Sheet Wrapper --}}
+        <div class="sheet-wrapper">
 
-        {{!-- Main Attributes --}}
-        <section class="resource-content summary gap-5 desc mb-5">
-            <label class="resource-label-sm" style="position: sticky;" for="system.summary.value"> <i
-                    class="fas fa-chart-simple icon"></i>{{localize
-                'FU.AttributesKey'}}
-            </label>
-            <div class="grid grid-3col">
-                <div class="grid grid-6col" style="padding: 1px;">
-                    <div class="resource-content flexcol flex-group-center grid-span-2">
-                        <label class="resource-label-m">{{localize "FU.Cost"}}</label>
-                        <input type="number" name="system.cost.value" value="{{ system.cost.value }}"
-                            data-dtype="Number" class="resource-inputs select-dropdown-m" />
-                    </div>
-                    <div class="resource-content flexcol flex-group-center grid-span-2">
-                        <label class="resource-label-m">{{localize "FU.Quantity"}}</label>
-                        <input type="number" name="system.quantity.value" value="{{ system.quantity.value }}"
-                            data-dtype="Number" class="resource-inputs select-dropdown-m" />
-                    </div>
-                    <div class="resource-content flexcol flex-group-center grid-span-2">
-                        <label class="resource-label-m">{{localize "FU.Origin"}}</label>
-                        <input type="text" name="system.origin.value" value="{{ system.origin.value }}"
-                            data-dtype="String" class="resource-inputs select-dropdown-full" />
-                    </div>
-                </div>
-        </section>
+            {{!-- Sheet Body --}}
+            <section class="sheet-body">
 
-        {{!-- Effects Tab --}}
-        <div class="tab effects" data-group="primary" data-tab="effects">
-            {{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
-        </div>
-
-        {{!-- Description Tab --}}
-        <div class="tab description" data-group="primary" data-tab="description">
-
-            <section class="grid grid-2col gap-5">
-
-                {{!-- Description --}}
-                <div class="grid-span-2 desc flex-between">
-                    {{editor enrichedHtml.description target="system.description" engine="prosemirror"
-                    rollData=rollData button=true owner=owner editable=editable }}
-                </div>
-
-            </section>
-        </div>
-
-        {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
-
-            <section class="grid grid-2col gap-5">
-
-                {{!-- General Info Section --}}
-                <fieldset class="title-fieldset desc resource-content grid-span-2">
-
-                    {{!-- Item Controls --}}
-                    <div class="item-settings">
-                        {{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
-                    </div>
+                {{!-- Main Attributes --}}
+                <section class="resource-content summary gap-5 desc mb-5">
+                    <label class="resource-label-sm" style="position: sticky;" for="system.summary.value"> <i
+                            class="fas fa-chart-simple icon"></i>{{localize
+                        'FU.AttributesKey'}}
+                    </label>
                     <div class="grid grid-4col">
+                        <div class="grid grid-8col" style="padding: 1px;">
+                            <div class="resource-content flexcol flex-group-center grid-span-2">
+                                <label class="resource-label-m">{{localize "FU.Cost"}}</label>
+                                <input type="number" name="system.cost.value" value="{{ system.cost.value }}"
+                                    data-dtype="Number" class="resource-inputs select-dropdown-m" />
+                            </div>
+                            <div class="resource-content flexcol flex-group-center grid-span-2">
+                                <label class="resource-label-m">{{localize "FU.Quantity"}}</label>
+                                <input type="number" name="system.quantity.value" value="{{ system.quantity.value }}"
+                                    data-dtype="Number" class="resource-inputs select-dropdown-m" />
+                            </div>
+                            <div class="resource-content flexcol flex-group-center grid-span-4">
+                                <label class="resource-label-m">{{localize "FU.Origin"}}</label>
+                                <input type="text" name="system.origin.value" value="{{ system.origin.value }}"
+                                    data-dtype="String" class="resource-inputs select-dropdown-xl" />
+                            </div>
+                        </div>
+                </section>
 
-                        {{!-- Behavior Field --}}
-                        {{> "systems/projectfu/templates/item/partials/item-behavior-field.hbs"}}
-                    </div>
+                {{!-- Effects Tab --}}
+                <div class="tab effects" data-group="primary" data-tab="effects">
+                    {{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
+                </div>
 
-                </fieldset>
+                {{!-- Description Tab --}}
+                <div class="tab" data-group="primary" data-tab="description">
+                    <fieldset class="desc title-fieldset resource-content">
+                        <label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
+                            {{localize 'FU.Description'}}
+                            <i class="fas fa-info-circle"></i>
+                        </label>
+                    {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
+                    button=true owner=owner editable=editable }}
+                    </fieldset>
+                </div>
+
+                {{!-- Attributes Tab --}}
+                <div class="tab attributes" data-group="primary" data-tab="attributes">
+
+                    <section class="grid grid-2col gap-5">
+
+                        {{!-- General Info Section --}}
+                        <fieldset class="title-fieldset desc resource-content grid-span-2">
+
+                            {{!-- Item Controls --}}
+                            <div class="item-settings">
+                                {{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
+                            </div>
+                            <div class="grid grid-4col">
+
+                                {{!-- Behavior Field --}}
+                                {{> "systems/projectfu/templates/item/partials/item-behavior-field.hbs"}}
+                            </div>
+
+                        </fieldset>
+                    </section>
+                </div>
             </section>
         </div>
-
-    </section>
+    </div>
 </form>

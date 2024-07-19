@@ -158,7 +158,7 @@ async function handleStudyRollCallback(app, actor, studyValue) {
 				light: game.i18n.localize(`FU.DamageLight`),
 				poison: game.i18n.localize(`FU.DamagePoison`),
 			};
-			const affinityIconMap = { physical: 'fun fu-phys', air: 'fun fu-wind', bolt: 'fun fu-bolt', dark: 'fun fu-dark', earth: 'fun fu-earth', fire: 'fun fu-fire', ice: 'fun fu-ice', light: 'fun fu-light', poison: 'fun fu-poison' };
+			const affinityIconMap = { physical: 'fua fu-phys', air: 'fua fu-wind', bolt: 'fua fu-bolt', dark: 'fua fu-dark', earth: 'fua fu-earth', fire: 'fua fu-fire', ice: 'fua fu-ice', light: 'fua fu-light', poison: 'fua fu-poison' };
 
 			let affinitiesDisplay = '';
 			if (system.affinities) {
