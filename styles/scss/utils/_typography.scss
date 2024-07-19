@@ -261,13 +261,12 @@ $font-quote: 'EB Garamond', sans-serif;
 
 		// Resource Body Text Sizes
 		.resource-text-sm {
-			font-size: 0.875rem;
+			font-size: 1rem;
 			font-family: $font-primary;
 		}
 
 		.resource-text-m {
-			font-size: 1rem;
-
+			font-size: 1.25rem;
 			font-family: $font-primary;
 		}
 
@@ -558,73 +557,82 @@ $font-quote: 'EB Garamond', sans-serif;
 
 .fu-phys {
 	@include aff-icon;
+	color: #dedede;
 
 	&::before {
-		content: 'P';
+		content: 'p';
 	}
 }
 
 .fu-wind {
 	@include aff-icon;
+	color: #cfd600;
 
 	&::before {
-		content: 'A';
+		content: 'a';
 	}
 }
 
 .fu-bolt {
 	@include aff-icon;
+	color: #ffef26;
 
 	&::before {
-		content: 'B';
+		content: 'b';
 	}
 }
 
 .fu-dark {
 	@include aff-icon;
+	color: #543987;
 
 	&::before {
-		content: 'D';
+		content: 'd';
 	}
 }
 
 .fu-earth {
 	@include aff-icon;
+	color: #d28d3e;
 
 	&::before {
-		content: 'E';
+		content: 'e';
 	}
 }
 
 .fu-fire {
 	@include aff-icon;
+	color: #f58a00;
 
 	&::before {
-		content: 'F';
+		content: 'f';
 	}
 }
 
 .fu-ice {
 	@include aff-icon;
+	color: #bce4fa;
 
 	&::before {
-		content: 'I';
+		content: 'i';
 	}
 }
 
 .fu-light {
 	@include aff-icon;
+	color: #fff7b2;
 
 	&::before {
-		content: 'L';
+		content: 'l';
 	}
 }
 
 .fu-poison {
 	@include aff-icon;
+	color: #d678a2;
 
 	&::before {
-		content: 'T';
+		content: 't';
 	}
 }
 
