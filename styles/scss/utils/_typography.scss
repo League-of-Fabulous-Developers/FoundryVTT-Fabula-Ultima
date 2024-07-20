@@ -549,15 +549,11 @@ $font-quote: 'EB Garamond', sans-serif;
 @mixin aff-icon {
 	font-family: 'Fabula Ultima icons';
 	font-size: 1.75rem;
-
-	&::before {
-		content: '';
-	}
 }
 
 .fu-phys {
 	@include aff-icon;
-	color: #dedede;
+	color: #dedede !important;
 
 	&::before {
 		content: 'p';
@@ -566,7 +562,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 .fu-wind {
 	@include aff-icon;
-	color: #cfd600;
+	color: #cfd600 !important;
 
 	&::before {
 		content: 'a';
@@ -575,7 +571,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 .fu-bolt {
 	@include aff-icon;
-	color: #ffef26;
+	color: #ffef26 !important;
 
 	&::before {
 		content: 'b';
@@ -584,7 +580,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 .fu-dark {
 	@include aff-icon;
-	color: #543987;
+	color: #543987 !important;
 
 	&::before {
 		content: 'd';
@@ -593,7 +589,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 .fu-earth {
 	@include aff-icon;
-	color: #d28d3e;
+	color: #d28d3e !important;
 
 	&::before {
 		content: 'e';
@@ -602,7 +598,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 .fu-fire {
 	@include aff-icon;
-	color: #f58a00;
+	color: #f58a00 !important;
 
 	&::before {
 		content: 'f';
@@ -611,7 +607,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 .fu-ice {
 	@include aff-icon;
-	color: #bce4fa;
+	color: #bce4fa !important;
 
 	&::before {
 		content: 'i';
@@ -620,7 +616,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 .fu-light {
 	@include aff-icon;
-	color: #fff7b2;
+	color: #fff7b2 !important;
 
 	&::before {
 		content: 'l';
@@ -629,7 +625,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 .fu-poison {
 	@include aff-icon;
-	color: #d678a2;
+	color: #d678a2 !important;
 
 	&::before {
 		content: 't';
