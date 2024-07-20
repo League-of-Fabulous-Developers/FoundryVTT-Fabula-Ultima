@@ -546,13 +546,14 @@ $font-quote: 'EB Garamond', sans-serif;
 	}
 }
 
-@mixin aff-icon {
-	font-family: 'Fabula Ultima icons';
-	font-size: 1.75rem;
-}
+// @mixin aff-icon {
+// 	font-family: 'Fabula Ultima icons';
+// 	font-size: 1.75rem;
+// }
 
 .fu-phys {
-	@include aff-icon;
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
 	color: #dedede !important;
 
 	&::before {
@@ -561,7 +562,8 @@ $font-quote: 'EB Garamond', sans-serif;
 }
 
 .fu-wind {
-	@include aff-icon;
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
 	color: #cfd600 !important;
 
 	&::before {
@@ -570,7 +572,8 @@ $font-quote: 'EB Garamond', sans-serif;
 }
 
 .fu-bolt {
-	@include aff-icon;
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
 	color: #ffef26 !important;
 
 	&::before {
@@ -579,7 +582,8 @@ $font-quote: 'EB Garamond', sans-serif;
 }
 
 .fu-dark {
-	@include aff-icon;
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
 	color: #543987 !important;
 
 	&::before {
@@ -588,7 +592,8 @@ $font-quote: 'EB Garamond', sans-serif;
 }
 
 .fu-earth {
-	@include aff-icon;
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
 	color: #d28d3e !important;
 
 	&::before {
@@ -597,7 +602,8 @@ $font-quote: 'EB Garamond', sans-serif;
 }
 
 .fu-fire {
-	@include aff-icon;
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
 	color: #f58a00 !important;
 
 	&::before {
@@ -606,7 +612,8 @@ $font-quote: 'EB Garamond', sans-serif;
 }
 
 .fu-ice {
-	@include aff-icon;
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
 	color: #bce4fa !important;
 
 	&::before {
@@ -615,7 +622,8 @@ $font-quote: 'EB Garamond', sans-serif;
 }
 
 .fu-light {
-	@include aff-icon;
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
 	color: #fff7b2 !important;
 
 	&::before {
@@ -624,7 +632,8 @@ $font-quote: 'EB Garamond', sans-serif;
 }
 
 .fu-poison {
-	@include aff-icon;
+	font-family: 'Fabula Ultima icons';
+	font-size: 1.75rem;
 	color: #d678a2 !important;
 
 	&::before {
