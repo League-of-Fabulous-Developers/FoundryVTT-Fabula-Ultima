@@ -62,40 +62,41 @@
                         <fieldset class="title-fieldset desc resource-content">
                             <legend class="resource-label-full">
                                 <label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize
-                                'FU.Accuracy'}}</label>
+                                    'FU.Accuracy'}}</label>
                             </legend>
-                            <div class="grid grid-3col">
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.attributes.primary.value" class="resource-label-m">{{localize
-                                    'FU.Primary'}} </label>
-                                    <select name="system.attributes.primary.value"
-                                            class="resource-inputs select-dropdown">
-                                        {{selectOptions attrAbbr selected=system.attributes.primary.value sort=true
-                                                        localize=true}}
-                                    </select>
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.attributes.secondary.value" class="resource-label-m">{{localize
-                                    'FU.Secondary'}} </label>
-                                    <select
-                                    name="system.attributes.secondary.value" class="resource-inputs select-dropdown">
-                                        {{selectOptions attrAbbr selected=system.attributes.secondary.value sort=true
-                                                        localize=true}}
-                                    </select>
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
-                                    <input type="number" name="system.accuracy.value" value="{{ system.accuracy.value }}"
-                                        class="resource-inputs" data-dtype="Number" />
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.defense" class="resource-label-m flexlarge align-left">{{localize
-                                    'FU.Defense'}}</label>
-                                    <select name="system.defense" class="resource-inputs select-dropdown-m">
-                                        {{selectOptions defenses selected=system.defense sort=true localize=true
-                                                        labelAttr="abbr"}}
-                                    </select>
-                                </div>
+                            <div class="grid grid-3col flexrow">
+                                <label class="resource-label-m resource-content flexcol flex-group-center">
+                                    {{localize 'FU.Attributes'}}
+                                    <div class="resource-content flexrow flex-group-center gap-2">
+                                        <select name="system.attributes.primary.value"
+                                            class="resource-inputs resource-text-sm">
+                                            {{selectOptions attrAbbr selected=system.attributes.primary.value sort=true
+                                            localize=true}}
+                                        </select>
+                                        {{!-- <span class="flex0">+</span> --}}
+                                        <select name="system.attributes.secondary.value"
+                                            class="resource-inputs resource-text-sm">
+                                            {{selectOptions attrAbbr selected=system.attributes.secondary.value sort=true
+                                            localize=true}}
+                                        </select>
+                                    </div>
+                                </label>
+                                <label class="resource-label-m resource-content flexcol flex-group-center">
+                                    {{localize 'FU.Bonus'}}
+                                    <div class="resource-content flexcol flex-group-center">
+                                        <input type="number" name="system.accuracy.value" value="{{ system.accuracy.value }}"
+                                            class="resource-inputs resource-text-sm" />
+                                    </div>
+                                </label>
+                                <label class="resource-label-m resource-content flexcol flex-group-center">
+                                    {{localize 'FU.Defense'}}
+                                    <div class="resource-content flexrow flex-group-center">
+                                        <select name="system.defense" class="resource-inputs resource-text-sm">
+                                            {{selectOptions defenses selected=system.defense sort=true localize=true
+                                            labelAttr="abbr"}}
+                                        </select>
+                                    </div>
+                                </label>
                             </div>
                         </fieldset>
 
