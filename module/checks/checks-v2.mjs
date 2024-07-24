@@ -357,7 +357,7 @@ const performCheck = async (check, actor, item, initialConfigCallback = undefine
 	const preparedCheck = await prepareCheck(check, actor, item, initialConfigCallback);
 	const roll = await rollCheck(preparedCheck, actor, item);
 	const result = await processResult(preparedCheck, roll, actor, item);
-	await renderCheck(result, actor, item);
+	return await renderCheck(result, actor, item);
 };
 
 /**
