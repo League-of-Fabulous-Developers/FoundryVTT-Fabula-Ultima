@@ -201,8 +201,11 @@ FU.actionRule = {
 };
 
 FU.statusEffects = {
+	aura: 'FU.Aura',
+	barrier: 'FU.Barrier',
 	crisis: 'FU.Crisis',
 	cover: 'FU.Cover',
+	flying: 'FU.Flying',
 	guard: 'FU.Guard',
 	slow: 'FU.Slow',
 	dazed: 'FU.Dazed',
@@ -221,8 +224,11 @@ FU.statusEffects = {
 };
 
 FU.statusEffectRule = {
-	crisis: 'FU.CrisisRule',
-	cover: 'FU.CoverRule',
+	aura: 'FU.Aura',
+	barrier: 'FU.Barrier',
+	crisis: 'FU.Crisis',
+	cover: 'FU.Cover',
+	flying: 'FU.Flying',
 	guard: 'FU.GuardRule',
 	slow: 'FU.SlowRule',
 	dazed: 'FU.DazedRule',
