@@ -2,7 +2,7 @@ import { createCheckMessage, getTargets, rollCheck } from '../../helpers/checks.
 import { RollableClassFeatureDataModel } from './classFeature/class-feature-data-model.mjs';
 import { RollableOptionalFeatureDataModel } from './optionalFeature/optional-feature-data-model.mjs';
 import { Flags } from '../../helpers/flags.mjs';
-import { SYSTEM } from '../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../helpers/config.mjs';
 import { SOCKET } from '../../socket.mjs';
 import { SETTINGS } from '../../settings.js';
 import { ChecksV2 } from '../../checks/checks-v2.mjs';
@@ -588,9 +588,12 @@ export class FUItem extends Item {
 		const { subtype, cost, quantity, origin } = this.system;
 		const currency = game.settings.get('projectfu', 'optionRenameCurrency');
 
+		// Determine the localization key based on the subtype
+		const localizationKey = FU.treasureType[subtype?.value] || 'FU.Treasure';
+
 		// Prepare tags
 		const tags = [
-			subtype?.value ? `<div class="tag">${capitalizeFirst(subtype.value)}</div>` : '',
+			subtype?.value ? `<div class="tag">${game.i18n.localize(localizationKey)}</div>` : '',
 			cost?.value ? `<div class="tag">${cost.value} ${currency}</div>` : '',
 			quantity?.value > 0 ? `<div class="tag">${game.i18n.localize('FU.Quantity')}: ${quantity?.value}</div>` : '',
 			origin?.value ? `<div class="tag">${game.i18n.localize('FU.Origin')}: ${origin?.value}</div>` : '',
@@ -628,10 +631,14 @@ export class FUItem extends Item {
 			return '';
 		}
 
-		const { class: heroicClass, requirement, heroicStyle } = this.system;
+		const { subtype, class: heroicClass, requirement, heroicStyle } = this.system;
+
+		// Determine the localization key based on the subtype
+		const localizationKey = FU.heroicType[subtype?.value] || 'FU.Heroic';
 
 		// Prepare tags
 		const tags = [
+			subtype?.value ? `<div class="tag">${game.i18n.localize(localizationKey)}</div>` : '',
 			heroicClass?.value ? `<div class="tag">${game.i18n.localize('FU.Class')}: ${heroicClass.value}</div>` : '',
 			requirement?.value ? `<div class="tag">${game.i18n.localize('FU.Requirements')}: ${requirement.value}</div>` : '',
 			heroicStyle?.value ? `<div class="tag">${game.i18n.localize('FU.HeroicStyle')}: ${heroicStyle.value}</div>` : '',
