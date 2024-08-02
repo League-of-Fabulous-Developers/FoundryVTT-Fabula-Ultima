@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You weave electricity into a wave of crackling bolts. Each target hit by this spell suffers <strong>【HR + 15】 bolt</strong> damage.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[dazed].</p><hr /><p>@LOSS[20 mp]</p>",
+    "description": "<p>You weave electricity into a wave of crackling bolts. Each target hit by this spell suffers <strong>【HR + 15】 bolt</strong> damage.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[dazed].</p><hr /><p>@LOSS[10 mp] for <strong>one</strong> target.</p><p>@LOSS[20 mp] for <strong>two</strong> targets.</p><p>@LOSS[30 mp] for <strong>three</strong> targets.</p>",
     "isFavored": {
       "value": false
     },
@@ -134,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706565033495,
-    "modifiedTime": 1721231999194,
+    "modifiedTime": 1722540248033,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,
