@@ -158,6 +158,7 @@
 		"SubTypes": "Podtypy",
 		"Source": "Źródło",
 		"Summary": "Podsumowanie",
+		"SummaryNone": "Brak Podsumowania",
 		"Description": "Opis",
 		"Attributes": "Cechy",
 		"AttributesKey": "Kluczowe Cechy",

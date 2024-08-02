@@ -7,6 +7,8 @@ import { SOCKET } from '../../socket.mjs';
 import { SETTINGS } from '../../settings.js';
 import { ChecksV2 } from '../../checks/checks-v2.mjs';
 
+const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(0).toUpperCase() + string.slice(1) : string);
+
 /**
  * @typedef KeyboardModifiers
  * @property {boolean} shift
@@ -119,48 +121,37 @@ export class FUItem extends Item {
 	}
 
 	/**
-	 * Get the display data for a spell item.
+	 * Retrieves the display data for a spell item.
 	 *
 	 * @returns {object|boolean} An object containing spell display information, or false if this is not a spell.
 	 * @property {string} attackString - The spell's attack description.
 	 * @property {string} damageString - The spell's damage description.
+	 * @property {string} detailString - The combined attack and damage descriptions.
 	 * @property {string} qualityString - The spell's quality description.
 	 */
-	getSpellDisplayData(actor) {
-		const isSpell = this.type === 'spell';
-		// Check if this item is not a spell
-		if (!isSpell) {
+	getSpellDisplayData() {
+		if (this.type !== 'spell') {
 			return false;
 		}
 
-		function capitalizeFirst(string) {
-			if (typeof string !== 'string') {
-				// Handle the case where string is not a valid string
-				return string;
-			}
-			return string.charAt(0).toUpperCase() + string.slice(1);
-		}
-
+		// Define constants and variables
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
-		const qualText = this.system.quality?.value || '';
-		let qualityString = '';
-		let detailString = '';
 
 		const attackAttributes = [this.system.attributes.primary.value.toUpperCase(), this.system.attributes.secondary.value.toUpperCase()].join(' + ');
+
 		const attackString = this.system.hasRoll.value ? `【${attackAttributes}${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}】` : '';
 
-		const damageString = this.system.rollInfo.damage.hasDamage.value ? `【${hrZeroText} ${this.system.rollInfo?.damage?.value}】 ${this.system.rollInfo?.damage?.type.value}` : '';
+		const damageString = this.system.rollInfo.damage.hasDamage.value ? `【${hrZeroText} ${this.system.rollInfo.damage.value}】 ${this.system.rollInfo.damage.type.value}` : '';
 
-		if (isSpell) {
-			detailString = [attackString, damageString].filter(Boolean).join('⬥');
-			qualityString = [capitalizeFirst(this.system.mpCost.value), capitalizeFirst(this.system.target.value), capitalizeFirst(this.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
-		}
+		const qualText = this.system.quality?.value || '';
+		const detailString = [attackString, damageString].filter(Boolean).join('⬥');
+		const qualityString = [capitalizeFirst(this.system.mpCost.value), capitalizeFirst(this.system.target.value), capitalizeFirst(this.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
 
 		return {
 			attackString,
 			damageString,
-			detailString: `${detailString}`,
-			qualityString: `${qualityString}`,
+			detailString,
+			qualityString,
 		};
 	}
 
@@ -171,24 +162,24 @@ export class FUItem extends Item {
 	 * @property {string} qualityString - The item's summary.
 	 */
 	getItemDisplayData() {
-		// Check if this item is not consumable or treasure
-		if (this.type !== 'consumable' && this.type !== 'treasure' && this.type !== 'rule') {
+		const relevantTypes = ['consumable', 'treasure', 'rule'];
+		if (!relevantTypes.includes(this.type)) {
 			return false;
 		}
 
-		const summary = this.system.summary.value;
-		const hasSummary = summary && summary.trim() !== '';
+		// Retrieve and process the item's summary
+		const summary = this.system.summary.value?.trim() || '';
+		let qualityString = game.i18n.localize('FU.SummaryNone');
 
-		let qualityString = 'No Summary';
-
-		if (hasSummary) {
+		// Parse the summary if it exists and is not empty
+		if (summary) {
 			const parser = new DOMParser();
 			const doc = parser.parseFromString(summary, 'text/html');
-			qualityString = doc.body.textContent || 'No Summary';
+			qualityString = doc.body.textContent || game.i18n.localize('FU.SummaryNone');
 		}
 
 		return {
-			qualityString: `${qualityString}`,
+			qualityString,
 		};
 	}
 
@@ -202,13 +193,6 @@ export class FUItem extends Item {
 		// Check if this item is not a skill
 		if (this.type !== 'skill' && this.type !== 'miscAbility') {
 			return false;
-		}
-
-		function capitalizeFirst(string) {
-			if (typeof string !== 'string') {
-				return string;
-			}
-			return string.charAt(0).toUpperCase() + string.slice(1);
 		}
 
 		function translate(string) {
@@ -271,7 +255,6 @@ export class FUItem extends Item {
 		};
 	}
 
-	//【】
 	/**
 	 * Asynchronously calculates and retrieves the single roll information for an item.
 	 *
@@ -285,25 +268,24 @@ export class FUItem extends Item {
 		const item = usedItem || this;
 		let content = '';
 
-		const hasImpDamage = ['ritual'].includes(item.type) && item.system.rollInfo?.impdamage?.hasImpDamage?.value;
-		const isWeapon = item.type === 'weapon' || this.type === 'basic' || (item.type === 'shield' && item.system.isDualShield?.value);
+		const hasImpDamage = item.type === 'ritual' && item.system.rollInfo?.impdamage?.hasImpDamage?.value;
+		const isWeapon = item.type === 'weapon' || item.type === 'basic' || (item.type === 'shield' && item.system.isDualShield?.value);
 		const hasDamage = isWeapon || (['spell', 'skill', 'miscAbility'].includes(item.type) && item.system.rollInfo?.damage?.hasDamage?.value);
 
-		// TODO: Code for getting all weapons accuracy bonus & determining which type is applied
+		// Determine bonuses
+		const {
+			accuracy: { magicCheck, accuracyCheck },
+		} = this.actor.system.bonuses;
+		const accBonus = isWeapon ? accuracyCheck : magicCheck || 0;
 
-		// TODO: Code for getting all weapons damage bonus & determining which damage bonus to apply
-
-		// Code for determining bonuses based on item type
-		const magicCheckBonus = this.actor.system.bonuses.accuracy.magicCheck;
-		const accCheckBonus = this.actor.system.bonuses.accuracy.accuracyCheck;
-		const accBonus = isWeapon ? accCheckBonus : magicCheckBonus || 0;
-
+		// Extract attributes and values
 		const attrs = isWeapon ? item.system.attributes : item.system.rollInfo.attributes;
 		const accVal = isWeapon ? item.system.accuracy.value : item.system.rollInfo.accuracy.value || 0;
 		const def = item.system.defense;
-
 		const primary = this.actor.system.attributes[attrs.primary.value].current;
 		const secondary = this.actor.system.attributes[attrs.secondary.value].current;
+
+		// Create and evaluate roll
 		const roll = new Roll('1d@prim + 1d@sec + @mod + @bonus', {
 			prim: primary,
 			sec: secondary,
@@ -316,15 +298,12 @@ export class FUItem extends Item {
 		const acc = roll.total + bonusAccVal;
 		const diceResults = roll.terms.filter((term) => term.results).map((die) => die.results[0].result);
 
-		// Save the original value of hrZero
+		// Temporarily set hrZero if Shift is pressed
 		const originalHrZero = item.system.rollInfo?.useWeapon?.hrZero?.value;
-
-		// Temporarily set hrZero to true if Shift is pressed
 		if (isShift) {
 			item.system.rollInfo ??= {};
 			item.system.rollInfo.useWeapon ??= {};
 			item.system.rollInfo.useWeapon.hrZero ??= {};
-
 			item.system.rollInfo.useWeapon.hrZero.value = true;
 		}
 
@@ -332,27 +311,16 @@ export class FUItem extends Item {
 		const isFumble = diceResults[0] === 1 && diceResults[1] === 1;
 		const isCrit = !isFumble && diceResults[0] === diceResults[1] && diceResults[0] >= 6;
 
-		// const fumbleString = isFumble ? '<strong>FUMBLE!</strong><br />' : '';
-		// const critString = isCrit ? '<strong>CRITICAL HIT!</strong><br />' : '';
+		// Determine roll state
+		const rollState = isFumble ? 'fumble' : isCrit ? 'critical' : 'default';
 
-		let rollState;
-		switch (true) {
-			case isFumble:
-				rollState = 'fumble';
-				break;
-			case isCrit:
-				rollState = 'critical';
-				break;
-			default:
-				rollState = 'default';
-		}
-
+		// Add item name if specified
 		if (addName) {
 			content += `<strong>${item.name}</strong><br />`;
 		}
 
-		// Create the base content string
-		content = `
+		// Base content
+		content += `
 		<div class="flexrow gap-5">
 			<div class='detail-desc flex-group-center grid grid-3col flex3'>
 				<div>
@@ -392,29 +360,9 @@ export class FUItem extends Item {
 					<span>${game.i18n.localize('FU.ToHit')}</span>
 				</div>
 			</label>
-		</div>
-		`;
+		</div>`;
 
-		// 		content += `
-		//     <div class="accuracy-desc align-left">
-		//       <span class="result-text">${critString}${fumbleString}</span>
-		//       <div class="accuracy-box">
-		//         <span class="accuracy-title">Accuracy</span>
-		//       </div>
-		//       <div class="accuracy-details">
-		//         <span class="accuracy-detail-text">
-		//           ${diceResults[0]} <strong>(${attrs.primary.value.toUpperCase()})</strong>
-		//           + ${diceResults[1]} <strong>(${attrs.secondary.value.toUpperCase()})</strong>
-		//           + ${accVal}
-		// 		  + ${accBonus}
-		//         </span>
-		//       </div>
-		//       <div class="float-box acc-float">
-		//         <span class="float-text" style="">${acc}</span> to hit!
-		//       </div>
-		//     </div>
-		//   `;
-
+		// Damage information
 		if (hasDamage) {
 			let damVal = isWeapon ? item.system.damage.value : item.system.rollInfo.damage.value;
 			damVal = damVal || 0;
@@ -422,49 +370,34 @@ export class FUItem extends Item {
 			const damage = hr + damVal + bonusDamVal;
 			const damType = isWeapon ? item.system.damageType.value : item.system.rollInfo.damage.type.value;
 
-			// content += `
-			// <div class="damage-desc align-left">
-			// 	<div class="damage-box">
-			// 	<span class="damage-title">Damage</span>
-			// 	</div>
-			// 	<div class="damage-details">
-			// 	<span class="damage-detail-text">
-			// 		${hr} <strong>(HR)</strong> + ${damVal}
-			// 	</span>
-			// 	</div>
-			// 	<div class="float-box dam-float">
-			// 	<span class="float-text" style="">${damage}</span> ${damType}!
-			// 	</div>
-			// </div>
-			// `;
 			content += `
-			<header class="title-desc chat-header flexrow">
-			<h3>${game.i18n.localize('FU.Damage')}</h3>
-			</header>
-			<div class="flexrow gap-5">
-				<div class='detail-desc flex-group-center grid grid-2col flex2'>
-					<div>
-						<label class="title">${game.i18n.localize('FU.ModAbbr')}</label>
-						<label class="detail">${hr}</label>
-					</div>
-					<div>
-						<label class="title">${game.i18n.localize('FU.ModAbbr')}</label>
-						<label class="detail">${bonusDamVal}</label>
-					</div>
-				</div>
-			</div>
-			<div class='detail-desc flex-group-center flexrow'>
-				<a data-action="applyDamage">
-					<label class="damageType ${damType} grid grid-3col">
-						<div class="startcap"></div>
-						<div>${damage}</div>
-						<div class="endcap">${damType}!</div>
-					</label>
-				</a>
-			</div>
-			`;
+        <header class="title-desc chat-header flexrow">
+            <h3>${game.i18n.localize('FU.Damage')}</h3>
+        </header>
+        <div class="flexrow gap-5">
+            <div class='detail-desc flex-group-center grid grid-2col flex2'>
+                <div>
+                    <label class="title">${game.i18n.localize('FU.ModAbbr')}</label>
+                    <label class="detail">${hr}</label>
+                </div>
+                <div>
+                    <label class="title">${game.i18n.localize('FU.ModAbbr')}</label>
+                    <label class="detail">${bonusDamVal}</label>
+                </div>
+            </div>
+        </div>
+        <div class='detail-desc flex-group-center flexrow'>
+            <a data-action="applyDamage">
+                <label class="damageType ${damType} grid grid-3col">
+                    <div class="startcap"></div>
+                    <div>${damage}</div>
+                    <div class="endcap">${damType}!</div>
+                </label>
+            </a>
+        </div>`;
 		}
 
+		// Imp damage information
 		if (hasImpDamage) {
 			const damageTable = {
 				5: { minor: 10, heavy: 30, massive: 40 },
@@ -476,38 +409,22 @@ export class FUItem extends Item {
 			const damage = damageTable[level >= 40 ? 40 : level >= 20 ? 20 : 5][improvType] || 0;
 			const damType = item.type === 'ritual' ? item.system.rollInfo.impdamage.type.value : '';
 
-			// content += `
-			// <div class="damage-desc align-left">
-			// 	<div class="damage-box">
-			// 	<span class="damage-title">Improvise</span>
-			// 	</div>
-			// 	<div class="damage-details">
-			// 	<span class="damage-detail-text">
-			// 		<strong>${improvType}</strong> damage
-			// 	</span>
-			// 	</div>
-			// 	<div class="float-box dam-float">
-			// 	<span class="float-text" style="">${damage}</span> ${damType}!
-			// 	</div>
-			// </div>
-			// `;
 			content += `
-			<header class="title-desc chat-header flexrow">
-			<h3>${game.i18n.localize('FU.DamageCollateral')}</h3>
-			</header>
-			<div class='detail-desc flex-group-center flexrow'>
-				<a data-action="applyDamage">
-					<label class="damageType ${damType} grid grid-3col">
-						<div class="startcap detail">${improvType}</div>
-						<div>${damage}</div>
-						<div class="endcap">${damType}!</div>
-					</label>
-				</a>
-			</div>
-			`;
+        <header class="title-desc chat-header flexrow">
+            <h3>${game.i18n.localize('FU.DamageCollateral')}</h3>
+        </header>
+        <div class='detail-desc flex-group-center flexrow'>
+            <a data-action="applyDamage">
+                <label class="damageType ${damType} grid grid-3col">
+                    <div class="startcap detail">${improvType}</div>
+                    <div>${damage}</div>
+                    <div class="endcap">${damType}!</div>
+                </label>
+            </a>
+        </div>`;
 		}
 
-		// Restore the original value of hrZero if it was changed
+		// Restore the original hrZero value if it was changed
 		if (isShift) {
 			item.system.rollInfo.useWeapon.hrZero.value = originalHrZero;
 		}
@@ -566,46 +483,27 @@ export class FUItem extends Item {
 		return [mainHandContent + offHandContent + otherContent, rolls];
 	}
 
-	getConsumableDataString() {
-		const item = this;
-
-		if (item.type !== 'consumable') {
-			return '';
-		}
-
-		const { ipCost } = item.system;
-
-		let content = '';
-
-		if (ipCost) {
-			content += `
-			<div class="tags">
-			  <div class="tag">${ipCost.value ? ipCost.value + game.i18n.localize('FU.InventoryAbbr') : game.i18n.localize('FU.InventoryCost')}</div>
-			</div>`;
-		}
-		return content;
-	}
-
 	getDescriptionString() {
-		const item = this;
-		const summary = item.system.summary.value;
-		const hasSummary = summary && summary.trim() !== '';
-		const description = item.system.description;
-		const hasDescription = description && description.trim() !== '';
+		const summary = this.system.summary.value?.trim() || '';
+		const description = this.system.description?.trim() || '';
 		const collapseDescriptions = game.settings.get('projectfu', 'collapseDescriptions') ? '' : 'open';
 
-		if (hasSummary || hasDescription) {
-			return `
-				<div class='chat-desc'>
-					<details ${collapseDescriptions}>
-						<summary class="align-center">${game.i18n.localize('FU.Description')}</summary>
-						${hasSummary ? `<blockquote class="summary quote">${summary}</blockquote>` : ''}
-						${hasDescription ? `${description}` : ''}
-					</details>
-				</div>`;
-		} else {
-			return '';
-		}
+		// Prepare summary and description HTML
+		const summaryHtml = summary ? `<blockquote class="summary quote">${summary}</blockquote>` : '';
+		const descriptionHtml = description ? description : '';
+
+		// Prepare the combined HTML
+		const content = [summaryHtml, descriptionHtml].filter((part) => part).join('');
+
+		return content
+			? `
+			<div class='chat-desc'>
+				<details ${collapseDescriptions}>
+					<summary class="align-center">${game.i18n.localize('FU.Description')}</summary>
+					${content}
+				</details>
+			</div>`
+			: '';
 	}
 
 	getQualityString() {
@@ -613,136 +511,116 @@ export class FUItem extends Item {
 		if (!validTypes.includes(this.type)) {
 			return '';
 		}
-		const DEF = game.i18n.localize('FU.DefenseAbbr');
-		const MDEF = game.i18n.localize('FU.MagicDefenseAbbr');
-		const INIT = game.i18n.localize('FU.InitiativeAbbr');
 
-		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
+		// Prepare tags for category, hands, and type, always showing for 'weapon' or dual shield
+		const tags = [
+			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.category?.value ? `<div class="tag">${capitalizeFirst(this.system.category.value)}</div>` : '',
+			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.hands?.value ? `<div class="tag">${capitalizeFirst(this.system.hands.value)}</div>` : '',
+			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.type?.value ? `<div class="tag">${capitalizeFirst(this.system.type.value)}</div>` : '',
+			['shield', 'armor', 'accessory'].includes(this.type) && this.system.def?.value >= 0 ? `<div class="tag">${game.i18n.localize('FU.DefenseAbbr')} ${this.system.def.value}</div>` : '',
+			['shield', 'armor', 'accessory'].includes(this.type) && this.system.mdef?.value >= 0 ? `<div class="tag">${game.i18n.localize('FU.MagicDefenseAbbr')} ${this.system.mdef.value}</div>` : '',
+			['shield', 'armor', 'accessory'].includes(this.type) && this.system.init?.value >= 0 ? `<div class="tag">${game.i18n.localize('FU.InitiativeAbbr')} ${this.system.init.value}</div>` : '',
+		]
+			.filter((tag) => tag)
+			.join('');
 
-		function capitalizeFirst(string) {
-			return typeof string !== 'string' ? string : string.charAt(0).toUpperCase() + string.slice(1);
-		}
+		// Prepare description
+		const qualityValue = this.system.quality?.value?.trim() || '';
+		const description = qualityValue ? `<div class='chat-desc'><p><strong>${game.i18n.localize('FU.Quality')}: </strong>${qualityValue}</p></div>` : '';
 
-		let content = '';
-
-		if (['weapon', 'shield', 'armor', 'accessory'].includes(this.type)) {
-			content += `
-			<div class="tags">
-			  ${isWeaponOrShieldWithDual && this.system.category ? `<div class="tag">${capitalizeFirst(this.system.category.value)}</div>` : ''}
-			  ${isWeaponOrShieldWithDual && this.system.hands ? `<div class="tag">${capitalizeFirst(this.system.hands.value)}</div>` : ''}
-			  ${isWeaponOrShieldWithDual && this.system.type ? `<div class="tag">${capitalizeFirst(this.system.type.value)}</div>` : ''}
-			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div class="tag">${DEF} ${this.system.def.value}</div>` : ''}
-			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div class="tag">${MDEF} ${this.system.mdef.value}</div>` : ''}
-			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div class="tag">${INIT} ${this.system.init.value}</div>` : ''}
-			</div>`;
-
-			const qualityValue = this.system.quality?.value || '';
-			const hasQualityValue = qualityValue.trim() !== '';
-
-			if (hasQualityValue) {
-				content += `
-				<div class='chat-desc'>
-					<p><strong>${game.i18n.localize('FU.Quality')}: </strong>${qualityValue.trim()}</p>
-				</div>
-				`;
-			}
-		}
-
-		return content;
+		return tags || description ? `<div class="tags">${tags}</div>${description}` : '';
 	}
 
-	getSpellDataString() {
-		const item = this;
-
-		if (item.type !== 'spell') {
+	getConsumableDataString() {
+		if (this.type !== 'consumable') {
 			return '';
 		}
 
-		const { mpCost, target, duration } = item.system;
+		const ipCostText = this.system.ipCost?.value ? `${this.system.ipCost.value} ${game.i18n.localize('FU.InventoryAbbr')}` : game.i18n.localize('FU.InventoryCost');
 
-		let content = '';
+		// Prepare tags
+		const tags = ipCostText ? `<div class="tag">${ipCostText}</div>` : '';
 
-		if (mpCost || target || duration) {
-			content += `
-			<div class="tags">
-			  <div class="tag">${duration.value || 'Duration'}</div>
-			  <div class="tag">${target.value || 'Target'}</div>
-			  <div class="tag">${mpCost.value ? mpCost.value + ' MP' : 'MP Cost'}</div>
-			</div>`;
-		}
-
-		const opportunityValue = this.system.opportunity?.value || '';
-		const hasOpportunityValue = opportunityValue.trim() !== '';
-
-		if (hasOpportunityValue) {
-			content += `
-			<div class='chat-desc'>
-				<p><strong>${game.i18n.localize('FU.Opportunity')}: </strong>${opportunityValue.trim()}</p>
-			</div>
-			`;
-		}
-
-		return content;
+		return tags ? `<div class="tags">${tags}</div>` : '';
 	}
 
 	getRitualDataString() {
-		const item = this;
-
-		if (item.type !== 'ritual') {
+		if (this.type !== 'ritual') {
 			return '';
 		}
 
-		const { mpCost, dLevel, clock } = item.system;
+		const { mpCost, dLevel, clock } = this.system;
 
-		return `<div class="tags">
-					<div class="tag">${mpCost.value || 'Mp Cost'} MP</div>
-					<div class="tag">${dLevel.value || 'Difficulty Level'} DL</div>
-					<div class="tag">Clock ${clock.value || 'Clock'}</div>
-				</div>`;
+		// Prepare tags
+		const tags = [`<div class="tag">${mpCost?.value || 'Mp Cost'} MP</div>`, `<div class="tag">${dLevel?.value || 'Difficulty Level'} DL</div>`, `<div class="tag">Clock ${clock?.value || 'Clock'}</div>`].join('');
+
+		return tags ? `<div class="tags">${tags}</div>` : '';
+	}
+
+	getSpellDataString() {
+		if (this.type !== 'spell') {
+			return '';
+		}
+
+		const { mpCost, target, duration } = this.system;
+		const opportunityValue = this.system.opportunity?.value?.trim() || '';
+
+		// Prepare tags
+		const tags = [`<div class="tag">${duration?.value || 'Duration'}</div>`, `<div class="tag">${target?.value || 'Target'}</div>`, `<div class="tag">${mpCost?.value ? `${mpCost.value} MP` : 'MP Cost'}</div>`]
+			.filter((tag) => tag)
+			.join('');
+
+		// Prepare opportunity description
+		const opportunityDesc = opportunityValue
+			? `<div class='chat-desc'>
+				<p><strong>${game.i18n.localize('FU.Opportunity')}: </strong>${opportunityValue}</p>
+			  </div>`
+			: '';
+
+		return tags || opportunityDesc ? `<div class="tags">${tags}</div>${opportunityDesc}` : '';
 	}
 
 	getTreasureDataString() {
-		const item = this;
-
-		if (item.type !== 'treasure') {
+		if (this.type !== 'treasure') {
 			return '';
 		}
 
-		const { cost, quantity, origin } = item.system;
+		const { subtype, cost, quantity, origin } = this.system;
 		const currency = game.settings.get('projectfu', 'optionRenameCurrency');
-		let content = '';
 
-		if (cost) {
-			content += `
-			<div class="tags">
-			  <div class="tag">${cost.value ? cost.value + ' ' + currency : currency}</div>
-			  <div class="tag">${game.i18n.localize('FU.Quantity')}:  ${quantity.value || '0'}</div>
-			  <div class="tag">${game.i18n.localize('FU.Origin')}: ${origin.value}</div>
-			</div>`;
-		}
-		return content;
+		// Prepare tags
+		const tags = [
+			subtype?.value ? `<div class="tag">${capitalizeFirst(subtype.value)}</div>` : '',
+			cost?.value ? `<div class="tag">${cost.value} ${currency}</div>` : '',
+			quantity?.value > 0 ? `<div class="tag">${game.i18n.localize('FU.Quantity')}: ${quantity?.value}</div>` : '',
+			origin?.value ? `<div class="tag">${game.i18n.localize('FU.Origin')}: ${origin?.value}</div>` : '',
+		]
+			.filter((tag) => tag)
+			.join('');
+
+		return tags ? `<div class="tags">${tags}</div>` : '';
 	}
 
 	getProjectDataString() {
-		const item = this;
-		if (item.type !== 'project') {
+		if (this.type !== 'project') {
 			return '';
 		}
 
-		if (item.type === 'project') {
-			const { cost, discount, progress, progressPerDay } = item.system;
+		const { cost, discount, progress, progressPerDay } = this.system;
+		const currency = game.settings.get('projectfu', 'optionRenameCurrency');
 
-			const discountText = discount.value ? `<span>-${discount.value}</span>` : '';
-			const totalCost = cost.value - discount.value;
-			const currency = game.settings.get('projectfu', 'optionRenameCurrency');
+		// Calculate discount text and total cost
+		const discountText = discount.value ? `<span>-${discount.value}</span>` : '';
+		const totalCost = cost.value - discount.value;
 
-			return `<div class="tags">
-                <div class="tag" data-tooltip="${cost.value}${discountText}<br>=${totalCost}">${totalCost} ${currency}</div>
-                <div class="tag">${progress.current} progress / ${progress.max} total days</div>
-                <div class="tag">${progressPerDay.value} progress per day</div>
-              </div>`;
-		}
-		return '';
+		// Prepare tags
+		const tags = [
+			`<div class="tag" data-tooltip="${cost.value}${discountText}<br>=${totalCost}">${totalCost} ${currency}</div>`,
+			`<div class="tag">${progress.current} progress / ${progress.max} total days</div>`,
+			`<div class="tag">${progressPerDay.value} progress per day</div>`,
+		].join('');
+
+		return `<div class="tags">${tags}</div>`;
 	}
 
 	getHeroicDataString() {
@@ -752,48 +630,42 @@ export class FUItem extends Item {
 
 		const { class: heroicClass, requirement, heroicStyle } = this.system;
 
-		const heroicClassValue = heroicClass?.value || '';
-		const hasHeroicClassValue = heroicClassValue.trim() !== '';
+		// Prepare tags
+		const tags = [
+			heroicClass?.value ? `<div class="tag">${game.i18n.localize('FU.Class')}: ${heroicClass.value}</div>` : '',
+			requirement?.value ? `<div class="tag">${game.i18n.localize('FU.Requirements')}: ${requirement.value}</div>` : '',
+			heroicStyle?.value ? `<div class="tag">${game.i18n.localize('FU.HeroicStyle')}: ${heroicStyle.value}</div>` : '',
+		]
+			.filter((tag) => tag)
+			.join('');
 
-		const requirementValue = requirement?.value || '';
-		const hasRequirementValue = requirementValue.trim() !== '';
-
-		const heroicStyleValue = heroicStyle?.value || '';
-		const hasHeroicStyleValue = heroicStyleValue.trim() !== '';
-
-		if (hasHeroicClassValue || hasRequirementValue || hasHeroicStyleValue) {
-			return `<div class="tags">
-				${hasHeroicClassValue ? `<div class="tag">${game.i18n.localize('FU.Class')}: ${heroicClassValue}</div>` : ''}
-				${hasRequirementValue ? `<div class="tag">${game.i18n.localize('FU.Requirements')}: ${requirementValue}</div>` : ''}
-				${hasHeroicStyleValue ? `<div class="tag">${game.i18n.localize('FU.HeroicStyle')}: ${heroicStyleValue}</div>` : ''}
-			  </div>`;
-		}
-		return '';
+		return tags ? `<div class="tags">${tags}</div>` : '';
 	}
 
 	getZeroDataString() {
 		if (this.type !== 'zeroPower') {
 			return '';
 		}
+
 		const {
 			system: { zeroTrigger, zeroEffect, progress },
 		} = this;
-		const hasZeroTrigger = zeroTrigger.description?.trim();
-		const hasZeroEffect = zeroEffect.description?.trim();
 
-		if (hasZeroTrigger || hasZeroEffect) {
-			return `
-        <div class="tags">
-          <div class="tag">${zeroTrigger.value || 'Zero Trigger'}</div>
-          <div class="tag">${zeroEffect.value || 'Zero Effect'}</div>
-          <div class="tag">Clock ${progress.current} / ${progress.max} </div>
-        </div>
-        <div class="chat-desc">
-          ${hasZeroTrigger ? `<div class="resource-label">${zeroTrigger.value}</div><div>${zeroTrigger.description}</div>` : ''}
-          ${hasZeroEffect ? `<div class="resource-label">${zeroEffect.value}</div><div>${zeroEffect.description}</div>` : ''}
-        </div>`;
-		}
-		return '';
+		// Prepare tags
+		const tags = [
+			`<div class="tag">${zeroTrigger.value || 'Zero Trigger'}</div>`,
+			`<div class="tag">${zeroEffect.value || 'Zero Effect'}</div>`,
+			`<div class="tag">${game.i18n.localize('FU.Clock')}: ${progress.current} / ${progress.max}</div>`,
+		].join('');
+
+		// Prepare descriptions
+		const descriptions = [
+			zeroTrigger.description?.trim() ? `<div class="resource-label">${zeroTrigger.value || 'Zero Trigger'}</div><div>${zeroTrigger.description}</div>` : '',
+			zeroEffect.description?.trim() ? `<div class="resource-label">${zeroEffect.value || 'Zero Effect'}</div><div>${zeroEffect.description}</div>` : '',
+		].join('');
+
+		// Combine tags and descriptions
+		return tags || descriptions ? `<div class="tags">${tags}</div><div class="chat-desc">${descriptions}</div>` : '';
 	}
 
 	/**

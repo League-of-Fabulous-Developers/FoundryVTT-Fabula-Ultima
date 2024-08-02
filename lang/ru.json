@@ -158,6 +158,7 @@
 		"SubTypes": "Подтипы",
 		"Source": "Источник",
 		"Summary": "Сводка",
+		"SummaryNone": "Нет Сводки",
 		"Description": "Описание",
 		"Attributes": "Атрибуты",
 		"AttributesKey": "Ключевые атрибуты",

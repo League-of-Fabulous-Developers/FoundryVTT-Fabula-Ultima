@@ -158,6 +158,7 @@
 		"SubTypes": "Sous Types",
 		"Source": "Source",
 		"Summary": "Résumé",
+		"SummaryNone": "Aucun Résumé",
 		"Description": "Description",
 		"Attributes": "Attributs",
 		"AttributesKey": "Attributs Clefs",

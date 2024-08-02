@@ -158,6 +158,7 @@
 		"SubTypes": "Subtipos",
 		"Source": "Fonte",
 		"Summary": "Sumário",
+		"SummaryNone": "Sem Sumário",
 		"Description": "Descrição",
 		"Attributes": "Atributos",
 		"AttributesKey": "Atributos Principais",

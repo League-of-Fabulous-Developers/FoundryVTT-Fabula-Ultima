@@ -27,7 +27,7 @@ export class TreasureDataModel extends foundry.abstract.TypeDataModel {
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
-			quantity: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
+			quantity: new SchemaField({ value: new NumberField({ initial: 1, min: 0, integer: true, nullable: false }) }),
 			origin: new SchemaField({ value: new StringField() }),
 			source: new SchemaField({ value: new StringField() }),
 		};

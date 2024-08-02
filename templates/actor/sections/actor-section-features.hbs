@@ -161,9 +161,9 @@
                             </div>
                             {{!-- Resource Points --}}
                             {{#if item.system.hasResource.value}}
-                                <div class="item-m desc flexcol flex-group-center resource-content">
+                                <div class="item-m desc" style="text-align: center; padding: 1px;">
                                     <label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
-                                    <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
+                                    <div class="resource-text-t buttons-inc" style="padding: 0 4px;">
                                         <a class="decrement-button" data-type="resourceCounter"
                                            data-item-id="{{ item._id }}"
                                            data-tooltip="{{localize
@@ -247,7 +247,7 @@
                             {{!-- Progress Counter --}}
                             <div class="item-m desc flexcol flex-group-center resource-content"
                                  style="padding: 0; border-radius: 6px 12px 12px 6px;">
-                                <div class="resource-text-m buttons-inc">
+                                <div class="resource-text-t buttons-inc">
                                     <a class="decrement-button" data-type="projectCounter" data-item-id="{{ item._id }}"
                                        data-tooltip="{{localize
                                         'FU.DecreaseTooltip'}} ({{item.system.progressPerDay.value}})">-</a>
