@@ -700,12 +700,22 @@ const KEY_RECENT_CHECKS = 'fabulaultima.recentChecks';
  * @param {string} title
  * @returns {Promise<ChatMessage|Object>}
  */
-export async function promptCheck(actor, title) {
+export async function promptCheck(actor, title, action) {
 	const recentChecks = JSON.parse(sessionStorage.getItem(KEY_RECENT_CHECKS) || '{}');
 	const recentActorChecks = recentChecks[actor.uuid] || (recentChecks[actor.uuid] = {});
 	try {
 		const attributes = actor.system.attributes;
 		const titleMain = title || 'FU.DialogCheckTitle';
+		let bonus;
+		if (action === 'study') {
+			recentActorChecks.attr1 = 'ins';
+			recentActorChecks.attr2 = 'ins';
+		}
+		if (action === 'open') {
+			recentActorChecks.difficulty = 0;
+			bonus = actor.system.bonuses.accuracy.opposedCheck;
+		}
+		console.log('bonus: ', bonus);
 		const { attr1, attr2, difficulty, modifier } = await Dialog.wait(
 			{
 				title: game.i18n.localize(titleMain),
@@ -723,6 +733,7 @@ export async function promptCheck(actor, title) {
 					attr2: recentActorChecks.attr2 || 'mig',
 					modifier: recentActorChecks.modifier || 0,
 					difficulty: recentActorChecks.difficulty || 0,
+					bonus: bonus || 0,
 				}),
 				buttons: [
 					{

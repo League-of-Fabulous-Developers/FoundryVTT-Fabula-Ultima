@@ -1,19 +1,19 @@
-<div class="detail-desc flex-group-center grid grid-3col">
-    <div>
+<div class="tags">
+    <div class="tag">
         {{#if spell.duration}}
             {{spell.duration}}
         {{else}}
             {{localize 'FU.Duration'}}
         {{/if}}
     </div>
-    <div>
+    <div class="tag">
         {{#if spell.target}}
             {{spell.target}}
         {{else}}
             {{localize 'FU.Target'}}
         {{/if}}
     </div>
-    <div>
+    <div class="tag">
         {{#if spell.mpCost}}
             {{spell.mpCost}} {{localize 'FU.MindAbbr'}}
         {{else}}

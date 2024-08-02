@@ -1,11 +1,11 @@
-<div class="detail-desc flex-group-center grid grid-3col">
-    <div>{{localize (concat 'FU.' (capitalize weapon.category))}}</div>
+<div class="tags">
+    <div class="tag">{{localize (concat 'FU.' (capitalize weapon.category))}}</div>
     {{#if (eq weapon.hands 'two-handed')}}
-        <div>{{localize (concat 'FU.TwoHanded' )}}</div>
+        <div class="tag">{{localize (concat 'FU.TwoHanded' )}}</div>
     {{else}}
-        <div>{{localize (concat 'FU.OneHanded' )}}</div>
+        <div class="tag">{{localize (concat 'FU.OneHanded' )}}</div>
     {{/if}}
-    <div>{{localize (concat 'FU.' (capitalize weapon.type))}}</div>
+    <div class="tag">{{localize (concat 'FU.' (capitalize weapon.type))}}</div>
 </div>
 
 {{#if weapon.quality}}

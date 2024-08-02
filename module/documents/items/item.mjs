@@ -300,6 +300,7 @@ export class FUItem extends Item {
 
 		const attrs = isWeapon ? item.system.attributes : item.system.rollInfo.attributes;
 		const accVal = isWeapon ? item.system.accuracy.value : item.system.rollInfo.accuracy.value || 0;
+		const def = item.system.defense;
 
 		const primary = this.actor.system.attributes[attrs.primary.value].current;
 		const secondary = this.actor.system.attributes[attrs.secondary.value].current;
@@ -331,32 +332,88 @@ export class FUItem extends Item {
 		const isFumble = diceResults[0] === 1 && diceResults[1] === 1;
 		const isCrit = !isFumble && diceResults[0] === diceResults[1] && diceResults[0] >= 6;
 
-		const fumbleString = isFumble ? '<strong>FUMBLE!</strong><br />' : '';
-		const critString = isCrit ? '<strong>CRITICAL HIT!</strong><br />' : '';
+		// const fumbleString = isFumble ? '<strong>FUMBLE!</strong><br />' : '';
+		// const critString = isCrit ? '<strong>CRITICAL HIT!</strong><br />' : '';
+
+		let rollState;
+		switch (true) {
+			case isFumble:
+				rollState = 'fumble';
+				break;
+			case isCrit:
+				rollState = 'critical';
+				break;
+			default:
+				rollState = 'default';
+		}
 
 		if (addName) {
 			content += `<strong>${item.name}</strong><br />`;
 		}
 
-		content += `
-    <div class="accuracy-desc align-left">
-      <span class="result-text">${critString}${fumbleString}</span>
-      <div class="accuracy-box">
-        <span class="accuracy-title">Accuracy</span>
-      </div>
-      <div class="accuracy-details">
-        <span class="accuracy-detail-text">
-          ${diceResults[0]} <strong>(${attrs.primary.value.toUpperCase()})</strong>
-          + ${diceResults[1]} <strong>(${attrs.secondary.value.toUpperCase()})</strong>
-          + ${accVal}
-		  + ${accBonus}
-        </span>
-      </div>
-      <div class="float-box acc-float">
-        <span class="float-text" style="">${acc}</span> to hit!
-      </div>
-    </div>
-  `;
+		// Create the base content string
+		content = `
+		<div class="flexrow gap-5">
+			<div class='detail-desc flex-group-center grid grid-3col flex3'>
+				<div>
+					<label class="title">${attrs.primary.value.toUpperCase()}</label>
+					<label class="detail">${diceResults[0]}</label>
+				</div>
+				<div>
+					<label class="title">${attrs.secondary.value.toUpperCase()}</label>
+					<label class="detail">${diceResults[1]}</label>
+				</div>
+				<div>
+					<label class="title">${game.i18n.localize('FU.ModAbbr')}</label>
+					<label class="detail">${bonusAccVal}</label>
+				</div>
+			</div>
+			${
+				def
+					? `
+			<div class="vs-container">
+				<label>vs</label>
+			</div>
+			<div class='detail-desc flex-group-center' style="border: 2px solid #dc6773;">
+				<label class="detail" style="color: #e03b52;">${def}</label>
+			</div>
+			`
+					: ''
+			}
+		</div>
+		<div style="clear: both;"></div>
+		<div class='detail-desc flexrow flex-group-center'>
+			<label class="total ${rollState} flexrow">
+				<div style="flex-grow: 1;"></div>
+				<div class="" style="flex: 0 1 auto;">${acc}</div>
+				<div class="endcap gap-5">
+					${isCrit ? `<span>${game.i18n.localize('FU.Critical')}</span>` : ''}
+					${isFumble ? `<span>${game.i18n.localize('FU.Fumble')}</span>` : ''}
+					<span>${game.i18n.localize('FU.ToHit')}</span>
+				</div>
+			</label>
+		</div>
+		`;
+
+		// 		content += `
+		//     <div class="accuracy-desc align-left">
+		//       <span class="result-text">${critString}${fumbleString}</span>
+		//       <div class="accuracy-box">
+		//         <span class="accuracy-title">Accuracy</span>
+		//       </div>
+		//       <div class="accuracy-details">
+		//         <span class="accuracy-detail-text">
+		//           ${diceResults[0]} <strong>(${attrs.primary.value.toUpperCase()})</strong>
+		//           + ${diceResults[1]} <strong>(${attrs.secondary.value.toUpperCase()})</strong>
+		//           + ${accVal}
+		// 		  + ${accBonus}
+		//         </span>
+		//       </div>
+		//       <div class="float-box acc-float">
+		//         <span class="float-text" style="">${acc}</span> to hit!
+		//       </div>
+		//     </div>
+		//   `;
 
 		if (hasDamage) {
 			let damVal = isWeapon ? item.system.damage.value : item.system.rollInfo.damage.value;
@@ -365,21 +422,47 @@ export class FUItem extends Item {
 			const damage = hr + damVal + bonusDamVal;
 			const damType = isWeapon ? item.system.damageType.value : item.system.rollInfo.damage.type.value;
 
+			// content += `
+			// <div class="damage-desc align-left">
+			// 	<div class="damage-box">
+			// 	<span class="damage-title">Damage</span>
+			// 	</div>
+			// 	<div class="damage-details">
+			// 	<span class="damage-detail-text">
+			// 		${hr} <strong>(HR)</strong> + ${damVal}
+			// 	</span>
+			// 	</div>
+			// 	<div class="float-box dam-float">
+			// 	<span class="float-text" style="">${damage}</span> ${damType}!
+			// 	</div>
+			// </div>
+			// `;
 			content += `
-      <div class="damage-desc align-left">
-        <div class="damage-box">
-          <span class="damage-title">Damage</span>
-        </div>
-        <div class="damage-details">
-          <span class="damage-detail-text">
-            ${hr} <strong>(HR)</strong> + ${damVal}
-          </span>
-        </div>
-        <div class="float-box dam-float">
-          <span class="float-text" style="">${damage}</span> ${damType}!
-        </div>
-      </div>
-    `;
+			<header class="title-desc chat-header flexrow">
+			<h3>${game.i18n.localize('FU.Damage')}</h3>
+			</header>
+			<div class="flexrow gap-5">
+				<div class='detail-desc flex-group-center grid grid-2col flex2'>
+					<div>
+						<label class="title">${game.i18n.localize('FU.ModAbbr')}</label>
+						<label class="detail">${hr}</label>
+					</div>
+					<div>
+						<label class="title">${game.i18n.localize('FU.ModAbbr')}</label>
+						<label class="detail">${bonusDamVal}</label>
+					</div>
+				</div>
+			</div>
+			<div class='detail-desc flex-group-center flexrow'>
+				<a data-action="applyDamage">
+					<label class="damageType ${damType} grid grid-3col">
+						<div class="startcap"></div>
+						<div>${damage}</div>
+						<div class="endcap">${damType}!</div>
+					</label>
+				</a>
+			</div>
+			`;
 		}
 
 		if (hasImpDamage) {
@@ -393,21 +476,35 @@ export class FUItem extends Item {
 			const damage = damageTable[level >= 40 ? 40 : level >= 20 ? 20 : 5][improvType] || 0;
 			const damType = item.type === 'ritual' ? item.system.rollInfo.impdamage.type.value : '';
 
+			// content += `
+			// <div class="damage-desc align-left">
+			// 	<div class="damage-box">
+			// 	<span class="damage-title">Improvise</span>
+			// 	</div>
+			// 	<div class="damage-details">
+			// 	<span class="damage-detail-text">
+			// 		<strong>${improvType}</strong> damage
+			// 	</span>
+			// 	</div>
+			// 	<div class="float-box dam-float">
+			// 	<span class="float-text" style="">${damage}</span> ${damType}!
+			// 	</div>
+			// </div>
+			// `;
 			content += `
-      <div class="damage-desc align-left">
-        <div class="damage-box">
-          <span class="damage-title">Improvise</span>
-        </div>
-        <div class="damage-details">
-          <span class="damage-detail-text">
-            <strong>${improvType}</strong> damage
-          </span>
-        </div>
-        <div class="float-box dam-float">
-          <span class="float-text" style="">${damage}</span> ${damType}!
-        </div>
-      </div>
-    `;
+			<header class="title-desc chat-header flexrow">
+			<h3>${game.i18n.localize('FU.DamageCollateral')}</h3>
+			</header>
+			<div class='detail-desc flex-group-center flexrow'>
+				<a data-action="applyDamage">
+					<label class="damageType ${damType} grid grid-3col">
+						<div class="startcap detail">${improvType}</div>
+						<div>${damage}</div>
+						<div class="endcap">${damType}!</div>
+					</label>
+				</a>
+			</div>
+			`;
 		}
 
 		// Restore the original value of hrZero if it was changed
@@ -469,6 +566,26 @@ export class FUItem extends Item {
 		return [mainHandContent + offHandContent + otherContent, rolls];
 	}
 
+	getConsumableDataString() {
+		const item = this;
+
+		if (item.type !== 'consumable') {
+			return '';
+		}
+
+		const { ipCost } = item.system;
+
+		let content = '';
+
+		if (ipCost) {
+			content += `
+			<div class="tags">
+			  <div class="tag">${ipCost.value ? ipCost.value + game.i18n.localize('FU.InventoryAbbr') : game.i18n.localize('FU.InventoryCost')}</div>
+			</div>`;
+		}
+		return content;
+	}
+
 	getDescriptionString() {
 		const item = this;
 		const summary = item.system.summary.value;
@@ -510,13 +627,13 @@ export class FUItem extends Item {
 
 		if (['weapon', 'shield', 'armor', 'accessory'].includes(this.type)) {
 			content += `
-			<div class="detail-desc flex-group-center grid grid-3col">
-			  ${isWeaponOrShieldWithDual && this.system.category ? `<div>${capitalizeFirst(this.system.category.value)}</div>` : ''}
-			  ${isWeaponOrShieldWithDual && this.system.hands ? `<div>${capitalizeFirst(this.system.hands.value)}</div>` : ''}
-			  ${isWeaponOrShieldWithDual && this.system.type ? `<div>${capitalizeFirst(this.system.type.value)}</div>` : ''}
-			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${DEF} ${this.system.def.value}</div>` : ''}
-			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${MDEF} ${this.system.mdef.value}</div>` : ''}
-			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div>${INIT} ${this.system.init.value}</div>` : ''}
+			<div class="tags">
+			  ${isWeaponOrShieldWithDual && this.system.category ? `<div class="tag">${capitalizeFirst(this.system.category.value)}</div>` : ''}
+			  ${isWeaponOrShieldWithDual && this.system.hands ? `<div class="tag">${capitalizeFirst(this.system.hands.value)}</div>` : ''}
+			  ${isWeaponOrShieldWithDual && this.system.type ? `<div class="tag">${capitalizeFirst(this.system.type.value)}</div>` : ''}
+			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div class="tag">${DEF} ${this.system.def.value}</div>` : ''}
+			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div class="tag">${MDEF} ${this.system.mdef.value}</div>` : ''}
+			  ${['shield', 'armor', 'accessory'].includes(this.type) ? `<div class="tag">${INIT} ${this.system.init.value}</div>` : ''}
 			</div>`;
 
 			const qualityValue = this.system.quality?.value || '';
@@ -524,9 +641,10 @@ export class FUItem extends Item {
 
 			if (hasQualityValue) {
 				content += `
-				<div class="detail-desc flexrow flex-group-center" style="padding: 0 2px;">
-				  <div>Quality: ${qualityValue.trim()}</div>
-				</div>`;
+				<div class='chat-desc'>
+					<p><strong>${game.i18n.localize('FU.Quality')}: </strong>${qualityValue.trim()}</p>
+				</div>
+				`;
 			}
 		}
 
@@ -546,21 +664,22 @@ export class FUItem extends Item {
 
 		if (mpCost || target || duration) {
 			content += `
-			<div class="detail-desc flex-group-center grid grid-3col">
-			  <div>${duration.value || 'Duration'}</div>
-			  <div>${target.value || 'Target'}</div>
-			  <div>${mpCost.value ? mpCost.value + ' MP' : 'MP Cost'}</div>
+			<div class="tags">
+			  <div class="tag">${duration.value || 'Duration'}</div>
+			  <div class="tag">${target.value || 'Target'}</div>
+			  <div class="tag">${mpCost.value ? mpCost.value + ' MP' : 'MP Cost'}</div>
 			</div>`;
 		}
 
-		const qualityValue = this.system.opportunity?.value || '';
-		const hasQualityValue = qualityValue.trim() !== '';
+		const opportunityValue = this.system.opportunity?.value || '';
+		const hasOpportunityValue = opportunityValue.trim() !== '';
 
-		if (hasQualityValue) {
+		if (hasOpportunityValue) {
 			content += `
-			<div class="detail-desc flexrow flex-group-center" style="padding: 0 2px;">
-			  <div>Quality: ${qualityValue.trim()}</div>
-			</div>`;
+			<div class='chat-desc'>
+				<p><strong>${game.i18n.localize('FU.Opportunity')}: </strong>${opportunityValue.trim()}</p>
+			</div>
+			`;
 		}
 
 		return content;
@@ -575,11 +694,33 @@ export class FUItem extends Item {
 
 		const { mpCost, dLevel, clock } = item.system;
 
-		return `<div class="detail-desc flex-group-center grid grid-3col">
-					<div>${mpCost.value || 'Mp Cost'} MP</div>
-					<div>${dLevel.value || 'Difficulty Level'} DL</div>
-					<div>Clock ${clock.value || 'Clock'}</div>
+		return `<div class="tags">
+					<div class="tag">${mpCost.value || 'Mp Cost'} MP</div>
+					<div class="tag">${dLevel.value || 'Difficulty Level'} DL</div>
+					<div class="tag">Clock ${clock.value || 'Clock'}</div>
 				</div>`;
+	}
+
+	getTreasureDataString() {
+		const item = this;
+
+		if (item.type !== 'treasure') {
+			return '';
+		}
+
+		const { cost, quantity, origin } = item.system;
+		const currency = game.settings.get('projectfu', 'optionRenameCurrency');
+		let content = '';
+
+		if (cost) {
+			content += `
+			<div class="tags">
+			  <div class="tag">${cost.value ? cost.value + ' ' + currency : currency}</div>
+			  <div class="tag">${game.i18n.localize('FU.Quantity')}:  ${quantity.value || '0'}</div>
+			  <div class="tag">${game.i18n.localize('FU.Origin')}: ${origin.value}</div>
+			</div>`;
+		}
+		return content;
 	}
 
 	getProjectDataString() {
@@ -591,15 +732,14 @@ export class FUItem extends Item {
 		if (item.type === 'project') {
 			const { cost, discount, progress, progressPerDay } = item.system;
 
-			const discountText = discount.value ? `<span><br>-${discount.value} Discount</span>` : '';
+			const discountText = discount.value ? `<span>-${discount.value}</span>` : '';
+			const totalCost = cost.value - discount.value;
+			const currency = game.settings.get('projectfu', 'optionRenameCurrency');
 
-			return `<div class="detail-desc flex-group-center grid grid-3col">
-                <div>
-                  <span>${cost.value} Zenith</span>
-                  ${discountText}
-                </div>
-                <div>${progress.current} progress / ${progress.max} total days</div>
-                <div>${progressPerDay.value} progress per day</div>
+			return `<div class="tags">
+                <div class="tag" data-tooltip="${cost.value}${discountText}<br>=${totalCost}">${totalCost} ${currency}</div>
+                <div class="tag">${progress.current} progress / ${progress.max} total days</div>
+                <div class="tag">${progressPerDay.value} progress per day</div>
               </div>`;
 		}
 		return '';
@@ -622,13 +762,12 @@ export class FUItem extends Item {
 		const hasHeroicStyleValue = heroicStyleValue.trim() !== '';
 
 		if (hasHeroicClassValue || hasRequirementValue || hasHeroicStyleValue) {
-			return `<div class="detail-desc flex-group-center">
-				${hasHeroicClassValue ? `<div>Class: ${heroicClassValue}</div>` : ''}
-				${hasRequirementValue ? `<div>Requirements: ${requirementValue}</div>` : ''}
-				${hasHeroicStyleValue ? `<div>Style: ${heroicStyleValue}</div>` : ''}
+			return `<div class="tags">
+				${hasHeroicClassValue ? `<div class="tag">${game.i18n.localize('FU.Class')}: ${heroicClassValue}</div>` : ''}
+				${hasRequirementValue ? `<div class="tag">${game.i18n.localize('FU.Requirements')}: ${requirementValue}</div>` : ''}
+				${hasHeroicStyleValue ? `<div class="tag">${game.i18n.localize('FU.HeroicStyle')}: ${heroicStyleValue}</div>` : ''}
 			  </div>`;
 		}
-
 		return '';
 	}
 
@@ -644,10 +783,10 @@ export class FUItem extends Item {
 
 		if (hasZeroTrigger || hasZeroEffect) {
 			return `
-        <div class="detail-desc flex-group-center grid grid-3col">
-          <div>${zeroTrigger.value || 'Zero Trigger'}</div>
-          <div>${zeroEffect.value || 'Zero Effect'}</div>
-          <div>Clock <br> ${progress.current} / ${progress.max} </div>
+        <div class="tags">
+          <div class="tag">${zeroTrigger.value || 'Zero Trigger'}</div>
+          <div class="tag">${zeroEffect.value || 'Zero Effect'}</div>
+          <div class="tag">Clock ${progress.current} / ${progress.max} </div>
         </div>
         <div class="chat-desc">
           ${hasZeroTrigger ? `<div class="resource-label">${zeroTrigger.value}</div><div>${zeroTrigger.description}</div>` : ''}
@@ -698,13 +837,11 @@ export class FUItem extends Item {
 		const rollMode = game.settings.get('core', 'rollMode');
 
 		const label = `
-    <div class="title-desc">
-      <div class="flex-group-center backgroundstyle">
-        <img src="${img}" alt="Image" />
-        <p>${name}</p>
-      </div>
-    </div>
-  `;
+			<header class="title-desc chat-header flexrow">
+				<img src="${img}" alt="Image">
+				<h2>${name}</h2>
+			</header>
+		`;
 
 		// Check if there's no roll data
 		if (!system.formula) {
@@ -741,6 +878,8 @@ export class FUItem extends Item {
 		const [attackData, rolls] = await item.getRollString(isShift);
 		const spellString = item.getSpellDataString();
 		const ritualString = item.getRitualDataString();
+		const consumableString = item.getConsumableDataString();
+		const treasureString = item.getTreasureDataString();
 		const projectString = item.getProjectDataString();
 		const heroicString = item.getHeroicDataString();
 		const zeroString = item.getZeroDataString();
@@ -749,7 +888,7 @@ export class FUItem extends Item {
 		const attackString = Array.isArray(attackData) ? attackData.join('<br /><br />') : attackData;
 
 		// Prepare the content by filtering and joining various parts.
-		let content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
+		let content = [qualityString, spellString, ritualString, consumableString, treasureString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
 		content = `<div data-item-id="${item.id}">${content}</div>`;
 		return { rolls, content };
 	}

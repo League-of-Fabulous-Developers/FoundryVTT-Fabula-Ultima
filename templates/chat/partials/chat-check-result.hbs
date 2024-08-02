@@ -1,24 +1,20 @@
 {{#if (or (gt difficulty 0) result.crit result.fumble)}}
     <div style="clear: both;"></div>
-    <div class='detail-desc flexrow flex-group-center' style='padding: 0 2px; margin-top: 1em'>
-        <div>
-		<span class='result-text'>
-			{{#if result.crit}}
-                <span>{{localize 'FU.Critical'}}</span>
-            {{/if}}
-            {{#if result.fumble}}
-                <span>{{localize 'FU.Fumble'}}</span>
-            {{/if}}
-            {{#if difficulty}}
-                {{#if (and (or result.crit (gte result.total difficulty)) (not result.fumble))}}
+    <div class='detail-desc flexrow flex-group-center'>
+        <label class="total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}{{#if (and (or result.crit (gte result.total difficulty)) (not result.fumble))}}success{{else}}failure{{/if}}{{/if}}{{/if}} flexrow">
+            <div style="flex-grow: 1;"></div>
+            <div class="" style="flex: 0 1 auto;">{{result.total}}</div>
+            <div class="endcap gap-5">
+                {{#if result.crit}}
+                    <span>{{localize 'FU.Critical'}}!</span>
+                {{else if result.fumble}}
+                    <span>{{localize 'FU.Fumble'}}</span>
+                {{else if (gte result.total difficulty)}}
                     <span>{{localize 'FU.Success'}}</span>
                 {{else}}
-                    {{#unless result.fumble}}
-                        <span>{{localize 'FU.Failure'}}</span>
-                    {{/unless}}
+                    <span>{{localize 'FU.Failure'}}</span>
                 {{/if}}
-            {{/if}}
-		</span>
-        </div>
+            </div>
+        </label>
     </div>
 {{/if}}

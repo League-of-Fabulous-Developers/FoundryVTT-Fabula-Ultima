@@ -1,35 +1,39 @@
-<div class='detail-desc flex-group-center grid grid-2col'>
-    <div class='spin2win'>
-        <i class='fas fa-dice-d6 ra-2x rollable'></i>
-        {{result.attr1}}
-        ({{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}})
-    </div>
-    <div class='spin2win'>
-        <i class='fas fa-dice-d6 ra-2x rollable'></i>
-        {{result.attr2}}
-        ({{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute) 'Abbr')}})
-    </div>
-</div>
-{{#if (gt difficulty 0)}}
-    <div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
+<div class="flexrow gap-5">
+    <div class='detail-desc flex-group-center grid grid-3col flex3'>
         <div>
-            {{localize 'FU.ChatDifficulty'}}: {{difficulty}}
+            <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}} ({{result.die1}})</label>
+            <br>
+            <label class="detail">{{result.attr1}}</label>
+        </div>
+        <div>
+            <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute) 'Abbr')}} ({{result.die2}})</label>
+            <br>
+            <label class="detail">{{result.attr2}}</label>
+        </div>
+        <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
+            <label class="title">{{localize 'FU.ModAbbr'}}</label>
+            <br>
+            <label class="detail">+{{result.modifier}}</label>
         </div>
     </div>
-{{/if}}
-<div class='detail-desc flexrow' style='padding:0 2px'>
-    <div class='spin2win' {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
-        <i class='fas fa-dice-d20 ra-2x rollable'></i>
-        {{#if result.modifier}}
-            Modifier:
-            {{result.modifier}}
-            <br />
-        {{/if}}
-        {{#if result.bonus}}
-            Bonus:
-            {{result.bonus}}
-            <br />
-        {{/if}}
-        Total Result:
-        {{result.total}}</div>
+    {{#if (gt difficulty 0)}}
+    <div class="vs-container">
+        <label>vs</label>
+    </div>
+    <div class='detail-desc difficulty flex-group-center'>
+        <label class="title" style="color: #dc6773;">{{localize 'FU.ChatDifficulty'}}</label>
+        <label class="detail" style="color: #e03b52;">{{difficulty}}</label>
+    </div>
+    {{/if}}
 </div>
+{{#if (lt difficulty 1)}}
+<div class='detail-desc flexrow'>
+    <div class='' {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
+        <label class="total default grid grid-3col">
+            <div></div>
+            <div>{{result.total}}</div>
+            <div class="endcap"></div>
+        </label>
+    </div>
+</div>
+{{/if}}

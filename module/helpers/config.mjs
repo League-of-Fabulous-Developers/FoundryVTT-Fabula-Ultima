@@ -56,6 +56,12 @@ FU.damageTypes = {
 	untyped: 'FU.DamageNone',
 };
 
+/**
+ * @typedef {"physical","air","bolt","dark","earth","fire","ice","light","poison"} AffIcon
+ */
+/**
+ * @type {Object<DamageType, string>}
+ */
 FU.affIcon = {
 	physical: 'fua fu-phys',
 	air: 'fua fu-wind',
@@ -207,6 +213,7 @@ FU.statusEffects = {
 	cover: 'FU.Cover',
 	flying: 'FU.Flying',
 	guard: 'FU.Guard',
+	provoked: 'FU.Provoked',
 	slow: 'FU.Slow',
 	dazed: 'FU.Dazed',
 	weak: 'FU.Weak',
@@ -230,6 +237,7 @@ FU.statusEffectRule = {
 	cover: 'FU.Cover',
 	flying: 'FU.Flying',
 	guard: 'FU.GuardRule',
+	provoked: 'FU.Provoked',
 	slow: 'FU.SlowRule',
 	dazed: 'FU.DazedRule',
 	weak: 'FU.WeakRule',

@@ -1,8 +1,7 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
-import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/checks.mjs';
+import { createChatMessage, promptCheck } from '../helpers/checks.mjs';
 import { actionHandler } from '../helpers/action-handler.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
-// import { OpposedCheck } from '../helpers/opposed-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
@@ -1470,7 +1469,6 @@ export class FUStandardActorSheet extends ActorSheet {
 		const dataset = element.dataset;
 
 		const isShift = event.shiftKey;
-		const isCtrl = event.ctrlKey;
 		// Get the value of optionTargetPriorityRules from game settings
 		const settingPriority = game.settings.get('projectfu', 'optionTargetPriorityRules');
 
@@ -1500,9 +1498,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 			if (dataset.rollType === 'roll-check' || dataset.rollType === 'roll-init') {
 				if (isShift) {
-					return promptOpenCheck(this.actor);
-				} else if (isCtrl) {
-					// OpposedCheck.promptCheck(this.actor, isShift);
+					return promptCheck(this.actor, 'FU.DialogCheckOpenCheck', 'open');
 				} else {
 					return promptCheck(this.actor);
 				}

@@ -1,9 +1,45 @@
 /* ----------------------------------------- */
 /* Item Card Structure                       */
 /* ----------------------------------------- */
+.chat-message .message-header .message-sender {
+	flex: 3;
+	margin: 0;
+	white-space: nowrap;
+	font-family: $font-primary;
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.chat-message .chat-header {
+	padding: 0.125rem 0;
+	border-top: 1px groove $color-quaternary;
+	align-items: center;
+	img {
+		flex: 0 0 2.25rem;
+		height: auto;
+		width: 2rem;
+		border: 0;
+		filter: drop-shadow(2px 2px 4px $color-black);
+		position: relative;
+	}
+	h2,
+	h3 {
+		border-bottom: none;
+		flex: 1;
+		font-family: $font-primary;
+		font-size: 1rem;
+		font-weight: bold;
+		font-variant: small-caps;
+	}
+	h2 {
+		margin: 0 0.5rem;
+		font-size: 1.125rem;
+	}
+}
+
+// Styles for the chat card message
 .chat-message,
 .chat-message.whisper {
-	// Styles for the chat card message
 	background:
 		#{$background-core},
 		linear-gradient(to right, $color-beige, $color-faint);
@@ -11,61 +47,23 @@
 	background-repeat: repeat-y;
 	background-position: right top;
 	margin: 3px;
-	padding: 1em 0.5em;
+	padding: 0.5rem;
 	font-size: var(--font-size-14);
 	border: 2px solid #6f6c66;
 	background-size: cover;
 	border-radius: 5px;
 
-	.message-header {
-		// Styles for the header
-		.title-desc .backgroundstyle {
-			margin: 30px 0 0 0;
-		}
-
-		.title-desc img {
-			// Styles for the img element within title-desc
-			border: 0px;
-			filter: drop-shadow(2px 2px 4px $color-black);
-			position: relative;
-			bottom: 195px;
-			margin-bottom: -200px;
-			width: 48px;
-			height: 48px;
-		}
-
-		.title-desc p {
-			// Styles for the p element within title-desc
-			font-family: alice;
-			line-height: 1.2;
-			color: $color-primary;
-			font-size: 26px;
-			text-shadow: 2px 2px 4px $color-black;
-			box-shadow: 2px 4px $color-secondary;
-			border-style: solid;
-			border-width: thin;
-			border-color: $color-beige;
-			padding: 10px;
-			border-radius: 12px;
-			background-color: $color-ternary;
-			overflow-wrap: anywhere;
-			margin: 10px 0;
-		}
-	}
-
 	// Styles for editing chat description
 	.chat-desc {
 		text-align: left;
-		font-size: 14px;
-		padding: 0.5em;
-		margin: 10px 0;
+		font-size: 0.875rem;
+		padding: 0.125rem 0.25rem;
+		margin: 2px 0;
 		color: #272a2a;
-		box-shadow: 2px 4px $color-background-inverted;
-		background-image: linear-gradient(to right, rgba(211, 229, 230, 0.3), rgba(195, 219, 214, 0.8));
-		border-style: solid;
-		border-width: thin;
-		border-color: #272a2a;
+		box-shadow: 1px 2px $color-secondary;
+		background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
 		border-radius: 8px;
+		border-top: 1px groove #cccbbb;
 
 		strong {
 			color: #272a2a;
@@ -77,29 +75,202 @@
 			font-size: 16px;
 			border: transparent;
 		}
+
+		.summary {
+			margin: 0 0 0.188rem 0.625rem;
+		}
+
+		.summary {
+			font-family: $font-quote;
+			font-weight: 700;
+			font-style: italic;
+			font-size: 1rem;
+			line-height: 1.45em;
+			color: $color-ternary;
+		}
+		p {
+			font-family: $font-primary;
+			font-size: 1rem;
+			line-height: 1.45em;
+		}
 	}
 }
 
 // Styles for editing chat's item detail description
 .detail-desc {
 	color: $color-black;
-	box-shadow: 2px 4px $color-secondary;
+	box-shadow: 1px 2px $color-secondary;
 	background-image: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
-	border: thin solid $color-background-inverted;
 	border-radius: 8px;
 	display: flex;
 	flex-direction: row;
 	align-items: stretch;
-	margin-bottom: 10px;
+	margin: 2px auto 5px;
+	font-family: 'PT Sans';
+	font-size: 20px;
+	flex-grow: 1;
+	border-top: 1px groove #cccbbb;
 
 	.multi-target-label {
 		font-size: 15px;
 	}
 
+	.difficulty {
+		border: 2px solid #dc6773;
+	}
+
 	.summary {
 		font-size: 16px;
 		color: $color-secondary;
-		padding: 5px 0;
+	}
+
+	label {
+		&.title {
+			font-family: 'PT Sans Caption' !important;
+			font-weight: 700;
+			font-size: 0.75rem;
+			color: $color-secondary;
+			font-variant: small-caps;
+		}
+
+		&.detail {
+			font-family: 'PT Sans';
+			font-weight: 700;
+			font-size: 1.1rem;
+			font-variant: small-caps;
+		}
+
+		@mixin total-style($background, $border) {
+			font-family: 'PT Sans Caption';
+			font-weight: 700;
+			border-radius: 8px;
+			background-image: $background;
+			border: 2px solid $border;
+			color: $color-white;
+			font-size: $font-size;
+			text-shadow: $text-shadow;
+
+			.startcap {
+				text-shadow: none;
+				display: flex;
+				align-items: center;
+				justify-content: start;
+				padding: 0 5px;
+				&.detail {
+					color: $color-white;
+					font-size: $rcaption-font-size;
+					text-shadow: $text-shadow;
+				}
+			}
+
+			.endcap {
+				color: $color-white;
+				font-size: $rcaption-font-size;
+				text-shadow: $text-shadow;
+				display: flex;
+				align-items: center;
+				justify-content: end;
+				padding: 0 5px;
+			}
+		}
+
+		&.total {
+			@include total-style($background-default, $border-default);
+
+			&.success {
+				@include total-style($background-success, $border-success);
+			}
+
+			&.failure {
+				@include total-style($background-failure, $border-failure);
+			}
+
+			&.critical {
+				@include total-style($background-critical, $border-critical);
+			}
+
+			&.fumble {
+				@include total-style($background-fumble, $border-fumble);
+			}
+		}
+
+		@mixin damageType-style($background, $border) {
+			font-family: 'PT Sans Caption';
+			font-weight: 700;
+			border-radius: 8px;
+			background-image: $background;
+			border: 2px solid $border;
+			color: $color-white;
+			font-size: $font-size;
+			text-shadow: $text-shadow;
+
+			.startcap {
+				text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+				display: flex;
+				align-items: center;
+				justify-content: start;
+				padding: 0 5px;
+				&.detail {
+					color: $color-white;
+					font-size: $rcaption-font-size;
+					text-shadow: $text-shadow;
+				}
+			}
+
+			.endcap {
+				color: $color-white;
+				font-size: $rcaption-font-size;
+				text-shadow: $text-shadow;
+				display: flex;
+				align-items: center;
+				justify-content: end;
+				padding: 0 5px;
+			}
+		}
+
+		&.damageType {
+			@include damageType-style($background-default, $border-default);
+
+			&.physical {
+				@include damageType-style($background-physical, $border-physical);
+			}
+
+			&.air {
+				@include damageType-style($background-air, $border-air);
+			}
+
+			&.bolt {
+				@include damageType-style($background-bolt, $border-bolt);
+			}
+
+			&.dark {
+				@include damageType-style($background-dark, $border-dark);
+			}
+
+			&.earth {
+				@include damageType-style($background-earth, $border-earth);
+			}
+
+			&.fire {
+				@include damageType-style($background-fire, $border-fire);
+			}
+
+			&.ice {
+				@include damageType-style($background-ice, $border-ice);
+			}
+
+			&.light {
+				@include damageType-style($background-light, $border-light);
+			}
+
+			&.poison {
+				@include damageType-style($background-poison, $border-poison);
+			}
+
+			&.untyped {
+				@include damageType-style($background-untyped, $border-untyped);
+			}
+		}
 	}
 
 	& > div {
@@ -111,7 +282,7 @@
 		justify-content: center;
 		text-align: center;
 		position: relative;
-		padding: 5px 0;
+		font-size: 14px;
 
 		&::before {
 			content: '';
@@ -128,9 +299,25 @@
 			display: none; // Show the border for all divs except the third child and the last child
 		}
 	}
+
+	.crisis {
+		color: red;
+	}
 }
 
-/* Action Buttons */
+.vs-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'PT Sans Caption';
+	font-weight: 700;
+	font-size: 16px;
+	margin-bottom: 0;
+	padding: 0 0.125rem;
+	white-space: nowrap;
+	flex: 0;
+}
+
 .action-button {
 	gap: 1px;
 	height: 32px;
@@ -143,7 +330,7 @@
 	justify-content: center;
 	color: $color-primary;
 	text-shadow: 1px 1px 1px $color-black;
-	box-shadow: 2px 4px $color-secondary;
+	box-shadow: 1px 2px $color-secondary;
 	border-radius: 8px;
 	background: linear-gradient($color-tabStyle-gradient), $color-secondary;
 	transition:
@@ -153,18 +340,18 @@
 	&.active {
 		border: 1px solid darkslategrey;
 		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-		transform: translateY(3px);
+		transform: translateY(1px);
 		border-radius: 8px;
 	}
 
 	&:active {
-		transform: translateY(3px);
-		box-shadow: 1px 2px $color-secondary;
+		transform: translateY(1px);
+		box-shadow: 0px 1px $color-secondary;
 	}
 
 	&:focus {
 		outline: none;
-		box-shadow: 2px 4px $color-success;
+		box-shadow: 1px 2px $color-success;
 	}
 
 	button {
@@ -187,185 +374,7 @@
 
 	&:has(button:disabled) {
 		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-		transform: translateY(3px);
-	}
-}
-
-.mainhand-header {
-	font-family: alice;
-	line-height: 0.5em;
-	color: $color-primary;
-	font-size: 16px;
-	text-shadow: 2px 2px 4px $color-black;
-	box-shadow: 2px 4px $color-secondary;
-	border-style: solid;
-	border-width: thin;
-	border-color: $color-beige;
-	padding: 10px;
-	border-radius: 6px;
-	background-color: $color-ternary;
-	margin: 1em 0em;
-}
-
-.offhand-header {
-	font-family: alice;
-	line-height: 0.5em;
-	color: $color-primary;
-	font-size: 16px;
-	text-shadow: 2px 2px 4px $color-black;
-	box-shadow: 2px 4px $color-secondary;
-	border-style: solid;
-	border-width: thin;
-	border-color: $color-beige;
-	padding: 10px;
-	border-radius: 6px;
-	background-color: $color-ternary;
-	margin: 2em 0 0;
-}
-
-.accuracy-desc {
-	&.align-left {
-		margin-top: 24px;
-		margin-bottom: 24px;
-
-		.result-text {
-			text-align: right;
-			color: $color-primary;
-			font-size: 15px;
-			margin-bottom: 10px;
-			background-image: linear-gradient(DarkRed, Crimson);
-		}
-
-		.accuracy-box {
-			span.accuracy-title {
-				color: $color-primary;
-				font-size: 24px;
-				text-shadow: 1px 2px 4px $color-black;
-				box-shadow: 2px 4px $color-secondary;
-				border-radius: 8px 8px 8px 0px;
-				padding: 4px 14px 7px 14px;
-				background-color: $color-ternary;
-				font-family: 'alice';
-				border-width: 1px;
-				border-color: $color-beige;
-				border-style: solid;
-			}
-		}
-
-		.accuracy-details {
-			margin: 7px 0;
-
-			span.accuracy-detail-text {
-				color: $color-primary;
-				font-size: 16px;
-				text-shadow: 1px 2px 4px $color-black;
-				box-shadow: 2px 4px #2a4a41;
-				border-radius: 0px 8px 8px 8px;
-				padding: 2px 8px;
-				background-color: $color-ternary;
-				font-family: 'alice';
-				border-width: 1px;
-				border-color: $color-beige;
-				border-style: solid;
-			}
-		}
-
-		.float-box {
-			float: right;
-			font-size: 15px;
-			font-weight: bold;
-			border-radius: 8px;
-			color: $color-secondary;
-			box-shadow: 2px 4px $color-secondary;
-			background-color: rgba(225, 239, 227, 0.5);
-			border-style: solid;
-			border-width: thin;
-
-			&.acc-float {
-				margin: 13px 0 5px;
-				padding: 0 5px;
-			}
-
-			.float-text {
-				display: inline-block;
-				font-size: 28px;
-				animation: floating 3s infinite ease-in-out;
-			}
-		}
-	}
-}
-
-.damage-desc {
-	&.align-left {
-		margin-top: 24px;
-		margin-bottom: 24px;
-
-		.result-text {
-			text-align: right;
-			color: $color-primary;
-			font-size: 15px;
-			margin-bottom: 10px;
-			background-image: linear-gradient($color-danger);
-		}
-
-		.damage-box {
-			span.damage-title {
-				color: $color-white;
-				font-size: 24px;
-				text-shadow: 1px 2px 4px $color-black;
-				box-shadow: 2px 4px $color-secondary;
-				border-radius: 8px 8px 8px 0px;
-				padding: 4px 14px 7px 14px;
-				background-color: $color-ternary;
-				font-family: 'alice';
-				border-width: 1px;
-				border-color: $color-beige;
-				border-style: solid;
-			}
-		}
-
-		.damage-details {
-			margin: 7px 0;
-
-			span.damage-detail-text {
-				color: $color-white;
-				font-size: 16px;
-				text-shadow: 1px 2px 4px $color-black;
-				box-shadow: 2px 4px $color-secondary;
-				border-radius: 0px 8px 8px 8px;
-				padding: 2px 8px;
-				background-color: $color-ternary;
-				font-family: 'alice';
-				z-index: 10;
-				position: relative;
-				border-width: 1px;
-				border-color: $color-beige;
-				border-style: solid;
-			}
-		}
-
-		.float-box {
-			float: right;
-			font-size: 15px;
-			font-weight: bold;
-			border-radius: 8px;
-			color: $color-secondary;
-			box-shadow: 2px 4px $color-secondary;
-			background-color: rgba(225, 239, 227, 0.5);
-			border-style: solid;
-			border-width: thin;
-
-			&.dam-float {
-				margin-top: -5px;
-				padding: 0 5px;
-			}
-
-			.float-text {
-				display: inline-block;
-				font-size: 28px;
-				animation: floating 3s infinite ease-in-out;
-			}
-		}
+		transform: translateY(1px);
 	}
 }
 
@@ -383,12 +392,52 @@
 }
 
 .message-content .targets {
-	margin-top: 0.5em;
-	padding: 0.5em;
+	padding: 0 0.5em;
 	display: flex;
 	flex-direction: column;
 
 	.target {
+		@mixin total-style($background, $border) {
+			font-family: 'PT Sans Caption';
+			font-weight: 700;
+			border-radius: 8px;
+			background-image: $background;
+			border: 2px solid $border;
+			color: $color-white;
+			font-size: $rcaption-font-size;
+			text-shadow: $text-shadow;
+
+			.startcap {
+				text-shadow: none;
+				display: flex;
+				align-items: center;
+				justify-content: start;
+				padding: 0 5px;
+			}
+
+			.endcap {
+				color: $color-white;
+				font-size: $rcaption-font-size;
+				text-shadow: $text-shadow;
+				display: flex;
+				align-items: center;
+				justify-content: end;
+				padding: 0 5px;
+			}
+		}
+
+		&.total {
+			@include total-style($background-default, $border-default);
+
+			&.hit {
+				@include total-style($background-hit, $border-hit);
+			}
+
+			&.miss {
+				@include total-style($background-miss, $border-miss);
+			}
+		}
+
 		&:not(:last-child) {
 			margin-bottom: 0.125em;
 		}
@@ -396,20 +445,13 @@
 		.hit,
 		.miss {
 			white-space: nowrap;
-			font-family: 'Antonio', serif;
+			font-size: var(--font-size-14);
+			font-family: $font-primary;
+			font-size: 1rem;
 			font-weight: bold;
-			font-size: var(--font-size-16);
-			flex: 0 0 5em;
+			font-variant: small-caps;
 			text-align: right;
 			text-transform: uppercase;
-		}
-
-		.hit {
-			color: $color-success;
-		}
-
-		.miss {
-			color: $color-danger;
 		}
 
 		&.flexrow {

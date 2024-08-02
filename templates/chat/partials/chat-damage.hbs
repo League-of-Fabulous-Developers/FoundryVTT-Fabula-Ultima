@@ -1,25 +1,33 @@
-<div class='damage-desc align-left'>
-    <div class='damage-box'>
-        <span class='damage-title'>{{localize 'FU.Damage'}}</span>
-    </div>
-    <div class='damage-details' {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
-		<span class='damage-detail-text'>
-			{{#if (not damage.hrZero)}}
+<header class="title-desc chat-header flexrow">
+    <h3>{{localize 'FU.Damage'}}</h3>
+</header>
+<div class="flexrow gap-5">
+    <div class='detail-desc flex-group-center grid grid-2col flex2'>
+        <div>
+            <label class="title">{{localize 'FU.HighRollAbbr'}}</label>
+            <label class="detail">
+            {{#if (not damage.hrZero)}}
                 {{#if (gte result.attr1 result.attr2)}}
                     {{result.attr1}}
                 {{else}}
                     {{result.attr2}}
                 {{/if}}
-                <strong>({{localize 'FU.HighRollAbbr'}})</strong>
-                +
             {{/if}}
-            {{damage.bonus}}
-		</span>
+            </label>
+        </div>
+        <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
+            <label class="title">{{localize 'FU.ModAbbr'}}</label>
+            <label class="detail">{{damage.bonus}}</label>
+        </div>
     </div>
-    <div class='float-box dam-float'>
-        <a data-action="applyDamage" data-tooltip="{{{localize 'FU.ChatApplyDamageTooltip'}}}">
-            <span class='float-text' style=''>{{damage.total}}</span>
-            {{localize (lookup translation.damageTypes damage.type)}}!
-        </a>
-    </div>
+</div>
+
+<div class='detail-desc flex-group-center flexrow'>
+    <a data-action="applyDamage" data-tooltip="{{{localize 'FU.ChatApplyDamageTooltip'}}}">
+        <label class="damageType {{damage.type}} grid grid-3col">
+            <div class="startcap"><i class="{{localize (lookup translation.damageIcon damage.type)}}"></i></div>
+            <div>{{damage.total}}</div>
+            <div class="endcap">{{localize (lookup translation.damageTypes damage.type)}}!</div>
+        </label>
+    </a>
 </div>

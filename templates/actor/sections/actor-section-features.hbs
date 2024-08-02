@@ -250,13 +250,13 @@
                                 <div class="resource-text-m buttons-inc">
                                     <a class="decrement-button" data-type="projectCounter" data-item-id="{{ item._id }}"
                                        data-tooltip="{{localize
-                                        'FU.DecreaseTooltip'}} ({{system.progressPerDay.value}})">-</a>
+                                        'FU.DecreaseTooltip'}} ({{item.system.progressPerDay.value}})">-</a>
                                     <span data-resource="item.rp">{{ item.system.progress.current }}</span>
                                     <span>/</span>
                                     <span>{{ item.system.progress.max }}</span>
                                     <a class="increment-button" data-type="projectCounter" data-item-id="{{ item._id }}"
                                        data-tooltip="{{localize
-                                        'FU.IncreaseTooltip'}} ({{system.progressPerDay.value}})">+</a>
+                                        'FU.IncreaseTooltip'}} ({{item.system.progressPerDay.value}})">+</a>
                                 </div>
                             </div>
                             {{!-- Item Control--}}
