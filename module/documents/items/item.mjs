@@ -372,7 +372,7 @@ export class FUItem extends Item {
 
 			content += `
         <header class="title-desc chat-header flexrow">
-            <h3>${game.i18n.localize('FU.Damage')}</h3>
+            <h2>${game.i18n.localize('FU.Damage')}</h2>
         </header>
         <div class="flexrow gap-5">
             <div class='detail-desc flex-group-center grid grid-2col flex2'>
@@ -411,7 +411,7 @@ export class FUItem extends Item {
 
 			content += `
         <header class="title-desc chat-header flexrow">
-            <h3>${game.i18n.localize('FU.DamageCollateral')}</h3>
+            <h2>${game.i18n.localize('FU.DamageCollateral')}</h2>
         </header>
         <div class='detail-desc flex-group-center flexrow'>
             <a data-action="applyDamage">
