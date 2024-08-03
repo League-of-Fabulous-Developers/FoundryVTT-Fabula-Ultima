@@ -514,12 +514,12 @@ export class FUItem extends Item {
 
 		// Prepare tags for category, hands, and type, always showing for 'weapon' or dual shield
 		const tags = [
-			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.category?.value ? `<div class="tag">${capitalizeFirst(this.system.category.value)}</div>` : '',
-			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.hands?.value ? `<div class="tag">${capitalizeFirst(this.system.hands.value)}</div>` : '',
-			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.type?.value ? `<div class="tag">${capitalizeFirst(this.system.type.value)}</div>` : '',
-			['shield', 'armor', 'accessory'].includes(this.type) && this.system.def?.value >= 0 ? `<div class="tag">${game.i18n.localize('FU.DefenseAbbr')} ${this.system.def.value}</div>` : '',
-			['shield', 'armor', 'accessory'].includes(this.type) && this.system.mdef?.value >= 0 ? `<div class="tag">${game.i18n.localize('FU.MagicDefenseAbbr')} ${this.system.mdef.value}</div>` : '',
-			['shield', 'armor', 'accessory'].includes(this.type) && this.system.init?.value >= 0 ? `<div class="tag">${game.i18n.localize('FU.InitiativeAbbr')} ${this.system.init.value}</div>` : '',
+			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.category?.value ? `<div class="fu-tag">${capitalizeFirst(this.system.category.value)}</div>` : '',
+			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.hands?.value ? `<div class="fu-tag">${capitalizeFirst(this.system.hands.value)}</div>` : '',
+			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.type?.value ? `<div class="fu-tag">${capitalizeFirst(this.system.type.value)}</div>` : '',
+			['shield', 'armor', 'accessory'].includes(this.type) && this.system.def?.value >= 0 ? `<div class="fu-tag">${game.i18n.localize('FU.DefenseAbbr')} ${this.system.def.value}</div>` : '',
+			['shield', 'armor', 'accessory'].includes(this.type) && this.system.mdef?.value >= 0 ? `<div class="fu-tag">${game.i18n.localize('FU.MagicDefenseAbbr')} ${this.system.mdef.value}</div>` : '',
+			['shield', 'armor', 'accessory'].includes(this.type) && this.system.init?.value >= 0 ? `<div class="fu-tag">${game.i18n.localize('FU.InitiativeAbbr')} ${this.system.init.value}</div>` : '',
 		]
 			.filter((tag) => tag)
 			.join('');
@@ -528,7 +528,7 @@ export class FUItem extends Item {
 		const qualityValue = this.system.quality?.value?.trim() || '';
 		const description = qualityValue ? `<div class='chat-desc'><p><strong>${game.i18n.localize('FU.Quality')}: </strong>${qualityValue}</p></div>` : '';
 
-		return tags || description ? `<div class="tags">${tags}</div>${description}` : '';
+		return tags || description ? `<div class="fu-tags">${tags}</div>${description}` : '';
 	}
 
 	getConsumableDataString() {
@@ -539,9 +539,9 @@ export class FUItem extends Item {
 		const ipCostText = this.system.ipCost?.value ? `${this.system.ipCost.value} ${game.i18n.localize('FU.InventoryAbbr')}` : game.i18n.localize('FU.InventoryCost');
 
 		// Prepare tags
-		const tags = ipCostText ? `<div class="tag">${ipCostText}</div>` : '';
+		const tags = ipCostText ? `<div class="fu-tag">${ipCostText}</div>` : '';
 
-		return tags ? `<div class="tags">${tags}</div>` : '';
+		return tags ? `<div class="fu-tags">${tags}</div>` : '';
 	}
 
 	getRitualDataString() {
@@ -552,9 +552,9 @@ export class FUItem extends Item {
 		const { mpCost, dLevel, clock } = this.system;
 
 		// Prepare tags
-		const tags = [`<div class="tag">${mpCost?.value || 'Mp Cost'} MP</div>`, `<div class="tag">${dLevel?.value || 'Difficulty Level'} DL</div>`, `<div class="tag">Clock ${clock?.value || 'Clock'}</div>`].join('');
+		const tags = [`<div class="fu-tag">${mpCost?.value || 'Mp Cost'} MP</div>`, `<div class="fu-tag">${dLevel?.value || 'Difficulty Level'} DL</div>`, `<div class="fu-tag">Clock ${clock?.value || 'Clock'}</div>`].join('');
 
-		return tags ? `<div class="tags">${tags}</div>` : '';
+		return tags ? `<div class="fu-tags">${tags}</div>` : '';
 	}
 
 	getSpellDataString() {
@@ -566,7 +566,7 @@ export class FUItem extends Item {
 		const opportunityValue = this.system.opportunity?.value?.trim() || '';
 
 		// Prepare tags
-		const tags = [`<div class="tag">${duration?.value || 'Duration'}</div>`, `<div class="tag">${target?.value || 'Target'}</div>`, `<div class="tag">${mpCost?.value ? `${mpCost.value} MP` : 'MP Cost'}</div>`]
+		const tags = [`<div class="fu-tag">${duration?.value || 'Duration'}</div>`, `<div class="fu-tag">${target?.value || 'Target'}</div>`, `<div class="fu-tag">${mpCost?.value ? `${mpCost.value} MP` : 'MP Cost'}</div>`]
 			.filter((tag) => tag)
 			.join('');
 
@@ -577,7 +577,7 @@ export class FUItem extends Item {
 			  </div>`
 			: '';
 
-		return tags || opportunityDesc ? `<div class="tags">${tags}</div>${opportunityDesc}` : '';
+		return tags || opportunityDesc ? `<div class="fu-tags">${tags}</div>${opportunityDesc}` : '';
 	}
 
 	getTreasureDataString() {
@@ -593,15 +593,15 @@ export class FUItem extends Item {
 
 		// Prepare tags
 		const tags = [
-			subtype?.value ? `<div class="tag">${game.i18n.localize(localizationKey)}</div>` : '',
-			cost?.value ? `<div class="tag">${cost.value} ${currency}</div>` : '',
-			quantity?.value > 0 ? `<div class="tag">${game.i18n.localize('FU.Quantity')}: ${quantity?.value}</div>` : '',
-			origin?.value ? `<div class="tag">${game.i18n.localize('FU.Origin')}: ${origin?.value}</div>` : '',
+			subtype?.value ? `<div class="fu-tag">${game.i18n.localize(localizationKey)}</div>` : '',
+			cost?.value ? `<div class="fu-tag">${cost.value} ${currency}</div>` : '',
+			quantity?.value > 0 ? `<div class="fu-tag">${game.i18n.localize('FU.Quantity')}: ${quantity?.value}</div>` : '',
+			origin?.value ? `<div class="fu-tag">${game.i18n.localize('FU.Origin')}: ${origin?.value}</div>` : '',
 		]
 			.filter((tag) => tag)
 			.join('');
 
-		return tags ? `<div class="tags">${tags}</div>` : '';
+		return tags ? `<div class="fu-tags">${tags}</div>` : '';
 	}
 
 	getProjectDataString() {
@@ -618,12 +618,12 @@ export class FUItem extends Item {
 
 		// Prepare tags
 		const tags = [
-			`<div class="tag" data-tooltip="${cost.value}${discountText}<br>=${totalCost}">${totalCost} ${currency}</div>`,
-			`<div class="tag">${progress.current} progress / ${progress.max} total days</div>`,
-			`<div class="tag">${progressPerDay.value} progress per day</div>`,
+			`<div class="fu-tag" data-tooltip="${cost.value}${discountText}<br>=${totalCost}">${totalCost} ${currency}</div>`,
+			`<div class="fu-tag">${progress.current} progress / ${progress.max} total days</div>`,
+			`<div class="fu-tag">${progressPerDay.value} progress per day</div>`,
 		].join('');
 
-		return `<div class="tags">${tags}</div>`;
+		return `<div class="fu-tags">${tags}</div>`;
 	}
 
 	getHeroicDataString() {
@@ -638,15 +638,15 @@ export class FUItem extends Item {
 
 		// Prepare tags
 		const tags = [
-			subtype?.value ? `<div class="tag">${game.i18n.localize(localizationKey)}</div>` : '',
-			heroicClass?.value ? `<div class="tag">${game.i18n.localize('FU.Class')}: ${heroicClass.value}</div>` : '',
-			requirement?.value ? `<div class="tag">${game.i18n.localize('FU.Requirements')}: ${requirement.value}</div>` : '',
-			heroicStyle?.value ? `<div class="tag">${game.i18n.localize('FU.HeroicStyle')}: ${heroicStyle.value}</div>` : '',
+			subtype?.value ? `<div class="fu-tag">${game.i18n.localize(localizationKey)}</div>` : '',
+			heroicClass?.value ? `<div class="fu-tag">${game.i18n.localize('FU.Class')}: ${heroicClass.value}</div>` : '',
+			requirement?.value ? `<div class="fu-tag">${game.i18n.localize('FU.Requirements')}: ${requirement.value}</div>` : '',
+			heroicStyle?.value ? `<div class="fu-tag">${game.i18n.localize('FU.HeroicStyle')}: ${heroicStyle.value}</div>` : '',
 		]
 			.filter((tag) => tag)
 			.join('');
 
-		return tags ? `<div class="tags">${tags}</div>` : '';
+		return tags ? `<div class="fu-tags">${tags}</div>` : '';
 	}
 
 	getZeroDataString() {
@@ -660,9 +660,9 @@ export class FUItem extends Item {
 
 		// Prepare tags
 		const tags = [
-			`<div class="tag">${zeroTrigger.value || 'Zero Trigger'}</div>`,
-			`<div class="tag">${zeroEffect.value || 'Zero Effect'}</div>`,
-			`<div class="tag">${game.i18n.localize('FU.Clock')}: ${progress.current} / ${progress.max}</div>`,
+			`<div class="fu-tag">${zeroTrigger.value || 'Zero Trigger'}</div>`,
+			`<div class="fu-tag">${zeroEffect.value || 'Zero Effect'}</div>`,
+			`<div class="fu-tag">${game.i18n.localize('FU.Clock')}: ${progress.current} / ${progress.max}</div>`,
 		].join('');
 
 		// Prepare descriptions
@@ -672,7 +672,7 @@ export class FUItem extends Item {
 		].join('');
 
 		// Combine tags and descriptions
-		return tags || descriptions ? `<div class="tags">${tags}</div><div class="chat-desc">${descriptions}</div>` : '';
+		return tags || descriptions ? `<div class="fu-tags">${tags}</div><div class="chat-desc">${descriptions}</div>` : '';
 	}
 
 	/**

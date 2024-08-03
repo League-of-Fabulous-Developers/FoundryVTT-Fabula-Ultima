@@ -1,12 +1,12 @@
 {{#if targets}}
     <div style="clear: both"></div>
     <header class="title-desc chat-header flexrow">
-        <h3>
+        <h2>
             {{localize "FU.Target"}}
             {{#if (gt targets.length 1)}}
                 <span>: {{localize "FU.Multi"}}({{targets.length}})</span>
             {{/if}}
-        </h3>
+        </h2>
     </header>
     <section class="targets">
         {{#each targets as |target|}}
@@ -17,14 +17,14 @@
                         <span class="{{target.result}}">{{localize (concat 'FU.' (capitalize target.result))}}</span>
                     </div>
                 </span>
-                <span class="tags" style="flex: 0 1 auto;padding: 2px;">
+                <span class="fu-tags" style="flex: 0 1 auto;padding: 2px;">
                     <a data-action="applySingleDamage" data-id="{{target}}" data-tooltip="{{localize 'FU.ChatApplyDamageTooltip'}}">
                         <span class='tag flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-heart-crack"></i></span>
                     </a>
                 </span>
             </span>
         {{/each}}
-        <div class="tags flexrow gap-5">
+        <div class="fu-tags flexrow gap-5">
             <a data-action="applySelectedDamage" data-tooltip="{{localize 'FU.ChatApplyDamageTooltip'}}">
                 <span class='tag flex-group-center gap-5' style="width: 100%;">{{localize 'FU.ChatApplySelected'}}<i class="icon fas fa-expand"></i></span>
             </a>
