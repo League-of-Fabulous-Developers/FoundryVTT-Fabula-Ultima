@@ -83,9 +83,9 @@ const onProcessCheck = (check, actor, item) => {
  */
 function onRenderCheck(data, checkResult, actor, item, flags) {
 	const { type, primary, modifierTotal, secondary, result, modifiers, additionalData, critical, fumble } = checkResult;
+
 	if (type === 'magic') {
 		const inspector = CheckConfiguration.inspect(checkResult);
-
 		data.push({
 			order: CHECK_ROLL,
 			partial: 'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',

@@ -183,10 +183,17 @@ async function handleRoll(check) {
 	const roll1 = roll.dice[0].total;
 	/** @type number */
 	const roll2 = roll.dice[1].total;
+	/** @type number */
+	const roll1Die = roll.dice[0].faces;
+	/** @type number */
+	const roll2Die = roll.dice[1].faces;
 
+	console.log(roll.dice[0]);
 	check.result = {
 		attr1: roll1,
 		attr2: roll2,
+		die1: roll1Die,
+		die2: roll2Die,
 		modifier: modifier,
 		bonus: bonus,
 		total: roll.total,
@@ -715,7 +722,6 @@ export async function promptCheck(actor, title, action) {
 			recentActorChecks.difficulty = 0;
 			bonus = actor.system.bonuses.accuracy.opposedCheck;
 		}
-		console.log('bonus: ', bonus);
 		const { attr1, attr2, difficulty, modifier } = await Dialog.wait(
 			{
 				title: game.i18n.localize(titleMain),

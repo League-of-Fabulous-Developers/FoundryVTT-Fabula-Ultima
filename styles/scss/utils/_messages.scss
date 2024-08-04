@@ -57,7 +57,7 @@
 	.chat-desc {
 		text-align: left;
 		font-size: 0.875rem;
-		padding: 0.125rem 0.25rem;
+		padding: 0.313rem 0.5rem;
 		margin: 2px 0;
 		color: #272a2a;
 		box-shadow: 1px 2px $color-secondary;
@@ -138,6 +138,7 @@
 			font-weight: 700;
 			font-size: 1.1rem;
 			font-variant: small-caps;
+			text-transform: uppercase;
 		}
 
 		@mixin total-style($background, $border) {

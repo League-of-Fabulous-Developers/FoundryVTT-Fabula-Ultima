@@ -23,7 +23,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		check.secondary = item.system.rollInfo.attributes.secondary.value;
 		check.modifiers.push({
 			label: 'FU.MagicCheckBaseAccuracy',
-			value: item.system.accuracy.value,
+			value: item.system.rollInfo.accuracy.value,
 		});
 		const configurer = MagicCheck.configure(check)
 			.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)

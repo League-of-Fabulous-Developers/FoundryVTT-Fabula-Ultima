@@ -377,7 +377,7 @@ export class FUItem extends Item {
         <div class="flexrow gap-5">
             <div class='detail-desc flex-group-center grid grid-2col flex2'>
                 <div>
-                    <label class="title">${game.i18n.localize('FU.ModAbbr')}</label>
+                    <label class="title">${game.i18n.localize('FU.HighRollAbbr')}</label>
                     <label class="detail">${hr}</label>
                 </div>
                 <div>
@@ -789,7 +789,8 @@ export class FUItem extends Item {
 	 * @return {Promise<chatMessage>}
 	 */
 	async rollSpell(hrZero) {
-		const { rollInfo, opportunity, description, summary, mpCost, target, duration } = this.system;
+		const { rollInfo, opportunity, description, summary, mpCost, target, duration, defense } = this.system;
+		let defenseAbbr = !defense ? game.i18n.localize('FU.MagicDefenseAbbr') : defenseAbbr;
 		let checkDamage = undefined;
 		if (rollInfo?.damage?.hasDamage?.value) {
 			const damageBonus = this.actor.system.bonuses.damage.spell;
@@ -809,6 +810,7 @@ export class FUItem extends Item {
 			duration: duration.value,
 			target: target.value,
 			mpCost: mpCost.value,
+			defense: defenseAbbr,
 			opportunity: opportunity,
 			summary: summary.value,
 			description: await TextEditor.enrichHTML(description),
@@ -940,7 +942,6 @@ export class FUItem extends Item {
 			opportunity: opportunity,
 			description: await TextEditor.enrichHTML(description),
 		};
-
 		const speaker = ChatMessage.implementation.getSpeaker({ actor: this.actor });
 		const targets = getTargets(defense);
 
