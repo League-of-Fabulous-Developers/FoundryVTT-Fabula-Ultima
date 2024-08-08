@@ -482,3 +482,13 @@ FU.target = {
 	fiveCreature: 'FU.FiveCreatures',
 	oneWeapon: 'FU.OneWeapon',
 };
+
+FU.combatHudThemes = {
+	'fu-default': 'FU.CombatHudDefault',
+	'fu-modern': 'FU.CombatHudModern',
+};
+
+FU.combatHudThemeTemplates = {
+	'fu-default': 'combat-hud-default',
+	'fu-modern': 'combat-hud-modern',
+};

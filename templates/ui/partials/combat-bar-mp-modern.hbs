@@ -1,0 +1,20 @@
+<div class="bar-container">
+    <div class="bar-label label-mp">
+        <span>{{ localize "FU.MindAbbr" }}</span>
+    </div>
+    <div class="bar bar-progress">
+        <div class="bar-progress-bar bar-mp"
+            style="width: {{calculatePercentage this.actor.system.resources.mp.value this.actor.system.resources.mp.max}};">
+        </div>
+        <span class="bar-value"></span>
+    </div>  
+    <div class="resource-value">
+        {{#if (eq this.actor.system.resources.mp.value this.actor.system.resources.mp.max)}}
+        <div class="resource-text full">
+        {{else}}
+        <div class="resource-text">
+        {{/if}}
+            <span>{{ this.actor.system.resources.mp.value }}</span>
+        </div>
+    </div>
+</div>
