@@ -152,5 +152,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/ui/partials/combat-bar-mp.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-ip.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-zeropower.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-hp-modern.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-mp-modern.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-ip-modern.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-zeropower-modern.hbs',
 	]);
 };

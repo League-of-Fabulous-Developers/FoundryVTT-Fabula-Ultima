@@ -9,6 +9,16 @@
         </div>
         <p class="notes">{{localize "FU.ExperimentalCombatHudSettingsHint"}}</p>
     </div>
+    {{!-- optionCombatHudTheme --}}
+    <div class="form-group">
+        <label for="optionCombatHudTheme">{{localize "FU.CombatHudTheme"}}</label>
+        <div class="form-fields">
+            <select name="optionCombatHudTheme" id="optionCombatHudTheme">
+                {{selectOptions optionCombatHudThemeOptions selected=optionCombatHudTheme localize=true}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudThemeHint"}}</p>
+    </div>
     {{!-- optionCombatHudOpacity --}}
     <div class="form-group">
         <label for="optionCombatHudOpacity">{{localize "FU.CombatHudOpacity"}}</label>
@@ -125,6 +135,26 @@
             </select>
         </div>
         <p class="notes">{{localize "FU.CombatHudTrackedResource3Hint"}}</p>
+    </div>
+    {{!-- optionCombatHudTrackedResource4 --}}
+    <div class="form-group">
+        <label for="optionCombatHudTrackedResource4">{{localize "FU.CombatHudTrackedResource4"}}</label>
+        <div class="form-fields">
+            <select name="optionCombatHudTrackedResource4" id="optionCombatHudTrackedResource4">
+                {{selectOptions trackedResources selected=optionCombatHudTrackedResource4 localize=true}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudTrackedResource4Hint"}}</p>
+    </div>
+    {{!-- optionCombatHudShowNPCTurnsLeftMode --}}
+    <div class="form-group">
+        <label for="optionCombatHudShowNPCTurnsLeftMode">{{localize "FU.CombatHudShowNPCTurnsLeftMode"}}</label>
+        <div class="form-fields">
+            <select name="optionCombatHudShowNPCTurnsLeftMode" id="optionCombatHudShowNPCTurnsLeftMode">
+                {{selectOptions optionCombatHudShowNPCTurnsLeftModeOptions selected=optionCombatHudShowNPCTurnsLeftMode localize=true}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudShowNPCTurnsLeftModeHint"}}</p>
     </div>
     {{/if}}
     <div class="form-group buttons">

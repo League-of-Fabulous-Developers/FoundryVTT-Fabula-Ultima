@@ -60,9 +60,11 @@
 	--combat-bars-icon-width: 45%;
 	--combat-bars-text-width: calc(100% - var(--combat-bars-icon-width));
 	--hud-buttons-height: 2.2em;
+	--hud-buttons-width: 3em;
 	--hud-opacity: 1;
 	--hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));
 	--hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));
+	--combatant-control-z-index: 99;
 
 	@keyframes effects-marquee {
 		0% {
@@ -81,8 +83,9 @@
 
 	.window-button {
 		position: absolute;
-		top: -1.5em;
+		top: -2em;
 		color: $color-white;
+		z-index: 99;
 
 		text-shadow: 1px 1px 1px $color-black;
 		box-shadow: 3px 3px $color-secondary;
@@ -90,6 +93,7 @@
 		background: linear-gradient($color-tabStyle-gradient), $color-secondary;
 		padding: 0.5em 1em 0.5em 1em;
 		height: var(--hud-buttons-height);
+		width: var(--hud-buttons-width);
 
 		&.window-minimize {
 			right: 0.5em;
@@ -109,6 +113,28 @@
 
 		&.window-drag {
 			left: 0em;
+		}
+
+		&.window-start {
+			left: 3.5em;
+		}
+
+		&.hidden {
+			display: none;
+		}
+
+		&.window-stop {
+			left: 3.5em;
+		}
+
+		a {
+			padding: 0;
+			margin: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			width: 100%;
 		}
 	}
 
@@ -155,7 +181,17 @@
 			text-transform: uppercase;
 			display: flex;
 			gap: 4px;
+			position: relative;
 			//transition: all 0.5s ease-in-out;
+
+			.combatant-control {
+				display: flex;
+				align-items: flex-end;
+				z-index: var(--combatant-control-z-index);
+				position: absolute;
+				right: 0;
+				bottom: 0;
+			}
 
 			img {
 				flex: 0 0 var(--combat-info-image-size);
@@ -190,13 +226,23 @@
 					}
 
 					&.crisis {
-						color: $color-warning;
+						color: $color-hp-crisis;
 					}
 
 					&.full-height {
 						height: 100%;
 					}
 				}
+			}
+
+			.combat-effects {
+				display: flex;
+				gap: 1px;
+				height: auto;
+				flex-flow: row nowrap;
+				overflow: hidden;
+				max-width: 100%;
+				align-items: center;
 
 				img {
 					flex: 0 0 var(--combat-info-effects-icon-size);
@@ -207,31 +253,21 @@
 					border: none;
 				}
 
-				.combat-effects {
-					display: flex;
-					gap: 1px;
-					height: auto;
-					flex-flow: row nowrap;
-					overflow: hidden;
-					max-width: 100%;
-					align-items: center;
+				.marquee {
+					white-space: nowrap;
+					display: inline-block;
+					animation-name: effects-marquee;
+					animation-timing-function: linear;
+					animation-iteration-count: infinite;
+					animation-delay: 0.5s;
+					animation-play-state: running;
 
-					.marquee {
-						white-space: nowrap;
+					img {
 						display: inline-block;
-						animation-name: effects-marquee;
-						animation-timing-function: linear;
-						animation-iteration-count: infinite;
-						animation-delay: 0.5s;
-						animation-play-state: running;
+					}
 
-						img {
-							display: inline-block;
-						}
-
-						&:hover {
-							animation-play-state: paused;
-						}
+					&:hover {
+						animation-play-state: paused;
 					}
 				}
 			}
@@ -370,6 +406,254 @@
 							display: none;
 						}
 					}
+				}
+			}
+		}
+	}
+}
+
+&#combat-hud.modern {
+	--npc-width-percent: 0;
+	--combat-info-image-size: calc(8.5em - var(--combat-info-content-padding) * 2);
+	--combat-info-image-size-npcs: calc(7em - var(--combat-info-content-padding) * 2);
+	--combat-info-image-size-compact: calc(2em - var(--combat-info-content-padding) * 2);
+	--combat-info-pc-background: url('/systems/projectfu/styles/static/ui/combat-hud/pc_bg.svg');
+	--combat-info-clip-path: polygon(50% 100%, 100% 50%, 100% 0%, 0% 0%, 0% 50%);
+	--combat-image-size: var(--combat-info-image-size);
+	--combat-bars-width-three: auto;
+	--combat-bars-min-width: 150px;
+	--combat-bar-height: 12px;
+	--combat-bar-gap: 3px;
+	--combat-bar-right-offset: 10px;
+	--combat-bars-text-width: auto;
+	--combat-hp-label-color: #ebffed;
+	--combat-mp-label-color: #c0f0ff;
+	--combat-ip-label-color: #ffdfbb;
+	--combat-zeropower-label-color: #f0ccff;
+	--combat-bars-background: url('/systems/projectfu/styles/static/ui/combat-hud/bar_bg.svg');
+	--combat-effects-background: rgba(25, 25, 25, 0.6);
+	
+	max-height: 355px;
+
+	.faction-list {
+		flex-direction: column;
+		gap: 15px;
+		width: 100%;
+		margin: 0;
+		justify-content: space-evenly;
+		padding-top: 25px;
+
+		.combat-row {
+			flex: 0 0 auto;
+			background: none;
+			position: relative;
+
+			&.hovered {
+				.combat-info {
+					opacity: 1;
+					transition: all 0.3s ease-in-out;
+				}
+			}
+
+			&.hovered.effects-on-hover {
+				.combat-effects {
+					opacity: 1;
+					transition: all 0.3s ease-in-out;
+					pointer-events: all;
+				}
+			}
+
+			.combat-image {
+				flex: 0 0 var(--combat-image-size);
+				height: var(--combat-image-size);
+				width: var(--combat-image-size);
+				padding: 2px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+
+				img {
+					clip-path: var(--combat-info-clip-path);
+					flex: 0 0 calc(var(--combat-image-size) - 5px);
+					height: calc(var(--combat-image-size) - 5px);
+					width: calc(var(--combat-image-size) - 5px);
+				}
+			}
+
+			.combat-image-bg {
+				position: absolute;
+				background-image: var(--combat-info-pc-background);
+				background-repeat: no-repeat;
+				background-size: contain;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+			.combat-bars {
+				flex-direction: column;
+				min-width: var(--combat-bars-min-width);
+				height: 50%;
+				align-self: flex-end;
+				gap: var(--combat-bar-gap);
+				position: relative;
+
+				.bar-container {
+					position: absolute;
+					width: 100%;
+					display: flex;
+					flex-direction: row;
+					gap: 5px;
+
+					.bar-label {
+						transform: skew(-10deg);
+					}
+
+					.bar-label.label-hp {
+						color: var(--combat-hp-label-color);
+					}
+
+					.bar-label.label-mp {
+						color: var(--combat-mp-label-color);
+					}
+
+					.bar-label.label-ip {
+						color: var(--combat-ip-label-color);
+					}
+
+					.bar-label.label-zeropower {
+						color: var(--combat-zeropower-label-color);
+					}
+
+					.resource-value {
+						gap: 0;
+						width: 20%;
+						font-size: 1.2em;
+
+						.resource-text.full {
+							color: $color-levelup;
+						}
+					}
+
+					.bar {
+						height: var(--combat-bar-height);
+					}
+				}
+
+				.bar-container:nth-child(1) {
+					top: 0px;
+					right: 0px;
+				}
+
+				.bar-container:nth-child(2) {
+					top: calc(var(--combat-bar-height) + var(--combat-bar-gap));
+					right: var(--combat-bar-right-offset);
+				}
+
+				.bar-container:nth-child(3) {
+					top: calc(2 * var(--combat-bar-height) + 2 * var(--combat-bar-gap));
+					right: calc(2 * var(--combat-bar-right-offset));
+				}
+
+				.bar-container:nth-child(4) {
+					top: calc(3 * var(--combat-bar-height) + 3 * var(--combat-bar-gap));
+					right: calc(3 * var(--combat-bar-right-offset));
+				}
+			}
+
+			.combat-info {
+				position: absolute;
+				width: 125px;
+				top: 75%;
+				transform: translateY(-50%) translateX(-35px) rotate(45deg);
+				display: flex;
+				justify-content: center;
+				opacity: 0;
+				transition: all 0.3s ease-in-out;
+			}
+
+			.combat-effects {
+				position: absolute;
+				left: 45%;
+				height: 60%;
+				min-width: 170px;
+				top: -15px;
+				align-items: flex-end;
+
+				div {
+					display: flex;
+					flex-wrap: wrap;
+				}
+			}
+
+			.combatant-control {
+				left: 0;
+				top: 0;
+				right: initial;
+				bottom: initial;
+			}
+		}
+
+		&.characters {
+			flex: 2.5;
+			flex-direction: row;
+
+			.combat-row {
+				max-width: 260px;
+			}
+		}
+
+		&.npcs {
+			flex: 0 0 250px;
+			flex-wrap: wrap;
+			flex-direction: column;
+			justify-content: space-around;
+			align-content: flex-start;
+
+			.combat-row {
+				.combat-image {
+					flex: 0 0 var(--combat-info-image-size-npcs);
+					height: var(--combat-info-image-size-npcs);
+					width: var(--combat-info-image-size-npcs);
+
+					img {
+						flex: 0 0 calc(var(--combat-info-image-size-npcs) - 5px);
+						height: calc(var(--combat-info-image-size-npcs) - 5px);
+						width: calc(var(--combat-info-image-size-npcs) - 5px);
+					}
+				}
+
+				.combat-info {
+					width: 100px;
+					top: 67%;
+					transform: translateY(-50%) translateX(-30px) rotate(45deg);
+				}
+			}
+
+			.combat-effects {
+				left: 95%;
+				height: 100%;
+				top: 0;
+				align-items: center;
+				justify-content: center;
+				min-width: 100px;
+				max-width: 100px;
+				z-index: calc(var(--combatant-control-z-index) + 1);
+				background: var(--combat-effects-background);
+				transition: all 0.3s ease-in-out;
+				border: 2px solid $color-secondary;
+				border-radius: 8px;
+				opacity: 0;
+				pointer-events: none;
+
+				div {
+					height: 100%;
+					width: 100%;
+					padding: 6px;
 				}
 			}
 		}
