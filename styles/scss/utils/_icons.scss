@@ -43,6 +43,7 @@ $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 	background-size: cover;
 	font-style: normal;
 	-webkit-text-stroke: 0.05rem black;
+	display: inline-block;
 }
 
 .fun {
@@ -51,6 +52,7 @@ $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 	background-size: cover;
 	fill: $color-secondary;
 	font-style: normal;
+	display: inline-block;
 }
 
 .fusl {
@@ -58,6 +60,7 @@ $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 	height: 24px;
 	background-size: cover;
 	fill: $color-secondary;
+	display: inline-block;
 }
 
 .fuk {
@@ -66,6 +69,7 @@ $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 	background-size: cover;
 	fill: $color-secondary;
 	font-style: normal;
+	display: inline-block;
 }
 
 .ful-sl-star {

@@ -7,32 +7,48 @@ import { FU } from './config.mjs';
  * @param {Function} callback - The function to call when the user confirms.
  * @param {Function} onCancel - The function to call when the user cancels.
  */
-export function DamageCustomizer(damage, callback, onCancel) {
+export function DamageCustomizer(damage, targets, callback, onCancel) {
 	// Map damage types to options with the current type selected
 	const damageTypesOptions = Object.keys(FU.damageTypes)
 		.map((type) => `<option value="${type}" ${type === damage.type ? 'selected' : ''}>${game.i18n.localize(FU.damageTypes[type])}</option>`)
+		.join('');
+	const tokenInfo = targets
+		.map((token) => {
+			const { img, name } = token;
+			return `
+            <div class="flexcol">
+                <img src="${img}" style="width: 36px; height: 36px; vertical-align: middle; margin-right: 5px;">
+                <strong>${name}</strong>
+            </div><br>
+        `;
+		})
 		.join('');
 
 	// Create the content for the dialog
 	const content = `
         <form>
-            <div class="desc mb-3 grid grid-2col">
-                <div class="form-group">
-                    <label for="total-damage"><b>${game.i18n.localize('FU.Total')}</b></label>
-                    <span id="total-damage">
-                        <b>${damage.total} ${game.i18n.localize(FU.damageTypes[damage.type])}</b>
-                    </span>
-                    <i id="total-damage-icon" class="icon ${FU.affIcon[damage.type]}"></i>
+            <div class="desc mb-3 gap-5">
+				<div class="flexrow form-group">${tokenInfo}</div>
+            </div>
+            <div class="desc mb-3 grid grid-2col gap-5">
+                <div class="inline-desc form-group" style="padding: 5px 10px;">
+                    <label for="total-damage" class="resource-content resource-label" style="flex-grow: 8;"><b>${game.i18n.localize('FU.Total')}</b>
+						<span id="total-damage">
+							<b>${damage.total} ${game.i18n.localize(FU.damageTypes[damage.type])}</b>
+						</span>
+					</label>
+                    <i id="total-damage-icon" class="icon ${FU.affIcon[damage.type]}" style="flex: 0 1 auto;"></i>
                 </div>
-                <div class="form-group">
-                    <label for="total-extra-damage" style="flex-grow: 4;"><b>${game.i18n.localize('FU.DamageExtra')}</b></label>
-                    <span id="extra-total-damage">
-                        <b>0 ${game.i18n.localize(FU.damageTypes[damage.type])}</b>
-                    </span>
-                    <i id="extra-damage-icon" class="icon ${FU.affIcon[damage.type]}"></i>
+                <div class="inline-desc form-group" style="padding: 5px 10px;">
+                    <label for="total-extra-damage" class="resource-content resource-label" style="flex-grow: 8;"><b>${game.i18n.localize('FU.DamageExtra')}</b>
+						<span id="extra-total-damage">
+							<b>0 ${game.i18n.localize(FU.damageTypes[damage.type])}</b>
+						</span>
+					</label>
+                    <i id="extra-damage-icon" class="icon ${FU.affIcon[damage.type]}" style="flex: 0 1 auto;"></i>
                 </div>
             </div>
-            <div class="desc grid grid-2col gap-5">
+            <div class="desc mb-3 grid grid-2col gap-5">
                 <div class="gap-2">
                     <div class="form-group">
                         <label for="damage-bonus"><b>${game.i18n.localize('FU.DamageBonus')}</b></label>
@@ -58,6 +74,34 @@ export function DamageCustomizer(damage, callback, onCancel) {
                     </div>
                 </div>
             </div>
+            <div class="desc grid grid-2col gap-5">
+                <div class="gap-2 grid-span-2">
+					<div class="form-group">
+                    	<button type="button" id="check-all" class="btn">${game.i18n.localize('FU.IgnoreAll')}</button>
+                    	<button type="button" id="check-none" class="btn">${game.i18n.localize('FU.IgnoreNone')}</button>
+					</div>
+                </div>
+                <div class="gap-2">
+                    <div class="form-group">
+                        <label for="ignore-vulnerable"><b>${game.i18n.localize('FU.IgnoreVulnerable')}</b></label>
+                        <input id="ignore-vulnerable" class="ignore" name="ignore-vulnerable" type="checkbox" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ignore-resistance"><b>${game.i18n.localize('FU.IgnoreResistances')}</b></label>
+                        <input id="ignore-resistance" class="ignore" name="ignore-resistance" type="checkbox" />
+                    </div>
+                </div>
+                <div class="gap-2">
+                    <div class="form-group">
+                        <label for="ignore-immunities"><b>${game.i18n.localize('FU.IgnoreImmunities')}</b></label>
+                        <input id="ignore-immunities" class="ignore" name="ignore-immunities" type="checkbox" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ignore-absorption"><b>${game.i18n.localize('FU.IgnoreAbsorption')}</b></label>
+                        <input id="ignore-absorption" class="ignore" name="ignore-absorption" type="checkbox" />
+                    </div>
+                </div>
+            </div>
         </form>
     `;
 
@@ -77,6 +121,10 @@ export function DamageCustomizer(damage, callback, onCancel) {
 						const extraDamage = parseInt(html.find('[name="extra-damage"]').val(), 10) || 0;
 						const extraDamageType = html.find('[name="extra-damage-type"]').val();
 						const hrZero = html.find('[name="hr-zero"]').is(':checked');
+						const ignoreVulnerable = html.find('[name="ignore-vulnerable"]').is(':checked');
+						const ignoreResistance = html.find('[name="ignore-resistance"]').is(':checked');
+						const ignoreImmunities = html.find('[name="ignore-immunities"]').is(':checked');
+						const ignoreAbsorption = html.find('[name="ignore-absorption"]').is(':checked');
 
 						// Create an object with the extra damage information
 						const extraDamageInfo = {
@@ -85,16 +133,24 @@ export function DamageCustomizer(damage, callback, onCancel) {
 							extraDamage,
 							extraDamageType,
 							hrZero,
+							ignoreVulnerable,
+							ignoreResistance,
+							ignoreImmunities,
+							ignoreAbsorption,
 						};
 
-						// Execute the callback with the extra damage information
-						callback(extraDamageInfo);
+						// Execute the callback with the extra damage information and targets
+						callback(extraDamageInfo, targets);
 					},
 				},
-				no: {
-					icon: "<i class='fas fa-times'></i>",
+				cancel: {
 					label: 'Cancel',
-					callback: onCancel,
+					callback: () => {
+						// Execute onCancel function if provided
+						if (typeof onCancel === 'function') {
+							onCancel();
+						}
+					},
 				},
 			},
 			default: 'yes',
@@ -109,6 +165,9 @@ export function DamageCustomizer(damage, callback, onCancel) {
 				const $extraDamageTypeSelect = html.find('#extra-damage-type');
 				const $totalDamageIcon = html.find('#total-damage-icon');
 				const $extraDamageIcon = html.find('#extra-damage-icon');
+				const $checkAllButton = html.find('#check-all');
+				const $checkNoneButton = html.find('#check-none');
+				const $ignoreCheckboxes = html.find('.ignore');
 
 				// Function to update total damage and icons based on the damage bonus, HR Zero status, and extra damage
 				function updateTotalDamage() {
@@ -136,10 +195,25 @@ export function DamageCustomizer(damage, callback, onCancel) {
 				$damageTypeSelect.on('change', updateTotalDamage);
 				$extraDamageInput.on('input', updateTotalDamage);
 				$extraDamageTypeSelect.on('change', updateTotalDamage);
+
+				// Handle check all and check none buttons
+				$checkAllButton.on('click', () => {
+					$ignoreCheckboxes.prop('checked', true);
+				});
+
+				$checkNoneButton.on('click', () => {
+					$ignoreCheckboxes.prop('checked', false);
+				});
+			},
+			close: () => {
+				// Execute onCancel function if provided
+				if (typeof onCancel === 'function') {
+					onCancel();
+				}
 			},
 		},
 		{
-			width: 420,
+			width: 440,
 			classes: ['dialog', 'backgroundstyle'],
 		},
 	).render(true);

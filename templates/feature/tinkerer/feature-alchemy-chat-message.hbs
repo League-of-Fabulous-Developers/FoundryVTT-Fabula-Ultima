@@ -1,4 +1,49 @@
-<div>
+<div class="fu-tags">
+    <div class="fu-tag gap-5">
+        {{localize 'FU.Rank'}}: {{localize rank}}
+    </div>
+</div>
+
+{{#if results}}
+   <div class='chat-desc'>
+    <details {{#unless collapseDescriptions}}open{{/unless}}>
+        <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureAlchemyTargets'}}</summary>
+            {{#each results}}
+                <div>
+                    <strong>{{result}}: </strong>{{target}}
+                </div>
+            {{/each}}
+    </details>
+</div>
+{{/if}}
+
+{{#if results}}
+   <div class='chat-desc'>
+    <details {{#unless collapseDescriptions}}open{{/unless}}>
+        <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureAlchemyEffects'}}</summary>
+            {{#each results}}
+                <div>
+                    <strong>{{result}}: </strong>{{effect}}
+                </div>
+            {{/each}}
+    </details>
+</div>
+{{/if}}
+
+{{#if alwaysAvailableEffects}}
+   <div class='chat-desc'>
+    <details {{#unless collapseDescriptions}}open{{/unless}}>
+        <summary class="collapsible-description align-center">{{localize 'FU.ClassFeatureAlchemyAlwaysAvailableEffectsSection'}}</summary>
+        {{#each alwaysAvailableEffects}}
+            <div>
+                {{this}}
+            </div>
+        {{/each}}
+    </details>
+</div>
+{{/if}}
+
+{{!-- <div>
     <div class='detail-desc flexrow flex-group-center'>
         <div>{{localize rank}}</div>
     </div>
@@ -32,4 +77,4 @@
             {{/each}}
         </div>
     </div>
-</div>
+</div> --}}

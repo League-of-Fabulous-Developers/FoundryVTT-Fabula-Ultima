@@ -2,6 +2,12 @@
 	.resource-content {
 		color: $color-secondary;
 		background-color: transparent;
+		&.resource-label {
+			font-size: 1.125rem;
+			font-weight: bold;
+			font-family: $font-secondary;
+			font-variant: small-caps;
+		}
 	}
 
 	/* Description Format */

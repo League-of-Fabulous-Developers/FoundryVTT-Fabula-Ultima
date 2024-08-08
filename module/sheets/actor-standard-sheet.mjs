@@ -1,5 +1,6 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
 import { createChatMessage, promptCheck } from '../helpers/checks.mjs';
+import { promptItemCustomizer } from '../helpers/item-customizer.mjs';
 import { actionHandler } from '../helpers/action-handler.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
@@ -1469,6 +1470,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		const dataset = element.dataset;
 
 		const isShift = event.shiftKey;
+		const isCtrl = event.ctrlKey;
 		// Get the value of optionTargetPriorityRules from game settings
 		const settingPriority = game.settings.get('projectfu', 'optionTargetPriorityRules');
 
@@ -1478,19 +1480,19 @@ export class FUStandardActorSheet extends ActorSheet {
 				const itemId = element.closest('.item').dataset.itemId;
 				const item = this.actor.items.get(itemId);
 				if (item) {
-					// if (isCtrl) {
-					// 	return promptCheckCustomizer(this.actor, item);
-					// } else {
-					if (settingPriority && this.actor?.type === 'npc') {
-						this._targetPriority();
+					if (isCtrl) {
+						return promptItemCustomizer(this.actor, item);
+					} else {
+						if (settingPriority && this.actor?.type === 'npc') {
+							this._targetPriority();
+						}
+						return item.roll({
+							shift: isShift,
+							alt: event.altKey,
+							ctrl: event.ctrlKey,
+							meta: event.metaKey,
+						});
 					}
-					return item.roll({
-						shift: isShift,
-						alt: event.altKey,
-						ctrl: event.ctrlKey,
-						meta: event.metaKey,
-					});
-					// }
 				}
 			}
 			if (dataset.rollType === 'behavior') {
@@ -1550,9 +1552,15 @@ export class FUStandardActorSheet extends ActorSheet {
 			const affinityName = affinity.label;
 			const affinityValue = affinity.affTypeCurr;
 
-			let params = {
+			// Get the localized string from FU.AffinityDescription
+			const template = game.i18n.localize('FU.AffinityDescription');
+
+			// Replace placeholders with actual values
+			const description = template.replace(/{affinityValue}/g, affinityValue).replace(/{affinityName}/g, affinityName);
+
+			const params = {
 				details: { name: affinityName },
-				description: affinityValue,
+				description: description,
 				speaker: ChatMessage.getSpeaker({ actor }),
 			};
 

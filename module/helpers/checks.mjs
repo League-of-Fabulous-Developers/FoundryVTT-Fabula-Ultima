@@ -871,6 +871,17 @@ export async function promptOpenCheck(actor, title, action) {
 		recentActorChecks.modifier = modifier;
 		sessionStorage.setItem(KEY_RECENT_CHECKS, JSON.stringify(recentChecks));
 
+		if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
+			if (modifier) {
+				Hooks.once(CheckHooks.prepareCheck, (check) =>
+					check.modifiers.push({
+						value: modifier,
+						label: 'FU.CheckSituationalModifier',
+					}),
+				);
+			}
+			return ChecksV2.openCheck(actor, { primary: attr1, secondary: attr2 });
+		}
 		const speaker = ChatMessage.implementation.getSpeaker({ actor });
 
 		/**

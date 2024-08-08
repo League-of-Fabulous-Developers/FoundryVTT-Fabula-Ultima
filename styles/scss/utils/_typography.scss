@@ -110,7 +110,7 @@ $font-secondary: 'Yanone Kaffeesatz', sans-serif;
 $font-quote: 'EB Garamond', sans-serif;
 
 // Styles for .window-app class
-.window-app {
+.window-app:not([id$='-popout']) {
 	font-family: $font-primary;
 
 	// Default styles for header

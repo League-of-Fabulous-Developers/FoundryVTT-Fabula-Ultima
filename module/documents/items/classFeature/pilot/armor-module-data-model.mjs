@@ -1,7 +1,9 @@
-import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { FU, SYSTEM } from '../../../../helpers/config.mjs';
+import { Flags } from '../../../../helpers/flags.mjs';
 
 /**
- * @extends ClassFeatureDataModel
+ * @extends RollableClassFeatureDataModel
  * @property {Object} defense
  * @property {"", "dex", "ins", "mig", "wlp"} defense.attribute
  * @property {number} defense.modifier
@@ -12,7 +14,7 @@ import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
  * @property {string} quality
  * @property {string} description
  */
-export class ArmorModuleDataModel extends ClassFeatureDataModel {
+export class ArmorModuleDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, NumberField, BooleanField, HTMLField } = foundry.data.fields;
 		return {
@@ -65,5 +67,31 @@ export class ArmorModuleDataModel extends ClassFeatureDataModel {
 
 	transferEffects() {
 		return this.actor.system.vehicle.embarked && this.actor.system.vehicle.armor === this.item;
+	}
+
+	static async roll(model, item) {
+		const actor = model.parent.parent.actor;
+		if (!actor) {
+			return;
+		}
+		const data = {
+			martial: model.martial,
+			mdefenseAttributeAbbreviations: FU.attributeAbbreviations[model.magicDefense.attribute],
+			mdefenseAttributesMod: model.magicDefense.modifier,
+			defenseAttributeAbbreviations: FU.attributeAbbreviations[model.defense.attribute],
+			defenseAttributesMod: model.defense.modifier,
+			quality: model.quality,
+			description: await TextEditor.enrichHTML(model.description),
+		};
+
+		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
+		const chatMessage = {
+			speaker,
+			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
+			content: await renderTemplate('systems/projectfu/templates/feature/pilot/feature-armor-module-chat-message.hbs', data),
+			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
+		};
+
+		ChatMessage.create(chatMessage);
 	}
 }

@@ -1,5 +1,6 @@
-import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
-import { FU } from '../../../../helpers/config.mjs';
+import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { FU, SYSTEM } from '../../../../helpers/config.mjs';
+import { Flags } from '../../../../helpers/flags.mjs';
 
 const recoveryOptions = {
 	hp: 'FU.HealthPoints',
@@ -16,13 +17,13 @@ const statuses = {
 };
 
 /**
- * @extends ClassFeatureDataModel
+ * @extends RollableClassFeatureDataModel
  * @property {DamageType} type
  * @property {"slow","dazed","weak","shaken","enraged","poisoned"} status
  * @property {Attribute} attribute
  * @property {"hp","mp"} recovery
  */
-export class KeyDataModel extends ClassFeatureDataModel {
+export class KeyDataModel extends RollableClassFeatureDataModel {
 	static get recoveryOptions() {
 		return recoveryOptions;
 	}
@@ -61,5 +62,29 @@ export class KeyDataModel extends ClassFeatureDataModel {
 			attributeAbbreviations: FU.attributeAbbreviations,
 			recoveryOptions: KeyDataModel.recoveryOptions,
 		};
+	}
+
+	static async roll(model, item) {
+		const actor = model.parent.parent.actor;
+		if (!actor) {
+			return;
+		}
+		const data = {
+			types: FU.damageTypes[model.type],
+			statuses: KeyDataModel.statuses[model.status],
+			attributes: FU.attributes[model.attribute],
+			attributeAbbreviations: FU.attributeAbbreviations[model.attribute],
+			recoveryOptions: KeyDataModel.recoveryOptions[model.recovery],
+		};
+
+		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
+		const chatMessage = {
+			speaker,
+			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
+			content: await renderTemplate('systems/projectfu/templates/feature/chanter/feature-key-chat-message.hbs', data),
+			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
+		};
+
+		ChatMessage.create(chatMessage);
 	}
 }

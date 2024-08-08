@@ -111,8 +111,8 @@ async function handleStudyRollCallback(app, actor, studyValue) {
 
 	const headerStyle = `background: linear-gradient(to right, #532853, #bfb8c4);border-color: #c1b7c7;display: flex;align-items: center;padding: 2px;border-right: groove #ffffff 3px;padding-left: 16px;padding-right: 16px;`;
 	const headerText = `font-family: Antonio;font-weight: bold;font-size: 1.25rem;text-transform: uppercase;color: #ffffff;text-shadow: 2px 1px 1px black;`;
-	const divideText = `padding: 5px; border-bottom: 1px solid #c1b7c7; border-image: linear-gradient(45deg, #532853, #bfb8c4) 1;`;
-	const attrBoxStyle = `padding: 5px; background-color: rgb(239, 236, 245); border-right: 1px solid rgb(255, 255, 255);`;
+	const divideText = `border-bottom: 1px solid #c1b7c7; border-image: linear-gradient(45deg, #532853, #bfb8c4) 1;`;
+	const attrBoxStyle = `background-color: rgb(239, 236, 245); border-right: 1px solid rgb(255, 255, 255);`;
 
 	function makeTable(actorData, difficulty) {
 		let tableData = '';
@@ -169,8 +169,8 @@ async function handleStudyRollCallback(app, actor, studyValue) {
 						const fullName = affinityNameMap[affinity] || affinity;
 						const iconClass = affinityIconMap[affinity] || '';
 						const opacity = values.current === 0 ? '0.25' : '1';
-						return `<div class="affinity resource-content flex-group-center" style="opacity: ${opacity}; display: flex; justify-content: space-between; margin: 2px; gap: 5px;">
-                            <i class="${iconClass} icon-aff"></i>
+						return `<div class="affinity resource-content flex-group-center" style="opacity: ${opacity}; display: flex; justify-content: space-between; margin: 2px; gap: 5px; line-height: 1;">
+                            <i class="${iconClass}"></i>
                             <label class="resource-label-xl" style="cursor: pointer;" data-tooltip="${fullName}: ${acronymValue}">
                                 ${acronymValue}
                             </label>
