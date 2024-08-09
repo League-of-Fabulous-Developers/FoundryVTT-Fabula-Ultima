@@ -127,7 +127,6 @@
 			height: inherit;
 			background-color: transparent;
 			border: none;
-			/* Use 'border' to remove borders */
 			vertical-align: middle;
 		}
 	}
@@ -157,7 +156,6 @@
 		}
 	}
 
-	// &.armor-hand,
 	&.acc-hand {
 		width: 10.5em;
 		border-radius: 40px 8px 5px 5px;
@@ -222,9 +220,7 @@
 
 		.equipped-item-content {
 			text-overflow: ellipsis;
-			/* Show ellipsis for overflowing text */
 			overflow: hidden;
-			/* Hide overflowing text */
 			max-width: 70%;
 			margin: 0 2px;
 		}
@@ -246,7 +242,6 @@
 /* ----------------------------------------- */
 /*  Fixes                                    */
 /* ----------------------------------------- */
-$fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 
 .items-list .item .item-name .item-image,
 .items-list .effect .item-name .item-image {
@@ -254,15 +249,12 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 	padding-right: 5px;
 	flex: 0 0 30px;
 	position: relative;
-}
 
-.items-list .item .item-name .item-image,
-.items-list .effect .item-name .item-image {
 	img {
 		max-width: 100%;
 		display: block;
-		height: 24px;
 		width: 24px;
+		height: 24px;
 		overflow: hidden;
 		border-radius: 5px;
 		background-image: linear-gradient(to right, $color-secondary, $color-ternary);
@@ -271,53 +263,50 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 			opacity 0.3s ease;
 	}
 
-	&:hover {
-		img {
-			transform: scale(1.1);
-			transform-origin: center center;
-			opacity: 0.75;
+	&:hover img {
+		transform: scale(1.1);
+		transform-origin: center;
+		opacity: 0.75;
 
-			&::before {
-				content: '';
-				position: absolute;
-				width: 24px;
-				height: 24px;
-				background: $fu-d20 center/cover;
-				opacity: 0.75;
-				z-index: -1;
-			}
+		&::before {
+			content: '';
+			position: absolute;
+			width: 24px;
+			height: 24px;
+			opacity: 0.75;
+			z-index: -1;
 		}
 	}
 }
 
 .status-effect-toggle {
 	display: flex;
-}
 
-/* Status Effect Icon - Toggle Fading */
-.status-effect-toggle img {
-	flex: 0 0 32px !important;
-	height: 32px !important;
-	width: 32px !important;
-	display: block;
-	margin-top: -1px;
-	border-radius: 4px;
-	border: 0px solid transparent;
-	opacity: 0.4;
-	transition:
-		transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-		opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	/* Status Effect Icon - Toggle Fading */
+	img {
+		flex: 0 0 32px !important;
+		height: 32px !important;
+		width: 32px !important;
+		display: block;
+		margin-top: -1px;
+		border-radius: 4px;
+		border: 0 solid transparent;
+		opacity: 0.4;
+		transition:
+			transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+			opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-	&:hover {
-		opacity: 0.8;
-		transform: scale(1.2);
-		transform-origin: center center;
-		z-index: 100;
+		&:hover {
+			opacity: 0.8;
+			transform: scale(1.2);
+			transform-origin: center;
+			z-index: 100;
+		}
 	}
-}
 
-.status-effect-toggle.active img {
-	opacity: 1;
+	&.active img {
+		opacity: 1;
+	}
 }
 
 /* ----------------------------------------- */
@@ -345,7 +334,7 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 .items-list .item-name h3,
 .items-list .item-name h4 {
 	margin: 0;
-	padding: 2px 0;
+	padding: 0;
 	white-space: normal;
 	overflow: hidden;
 	text-overflow: clip;
@@ -413,86 +402,45 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 	}
 }
 
-// span[data-tooltip] {
-//   display: inline-block;
-// }
+// General item styles
+.item-xs,
+.item-sm,
+.item-m,
+.item-lg,
+.item-xl,
+.item-xxl,
+.item-full {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+	text-align: center;
+}
 
 .item-xs {
 	flex: 0 0 64px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-sm {
 	flex: 0 0 80px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-m {
 	flex: 0 0 100px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-lg {
 	flex: 0 0 150px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-xl {
 	flex: 0 0 256px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-xxl {
 	flex: 0 0 300px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-full {
 	flex: 2;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-content: center;
 }
 
+// Special progress bar style
 .item-progressbar {
 	flex: 2;
 	display: flex;
@@ -503,6 +451,7 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 	flex-wrap: wrap;
 }
 
+// Alignment helpers
 .start {
 	display: flex;
 	justify-content: flex-start;

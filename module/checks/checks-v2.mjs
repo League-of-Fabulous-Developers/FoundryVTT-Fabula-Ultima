@@ -14,6 +14,7 @@ import { AccuracyCheck } from './accuracy-check.mjs';
 import { MagicCheck } from './magic-check.mjs';
 import { SpecialResults } from './special-results.mjs';
 import { Support } from './support/support.mjs';
+import { OpenCheck } from './open-check.mjs';
 import { OpposedCheck } from './opposed-check.mjs';
 
 /**
@@ -69,9 +70,17 @@ const magicCheck = async (actor, item, configCallback) => {
 /**
  * @param {FUActor} actor
  * @param {CheckAttributes} attributes
+ * @param {CheckCallback} [configCallback]
  */
-const openCheck = async (actor, attributes) => {
-	throw new Error('Not yet implemented');
+const openCheck = async (actor, attributes, configCallback) => {
+	/** @type Partial<Check> */
+	const check = {
+		type: 'open',
+		primary: attributes.primary,
+		secondary: attributes.secondary,
+	};
+
+	return performCheck(check, actor, undefined, configCallback);
 };
 
 /**
@@ -420,5 +429,6 @@ SpecialResults.initialize();
 AccuracyCheck.initialize();
 AttributeCheck.initialize();
 MagicCheck.initialize();
+OpenCheck.initialize();
 OpposedCheck.initialize();
 Support.initialize();

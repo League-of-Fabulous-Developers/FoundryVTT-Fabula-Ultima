@@ -343,6 +343,15 @@ Handlebars.registerHelper('mathAbs', function (value) {
 	return Math.abs(value);
 });
 
+Handlebars.registerHelper('formatMod', function (value) {
+	if (value > 0) {
+		return '+' + value;
+	} else if (value < 0) {
+		return value;
+	}
+	return value;
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
@@ -487,3 +496,6 @@ function rollEquipment(actor, slot, isShift) {
 	// Roll the item
 	item.roll(isShift);
 }
+
+const logo = document.getElementById('logo');
+logo.src = '/systems/projectfu/styles/static/icons/fvtt.png';

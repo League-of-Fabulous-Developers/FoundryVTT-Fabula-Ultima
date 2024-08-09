@@ -1,23 +1,23 @@
-<div>
-    <div class='grid grid-3col detail-desc'>
-        <div>
-            {{localize volume}}
-        </div>
-        <div>
-            {{key}}
-        </div>
-        <div>
-            {{tone}}
-        </div>
-        <div>
-            {{localize 'FU.MindPointCost'}}:
-            {{cost}}
-        </div>
-        <div class='grid-span-2'>
-            {{localize targets}}
-        </div>
-        <div class='grid-span-3'>
-            {{{description}}}
-        </div>
+<div class="fu-tags">
+    <div class="fu-tag">
+        {{localize volume}}
     </div>
+    <div class="fu-tag">
+        {{key}}
+    </div>
+    <div class="fu-tag">
+        {{tone}}
+    </div>
+    <div class="fu-tag">
+        {{localize targets}}
+    </div>
+    <div class="fu-tag">
+        {{cost}} {{localize 'FU.MindAbbr'}}
+    </div>
+</div>
+<div class='chat-desc'>
+    <details {{#unless collapseDescriptions}}open{{/unless}}>
+        <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
+        {{{description}}}
+    </details>
 </div>

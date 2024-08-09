@@ -183,10 +183,17 @@ async function handleRoll(check) {
 	const roll1 = roll.dice[0].total;
 	/** @type number */
 	const roll2 = roll.dice[1].total;
+	/** @type number */
+	const roll1Die = roll.dice[0].faces;
+	/** @type number */
+	const roll2Die = roll.dice[1].faces;
 
+	console.log(roll.dice[0]);
 	check.result = {
 		attr1: roll1,
 		attr2: roll2,
+		die1: roll1Die,
+		die2: roll2Die,
 		modifier: modifier,
 		bonus: bonus,
 		total: roll.total,
@@ -700,12 +707,21 @@ const KEY_RECENT_CHECKS = 'fabulaultima.recentChecks';
  * @param {string} title
  * @returns {Promise<ChatMessage|Object>}
  */
-export async function promptCheck(actor, title) {
+export async function promptCheck(actor, title, action) {
 	const recentChecks = JSON.parse(sessionStorage.getItem(KEY_RECENT_CHECKS) || '{}');
 	const recentActorChecks = recentChecks[actor.uuid] || (recentChecks[actor.uuid] = {});
 	try {
 		const attributes = actor.system.attributes;
 		const titleMain = title || 'FU.DialogCheckTitle';
+		let bonus;
+		if (action === 'study') {
+			recentActorChecks.attr1 = 'ins';
+			recentActorChecks.attr2 = 'ins';
+		}
+		if (action === 'open') {
+			recentActorChecks.difficulty = 0;
+			bonus = actor.system.bonuses.accuracy.opposedCheck;
+		}
 		const { attr1, attr2, difficulty, modifier } = await Dialog.wait(
 			{
 				title: game.i18n.localize(titleMain),
@@ -723,6 +739,7 @@ export async function promptCheck(actor, title) {
 					attr2: recentActorChecks.attr2 || 'mig',
 					modifier: recentActorChecks.modifier || 0,
 					difficulty: recentActorChecks.difficulty || 0,
+					bonus: bonus || 0,
 				}),
 				buttons: [
 					{
@@ -854,6 +871,17 @@ export async function promptOpenCheck(actor, title, action) {
 		recentActorChecks.modifier = modifier;
 		sessionStorage.setItem(KEY_RECENT_CHECKS, JSON.stringify(recentChecks));
 
+		if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
+			if (modifier) {
+				Hooks.once(CheckHooks.prepareCheck, (check) =>
+					check.modifiers.push({
+						value: modifier,
+						label: 'FU.CheckSituationalModifier',
+					}),
+				);
+			}
+			return ChecksV2.openCheck(actor, { primary: attr1, secondary: attr2 });
+		}
 		const speaker = ChatMessage.implementation.getSpeaker({ actor });
 
 		/**

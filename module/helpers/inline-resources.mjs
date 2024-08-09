@@ -2,6 +2,7 @@ import { FU, SYSTEM } from './config.mjs';
 import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
+import { targetHandler } from './target-handler.mjs';
 
 const INLINE_RECOVERY = 'InlineRecovery';
 const INLINE_LOSS = 'InlineLoss';
@@ -118,32 +119,17 @@ function activateListeners(document, html) {
 	}
 
 	html.find('a.inline.inline-recovery[draggable], a.inline.inline-loss[draggable]')
-		.on('click', function () {
+		.on('click', async function () {
 			const amount = Number(this.dataset.amount);
 			const type = this.dataset.type;
-			const user = game.user;
 			const source = determineSource(document, this);
-			const controlledTokens = canvas.tokens.controlled;
-			let actors = [];
-
-			// Use selected token or owned actor
-			if (controlledTokens.length > 0) {
-				actors = controlledTokens.map((token) => token.actor);
-			} else {
-				const actor = user.character;
-				if (actor) {
-					actors.push(actor);
-				}
-			}
-
-			if (actors.length > 0) {
+			let targets = await targetHandler();
+			if (targets.length > 0) {
 				if (this.classList.contains(classInlineRecovery)) {
-					actors.forEach((actor) => applyRecovery(actor, type, amount, source || 'inline recovery'));
+					targets.forEach((actor) => applyRecovery(actor, type, amount, source || 'inline recovery'));
 				} else if (this.classList.contains(classInlineLoss)) {
-					actors.forEach((actor) => applyLoss(actor, type, amount, source || 'inline loss'));
+					targets.forEach((actor) => applyLoss(actor, type, amount, source || 'inline loss'));
 				}
-			} else {
-				ui.notifications.warn('FU.ChatApplyEffectNoActorsSelected', { localize: true });
 			}
 		})
 		.on('dragstart', function (event) {

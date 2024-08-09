@@ -1,7 +1,6 @@
-<div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
-    <div>{{localize (concat 'FU.' (capitalize basic.type))}}</div>
+<div class="fu-tags">
+    <div class="fu-tag">{{localize (concat 'FU.' (capitalize basic.type))}}</div>
 </div>
-
 {{#if basic.quality}}
     {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=basic.quality}}
 {{/if}}

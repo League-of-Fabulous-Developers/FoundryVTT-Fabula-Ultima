@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You send lightning striking at your foe. The target suffers <strong>【HR + 25】bolt</strong> damage.</p><p>Damage dealt by this spell <strong>ignores Resistances</strong>.</p>",
+    "description": "<p>You send lightning striking at your foe. The target suffers <strong>【HR + 25】bolt</strong> damage.</p><p>Damage dealt by this spell <strong>ignores Resistances</strong>.</p><hr /><p>@LOSS[20 mp]</p>",
     "isFavored": {
       "value": false
     },
@@ -134,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706567202542,
-    "modifiedTime": 1721231928106,
+    "modifiedTime": 1722540344776,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

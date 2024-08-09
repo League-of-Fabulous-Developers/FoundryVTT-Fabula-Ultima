@@ -89,3 +89,66 @@ $color-icon-fire: #f59a00;
 $color-icon-snowflake: #9cbccd;
 $color-icon-sun: #fff7b2;
 $color-icon-skull-crossbones: #d679a2;
+
+// Define results colors
+$font-size: 24px;
+$rcaption-font-size: 14px;
+$text-shadow-side: 0.07rem 0.07rem 0.07rem $color-black;
+$text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
+
+$background-default: linear-gradient(to right, #7da0ca, #004f89);
+$border-default: #7da0ca;
+
+$background-success: linear-gradient(to right, #91c469, #228c22);
+$border-success: #91c469;
+
+$background-failure: linear-gradient(to right, #edb7aa, #880012);
+$border-failure: #edb7aa;
+
+$background-critical: linear-gradient(to right, #f7c754, #d17f10);
+$border-critical: #ffcc56;
+
+$background-fumble: linear-gradient(to right, #b087a6, #15031e);
+$border-fumble: #b087a6;
+
+// Hit/Miss colors
+$background-hit: linear-gradient(to right, #228c22, #91c469);
+$border-hit: #91c469;
+
+$background-miss: linear-gradient(to right, #880012, #edb7aa);
+$border-miss: #edb7aa;
+
+// Define damage type colors
+$background-physical: linear-gradient(to right, #a1a1a1, #8c8c8c);
+$border-physical: #a1a1a1;
+
+$background-air: linear-gradient(to right, #b6e0ff, #8cb2c2);
+$border-air: #b6e0ff;
+
+$background-bolt: linear-gradient(to right, #fdda76, #fbc847);
+$border-bolt: #fdda76;
+
+$background-dark: linear-gradient(to right, #543987, #2b0d6b);
+$border-dark: #543987;
+
+$background-earth: linear-gradient(to right, #d28d3e, #9f5b1f);
+$border-earth: #d28d3e;
+
+$background-fire: linear-gradient(to right, #f58a00, #c05b00);
+$border-fire: #f58a00;
+
+$background-ice: linear-gradient(to right, #bce4fa, #4f7b9a);
+$border-ice: #bce4fa;
+
+$background-light: linear-gradient(to right, #fff7b2, #e1c29f);
+$border-light: #fff7b2;
+
+$background-poison: linear-gradient(to right, #d678a2, #a65a83);
+$border-poison: #d678a2;
+
+$background-untyped: linear-gradient(to right, #c0c0c0, #a8a8a8);
+$border-untyped: #a8a8a8;

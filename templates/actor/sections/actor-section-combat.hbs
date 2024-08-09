@@ -79,13 +79,7 @@
                     <div class="flexcol">
                         {{!-- Item Name--}}
                         {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                        {{#if item.system.subtype}}
-                            <div class="item-quality">{{capitalize item.system.subtype.value}}</div>
-                        {{/if}}
                     </div>
-                    {{!-- <div class="item-full start description-effect">
-                        <p>{{ item.system.summary.value}}</p>
-                    </div> --}}
                     <div class="item-full start tiny-desc">
                     <span class="description-effect">
                         {{#if item.system.description}}

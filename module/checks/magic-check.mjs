@@ -82,11 +82,10 @@ const onProcessCheck = (check, actor, item) => {
  * @param {Object} flags
  */
 function onRenderCheck(data, checkResult, actor, item, flags) {
-	const { type, primary, modifierTotal, secondary, result, modifiers } = checkResult;
+	const { type, primary, modifierTotal, secondary, result, modifiers, additionalData, critical, fumble } = checkResult;
 
 	if (type === 'magic') {
 		const inspector = CheckConfiguration.inspect(checkResult);
-
 		data.push({
 			order: CHECK_ROLL,
 			partial: 'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',
@@ -94,8 +93,12 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 				result: {
 					attr1: primary.result,
 					attr2: secondary.result,
+					die1: primary.dice,
+					die2: secondary.dice,
 					modifier: modifierTotal,
 					total: result,
+					crit: critical,
+					fumble: fumble,
 				},
 				check: {
 					attr1: {
@@ -106,6 +109,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 					},
 				},
 				modifiers,
+				additionalData,
 			},
 		});
 		/** @type DamageData */
@@ -129,6 +133,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 					},
 					translation: {
 						damageTypes: FU.damageTypes,
+						damageIcon: FU.affIcon,
 					},
 					modifiers: damage.modifiers,
 				},

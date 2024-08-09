@@ -19,6 +19,8 @@ const onRenderCheck = (data, checkResult, actor, item) => {
 				result: {
 					attr1: primary.result,
 					attr2: secondary.result,
+					die1: primary.dice,
+					die2: secondary.dice,
 					modifier: modifierTotal,
 					total: result,
 				},

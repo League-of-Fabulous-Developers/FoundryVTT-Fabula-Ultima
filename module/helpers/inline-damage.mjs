@@ -3,6 +3,7 @@ import { applyDamage } from './apply-damage.mjs';
 import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
+import { targetHandler } from './target-handler.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
 
@@ -72,28 +73,13 @@ function activateListeners(document, html) {
 	}
 
 	html.find('a.inline.inline-damage[draggable]')
-		.on('click', function () {
+		.on('click', async function () {
 			const amount = Number(this.dataset.amount);
 			const type = this.dataset.type;
-			const user = game.user;
 			const source = determineSource(document, this);
-			const controlledTokens = canvas.tokens.controlled;
-			let actors = [];
-
-			// Use selected token or owned actor
-			if (controlledTokens.length > 0) {
-				actors = controlledTokens.map((token) => token.actor);
-			} else {
-				const actor = user.character;
-				if (actor) {
-					actors.push(actor);
-				}
-			}
-
-			if (actors.length > 0) {
-				applyDamage(actors, type, amount, {}, source || 'inline damage');
-			} else {
-				ui.notifications.warn('FU.ChatApplyDamageNoActorsSelected', { localize: true });
+			let targets = await targetHandler();
+			if (targets.length > 0) {
+				applyDamage(targets, type, amount, {}, source || 'inline damage');
 			}
 		})
 		.on('dragstart', function (event) {

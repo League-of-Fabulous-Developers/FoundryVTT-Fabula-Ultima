@@ -1,11 +1,13 @@
-import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { SYSTEM } from '../../../../helpers/config.mjs';
+import { Flags } from '../../../../helpers/flags.mjs';
 
 /**
  * @extends ClassFeatureDataModel
  * @property {string} trigger
  * @property {string} description
  */
-export class PsychicGiftDataModel extends ClassFeatureDataModel {
+export class PsychicGiftDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { StringField, HTMLField } = foundry.data.fields;
 		return {
@@ -24,5 +26,26 @@ export class PsychicGiftDataModel extends ClassFeatureDataModel {
 
 	static get translation() {
 		return 'FU.ClassFeaturePsychicGiftLabel';
+	}
+
+	static async roll(model, item) {
+		const actor = model.parent.parent.actor;
+		if (!actor) {
+			return;
+		}
+		const data = {
+			trigger: model.trigger,
+			description: await TextEditor.enrichHTML(model.description),
+		};
+
+		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
+		const chatMessage = {
+			speaker,
+			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
+			content: await renderTemplate('systems/projectfu/templates/feature/esper/feature-psychic-chat-message.hbs', data),
+			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
+		};
+
+		ChatMessage.create(chatMessage);
 	}
 }

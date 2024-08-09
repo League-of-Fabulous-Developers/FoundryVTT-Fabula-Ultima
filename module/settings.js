@@ -12,6 +12,7 @@ export const SETTINGS = Object.freeze({
 	collapseDescriptions: 'collapseDescriptions',
 	experimentalCombatTracker: 'experimentalCombatTracker',
 	optionCombatMouseDown: 'optionCombatMouseDown',
+	optionDefaultTargetingMode: 'optionDefaultTargetingMode',
 	optionStudySavePath: 'optionStudySavePath',
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	optionImagePixelated: 'optionImagePixelated',
@@ -148,6 +149,21 @@ export const registerSystemSettings = async function () {
 		config: true,
 		type: Boolean,
 		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionDefaultTargetingMode, {
+		name: game.i18n.localize('FU.DefaultTargetingMode'),
+		hint: game.i18n.localize('FU.DefaultTargetingModeHint'),
+		scope: 'client',
+		config: true,
+		type: String,
+		default: 'prioritizeSelected',
+		choices: {
+			prioritizeSelected: game.i18n.localize('FU.DefaultTargetingModePrioritizeSelected'),
+			prioritizeTargeted: game.i18n.localize('FU.DefaultTargetingModePrioritizeTargeted'),
+			tokenSelected: game.i18n.localize('FU.DefaultTargetingModeTokenSelected'),
+			tokenTargeted: game.i18n.localize('FU.DefaultTargetingModeTokenTargeted'),
+		},
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.useRevisedStudyRule, {

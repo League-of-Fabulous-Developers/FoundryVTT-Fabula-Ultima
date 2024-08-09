@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, you learn <strong>two symbols</strong>.</p><p>You may have up to <strong>SL + 1</strong> symbols active at the same time; if you create more while at your limit, you must first choose and destroy some of your previous <strong>symbols</strong>.</p><p>You may perform the Inventory action and spend <strong>@LOSS[2 ip]</strong> to create a <strong>symbol</strong> you have learned and choose one option: apply that <strong>symbol</strong> to yourself; <strong>OR</strong> apply that <strong>symbol</strong> to an ally you can see; <strong>OR</strong> perform a <strong>free attack</strong> with a weapon you have equipped. This attack deals no damage, but you apply a copy of the chosen <strong>symbol</strong> to each enemy hit by the attack (each copy counts as a separate <strong>symbol</strong> towards your limit or <strong>SL + 1</strong> active <strong>symbols</strong>).</p><p>Descriptions, as well as all of the rules, for all of the symbols can be found in this handout: <strong>@UUID[Compendium.projectfu.handouts.JournalEntry.t38IeNrS9T7NQspT]{Symbol Rules}</strong></p>",
+    "description": "<p>Each time you acquire this Skill, you learn <strong>two symbols</strong>.</p><p>You may have up to <strong>up to 【SL + 1】 symbols active at the same time</strong>; if you create more while at your limit, you must first choose and destroy some of your previous <strong>symbols</strong>.</p><p>You may perform the Inventory action and spend <strong>@LOSS[2 ip]</strong> to create a <strong>symbol</strong> you have learned and choose one option: apply that <strong>symbol</strong> to yourself; <strong>or</strong> apply that <strong>symbol</strong> to an ally you can see; <strong>or</strong> perform a <strong>free attack</strong> with a weapon you have equipped. This attack deals no damage, but you apply a copy of the chosen <strong>symbol</strong> to each enemy hit by the attack (each copy counts as a separate <strong>symbol</strong> towards your limit or <strong>【SL + 1】</strong> active <strong>symbols</strong>).</p><p>Descriptions, as well as all of the rules, for all of the symbols can be found in this handout: <strong>@UUID[Compendium.projectfu.handouts.JournalEntry.t38IeNrS9T7NQspT]{Symbol Rules}</strong></p>",
     "isFavored": {
       "value": false
     },
@@ -20,7 +20,7 @@
     },
     "level": {
       "value": 1,
-      "max": 10,
+      "max": 5,
       "min": 0
     },
     "class": {
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706563320133,
-    "modifiedTime": 1721089632441,
+    "modifiedTime": 1721680011191,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

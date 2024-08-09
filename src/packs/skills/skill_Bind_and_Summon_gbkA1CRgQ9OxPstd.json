@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may <strong>bind</strong> Arcana to your soul and <strong>summon</strong> them later. The Game Master will tell you the details of each binding process when you first encounter the Arcanum in question.</p><p>You may use an action and spend @LOSS[40 mp] to <strong>summon</strong> an Arcanum you have bound: the details of this process are explained on the next page.</p><p>If you take this Skill at character creation, you begin play with one Arcanum of your choice already bound to you, chosen from the list on the next pages. Other than that, you may only obtain new Arcana through exploration and story progression.</p>",
+    "description": "<p>You may <strong>bind</strong> Arcana to your soul and <strong>summon</strong> them later. The Game Master will tell you the details of each binding process when you first encounter the Arcanum in question.</p><p>You may use an action and spend @LOSS[40 mp] to <strong>summon</strong> an Arcanum you have bound: the details of this process are explained on the next page.</p><p>If you take this Skill at character creation, you begin play with one Arcanum of your choice already bound to you, chosen from the list on the next pages. Other than that, you may only obtain new Arcana through exploration and story progression.</p><p>Descriptions, as well as all of the rules, for all of the arcanums can be found in this handout: @UUID[Compendium.projectfu.handouts.JournalEntry.sO33zynz6ZsBDpFR]{Arcana Rules}</p><p></p>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "11.315",
     "createdTime": 1706494654131,
-    "modifiedTime": 1720884676366,
+    "modifiedTime": 1721680168596,
     "lastModifiedBy": "GJ92IIuRRh2w5uWU"
   },
   "sort": 0,

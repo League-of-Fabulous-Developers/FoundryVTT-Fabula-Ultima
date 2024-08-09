@@ -110,7 +110,7 @@ $font-secondary: 'Yanone Kaffeesatz', sans-serif;
 $font-quote: 'EB Garamond', sans-serif;
 
 // Styles for .window-app class
-.window-app {
+.window-app:not([id$='-popout']) {
 	font-family: $font-primary;
 
 	// Default styles for header
@@ -119,42 +119,42 @@ $font-quote: 'EB Garamond', sans-serif;
 		font-size: 2rem !important;
 		font-weight: 700;
 		color: $color-secondary;
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 	}
 
 	h2 {
 		font-family: $font-secondary;
 		font-size: 1.75rem !important;
 		font-weight: 700;
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 	}
 
 	h3 {
 		font-family: $font-secondary;
 		font-size: 1.625rem !important;
 		font-weight: 700;
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 	}
 
 	h4 {
 		font-family: $font-secondary;
 		font-size: 1.5rem !important;
 		font-weight: 700;
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 	}
 
 	h5 {
 		font-family: $font-secondary;
 		font-size: 1.375rem !important;
 		font-weight: 700;
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 	}
 
 	h6 {
 		font-family: $font-secondary;
 		font-size: 1.25rem !important;
 		font-weight: 700;
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 	}
 
 	.sheet-body,
@@ -204,7 +204,7 @@ $font-quote: 'EB Garamond', sans-serif;
 	}
 
 	.label {
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 		border: none;
 	}
 
@@ -253,7 +253,6 @@ $font-quote: 'EB Garamond', sans-serif;
 		&.affinity {
 			label {
 				font-family: 'Yanone Kaffeesatz', sans-serif;
-				// line-height: 1.68em;
 				font-size: 1.125rem;
 				color: $color-secondary;
 			}
@@ -275,35 +274,35 @@ $font-quote: 'EB Garamond', sans-serif;
 			font-size: 1rem;
 			font-weight: bold;
 			font-family: $font-secondary;
-			font-variant: all-small-caps;
+			font-variant: small-caps;
 		}
 
 		.resource-label-sm {
 			font-size: 1.125rem;
 			font-weight: bold;
 			font-family: $font-secondary;
-			font-variant: all-small-caps;
+			font-variant: small-caps;
 		}
 
 		.resource-label-m {
 			font-size: 1.25rem;
 			font-weight: bold;
 			font-family: $font-secondary;
-			font-variant: all-small-caps;
+			font-variant: small-caps;
 		}
 
 		.resource-label-l {
-			font-size: 1.5rem;
+			font-size: 1.25rem;
 			font-weight: bold;
 			font-family: $font-secondary;
-			font-variant: all-small-caps;
+			font-variant: small-caps;
 		}
 
 		.resource-label-xl {
 			font-size: 1.5rem;
 			font-weight: bold;
 			font-family: $font-secondary;
-			font-variant: all-small-caps;
+			font-variant: small-caps;
 		}
 	}
 
@@ -311,7 +310,7 @@ $font-quote: 'EB Garamond', sans-serif;
 		font-size: 1.4rem;
 		font-weight: bold;
 		font-family: $font-secondary;
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 		font-style: italic;
 	}
 
@@ -354,16 +353,10 @@ $font-quote: 'EB Garamond', sans-serif;
 			p {
 				margin: 0;
 				line-height: 1.6em;
-			}
 
-			h1 + p,
-			h2 + p,
-			h3 + p,
-			h4 + p,
-			h5 + p,
-			h6 + p,
-			p + p {
-				margin-top: 0.5rem;
+				&:not(:first-child) {
+					margin-top: 0.5rem;
+				}
 			}
 
 			blockquote {
@@ -383,14 +376,14 @@ $font-quote: 'EB Garamond', sans-serif;
 		font-weight: 500;
 		font-size: 2.125rem;
 		text-transform: none;
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 	}
 
 	.pronouns input {
 		font-family: $font-secondary;
 		font-size: 1.35rem;
 		padding-top: 0.3rem;
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 	}
 
 	// Styles for .detail-desc class
@@ -415,7 +408,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 	// Uppercase Text
 	.uppercase {
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 	}
 
 	// Quote Styles
@@ -434,6 +427,11 @@ $font-quote: 'EB Garamond', sans-serif;
 			font-size: 1rem;
 			line-height: 1.45em;
 			color: $color-ternary;
+		}
+		p {
+			font-family: $font-primary;
+			font-size: 1rem;
+			line-height: 1.45em;
 		}
 	}
 
@@ -458,7 +456,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 	// Navbar Text
 	.sheet nav.sheet-tabs .item {
-		font-variant: all-small-caps;
+		font-variant: small-caps;
 		font-size: 1rem;
 		line-height: 1.45em;
 	}

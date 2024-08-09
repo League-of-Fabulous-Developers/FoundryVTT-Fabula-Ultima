@@ -5,12 +5,13 @@ import { Flags } from './flags.mjs';
 import { FU, SYSTEM } from './config.mjs';
 import { FUActiveEffect } from '../documents/effects/active-effect.mjs';
 import { toggleStatusEffect } from './effects.mjs';
+import { targetHandler } from './target-handler.mjs';
 
 const INLINE_EFFECT = 'InlineEffect';
 const INLINE_EFFECT_CLASS = 'inline-effect';
 
 const SUPPORTED_STATUSES = ['dazed', 'enraged', 'poisoned', 'shaken', 'slow', 'weak'];
-const BOONS_AND_BANES = ['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying'];
+const BOONS_AND_BANES = ['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked'];
 
 const enricher = {
 	pattern: /@EFFECT\[([a-zA-Z0-9+/-]+={0,3})]/g,
@@ -109,35 +110,21 @@ function activateListeners(document, html) {
 	}
 
 	html.find('a.inline.inline-effect[draggable]')
-		.on('click', function () {
+		.on('click', async function () {
 			const source = determineSource(document, this);
 			const effectData = fromBase64(this.dataset.effect);
 			const status = this.dataset.status;
-			const controlledTokens = canvas.tokens.controlled;
-			let actors = [];
-
-			// Use selected token or owned actor
-			if (controlledTokens.length > 0) {
-				actors = controlledTokens.map((token) => token.actor);
-			} else {
-				const actor = game.user.character;
-				if (actor) {
-					actors.push(actor);
-				}
-			}
-
-			if (actors.length > 0) {
+			let targets = await targetHandler();
+			if (targets.length > 0) {
 				if (effectData) {
-					actors.forEach((actor) => onApplyEffectToActor(actor, source, effectData));
+					targets.forEach((actor) => onApplyEffectToActor(actor, source, effectData));
 				} else if (status) {
-					actors.forEach((actor) => {
+					targets.forEach((actor) => {
 						if (!actor.statuses.has(status)) {
 							toggleStatusEffect(actor, status, source);
 						}
 					});
 				}
-			} else {
-				ui.notifications.warn(game.i18n.localize('FU.ChatApplyEffectNoActorsSelected'));
 			}
 		})
 		.on('dragstart', function (event) {

@@ -1,0 +1,23 @@
+<div class="fu-tags">
+    <div class="fu-tag gap-5">
+        {{localize 'FU.ClassFeatureVehicleFrame'}}: {{capitalize frame}}
+    </div>
+    <div class="fu-tag gap-5">
+        {{localize 'FU.ClassFeatureVehicleModuleSlots'}}: {{moduleSlots}}
+    </div>
+    <div class="fu-tag gap-5">
+        {{localize 'FU.ClassFeatureVehiclePassengers'}}: {{passengers}}
+    </div>
+    <div class="fu-tag gap-5">
+        {{localize 'FU.ClassFeatureVehicleDistanceMultiplier'}}: {{distanceMultiplier}}
+    </div>
+</div>
+
+{{#if description}}
+   <div class='chat-desc'>
+    <details {{#unless collapseDescriptions}}open{{/unless}}>
+        <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
+        {{{description}}}
+    </details>
+</div>
+{{/if}}
