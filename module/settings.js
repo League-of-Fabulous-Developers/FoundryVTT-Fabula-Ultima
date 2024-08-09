@@ -43,6 +43,9 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
 	checksV2: 'checksV2',
+	optionCombatHudTheme: 'optionCombatHudTheme',
+	optionCombatHudTrackedResource4: 'optionCombatHudTrackedResource4',
+	optionCombatHudShowNPCTurnsLeftMode: 'optionCombatHudShowNPCTurnsLeftMode',
 });
 
 export const registerSystemSettings = async function () {
@@ -486,6 +489,41 @@ export const registerSystemSettings = async function () {
 		type: Boolean,
 		default: true,
 	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTheme, {
+		name: game.i18n.localize('FU.CombatHudTheme'),
+		hint: game.i18n.localize('FU.CombatHudThemeHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'fu-default',
+		choices: FU.combatHudThemes,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource4, {
+		name: game.i18n.localize('FU.CombatHudTrackedResource4'),
+		hint: game.i18n.localize('FU.CombatHudTrackedResource4Hint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		choices: FU.combatHudResources,
+		default: 'none',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode, {
+		name: game.i18n.localize('FU.CombatHudShowNPCTurnsLeftMode'),
+		hint: game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'only-studied',
+		choices: {
+			'never': game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeNever'),
+			'always': game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeAlways'),
+			'only-studied': game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeOnlyStudied')
+		},
+	});
 };
 
 class OptionalRules extends FormApplication {
@@ -560,7 +598,16 @@ class CombatHudSettings extends FormApplication {
 			optionCombatHudTrackedResource1: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1),
 			optionCombatHudTrackedResource2: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2),
 			optionCombatHudTrackedResource3: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3),
+			optionCombatHudTrackedResource4: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource4),
 			trackedResources: FU.combatHudResources,
+			optionCombatHudTheme: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme),
+			optionCombatHudThemeOptions: FU.combatHudThemes,
+			optionCombatHudShowNPCTurnsLeftMode: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode),
+			optionCombatHudShowNPCTurnsLeftModeOptions: {
+				'never': 'FU.CombatHudShowNPCTurnsLeftModeNever',
+				'always': 'FU.CombatHudShowNPCTurnsLeftModeAlways',
+				'only-studied': 'FU.CombatHudShowNPCTurnsLeftModeOnlyStudied'
+			},
 		};
 	}
 
@@ -580,6 +627,9 @@ class CombatHudSettings extends FormApplication {
 				optionCombatHudTrackedResource1,
 				optionCombatHudTrackedResource2,
 				optionCombatHudTrackedResource3,
+				optionCombatHudTrackedResource4,
+				optionCombatHudTheme,
+				optionCombatHudShowNPCTurnsLeftMode,
 			} = foundry.utils.expandObject(formData);
 
 			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
@@ -595,6 +645,9 @@ class CombatHudSettings extends FormApplication {
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource1, optionCombatHudTrackedResource1);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource2, optionCombatHudTrackedResource2);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource3, optionCombatHudTrackedResource3);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource4, optionCombatHudTrackedResource4);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTheme, optionCombatHudTheme);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode, optionCombatHudShowNPCTurnsLeftMode);
 		} else {
 			const {
 				experimentalCombatHud,

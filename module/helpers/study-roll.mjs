@@ -440,4 +440,6 @@ async function handleStudyRollCallback(app, actor, studyValue) {
 		}),
 		content: msg,
 	});
+
+	Hooks.callAll('studyRoll', actor, journalEntry);
 }

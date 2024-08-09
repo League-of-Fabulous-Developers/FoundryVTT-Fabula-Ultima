@@ -1,7 +1,7 @@
 import { SETTINGS } from '../settings.js';
 
 import { SystemControls } from '../helpers/system-controls.mjs';
-import { SYSTEM } from '../helpers/config.mjs';
+import { SYSTEM, FU } from '../helpers/config.mjs';
 
 Hooks.once('setup', () => {
 	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
@@ -36,30 +36,51 @@ export class CombatHUD extends Application {
 		this.#hooks.push({ hook: 'updateActiveEffect', func: this._onUpdateHUD.bind(this) });
 		this.#hooks.push({ hook: 'deleteActiveEffect', func: this._onUpdateHUD.bind(this) });
 
+		this.#hooks.push({ hook: 'combatStart', func: this._onUpdateHUD.bind(this) });
+		this.#hooks.push({ hook: 'combatTurn', func: this._onUpdateHUD.bind(this) });
+		this.#hooks.push({ hook: 'combatRound', func: this._onUpdateHUD_Round.bind(this) });
+
 		this.#hooks.push({ hook: 'deleteCombat', func: this._onCombatEnd.bind(this) });
 
-		this.#hooks.push({ hook: 'canvasDraw', func: this._onCanvasDraw.bind(this) });
+		//this.#hooks.push({ hook: 'updateSettings', func: this._onUpdateHUD.bind(this) });
+		this.#hooks.push({ hook: 'studyRoll', func: this._onStudyRoll.bind(this) });
+
 		this.#hooks.forEach(({ hook, func }) => Hooks.on(hook, func));
 		Hooks.once('ready', this._onGameReady.bind(this));
 	}
 
 	static get defaultOptions() {
+		const theme = game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme);
+		let template = FU.combatHudThemeTemplates[theme];
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			id: 'combat-hud',
-			template: 'systems/projectfu/templates/ui/combat-hud.hbs',
 			popOut: false,
+			template: `systems/projectfu/templates/ui/combat-hud/${template}.hbs`,
 			classes: [...super.defaultOptions.classes, 'projectfu'],
 		});
 	}
 
 	_getAdditionalStyle(opacity) {
-		return (
-			'--hud-opacity: ' +
-			opacity +
-			';' +
-			'--hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));' +
-			'--hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));'
-		);
+		const theme = game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme);
+		switch (theme)
+		{
+			case 'fu-default':
+				return (
+					'--hud-opacity: ' +
+					opacity +
+					';' +
+					'--hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));' +
+					'--hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));'
+				);
+			case 'fu-modern': 
+				return (
+					'--hud-opacity: ' +
+					0 +
+					';' +
+					'--hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));' +
+					'--hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));'
+				);
+		}
 	}
 
 	_resetCombatState(full = true) {
@@ -92,8 +113,14 @@ export class CombatHUD extends Application {
 	_getResourcePartial(resource) {
 		if (resource == 'none') return false;
 
+		let theme = game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme).replace('fu-', '');
+		if (theme === 'default')
+			theme = "";
+		else 
+			theme = "-" + theme;
+
 		const basePath = 'systems/projectfu/templates/ui/partials/combat-bar-';
-		return basePath + resource + '.hbs';
+		return basePath + resource + theme + '.hbs';
 	}
 
 	async getData(options = {}) {
@@ -101,6 +128,7 @@ export class CombatHUD extends Application {
 		data.cssClasses = this.options.classes.join(' ');
 		data.cssId = this.options.id;
 		data.isCompact = game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
+		data.isGM = game.user.isGM;
 
 		const opacity = game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity) / 100;
 		data.additionalStyle = this._getAdditionalStyle(opacity);
@@ -115,6 +143,7 @@ export class CombatHUD extends Application {
 		const trackedResourcePart1 = this._getResourcePartial(game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1));
 		const trackedResourcePart2 = this._getResourcePartial(game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2));
 		const trackedResourcePart3 = this._getResourcePartial(game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3));
+		const trackedResourcePart4 = this._getResourcePartial(game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource4));
 		let barCount = 0;
 		if (trackedResourcePart1) {
 			barCount++;
@@ -125,11 +154,21 @@ export class CombatHUD extends Application {
 		if (trackedResourcePart3) {
 			barCount++;
 		}
+		if (trackedResourcePart4) {
+			barCount++;
+		}
+
+		const NPCTurnsLeftMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode);
+
+		const currentTurn = game.combat.getCurrentTurn();
+		const turnsLeft = ui.combat.countTurnsLeft(game.combat);
+		const round = game.combat.round;
 
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
 
 			const actorData = {
+				id: combatant.id,
 				actor: combatant.actor,
 				token: combatant.token,
 				effects: game.release.generation >= 11 ? Array.from(combatant.actor.allApplicableEffects()) : combatant.actor.effects,
@@ -137,12 +176,14 @@ export class CombatHUD extends Application {
 				trackedResourcePart1: trackedResourcePart1,
 				trackedResourcePart2: trackedResourcePart2,
 				trackedResourcePart3: trackedResourcePart3,
+				trackedResourcePart4: trackedResourcePart4,
+				opacity: opacity,
 				zeropower: {
 					progress: {
 						current: 0,
 						max: 0,
 					},
-				},
+				}
 			};
 			actorData.hasEffects = actorData.effects.length > 0 && game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowEffects);
 
@@ -154,6 +195,7 @@ export class CombatHUD extends Application {
 					actorData.rowClass = 'two-bars';
 					break;
 				case 3:
+				case 4:	
 					actorData.rowClass = 'three-bars';
 					break;
 				default:
@@ -195,9 +237,23 @@ export class CombatHUD extends Application {
 			}
 
 			actorData.order = order;
+			actorData.hasActed = turnsLeft[combatant.id] === 0;
+			actorData.hasCombatStarted = game.combat.started;
+
+			actorData.totalTurns = combatant.totalTurns;
+			if (NPCTurnsLeftMode === 'never') {
+				actorData.totalTurns = 1;
+			} else if (NPCTurnsLeftMode === 'only-studied' && !this._isNPCStudied(combatant.token)) {
+				actorData.totalTurns = 1;
+			}
+			
+			actorData.turnsLeft = turnsLeft[combatant.id] ?? 0;
+
 			if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
+				actorData.isCurrentTurn = currentTurn === 'friendly';
 				data.characters.push(actorData);
 			} else {
+				actorData.isCurrentTurn = currentTurn === 'hostile';
 				data.npcs.push(actorData);
 			}
 		}
@@ -219,6 +275,12 @@ export class CombatHUD extends Application {
 			rows.on('dragstart', this._doCombatantDragStart.bind(this));
 			//rows.on('dragover', this._doDragOver.bind(this));
 			rows.on('drop', this._doCombatantDrop.bind(this));
+
+			const images = rows.find('.combat-image');
+			images.attr('draggable', true);
+			images.on('dragstart', this._doCombatantDragStart.bind(this));
+			//images.on('dragover', this._doDragOver.bind(this));
+			images.on('drop', this._doCombatantDrop.bind(this));
 		}
 
 		const combatantImages = html.find('.combat-row .token-image');
@@ -240,6 +302,32 @@ export class CombatHUD extends Application {
 
 		this._dragOffsetX = -dragButton.width() * 1.5;
 		this._dragOffsetY = dragButton.height() / 2;
+
+		this._startCombatButton = html.find('.window-start');
+		this._startCombatButton.click(this._doStartCombat.bind(this));
+
+		this._stopCombatButton = html.find('.window-stop');
+		this._stopCombatButton.click(this._doStopCombat.bind(this));
+
+		if (game.combat && game.combat.started) {
+			this._startCombatButton.addClass('hidden');
+			this._stopCombatButton.removeClass('hidden');
+		}
+
+		if (!game.user.isGM) return;
+		const turnButtons = html.find('[data-action=take-turn]');
+		turnButtons.click((event) => this._doTakeTurn(event));
+
+		const turnOutOfTurnButtons = html.find('[data-action=take-turn-out-of-turn]');
+		turnOutOfTurnButtons.click((event) => this._doTakeTurnOutOfTurn(event));
+	}
+
+	async _doTakeTurn(event) {
+		await ui.combat.handleTakeTurn(event);
+	}
+
+	async _doTakeTurnOutOfTurn(event) {
+		await ui.combat.handleTakeTurnOutOfTurn(event);
 	}
 
 	_doHudDragStart(event) {
@@ -264,12 +352,50 @@ export class CombatHUD extends Application {
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
 	}
 
+	async _doStartCombat() {
+		if (!game.user.isGM) return;
+		if (!game.combat) return;
+
+		await game.combat.startCombat();
+
+		this._startCombatButton.addClass('hidden');
+		this._stopCombatButton.removeClass('hidden');
+
+		this._onUpdateHUD();
+	}
+
+	async _doStopCombat() {
+		if (!game.user.isGM) return;
+		if (!game.combat) return;
+
+		await game.combat.endCombat();
+
+		this._startCombatButton.removeClass('hidden');
+		this._stopCombatButton.addClass('hidden');
+	}
+
 	_onGameReady() {
+		Hooks.on('canvasReady', this._onCanvasDraw.bind(this));
+		Hooks.on('preUpdateScene', this._preUpdateScene.bind(this));
+
 		if (!game.user.isGM) return;
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, this._backupOrdering ?? []);
 	}
 
 	_onCanvasDraw(canvas) {
+		setTimeout(() => {
+			if (game.combat && game.combat.isActive) {
+				CombatHUD.init();
+			} else {
+				this._resetCombatState(false);
+				this._resetButtons();
+				CombatHUD.close();
+			}
+		}, 300);
+	}
+
+	_preUpdateScene() {
+		console.log("preUpdateScene");
 		setTimeout(() => {
 			if (game.combat && game.combat.isActive) {
 				CombatHUD.init();
@@ -379,8 +505,6 @@ export class CombatHUD extends Application {
 	}
 
 	_onCombatantClick(event) {
-		event.preventDefault();
-
 		const now = Date.now();
 		const dt = now - this._clickTime;
 		this._clickTime = now;
@@ -441,6 +565,15 @@ export class CombatHUD extends Application {
 		}
 	}
 
+	_isNPCStudied(token) {
+		const studyJournal = game.journal.getName(token.actor?.name);
+		return studyJournal ? true : false;
+	}
+
+	lerp(a, b, alpha) {
+		return a + (alpha * (b - a));
+	}	
+
 	async _render(force, options) {
 		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
 			this.close();
@@ -456,10 +589,21 @@ export class CombatHUD extends Application {
 		}
 
 		const hOffset = -5;
-		const minWidth = 700;
+		let minWidth = 700;
+		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme) === 'fu-modern') {
+			minWidth = 805;
+		}
 
+		const uiLeft = $('#ui-left');
 		const uiMiddle = $('#ui-middle');
-		const hudWidth = minWidth + (uiMiddle.width() - minWidth) * (game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100);
+		let hudWidth = uiMiddle.width() + uiLeft.width() * 0.5;
+		if (hudWidth < minWidth) {
+			hudWidth = minWidth;
+		}
+
+		const alpha = (game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100);
+		hudWidth = this.lerp(minWidth, hudWidth, alpha);
+
 		this.element.css('width', hudWidth + hOffset);
 
 		const draggedPosition = game.settings.get(SYSTEM, SETTINGS.optionCombatHudDraggedPosition);
@@ -467,16 +611,24 @@ export class CombatHUD extends Application {
 			this.element.css('left', draggedPosition.x);
 			this.element.css('top', draggedPosition.y);
 		} else {
-			this.element.css('left', uiMiddle.position().left);
+			this.element.css('left', uiMiddle.position().left - uiLeft.width() * 0.5);
 
 			if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top') {
 				const uiTop = $('#ui-top');
-				this.element.css('top', uiTop.height() + 2);
+				this.element.css('top', uiTop.height() + 20);
 			} else {
 				const uiBottom = $('#ui-bottom');
 				this.element.css('bottom', uiBottom.height() + 10);
 			}
 		}
+	}
+
+	_onUpdateHUD_Round() {
+		this._onUpdateHUD();
+
+		setTimeout(() => {
+			this._onUpdateHUD();
+		}, 300);
 	}
 
 	_onUpdateHUD() {
@@ -497,6 +649,8 @@ export class CombatHUD extends Application {
 
 			this._hoveredToken = token;
 		}
+
+		combatRow.classList.add('hovered');
 	}
 
 	_onHoverOut(event) {
@@ -508,12 +662,19 @@ export class CombatHUD extends Application {
 		}
 
 		this._hoveredToken = null;
+
+		const combatRow = event.currentTarget;
+		combatRow.classList.remove('hovered');
 	}
 
 	_onCombatEnd() {
 		this._resetCombatState();
 		this._resetButtons();
 		this.close();
+	}
+
+	_onStudyRoll(actor, journalEntry) {
+		this._onUpdateHUD();
 	}
 
 	close() {
@@ -530,6 +691,18 @@ export class CombatHUD extends Application {
 
 	unregisterHooks() {
 		this.#hooks.forEach(({ hook, func }) => Hooks.off(hook, func));
+	}
+
+	static turnChanged() {
+		if (!ui.combatHud) return;
+
+		ui.combatHud._onUpdateHUD();
+	}
+
+	static roundChanged() {
+		if (!ui.combatHud) return;
+
+		ui.combatHud._onUpdateHUD_Round();
 	}
 
 	static init() {

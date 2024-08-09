@@ -1,0 +1,30 @@
+<div class="bar-container">
+    <div class="bar-label label-hp">
+        <span>{{ localize "FU.HealthAbbr" }}</span>
+    </div>
+    <div class="bar bar-progress">
+        {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
+        <div class="bar-progress-bar bar-hp-crisis"
+            style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
+        <div class="center-line"></div>
+        {{else}}
+        <div class="bar-progress-bar bar-hp"
+            style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
+        {{/if}}
+        <span class="bar-value"></span>
+    </div>  
+    <div class="resource-value">
+        <!--{{#if (lte this.actor.system.resources.hp.value (half this.actor.system.resources.hp.max))}}
+        <i class="fa-solid fa-heart-crack is-crisis"></i>
+        {{else}}
+        <i class="fa-solid fa-heart"></i>
+        {{/if}}-->
+        {{#if (eq this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
+        <div class="resource-text full">
+        {{else}}
+        <div class="resource-text">
+        {{/if}}
+            <span>{{ this.actor.system.resources.hp.value }}</span>
+        </div>
+    </div>
+</div>
