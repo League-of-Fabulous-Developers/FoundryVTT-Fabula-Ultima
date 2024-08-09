@@ -62,8 +62,7 @@ export class CombatHUD extends Application {
 
 	_getAdditionalStyle(opacity) {
 		const theme = game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme);
-		switch (theme)
-		{
+		switch (theme) {
 			case 'fu-default':
 				return (
 					'--hud-opacity: ' +
@@ -72,7 +71,7 @@ export class CombatHUD extends Application {
 					'--hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));' +
 					'--hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));'
 				);
-			case 'fu-modern': 
+			case 'fu-modern':
 				return (
 					'--hud-opacity: ' +
 					0 +
@@ -114,10 +113,8 @@ export class CombatHUD extends Application {
 		if (resource == 'none') return false;
 
 		let theme = game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme).replace('fu-', '');
-		if (theme === 'default')
-			theme = "";
-		else 
-			theme = "-" + theme;
+		if (theme === 'default') theme = '';
+		else theme = '-' + theme;
 
 		const basePath = 'systems/projectfu/templates/ui/partials/combat-bar-';
 		return basePath + resource + theme + '.hbs';
@@ -162,7 +159,7 @@ export class CombatHUD extends Application {
 
 		const currentTurn = game.combat.getCurrentTurn();
 		const turnsLeft = ui.combat.countTurnsLeft(game.combat);
-		const round = game.combat.round;
+		// const round = game.combat.round;
 
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
@@ -183,7 +180,7 @@ export class CombatHUD extends Application {
 						current: 0,
 						max: 0,
 					},
-				}
+				},
 			};
 			actorData.hasEffects = actorData.effects.length > 0 && game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowEffects);
 
@@ -195,7 +192,7 @@ export class CombatHUD extends Application {
 					actorData.rowClass = 'two-bars';
 					break;
 				case 3:
-				case 4:	
+				case 4:
 					actorData.rowClass = 'three-bars';
 					break;
 				default:
@@ -246,7 +243,7 @@ export class CombatHUD extends Application {
 			} else if (NPCTurnsLeftMode === 'only-studied' && !this._isNPCStudied(combatant.token)) {
 				actorData.totalTurns = 1;
 			}
-			
+
 			actorData.turnsLeft = turnsLeft[combatant.id] ?? 0;
 
 			if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
@@ -395,7 +392,7 @@ export class CombatHUD extends Application {
 	}
 
 	_preUpdateScene() {
-		console.log("preUpdateScene");
+		console.log('preUpdateScene');
 		setTimeout(() => {
 			if (game.combat && game.combat.isActive) {
 				CombatHUD.init();
@@ -571,8 +568,8 @@ export class CombatHUD extends Application {
 	}
 
 	lerp(a, b, alpha) {
-		return a + (alpha * (b - a));
-	}	
+		return a + alpha * (b - a);
+	}
 
 	async _render(force, options) {
 		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
@@ -601,7 +598,7 @@ export class CombatHUD extends Application {
 			hudWidth = minWidth;
 		}
 
-		const alpha = (game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100);
+		const alpha = game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100;
 		hudWidth = this.lerp(minWidth, hudWidth, alpha);
 
 		this.element.css('width', hudWidth + hOffset);

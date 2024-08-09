@@ -1124,6 +1124,18 @@
 		"OpposedCheckDetailsSourceResult": "Résultat à surpasser : <b>{result}</b>",
 		"OpposedCheckWinner": "Gagnant : <b>{winner}</b>",
 		"OpposedCheckDraw": "Match nul",
-		"DamageUntyped": "Non typé"
+		"DamageUntyped": "Non typé",
+		"ZeroPowerAbbr": "ZP",
+		"CombatHudTheme": "HUD Theme",
+		"CombatHudThemeHint": "Choose the theme of the Combat HUD.",
+		"CombatHudDefault": "Default (Retro style)",
+		"CombatHudModern": "Modern",
+		"CombatHudTrackedResource4": "Fourth Tracked Resource",
+		"CombatHudTrackedResource4Hint": "Choose the fourth resource to be shown as a bar in the Combat HUD. Not supported in all themes.",
+		"CombatHudShowNPCTurnsLeftMode": "NPC Turns Left Mode",
+		"CombatHudShowNPCTurnsLeftModeHint": "Choose whether to show turns left for NPCs (Elite and Champion) in the Combat HUD.",
+		"CombatHudShowNPCTurnsLeftModeNever": "Never",
+		"CombatHudShowNPCTurnsLeftModeAlways": "Always",
+		"CombatHudShowNPCTurnsLeftModeOnlyStudied": "Only when Studied"
 	}
 }

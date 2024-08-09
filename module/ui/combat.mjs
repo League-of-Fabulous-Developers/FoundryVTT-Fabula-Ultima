@@ -84,31 +84,31 @@ export class FUCombat extends Combat {
 	}
 
 	async _manageTurnEvents(adjustedTurn) {
-		if ( !game.users.activeGM?.isSelf ) return;
+		if (!game.users.activeGM?.isSelf) return;
 
 		let prior = undefined;
 		if (this.previous) {
 			prior = this.combatants.get(this.previous.combatantId);
 		}
-	
+
 		// Adjust the turn order before proceeding. Used for embedded document workflows
-		if ( Number.isNumeric(adjustedTurn) ) await this.update({turn: adjustedTurn}, {turnEvents: false});
-		if ( !this.started ) return;
-	
+		if (Number.isNumeric(adjustedTurn)) await this.update({ turn: adjustedTurn }, { turnEvents: false });
+		if (!this.started) return;
+
 		// Identify what progressed
 		const advanceRound = this.current.round > (this.previous.round ?? -1);
 		const advanceTurn = this.current.turn > (this.previous.turn ?? -1);
-		if ( !(advanceTurn || advanceRound) ) return;
-	
+		if (!(advanceTurn || advanceRound)) return;
+
 		// Conclude prior turn
-		if ( prior ) await this._onEndTurn(prior);
-	
+		if (prior) await this._onEndTurn(prior);
+
 		// Conclude prior round
-		if ( advanceRound && (this.previous.round !== null) ) await this._onEndRound();
-	
+		if (advanceRound && this.previous.round !== null) await this._onEndRound();
+
 		// Begin new round
-		if ( advanceRound ) await this._onStartRound();
-	
+		if (advanceRound) await this._onStartRound();
+
 		// Begin a new turn
 		await this._onStartTurn(this.combatant);
 	}

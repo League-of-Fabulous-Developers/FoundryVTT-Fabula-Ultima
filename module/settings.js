@@ -519,9 +519,9 @@ export const registerSystemSettings = async function () {
 		type: String,
 		default: 'only-studied',
 		choices: {
-			'never': game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeNever'),
-			'always': game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeAlways'),
-			'only-studied': game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeOnlyStudied')
+			never: game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeNever'),
+			always: game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeAlways'),
+			'only-studied': game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeOnlyStudied'),
 		},
 	});
 };
@@ -604,9 +604,9 @@ class CombatHudSettings extends FormApplication {
 			optionCombatHudThemeOptions: FU.combatHudThemes,
 			optionCombatHudShowNPCTurnsLeftMode: game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode),
 			optionCombatHudShowNPCTurnsLeftModeOptions: {
-				'never': 'FU.CombatHudShowNPCTurnsLeftModeNever',
-				'always': 'FU.CombatHudShowNPCTurnsLeftModeAlways',
-				'only-studied': 'FU.CombatHudShowNPCTurnsLeftModeOnlyStudied'
+				never: 'FU.CombatHudShowNPCTurnsLeftModeNever',
+				always: 'FU.CombatHudShowNPCTurnsLeftModeAlways',
+				'only-studied': 'FU.CombatHudShowNPCTurnsLeftModeOnlyStudied',
 			},
 		};
 	}
