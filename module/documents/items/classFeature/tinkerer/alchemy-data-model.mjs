@@ -150,7 +150,7 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 				}
 				ChatMessage.create({
 					speaker,
-					type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+					type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
 					rolls: [roll],
 					content: await renderTemplate('systems/projectfu/templates/feature/tinkerer/feature-alchemy-chat-message.hbs', data),
 					flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },

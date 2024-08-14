@@ -90,10 +90,14 @@ const getPushParams = async (actor) => {
  * @return {RollTerm} the replacement
  */
 function getReplacementTerm(term) {
-	if (term instanceof DiceTerm) {
-		return new NumericTerm({ number: term.total, options: { ...term.options, faces: term.faces } });
-	} else if (term instanceof NumericTerm) {
-		return new NumericTerm({ number: term.number, options: term.options });
+	const DiceTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.DiceTerm : DiceTerm;
+
+	const NumericTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.NumericTerm : NumericTerm;
+
+	if (term instanceof DiceTermClass) {
+		return new NumericTermClass({ number: term.total, options: { ...term.options, faces: term.faces } });
+	} else if (term instanceof NumericTermClass) {
+		return new NumericTermClass({ number: term.number, options: term.options });
 	} else {
 		throw new Error(`Unexpected term: ${term.constructor.name}`);
 	}

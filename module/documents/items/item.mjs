@@ -731,7 +731,7 @@ export class FUItem extends Item {
 			// Create a chat message.
 			ChatMessage.create({
 				speaker: speaker,
-				type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+				type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
 				flavor: label,
 				content,
 				rolls,

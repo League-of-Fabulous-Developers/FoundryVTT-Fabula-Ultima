@@ -235,12 +235,14 @@ async function rollCheck(check, actor, item) {
  * @return {{result: number, dice: number}}
  */
 const extractDieResults = (term, actor) => {
-	if (term instanceof DiceTerm) {
+	const DiceTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.DiceTerm : DiceTerm;
+	const NumericTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.NumericTerm : NumericTerm;
+	if (term instanceof DiceTermClass) {
 		return {
 			dice: term.faces,
 			result: term.total,
 		};
-	} else if (term instanceof NumericTerm) {
+	} else if (term instanceof NumericTermClass) {
 		return {
 			dice: term.options.faces ?? actor.system.attributes[term.flavor].current,
 			result: term.total,
@@ -329,6 +331,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 		? await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
 				name: item.name,
 				img: item.img,
+				id: item.id,
 			})
 		: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
 				title: FU.checkTypes[result.type] || 'FU.RollCheck',
@@ -340,7 +343,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 		flavor: flavor,
 		content: await renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections }),
 		rolls: rolls,
-		type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+		type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
 		speaker: ChatMessage.getSpeaker({ actor }),
 		flags: foundry.utils.mergeObject(
 			{
@@ -352,9 +355,44 @@ async function renderCheck(result, actor, item, flags = {}) {
 			{ overwrite: false, recursive: true },
 		),
 	};
+	const message = await ChatMessage.create(chatMessage);
 
-	return ChatMessage.create(chatMessage);
+	setupItemImageClicks(message.id, actor);
 }
+
+/**
+ * Add click listeners to item images in the chat message.
+ * @param {string} messageId - The ID of the chat message.
+ * @param {FUActor} actor - The actor containing the items.
+ */
+function setupItemImageClicks(messageId, actor) {
+	// Use event delegation to handle clicks on dynamically added items
+	document.addEventListener('click', function (event) {
+		if (event.target.classList.contains('item-img')) {
+			const img = event.target;
+			const itemId = img.getAttribute('data-item-id');
+			if (actor) {
+				const item = actor.items.get(itemId);
+				if (item) {
+					item.sheet.render(true);
+				}
+			}
+		}
+	});
+}
+
+/**
+ * Reapply event listeners when new chat messages are added to the DOM.
+ */
+function reapplyClickListeners() {
+	Hooks.on('renderChatMessage', (message) => {
+		// Reapply event listeners for each chat message
+		setupItemImageClicks(message.id, game.actors.get(message.speaker.actor));
+	});
+}
+
+// Initialize click listeners
+reapplyClickListeners();
 
 /**
  * @param {Partial<Check>} check

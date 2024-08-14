@@ -627,9 +627,10 @@ async function EnrichHTML(htmlContent) {
 }
 
 /**
+ * Create a chat message with enriched content.
  * @param {CheckParameters} checkParams
  * @param {Object} [additionalFlags]
- * @return {Promise<chatMessage>}
+ * @return {Promise<ChatMessage>}
  */
 export async function createChatMessage(checkParams, additionalFlags = {}) {
 	const content = checkParams.description
@@ -642,7 +643,8 @@ export async function createChatMessage(checkParams, additionalFlags = {}) {
 	/** @type Partial<ChatMessageData> */
 	const chatMessage = {
 		content: content,
-		type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+		type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
+		rolls: foundry.utils.isNewerVersion(game.version, '12.0.0') ? [] : undefined,
 		speaker: checkParams.speaker,
 		flags: foundry.utils.mergeObject(
 			{
@@ -658,9 +660,10 @@ export async function createChatMessage(checkParams, additionalFlags = {}) {
 }
 
 /**
+ * Create a check message.
  * @param {CheckParameters} checkParams
  * @param {Object} [additionalFlags]
- * @return {Promise<chatMessage>}
+ * @return {Promise<ChatMessage>}
  */
 export async function createCheckMessage(checkParams, additionalFlags = {}) {
 	const flavor = await (async () => {
@@ -685,7 +688,7 @@ export async function createCheckMessage(checkParams, additionalFlags = {}) {
 			translation: { damageTypes: FU.damageTypes },
 		}),
 		rolls: [checkParams.result.roll],
-		type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+		type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
 		speaker: checkParams.speaker,
 		flags: foundry.utils.mergeObject(
 			{
