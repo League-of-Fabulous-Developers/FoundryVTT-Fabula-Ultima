@@ -13,7 +13,7 @@
 }
 
 .items-header > * {
-	font-size: 14px;
+	font-size: 0.875rem;
 	background: linear-gradient($color-tabStyle-gradient);
 	border-radius: 4px;
 	box-shadow: 1px 2px $color-secondary;
@@ -75,7 +75,7 @@
 	&.zenit-container {
 		width: 10.5em;
 		border-radius: 8px;
-		font-size: 14px;
+		font-size: 0.875rem;
 		box-sizing: border-box;
 		white-space: normal;
 		text-overflow: ellipsis;
@@ -138,7 +138,7 @@
 	&.armor-hand {
 		width: 10.5em;
 		border-radius: 8px 30px 5px 5px;
-		font-size: 14px;
+		font-size: 0.875rem;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 		white-space: normal;
@@ -159,7 +159,7 @@
 	&.acc-hand {
 		width: 10.5em;
 		border-radius: 40px 8px 5px 5px;
-		font-size: 14px;
+		font-size: 0.875rem;
 		box-sizing: border-box;
 		white-space: normal;
 		text-overflow: ellipsis;
@@ -179,7 +179,7 @@
 		height: inherit;
 		width: 13em;
 		border-radius: 0 0 4px 40px;
-		font-size: 14px;
+		font-size: 0.875rem;
 		white-space: normal;
 		padding: 5px;
 		margin: 0;
@@ -205,7 +205,7 @@
 		height: inherit;
 		width: 13em;
 		border-radius: 0 0 40px 0px;
-		font-size: 14px;
+		font-size: 0.875rem;
 		white-space: normal;
 		padding: 5px;
 		margin: 0;
@@ -375,7 +375,7 @@
 }
 
 .items-list .items-header > * {
-	font-size: 14px;
+	font-size: 0.875rem;
 	text-align: center;
 	color: $color-primary;
 	text-shadow: 1px 1px 1px $color-black;
@@ -469,7 +469,7 @@
 	align-content: center;
 
 	a {
-		font-size: 14px;
+		font-size: 0.875rem;
 		text-align: center;
 		margin: 0 2px;
 	}

@@ -514,6 +514,8 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Update Skill Level
 		html.find('.skillLevel input').click((ev) => this._onSkillLevelUpdate(ev));
+		// Update Skill Level
+		html.find('.skillLevel').contextmenu((ev) => this._onSkillLevelReset(ev));
 
 		// Update Progress - Click Event
 		html.find('.progress input').click((ev) => {
@@ -1248,6 +1250,31 @@ export class FUStandardActorSheet extends ActorSheet {
 
 			if (item) {
 				item.update({ 'system.level.value': segment });
+			} else {
+				console.error(`Item with ID ${itemId} not found.`);
+			}
+		} else {
+			console.error('Parent item not found.');
+		}
+	}
+
+	/**
+	 * Resets the skill level value to 0 on right-click.
+	 *
+	 * @param {Event} ev - The context menu event.
+	 */
+	_onSkillLevelReset(ev) {
+		ev.preventDefault();
+
+		const input = ev.currentTarget;
+		const li = $(input).closest('.item');
+
+		if (li.length) {
+			const itemId = li.find('input').data('item-id');
+			const item = this.actor.items.get(itemId);
+
+			if (item) {
+				item.update({ 'system.level.value': 0 });
 			} else {
 				console.error(`Item with ID ${itemId} not found.`);
 			}

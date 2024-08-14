@@ -110,7 +110,7 @@ async function handleStudyRollCallback(app, actor, studyValue) {
 	else difficulty = 'Failed';
 
 	const headerStyle = `background: linear-gradient(to right, #532853, #bfb8c4);border-color: #c1b7c7;display: flex;align-items: center;padding: 2px;border-right: groove #ffffff 3px;padding-left: 16px;padding-right: 16px;`;
-	const headerText = `font-family: Antonio;font-weight: bold;font-size: 1.25rem;text-transform: uppercase;color: #ffffff;text-shadow: 2px 1px 1px black;`;
+	const headerText = `font-family: Antonio;font-weight: bold;font-size: 1.25rem;font-variant: small-caps;color: #ffffff;text-shadow: 2px 1px 1px black;`;
 	const divideText = `border-bottom: 1px solid #c1b7c7; border-image: linear-gradient(45deg, #532853, #bfb8c4) 1;`;
 	const attrBoxStyle = `background-color: rgb(239, 236, 245); border-right: 1px solid rgb(255, 255, 255);`;
 
@@ -388,10 +388,12 @@ async function handleStudyRollCallback(app, actor, studyValue) {
 	const imgSrc = actor.img;
 	let tableContent = difficulty === 'Failed' ? '' : makeTable(actor, difficulty);
 
+	const isV12OrLater = game.version && game.version >= '12.0.0';
+
 	const journalEntryData = {
 		name: actor.name,
 		folder: folderId,
-		permission: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER },
+		...(isV12OrLater ? { ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER } } : { permission: { default: CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER } }),
 	};
 
 	const JournalEntryClass = getDocumentClass('JournalEntry');

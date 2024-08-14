@@ -8,7 +8,7 @@
                 </a>
             </legend>
 
-            <section>
+            <section class="resource-text-sm">
                 {{#if (or (eq (getGameSetting 'optionNPCNotesTab') true) (eq actor.type "character"))}}
                     {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
                              button=true owner=owner editable=editable }}
