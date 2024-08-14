@@ -137,9 +137,9 @@ export class FUItem extends Item {
 		// Define constants and variables
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
 
-		const attackAttributes = [this.system.attributes.primary.value.toUpperCase(), this.system.attributes.secondary.value.toUpperCase()].join(' + ');
+		const attackAttributes = [this.system.rollInfo?.attributes?.primary.value.toUpperCase(), this.system.rollInfo?.attributes?.secondary.value.toUpperCase()].join(' + ');
 
-		const attackString = this.system.hasRoll.value ? `【${attackAttributes}${this.system.accuracy.value > 0 ? ` +${this.system.accuracy.value}` : ''}】` : '';
+		const attackString = this.system.hasRoll.value ? `【${attackAttributes}${this.system.rollInfo.accuracy.value > 0 ? ` +${this.system.rollInfo.accuracy.value}` : ''}】` : '';
 
 		const damageString = this.system.rollInfo.damage.hasDamage.value ? `【${hrZeroText} ${this.system.rollInfo.damage.value}】 ${this.system.rollInfo.damage.type.value}` : '';
 
