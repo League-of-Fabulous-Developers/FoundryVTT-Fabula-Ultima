@@ -624,20 +624,16 @@ export class CombatHUD extends Application {
 		const uiMiddle = $('#ui-middle');
 
 		const position = {};
-		if (draggedPosition && draggedPosition.x) {
-			position.left = draggedPosition.x;
-		} else {
-			position.left = uiMiddle.position().left - uiLeft.width() * 0.5;
-		}
 
+		position.left = draggedPosition && draggedPosition.x ? draggedPosition.x : uiMiddle.position().left - uiLeft.width() * 0.5;
 		if (positionFromTop) {
 			const uiTop = $('#ui-top');
 			position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : uiTop.height() + 20;
-
 		} else {
 			const uiBottom = $('#ui-bottom');
 			position.bottom = draggedPosition && draggedPosition.y ? draggedPosition.y : uiBottom.height() + 20;
 		}
+		
 		return position;
 	}
 
