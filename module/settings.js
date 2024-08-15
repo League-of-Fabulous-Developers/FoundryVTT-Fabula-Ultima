@@ -306,7 +306,6 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
-
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudSaved, {
 		name: 'CombatHudSaved',
 		scope: 'client',

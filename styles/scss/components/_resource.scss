@@ -136,8 +136,6 @@
 
 	/*  Sidebar Section Style */
 	&.levelup-container {
-		background: linear-gradient(#{$color-transparent-gradient});
-		border-color: $color-secondary;
 		border: none;
 
 		& input.resource-inputs-charname {
@@ -160,6 +158,7 @@
 		&.creature {
 			padding: 0;
 			border-radius: 12px;
+			background: none;
 
 			.resource-inputs {
 				color: $color-primary;
@@ -193,6 +192,18 @@
 				height: 15px;
 			}
 		}
+	}
+
+	& .villain-field {
+		margin-bottom: 6px !important;
+		border-radius: 0 0 0 14px;
+		width: 100%;
+		border: 0.125em solid #c7c7c7;
+		color: white;
+	}
+
+	&.level-field {
+		background: linear-gradient(#{$color-transparent-gradient});
 	}
 }
 

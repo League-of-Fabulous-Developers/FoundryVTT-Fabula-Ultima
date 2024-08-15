@@ -29,6 +29,7 @@
                        aria-describedby="tooltip"><i class="fas fa-sliders"></i></a>
                     <a class="item study-style" data-tooltip="{{localize 'FU.StudyRoll'}}">
                         <i class="study-button rollable fas fa-magnifying-glass icon"></i>
+                        <label for="studySelect" style="padding-right: 5px; cursor: pointer;">{{localize 'FU.Study'}}</label>
                         <select name="system.study.value" id="studySelect"
                                 data-dtype="Number" class="resource-label-l">
                             {{selectOptions studyRoll selected=system.study.value}}

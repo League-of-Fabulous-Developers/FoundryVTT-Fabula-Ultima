@@ -342,7 +342,7 @@ export class CombatHUD extends Application {
 		this.element.css('top', this._dragOffsetY + event.clientY);
 	}
 
-	_doHudDrop(event) {		
+	_doHudDrop(event) {
 		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
 		const draggedPosition = {
 			x: this.element.css('left'),
@@ -606,13 +606,13 @@ export class CombatHUD extends Application {
 		this.element.css('width', hudWidth + hOffset);
 
 		const position = this._getPosition();
-		if (position.top){
+		if (position.top) {
 			this.element.css('top', position.top);
 		}
-		if (position.bottom){
+		if (position.bottom) {
 			this.element.css('bottom', position.bottom);
 		}
-		if (position.left){
+		if (position.left) {
 			this.element.css('left', position.left);
 		}
 	}
@@ -633,7 +633,6 @@ export class CombatHUD extends Application {
 			const uiBottom = $('#ui-bottom');
 			position.bottom = draggedPosition && draggedPosition.y ? draggedPosition.y : uiBottom.height() + 20;
 		}
-		
 		return position;
 	}
 
