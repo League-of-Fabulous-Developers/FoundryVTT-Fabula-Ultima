@@ -931,6 +931,7 @@
 		"CombatHudPortraitActor": "Immagine Personaggio",
 		"CombatHudPortraitToken": "Immagine Token",
 		"CombatHudControlButtonTitle": "Attiva/Disattiva Interfaccia di Conflitto",
+		"CombatHudSaveButtonTitle": "Save Combat HUD position and size",
 		"CombatHudShowEffects": "Mostra Effetti dei Partecipanti",
 		"CombatHudShowEffectsHint": "Mostra Effetti Attivi dei Partecipanti nell'Interfaccia di Conflitto.",
 		"CombatHudEffectsMarqueeDuration": "Durata Scorrimento Effetti",

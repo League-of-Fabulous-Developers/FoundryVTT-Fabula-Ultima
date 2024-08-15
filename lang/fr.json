@@ -931,6 +931,7 @@
 		"CombatHudPortraitActor": "Image de l'Acteur",
 		"CombatHudPortraitToken": "Image du Token",
 		"CombatHudControlButtonTitle": "Activer/Désactiver l'ATH de Combat",
+		"CombatHudSaveButtonTitle": "Save Combat HUD position and size",
 		"CombatHudShowEffects": "Montrer les effets des combattants",
 		"CombatHudShowEffectsHint": "Montrer les effets sur les combattants dans l'ATH de Combat.",
 		"CombatHudEffectsMarqueeDuration": "Durée du défilement des effets",

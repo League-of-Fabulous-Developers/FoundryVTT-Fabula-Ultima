@@ -806,7 +806,7 @@ export class CombatHUD extends Application {
 		return {
 			name: 'projectfu-combathud-saved-toggle',
 			title: game.i18n.localize('FU.CombatHudSaveButtonTitle'),
-			icon: 'fas fa-save',
+			icon: 'fas fa-lock',
 			button: false,
 			toggle: true,
 			visible: game.combat ? game.combat.isActive : false,

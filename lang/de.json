@@ -931,6 +931,7 @@
 		"CombatHudPortraitActor": "Charakterbogen",
 		"CombatHudPortraitToken": "Token",
 		"CombatHudControlButtonTitle": "Konflikt-HUD ein/ausblenden",
+		"CombatHudSaveButtonTitle": "Save Combat HUD position and size",
 		"CombatHudShowEffects": "Aktive Effekte anzeigen",
 		"CombatHudShowEffectsHint": "Zeigt auf Akteure wirkende Effekte im Konflikt-HUD.",
 		"CombatHudEffectsMarqueeDuration": "Geschwindigkeit der Effekt-Laufschrift",
