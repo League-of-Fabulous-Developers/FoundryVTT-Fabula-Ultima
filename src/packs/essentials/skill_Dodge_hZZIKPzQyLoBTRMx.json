@@ -121,7 +121,6 @@
   "effects": [
     {
       "icon": "icons/skills/movement/arrow-down-pink.webp",
-      "origin": "Compendium.projectfu.essentials.Item.hZZIKPzQyLoBTRMx",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -157,9 +156,7 @@
     "YN7AhHIwAZeH33Tw": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.hUKB0b4HmcBPFddu"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",

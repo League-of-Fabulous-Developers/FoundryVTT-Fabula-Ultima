@@ -120,8 +120,6 @@
   },
   "effects": [
     {
-      "icon": "icons/commodities/biological/organ-heart-pink.webp",
-      "origin": "Actor.GtOXN7pIQYHyfBg3.Item.L6bGy13iq1vnlDnz",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -162,7 +160,22 @@
           "CrisisInteraction": "active"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/commodities/biological/organ-heart-pink.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!DniA4VMTBNhk5a1v.kTPwUE4IK9FTRBIX"
     }
   ],
@@ -173,17 +186,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.projectfu.essentials.Item.yfx2RrnxSnU7OVPK"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706502375594,
     "modifiedTime": 1721093033777,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "DniA4VMTBNhk5a1v",
   "sort": 100000,

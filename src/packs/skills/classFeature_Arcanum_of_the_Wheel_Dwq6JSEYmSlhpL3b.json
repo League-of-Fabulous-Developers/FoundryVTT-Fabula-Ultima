@@ -21,8 +21,6 @@
   },
   "effects": [
     {
-      "icon": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Wheel.png",
-      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.Dwq6JSEYmSlhpL3b",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -51,7 +49,22 @@
           "CrisisInteraction": "none"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Wheel.png",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!Dwq6JSEYmSlhpL3b.1iKpZOSNd8g7Q6Dn"
     }
   ],
@@ -61,10 +74,12 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1710464120707,
     "modifiedTime": 1721096603946,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "sort": 300000,
   "ownership": {

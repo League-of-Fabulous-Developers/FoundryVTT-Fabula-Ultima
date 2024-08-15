@@ -4,7 +4,7 @@
   "description": "<p><span class=\"fontstyle0\">When you create a mix, roll the amount of twenty-sided dice indicated by that mix, then assign one of those rolls to the </span><span class=\"fontstyle2\"><strong>@UUID[Compendium.projectfu.rollable-tables.RollTable.vZa3GMOzrEVma2Hv]{target}</strong> </span><span class=\"fontstyle0\">table and one to the </span><span class=\"fontstyle2\"><strong>effect</strong> </span><span class=\"fontstyle0\">table (below). Discard all remaining dice, then describe the effects of the mix!</span></p>",
   "results": [
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         1,
@@ -19,7 +19,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.betocD9ydMQ6SjKW"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         2,
@@ -34,7 +34,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.QbqUG0cgZPwbwLe1"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         3,
@@ -49,7 +49,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.IU7Sp7aeQ5G2E1xM"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         4,
@@ -64,7 +64,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.CUw91JD2aqi02ISc"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         5,
@@ -79,7 +79,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.V8BPtqAF1Ej2Uj5g"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         6,
@@ -94,7 +94,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.tawwduz2lcamJZLu"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         7,
@@ -109,7 +109,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.ZXXvsN6dUhjFaVWp"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         8,
@@ -124,7 +124,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.L3RNKzE5wqgj9eJm"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         9,
@@ -139,7 +139,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.56tpGyfcTRIHVCi5"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         10,
@@ -154,7 +154,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.dvruxhvA7D7EnCjv"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         11,
@@ -169,7 +169,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.Q4L7BCRynKKtTuou"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         12,
@@ -184,7 +184,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.QoOj9tvyKJRYkCNU"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         13,
@@ -199,7 +199,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.o9xtJIrxvcg882We"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         14,
@@ -214,7 +214,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.g3IbZHImIC41yYvg"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         15,
@@ -229,7 +229,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.eGeQ5pBdp2F33hSK"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         16,
@@ -244,7 +244,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.Vt7U712iEk62qwtX"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         18,
@@ -259,7 +259,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.5IMKtU6wtXnHMiNw"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         19,
@@ -274,7 +274,7 @@
       "_key": "!tables.results!TvH7gOE0xQYeimUF.yI8Ln7B4v4lqLJjJ"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         20,
@@ -303,10 +303,12 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1710031528910,
     "modifiedTime": 1719171750925,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "formula": "1d20",
   "_id": "TvH7gOE0xQYeimUF",

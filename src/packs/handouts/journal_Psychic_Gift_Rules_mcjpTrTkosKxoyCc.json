@@ -30,10 +30,12 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "11.315",
+        "coreVersion": "12.330",
         "createdTime": 1711757942464,
         "modifiedTime": 1719225382816,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+        "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+        "compendiumSource": null,
+        "duplicateSource": null
       },
       "_key": "!journal.pages!mcjpTrTkosKxoyCc.RQuhkt73kxwmzIL0"
     },
@@ -66,10 +68,12 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "11.315",
+        "coreVersion": "12.330",
         "createdTime": 1711758523017,
         "modifiedTime": 1720908053044,
-        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+        "compendiumSource": null,
+        "duplicateSource": null
       },
       "_key": "!journal.pages!mcjpTrTkosKxoyCc.lVGLqvkCVFBXhqau"
     },
@@ -99,17 +103,17 @@
         "GJ92IIuRRh2w5uWU": 3
       },
       "flags": {
-        "core": {
-          "sourceId": "Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc.JournalEntryPage.RQuhkt73kxwmzIL0"
-        }
+        "core": {}
       },
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "11.315",
+        "coreVersion": "12.330",
         "createdTime": 1711757942464,
         "modifiedTime": 1720908028831,
-        "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+        "compendiumSource": null,
+        "duplicateSource": null
       },
       "_id": "mHSFEwibzoMdNQmY",
       "_key": "!journal.pages!mcjpTrTkosKxoyCc.mHSFEwibzoMdNQmY"
@@ -127,10 +131,12 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1711757921039,
     "modifiedTime": 1720908053044,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "mcjpTrTkosKxoyCc",
   "sort": 0,

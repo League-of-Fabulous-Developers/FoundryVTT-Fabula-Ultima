@@ -98,8 +98,6 @@
   },
   "effects": [
     {
-      "icon": "icons/magic/control/control-influence-crown-yellow.webp",
-      "origin": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.mbndm83EQjfSZWet",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -121,7 +119,22 @@
           "CrisisInteraction": "active"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/magic/control/control-influence-crown-yellow.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!h8keSqFfvEilNhF7.P4N97na5vkpFiDXp"
     }
   ],
@@ -131,17 +144,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.mbndm83EQjfSZWet"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706684669665,
     "modifiedTime": 1721103514195,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "h8keSqFfvEilNhF7",
   "sort": 0,

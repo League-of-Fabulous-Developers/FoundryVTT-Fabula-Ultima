@@ -121,8 +121,6 @@
   },
   "effects": [
     {
-      "icon": "icons/consumables/potions/vial-cork-blue.webp",
-      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.2MoV74xWJnF5Ru8u",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -144,7 +142,22 @@
           "CrisisInteraction": "active"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/consumables/potions/vial-cork-blue.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!2MoV74xWJnF5Ru8u.cKoUgtOZUzdt6KZk"
     }
   ],
@@ -154,17 +167,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.2MoV74xWJnF5Ru8u"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706508694101,
     "modifiedTime": 1721088361526,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "sort": 0,
   "_key": "!items!2MoV74xWJnF5Ru8u"

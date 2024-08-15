@@ -121,8 +121,6 @@
   },
   "effects": [
     {
-      "icon": "icons/skills/ranged/daggers-thrown-salvo-orange.webp",
-      "origin": "Compendium.fabula-ultima-high-fantasy.high-fantasy-skills.Item.L4LqyZu7NPjavyaf",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -175,7 +173,22 @@
           "CrisisInteraction": "none"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/skills/ranged/daggers-thrown-salvo-orange.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!L4LqyZu7NPjavyaf.K7muJlKr6uIPLdsE"
     }
   ],
@@ -189,10 +202,12 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706560640482,
     "modifiedTime": 1721094167948,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_key": "!items!L4LqyZu7NPjavyaf"
 }

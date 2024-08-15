@@ -4,7 +4,7 @@
   "description": "<p><span class=\"fontstyle0\">When you create a mix, roll the amount of twenty-sided dice indicated by that mix, then assign one of those rolls to the </span><span class=\"fontstyle2\"><strong>target</strong> </span><span class=\"fontstyle0\">table (below) and one to the </span><span class=\"fontstyle2\">effect </span><span class=\"fontstyle0\">table <strong>@UUID[Compendium.projectfu.rollable-tables.RollTable.TvH7gOE0xQYeimUF]{Alchemy: Effect}</strong>. Discard all remaining dice, then describe the effects of the mix!</span> <br style=\"font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;orphans:2;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-size-adjust:auto;-webkit-text-stroke-width:0px\" /></p>",
   "results": [
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         1,
@@ -19,7 +19,7 @@
       "_key": "!tables.results!vZa3GMOzrEVma2Hv.XgGLKpsOv9luRBck"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         7,
@@ -34,7 +34,7 @@
       "_key": "!tables.results!vZa3GMOzrEVma2Hv.mRhNxnilSDSIMH8w"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         12,
@@ -49,7 +49,7 @@
       "_key": "!tables.results!vZa3GMOzrEVma2Hv.BnBOQIJYo4CO2pNh"
     },
     {
-      "type": 0,
+      "type": "text",
       "weight": 1,
       "range": [
         17,
@@ -78,10 +78,12 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1710031308833,
     "modifiedTime": 1719246622021,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "formula": "1d20",
   "_id": "vZa3GMOzrEVma2Hv",

@@ -120,8 +120,6 @@
   },
   "effects": [
     {
-      "icon": "icons/weapons/staves/staff-engraved-red.webp",
-      "origin": "Compendium.projectfu.essentials.Item.ZV7cFmbaw5bknjtv",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -150,7 +148,22 @@
           "CrisisInteraction": "none"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/weapons/staves/staff-engraved-red.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!b5zzfsWN7h5ugrnW.HmpPyOHEzMIoGVgk"
     }
   ],
@@ -161,17 +174,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.projectfu.essentials.Item.ZV7cFmbaw5bknjtv"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706497996319,
     "modifiedTime": 1721093851210,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "b5zzfsWN7h5ugrnW",
   "sort": 300000,

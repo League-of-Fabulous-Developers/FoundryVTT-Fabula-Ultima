@@ -98,8 +98,6 @@
   },
   "effects": [
     {
-      "icon": "icons/equipment/shield/buckler-boss-iron-wood-brown.webp",
-      "origin": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.ryJxkf7svEYHBDur",
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -140,7 +138,22 @@
           "CrisisInteraction": "none"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/equipment/shield/buckler-boss-iron-wood-brown.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!sEXgOpgUF00z55Y3.RSUwGO4cqpoKBEPB"
     }
   ],
@@ -150,17 +163,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.ryJxkf7svEYHBDur"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706684635660,
     "modifiedTime": 1721103299623,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "sEXgOpgUF00z55Y3",
   "sort": 0,

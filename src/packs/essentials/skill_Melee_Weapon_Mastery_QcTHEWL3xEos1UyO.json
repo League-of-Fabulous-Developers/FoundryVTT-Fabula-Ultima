@@ -121,7 +121,6 @@
   "effects": [
     {
       "icon": "icons/skills/melee/weapons-crossed-swords-pink.webp",
-      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.I5IuMtOaPji0mAVi",
       "duration": {
         "startTime": null,
         "seconds": null,

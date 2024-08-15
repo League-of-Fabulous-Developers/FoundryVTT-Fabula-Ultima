@@ -120,17 +120,17 @@
   "effects": [],
   "folder": "bqBl8kPDVcWqosfM",
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.jgGLuOvN8xCSQWLK"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706421327382,
     "modifiedTime": 1721093297122,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "jgGLuOvN8xCSQWLK",
   "ownership": {
