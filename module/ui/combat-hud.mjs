@@ -7,6 +7,7 @@ Hooks.once('setup', () => {
 	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
 		Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
 			tools.push(CombatHUD.getToggleControlButton());
+			tools.push(CombatHUD.getSavedControlButton());
 			tools.push(CombatHUD.getResetControlButton());
 		});
 	}
@@ -271,13 +272,13 @@ export class CombatHUD extends Application {
 		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudReordering) && game.user.isGM) {
 			rows.on('dragstart', this._doCombatantDragStart.bind(this));
 			//rows.on('dragover', this._doDragOver.bind(this));
-			rows.on('drop', this._doCombatantDrop.bind(this));
+			rows.on('drop', this._doCombatantDrop.bind(this)); // this might not work. 'dragend' is the call for the draggable item, not 'drop'
 
 			const images = rows.find('.combat-image');
 			images.attr('draggable', true);
 			images.on('dragstart', this._doCombatantDragStart.bind(this));
-			//images.on('dragover', this._doDragOver.bind(this));
-			images.on('drop', this._doCombatantDrop.bind(this));
+			// images.on('dragover', this._doDragOver.bind(this));
+			images.on('drop', this._doCombatantDrop.bind(this)); // this might not work. 'dragend' is the call for the draggable item, not 'drop'
 		}
 
 		const combatantImages = html.find('.combat-row .token-image');
@@ -295,7 +296,7 @@ export class CombatHUD extends Application {
 		const dragButton = html.find('.window-drag');
 		dragButton.on('dragstart', this._doHudDragStart.bind(this));
 		dragButton.on('drag', this._doHudDrag.bind(this));
-		dragButton.on('drop', this._doHudDrop.bind(this));
+		dragButton.on('dragend', this._doHudDrop.bind(this));
 
 		this._dragOffsetX = -dragButton.width() * 1.5;
 		this._dragOffsetY = dragButton.height() / 2;
@@ -341,10 +342,11 @@ export class CombatHUD extends Application {
 		this.element.css('top', this._dragOffsetY + event.clientY);
 	}
 
-	_doHudDrop(event) {
+	_doHudDrop(event) {		
+		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
 		const draggedPosition = {
 			x: this.element.css('left'),
-			y: this.element.css('top'),
+			y: positionFromTop ? this.element.css('top') : this.element.css('bottom'),
 		};
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
 	}
@@ -603,21 +605,40 @@ export class CombatHUD extends Application {
 
 		this.element.css('width', hudWidth + hOffset);
 
-		const draggedPosition = game.settings.get(SYSTEM, SETTINGS.optionCombatHudDraggedPosition);
-		if (draggedPosition && draggedPosition.x && draggedPosition.y) {
-			this.element.css('left', draggedPosition.x);
-			this.element.css('top', draggedPosition.y);
-		} else {
-			this.element.css('left', uiMiddle.position().left - uiLeft.width() * 0.5);
-
-			if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top') {
-				const uiTop = $('#ui-top');
-				this.element.css('top', uiTop.height() + 20);
-			} else {
-				const uiBottom = $('#ui-bottom');
-				this.element.css('bottom', uiBottom.height() + 10);
-			}
+		const position = this._getPosition();
+		if (position.top){
+			this.element.css('top', position.top);
 		}
+		if (position.bottom){
+			this.element.css('bottom', position.bottom);
+		}
+		if (position.left){
+			this.element.css('left', position.left);
+		}
+	}
+
+	_getPosition() {
+		const draggedPosition = game.settings.get(SYSTEM, SETTINGS.optionCombatHudDraggedPosition);
+		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
+		const uiLeft = $('#ui-left');
+		const uiMiddle = $('#ui-middle');
+
+		const position = {};
+		if (draggedPosition && draggedPosition.x) {
+			position.left = draggedPosition.x;
+		} else {
+			position.left = uiMiddle.position().left - uiLeft.width() * 0.5;
+		}
+
+		if (positionFromTop) {
+			const uiTop = $('#ui-top');
+			position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : uiTop.height() + 20;
+
+		} else {
+			const uiBottom = $('#ui-bottom');
+			position.bottom = draggedPosition && draggedPosition.y ? draggedPosition.y : uiBottom.height() + 20;
+		}
+		return position;
 	}
 
 	_onUpdateHUD_Round() {
@@ -665,7 +686,7 @@ export class CombatHUD extends Application {
 	}
 
 	_onCombatEnd() {
-		this._resetCombatState();
+		this._resetCombatState(!game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved));
 		this._resetButtons();
 		this.close();
 	}
@@ -758,7 +779,7 @@ export class CombatHUD extends Application {
 	static reset() {
 		if (!ui.combatHud) return;
 
-		ui.combatHud._resetCombatState();
+		ui.combatHud._resetCombatState(!game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved));
 		CombatHUD.update();
 	}
 
@@ -777,6 +798,22 @@ export class CombatHUD extends Application {
 				} else {
 					CombatHUD.minimize();
 				}
+			},
+		};
+	}
+
+	static getSavedControlButton() {
+		return {
+			name: 'projectfu-combathud-saved-toggle',
+			title: game.i18n.localize('FU.CombatHudSaveButtonTitle'),
+			icon: 'fas fa-save',
+			button: false,
+			toggle: true,
+			visible: game.combat ? game.combat.isActive : false,
+			active: game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved),
+			onClick: () => {
+				const isSaved = game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved);
+				game.settings.set(SYSTEM, SETTINGS.optionCombatHudSaved, !isSaved);
 			},
 		};
 	}

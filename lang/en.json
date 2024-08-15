@@ -931,6 +931,7 @@
 		"CombatHudPortraitActor": "Actor Image",
 		"CombatHudPortraitToken": "Token Image",
 		"CombatHudControlButtonTitle": "Toggle Combat HUD",
+		"CombatHudSaveButtonTitle": "Save Combat HUD Position",
 		"CombatHudShowEffects": "Show Combatant Effects",
 		"CombatHudShowEffectsHint": "Show the effects of the combatant in the Combat HUD.",
 		"CombatHudEffectsMarqueeDuration": "Effects Marquee Duration",
