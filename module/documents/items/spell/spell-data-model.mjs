@@ -25,6 +25,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			label: 'FU.MagicCheckBaseAccuracy',
 			value: item.system.rollInfo.accuracy.value,
 		});
+		check.additionalData.hasDamage = item.system.rollInfo.damage.hasDamage.value;
 		const configurer = MagicCheck.configure(check)
 			.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
 			.setTargetedDefense('mdef')
