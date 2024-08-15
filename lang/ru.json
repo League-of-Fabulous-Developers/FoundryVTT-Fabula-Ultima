@@ -931,6 +931,7 @@
 		"CombatHudPortraitActor": "Изображение актера",
 		"CombatHudPortraitToken": "Изображение токена",
 		"CombatHudControlButtonTitle": "Включить/выключить боевой интерфейс",
+		"CombatHudSaveButtonTitle": "Save Combat HUD position and size",
 		"CombatHudShowEffects": "Показать эффекты участников",
 		"CombatHudShowEffectsHint": "Показывать эффекты участников в боевом интерфейсе",
 		"CombatHudEffectsMarqueeDuration": "Длительность прокрутки эффектов",

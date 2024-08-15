@@ -931,6 +931,7 @@
 		"CombatHudPortraitActor": "Imagen de Actor",
 		"CombatHudPortraitToken": "Imagen de Token",
 		"CombatHudControlButtonTitle": "Activa/Desactiva HUD de Combate",
+		"CombatHudSaveButtonTitle": "Save Combat HUD position and size",
 		"CombatHudShowEffects": "Muestra efectos de participantes",
 		"CombatHudShowEffectsHint": "Muestra efectos de participantes en el HUD de Combate.",
 		"CombatHudEffectsMarqueeDuration": "Duración de la muestra de efectos",

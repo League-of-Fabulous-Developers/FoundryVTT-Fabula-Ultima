@@ -33,6 +33,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudShowOrderNumbers: 'optionCombatHudShowOrderNumbers',
 	optionCombatHudActorOrdering: 'optionCombatHudActorOrdering',
 	optionCombatHudDraggedPosition: 'optionCombatHudDraggedPosition',
+	optionCombatHudSaved: 'optionCombatHudSaved',
 	optionRenameCurrency: 'optionRenameCurrency',
 	metaCurrencyFabula: 'metaCurrencyFabula',
 	metaCurrencyUltima: 'metaCurrencyUltima',
@@ -299,6 +300,15 @@ export const registerSystemSettings = async function () {
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudMinimized, {
 		name: 'CombatHudMinimized',
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudSaved, {
+		name: 'CombatHudSaved',
 		scope: 'client',
 		config: false,
 		type: Boolean,
