@@ -102,15 +102,15 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1712013805055,
-    "modifiedTime": 1722634950664,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1723766576881,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "w60UqD93Qp6KLPII",
-  "sort": 0,
+  "sort": 1000000,
   "ownership": {
     "default": 0,
     "6utNKI7T4Vq4KjiR": 3

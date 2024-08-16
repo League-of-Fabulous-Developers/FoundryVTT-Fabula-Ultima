@@ -279,14 +279,14 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711758065717,
-    "modifiedTime": 1720881558916,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1723766576881,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "JtN1YEB5uhn9JMUG",
-  "sort": 0,
+  "sort": 100000,
   "_key": "!journal!JtN1YEB5uhn9JMUG"
 }
