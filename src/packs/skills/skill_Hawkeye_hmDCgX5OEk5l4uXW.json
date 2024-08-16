@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you may choose one option: the next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 2】</strong> extra damage; <strong>OR</strong> you may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> you have equipped, treating your <strong>High Roll (HR)</strong> as <strong>0</strong> when calculating damage dealt by this attack.</p>",
+    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you may choose one option: the next <strong>ranged</strong> attack you perform before the end of the current scene will deal <strong>【SL × 2】</strong> extra damage; <strong>or</strong> you may immediately perform a <strong>free attack</strong> with a <strong>bow</strong> or <strong>firearm</strong> you have equipped, treating your <strong>High Roll (HR)</strong> as <strong>0</strong> when calculating damage dealt by this attack.</p>",
     "isFavored": {
       "value": false
     },

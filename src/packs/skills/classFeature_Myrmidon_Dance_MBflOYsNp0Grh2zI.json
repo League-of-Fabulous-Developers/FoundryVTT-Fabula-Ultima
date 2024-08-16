@@ -14,7 +14,7 @@
     "featureType": "projectfu.dance",
     "data": {
       "duration": "nextTurn",
-      "description": "<p>Choose one option: you gain Resistance to <strong>earth</strong> damage; <strong>OR</strong> all damage dealt by your attacks and spells becomes <strong>earth</strong>.</p><hr><p>@LOSS[10 mp] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogRWFydGgiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5lYXJ0aCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9zaGllbGQtYmFycmllci1mbGFtaW5nLXBlbnRhZ29uLW9yYW5nZS53ZWJwIn0=]</p>"
+      "description": "<p>Choose one option: you gain Resistance to <strong>earth</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>earth</strong>.</p><hr><p>@LOSS[10 mp] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogRWFydGgiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5lYXJ0aCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9zaGllbGQtYmFycmllci1mbGFtaW5nLXBlbnRhZ29uLW9yYW5nZS53ZWJwIn0=]</p>"
     },
     "source": "FUHF145"
   },

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>At the start of a conflict, you may spend @LOSS[10 mp]. If you do, choose one option and apply it before the start of the first round: perform a <strong>free attack</strong> with a weapon you have equipped; <strong>OR </strong>perform a <strong>Hinder </strong>or <strong>Objective </strong>action. You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p>",
+    "description": "<p><span>At the start of a conflict, you may spend @LOSS[10 mp]. If you do, choose one option and apply it before the start of the first round: perform a <strong>free attack</strong> with a weapon you have equipped; <strong>or </strong>perform a <strong>Hinder </strong>or <strong>Objective </strong>action. You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -131,10 +131,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706504755033,
-    "modifiedTime": 1721090317165,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1723767008380,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },
