@@ -98,8 +98,6 @@
   },
   "effects": [
     {
-      "icon": "icons/svg/aura.svg",
-      "origin": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.NYq9nobPs1im2am1",
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -117,11 +115,25 @@
       "transfer": true,
       "statuses": [],
       "flags": {},
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/svg/aura.svg",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "tint": "#ffffff",
+      "sort": 0,
       "_key": "!items.effects!BD2TjjMN3s8DfZEu.eBfGfyGF9ONepPa7"
     },
     {
-      "icon": "icons/svg/aura.svg",
-      "origin": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.NYq9nobPs1im2am1",
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -139,6 +151,22 @@
       "transfer": true,
       "statuses": [],
       "flags": {},
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/svg/aura.svg",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "tint": "#ffffff",
+      "sort": 0,
       "_key": "!items.effects!BD2TjjMN3s8DfZEu.jt7gXeEGO17e2mjv"
     }
   ],
@@ -148,17 +176,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.NYq9nobPs1im2am1"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706584415337,
     "modifiedTime": 1721102470767,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "BD2TjjMN3s8DfZEu",
   "sort": 200000,

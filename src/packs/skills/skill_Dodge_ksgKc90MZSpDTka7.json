@@ -121,8 +121,6 @@
   },
   "effects": [
     {
-      "icon": "icons/skills/movement/arrow-down-pink.webp",
-      "origin": "Actor.iIOemTJgib2KBKai.Item.sHnc7AZjR6B2bFRr",
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -151,7 +149,22 @@
           "CrisisInteraction": "none"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.331",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1723766420252,
+        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_dodge.png",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!ksgKc90MZSpDTka7.JB8FXzYLdzxU3NgX"
     }
   ],
@@ -163,17 +176,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.hUKB0b4HmcBPFddu"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706504745151,
     "modifiedTime": 1721090300712,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_key": "!items!ksgKc90MZSpDTka7"
 }

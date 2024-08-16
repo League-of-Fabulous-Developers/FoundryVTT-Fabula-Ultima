@@ -121,8 +121,6 @@
   },
   "effects": [
     {
-      "icon": "icons/magic/life/heart-cross-purple-orange.webp",
-      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.e6ids95gOPher40d",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -144,7 +142,22 @@
           "CrisisInteraction": "active"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/magic/life/heart-cross-purple-orange.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!e6ids95gOPher40d.5i8vg0mr8lTsYgdU"
     }
   ],
@@ -154,17 +167,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.e6ids95gOPher40d"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706496883354,
     "modifiedTime": 1721093995986,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "sort": 400000,
   "_key": "!items!e6ids95gOPher40d"

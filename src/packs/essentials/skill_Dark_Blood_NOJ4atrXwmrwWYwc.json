@@ -120,7 +120,6 @@
   "effects": [
     {
       "icon": "icons/skills/wounds/blood-drip-droplet-red.webp",
-      "origin": "Compendium.projectfu.essentials.Item.NOJ4atrXwmrwWYwc",
       "duration": {
         "rounds": 1,
         "startTime": null,

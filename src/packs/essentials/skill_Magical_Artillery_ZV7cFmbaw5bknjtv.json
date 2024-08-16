@@ -120,7 +120,6 @@
   "effects": [
     {
       "icon": "icons/weapons/staves/staff-engraved-red.webp",
-      "origin": "Compendium.projectfu.essentials.Item.ZV7cFmbaw5bknjtv",
       "duration": {
         "rounds": 1,
         "startTime": null,

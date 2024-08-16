@@ -120,8 +120,6 @@
   },
   "effects": [
     {
-      "icon": "icons/magic/earth/strike-fist-stone.webp",
-      "origin": "Compendium.projectfu.essentials.Item.Rb77yoEzkbdSwUh2",
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -142,7 +140,7 @@
           "priority": null
         }
       ],
-      "description": "<ul><li><p><strong>Effect: </strong>HP Increase by<span class=\"fontstyle2\"><strong>【</strong></span><span class=\"fontstyle3\"><strong>SL × 3</strong></span><span class=\"fontstyle2\"><strong>】</strong></span></p><table><tbody><tr><td><p><strong>SL1: 3</strong></p></td><td><p><strong>SL2: 6</strong></p></td><td><p><strong>SL3: 9</strong></p></td><td><p><strong>SL4: 12</strong></p></td><td data-colwidth=\"108\"><p><strong>SL5: 15</strong></p></td></tr></tbody></table></li></ul>",
+      "description": "<ul><li><p>Permanently increase your maximum Hit Points by <strong>【SL × 3】</strong>.</p><table><tbody><tr><td><p><strong>SL1: 3</strong></p></td><td><p><strong>SL2: 6</strong></p></td><td><p><strong>SL3: 9</strong></p></td><td><p><strong>SL4: 12</strong></p></td><td data-colwidth=\"108\"><p><strong>SL5: 15</strong></p></td></tr></tbody></table></li></ul>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -150,7 +148,22 @@
           "CrisisInteraction": "none"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.331",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1723766450814,
+        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_fortress.png",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!X4KdFiQmzikrsM6v.6qHoygYUxyY8biDV"
     }
   ],
@@ -161,17 +174,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.projectfu.essentials.Item.Rb77yoEzkbdSwUh2"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706503528196,
     "modifiedTime": 1721092952849,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "X4KdFiQmzikrsM6v",
   "sort": 400000,

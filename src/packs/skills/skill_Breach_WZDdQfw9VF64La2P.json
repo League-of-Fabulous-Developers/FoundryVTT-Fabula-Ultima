@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action and spend <strong>@LOSS[5 mp]</strong> to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target a <strong>single creature</strong>. If the attack is successful, it deals no damage and you choose one option: you destroy one shield equipped by the target; <strong>OR</strong> you destroy the target's equipped armor; <strong>OR</strong> whenever the target suffers damage from a source before the start of your next turn, that source deals <strong>【SL × 2】</strong> extra damage to them.</p>",
+    "description": "<p>You may use an action and spend <strong>@LOSS[5 mp]</strong> to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target a <strong>single creature</strong>. If the attack is successful, it deals no damage and you choose one option: you destroy one shield equipped by the target; <strong>or</strong> you destroy the target's equipped armor; <strong>or</strong> whenever the target suffers damage from a source before the start of your next turn, that source deals <strong>【SL × 2】</strong> extra damage to them.</p>",
     "isFavored": {
       "value": false
     },
@@ -126,17 +126,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.WZDdQfw9VF64La2P"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706514105557,
     "modifiedTime": 1721088193792,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "sort": 300000,
   "_key": "!items!WZDdQfw9VF64La2P"

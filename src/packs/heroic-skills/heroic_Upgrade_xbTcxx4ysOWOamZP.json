@@ -9,7 +9,7 @@
     "summary": {
       "value": "Modify equipment abilities."
     },
-    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Tinkerer</strong> Class.</span></p></blockquote><p><span>Once per <strong>rest</strong>, you may choose one option: add a <strong>Quality</strong> to a single weapon, armor, or shield that doesn't have one; <strong>OR</strong> replace the current <strong>Quality</strong> of a single weapon, armor, or shield with a different <strong>Quality</strong>.</span></p><p><span>When you use this Skill, you must select a Quality from the default list for that item type as long as the cost modifier associated with that ability is <strong>+1000 zenit or lower</strong>. Then, you must spend an amount of zenit equal to <strong>twice</strong> the cost modifier of the chosen ability. The modified item will be ready at the end of the rest; you may only modify <strong>one item per rest</strong>.</span></p><p><span>The default list of <strong>weapon abilities</strong> can be found on page <strong>269</strong> (<strong>Core Rulebook</strong>), while the default list of <strong>armor and shield abilities</strong> can be found on page <strong>280</strong> (<strong>Core Rulebook</strong>).</span></p>",
+    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Tinkerer</strong> Class.</span></p></blockquote><p><span>Once per <strong>rest</strong>, you may choose one option: add a <strong>Quality</strong> to a single weapon, armor, or shield that doesn't have one; <strong>or</strong> replace the current <strong>Quality</strong> of a single weapon, armor, or shield with a different <strong>Quality</strong>.</span></p><p><span>When you use this Skill, you must select a Quality from the default list for that item type as long as the cost modifier associated with that ability is <strong>+1000 zenit or lower</strong>. Then, you must spend an amount of zenit equal to <strong>twice</strong> the cost modifier of the chosen ability. The modified item will be ready at the end of the rest; you may only modify <strong>one item per rest</strong>.</span></p><p><span>The default list of <strong>weapon abilities</strong> can be found on page <strong>269</strong> (<strong>Core Rulebook</strong>), while the default list of <strong>armor and shield abilities</strong> can be found on page <strong>280</strong> (<strong>Core Rulebook</strong>).</span></p>",
     "isFavored": {
       "value": false
     },
@@ -103,17 +103,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.TI0htOJLyIHFeV18"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706586993583,
     "modifiedTime": 1721101838495,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "xbTcxx4ysOWOamZP",
   "sort": 2900000,

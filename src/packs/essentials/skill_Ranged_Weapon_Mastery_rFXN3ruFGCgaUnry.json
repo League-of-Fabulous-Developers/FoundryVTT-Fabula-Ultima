@@ -121,7 +121,6 @@
   "effects": [
     {
       "icon": "icons/skills/ranged/target-bullseye-arrow-glowing.webp",
-      "origin": "Item.WLFwkDW5mLynFMpJ",
       "duration": {
         "startTime": null,
         "seconds": null,

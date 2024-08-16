@@ -98,8 +98,6 @@
   },
   "effects": [
     {
-      "icon": "icons/sundries/gaming/chess-knight-white-glass.webp",
-      "origin": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.WoI9zwowlcehadX7",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -121,7 +119,22 @@
           "CrisisInteraction": "active"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/sundries/gaming/chess-knight-white-glass.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!MNSD1FKJfOk8BCKr.ZMs2CS4MAtGN1CEH"
     }
   ],
@@ -131,17 +144,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-heroic-skills.Item.WoI9zwowlcehadX7"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706684758296,
     "modifiedTime": 1721103929137,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "MNSD1FKJfOk8BCKr",
   "sort": 0,

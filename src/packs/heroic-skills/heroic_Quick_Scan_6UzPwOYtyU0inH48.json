@@ -99,17 +99,17 @@
   },
   "effects": [],
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-heroic-skills.Item.oHAc1AASmY7dVpMu"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1711473807263,
     "modifiedTime": 1721104641079,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "ownership": {
     "default": 0,

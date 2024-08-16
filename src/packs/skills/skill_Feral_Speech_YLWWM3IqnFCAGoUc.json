@@ -121,8 +121,6 @@
   },
   "effects": [
     {
-      "icon": "icons/creatures/abilities/bear-roar-bite-brown.webp",
-      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.YLWWM3IqnFCAGoUc",
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -144,7 +142,22 @@
           "CrisisInteraction": "none"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.331",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1723766525944,
+        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "systems/projectfu/styles/static/compendium/classes/chimerist/chimerist_feral_speech.png",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!YLWWM3IqnFCAGoUc.kGje9s2Znry5fjz6"
     }
   ],
@@ -154,17 +167,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.YLWWM3IqnFCAGoUc"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706495600774,
     "modifiedTime": 1721095412952,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "sort": 0,
   "_key": "!items!YLWWM3IqnFCAGoUc"

@@ -33,17 +33,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.consumables.Item.0fJCotOdvkQUDfqm"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1707097313067,
     "modifiedTime": 1719170072697,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_key": "!items!7dUU12f8IHa2tESo"
 }

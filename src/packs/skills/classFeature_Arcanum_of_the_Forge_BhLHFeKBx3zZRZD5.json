@@ -20,8 +20,6 @@
   },
   "effects": [
     {
-      "icon": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Forge%20.png",
-      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.BhLHFeKBx3zZRZD5",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -50,7 +48,22 @@
           "CrisisInteraction": "none"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Forge%20.png",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!BhLHFeKBx3zZRZD5.apumDgChbamKpz3m"
     }
   ],
@@ -65,10 +78,12 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1710029700564,
     "modifiedTime": 1721096210924,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "BhLHFeKBx3zZRZD5",
   "sort": 500000,

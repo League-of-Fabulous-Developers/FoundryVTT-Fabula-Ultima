@@ -87,10 +87,12 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706648582513,
     "modifiedTime": 1719222837734,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "hZKx1n936ymIONLn",
   "sort": 0,

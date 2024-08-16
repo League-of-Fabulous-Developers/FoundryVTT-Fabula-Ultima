@@ -98,8 +98,6 @@
   },
   "effects": [
     {
-      "icon": "icons/magic/symbols/chevron-elipse-circle-blue.webp",
-      "origin": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.mXwIhc9x9Own1Gho",
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -124,7 +122,22 @@
       "transfer": true,
       "statuses": [],
       "flags": {},
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/magic/symbols/chevron-elipse-circle-blue.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!VwPy5u5mcj9xLF6T.ppw04iGfH1dGa3jv"
     }
   ],
@@ -134,17 +147,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.heroic-skills.Item.mXwIhc9x9Own1Gho"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706584261327,
     "modifiedTime": 1721102377432,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "VwPy5u5mcj9xLF6T",
   "sort": 1100000,

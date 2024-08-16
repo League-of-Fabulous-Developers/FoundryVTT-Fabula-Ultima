@@ -121,8 +121,6 @@
   },
   "effects": [
     {
-      "icon": "icons/skills/ranged/target-bullseye-arrow-glowing.webp",
-      "origin": "Compendium.fabula-ultima-core-rulebook.skills.Item.0UxTgrag7cE4M1oc",
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -163,7 +161,22 @@
           "CrisisInteraction": "none"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.331",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1723766400107,
+        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "systems/projectfu/styles/static/compendium/classes/sharpshooter/sharpshooter_ranged_weapon_mastery.png",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!0UxTgrag7cE4M1oc.M8kqwCdFQHllfjGs"
     }
   ],
@@ -175,17 +188,17 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-core-rulebook.skills.Item.cJpsJVZuxiQcRXqN"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706506773814,
     "modifiedTime": 1721090250434,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_key": "!items!0UxTgrag7cE4M1oc"
 }

@@ -134,9 +134,7 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Compendium.fabula-ultima-high-fantasy.high-fantasy-class-features.Item.E0m9ZsyQ5HG8k77Y"
-    },
+    "core": {},
     "projectfu-playtest": {
       "growthClock": false
     }
@@ -144,10 +142,12 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706573669651,
     "modifiedTime": 1721089706449,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "E0m9ZsyQ5HG8k77Y",
   "sort": 700000,

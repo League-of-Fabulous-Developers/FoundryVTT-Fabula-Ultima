@@ -18,8 +18,6 @@
   },
   "effects": [
     {
-      "icon": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
-      "origin": "Compendium.fabula-ultima-techno-fantasy.techno-fantasy-skills.Item.aAmIBca4b150uuAH",
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -48,7 +46,22 @@
           "CrisisInteraction": "none"
         }
       },
-      "tint": null,
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
       "_key": "!items.effects!aAmIBca4b150uuAH.ZDcnVoPzAVT9GcRO"
     }
   ],
@@ -63,10 +76,12 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1711428338643,
     "modifiedTime": 1720880159209,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU"
+    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "aAmIBca4b150uuAH",
   "sort": 0,

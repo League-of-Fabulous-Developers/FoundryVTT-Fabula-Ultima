@@ -120,7 +120,6 @@
   "effects": [
     {
       "icon": "icons/commodities/biological/organ-heart-pink.webp",
-      "origin": "Compendium.projectfu.essentials.Item.yfx2RrnxSnU7OVPK",
       "duration": {
         "rounds": 1,
         "startTime": null,

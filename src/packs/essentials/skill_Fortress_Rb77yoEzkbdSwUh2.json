@@ -120,7 +120,6 @@
   "effects": [
     {
       "icon": "icons/magic/earth/strike-fist-stone.webp",
-      "origin": "Compendium.projectfu.essentials.Item.Rb77yoEzkbdSwUh2",
       "duration": {
         "startTime": null,
         "seconds": null,
