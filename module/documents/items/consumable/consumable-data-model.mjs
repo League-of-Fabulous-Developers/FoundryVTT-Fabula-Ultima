@@ -19,6 +19,7 @@ export class ConsumableDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
 		return {
+			fuid: new StringField(),
 			subtype: new SchemaField({ value: new StringField() }),
 			summary: new SchemaField({ value: new StringField() }),
 			description: new HTMLField(),

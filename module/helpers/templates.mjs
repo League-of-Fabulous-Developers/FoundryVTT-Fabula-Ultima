@@ -53,6 +53,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/item/partials/item-header.hbs',
 		'systems/projectfu/templates/item/partials/item-progress-header.hbs',
 		'systems/projectfu/templates/item/partials/item-behavior-field.hbs',
+		'systems/projectfu/templates/item/partials/item-regenerate-fuid.hbs',
 
 		// Common partials
 		'systems/projectfu/templates/common/active-effects.hbs',

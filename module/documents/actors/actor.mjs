@@ -256,4 +256,30 @@ export class FUActor extends Actor {
 			ui.notifications.info(game.i18n.format('FU.UseMetaCurrencyNotificationInsufficientPoints', { actor: this.name, type: metaCurrency }));
 		}
 	}
+
+	/**
+	 * Returns an array of items that match a given FUID and optionally an item type
+	 * @param {string} fuid - The FUID of the item(s) which you want to retrieve
+	 * @param {string} [type] - Optionally, a type name to restrict the search
+	 * @returns {Array} - An array containing the found items
+	 */
+	getItemsByFuid(fuid, type) {
+		const fuidFilter = (i) => i.system.fuid === fuid;
+		if (!type) return this.items.filter(fuidFilter);
+		const itemTypes = this.itemTypes;
+		if (!Object.prototype.hasOwnProperty.call(itemTypes, type)) {
+			throw new Error(`Type ${type} is invalid!`);
+		}
+		return itemTypes[type].filter(fuidFilter);
+	}
+
+	/**
+	 * Fetch an item that matches a given FUID and optionally an item type
+	 * @param {string} fuid - The FUID of the item(s) which you want to retrieve
+	 * @param {string} [type] - Optionally, a type name to restrict the search
+	 * @returns {Object|undefined} - The matching item, or undefined if none was found.
+	 */
+	getSingleItemByFuid(fuid, type) {
+		return this.getItemsByFuid(fuid, type)[0];
+	}
 }

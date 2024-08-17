@@ -685,7 +685,7 @@ export async function createCheckMessage(checkParams, additionalFlags = {}) {
 		flavor: flavor,
 		content: await renderTemplate('systems/projectfu/templates/chat/chat-check.hbs', {
 			...checkParams,
-			translation: { damageTypes: FU.damageTypes },
+			translation: { damageTypes: FU.damageTypes, damageIcon: FU.affIcon },
 		}),
 		rolls: [checkParams.result.roll],
 		type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,

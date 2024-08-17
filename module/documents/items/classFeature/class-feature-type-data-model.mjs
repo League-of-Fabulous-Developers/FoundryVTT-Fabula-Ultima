@@ -4,6 +4,7 @@ import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { SYSTEM } from '../../../helpers/config.mjs';
 import { SETTINGS } from '../../../settings.js';
+import { slugify } from '../../../util.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ClassFeatureTypeDataModel) {
@@ -26,6 +27,7 @@ export class ClassFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { StringField, SchemaField, BooleanField } = foundry.data.fields;
 		return {
+			fuid: new StringField(),
 			summary: new SchemaField({ value: new StringField() }),
 			source: new StringField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
@@ -64,5 +66,32 @@ export class ClassFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 		} else {
 			return ChecksV2.display(this.parent.actor, this.parent);
 		}
+	}
+
+	/**
+	 * Renders a dialog to confirm the FUID change and if accepted updates the FUID on the item.
+	 * @returns {Promise<string|undefined>} The generated FUID or undefined if no change was made.
+	 */
+	async regenerateFUID() {
+		const html = `
+			<div class="warning-message">
+			<p>${game.i18n.localize('FU.FUID.ChangeWarning2')}</p>
+			<p>${game.i18n.localize('FU.FUID.ChangeWarning3')}</p>
+			</div>
+			`;
+
+		const confirmation = await Dialog.confirm({
+			title: game.i18n.localize('FU.FUID.Regenerate'),
+			content: html,
+			defaultYes: false,
+			options: { classes: ['unique-dialog', 'backgroundstyle'] },
+		});
+
+		if (!confirmation) return;
+
+		const fuid = slugify(this.data.name);
+		await this.update({ 'system.fuid': fuid });
+
+		return fuid;
 	}
 }

@@ -120,6 +120,17 @@ export class FUOptionalFeatureSheet extends ItemSheet {
 	activateListeners(html) {
 		super.activateListeners(html);
 
+		html.find('.regenerate-fuid-button').click(async (event) => {
+			event.preventDefault();
+
+			// Call the regenerateFUID method on the item
+			const newFUID = await this.item.regenerateFUID();
+
+			if (newFUID) {
+				this.render();
+			}
+		});
+
 		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.item));
 
 		html.find('[data-action=pdfLink]').click(() => {

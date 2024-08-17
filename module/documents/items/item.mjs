@@ -6,6 +6,7 @@ import { FU, SYSTEM } from '../../helpers/config.mjs';
 import { SOCKET } from '../../socket.mjs';
 import { SETTINGS } from '../../settings.js';
 import { ChecksV2 } from '../../checks/checks-v2.mjs';
+import { slugify } from '../../util.mjs';
 
 const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(0).toUpperCase() + string.slice(1) : string);
 
@@ -881,6 +882,10 @@ export class FUItem extends Item {
 				type: damageType.value,
 				bonus: damage.value + categoryDamageBonus + typeDamageBonus,
 			},
+			translation: {
+				damageTypes: FU.damageTypes,
+				damageIcon: FU.affIcon,
+			},
 			speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
 			targets: getTargets(defense),
 		});
@@ -1099,5 +1104,32 @@ export class FUItem extends Item {
 				yield effect;
 			}
 		}
+	}
+
+	/**
+	 * Renders a dialog to confirm the FUID change and if accepted updates the FUID on the item.
+	 * @returns {Promise<string|undefined>} The generated FUID or undefined if no change was made.
+	 */
+	async regenerateFUID() {
+		const html = `
+			<div class="warning-message">
+			<p>${game.i18n.localize('FU.FUID.ChangeWarning2')}</p>
+			<p>${game.i18n.localize('FU.FUID.ChangeWarning3')}</p>
+			</div>
+			`;
+
+		const confirmation = await Dialog.confirm({
+			title: game.i18n.localize('FU.FUID.Regenerate'),
+			content: html,
+			defaultYes: false,
+			options: { classes: ['unique-dialog', 'backgroundstyle'] },
+		});
+
+		if (!confirmation) return;
+
+		const fuid = slugify(this.name);
+		await this.update({ 'system.fuid': fuid });
+
+		return fuid;
 	}
 }

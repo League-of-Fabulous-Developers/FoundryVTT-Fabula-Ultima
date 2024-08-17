@@ -1127,16 +1127,25 @@
 		"OpposedCheckDraw": "Empate",
 		"DamageUntyped": "Sem Tipo",
 		"ZeroPowerAbbr": "ZP",
-		"CombatHudTheme": "HUD Theme",
-		"CombatHudThemeHint": "Choose the theme of the Combat HUD.",
-		"CombatHudDefault": "Default (Retro style)",
-		"CombatHudModern": "Modern",
-		"CombatHudTrackedResource4": "Fourth Tracked Resource",
-		"CombatHudTrackedResource4Hint": "Choose the fourth resource to be shown as a bar in the Combat HUD. Not supported in all themes.",
-		"CombatHudShowNPCTurnsLeftMode": "NPC Turns Left Mode",
-		"CombatHudShowNPCTurnsLeftModeHint": "Choose whether to show turns left for NPCs (Elite and Champion) in the Combat HUD.",
-		"CombatHudShowNPCTurnsLeftModeNever": "Never",
-		"CombatHudShowNPCTurnsLeftModeAlways": "Always",
-		"CombatHudShowNPCTurnsLeftModeOnlyStudied": "Only when Studied"
+		"CombatHudTheme": "Tema do HUD",
+		"CombatHudThemeHint": "Escolha o Tema do HUD de Combate",
+		"CombatHudDefault": "Padrão (Estilo Retrô)",
+		"CombatHudModern": "Moderno",
+		"CombatHudTrackedResource4": "Quarto Recurso Mostrado",
+		"CombatHudTrackedResource4Hint": "Escolha o quarto recurso a ser mostrado como uma barra no HUD de Combate. Não suportado em todos os temas.",
+		"CombatHudShowNPCTurnsLeftMode": "PNJs à esquerda",
+		"CombatHudShowNPCTurnsLeftModeHint": "Escolha se deseja mostrar os PNJs (Elite e Campeão) à esquerda no HUD de Combate.",
+		"CombatHudShowNPCTurnsLeftModeNever": "Nunca",
+		"CombatHudShowNPCTurnsLeftModeAlways": "Sempre",
+		"CombatHudShowNPCTurnsLeftModeOnlyStudied": "Somente quando Estudado",
+		"Versus": "vs",
+		"FUID": {
+			"Long": "Fabula Ultima ID",
+			"Short": "FUID",
+			"Regenerate": "Regenerate FUID",
+			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
+			"ChangeWarning3": "Do you want to proceed?",
+			"ChangeWarning1": "Proceed with caution!"
+		}
 	}
 }

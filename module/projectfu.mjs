@@ -59,6 +59,7 @@ import { SystemControls } from './helpers/system-controls.mjs';
 import { PlayerListEnhancements } from './helpers/player-list-enhancements.mjs';
 import { ChecksV2 } from './checks/checks-v2.mjs';
 import { CheckConfiguration } from './checks/check-configuration.mjs';
+import { slugify } from './util.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -97,6 +98,9 @@ Hooks.once('init', async () => {
 		RollableOptionalFeatureDataModel,
 		ChecksV2,
 		CheckConfiguration,
+		util: {
+			slugify,
+		},
 	};
 
 	// Add custom constants for configuration.
@@ -282,6 +286,13 @@ Handlebars.registerHelper('capitalize', function (str) {
 	return str;
 });
 
+Handlebars.registerHelper('uppercase', function (str) {
+	if (str && typeof str === 'string') {
+		return str.toUpperCase();
+	}
+	return str;
+});
+
 Handlebars.registerHelper('neq', function (a, b, options) {
 	if (a !== b) {
 		return options.fn(this);
@@ -380,6 +391,23 @@ Hooks.once('ready', async function () {
 		let isShift = true;
 		// Call Group Check promptCheck function
 		GroupCheck.promptCheck(actor, isShift);
+	});
+
+	Hooks.on('preCreateItem', (itemData, options, userId) => {
+		if (!itemData.system.fuid && itemData.name) {
+			// Generate FUID using the slugify utility
+			const fuid = game.projectfu.util.slugify(itemData.name);
+
+			// Check if slugify returned a valid FUID
+			if (fuid) {
+				itemData.updateSource({ 'system.fuid': fuid });
+				// console.log('Generated FUID:', fuid, 'for Item:', itemData.name);
+			} else {
+				console.error('FUID generation failed for Item:', itemData.name, 'using slugify.');
+			}
+		} else {
+			// console.log('FUID already exists or item name is missing:', itemData.name);
+		}
 	});
 });
 

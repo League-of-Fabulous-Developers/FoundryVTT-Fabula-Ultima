@@ -119,6 +119,17 @@ export class FUItemSheet extends ItemSheet {
 			}
 		});
 
+		html.find('.regenerate-fuid-button').click(async (event) => {
+			event.preventDefault();
+
+			// Call the regenerateFUID method on the item
+			const newFUID = await this.item.regenerateFUID();
+
+			if (newFUID) {
+				this.render();
+			}
+		});
+
 		// Active Effect management
 		html.on('click', '.effect-control', (ev) => onManageActiveEffect(ev, this.item));
 
