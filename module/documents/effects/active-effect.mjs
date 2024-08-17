@@ -75,7 +75,7 @@ export class FUActiveEffect extends ActiveEffect {
 		if (this.target instanceof FUActor) {
 			const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
 			if (flag && flag !== 'none') {
-				if (this.target.statuses.has('crisis')) {
+				if (this.target.effects.find(e => e.statuses.has('crisis')) != null) {
 					return flag === 'inactive';
 				} else {
 					return flag === 'active';
@@ -85,7 +85,7 @@ export class FUActiveEffect extends ActiveEffect {
 		if (this.target instanceof FUItem && this.target.parent instanceof FUActor) {
 			const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
 			if (flag && flag !== 'none') {
-				if (this.target.parent.statuses.has('crisis')) {
+				if (this.target.parent.effects.find(e => e.statuses.has('crisis')) != null) {
 					return flag === 'inactive';
 				} else {
 					return flag === 'active';
@@ -109,7 +109,7 @@ export class FUActiveEffect extends ActiveEffect {
 			}
 		}
 	}
-
+	
 	apply(target, change) {
 		if (change.value && typeof change.value === 'string') {
 			try {
