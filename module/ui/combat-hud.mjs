@@ -165,11 +165,12 @@ export class CombatHUD extends Application {
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
 
+			const activeEffects = (game.release.generation >= 11 ? Array.from(combatant.actor.allApplicableEffects()) : combatant.actor.effects).filter(e => !e.disabled && !e.isSuppressed);
 			const actorData = {
 				id: combatant.id,
 				actor: combatant.actor,
 				token: combatant.token,
-				effects: game.release.generation >= 11 ? Array.from(combatant.actor.allApplicableEffects()) : combatant.actor.effects,
+				effects: activeEffects,
 				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? combatant.token.texture.src : combatant.actor.img,
 				trackedResourcePart1: trackedResourcePart1,
 				trackedResourcePart2: trackedResourcePart2,
