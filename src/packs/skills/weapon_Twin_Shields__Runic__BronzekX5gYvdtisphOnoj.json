@@ -1,8 +1,7 @@
 {
   "folder": "rh1Z5dIGbWFOZSll",
-  "name": "Twin Shields",
+  "name": "Twin Shields (Runic & Bronze)",
   "type": "weapon",
-  "_id": "2LyT2btVVPDPYY4h",
   "img": "systems/projectfu/styles/static/compendium/twin-shields/twin-shields.png",
   "system": {
     "source": {
@@ -90,13 +89,19 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Twin Shields",
+      "name": "Twin Shields (Runic)",
       "_id": "oaHQT6sqi0iC32QB",
       "changes": [
         {
           "key": "system.derived.def.bonus",
           "mode": 2,
           "value": "4",
+          "priority": null
+        },
+        {
+          "key": "system.derived.mdef.bonus",
+          "mode": 2,
+          "value": "2",
           "priority": null
         }
       ],
@@ -124,12 +129,13 @@
       "system": {},
       "origin": null,
       "sort": 0,
-      "_key": "!items.effects!2LyT2btVVPDPYY4h.oaHQT6sqi0iC32QB"
+      "_key": "!items.effects!G7ia7CUo4fzXL4Lo.oaHQT6sqi0iC32QB"
     }
   ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
+    "q7If7bbltkFLUNCj": 3,
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
@@ -140,11 +146,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.330",
     "createdTime": 1707628405753,
-    "modifiedTime": 1719225864991,
+    "modifiedTime": 1719225927959,
     "lastModifiedBy": "BwRsFvMHAq9vUtEO",
     "compendiumSource": null,
     "duplicateSource": null
   },
-  "sort": 100000,
-  "_key": "!items!2LyT2btVVPDPYY4h"
+  "_id": "G7ia7CUo4fzXL4Lo",
+  "sort": 0,
+  "_key": "!items!G7ia7CUo4fzXL4Lo"
 }
