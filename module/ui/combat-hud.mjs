@@ -165,7 +165,7 @@ export class CombatHUD extends Application {
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
 
-			const activeEffects = (game.release.generation >= 11 ? Array.from(combatant.actor.allApplicableEffects()) : combatant.actor.effects).filter(e => !e.disabled && !e.isSuppressed);
+			const activeEffects = (game.release.generation >= 11 ? Array.from(combatant.actor.allApplicableEffects()) : combatant.actor.effects).filter((e) => !e.disabled && !e.isSuppressed);
 			const actorData = {
 				id: combatant.id,
 				actor: combatant.actor,

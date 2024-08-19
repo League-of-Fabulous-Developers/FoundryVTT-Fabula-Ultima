@@ -75,7 +75,8 @@
     "weight": {
       "value": 1
     },
-    "defense": "def"
+    "defense": "def",
+    "fuid": ""
   },
   "effects": [
     {
@@ -115,21 +116,21 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1724071220873,
+        "lastModifiedBy": "dobQfkKFj2NK96cc",
         "compendiumSource": null,
         "duplicateSource": null
       },
-      "img": "modules/fabula-ultima-core-rulebook/artwork/items/Twin%20Shields.png",
+      "img": "systems/projectfu/styles/static/compendium/twin-shields/twin-shields.png",
       "type": "base",
       "system": {},
       "origin": null,
       "sort": 0,
-      "_key": "!items.effects!G7ia7CUo4fzXL4Lo.oaHQT6sqi0iC32QB"
+      "_key": "!items.effects!uvNrcaZS9uVW5r7c.oaHQT6sqi0iC32QB"
     }
   ],
   "ownership": {
@@ -144,14 +145,14 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1707628405753,
-    "modifiedTime": 1719225927959,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+    "modifiedTime": 1724071011489,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },
-  "_id": "G7ia7CUo4fzXL4Lo",
+  "_id": "uvNrcaZS9uVW5r7c",
   "sort": 0,
-  "_key": "!items!G7ia7CUo4fzXL4Lo"
+  "_key": "!items!uvNrcaZS9uVW5r7c"
 }

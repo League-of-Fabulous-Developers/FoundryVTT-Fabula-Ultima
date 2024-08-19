@@ -282,7 +282,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:center\"><em><strong>\"Let me be your shield.\"</strong></em></p><p></p><h5>Also: Paladin, Soldier, Yōjinbō</h5><p></p><ul><li><p>Who or what is it you would gladly give your life to protect?</p></li><li><p>Are you, or have you ever been, the servant of a Lady or Lord? What were they like?</p></li><li><p>What is it you were unable to protect? What have you lost?</p></li><li><p>What are you using as your armor and/or shield?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.ARBTZXtCwUzlyIyy]{Guardian}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.ZvZT5jWlBZVm1Gmd]{Bodyguard}</p><p>@UUID[Compendium.projectfu.skills.Item.7wF1oulk0Zn7ITTF]{Defensive Mastery}</p><p>@UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer}</p><p>@UUID[Compendium.projectfu.skills.Item.X4KdFiQmzikrsM6v]{Fortress}</p><p>@UUID[Compendium.projectfu.skills.Item.Z4WIA15aR4uLL5ES]{Protect}</p><p></p><h3>TWIN SHIELDS</h3><p>@UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields}</p><p>@UUID[Compendium.projectfu.skills.Item.G7ia7CUo4fzXL4Lo]{Twin Shields (Runic)}</p>"
+        "content": "<p style=\"text-align:center\"><em><strong>\"Let me be your shield.\"</strong></em></p><p></p><h5>Also: Paladin, Soldier, Yōjinbō</h5><p></p><ul><li><p>Who or what is it you would gladly give your life to protect?</p></li><li><p>Are you, or have you ever been, the servant of a Lady or Lord? What were they like?</p></li><li><p>What is it you were unable to protect? What have you lost?</p></li><li><p>What are you using as your armor and/or shield?</p></li></ul><p></p><h3>BASE CLASS</h3><p>@UUID[Compendium.projectfu.classes.Item.ARBTZXtCwUzlyIyy]{Guardian}</p><p></p><h3>SKILLS</h3><p>@UUID[Compendium.projectfu.skills.Item.ZvZT5jWlBZVm1Gmd]{Bodyguard}</p><p>@UUID[Compendium.projectfu.skills.Item.7wF1oulk0Zn7ITTF]{Defensive Mastery}</p><p>@UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer}</p><p>@UUID[Compendium.projectfu.skills.Item.X4KdFiQmzikrsM6v]{Fortress}</p><p>@UUID[Compendium.projectfu.skills.Item.Z4WIA15aR4uLL5ES]{Protect}</p><p></p><h3>TWIN SHIELDS</h3><p>@UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields}</p><p>@UUID[Compendium.projectfu.skills.Item.G7ia7CUo4fzXL4Lo]{Twin Shields (Runic &amp; Bronze)}</p><p>@UUID[Compendium.projectfu.skills.Item.uvNrcaZS9uVW5r7c]{Twin Shields (Runic)}</p>"
       },
       "video": {
         "controls": true,
@@ -304,10 +304,10 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "createdTime": 1711296454120,
-        "modifiedTime": 1720838708345,
-        "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+        "modifiedTime": 1724071265456,
+        "lastModifiedBy": "dobQfkKFj2NK96cc",
         "compendiumSource": null,
         "duplicateSource": null
       },

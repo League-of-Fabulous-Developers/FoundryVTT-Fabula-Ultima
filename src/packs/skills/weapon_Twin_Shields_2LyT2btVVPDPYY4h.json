@@ -76,7 +76,8 @@
     "weight": {
       "value": 1
     },
-    "defense": "def"
+    "defense": "def",
+    "fuid": ""
   },
   "effects": [
     {
@@ -110,16 +111,16 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1724071198466,
+        "lastModifiedBy": "dobQfkKFj2NK96cc",
         "compendiumSource": null,
         "duplicateSource": null
       },
-      "img": "modules/fabula-ultima-core-rulebook/artwork/items/Twin%20Shields.png",
+      "img": "systems/projectfu/styles/static/compendium/twin-shields/twin-shields.png",
       "type": "base",
       "system": {},
       "origin": null,
@@ -138,10 +139,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1707628405753,
-    "modifiedTime": 1719225864991,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+    "modifiedTime": 1724071020280,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },
