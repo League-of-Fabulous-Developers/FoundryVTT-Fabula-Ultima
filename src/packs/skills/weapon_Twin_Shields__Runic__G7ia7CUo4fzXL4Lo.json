@@ -95,13 +95,13 @@
         {
           "key": "system.derived.def.bonus",
           "mode": 2,
-          "value": "2",
+          "value": "4",
           "priority": null
         },
         {
           "key": "system.derived.mdef.bonus",
           "mode": 2,
-          "value": "2",
+          "value": "4",
           "priority": null
         }
       ],
