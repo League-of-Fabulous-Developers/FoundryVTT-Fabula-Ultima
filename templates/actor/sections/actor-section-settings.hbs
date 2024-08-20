@@ -30,6 +30,35 @@
     {{!-- End Affinity Section --}}
 </fieldset>
 
+{{!-- Base Immunities Section --}}
+<fieldset class="section-container title-fieldset desc affinities resource-content">
+    <legend class="resource-label-m">
+        {{localize 'FU.StatusEffectImmunity'}}
+    </legend>
+
+    {{!-- Start Immunity Section --}}
+    <div class="header-fields grid grid-9col" style="margin: 5px 0;">
+        {{#if system.immunities}}
+            {{#each system.immunities as |immunity key|}}
+                <div class="affinity resource-content flex-group-center flexrow">
+                    <input type="checkbox"
+                           id="immunity-{{key}}"
+                           name="system.immunities.{{key}}.base"
+                           class="resource-inputs checkbox"
+                           {{#if immunity.base}}checked{{/if}}
+                           {{checked immunity.base}}
+                           >
+                    <label for="immunity-{{key}}" style="line-height: 1.2em">
+                        <span class="resource-label-sm">{{immunity.label}}</span>
+                    </label>
+                </div>
+            {{/each}}
+        {{/if}}
+    </div>
+    {{!-- End Immunity Section --}}
+</fieldset>
+
+
 <section class="body-section grid grid-4col">
     <aside class="sidebar flex-group-center">
         {{!-- Global Bonus Sidebar --}}

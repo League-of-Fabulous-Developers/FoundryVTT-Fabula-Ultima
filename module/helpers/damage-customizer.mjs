@@ -1,4 +1,5 @@
 import { FU } from './config.mjs';
+import { getTargeted } from './target-handler.mjs';
 
 /**
  * Displays a dialog to customize damage.
@@ -27,9 +28,10 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
 	// Create the content for the dialog
 	const content = `
         <form>
-            <div class="desc mb-3 gap-5">
-				<div class="flexrow form-group">${tokenInfo}</div>
-            </div>
+			<div class="desc mb-3 gap-5">
+				<div class="flexrow form-group targets-container">${tokenInfo}</div>
+				<button type="button" id="retarget" class="btn">${game.i18n.localize('FU.ChatContextRetarget')}</button>
+			</div>
             <div class="desc mb-3 grid grid-2col gap-5">
                 <div class="inline-desc form-group" style="padding: 5px 10px;">
                     <label for="total-damage" class="resource-content resource-label" style="flex-grow: 8;"><b>${game.i18n.localize('FU.Total')}</b>
@@ -137,6 +139,7 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
 							ignoreResistance,
 							ignoreImmunities,
 							ignoreAbsorption,
+							targets,
 						};
 
 						// Execute the callback with the extra damage information and targets
@@ -168,6 +171,7 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
 				const $checkAllButton = html.find('#check-all');
 				const $checkNoneButton = html.find('#check-none');
 				const $ignoreCheckboxes = html.find('.ignore');
+				const $retargetButton = html.find('#retarget');
 
 				// Function to update total damage and icons based on the damage bonus, HR Zero status, and extra damage
 				function updateTotalDamage() {
@@ -203,6 +207,31 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
 
 				$checkNoneButton.on('click', () => {
 					$ignoreCheckboxes.prop('checked', false);
+				});
+
+				// Handle Retarget button click
+				$retargetButton.on('click', async () => {
+					// Call a function to get the new array of tokens
+					const newTargets = await getTargeted(); // Implement this function to fetch new tokens
+
+					// Update the dialog content with the new token info
+					const newTokenInfo = newTargets
+						.map((token) => {
+							const { img, name } = token;
+							return `
+									<div class="flexcol">
+										<img src="${img}" style="width: 36px; height: 36px; vertical-align: middle; margin-right: 5px;">
+										<strong>${name}</strong>
+									</div><br>
+								`;
+						})
+						.join('');
+
+					// Replace the existing token information with the new one
+					html.find('.flexrow').html(newTokenInfo);
+
+					// Update the targets array with the new tokens
+					targets = newTargets;
 				});
 			},
 			close: () => {

@@ -17,20 +17,46 @@
     <div class="vs-container">
         <label>vs</label>
     </div>
-    <div class='detail-desc difficulty flex-group-center'>
+    <div class="detail-desc difficulty flex-group-center" style="flex-direction: column;">
         <label class="title" style="color: #dc6773;">{{localize 'FU.ChatDifficulty'}}</label>
         <label class="detail" style="color: #e03b52;">{{difficulty}}</label>
     </div>
     {{/if}}
 </div>
-{{#if (lt difficulty 1)}}
-<div class='detail-desc flexrow'>
-    <div class='' {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
-        <label class="total default grid grid-3col">
-            <div></div>
-            <div>{{result.total}}</div>
-            <div class="endcap"></div>
+
+{{#if (or (gt difficulty 0) result.crit result.fumble)}}
+    <div style="clear: both;"></div>
+    <div class='detail-desc flexrow flex-group-center'>
+        <label class="total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}{{#if (and (or result.crit (gte result.total difficulty)) (not result.fumble))}}success{{else}}failure{{/if}}{{/if}}{{/if}} flexrow">
+            <div style="flex-grow: 1;"></div>
+            <div class="" style="flex: 0 1 auto;">{{result.total}}</div>
+            <div class="endcap gap-5">
+                {{#if result.crit}}
+                    <span>{{localize 'FU.Critical'}}!</span>
+                {{else if result.fumble}}
+                    <span>{{localize 'FU.Fumble'}}</span>
+                {{else if (gte result.total difficulty)}}
+                    <span>{{localize 'FU.Success'}}</span>
+                {{else}}
+                    <span>{{localize 'FU.Failure'}}</span>
+                {{/if}}
+            </div>
         </label>
     </div>
-</div>
+{{else}}
+    <div class='detail-desc flexrow'>
+        <div class=''>
+        <label class="total {{#if result.crit}}critical{{else if result.fumble}}fumble{{else}}default{{/if}}">
+                <div></div>
+                <div>{{result.total}}</div>
+                <div class="endcap gap-5">
+                {{#if result.crit}}
+                    <span>{{localize 'FU.Critical'}}!</span>
+                {{else if result.fumble}}
+                    <span>{{localize 'FU.Fumble'}}</span>
+                {{/if}}
+                </div>
+            </label>
+        </div>
+    </div>
 {{/if}}

@@ -206,6 +206,15 @@ FU.actionRule = {
 	skill: 'FU.SkillRule',
 };
 
+FU.temporaryEffects = {
+	slow: 'FU.Slow',
+	dazed: 'FU.Dazed',
+	weak: 'FU.Weak',
+	shaken: 'FU.Shaken',
+	enraged: 'FU.Enraged',
+	poisoned: 'FU.Poisoned',
+};
+
 FU.statusEffects = {
 	aura: 'FU.Aura',
 	barrier: 'FU.Barrier',

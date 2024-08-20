@@ -322,6 +322,26 @@ export class FUItem extends Item {
 
 		// Base content
 		content += `
+		<header class="title-desc chat-header flexrow">
+			<h2 style="flex-grow: 4;">${game.i18n.localize('FU.Accuracy')}</h2>
+			<section class="targets" style="align-items: end;">
+				<div class="fu-tags flexrow gap-5">
+					<a data-action="selectTargetedToken">
+						<span class='fu-tag button flex-group-center gap-5' data-tooltip="${game.i18n.localize('FU.Target')}"><i class="icon fas fa-bullseye"></i></span>
+					</a>
+				</div>
+			</section>
+		</header>
+		<div class='detail-desc flexrow flex-group-center'>
+			<label
+				class="total ${rollState} flexrow">
+				<div class="startcap"></div>
+				<div class="" style="flex: 0 1 auto;">${acc} ${def ? `<label>vs</label> <label>${def.toUpperCase()}</label>` : ''}</div>
+				<div class="endcap"></div>
+			</label>
+		</div>
+
+		<div style="clear: both;"></div>
 		<div class="flexrow gap-5">
 			<div class='detail-desc flex-group-center grid grid-3col flex3'>
 				<div>
@@ -337,30 +357,6 @@ export class FUItem extends Item {
 					<label class="detail">${bonusAccVal}</label>
 				</div>
 			</div>
-			${
-				def
-					? `
-			<div class="vs-container">
-				<label>vs</label>
-			</div>
-			<div class='detail-desc flex-group-center' style="border: 2px solid #dc6773;">
-				<label class="detail" style="color: #e03b52;">${def}</label>
-			</div>
-			`
-					: ''
-			}
-		</div>
-		<div style="clear: both;"></div>
-		<div class='detail-desc flexrow flex-group-center'>
-			<label class="total ${rollState} flexrow">
-				<div style="flex-grow: 1;"></div>
-				<div class="" style="flex: 0 1 auto;">${acc}</div>
-				<div class="endcap gap-5">
-					${isCrit ? `<span>${game.i18n.localize('FU.Critical')}</span>` : ''}
-					${isFumble ? `<span>${game.i18n.localize('FU.Fumble')}</span>` : ''}
-					<span>${game.i18n.localize('FU.ToHit')}</span>
-				</div>
-			</label>
 		</div>`;
 
 		// Damage information
@@ -370,32 +366,49 @@ export class FUItem extends Item {
 			const bonusDamVal = usedItem ? this.system.rollInfo.damage.value : 0;
 			const damage = hr + damVal + bonusDamVal;
 			const damType = isWeapon ? item.system.damageType.value : item.system.rollInfo.damage.type.value;
+			function translate(string) {
+				const allTranslations = Object.assign({}, CONFIG.FU.affIcon);
+
+				return game.i18n.localize(allTranslations?.[string] ?? string);
+			}
 
 			content += `
-        <header class="title-desc chat-header flexrow">
-            <h2>${game.i18n.localize('FU.Damage')}</h2>
-        </header>
-        <div class="flexrow gap-5">
-            <div class='detail-desc flex-group-center grid grid-2col flex2'>
-                <div>
-                    <label class="title">${game.i18n.localize('FU.HighRollAbbr')}</label>
-                    <label class="detail">${hr}</label>
-                </div>
-                <div>
-                    <label class="title">${game.i18n.localize('FU.ModAbbr')}</label>
-                    <label class="detail">${bonusDamVal}</label>
-                </div>
-            </div>
-        </div>
-        <div class='detail-desc flex-group-center flexrow'>
-            <a data-action="applyDamage">
-                <label class="damageType ${damType} grid grid-3col">
-                    <div class="startcap"></div>
-                    <div>${damage}</div>
-                    <div class="endcap">${damType}!</div>
-                </label>
-            </a>
-        </div>`;
+			<header class="title-desc chat-header flexrow">
+				<h2 style="flex-grow: 4;">${game.i18n.localize('FU.Damage')}</h2>
+				<section class="targets" style="align-items: end;">
+					<div class="fu-tags flexrow gap-5">
+						<a data-action="selectDamageCustomizer">
+							<span class='fu-tag button flex-group-center gap-5' data-tooltip="${game.i18n.localize('FU.DamageCustomizer')}"><i class="icon fas fa-gear"></i></span>
+						</a>
+					</div>
+				</section>
+			</header>
+
+			<div class='detail-desc flex-group-center flexrow'>
+				<a>
+					<label class="damageType ${damType} grid grid-3col">
+						<div class="startcap"></div>
+						<div>${damage}</div>
+						<div class="endcap"
+							data-tooltip="${damType}">
+							<i class="${translate(damType)}"></i></div>
+					</label>
+				</a>
+			</div>
+			
+			<div class="flexrow gap-5">
+				<div class='detail-desc flex-group-center grid grid-2col flex2'>
+					<div>
+						<label class="title">${game.i18n.localize('FU.HighRollAbbr')}</label>
+						<label class="detail">${hr}</label>
+					</div>
+					<div>
+						<label class="title">${game.i18n.localize('FU.ModAbbr')}</label>
+						<label class="detail">${bonusDamVal}</label>
+					</div>
+				</div>
+			</div>
+			`;
 		}
 
 		// Imp damage information
@@ -411,18 +424,25 @@ export class FUItem extends Item {
 			const damType = item.type === 'ritual' ? item.system.rollInfo.impdamage.type.value : '';
 
 			content += `
-        <header class="title-desc chat-header flexrow">
-            <h2>${game.i18n.localize('FU.DamageCollateral')}</h2>
-        </header>
-        <div class='detail-desc flex-group-center flexrow'>
-            <a data-action="applyDamage">
-                <label class="damageType ${damType} grid grid-3col">
-                    <div class="startcap detail">${improvType}</div>
-                    <div>${damage}</div>
-                    <div class="endcap">${damType}!</div>
-                </label>
-            </a>
-        </div>`;
+			<header class="title-desc chat-header flexrow">
+				<h2 style="flex-grow: 4;">${game.i18n.localize('FU.Collateral')}</h2>
+				<section class="targets" style="align-items: end;">
+					<div class="fu-tags flexrow gap-5">
+						<a data-action="selectDamageCustomizer">
+							<span class='fu-tag button flex-group-center gap-5' data-tooltip="${game.i18n.localize('FU.DamageCustomizer')}"><i class="icon fas fa-gear"></i></span>
+						</a>
+					</div>
+				</section>
+			</header>
+			<div class='detail-desc flex-group-center flexrow'>
+				<a data-action="applyDamage">
+					<label class="damageType ${damType} grid grid-3col">
+						<div class="startcap detail">${improvType}</div>
+						<div>${damage}</div>
+						<div class="endcap">${damType}!</div>
+					</label>
+				</a>
+			</div>`;
 		}
 
 		// Restore the original hrZero value if it was changed

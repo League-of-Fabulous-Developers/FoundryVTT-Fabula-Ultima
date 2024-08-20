@@ -296,7 +296,7 @@
 			transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
 			opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-		&:hover {
+		&:not(.immune):hover {
 			opacity: 0.8;
 			transform: scale(1.2);
 			transform-origin: center;
@@ -306,6 +306,33 @@
 
 	&.active img {
 		opacity: 1;
+	}
+
+	/* Immune Status Indicator */
+	&.immune {
+		position: relative;
+		cursor: not-allowed;
+
+		img {
+			filter: grayscale(100%) contrast(100%) brightness(100%);
+			opacity: 1;
+			transform: scale(1) !important;
+		}
+
+		/* X mark overlay */
+		&::after {
+			content: '✘';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: $color-danger;
+			font-size: 1rem;
+			font-weight: bold;
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+			pointer-events: none;
+			z-index: 101;
+		}
 	}
 }
 

@@ -126,3 +126,11 @@
 .active-effect-sheet .editor {
 	height: 200px;
 }
+
+.targets-container {
+	border: 2px dotted;
+	min-height: 70px;
+	padding: 5px;
+	width: auto;
+	overflow-x: auto;
+}

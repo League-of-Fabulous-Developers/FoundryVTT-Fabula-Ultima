@@ -3,6 +3,7 @@ import { NpcMigrations } from './npc-migrations.mjs';
 import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
 import { AttributesDataModel } from '../common/attributes-data-model.mjs';
 import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
+import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { BondDataModel } from '../common/bond-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
@@ -91,6 +92,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			attributes: new EmbeddedDataField(AttributesDataModel, {}),
 			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
+			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			traits: new SchemaField({ value: new StringField({ initial: '' }) }),
 			species: new SchemaField({ value: new StringField({ initial: 'beast', choices: Object.keys(FU.species) }) }),
 			villain: new SchemaField({ value: new StringField({ initial: '', blank: true, choices: Object.keys(FU.villainTypes) }) }),

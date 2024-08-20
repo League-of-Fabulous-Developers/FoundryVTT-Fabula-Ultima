@@ -19,8 +19,9 @@ function attachDamageApplicationHandler(message, jQuery) {
 				// const modifiedTotal = total + (extraDamageInfo.damageBonus || 0);
 				const modifiedTotal = extraDamageInfo.hrZero ? extraDamageInfo.damageBonus + modTotal : total + (extraDamageInfo.damageBonus || 0);
 				const modifiedType = extraDamageInfo.damageType || damageType;
+				const modifiedTargets = extraDamageInfo.targets || targets;
 				await applyDamage(
-					targets,
+					modifiedTargets,
 					modifiedType,
 					modifiedTotal,
 					{
@@ -34,7 +35,7 @@ function attachDamageApplicationHandler(message, jQuery) {
 
 				if (extraDamageInfo.extraDamage > 0) {
 					await applyExtraDamage(
-						targets,
+						modifiedTargets,
 						extraDamageInfo.extraDamageType,
 						extraDamageInfo.extraDamage,
 						{
@@ -72,6 +73,20 @@ function attachDamageApplicationHandler(message, jQuery) {
 		jQuery.find(`a[data-action=applySingleDamage]`).click((event) => handleClick(event, getSingleTarget));
 		jQuery.find(`a[data-action=applySelectedDamage]`).click((event) => handleClick(event, getSelected));
 		jQuery.find(`a[data-action=applyTargetedDamage]`).click((event) => handleClick(event, getTargeted));
+		jQuery.find(`a[data-action=selectDamageCustomizer]`).click(async (event) => {
+			if (!disabled) {
+				disabled = true;
+				const targets = await getTargeted(event);
+				DamageCustomizer(
+					check.damage,
+					targets,
+					(extraDamageInfo) => handleDamageApplication(event, targets, extraDamageInfo),
+					() => {
+						disabled = false;
+					},
+				);
+			}
+		});
 	}
 
 	if (ChecksV2.isCheck(message)) {
@@ -83,8 +98,9 @@ function attachDamageApplicationHandler(message, jQuery) {
 					// const modifiedTotal = damage.total + (extraDamageInfo.damageBonus || 0); // Add the damage bonus to the total damage
 					const modifiedTotal = extraDamageInfo.hrZero ? extraDamageInfo.damageBonus + damage.modifierTotal : damage.total + (extraDamageInfo.damageBonus || 0);
 					const modifiedType = extraDamageInfo.damageType || damage.type;
+					const modifiedTargets = extraDamageInfo.targets || targets;
 					await applyDamage(
-						targets,
+						modifiedTargets,
 						modifiedType,
 						modifiedTotal,
 						{
@@ -97,7 +113,7 @@ function attachDamageApplicationHandler(message, jQuery) {
 					);
 					if (extraDamageInfo.extraDamage > 0) {
 						await applyExtraDamage(
-							targets,
+							modifiedTargets,
 							extraDamageInfo.extraDamageType,
 							extraDamageInfo.extraDamage,
 							{
@@ -135,6 +151,20 @@ function attachDamageApplicationHandler(message, jQuery) {
 			jQuery.find(`a[data-action=applySingleDamage]`).click((event) => handleClick(event, getSingleTarget));
 			jQuery.find(`a[data-action=applySelectedDamage]`).click((event) => handleClick(event, getSelected));
 			jQuery.find(`a[data-action=applyTargetedDamage]`).click((event) => handleClick(event, getTargeted));
+			jQuery.find(`a[data-action=selectDamageCustomizer]`).click(async (event) => {
+				if (!disabled) {
+					disabled = true;
+					const targets = await getTargeted(event);
+					DamageCustomizer(
+						damage,
+						targets,
+						(extraDamageInfo) => handleDamageApplication(event, targets, extraDamageInfo),
+						() => {
+							disabled = false;
+						},
+					);
+				}
+			});
 		}
 	}
 }

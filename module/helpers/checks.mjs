@@ -1,3 +1,5 @@
+import { getTargeted } from './target-handler.mjs';
+
 /**
  * @typedef {"dex","ins","mig","wpl"} Attribute
  */
@@ -356,10 +358,69 @@ export async function rerollCheck(params, reroll) {
 }
 
 /**
+ * Retargets the check with updated targets.
+ *
+ * @param {CheckParameters} params - The original check parameters.
+ * @returns {Promise<CheckParameters>} - The updated check parameters with new targets.
+ */
+export async function retargetCheck(params) {
+	// Create a copy of the original check parameters
+	const check = { ...params };
+
+	// Fetch newly targeted tokens
+	const targets = await getTargeted();
+
+	// Update targets in the check object
+	check.targets = targets;
+
+	// Further refine targets based on defense details
+	check.targets = getTargets(check.details.defense);
+
+	// Handle damage and targets updates
+	handleDamage(check);
+	handleTargets(check);
+
+	return check;
+}
+
+/**
  * @param {jQuery} html
  * @param {ContextMenuEntry[]} options
  */
 export function addRollContextMenuEntries(html, options) {
+	// Retarget Tokens
+	options.unshift({
+		name: 'FU.ChatContextRetarget',
+		icon: '<i class="fas fa-bullseye"></i>',
+		group: SYSTEM,
+		condition: (li) => {
+			const messageId = li.data('messageId');
+			/** @type ChatMessage | undefined */
+			const message = game.messages.get(messageId);
+			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
+			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
+			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.result?.fumble;
+		},
+		callback: async (li) => {
+			const messageId = li.data('messageId');
+			/** @type ChatMessage | undefined */
+			const message = game.messages.get(messageId);
+			if (message) {
+				const checkParams = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
+				if (checkParams) {
+					// Delete the existing message
+					await message.delete();
+
+					// Retarget and create a new message
+					const flags = foundry.utils.duplicate(message.flags);
+					delete flags[SYSTEM][Flags.ChatMessage.CheckParams];
+					const newMessage = await retargetCheck(checkParams);
+					await createCheckMessage(newMessage, flags);
+				}
+			}
+		},
+	});
+
 	// Character reroll
 	options.unshift({
 		name: 'FU.ChatContextRerollFabula',

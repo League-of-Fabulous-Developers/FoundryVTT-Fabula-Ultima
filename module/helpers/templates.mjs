@@ -68,6 +68,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Chat Messages
 		'systems/projectfu/templates/chat/chat-check.hbs',
+		'systems/projectfu/templates/chat/chat-check-container.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
 		'systems/projectfu/templates/chat/chat-group-check-initiated.hbs',

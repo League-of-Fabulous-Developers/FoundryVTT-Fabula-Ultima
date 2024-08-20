@@ -1,44 +1,45 @@
 <header class="title-desc chat-header flexrow">
-    <h2>{{localize 'FU.Accuracy'}}</h2>
+    <h2 style="flex-grow: 4;">{{localize 'FU.Accuracy'}}</h2>
+    <section class="targets" style="align-items: end;">
+        <div class="fu-tags flexrow gap-5">
+            <a data-action="retargetTokens">
+                <span class='fu-tag button flex-group-center gap-5' data-tooltip="{{localize 'FU.Target'}}"><i class="icon fas fa-bullseye"></i></span>
+            </a>
+        </div>
+    </section>
 </header>
-<div class="flexrow gap-5">
-    <div class='detail-desc flex-group-center grid grid-3col flex3'>
-        <div>
-            <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}} ({{result.die1}})</label>
-            <label class="detail">{{result.attr1}}</label>
+
+<div class='detail-desc flexrow flex-group-center'>
+    <label
+        class="total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}default{{/if}}{{/if}} flexrow">
+        <div class="startcap"></div>
+        <div class="" style="flex: 0 1 auto;">{{result.total}} <label>vs</label> {{uppercase
+            additionalData.targetedDefense}}{{uppercase details.defense}}</div>
+        <div class="endcap">
         </div>
-        <div>
-            <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute) 'Abbr')}} ({{result.die2}})</label>
-            <label class="detail">{{result.attr2}}</label>
-        </div>
-        <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
-            <label class="title">{{localize 'FU.ModAbbr'}}</label>
-            <label class="detail">{{#if result.modifier}}{{#if (gte result.modifier 0)}}+{{else}}-{{/if}}{{mathAbs result.modifier}}{{/if}}
-            {{#if result.bonus}}{{#if (gte result.bonus 0)}}+{{else}}-{{/if}}{{mathAbs result.bonus}}{{/if}}
-            {{#if result.push}}+{{result.push}}{{/if}}</label>
-        </div>
-    </div>
-    <div class="vs-container">
-        <label>vs</label>
-    </div>
-    <div class='detail-desc flex-group-center' style="border: 2px solid #dc6773;">
-        <label class="detail" style="color: #e03b52;">{{additionalData.targetedDefense}}{{details.defense}}</label>
-    </div>
+    </label>
 </div>
 
 <div style="clear: both;"></div>
-<div class='detail-desc flexrow flex-group-center'>
-    <label class="total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}default{{/if}}{{/if}} flexrow">
-        <div style=" flex-grow: 1;"></div>
-        <div class="" style="flex: 0 1 auto;">{{result.total}}</div>
-        <div class="endcap gap-5">
-        {{#if result.crit}}
-            <span>{{localize 'FU.Critical'}}</span>
-        {{/if}}
-        {{#if result.fumble}}
-            <span>{{localize 'FU.Fumble'}}</span>
-        {{/if}}
-        <span>{{localize 'FU.ToHit'}}</span>
+<div class="flexrow gap-5">
+    <div class='detail-desc flex-group-center grid grid-3col flex3'>
+        <div data-tooltip="(Die Size: {{result.die1}})">
+            <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute)
+                'Abbr')}}</label>
+            <label class="detail">{{result.attr1}}</label>
         </div>
-    </label>
+        <div data-tooltip="(Die Size: {{result.die2}})">
+            <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute)
+                'Abbr')}}</label>
+            <label class="detail">{{result.attr2}}</label>
+        </div>
+        <div {{#if
+            modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"
+            {{/if}}>
+            <label class="title">{{localize 'FU.ModAbbr'}}</label>
+            <label class="detail">
+            {{mathAbs result.modifier.}}
+            </label>
+        </div>
+    </div>
 </div>

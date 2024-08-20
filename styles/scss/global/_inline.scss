@@ -31,6 +31,15 @@
 			filter: brightness(1);
 			cursor: pointer;
 		}
+
+		&.button {
+			padding: 0.188rem;
+			letter-spacing: 0;
+		}
+
+		&:not(.button) {
+			filter: grayscale(100%);
+		}
 	}
 }
 

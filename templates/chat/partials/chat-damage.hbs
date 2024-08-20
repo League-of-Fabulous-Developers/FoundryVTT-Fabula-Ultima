@@ -1,33 +1,46 @@
 <header class="title-desc chat-header flexrow">
-    <h2>{{localize 'FU.Damage'}}</h2>
+    <h2 style="flex-grow: 4;">{{localize 'FU.Damage'}}</h2>
+    <section class="targets" style="align-items: end;">
+        <div class="fu-tags flexrow gap-5">
+            <a data-action="selectDamageCustomizer">
+                <span class='fu-tag button flex-group-center gap-5' data-tooltip="{{localize 'FU.DamageCustomizer'}}"><i class="icon fas fa-gear"></i></span>
+            </a>
+        </div>
+    </section>
 </header>
+
+<div class='detail-desc flex-group-center flexrow'>
+    <a>
+        <label class="damageType {{damage.type}} grid grid-3col">
+            <div class="startcap"></div>
+            <div>{{damage.total}}</div>
+            <div class="endcap"
+                data-tooltip="{{localize (lookup translation.damageTypes damage.type)}}">
+                <i class="{{localize (lookup translation.damageIcon damage.type)}}"></i></div>
+        </label>
+    </a>
+</div>
+
+<div style="clear: both;"></div>
 <div class="flexrow gap-5">
     <div class='detail-desc flex-group-center grid grid-2col flex2'>
         <div>
             <label class="title">{{localize 'FU.HighRollAbbr'}}</label>
             <label class="detail">
-            {{#if (not damage.hrZero)}}
-                {{#if (gte result.attr1 result.attr2)}}
-                    {{result.attr1}}
-                {{else}}
-                    {{result.attr2}}
+                {{#if (not damage.hrZero)}}
+                    {{#if (gte result.attr1 result.attr2)}}
+                        {{result.attr1}}
+                    {{else}}
+                        {{result.attr2}}
+                    {{/if}}
                 {{/if}}
-            {{/if}}
             </label>
         </div>
-        <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
+        <div {{#if
+            modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"
+            {{/if}}>
             <label class="title">{{localize 'FU.ModAbbr'}}</label>
             <label class="detail">{{damage.bonus}}</label>
         </div>
     </div>
-</div>
-
-<div class='detail-desc flex-group-center flexrow'>
-    <a data-action="applyDamage" data-tooltip="{{{localize 'FU.ChatApplyDamageTooltip'}}}">
-        <label class="damageType {{damage.type}} grid grid-3col">
-            <div class="startcap"><i class="{{localize (lookup translation.damageIcon damage.type)}}"></i></div>
-            <div>{{damage.total}}</div>
-            <div class="endcap">{{localize (lookup translation.damageTypes damage.type)}}!</div>
-        </label>
-    </a>
 </div>

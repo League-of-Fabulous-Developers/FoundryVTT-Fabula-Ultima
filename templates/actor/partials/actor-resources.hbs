@@ -4,7 +4,7 @@
         {{!-- Key Statuses --}}
         <div class="grid grid-8col">
             {{#each statusEffectToggles as |statusEffect|}}
-                <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}}"
+                <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}} {{#if statusEffect.immune}}immune{{/if}}"
                    data-status-id="{{statusEffect.id}}">
                     <img src="{{statusEffect.icon}}" data-tooltip="{{statusEffect.name}}">
                 </a>

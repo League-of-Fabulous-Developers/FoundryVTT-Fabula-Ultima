@@ -75,7 +75,12 @@ export class FUStandardActorSheet extends ActorSheet {
 			const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
 			if (statusEffect) {
 				const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
-				context.statusEffectToggles.push({ ...statusEffect, active: existing });
+				const immune = this.actor.system.immunities?.[statusEffect.id]?.base || false;
+				context.statusEffectToggles.push({
+					...statusEffect,
+					active: existing,
+					immune: immune,
+				});
 			}
 		}
 
@@ -150,6 +155,11 @@ export class FUStandardActorSheet extends ActorSheet {
 			v.affTypeCurr = game.i18n.localize(CONFIG.FU.affType[v.current]) ?? v.current;
 			v.affTypeCurrAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.current]) ?? v.current;
 			v.icon = CONFIG.FU.affIcon[k];
+		}
+
+		// Handle immunity
+		for (let [k, v] of Object.entries(context.system.immunities)) {
+			v.label = game.i18n.localize(CONFIG.FU.temporaryEffects[k]) ?? k;
 		}
 
 		// Handle item types
@@ -814,6 +824,26 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('[data-action=toggleSupportModule][data-item-id]').on('click', updatePilotVehicle('updateActiveSupportModules').bind(this));
 
 		html.find('a[data-action=spendMetaCurrency]').on('click', () => this.actor.spendMetaCurrency());
+
+		html.find('span[data-action="clearTempEffects"]').click(this._onClearTempEffects.bind(this));
+	}
+
+	_onClearTempEffects(event) {
+		event.preventDefault();
+		const actor = this.actor;
+
+		if (!actor || !actor.system || !actor.system.immunities) return;
+
+		// Collect effects to delete
+		const effectsToDelete = actor.effects.filter((effect) => {
+			const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
+			return statusEffectId && actor.system.immunities[statusEffectId];
+		});
+
+		// Delete all collected effects
+		if (effectsToDelete.length > 0) {
+			Promise.all(effectsToDelete.map((effect) => effect.delete()));
+		}
 	}
 
 	// Method to change the sort type
@@ -1580,13 +1610,12 @@ export class FUStandardActorSheet extends ActorSheet {
 			const affinityValue = affinity.affTypeCurr;
 
 			// Get the localized string from FU.AffinityDescription
-			const template = game.i18n.localize('FU.AffinityDescription');
-
-			// Replace placeholders with actual values
-			const description = template.replace(/{affinityValue}/g, affinityValue).replace(/{affinityName}/g, affinityName);
+			const description = game.i18n.format('FU.AffinityDescription', {
+				affinityName: affinityName,
+				affinityValue: affinityValue,
+			});
 
 			const params = {
-				details: { name: affinityName },
 				description: description,
 				speaker: ChatMessage.getSpeaker({ actor }),
 			};
