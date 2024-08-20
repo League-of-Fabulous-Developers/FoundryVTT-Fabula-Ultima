@@ -1105,10 +1105,11 @@ export class FUStandardActorSheet extends ActorSheet {
 		const localizedKey = CONFIG.FU.itemTypes[type] || `TYPES.Item.${type}`;
 		const name = game.i18n.localize(localizedKey) || `${subtype ? subtype.split('.')[1].capitalize() : type.capitalize()}`;
 
+		const isV12OrLater = foundry.utils.isNewerVersion(game.version, '12.0.0');
 		const itemData = {
 			name: name,
 			type: type,
-			data: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }), ...(subtype && { optionalType: subtype }) },
+			[isV12OrLater ? 'system' : 'data']: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }), ...(subtype && { optionalType: subtype }) },
 		};
 
 		// Check if the type is 'zeroPower' and set clock to true
@@ -1119,7 +1120,6 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		try {
 			let item = await Item.create(itemData, { parent: this.actor });
-			const isV12OrLater = foundry.utils.isNewerVersion(game.version, '12.0.0');
 
 			await item.update({
 				[`${isV12OrLater ? 'system' : 'data'}.hasClock.value`]: clock,
