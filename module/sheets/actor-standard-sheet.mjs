@@ -947,8 +947,10 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Check if the game option exists and is enabled
 		if (game.settings.get('projectfu', 'optionAlwaysFavorite')) {
 			let item = await Item.create(itemData, { parent: this.actor });
+			const isV12OrLater = foundry.utils.isNewerVersion(game.version, '12.0.0');
+
 			await item.update({
-				'data.isFavored.value': true,
+				[`${isV12OrLater ? 'system' : 'data'}.isFavored.value`]: true,
 			});
 			return item;
 		} else {
@@ -1117,11 +1119,13 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		try {
 			let item = await Item.create(itemData, { parent: this.actor });
+			const isV12OrLater = foundry.utils.isNewerVersion(game.version, '12.0.0');
+
 			await item.update({
-				'data.hasClock.value': clock,
-				'data.isFavored.value': true,
-				'data.featureType': subtype,
-				'data.optionalType': subtype,
+				[`${isV12OrLater ? 'system' : 'data'}.hasClock.value`]: clock,
+				[`${isV12OrLater ? 'system' : 'data'}.isFavored.value`]: true,
+				[`${isV12OrLater ? 'system' : 'data'}.featureType`]: subtype,
+				[`${isV12OrLater ? 'system' : 'data'}.optionalType`]: subtype,
 			});
 			ui.notifications.info(`${name} created successfully.`);
 			item.sheet.render(true);
