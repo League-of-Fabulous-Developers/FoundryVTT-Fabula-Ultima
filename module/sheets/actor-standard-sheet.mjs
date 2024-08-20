@@ -1,7 +1,7 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
 import { createChatMessage, promptCheck } from '../helpers/checks.mjs';
 import { promptItemCustomizer } from '../helpers/item-customizer.mjs';
-import { actionHandler } from '../helpers/action-handler.mjs';
+import { ActionHandler } from '../helpers/action-handler.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
@@ -1521,7 +1521,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	 * @param {MouseEvent} event   The originating click event
 	 * @private
 	 */
-	_onRoll(event) {
+	async _onRoll(event) {
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;
@@ -1626,8 +1626,11 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Handle action-type rolls.
 		if (dataset.rollType === 'action-type') {
-			// Determine the type based on the data-action attribute
-			actionHandler(this, dataset.action, isShift);
+			const actor = this.actor;
+			const actionHandlerInstance = new ActionHandler(actor); // Create an instance of ActionHandler
+
+			// Call the handleAction method with the action type and shift key status
+			await actionHandlerInstance.handleAction(dataset.action, isShift);
 		}
 
 		// Handle rolls that supply the formula directly.

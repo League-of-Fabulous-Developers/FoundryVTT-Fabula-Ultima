@@ -60,6 +60,7 @@ import { PlayerListEnhancements } from './helpers/player-list-enhancements.mjs';
 import { ChecksV2 } from './checks/checks-v2.mjs';
 import { CheckConfiguration } from './checks/check-configuration.mjs';
 import { slugify } from './util.mjs';
+import { ActionHandler } from './helpers/action-handler.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -71,6 +72,7 @@ globalThis.projectfu = {
 	SystemControls,
 	ChecksV2,
 	CheckConfiguration,
+	ActionHandler,
 };
 
 /* -------------------------------------------- */
@@ -98,6 +100,7 @@ Hooks.once('init', async () => {
 		RollableOptionalFeatureDataModel,
 		ChecksV2,
 		CheckConfiguration,
+		ActionHandler,
 		util: {
 			slugify,
 		},
