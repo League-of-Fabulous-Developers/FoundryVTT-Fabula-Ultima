@@ -77,7 +77,8 @@
         }
       }
     },
-    "defense": "def"
+    "defense": "def",
+    "fuid": "crossbow"
   },
   "effects": [],
   "folder": "SnyIBMif9646gEkD",
@@ -87,10 +88,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706648527935,
-    "modifiedTime": 1719222833279,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+    "modifiedTime": 1724180864530,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

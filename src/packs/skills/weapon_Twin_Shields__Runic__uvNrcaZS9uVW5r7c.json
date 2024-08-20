@@ -76,7 +76,7 @@
       "value": 1
     },
     "defense": "def",
-    "fuid": ""
+    "fuid": "twin-shields-runic"
   },
   "effects": [
     {
@@ -147,7 +147,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707628405753,
-    "modifiedTime": 1724071011489,
+    "modifiedTime": 1724180863402,
     "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null

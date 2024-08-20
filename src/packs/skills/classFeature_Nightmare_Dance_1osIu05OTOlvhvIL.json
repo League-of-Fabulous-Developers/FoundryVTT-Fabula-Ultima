@@ -16,7 +16,8 @@
       "duration": "instant",
       "description": "<p>Choose another creature that is able to see you. If that creature is already <span>@EFFECT[shaken]</span>, they immediately suffer <span>@EFFECT[weak]</span>.</p><hr><p>@LOSS[10 mp]</p>"
     },
-    "source": "FUHF145"
+    "source": "FUHF145",
+    "fuid": "nightmare-dance"
   },
   "effects": [],
   "ownership": {
@@ -31,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710176303121,
-    "modifiedTime": 1721094640798,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861288,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

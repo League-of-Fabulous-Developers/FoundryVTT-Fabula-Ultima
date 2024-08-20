@@ -14,7 +14,8 @@
     "data": {
       "description": "<p>Your attacks with <strong>unarmed strikes</strong> gain <strong>multi (3).</strong></p>"
     },
-    "source": "FUTF157"
+    "source": "FUTF157",
+    "fuid": "polypoda"
   },
   "effects": [],
   "ownership": {
@@ -28,10 +29,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1720879907257,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862796,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

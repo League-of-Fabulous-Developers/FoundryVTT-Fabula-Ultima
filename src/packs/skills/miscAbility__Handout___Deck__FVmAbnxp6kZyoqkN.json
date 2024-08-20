@@ -124,7 +124,8 @@
       "step": 1,
       "max": 6
     },
-    "defense": "def"
+    "defense": "def",
+    "fuid": "handout-deck"
   },
   "effects": [],
   "ownership": {
@@ -139,10 +140,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1707665720251,
-    "modifiedTime": 1721096774346,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861872,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

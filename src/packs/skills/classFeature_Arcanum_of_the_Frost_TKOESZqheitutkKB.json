@@ -17,7 +17,8 @@
       "dismiss": "<ul><li><p><strong>Ice Age.</strong> Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 ice]</strong> damage. This damage ignores Resistances.</p></li></ul>",
       "domains": "cold, ice, silence"
     },
-    "source": "FUCR179"
+    "source": "FUCR179",
+    "fuid": "arcanum-of-the-frost"
   },
   "effects": [
     {
@@ -74,10 +75,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710463982993,
-    "modifiedTime": 1721096243032,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862295,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

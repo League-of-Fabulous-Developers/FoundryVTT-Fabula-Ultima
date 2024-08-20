@@ -14,7 +14,8 @@
     "data": {
       "description": "<p>You treat your <strong>Might</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</p><p>When you succeed on a Check to advance or turn back a Clock, if that Check includes <strong>Might</strong>, you may fill or erase 1 additional section of that Clock.</p><hr><p>@EFFECT[mig-up]</p>"
     },
-    "source": "FUTF156"
+    "source": "FUTF156",
+    "fuid": "dynamotheria"
   },
   "effects": [],
   "ownership": {
@@ -28,10 +29,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1720880428830,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862821,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

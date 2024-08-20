@@ -124,7 +124,8 @@
       "value": false
     },
     "opportunity": "",
-    "defense": "def"
+    "defense": "def",
+    "fuid": "spiritist-spells"
   },
   "effects": [],
   "ownership": {
@@ -141,10 +142,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1708743801642,
-    "modifiedTime": 1722543573958,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864312,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

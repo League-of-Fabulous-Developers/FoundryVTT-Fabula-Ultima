@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>When a creature in <strong>Crisis</strong> hits the creature bearing this <strong>symbol</strong> with an attack or offensive spell ( @ICON[offensive] ), the creature in <strong>Crisis</strong> recovers @GAIN[5 hp] and @GAIN[5 mp].</p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF151"
+    "source": "FUHF151",
+    "fuid": "symbol-of-revenge"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177999155,
-    "modifiedTime": 1721091504360,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862379,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

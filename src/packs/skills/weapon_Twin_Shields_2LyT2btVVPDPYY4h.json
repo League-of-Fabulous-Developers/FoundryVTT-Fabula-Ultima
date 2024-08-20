@@ -77,7 +77,7 @@
       "value": 1
     },
     "defense": "def",
-    "fuid": ""
+    "fuid": "twin-shields"
   },
   "effects": [
     {
@@ -141,7 +141,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707628405753,
-    "modifiedTime": 1724071020280,
+    "modifiedTime": 1724180861316,
     "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null

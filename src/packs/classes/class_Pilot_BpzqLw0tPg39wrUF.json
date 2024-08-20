@@ -68,7 +68,8 @@
     },
     "source": {
       "value": "FUTF158"
-    }
+    },
+    "fuid": "pilot"
   },
   "effects": [],
   "folder": null,
@@ -83,10 +84,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711429787328,
-    "modifiedTime": 1722657007633,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180860943,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

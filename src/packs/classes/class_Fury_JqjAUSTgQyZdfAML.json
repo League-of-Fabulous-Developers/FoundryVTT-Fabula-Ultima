@@ -69,7 +69,8 @@
     },
     "source": {
       "value": "FUCR194"
-    }
+    },
+    "fuid": "fury"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/fury/fury.png",
   "effects": [],
@@ -80,10 +81,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706417489590,
-    "modifiedTime": 1722656939501,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180860978,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

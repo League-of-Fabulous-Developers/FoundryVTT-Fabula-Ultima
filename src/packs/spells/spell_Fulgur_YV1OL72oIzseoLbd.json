@@ -118,7 +118,8 @@
     "opportunity": "Each target hit by this spell suffers dazed.",
     "maxTargets": {
       "value": 3
-    }
+    },
+    "fuid": "fulgur"
   },
   "effects": [],
   "ownership": {
@@ -132,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706565033495,
-    "modifiedTime": 1722540248033,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864289,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

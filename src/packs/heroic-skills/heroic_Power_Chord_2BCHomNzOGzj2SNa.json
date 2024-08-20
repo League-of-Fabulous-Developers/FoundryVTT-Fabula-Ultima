@@ -94,7 +94,8 @@
       "current": 0,
       "step": 1,
       "max": 6
-    }
+    },
+    "fuid": "power-chord"
   },
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
@@ -108,10 +109,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706684677557,
-    "modifiedTime": 1721103552103,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180863666,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

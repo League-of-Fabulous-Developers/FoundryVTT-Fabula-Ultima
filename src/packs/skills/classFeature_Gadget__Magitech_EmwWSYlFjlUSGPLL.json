@@ -19,7 +19,8 @@
       "basic": "<h3>MAGITECH OVERRIDE (BASIC)</h3><p>Add the <strong>@UUID[Compendium.projectfu.skills.Item.aPfawWXZqKuHAAqj]{Magitech Override} </strong>feature to your character sheet.</p><p>You may use an action and spend <strong>@LOSS[10 mp]</strong> to perform an Opposed <strong>【INS + INS】 </strong>Check against a nearby <strong>soldier</strong>-rank <strong>construct </strong>you can see (the Game Master musttell you who is a valid target). If you succeed, you gain control of the creature untilthe end of the scene (the Game Master gives you its profile). You may only control <strong>one construct at any given time</strong>, but may set it free whenever you want; the <strong>construct </strong>is also set free as soon as it is harmed by you or by one of your allies. Once free, the construct is again in control of its actions and might turn against you.</p>",
       "rank": "basic"
     },
-    "source": "FUCR215"
+    "source": "FUCR215",
+    "fuid": "gadget-magitech"
   },
   "effects": [],
   "sort": 0,
@@ -32,10 +33,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711288389957,
-    "modifiedTime": 1721089432494,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861845,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

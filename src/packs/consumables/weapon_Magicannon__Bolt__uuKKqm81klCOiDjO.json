@@ -75,7 +75,8 @@
     "weight": {
       "value": 1
     },
-    "defense": "def"
+    "defense": "def",
+    "fuid": "magicannon-bolt"
   },
   "effects": [],
   "sort": 200000,
@@ -90,10 +91,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1707097873590,
-    "modifiedTime": 1719259587259,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+    "modifiedTime": 1724180864631,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

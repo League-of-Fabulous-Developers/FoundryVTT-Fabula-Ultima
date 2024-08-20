@@ -112,7 +112,8 @@
       "current": 0,
       "step": 1,
       "max": 6
-    }
+    },
+    "fuid": "rondo-of-nightmare"
   },
   "img": "icons/magic/unholy/beams-impact-pink.webp",
   "effects": [],
@@ -123,10 +124,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1684757023346,
-    "modifiedTime": 1721091766078,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862332,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

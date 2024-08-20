@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>When the creature bearing this <strong>symbol </strong>recovers Hit Points and/or Mind Points during conflicts, instead they only recover <strong>half </strong>the normal amount of Hit Points and/or Mind Points, respectively.</p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF149"
+    "source": "FUHF149",
+    "fuid": "symbol-of-despair"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177366191,
-    "modifiedTime": 1721091434987,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862303,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

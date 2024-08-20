@@ -17,7 +17,8 @@
       "dismiss": "<ul><li><p><strong>Thunderstorm.</strong> Choose any number of creatures you can see: each of them suffers @DMG[30 bolt] damage. This damage <strong>ignores Resistances</strong>.</p></li></ul>",
       "domains": "fog, rain, storms"
     },
-    "source": "FUCR180"
+    "source": "FUCR180",
+    "fuid": "arcanum-of-the-sky"
   },
   "effects": [
     {
@@ -80,10 +81,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710464043159,
-    "modifiedTime": 1721096443764,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180863559,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

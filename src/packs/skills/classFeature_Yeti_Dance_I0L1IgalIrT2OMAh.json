@@ -16,7 +16,8 @@
       "duration": "nextTurn",
       "description": "<p>Choose one option: you gain Resistance to <strong>ice</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>ice</strong>.</p><hr><p>@LOSS[10 mp]</p><p>@EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogSWNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuaWNlIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvbWFnaWMvZGVmZW5zaXZlL3NoaWVsZC1iYXJyaWVyLWZsYW1pbmctcGVudGFnb24tYmx1ZS53ZWJwIn0=]</p><p></p>"
     },
-    "source": "FUHF145"
+    "source": "FUHF145",
+    "fuid": "yeti-dance"
   },
   "effects": [],
   "ownership": {
@@ -31,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710176719942,
-    "modifiedTime": 1721095024107,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861974,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

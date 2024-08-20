@@ -15,7 +15,8 @@
       "trigger": "After you cover an ally with the Guard action",
       "description": "<p>That ally recovers an amount of Mind Points equal to <strong>【10 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】</strong>. If that ally is your <strong>focus</strong>, they heal from a single status effect of their choice out of <strong>dazed</strong>, <strong>enraged</strong>, and <strong>shaken</strong>.</p>"
     },
-    "source": "FUTF153"
+    "source": "FUTF153",
+    "fuid": "reassuring-presence"
   },
   "effects": [],
   "ownership": {
@@ -29,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1720885833385,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180863170,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

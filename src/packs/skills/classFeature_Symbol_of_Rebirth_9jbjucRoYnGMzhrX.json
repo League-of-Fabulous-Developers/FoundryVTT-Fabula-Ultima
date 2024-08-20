@@ -15,7 +15,8 @@
     "data": {
       "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">If the creature bearing this </span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px; color: rgb(25, 24, 19); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">symbol </strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">is about to be reduced to 0 Hit Points, they may destroy this </span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px; color: rgb(25, 24, 19); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">symbol</strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">: if they do, they are instead reduced to exactly 1 Hit Point. </span></p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF151"
+    "source": "FUHF151",
+    "fuid": "symbol-of-rebirth"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177955124,
-    "modifiedTime": 1721091490237,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861639,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

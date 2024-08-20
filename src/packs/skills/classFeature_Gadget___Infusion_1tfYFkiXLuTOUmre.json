@@ -73,7 +73,8 @@
         }
       ]
     },
-    "source": "FUCR214"
+    "source": "FUCR214",
+    "fuid": "gadget-infusion"
   },
   "img": "icons/weapons/ammunition/arrow-broadhead-bent-teal.webp",
   "effects": [],
@@ -86,7 +87,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710468163039,
-    "modifiedTime": 1723766909865,
+    "modifiedTime": 1724180861303,
     "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null

@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>The first time each target suffers damage before the start of your next turn, that damage becomes <strong>【@DATA[key.type]】</strong>. This can trigger once for each target of the verse, separately.</p>"
     },
-    "source": "FUHF139"
+    "source": "FUHF139",
+    "fuid": "menacing-tone"
   },
   "effects": [],
   "sort": 0,
@@ -29,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710040204796,
-    "modifiedTime": 1721095985130,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861572,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

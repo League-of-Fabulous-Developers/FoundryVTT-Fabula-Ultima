@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>When the creature bearing this <strong>symbol</strong> spends 1 Fabula Point to <strong>invoke a Trait or Bond</strong>, they also receive 100 zenit.</p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF150"
+    "source": "FUHF150",
+    "fuid": "symbol-of-prosperity"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177778190,
-    "modifiedTime": 1720883175471,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862025,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

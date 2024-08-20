@@ -118,7 +118,8 @@
     "opportunity": "Each flying target hit by this spell is forced to land immediately.",
     "maxTargets": {
       "value": 3
-    }
+    },
+    "fuid": "ventus"
   },
   "effects": [],
   "ownership": {
@@ -132,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706567294178,
-    "modifiedTime": 1721232027318,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864200,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

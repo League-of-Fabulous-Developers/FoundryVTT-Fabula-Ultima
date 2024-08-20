@@ -94,7 +94,8 @@
       "current": 0,
       "step": 1,
       "max": 5
-    }
+    },
+    "fuid": "swirling-swarm"
   },
   "effects": [
     {
@@ -203,10 +204,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706684737113,
-    "modifiedTime": 1721103882195,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180863892,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

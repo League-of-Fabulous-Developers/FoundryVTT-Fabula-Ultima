@@ -94,7 +94,8 @@
       "current": 0,
       "step": 1,
       "max": 6
-    }
+    },
+    "fuid": "tabula-rasa"
   },
   "effects": [
     {
@@ -149,10 +150,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706684758296,
-    "modifiedTime": 1721103929137,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180863808,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -94,7 +94,8 @@
       "current": 0,
       "step": 1,
       "max": 6
-    }
+    },
+    "fuid": "grand-summoning"
   },
   "effects": [],
   "folder": "gaT6Lef2xP8TZKnF",
@@ -110,7 +111,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706684623064,
-    "modifiedTime": 1723766968520,
+    "modifiedTime": 1724180864014,
     "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null

@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>When the creature bearing this <strong>symbol </strong>needs to spend Inventory Points during a conflict, they may instead destroy this <strong>symbol </strong>to spend no Inventory Points.</p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF149"
+    "source": "FUHF149",
+    "fuid": "symbol-of-creation"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177315373,
-    "modifiedTime": 1721091430290,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861454,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

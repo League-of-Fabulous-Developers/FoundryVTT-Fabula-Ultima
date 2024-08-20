@@ -14,7 +14,8 @@
     "data": {
       "description": "<p>You may breathe underwater and your eyes can see perfectly in dim light.</p><p>When you recover Hit Points, you recover an additional @GAIN[5 hp] and you may immediately recover from a single status effect of your choice.</p>"
     },
-    "source": "FUTF156"
+    "source": "FUTF156",
+    "fuid": "amphibia"
   },
   "effects": [],
   "ownership": {
@@ -28,10 +29,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1721092575357,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862223,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

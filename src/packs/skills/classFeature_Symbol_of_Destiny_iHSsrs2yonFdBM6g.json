@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>After the creature bearing this <strong>symbol </strong>makes a Check, if you are able to see them, you may spend 1 Fabula Point to force that creature to reroll both dice. You may only do so once per Check, and only if the Result was not a <strong>critical success</strong> or <strong>fumble</strong>.</p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF149"
+    "source": "FUHF149",
+    "fuid": "symbol-of-destiny"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177406622,
-    "modifiedTime": 1721091438805,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862905,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

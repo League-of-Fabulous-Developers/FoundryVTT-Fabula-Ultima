@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>When you create this <strong>symbol</strong>, choose a Species: <strong>beast</strong>, <strong>construct</strong>, <strong>demon</strong>, <strong>elemental</strong>, <strong>monster</strong>, <strong>plant</strong>, or <strong>undead</strong>. The creature bearing this <strong>symbol</strong> is treated as belonging to the chosen Species for the sake of Skills and effects, instead of their normal Species (this does <strong>not</strong> otherwise alter any of the creature’s profile, such as their Affinities or any special rules they may have). This <strong>symbol cannot</strong> be applied to Player Characters.</p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF150"
+    "source": "FUHF150",
+    "fuid": "symbol-of-metamorphosis"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177733002,
-    "modifiedTime": 1720883134164,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862689,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

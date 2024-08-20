@@ -17,7 +17,8 @@
       "dismiss": "<ul><li><p><strong>Blossom.</strong> Choose any number of creatures you can see (you may also choose yourself): each of them recovers from the <strong>poisoned</strong> status effect and recovers <span>@GAIN[40 hp]</span>. This amount increases to <span>@GAIN[50 hp]</span> if you are <strong>level 20 or higher</strong>, or to <span>@GAIN[60 hp]</span> if you are <strong>level 40 or higher</strong>.</p></li></ul>",
       "domains": "earth, plants, poison"
     },
-    "source": "FUCR180"
+    "source": "FUCR180",
+    "fuid": "arcanum-of-the-oak"
   },
   "effects": [
     {
@@ -80,10 +81,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710464030279,
-    "modifiedTime": 1721096408219,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862462,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

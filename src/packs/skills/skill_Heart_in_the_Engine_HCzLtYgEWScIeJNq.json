@@ -114,7 +114,8 @@
     "hasRoll": {
       "value": false
     },
-    "defense": "def"
+    "defense": "def",
+    "fuid": "heart-in-the-engine"
   },
   "effects": [],
   "ownership": {
@@ -128,10 +129,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711431286236,
-    "modifiedTime": 1721090681182,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861954,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

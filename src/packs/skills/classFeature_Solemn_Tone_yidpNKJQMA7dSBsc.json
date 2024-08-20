@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>Each target recovers from <strong>【@DATA[key.status]】</strong>. Each target also gains Resistance to <strong>【@DATA[key.type]】</strong> damage until the start of your next turn.</p>"
     },
-    "source": "FUHF139"
+    "source": "FUHF139",
+    "fuid": "solemn-tone"
   },
   "effects": [],
   "sort": 0,
@@ -29,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710040272509,
-    "modifiedTime": 1721095993412,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180863511,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

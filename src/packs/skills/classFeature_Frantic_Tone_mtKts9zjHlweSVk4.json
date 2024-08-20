@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>Each target suffers <strong>【@DATA[key.type]】</strong> damage equal to <strong>twice</strong> your current <strong>Willpower</strong> die size. This tone deals 10 extra damage if you are <strong>level 20 or higher</strong>, or 20 extra damage if you are <strong>level 40 or higher</strong>.</p>"
     },
-    "source": "FUHF139"
+    "source": "FUHF139",
+    "fuid": "frantic-tone"
   },
   "effects": [],
   "sort": 0,
@@ -29,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710039980800,
-    "modifiedTime": 1721095959999,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180863099,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

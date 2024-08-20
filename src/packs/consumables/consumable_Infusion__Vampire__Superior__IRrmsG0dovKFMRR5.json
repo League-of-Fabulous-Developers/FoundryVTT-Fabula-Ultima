@@ -22,7 +22,8 @@
     },
     "source": {
       "value": "FUCR214"
-    }
+    },
+    "fuid": "infusion-vampire-superior"
   },
   "effects": [],
   "folder": "fzwKXW1w0wvmyDbk",
@@ -38,10 +39,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1707096643714,
-    "modifiedTime": 1721099264997,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864589,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

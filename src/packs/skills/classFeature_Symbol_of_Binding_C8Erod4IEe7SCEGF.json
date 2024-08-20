@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>The <strong>current </strong>Attribute die sizes of the creature bearing this <strong>symbol </strong>can <strong>never </strong>be <strong>higher </strong>than that creature’s corresponding <strong>base </strong>Attribute die sizes (this does <strong>not</strong> end any spells or effects, but it will negate their influence over the creature’s Attributes).</p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF149"
+    "source": "FUHF149",
+    "fuid": "symbol-of-binding"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177274883,
-    "modifiedTime": 1721091418063,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861709,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

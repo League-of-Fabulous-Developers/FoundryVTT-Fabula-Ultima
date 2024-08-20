@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>Until the start of your next turn, when a target succeeds on a Check that includes <strong>【@DATA[key.attribute]】</strong> and that Check allows them to advance or turn back a Clock, they may fill or erase an additional section of that Clock.</p>"
     },
-    "source": "FUHF139"
+    "source": "FUHF139",
+    "fuid": "energetic-tone"
   },
   "effects": [],
   "sort": 0,
@@ -29,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710039830425,
-    "modifiedTime": 1721095948611,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862455,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

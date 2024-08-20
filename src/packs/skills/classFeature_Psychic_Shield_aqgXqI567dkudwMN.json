@@ -15,7 +15,8 @@
       "trigger": "After an enemy you can see performs an  Accuracy Check or a Magic Check",
       "description": "<p>You may treat your Defense and Magic Defense scores as being equal to <strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】</strong> against that Check (you may still use your normal scores if better).</p>"
     },
-    "source": "FUTF153"
+    "source": "FUTF153",
+    "fuid": "psychic-shield"
   },
   "effects": [],
   "ownership": {
@@ -29,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1720885813122,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862601,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

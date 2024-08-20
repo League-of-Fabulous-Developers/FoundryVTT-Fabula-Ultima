@@ -31,7 +31,8 @@
         "magicDefense": 2
       }
     },
-    "source": "FUTF167"
+    "source": "FUTF167",
+    "fuid": "scythe-module"
   },
   "effects": [],
   "flags": {
@@ -40,10 +41,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711474466005,
-    "modifiedTime": 1721099588685,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864741,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

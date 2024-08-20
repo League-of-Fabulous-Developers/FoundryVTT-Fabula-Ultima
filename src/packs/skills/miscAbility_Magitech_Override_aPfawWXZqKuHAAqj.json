@@ -123,7 +123,8 @@
       "value": true
     },
     "opportunity": "",
-    "defense": "def"
+    "defense": "def",
+    "fuid": "magitech-override"
   },
   "effects": [],
   "folder": "deLkolgURtb8RMPr",
@@ -141,10 +142,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711293254460,
-    "modifiedTime": 1721089499656,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862581,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

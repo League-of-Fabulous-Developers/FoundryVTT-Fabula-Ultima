@@ -15,7 +15,8 @@
       "trigger": "When an NPC becomes your focus or when you create a Bond towards an NPC",
       "description": "<p>You ask the Game Master a single question about that NPC, and the Game Master must answer truthfully. Then, describe what sensation revealed this information to you. You may use this gift <strong>only once</strong> on each NPC.</p>"
     },
-    "source": "FUTF152"
+    "source": "FUTF152",
+    "fuid": "clairvoyance"
   },
   "effects": [],
   "ownership": {
@@ -29,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1720885585442,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862278,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

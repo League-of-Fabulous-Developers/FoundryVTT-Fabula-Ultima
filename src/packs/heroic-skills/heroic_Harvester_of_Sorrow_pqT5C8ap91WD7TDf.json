@@ -94,7 +94,8 @@
       "current": 0,
       "step": 1,
       "max": 6
-    }
+    },
+    "fuid": "harvester-of-sorrow"
   },
   "effects": [],
   "flags": {
@@ -103,10 +104,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1697668153306,
-    "modifiedTime": 1721101575558,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864044,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

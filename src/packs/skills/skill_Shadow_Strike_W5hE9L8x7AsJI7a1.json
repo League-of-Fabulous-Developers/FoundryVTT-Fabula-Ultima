@@ -117,7 +117,8 @@
       "step": 1,
       "max": 6
     },
-    "defense": "def"
+    "defense": "def",
+    "fuid": "shadow-strike"
   },
   "effects": [],
   "ownership": {
@@ -131,10 +132,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706496911469,
-    "modifiedTime": 1721094062684,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862364,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

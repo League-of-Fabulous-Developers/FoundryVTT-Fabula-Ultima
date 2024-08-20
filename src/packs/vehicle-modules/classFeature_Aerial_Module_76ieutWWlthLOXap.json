@@ -15,7 +15,8 @@
       "description": "<h5>(COUNTS AS TWO ENABLED MODULES)</h5><p>This personal vehicle can fly, and its <strong>distance</strong> becomes ×3.</p><p>While you are driving this <strong>personal vehicle</strong>, your <strong>melee</strong> attacks can target <strong>flying </strong>creatures, and none of the creatures inside the <strong>personal vehicle</strong> can be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while the <strong>personal vehicle</strong> is inactive or grounded, while you are in <strong>Crisis</strong>, or while you are <strong>covering</strong> another creature with the <strong>Guard</strong> action. Additionally, if a creature aboard this <strong>personal vehicle</strong> suffers <strong>air,</strong> <strong>bolt</strong> or <strong>ice</strong> damage during a conflict, the benefits of this module cease until the start of your next turn.</p>",
       "complex": true
     },
-    "source": "FUTF168"
+    "source": "FUTF168",
+    "fuid": "aerial-module"
   },
   "effects": [],
   "flags": {
@@ -24,10 +25,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711476977290,
-    "modifiedTime": 1721099790544,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864672,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

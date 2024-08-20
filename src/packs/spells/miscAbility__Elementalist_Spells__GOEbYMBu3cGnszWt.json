@@ -125,7 +125,8 @@
       "value": false
     },
     "opportunity": "",
-    "defense": "def"
+    "defense": "def",
+    "fuid": "elementalist-spells"
   },
   "effects": [],
   "ownership": {
@@ -142,10 +143,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1708741438646,
-    "modifiedTime": 1722543501101,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180126441,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

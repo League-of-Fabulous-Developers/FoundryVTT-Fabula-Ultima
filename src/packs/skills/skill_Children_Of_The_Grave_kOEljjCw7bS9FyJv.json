@@ -112,7 +112,8 @@
       "current": 0,
       "step": 1,
       "max": 6
-    }
+    },
+    "fuid": "children-of-the-grave"
   },
   "img": "icons/magic/death/undead-skeleton-deformed-red.webp",
   "effects": [],
@@ -123,10 +124,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1684757022956,
-    "modifiedTime": 1719167596252,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+    "modifiedTime": 1724180862964,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

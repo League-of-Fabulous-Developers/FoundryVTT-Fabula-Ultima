@@ -69,7 +69,8 @@
     },
     "source": {
       "value": "FUCR190"
-    }
+    },
+    "fuid": "entropist"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist.png",
   "effects": [],
@@ -80,10 +81,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706418603805,
-    "modifiedTime": 1722656501040,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180860927,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

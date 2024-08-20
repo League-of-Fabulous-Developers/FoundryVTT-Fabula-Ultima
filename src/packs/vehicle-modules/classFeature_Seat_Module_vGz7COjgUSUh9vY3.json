@@ -15,7 +15,8 @@
       "description": "<h5>(MECHA AND STEED FRAMES ONLY)</h5><p>This <strong>personal vehicle</strong> can transport an additional human-sized passenger.</p>",
       "complex": false
     },
-    "source": "FUTF169"
+    "source": "FUTF169",
+    "fuid": "seat-module"
   },
   "effects": [],
   "flags": {
@@ -24,10 +25,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711477056500,
-    "modifiedTime": 1721100021831,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864786,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -69,7 +69,8 @@
     },
     "source": {
       "value": "FUCR210"
-    }
+    },
+    "fuid": "tinkerer"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer.png",
   "effects": [],
@@ -80,10 +81,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706416691918,
-    "modifiedTime": 1722657094613,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861005,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

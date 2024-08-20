@@ -18,7 +18,8 @@
       "moduleSlots": 3,
       "description": "<p>This <strong>personal vehicle </strong>may have up to <strong>1 weapon module</strong>, <strong>1 armor module </strong>and<strong> any number of support modules </strong>enabled.</p><p>If you use the <strong>@UUID[Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq]{Heart in the Engine}</strong> Skill with this <strong>personal vehicle</strong>, ignore the MP cost.</p>"
     },
-    "source": "FUTF165"
+    "source": "FUTF165",
+    "fuid": "steed"
   },
   "effects": [],
   "flags": {
@@ -27,10 +28,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1712878359536,
-    "modifiedTime": 1721099711319,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864744,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

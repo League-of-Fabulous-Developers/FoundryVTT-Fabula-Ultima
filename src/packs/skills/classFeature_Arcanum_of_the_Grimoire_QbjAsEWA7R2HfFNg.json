@@ -17,7 +17,8 @@
       "dismiss": "<ul><li><p><strong>Oracle.</strong> You ask the Game Master a single question. The Game Master must answer truthfully, describing the vision shown to you by the Grimoire.</p></li><li><p>Once used, this <strong>dismiss</strong> effect will not be available until the next dawn. Furthermore, the same question may never be asked more than once. The Game Master has final say on which questions are too similar to be asked again.</p></li></ul>",
       "domains": "knowledge, revelations, understanding"
     },
-    "source": "FUCR180"
+    "source": "FUCR180",
+    "fuid": "arcanum-of-the-grimoire"
   },
   "effects": [
     {
@@ -74,10 +75,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710464015009,
-    "modifiedTime": 1721096323412,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862194,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

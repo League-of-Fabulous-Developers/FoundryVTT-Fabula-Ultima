@@ -116,7 +116,8 @@
     "opportunity": "",
     "maxTargets": {
       "value": 1
-    }
+    },
+    "fuid": "hope"
   },
   "effects": [],
   "sort": 1400000,
@@ -131,10 +132,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710549080835,
-    "modifiedTime": 1721232345580,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864386,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

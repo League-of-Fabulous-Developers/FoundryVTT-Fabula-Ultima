@@ -117,7 +117,8 @@
       "step": 1,
       "max": 6
     },
-    "defense": "def"
+    "defense": "def",
+    "fuid": "high-speed"
   },
   "effects": [],
   "ownership": {
@@ -133,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706504755033,
-    "modifiedTime": 1723767008380,
+    "modifiedTime": 1724180863361,
     "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null

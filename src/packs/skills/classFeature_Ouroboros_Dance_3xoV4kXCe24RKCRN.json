@@ -16,7 +16,8 @@
       "description": "<p>Choose one ally you can see who has yet to take a turn during this round. That ally may take their turn immediately after yours during this round.</p><hr><p>@LOSS[10 mp]</p>",
       "duration": "instant"
     },
-    "source": "FUHF145"
+    "source": "FUHF145",
+    "fuid": "ouroboros-dance"
   },
   "effects": [],
   "ownership": {
@@ -31,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710176357999,
-    "modifiedTime": 1721094677227,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861382,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

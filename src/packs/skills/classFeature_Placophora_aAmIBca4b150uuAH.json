@@ -14,7 +14,8 @@
     "data": {
       "description": "<p>You may treat your Defense score as being equal to <strong>【13 + (half your Skill Level in Theriomorphosis)】</strong>(you may still use your normal scores if better).</p>"
     },
-    "source": "FUTF157"
+    "source": "FUTF157",
+    "fuid": "placophora"
   },
   "effects": [
     {
@@ -76,10 +77,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1720880159209,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862557,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

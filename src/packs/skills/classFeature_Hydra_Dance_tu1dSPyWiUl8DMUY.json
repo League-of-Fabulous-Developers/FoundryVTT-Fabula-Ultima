@@ -16,7 +16,8 @@
       "duration": "nextTurn",
       "description": "<p>After you suffer damage, choose one option: you recover @GAIN[5 hp], <strong>or</strong> you recover @GAIN[5 mp].</p><hr><p>@LOSS[10 mp]</p>"
     },
-    "source": "FUHF144"
+    "source": "FUHF144",
+    "fuid": "hydra-dance"
   },
   "effects": [],
   "ownership": {
@@ -31,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710175574863,
-    "modifiedTime": 1721094443240,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180863370,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

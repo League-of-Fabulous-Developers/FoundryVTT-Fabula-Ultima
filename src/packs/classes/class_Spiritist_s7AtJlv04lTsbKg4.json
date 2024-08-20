@@ -69,7 +69,8 @@
     },
     "source": {
       "value": "FUCR206"
-    }
+    },
+    "fuid": "spiritist"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist.png",
   "effects": [],
@@ -80,10 +81,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706418604181,
-    "modifiedTime": 1722657055284,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861047,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

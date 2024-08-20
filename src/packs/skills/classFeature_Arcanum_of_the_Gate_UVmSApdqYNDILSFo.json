@@ -17,7 +17,8 @@
       "dismiss": "<p>When you <strong>dismiss</strong> this Arcanum, choose <strong>Oblivion</strong> or <strong>Warp</strong>:</p><ul><li><p><strong>Oblivion.</strong> Choose any number of creatures you can see: each of them suffers @DMG[30 dark] damage. This damage ignores Resistances.</p></li><li><p><strong>Warp.</strong> You teleport yourself and up to five other nearby willing creatures to a location you previously visited, if that location is within <strong>1 travel day</strong>.</p></li></ul>",
       "domains": "space, travel, void"
     },
-    "source": "FUCR179"
+    "source": "FUCR179",
+    "fuid": "arcanum-of-the-gate"
   },
   "effects": [
     {
@@ -80,10 +81,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710463996976,
-    "modifiedTime": 1721096284388,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862317,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

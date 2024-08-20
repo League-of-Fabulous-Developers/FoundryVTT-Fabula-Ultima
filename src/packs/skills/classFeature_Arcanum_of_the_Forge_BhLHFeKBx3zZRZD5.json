@@ -16,7 +16,8 @@
       "dismiss": "<p>When you dismiss this Arcanum, choose Forge or Inferno:</p><ul><li><p><strong>Forge.</strong> You create a basic armor, shield, or weapon of your choice (Core Rulebook, pages 130 to 133). If you select this option again, the previously created item vanishes. If you create a weapon this way, it deals fire damage instead of physical.</p></li><li><p><strong>Inferno.</strong> Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 fire]</strong> damage. This damage ignores Resistances.</p></li></ul>",
       "domains": "fire, heat, metal"
     },
-    "source": "FUCR179"
+    "source": "FUCR179",
+    "fuid": "arcanum-of-the-forge"
   },
   "effects": [
     {
@@ -78,10 +79,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710029700564,
-    "modifiedTime": 1721096210924,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861689,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

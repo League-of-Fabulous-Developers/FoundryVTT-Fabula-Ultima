@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>Each target recovers <strong>【@DATA[key.recovery]】</strong> equal to <strong>【10 + twice your current Willpower die size】</strong>. This amount increases by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher</strong>.</p><p><span>If this tone causes MP recovery, it has <strong>no effect</strong> on the character who sings it.</span></p>"
     },
-    "source": "FUHF139"
+    "source": "FUHF139",
+    "fuid": "calm-tone"
   },
   "effects": [],
   "sort": 0,
@@ -29,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710038336377,
-    "modifiedTime": 1721095939923,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862408,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

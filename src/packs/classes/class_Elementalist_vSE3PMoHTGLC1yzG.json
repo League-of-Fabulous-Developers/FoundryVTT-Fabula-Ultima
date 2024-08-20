@@ -69,7 +69,8 @@
     },
     "source": {
       "value": "FUCR186"
-    }
+    },
+    "fuid": "elementalist"
   },
   "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist.png",
   "effects": [],
@@ -80,10 +81,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706417336064,
-    "modifiedTime": 1722656445071,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861052,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

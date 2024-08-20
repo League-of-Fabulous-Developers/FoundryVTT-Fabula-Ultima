@@ -15,7 +15,8 @@
       "trigger": "When you deal damage",
       "description": "<p>That damage becomes <strong>air</strong> or <strong>bolt</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】</strong>.</p>"
     },
-    "source": "FUTF152"
+    "source": "FUTF152",
+    "fuid": "atmokinesis"
   },
   "effects": [],
   "ownership": {
@@ -29,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1720885569633,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862154,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

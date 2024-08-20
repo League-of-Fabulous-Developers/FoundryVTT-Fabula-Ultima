@@ -17,7 +17,8 @@
       "dismiss": "<ul><li><p><strong>Judgment.</strong> Choose any number of creatures you can see: each of them suffers @DMG[30 light] damage. This damage ignores Resistances.</p></li></ul>",
       "domains": "judgment, protection, sacrifice"
     },
-    "source": "FUCR181"
+    "source": "FUCR181",
+    "fuid": "arcanum-of-the-tower"
   },
   "effects": [
     {
@@ -67,10 +68,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710464096011,
-    "modifiedTime": 1721096552148,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180863327,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

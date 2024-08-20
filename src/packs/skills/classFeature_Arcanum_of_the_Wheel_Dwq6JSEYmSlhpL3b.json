@@ -17,7 +17,8 @@
       "dismiss": "<ul><li><p><strong>Time Freeze.</strong> Choose any number of creatures you can see: each of them suffers <strong>slow</strong>. If a creature chosen this way is already <strong>slow</strong>, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</p></li></ul>",
       "domains": "destiny, speed, time"
     },
-    "source": "FUCR181"
+    "source": "FUCR181",
+    "fuid": "arcanum-of-the-wheel"
   },
   "effects": [
     {
@@ -74,10 +75,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710464120707,
-    "modifiedTime": 1721096603946,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861803,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

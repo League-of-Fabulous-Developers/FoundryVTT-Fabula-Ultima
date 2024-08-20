@@ -15,7 +15,8 @@
       "description": "<h5>(EXOSKELETON AND MECHA FRAMES ONLY)</h5><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>brute force</strong> or <strong>physical resistance</strong>.</p>",
       "complex": false
     },
-    "source": "FUTF169"
+    "source": "FUTF169",
+    "fuid": "power-module"
   },
   "effects": [],
   "flags": {
@@ -24,10 +25,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711477032123,
-    "modifiedTime": 1721099967229,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864776,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

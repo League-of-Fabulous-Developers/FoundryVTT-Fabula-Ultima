@@ -118,7 +118,8 @@
     "opportunity": "Each target hit by this spell performs one fewer action on their next turn (to a minimum of 0 actions).",
     "maxTargets": {
       "value": 3
-    }
+    },
+    "fuid": "terra"
   },
   "effects": [],
   "ownership": {
@@ -132,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706567040241,
-    "modifiedTime": 1721232022584,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864211,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

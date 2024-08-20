@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF150"
+    "source": "FUHF150",
+    "fuid": "symbol-of-flux"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177560234,
-    "modifiedTime": 1720882510532,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862325,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

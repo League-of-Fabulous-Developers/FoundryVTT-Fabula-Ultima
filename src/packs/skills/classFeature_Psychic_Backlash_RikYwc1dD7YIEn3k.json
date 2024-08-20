@@ -15,7 +15,8 @@
       "trigger": "After an enemy succeeds on an Opposed Check  against you or causes you to lose Hit Points",
       "description": "<p>That enemy loses an amount of Mind Points equal to <strong>【5 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】</strong>. Then, choose one option: that enemy suffers @EFFECT[dazed]; or that enemy suffers @EFFECT[shaken].</p>"
     },
-    "source": "FUTF153"
+    "source": "FUTF153",
+    "fuid": "psychic-backlash"
   },
   "effects": [],
   "ownership": {
@@ -29,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1720885788461,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180862254,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

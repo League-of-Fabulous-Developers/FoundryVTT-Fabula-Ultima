@@ -68,7 +68,8 @@
     "subtype": {},
     "showTitleCard": {
       "value": false
-    }
+    },
+    "fuid": "necromancer"
   },
   "effects": [],
   "flags": {
@@ -77,10 +78,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1684756578950,
-    "modifiedTime": 1722656973646,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861025,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

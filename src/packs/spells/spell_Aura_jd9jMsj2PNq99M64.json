@@ -118,7 +118,8 @@
     "opportunity": "",
     "maxTargets": {
       "value": 3
-    }
+    },
+    "fuid": "aura"
   },
   "effects": [],
   "ownership": {
@@ -132,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706571961584,
-    "modifiedTime": 1721232275571,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864317,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

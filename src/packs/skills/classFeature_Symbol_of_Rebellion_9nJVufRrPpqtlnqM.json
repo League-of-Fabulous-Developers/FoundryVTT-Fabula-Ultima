@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>If a <strong>Villain</strong> is present on the scene, any Opposed Checks made by the creature bearing this <strong>symbol</strong> trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF151"
+    "source": "FUHF151",
+    "fuid": "symbol-of-rebellion"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177904614,
-    "modifiedTime": 1720883680917,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861653,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

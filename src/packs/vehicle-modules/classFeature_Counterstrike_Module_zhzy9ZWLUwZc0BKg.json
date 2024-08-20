@@ -15,7 +15,8 @@
       "description": "<p>After a creature aboard this <strong>personal vehicle</strong> is hit by a <strong>ranged</strong> attack, if you are driving this <strong>vehicle</strong>, you may spend @LOSS[1 ip]. If you do, the attacker suffers @DMG[10 physical] damage (after their attack has been resolved). This amount increases by 5 damage if you are <strong>level 20 or higher</strong>, or by 10 damage if you are <strong>level 40 or higher</strong>.</p>",
       "complex": false
     },
-    "source": "FUTF168"
+    "source": "FUTF168",
+    "fuid": "counterstrike-module"
   },
   "effects": [],
   "flags": {
@@ -24,10 +25,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711477001797,
-    "modifiedTime": 1721099827151,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864798,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>Spells with a <strong>target</strong> of “Up to three creatures” cast by the creature bearing this <strong>symbol</strong> have a <strong>target</strong> of “Up to four creatures” instead. The creature still needs to spend additional Mind Points for a fourth target.</p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF150"
+    "source": "FUHF150",
+    "fuid": "symbol-of-growth"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177680940,
-    "modifiedTime": 1720883062592,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861748,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

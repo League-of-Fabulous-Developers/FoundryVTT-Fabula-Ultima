@@ -24,7 +24,8 @@
       },
       "description": ""
     },
-    "source": "FUTF165"
+    "source": "FUTF165",
+    "fuid": "heavy-plating-module"
   },
   "effects": [],
   "flags": {
@@ -33,10 +34,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711473944656,
-    "modifiedTime": 1719173179841,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+    "modifiedTime": 1724180864729,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -16,7 +16,8 @@
       "description": "<p>Choose one option: you gain Resistance to <strong>air</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>air</strong>.</p><hr><p>@LOSS[10 mp] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogQWlyIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuYWlyIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvbWFnaWMvZGVmZW5zaXZlL3NoaWVsZC1iYXJyaWVyLWZsYW1pbmctcGVudGFnb24tdGVhbC1wdXJwbGUud2VicCJ9]</p>",
       "duration": "nextTurn"
     },
-    "source": "FUHF144"
+    "source": "FUHF144",
+    "fuid": "griffin-dance"
   },
   "effects": [],
   "ownership": {
@@ -31,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710175496075,
-    "modifiedTime": 1721094405938,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180861413,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

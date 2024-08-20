@@ -15,7 +15,8 @@
     "data": {
       "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> suffers 5 extra damage from sources dealing damage of the chosen type.</p><hr><p>@LOSS[2 ip]</p>"
     },
-    "source": "FUHF151"
+    "source": "FUHF151",
+    "fuid": "symbol-of-weakness"
   },
   "effects": [],
   "ownership": {
@@ -30,10 +31,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710178202872,
-    "modifiedTime": 1720883994865,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180863065,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -15,7 +15,8 @@
       "description": "<h5>(EXOSKELETON AND MECHA FRAMES ONLY)</h5><p>Each time you enable this module on your <strong>personal vehicle</strong>, choose one <strong>disabled weapon module</strong>. As long as the chosen module is disabled and this module is enabled, you may use an action to perform a <strong>free attack</strong> with that <strong>weapon module</strong>.</p>",
       "complex": false
     },
-    "source": "FUTF169"
+    "source": "FUTF169",
+    "fuid": "secondary-offensive-module"
   },
   "effects": [],
   "flags": {
@@ -24,10 +25,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711477104179,
-    "modifiedTime": 1721100041042,
-    "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+    "modifiedTime": 1724180864679,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null
   },
