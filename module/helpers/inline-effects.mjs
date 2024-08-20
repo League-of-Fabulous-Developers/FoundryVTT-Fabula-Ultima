@@ -274,7 +274,7 @@ possible changes from official effects:
 - apply vulnerability (custom) ✔
 - grant immunity (upgrade) ✔
 - grant absorption (custom) ✔
-- grant status immunity (override)
+- grant status immunity (override) ✔
 - change attack damage type (override)
 - grant additional actions (add) -> missing data field
 - lower crit threshold (override) -> not yet supported
@@ -288,6 +288,7 @@ possible changes from official effects:
  */
 
 const damageTypes = (({ untyped, ...rest }) => rest)(FU.damageTypes);
+const temporaryEffects = (({ ...rest }) => rest)(FU.temporaryEffects);
 
 /**
  *
@@ -422,6 +423,18 @@ const SUPPORTED_CHANGE_TYPES = {
 			key: `system.affinities.${damageType}.current`,
 			mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
 			value: String(FU.affValue.absorption),
+		}),
+	},
+	immunityStatus: {
+		label: 'FU.InlineEffectConfigGrantStatusEffectImmunity',
+		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-status-effects.hbs',
+		templateData: {
+			temporaryEffects: temporaryEffects,
+		},
+		toChange: ({ temporaryEffect }) => ({
+			key: `system.immunities.${temporaryEffect}.base`,
+			mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+			value: true,
 		}),
 	},
 };

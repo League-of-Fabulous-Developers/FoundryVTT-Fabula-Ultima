@@ -44,7 +44,7 @@ env:
 
     # The URL to the module archive associated with the module release being
     # processed by this workflow.
-    release_system_url: 'https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/fabulaultima.zip'
+    release_system_url: 'https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/projectfu.zip'
 
 on:
     # Only run this workflow when a release is published.
@@ -106,7 +106,7 @@ jobs:
               run: npm run pullYMLtoLDB
               working-directory: ./tools
 
-            # Create a "fabulaultima.zip" archive containing all the system's required files.
+            # Create a "projectfu.zip" archive containing all the system's required files.
             # If you have other directories or files that will need to be added to
             # your packaged system, add them here.
             - name: Create System Archive
@@ -117,7 +117,7 @@ jobs:
                     `# Options`                          \
                     --recurse-paths                      \
                     `# The name of the output file`      \
-                     ./fabulaultima.zip                  \
+                     ./projectfu.zip                  \
                     `# The files that will be included.` \
                     template.json                        \
                     system.json                          \
@@ -144,6 +144,6 @@ jobs:
                   draft: ${{ github.event.release.unpublished }}
                   prerelease: ${{ github.event.release.prerelease }}
                   token: ${{ secrets.GITHUB_TOKEN }}
-                  artifacts: './system.json, ./fabulaultima.zip'
+                  artifacts: './system.json, ./projectfu.zip'
                   tag: ${{ github.event.release.tag_name }}
                   body: ${{ github.event.release.body }}

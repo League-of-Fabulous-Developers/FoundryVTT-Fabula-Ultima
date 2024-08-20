@@ -99,6 +99,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/app/app-group-check.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-attribute.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
+		'systems/projectfu/templates/app/partials/inline-effect-config-modify-status-effects.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-damage-bonuses.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-accuracy.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-defenses.hbs',
