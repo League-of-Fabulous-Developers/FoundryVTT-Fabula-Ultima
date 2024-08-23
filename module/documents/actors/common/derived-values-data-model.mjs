@@ -56,15 +56,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 					equipmentDef += shieldModule.system.data.shield.defense;
 					equipmentMdef += shieldModule.system.data.shield.magicDefense;
 				});
-		} else if (equippedItems.offHand) {
-			const offHandItem = actor.items.get(equippedItems.offHand);
-			if (offHandItem && offHandItem.type === 'shield') {
-				equipmentDef += offHandItem.system.def.value;
-				equipmentMdef += offHandItem.system.mdef.value;
-			}
-		}
-
-		if (equippedItems.mainHand) {
+		} else if (equippedItems.mainHand) {
 			const mainHandItem = actor.items.get(equippedItems.mainHand);
 			if (mainHandItem && mainHandItem.type === 'shield') {
 				equipmentDef += mainHandItem.system.def.value;
@@ -72,11 +64,43 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 			}
 		}
 
+		if (equippedItems.offHand) {
+			const offHandItem = actor.items.get(equippedItems.offHand);
+			if (offHandItem && offHandItem.type === 'shield') {
+				equipmentDef += offHandItem.system.def.value;
+				equipmentMdef += offHandItem.system.mdef.value;
+			}
+		}
+
 		let defCalculation;
 		let mdefCalculation;
 
+		// Find the equipped armor
+		/** @type FUItem */
 		const armor = actor.items.get(equippedItems.armor);
-		if (armor) {
+		if (vehicle && vehicle.armorActive) {
+			/** @type ArmorModuleDataModel */
+			const armorData = vehicle.armor.system.data;
+
+			equipmentDef += armorData.defense.modifier;
+			equipmentMdef += armorData.magicDefense.modifier;
+
+			if (armorData.martial) {
+				defCalculation = function () {
+					return equipmentDef + data.def.bonus;
+				};
+				mdefCalculation = function () {
+					return equipmentMdef + data.mdef.bonus;
+				};
+			} else {
+				defCalculation = function () {
+					return (attributes[armorData.defense.attribute]?.current ?? 0) + equipmentDef + data.def.bonus;
+				};
+				mdefCalculation = function () {
+					return (attributes[armorData.magicDefense.attribute]?.current ?? 0) + equipmentMdef + data.mdef.bonus;
+				};
+			}
+		} else if (armor) {
 			const armorData = armor.system;
 
 			equipmentDef += armorData.def.value;
