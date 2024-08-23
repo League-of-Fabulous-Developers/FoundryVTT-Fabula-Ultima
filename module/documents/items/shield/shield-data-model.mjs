@@ -1,12 +1,9 @@
 import { FU, SYSTEM } from '../../../helpers/config.mjs';
-import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
 import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
-import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 
 /**
  * @param {Check} check
@@ -78,7 +75,6 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {number} cost.value
  * @property {boolean} isMartial.value
  * @property {string} quality.value
- * @property {IsEquippedDataModel} isEquipped
  * @property {number} def.value
  * @property {number} mdef.value
  * @property {number} init.value
@@ -93,7 +89,6 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {DamageType} damageType.value
  * @property {boolean} isBehavior.value
  * @property {number} weight.value
- * @property {boolean} isDualShield.value
  * @property {string} source.value
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  */
@@ -110,7 +105,6 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
 			quality: new SchemaField({ value: new StringField() }),
-			isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
 			def: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			mdef: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
@@ -125,7 +119,6 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 			damageType: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			isDualShield: new SchemaField({ value: new BooleanField() }),
 			source: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({
 				useWeapon: new SchemaField({
@@ -136,18 +129,6 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	transferEffects() {
-		return this.isEquipped.value && !this.parent.actor?.system.vehicle.weaponsActive;
-	}
-
-	/**
-	 * @param {KeyboardModifiers} modifiers
-	 * @return {Promise<void>}
-	 */
-	async roll(modifiers) {
-		if (this.isDualShield.value) {
-			return ChecksV2.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
-		} else {
-			return ChecksV2.display(this.parent.actor, this.parent);
-		}
+		return !this.parent.actor?.system.vehicle.weaponsActive;
 	}
 }

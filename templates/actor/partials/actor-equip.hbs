@@ -1,13 +1,16 @@
-{{#if item.system.isEquipped}}
-    <div class="item-xs equipped-icon-container">
-        <a class="item-control item-equip" data-slot="{{ item.system.isEquipped.slot }}" {{#if
-         item.system.isEquipped.value}} data-tooltip="{{ localize 'FU.UnequipItem' }}" {{else}}
-           data-tooltip="{{ localize 'FU.EquipItem' }}" {{/if}}>
-            {{#if item.system.isEquipped.value}}
-                <i class="{{ getIconClass item }} ra-1xh"></i>
-            {{else}}
-                <i class="far fa-circle ra-1xh"></i>
-            {{/if}}
-        </a>
-    </div>
+{{#if (getSlot item)}}
+  <div class="item-xs equipped-icon-container">
+    <a class="item-control item-equip" data-slot="{{ getSlot item }}" 
+       {{#if (isItemEquipped item @root.actor.system.equipped) }} 
+           data-tooltip="{{ localize 'FU.UnequipItem' }}" 
+       {{else}} 
+           data-tooltip="{{ localize 'FU.EquipItem' }}" 
+       {{/if}}>
+      {{#if (isItemEquipped item @root.actor.system.equipped)}}
+        <i class="{{ getIconClass item @root.actor.system.equipped }}"></i>
+      {{else}}
+        <i class="far fa-circle ra-1xh"></i>
+      {{/if}}
+    </a>
+  </div>
 {{/if}}

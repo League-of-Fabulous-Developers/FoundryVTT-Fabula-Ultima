@@ -317,12 +317,12 @@ export async function applyExtraDamage(targets, damageType, total, modifiers, so
 }
 
 function getSingleTarget(e) {
+	// eslint-disable-next-line no-unused-vars, no-undef
 	const { type, id } = parseUuid($(e.target).closest('a').data('id'));
 	const actor = game.actors.get(id);
 	if (!actor) {
 		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });
 		return [];
-
 	}
 	return [actor];
 }

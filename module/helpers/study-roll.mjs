@@ -81,7 +81,7 @@ export async function handleStudyRoll(app) {
 			default: 'ok',
 		},
 		{
-			classes: ['dialog', 'backgroundstyle'],
+			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		},
 	);
 

@@ -243,7 +243,7 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
 		},
 		{
 			width: 440,
-			classes: ['dialog', 'backgroundstyle'],
+			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 		},
 	).render(true);
 }

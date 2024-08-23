@@ -29,7 +29,7 @@
 
 .items-main-header {
 	height: 34px;
-	margin: 2px 2px 7px 2px;
+	margin: 5px;
 	padding-right: 2px;
 	display: flex;
 	flex-direction: row;
@@ -66,7 +66,7 @@
 	border: thin $color-shadow-inverted;
 	background: linear-gradient($color-tabStyle-gradient);
 	border-radius: 8px 30px 5px 5px;
-	padding: 4px;
+	padding: 5px;
 
 	&.items-label {
 		margin: 5em;
@@ -137,85 +137,21 @@
 
 	&.armor-hand {
 		width: 10.5em;
-		border-radius: 8px 30px 5px 5px;
+		border-radius: 4px;
 		font-size: 0.875rem;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 		white-space: normal;
 		text-overflow: ellipsis;
-		padding: 4px 14px 0px 0;
-		text-align: right;
+		text-align: left;
 
 		.equipped-item {
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			max-width: 100%;
-			margin-left: 10px;
-			gap: 2px;
-		}
-	}
-
-	&.acc-hand {
-		width: 10.5em;
-		border-radius: 40px 8px 5px 5px;
-		font-size: 0.875rem;
-		box-sizing: border-box;
-		white-space: normal;
-		text-overflow: ellipsis;
-		padding: 4px 4px 0px 0;
-
-		.equipped-item {
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			max-width: 100%;
-			margin-left: 10px;
-			gap: 2px;
-		}
-	}
-
-	&.left-hand {
-		height: inherit;
-		width: 13em;
-		border-radius: 0 0 4px 40px;
-		font-size: 0.875rem;
-		white-space: normal;
-		padding: 5px;
-		margin: 0;
-
-		.equipped-item {
-			position: relative;
+			margin: 0;
 			display: flex;
-			align-items: center;
-			white-space: nowrap;
-			justify-content: flex-end;
-			gap: 2px;
-		}
-
-		.equipped-item-content {
-			text-overflow: ellipsis;
-			overflow: hidden;
-			max-width: 79%;
-			margin-left: 10px;
-		}
-	}
-
-	&.right-hand {
-		height: inherit;
-		width: 13em;
-		border-radius: 0 0 40px 0px;
-		font-size: 0.875rem;
-		white-space: normal;
-		padding: 5px;
-		margin: 0;
-
-		.equipped-item {
-			position: relative;
-			display: flex;
-			align-items: center;
-			white-space: nowrap;
-			gap: 2px;
 		}
 
 		.equipped-item-content {
@@ -223,6 +159,154 @@
 			overflow: hidden;
 			max-width: 70%;
 			margin: 0 2px;
+			width: 100%;
+		}
+	}
+
+	&.acc-hand {
+		width: 10.5em;
+		border-radius: 4px;
+		font-size: 0.875rem;
+		box-sizing: border-box;
+		white-space: normal;
+		text-overflow: ellipsis;
+		text-align: left;
+
+		.equipped-item {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100%;
+			margin: 0;
+			display: flex;
+		}
+
+		.equipped-item-content {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			max-width: 70%;
+			margin: 0 2px;
+			width: 100%;
+		}
+	}
+
+	&.two-hand {
+		height: inherit;
+		width: 13em;
+		border-radius: 4px;
+		font-size: 0.875rem;
+		white-space: normal;
+		margin: 0;
+		text-align: left;
+
+		.equipped-item {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100%;
+			margin: 0;
+			display: flex;
+			.icon-letter {
+				margin-left: -10px;
+			}
+		}
+
+		.equipped-item-content {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			max-width: 70%;
+			margin: 0 2px;
+			width: 100%;
+		}
+	}
+
+	&.left-hand {
+		height: inherit;
+		width: 13em;
+		border-radius: 4px;
+		font-size: 0.875rem;
+		white-space: normal;
+		margin: 0;
+		text-align: left;
+
+		.equipped-item {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100%;
+			margin: 0;
+			display: flex;
+			.icon-letter {
+				margin-left: -10px;
+			}
+		}
+
+		.equipped-item-content {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			max-width: 70%;
+			margin: 0 2px;
+			width: 100%;
+		}
+	}
+
+	&.right-hand {
+		height: inherit;
+		width: 13em;
+		border-radius: 4px;
+		font-size: 0.875rem;
+		white-space: normal;
+		margin: 0;
+		text-align: left;
+
+		.equipped-item {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100%;
+			margin: 0;
+			display: flex;
+			.icon-letter {
+				margin-left: -10px;
+			}
+		}
+
+		.equipped-item-content {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			max-width: 70%;
+			margin: 0 2px;
+			width: 100%;
+		}
+	}
+
+	&.phantom-hand {
+		width: auto;
+		max-width: 32px;
+		border-radius: 4px;
+		font-size: 0.875rem;
+		white-space: normal;
+		margin: 0;
+		text-align: left;
+		padding: 0.5em;
+
+		.equipped-item {
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			max-width: 100%;
+			margin: 0;
+			display: flex;
+			.icon-letter {
+				margin-left: -10px;
+			}
+		}
+
+		.equipped-item-content {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			max-width: 70%;
+			margin: 0 2px;
+			width: 100%;
 		}
 	}
 }
@@ -233,7 +317,7 @@
 	color: $color-primary;
 	padding: 0 2px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 10px;
 	margin: 0;
 	flex: 0 0 16px;
 	text-align: center;

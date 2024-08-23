@@ -2,6 +2,7 @@ import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEff
 import { createChatMessage, promptCheck } from '../helpers/checks.mjs';
 import { promptItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
+import { EquipmentHandler } from '../helpers/equipment-handler.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
 import { handleStudyRoll } from '../helpers/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
@@ -539,79 +540,17 @@ export class FUStandardActorSheet extends ActorSheet {
 			this._onProgressReset(ev, dataType);
 		});
 
-		/**
-		 * Handles item click events, equipping or unequipping items based on the click type.
-		 *
-		 * @param {Event} ev - The click event triggering the item click.
-		 * @param {boolean} isRightClick - Indicates if the item click is a right-click event.
-		 * @returns {void}
-		 */
-		function handleItemClick(ev, isRightClick) {
-			const li = $(ev.currentTarget).parents('.item');
-			const itemId = li.data('itemId');
-			const item = this.actor.items.get(itemId);
-			const itemType = item.system.type;
-			const handType = item.system.hands;
+		// Create an instance of EquipmentHandler
+		const equipmentHandler = new EquipmentHandler(this.actor);
 
-			// Determine the slot based on item type
-			const slotLookup = {
-				weapon: isRightClick ? 'offHand' : 'mainHand',
-				shield: isRightClick ? 'offHand' : 'mainHand',
-				armor: 'armor',
-				accessory: 'accessory',
-			};
-
-			const slot = slotLookup[item.type] || 'default';
-
-			// Unequip all items in the same slot
-			this.actor.items.forEach((i) => {
-				if (i.system.isEquipped && i.system.isEquipped.slot === slot) {
-					i.update({
-						'system.isEquipped.value': false,
-						'system.isEquipped.slot': 'default',
-					});
-				}
-			});
-
-			// Equip the selected item
-			item.update({
-				'system.isEquipped.value': true,
-				'system.isEquipped.slot': slot,
-			});
-
-			// Update the HTML icon based on the equipped item
-			const icon = li.find('.item-icon');
-			icon.removeClass('fa-circle').addClass(getIconClassForEquippedItem(item, itemType, handType));
-
-			// Prevent the default right-click context menu if it's a right-click event
-			if (isRightClick) {
+		// Event bindings for handling clicks
+		html.find('.item-equip').on('click', (ev) => equipmentHandler.handleItemClick(ev, 'left'));
+		html.find('.item-equip').on('contextmenu', (ev) => equipmentHandler.handleItemClick(ev, 'right'));
+		html.find('.item-equip').on('mousedown', (ev) => {
+			if (ev.ctrlKey && ev.which === 1) {
+				equipmentHandler.handleItemClick(ev, 'ctrl');
 				ev.preventDefault();
 			}
-		}
-
-		// Helper function to get the icon class for an equipped item
-		function getIconClassForEquippedItem(item, itemType, handType) {
-			if (item.system.isEquipped.slot === 'mainHand' && itemType === 'weapon' && handType === 'two-handed') {
-				return 'ra ra-relic-blade ra-2x';
-			} else if (item.system.isEquipped.slot === 'mainHand' && itemType === 'weapon' && handType === 'one-handed') {
-				return 'ra ra-sword ra-2x';
-			} else if (item.system.isEquipped.slot === 'offHand' && itemType === 'weapon') {
-				return 'ra ra-sword ra-flip-horizontal ra-2x';
-			} else if (item.system.isEquipped.slot === 'mainHand') {
-				return item.type === 'shield' && item.system.isDualShield && item.system.isDualShield.value ? 'ra ra-heavy-shield' : 'ra ra-shield';
-			} else if (item.system.isEquipped.slot === 'offHand') {
-				return 'ra ra-shield';
-			} else {
-				return 'fas fa-circle';
-			}
-		}
-
-		html.find('.item-equip').on('click', (ev) => {
-			handleItemClick.call(this, ev, false);
-		});
-
-		html.find('.item-equip').on('contextmenu', (ev) => {
-			handleItemClick.call(this, ev, true);
 		});
 
 		const animDuration = 250;
@@ -1571,18 +1510,19 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 		}
 
-		// Handle item-slot rolls.
+		// Handle item-slot rolls using the new equip structure.
 		if (dataset.rollType === 'item-slot') {
-			// Get the actor that owns the item
-			const actor = this.actor;
-			// Get the items that belong to the actor
-			const items = actor.items;
+			// Get the actor's equipped data
+			const equippedData = this.actor.system.equipped;
+			let slot;
+
 			// Determine the slot based on the header element class
-			let slot = '';
 			if (element.classList.contains('left-hand')) {
 				slot = 'mainHand';
 			} else if (element.classList.contains('right-hand')) {
 				slot = 'offHand';
+			} else if (element.classList.contains('phantom-hand')) {
+				slot = 'phantom';
 			} else if (element.classList.contains('acc-hand')) {
 				slot = 'accessory';
 			} else if (element.classList.contains('armor-hand')) {
@@ -1590,19 +1530,22 @@ export class FUStandardActorSheet extends ActorSheet {
 			} else {
 				slot = 'default';
 			}
-			// Filter the items by their equipped slot
-			const sameSlotItems = items.filter((i) => i.system.isEquipped && i.system.isEquipped.slot === slot);
-			// Get the first item from the filtered collection
-			const item = sameSlotItems.find((i) => true);
+
+			// Get the item ID from the equipped slot
+			const itemId = equippedData[slot];
+
+			// Retrieve the item from the actor's items using the item ID
+			const item = this.actor.items.get(itemId);
 
 			// Check if the item exists and call its roll method
-			if (item)
+			if (item) {
 				return item.roll({
 					shift: isShift,
 					alt: event.altKey,
 					ctrl: event.ctrlKey,
 					meta: event.metaKey,
 				});
+			}
 		}
 
 		// Handle affinity-type rolls

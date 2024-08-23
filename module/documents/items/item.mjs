@@ -61,11 +61,10 @@ export class FUItem extends Item {
 	 * @property {string} qualityString - The weapon's quality description.
 	 */
 	getWeaponDisplayData(actor) {
-		const isWeaponOrShieldWithDual = this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value);
+		const isWeapon = this.type === 'weapon';
 		const isBasic = this.type === 'basic';
-		const isShield = this.type === 'shield' && !this.system.isDualShield?.value;
 		// Check if this item is not a weapon or not a weapon/shield with dual
-		if (!isBasic && !isWeaponOrShieldWithDual && !isShield) {
+		if (!isBasic && !isWeapon) {
 			return false;
 		}
 
@@ -103,14 +102,12 @@ export class FUItem extends Item {
 
 		const damageString = `【${hrZeroText} ${damageTotal}】 ${damageTypeValue}`;
 
-		if (isWeaponOrShieldWithDual) {
+		if (isWeapon) {
 			detailString = [attackString, damageString].filter(Boolean).join('⬥');
 			qualityString = [translate(this.system.category?.value), translate(this.system.hands?.value), translate(this.system.type?.value), qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
 			detailString = [attackString, damageString].filter(Boolean).join('⬥');
 			qualityString = [attackString, damageString, qualText].filter(Boolean).join(' ⬥ ');
-		} else if (isShield) {
-			qualityString = [qualText].filter(Boolean).join(' ⬥ ');
 		}
 
 		return {
@@ -202,15 +199,13 @@ export class FUItem extends Item {
 			return game.i18n.localize(allTranslations?.[string] ?? string);
 		}
 
-		let weaponMain = null;
-		const equippedWeapons = this.actor.items.filter(
-			(singleItem) => (singleItem.type === 'weapon' || singleItem.type === 'basic' || (singleItem.type === 'shield' && singleItem.system.isDualShield?.value)) && singleItem.system.isEquipped?.value,
-		);
-		for (const equippedWeapon of equippedWeapons) {
-			if (equippedWeapon.system.isEquipped.slot === 'mainHand') {
-				weaponMain = equippedWeapon;
-			}
-		}
+		// Get the equipped item IDs from the actor's system
+		const equipped = this.actor.system.equipped || {};
+		const mainHandId = equipped.mainHand;
+
+		// Find the main hand weapon by its ID
+		let weaponMain = mainHandId ? this.actor.items.get(mainHandId) : null;
+
 		const hasRoll = this.system.hasRoll?.value;
 		const hasDamage = this.system.rollInfo?.damage?.hasDamage.value;
 		const usesWeapons = this.system.rollInfo?.useWeapon?.accuracy.value;
@@ -270,7 +265,7 @@ export class FUItem extends Item {
 		let content = '';
 
 		const hasImpDamage = item.type === 'ritual' && item.system.rollInfo?.impdamage?.hasImpDamage?.value;
-		const isWeapon = item.type === 'weapon' || item.type === 'basic' || (item.type === 'shield' && item.system.isDualShield?.value);
+		const isWeapon = item.type === 'weapon' || item.type === 'basic';
 		const hasDamage = isWeapon || (['spell', 'skill', 'miscAbility'].includes(item.type) && item.system.rollInfo?.damage?.hasDamage?.value);
 
 		// Determine bonuses
@@ -455,10 +450,8 @@ export class FUItem extends Item {
 
 	async getRollString(isShift) {
 		const isSpellOrSkill = ['spell', 'skill', 'miscAbility', 'ritual'].includes(this.type);
-
-		const isWeaponOrShieldWithDual = this.type === 'weapon' || this.type === 'basic' || (this.type === 'shield' && this.system.isDualShield?.value);
-
-		const hasRoll = isWeaponOrShieldWithDual || (isSpellOrSkill && this.system.hasRoll?.value);
+		const isWeapon = this.type === 'weapon' || this.type === 'basic';
+		const hasRoll = isWeapon || (isSpellOrSkill && this.system.hasRoll?.value);
 
 		let mainHandContent = '';
 		let offHandContent = '';
@@ -469,21 +462,28 @@ export class FUItem extends Item {
 			const usesWeapons = isSpellOrSkill && (this.system.rollInfo?.useWeapon?.accuracy?.value || this.system.rollInfo?.useWeapon?.damage?.value);
 
 			if (usesWeapons) {
-				const equippedWeapons = this.actor.items.filter(
-					(singleItem) => (singleItem.type === 'weapon' || singleItem.type === 'basic' || (singleItem.type === 'shield' && singleItem.system.isDualShield?.value)) && singleItem.system.isEquipped?.value,
-				);
+				// Retrieve equipped item IDs from the actor's system
+				const equipped = this.actor.system.equipped || {};
+				const mainHandId = equipped.mainHand;
+				const offHandId = equipped.offHand;
+
+				// Get all equipped weapons
+				const equippedWeapons = this.actor.items.filter((singleItem) => singleItem.type === 'weapon' || (singleItem.type === 'basic' && singleItem.system.isEquipped?.value));
 
 				for (const equippedWeapon of equippedWeapons) {
 					const [data, roll] = await this.getSingleRollForItem(equippedWeapon, true, isShift);
-					if (equippedWeapon.system.isEquipped.slot === 'mainHand') {
+
+					// Determine if the weapon is equipped in the main hand or off hand
+					if (equippedWeapon.id === mainHandId) {
 						mainHandContent += data;
 						rolls.push(roll);
-					} else if (equippedWeapon.system.isEquipped.slot === 'offHand') {
+					} else if (equippedWeapon.id === offHandId) {
 						offHandContent += data;
 						rolls.push(roll);
 					}
 				}
 
+				// Handle the content if no weapons are equipped
 				if (mainHandContent === '' && offHandContent === '') {
 					mainHandContent = "<div style='display:none;'>";
 					offHandContent = "<div style='display:none;'>";
@@ -495,6 +495,7 @@ export class FUItem extends Item {
 				mainHandContent = `<p class="mainhand-header">Main: ${mainHandContent}</p>`;
 				offHandContent = `<p class="offhand-header">Off: ${offHandContent}</p>`;
 			} else {
+				// Handle non-weapon rolls
 				const [content, roll] = await this.getSingleRollForItem(null, false, isShift);
 				otherContent = content;
 				rolls.push(roll);
@@ -535,9 +536,9 @@ export class FUItem extends Item {
 
 		// Prepare tags for category, hands, and type, always showing for 'weapon' or dual shield
 		const tags = [
-			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.category?.value ? `<div class="fu-tag">${capitalizeFirst(this.system.category.value)}</div>` : '',
-			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.hands?.value ? `<div class="fu-tag">${capitalizeFirst(this.system.hands.value)}</div>` : '',
-			(this.type === 'weapon' || (this.type === 'shield' && this.system.isDualShield?.value)) && this.system.type?.value ? `<div class="fu-tag">${capitalizeFirst(this.system.type.value)}</div>` : '',
+			this.type === 'weapon' && this.system.category?.value ? `<div class="fu-tag">${capitalizeFirst(this.system.category.value)}</div>` : '',
+			this.type === 'weapon' && this.system.hands?.value ? `<div class="fu-tag">${capitalizeFirst(this.system.hands.value)}</div>` : '',
+			this.type === 'weapon' && this.system.type?.value ? `<div class="fu-tag">${capitalizeFirst(this.system.type.value)}</div>` : '',
 			['shield', 'armor', 'accessory'].includes(this.type) && this.system.def?.value >= 0 ? `<div class="fu-tag">${game.i18n.localize('FU.DefenseAbbr')} ${this.system.def.value}</div>` : '',
 			['shield', 'armor', 'accessory'].includes(this.type) && this.system.mdef?.value >= 0 ? `<div class="fu-tag">${game.i18n.localize('FU.MagicDefenseAbbr')} ${this.system.mdef.value}</div>` : '',
 			['shield', 'armor', 'accessory'].includes(this.type) && this.system.init?.value >= 0 ? `<div class="fu-tag">${game.i18n.localize('FU.InitiativeAbbr')} ${this.system.init.value}</div>` : '',
@@ -576,6 +577,55 @@ export class FUItem extends Item {
 		const tags = [`<div class="fu-tag">${mpCost?.value || 'Mp Cost'} MP</div>`, `<div class="fu-tag">${dLevel?.value || 'Difficulty Level'} DL</div>`, `<div class="fu-tag">Clock ${clock?.value || 'Clock'}</div>`].join('');
 
 		return tags ? `<div class="fu-tags">${tags}</div>` : '';
+	}
+
+	async getClockDataString() {
+		// Check if the item type is 'ritual'
+		if (this.type !== 'ritual' && this.type !== 'miscAbility') {
+			return '';
+		}
+
+		const { progress, hasClock } = this.system;
+
+		// Generate and reverse the progress array
+		this.progressArr = this.generateProgressArray(progress);
+
+		// Determine clock display status
+		const clockDisplay = hasClock.value
+			? await renderTemplate('systems/projectfu/templates/chat/chat-progress-clock.hbs', {
+					arr: this.progressArr,
+					data: progress,
+				})
+			: '';
+
+		// Create HTML content
+		const content = `
+			<div style="display: grid;">
+				${
+					hasClock.value
+						? `
+					<fieldset class="title-fieldset desc" style="margin: 5px 0;">
+						<legend class="resource-label-m" aria-describedby="tooltip">
+							<span class="resource-label-m" style="width: 4.5em;">
+								${game.i18n.localize('FU.Clock')}
+							</span>
+						</legend>
+						<div class="unique-clock">${clockDisplay}</div>
+					</fieldset>
+				`
+						: ''
+				}
+			</div>
+		`;
+		return content;
+	}
+
+	// Helper function to generate progress array
+	generateProgressArray(progress) {
+		return Array.from({ length: progress.max }, (_, i) => ({
+			id: i + 1,
+			checked: parseInt(progress.current) === i + 1,
+		})).reverse();
 	}
 
 	getSpellDataString() {
@@ -717,9 +767,6 @@ export class FUItem extends Item {
 		if (this.type === 'basic') {
 			return this.rollBasic(isShift);
 		}
-		if (this.type === 'shield' && this.system.isDualShield.value) {
-			return this.rollWeapon(isShift);
-		}
 		if ((this.type === 'miscAbility' || this.type === 'skill') && this.system.hasRoll.value) {
 			return this.rollAbility(isShift);
 		}
@@ -774,6 +821,7 @@ export class FUItem extends Item {
 	}
 
 	async createChatMessage(item, isShift) {
+		const clockString = await item.getClockDataString();
 		const chatdesc = item.getDescriptionString();
 		const [attackData, rolls] = await item.getRollString(isShift);
 		const spellString = item.getSpellDataString();
@@ -788,7 +836,7 @@ export class FUItem extends Item {
 		const attackString = Array.isArray(attackData) ? attackData.join('<br /><br />') : attackData;
 
 		// Prepare the content by filtering and joining various parts.
-		let content = [qualityString, spellString, ritualString, consumableString, treasureString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
+		let content = [qualityString, spellString, ritualString, consumableString, treasureString, projectString, heroicString, zeroString, clockString, chatdesc, attackString].filter((part) => part).join('');
 		content = `<div data-item-id="${item.id}">${content}</div>`;
 		return { rolls, content };
 	}
@@ -967,25 +1015,38 @@ export class FUItem extends Item {
 			opportunity: opportunity,
 			description: await TextEditor.enrichHTML(description),
 		};
+
 		const speaker = ChatMessage.implementation.getSpeaker({ actor: this.actor });
 		const targets = getTargets(defense);
 
-		if (rollInfo.useWeapon.accuracy.value || rollInfo.useWeapon.damage.value) {
-			const equippedWeapons = this.actor.items
-				.filter((singleItem) => (singleItem.type === 'weapon' || singleItem.type === 'basic' || (singleItem.type === 'shield' && singleItem.system.isDualShield?.value)) && singleItem.system.isEquipped?.value)
-				.reduce((prev, curr) => ({ ...prev, [curr.system.isEquipped.slot]: curr }), { mainHand: undefined, offHand: undefined });
+		// Get the equipped item IDs from the actor's system
+		const equipped = this.actor.system.equipped || {};
+		const mainHandId = equipped.mainHand;
+		const offHandId = equipped.offHand;
 
-			if (!equippedWeapons.mainHand && !equippedWeapons.offHand) {
+		// Retrieve equipped weapons by their IDs
+		const weaponMain = mainHandId ? this.actor.items.get(mainHandId) : null;
+		const weaponOff = offHandId ? this.actor.items.get(offHandId) : null;
+
+		if (rollInfo.useWeapon.accuracy.value || rollInfo.useWeapon.damage.value) {
+			// Ensure at least one weapon is equipped
+			if (!weaponMain && !weaponOff) {
 				ui.notifications.error('FU.AbilityNoWeaponEquipped', { localize: true });
 				return;
 			}
+
+			const equippedWeapons = { mainHand: weaponMain, offHand: weaponOff };
 			const checks = [];
+
+			// Iterate over both main and off-hand weapons
 			for (let [, weapon] of Object.entries(equippedWeapons)) {
 				if (weapon) {
 					let params = this.#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo, targets);
 					checks.push(rollCheck(params).then((check) => createCheckMessage(check, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } })));
 				}
 			}
+
+			// Return a Promise that resolves after all checks are done
 			return Promise.all(checks);
 		} else {
 			/** @type {CheckDamage | undefined} */
@@ -997,6 +1058,8 @@ export class FUItem extends Item {
 					bonus: rollInfo.damage.value,
 				};
 			}
+
+			// Perform the check without weapons
 			const check = await rollCheck({
 				check: {
 					title: game.i18n.localize('FU.SkillCheck'),
@@ -1026,6 +1089,7 @@ export class FUItem extends Item {
 	 * @param {CheckAbility} details
 	 * @param {ChatSpeakerData} speaker
 	 * @param {{useWeapon: UseWeaponDataModel, attributes: ItemAttributesDataModel, accuracy: {value: number}, damage: DamageDataModel}} rollInfo
+	 * @param {Array} targets
 	 * @return {CheckParameters}
 	 */
 	#prepareAbilityCheckWithWeapon(weapon, hrZero, details, speaker, rollInfo, targets) {
@@ -1034,6 +1098,12 @@ export class FUItem extends Item {
 			name: weaponName,
 			system: { attributes: weaponAttributes, accuracy: weaponAccuracy, damage: weaponDamage, category: weaponCategory, type: weaponType, damageType: weaponDamageType },
 		} = weapon;
+
+		// Retrieve equipped item IDs from the actor's system
+		const equipped = this.actor.system.equipped || {};
+		const mainHandId = equipped.mainHand;
+		const offHandId = equipped.offHand;
+
 		let attr1 = attributes.primary.value;
 		let attr2 = attributes.secondary.value;
 		let modifier = accuracy.value;
@@ -1052,7 +1122,7 @@ export class FUItem extends Item {
 		if (useWeapon.damage.value) {
 			const { [weaponCategory.value]: categoryDamageBonus, [weaponType.value]: typeDamageBonus } = this.actor.system.bonuses.damage;
 			checkDamage = {
-				hrZero: useWeapon.hrZero.value || useWeapon.hrZero.value,
+				hrZero: useWeapon.hrZero.value || hrZero,
 				type: weaponDamageType.value,
 				bonus: weaponDamage.value + categoryDamageBonus + typeDamageBonus,
 			};
@@ -1064,7 +1134,8 @@ export class FUItem extends Item {
 			};
 		}
 
-		const slot = weapon.system.isEquipped.slot === 'mainHand' ? 'FU.MainAbbr' : 'FU.OffAbbr';
+		// Determine the weapon's slot based on its ID
+		const slot = weapon.id === mainHandId ? 'FU.MainAbbr' : weapon.id === offHandId ? 'FU.OffAbbr' : '';
 
 		return {
 			check: {
@@ -1142,7 +1213,7 @@ export class FUItem extends Item {
 			title: game.i18n.localize('FU.FUID.Regenerate'),
 			content: html,
 			defaultYes: false,
-			options: { classes: ['unique-dialog', 'backgroundstyle'] },
+			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 		});
 
 		if (!confirmation) return;

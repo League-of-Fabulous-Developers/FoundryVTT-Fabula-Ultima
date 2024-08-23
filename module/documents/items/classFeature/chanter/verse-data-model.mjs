@@ -116,6 +116,7 @@ export class VerseDataModel extends RollableClassFeatureDataModel {
 			title: game.i18n.localize('FU.ClassFeatureVerseSingDialogTitle'),
 			label: game.i18n.localize('FU.ClassFeatureVerseSingDialogLabel'),
 			content: `<select name="volume">${Object.entries(volumes).map(([key, label]) => `<option value="${key}">${game.i18n.localize(label)}</option>`)}</select>`,
+			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 			rejectClose: false,
 			callback: (html) => html.find('select[name=volume]').val(),
 		});

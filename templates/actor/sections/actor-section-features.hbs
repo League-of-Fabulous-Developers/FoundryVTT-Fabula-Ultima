@@ -150,14 +150,16 @@
                     <li class="item" data-item-id="{{ item._id }}">
                         <div class="flexrow" style="height: fit-content; align-items: flex-start;">
                             <div class="flexcol">
-                                {{!-- Item Name--}}
-                                {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                                <div class="flexrow">
+                                    {{!-- Item Name--}}
+                                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                                    <div class="item-full start description-effect">
+                                        <p>{{ item.system.summary.value}}</p>
+                                    </div>
+                                </div>
                                 {{#if item.system.subtype}}
                                     <div class="item-quality">{{ item.quality }}</div>
                                 {{/if}}
-                            </div>
-                            <div class="item-full start description-effect">
-                                <p>{{ item.system.summary.value}}</p>
                             </div>
                             {{!-- Resource Points --}}
                             {{#if item.system.hasResource.value}}

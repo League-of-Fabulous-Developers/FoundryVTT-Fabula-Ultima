@@ -31,6 +31,7 @@ export class FUClassFeatureSheet extends ItemSheet {
 			const shouldChangeType = await Dialog.confirm({
 				title: game.i18n.localize('FU.ClassFeatureDialogChangeTypeTitle'),
 				content: game.i18n.localize('FU.ClassFeatureDialogChangeTypeContent'),
+				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 				rejectClose: false,
 			});
 

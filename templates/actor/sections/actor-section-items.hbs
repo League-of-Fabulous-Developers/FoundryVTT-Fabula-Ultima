@@ -22,7 +22,7 @@
                     <div class="item-lg">{{ item.attackString }}</div>
                     <div class="item-lg">{{ item.damageString }}</div>
                     {{!-- Item Equip--}}
-                    {{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" item=item}}
+                    {{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" item=item actor=actor}}
                     {{!-- Item Control--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>

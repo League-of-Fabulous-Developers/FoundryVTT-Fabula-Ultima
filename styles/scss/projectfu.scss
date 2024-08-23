@@ -8,13 +8,13 @@
 @import 'node_modules/rpg-awesome/scss/rpg-awesome';
 
 // Import utilities.
+@import 'utils/clocks';
 @import 'utils/colors';
 @import 'utils/mixins';
 @import 'utils/typography';
 @import 'utils/variables';
 @import 'utils/messages';
 @import 'utils/icons';
-@import 'utils/dialogs';
 @import 'utils/sizing';
 @import 'utils/display';
 
@@ -31,6 +31,7 @@
 	@import 'components/barmeter';
 	@import 'components/buttons';
 	@import 'components/clocks';
+	@import 'components/dialogs';
 	@import 'components/divider';
 	@import 'components/effects';
 	@import 'components/forms';

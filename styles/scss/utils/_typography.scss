@@ -265,7 +265,7 @@ $font-quote: 'EB Garamond', sans-serif;
 		}
 
 		.resource-text-m {
-			font-size: 1.25rem;
+			font-size: 1rem;
 			font-family: $font-primary;
 		}
 
@@ -278,14 +278,14 @@ $font-quote: 'EB Garamond', sans-serif;
 		}
 
 		.resource-label-sm {
-			font-size: 1.125rem;
+			font-size: 1rem;
 			font-weight: bold;
 			font-family: $font-secondary;
 			font-variant: small-caps;
 		}
 
 		.resource-label-m {
-			font-size: 1.25rem;
+			font-size: 1.125rem;
 			font-weight: bold;
 			font-family: $font-secondary;
 			font-variant: small-caps;
@@ -528,6 +528,11 @@ $font-quote: 'EB Garamond', sans-serif;
 	font-family: 'Evilz';
 	font-size: 1.75rem;
 	-webkit-text-stroke: 0.5px $color-black;
+
+	&.equip {
+		color: $color-secondary !important;
+		-webkit-text-stroke: transparent;
+	}
 
 	&::before {
 		content: '4';

@@ -35,65 +35,48 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		/** @type AttributesDataModel */
 		const attributes = actor.system.attributes;
 		const data = this;
-
-		const { armor: armors, accessory: acessories, shield: shields } = actor.itemTypes;
+		const equippedItems = actor.system.equipped;
 		const vehicle = actor.system.vehicle;
 
 		let equipmentDef = 0;
 		let equipmentMdef = 0;
 
-		acessories
-			.filter((item) => item.system.isEquipped.value)
-			.forEach((accessory) => {
+		if (equippedItems.accessory) {
+			const accessory = actor.items.get(equippedItems.accessory);
+			if (accessory) {
 				equipmentDef += accessory.system.def.value;
 				equipmentMdef += accessory.system.mdef.value;
-			});
+			}
+		}
+
 		if (vehicle && vehicle.weaponsActive) {
 			vehicle.weapons
-				.filter((value) => value.system.data.isShield)
+				.filter((weapon) => weapon.system.data.isShield)
 				.forEach((shieldModule) => {
 					equipmentDef += shieldModule.system.data.shield.defense;
 					equipmentMdef += shieldModule.system.data.shield.magicDefense;
 				});
-		} else {
-			shields
-				.filter((item) => item.system.isEquipped.value)
-				.forEach((shield) => {
-					equipmentDef += shield.system.def.value;
-					equipmentMdef += shield.system.mdef.value;
-				});
+		} else if (equippedItems.offHand) {
+			const offHandItem = actor.items.get(equippedItems.offHand);
+			if (offHandItem && offHandItem.type === 'shield') {
+				equipmentDef += offHandItem.system.def.value;
+				equipmentMdef += offHandItem.system.mdef.value;
+			}
+		}
+
+		if (equippedItems.mainHand) {
+			const mainHandItem = actor.items.get(equippedItems.mainHand);
+			if (mainHandItem && mainHandItem.type === 'shield') {
+				equipmentDef += mainHandItem.system.def.value;
+				equipmentMdef += mainHandItem.system.mdef.value;
+			}
 		}
 
 		let defCalculation;
 		let mdefCalculation;
 
-		// Find the equipped armor
-		/** @type FUItem */
-		const armor = armors.find((item) => item.system.isEquipped.value);
-		if (vehicle && vehicle.armorActive) {
-			/** @type ArmorModuleDataModel */
-			const armorData = vehicle.armor.system.data;
-
-			equipmentDef += armorData.defense.modifier;
-			equipmentMdef += armorData.magicDefense.modifier;
-
-			if (armorData.martial) {
-				defCalculation = function () {
-					return equipmentDef + data.def.bonus;
-				};
-				mdefCalculation = function () {
-					return equipmentMdef + data.mdef.bonus;
-				};
-			} else {
-				defCalculation = function () {
-					return (attributes[armorData.defense.attribute]?.current ?? 0) + equipmentDef + data.def.bonus;
-				};
-				mdefCalculation = function () {
-					return (attributes[armorData.magicDefense.attribute]?.current ?? 0) + equipmentMdef + data.mdef.bonus;
-				};
-			}
-		} else if (armor) {
-			/** @type ArmorDataModel */
+		const armor = actor.items.get(equippedItems.armor);
+		if (armor) {
 			const armorData = armor.system;
 
 			equipmentDef += armorData.def.value;
@@ -140,14 +123,33 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 	 */
 	#prepareInitiative(actor) {
 		const initBonus = this.init.bonus;
-		const { armor: armors, accessory: acessories, shield: shields } = actor.itemTypes;
+		const equippedItems = actor.system.equipped;
 
 		let initMod = 0;
-		acessories.filter((item) => item.system.isEquipped.value).forEach((accessory) => (initMod += accessory.system.init.value));
-		shields.filter((item) => item.system.isEquipped.value).forEach((shield) => (initMod += shield.system.init.value));
-		const equippedArmor = armors.find((item) => item.system.isEquipped.value);
-		if (equippedArmor) {
-			initMod += equippedArmor.system.init.value;
+		if (equippedItems.accessory) {
+			const accessory = actor.items.get(equippedItems.accessory);
+			if (accessory) {
+				initMod += accessory.system.init.value;
+			}
+		}
+
+		if (equippedItems.mainHand) {
+			const shield = actor.items.get(equippedItems.mainHand);
+			if (shield) {
+				initMod += shield.system.init.value;
+			}
+		}
+		if (equippedItems.offHand) {
+			const shield = actor.items.get(equippedItems.offHand);
+			if (shield) {
+				initMod += shield.system.init.value;
+			}
+		}
+		if (equippedItems.armor) {
+			const armor = actor.items.get(equippedItems.armor);
+			if (armor) {
+				initMod += armor.system.init.value;
+			}
 		}
 
 		let initCalculation = function () {

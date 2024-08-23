@@ -40,3 +40,13 @@
 		@include mb($i * 1px);
 	}
 }
+
+@mixin flexgrow($value) {
+	flex-grow: $value;
+}
+
+@for $i from 1 through 10 {
+	.flexgrow-#{$i} {
+		@include flexgrow($i);
+	}
+}

@@ -122,7 +122,7 @@ const getRerollParams = async (check, actor) => {
 			attr1,
 			attr2,
 		}),
-		options: { classes: ['dialog-reroll', 'unique-dialog', 'backgroundstyle'] },
+		options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
 		/** @type {(jQuery) => RerollParams} */
 		callback: (html) => {
 			const trait = html.find('input[name=trait]:checked');

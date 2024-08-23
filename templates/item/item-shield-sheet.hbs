@@ -87,10 +87,6 @@
                                 <label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsMartial'}}</span><input
                                         type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} />
                                 </label>
-                                <label class="checkbox resource-label-sm"> <span>{{localize 'FU.ShieldDualStatus'}}</span><input
-                                        type="checkbox" name="system.isDualShield.value" {{ checked system.isDualShield.value
-                                        }} />
-                                </label>
                             </div>
 
                             <div class="grid grid-4col">
@@ -108,7 +104,7 @@
                         </fieldset>
 
                         {{!-- Optional Feature Section --}}
-                        {{#if (or system.isBehavior.value system.isDualShield.value)}}
+                        {{#if system.isBehavior.value}}
                         <fieldset class="title-fieldset desc resource-content grid-span-2">
                             <legend class="resource-label-full">
                                 <label class="resource-label-m">{{localize
@@ -121,98 +117,10 @@
                                     <input type="number" name="system.weight.value" value="{{ system.weight.value }}"
                                         data-dtype="Number" class="resource-inputs select-dropdown-m" />
                                 </div>
-                                {{/if}} {{#if system.isDualShield.value}}
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.category.value" class="resource-label-m flexlarge align-left">{{localize
-                                        'FU.Category'}}</label>
-                                    <select name="system.category.value" class="resource-inputs select-dropdown-m">
-                                        {{selectOptions weaponCategoriesWithoutCustom selected=system.category.value
-                                        localize=true}}
-                                    </select>
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.hands.value" class="resource-label-m flexlarge align-left">{{localize
-                                        'FU.Hand'}}</label>
-                                    <select name="system.hands.value" class="resource-inputs select-dropdown-m">
-                                        {{selectOptions handedness selected=system.hands.value sort=true localize=true}}
-                                    </select>
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize
-                                        'FU.ItemType'}}</label>
-                                    <select name="system.type.value" class="resource-inputs select-dropdown-m">
-                                        {{selectOptions wpnType selected=system.type.value sort=true localize=true}}
-                                    </select>
-                                </div>
                                 {{/if}}
                             </div>
                         </fieldset>
                         {{/if}}
-
-                        {{!-- Accuracy Section --}}
-                        {{#if system.isDualShield.value}}
-                        <fieldset class="title-fieldset desc resource-content">
-                            <legend class="resource-label-full">
-                                <label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize
-                                    'FU.Accuracy'}}</label>
-                            </legend>
-                            <div class="grid grid-3col">
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.attributes.primary.value" class="resource-label-m">{{localize
-                                        'FU.Primary'}} </label>
-                                    <select name="system.attributes.primary.value" class="resource-inputs select-dropdown">
-                                        {{selectOptions attrAbbr selected=system.attributes.primary.value sort=true
-                                        localize=true}}
-                                    </select>
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.attributes.secondary.value" class="resource-label-m">{{localize
-                                        'FU.Secondary'}} </label>
-                                    <select name="system.attributes.secondary.value" class="resource-inputs select-dropdown">
-                                        {{selectOptions attrAbbr selected=system.attributes.secondary.value sort=true
-                                        localize=true}}
-                                    </select>
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
-                                    <input type="number" name="system.accuracy.value" value="{{ system.accuracy.value }}"
-                                        class="resource-inputs" data-dtype="Number" />
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.defense" class="resource-label-m flexlarge align-left">{{localize
-                                        'FU.Defense'}}</label>
-                                    <select name="system.defense" class="resource-inputs select-dropdown-m">
-                                        {{selectOptions defenses selected=system.defense sort=true localize=true
-                                        labelAttr="abbr"}}
-                                    </select>
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        {{!-- Damage Section --}}
-                        <fieldset class="title-fieldset desc resource-content">
-                            <legend class="resource-label-full">
-                                <label class="resource-label-m"><i class="fas fa-bullseye icon"></i>{{localize
-                                    'FU.Damage'}}</label>
-                            </legend>
-                            <div class="grid grid-2col">
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.rollInfo.impdamage.type.value"
-                                        class="resource-label-m flexlarge">{{localize 'FU.DamageType'}} </label>
-                                    <select name="system.damageType.value" class="resource-inputs select-dropdown-m">
-                                        {{selectOptions damageTypes selected=system.damageType.value sort=true
-                                        localize=true}}
-                                    </select>
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
-                                    <input type="number" name="system.damage.value" value="{{ system.damage.value }}"
-                                        class="resource-inputs" data-dtype="Number" />
-                                </div>
-                            </div>
-                        </fieldset>
-                        {{/if}}
-
                     </section>
                 </div>
             </section>

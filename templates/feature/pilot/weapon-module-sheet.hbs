@@ -75,7 +75,7 @@
                     {{localize 'FU.DamageType'}}
                     <div>
                         <select name="system.data.damage.type"
-                            class="resource-inputs select-dropdown-m  resource-text-m">
+                            class="resource-inputs select-dropdown-m resource-text-m">
                             {{selectOptions additionalData.damageTypes selected=system.data.damage.type
                             sort=true
                             localize=true}}
@@ -114,7 +114,7 @@
                     <div>
                         <input type="number" name="system.data.shield.magicDefense"
                             value="{{system.data.shield.magicDefense}}"
-                            class="resource-inputs select-dropdown-m  resource-text-m">
+                            class="resource-inputs select-dropdown-m resource-text-m">
                     </div>
                 </label>
             </div>
@@ -126,8 +126,17 @@
             <label class="resource-label-m">{{localize 'FU.Quality'}}</label>
         </legend>
         <div class="flexrow">
-            <input type="text" name="system.data.quality" value="{{system.data.quality}}"
-                class="resource-inputs select-dropdown-full">
+            <div class="resource-content flexcol flex-group-center flexgrow-4">
+                <label class="resource-label-m flexlarge">{{localize 'FU.Quality'}}</label>
+                <input type="text" name="system.data.quality" value="{{system.data.quality}}" class="resource-inputs select-dropdown-full resource-text-m">
+            </div>
+
+            <div class="resource-content flexcol flex-group-center">
+                <label class="resource-label-m flexshrink">{{localize 'FU.Cost'}}</label>
+                <div class="flexrow">
+                    <input type="number" name="system.cost.value" value="{{system.cost.value}}" class="resource-inputs select-dropdown-m resource-text-m">
+                </div>
+            </div>
         </div>
     </fieldset>
     <fieldset class="title-fieldset desc resource-content">

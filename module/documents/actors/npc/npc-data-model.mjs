@@ -6,6 +6,7 @@ import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
 import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { BondDataModel } from '../common/bond-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
+import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
 
 /**
@@ -91,6 +92,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
 			attributes: new EmbeddedDataField(AttributesDataModel, {}),
 			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
+			equipped: new EmbeddedDataField(EquipDataModel, {}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
 			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			traits: new SchemaField({ value: new StringField({ initial: '' }) }),

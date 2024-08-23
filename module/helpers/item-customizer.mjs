@@ -1,7 +1,6 @@
 import { FU } from './config.mjs';
 
 export function promptItemCustomizer(actor, item) {
-	console.log('Item: ', item);
 	const dialogTitle = game.i18n.localize('FU.ItemCustomizer');
 
 	function generateSelectOptions(options, nested = false) {
@@ -261,7 +260,7 @@ export function promptItemCustomizer(actor, item) {
 			},
 			{
 				width: 440,
-				classes: ['dialog', 'backgroundstyle'],
+				classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 			},
 		);
 

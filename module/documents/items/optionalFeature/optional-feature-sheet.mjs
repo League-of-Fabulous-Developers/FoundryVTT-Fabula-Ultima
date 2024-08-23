@@ -30,6 +30,7 @@ export class FUOptionalFeatureSheet extends ItemSheet {
 			const shouldChangeType = await Dialog.confirm({
 				title: game.i18n.localize('FU.OptionalFeatureDialogChangeTypeTitle'),
 				content: game.i18n.localize('FU.OptionalFeatureDialogChangeTypeContent'),
+				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 				rejectClose: false,
 			});
 

@@ -69,7 +69,7 @@ const getPushParams = async (actor) => {
 		title: game.i18n.localize('FU.DialogPushTitle'),
 		label: game.i18n.localize('FU.DialogPushLabel'),
 		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check-push.hbs', { bonds }),
-		options: { classes: ['dialog-reroll', 'unique-dialog', 'backgroundstyle'] },
+		options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
 		/** @type {(jQuery) => CheckPush} */
 		callback: (html) => {
 			const index = +html.find('input[name=bond]:checked').val();

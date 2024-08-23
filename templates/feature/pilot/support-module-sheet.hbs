@@ -10,6 +10,12 @@
                     <input type="checkbox" name="system.data.complex" {{checked system.data.complex}}>
                 </div>
             </label>
+            <div class="resource-content flexcol flex-group-center">
+                <label class="resource-label-m flexshrink">{{localize 'FU.Cost'}}</label>
+                <div class="flexrow">
+                    <input type="number" name="system.cost.value" value="{{system.cost.value}}" class="resource-inputs select-dropdown-m resource-text-m">
+                </div>
+            </div>
         </div>
     </fieldset>
     <fieldset class="title-fieldset desc resource-content">

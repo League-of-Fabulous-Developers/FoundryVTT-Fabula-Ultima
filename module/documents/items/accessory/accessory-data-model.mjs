@@ -1,4 +1,3 @@
-import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
@@ -16,7 +15,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {number} cost.value
  * @property {boolean} isMartial
  * @property {string} quality.value
- * @property {IsEquippedDataModel} isEquipped
  * @property {number} def.value
  * @property {number} mdef.value
  * @property {number} init.value
@@ -27,7 +25,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  */
 export class AccessoryDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
 		return {
 			fuid: new StringField(),
 			subtype: new SchemaField({ value: new StringField() }),
@@ -38,7 +36,6 @@ export class AccessoryDataModel extends foundry.abstract.TypeDataModel {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
 			quality: new SchemaField({ value: new StringField() }),
-			isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
 			def: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			mdef: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
@@ -51,9 +48,5 @@ export class AccessoryDataModel extends foundry.abstract.TypeDataModel {
 				}),
 			}),
 		};
-	}
-
-	transferEffects() {
-		return this.isEquipped.value;
 	}
 }

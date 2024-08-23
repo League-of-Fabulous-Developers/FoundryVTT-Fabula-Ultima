@@ -7,6 +7,7 @@ import { BondDataModel } from '../common/bond-data-model.mjs';
 import { CharacterSkillTracker } from './character-skill-tracker.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
+import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { PilotVehicleDataModel } from './pilot-vehicle-data-model.mjs';
 
 const CLASS_HP_BENEFITS = 5;
@@ -100,6 +101,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
 			attributes: new EmbeddedDataField(AttributesDataModel, {}),
 			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
+			equipped: new EmbeddedDataField(EquipDataModel, {}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
 			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			vehicle: new EmbeddedDataField(PilotVehicleDataModel, {}),

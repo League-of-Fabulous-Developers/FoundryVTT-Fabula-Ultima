@@ -325,32 +325,89 @@ Handlebars.registerHelper('crisis', function (value, max) {
 	return value <= half;
 });
 
+Handlebars.registerHelper('lookupItemById', function (items, itemId) {
+	return items.find((item) => item._id === itemId);
+});
+
+Handlebars.registerHelper('isItemEquipped', function (item, equippedItems) {
+	if (!item || !equippedItems) {
+		console.error('Item or equippedItems is missing.');
+		return false;
+	}
+
+	// Ensure equippedItems is an object and includes the item ID
+	if (typeof equippedItems === 'object' && Object.values(equippedItems).includes(item._id)) {
+		return true;
+	}
+
+	return false;
+});
+
 // Define a Handlebars helper to get the icon class based on item properties
-Handlebars.registerHelper('getIconClass', function (item) {
+Handlebars.registerHelper('getIconClass', function (item, equippedItems) {
+	if (!item || !item._id || !equippedItems) {
+		return '';
+	}
+
+	const itemId = item._id;
+
+	// Check if item is equipped in any slot
+	const isEquipped = Object.values(equippedItems).includes(itemId);
+
+	// Default icon if the item is not equipped
+	if (!isEquipped) {
+		return 'fas fa-circle ra-1xh';
+	}
+
+	// Special case: if item is equipped in both mainHand and offHand
+	if (itemId === equippedItems.mainHand && itemId === equippedItems.offHand) {
+		return 'is-two-weapon equip ra-1xh';
+	}
+	// Special case: if shield is equipped in mainHand
+	if (itemId === equippedItems.mainHand && item.type === 'shield') {
+		return 'ra ra-heavy-shield ra-1xh';
+	}
+	// Special case: if item is in tthe phantom slot
+	if (item.type === 'weapon' && itemId === equippedItems.phantom) {
+		return 'fas fa-yin-yang ra-1xh';
+	}
 	if (item.type === 'weapon') {
-		if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'two-handed') {
-			return 'ra ra-relic-blade ra-1xh  ra-flip-horizontal';
-		} else if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'one-handed') {
+		if (itemId === equippedItems.mainHand) {
 			return 'ra ra-sword ra-1xh ra-flip-horizontal';
-		} else if (item.system.isEquipped.slot === 'offHand') {
-			return 'ra  ra-plain-dagger ra-1xh ra-rotate-180';
+		} else if (itemId === equippedItems.offHand) {
+			return 'ra ra-plain-dagger ra-1xh ra-rotate-180';
 		}
 	} else if (item.type === 'shield') {
-		if (item.system.isDualShield && item.system.isDualShield.value) {
-			return 'ra ra-heavy-shield ra-1xh';
-		} else if (item.system.isEquipped.slot === 'offHand' || item.system.isEquipped.slot === 'mainHand') {
+		if (itemId === equippedItems.offHand) {
 			return 'ra ra-shield ra-1xh';
+		} else if (itemId === equippedItems.mainHand) {
+			return 'ra ra-heavy-shield ra-1xh';
 		}
 	} else if (item.type === 'armor') {
-		if (item.system.isEquipped.slot === 'armor') {
+		if (itemId === equippedItems.armor) {
 			return 'ra ra-helmet ra-1xh';
 		}
 	} else if (item.type === 'accessory') {
-		if (item.system.isEquipped.slot === 'accessory') {
+		if (itemId === equippedItems.accessory) {
 			return 'fas fa-leaf ra-1xh';
 		}
 	}
-	return 'fas fa-toolbox';
+
+	return 'fas fa-circle ra-1xh';
+});
+
+Handlebars.registerHelper('getSlot', function (item) {
+	if (!item || !item.system) return '';
+	if (item.type === 'weapon') {
+		return item.system.hands.value === 'two-handed' ? 'mainHand' : 'offHand';
+	} else if (item.type === 'shield') {
+		return 'offHand';
+	} else if (item.type === 'armor') {
+		return 'armor';
+	} else if (item.type === 'accessory') {
+		return 'accessory';
+	}
+	return '';
 });
 
 Handlebars.registerHelper('mathAbs', function (value) {
@@ -404,19 +461,15 @@ Hooks.once('ready', async function () {
 			// Check if slugify returned a valid FUID
 			if (fuid) {
 				itemData.updateSource({ 'system.fuid': fuid });
-				// console.log('Generated FUID:', fuid, 'for Item:', itemData.name);
 			} else {
 				console.error('FUID generation failed for Item:', itemData.name, 'using slugify.');
 			}
-		} else {
-			// console.log('FUID already exists or item name is missing:', itemData.name);
 		}
 	});
 
 	Hooks.on('preCreateActiveEffect', (effect, options, userId) => {
 		const actor = effect.parent;
 		if (!actor || !actor.system || !actor.system.immunities) return true;
-		console.log('actor: ', actor);
 
 		// Check if the effect is a status effect
 		const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
@@ -453,10 +506,9 @@ Hooks.once('ready', async function () {
 			if (statusEffectId) {
 				const immunityData = actor.system.immunities[statusEffectId];
 
-				// If immune, remove the effect
+				// If immune, deletes the effect from the actor
 				if (immunityData?.base) {
-					console.log(`Removing effect ${statusEffectId} due to immunity.`);
-					effect.delete(); // Deletes the effect from the actor
+					effect.delete();
 				}
 			}
 		}

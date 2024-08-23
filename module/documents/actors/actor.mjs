@@ -186,8 +186,10 @@ export class FUActor extends Actor {
 
 	*allApplicableEffects() {
 		for (const effect of super.allApplicableEffects()) {
-			if (effect.parent instanceof FUItem && effect.parent.system.transferEffects instanceof Function) {
-				if (!effect.parent.system.transferEffects()) {
+			if (effect.parent instanceof FUItem) {
+				const itemId = effect.parent.id;
+				const equipData = this.system.equipped;
+				if (!equipData.transferEffects(itemId)) {
 					continue;
 				}
 			}
@@ -238,6 +240,7 @@ export class FUActor extends Actor {
 			const confirmed = await Dialog.confirm({
 				title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }),
 				content: game.i18n.format('FU.UseMetaCurrencyDialogMessage', { type: metaCurrency }),
+				options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
 				rejectClose: false,
 			});
 			if (confirmed && this.system.resources.fp.value > 0) {
