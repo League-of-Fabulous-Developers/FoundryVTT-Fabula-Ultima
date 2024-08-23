@@ -316,8 +316,13 @@ export async function applyExtraDamage(targets, damageType, total, modifiers, so
 	return Promise.all(updates);
 }
 
-function getSingleTarget() {
-	// Implement logic to return the single selected target, if any
-	// For now, just return an empty array as a placeholder
-	return [];
+function getSingleTarget(e) {
+	const { type, id } = parseUuid($(e.target).closest('a').data('id'));
+	const actor = game.actors.get(id);
+	if (!actor) {
+		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });
+		return [];
+
+	}
+	return [actor];
 }
