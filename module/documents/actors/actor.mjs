@@ -106,6 +106,24 @@ export class FUActor extends Actor {
 		}
 	}
 
+	async _onCreate(createData, options, userId) {
+		await super._onCreate(createData, options, userId);
+
+		if (this.type === 'character' || this.type === 'npc') {
+			// Load the compendium
+			const pack = game.packs.get('projectfu.basic-equipment');
+			const content = await pack.getDocuments();
+
+			// Find the item with system.fuid === 'unarmed-strike'
+			const unarmedStrikeItem = content.find((item) => foundry.utils.getProperty(item, 'system.fuid') === 'unarmed-strike');
+
+			if (unarmedStrikeItem) {
+				// Add the item to the character
+				await this.createEmbeddedDocuments('Item', [unarmedStrikeItem.toObject()]);
+			}
+		}
+	}
+
 	async _preUpdate(changed, options, user) {
 		const changedHP = changed.system?.resources?.hp;
 		const currentHP = this.system.resources.hp;

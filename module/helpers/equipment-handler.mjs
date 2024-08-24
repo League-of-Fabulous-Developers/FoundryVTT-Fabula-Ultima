@@ -17,6 +17,7 @@ export class EquipmentHandler {
 
 		if (!item) return;
 
+		const unarmedStrike = this.actor.getSingleItemByFuid('unarmed-strike');
 		const monkeyGrip = this.actor.getSingleItemByFuid('monkey-grip');
 		const dualShield = this.actor.getSingleItemByFuid('dual-shieldbearer');
 		const equippedData = foundry.utils.deepClone(this.actor.system.equipped);
@@ -39,6 +40,9 @@ export class EquipmentHandler {
 		} else {
 			await this.handleOtherItems(itemId, equippedData, twoHandedWeaponEquipped, clickType, slot);
 		}
+
+		// Check for empty slots and equip unarmed strike if necessary
+		this.autoEquipUnarmedStrike(unarmedStrike, equippedData);
 
 		await this.actor.update({ 'system.equipped': equippedData });
 		this.updateItemIcon(li, item, equippedData[slot]);
@@ -90,6 +94,9 @@ export class EquipmentHandler {
 				equippedData.offHand = itemId;
 			}
 		}
+
+		// Remove from phantom if equipped elsewhere
+		if (equippedData.phantom === itemId) equippedData.phantom = null;
 	}
 
 	// Handle equipping and unequipping shields
@@ -122,6 +129,21 @@ export class EquipmentHandler {
 				equippedData.mainHand = null;
 				equippedData.offHand = null;
 			}
+		}
+		// Remove from phantom if equipped elsewhere
+		if (equippedData.phantom === itemId) equippedData.phantom = null;
+	}
+
+	autoEquipUnarmedStrike(unarmedStrike, equippedData) {
+		if (!unarmedStrike) return;
+
+		// If main hand is empty, equip unarmed strike
+		if (!equippedData.mainHand) {
+			equippedData.mainHand = unarmedStrike.id;
+		}
+		// If off hand is empty, equip unarmed strike
+		else if (!equippedData.offHand) {
+			equippedData.offHand = unarmedStrike.id;
 		}
 	}
 

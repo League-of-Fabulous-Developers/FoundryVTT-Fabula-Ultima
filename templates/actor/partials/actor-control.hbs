@@ -15,13 +15,17 @@
         'FU.Favorite' }}{{/if}}" aria-describedby="tooltip">
         <i class="{{#if item.system.isFavored.value}}fas{{else}}far{{/if}} fa-star"></i>
     </a>
-    <a class="item-control item-edit" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
+    {{#if (eq item._id unarmed._id)}}
+
+    {{else}}
+        <a class="item-control item-edit" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
         <i class="fas fa-edit"></i>
-    </a>
-    <a class="item-control item-duplicate" data-tooltip="{{ localize 'FU.Duplicate' }}" aria-describedby="tooltip">
-        <i class="fas fa-copy"></i>
-    </a>
-    <a class="item-control item-delete" data-tooltip="{{ localize 'FU.Delete' }}" aria-describedby="tooltip">
-        <i class="fas fa-trash"></i>
-    </a>
+        </a>
+        <a class="item-control item-duplicate" data-tooltip="{{ localize 'FU.Duplicate' }}" aria-describedby="tooltip">
+            <i class="fas fa-copy"></i>
+        </a>
+        <a class="item-control item-delete" data-tooltip="{{ localize 'FU.Delete' }}" aria-describedby="tooltip">
+            <i class="fas fa-trash"></i>
+        </a>
+    {{/if}}
 </div>

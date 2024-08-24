@@ -369,7 +369,7 @@ Handlebars.registerHelper('getIconClass', function (item, equippedItems) {
 	}
 	// Special case: if item is in tthe phantom slot
 	if (item.type === 'weapon' && itemId === equippedItems.phantom) {
-		return 'fas fa-yin-yang ra-1xh';
+		return 'ra ra-daggers ra-1xh';
 	}
 	if (item.type === 'weapon') {
 		if (itemId === equippedItems.mainHand) {
@@ -511,6 +511,33 @@ Hooks.once('ready', async function () {
 					effect.delete();
 				}
 			}
+		}
+	});
+
+	Hooks.on('preUpdateActor', async (actor, updateData, options, userId) => {
+		const equipped = foundry.utils.getProperty(updateData, 'system.equipped');
+
+		if (!equipped) return;
+
+		// Check if main hand or off hand is being unequipped
+		const mainHandUnequipped = equipped.mainHand === null;
+		const offHandUnequipped = equipped.offHand === null;
+
+		// If neither hand is unequipped, exit early
+		if (!mainHandUnequipped && !offHandUnequipped) return;
+
+		// Get the Unarmed Strike item
+		const unarmedStrike = actor.getSingleItemByFuid('unarmed-strike');
+		if (!unarmedStrike) return;
+
+		// Prepare updates only if necessary
+		const updates = {};
+		if (mainHandUnequipped) updates['system.equipped.mainHand'] = unarmedStrike.id;
+		if (offHandUnequipped) updates['system.equipped.offHand'] = unarmedStrike.id;
+
+		// Perform the update if there are changes
+		if (Object.keys(updates).length > 0) {
+			await actor.update(updates);
 		}
 	});
 });

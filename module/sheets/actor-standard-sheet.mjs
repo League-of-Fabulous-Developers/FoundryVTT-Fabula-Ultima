@@ -325,6 +325,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				i.damageString = weapData.damageString;
 				basics.push(i);
 			} else if (i.type === 'weapon') {
+				i.unarmedStrike = context.actor.getSingleItemByFuid('unarmed-strike');
 				const itemObj = context.actor.items.get(i._id);
 				const weapData = itemObj.getWeaponDisplayData(this.actor);
 				i.quality = weapData.qualityString;
@@ -1521,6 +1522,8 @@ export class FUStandardActorSheet extends ActorSheet {
 				slot = 'mainHand';
 			} else if (element.classList.contains('right-hand')) {
 				slot = 'offHand';
+			} else if (element.classList.contains('two-hand')) {
+				slot = 'mainHand';
 			} else if (element.classList.contains('phantom-hand')) {
 				slot = 'phantom';
 			} else if (element.classList.contains('acc-hand')) {
