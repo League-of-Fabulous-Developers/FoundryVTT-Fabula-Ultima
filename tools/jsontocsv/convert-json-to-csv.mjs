@@ -83,7 +83,7 @@ function saveCsvToFile(jsonData, outputFolder) {
 }
 
 // Define input and output paths
-const inputFolder = 'tools/jsontocsv/import';
+const inputFolder = 'lang/';
 const outputFolder = 'tools/jsontocsv/export';
 
 // JSON files to read

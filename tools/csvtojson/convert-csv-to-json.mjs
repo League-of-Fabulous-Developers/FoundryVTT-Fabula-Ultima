@@ -87,7 +87,6 @@ function saveJsonToFile(data, typesData, fuidData, outputFolder) {
 
 // Define input and output paths
 const inputFolder = 'tools/csvtojson/import';
-// const outputFolder = 'tools/csvtojson/export';
 const outputFolder = 'lang/';
 
 // CSV files to read
