@@ -29,6 +29,8 @@
         {{/each}}
     </ol>
 
+    <!-- Skill Item Section only shown if the actor has skill items -->
+    {{#if skills.length}}
     <ol class="items-list">
         <li class="item flexrow items-header">
             <div class="item-name">{{localize 'FU.Skills'}}</div>
@@ -94,6 +96,7 @@
             </li>
         {{/each}}
     </ol>
+    {{/if}}
 
     <ol class="items-list">
         <li class="item flexrow items-header">
