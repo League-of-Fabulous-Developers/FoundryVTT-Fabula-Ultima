@@ -48,10 +48,9 @@ export function promptItemCustomizer(actor, item) {
                     <strong>【${hrZeroLabel} + ${dmgMod}】</strong> ${dmgType}
                 </label>
             </div>
-            <div class="individual-description align-left">
+            <div>
                 <strong>${weapType}</strong>
             </div>
-			<i id="total-damage-icon" class="icon ${FU.affIcon[dmgType]}" style="flex: 0 1 auto;"></i>
         </div>`;
 	}
 

@@ -41,6 +41,10 @@ export class OptionalFeatureRegistry {
 			throw new Error(`Optional Feature ${key} must provide a preview template`);
 		}
 
+		if (!model.expandTemplate) {
+			throw new Error(`Class feature ${key} must provide a expand template`);
+		}
+
 		try {
 			model.translation;
 		} catch (cause) {

@@ -1,7 +1,27 @@
 import { OptionalDataField } from './optional-data-field.mjs';
-import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { RollableOptionalFeatureDataModel } from './optional-feature-data-model.mjs';
+import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { SYSTEM } from '../../../helpers/config.mjs';
+import { SETTINGS } from '../../../settings.js';
 import { slugify } from '../../../util.mjs';
+
+Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+	if (item?.system instanceof OptionalFeatureTypeDataModel) {
+		if (item.system.summary.value || item.system.description) {
+			sections.push(
+				TextEditor.enrichHTML(item.system.description).then((v) => ({
+					partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
+					data: {
+						collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
+						summary: item.system.summary.value,
+						description: v,
+					},
+				})),
+			);
+		}
+	}
+});
 
 export class OptionalFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {

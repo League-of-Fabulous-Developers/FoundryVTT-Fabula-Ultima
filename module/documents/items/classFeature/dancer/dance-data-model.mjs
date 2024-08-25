@@ -33,8 +33,9 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/dancer/feature-dance-preview.hbs';
 	}
 
-	static async getAdditionalData() {
+	static async getAdditionalData(model) {
 		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
 			durations,
 		};
 	}

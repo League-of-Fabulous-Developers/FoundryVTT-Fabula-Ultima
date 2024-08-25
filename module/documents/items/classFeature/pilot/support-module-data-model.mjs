@@ -26,8 +26,9 @@ export class SupportModuleDataModel extends ClassFeatureDataModel {
 		return 'FU.ClassFeatureSupportModule';
 	}
 
-	static getAdditionalData(model) {
+	static async getAdditionalData(model) {
 		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
 			vehicle: model.actor?.system.vehicle.vehicle,
 			active: model.actor?.system.vehicle.supports.includes(model.item) ?? false,
 		};

@@ -66,8 +66,9 @@ export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
 		return 'FU.ClassFeatureWeaponModule';
 	}
 
-	static getAdditionalData(model) {
+	static async getAdditionalData(model) {
 		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
 			attributes: FU.attributeAbbreviations,
 			damageTypes: FU.damageTypes,
 			weaponTypes: weaponModuleTypes,

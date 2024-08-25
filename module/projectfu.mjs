@@ -423,6 +423,14 @@ Handlebars.registerHelper('formatMod', function (value) {
 	return value;
 });
 
+Handlebars.registerHelper('inArray', function (item, array, options) {
+	if (Array.isArray(array) && array.includes(item)) {
+		return options.fn(this);
+	} else {
+		return options.inverse ? options.inverse(this) : '';
+	}
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */

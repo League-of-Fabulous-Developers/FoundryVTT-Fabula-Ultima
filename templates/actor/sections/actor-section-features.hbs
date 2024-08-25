@@ -33,6 +33,9 @@
                             {{> (lookup ../feature 'previewTemplate') item additionalData=additionalData item=item}}
                             {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                         </div>
+                        <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
+                            {{> (lookup ../feature 'expandTemplate') item additionalData=additionalData item=item}}
+                        </div>
                     </li>
                 {{/each}}
             </ol>
@@ -60,6 +63,9 @@
                             {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
                             {{> (lookup ../optional 'previewTemplate') item additionalData=additionalData item=item}}
                             {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+                        </div>
+                        <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
+                            {{> (lookup ../optional 'expandTemplate') item additionalData=additionalData item=item}}
                         </div>
                     </li>
                 {{/each}}
@@ -206,7 +212,7 @@
                             {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                         </div>
                         <span class="item-quality"></span>
-                        <div class="individual-description align-left">
+                        <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                             {{#if item.enrichedHtml.description}}
                                 {{{item.enrichedHtml.description}}}
                             {{/if}}
@@ -265,7 +271,7 @@
                             {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                         </div>
                         <span>{{ item.quality }}</span>
-                        <div class="individual-description align-left">
+                        <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                             {{#if item.enrichedHtml.description}}
                                 {{{item.enrichedHtml.description}}}
                             {{/if}}

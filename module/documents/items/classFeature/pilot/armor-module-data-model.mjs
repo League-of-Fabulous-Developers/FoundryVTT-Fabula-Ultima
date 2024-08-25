@@ -44,8 +44,9 @@ export class ArmorModuleDataModel extends RollableClassFeatureDataModel {
 		return 'FU.ClassFeatureArmorModule';
 	}
 
-	static getAdditionalData(model) {
+	static async getAdditionalData(model) {
 		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
 			attributes: CONFIG.FU.attributeAbbreviations,
 			vehicle: model.actor?.system.vehicle.vehicle,
 			active: model.item === model.actor?.system.vehicle.armor || false,

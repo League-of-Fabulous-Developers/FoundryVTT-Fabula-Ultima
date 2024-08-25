@@ -1,0 +1,26 @@
+<div class='chat-desc'>
+    <details {{#unless collapseDescriptions}}open{{/unless}}>
+        <summary class="collapsible-description align-center">
+            <label class="resource-label-m">
+                <span>{{localize 'FU.LimitTrigger'}}</span>
+                {{#if zeroTriggerTitle}}
+                    <span>: {{{zeroTriggerTitle}}}</span>
+                {{/if}}
+            </label>    
+        </summary>
+        {{{enrichedZeroTrigger}}}
+    </details>
+</div>
+<div class='chat-desc'>
+    <details {{#unless collapseDescriptions}}open{{/unless}}>
+        <summary class="collapsible-description align-center">
+            <label class="resource-label-m">
+                <span>{{localize 'FU.LimitEffect'}}</span>
+                {{#if zeroEffectTitle}}
+                    <span>: {{{zeroEffectTitle}}}</span>
+                {{/if}}
+            </label>
+        </summary>
+        {{{enrichedZeroEffect}}}
+    </details>
+</div>

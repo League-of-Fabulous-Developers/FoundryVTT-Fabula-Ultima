@@ -44,8 +44,9 @@ export class VehicleDataModel extends RollableClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/pilot/vehicle-preview.hbs';
 	}
 
-	static getAdditionalData(model) {
+	static async getAdditionalData(model) {
 		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
 			frames,
 			active: model.item === model.actor?.system.vehicle.vehicle,
 		};

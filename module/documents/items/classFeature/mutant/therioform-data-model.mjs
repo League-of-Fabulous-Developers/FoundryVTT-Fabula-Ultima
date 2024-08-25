@@ -19,4 +19,10 @@ export class TherioformDataModel extends ClassFeatureDataModel {
 	static get translation() {
 		return 'FU.ClassFeatureTherioformLabel';
 	}
+
+	static async getAdditionalData(model) {
+		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
+		};
+	}
 }

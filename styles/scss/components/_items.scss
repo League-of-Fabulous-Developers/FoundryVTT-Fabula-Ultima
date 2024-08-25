@@ -2,8 +2,12 @@
 /*  Items Header                             */
 /* ----------------------------------------- */
 
-.individual-description {
+.individual-description.hidden {
 	display: none;
+}
+
+.individual-description {
+	overflow: hidden;
 
 	.editor {
 		height: fit-content;

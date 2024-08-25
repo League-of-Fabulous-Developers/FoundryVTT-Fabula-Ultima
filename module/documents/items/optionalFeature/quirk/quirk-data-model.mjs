@@ -23,4 +23,10 @@ export class QuirkDataModel extends OptionalFeatureDataModel {
 	static get translation() {
 		return 'FU.Quirk';
 	}
+
+	static async getAdditionalData(model) {
+		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
+		};
+	}
 }

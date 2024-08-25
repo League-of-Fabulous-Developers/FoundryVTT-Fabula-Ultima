@@ -3,7 +3,7 @@ import { SYSTEM } from '../../../../helpers/config.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 
 /**
- * @extends ClassFeatureDataModel
+ * @extends RollableClassFeatureDataModel
  * @property {string} trigger
  * @property {string} description
  */
@@ -26,6 +26,12 @@ export class PsychicGiftDataModel extends RollableClassFeatureDataModel {
 
 	static get translation() {
 		return 'FU.ClassFeaturePsychicGiftLabel';
+	}
+
+	static async getAdditionalData(model) {
+		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
+		};
 	}
 
 	static async roll(model, item) {

@@ -77,8 +77,9 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 		return 'FU.ClassFeatureAlchemy';
 	}
 
-	static getAdditionalData() {
+	static async getAdditionalData(model) {
 		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
 			ranks: {
 				basic: 'FU.ClassFeatureGadgetsRankBasic',
 				advanced: 'FU.ClassFeatureGadgetsRankAdvanced',
@@ -134,13 +135,19 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 			});
 			dice = model.config.ranks[rank]?.dice;
 		}
-
+		const descriptions = {
+			basic: await TextEditor.enrichHTML(model.basic || ''),
+			advanced: await TextEditor.enrichHTML(model.advanced || ''),
+			superior: await TextEditor.enrichHTML(model.superior || ''),
+		};
 		if (dice && rank) {
 			const speaker = ChatMessage.implementation.getSpeaker({ actor: model.parent.parent.actor });
 			const roll = await new Roll(`{${Array(dice).fill('d20').join(', ')}}`).roll();
+			const description = descriptions[rank];
 			if (model.config.targetRollTable && model.config.effectRollTable) {
 				const data = {
 					rank: alchemyFlavors[rank],
+					description: description,
 					alwaysAvailableEffects: [...model.config.alwaysAvailableEffects],
 					results: [],
 				};

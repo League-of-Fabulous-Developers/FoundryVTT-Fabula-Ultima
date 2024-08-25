@@ -58,8 +58,16 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		await this._prepareItems(context);
 		this._prepareCharacterData(context);
-		// Initialize the _expanded set as a local variable within the object or class
-		this._expanded = new Set();
+
+		// Ensure expanded state is initialized
+		if (!this._expanded) {
+			const storedExpanded = this.actor.system._expanded || [];
+			this._expanded = new Set(storedExpanded);
+		}
+
+		// Add expanded item IDs to context
+		context._expandedIds = Array.from(this._expanded);
+
 		// Prepare character data and items.
 		if (actorData.type === 'character') {
 			context.tlTracker = this.actor.tlTracker;
@@ -554,28 +562,34 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 		});
 
-		const animDuration = 250;
+		// Automatically expand elements that are in the _expanded state
+		this._expanded.forEach((itemId) => {
+			const desc = html.find(`li[data-item-id="${itemId}"] .individual-description`);
+			if (desc.length) {
+				desc.removeClass('hidden').css({ display: 'block', height: 'auto' });
+			}
+		});
 
-		const toggleDesc = (ev) => {
+		// Your existing toggle listener logic
+		html.find('.click-item').click((ev) => {
 			const el = $(ev.currentTarget);
 			const parentEl = el.closest('li');
-			const itemId = parentEl.data('item-id');
+			const itemId = parentEl.data('itemId');
 			const desc = parentEl.find('.individual-description');
 
 			if (this._expanded.has(itemId)) {
-				desc.slideUp(animDuration, () => desc.css('display', 'none'));
-
+				desc.slideUp(200, () => desc.css('display', 'none'));
 				this._expanded.delete(itemId);
 			} else {
-				desc.slideDown(animDuration, () => {
+				desc.slideDown(200, () => {
 					desc.css('display', 'block');
 					desc.css('height', 'auto');
 				});
 				this._expanded.add(itemId);
 			}
-		};
 
-		html.find('.click-item').click(toggleDesc);
+			this._saveExpandedState();
+		});
 
 		// Add item to Favorite Section
 		html.find('.item-favored').click((ev) => {
@@ -766,6 +780,10 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('a[data-action=spendMetaCurrency]').on('click', () => this.actor.spendMetaCurrency());
 
 		html.find('span[data-action="clearTempEffects"]').click(this._onClearTempEffects.bind(this));
+	}
+
+	_saveExpandedState() {
+		this.actor.update({ 'system._expanded': Array.from(this._expanded) });
 	}
 
 	_onClearTempEffects(event) {

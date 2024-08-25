@@ -1,8 +1,10 @@
-import { OptionalFeatureDataModel } from '../optional-feature-data-model.mjs';
+import { RollableOptionalFeatureDataModel } from '../optional-feature-data-model.mjs';
 import { ProgressDataModel } from '../../common/progress-data-model.mjs';
+import { SYSTEM } from '../../../../helpers/config.mjs';
+import { Flags } from '../../../../helpers/flags.mjs';
 
 /**
- * @extends OptionalFeatureDataModel
+ * @extends RollableOptionalFeatureDataModel
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
@@ -16,7 +18,7 @@ import { ProgressDataModel } from '../../common/progress-data-model.mjs';
  * @property {string} zeroEffect.description
  * @property {string} source.value
  */
-export class ZeroPowerDataModel extends OptionalFeatureDataModel {
+export class ZeroPowerDataModel extends RollableOptionalFeatureDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, EmbeddedDataField } = foundry.data.fields;
 		return {
@@ -40,7 +42,41 @@ export class ZeroPowerDataModel extends OptionalFeatureDataModel {
 		return 'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs';
 	}
 
+	static get expandTemplate() {
+		return 'systems/projectfu/templates/optional/zeropower/feature-zeroPower-description.hbs';
+	}
+
 	static get translation() {
 		return 'FU.Limit';
+	}
+
+	static async getAdditionalData(model) {
+		return {
+			enrichedZeroTrigger: await TextEditor.enrichHTML(model.zeroTrigger.description),
+			enrichedZeroEffect: await TextEditor.enrichHTML(model.zeroEffect.description),
+		};
+	}
+
+	static async roll(model, item) {
+		const actor = model.parent.parent.actor;
+		if (!actor) {
+			return;
+		}
+		const data = {
+			zeroTriggerTitle: model.zeroTrigger.value,
+			zeroEffectTitle: model.zeroEffect.value,
+			enrichedZeroTrigger: await TextEditor.enrichHTML(model.zeroTrigger.description),
+			enrichedZeroEffect: await TextEditor.enrichHTML(model.zeroEffect.description),
+		};
+
+		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
+		const chatMessage = {
+			speaker,
+			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
+			content: await renderTemplate('systems/projectfu/templates/optional/zeropower/feature-zeroPower-chat-message.hbs', data),
+			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
+		};
+
+		ChatMessage.create(chatMessage);
 	}
 }

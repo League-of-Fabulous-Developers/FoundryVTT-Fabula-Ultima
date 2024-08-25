@@ -28,7 +28,7 @@
                 </div>
 
                 <span class="item-quality">{{ item.quality }}</span>
-                <div class="individual-description align-left">
+                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                     {{#if item.enrichedHtml.description}}
                         {{{item.enrichedHtml.description}}}
                     {{/if}}
@@ -64,7 +64,7 @@
                     {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
                 <span class="item-quality">{{ item.quality }}</span>
-                <div class="individual-description align-left">
+                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                     {{#if item.detail}}
                         <div class="item-quality align-left">
                             <strong>{{item.detail}}</strong>
@@ -105,7 +105,7 @@
                     {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
                 <span class="item-quality">{{ item.quality }}</span>
-                <div class="individual-description align-left">
+                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                     {{#if item.enrichedHtml.description}}
                         {{{item.enrichedHtml.description}}}
                     {{/if}}
@@ -141,7 +141,7 @@
                     {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
                 <span class="item-quality">{{ item.quality }}</span>
-                <div class="individual-description align-left">
+                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                     {{#if item.enrichedHtml.description}}
                         {{{item.enrichedHtml.description}}}
                     {{/if}}
@@ -171,7 +171,7 @@
                     {{!-- Item Control--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
-                <div class="individual-description align-left">
+                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                     {{#if item.enrichedHtml.description}}
                         {{{item.enrichedHtml.description}}}
                     {{/if}}
@@ -201,7 +201,7 @@
                     {{!-- Item Control--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
-                <div class="individual-description align-left">
+                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                     {{#if item.enrichedHtml.description}}
                         {{{item.enrichedHtml.description}}}
                     {{/if}}
@@ -233,7 +233,7 @@
                         {{!-- Item Control--}}
                         {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                     </div>
-                    <div class="individual-description align-left">
+                    <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                         {{#if item.enrichedHtml.description}}
                             {{{item.enrichedHtml.description}}}
                         {{/if}}

@@ -1,0 +1,7 @@
+<!-- override ClassFeatureDataModel.expandTemplate to supply your own template -->
+{{#if system.data.description}}
+	<div class="flexcol resource-content gap-2 mb-3">
+		<label class="resource-label-m">{{localize 'FU.Description'}}</label>
+		<div class="description-effect">{{{additionalData.enrichedDescription}}}</div>
+	</div>
+{{/if}}

@@ -57,8 +57,9 @@ export class InfusionsDataModel extends ClassFeatureDataModel {
 		return 'FU.ClassFeatureInfusions';
 	}
 
-	static getAdditionalData() {
+	static async getAdditionalData(model) {
 		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
 			ranks: {
 				basic: 'FU.ClassFeatureGadgetsRankBasic',
 				advanced: 'FU.ClassFeatureGadgetsRankAdvanced',

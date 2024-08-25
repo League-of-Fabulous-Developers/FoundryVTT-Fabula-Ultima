@@ -107,6 +107,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Optional Rule Templates
 		'systems/projectfu/templates/optional/feature-basic-preview.hbs',
+		'systems/projectfu/templates/optional/feature-basic-description.hbs',
 
 		'systems/projectfu/templates/optional/partials/feature-progress-clock.hbs',
 		'systems/projectfu/templates/optional/partials/feature-progress-clock-xl.hbs',
@@ -116,14 +117,18 @@ export const preloadHandlebarsTemplates = async function () {
 
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-sheet.hbs',
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs',
+		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-description.hbs',
 
 		// Class Feature Templates
 		'systems/projectfu/templates/feature/feature-basic-preview.hbs',
+		'systems/projectfu/templates/feature/feature-basic-description.hbs',
 
 		'systems/projectfu/templates/feature/arcanist/feature-arcanum-sheet.hbs',
 		'systems/projectfu/templates/feature/arcanist/feature-arcanum-preview.hbs',
+		'systems/projectfu/templates/feature/arcanist/feature-arcanum-description.hbs',
 
 		'systems/projectfu/templates/feature/tinkerer/feature-gadgets-preview.hbs',
+		'systems/projectfu/templates/feature/tinkerer/feature-gadgets-description.hbs',
 		'systems/projectfu/templates/feature/tinkerer/feature-alchemy-sheet.hbs',
 		'systems/projectfu/templates/feature/tinkerer/feature-magitech-sheet.hbs',
 		'systems/projectfu/templates/feature/tinkerer/feature-infusions-sheet.hbs',
@@ -131,6 +136,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/chanter/feature-key-sheet.hbs',
 		'systems/projectfu/templates/feature/chanter/feature-key-preview.hbs',
 		'systems/projectfu/templates/feature/chanter/feature-tone-sheet.hbs',
+		'systems/projectfu/templates/feature/chanter/feature-tone-description.hbs',
 		'systems/projectfu/templates/feature/chanter/feature-verse-sheet.hbs',
 		'systems/projectfu/templates/feature/chanter/feature-verse-preview.hbs',
 

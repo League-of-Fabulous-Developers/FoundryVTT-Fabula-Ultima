@@ -1,0 +1,17 @@
+<!-- override OptionalFeatureDataModel.expandTemplate to supply your own template -->
+<div class="flexcol resource-content gap-2 mb-3">
+    <label class="resource-label-m">
+        <span>{{localize 'FU.LimitTrigger'}}</span>
+        {{#if system.data.zeroTrigger.value}}
+            <span>: {{{system.data.zeroTrigger.value}}}</span>
+        {{/if}}
+    </label>
+    <div class="description-effect">{{{additionalData.enrichedZeroTrigger}}}</div>
+    <label class="resource-label-m">
+        <span>{{localize 'FU.LimitEffect'}}</span>
+        {{#if system.data.zeroEffect.value}}
+            <span>: {{{system.data.zeroEffect.value}}}</span>
+        {{/if}}
+    </label>
+    <div class="description-effect">{{{additionalData.enrichedZeroEffect}}}</div>
+</div>

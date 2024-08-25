@@ -26,8 +26,20 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/arcanist/feature-arcanum-preview.hbs';
 	}
 
+	static get expandTemplate() {
+		return 'systems/projectfu/templates/feature/arcanist/feature-arcanum-description.hbs';
+	}
+
 	static get translation() {
 		return 'FU.ClassFeatureArcanum';
+	}
+
+	static async getAdditionalData(model) {
+		// Provide any additional data needed for the template rendering
+		return {
+			enrichedMerge: await TextEditor.enrichHTML(model.merge),
+			enrichedDismiss: await TextEditor.enrichHTML(model.dismiss),
+		};
 	}
 
 	static async roll(model, item) {
