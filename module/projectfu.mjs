@@ -61,6 +61,7 @@ import { ChecksV2 } from './checks/checks-v2.mjs';
 import { CheckConfiguration } from './checks/check-configuration.mjs';
 import { slugify } from './util.mjs';
 import { ActionHandler } from './helpers/action-handler.mjs';
+import { FUHooks } from './hooks.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -496,7 +497,7 @@ Hooks.once('ready', async function () {
 		return true; // Allow the effect to be created
 	});
 
-	Hooks.on('projectfu.actor.dataPrepared', (actor) => {
+	Hooks.on(FUHooks.DATA_PREPARED_ACTOR, (actor) => {
 		if (!actor.system || !actor.system.immunities) return;
 
 		// Iterate over the actor's active effects

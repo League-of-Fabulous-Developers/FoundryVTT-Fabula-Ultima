@@ -7,6 +7,7 @@ import { SOCKET } from '../../socket.mjs';
 import { SETTINGS } from '../../settings.js';
 import { ChecksV2 } from '../../checks/checks-v2.mjs';
 import { slugify } from '../../util.mjs';
+import { FUHooks } from '../../hooks.mjs';
 
 const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(0).toUpperCase() + string.slice(1) : string);
 
@@ -33,7 +34,7 @@ export class FUItem extends Item {
 		// As with the actors class, items are documents that can have their data
 		// preparation methods overridden (such as prepareBaseData()).
 		super.prepareData();
-		Hooks.callAll('projectfu.item.dataPrepared', this);
+		Hooks.callAll(FUHooks.DATA_PREPARED_ITEM, this);
 	}
 
 	/**
