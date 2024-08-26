@@ -1,4 +1,5 @@
 import { FU } from './config.mjs';
+import { FUHooks } from '../hooks.mjs';
 
 /**
  * Handle the study roll interaction with targeted actors
@@ -443,5 +444,5 @@ async function handleStudyRollCallback(app, actor, studyValue) {
 		content: msg,
 	});
 
-	Hooks.callAll('studyRoll', actor, journalEntry);
+	Hooks.callAll(FUHooks.ROLL_STUDY, actor, journalEntry);
 }
