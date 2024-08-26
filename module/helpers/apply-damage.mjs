@@ -129,9 +129,12 @@ async function handleDamageApplication(event, targets, sourceName, baseDamageInf
 		shift: event.shiftKey
 	}
 
+	const sourceItemId = findItemId(event);
+
 	const hookData = {
 		event,
 		targets,
+		sourceItemId,
 		sourceName,
 		baseDamageInfo,
 		extraDamageInfo,
@@ -157,6 +160,7 @@ async function handleDamageApplication(event, targets, sourceName, baseDamageInf
 
 	await applyDamage(
 		modifiedTargets,
+		sourceItemId,
 		sourceName,
 		modifiedType,
 		modifiedTotal,
@@ -166,6 +170,7 @@ async function handleDamageApplication(event, targets, sourceName, baseDamageInf
 	if (extraDamageInfo.extraDamage > 0) {
 		await applyExtraDamage(
 			modifiedTargets,
+			sourceItemId,
 			sourceName,
 			extraDamageInfo.extraDamageType,
 			extraDamageInfo.extraDamage,
@@ -206,8 +211,22 @@ function getSingleTarget(e) {
 }
 
 /**
+ * Determine's the source item's id from an event
+ * @param {Event} event
+ * @returns {string | null}
+ */
+function findItemId(event) {
+	const candidates = event.target?.closest('.chat-message')?.querySelectorAll('[data-item-id]');
+	if (candidates && candidates.length) {
+		return candidates[0].getAttribute('data-item-id');
+	}
+	return null;
+}
+
+/**
  *
  * @param {FUActor[]} targets
+ * @param {string} sourceItemId
  * @param {string} sourceName
  * @param {DamageType} damageType
  * @param {number} total
@@ -216,7 +235,7 @@ function getSingleTarget(e) {
  * @param {string} chatTemplateName
  * @return {Promise<Awaited<unknown>[]>}
  */
-async function applyDamageInternal(targets, sourceName, damageType, total, clickModifiers, extraDamageInfo, chatTemplateName) {
+async function applyDamageInternal(targets, sourceItemId, sourceName, damageType, total, clickModifiers, extraDamageInfo, chatTemplateName) {
 	if (!Array.isArray(targets)) {
 		console.error('Targets is not an array:', targets);
 		return;
@@ -226,6 +245,7 @@ async function applyDamageInternal(targets, sourceName, damageType, total, click
 	for (const actor of targets) {
 		const hookData = {
 			actor,
+			sourceItemId,
 			sourceName,
 			damageType,
 			total,
@@ -295,6 +315,7 @@ async function applyDamageInternal(targets, sourceName, damageType, total, click
 /**
  *
  * @param {FUActor[]} targets
+ * @param {string} sourceItemId
  * @param {string} sourceName
  * @param {DamageType} type
  * @param {number} total
@@ -302,9 +323,10 @@ async function applyDamageInternal(targets, sourceName, damageType, total, click
  * @param {ExtraDamageInfo} extraDamageInfo
  * @return {Promise<Awaited<unknown>[]>}
  */
-export async function applyDamage(targets, sourceName, type, total, clickModifiers, extraDamageInfo) {
+export async function applyDamage(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo) {
 	return await applyDamageInternal(
 		targets,
+		sourceItemId,
 		sourceName,
 		type,
 		total,
@@ -316,6 +338,7 @@ export async function applyDamage(targets, sourceName, type, total, clickModifie
 /**
  *
  * @param {FUActor[]} targets
+ * @param {string} sourceItemId
  * @param {string} sourceName
  * @param {DamageType} type
  * @param {number} total
@@ -323,9 +346,10 @@ export async function applyDamage(targets, sourceName, type, total, clickModifie
  * @param {ExtraDamageInfo} extraDamageInfo
  * @return {Promise<Awaited<unknown>[]>}
  */
-export async function applyExtraDamage(targets, sourceName, type, total, clickModifiers, extraDamageInfo) {
+export async function applyExtraDamage(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo) {
 	return await applyDamageInternal(
 		targets,
+		sourceItemId,
 		sourceName,
 		type,
 		total,
