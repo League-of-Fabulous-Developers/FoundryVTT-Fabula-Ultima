@@ -103,7 +103,7 @@ function activateListeners(document, html) {
 
 function onDropActor(actor, sheet, { type, damageType, amount, source, ignore }) {
 	if (type === INLINE_DAMAGE) {
-		applyDamage([actor], null, source || 'something', damageType, Number(amount), {}, {});
+		applyDamage([actor], null, source || 'inline damage', damageType, Number(amount), {}, {});
 		return false;
 	}
 }
