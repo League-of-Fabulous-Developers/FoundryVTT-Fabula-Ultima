@@ -32,6 +32,7 @@ export class ClassFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 			source: new StringField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			cost: new SchemaField({ value: new NumberField({ intial: 0, min: 0, integer: true, nullable: true }) }),
+			quantity: new SchemaField({ value: new NumberField({ intial: 1, min: 0, integer: true, nullable: true }) }),
 			featureType: new StringField({
 				nullable: false,
 				initial: () => Object.keys(CONFIG.FU.classFeatureRegistry?.features() ?? {})[0],

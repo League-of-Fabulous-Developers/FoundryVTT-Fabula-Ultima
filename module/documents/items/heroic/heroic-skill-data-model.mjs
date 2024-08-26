@@ -4,6 +4,7 @@ import { DamageDataModel } from '../common/damage-data-model.mjs';
 import { ImprovisedDamageDataModel } from '../common/improvised-damage-data-model.mjs';
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof HeroicSkillDataModel) {
@@ -37,7 +38,7 @@ export class HeroicSkillDataModel extends foundry.abstract.TypeDataModel {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
 			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
+			subtype: new SchemaField({ value: new StringField({ initial: 'skill', choices: Object.keys(FU.heroicType) }) }),
 			summary: new SchemaField({ value: new StringField() }),
 			description: new HTMLField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),

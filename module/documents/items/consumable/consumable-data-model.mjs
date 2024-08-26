@@ -1,4 +1,5 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { FU } from '../../../helpers/config.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ConsumableDataModel) {
@@ -20,7 +21,7 @@ export class ConsumableDataModel extends foundry.abstract.TypeDataModel {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
 		return {
 			fuid: new StringField(),
-			subtype: new SchemaField({ value: new StringField() }),
+			subtype: new SchemaField({ value: new StringField({ initial: 'potion', choices: Object.keys(FU.consumableType) }) }),
 			summary: new SchemaField({ value: new StringField() }),
 			description: new HTMLField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),

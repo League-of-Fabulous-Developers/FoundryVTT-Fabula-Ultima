@@ -454,6 +454,64 @@ export class FUStandardActorSheet extends ActorSheet {
 
 	/* -------------------------------------------- */
 
+	async _onDrop(event) {
+		event.preventDefault();
+
+		// Configuration for item types and their update logic
+		const itemTypeConfigs = [
+			{
+				types: ['classFeature', 'optionalFeature', 'treasure'],
+				update: async (itemData, item) => {
+					const incrementValue = itemData.system.quantity?.value || 1;
+					const newQuantity = (item.system.quantity.value || 0) + incrementValue;
+					await item.update({ 'system.quantity.value': newQuantity });
+				},
+			},
+			{
+				types: ['class', 'skill'],
+				update: async (itemData, item) => {
+					const incrementValue = itemData.system.level?.value || 1;
+					const newValue = Math.min((item.system.level.value || 0) + incrementValue, item.system.level.max || 0);
+					await item.update({ 'system.level.value': newValue });
+				},
+			},
+		];
+
+		// Helper function to parse drag data
+		const parseDragData = (data) => {
+			try {
+				return JSON.parse(data);
+			} catch {
+				return null;
+			}
+		};
+
+		// Helper function to find the appropriate update configuration
+		const findUpdateConfig = (type) => {
+			return itemTypeConfigs.find((config) => config.types.includes(type));
+		};
+
+		// Retrieve and process drag data
+		const dragData = parseDragData(event.dataTransfer.getData('text/plain'));
+		if (!dragData || dragData.type !== 'Item') return;
+
+		const itemData = await Item.implementation.fromDropData(dragData);
+		const config = findUpdateConfig(itemData.type);
+
+		if (config) {
+			const existingItem = this.actor.items.find((i) => i.name === itemData.name && i.type === itemData.type);
+			if (existingItem) {
+				await config.update(itemData, existingItem);
+			} else {
+				await super._onDrop(event);
+			}
+		} else {
+			await super._onDrop(event);
+		}
+	}
+
+	/* -------------------------------------------- */
+
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);

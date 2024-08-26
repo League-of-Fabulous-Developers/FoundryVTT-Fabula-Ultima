@@ -128,7 +128,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/arcanist/feature-arcanum-description.hbs',
 
 		'systems/projectfu/templates/feature/tinkerer/feature-gadgets-preview.hbs',
-		'systems/projectfu/templates/feature/tinkerer/feature-gadgets-description.hbs',
 		'systems/projectfu/templates/feature/tinkerer/feature-alchemy-sheet.hbs',
 		'systems/projectfu/templates/feature/tinkerer/feature-magitech-sheet.hbs',
 		'systems/projectfu/templates/feature/tinkerer/feature-infusions-sheet.hbs',
