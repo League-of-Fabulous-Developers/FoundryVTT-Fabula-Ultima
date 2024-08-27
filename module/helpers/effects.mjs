@@ -5,7 +5,7 @@ import { FUActor } from '../documents/actors/actor.mjs';
  * @param {MouseEvent} event      The left-click event on the effect control
  * @param {Actor|Item} owner      The owning document which manages this effect
  */
-export function onManageActiveEffect(event, owner) {
+export async function onManageActiveEffect(event, owner) {
 	event.preventDefault();
 	const a = event.currentTarget;
 	const li = a.closest('li');
@@ -33,6 +33,9 @@ export function onManageActiveEffect(event, owner) {
 			return effect.delete();
 		case 'toggle':
 			return effect.update({ disabled: !effect.disabled });
+		case 'copy-inline':
+			await handleCopyInlineEffect(effect);
+			break;
 	}
 }
 
@@ -89,6 +92,35 @@ export async function toggleStatusEffect(actor, statusEffectId, source = undefin
 			await ActiveEffect.create({ ...statusEffect, statuses: [statusEffectId], origin: source }, { parent: actor });
 		}
 		return true;
+	}
+}
+
+// Helper function to encode an effect in base64
+export function encodeBase64(data) {
+	return btoa(unescape(encodeURIComponent(data)));
+}
+
+// Helper function to generate the @EFFECT format string
+export function formatEffect(effect) {
+	const encodedEffect = encodeBase64(JSON.stringify(effect.toJSON()));
+	return `@EFFECT[${encodedEffect}]`;
+}
+
+/**
+ * Generate encoded effect and copy to clipboard.
+ * @param {ActiveEffect} effect - The ActiveEffect to encode and copy
+ */
+export async function handleCopyInlineEffect(effect) {
+	try {
+		const encodedEffect = formatEffect(effect); // Use the updated formatEffect function
+
+		await navigator.clipboard.writeText(encodedEffect);
+
+		if (ui && ui.notifications) {
+			ui.notifications.info('Inline effect copied to clipboard.');
+		}
+	} catch (error) {
+		console.error('Failed to copy effect to clipboard:', error);
 	}
 }
 

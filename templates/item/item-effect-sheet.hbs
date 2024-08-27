@@ -1,0 +1,54 @@
+<form class="{{ cssClass }} h-100 backgroundstyle" autocomplete="off">
+    <div class="sheet-content-wrapper">
+        {{!-- {{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}} --}}
+        <header class="sheet-header desc">
+            <div class="combine-header w-100">
+                <img class="item-profile-img" src="{{ item.img }}" data-edit="img" title="{{ item.name }}" style="height: 52px;"/>
+                <div class="header-fields">
+                    <div class="header-start grid grid-6col">
+                        <div class="charname-container flexrow grid-span-5">
+                            <h2 class="charname" style="flex: 4;">
+                                <input name="name" type="text" value="{{ item.name }}" placeholder="Name"
+                                    data-tooltip="{{ item.name }}" class="resource-inputs-charname auto-shrink" />
+                            </h2>
+                        </div>
+
+                        {{!-- Part --}}
+                        <span class="flexrow grid-span-1 gap-2"
+                            style="border-bottom: 2px solid; border-image: linear-gradient(to right, #bfb4c5, #e6e2e8) 1; border-left: rgb(255, 173, 200) 3px solid;">
+
+                            {{!-- Item Type --}}
+                            <span class="resource-content levelup-container flexcol flex-group-center">
+                                <label class="resource-label-m" for="item.type"> <i
+                                        class="fas fa-chart-simple icon"></i>{{localize 'FU.ItemType'}}</label>
+                                <input type="text" name="item.type" value="{{localize (translate item.type)}}"
+                                    data-dtype="String" class="resource-inputs" disabled style="border-radius: 0;" />
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-100">
+                {{!-- Sheet Tab Navigation --}}
+                <nav id="item-navbar" class="sheet-tabs tabs desc flexrow grid-span-2" data-group="primary"
+                    style="align-self: stretch;">
+                    <a class="item tab-style" data-tab="effects">{{localize 'FU.Effects'}}</a>
+                </nav>
+            </div>
+        </header>
+
+        {{!-- Sheet Wrapper --}}
+        <div class="sheet-wrapper">
+
+            {{!-- Sheet Body --}}
+            <section class="sheet-body">
+
+                {{!-- Effects Tab --}}
+                <div class="tab effects" data-group="primary" data-tab="effects">
+                    {{> 'systems/projectfu/templates/common/active-effects.hbs' hideHeader=true }}
+                </div>
+            </section>
+        </div>
+    </div>
+</form>

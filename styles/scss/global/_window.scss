@@ -117,3 +117,14 @@ input[type='checkbox']:focus {
 	pointer-events: none;
 	/* Disable interactions with hidden notifications */
 }
+
+.highlight-drop-zone {
+	outline: 4px double #d27a29 !important;
+	background-color: rgba(244, 224, 193, 0.5) !important;
+	position: relative;
+	z-index: 1000;
+	box-shadow: 0 0 10px rgba(58, 34, 34, 0.2);
+	transition:
+		background-color 0.3s ease,
+		border 0.3s ease;
+}

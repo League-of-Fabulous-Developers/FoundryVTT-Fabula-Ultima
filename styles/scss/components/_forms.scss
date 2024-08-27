@@ -1,4 +1,10 @@
 /* Description Format */
+.sheet-body {
+	.desc {
+		margin: 5px;
+	}
+}
+
 .desc {
 	background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
 	border-radius: 12px;

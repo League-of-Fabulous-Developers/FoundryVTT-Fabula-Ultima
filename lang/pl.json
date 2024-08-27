@@ -22,7 +22,8 @@
 		"TypeProject": "Projekt",
 		"TypeZeroPower": "Moc Zero",
 		"TypeClassFeature": "Zdolność Klasowa",
-		"TypeOptionalFeature": "Zdolność Opcjonalna"
+		"TypeOptionalFeature": "Zdolność Opcjonalna",
+		"TypeEffect": "Efekt"
 	},
 	"TYPES": {
 		"Actor": {
@@ -48,7 +49,8 @@
 			"project": "Projekt",
 			"zeroPower": "Moc Zero",
 			"classFeature": "Zdolność Klasowa",
-			"optionalFeature": "Zdolność Opcjonalna"
+			"optionalFeature": "Zdolność Opcjonalna",
+			"effect": "Efekt"
 		}
 	},
 	"FU": {

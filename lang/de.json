@@ -22,7 +22,8 @@
 		"TypeProject": "Projekt",
 		"TypeZeroPower": "Zero Power",
 		"TypeClassFeature": "Klassenmerkmal",
-		"TypeOptionalFeature": "Optionale Funktionen"
+		"TypeOptionalFeature": "Optionale Funktionen",
+		"TypeEffect": "Effekt"
 	},
 	"TYPES": {
 		"Actor": {
@@ -48,7 +49,8 @@
 			"project": "Projekt",
 			"zeroPower": "Zero Power",
 			"classFeature": "Klassenmerkmal",
-			"optionalFeature": "Optionale Funktionen"
+			"optionalFeature": "Optionale Funktionen",
+			"effect": "Effekt"
 		}
 	},
 	"FU": {
