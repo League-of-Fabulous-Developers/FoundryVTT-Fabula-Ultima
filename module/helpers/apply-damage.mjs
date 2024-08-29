@@ -1,187 +1,184 @@
 import { FU, SYSTEM } from './config.mjs';
+import { FUHooks } from '../hooks.mjs';
 import { Flags } from './flags.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from './target-handler.mjs';
 
-export function registerChatInteraction() {
-	Hooks.on('renderChatMessage', attachDamageApplicationHandler);
-}
+// Aliases
+
+/**
+ * @typedef BaseDamageInfo
+ * @type {import('./typedefs.mjs').BaseDamageInfo}
+*/
+
+/**
+ * @typedef ExtraDamageInfo
+ * @type {import('./damage-customizer.mjs').ExtraDamageInfo}
+ */
+
+/**
+ * @typedef DamageType
+ * @type {import('./config.mjs').DamageType}
+ */
+
+// Typedefs
+
+/**
+ * @typedef ClickModifiers
+ * @prop {boolean} alt
+ * @prop {boolean} ctrl
+ * @prop {boolean} shift
+ */
+
+/**
+ * @callback DamageModifier
+ * @param {number} baseDamage
+ * @param {ClickModifiers} modifiers
+ * @return {number}
+ */
+
 
 function attachDamageApplicationHandler(message, jQuery) {
 	const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
+	let sourceName;
+	let baseDamageInfo;
+	let disabled = false;
+
 	if (check && check.damage) {
-		let disabled = false;
-		const handleDamageApplication = async (event, targets, extraDamageInfo) => {
-			if (targets) {
-				const { total = 0, type: damageType, modifierTotal: modTotal } = check.damage;
-				// const modifiedTotal = total + (extraDamageInfo.damageBonus || 0);
-				const modifiedTotal = extraDamageInfo.hrZero ? extraDamageInfo.damageBonus + modTotal : total + (extraDamageInfo.damageBonus || 0);
-				const modifiedType = extraDamageInfo.damageType || damageType;
-				const modifiedTargets = extraDamageInfo.targets || targets;
-				await applyDamage(
-					modifiedTargets,
-					modifiedType,
-					modifiedTotal,
-					{
-						alt: event.altKey,
-						ctrl: event.ctrlKey || event.metaKey,
-						shift: event.shiftKey,
-					},
-					check.details.name,
-					extraDamageInfo,
-				);
-
-				if (extraDamageInfo.extraDamage > 0) {
-					await applyExtraDamage(
-						modifiedTargets,
-						extraDamageInfo.extraDamageType,
-						extraDamageInfo.extraDamage,
-						{
-							alt: event.altKey,
-							ctrl: event.ctrlKey || event.metaKey,
-							shift: event.shiftKey,
-						},
-						check.details.name,
-						extraDamageInfo,
-					);
-				}
-			}
-			disabled = false;
+		sourceName = check.details.name;
+		baseDamageInfo = {
+			total: check.damage.total,
+			type: check.damage.type,
+			modifierTotal: check.damage.modifierTotal,
 		};
-
-		const handleClick = async (event, getTargetsFunction) => {
-			if (!disabled) {
-				disabled = true;
-				const targets = await getTargetsFunction(event);
-				if (event.ctrlKey || event.metaKey) {
-					DamageCustomizer(
-						check.damage,
-						targets,
-						(extraDamageInfo) => handleDamageApplication(event, targets, extraDamageInfo),
-						() => {
-							disabled = false;
-						},
-					);
-				} else {
-					handleDamageApplication(event, targets, {});
-				}
-			}
-		};
-
-		jQuery.find(`a[data-action=applySingleDamage]`).click((event) => handleClick(event, getSingleTarget));
-		jQuery.find(`a[data-action=applySelectedDamage]`).click((event) => handleClick(event, getSelected));
-		jQuery.find(`a[data-action=applyTargetedDamage]`).click((event) => handleClick(event, getTargeted));
-		jQuery.find(`a[data-action=selectDamageCustomizer]`).click(async (event) => {
-			if (!disabled) {
-				disabled = true;
-				const targets = await getTargeted(event);
-				DamageCustomizer(
-					check.damage,
-					targets,
-					(extraDamageInfo) => handleDamageApplication(event, targets, extraDamageInfo),
-					() => {
-						disabled = false;
-					},
-				);
-			}
-		});
 	}
 
 	if (ChecksV2.isCheck(message)) {
 		const damage = CheckConfiguration.inspect(message).getDamage();
 		if (damage) {
-			let disabled = false;
-			const handleDamageApplication = async (event, targets, extraDamageInfo) => {
-				if (targets) {
-					// const modifiedTotal = damage.total + (extraDamageInfo.damageBonus || 0); // Add the damage bonus to the total damage
-					const modifiedTotal = extraDamageInfo.hrZero ? extraDamageInfo.damageBonus + damage.modifierTotal : damage.total + (extraDamageInfo.damageBonus || 0);
-					const modifiedType = extraDamageInfo.damageType || damage.type;
-					const modifiedTargets = extraDamageInfo.targets || targets;
-					await applyDamage(
-						modifiedTargets,
-						modifiedType,
-						modifiedTotal,
-						{
-							alt: event.altKey,
-							ctrl: event.ctrlKey || event.metaKey,
-							shift: event.shiftKey,
-						},
-						message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name,
-						extraDamageInfo,
-					);
-					if (extraDamageInfo.extraDamage > 0) {
-						await applyExtraDamage(
-							modifiedTargets,
-							extraDamageInfo.extraDamageType,
-							extraDamageInfo.extraDamage,
-							{
-								alt: event.altKey,
-								ctrl: event.ctrlKey || event.metaKey,
-								shift: event.shiftKey,
-							},
-							message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name,
-							extraDamageInfo,
-						);
-					}
-				}
-				disabled = false;
+			sourceName = message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name;
+			baseDamageInfo = {
+				total: damage.total,
+				type: damage.type,
+				modifierTotal: damage.modifierTotal,
 			};
-
-			const handleClick = async (event, getTargetsFunction) => {
-				if (!disabled) {
-					disabled = true;
-					const targets = await getTargetsFunction(event);
-					if (event.ctrlKey || event.metaKey) {
-						DamageCustomizer(
-							damage,
-							targets,
-							(extraDamageInfo) => handleDamageApplication(event, targets, extraDamageInfo),
-							() => {
-								disabled = false;
-							},
-						);
-					} else {
-						handleDamageApplication(event, targets, {});
-					}
-				}
-			};
-
-			jQuery.find(`a[data-action=applySingleDamage]`).click((event) => handleClick(event, getSingleTarget));
-			jQuery.find(`a[data-action=applySelectedDamage]`).click((event) => handleClick(event, getSelected));
-			jQuery.find(`a[data-action=applyTargetedDamage]`).click((event) => handleClick(event, getTargeted));
-			jQuery.find(`a[data-action=selectDamageCustomizer]`).click(async (event) => {
-				if (!disabled) {
-					disabled = true;
-					const targets = await getTargeted(event);
-					DamageCustomizer(
-						damage,
-						targets,
-						(extraDamageInfo) => handleDamageApplication(event, targets, extraDamageInfo),
-						() => {
-							disabled = false;
-						},
-					);
-				}
-			});
 		}
 	}
+
+	const handleClick = async (event, getTargetsFunction) => {
+		if (!disabled) {
+			disabled = true;
+			const targets = await getTargetsFunction(event);
+			if (event.ctrlKey || event.metaKey) {
+				DamageCustomizer(
+					baseDamageInfo,
+					targets,
+					(extraDamageInfo) => {
+						handleDamageApplication(event, targets, sourceName, baseDamageInfo, extraDamageInfo);
+						disabled = false;
+					},
+					() => {
+						disabled = false;
+					},
+				);
+			} else {
+				handleDamageApplication(event, targets, sourceName, baseDamageInfo, {});
+				disabled = false;
+			}
+		}
+	};
+
+	jQuery.find(`a[data-action=applySingleDamage]`).click((event) => handleClick(event, getSingleTarget));
+	jQuery.find(`a[data-action=applySelectedDamage]`).click((event) => handleClick(event, getSelected));
+	jQuery.find(`a[data-action=applyTargetedDamage]`).click((event) => handleClick(event, getTargeted));
+	jQuery.find(`a[data-action=selectDamageCustomizer]`).click(async (event) => {
+		if (!disabled) {
+			disabled = true;
+			const targets = await getTargeted(event);
+			DamageCustomizer(
+				baseDamageInfo,
+				targets,
+				(extraDamageInfo) => {
+					handleDamageApplication(event, targets, sourceName, baseDamageInfo, extraDamageInfo);
+					disabled = false;
+				},
+				() => {
+					disabled = false;
+				},
+			);
+		}
+	});
 }
 
 /**
- * @typedef ClickModifiers
- * @param {boolean} alt
- * @param {boolean} ctrl
- * @param {boolean} shift
+ * 
+ * @param {Event} event
+ * @param {FUActor[]} targets
+ * @param {string} sourceName
+ * @param {BaseDamageInfo} baseDamageInfo
+ * @param {ExtraDamageInfo} extraDamageInfo
+ * @returns {void}
  */
-/**
- * @typedef DamageModifier
- * @function
- * @param {number} baseDamage
- * @param {ClickModifiers} modifiers
- * @return {number}
- */
+async function handleDamageApplication(event, targets, sourceName, baseDamageInfo, extraDamageInfo) {
+	/** @type {ClickModifiers} */
+	let clickModifiers = {
+		alt: event.altKey,
+		ctrl: event.ctrlKey || event.metaKey,
+		shift: event.shiftKey
+	}
+
+	const sourceItemId = findItemId(event);
+
+	const hookData = {
+		event,
+		targets,
+		sourceItemId,
+		sourceName,
+		baseDamageInfo,
+		extraDamageInfo,
+		clickModifiers,
+	};
+
+	Hooks.callAll(FUHooks.DAMAGE_APPLY_BEFORE, hookData);
+
+	// Reassign in case the hookData's fields were replaced
+	targets = hookData.targets;
+	sourceName = hookData.sourceName;
+	baseDamageInfo = hookData.baseDamageInfo;
+	extraDamageInfo = hookData.extraDamageInfo;
+	clickModifiers = hookData.clickModifiers;
+
+	const modifiedTotal = extraDamageInfo.hrZero ? extraDamageInfo.damageBonus + baseDamageInfo.modifierTotal : baseDamageInfo.total + (extraDamageInfo.damageBonus || 0);
+	const modifiedType = extraDamageInfo.damageType || baseDamageInfo.type;
+	const modifiedTargets = extraDamageInfo.targets || targets;
+
+	if (!modifiedTargets) {
+		return;
+	}
+
+	await applyDamage(
+		modifiedTargets,
+		sourceItemId,
+		sourceName,
+		modifiedType,
+		modifiedTotal,
+		clickModifiers,
+		extraDamageInfo,
+	);
+	if (extraDamageInfo.extraDamage > 0) {
+		await applyExtraDamage(
+			modifiedTargets,
+			sourceItemId,
+			sourceName,
+			extraDamageInfo.extraDamageType,
+			extraDamageInfo.extraDamage,
+			clickModifiers,
+			extraDamageInfo,
+		);
+	}
+}
 
 /**
  * @type {Record<number, DamageModifier>}
@@ -202,120 +199,6 @@ const affinityKeys = {
 	[FU.affValue.absorption]: () => 'FU.ChatApplyDamageAbsorb',
 };
 
-/**
- *
- * @param {FUActor[]} targets
- * @param {DamageType} damageType
- * @param {number} total
- * @param {ClickModifiers} modifiers
- * @param {string} sourceName
- * @return {Promise<Awaited<unknown>[]>}
- */
-export async function applyDamage(targets, damageType, total, modifiers, sourceName, extraDamageInfo) {
-	if (!Array.isArray(targets)) {
-		console.error('Targets is not an array:', targets);
-		return;
-	}
-	const updates = [];
-	for (const actor of targets) {
-		let affinity = FU.affValue.none; // Default to no affinity
-		let affinityIcon = '';
-		let affinityString = '';
-		if (damageType in actor.system.affinities) {
-			affinity = actor.system.affinities[damageType].current;
-			affinityIcon = FU.affIcon[damageType];
-		}
-		affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
-			damageType: game.i18n.localize(FU.damageTypes[damageType]),
-			affinityIcon: affinityIcon,
-		});
-
-		// Check if affinity should be ignored
-		if (affinity === FU.affValue.vulnerability && extraDamageInfo.ignoreVulnerable) {
-			affinity = FU.affValue.none;
-		}
-		if (affinity === FU.affValue.resistance && extraDamageInfo.ignoreResistance) {
-			affinity = FU.affValue.none;
-		}
-		if (affinity === FU.affValue.immunity && extraDamageInfo.ignoreImmunities) {
-			affinity = FU.affValue.none;
-		}
-		if (affinity === FU.affValue.absorption && extraDamageInfo.ignoreAbsorption) {
-			affinity = FU.affValue.none;
-		}
-
-		const damageMod = affinityDamageModifier[affinity] ?? affinityDamageModifier[FU.affValue.none];
-		const damageTaken = -damageMod(total, modifiers);
-		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
-		updates.push(
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor }),
-				flavor: game.i18n.localize(FU.affType[affinity]),
-				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
-					message: affinityKeys[affinity](modifiers),
-					actor: actor.name,
-					damage: Math.abs(damageTaken),
-					type: affinityString,
-					from: sourceName,
-				}),
-			}),
-		);
-	}
-	return Promise.all(updates);
-}
-export async function applyExtraDamage(targets, damageType, total, modifiers, sourceName, extraDamageInfo) {
-	if (!Array.isArray(targets)) {
-		console.error('Targets is not an array:', targets);
-		return;
-	}
-	const updates = [];
-	for (const actor of targets) {
-		let affinity = FU.affValue.none; // Default to no affinity
-		let affinityIcon = '';
-		let affinityString = '';
-		if (damageType in actor.system.affinities) {
-			affinity = actor.system.affinities[damageType].current;
-			affinityIcon = FU.affIcon[damageType];
-		}
-		affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
-			damageType: game.i18n.localize(FU.damageTypes[damageType]),
-			affinityIcon: affinityIcon,
-		});
-
-		// Check if affinity should be ignored
-		if (affinity === FU.affValue.vulnerability && extraDamageInfo.ignoreVulnerable) {
-			affinity = FU.affValue.none;
-		}
-		if (affinity === FU.affValue.resistance && extraDamageInfo.ignoreResistance) {
-			affinity = FU.affValue.none;
-		}
-		if (affinity === FU.affValue.immunity && extraDamageInfo.ignoreImmunities) {
-			affinity = FU.affValue.none;
-		}
-		if (affinity === FU.affValue.absorption && extraDamageInfo.ignoreAbsorption) {
-			affinity = FU.affValue.none;
-		}
-
-		const damageMod = affinityDamageModifier[affinity] ?? affinityDamageModifier[FU.affValue.none];
-		const damageTaken = -damageMod(total, modifiers);
-		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
-		updates.push(
-			ChatMessage.create({
-				speaker: ChatMessage.getSpeaker({ actor }),
-				flavor: game.i18n.localize(FU.affType[affinity]),
-				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-extra-damage.hbs', {
-					message: affinityKeys[affinity](modifiers),
-					actor: actor.name,
-					damage: Math.abs(damageTaken),
-					type: affinityString,
-					from: sourceName,
-				}),
-			}),
-		);
-	}
-	return Promise.all(updates);
-}
-
 function getSingleTarget(e) {
 	// eslint-disable-next-line no-unused-vars, no-undef
 	const { type, id } = parseUuid($(e.target).closest('a').data('id'));
@@ -325,4 +208,156 @@ function getSingleTarget(e) {
 		return [];
 	}
 	return [actor];
+}
+
+/**
+ * Determine's the source item's id from an event
+ * @param {Event} event
+ * @returns {string | null}
+ */
+function findItemId(event) {
+	const candidates = event.target?.closest('.chat-message')?.querySelectorAll('[data-item-id]');
+	if (candidates && candidates.length) {
+		return candidates[0].getAttribute('data-item-id');
+	}
+	return null;
+}
+
+/**
+ *
+ * @param {FUActor[]} targets
+ * @param {string} sourceItemId
+ * @param {string} sourceName
+ * @param {DamageType} damageType
+ * @param {number} total
+ * @param {ClickModifiers} clickModifiers
+ * @param {ExtraDamageInfo} extraDamageInfo
+ * @param {string} chatTemplateName
+ * @return {Promise<Awaited<unknown>[]>}
+ */
+async function applyDamageInternal(targets, sourceItemId, sourceName, damageType, total, clickModifiers, extraDamageInfo, chatTemplateName) {
+	if (!Array.isArray(targets)) {
+		console.error('Targets is not an array:', targets);
+		return;
+	}
+
+	const updates = [];
+	for (const actor of targets) {
+		const hookData = {
+			actor,
+			sourceItemId,
+			sourceName,
+			damageType,
+			total,
+			clickModifiers: {},
+			extraDamageInfo: {},
+			overrides: {
+				affinity: null,
+				total: null
+			}
+		};
+		// Copy to avoid overwriting for other calls
+		Object.assign(hookData.clickModifiers, clickModifiers);
+		Object.assign(hookData.extraDamageInfo, extraDamageInfo);
+		Hooks.callAll(FUHooks.DAMAGE_APPLY_TARGET, hookData);
+
+		let affinity = FU.affValue.none; // Default to no affinity
+		let affinityIcon = '';
+		let affinityString = '';
+		if (hookData.overrides?.affinity) {
+			affinity = hookData.overrides.affinity;
+			affinityIcon = FU.affIcon[hookData.damageType];
+		}
+		else if (hookData.damageType in actor.system.affinities) {
+			affinity = actor.system.affinities[hookData.damageType].current;
+			affinityIcon = FU.affIcon[hookData.damageType];
+		}
+		affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
+			damageType: game.i18n.localize(FU.damageTypes[hookData.damageType]),
+			affinityIcon: affinityIcon,
+		});
+
+		// Check if affinity should be ignored
+		if (affinity === FU.affValue.vulnerability && hookData.extraDamageInfo.ignoreVulnerable) {
+			affinity = FU.affValue.none;
+		}
+		if (affinity === FU.affValue.resistance && hookData.extraDamageInfo.ignoreResistance) {
+			affinity = FU.affValue.none;
+		}
+		if (affinity === FU.affValue.immunity && hookData.extraDamageInfo.ignoreImmunities) {
+			affinity = FU.affValue.none;
+		}
+		if (affinity === FU.affValue.absorption && hookData.extraDamageInfo.ignoreAbsorption) {
+			affinity = FU.affValue.none;
+		}
+
+		const damageMod = affinityDamageModifier[affinity] ?? affinityDamageModifier[FU.affValue.none];
+		const damageTaken = hookData.overrides?.total || -damageMod(hookData.total, hookData.clickModifiers);
+
+		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
+		updates.push(
+			ChatMessage.create({
+				speaker: ChatMessage.getSpeaker({ actor }),
+				flavor: game.i18n.localize(FU.affType[affinity]),
+				content: await renderTemplate(chatTemplateName, {
+					message: affinityKeys[affinity](hookData.clickModifiers),
+					actor: actor.name,
+					damage: Math.abs(damageTaken),
+					type: affinityString,
+					from: hookData.sourceName,
+				}),
+			}),
+		);
+	}
+	return Promise.all(updates);
+}
+
+/**
+ *
+ * @param {FUActor[]} targets
+ * @param {string} sourceItemId
+ * @param {string} sourceName
+ * @param {DamageType} type
+ * @param {number} total
+ * @param {ClickModifiers} clickModifiers
+ * @param {ExtraDamageInfo} extraDamageInfo
+ * @return {Promise<Awaited<unknown>[]>}
+ */
+export async function applyDamage(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo) {
+	return await applyDamageInternal(
+		targets,
+		sourceItemId,
+		sourceName,
+		type,
+		total,
+		clickModifiers,
+		extraDamageInfo,
+		'systems/projectfu/templates/chat/chat-apply-damage.hbs');
+}
+
+/**
+ *
+ * @param {FUActor[]} targets
+ * @param {string} sourceItemId
+ * @param {string} sourceName
+ * @param {DamageType} type
+ * @param {number} total
+ * @param {ClickModifiers} clickModifiers
+ * @param {ExtraDamageInfo} extraDamageInfo
+ * @return {Promise<Awaited<unknown>[]>}
+ */
+export async function applyExtraDamage(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo) {
+	return await applyDamageInternal(
+		targets,
+		sourceItemId,
+		sourceName,
+		type,
+		total,
+		clickModifiers,
+		extraDamageInfo,
+		'systems/projectfu/templates/chat/chat-apply-extra-damage.hbs');
+}
+
+export function registerChatInteraction() {
+	Hooks.on('renderChatMessage', attachDamageApplicationHandler);
 }

@@ -1,12 +1,45 @@
+import { FUActor } from '../documents/actors/actor.mjs';
 import { FU } from './config.mjs';
 import { getTargeted } from './target-handler.mjs';
 
 /**
+ * @typedef BaseDamageInfo
+ * @type {import('./typedefs.mjs').BaseDamageInfo}
+ */
+
+/**
+ * @typedef DamageType
+ * @type {import('./config.mjs').DamageType}
+ */
+
+/**
+ * @typedef ExtraDamageInfo
+ * @prop {DamageType} damageType
+ * @prop {number} damageBonus
+ * @prop {number} extraDamage
+ * @prop {DamageType} extraDamageType
+ * @prop {boolean} hrZero
+ * @prop {boolean} ignoreVulnerable
+ * @prop {boolean} ignoreResistance
+ * @prop {boolean} ignoreImmunities
+ * @prop {boolean} ignoreAbsorption
+ * @prop {FUActor[]} targets
+ */
+
+/**
+ * @callback DamageCustomizerCallback
+ * @param {ExtraDamageInfo} extraDamageInfo
+ * @param {FUActor[]} targets
+ * @returns {void}
+ */
+
+/**
  * Displays a dialog to customize damage.
  *
- * @param {Object} damage - The damage object containing type and total.
- * @param {Function} callback - The function to call when the user confirms.
- * @param {Function} onCancel - The function to call when the user cancels.
+ * @param {BaseDamageInfo} damage - The damage object containing type and total.
+ * @param {FUActor[]} targets - The specified targets.
+ * @param {DamageCustomizerCallback} callback - The function to call when the user confirms.
+ * @param {() => void} onCancel - The function to call when the user cancels.
  */
 export function DamageCustomizer(damage, targets, callback, onCancel) {
 	// Map damage types to options with the current type selected
@@ -28,25 +61,25 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
 	// Create the content for the dialog
 	const content = `
         <form>
-			<div class="desc mb-3 gap-5">
-				<div class="flexrow form-group targets-container">${tokenInfo}</div>
-				<button type="button" id="retarget" class="btn">${game.i18n.localize('FU.ChatContextRetarget')}</button>
-			</div>
+            <div class="desc mb-3 gap-5">
+                <div class="flexrow form-group targets-container">${tokenInfo}</div>
+                <button type="button" id="retarget" class="btn">${game.i18n.localize('FU.ChatContextRetarget')}</button>
+            </div>
             <div class="desc mb-3 grid grid-2col gap-5">
                 <div class="inline-desc form-group" style="padding: 5px 10px;">
                     <label for="total-damage" class="resource-content resource-label" style="flex-grow: 8;"><b>${game.i18n.localize('FU.Total')}</b>
-						<span id="total-damage">
-							<b>${damage.total} ${game.i18n.localize(FU.damageTypes[damage.type])}</b>
-						</span>
-					</label>
+                        <span id="total-damage">
+                            <b>${damage.total} ${game.i18n.localize(FU.damageTypes[damage.type])}</b>
+                        </span>
+                    </label>
                     <i id="total-damage-icon" class="icon ${FU.affIcon[damage.type]}" style="flex: 0 1 auto;"></i>
                 </div>
                 <div class="inline-desc form-group" style="padding: 5px 10px;">
                     <label for="total-extra-damage" class="resource-content resource-label" style="flex-grow: 8;"><b>${game.i18n.localize('FU.DamageExtra')}</b>
-						<span id="extra-total-damage">
-							<b>0 ${game.i18n.localize(FU.damageTypes[damage.type])}</b>
-						</span>
-					</label>
+                        <span id="extra-total-damage">
+                            <b>0 ${game.i18n.localize(FU.damageTypes[damage.type])}</b>
+                        </span>
+                    </label>
                     <i id="extra-damage-icon" class="icon ${FU.affIcon[damage.type]}" style="flex: 0 1 auto;"></i>
                 </div>
             </div>
@@ -78,10 +111,10 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
             </div>
             <div class="desc grid grid-2col gap-5">
                 <div class="gap-2 grid-span-2">
-					<div class="form-group">
-                    	<button type="button" id="check-all" class="btn">${game.i18n.localize('FU.IgnoreAll')}</button>
-                    	<button type="button" id="check-none" class="btn">${game.i18n.localize('FU.IgnoreNone')}</button>
-					</div>
+                    <div class="form-group">
+                        <button type="button" id="check-all" class="btn">${game.i18n.localize('FU.IgnoreAll')}</button>
+                        <button type="button" id="check-none" class="btn">${game.i18n.localize('FU.IgnoreNone')}</button>
+                    </div>
                 </div>
                 <div class="gap-2">
                     <div class="form-group">

@@ -38,7 +38,7 @@ FU.currencies = {
 };
 
 /**
- * @typedef {"untyped", "physical","air","bolt","dark","earth","fire","ice","light","poison"} DamageType
+ * @typedef {"untyped" | "physical" | "air" | "bolt" | "dark" | "earth" | "fire" | "ice" | "light" | "poison"} DamageType
  */
 /**
  * @type {Object<DamageType, string>}

@@ -79,7 +79,7 @@ function activateListeners(document, html) {
 			const source = determineSource(document, this);
 			let targets = await targetHandler();
 			if (targets.length > 0) {
-				applyDamage(targets, type, amount, {}, source || 'inline damage');
+				applyDamage(targets, null, source || 'inline damage', type, amount, {}, {});
 			}
 		})
 		.on('dragstart', function (event) {
@@ -103,7 +103,7 @@ function activateListeners(document, html) {
 
 function onDropActor(actor, sheet, { type, damageType, amount, source, ignore }) {
 	if (type === INLINE_DAMAGE) {
-		applyDamage([actor], damageType, Number(amount), {}, source || 'something');
+		applyDamage([actor], null, source || 'inline damage', damageType, Number(amount), {}, {});
 		return false;
 	}
 }

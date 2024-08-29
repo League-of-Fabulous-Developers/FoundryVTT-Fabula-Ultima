@@ -1,4 +1,5 @@
 import { FUItem } from '../items/item.mjs';
+import { FUHooks } from '../../hooks.mjs';
 import { toggleStatusEffect } from '../../helpers/effects.mjs';
 
 /**
@@ -14,7 +15,7 @@ export class FUActor extends Actor {
 		// prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
 		// prepareDerivedData().
 		super.prepareData();
-		Hooks.callAll('projectfu.actor.dataPrepared', this);
+		Hooks.callAll(FUHooks.DATA_PREPARED_ACTOR, this);
 	}
 
 	async getData(options = {}) {
