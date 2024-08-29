@@ -200,6 +200,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		const projects = [];
 		const rituals = [];
 		const zeroPowers = [];
+		const effects = [];
 
 		// Iterate through items, allocating to containers
 		for (let i of context.items) {
@@ -395,6 +396,8 @@ export class FUStandardActorSheet extends ActorSheet {
 				rituals.push(i);
 			} else if (i.type === 'zeroPower') {
 				zeroPowers.push(i);
+			} else if (i.type === 'effect') {
+				effects.push(i);
 			}
 		}
 
@@ -416,6 +419,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.projects = projects;
 		context.rituals = rituals;
 		context.zeroPowers = zeroPowers;
+		context.effects = effects;
 		context.classFeatures = {};
 		for (const item of this.actor.itemTypes.classFeature) {
 			const featureType = (context.classFeatures[item.system.featureType] ??= {
@@ -457,7 +461,47 @@ export class FUStandardActorSheet extends ActorSheet {
 	async _onDrop(event) {
 		event.preventDefault();
 
-		// Configuration for item types and their update logic
+		// Retrieve drag data using TextEditor
+		const data = TextEditor.getDragEventData(event);
+		if (!data || data.type !== 'Item') return await super._onDrop(event);
+
+		const itemData = await this._getItemDataFromDropData(data);
+
+		// Determine the configuration based on item type
+		const config = this._findItemConfig(itemData.type);
+		if (config) {
+			// Check if there is an active ProseMirror editor
+			const activeEditor = document.querySelector('.editor-content.ProseMirror');
+			if (itemData.type === 'effect') {
+				if (activeEditor) {
+					// Handle effect drop into ProseMirror editor
+					await this._handleEditorEffectDrop(itemData, event);
+				} else {
+					// Handle effect drop into actor sheet
+					await this._importEffectData(itemData);
+				}
+			} else {
+				// Handle other item drops
+				await this._processItemDrop(itemData, config);
+			}
+		} else {
+			// Default behavior for unknown item types
+			await super._onDrop(event);
+		}
+	}
+
+	// Helper function to get item data from drop data
+	async _getItemDataFromDropData(data) {
+		try {
+			return await Item.implementation.fromDropData(data);
+		} catch (error) {
+			console.error('Failed to get item data from drop data:', error);
+			return null;
+		}
+	}
+
+	// Helper function to find the appropriate update configuration
+	_findItemConfig(type) {
 		const itemTypeConfigs = [
 			{
 				types: ['classFeature', 'optionalFeature', 'treasure'],
@@ -475,39 +519,69 @@ export class FUStandardActorSheet extends ActorSheet {
 					await item.update({ 'system.level.value': newValue });
 				},
 			},
+			{
+				types: ['effect'],
+				update: async (itemData) => {
+					// Effects are handled separately
+					return; // No default action here
+				},
+			},
 		];
 
-		// Helper function to parse drag data
-		const parseDragData = (data) => {
-			try {
-				return JSON.parse(data);
-			} catch {
-				return null;
-			}
-		};
+		return itemTypeConfigs.find((config) => config.types.includes(type));
+	}
 
-		// Helper function to find the appropriate update configuration
-		const findUpdateConfig = (type) => {
-			return itemTypeConfigs.find((config) => config.types.includes(type));
-		};
-
-		// Retrieve and process drag data
-		const dragData = parseDragData(event.dataTransfer.getData('text/plain'));
-		if (!dragData || dragData.type !== 'Item') return;
-
-		const itemData = await Item.implementation.fromDropData(dragData);
-		const config = findUpdateConfig(itemData.type);
-
-		if (config) {
-			const existingItem = this.actor.items.find((i) => i.name === itemData.name && i.type === itemData.type);
-			if (existingItem) {
-				await config.update(itemData, existingItem);
-			} else {
-				await super._onDrop(event);
-			}
+	// Process item drop based on the configuration
+	async _processItemDrop(itemData, config) {
+		const existingItem = this.actor.items.find((i) => i.name === itemData.name && i.type === itemData.type);
+		if (existingItem) {
+			await config.update(itemData, existingItem);
 		} else {
 			await super._onDrop(event);
 		}
+	}
+
+	// Import effect data to the actor
+	async _importEffectData(itemData) {
+		const effects = itemData.effects || [];
+		const existingEffects = this.actor.items.filter((i) => i.type === 'ActiveEffect').map((e) => e.data.name);
+		for (const effect of effects) {
+			if (!existingEffects.includes(effect.name)) {
+				await this.actor.createEmbeddedDocuments('ActiveEffect', [effect]);
+			}
+		}
+	}
+
+	// Handle dropping effects into a text editor
+	async _handleEditorEffectDrop(itemData, event) {
+		const activeEditor = document.querySelector('.editor-content.ProseMirror');
+		if (activeEditor) {
+			const effects = itemData.effects || [];
+			const formattedEffects = effects.map((effect) => this._formatEffect(effect)).join(' ');
+
+			event.preventDefault();
+			event.stopPropagation();
+
+			const currentContent = activeEditor.innerHTML;
+
+			// Append the formatted effects to the current content of the editor
+			activeEditor.innerHTML = currentContent + formattedEffects;
+
+			console.log(`Appended formatted effects to the ProseMirror editor.`);
+		} else {
+			console.log('No active ProseMirror editor found.');
+		}
+	}
+
+	// Helper function to encode an effect in base64
+	_encodeBase64(data) {
+		return btoa(unescape(encodeURIComponent(data)));
+	}
+
+	// Helper function to generate the @EFFECT format string
+	_formatEffect(effect) {
+		const encodedEffect = this._encodeBase64(JSON.stringify(effect));
+		return `@EFFECT[${encodedEffect}]`;
 	}
 
 	/* -------------------------------------------- */
@@ -838,7 +912,39 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('a[data-action=spendMetaCurrency]').on('click', () => this.actor.spendMetaCurrency());
 
 		html.find('span[data-action="clearTempEffects"]').click(this._onClearTempEffects.bind(this));
+
+		// dropzone event listeners
+		const dropZone = html.find('.desc.drop-zone');
+		dropZone.on('dragenter', this._onDragEnter.bind(this));
+		dropZone.on('dragleave', this._onDragLeave.bind(this));
+		dropZone.on('drop', this._onDropReset.bind(this));
 	}
+
+	/* -------------------------------------------- */
+
+	_onDragEnter(event) {
+		event.preventDefault();
+		this.dragCounter++;
+		const dropZone = $(event.currentTarget);
+		dropZone.addClass('highlight-drop-zone');
+	}
+
+	_onDragLeave(event) {
+		event.preventDefault();
+		this.dragCounter--;
+		if (this.dragCounter === 0) {
+			const dropZone = $(event.currentTarget);
+			dropZone.removeClass('highlight-drop-zone');
+		}
+	}
+
+	_onDropReset(event) {
+		this.dragCounter = 0;
+		const dropZone = $(event.currentTarget);
+		dropZone.removeClass('highlight-drop-zone');
+	}
+
+	/* -------------------------------------------- */
 
 	_saveExpandedState() {
 		this.actor.update({ 'system._expanded': Array.from(this._expanded) });

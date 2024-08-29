@@ -1,7 +1,7 @@
 
 {{!-- FUID Field --}}
 {{> "systems/projectfu/templates/item/partials/item-regenerate-fuid.hbs"}}
-<section class="desc">
+<section class="desc drop-zone">
     {{#unless hideHeader}}
         <header class="items-main-header">
 		<span class="items-main">
@@ -60,6 +60,9 @@
                                         <i
                                          class="{{#if
                                           effect.disabled}}far fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
+                                    </a>
+                                    <a class="effect-control" data-action="copy-inline" title="{{localize 'FU.EffectCopy'}}">
+                                        <i class="fas fa-copy"></i>
                                     </a>
                                     <a class="effect-control" data-action="edit" title="{{localize 'FU.EffectEdit'}}">
                                         <i class="fas fa-edit"></i>

@@ -180,6 +180,7 @@ FU.itemTypes = {
 	ritual: 'TYPES.Item.ritual',
 	project: 'TYPES.Item.project',
 	zeroPower: 'TYPES.Item.zeroPower',
+	effect: 'TYPES.Item.effect',
 };
 
 FU.actionTypes = {

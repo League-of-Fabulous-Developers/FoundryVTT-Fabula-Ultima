@@ -32,6 +32,7 @@ import { SpellDataModel } from './documents/items/spell/spell-data-model.mjs';
 import { TreasureDataModel } from './documents/items/treasure/treasure-data-model.mjs';
 import { ZeroPowerDataModel } from './documents/items/zeropower/zero-power-data-model.mjs';
 import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs';
+import { EffectDataModel } from './documents/items/effect/effect-data-model.mjs';
 import { onSocketLibReady } from './socket.mjs';
 import { statusEffects } from './helpers/statuses.mjs';
 
@@ -156,6 +157,7 @@ Hooks.once('init', async () => {
 		treasure: TreasureDataModel,
 		weapon: WeaponDataModel,
 		zeroPower: ZeroPowerDataModel,
+		effect: EffectDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
 	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
