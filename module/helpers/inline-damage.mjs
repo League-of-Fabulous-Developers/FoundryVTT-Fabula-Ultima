@@ -1,11 +1,17 @@
 import { FU, SYSTEM } from './config.mjs';
-import { applyDamage } from './apply-damage.mjs';
+import { applyDamagePipelineWithHook } from './apply-damage.mjs';
 import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { targetHandler } from './target-handler.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
+
+/**
+ * @typedef SourceInfo
+ * @prop {string | null} id
+ * @prop {string | null} name
+ */
 
 /**
  * @type {TextEditorEnricherConfig}
@@ -37,30 +43,40 @@ function enricher(text, options) {
 /**
  * @param {ClientDocument} document
  * @param {HTMLElement} element
- * @returns {string}
+ * @returns {SourceInfo}
  */
 function determineSource(document, element) {
 	let source = game.i18n.localize('FU.UnknownDamageSource');
+	let sourceId = null;
 	if (document instanceof FUActor) {
-		const itemId = $(element).closest('[data-item-id]').data('itemId');
-		if (itemId) {
-			source = document.items.get(itemId).name;
+		sourceId = $(element).closest('[data-item-id]').data('itemId');
+		if (sourceId) {
+			source = document.items.get(sourceId).name;
 		} else {
 			source = document.name;
+			sourceId = document.id;
 		}
 	} else if (document instanceof FUItem) {
 		source = document.name;
+		sourceId = document.id;
 	} else if (document instanceof ChatMessage) {
 		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
 		if (speakerActor) {
 			source = speakerActor.name;
+			sourceId = speakerActor.id;
 		}
 		const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
 		if (item) {
 			source = item.name;
+			sourceId = item.id;
 		}
 	}
-	return source;
+	/** @type {SourceInfo} */
+	const result = {
+		id: sourceId,
+		name: source
+	};
+	return result;
 }
 
 /**
@@ -76,10 +92,11 @@ function activateListeners(document, html) {
 		.on('click', async function () {
 			const amount = Number(this.dataset.amount);
 			const type = this.dataset.type;
-			const source = determineSource(document, this);
+			const sourceInfo = determineSource(document, this);
 			let targets = await targetHandler();
 			if (targets.length > 0) {
-				applyDamage(targets, null, source || 'inline damage', type, amount, {}, {});
+				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
+				await applyDamagePipelineWithHook({ event: null, targets, sourceItemId: sourceInfo.id, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 			}
 		})
 		.on('dragstart', function (event) {
@@ -88,11 +105,11 @@ function activateListeners(document, html) {
 			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
 				return;
 			}
-			const source = determineSource(document, this);
+			const sourceInfo = determineSource(document, this);
 
 			const data = {
 				type: INLINE_DAMAGE,
-				source: source,
+				source: sourceInfo,
 				damageType: this.dataset.type,
 				amount: this.dataset.amount,
 			};
@@ -103,7 +120,8 @@ function activateListeners(document, html) {
 
 function onDropActor(actor, sheet, { type, damageType, amount, source, ignore }) {
 	if (type === INLINE_DAMAGE) {
-		applyDamage([actor], null, source || 'inline damage', damageType, Number(amount), {}, {});
+		const baseDamageInfo = { type: damageType, total: Number(amount), modifierTotal: 0 };
+		applyDamagePipelineWithHook({ event: null, targets: [actor], sourceItemId: source.id, sourceName: source.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 		return false;
 	}
 }

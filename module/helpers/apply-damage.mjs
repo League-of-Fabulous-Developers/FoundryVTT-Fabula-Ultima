@@ -6,23 +6,6 @@ import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from './target-handler.mjs';
 
-// Aliases
-
-/**
- * @typedef BaseDamageInfo
- * @type {import('./typedefs.mjs').BaseDamageInfo}
- */
-
-/**
- * @typedef ExtraDamageInfo
- * @type {import('./damage-customizer.mjs').ExtraDamageInfo}
- */
-
-/**
- * @typedef DamageType
- * @type {import('./config.mjs').DamageType}
- */
-
 // Typedefs
 
 /**
@@ -37,6 +20,17 @@ import { getSelected, getTargeted } from './target-handler.mjs';
  * @param {number} baseDamage
  * @param {ClickModifiers} modifiers
  * @return {number}
+ */
+
+/**
+ * @typedef BeforeApplyHookData
+ * @prop {Event | null} event
+ * @prop {FUActor[]} targets
+ * @prop {string | null} sourceItemId
+ * @prop {string | null} sourceName
+ * @prop {import('./typedefs.mjs').BaseDamageInfo} baseDamageInfo
+ * @prop {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
+ * @prop {ClickModifiers | null} clickModifiers
  */
 
 function attachDamageApplicationHandler(message, jQuery) {
@@ -116,8 +110,8 @@ function attachDamageApplicationHandler(message, jQuery) {
  * @param {Event} event
  * @param {FUActor[]} targets
  * @param {string} sourceName
- * @param {BaseDamageInfo} baseDamageInfo
- * @param {ExtraDamageInfo} extraDamageInfo
+ * @param {import('./typedefs.mjs').BaseDamageInfo} baseDamageInfo
+ * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
  * @returns {void}
  */
 async function handleDamageApplication(event, targets, sourceName, baseDamageInfo, extraDamageInfo) {
@@ -130,6 +124,7 @@ async function handleDamageApplication(event, targets, sourceName, baseDamageInf
 
 	const sourceItemId = findItemId(event);
 
+	/** @type {BeforeApplyHookData} */
 	const hookData = {
 		event,
 		targets,
@@ -140,27 +135,7 @@ async function handleDamageApplication(event, targets, sourceName, baseDamageInf
 		clickModifiers,
 	};
 
-	Hooks.callAll(FUHooks.DAMAGE_APPLY_BEFORE, hookData);
-
-	// Reassign in case the hookData's fields were replaced
-	targets = hookData.targets;
-	sourceName = hookData.sourceName;
-	baseDamageInfo = hookData.baseDamageInfo;
-	extraDamageInfo = hookData.extraDamageInfo;
-	clickModifiers = hookData.clickModifiers;
-
-	const modifiedTotal = extraDamageInfo.hrZero ? extraDamageInfo.damageBonus + baseDamageInfo.modifierTotal : baseDamageInfo.total + (extraDamageInfo.damageBonus || 0);
-	const modifiedType = extraDamageInfo.damageType || baseDamageInfo.type;
-	const modifiedTargets = extraDamageInfo.targets || targets;
-
-	if (!modifiedTargets) {
-		return;
-	}
-
-	await applyDamage(modifiedTargets, sourceItemId, sourceName, modifiedType, modifiedTotal, clickModifiers, extraDamageInfo);
-	if (extraDamageInfo.extraDamage > 0) {
-		await applyExtraDamage(modifiedTargets, sourceItemId, sourceName, extraDamageInfo.extraDamageType, extraDamageInfo.extraDamage, clickModifiers, extraDamageInfo);
-	}
+	await applyDamagePipelineWithHook(hookData);
 }
 
 /**
@@ -211,10 +186,10 @@ function findItemId(event) {
  * @param {FUActor[]} targets
  * @param {string} sourceItemId
  * @param {string} sourceName
- * @param {DamageType} damageType
+ * @param {import('./config.mjs').DamageType} damageType
  * @param {number} total
  * @param {ClickModifiers} clickModifiers
- * @param {ExtraDamageInfo} extraDamageInfo
+ * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
  * @param {string} chatTemplateName
  * @return {Promise<Awaited<unknown>[]>}
  */
@@ -299,10 +274,10 @@ async function applyDamageInternal(targets, sourceItemId, sourceName, damageType
  * @param {FUActor[]} targets
  * @param {string} sourceItemId
  * @param {string} sourceName
- * @param {DamageType} type
+ * @param {import('./config.mjs').DamageType} type
  * @param {number} total
  * @param {ClickModifiers} clickModifiers
- * @param {ExtraDamageInfo} extraDamageInfo
+ * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
  * @return {Promise<Awaited<unknown>[]>}
  */
 export async function applyDamage(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo) {
@@ -314,14 +289,38 @@ export async function applyDamage(targets, sourceItemId, sourceName, type, total
  * @param {FUActor[]} targets
  * @param {string} sourceItemId
  * @param {string} sourceName
- * @param {DamageType} type
+ * @param {import('./config.mjs').DamageType} type
  * @param {number} total
  * @param {ClickModifiers} clickModifiers
- * @param {ExtraDamageInfo} extraDamageInfo
+ * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
  * @return {Promise<Awaited<unknown>[]>}
  */
 export async function applyExtraDamage(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo) {
 	return await applyDamageInternal(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo, 'systems/projectfu/templates/chat/chat-apply-extra-damage.hbs');
+}
+
+/**
+ *
+ * @param {BeforeApplyHookData} hookData
+ * @return {Promise<Awaited<unknown>[]>}
+ */
+export async function applyDamagePipelineWithHook(hookData) {
+	Hooks.callAll(FUHooks.DAMAGE_APPLY_BEFORE, hookData);
+
+	const { targets, sourceItemId, sourceName, baseDamageInfo, extraDamageInfo, clickModifiers } = hookData;
+
+	const modifiedTotal = extraDamageInfo.hrZero ? extraDamageInfo.damageBonus + baseDamageInfo.modifierTotal : baseDamageInfo.total + (extraDamageInfo.damageBonus || 0);
+	const modifiedType = extraDamageInfo.damageType || baseDamageInfo.type;
+	const modifiedTargets = extraDamageInfo.targets || targets;
+
+	if (!modifiedTargets) {
+		return;
+	}
+
+	await applyDamage(modifiedTargets, sourceItemId, sourceName, modifiedType, modifiedTotal, clickModifiers, extraDamageInfo);
+	if (extraDamageInfo.extraDamage > 0) {
+		await applyExtraDamage(modifiedTargets, sourceItemId, sourceName, extraDamageInfo.extraDamageType || 'untyped', extraDamageInfo.extraDamage, clickModifiers, extraDamageInfo);
+	}
 }
 
 export function registerChatInteraction() {
