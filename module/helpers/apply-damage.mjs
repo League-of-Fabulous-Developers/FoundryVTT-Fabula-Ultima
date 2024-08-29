@@ -11,7 +11,7 @@ import { getSelected, getTargeted } from './target-handler.mjs';
 /**
  * @typedef BaseDamageInfo
  * @type {import('./typedefs.mjs').BaseDamageInfo}
-*/
+ */
 
 /**
  * @typedef ExtraDamageInfo
@@ -38,7 +38,6 @@ import { getSelected, getTargeted } from './target-handler.mjs';
  * @param {ClickModifiers} modifiers
  * @return {number}
  */
-
 
 function attachDamageApplicationHandler(message, jQuery) {
 	const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
@@ -113,7 +112,7 @@ function attachDamageApplicationHandler(message, jQuery) {
 }
 
 /**
- * 
+ *
  * @param {Event} event
  * @param {FUActor[]} targets
  * @param {string} sourceName
@@ -126,8 +125,8 @@ async function handleDamageApplication(event, targets, sourceName, baseDamageInf
 	let clickModifiers = {
 		alt: event.altKey,
 		ctrl: event.ctrlKey || event.metaKey,
-		shift: event.shiftKey
-	}
+		shift: event.shiftKey,
+	};
 
 	const sourceItemId = findItemId(event);
 
@@ -158,25 +157,9 @@ async function handleDamageApplication(event, targets, sourceName, baseDamageInf
 		return;
 	}
 
-	await applyDamage(
-		modifiedTargets,
-		sourceItemId,
-		sourceName,
-		modifiedType,
-		modifiedTotal,
-		clickModifiers,
-		extraDamageInfo,
-	);
+	await applyDamage(modifiedTargets, sourceItemId, sourceName, modifiedType, modifiedTotal, clickModifiers, extraDamageInfo);
 	if (extraDamageInfo.extraDamage > 0) {
-		await applyExtraDamage(
-			modifiedTargets,
-			sourceItemId,
-			sourceName,
-			extraDamageInfo.extraDamageType,
-			extraDamageInfo.extraDamage,
-			clickModifiers,
-			extraDamageInfo,
-		);
+		await applyExtraDamage(modifiedTargets, sourceItemId, sourceName, extraDamageInfo.extraDamageType, extraDamageInfo.extraDamage, clickModifiers, extraDamageInfo);
 	}
 }
 
@@ -253,8 +236,8 @@ async function applyDamageInternal(targets, sourceItemId, sourceName, damageType
 			extraDamageInfo: {},
 			overrides: {
 				affinity: null,
-				total: null
-			}
+				total: null,
+			},
 		};
 		// Copy to avoid overwriting for other calls
 		Object.assign(hookData.clickModifiers, clickModifiers);
@@ -267,8 +250,7 @@ async function applyDamageInternal(targets, sourceItemId, sourceName, damageType
 		if (hookData.overrides?.affinity) {
 			affinity = hookData.overrides.affinity;
 			affinityIcon = FU.affIcon[hookData.damageType];
-		}
-		else if (hookData.damageType in actor.system.affinities) {
+		} else if (hookData.damageType in actor.system.affinities) {
 			affinity = actor.system.affinities[hookData.damageType].current;
 			affinityIcon = FU.affIcon[hookData.damageType];
 		}
@@ -324,15 +306,7 @@ async function applyDamageInternal(targets, sourceItemId, sourceName, damageType
  * @return {Promise<Awaited<unknown>[]>}
  */
 export async function applyDamage(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo) {
-	return await applyDamageInternal(
-		targets,
-		sourceItemId,
-		sourceName,
-		type,
-		total,
-		clickModifiers,
-		extraDamageInfo,
-		'systems/projectfu/templates/chat/chat-apply-damage.hbs');
+	return await applyDamageInternal(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo, 'systems/projectfu/templates/chat/chat-apply-damage.hbs');
 }
 
 /**
@@ -347,15 +321,7 @@ export async function applyDamage(targets, sourceItemId, sourceName, type, total
  * @return {Promise<Awaited<unknown>[]>}
  */
 export async function applyExtraDamage(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo) {
-	return await applyDamageInternal(
-		targets,
-		sourceItemId,
-		sourceName,
-		type,
-		total,
-		clickModifiers,
-		extraDamageInfo,
-		'systems/projectfu/templates/chat/chat-apply-extra-damage.hbs');
+	return await applyDamageInternal(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo, 'systems/projectfu/templates/chat/chat-apply-extra-damage.hbs');
 }
 
 export function registerChatInteraction() {

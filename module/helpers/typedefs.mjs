@@ -7,4 +7,4 @@
  * @prop {number} modifierTotal
  */
 
-export {}
+export {};
