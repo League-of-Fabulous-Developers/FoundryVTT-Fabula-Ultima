@@ -26,15 +26,34 @@ import { getSelected, getTargeted } from './target-handler.mjs';
  * @typedef BeforeApplyHookData
  * @prop {Event | null} event
  * @prop {FUActor[]} targets
- * @prop {string | null} sourceItemId
+ * @prop {string | null} sourceUuid
  * @prop {string | null} sourceName
  * @prop {import('./typedefs.mjs').BaseDamageInfo} baseDamageInfo
  * @prop {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
  * @prop {ClickModifiers | null} clickModifiers
  */
 
+/**
+ * @typedef ApplyTargetHookData
+ * @prop {FUActor} target
+ * @prop {string | null} sourceUuid
+ * @prop {string | null} sourceName
+ * @prop {DamageType} damageType
+ * @prop {number} total
+ * @prop {ClickModifiers | null} clickModifiers
+ * @prop {ExtraDamageInfo} extraDamageInfo
+ * @prop {ApplyTargetOverrides} overrides
+ */
+
+/**
+ * @typedef ApplyTargetOverrides
+ * @prop {number | null} affinity
+ * @prop {number | null} total
+ */
+
 function attachDamageApplicationHandler(message, jQuery) {
 	const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
+	let sourceUuid = null;
 	let sourceName;
 	let baseDamageInfo;
 	let disabled = false;
@@ -51,6 +70,7 @@ function attachDamageApplicationHandler(message, jQuery) {
 	if (ChecksV2.isCheck(message)) {
 		const damage = CheckConfiguration.inspect(message).getDamage();
 		if (damage) {
+			sourceUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.itemUuid;
 			sourceName = message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name;
 			baseDamageInfo = {
 				total: damage.total,
@@ -69,7 +89,7 @@ function attachDamageApplicationHandler(message, jQuery) {
 					baseDamageInfo,
 					targets,
 					(extraDamageInfo) => {
-						handleDamageApplication(event, targets, sourceName, baseDamageInfo, extraDamageInfo);
+						handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo);
 						disabled = false;
 					},
 					() => {
@@ -77,7 +97,7 @@ function attachDamageApplicationHandler(message, jQuery) {
 					},
 				);
 			} else {
-				handleDamageApplication(event, targets, sourceName, baseDamageInfo, {});
+				handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, {});
 				disabled = false;
 			}
 		}
@@ -94,7 +114,7 @@ function attachDamageApplicationHandler(message, jQuery) {
 				baseDamageInfo,
 				targets,
 				(extraDamageInfo) => {
-					handleDamageApplication(event, targets, sourceName, baseDamageInfo, extraDamageInfo);
+					handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo);
 					disabled = false;
 				},
 				() => {
@@ -109,12 +129,13 @@ function attachDamageApplicationHandler(message, jQuery) {
  *
  * @param {Event} event
  * @param {FUActor[]} targets
+ * @param {string} sourceUuid
  * @param {string} sourceName
  * @param {import('./typedefs.mjs').BaseDamageInfo} baseDamageInfo
  * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
  * @returns {void}
  */
-async function handleDamageApplication(event, targets, sourceName, baseDamageInfo, extraDamageInfo) {
+async function handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo) {
 	/** @type {ClickModifiers} */
 	let clickModifiers = {
 		alt: event.altKey,
@@ -122,13 +143,11 @@ async function handleDamageApplication(event, targets, sourceName, baseDamageInf
 		shift: event.shiftKey,
 	};
 
-	const sourceItemId = findItemId(event);
-
 	/** @type {BeforeApplyHookData} */
 	const hookData = {
 		event,
 		targets,
-		sourceItemId,
+		sourceUuid,
 		sourceName,
 		baseDamageInfo,
 		extraDamageInfo,
@@ -169,22 +188,9 @@ function getSingleTarget(e) {
 }
 
 /**
- * Determine's the source item's id from an event
- * @param {Event} event
- * @returns {string | null}
- */
-function findItemId(event) {
-	const candidates = event.target?.closest('.chat-message')?.querySelectorAll('[data-item-id]');
-	if (candidates && candidates.length) {
-		return candidates[0].getAttribute('data-item-id');
-	}
-	return null;
-}
-
-/**
  *
  * @param {FUActor[]} targets
- * @param {string} sourceItemId
+ * @param {string} sourceUuid
  * @param {string} sourceName
  * @param {import('./config.mjs').DamageType} damageType
  * @param {number} total
@@ -193,7 +199,7 @@ function findItemId(event) {
  * @param {string} chatTemplateName
  * @return {Promise<Awaited<unknown>[]>}
  */
-async function applyDamageInternal(targets, sourceItemId, sourceName, damageType, total, clickModifiers, extraDamageInfo, chatTemplateName) {
+async function applyDamageInternal(targets, sourceUuid, sourceName, damageType, total, clickModifiers, extraDamageInfo, chatTemplateName) {
 	if (!Array.isArray(targets)) {
 		console.error('Targets is not an array:', targets);
 		return;
@@ -201,22 +207,20 @@ async function applyDamageInternal(targets, sourceItemId, sourceName, damageType
 
 	const updates = [];
 	for (const actor of targets) {
+		/** @type {ApplyTargetHookData} */
 		const hookData = {
-			actor,
-			sourceItemId,
+			target: actor,
+			sourceUuid,
 			sourceName,
 			damageType,
 			total,
-			clickModifiers: {},
-			extraDamageInfo: {},
+			clickModifiers: Object.assign({}, clickModifiers),
+			extraDamageInfo: Object.assign({}, extraDamageInfo),
 			overrides: {
 				affinity: null,
 				total: null,
 			},
 		};
-		// Copy to avoid overwriting for other calls
-		Object.assign(hookData.clickModifiers, clickModifiers);
-		Object.assign(hookData.extraDamageInfo, extraDamageInfo);
 		Hooks.callAll(FUHooks.DAMAGE_APPLY_TARGET, hookData);
 
 		let affinity = FU.affValue.none; // Default to no affinity
@@ -272,7 +276,7 @@ async function applyDamageInternal(targets, sourceItemId, sourceName, damageType
 /**
  *
  * @param {FUActor[]} targets
- * @param {string} sourceItemId
+ * @param {string} sourceUuid
  * @param {string} sourceName
  * @param {import('./config.mjs').DamageType} type
  * @param {number} total
@@ -280,14 +284,14 @@ async function applyDamageInternal(targets, sourceItemId, sourceName, damageType
  * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
  * @return {Promise<Awaited<unknown>[]>}
  */
-export async function applyDamage(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo) {
-	return await applyDamageInternal(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo, 'systems/projectfu/templates/chat/chat-apply-damage.hbs');
+export async function applyDamage(targets, sourceUuid, sourceName, type, total, clickModifiers, extraDamageInfo) {
+	return await applyDamageInternal(targets, sourceUuid, sourceName, type, total, clickModifiers, extraDamageInfo, 'systems/projectfu/templates/chat/chat-apply-damage.hbs');
 }
 
 /**
  *
  * @param {FUActor[]} targets
- * @param {string} sourceItemId
+ * @param {string} sourceUuid
  * @param {string} sourceName
  * @param {import('./config.mjs').DamageType} type
  * @param {number} total
@@ -295,8 +299,8 @@ export async function applyDamage(targets, sourceItemId, sourceName, type, total
  * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
  * @return {Promise<Awaited<unknown>[]>}
  */
-export async function applyExtraDamage(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo) {
-	return await applyDamageInternal(targets, sourceItemId, sourceName, type, total, clickModifiers, extraDamageInfo, 'systems/projectfu/templates/chat/chat-apply-extra-damage.hbs');
+export async function applyExtraDamage(targets, sourceUuid, sourceName, type, total, clickModifiers, extraDamageInfo) {
+	return await applyDamageInternal(targets, sourceUuid, sourceName, type, total, clickModifiers, extraDamageInfo, 'systems/projectfu/templates/chat/chat-apply-extra-damage.hbs');
 }
 
 /**
@@ -307,7 +311,7 @@ export async function applyExtraDamage(targets, sourceItemId, sourceName, type, 
 export async function applyDamagePipelineWithHook(hookData) {
 	Hooks.callAll(FUHooks.DAMAGE_APPLY_BEFORE, hookData);
 
-	const { targets, sourceItemId, sourceName, baseDamageInfo, extraDamageInfo, clickModifiers } = hookData;
+	const { targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo, clickModifiers } = hookData;
 
 	const modifiedTotal = extraDamageInfo.hrZero ? extraDamageInfo.damageBonus + baseDamageInfo.modifierTotal : baseDamageInfo.total + (extraDamageInfo.damageBonus || 0);
 	const modifiedType = extraDamageInfo.damageType || baseDamageInfo.type;
@@ -317,9 +321,9 @@ export async function applyDamagePipelineWithHook(hookData) {
 		return;
 	}
 
-	await applyDamage(modifiedTargets, sourceItemId, sourceName, modifiedType, modifiedTotal, clickModifiers, extraDamageInfo);
+	await applyDamage(modifiedTargets, sourceUuid, sourceName, modifiedType, modifiedTotal, clickModifiers, extraDamageInfo);
 	if (extraDamageInfo.extraDamage > 0) {
-		await applyExtraDamage(modifiedTargets, sourceItemId, sourceName, extraDamageInfo.extraDamageType || 'untyped', extraDamageInfo.extraDamage, clickModifiers, extraDamageInfo);
+		await applyExtraDamage(modifiedTargets, sourceUuid, sourceName, extraDamageInfo.extraDamageType || 'untyped', extraDamageInfo.extraDamage, clickModifiers, extraDamageInfo);
 	}
 }
 
