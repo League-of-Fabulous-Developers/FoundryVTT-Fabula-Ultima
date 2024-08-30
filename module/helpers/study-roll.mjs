@@ -3,28 +3,31 @@ import { FUHooks } from '../hooks.mjs';
 import { getTargeted } from './target-handler.mjs';
 
 export class StudyRollHandler {
-	constructor(actor, studyValue) {
+	constructor(actor, studyValue, targets) {
 		this.actor = actor;
 		this.studyValue = studyValue;
+		this.targets = targets || [];
 	}
 
 	/**
 	 * Handle the study roll interaction with targeted actors
-	 * @param {DocumentSheet} app - The rendered NPC sheet
-	 * @param {number} studyValue - The result of the study roll
+	 * @param {Actor} setActor - The specific actor to study (optional)
 	 */
-	async handleStudyTarget() {
-		// Get all currently targeted actors using getTargeted function
-		let targets = await getTargeted();
+	async handleStudyTarget(setActor) {
+		let targets = setActor ? [setActor] : this.targets;
 
-		if (targets.length === 0) {
-			ui.notifications.error('You must target at least one actor to study.');
-			return;
+		if (!targets.length) {
+			// If no targets and no setActor, get all currently targeted actors
+			targets = await getTargeted();
+
+			if (targets.length === 0) {
+				ui.notifications.error('You must target at least one actor to study.');
+				return;
+			}
 		}
 
 		// Iterate over each targeted actor
 		for (const actor of targets) {
-			// Call handleStudyRollCallback directly (method not defined in the provided code)
 			await this.handleStudyRollCallback(actor);
 		}
 	}
@@ -33,18 +36,20 @@ export class StudyRollHandler {
 	 * Handle the study roll interaction
 	 * @param {DocumentSheet} app - The rendered NPC sheet
 	 */
-	async handleStudyRoll() {
+	async handleStudyRoll(setActor) {
 		const useRevisedStudyRule = game.settings.get('projectfu', 'useRevisedStudyRule');
 		const difficultyThresholds = useRevisedStudyRule ? FU.studyRoll.revised : FU.studyRoll.core;
 
 		const localizedStrings = this._getLocalizedStrings();
 
-		let targets = await getTargeted();
-		let tokenInfo = this._generateTokenInfo(targets);
+		let targets = setActor ? [setActor] : await getTargeted();
+		this.targets = targets;
+		const tokenInfo = this._generateTokenInfo(this.targets);
+
 		const contentRows = this._generateContentRows(difficultyThresholds, localizedStrings);
 
 		// Create the dialog
-		new Dialog(
+		const dialog = new Dialog(
 			{
 				title: localizedStrings.studyRoll,
 				content: this._buildDialogContent(tokenInfo, contentRows, localizedStrings),
@@ -63,16 +68,26 @@ export class StudyRollHandler {
 						const newTargets = await getTargeted();
 						console.log('New Targets:', newTargets); // Debugging log
 
+						// Update the instance's targets
+						this.targets = newTargets;
+
 						// Generate new token information and update the dialog content
 						const newTokenInfo = this._generateTokenInfo(newTargets);
+						const newContentRows = this._generateContentRows(difficultyThresholds, localizedStrings);
+
+						// Re-render the dialog content
 						html.find('.targets-container').html(newTokenInfo);
+						html.find('.content-rows').html(newContentRows);
 					});
 				},
 			},
 			{
 				classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 			},
-		).render(true);
+		);
+
+		// Render the dialog
+		dialog.render(true);
 	}
 
 	/**
@@ -160,7 +175,7 @@ export class StudyRollHandler {
 		const update2 = game.i18n.localize(`FU.StudyJournalUpdate2`);
 		let difficulty;
 		let replacement = false;
-		const existingJournal = game.journal.getName(this.actor.name);
+		const existingJournal = game.journal.getName(actor.name);
 		if (existingJournal) {
 			replacement = true;
 			existingJournal.delete();
