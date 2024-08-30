@@ -1,4 +1,5 @@
 import { getTargeted } from './target-handler.mjs';
+import { StudyRollHandler } from './study-roll.mjs';
 
 /**
  * @typedef {"dex","ins","mig","wpl"} Attribute
@@ -944,6 +945,25 @@ export async function promptOpenCheck(actor, title, action) {
 					}),
 				);
 			}
+
+			// Handle the result of the check
+			const handleResults = async (checkResult) => {
+				if (action === 'study') {
+					try {
+						const studyRollHandler = new StudyRollHandler(actor, checkResult.result);
+						await studyRollHandler.handleStudyRoll();
+						return { rollResult: checkResult.result, message: null };
+					} catch (error) {
+						console.error('Error processing study roll:', error);
+						return { rollResult: 0, message: null };
+					}
+				}
+				return { rollResult: checkResult.result, message: null };
+			};
+
+			// Register the result handler
+			Hooks.once('projectfu.processCheck', handleResults);
+
 			return ChecksV2.openCheck(actor, { primary: attr1, secondary: attr2 });
 		}
 		const speaker = ChatMessage.implementation.getSpeaker({ actor });
