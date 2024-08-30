@@ -1,5 +1,5 @@
 import { createChatMessage, promptCheck, promptOpenCheck } from './checks.mjs';
-import { handleStudyTarget } from './study-roll.mjs';
+import { StudyRollHandler } from './study-roll.mjs';
 import { toggleStatusEffect } from './effects.mjs';
 
 export class ActionHandler {
@@ -62,8 +62,9 @@ export class ActionHandler {
 	async handleStudyAction() {
 		const action = 'study';
 		const { rollResult } = await promptOpenCheck(this.actor, 'FU.StudyRoll', action);
-		await handleStudyTarget(this.actor, rollResult);
-		// TODO: Create Chat Message Button Study Target & Pass rollResult to handleStudyButton
+		const studyRollHandler = new StudyRollHandler(this.actor, rollResult);
+		await studyRollHandler.handleStudyRoll();
+		// TODO: Create Chat Message Button Study Target & Pass rollResult to handleStudyTarget
 	}
 
 	/**

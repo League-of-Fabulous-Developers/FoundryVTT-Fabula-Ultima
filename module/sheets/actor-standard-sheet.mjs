@@ -4,7 +4,7 @@ import { promptItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
 import { EquipmentHandler } from '../helpers/equipment-handler.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
-import { handleStudyRoll } from '../helpers/study-roll.mjs';
+import { StudyRollHandler } from '../helpers/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
@@ -655,7 +655,12 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 		});
 
-		html.find('.study-button').click(() => handleStudyRoll.bind(this)());
+		// html.find('.study-button').click(() => handleStudyRoll.bind(this)());
+
+		html.find('.study-button').click(async () => {
+			const studyRollHandler = new StudyRollHandler(); // Instantiate the handler
+			await studyRollHandler.handleStudyRoll(this.actor); // Call method on instance
+		});
 
 		// Add event listeners for increment and decrement buttons
 		html.find('.increment-button').on('click contextmenu', (ev) => this._onIncrementButtonClick(ev));

@@ -74,7 +74,7 @@ function determineSource(document, element) {
 	/** @type {SourceInfo} */
 	const result = {
 		id: sourceId,
-		name: source
+		name: source,
 	};
 	return result;
 }
