@@ -52,6 +52,15 @@ export class FUItem extends Item {
 
 		return rollData;
 	}
+	
+	/**
+	 * @override
+	 */
+	toObject() {
+		const result = super.toObject();
+		result.uuid = this.uuid;
+		return result;
+	}
 
 	/**
 	 * Get the display data for a weapon item.
