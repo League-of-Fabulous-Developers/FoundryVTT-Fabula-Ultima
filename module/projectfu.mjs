@@ -62,7 +62,6 @@ import { ChecksV2 } from './checks/checks-v2.mjs';
 import { CheckConfiguration } from './checks/check-configuration.mjs';
 import { slugify } from './util.mjs';
 import { ActionHandler } from './helpers/action-handler.mjs';
-import { StudyRollHandler } from './helpers/study-roll.mjs';
 import { FUHooks } from './hooks.mjs';
 
 globalThis.projectfu = {
@@ -76,7 +75,6 @@ globalThis.projectfu = {
 	ChecksV2,
 	CheckConfiguration,
 	ActionHandler,
-	StudyRollHandler,
 };
 
 /* -------------------------------------------- */
