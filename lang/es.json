@@ -979,6 +979,7 @@
 		"InlineEffectConfigModifyAccuracyChecksAll": "Tiradas de Precisión y de Magia",
 		"InlineEffectConfigModifyAccuracyChecksAccuracy": "Tiradas de Precisión",
 		"InlineEffectConfigModifyAccuracyChecksMagic": "Tiradas de Magia",
+		"InlineEffectConfigModifyAccuracyOpenChecks": "Teste Aberto",
 		"InlineEffectConfigModifyAccuracyCheckTypes": "No puedes cambiar este valor cuando un Efecto Activo lo modifica.",
 		"Submit": "Aceptar",
 		"StudyJournalUpdate": "Diario actualizado por",

@@ -885,7 +885,7 @@ export async function promptOpenCheck(actor, title, action) {
 	const recentActorChecks = recentChecks[actor.uuid] || (recentChecks[actor.uuid] = {});
 	try {
 		const attributes = actor.system.attributes;
-		const bonus = actor.system.bonuses.accuracy.opposedCheck;
+		const bonus = actor.system.bonuses.accuracy.openCheck;
 
 		const titleMain = title || 'FU.DialogCheckOpenCheck';
 

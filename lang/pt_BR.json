@@ -979,6 +979,7 @@
 		"InlineEffectConfigModifyAccuracyChecksAll": "Rolagens de Precisão e de Magia",
 		"InlineEffectConfigModifyAccuracyChecksAccuracy": "Rolagens de Precisão",
 		"InlineEffectConfigModifyAccuracyChecksMagic": "Rolagens de Magia",
+		"InlineEffectConfigModifyAccuracyOpenChecks": "Teste Aberto",
 		"InlineEffectConfigModifyAccuracyCheckTypes": "Você não pode alterar este valor enquanto um Efeito Ativo o modifica.",
 		"Submit": "Validar",
 		"StudyJournalUpdate": "Diário atualizado por",

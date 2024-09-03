@@ -52,7 +52,7 @@ export class FUItem extends Item {
 
 		return rollData;
 	}
-	
+
 	/**
 	 * @override
 	 */

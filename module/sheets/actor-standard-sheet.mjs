@@ -1,5 +1,5 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
-import { createChatMessage, promptCheck } from '../helpers/checks.mjs';
+import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/checks.mjs';
 import { promptItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
 import { EquipmentHandler } from '../helpers/equipment-handler.mjs';
@@ -1688,7 +1688,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 			if (dataset.rollType === 'roll-check' || dataset.rollType === 'roll-init') {
 				if (isShift) {
-					return promptCheck(this.actor, 'FU.DialogCheckOpenCheck', 'open');
+					return promptOpenCheck(this.actor, 'FU.OpenCheck', 'open');
 				} else {
 					return promptCheck(this.actor);
 				}

@@ -979,6 +979,7 @@
 		"InlineEffectConfigModifyAccuracyChecksAll": "Test de Précision ou de Magie",
 		"InlineEffectConfigModifyAccuracyChecksAccuracy": "Test de Précision",
 		"InlineEffectConfigModifyAccuracyChecksMagic": "Test de Magie",
+		"InlineEffectConfigModifyAccuracyOpenChecks": "Test Ouvert",
 		"InlineEffectConfigModifyAccuracyCheckTypes": "Vous ne pouvez pas modifier cette valeur tant qu'un effet actif la modifie.",
 		"Submit": "Valider",
 		"StudyJournalUpdate": "Journal mis à jour pour ",

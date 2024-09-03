@@ -979,6 +979,7 @@
 		"InlineEffectConfigModifyAccuracyChecksAll": "Проверки точности и магии",
 		"InlineEffectConfigModifyAccuracyChecksAccuracy": "Проверки точности",
 		"InlineEffectConfigModifyAccuracyChecksMagic": "Проверки магии",
+		"InlineEffectConfigModifyAccuracyOpenChecks": "Открытая проверка",
 		"InlineEffectConfigModifyAccuracyCheckTypes": "Вы не можете изменить это значение пока на него воздействует активный эффект",
 		"Submit": "Подтвердить",
 		"StudyJournalUpdate": "Журнал обновлен для",

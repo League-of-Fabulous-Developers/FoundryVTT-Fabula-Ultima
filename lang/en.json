@@ -979,6 +979,7 @@
 		"InlineEffectConfigModifyAccuracyChecksAll": "Accuracy and Magic Checks",
 		"InlineEffectConfigModifyAccuracyChecksAccuracy": "Accuracy Checks",
 		"InlineEffectConfigModifyAccuracyChecksMagic": "Magic Checks",
+		"InlineEffectConfigModifyAccuracyOpenChecks": "Open Check",
 		"InlineEffectConfigModifyAccuracyCheckTypes": "You cannot change this value while an Active Effect modifies it.",
 		"Submit": "Submit",
 		"StudyJournalUpdate": "Journal updated for ",

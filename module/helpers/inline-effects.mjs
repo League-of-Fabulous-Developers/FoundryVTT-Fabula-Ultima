@@ -350,6 +350,7 @@ const SUPPORTED_CHANGE_TYPES = {
 				accuracyAndMagic: 'FU.InlineEffectConfigModifyAccuracyChecksAll',
 				accuracyCheck: 'FU.InlineEffectConfigModifyAccuracyChecksAccuracy',
 				magicCheck: 'FU.InlineEffectConfigModifyAccuracyChecksMagic',
+				openCheck: 'FU.InlineEffectConfigModifyAccuracyOpenChecks',
 			},
 		},
 		toChange: ({ check, value }) => {

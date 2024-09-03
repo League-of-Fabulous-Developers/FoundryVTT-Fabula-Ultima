@@ -979,6 +979,7 @@
 		"InlineEffectConfigModifyAccuracyChecksAll": "Angriffs- und Magieproben",
 		"InlineEffectConfigModifyAccuracyChecksAccuracy": "Angriffsproben",
 		"InlineEffectConfigModifyAccuracyChecksMagic": "Magieproben",
+		"InlineEffectConfigModifyAccuracyOpenChecks": "Offene Probe",
 		"InlineEffectConfigModifyAccuracyCheckTypes": "Du kannst diesen Wert nicht verändern, solange er von einem Aktiven Effekt überschrieben wird.",
 		"Submit": "Bestätigen",
 		"StudyJournalUpdate": "Journal aktualisiert: ",

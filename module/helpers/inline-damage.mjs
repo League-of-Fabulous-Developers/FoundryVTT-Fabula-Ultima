@@ -76,7 +76,7 @@ function determineSource(document, element) {
 	/** @type {SourceInfo} */
 	const result = {
 		uuid: sourceUuid,
-		name: source
+		name: source,
 	};
 	return result;
 }
