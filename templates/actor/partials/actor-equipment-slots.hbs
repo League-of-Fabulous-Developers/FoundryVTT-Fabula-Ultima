@@ -11,6 +11,7 @@
                 {{/with}}
             {{else}}
                 <div class="equipped-item gap-5">
+                    <i class="ra ra-helmet ra-1xh"></i>
                     {{localize 'FU.NoItem'}}
                 </div>
             {{/if}}
@@ -21,7 +22,7 @@
             {{#if (lookupItemById actor.items actor.system.equipped.mainHand)}}
                 {{#with (lookupItemById actor.items actor.system.equipped.mainHand) as |item|}}
                     <span class="items-main two-hand slot-style rollable" data-roll-type="item-slot" data-tooltip="{{localize 'FU.TwoHanded'}}<br>{{ item.name }}">
-                        <div class="equipped-item">
+                        <div class="equipped-item gap-5">
                             <i class="{{ getIconClass item @root.actor.system.equipped }}" style="color: white !important; font-size: 1.25rem; -webkit-text-stroke: transparent;"></i>
                             <span class="equipped-item-content">{{ item.name }}</span>
                         </div>
@@ -99,7 +100,8 @@
                     </div>
                 {{/with}}
             {{else}}
-                <div class="equipped-item">
+                <div class="equipped-item gap-5">
+                    <i class="fas fa-leaf ra-1xh"></i>
                     {{localize 'FU.NoItem'}}
                 </div>
             {{/if}}

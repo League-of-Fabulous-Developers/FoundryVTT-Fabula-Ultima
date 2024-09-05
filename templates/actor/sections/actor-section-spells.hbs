@@ -30,7 +30,7 @@
                         <div class="item-m">{{ item.clock }}</div>
                     {{/if}}
                     {{#if item.system.hasClock.value}}
-                        <div class="item-m desc" style="text-align: initial; padding: 1px;">
+                        <div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
                             <a class="decrement-button align-left" data-type="clockCounter"
                                data-item-id="{{ item._id }}"
                                data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})"> <i
