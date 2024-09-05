@@ -1,0 +1,51 @@
+<form autocomplete="off" onsubmit="event.preventDefault();">
+    <p class="instructions">{{localize "FU.ChatMessageOptionsSettingsInstuction"}}</p>
+    {{!-- optionChatMessageHideTags --}}
+    <div class="form-group">
+        <label for="optionChatMessageHideTags">{{localize "FU.ChatMessageHideTags"}}</label>
+        <div class="form-fields">
+            <select name="optionChatMessageHideTags" id="optionChatMessageHideTags">
+                {{selectOptions optionChatMessageHideOptions selected=optionChatMessageHideTags localize=true}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.ChatMessageHideTagsHint"}}</p>
+    </div>
+    {{!-- optionChatMessageHideDescription --}}
+    <div class="form-group">
+        <label for="optionChatMessageHideDescription">{{localize "FU.ChatMessageHideDescription"}}</label>
+        <div class="form-fields">
+            <select name="optionChatMessageHideDescription" id="optionChatMessageHideDescription">
+                {{selectOptions optionChatMessageHideOptions selected=optionChatMessageHideDescription localize=true}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.ChatMessageHideDescriptionHint"}}</p>
+    </div>
+    {{!-- optionChatMessageHideQuality --}}
+    <div class="form-group">
+        <label for="optionChatMessageHideQuality">{{localize "FU.ChatMessageHideQuality"}}</label>
+        <div class="form-fields">
+            <select name="optionChatMessageHideQuality" id="optionChatMessageHideQuality">
+                {{selectOptions optionChatMessageHideOptions selected=optionChatMessageHideQuality localize=true}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.ChatMessageHideQualityHint"}}</p>
+    </div>
+    {{!-- optionChatMessageHideRollDetails --}}
+    <div class="form-group">
+        <label for="optionChatMessageHideRollDetails">{{localize "FU.ChatMessageHideRollDetails"}}</label>
+        <div class="form-fields">
+            <select name="optionChatMessageHideRollDetails" id="optionChatMessageHideRollDetails">
+                {{selectOptions optionChatMessageHideOptions selected=optionChatMessageHideRollDetails localize=true}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.ChatMessageHideRollDetailsHint"}}</p>
+    </div>
+    <div class="form-group buttons">
+        <button type="submit">
+            <i class="fas fa-floppy-disk"></i>{{localize "FU.SettingsSave"}}
+        </button>
+        <button type="reset" name="reset">
+            <i class="fas fa-undo"></i>{{localize "FU.SettingsReset"}}
+        </button>
+    </div>
+</form>

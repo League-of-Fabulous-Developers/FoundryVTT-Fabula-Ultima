@@ -144,6 +144,10 @@ import { StudyRollHandler } from './study-roll.mjs';
  * @property {number} [difficulty]
  * @property {CheckTarget[]} [targets]
  * @property {boolean} [collapseDescriptions]
+ * @property {boolean} [optionChatMessageHideTags]
+ * @property {boolean} [optionChatMessageHideDescription]
+ * @property {boolean} [optionChatMessageHideQuality]
+ * @property {boolean} [optionChatMessageHideRollDetails]
  */
 
 import { FU, SYSTEM } from './config.mjs';
@@ -742,6 +746,11 @@ export async function createCheckMessage(checkParams, additionalFlags = {}) {
 	})();
 
 	checkParams.collapseDescriptions = game.settings.get(SYSTEM, SETTINGS.collapseDescriptions);
+	checkParams.optionChatMessageHideTags = game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideTags);
+	checkParams.optionChatMessageHideDescription = game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideDescription);
+	checkParams.optionChatMessageHideQuality = game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideQuality);
+	checkParams.optionChatMessageHideRollDetails = game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideRollDetails);
+
 	/** @type Partial<ChatMessageData> */
 	const chatMessage = {
 		flavor: flavor,
