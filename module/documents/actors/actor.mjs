@@ -214,11 +214,17 @@ export class FUActor extends Actor {
 
 	*allApplicableEffects() {
 		for (const effect of super.allApplicableEffects()) {
+			const applicableTypes = ['armor', 'shield', 'weapon', 'accessory'];
 			if (effect.parent instanceof FUItem) {
 				const itemId = effect.parent.id;
-				const equipData = this.system.equipped;
-				if (!equipData.transferEffects(itemId)) {
-					continue;
+				const itemType = effect.parent.type;
+
+				// Check if the item is one of the applicable types
+				if (applicableTypes.includes(itemType)) {
+					const equipData = this.system.equipped;
+					if (!equipData.transferEffects(itemId)) {
+						continue;
+					}
 				}
 			}
 			yield effect;
