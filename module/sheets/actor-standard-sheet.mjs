@@ -465,6 +465,15 @@ export class FUStandardActorSheet extends ActorSheet {
 		const data = TextEditor.getDragEventData(event);
 		if (!data || data.type !== 'Item') return await super._onDrop(event);
 
+		// Check if the item is embedded within an actor (reordering within the sheet) and uses default behavior
+		if (data.uuid.startsWith('Actor')) {
+			const [, actorId] = data.uuid.split('.');
+			if (actorId === this.actor.id) {
+				return await super._onDrop(event);
+			}
+		}
+
+		// Proceed if the item is being dragged from the compendium/sidebar or other actors
 		const itemData = await this._getItemDataFromDropData(data);
 
 		// Determine the configuration based on item type
@@ -509,6 +518,14 @@ export class FUStandardActorSheet extends ActorSheet {
 					const incrementValue = itemData.system.quantity?.value || 1;
 					const newQuantity = (item.system.quantity.value || 0) + incrementValue;
 					await item.update({ 'system.quantity.value': newQuantity });
+				},
+			},
+			{
+				types: ['class', 'skill'],
+				update: async (itemData, item) => {
+					const incrementValue = itemData.system.level?.value || 1;
+					const newValue = Math.min((item.system.level.value || 0) + incrementValue, item.system.level.max || 0);
+					await item.update({ 'system.level.value': newValue });
 				},
 			},
 			{
