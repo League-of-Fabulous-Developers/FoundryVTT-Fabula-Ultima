@@ -914,6 +914,21 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('[data-action=toggleWeaponModule][data-item-id]').on('click', updatePilotVehicle('updateActiveWeaponModules').bind(this));
 		html.find('[data-action=toggleSupportModule][data-item-id]').on('click', updatePilotVehicle('updateActiveSupportModules').bind(this));
 
+		const updateArcanistArcanum = (event) => {
+			const itemId = event.currentTarget.dataset.itemId;
+			const currentArcanumId = this.actor.system.equipped.arcanum;
+
+			// Check if the clicked item is already the active arcanum
+			const newArcanumId = currentArcanumId === itemId ? null : itemId;
+
+			// Update the arcanum slot
+			this.actor.update({
+				'system.equipped.arcanum': newArcanumId,
+			});
+		};
+
+		html.find('[data-action=toggleActiveArcanum][data-item-id]').on('click', updateArcanistArcanum.bind(this));
+
 		html.find('a[data-action=spendMetaCurrency]').on('click', () => this.actor.spendMetaCurrency());
 
 		html.find('span[data-action="clearTempEffects"]').click(this._onClearTempEffects.bind(this));

@@ -22,6 +22,7 @@
   },
   "effects": [
     {
+      "origin": "Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -31,9 +32,12 @@
         "startRound": null,
         "startTurn": null
       },
-      "disabled": true,
+      "disabled": false,
       "name": "Merged: Sword",
-      "_id": "HAJu0x3utjbd1iSa",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-sword.png",
+      "_id": "K6M9JQ4eVGH6Qmaa",
+      "type": "base",
+      "system": {},
       "changes": [
         {
           "key": "system.bonuses.damage.melee",
@@ -55,30 +59,26 @@
         }
       ],
       "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">Your attacks deal 5 extra damage, and all damage dealt by your attacks is treated as having no type (thus being unaffected by damage Affinities). Damage dealt by your attacks cannot gain a type as long as you are merged with this Arcanum. </span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">When you perform an attack, you may have that attack gain the </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">multi (any number of targets)</strong> </span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">property. If you do, this Arcanum will be automatically dismissed after the attack is resolved (this is </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">not </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">considered a willing dismiss).</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p></li></ul>",
+      "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
+      "sort": 0,
       "flags": {
         "projectfu": {
           "CrisisInteraction": "none"
         }
       },
-      "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
-        "duplicateSource": null
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725597746753,
+        "modifiedTime": 1725597885632,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
       },
-      "img": "icons/weapons/swords/sword-winged-pink.webp",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!n1djlSF3C4c6Hlf4.HAJu0x3utjbd1iSa"
+      "_key": "!items.effects!n1djlSF3C4c6Hlf4.K6M9JQ4eVGH6Qmaa"
     }
   ],
   "flags": {

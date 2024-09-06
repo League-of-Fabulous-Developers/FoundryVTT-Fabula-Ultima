@@ -165,9 +165,9 @@ export class WeaponDataModel extends foundry.abstract.TypeDataModel {
 		}
 	}
 
-	transferEffects() {
-		return !this.parent.actor?.system.vehicle.weaponsActive;
-	}
+	// transferEffects() {
+	// 	return !this.parent.actor?.system.vehicle.weaponsActive;
+	// }
 
 	/**
 	 * @param {KeyboardModifiers} modifiers

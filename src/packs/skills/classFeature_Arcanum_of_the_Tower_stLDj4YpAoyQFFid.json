@@ -22,6 +22,7 @@
   },
   "effects": [
     {
+      "origin": "Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -31,35 +32,34 @@
         "startRound": null,
         "startTurn": null
       },
-      "disabled": true,
+      "disabled": false,
       "name": "Merge: Tower",
-      "_id": "STu4aCoMtt69ouFm",
+      "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Tower.png",
+      "_id": "xy0M0poZ1no2aSAs",
+      "type": "base",
+      "system": {},
       "changes": [],
-      "description": "",
+      "description": "<ul><li><p>When you summon this Arcanum, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this Arcanum is dismissed, each of your allies present on the scene has Resistance to the chosen damage type (you <strong>do not</strong> gain this Resistance).</p></li></ul>",
+      "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
+      "sort": 0,
       "flags": {
         "projectfu": {
           "CrisisInteraction": "none"
         }
       },
-      "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
-        "duplicateSource": null
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725598799518,
+        "modifiedTime": 1725598826438,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
       },
-      "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Tower.png",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!stLDj4YpAoyQFFid.STu4aCoMtt69ouFm"
+      "_key": "!items.effects!stLDj4YpAoyQFFid.xy0M0poZ1no2aSAs"
     }
   ],
   "flags": {

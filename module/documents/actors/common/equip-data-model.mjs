@@ -7,6 +7,7 @@ export class EquipDataModel extends foundry.abstract.DataModel {
 			offHand: new StringField({ nullable: true }),
 			accessory: new StringField({ nullable: true }),
 			phantom: new StringField({ nullable: true }),
+			arcanum: new StringField({ nullable: true }),
 		};
 	}
 

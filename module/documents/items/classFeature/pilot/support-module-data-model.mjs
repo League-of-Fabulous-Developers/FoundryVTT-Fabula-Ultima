@@ -34,7 +34,7 @@ export class SupportModuleDataModel extends ClassFeatureDataModel {
 		};
 	}
 
-	transferEffects() {
-		return this.actor.system.vehicle.embarked && this.actor.system.vehicle.supports.includes(this.item);
-	}
+	// transferEffects() {
+	// 	return this.actor.system.vehicle.embarked && this.actor.system.vehicle.supports.includes(this.item);
+	// }
 }
