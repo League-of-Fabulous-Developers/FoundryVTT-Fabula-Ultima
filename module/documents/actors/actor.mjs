@@ -225,9 +225,6 @@ export class FUActor extends Actor {
 				const featureType = item.system.featureType;
 				const actor = item.actor;
 
-				// Check if the item is one of the applicable types
-				if (!applicableTypes.includes(itemType)) continue;
-
 				// Handle weapons and shields if weapons modules are active
 				if ((itemType === 'weapon' || itemType === 'shield') && actor?.system.vehicle?.weaponsActive) {
 					continue;
@@ -237,40 +234,42 @@ export class FUActor extends Actor {
 				if (itemType === 'armor' && actor?.system.vehicle?.armorActive) {
 					continue;
 				}
+				// Check if the item is one of the applicable types
+				if (applicableTypes.includes(itemType)) {
+					// Handle class features based on vehicle configuration
+					if (itemType === 'classFeature' && vehicleTypes.includes(featureType)) {
+						const vehicle = actor?.system?.vehicle;
+						const isEmbarked = vehicle?.embarked;
+						let itemExistsInVehicle = false;
 
-				// Handle class features based on vehicle configuration
-				if (itemType === 'classFeature' && vehicleTypes.includes(featureType)) {
-					const vehicle = actor?.system?.vehicle;
-					const isEmbarked = vehicle?.embarked;
-					let itemExistsInVehicle = false;
+						if (featureType === 'projectfu.supportModule' && Array.isArray(vehicle?.supports)) {
+							itemExistsInVehicle = vehicle.supports.some((support) => support.id === itemId);
+						} else if (featureType === 'projectfu.weaponModule' && Array.isArray(vehicle?.weapons)) {
+							itemExistsInVehicle = vehicle.weapons.some((weapon) => weapon.id === itemId);
+						} else if (featureType === 'projectfu.armorModule') {
+							itemExistsInVehicle = vehicle?.armor?.id === itemId;
+						} else if (featureType === 'projectfu.vehicle') {
+							itemExistsInVehicle = vehicle?.vehicle?.id === itemId;
+						}
 
-					if (featureType === 'projectfu.supportModule' && Array.isArray(vehicle?.supports)) {
-						itemExistsInVehicle = vehicle.supports.some((support) => support.id === itemId);
-					} else if (featureType === 'projectfu.weaponModule' && Array.isArray(vehicle?.weapons)) {
-						itemExistsInVehicle = vehicle.weapons.some((weapon) => weapon.id === itemId);
-					} else if (featureType === 'projectfu.armorModule') {
-						itemExistsInVehicle = vehicle?.armor?.id === itemId;
-					} else if (featureType === 'projectfu.vehicle') {
-						itemExistsInVehicle = vehicle?.vehicle?.id === itemId;
-					}
+						// Continue to the next effect if the item shouldn't transfer its effects
+						if (!isEmbarked || !itemExistsInVehicle || (item.transferEffects && !item.transferEffects())) {
+							// console.log('Skipping effect due to non-embarked status or item not being part of vehicle.');
+							continue;
+						}
+					} else if (itemType === 'classFeature' && arcanumTypes.includes(featureType)) {
+						const currentArcanumId = actor?.system.equipped?.arcanum;
 
-					// Continue to the next effect if the item shouldn't transfer its effects
-					if (!isEmbarked || !itemExistsInVehicle || (item.transferEffects && !item.transferEffects())) {
-						// console.log('Skipping effect due to non-embarked status or item not being part of vehicle.');
-						continue;
-					}
-				} else if (itemType === 'classFeature' && arcanumTypes.includes(featureType)) {
-					const currentArcanumId = actor?.system.equipped?.arcanum;
-
-					// Check if the item is the currently active arcanum
-					if (itemId !== currentArcanumId) {
-						continue;
-					}
-				} else {
-					// Handle regular items using the equipped data model
-					const equipData = this.system.equipped;
-					if (!equipData.transferEffects(itemId)) {
-						continue;
+						// Check if the item is the currently active arcanum
+						if (itemId !== currentArcanumId) {
+							continue;
+						}
+					} else {
+						// Handle regular items using the equipped data model
+						const equipData = this.system.equipped;
+						if (!equipData.transferEffects(itemId)) {
+							continue;
+						}
 					}
 				}
 			}

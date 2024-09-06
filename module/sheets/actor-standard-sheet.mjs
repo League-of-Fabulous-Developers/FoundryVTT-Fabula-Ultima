@@ -512,14 +512,6 @@ export class FUStandardActorSheet extends ActorSheet {
 				},
 			},
 			{
-				types: ['class', 'skill'],
-				update: async (itemData, item) => {
-					const incrementValue = itemData.system.level?.value || 1;
-					const newValue = Math.min((item.system.level.value || 0) + incrementValue, item.system.level.max || 0);
-					await item.update({ 'system.level.value': newValue });
-				},
-			},
-			{
 				types: ['effect'],
 				update: async (itemData) => {
 					// Effects are handled separately
