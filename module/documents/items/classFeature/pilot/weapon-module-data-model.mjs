@@ -106,6 +106,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {"dex","ins","mig","wlp"} accuracy.attr1
  * @property {"dex","ins","mig","wlp"} accuracy.attr2
  * @property {number} accuracy.modifier
+ * @property {"def", "mdef"} accuracy.defense
  * @property {Object} damage
  * @property {"physical","air","bolt","dark","earth","fire","ice","light","poison"} damage.type
  * @property {number} damage.bonus
