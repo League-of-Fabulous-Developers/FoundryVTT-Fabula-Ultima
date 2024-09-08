@@ -1,5 +1,36 @@
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
+
+/**
+ * @typedef TargetData
+ * @property {string} name
+ * @property {string} uuid
+ * @property {string} link
+ * @property {number} difficulty
+ */
+
+function handleGenericBonus(actor, modifiers) {
+	if (actor.system.bonuses.accuracy.openCheck) {
+		modifiers.push({
+			label: 'FU.OpenCheck',
+			value: actor.system.bonuses.accuracy.openCheck,
+		});
+	}
+}
+
+/**
+ * @param {Check} check
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallbackRegistration} registerCallback
+ */
+const onPrepareCheck = (check, actor, item, registerCallback) => {
+	const { type, modifiers } = check;
+	if (type === 'open') {
+		handleGenericBonus(actor, modifiers);
+	}
+};
+
 /**
  * @param {CheckRenderData} data
  * @param {CheckResultV2} checkResult
@@ -36,6 +67,7 @@ const onRenderCheck = (data, checkResult, actor, item) => {
 };
 
 const initialize = () => {
+	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);
 	Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 };
 
