@@ -66,9 +66,9 @@ export class ArmorModuleDataModel extends RollableClassFeatureDataModel {
 		}
 	}
 
-	// transferEffects() {
-	// 	return this.actor.system.vehicle.embarked && this.actor.system.vehicle.armor === this.item;
-	// }
+	transferEffects() {
+		return this.actor.system.vehicle.embarked && this.actor.system.vehicle.armor === this.item;
+	}
 
 	static async roll(model, item) {
 		const actor = model.parent.parent.actor;

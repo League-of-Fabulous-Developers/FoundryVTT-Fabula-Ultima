@@ -1233,4 +1233,11 @@ export class FUItem extends Item {
 
 		return fuid;
 	}
+
+	get isEquipped() {
+		if (this.actor) {
+			return this.actor.system.equipped.isEquipped(this);
+		}
+		return false;
+	}
 }

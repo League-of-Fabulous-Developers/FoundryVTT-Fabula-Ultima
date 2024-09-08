@@ -258,4 +258,8 @@ export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
 			this.complex = false;
 		}
 	}
+
+	transferEffects() {
+		return this.actor.system.vehicle.embarked && this.actor.system.vehicle.weapons.includes(this.item);
+	}
 }

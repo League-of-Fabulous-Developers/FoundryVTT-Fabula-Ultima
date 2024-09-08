@@ -11,8 +11,7 @@ export class EquipDataModel extends foundry.abstract.DataModel {
 		};
 	}
 
-	transferEffects(itemId) {
-		// Check if the item ID is in any of the equipped slots
-		return Object.values(this).includes(itemId);
+	isEquipped(item) {
+		return item && Object.values(this).includes(item?.id);
 	}
 }
