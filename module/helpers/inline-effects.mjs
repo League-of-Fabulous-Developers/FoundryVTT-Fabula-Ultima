@@ -374,8 +374,8 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ defense, value }) => ({
 			key: `system.derived.${defense}.value`,
-			mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
-			value: value,
+			mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+			value,
 		}),
 	},
 	vulnerability: {
