@@ -1,0 +1,76 @@
+{
+  "folder": "7NQvpwoHcTkOxvMv",
+  "name": "MIG Base Cap",
+  "type": "effect",
+  "_id": "muWeWDQSvZDY0IcI",
+  "img": "systems/projectfu/styles/static/statuses/MigDown.webp",
+  "system": {
+    "fuid": "mig-base-cap"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.muWeWDQSvZDY0IcI",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "MIG Base Cap",
+      "img": "systems/projectfu/styles/static/statuses/MigDown.webp",
+      "_id": "3aRJkYbELgwTyBOv",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.attributes.dex.current",
+          "mode": 3,
+          "value": "@system.attributes.dex.base",
+          "priority": null
+        }
+      ],
+      "description": "<p>Cap Current Mightt Attribute to Base.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725744070215,
+        "modifiedTime": 1725744327419,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!muWeWDQSvZDY0IcI.3aRJkYbELgwTyBOv"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725743869898,
+    "modifiedTime": 1725744067703,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!muWeWDQSvZDY0IcI"
+}

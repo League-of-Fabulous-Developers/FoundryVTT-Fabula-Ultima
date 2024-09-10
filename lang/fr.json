@@ -386,6 +386,7 @@
 		"MeleeDamageBonusSL": "Bonus de dégats au corps à corps x NC",
 		"RangedDamageBonusSL": "Bonus de dégats à distance x NC",
 		"ActiveEffects": "Effet actif",
+		"EffectCopy": "Copy Effect to Clipboard",
 		"CustomWeapon": "Arme personnalisée?",
 		"CustomFormula": "Formule personnalisée",
 		"ActionType": "Type d'action",

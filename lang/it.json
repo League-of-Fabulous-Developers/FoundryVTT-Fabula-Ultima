@@ -386,6 +386,7 @@
 		"MeleeDamageBonusSL": "Bonus al Danno in Mischia x LA",
 		"RangedDamageBonusSL": "Bonus al Danno a Distanza x LA",
 		"ActiveEffects": "Effetti Attivi",
+		"EffectCopy": "Copy Effect to Clipboard",
 		"CustomWeapon": "Arma Personalizzata?",
 		"CustomFormula": "Formula Personalizzata",
 		"ActionType": "Tipo di Azione",

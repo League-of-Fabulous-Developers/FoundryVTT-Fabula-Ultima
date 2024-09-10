@@ -1,0 +1,76 @@
+{
+  "folder": "jJ6nd24qtwNQXVDs",
+  "name": "Fire Immunity",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/fire.svg",
+  "system": {
+    "fuid": "fire-immunity"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.3UDw6t6oOCavbBrB",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Fire Immunity",
+      "img": "systems/projectfu/styles/static/affinities/fire.svg",
+      "_id": "egEdWLURhPM7GMx4",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.fire.current",
+          "mode": 4,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725754167966,
+        "modifiedTime": 1725754186198,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!3UDw6t6oOCavbBrB.egEdWLURhPM7GMx4"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750163418,
+    "modifiedTime": 1725750163418,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "3UDw6t6oOCavbBrB",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!3UDw6t6oOCavbBrB"
+}

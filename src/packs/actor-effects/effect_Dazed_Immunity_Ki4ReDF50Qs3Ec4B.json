@@ -1,0 +1,76 @@
+{
+  "folder": "Rr4bzTcg5QASOjQc",
+  "name": "Dazed Immunity",
+  "type": "effect",
+  "_id": "Ki4ReDF50Qs3Ec4B",
+  "img": "systems/projectfu/styles/static/statuses/Dazed.webp",
+  "system": {
+    "fuid": "dazed-immunity"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Dazed Immunity",
+      "img": "systems/projectfu/styles/static/statuses/Dazed.webp",
+      "_id": "gI8rDKBFuGCRE2iw",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.immunities.dazed.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725755536319,
+        "modifiedTime": 1725755558401,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!Ki4ReDF50Qs3Ec4B.gI8rDKBFuGCRE2iw"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725755201991,
+    "modifiedTime": 1725755308372,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!Ki4ReDF50Qs3Ec4B"
+}

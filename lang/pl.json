@@ -386,6 +386,7 @@
 		"MeleeDamageBonusSL": "Melee Damage Bonus x SL",
 		"RangedDamageBonusSL": "Ranged Damage Bonus x SL",
 		"ActiveEffects": "Active Effects",
+		"EffectCopy": "Copy Effect to Clipboard",
 		"CustomWeapon": "Custom Weapon?",
 		"CustomFormula": "Custom Formula",
 		"ActionType": "Action Type",

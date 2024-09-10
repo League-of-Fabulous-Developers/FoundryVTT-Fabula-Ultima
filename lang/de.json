@@ -386,6 +386,7 @@
 		"MeleeDamageBonusSL": "Nahkampfschadensbonus x FS",
 		"RangedDamageBonusSL": "Fernkampfschadensbonus x FS",
 		"ActiveEffects": "Aktive Effekte",
+		"EffectCopy": "Copy Effect to Clipboard",
 		"CustomWeapon": "Spezialwaffe",
 		"CustomFormula": "Angepasste Formel",
 		"ActionType": "Aktionstyp",

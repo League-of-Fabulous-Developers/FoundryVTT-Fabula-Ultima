@@ -1,0 +1,31 @@
+{
+  "name": "Test",
+  "type": "effect",
+  "_id": "2fovaL7aG6aXKbEE",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "fuid": "test",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725903647739,
+    "modifiedTime": 1725903647739,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!2fovaL7aG6aXKbEE"
+}

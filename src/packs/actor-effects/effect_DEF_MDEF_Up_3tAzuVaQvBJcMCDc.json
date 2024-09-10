@@ -1,0 +1,82 @@
+{
+  "folder": "dZMicV7pVY6D6iSH",
+  "name": "DEF/MDEF Up",
+  "type": "effect",
+  "_id": "3tAzuVaQvBJcMCDc",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "defmdef-up"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.3tAzuVaQvBJcMCDc",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "DEF/MDEF Up",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "_id": "cJozbz9OX1ZOAVbW",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.derived.def.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.derived.mdef.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>Increase Defense and Magic Defense by 1.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725747492345,
+        "modifiedTime": 1725747552173,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!3tAzuVaQvBJcMCDc.cJozbz9OX1ZOAVbW"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725747490342,
+    "modifiedTime": 1725747557623,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!3tAzuVaQvBJcMCDc"
+}

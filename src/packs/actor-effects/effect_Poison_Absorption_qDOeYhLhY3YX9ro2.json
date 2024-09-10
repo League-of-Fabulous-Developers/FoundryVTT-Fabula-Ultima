@@ -1,0 +1,76 @@
+{
+  "folder": "rPNBQ4ka3rcyorik",
+  "name": "Poison Absorption",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/poison.svg",
+  "system": {
+    "fuid": "poison-absorption"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.qDOeYhLhY3YX9ro2",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Poison Absorption",
+      "img": "systems/projectfu/styles/static/affinities/poison.svg",
+      "_id": "bRKKizv7MP6Yg5x4",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.poison.current",
+          "mode": 4,
+          "value": "3",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725752500460,
+        "modifiedTime": 1725752564051,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!qDOeYhLhY3YX9ro2.bRKKizv7MP6Yg5x4"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750295038,
+    "modifiedTime": 1725750295038,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "qDOeYhLhY3YX9ro2",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!qDOeYhLhY3YX9ro2"
+}

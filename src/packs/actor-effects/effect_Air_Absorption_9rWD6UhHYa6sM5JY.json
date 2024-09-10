@@ -1,0 +1,76 @@
+{
+  "folder": "rPNBQ4ka3rcyorik",
+  "name": "Air Absorption",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/air.svg",
+  "system": {
+    "fuid": "air-absorption"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.9rWD6UhHYa6sM5JY",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Air Absorption",
+      "img": "systems/projectfu/styles/static/affinities/air.svg",
+      "_id": "VGuvNCbJJZmrgrTw",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.air.current",
+          "mode": 4,
+          "value": "3",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725750476131,
+        "modifiedTime": 1725750502996,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!9rWD6UhHYa6sM5JY.VGuvNCbJJZmrgrTw"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750295038,
+    "modifiedTime": 1725750295038,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "9rWD6UhHYa6sM5JY",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!9rWD6UhHYa6sM5JY"
+}
