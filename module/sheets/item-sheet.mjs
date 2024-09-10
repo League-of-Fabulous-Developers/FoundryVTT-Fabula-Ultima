@@ -101,13 +101,6 @@ export class FUItemSheet extends ItemSheet {
 	activateListeners(html) {
 		super.activateListeners(html);
 
-		// Everything below here is only needed if the sheet is editable
-		if (!this.isEditable) return;
-
-		// Roll handlers, click handlers, etc. would go here.
-
-		// Cast Spell Button
-
 		// [PDFPager Support] Opening Journal PDF pages from PDF Code
 		$('#pdfLink').click(function () {
 			const inputValue = $('input[name="system.source.value"]').val();
@@ -127,6 +120,13 @@ export class FUItemSheet extends ItemSheet {
 				console.error('Invalid input format. Please use proper syntax "PDFCode PageNumber"');
 			}
 		});
+
+		// Everything below here is only needed if the sheet is editable
+		if (!this.isEditable) return;
+
+		// Roll handlers, click handlers, etc. would go here.
+
+		// Cast Spell Button
 
 		html.find('.regenerate-fuid-button').click(async (event) => {
 			event.preventDefault();
