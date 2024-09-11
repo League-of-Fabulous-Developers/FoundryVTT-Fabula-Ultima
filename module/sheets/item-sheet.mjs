@@ -307,12 +307,12 @@ export class FUItemSheet extends ItemSheet {
 		return `@EFFECT[${encodedEffect}]`;
 	}
 
-	/* -------------------------------------------- */
-
 	_canDragDrop() {
 		console.log('Checking drag drop capability');
 		return this.isEditable;
 	}
+
+	/* -------------------------------------------- */
 
 	_toggleMartial(type) {
 		const system = this.item?.system;

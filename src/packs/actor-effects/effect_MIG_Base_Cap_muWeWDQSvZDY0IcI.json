@@ -27,9 +27,9 @@
       "system": {},
       "changes": [
         {
-          "key": "system.attributes.dex.current",
+          "key": "system.attributes.mig.current",
           "mode": 3,
-          "value": "@system.attributes.dex.base",
+          "value": "@system.attributes.mig.base",
           "priority": null
         }
       ],
@@ -50,7 +50,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725744070215,
-        "modifiedTime": 1725744327419,
+        "modifiedTime": 1726073233559,
         "lastModifiedBy": "dobQfkKFj2NK96cc"
       },
       "_key": "!items.effects!muWeWDQSvZDY0IcI.3aRJkYbELgwTyBOv"

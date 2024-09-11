@@ -2,6 +2,9 @@ import { OptionalFeatureDataModel } from './optional-feature-data-model.mjs';
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../../../helpers/effects.mjs';
 
 export class FUOptionalFeatureSheet extends ItemSheet {
+	// Initialize drag counter
+	dragCounter = 0;
+
 	static get defaultOptions() {
 		// add all the tab configurations from registered class features
 		const featureTabConfigs = [];
@@ -18,6 +21,12 @@ export class FUOptionalFeatureSheet extends ItemSheet {
 					initial: 'description',
 				},
 				...featureTabConfigs,
+			],
+			dragDrop: [
+				{
+					dragSelector: '.directory-item.document.item', // Selector for draggable items
+					dropSelector: '.desc.drop-zone', // Selector for item sheet
+				},
 			],
 		});
 	}
@@ -155,5 +164,172 @@ export class FUOptionalFeatureSheet extends ItemSheet {
 		if (this.item.system.data instanceof OptionalFeatureDataModel) {
 			this.item.system.data.constructor.activateListeners(html.find('[data-optional-content]'), this.item, this);
 		}
+
+		// dropzone event listeners
+		const dropZone = html.find('.desc.drop-zone');
+		dropZone.on('dragenter', this._onDragEnter.bind(this));
+		dropZone.on('dragleave', this._onDragLeave.bind(this));
+		dropZone.on('drop', this._onDropReset.bind(this));
 	}
+
+	/* -------------------------------------------- */
+
+	_onDragEnter(event) {
+		event.preventDefault();
+		this.dragCounter++;
+		const dropZone = $(event.currentTarget);
+		dropZone.addClass('highlight-drop-zone');
+	}
+
+	_onDragLeave(event) {
+		event.preventDefault();
+		this.dragCounter--;
+		if (this.dragCounter === 0) {
+			const dropZone = $(event.currentTarget);
+			dropZone.removeClass('highlight-drop-zone');
+		}
+	}
+
+	_onDropReset(event) {
+		this.dragCounter = 0;
+		const dropZone = $(event.currentTarget);
+		dropZone.removeClass('highlight-drop-zone');
+	}
+
+	/* -------------------------------------------- */
+
+	async _onDrop(event) {
+		console.log('Drop event detected');
+		event.preventDefault();
+
+		// Retrieve drag data using TextEditor
+		const data = TextEditor.getDragEventData(event);
+
+		const itemData = await this._getItemDataFromDropData(data);
+
+		// Determine the configuration based on item type
+		const config = this._findItemConfig(itemData.type);
+		if (config) {
+			// Check if there is an active ProseMirror editor
+			const activeEditor = document.querySelector('.editor-content.ProseMirror');
+			if (itemData.type === 'effect') {
+				if (activeEditor) {
+					// Handle effect drop into ProseMirror editor
+					await this._handleEditorEffectDrop(itemData, event);
+				} else {
+					// Handle effect drop into actor sheet
+					await this._importEffectData(itemData);
+				}
+			} else {
+				// Handle other item drops
+				await this._processItemDrop(itemData, config);
+			}
+		} else {
+			// Default behavior for unknown item types
+			await super._onDrop(event);
+		}
+	}
+
+	// Helper function to get item data from drop data
+	async _getItemDataFromDropData(data) {
+		try {
+			return await Item.implementation.fromDropData(data);
+		} catch (error) {
+			console.error('Failed to get item data from drop data:', error);
+			return null;
+		}
+	}
+
+	// Helper function to find the appropriate update configuration
+	_findItemConfig(type) {
+		const itemTypeConfigs = [
+			{
+				types: ['effect'],
+				update: async (itemData) => {
+					// Effects are handled separately
+					return;
+				},
+			},
+		];
+
+		return itemTypeConfigs.find((config) => config.types.includes(type));
+	}
+
+	// Process item drop based on the configuration
+	async _processItemDrop(itemData, config) {
+		const existingItem = this.actor.items.find((i) => i.name === itemData.name && i.type === itemData.type);
+		if (existingItem) {
+			await config.update(itemData, existingItem);
+		} else {
+			await super._onDrop(event);
+		}
+	}
+
+	// Import effect data into the specific item's effects array
+	async _importEffectData(itemData) {
+		const newEffects = itemData.effects || [];
+
+		// Get existing effect IDs from the item
+		const existingEffectIds = this.item.effects.map((effect) => effect._id);
+
+		// Filter out new effects that are already present
+		const filteredNewEffects = newEffects.filter((effect) => !existingEffectIds.includes(effect._id));
+
+		// Create new ActiveEffect documents for the filtered effects
+		if (filteredNewEffects.length > 0) {
+			const effectsToCreate = filteredNewEffects.map((effectData) => ({
+				...effectData,
+				parent: this.item,
+			}));
+
+			// Create the new ActiveEffect documents
+			await ActiveEffect.createDocuments(effectsToCreate, { parent: this.item });
+
+			// console.log('Created New Effects:', createdEffects);
+		} else {
+			console.log('No new effects to add');
+		}
+	}
+
+	// Handle dropping effects into a text editor
+	async _handleEditorEffectDrop(itemData, event) {
+		const activeEditor = document.querySelector('.editor-content.ProseMirror');
+		if (activeEditor) {
+			const effects = itemData.effects || [];
+			// Use an arrow function to ensure `this` context is correct
+			const formattedEffects = effects.map((effect) => this._formatEffect(effect)).join(' ');
+
+			// Prevent the default behavior of creating a link
+			event.preventDefault();
+			event.stopPropagation();
+
+			// Get the current content of the editor
+			const currentContent = activeEditor.innerHTML;
+
+			// Append the formatted effects to the current content of the editor
+			activeEditor.innerHTML = currentContent + formattedEffects;
+
+			console.log(`Appended formatted effects to the ProseMirror editor.`);
+		} else {
+			console.log('No active ProseMirror editor found.');
+		}
+	}
+
+	// Helper function to encode an effect in base64
+	_encodeBase64(data) {
+		return btoa(unescape(encodeURIComponent(data)));
+	}
+
+	// Helper function to generate the @EFFECT format string
+	_formatEffect(effect) {
+		const encodedEffect = this._encodeBase64(JSON.stringify(effect));
+		return `@EFFECT[${encodedEffect}]`;
+	}
+
+	_canDragDrop() {
+		console.log('Checking drag drop capability');
+		return this.isEditable;
+	}
+
+	/* -------------------------------------------- */
 }
