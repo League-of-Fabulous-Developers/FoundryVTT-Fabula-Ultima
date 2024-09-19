@@ -372,7 +372,7 @@ Handlebars.registerHelper('getIconClass', function (item, equippedItems) {
 	if (itemId === equippedItems.mainHand && item.type === 'shield') {
 		return 'ra ra-heavy-shield ra-1xh';
 	}
-	// Special case: if item is in tthe phantom slot
+	// Special case: if item is in the phantom slot
 	if (item.type === 'weapon' && itemId === equippedItems.phantom) {
 		return 'ra ra-daggers ra-1xh';
 	}
@@ -445,8 +445,11 @@ Hooks.once('ready', async function () {
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
 
 	Hooks.on('rollEquipment', (actor, slot) => {
+		// Detect if the shift key is currently pressed
+		const isShift = game.keyboard.isModifierActive(KeyboardManager.MODIFIER_KEYS.SHIFT);
+
 		// Call the rollEquipment function
-		rollEquipment(actor, slot);
+		rollEquipment(actor, slot, isShift);
 	});
 
 	Hooks.on('promptCheckCalled', (actor) => {
@@ -645,28 +648,30 @@ function rollItemMacro(itemUuid) {
  */
 function rollEquipment(actor, slot, isShift) {
 	// Check if the slot is valid
-	const validSlots = ['mainHand', 'offHand', 'armor', 'accessory'];
+	const validSlots = ['mainHand', 'offHand', 'armor', 'accessory', 'phantom', 'arcanum'];
 	if (!validSlots.includes(slot)) {
 		ui.notifications.warn(`Invalid slot: ${slot}!`);
 		return;
 	}
 
-	// Filter items based on the provided slot
-	const sameSlotItems = actor.items.filter((item) => {
-		return item.system.isEquipped && item.system.isEquipped.slot === slot;
-	});
+	// Get the equipped item for the specified slot from actor.system.equipped
+	const equippedItemId = actor.system.equipped[slot];
 
-	// Check if any item is found in the specified slot
-	if (sameSlotItems.length === 0) {
+	// If no item is equipped in the specified slot
+	if (!equippedItemId) {
 		ui.notifications.warn(`No item equipped in ${slot} slot!`);
 		return;
 	}
 
-	// Get the first item from the filtered collection
-	const item = sameSlotItems[0];
+	// Find the item in the actor's items by ID
+	const item = actor.items.get(equippedItemId);
 
-	// Roll the item
-	item.roll(isShift);
+	// If the item exists, roll it
+	if (item) {
+		item.roll(isShift);
+	} else {
+		ui.notifications.warn(`Equipped item in ${slot} slot not found!`);
+	}
 }
 
 const logo = document.getElementById('logo');
