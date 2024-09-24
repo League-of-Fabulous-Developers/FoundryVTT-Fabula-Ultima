@@ -88,8 +88,12 @@ const onRenderCheck = (sections, check, actor) => {
 				result: {
 					attr1: check.primary.result,
 					attr2: check.secondary.result,
+					die1: check.primary.dice,
+					die2: check.secondary.dice,
 					modifier: check.modifierTotal,
 					total: check.result,
+					crit: check.critical,
+					fumble: check.fumble,
 				},
 				check: {
 					attr1: {

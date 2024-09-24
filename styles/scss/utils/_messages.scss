@@ -23,6 +23,7 @@
 		position: relative;
 		cursor: pointer;
 	}
+
 	h2,
 	h3 {
 		border-bottom: none !important;
@@ -32,6 +33,7 @@
 		font-weight: bold;
 		font-variant: small-caps;
 	}
+
 	h2 {
 		border-bottom: none !important;
 		margin: 0 0.5rem;
@@ -90,6 +92,7 @@
 			line-height: 1.45em;
 			color: $color-ternary;
 		}
+
 		p {
 			font-family: $font-primary;
 			font-size: 1rem;
@@ -97,6 +100,7 @@
 		}
 	}
 }
+
 .chat-message.whisper {
 	background:
 		#{$background-core},
@@ -176,6 +180,7 @@
 				align-items: center;
 				justify-content: start;
 				padding: 0 5px;
+
 				&.detail {
 					color: $color-white;
 					font-size: $rcaption-font-size;
@@ -207,10 +212,62 @@
 
 			&.critical {
 				@include total-style($background-critical, $border-critical);
+
+				&::before,
+				&::after {
+					font-family: 'Material Symbols Outlined';
+					font-size: 80%;
+					color: white;
+					text-shadow:
+						black 1px 0,
+						black -1px 0,
+						black 0 1px,
+						black 0 -1px;
+					align-self: center;
+				}
+
+				&::before {
+					content: 'arrow_back_ios_new';
+				}
+				&::after {
+					content: 'arrow_forward_ios';
+				}
+
+				.startcap,
+				.endcap {
+					padding: 0;
+					flex: 1 2 0px;
+				}
 			}
 
 			&.fumble {
 				@include total-style($background-fumble, $border-fumble);
+
+				&::before,
+				&::after {
+					font-family: 'Material Symbols Outlined';
+					font-size: 80%;
+					color: white;
+					text-shadow:
+						black 1px 0,
+						black -1px 0,
+						black 0 1px,
+						black 0 -1px;
+					align-self: center;
+				}
+
+				&::before {
+					content: 'arrow_forward_ios';
+				}
+				&::after {
+					content: 'arrow_back_ios_new';
+				}
+
+				.startcap,
+				.endcap {
+					padding: 0;
+					flex: 1 2 0px;
+				}
 			}
 		}
 
@@ -230,6 +287,7 @@
 				align-items: center;
 				justify-content: start;
 				padding: 0 5px;
+
 				&.detail {
 					color: $color-white;
 					font-size: $rcaption-font-size;
@@ -502,6 +560,7 @@
 
 .exp-award {
 	font-family: 'PT Sans Narrow', sans-serif;
+
 	.exp-calculation {
 		grid-template-columns: 3fr 1fr;
 
@@ -619,36 +678,47 @@
 	.progress[data-segments='1'] .divider {
 		display: none;
 	}
+
 	.progress[data-segments='2'] .pie {
 		clip-path: polygon(50% -25%, 50% 125%, 120% 50%);
 	}
+
 	.progress[data-segments='3'] .pie {
 		clip-path: polygon(50% -50%, 50% 50%, 140% 100%);
 	}
+
 	.progress[data-segments='4'] .pie {
 		clip-path: polygon(50% -25%, 50% 50%, 120% 50%);
 	}
+
 	.progress[data-segments='5'] .pie {
 		clip-path: polygon(50% -10%, 50% 50%, 110% 30%);
 	}
+
 	.progress[data-segments='6'] .pie {
 		clip-path: polygon(50% -10%, 50% 50%, 100% 20%);
 	}
+
 	.progress[data-segments='7'] .pie {
 		clip-path: polygon(50% 0, 50% 50%, 110% 0);
 	}
+
 	.progress[data-segments='8'] .pie {
 		clip-path: polygon(50% 0, 50% 50%, 100% 0);
 	}
+
 	.progress[data-segments='9'] .pie {
 		clip-path: polygon(50% 0, 50% 50%, 95% 0);
 	}
+
 	.progress[data-segments='10'] .pie {
 		clip-path: polygon(50% 0, 50% 50%, 85% 0);
 	}
+
 	.progress[data-segments='11'] .pie {
 		clip-path: polygon(50% 0, 50% 50%, 85% 0);
 	}
+
 	.progress[data-segments='12'] .pie {
 		clip-path: polygon(50% 0, 50% 50%, 80% 0);
 	}

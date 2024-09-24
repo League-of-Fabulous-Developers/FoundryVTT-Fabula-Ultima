@@ -38,7 +38,7 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
  * @param {FUItem} [item]
  */
 const onRenderCheck = (data, checkResult, actor, item) => {
-	const { type, primary, modifierTotal, secondary, result } = checkResult;
+	const { type, primary, modifierTotal, secondary, result, critical, fumble } = checkResult;
 	if (type === 'open') {
 		data.push({
 			order: CHECK_ROLL,
@@ -51,6 +51,8 @@ const onRenderCheck = (data, checkResult, actor, item) => {
 					die2: secondary.dice,
 					modifier: modifierTotal,
 					total: result,
+					crit: critical,
+					fumble: fumble,
 				},
 				check: {
 					attr1: {
