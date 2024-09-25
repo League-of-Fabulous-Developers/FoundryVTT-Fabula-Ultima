@@ -1,3 +1,5 @@
+import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
+
 function addFabulaPointDisplay(app, html, data) {
 	const userId = game.userId;
 	const isGM = game.user.isGM;
@@ -20,7 +22,7 @@ function addFabulaPointDisplay(app, html, data) {
 
 	// Function to render spendable fabula points for the current user
 	function renderSpendableFabulaPoints() {
-		if (character && !isGM) {
+		if (character && character.system instanceof CharacterDataModel && !isGM) {
 			const fabulaPoints = character.system.resources.fp.value;
 			const icon = fabulaPoints < 10 ? `counter_${fabulaPoints}` : 'add_circle';
 			const tooltip = fabulaPoints >= 10 ? game.i18n.localize('FU.FabulaPoints') + ': ' + fabulaPoints : '';
@@ -48,7 +50,7 @@ function addFabulaPointDisplay(app, html, data) {
 				const playerId = this.dataset.userId;
 				const user = game.users.get(playerId);
 
-				if (user.character) {
+				if (user.character && user.character.system instanceof CharacterDataModel) {
 					const charId = user.character._id;
 					const fabulaPoints = user.character.system.resources.fp.value;
 					const icon = fabulaPoints < 10 ? `counter_${fabulaPoints}` : 'add_circle';
@@ -58,11 +60,11 @@ function addFabulaPointDisplay(app, html, data) {
 						.append(`<a class="flex0" data-user-id="${charId}" data-action="spendFabula"><span class="mats-o font-size-20" ${fabulaPoints >= 10 ? `data-tooltip="${tooltip}"` : ''}>${icon}</span></a>`)
 						.on('click', `a[data-user-id="${charId}"][data-action="spendFabula"]`, function (event) {
 							event.preventDefault();
-							user.character.spendMetaCurrency(charId);
+							user.character.spendMetaCurrency();
 						})
 						.on('contextmenu', `a[data-user-id="${charId}"][data-action="spendFabula"]`, function (event) {
 							event.preventDefault();
-							user.character.gainMetaCurrency(charId);
+							user.character.gainMetaCurrency();
 						});
 				}
 			});
@@ -75,8 +77,10 @@ function addFabulaPointDisplay(app, html, data) {
 	renderGMFabulaPoints();
 }
 
-function rerenderPlayerList() {
-	ui.players.render();
+function rerenderPlayerList(actor) {
+	if (actor.system instanceof CharacterDataModel) {
+		ui.players.render();
+	}
 }
 
 export const PlayerListEnhancements = Object.freeze({
