@@ -60,6 +60,6 @@ export class ArmorDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	transferEffects() {
-		return this.parent.isEquipped && !this.parent.actor?.system.vehicle.armorActive;
+		return this.parent.isEquipped && !this.parent.actor?.system.vehicle?.armorActive;
 	}
 }
