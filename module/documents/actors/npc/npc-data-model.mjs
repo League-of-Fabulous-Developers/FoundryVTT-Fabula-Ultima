@@ -9,6 +9,21 @@ import { NpcSkillTracker } from './npc-skill-tracker.mjs';
 import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
 
+Hooks.on('preUpdateActor', (document, changed) => {
+	if (document.system instanceof NpcDataModel) {
+		const newVillainType = foundry.utils.getProperty(changed, 'system.villain.value');
+		if (newVillainType !== undefined) {
+			const ultimaPoints = {
+				minor: 5,
+				major: 10,
+				supreme: 15,
+			};
+
+			foundry.utils.setProperty(changed, 'system.resources.fp.value', ultimaPoints[newVillainType] ?? 0);
+		}
+	}
+});
+
 /**
  * @property {number} level.value
  * @property {number} resources.hp.max
@@ -84,7 +99,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 					max: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
 					value: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
 				}),
-				fp: new SchemaField({ value: new NumberField({ initial: 3, min: 0, integer: true, nullable: false }) }),
+				fp: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 				bonds: new ArrayField(new EmbeddedDataField(BondDataModel, {})),
 				pronouns: new SchemaField({ name: new StringField() }),
 			}),
