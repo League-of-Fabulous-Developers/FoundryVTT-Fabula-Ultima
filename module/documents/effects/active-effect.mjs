@@ -59,6 +59,15 @@ const PRIORITY_CHANGES = [
 	'system.attributes.ins.base',
 	'system.attributes.mig.base',
 	'system.attributes.wlp.base',
+	'system.affinities.air.base',
+	'system.affinities.bolt.base',
+	'system.affinities.dark.base',
+	'system.affinities.earth.base',
+	'system.affinities.fire.base',
+	'system.affinities.ice.base',
+	'system.affinities.light.base',
+	'system.affinities.physical.base',
+	'system.affinities.poison.base',
 ];
 
 export class FUActiveEffect extends ActiveEffect {

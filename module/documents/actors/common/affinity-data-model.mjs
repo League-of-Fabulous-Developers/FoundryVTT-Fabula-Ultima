@@ -17,30 +17,41 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 	_initialize(options = {}) {
 		super._initialize(options);
 
-		let current = options.current ?? this.base;
+		let thiz = this;
+		const { current } = options;
+		let holder = {
+			get current() {
+				return current ?? thiz.base;
+			},
+			set current(value) {
+				delete this.current;
+				this.current = value;
+			},
+		};
+
 		Object.defineProperty(this, 'current', {
 			configurable: false,
 			enumerable: true,
 			get() {
-				return MathHelper.clamp(current, -1, 4);
+				return MathHelper.clamp(holder.current, -1, 4);
 			},
 			set(newValue) {
-				current = newValue;
+				holder.current = newValue ?? holder.current;
 			},
 		});
 
 		Object.defineProperty(this, 'upgrade', {
 			value: () => {
-				if (current < FU.affValue.resistance) {
-					current += 1;
+				if (holder.current < FU.affValue.resistance) {
+					holder.current += 1;
 				}
 			},
 		});
 
 		Object.defineProperty(this, 'downgrade', {
 			value: () => {
-				if (current <= FU.affValue.resistance) {
-					current -= 1;
+				if (holder.current <= FU.affValue.resistance) {
+					holder.current -= 1;
 				}
 			},
 		});
