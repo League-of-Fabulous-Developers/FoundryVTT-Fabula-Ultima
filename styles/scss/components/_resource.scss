@@ -222,6 +222,15 @@
 	}
 }
 
+.bond-strength {
+	color: #ffffff;
+	background-color: $color-secondary;
+	border: thin solid $color-secondary;
+	text-align: center;
+	border-radius: 5px;
+	padding: 0 0.5rem;
+}
+
 .npc-level-container {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);

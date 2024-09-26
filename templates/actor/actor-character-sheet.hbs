@@ -24,12 +24,12 @@
                 </a>
                 <a class="item tab-style" data-tab="settings" data-tooltip="{{localize 'FU.Settings'}}">
                     <i class="fas fa-sliders"></i>
-                </a> 
+                </a>
                 <a class="item zenit-style" data-tooltip="{{getGameSetting 'optionRenameCurrency'}}">
                     <i class="fuk fu-zenit icon-aff" style="margin-bottom: -4px;"></i>
 
                     <input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}"
-                           data-dtype="Number" />
+                        data-dtype="Number" />
                 </a>
             </nav>
         </header>
@@ -40,9 +40,62 @@
             <div class="sheet-body">
                 {{!-- Owned Features Tab --}}
                 <div class="tab features" data-group="primary" data-tab="stats">
-                    {{>"systems/projectfu/templates/actor/partials/actor-traits.hbs"}}
+                    <!-- Traits Section -->
+                    <section class="section-container desc grid-span-3 gap-5">
+                        <div class="grid grid-3col flex-group-center">
+                            <div class="traits resource-content">
+                                <label>
+                                    <span class="resource-label-l">{{localize 'FU.Identity'}}: </span><span class="resource-text-m">{{ system.resources.identity.name }}</span>
+                                </label>
+                            </div>
+                            <div class="traits resource-content">
+                                <label>
+                                    <span class="resource-label-l">{{localize 'FU.Theme'}}: </span><span class="resource-text-m">{{ system.resources.theme.name }}</span>
+                                </label>
+                            </div>
+                            <div class="traits resource-content">
+                                <label>
+                                    <span class="resource-label-l">{{localize 'FU.Origin'}}: </span><span class="resource-text-m">{{ system.resources.origin.name }}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
                     <section class="body-section grid grid-4col">
                         <aside class="sidebar flex-group-center">
+                            {{!-- Bond Section --}}
+                            <fieldset class="section-container title-fieldset desc resource-content">
+                                <legend class="resource-label-m">
+                                    {{localize 'FU.Bonds'}}
+                                </legend>
+                                <div class="bonds">
+                                    {{#each system.resources.bonds as |bond bondIndex|}}
+                                    <div class="bond-row flexrow mb-2">
+                                        <label class="resource-text-sm flex-group-left flex-grow">
+                                            <strong>
+                                                {{#if bond.name}}
+                                                {{bond.name}}
+                                                {{else}}
+                                                {{localize 'FU.NoItem'}}
+                                                {{/if}}
+                                            </strong>
+                                        </label>
+                                        <label class="resource-text-sm bond-strength flex0" data-tooltip="
+                                            {{#if (lookup @root.FU.bonds.admInf bond.admInf)}}
+                                                {{localize (lookup @root.FU.bonds.admInf bond.admInf)}}<br>
+                                            {{/if}}
+                                            {{#if (lookup @root.FU.bonds.loyMis bond.loyMis)}}
+                                                {{localize (lookup @root.FU.bonds.loyMis bond.loyMis)}}<br>
+                                            {{/if}}
+                                            {{#if (lookup @root.FU.bonds.affHat bond.affHat)}}
+                                                {{localize (lookup @root.FU.bonds.affHat bond.affHat)}}
+                                            {{/if}}
+                                        ">
+                                            {{ bond.strength }}
+                                        </label>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </fieldset>
                             {{!-- Action Buttons --}}
                             {{> "systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
                             {{!-- Vehicle Section --}}
@@ -52,11 +105,9 @@
                         </aside>
                         <main class="grid-span-3">
                             {{!-- Bond Section --}}
-                            {{>"systems/projectfu/templates/actor/partials/actor-bonds.hbs" bond=bond
-                             bondIndex=bondIndex}}
                             {{!-- Favorite Section --}}
                             {{>"systems/projectfu/templates/actor/partials/actor-favorite.hbs" groups=systemData.bond
-                             dtypes=dtypes actor=actor}}
+                            dtypes=dtypes actor=actor}}
                         </main>
                     </section>
                 </div>
