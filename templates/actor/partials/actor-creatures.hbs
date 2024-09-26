@@ -7,24 +7,19 @@
                 <i class="fas fa-chart-simple icon"></i>{{localize 'FU.CreatureType'}}
             </label>
             <span class="flexrow combineBar" style="border: 0.125em solid #c7c7c7; margin-bottom: -4px;">
-                <select id="specieSelect" name="system.species.value"
-                        class="resource-inputs">
-                    {{#if system.isCompanion.value}}
+                <select name="system.species.value" class="resource-inputs species-select" style="padding: 3px 0">
+                    {{#if (eq system.rank.value 'companion')}}
                         {{selectOptions FU.companionSpecies selected=system.species.value localize=true}}
                     {{else}}
                         {{selectOptions FU.species selected=system.species.value localize=true}}
                     {{/if}}
                 </select>
-                <span class="resource-inputs">
-                    <input type="checkbox" id="isCompanionCheckbox" data-tooltip="{{localize 'FU.isCompanion'}}"
-                           name="system.isCompanion.value" {{checked system.isCompanion.value}} />
-                </span>
             </span>
         </span>
         </div>
 
         <span class="resource-content levelup-container flexcol flex-group-center">
-            {{#if system.isCompanion.value}}
+            {{#if (eq system.rank.value 'companion')}}
                 <span class="flexrow combineBar villain-field resource-content flex-group-center">
             <label class="resource-label-m" for="system.companion.playerLevel"
                    data-tooltip="{{localize 'FU.PlayerLevel'}}">{{ localize 'FU.LevelAbbr'

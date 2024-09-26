@@ -39,13 +39,12 @@ import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs'
  * @property {number} derived.mdef.bonus
  * @property {BonusesDataModel} bonuses
  * @property {string} traits.value
- * @property {'beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead', 'custom'} species.value
+ * @property {'beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead'} species.value
  * @property {"", "minor", "major", "supreme"} villain.value
  * @property {number} phases.value
  * @property {string} multipart.value
- * @property {boolean} isElite.value
- * @property {number} isChampion.value
- * @property {boolean} isCompanion.value
+ * @property {"soldier", "elite", "champion", "companion"} rank.value
+ * @property {number} rank.replacedSoldiers
  * @property {number} companion.playerLevel
  * @property {number} companion.skillLevel
  * @property {boolean} useEquipment.value
@@ -100,9 +99,10 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			villain: new SchemaField({ value: new StringField({ initial: '', blank: true, choices: Object.keys(FU.villainTypes) }) }),
 			phases: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			multipart: new SchemaField({ value: new StringField({ initial: '' }) }),
-			isElite: new SchemaField({ value: new BooleanField({ initial: false }) }),
-			isChampion: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			isCompanion: new SchemaField({ value: new BooleanField({ initial: false }) }),
+			rank: new SchemaField({
+				value: new StringField({ initial: 'soldier', choices: Object.keys(FU.rank) }),
+				replacedSoldiers: new NumberField({ initial: 1, min: 0, max: 6 }),
+			}),
 			companion: new SchemaField({
 				playerLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
 				skillLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
@@ -127,7 +127,21 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 		return this.parent;
 	}
 
-	prepareBaseData() {}
+	prepareBaseData() {
+		this.#prepareReplacedSoldiers();
+	}
+
+	#prepareReplacedSoldiers() {
+		if (this.rank.value === 'companion') {
+			this.rank.replacedSoldiers = 0;
+		}
+		if (this.rank.value === 'soldier') {
+			this.rank.replacedSoldiers = 1;
+		}
+		if (this.rank.value === 'elite') {
+			this.rank.replacedSoldiers = 2;
+		}
+	}
 
 	prepareDerivedData() {
 		this.spTracker = new NpcSkillTracker(this);
@@ -147,12 +161,12 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			configurable: true,
 			enumerable: true,
 			get() {
-				if (data.isCompanion.value) {
+				if (data.rank.value === 'companion') {
 					// Companion calculation
 					return Math.floor(data.attributes.mig.base * data.companion.skillLevel) + Math.floor(data.companion.playerLevel / 2 + data.resources.hp.bonus);
 				}
 				// Default calculation
-				const hpMultiplier = data.isChampion.value !== 1 ? data.isChampion.value : data.isElite.value ? 2 : 1;
+				const hpMultiplier = data.rank.replacedSoldiers;
 				return (data.attributes.mig.base * 5 + data.level.value * 2 + data.resources.hp.bonus) * hpMultiplier;
 			},
 			set(newValue) {
@@ -166,7 +180,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			configurable: true,
 			enumerable: true,
 			get() {
-				const mpMultiplier = data.isChampion.value !== 1 ? 2 : 1;
+				const mpMultiplier = data.rank.value === 'champion' ? 2 : 1;
 				return (data.attributes.wlp.base * 5 + data.level.value + data.resources.mp.bonus) * mpMultiplier;
 			},
 			set(newValue) {

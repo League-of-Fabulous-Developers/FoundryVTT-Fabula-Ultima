@@ -54,6 +54,31 @@ function migratePhysicalAffinity(source) {
 	}
 }
 
+function migrateCreatureRanks(source) {
+	if (!('rank' in source)) {
+		source.rank = {
+			value: 'soldier',
+			replacedSoldiers: 1,
+		};
+		if (source.isCompanion?.value) {
+			source.rank.value = 'companion';
+			source.rank.replacedSoldiers = 0;
+		}
+		if (source.isElite?.value) {
+			source.rank.value = 'elite';
+			source.rank.replacedSoldiers = 2;
+		}
+		if (source.isChampion?.value > 1) {
+			source.rank.value = 'champion';
+			source.rank.replacedSoldiers = source.isChampion.value;
+		}
+
+		delete source.isCompanion;
+		delete source.isElite;
+		delete source.isChampion;
+	}
+}
+
 export const NpcMigrations = {
 	run: (source) => {
 		migrateLegacyAffinities(source);
@@ -65,5 +90,7 @@ export const NpcMigrations = {
 		migrateOldMisspelledVillain(source);
 
 		migratePhysicalAffinity(source);
+
+		migrateCreatureRanks(source);
 	},
 };

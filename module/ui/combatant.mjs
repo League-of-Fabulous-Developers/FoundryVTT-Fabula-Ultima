@@ -21,12 +21,7 @@ export class FUCombatant extends Combatant {
 	 */
 	get totalTurns() {
 		if (this.token?.actor && this.token.actor.system instanceof NpcDataModel) {
-			if (this.token.actor.system.isElite.value) {
-				return 2;
-			}
-			if (this.token.actor.system.isChampion.value) {
-				return this.token.actor.system.isChampion.value;
-			}
+			return this.token.actor.system.rank.replacedSoldiers;
 		}
 		return 1;
 	}

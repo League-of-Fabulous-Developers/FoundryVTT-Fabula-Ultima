@@ -177,20 +177,6 @@
 			border-radius: 0px;
 			width: 100%;
 			align-items: center;
-
-			#specieSelect,
-			#championSelect {
-				flex: 4;
-			}
-
-			#isCompanionCheckbox,
-			#isEliteCheckbox {
-				display: flex;
-
-				flex: 0 0 15px;
-				width: 15px;
-				height: 15px;
-			}
 		}
 	}
 
@@ -232,6 +218,49 @@
 			background-size: 16px 16px;
 			height: auto;
 			margin: 3px;
+		}
+	}
+}
+
+.npc-level-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+
+	> label {
+		align-self: center;
+	}
+
+	.level-input {
+		width: 100%;
+		border-radius: 0 12px 0 0;
+	}
+
+	.rank-select,
+	.champion-input {
+		border-radius: 0;
+	}
+	.champion-input {
+		display: inline-flex;
+
+		* {
+			width: 0;
+			flex: 0;
+		}
+
+		input {
+			height: 100%;
+		}
+
+		&::before,
+		&::after {
+			font-size: 120%;
+		}
+
+		&::before {
+			content: '(';
+		}
+		&::after {
+			content: ')';
 		}
 	}
 }

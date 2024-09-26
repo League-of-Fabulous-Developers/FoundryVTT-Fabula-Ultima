@@ -510,3 +510,10 @@ FU.combatHudThemeTemplates = {
 	'fu-default': 'combat-hud-default',
 	'fu-modern': 'combat-hud-modern',
 };
+
+FU.rank = {
+	soldier: 'FU.Soldier',
+	elite: 'FU.Elite',
+	champion: 'FU.Champion',
+	companion: 'FU.Companion',
+};
