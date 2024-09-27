@@ -176,10 +176,20 @@ const affinityKeys = {
 	[FU.affValue.absorption]: () => 'FU.ChatApplyDamageAbsorb',
 };
 
+// function getSingleTarget(e) {
+// 	// eslint-disable-next-line no-unused-vars, no-undef
+// 	const { type, id } = parseUuid($(e.target).closest('a').data('id'));
+// 	const actor = game.actors.get(id);
+// 	if (!actor) {
+// 		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });
+// 		return [];
+// 	}
+// 	return [actor];
+// }
+
 function getSingleTarget(e) {
-	// eslint-disable-next-line no-unused-vars, no-undef
-	const { type, id } = parseUuid($(e.target).closest('a').data('id'));
-	const actor = game.actors.get(id);
+	const dataId = $(e.target).closest('a').data('id');
+	const actor = fromUuidSync(dataId);
 	if (!actor) {
 		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });
 		return [];
