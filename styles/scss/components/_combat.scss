@@ -883,6 +883,10 @@
 
 			.combat-info {
 				overflow: hidden;
+				text-align: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 
 				.combat-name {
 					overflow: hidden;
@@ -891,12 +895,13 @@
 					transition: all 0.5s ease-in-out;
 
 					h2 {
-						font-family: 'Press Start 2P', cursive;
+						font-family: 'trigger-bold';
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
 						border: none;
 						cursor: pointer;
+						font-size: 1.625rem;
 					}
 
 					&.crisis {
