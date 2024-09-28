@@ -257,6 +257,11 @@
 			"lang": "ru",
 			"name": "Русский",
 			"path": "lang/ru.json"
+		},
+		{
+			"lang": "pl",
+			"name": "Polish",
+			"path": "lang/pl.json"
 		}
 	],
 	"relationships": {
