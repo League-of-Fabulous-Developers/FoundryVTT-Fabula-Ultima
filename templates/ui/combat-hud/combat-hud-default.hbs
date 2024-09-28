@@ -42,7 +42,7 @@
                 <div class="combat-info">
                     {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
                         <div class="combat-name crisis {{#unless this.hasEffects}}full-height{{/unless}}">
-                            <h2>
+                            <h2 class="token-name">
                                 {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                     <span class="combat-order">{{ this.order }}</span>.&nbsp;
                                 {{/if}}
@@ -143,18 +143,18 @@
                                 <div class="marquee"
                                      style="animation-duration: {{this.effectsMarqueeDuration}}s; animation-direction: {{this.marqueeDirection}};">
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}"
+                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}"
+                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                 </div>
                             {{else}}
                                 <div>
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}"
+                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                 </div>

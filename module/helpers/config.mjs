@@ -504,11 +504,13 @@ FU.target = {
 FU.combatHudThemes = {
 	'fu-default': 'FU.CombatHudDefault',
 	'fu-modern': 'FU.CombatHudModern',
+	'fu-mother': 'FU.CombatHudMother',
 };
 
 FU.combatHudThemeTemplates = {
 	'fu-default': 'combat-hud-default',
 	'fu-modern': 'combat-hud-modern',
+	'fu-mother': 'combat-hud-mother',
 };
 
 FU.rank = {

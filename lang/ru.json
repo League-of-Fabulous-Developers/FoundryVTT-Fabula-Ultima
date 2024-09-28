@@ -1165,6 +1165,7 @@
 		"CombatHudThemeHint": "Выберите тему боевого интерфейса",
 		"CombatHudDefault": "По умолчанию (Ретро)",
 		"CombatHudModern": "Современный",
+		"CombatHudMother": "Mother",
 		"CombatHudTrackedResource4": "Четвертый отслеживаемый ресурс",
 		"CombatHudTrackedResource4Hint": "Выберите четвертый ресурс, отображаемый в виде полоски в боевом интерфейсе. Поддерживается не всеми темами.",
 		"CombatHudShowNPCTurnsLeftMode": "NPC Turns Left Mode",
@@ -1173,6 +1174,7 @@
 		"CombatHudShowNPCTurnsLeftModeAlways": "Всегда",
 		"CombatHudShowNPCTurnsLeftModeOnlyStudied": "Только после Изучения",
 		"Versus": "vs",
+		"Soldier": "Soldier",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",

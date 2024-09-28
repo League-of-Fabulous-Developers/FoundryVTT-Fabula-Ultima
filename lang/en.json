@@ -1165,6 +1165,7 @@
 		"CombatHudThemeHint": "Choose the theme of the Combat HUD.",
 		"CombatHudDefault": "Default (Retro style)",
 		"CombatHudModern": "Modern",
+		"CombatHudMother": "Mother",
 		"CombatHudTrackedResource4": "Fourth Tracked Resource",
 		"CombatHudTrackedResource4Hint": "Choose the fourth resource to be shown as a bar in the Combat HUD. Not supported in all themes.",
 		"CombatHudShowNPCTurnsLeftMode": "NPC Turns Left Mode",
@@ -1173,6 +1174,7 @@
 		"CombatHudShowNPCTurnsLeftModeAlways": "Always",
 		"CombatHudShowNPCTurnsLeftModeOnlyStudied": "Only when Studied",
 		"Versus": "vs",
+		"Soldier": "Soldier",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",
@@ -1180,7 +1182,6 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		},
-		"Soldier": "Soldier"
+		}
 	}
 }
