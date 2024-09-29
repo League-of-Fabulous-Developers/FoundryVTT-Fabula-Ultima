@@ -8,7 +8,7 @@ import { FUItemSheet } from './sheets/item-sheet.mjs';
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
 import { registerSystemSettings, SETTINGS } from './settings.js';
-import { addRollContextMenuEntries, createCheckMessage, promptCheck, rollCheck } from './helpers/checks.mjs';
+import { addRollContextMenuEntries, createCheckMessage, promptCheck, promptOpenCheck, rollCheck } from './helpers/checks.mjs';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -188,18 +188,22 @@ Hooks.once('init', async () => {
 	Actors.unregisterSheet('core', ActorSheet);
 	Actors.registerSheet('projectfu', FUStandardActorSheet, {
 		makeDefault: true,
+		label: 'Standard Actor Sheet',
 	});
 	Items.unregisterSheet('core', ItemSheet);
 	Items.registerSheet('projectfu', FUItemSheet, {
 		makeDefault: true,
+		label: 'Standard Item Sheet',
 	});
 	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],
 		makeDefault: true,
+		label: 'Class Feature Sheet',
 	});
 	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
 		types: ['optionalFeature'],
 		makeDefault: true,
+		label: 'Optional Feature Sheet',
 	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
@@ -460,20 +464,33 @@ Hooks.once('ready', async function () {
 		rollEquipment(actor, slot, isShift);
 	});
 
-	Hooks.on('promptCheckCalled', (actor) => {
+	function handleNoActor(actor) {
 		if (!actor) {
-			return ui.notification.error('No character for this user');
+			ui.notification.error('No character for this user');
+			return true;
 		}
-		// Call promptCheck function
+		return false;
+	}
+
+	Hooks.on('promptOpenCheckCalled', (actor) => {
+		if (handleNoActor(actor)) return;
+		promptOpenCheck(actor);
+	});
+
+	Hooks.on('promptAttributeCheckCalled', (actor) => {
+		if (handleNoActor(actor)) return;
 		promptCheck(actor);
 	});
 
 	Hooks.on('promptGroupCheckCalled', (actor) => {
-		if (!actor) {
-			return ui.notification.error('No character for this user');
-		}
+		if (handleNoActor(actor)) return;
+		let isShift = false;
+		GroupCheck.promptCheck(actor, isShift);
+	});
+
+	Hooks.on('promptInitiativeCheckCalled', (actor) => {
+		if (handleNoActor(actor)) return;
 		let isShift = true;
-		// Call Group Check promptCheck function
 		GroupCheck.promptCheck(actor, isShift);
 	});
 
@@ -567,20 +584,6 @@ Hooks.once('ready', async function () {
 });
 
 Hooks.once('socketlib.ready', onSocketLibReady);
-
-Hooks.once('mmo-hud.ready', () => {
-	// Do this
-});
-
-Hooks.once('ready', () => {
-	const isPixelated = game.settings.get('projectfu', 'optionImagePixelated');
-	const applyPixelatedStyle = () => {
-		// Apply the style to specific selectors
-		$('img').css('image-rendering', isPixelated ? 'pixelated' : '');
-	};
-	// Apply the style initially
-	applyPixelatedStyle();
-});
 
 /* -------------------------------------------- */
 /*  Other Hooks                                 */

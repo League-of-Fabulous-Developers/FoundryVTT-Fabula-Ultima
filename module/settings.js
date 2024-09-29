@@ -15,7 +15,6 @@ export const SETTINGS = Object.freeze({
 	optionDefaultTargetingMode: 'optionDefaultTargetingMode',
 	optionStudySavePath: 'optionStudySavePath',
 	useRevisedStudyRule: 'useRevisedStudyRule',
-	optionImagePixelated: 'optionImagePixelated',
 	optionAlwaysFavorite: 'optionAlwaysFavorite',
 	optionNPCNotesTab: 'optionNPCNotesTab',
 	optionBondMaxLength: 'optionBondMaxLength',
@@ -182,16 +181,6 @@ export const registerSystemSettings = async function () {
 		scope: 'world',
 		config: true,
 		type: String,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.optionImagePixelated, {
-		name: game.i18n.localize('FU.PixelatedViewSettings'),
-		hint: game.i18n.localize('FU.PixelatedViewSettingsHint'),
-		scope: 'world',
-		config: true,
-		type: Boolean,
-		default: false,
-		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {
