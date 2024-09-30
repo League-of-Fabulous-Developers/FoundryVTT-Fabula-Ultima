@@ -121,6 +121,26 @@ export class FUItemSheet extends ItemSheet {
 			}
 		});
 
+		// Render the active effect sheet for viewing/editing when middle-clicking
+		html.find('.effect').mouseup((ev) => {
+			if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
+				const li = $(ev.currentTarget);
+				const simulatedEvent = {
+					preventDefault: () => {},
+					currentTarget: {
+						dataset: { action: 'edit' },
+						closest: () => li[0],
+						classList: {
+							contains: (cls) => li.hasClass(cls),
+						},
+					},
+				};
+
+				onManageActiveEffect(simulatedEvent, this.item);
+			}
+		});
+
+		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
 

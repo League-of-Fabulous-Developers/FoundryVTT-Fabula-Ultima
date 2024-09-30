@@ -130,6 +130,25 @@ export class FUOptionalFeatureSheet extends ItemSheet {
 	activateListeners(html) {
 		super.activateListeners(html);
 
+		// Render the active effect sheet for viewing/editing when middle-clicking
+		html.find('.effect').mouseup((ev) => {
+			if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
+				const li = $(ev.currentTarget);
+				const simulatedEvent = {
+					preventDefault: () => {},
+					currentTarget: {
+						dataset: { action: 'edit' },
+						closest: () => li[0],
+						classList: {
+							contains: (cls) => li.hasClass(cls),
+						},
+					},
+				};
+
+				onManageActiveEffect(simulatedEvent, this.item);
+			}
+		});
+
 		html.find('.regenerate-fuid-button').click(async (event) => {
 			event.preventDefault();
 

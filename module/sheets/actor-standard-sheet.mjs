@@ -7,7 +7,6 @@ import { GroupCheck } from '../helpers/group-check.mjs';
 import { StudyRollHandler } from '../helpers/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
-import { FUActor } from '../documents/actors/actor.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -616,20 +615,23 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 		});
 
-		// Open the active effect dialog when middle-clicking on an effect
+		// Render the active effect sheet for viewing/editing when middle-clicking
 		html.find('.effect').mouseup((ev) => {
+			const owner = this.actor;
 			if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
 				const li = $(ev.currentTarget);
-				const effectId = li.data('effectId');
-				const owner = this.actor;
-				let effect;
-				if (owner instanceof FUActor) {
-					effect = Array.from(owner.allApplicableEffects()).find((value) => value.id === effectId);
-				} else {
-					effect = owner.effects.get(effectId);
-				}
-				// Render the sheet for the active effect
-				effect.sheet.render(true);
+				const simulatedEvent = {
+					preventDefault: () => {},
+					currentTarget: {
+						dataset: { action: 'edit' },
+						closest: () => li[0],
+						classList: {
+							contains: (cls) => li.hasClass(cls),
+						},
+					},
+				};
+
+				onManageActiveEffect(simulatedEvent, owner);
 			}
 		});
 
