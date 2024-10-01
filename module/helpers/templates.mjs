@@ -72,7 +72,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
 		'systems/projectfu/templates/chat/chat-group-check-initiated.hbs',
-		'systems/projectfu/templates/chat/chat-progress-clock.hbs',
 
 		// Chat Message Partials
 		'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',
@@ -92,6 +91,8 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-check-targets.hbs',
 		'systems/projectfu/templates/chat/partials/chat-opposed-check-result.hbs',
 		'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
 
 		// UI Components
 		'systems/projectfu/templates/ui/combat-tracker.hbs',

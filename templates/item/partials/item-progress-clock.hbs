@@ -1,9 +1,11 @@
 {{!-- Clocks --}}
 {{#if system.hasClock.value}}
     <fieldset class="title-fieldset desc ">
-        <legend>
-            <label class="resource-label-m"><i class="fas fa-clock icon"></i>{{localize
-             'FU.Clocks'}}</label>
+        <legend class="flex-group-center gap-5">
+            <i class="fas fa-clock"></i>
+            <input type="text" name="system.progress.name" value="{{ system.progress.name }}" data-dtype="String"
+                placeholder="{{localize 'FU.ResourcePoints'}}" data-tooltip="{{localize 'FU.Clock'}}<br>{{ system.progress.name }}"
+                class="resource-label-m resource-inputs select-dropdown-l" style="text-align: left;" />
         </legend>
         <div class="grid grid-3col">
             <div class=" flexcol flex-group-center">

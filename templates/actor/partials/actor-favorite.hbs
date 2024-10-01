@@ -43,7 +43,7 @@
                         {{!-- Resource Points --}}
                         {{#if item.system.hasResource.value}}
                             <div class="item-l inline-desc flexrow flex-group-center resource-content" style="padding: 0">
-                                <label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
+                                <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{item.system.rp.name }}</label>
                                 <div class="resource-text-t buttons-inc">
                                     <a class="decrement-button" data-type="resourceCounter"
                                        data-item-id="{{ item._id }}"
