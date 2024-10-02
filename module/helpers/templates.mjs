@@ -98,6 +98,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/ui/combat-tracker.hbs',
 
 		// Applications
+		'systems/projectfu/templates/app/item-customizer.hbs',
 		'systems/projectfu/templates/app/app-group-check.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-attribute.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',

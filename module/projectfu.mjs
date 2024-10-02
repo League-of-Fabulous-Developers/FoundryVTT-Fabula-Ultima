@@ -63,6 +63,7 @@ import { CheckConfiguration } from './checks/check-configuration.mjs';
 import { slugify } from './util.mjs';
 import { ActionHandler } from './helpers/action-handler.mjs';
 import { StudyRollHandler } from './helpers/study-roll.mjs';
+import { ItemCustomizer } from './helpers/item-customizer.mjs';
 import { FUHooks } from './hooks.mjs';
 
 globalThis.projectfu = {
@@ -77,6 +78,7 @@ globalThis.projectfu = {
 	CheckConfiguration,
 	ActionHandler,
 	StudyRollHandler,
+	ItemCustomizer,
 };
 
 /* -------------------------------------------- */
@@ -105,6 +107,7 @@ Hooks.once('init', async () => {
 		ChecksV2,
 		CheckConfiguration,
 		ActionHandler,
+		ItemCustomizer,
 		util: {
 			slugify,
 		},
@@ -280,6 +283,7 @@ Handlebars.registerHelper('translate', function (str) {
 			ritualism: 'FU.Ritualism',
 			spiritism: 'FU.Spiritism',
 		},
+		CONFIG.FU.damageTypes,
 		CONFIG.FU.itemTypes,
 		CONFIG.FU.weaponTypes,
 	);

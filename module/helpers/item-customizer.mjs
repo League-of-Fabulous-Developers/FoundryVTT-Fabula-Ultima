@@ -1,9 +1,178 @@
 import { FU } from './config.mjs';
 
-export function promptItemCustomizer(actor, item) {
-	const dialogTitle = game.i18n.localize('FU.ItemCustomizer');
+export class ItemCustomizer extends FormApplication {
+	constructor(actor, item = null, itemType = null, options = {}) {
+		super(options);
+		this.actor = actor;
 
-	function generateSelectOptions(options, nested = false) {
+		this.item = item || (itemType && actor.items.find((i) => i.type === itemType)) || null;
+
+		this.baseWeaponDetails = this.getItemDetails(this.item);
+		this.currentWeaponDetails = this.baseWeaponDetails;
+	}
+
+	static get defaultOptions() {
+		return foundry.utils.mergeObject(super.defaultOptions, {
+			id: 'item-customizer',
+			title: game.i18n.localize('FU.ItemCustomizer'),
+			template: 'systems/projectfu/templates/app/item-customizer.hbs',
+			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+			width: 440,
+			closeOnSubmit: false,
+		});
+	}
+
+	getData() {
+		const weaponOptions = this.generateWeaponOptions(this.actor, this.item._id);
+		const damageTypeOptions = this.generateSelectOptions(FU.damageTypes);
+		const weaponTypeOptions = this.generateSelectOptions(FU.weaponTypes);
+		const defenseTypeOptions = this.generateSelectOptions(FU.defenses, true);
+
+		return {
+			actor: this.actor,
+			item: this.item,
+			weaponOptions,
+			damageTypeOptions,
+			weaponTypeOptions,
+			defenseTypeOptions,
+			baseWeaponDetails: this.baseWeaponDetails,
+			currentWeaponDetails: this.currentWeaponDetails,
+		};
+	}
+
+	activateListeners(html) {
+		super.activateListeners(html);
+
+		// Change listener for form updates
+		html.find('#weapon-item').change((ev) => this.updateWeaponDetails(html));
+		html.find('input,select').change((ev) => this.updateWeaponDetails(html));
+
+		// Button listeners
+		html.find('.modify-button').click(() => this._onModify(html));
+		html.find('.clone-button').click(() => this._onClone(html));
+		html.find('.temp-roll-button').click(() => this._onTempRoll(html));
+		html.find('.cancel-button').click(() => this.close());
+		html.find('.reset-button').click(() => this.resetWeaponDetails(html));
+	}
+
+	async _updateObject(event, formData) {
+		return this._onModify(null, formData);
+	}
+
+	async _onModify(html) {
+		const { selectedWeapon, hrZeroBool, ...formData } = this.extractFormValues(html);
+		await selectedWeapon.update({
+			'system.accuracy.value': selectedWeapon.system.accuracy.value + formData.accuracyMod,
+			'system.damage.value': selectedWeapon.system.damage.value + formData.damageMod,
+			'system.damageType.value': formData.damageType,
+			'system.type.value': formData.weaponType,
+			'system.defense': formData.defenseType,
+			'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
+		});
+		ui.notifications.info(`${selectedWeapon.name} modified for ${this.actor.name}`);
+		this.close();
+	}
+
+	async _onClone(html) {
+		const { selectedWeapon, hrZeroBool, ...formData } = this.extractFormValues(html);
+		const newItemData = foundry.utils.deepClone(selectedWeapon);
+		const newItemName = `${newItemData.name} (Modified)`;
+
+		const newItem = await Item.create(newItemData, { parent: this.actor });
+		await newItem.update({
+			'system.accuracy.value': newItem.system.accuracy.value + formData.accuracyMod,
+			'system.damage.value': newItem.system.damage.value + formData.damageMod,
+			'system.damageType.value': formData.damageType,
+			'system.defense': formData.defenseType,
+			'system.type.value': formData.weaponType,
+			'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
+			name: newItemName,
+		});
+		ui.notifications.info(`${newItem.name} cloned and added to ${this.actor.name}`);
+		this.close();
+	}
+
+	async _onTempRoll(html) {
+		const { selectedWeapon, hrZeroBool, ...formData } = this.extractFormValues(html);
+
+		const originalValues = {
+			accuracy: selectedWeapon.system.accuracy.value,
+			damage: selectedWeapon.system.damage.value,
+			damageType: selectedWeapon.system.damageType.value,
+			weaponType: selectedWeapon.system.type.value,
+			defenseType: selectedWeapon.system.defense,
+		};
+
+		await selectedWeapon.update({
+			'system.accuracy.value': originalValues.accuracy + formData.accuracyMod,
+			'system.damage.value': originalValues.damage + formData.damageMod,
+			'system.damageType.value': formData.damageType || originalValues.damageType,
+			'system.type.value': formData.weaponType || originalValues.weaponType,
+			'system.defense': formData.defenseType || originalValues.defenseType,
+		});
+
+		await selectedWeapon.roll({ shift: hrZeroBool });
+
+		// Reset to original values after rolling
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+		await selectedWeapon.update(originalValues);
+
+		this.render(true);
+	}
+
+	extractFormValues(html) {
+		return {
+			selectedWeapon: this.actor.items.get(html.find('#weapon-item').val()),
+			damageType: html.find('#damage-type').val(),
+			weaponType: html.find('#weapon-type').val(),
+			defenseType: html.find('#defense-type').val(),
+			accuracyMod: parseInt(html.find('#accuracy-mod').val(), 10),
+			damageMod: parseInt(html.find('#damage-mod').val(), 10),
+			hrZeroBool: html.find('#hrzero').prop('checked'),
+		};
+	}
+
+	// Updates both the base and current weapon details when a new weapon is selected
+	updateWeaponDetails(html) {
+		const selectedWeaponId = html.find('#weapon-item').val();
+		const selectedWeapon = this.actor.items.get(selectedWeaponId);
+
+		// Update the base weapon details to the newly selected weapon
+		this.baseWeaponDetails = this.getItemDetails(selectedWeapon);
+
+		// Update the current weapon details based on form input and selected weapon
+		this.currentWeaponDetails = this.getItemDetails(
+			selectedWeapon,
+			html.find('#damage-type').val(),
+			html.find('#weapon-type').val(),
+			html.find('#defense-type').val(),
+			parseInt(html.find('#accuracy-mod').val(), 10),
+			parseInt(html.find('#damage-mod').val(), 10),
+			html.find('#hrzero').prop('checked'),
+		);
+
+		// Update the HTML to reflect the new weapon details
+		html.find('#base-item').html(this.baseWeaponDetails);
+		html.find('#current-item').html(this.currentWeaponDetails);
+	}
+
+	// Reset current weapon details to base weapon details
+	resetWeaponDetails(html) {
+		const selectedWeaponId = html.find('#weapon-item').val();
+		const selectedWeapon = this.actor.items.get(selectedWeaponId);
+
+		// Reset form fields to the base weapon's values
+		html.find('#damage-type').val(selectedWeapon.system.damageType.value);
+		html.find('#weapon-type').val(selectedWeapon.system.type.value);
+		html.find('#defense-type').val(selectedWeapon.system.defense), html.find('#accuracy-mod').val(0);
+		html.find('#damage-mod').val(0);
+		html.find('#hrzero').prop('checked', false);
+
+		// Reflect the reset in the currentWeaponDetails
+		this.updateWeaponDetails(html);
+	}
+
+	generateSelectOptions(options, nested = false) {
 		return Object.entries(options)
 			.map(([value, label]) => {
 				if (nested) {
@@ -15,254 +184,46 @@ export function promptItemCustomizer(actor, item) {
 			.join('');
 	}
 
-	function generateWeaponOptions(actor, initialWeaponId) {
+	generateWeaponOptions(actor, initialWeaponId) {
 		return actor.items
 			.filter((item) => item.type === 'weapon' || item.type === 'basic')
 			.map((item) => `<option value="${item.id}" ${item.id === initialWeaponId ? 'selected' : ''}>${item.name}</option>`)
 			.join('');
 	}
 
-	function capFirstLetter(string) {
+	capFirstLetter(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
 
-	function getItemDetails(item, damageType, weaponType, accuracyMod = 0, damageMod = 0, hrZeroBool) {
+	// This function generates the weapon details, that displays base and current
+	getItemDetails(item, damageType, weaponType, defenseType, accuracyMod = 0, damageMod = 0, hrZeroBool = false) {
 		const die1 = item.system.attributes.primary.value;
 		const die2 = item.system.attributes.secondary.value;
 		const accMod = item.system.accuracy.value + accuracyMod;
 		const dmgMod = item.system.damage.value + damageMod;
-		const dmgType = capFirstLetter(damageType || item.system.damageType.value);
-		const weapType = capFirstLetter(weaponType || item.system.type.value);
+		const dmgType = this.capFirstLetter(damageType || item.system.damageType.value);
+		const weapType = this.capFirstLetter(weaponType || item.system.type.value);
+		const defType = this.capFirstLetter(defenseType || item.system.defense);
 		const hrZeroLabel = hrZeroBool ? `HR0` : `HR`;
 
 		return `
-        <div class="flexcol dialog-name">
-            <div class="flexrow">
-                <div class="dialog-image">
-                    <img src="${item.img}" data-tooltip="${item.name}" />
-                </div>
-                <label class="resource-content resource-label">
-                    ${item.name}
-                    <strong>【${(die1 + ' + ' + die2).toUpperCase()}】 +${accMod}</strong>
-                    <strong> ⬥ </strong>
-                    <strong>【${hrZeroLabel} + ${dmgMod}】</strong> ${dmgType}
-                </label>
-            </div>
-            <div>
-                <strong>${weapType}</strong>
-            </div>
-        </div>`;
-	}
-
-	const damageTypeOptions = generateSelectOptions(FU.damageTypes);
-	const weaponTypeOptions = generateSelectOptions(FU.weaponTypes);
-	const defenseTypeOptions = generateSelectOptions(FU.defenses, true);
-
-	if (item.type === 'weapon' || item.type === 'basic') {
-		const weaponOptions = generateWeaponOptions(actor, item._id);
-
-		if (weaponOptions.length === 0) {
-			ui.notifications.warn(`No weapons found for ${actor.name}`);
-			return;
-		}
-
-		const initialWeaponId = item._id;
-		const initialWeapon = actor.items.get(initialWeaponId);
-		let baseWeaponDetails = getItemDetails(initialWeapon);
-		let currentWeaponDetails = baseWeaponDetails;
-
-		function extractFormValues(html, actor) {
-			const selectedWeaponId = html.find('#weapon-item').val();
-			const damageType = html.find('#damage-type').val();
-			const weaponType = html.find('#weapon-type').val();
-			const defenseType = html.find('#defense-type').val();
-			const accuracyMod = parseInt(html.find('#accuracy-mod').val(), 10);
-			const damageMod = parseInt(html.find('#damage-mod').val(), 10);
-			const selectedWeapon = actor.items.get(selectedWeaponId);
-			const hrZeroChecked = html.find('#hrzero').prop('checked');
-			const hrZeroBool = hrZeroChecked;
-
-			return {
-				selectedWeaponId,
-				damageType,
-				weaponType,
-				defenseType,
-				accuracyMod,
-				damageMod,
-				selectedWeapon,
-				hrZeroBool,
-			};
-		}
-
-		const dialogContentTemplate = (weaponOptions, baseWeaponDetails, currentWeaponDetails) => `
-        <form>
-            <div>
-                <div class="desc mb-3">
-                    <div id="base-item" class="inline-desc">${baseWeaponDetails}</div>
-                    <div style="text-align: center;margin:5px 0;"><i class="fa-solid fa-arrow-down"></i></div>
-                    <div id="current-item" class="inline-desc">${currentWeaponDetails}</div>
-                </div>
-            </div>
-
-            <div class="desc grid grid-2col gap-5">
-                <div class="gap-2">
-                    <div class="form-group"><label for="weapon-item"><b>${game.i18n.localize('FU.Weapon')}</b></label><select id="weapon-item">${weaponOptions}</select></div>
-                    <div class="form-group"><label for="damage-type"><b>${game.i18n.localize('FU.DamageType')}</b></label><select id="damage-type">${damageTypeOptions}</select></div>
-                    <div class="form-group"><label for="weapon-type"><b>${game.i18n.localize('FU.WeaponType')}</b></label><select id="weapon-type">${weaponTypeOptions}</select></div>
-                    <div class="form-group"><label for="defense-type"><b>${game.i18n.localize('FU.DefenseType')}</b></label><select id="defense-type">${defenseTypeOptions}</select></div>            
-                </div>
-                <div class="gap-2">
-                    <div class="form-group"><label for="accuracy-mod"><b>${game.i18n.localize('FU.AccuracyBonus')}</b></label><input id="accuracy-mod" type="number" step="1" value="0"></div>
-                    <div class="form-group"><label for="damage-mod"><b>${game.i18n.localize('FU.DamageBonus')}</b></label><input id="damage-mod" type="number" step="1" value="0"></div>
-                    <div class="grid grid-2col">
-                        <div class="form-group"><label for="hrzero"><b>${game.i18n.localize('FU.HRZeroStatus')}</b></label><input id="hrzero" type="checkbox"></div>
+            <div class="flexcol dialog-name">
+                <div class="flexrow">
+                    <div class="dialog-image">
+                        <img src="${item.img}" data-tooltip="${item.name}" />
                     </div>
+                    <label class="resource-content resource-label">
+                        ${item.name}
+                        <strong>【${(die1 + ' + ' + die2).toUpperCase()}】 +${accMod}</strong>
+                        <strong> ⬥ </strong>
+                        <strong>【${hrZeroLabel} + ${dmgMod}】</strong> ${dmgType}
+                    </label>
                 </div>
-            </div>
-        </form>`;
-
-		const dialogContent = dialogContentTemplate(weaponOptions, baseWeaponDetails, currentWeaponDetails);
-
-		const dialog = new Dialog(
-			{
-				title: dialogTitle,
-				content: dialogContent,
-				buttons: {
-					modify: {
-						label: 'Modify',
-						callback: async (html) => {
-							const { damageType, weaponType, defenseType, accuracyMod, damageMod, selectedWeapon, hrZeroBool } = extractFormValues(html, actor);
-
-							await selectedWeapon.update({
-								'system.accuracy.value': selectedWeapon.system.accuracy.value + accuracyMod,
-								'system.damage.value': selectedWeapon.system.damage.value + damageMod,
-								'system.damageType.value': damageType,
-								'system.type.value': weaponType,
-								'system.defense': defenseType,
-								'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
-							});
-
-							ui.notifications.info(`${selectedWeapon.name} modified for ${actor.name}`);
-						},
-					},
-					clone: {
-						label: 'Clone',
-						callback: async (html) => {
-							const { damageType, weaponType, defenseType, accuracyMod, damageMod, selectedWeapon, hrZeroBool } = extractFormValues(html, actor);
-
-							const { value, slot } = selectedWeapon.system.isEquipped;
-
-							await selectedWeapon.update({
-								'system.isEquipped.value': false,
-								'system.isEquipped.slot': 'default',
-							});
-
-							const newItemData = foundry.utils.deepClone(selectedWeapon);
-							const newItemName = `${newItemData.name} (Modified)`;
-
-							const newItem = await Item.create(newItemData, { parent: actor });
-
-							await newItem.update({
-								'system.accuracy.value': newItemData.system.accuracy.value + accuracyMod,
-								'system.damage.value': newItemData.system.damage.value + damageMod,
-								'system.damageType.value': damageType,
-								'system.defense': defenseType,
-								'system.type.value': weaponType,
-								'system.isEquipped.value': value,
-								'system.isEquipped.slot': slot,
-								'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
-							});
-
-							await newItem.update({ name: newItemName });
-
-							ui.notifications.info(`${newItem.name} cloned and added to ${actor.name}`);
-						},
-					},
-
-					tempRoll: {
-						label: 'Temp Roll',
-						callback: async (html) => {
-							const { damageType, weaponType, defenseType, accuracyMod, damageMod, selectedWeapon, hrZeroBool } = extractFormValues(html, actor);
-
-							const originalValues = {
-								accuracy: selectedWeapon.system.accuracy.value,
-								damage: selectedWeapon.system.damage.value,
-								damageType: selectedWeapon.system.damageType.value,
-								weaponType: selectedWeapon.system.type.value,
-								defenseType: selectedWeapon.system.defense,
-							};
-
-							await selectedWeapon.update({
-								'system.accuracy.value': originalValues.accuracy + accuracyMod,
-								'system.damage.value': originalValues.damage + damageMod,
-								'system.damageType.value': damageType || originalValues.damageType,
-								'system.type.value': weaponType || originalValues.weaponType,
-								'system.defense': defenseType || originalValues.defenseType,
-							});
-
-							await selectedWeapon.roll({
-								shift: hrZeroBool,
-							});
-
-							await new Promise((resolve) => setTimeout(resolve, 1000));
-
-							await selectedWeapon.update({
-								'system.accuracy.value': originalValues.accuracy,
-								'system.damage.value': originalValues.damage,
-								'system.damageType.value': originalValues.damageType,
-								'system.type.value': originalValues.weaponType,
-								'system.defense': originalValues.defenseType,
-							});
-
-							// Re-render the dialog to keep it open
-							dialog.render(true);
-						},
-						close: false,
-					},
-					cancel: {
-						label: 'Cancel',
-						callback: () => {},
-					},
-				},
-				default: 'modify',
-				render: (html) => {
-					html.find('#weapon-item').change((ev) => {
-						const selectedWeaponId = html.find('#weapon-item').val();
-						const selectedWeapon = actor.items.get(selectedWeaponId);
-						baseWeaponDetails = getItemDetails(initialWeapon);
-						currentWeaponDetails = getItemDetails(
-							selectedWeapon,
-							html.find('#damage-type').val(),
-							html.find('#weapon-type').val(),
-							parseInt(html.find('#accuracy-mod').val(), 10),
-							parseInt(html.find('#damage-mod').val(), 10),
-							html.find('#hrzero').prop('checked'),
-						);
-
-						html.find('#base-item').html(baseWeaponDetails);
-						html.find('#current-item').html(currentWeaponDetails);
-					});
-
-					html.find('input,select').change((ev) => {
-						currentWeaponDetails = getItemDetails(
-							actor.items.get(html.find('#weapon-item').val()),
-							html.find('#damage-type').val(),
-							html.find('#weapon-type').val(),
-							parseInt(html.find('#accuracy-mod').val(), 10),
-							parseInt(html.find('#damage-mod').val(), 10),
-							html.find('#hrzero').prop('checked'),
-						);
-
-						html.find('#current-item').html(currentWeaponDetails);
-					});
-				},
-			},
-			{
-				width: 440,
-				classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
-			},
-		);
-
-		dialog.render(true);
+                <div>
+                    <strong>${weapType}</strong>
+                    <strong>${game.i18n.localize('FU.Versus')}</strong>
+                    <strong>${defType}</strong>
+                </div>
+            </div>`;
 	}
 }

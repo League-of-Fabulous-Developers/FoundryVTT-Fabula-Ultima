@@ -1,6 +1,6 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
 import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/checks.mjs';
-import { promptItemCustomizer } from '../helpers/item-customizer.mjs';
+import { ItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
 import { EquipmentHandler } from '../helpers/equipment-handler.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
@@ -1695,7 +1695,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				const item = this.actor.items.get(itemId);
 				if (item) {
 					if (isCtrl) {
-						return promptItemCustomizer(this.actor, item);
+						return new ItemCustomizer(this.actor, item).render(true);
 					} else {
 						if (settingPriority && this.actor?.type === 'npc') {
 							this._targetPriority();
