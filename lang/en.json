@@ -1182,6 +1182,12 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"OpposedCheckBonusDialog": "Configure Opposed Check",
+		"OpposedCheckBonusDialogBonus": "Configure Bonus",
+		"OpposedCheckBonusDialogBonusLabel": "Bonus",
+		"OpposedCheckBonusDialogDescriptionLabel": "Description",
+		"OpposedCheckBonusDialogDescriptionPlaceholder": "Bonus for this specific Check",
+		"OpposedCheckWinnerByMargin": "Winner: <strong>{winner}</strong> by <strong>+{margin}</strong>"
 	}
 }

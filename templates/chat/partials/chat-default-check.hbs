@@ -10,7 +10,7 @@
         </div>
         <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
             <label class="title">{{localize 'FU.ModAbbr'}}</label>
-            <label class="detail">+{{result.modifier}}</label>
+            <label class="detail">{{#unless (lt result.modifier 0)}}+{{/unless}}{{result.modifier}}</label>
         </div>
     </div>
     {{#if (gt difficulty 0)}}

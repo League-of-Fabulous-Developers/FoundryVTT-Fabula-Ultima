@@ -436,14 +436,29 @@ const display = async (actor, item) => {
 
 /**
  * @param {ChatMessage | string} message a ChatMessage or ID of a ChatMessage
+ * @param {CheckType | CheckType[]} [type]
  * @return boolean
  */
-const isCheck = (message) => {
+const isCheck = (message, type) => {
 	if (typeof message === 'string') {
 		message = game.messages.get(message);
 	}
 	if (message instanceof ChatMessage) {
-		return Boolean(message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2));
+		/** @type CheckResultV2 */
+		const flag = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+		if (flag) {
+			if (type) {
+				if (Array.isArray(type)) {
+					return type.includes(flag.type);
+				} else {
+					return type === flag.type;
+				}
+			} else {
+				return true;
+			}
+		} else {
+			return false;
+		}
 	}
 	return false;
 };

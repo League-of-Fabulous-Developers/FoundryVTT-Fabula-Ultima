@@ -1,9 +1,13 @@
 <div style="clear: both;"></div>
-<div class='detail-desc flexrow flex-group-center' style='padding: 0 2px; margin-top: 1em'>
+<div class='detail-desc flexrow flex-group-center' style='padding: .25rem; margin-top: 0.5rem'>
     <div>
 		<span class='result-text'>
 			{{#if winner}}
-                {{{localize 'FU.OpposedCheckWinner' winner=winner}}}
+                {{#unless (gt margin 0)}}
+                    {{{localize 'FU.OpposedCheckWinner' winner=winner}}}
+                {{else}}
+                    {{{localize 'FU.OpposedCheckWinnerByMargin' winner=winner margin=margin}}}
+                {{/unless}}
             {{else}}
                 {{{localize 'FU.OpposedCheckDraw'}}}
 			{{/if}}
