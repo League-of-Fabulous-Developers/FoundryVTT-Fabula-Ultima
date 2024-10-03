@@ -58,7 +58,7 @@ async function handleSupportCheck(groupCheck) {
 		return;
 	}
 
-	const bonds = (character.system.resources.bonds ?? [])
+	const bonds = (character.system.bonds ?? [])
 		.map((bond) => {
 			const feelings = [];
 			bond.admInf.length && feelings.push(bond.admInf);

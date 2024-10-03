@@ -51,7 +51,7 @@ const onRenderCheck = async (data, checkResult, actor, item) => {
 
 const getPushParams = async (actor) => {
 	/** @type CheckPush[] */
-	const bonds = actor.system.resources.bonds.map((value) => {
+	const bonds = actor.system.bonds.map((value) => {
 		const feelings = [];
 		value.admInf.length && feelings.push(value.admInf);
 		value.loyMis.length && feelings.push(value.loyMis);
@@ -70,14 +70,15 @@ const getPushParams = async (actor) => {
 		label: game.i18n.localize('FU.DialogPushLabel'),
 		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check-push.hbs', { bonds }),
 		options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
-		/** @type {(jQuery) => CheckPush} */
+		/** @type {(jQuery) => (CheckPush | false)} */
 		callback: (html) => {
 			const index = +html.find('input[name=bond]:checked').val();
-			return bonds[index] || null;
+			return bonds[index] || false;
 		},
+		rejectClose: false,
 	});
 
-	if (!push) {
+	if (push === false) {
 		ui.notifications.error('FU.DialogPushMissingBond', { localize: true });
 		return;
 	}

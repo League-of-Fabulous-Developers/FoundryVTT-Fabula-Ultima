@@ -567,7 +567,7 @@ async function pushCheck(params, push) {
  */
 async function getPushParams(actor) {
 	/** @type CheckPush[] */
-	const bonds = actor.system.resources.bonds.map((value) => {
+	const bonds = actor.system.bonds.map((value) => {
 		const feelings = [];
 		value.admInf.length && feelings.push(value.admInf);
 		value.loyMis.length && feelings.push(value.loyMis);

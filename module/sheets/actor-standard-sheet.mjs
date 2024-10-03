@@ -831,26 +831,10 @@ export class FUStandardActorSheet extends ActorSheet {
 			await hpCrisis(this.actor);
 		});
 
-		// Check if bonds object exists, if not, initialize
-		const bonds = this.actor.system.resources.bonds;
-		if (!bonds) {
-			const initialBonds = [];
-			this.actor.system.resources.bonds = initialBonds;
-			this.actor.update({ 'system.resources.bonds': initialBonds });
-		} else if (!Array.isArray(bonds)) {
-			//Convert bonds as object of indexes to bonds as array
-			const currentBonds = [];
-			for (const k in bonds) {
-				currentBonds[k] = bonds[k];
-			}
-			this.actor.system.resources.bonds = currentBonds;
-			this.actor.update({ 'system.resources.bonds': currentBonds });
-		}
-
 		// Event listener for adding a new bonds
 		html.find('.bond-add').click(async (ev) => {
 			ev.preventDefault();
-			const bonds = this.actor.system.resources.bonds;
+			const bonds = this.actor.system.bonds;
 			const maxBondLength = game.settings.get('projectfu', 'optionBondMaxLength');
 			if (bonds.length >= maxBondLength) {
 				ui.notifications.warn(`Maximum number of bonds (${maxBondLength}) reached.`);
@@ -862,18 +846,17 @@ export class FUStandardActorSheet extends ActorSheet {
 				admInf: '',
 				loyMis: '',
 				affHat: '',
-				strength: 0,
 			});
-			await this.actor.update({ 'system.resources.bonds': newBonds });
+			await this.actor.update({ 'system.bonds': newBonds });
 		});
 
 		// Event listener for deleting a bond
 		html.find('.bond-delete').click(async (ev) => {
 			ev.preventDefault();
 			const bondIndex = $(ev.currentTarget).data('bond-index');
-			const newBonds = [...this.actor.system.resources.bonds];
+			const newBonds = [...this.actor.system.bonds];
 			newBonds.splice(bondIndex, 1);
-			await this.actor.update({ 'system.resources.bonds': newBonds });
+			await this.actor.update({ 'system.bonds': newBonds });
 		});
 
 		const sortButton = html.find('#sortButton');
@@ -1813,15 +1796,8 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Foundry's form update handlers send back bond information as an object {0: ..., 1: ....}
 		// So correct an update in that form and create an updated bond array to properly represent the changes
 		const bonds = data.system?.resources?.bonds;
-		if (bonds) {
-			if (!Array.isArray(bonds)) {
-				const currentBonds = [];
-				const maxIndex = Object.keys(bonds).length;
-				for (let i = 0; i < maxIndex; i++) {
-					currentBonds.push(bonds[i]);
-				}
-				data.system.resources.bonds = currentBonds;
-			}
+		if (bonds && !Array.isArray(bonds)) {
+			data.system.bonds = Array.from(Object.values(bonds));
 		}
 		super._updateObject(event, data);
 	}

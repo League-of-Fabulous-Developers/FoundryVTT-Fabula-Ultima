@@ -5,13 +5,12 @@ function migrateLegacyBonds(source) {
 				const { name, admInf, loyMis, affHat } = source.resources[bond];
 
 				if (name || admInf || loyMis || affHat) {
-					const bonds = (source.resources.bonds ??= []);
+					const bonds = (source.bonds ??= []);
 					bonds.push({
 						name,
 						admInf,
 						loyMis,
 						affHat,
-						strength: [admInf, loyMis, affHat].reduce((prev, curr) => prev + (curr.length ? 1 : 0), 0),
 					});
 				}
 				delete source.resources[bond];
@@ -34,6 +33,12 @@ function migratePhysicalAffinity(source) {
 	}
 }
 
+function migrateBonds(source) {
+	if (source.resources && 'bonds' in source.resources && !('bonds' in source)) {
+		source.bonds = source.resources.bonds;
+	}
+}
+
 export class CharacterMigrations {
 	static run(source) {
 		migrateLegacyBonds(source);
@@ -41,5 +46,7 @@ export class CharacterMigrations {
 		migrateLegacyFabulaPoints(source);
 
 		migratePhysicalAffinity(source);
+
+		migrateBonds(source);
 	}
 }

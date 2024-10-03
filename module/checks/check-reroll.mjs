@@ -140,19 +140,22 @@ const getRerollParams = async (check, actor) => {
 				selection: selection,
 			};
 		},
+		rejectClose: false,
 	});
 
-	if (!reroll.trait) {
-		ui.notifications.error('FU.DialogRerollMissingTrait', { localize: true });
-		return;
-	}
+	if (reroll) {
+		if (!reroll.trait) {
+			ui.notifications.error('FU.DialogRerollMissingTrait', { localize: true });
+			return;
+		}
 
-	if (!reroll.selection || !reroll.selection.length) {
-		ui.notifications.error('FU.DialogRerollMissingDice', { localize: true });
-		return;
-	}
+		if (!reroll.selection || !reroll.selection.length) {
+			ui.notifications.error('FU.DialogRerollMissingDice', { localize: true });
+			return;
+		}
 
-	return reroll;
+		return reroll;
+	}
 };
 
 /**
