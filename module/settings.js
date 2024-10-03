@@ -3,50 +3,51 @@ import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTr
 import { SYSTEM, FU } from './helpers/config.mjs';
 
 export const SETTINGS = Object.freeze({
-	optionQuirks: 'optionQuirks',
-	optionZeroPower: 'optionZeroPower',
-	optionCampingRules: 'optionCampingRules',
-	optionBehaviorRoll: 'optionBehaviorRoll',
-	optionTargetPriority: 'optionTargetPriority',
-	optionTargetPriorityRules: 'optionTargetPriorityRules',
+	checksV2: 'checksV2',
 	collapseDescriptions: 'collapseDescriptions',
-	experimentalCombatTracker: 'experimentalCombatTracker',
-	optionCombatMouseDown: 'optionCombatMouseDown',
-	optionDefaultTargetingMode: 'optionDefaultTargetingMode',
-	optionStudySavePath: 'optionStudySavePath',
-	useRevisedStudyRule: 'useRevisedStudyRule',
-	optionAlwaysFavorite: 'optionAlwaysFavorite',
-	optionNPCNotesTab: 'optionNPCNotesTab',
-	optionBondMaxLength: 'optionBondMaxLength',
 	experimentalCombatHud: 'experimentalCombatHud',
+	experimentalCombatTracker: 'experimentalCombatTracker',
+	metaCurrencyAutomaticallyDistributeExp: 'metaCurrencyAutomaticallyDistributeExp',
+	metaCurrencyAutomation: 'metaCurrencyAutomation',
+	metaCurrencyBaseExperience: 'metaCurrencyBaseExperience',
+	metaCurrencyFabula: 'metaCurrencyFabula',
+	metaCurrencyKeepExcessFabula: 'metaCurrencyKeepExcessFabula',
+	metaCurrencyUltima: 'metaCurrencyUltima',
+	optionAlwaysFavorite: 'optionAlwaysFavorite',
+	optionBehaviorRoll: 'optionBehaviorRoll',
+	optionBondMaxLength: 'optionBondMaxLength',
+	optionCampingRules: 'optionCampingRules',
+	optionCombatHudActorOrdering: 'optionCombatHudActorOrdering',
 	optionCombatHudCompact: 'optionCombatHudCompact',
-	optionCombatHudMinimized: 'optionCombatHudMinimized',
-	optionCombatHudOpacity: 'optionCombatHudOpacity',
-	optionCombatHudWidth: 'optionCombatHudWidth',
-	optionCombatHudPosition: 'optionCombatHudPosition',
-	optionCombatHudPortrait: 'optionCombatHudPortrait',
-	optionCombatHudShowEffects: 'optionCombatHudShowEffects',
+	optionCombatHudDraggedPosition: 'optionCombatHudDraggedPosition',
 	optionCombatHudEffectsMarqueeDuration: 'optionCombatHudEffectsMarqueeDuration',
 	optionCombatHudEffectsMarqueeMode: 'optionCombatHudEffectsMarqueeMode',
+	optionCombatHudMinimized: 'optionCombatHudMinimized',
+	optionCombatHudOpacity: 'optionCombatHudOpacity',
+	optionCombatHudPortrait: 'optionCombatHudPortrait',
+	optionCombatHudPosition: 'optionCombatHudPosition',
 	optionCombatHudReordering: 'optionCombatHudReordering',
-	optionCombatHudShowOrderNumbers: 'optionCombatHudShowOrderNumbers',
-	optionCombatHudActorOrdering: 'optionCombatHudActorOrdering',
-	optionCombatHudDraggedPosition: 'optionCombatHudDraggedPosition',
 	optionCombatHudSaved: 'optionCombatHudSaved',
-	optionRenameCurrency: 'optionRenameCurrency',
-	metaCurrencyAutomation: 'metaCurrencyAutomation',
-	metaCurrencyFabula: 'metaCurrencyFabula',
-	metaCurrencyUltima: 'metaCurrencyUltima',
-	metaCurrencyBaseExperience: 'metaCurrencyBaseExperience',
-	metaCurrencyKeepExcessFabula: 'metaCurrencyKeepExcessFabula',
+	optionCombatHudShowEffects: 'optionCombatHudShowEffects',
+	optionCombatHudShowNPCTurnsLeftMode: 'optionCombatHudShowNPCTurnsLeftMode',
+	optionCombatHudShowOrderNumbers: 'optionCombatHudShowOrderNumbers',
+	optionCombatHudTheme: 'optionCombatHudTheme',
 	optionCombatHudTrackedResource1: 'optionCombatHudTrackedResource1',
 	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
-	showAssociatedTherioforms: 'showAssociatedTherioforms',
-	checksV2: 'checksV2',
-	optionCombatHudTheme: 'optionCombatHudTheme',
 	optionCombatHudTrackedResource4: 'optionCombatHudTrackedResource4',
-	optionCombatHudShowNPCTurnsLeftMode: 'optionCombatHudShowNPCTurnsLeftMode',
+	optionCombatHudWidth: 'optionCombatHudWidth',
+	optionCombatMouseDown: 'optionCombatMouseDown',
+	optionDefaultTargetingMode: 'optionDefaultTargetingMode',
+	optionNPCNotesTab: 'optionNPCNotesTab',
+	optionQuirks: 'optionQuirks',
+	optionRenameCurrency: 'optionRenameCurrency',
+	optionStudySavePath: 'optionStudySavePath',
+	optionTargetPriority: 'optionTargetPriority',
+	optionTargetPriorityRules: 'optionTargetPriorityRules',
+	optionZeroPower: 'optionZeroPower',
+	showAssociatedTherioforms: 'showAssociatedTherioforms',
+	useRevisedStudyRule: 'useRevisedStudyRule',
 });
 
 export const registerSystemSettings = async function () {
@@ -451,6 +452,15 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
+	game.settings.register(SYSTEM, SETTINGS.metaCurrencyAutomaticallyDistributeExp, {
+		name: game.i18n.localize('FU.ConfigMetaCurrencyAutomaticallyDistributeExp'),
+		hint: game.i18n.localize('FU.ConfigMetaCurrencyAutomaticallyDistributeExpHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+	});
+
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTrackedResource1, {
 		name: game.i18n.localize('FU.CombatHudTrackedResource1'),
 		hint: game.i18n.localize('FU.CombatHudTrackedResource1Hint'),
@@ -713,13 +723,15 @@ class MetaCurrencyTrackerOptions extends FormApplication {
 			baseExperience: game.settings.get(SYSTEM, SETTINGS.metaCurrencyBaseExperience),
 			keepExcessFabula: game.settings.get(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula),
 			automation: game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomation),
+			automaticallyDistributeExp: game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomaticallyDistributeExp),
 		};
 	}
 
 	async _updateObject(event, formData) {
-		const { baseExperience, keepExcessFabula, automation } = foundry.utils.expandObject(formData);
+		const { baseExperience, keepExcessFabula, automation, automaticallyDistributeExp } = foundry.utils.expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.metaCurrencyBaseExperience, baseExperience);
 		game.settings.set(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula, keepExcessFabula);
 		game.settings.set(SYSTEM, SETTINGS.metaCurrencyAutomation, automation);
+		game.settings.set(SYSTEM, SETTINGS.metaCurrencyAutomaticallyDistributeExp, automaticallyDistributeExp);
 	}
 }

@@ -1191,6 +1191,9 @@
 		"OpposedCheckWinnerByMargin": "Winner: <strong>{winner}</strong> by <strong>+{margin}</strong>",
 		"ConfigMetaCurrencyAutomation": "Enable Meta-Currency automation?",
 		"ConfigMetaCurrencyAutomationHint": "With this enabled, whenever a Fabula or Ultima point is spent the Meta-Currency tracker will automatically be updated. For this to work a GM needs to be online. Direct editing of the Fabula/Ultima point field will not change the tracker.",
-		"MetaCurrencyAutomationNoActiveGm": "No GM online! Unable to update the Meta-Currency tracker."
+		"MetaCurrencyAutomationNoActiveGm": "No GM online! Unable to update the Meta-Currency tracker.",
+		"ChatExpAwardExpAwardedTo": "EXP awarded to",
+		"ConfigMetaCurrencyAutomaticallyDistributeExp": "Automatically distribute EXP?",
+		"ConfigMetaCurrencyAutomaticallyDistributeExpHint": "With this option enabled the session EXP will automatically be awarded to each active character."
 	}
 }

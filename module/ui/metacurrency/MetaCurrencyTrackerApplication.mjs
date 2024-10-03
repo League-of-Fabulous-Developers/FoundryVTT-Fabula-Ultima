@@ -143,6 +143,7 @@ export class MetaCurrencyTrackerApplication extends FormApplication {
 		const baseExp = game.settings.get(SYSTEM, SETTINGS.metaCurrencyBaseExperience); //TODO add setting
 		const fabulaExp = Math.floor(spentFabulaPoints / Math.max(1, activeCharacters.length));
 
+		const automaticallyDistributeExp = game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomaticallyDistributeExp);
 		const data = {
 			baseExp: baseExp,
 			ultimaExp: spentUltimaPoints,
@@ -150,6 +151,7 @@ export class MetaCurrencyTrackerApplication extends FormApplication {
 			fabulaExp: fabulaExp,
 			totalExp: baseExp + spentUltimaPoints + fabulaExp,
 			activeCharacters: activeCharacters,
+			characterSectionTitle: automaticallyDistributeExp ? 'FU.ChatExpAwardExpAwardedTo' : 'FU.ChatExpAwardActiveCharacters',
 		};
 
 		/** @type ChatMessageData */
@@ -159,6 +161,10 @@ export class MetaCurrencyTrackerApplication extends FormApplication {
 		};
 
 		ChatMessage.create(messageData);
+
+		if (automaticallyDistributeExp) {
+			Actor.updateDocuments(activeCharacters.map((character) => ({ _id: character.id, 'system.resources.exp.value': character.system.resources.exp.value + data.totalExp })));
+		}
 
 		const newFabulaValue = game.settings.get(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula) ? spentFabulaPoints % Math.max(1, activeCharacters.length) : 0;
 		game.settings.set(SYSTEM, SETTINGS.metaCurrencyFabula, newFabulaValue);
