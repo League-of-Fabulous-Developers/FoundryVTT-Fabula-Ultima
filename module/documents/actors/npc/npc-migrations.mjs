@@ -7,7 +7,7 @@ const affinityMapping = {
 };
 
 function migrateLegacyAffinities(source) {
-	if ('resistances' in source) {
+	if ('resistances' in source && !('affinities' in source)) {
 		const affinities = (source.affinities ??= {});
 
 		for (let [key, value] of Object.entries(source.resistances)) {
@@ -22,7 +22,7 @@ function migrateLegacyAffinities(source) {
 }
 
 function migrateOldAccuracyBonus(source) {
-	if ('accuracy' in source.derived) {
+	if (source.derived && 'accuracy' in source.derived && !('accuracyCheck' in (source.bonuses?.accuracy ?? {}))) {
 		const bonuses = (source.bonuses ??= {});
 		const accuracy = (bonuses.accuracy ??= {});
 		accuracy.accuracyCheck = source.derived.accuracy.bonus ?? 0;
@@ -32,7 +32,7 @@ function migrateOldAccuracyBonus(source) {
 }
 
 function migrateOldMagicBonus(source) {
-	if ('magic' in source.derived) {
+	if (source.derived && 'magic' in source.derived && !('magicCheck' in (source.bonuses?.accuracy ?? {}))) {
 		const bonuses = (source.bonuses ??= {});
 		const accuracy = (bonuses.accuracy ??= {});
 		accuracy.magicCheck = source.derived.magic.bonus ?? 0;
@@ -42,7 +42,7 @@ function migrateOldMagicBonus(source) {
 }
 
 function migrateOldMisspelledVillain(source) {
-	if ('villian' in source) {
+	if ('villian' in source && !('villain' in source)) {
 		const villain = (source.villain ??= {});
 		villain.value = source.villian.value ?? '';
 	}

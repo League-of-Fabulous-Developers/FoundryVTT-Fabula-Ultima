@@ -1,5 +1,5 @@
 function migrateLegacyBonds(source) {
-	if (source.resources) {
+	if (source.resources && !('bonds' in source.resources)) {
 		for (const bond of ['bond1', 'bond2', 'bond3', 'bond4', 'bond5', 'bond6']) {
 			if (bond in source.resources) {
 				const { name, admInf, loyMis, affHat } = source.resources[bond];
@@ -21,7 +21,7 @@ function migrateLegacyBonds(source) {
 }
 
 function migrateLegacyFabulaPoints(source) {
-	if ('fp' in source) {
+	if ('fp' in source && !('fp' in source.resources)) {
 		const fp = (source.resources.fp ??= {});
 		fp.value = source.fp.value ?? 0;
 		delete source.fp;
