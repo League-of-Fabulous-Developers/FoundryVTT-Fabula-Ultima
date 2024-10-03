@@ -13,6 +13,13 @@
         </div>
         <p class='notes'>{{localize 'FU.ConfigMetaCurrencyKeepExcessFabulaHint'}}</p>
     </div>
+    <div class="form-group">
+        <label>{{localize 'FU.ConfigMetaCurrencyAutomation'}}</label>
+        <div class='form-fields'>
+            <input type='checkbox' name='automation' {{checked automation}} />
+        </div>
+        <p class='notes'>{{localize 'FU.ConfigMetaCurrencyAutomationHint'}}</p>
+    </div>
     <div class='form-group buttons'>
         <button type='submit'>
             <i class='fas fa-floppy-disk'></i>{{localize 'FU.SettingsSave'}}

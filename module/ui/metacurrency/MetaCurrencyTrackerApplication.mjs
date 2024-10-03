@@ -2,11 +2,15 @@ import { SETTINGS } from '../../settings.js';
 import { SystemControls } from '../../helpers/system-controls.mjs';
 
 import { SYSTEM } from '../../helpers/config.mjs';
+import { Flags } from '../../helpers/flags.mjs';
+import { CharacterDataModel } from '../../documents/actors/character/character-data-model.mjs';
+import { NpcDataModel } from '../../documents/actors/npc/npc-data-model.mjs';
 
 Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, getTool);
 
 let app;
 const renderApp = () => (app ??= new MetaCurrencyTrackerApplication()).render(true);
+
 function getTool(tools) {
 	tools.push({
 		name: MetaCurrencyTrackerApplication.name,
@@ -20,11 +24,45 @@ function getTool(tools) {
 Hooks.on('chatMessage', handleChatCommand);
 
 const regExp = /^\/(fabula|ultima|metacurrency)$/i;
+
 function handleChatCommand(chatLog, message, data) {
 	if (regExp.test(message)) {
 		renderApp();
 		return false;
 	}
+}
+
+Hooks.on('createChatMessage', handleMetaCurrencyUsed);
+
+/**
+ * @param {ChatMessage} document
+ * @param options
+ * @param {string} userId
+ */
+function handleMetaCurrencyUsed(document, options, userId) {
+	if (!game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomation)) {
+		return;
+	}
+	let useMetaCurrency = document.getFlag(SYSTEM, Flags.ChatMessage.UseMetaCurrency);
+	if (useMetaCurrency && game.users.activeGM?.isSelf) {
+		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
+		if (speakerActor) {
+			if (speakerActor.system instanceof CharacterDataModel) {
+				increment(SETTINGS.metaCurrencyFabula);
+			}
+			if (speakerActor.system instanceof NpcDataModel) {
+				increment(SETTINGS.metaCurrencyUltima);
+			}
+		}
+	}
+	if (useMetaCurrency && game.user.id === userId && !game.users.activeGM) {
+		ui.notifications.warn('FU.MetaCurrencyAutomationNoActiveGm', { localize: true });
+	}
+}
+
+function increment(setting) {
+	const oldValue = game.settings.get(SYSTEM, setting);
+	game.settings.set(SYSTEM, setting, oldValue + 1);
 }
 
 export class MetaCurrencyTrackerApplication extends FormApplication {
@@ -87,15 +125,10 @@ export class MetaCurrencyTrackerApplication extends FormApplication {
 
 	activateListeners(html) {
 		html.find('button[data-action=calc-exp]').on('click', (event) => this.calculateExp(event));
-		html.find('button[data-action=increment-fabula]').on('click', () => this.increment(SETTINGS.metaCurrencyFabula));
-		html.find('button[data-action=increment-ultima]').on('click', () => this.increment(SETTINGS.metaCurrencyUltima));
+		html.find('button[data-action=increment-fabula]').on('click', () => increment(SETTINGS.metaCurrencyFabula));
+		html.find('button[data-action=increment-ultima]').on('click', () => increment(SETTINGS.metaCurrencyUltima));
 		html.find('a[data-action=override][data-actor-id][data-user-id]').on('click', (event) => this.overrideActiveCharacter(event));
 		return super.activateListeners(html);
-	}
-
-	increment(setting) {
-		const oldValue = game.settings.get(SYSTEM, setting);
-		game.settings.set(SYSTEM, setting, oldValue + 1);
 	}
 
 	async calculateExp(event) {

@@ -3,6 +3,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { ChecksV2 } from './checks-v2.mjs';
 import { CHECK_PUSH } from './default-section-order.mjs';
 import { CheckHooks } from './check-hooks.mjs';
+import { CheckConfiguration } from './check-configuration.mjs';
 
 function addRollContextMenuEntries(html, options) {
 	// Character push
@@ -16,7 +17,7 @@ function addRollContextMenuEntries(html, options) {
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
-			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.additionalData.push && !flag.fumble;
+			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.additionalData.push && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
 		callback: async (li) => {
 			const messageId = li.data('messageId');
@@ -33,12 +34,9 @@ function addRollContextMenuEntries(html, options) {
 }
 
 /**
- * @param {CheckRenderData} data
- * @param {CheckResultV2} checkResult
- * @param {FUActor} actor
- * @param {FUItem} [item]
+ * @type RenderCheckHook
  */
-const onRenderCheck = async (data, checkResult, actor, item) => {
+const onRenderCheck = async (data, checkResult, actor, item, additionalFlags) => {
 	const pushData = checkResult.additionalData.push;
 	if (pushData) {
 		data.push({
@@ -132,6 +130,8 @@ const handlePush = async (check, actor, item) => {
 			terms.push(new OperatorTerm({ operator: '+' }));
 		}
 		terms.push(new NumericTerm({ number: modifierTotal }));
+
+		CheckConfiguration.registerMetaCurrencyExpenditure(check, actor);
 
 		return { roll: Roll.fromTerms(terms) };
 	} else {

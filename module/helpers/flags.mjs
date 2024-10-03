@@ -10,5 +10,6 @@ export const Flags = Object.freeze({
 		SupportCheck: 'Supporter',
 		GroupCheckSupporters: 'GroupCheckSupporters',
 		Item: 'Item',
+		UseMetaCurrency: 'UseMetaCurrency',
 	}),
 });

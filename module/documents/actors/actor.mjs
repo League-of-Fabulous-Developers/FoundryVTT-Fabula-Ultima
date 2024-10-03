@@ -1,6 +1,8 @@
 import { FUItem } from '../items/item.mjs';
 import { FUHooks } from '../../hooks.mjs';
 import { toggleStatusEffect } from '../../helpers/effects.mjs';
+import { SYSTEM } from '../../helpers/config.mjs';
+import { Flags } from '../../helpers/flags.mjs';
 
 /**
  * Extend the base Actor document by defining a custom roll data structure
@@ -258,7 +260,11 @@ export class FUActor extends Actor {
 		}
 	}
 
-	async spendMetaCurrency() {
+	/**
+	 * @param force
+	 * @return {Promise<boolean>}
+	 */
+	async spendMetaCurrency(force = false) {
 		let metaCurrency;
 		if (this.type === 'character') {
 			metaCurrency = game.i18n.localize('FU.Fabula');
@@ -267,26 +273,35 @@ export class FUActor extends Actor {
 			metaCurrency = game.i18n.localize('FU.Ultima');
 		}
 		if (metaCurrency && this.system.resources.fp.value > 0) {
-			const confirmed = await Dialog.confirm({
-				title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }),
-				content: game.i18n.format('FU.UseMetaCurrencyDialogMessage', { type: metaCurrency }),
-				options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
-				rejectClose: false,
-			});
+			const confirmed =
+				force ||
+				(await Dialog.confirm({
+					title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }),
+					content: game.i18n.format('FU.UseMetaCurrencyDialogMessage', { type: metaCurrency }),
+					options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
+					rejectClose: false,
+				}));
 			if (confirmed && this.system.resources.fp.value > 0) {
 				/** @type ChatMessageData */
 				const data = {
 					speaker: ChatMessage.implementation.getSpeaker({ actor: this }),
 					flavor: game.i18n.format('FU.UseMetaCurrencyChatFlavor', { type: metaCurrency }),
 					content: game.i18n.format('FU.UseMetaCurrencyChatMessage', { actor: this.name, type: metaCurrency }),
+					flags: {
+						[SYSTEM]: {
+							[Flags.ChatMessage.UseMetaCurrency]: true,
+						},
+					},
 				};
 				ChatMessage.create(data);
 				await this.update({
 					'system.resources.fp.value': this.system.resources.fp.value - 1,
 				});
+				return true;
 			}
 		} else {
 			ui.notifications.info(game.i18n.format('FU.UseMetaCurrencyNotificationInsufficientPoints', { actor: this.name, type: metaCurrency }));
+			return false;
 		}
 	}
 

@@ -3,6 +3,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { ChecksV2 } from './checks-v2.mjs';
 import { CHECK_REROLL } from './default-section-order.mjs';
 import { CheckHooks } from './check-hooks.mjs';
+import { CheckConfiguration } from './check-configuration.mjs';
 
 /**
  * @typedef RerollParams
@@ -23,7 +24,7 @@ function addRerollEntry(html, options) {
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
-			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.fumble;
+			return message && message.isRoll && flag && speakerActor?.type === 'character' && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
 		callback: async (li) => {
 			const messageId = li.data('messageId');
@@ -49,7 +50,7 @@ function addRerollEntry(html, options) {
 			const message = game.messages.get(messageId);
 			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 			const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
-			return message && message.isRoll && flag && speakerActor?.type === 'npc' && speakerActor.system.villain.value && !flag.fumble;
+			return message && message.isRoll && flag && speakerActor?.type === 'npc' && speakerActor.system.villain.value && !flag.fumble && speakerActor.system.resources.fp.value;
 		},
 		callback: async (li) => {
 			const messageId = li.data('messageId');
@@ -65,7 +66,8 @@ function addRerollEntry(html, options) {
 	});
 }
 
-const onRenderCheck = async (data, checkResult, actor, item) => {
+/** @type RenderCheckHook */
+const onRenderCheck = async (data, checkResult, actor, item, additionalFlags) => {
 	const rerollData = checkResult.additionalData.reroll;
 	if (rerollData) {
 		data.push({
@@ -190,10 +192,7 @@ function getReplacementTerm(reroll, term) {
 }
 
 /**
- * @param {CheckResultV2} result
- * @param {FUActor} actor
- * @param {FUItem} item
- * @return {Promise<{[roll]: Roll,[check]: Check }>}
+ * @type CheckModificationCallback
  */
 const handleReroll = async (result, actor, item) => {
 	const reroll = await getRerollParams(result, actor);
@@ -204,6 +203,9 @@ const handleReroll = async (result, actor, item) => {
 		const roll = oldRoll.clone();
 		roll.terms[0] = getReplacementTerm(reroll.selection.includes('attr1'), oldTerms[0]);
 		roll.terms[2] = getReplacementTerm(reroll.selection.includes('attr2'), oldTerms[2]);
+
+		CheckConfiguration.registerMetaCurrencyExpenditure(result, actor);
+
 		return { roll };
 	} else {
 		return null;

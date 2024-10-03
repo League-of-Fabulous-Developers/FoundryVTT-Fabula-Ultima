@@ -34,6 +34,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudDraggedPosition: 'optionCombatHudDraggedPosition',
 	optionCombatHudSaved: 'optionCombatHudSaved',
 	optionRenameCurrency: 'optionRenameCurrency',
+	metaCurrencyAutomation: 'metaCurrencyAutomation',
 	metaCurrencyFabula: 'metaCurrencyFabula',
 	metaCurrencyUltima: 'metaCurrencyUltima',
 	metaCurrencyBaseExperience: 'metaCurrencyBaseExperience',
@@ -419,6 +420,15 @@ export const registerSystemSettings = async function () {
 		restricted: true,
 	});
 
+	game.settings.register(SYSTEM, SETTINGS.metaCurrencyAutomation, {
+		name: game.i18n.localize('FU.ConfigMetaCurrencyAutomation'),
+		hint: game.i18n.localize('FU.ConfigMetaCurrencyAutomationHint'),
+		scope: 'world',
+		config: false,
+		type: Boolean,
+		default: true,
+	});
+
 	game.settings.register(SYSTEM, SETTINGS.metaCurrencyBaseExperience, {
 		name: game.i18n.localize('FU.ConfigMetaCurrencyBaseExperience'),
 		hint: game.i18n.localize('FU.ConfigMetaCurrencyBaseExperienceHint'),
@@ -690,6 +700,7 @@ class MetaCurrencyTrackerOptions extends FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			title: game.i18n.localize('FU.ConfigMetaCurrencySettings'),
+			width: 700,
 		});
 	}
 
@@ -701,12 +712,14 @@ class MetaCurrencyTrackerOptions extends FormApplication {
 		return {
 			baseExperience: game.settings.get(SYSTEM, SETTINGS.metaCurrencyBaseExperience),
 			keepExcessFabula: game.settings.get(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula),
+			automation: game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomation),
 		};
 	}
 
 	async _updateObject(event, formData) {
-		const { baseExperience, keepExcessFabula } = foundry.utils.expandObject(formData);
+		const { baseExperience, keepExcessFabula, automation } = foundry.utils.expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.metaCurrencyBaseExperience, baseExperience);
 		game.settings.set(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula, keepExcessFabula);
+		game.settings.set(SYSTEM, SETTINGS.metaCurrencyAutomation, automation);
 	}
 }

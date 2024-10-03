@@ -124,7 +124,7 @@ const checkFromCheckResult = (check) => {
  * @param {CheckResultV2} check
  * @param {FUActor} actor
  * @param {FUItem} item
- * @return {Promise<{roll: Roll, check: Check} | null>}
+ * @return {Promise<{[roll]: Roll, [check]: Check} | null>}
  */
 /**
  * @param {CheckId} checkId
@@ -152,7 +152,7 @@ const modifyCheck = async (checkId, callback) => {
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {CheckCallback} initialConfigCallback
- * @return {Check}
+ * @return {Promise<Check>}
  */
 async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.primary ??= '';
@@ -208,7 +208,7 @@ const CRITICAL_THRESHOLD = 6;
  * @param {Check} check
  * @param {FUActor} actor
  * @param {FUItem} item
- * @return {Roll}
+ * @return {Promise<Roll>}
  */
 async function rollCheck(check, actor, item) {
 	const { primary, secondary, modifiers } = check;
@@ -323,8 +323,11 @@ async function renderCheck(result, actor, item, flags = {}) {
 	const sections = [];
 	for (let value of renderData) {
 		value = await (value instanceof Function ? value() : value);
-		sections.push(value);
+		if (value) {
+			sections.push(value);
+		}
 	}
+
 	sections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
 	const flavor = item

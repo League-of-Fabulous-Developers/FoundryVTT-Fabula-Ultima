@@ -1,5 +1,6 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
+import { CheckHooks } from './check-hooks.mjs';
 
 const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
@@ -225,9 +226,37 @@ class CheckInspector {
 	}
 }
 
+/**
+ * @param {CheckResultV2} check
+ * @param {FUActor} actor
+ */
+const registerMetaCurrencyExpenditure = (check, actor) => {
+	const randomId = foundry.utils.randomID();
+	check.additionalData.triggerMetaCurrencyExpenditure = randomId;
+	let hookId;
+	/**
+	 * @type RenderCheckHook
+	 */
+	const spendMetaCurrency = (sections, check, actor) => {
+		if (check.additionalData.triggerMetaCurrencyExpenditure === randomId) {
+			delete check.additionalData.triggerMetaCurrencyExpenditure;
+			Hooks.off(CheckHooks.renderCheck, hookId);
+			sections.push(async () => {
+				const success = await actor.spendMetaCurrency(true);
+				if (!success) {
+					throw new Error('not enough meta currency');
+				}
+			});
+		}
+	};
+
+	hookId = Hooks.on(CheckHooks.renderCheck, spendMetaCurrency);
+};
+
 export const CheckConfiguration = Object.freeze({
 	configure,
 	inspect,
 	initHrZero,
 	initDifficulty,
+	registerMetaCurrencyExpenditure,
 });
