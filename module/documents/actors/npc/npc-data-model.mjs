@@ -4,7 +4,6 @@ import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
 import { AttributesDataModel } from '../common/attributes-data-model.mjs';
 import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
 import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
-import { BondDataModel } from '../common/bond-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
 import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
@@ -70,7 +69,7 @@ Hooks.on('preUpdateActor', (document, changed) => {
  */
 export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, BooleanField, ArrayField, HTMLField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, NumberField, StringField, BooleanField, HTMLField, EmbeddedDataField } = foundry.data.fields;
 		return {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
@@ -82,25 +81,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
 				}),
-				rp1: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				rp2: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				rp3: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				zenit: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
-				ip: new SchemaField({
-					max: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
-					value: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
-				}),
 				fp: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
-				bonds: new ArrayField(new EmbeddedDataField(BondDataModel, {})),
 				pronouns: new SchemaField({ name: new StringField() }),
 			}),
 			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
