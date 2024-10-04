@@ -176,17 +176,6 @@ const affinityKeys = {
 	[FU.affValue.absorption]: () => 'FU.ChatApplyDamageAbsorb',
 };
 
-// function getSingleTarget(e) {
-// 	// eslint-disable-next-line no-unused-vars, no-undef
-// 	const { type, id } = parseUuid($(e.target).closest('a').data('id'));
-// 	const actor = game.actors.get(id);
-// 	if (!actor) {
-// 		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });
-// 		return [];
-// 	}
-// 	return [actor];
-// }
-
 function getSingleTarget(e) {
 	const dataId = $(e.target).closest('a').data('id');
 	const actor = fromUuidSync(dataId);
@@ -300,21 +289,6 @@ export async function applyDamage(targets, sourceUuid, sourceName, type, total, 
 
 /**
  *
- * @param {FUActor[]} targets
- * @param {string} sourceUuid
- * @param {string} sourceName
- * @param {import('./config.mjs').DamageType} type
- * @param {number} total
- * @param {ClickModifiers} clickModifiers
- * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
- * @return {Promise<Awaited<unknown>[]>}
- */
-export async function applyExtraDamage(targets, sourceUuid, sourceName, type, total, clickModifiers, extraDamageInfo) {
-	return await applyDamageInternal(targets, sourceUuid, sourceName, type, total, clickModifiers, extraDamageInfo, 'systems/projectfu/templates/chat/chat-apply-extra-damage.hbs');
-}
-
-/**
- *
  * @param {BeforeApplyHookData} hookData
  * @return {Promise<Awaited<unknown>[]>}
  */
@@ -323,7 +297,9 @@ export async function applyDamagePipelineWithHook(hookData) {
 
 	const { targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo, clickModifiers } = hookData;
 
-	const modifiedTotal = extraDamageInfo.hrZero ? extraDamageInfo.damageBonus + baseDamageInfo.modifierTotal : baseDamageInfo.total + (extraDamageInfo.damageBonus || 0);
+	const modifiedTotal = extraDamageInfo.hrZero
+		? extraDamageInfo.damageBonus + baseDamageInfo.modifierTotal + (extraDamageInfo.extraDamage || 0)
+		: baseDamageInfo.total + (extraDamageInfo.damageBonus || 0) + (extraDamageInfo.extraDamage || 0);
 	const modifiedType = extraDamageInfo.damageType || baseDamageInfo.type;
 	const modifiedTargets = extraDamageInfo.targets || targets;
 
@@ -332,9 +308,6 @@ export async function applyDamagePipelineWithHook(hookData) {
 	}
 
 	await applyDamage(modifiedTargets, sourceUuid, sourceName, modifiedType, modifiedTotal, clickModifiers, extraDamageInfo);
-	if (extraDamageInfo.extraDamage > 0) {
-		await applyExtraDamage(modifiedTargets, sourceUuid, sourceName, extraDamageInfo.extraDamageType || 'untyped', extraDamageInfo.extraDamage, clickModifiers, extraDamageInfo);
-	}
 }
 
 export function registerChatInteraction() {

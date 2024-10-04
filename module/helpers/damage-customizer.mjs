@@ -65,22 +65,15 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
                 <div class="flexrow form-group targets-container">${tokenInfo}</div>
                 <button type="button" id="retarget" class="btn">${game.i18n.localize('FU.ChatContextRetarget')}</button>
             </div>
-            <div class="desc mb-3 grid grid-2col gap-5">
+            <div class="desc mb-3 gap-5">
                 <div class="inline-desc form-group" style="padding: 5px 10px;">
-                    <label for="total-damage" class="resource-content resource-label" style="flex-grow: 8;"><b>${game.i18n.localize('FU.Total')}</b>
+                    <label for="total-damage" class="resource-content resource-label" style="flex-grow: 8;">
+                        <b>${game.i18n.localize('FU.Total')}</b>
                         <span id="total-damage">
-                            <b>${damage.total} ${game.i18n.localize(FU.damageTypes[damage.type])}</b>
+                            <b>${damage.total} ${game.i18n.localize(FU.damageTypes[damage.type])} + 0 Extra</b>
                         </span>
                     </label>
                     <i id="total-damage-icon" class="icon ${FU.affIcon[damage.type]}" style="flex: 0 1 auto;"></i>
-                </div>
-                <div class="inline-desc form-group" style="padding: 5px 10px;">
-                    <label for="total-extra-damage" class="resource-content resource-label" style="flex-grow: 8;"><b>${game.i18n.localize('FU.DamageExtra')}</b>
-                        <span id="extra-total-damage">
-                            <b>0 ${game.i18n.localize(FU.damageTypes[damage.type])}</b>
-                        </span>
-                    </label>
-                    <i id="extra-damage-icon" class="icon ${FU.affIcon[damage.type]}" style="flex: 0 1 auto;"></i>
                 </div>
             </div>
             <div class="desc mb-3 grid grid-2col gap-5">
@@ -93,19 +86,17 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
                         <label for="damage-type"><b>${game.i18n.localize('FU.DamageType')}</b></label>
                         <select id="damage-type" name="damage-type">${damageTypesOptions}</select>
                     </div>
-                    <div class="form-group">
-                        <label for="hr-zero"><b>${game.i18n.localize('FU.HRZeroStatus')}</b></label>
-                        <input id="hr-zero" name="hr-zero" type="checkbox" />
-                    </div>
                 </div>
                 <div class="gap-2">
                     <div class="form-group">
-                        <label for="extra-damage"><b>${game.i18n.localize('FU.DamageExtra')}</b></label>
+                        <label for="extra-damage">
+                          <b>${game.i18n.localize('FU.DamageExtra')}</b>
+                        </label>
                         <input id="extra-damage" name="extra-damage" type="number" value="0" />
                     </div>
-                    <div class="form-group">
-                        <label for="extra-damage-type"><b>${game.i18n.localize('FU.DamageTypeExtra')}</b></label>
-                        <select id="extra-damage-type" name="extra-damage-type">${damageTypesOptions}</select>
+					<div class="form-group">
+                        <label for="hr-zero"><b>${game.i18n.localize('FU.HRZeroStatus')}</b></label>
+                        <input id="hr-zero" name="hr-zero" type="checkbox" />
                     </div>
                 </div>
             </div>
@@ -154,7 +145,6 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
 						const damageBonus = parseFloat(html.find('[name="damage-bonus"]').val()) || 0;
 						const damageType = html.find('[name="damage-type"]').val();
 						const extraDamage = parseInt(html.find('[name="extra-damage"]').val(), 10) || 0;
-						const extraDamageType = html.find('[name="extra-damage-type"]').val();
 						const hrZero = html.find('[name="hr-zero"]').is(':checked');
 						const ignoreVulnerable = html.find('[name="ignore-vulnerable"]').is(':checked');
 						const ignoreResistance = html.find('[name="ignore-resistance"]').is(':checked');
@@ -166,7 +156,6 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
 							damageType,
 							damageBonus,
 							extraDamage,
-							extraDamageType,
 							hrZero,
 							ignoreVulnerable,
 							ignoreResistance,
@@ -195,12 +184,9 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
 				const $damageBonusInput = html.find('#damage-bonus');
 				const $hrZeroCheckbox = html.find('#hr-zero');
 				const $totalDamageSpan = html.find('#total-damage');
-				const $extraTotalDamageSpan = html.find('#extra-total-damage');
 				const $damageTypeSelect = html.find('#damage-type');
 				const $extraDamageInput = html.find('#extra-damage');
-				const $extraDamageTypeSelect = html.find('#extra-damage-type');
 				const $totalDamageIcon = html.find('#total-damage-icon');
-				const $extraDamageIcon = html.find('#extra-damage-icon');
 				const $checkAllButton = html.find('#check-all');
 				const $checkNoneButton = html.find('#check-none');
 				const $ignoreCheckboxes = html.find('.ignore');
@@ -211,16 +197,12 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
 					const damageBonus = parseFloat($damageBonusInput.val()) || 0;
 					const extraDamage = parseInt($extraDamageInput.val(), 10) || 0;
 					const selectedDamageType = $damageTypeSelect.val();
-					const selectedExtraDamageType = $extraDamageTypeSelect.val();
 					const baseDamage = $hrZeroCheckbox.is(':checked') ? damage.modifierTotal : damage.total;
-					const totalDamage = baseDamage + damageBonus;
+					const totalDamage = baseDamage + damageBonus + extraDamage;
 
-					$totalDamageSpan.html(`${totalDamage} (${game.i18n.localize(FU.damageTypes[selectedDamageType])})`);
-					$extraTotalDamageSpan.html(`${extraDamage} (${game.i18n.localize(FU.damageTypes[selectedExtraDamageType])})`);
-
+					$totalDamageSpan.html(`${baseDamage} (Base) + ${damageBonus} (Bonus) + ${extraDamage} (Extra Damage) = ${totalDamage} ${game.i18n.localize(FU.damageTypes[selectedDamageType])}`);
 					// Update icons
 					$totalDamageIcon.attr('class', `icon ${FU.affIcon[selectedDamageType]}`);
-					$extraDamageIcon.attr('class', `icon ${FU.affIcon[selectedExtraDamageType]}`);
 				}
 
 				// Initial update
@@ -231,7 +213,6 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
 				$hrZeroCheckbox.on('change', updateTotalDamage);
 				$damageTypeSelect.on('change', updateTotalDamage);
 				$extraDamageInput.on('input', updateTotalDamage);
-				$extraDamageTypeSelect.on('change', updateTotalDamage);
 
 				// Handle check all and check none buttons
 				$checkAllButton.on('click', () => {
