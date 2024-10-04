@@ -28,7 +28,7 @@ async function prompt(infusions) {
 
 	const selectedInfusion = await new Promise((resolve) => {
 		const dialog = new Dialog({
-			title: 'FU.ChooseWeaponDialogTitle',
+			title: 'FU.ClassFeatureInfusionsDialogTitle',
 			label: 'FU.Submit',
 			rejectClose: false,
 			content: content,

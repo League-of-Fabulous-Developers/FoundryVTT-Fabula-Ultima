@@ -1197,6 +1197,8 @@
 		"ConfigMetaCurrencyAutomaticallyDistributeExpHint": "With this option enabled the session EXP will automatically be awarded to each active character.",
 		"AttributesPretty": "【{attr1} + {attr2}】",
 		"DamagePretty": "【HR + {damage}】",
-		"ChooseWeaponDialogTitle": "Choose Weapon"
+		"ChooseWeaponDialogTitle": "Choose Weapon",
+		"ClassFeatureInfusionsApply": "Apply Infusion",
+		"ClassFeatureInfusionsDialogTitle": "Choose Infusion"
 	}
 }
