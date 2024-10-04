@@ -6,7 +6,7 @@ import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
 
 /**
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]
  * @param {CheckCallbackRegistration} registerCallback

@@ -49,7 +49,7 @@ function migrateOldMisspelledVillain(source) {
 }
 
 function migratePhysicalAffinity(source) {
-	if ('phys' in source.affinities && !('physical' in source.affinities)) {
+	if (source.affinities && 'phys' in source.affinities && !('physical' in source.affinities)) {
 		source.affinities.physical = source.affinities.phys;
 	}
 }

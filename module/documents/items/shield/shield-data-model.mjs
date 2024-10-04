@@ -6,7 +6,7 @@ import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
 
 /**
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]
  * @param {CheckCallbackRegistration} registerCallback

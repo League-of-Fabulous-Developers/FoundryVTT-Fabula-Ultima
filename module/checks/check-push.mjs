@@ -103,10 +103,7 @@ function getReplacementTerm(term) {
 }
 
 /**
- * @param {CheckResultV2} check
- * @param {FUActor} actor
- * @param {FUItem} item
- * @return {Promise<{[roll]: Roll, [check]: Check} | null>}
+ * @type CheckModificationCallback
  */
 const handlePush = async (check, actor, item) => {
 	const pushParams = await getPushParams(actor);
@@ -135,7 +132,7 @@ const handlePush = async (check, actor, item) => {
 
 		return { roll: Roll.fromTerms(terms) };
 	} else {
-		return null;
+		return false;
 	}
 };
 

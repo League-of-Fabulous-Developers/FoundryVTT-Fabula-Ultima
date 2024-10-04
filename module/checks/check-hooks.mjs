@@ -17,7 +17,7 @@ export const CheckHooks = Object.freeze({
  */
 
 /**
- * @typedef Check the basic configuration of the check. This object is sealed
+ * @typedef CheckV2 the basic configuration of the check. This object is sealed
  * @property {CheckType} type the type of the check
  * @property {CheckId} id a unique identifier for this check
  * @property {Attribute} primary the first attribute
@@ -28,7 +28,7 @@ export const CheckHooks = Object.freeze({
 
 /**
  * @callback CheckCallback
- * @param {Check} check
+ * @param {CheckV2} check
  * @return {Promise | void}
  */
 
@@ -42,7 +42,7 @@ export const CheckHooks = Object.freeze({
 /**
  * @callback PrepareCheckHook
  * Hook called to prepare static modifiers
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]
  * @param {CheckCallbackRegistration} registerCallback

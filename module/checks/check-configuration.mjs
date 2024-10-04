@@ -44,11 +44,11 @@ const initHrZero = (hrZero) => (check) => {
  * @property {string} name
  * @property {string} uuid
  * @property {string} link
- * @property {number} difficulty
+ * @property {number} [difficulty]
  */
 
 /**
- * @param {Check, CheckResultV2} check
+ * @param {CheckV2, CheckResultV2} check
  * @return {CheckConfigurer} check
  */
 const configure = (check) => {
@@ -173,7 +173,7 @@ class CheckConfigurer {
 }
 
 /**
- * @param {Check, CheckResultV2, ChatMessage} check
+ * @param {CheckV2, CheckResultV2, ChatMessage} check
  * @return {CheckInspector}
  */
 const inspect = (check) => {
@@ -188,6 +188,13 @@ class CheckInspector {
 
 	constructor(check) {
 		this.#check = check;
+	}
+
+	/**
+	 * @return {CheckV2|CheckResultV2}
+	 */
+	getCheck() {
+		return this.#check;
 	}
 
 	/**

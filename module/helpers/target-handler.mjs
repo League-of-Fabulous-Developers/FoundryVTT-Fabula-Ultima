@@ -57,7 +57,10 @@ export async function getSelected() {
 	return targets || [];
 }
 
-export async function getTargeted() {
+/**
+ * @return {Actor[]}
+ */
+export function getTargeted() {
 	const targets = Array.from(game.user.targets)
 		.map((target) => target.actor)
 		.filter((actor) => actor);

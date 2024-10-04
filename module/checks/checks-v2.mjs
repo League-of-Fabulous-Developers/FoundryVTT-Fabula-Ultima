@@ -16,6 +16,7 @@ import { SpecialResults } from './special-results.mjs';
 import { Support } from './support/support.mjs';
 import { OpenCheck } from './open-check.mjs';
 import { OpposedCheck } from './opposed-check.mjs';
+import { CheckRetarget } from './check-retarget.mjs';
 
 /**
  * @param {FUActor} actor
@@ -36,7 +37,7 @@ const accuracyCheck = async (actor, item, configCallback) => {
  * @param {CheckCallback} [configCallback]
  */
 const attributeCheck = async (actor, attributes, configCallback) => {
-	/** @type Partial<Check> */
+	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'attribute',
 		primary: attributes.primary,
@@ -73,7 +74,7 @@ const magicCheck = async (actor, item, configCallback) => {
  * @param {CheckCallback} [configCallback]
  */
 const openCheck = async (actor, attributes, configCallback) => {
-	/** @type Partial<Check> */
+	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'open',
 		primary: attributes.primary,
@@ -88,7 +89,7 @@ const openCheck = async (actor, attributes, configCallback) => {
  * @param {CheckCallback} configCallback
  */
 const opposedCheck = async (actor, configCallback) => {
-	/** @type Partial<Check> */
+	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'opposed',
 	};
@@ -106,7 +107,7 @@ const supportCheck = async (actor, groupCheckId) => {
 
 /**
  * @param {CheckResultV2} check
- * @return {Check}
+ * @return {CheckV2}
  */
 const checkFromCheckResult = (check) => {
 	return {
@@ -124,7 +125,7 @@ const checkFromCheckResult = (check) => {
  * @param {CheckResultV2} check
  * @param {FUActor} actor
  * @param {FUItem} item
- * @return {Promise<{[roll]: Roll, [check]: Check} | null>}
+ * @return {Promise<{[roll]: Roll, [check]: CheckV2} | boolean>}
  */
 /**
  * @param {CheckId} checkId
@@ -140,7 +141,7 @@ const modifyCheck = async (checkId, callback) => {
 		const item = await fromUuid(oldResult.itemUuid);
 		const callbackResult = await callback(oldResult, actor, item);
 		if (callbackResult) {
-			const { check = checkFromCheckResult(oldResult), roll = oldResult.roll } = callbackResult;
+			const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = callbackResult;
 			const result = await processResult(check, roll, actor, item);
 			return renderCheck(result, actor, item, message.flags);
 		}
@@ -148,11 +149,11 @@ const modifyCheck = async (checkId, callback) => {
 };
 
 /**
- * @param {Partial<Check>} check
+ * @param {Partial<CheckV2>} check
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {CheckCallback} initialConfigCallback
- * @return {Promise<Check>}
+ * @return {Promise<CheckV2>}
  */
 async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.primary ??= '';
@@ -205,7 +206,7 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 const CRITICAL_THRESHOLD = 6;
 
 /**
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {FUActor} actor
  * @param {FUItem} item
  * @return {Promise<Roll>}
@@ -253,7 +254,7 @@ const extractDieResults = (term, actor) => {
 };
 
 /**
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {Roll} roll
  * @param {FUActor} actor
  * @param {FUItem} item
@@ -398,7 +399,7 @@ function reapplyClickListeners() {
 reapplyClickListeners();
 
 /**
- * @param {Partial<Check>} check
+ * @param {Partial<CheckV2>} check
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {CheckCallback} [initialConfigCallback]
@@ -438,11 +439,15 @@ const display = async (actor, item) => {
 };
 
 /**
+ * @type {CheckType[]}
+ */
+const allExceptDisplay = ['accuracy', 'attribute', 'group', 'magic', 'open', 'opposed', 'support', 'initiative'];
+/**
  * @param {ChatMessage | string} message a ChatMessage or ID of a ChatMessage
  * @param {CheckType | CheckType[]} [type]
  * @return boolean
  */
-const isCheck = (message, type) => {
+const isCheck = (message, type = allExceptDisplay) => {
 	if (typeof message === 'string') {
 		message = game.messages.get(message);
 	}
@@ -479,8 +484,9 @@ export const ChecksV2 = Object.freeze({
 	isCheck,
 });
 
-CheckPush.initialize();
+CheckRetarget.initialize();
 CheckReroll.initialize();
+CheckPush.initialize();
 SpecialResults.initialize();
 AccuracyCheck.initialize();
 AttributeCheck.initialize();

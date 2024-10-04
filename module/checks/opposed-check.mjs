@@ -90,7 +90,7 @@ const onGetChatLogEntryContext = (html, options) => {
 };
 
 /**
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {FUActor} actor
  */
 const onPrepareCheck = (check, actor) => {
