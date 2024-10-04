@@ -1,3 +1,8 @@
+{{#if clockDataString}}
+<div class="clock-display">
+    {{{clockDataString}}}
+</div>
+{{/if}}
 <div class='chat-desc'>
     <details {{#unless collapseDescriptions}}open{{/unless}}>
         <summary class="collapsible-description align-center">

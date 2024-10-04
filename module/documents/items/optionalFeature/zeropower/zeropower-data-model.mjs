@@ -51,10 +51,43 @@ export class ZeroPowerDataModel extends RollableOptionalFeatureDataModel {
 	}
 
 	static async getAdditionalData(model) {
+		const clockDataString = await this.getClockDataString(model);
 		return {
 			enrichedZeroTrigger: await TextEditor.enrichHTML(model.zeroTrigger.description),
 			enrichedZeroEffect: await TextEditor.enrichHTML(model.zeroEffect.description),
+			clockDataString,
 		};
+	}
+
+	static async getClockDataString(model) {
+		const { progress, hasClock } = model;
+
+		// Generate and reverse the progress array
+		const progressArr = this.generateProgressArray(progress);
+
+		// Determine clock display status
+		const clockDisplay =
+			hasClock?.value ?? true
+				? await renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
+						arr: progressArr,
+						data: progress,
+					})
+				: '';
+
+		// Create HTML content
+		const content = `
+      <div style="display: grid;">
+        ${clockDisplay}
+      </div>
+    `;
+		return content;
+	}
+
+	static generateProgressArray(progress) {
+		return Array.from({ length: progress.max }, (_, i) => ({
+			id: i + 1,
+			checked: parseInt(progress.current) === i + 1,
+		})).reverse();
 	}
 
 	static async roll(model, item) {
@@ -62,11 +95,13 @@ export class ZeroPowerDataModel extends RollableOptionalFeatureDataModel {
 		if (!actor) {
 			return;
 		}
+		const clockDataString = await this.getClockDataString(model);
 		const data = {
 			zeroTriggerTitle: model.zeroTrigger.value,
 			zeroEffectTitle: model.zeroEffect.value,
 			enrichedZeroTrigger: await TextEditor.enrichHTML(model.zeroTrigger.description),
 			enrichedZeroEffect: await TextEditor.enrichHTML(model.zeroEffect.description),
+			clockDataString,
 		};
 
 		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
