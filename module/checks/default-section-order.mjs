@@ -1,3 +1,5 @@
+export const CHECK_FLAVOR = Number.NaN;
+
 export const CHECK_DETAILS = -2000;
 
 export const CHECK_PUSH = -1200;

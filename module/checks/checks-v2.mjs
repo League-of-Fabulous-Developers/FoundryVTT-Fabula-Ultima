@@ -321,31 +321,64 @@ async function renderCheck(result, actor, item, flags = {}) {
 	/**
 	 * @type {CheckSection[]}
 	 */
-	const sections = [];
+	const allSections = [];
 	for (let value of renderData) {
 		value = await (value instanceof Function ? value() : value);
 		if (value) {
-			sections.push(value);
+			allSections.push(value);
 		}
 	}
 
-	sections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+	const partitionedSections = allSections.reduce(
+		(agg, curr) => {
+			if (Number.isNaN(curr.order)) {
+				agg.flavor.push(curr);
+			} else {
+				agg.body.push(curr);
+			}
+			return agg;
+		},
+		{ flavor: [], body: [] },
+	);
+	/**
+	 * @type {CheckSection[]}
+	 */
+	const flavorSections = partitionedSections.flavor;
+	/**
+	 * @type {CheckSection[]}
+	 */
+	const bodySections = partitionedSections.body;
 
-	const flavor = item
-		? await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
-				name: item.name,
-				img: item.img,
-				id: item.id,
-			})
-		: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
-				title: FU.checkTypes[result.type] || 'FU.RollCheck',
-			});
+	bodySections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+	let flavor;
+	if (flavorSections.length) {
+		flavor = '';
+		for (let flavorSection of flavorSections) {
+			if (flavorSection.content) {
+				flavor = flavor + flavorSection.content;
+			} else {
+				flavor = await renderTemplate(flavorSection.partial, flavorSection.data);
+			}
+		}
+	}
+	if (!flavor?.trim()) {
+		flavor = item
+			? await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
+					name: item.name,
+					img: item.img,
+					id: item.id,
+				})
+			: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
+					title: FU.checkTypes[result.type] || 'FU.RollCheck',
+				});
+	}
 
 	const rolls = [result.roll, ...result.additionalRolls].filter(Boolean);
 
 	const chatMessage = {
 		flavor: flavor,
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections }),
+		content: await renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections: bodySections }),
 		rolls: rolls,
 		type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
 		speaker: ChatMessage.getSpeaker({ actor }),
@@ -359,39 +392,31 @@ async function renderCheck(result, actor, item, flags = {}) {
 			{ overwrite: false, recursive: true },
 		),
 	};
-	const message = await ChatMessage.create(chatMessage);
-
-	setupItemImageClicks(message.id, actor);
-}
-
-/**
- * Add click listeners to item images in the chat message.
- * @param {string} messageId - The ID of the chat message.
- * @param {FUActor} actor - The actor containing the items.
- */
-function setupItemImageClicks(messageId, actor) {
-	// Use event delegation to handle clicks on dynamically added items
-	document.addEventListener('click', function (event) {
-		if (event.target.classList.contains('item-img')) {
-			const img = event.target;
-			const itemId = img.getAttribute('data-item-id');
-			if (actor) {
-				const item = actor.items.get(itemId);
-				if (item) {
-					item.sheet.render(true);
-				}
-			}
-		}
-	});
+	return void ChatMessage.create(chatMessage);
 }
 
 /**
  * Reapply event listeners when new chat messages are added to the DOM.
  */
 function reapplyClickListeners() {
-	Hooks.on('renderChatMessage', (message) => {
+	Hooks.on('renderChatLog', (app, html) => {
 		// Reapply event listeners for each chat message
-		setupItemImageClicks(message.id, game.actors.get(message.speaker.actor));
+		html.on('click', function (event) {
+			const itemId = event.target.dataset.itemId;
+			if (event.target.dataset.itemId) {
+				const messageId = $(event.target).parents('[data-message-id]').data('messageId');
+				const message = game.messages.get(messageId);
+				if (message) {
+					const actor = ChatMessage.getSpeakerActor(message.speaker);
+					if (actor) {
+						const item = actor.items.get(itemId);
+						if (item) {
+							item.sheet.render(true);
+						}
+					}
+				}
+			}
+		});
 	});
 }
 

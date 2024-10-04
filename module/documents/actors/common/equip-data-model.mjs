@@ -1,3 +1,11 @@
+/**
+ * @property {string} armor
+ * @property {string} mainHand
+ * @property {string} offHand
+ * @property {string} accessory
+ * @property {string} phantom
+ * @property {string} arcanum
+ */
 export class EquipDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { StringField } = foundry.data.fields;
