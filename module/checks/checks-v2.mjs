@@ -140,11 +140,11 @@ const modifyCheck = async (checkId, callback) => {
 		const actor = await fromUuid(oldResult.actorUuid);
 		const item = await fromUuid(oldResult.itemUuid);
 		const callbackResult = await callback(oldResult, actor, item);
-		if (callbackResult) {
-			const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = callbackResult;
-			const result = await processResult(check, roll, actor, item);
-			return renderCheck(result, actor, item, message.flags);
-		}
+		const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = callbackResult ?? {};
+		const result = await processResult(check, roll, actor, item);
+		return renderCheck(result, actor, item, message.flags);
+	} else {
+		throw new Error('Check to be modified not found.');
 	}
 };
 

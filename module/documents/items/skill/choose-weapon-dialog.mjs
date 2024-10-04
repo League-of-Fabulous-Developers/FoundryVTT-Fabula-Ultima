@@ -71,5 +71,3 @@ async function prompt(actor) {
 export const ChooseWeaponDialog = Object.freeze({
 	prompt,
 });
-
-globalThis.ChooseWeaponDialog = ChooseWeaponDialog;

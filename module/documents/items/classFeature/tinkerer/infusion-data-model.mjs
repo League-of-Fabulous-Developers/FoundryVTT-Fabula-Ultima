@@ -1,5 +1,90 @@
 import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FU } from '../../../../helpers/config.mjs';
+import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
+import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
+import { CheckConfiguration } from '../../../../checks/check-configuration.mjs';
+import { CharacterDataModel } from '../../../actors/character/character-data-model.mjs';
+import { ChooseInfusionDialog } from './choose-infusion-dialog.mjs';
+import { CheckHooks } from '../../../../checks/check-hooks.mjs';
+import { CHECK_DETAILS } from '../../../../checks/default-section-order.mjs';
+
+const infusionKey = 'infusion';
+
+/**
+ * @param {ChatLog} app
+ * @param {ContextMenuEntry[]} options
+ */
+const onGetChatLogEntryContext = (app, options) => {
+	console.log(app, options);
+	options.push({
+		name: 'FU.ClassFeatureInfusionsApply',
+		icon: '<i class="fa-solid fa-flask-vial"></i>',
+		condition: (jQuery) => {
+			const messageId = jQuery.data('messageId');
+			const message = game.messages.get(messageId);
+			const actor = ChatMessage.getSpeakerActor(message.speaker);
+			const checkInspector = CheckConfiguration.inspect(message);
+			if (ChecksV2.isCheck(message, 'accuracy') && checkInspector.getDamage() && !checkInspector.getCheck().additionalData[infusionKey] && actor && actor.isOwner && actor.system instanceof CharacterDataModel) {
+				return actor.itemTypes.classFeature.some((value) => value.system instanceof ClassFeatureTypeDataModel && value.system.data instanceof InfusionsDataModel && actor.system.resources.ip.value >= value.system.data.ipCost);
+			}
+		},
+		callback: async (jQuery) => {
+			const messageId = jQuery.data('messageId');
+			const message = game.messages.get(messageId);
+			const actor = ChatMessage.getSpeakerActor(message.speaker);
+			const inspector = CheckConfiguration.inspect(message);
+
+			const infusions = actor.itemTypes.classFeature.find((value) => value.system instanceof ClassFeatureTypeDataModel && value.system.data instanceof InfusionsDataModel);
+			const infusionData = infusions.system.data;
+			const infusion = await ChooseInfusionDialog.prompt(infusionData);
+			if (infusion) {
+				await ChecksV2.modifyCheck(inspector.getCheck().id, (check) => {
+					CheckConfiguration.configure(check).modifyDamage((damage) => {
+						damage.type = infusion.changedDamageType;
+						damage.modifiers.push({
+							label: `${infusions.name}: ${infusion.name}`,
+							value: infusion.extraDamage,
+						});
+						return damage;
+					});
+					check.additionalData[infusionKey] = {
+						itemName: infusions.name,
+						itemImg: infusions.img,
+						itemId: infusions.id,
+						infusionName: infusion.name,
+						description: infusion.description,
+					};
+				});
+			}
+		},
+	});
+};
+Hooks.on('getChatLogEntryContext', onGetChatLogEntryContext);
+
+/**
+ * @type RenderCheckHook
+ */
+const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
+	const infusionData = check.additionalData[infusionKey];
+	if (infusionData) {
+		sections.push({
+			order: CHECK_DETAILS + 1,
+			content: `
+              <div class='detail-desc flexrow flex-group-center' style='padding: 4px;'>
+                <img src="${infusionData.itemImg}" alt="Image" data-item-id="${infusionData.itemId}" class="item-img" style="max-width: 1.5em; cursor: pointer;">
+                <div>
+                  <span style="font-size: 105%;">
+                    <span>${infusionData.itemName}:</span>
+                    <strong>${infusionData.infusionName}</strong>
+                  </span>
+                  <div>${infusionData.description}</div>
+                </div>
+              </div>
+            `,
+		});
+	}
+};
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @extends foundry.abstract.DataModel
@@ -23,6 +108,7 @@ class InfusionDataModel extends foundry.abstract.DataModel {
 /**
  * @extends ClassFeatureDataModel
  * @property {"basic","advanced","superior"} rank
+ * @property {number} ipCost
  * @property {string} description
  * @property {InfusionDataModel[]} basicInfusions
  * @property {InfusionDataModel[]} advancedInfusions
@@ -30,14 +116,14 @@ class InfusionDataModel extends foundry.abstract.DataModel {
  */
 export class InfusionsDataModel extends ClassFeatureDataModel {
 	static defineSchema() {
-		const { StringField, HTMLField, ArrayField, EmbeddedDataField } = foundry.data.fields;
+		const { StringField, NumberField, HTMLField, ArrayField, EmbeddedDataField } = foundry.data.fields;
 		return {
 			rank: new StringField({
 				initial: 'basic',
 				nullable: false,
-				blank: true,
 				choices: ['basic', 'advanced', 'superior'],
 			}),
+			ipCost: new NumberField({ min: 0, initial: 2, nullable: false }),
 			description: new HTMLField(),
 			basicInfusions: new ArrayField(new EmbeddedDataField(InfusionDataModel, {}), {}),
 			advancedInfusions: new ArrayField(new EmbeddedDataField(InfusionDataModel, {}), {}),

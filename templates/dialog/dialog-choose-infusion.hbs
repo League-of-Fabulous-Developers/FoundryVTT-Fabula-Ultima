@@ -1,0 +1,22 @@
+<div>
+    {{#each infusions}}
+        <div>
+            <button data-action="select" data-index="{{@index}}">
+                <span class="flexcol">
+                    <span>
+                        <strong>{{name}}</strong>
+                        {{#if extraDamage}}
+                            <span>+{{extraDamage}} {{localize 'FU.Damage'}}</span>
+                        {{/if}}
+                        {{#if changedDamageType}}
+                            <span></span>
+                        {{/if}}
+                    </span>
+                    <span>
+                        {{description}}
+                    </span>
+                </span>
+            </button>
+        </div>
+    {{/each}}
+</div>
