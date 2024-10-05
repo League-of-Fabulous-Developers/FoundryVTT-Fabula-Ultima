@@ -122,7 +122,7 @@ export class FUOptionalFeatureSheet extends ItemSheet {
 
 			await enrichRecursively(data.enrichedHtml);
 		}
-		data.optionals = CONFIG.FU.optionalFeatureRegistry.optionals();
+		data.optionals = Object.entries(CONFIG.FU.optionalFeatureRegistry.optionals()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
 		data.effects = prepareActiveEffectCategories(this.item.effects);
 		return data;
 	}
