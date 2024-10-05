@@ -1,22 +1,65 @@
 <div>
-    {{#each infusions}}
-        <div>
-            <button data-action="select" data-index="{{@index}}">
-                <span class="flexcol">
-                    <span>
-                        <strong>{{name}}</strong>
-                        {{#if extraDamage}}
-                            <span>+{{extraDamage}} {{localize 'FU.Damage'}}</span>
-                        {{/if}}
-                        {{#if changedDamageType}}
-                            <span></span>
-                        {{/if}}
+    {{#if infusions.basic.length}}
+        <h4>{{localize 'FU.ClassFeatureGadgetsRankBasic'}}</h4>
+        {{#each infusions.basic}}
+            <div>
+                <button data-action="select" data-index="{{@index}}" data-category="basic">
+                    <span class="flexcol">
+                        <span>
+                            <strong>{{name}}</strong>
+                            {{#if extraDamage}}
+                                <span>+{{extraDamage}} {{localize 'FU.Damage'}}</span>
+                            {{/if}}
+                            {{#if changedDamageType}}
+                                <span></span>
+                            {{/if}}
+                        </span>
+                        <span>{{description}}</span>
                     </span>
-                    <span>
-                        {{description}}
+                </button>
+            </div>
+        {{/each}}
+    {{/if}}
+    {{#if infusions.advanced.length}}
+        <h4>{{localize 'FU.ClassFeatureGadgetsRankAdvanced'}}</h4>
+        {{#each infusions.advanced}}
+            <div>
+                <button data-action="select" data-index="{{@index}}" data-category="advanced">
+                    <span class="flexcol">
+                        <span>
+                            <strong>{{name}}</strong>
+                            {{#if extraDamage}}
+                                <span>+{{extraDamage}} {{localize 'FU.Damage'}}</span>
+                            {{/if}}
+                            {{#if changedDamageType}}
+                                <span></span>
+                            {{/if}}
+                        </span>
+                        <span>{{description}}</span>
                     </span>
-                </span>
-            </button>
-        </div>
-    {{/each}}
+                </button>
+            </div>
+        {{/each}}
+    {{/if}}
+    {{#if infusions.superior.length}}
+        <h4>{{localize 'FU.ClassFeatureGadgetsRankSuperior'}}</h4>
+        {{#each infusions.superior}}
+            <div>
+                <button data-action="select" data-index="{{@index}}" data-category="superior">
+                    <span class="flexcol">
+                        <span>
+                            <strong>{{name}}</strong>
+                            {{#if extraDamage}}
+                                <span>+{{extraDamage}} {{localize 'FU.Damage'}}</span>
+                            {{/if}}
+                            {{#if changedDamageType}}
+                                <span></span>
+                            {{/if}}
+                        </span>
+                        <span>{{description}}</span>
+                    </span>
+                </button>
+            </div>
+        {{/each}}
+    {{/if}}
 </div>

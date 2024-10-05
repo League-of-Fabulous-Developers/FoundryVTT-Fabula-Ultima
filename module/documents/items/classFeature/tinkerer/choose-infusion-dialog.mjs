@@ -6,17 +6,21 @@ import { FU } from '../../../../helpers/config.mjs';
  */
 async function prompt(infusions) {
 	/** @type InfusionDataModel[] */
-	const availableInfusions = [];
+	const availableInfusions = {
+		superior: [],
+		advanced: [],
+		basic: [],
+	};
 
 	if (infusions.rank === 'superior') {
-		availableInfusions.unshift(...infusions.superiorInfusions);
-		availableInfusions.unshift(...infusions.advancedInfusions);
-		availableInfusions.unshift(...infusions.basicInfusions);
+		availableInfusions.superior.unshift(...infusions.superiorInfusions);
+		availableInfusions.advanced.unshift(...infusions.advancedInfusions);
+		availableInfusions.basic.unshift(...infusions.basicInfusions);
 	} else if (infusions.rank === 'advanced') {
-		availableInfusions.unshift(...infusions.advancedInfusions);
-		availableInfusions.unshift(...infusions.basicInfusions);
+		availableInfusions.advanced.unshift(...infusions.advancedInfusions);
+		availableInfusions.basic.unshift(...infusions.basicInfusions);
 	} else if (infusions.rank === 'basic') {
-		availableInfusions.unshift(...infusions.basicInfusions);
+		availableInfusions.basic.unshift(...infusions.basicInfusions);
 	}
 
 	const data = {
@@ -34,7 +38,8 @@ async function prompt(infusions) {
 			content: content,
 			render: (jQuery) => {
 				jQuery.find('[data-action=select][data-index]').on('click', function () {
-					resolve(availableInfusions[Number(this.dataset.index)] ?? null);
+					const category = this.dataset.category;
+					resolve(data.infusions[category][Number(this.dataset.index)] ?? null);
 					dialog.close();
 				});
 			},
