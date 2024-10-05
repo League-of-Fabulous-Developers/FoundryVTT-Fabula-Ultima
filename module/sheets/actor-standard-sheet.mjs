@@ -787,9 +787,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		 * @returns {Promise<void>} A promise that resolves when the rest action is complete.
 		 */
 		async function onRest(actor, isRightClick) {
-			const maxHP = actor.system.resources.hp.max;
-			const maxMP = actor.system.resources.mp.max;
-			const maxIP = actor.system.resources.ip.max;
+			const maxHP = actor.system.resources.hp?.max;
+			const maxMP = actor.system.resources.mp?.max;
+			const maxIP = actor.system.resources.ip?.max;
 
 			const updateData = {
 				'system.resources.hp.value': maxHP,

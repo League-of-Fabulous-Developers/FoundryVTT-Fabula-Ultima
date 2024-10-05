@@ -424,7 +424,7 @@
 		"StudyRule": "You attempt to gain information about someone or something. Usually an <b>【INS + INS】</b> Open Check. Can’t ask the same question twice.",
 		"InventoryRule": "Spend Inventory Points to produce and immediately use a consumable item.",
 		"HinderRule": "You perform a Check (DL 10) against an Opponent. If you succeed, inflict <b>@EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow] or @EFFECT[weak]</b> against them.",
-		"ObjectiveRule": "Work towards accomplishing an objective within the conflict. Requires an Attribute Check or Opposed Check. Complex Goals often require a Clock.",
+		"ObjectiveRule": "Work towards accomplishing an objective within the conflict. <lu><li>Requires an Attribute Check or Opposed Check.</li> <li>Complex Goals often require a Clock.</li></lu>",
 		"SkillRule": "Some Skills require you to spend an Action. Out of combat, Skills generally require 5-10 seconds.",
 		"MaxLevel": "Maximum Level",
 		"IsMartial": "Is Martial?",
@@ -456,6 +456,7 @@
 		"MagicDefenseBonus": "Magic Defense Bonus",
 		"MagicCheckBonus": "Magic Check Bonus",
 		"AccuracyBonus": "Accuracy Check Bonus",
+		"CheckBonus": "Check Bonus",
 		"AccuracyTest": "Accuracy Test",
 		"Accuracy": "Accuracy",
 		"UseWeaponAccuracy": "Use Weapon Accuracy?",
@@ -506,7 +507,7 @@
 		"BaseAffinity": "Base Affinity",
 		"CurrentAffinity": "Current Affinity",
 		"AffinityDescription": "{affinityName}: {affinityValue}",
-		"RollAccuracyTest": "Esegui un Test di Precisione!",
+		"RollAccuracyTest": "Roll Accuracy Test!",
 		"Quality": "Quality",
 		"Opportunity": "Opportunity",
 		"InitiativeBonus": "Initiative Bonus",
@@ -1175,14 +1176,6 @@
 		"CombatHudShowNPCTurnsLeftModeOnlyStudied": "Only when Studied",
 		"Versus": "vs",
 		"Soldier": "Soldier",
-		"FUID": {
-			"Long": "Fabula Ultima ID",
-			"Short": "FUID",
-			"Regenerate": "Regenerate FUID",
-			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
-			"ChangeWarning3": "Do you want to proceed?",
-			"ChangeWarning1": "Proceed with caution!"
-		},
 		"OpposedCheckBonusDialog": "Configure Opposed Check",
 		"OpposedCheckBonusDialogBonus": "Configure Bonus",
 		"OpposedCheckBonusDialogBonusLabel": "Bonus",
@@ -1199,6 +1192,14 @@
 		"DamagePretty": "【HR + {damage}】",
 		"ChooseWeaponDialogTitle": "Choose Weapon",
 		"ClassFeatureInfusionsApply": "Apply Infusion",
-		"ClassFeatureInfusionsDialogTitle": "Choose Infusion"
+		"ClassFeatureInfusionsDialogTitle": "Choose Infusion",
+		"FUID": {
+			"Long": "Fabula Ultima ID",
+			"Short": "FUID",
+			"Regenerate": "Regenerate FUID",
+			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
+			"ChangeWarning3": "Do you want to proceed?",
+			"ChangeWarning1": "Proceed with caution!"
+		}
 	}
 }

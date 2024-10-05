@@ -444,12 +444,23 @@ Handlebars.registerHelper('inArray', function (item, array, options) {
 	}
 });
 
-Handlebars.registerHelper('formatResource', function (resourceValue, resourceName) {
+Handlebars.registerHelper('formatResource', function (resourceValue, resourceMax, resourceName) {
 	// Convert value to a string to split into 3 digits
 	const valueString = resourceValue.toString().padStart(3, '0');
-	const digitBoxes = [...valueString].map((digit) => `<div class="digit-box"><span class="inner-shadow"><span class="number">${digit}</span></span></div>`).join('');
+	const isCrisis = resourceValue <= resourceMax / 2;
+	const digitBoxes = valueString
+		.split('')
+		.map(
+			(digit) =>
+				`<div class="digit-box${isCrisis ? ' crisis' : ''}">
+            <span class="inner-shadow">
+                <span class="number">${digit}</span>
+            </span>
+        </div>`,
+		)
+		.join('');
 
-	return new Handlebars.SafeString(`<span>${resourceName}</span>` + `<span class="digit-row">${digitBoxes}</span>`);
+	return new Handlebars.SafeString(`<span>${resourceName}</span><span class="digit-row">${digitBoxes}</span>`);
 });
 
 /* -------------------------------------------- */
