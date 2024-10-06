@@ -11,7 +11,7 @@ import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs'
 Hooks.on('preUpdateActor', (document, changed) => {
 	if (document.system instanceof NpcDataModel) {
 		const newVillainType = foundry.utils.getProperty(changed, 'system.villain.value');
-		if (newVillainType !== undefined) {
+		if (newVillainType !== undefined && newVillainType !== document.system.villain.value) {
 			const ultimaPoints = {
 				minor: 5,
 				major: 10,
