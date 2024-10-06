@@ -47,7 +47,7 @@ import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './do
 import { registerOptionalFeatures } from './documents/items/optionalFeature/optional-features.mjs';
 
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
-import { FUActiveEffect, onApplyActiveEffect, onRenderActiveEffectConfig } from './documents/effects/active-effect.mjs';
+import { FUActiveEffect } from './documents/effects/active-effect.mjs';
 import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
@@ -165,8 +165,6 @@ Hooks.once('init', async () => {
 		effect: EffectDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
-	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
-	Hooks.on('applyActiveEffect', onApplyActiveEffect);
 
 	// Register system settings
 	registerSystemSettings();
