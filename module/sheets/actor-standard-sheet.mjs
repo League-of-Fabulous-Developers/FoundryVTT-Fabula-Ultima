@@ -17,7 +17,8 @@ const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex
 export class FUStandardActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
+		const defaultOptions = super.defaultOptions;
+		return foundry.utils.mergeObject(defaultOptions, {
 			classes: ['projectfu', 'sheet', 'actor', 'backgroundstyle'],
 			template: 'systems/projectfu/templates/actor/actor-character-sheet.hbs',
 			width: 750,
@@ -30,6 +31,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				},
 			],
 			scrollY: ['.sheet-body'],
+			dragDrop: [...defaultOptions.dragDrop, { dragSelector: '.effects-list .effect', dropSelector: null }],
 		});
 	}
 

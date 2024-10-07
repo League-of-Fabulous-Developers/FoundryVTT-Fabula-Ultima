@@ -26,6 +26,10 @@ export class FUItemSheet extends ItemSheet {
 					dragSelector: '.directory-item.document.item', // Selector for draggable items
 					dropSelector: '.desc.drop-zone', // Selector for item sheet
 				},
+				{
+					dragSelector: '.effects-list .effect',
+					dropSelector: null,
+				},
 			],
 		});
 	}
@@ -195,6 +199,25 @@ export class FUItemSheet extends ItemSheet {
 		this.dragCounter = 0;
 		const dropZone = $(event.currentTarget);
 		dropZone.removeClass('highlight-drop-zone');
+	}
+
+	_onDragStart(event) {
+		const li = event.currentTarget;
+		if ('link' in event.target.dataset) return;
+
+		// Create drag data
+		let dragData;
+
+		// Active Effect
+		if (li.dataset.effectId) {
+			const effect = this.item.effects.get(li.dataset.effectId);
+			dragData = effect.toDragData();
+		}
+
+		if (!dragData) return;
+
+		// Set data transfer
+		event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
 	}
 
 	/* -------------------------------------------- */
