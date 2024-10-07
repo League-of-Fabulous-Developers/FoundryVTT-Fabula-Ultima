@@ -31,7 +31,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				},
 			],
 			scrollY: ['.sheet-body'],
-			dragDrop: [...defaultOptions.dragDrop, { dragSelector: '.effects-list .effect', dropSelector: null }],
+			dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 		});
 	}
 

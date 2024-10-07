@@ -23,12 +23,8 @@ export class FUItemSheet extends ItemSheet {
 			],
 			dragDrop: [
 				{
-					dragSelector: '.directory-item.document.item', // Selector for draggable items
+					dragSelector: '.directory-item.document.item, .effects-list .effect', // Selector for draggable items
 					dropSelector: '.desc.drop-zone', // Selector for item sheet
-				},
-				{
-					dragSelector: '.effects-list .effect',
-					dropSelector: null,
 				},
 			],
 		});
@@ -229,7 +225,19 @@ export class FUItemSheet extends ItemSheet {
 		// Retrieve drag data using TextEditor
 		const data = TextEditor.getDragEventData(event);
 
-		const itemData = await this._getItemDataFromDropData(data);
+		if (data.type === 'Item') {
+			return this.#handleItemDrop(data, event);
+		}
+		if (data.type === 'ActiveEffect') {
+			const effect = await ActiveEffect.implementation.fromDropData(data);
+			if (!this.item.isOwner || !effect) return false;
+			if (effect.target === this.item) return false;
+			return ActiveEffect.create(effect.toObject(), { parent: this.item });
+		}
+	}
+
+	async #handleItemDrop(data, event) {
+		const itemData = await Item.implementation.fromDropData(data);
 
 		// Determine the configuration based on item type
 		const config = this._findItemConfig(itemData.type);
@@ -248,19 +256,6 @@ export class FUItemSheet extends ItemSheet {
 				// Handle other item drops
 				await this._processItemDrop(itemData, config);
 			}
-		} else {
-			// Default behavior for unknown item types
-			await super._onDrop(event);
-		}
-	}
-
-	// Helper function to get item data from drop data
-	async _getItemDataFromDropData(data) {
-		try {
-			return await Item.implementation.fromDropData(data);
-		} catch (error) {
-			console.error('Failed to get item data from drop data:', error);
-			return null;
 		}
 	}
 
