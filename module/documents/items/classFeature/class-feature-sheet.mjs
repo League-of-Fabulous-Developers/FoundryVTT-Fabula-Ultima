@@ -153,6 +153,9 @@ export class FUClassFeatureSheet extends ItemSheet {
 			}
 		});
 
+		// Active Effect Roll management
+		html.on('click', '.effect-roll', (ev) => onManageActiveEffect(ev, this.item));
+
 		html.find('.regenerate-fuid-button').click(async (event) => {
 			event.preventDefault();
 
