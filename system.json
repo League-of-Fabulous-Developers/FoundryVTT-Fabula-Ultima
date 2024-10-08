@@ -262,6 +262,11 @@
 			"lang": "pl",
 			"name": "Polish",
 			"path": "lang/pl.json"
+		},
+		{
+			"lang": "cn",
+			"name": "中文",
+			"path": "lang/cn.json"
 		}
 	],
 	"relationships": {

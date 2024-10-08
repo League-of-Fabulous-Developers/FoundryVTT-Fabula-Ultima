@@ -862,6 +862,7 @@
 		"RestingScene": "Rastszene",
 		"RestingEffects": "<strong>Vollständig geheilt:</strong> Alle LP und MP wiederhergestellt.<br>Alle Statuseffekte geheilt.",
 		"RestingEffectsIP": "<strong>Vollständig geheilt:</strong> Alle LP, MP und IP wiederhergestellt.<br>Alle Statuseffekte geheilt.",
+		"NoPermission": "Skipped applying <strong>{from}</strong> to <strong>{actor}</strong>. No permission to update this actor.",
 		"ChatResourceLoss": "<strong>{actor}</strong> hat durch <strong>{from} {amount} {resource}</strong> verloren.",
 		"HealthPointLoss": "LP Verlust",
 		"MindPointLoss": "MP Verlust",

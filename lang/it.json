@@ -862,6 +862,7 @@
 		"RestingScene": "Scena di Riposo",
 		"RestingEffects": "<strong>Completamente Riposato:</strong> Tutti i Punti Vita e i Punti Mente sono stati recuperati.<br>Tutti gli status sono stati rimossi.",
 		"RestingEffectsIP": "<strong>Completamente Riposato:</strong> Tutti i Punti Vita, i Punti Mente e i Punti Inventario sono stati recuperati.<br>Tutti gli status sono stati rimossi.",
+		"NoPermission": "Skipped applying <strong>{from}</strong> to <strong>{actor}</strong>. No permission to update this actor.",
 		"ChatResourceLoss": "<strong>{actor}</strong> ha perso <strong>{amount} {resource}</strong> a causa di <strong>{from}</strong>",
 		"HealthPointLoss": "Perdita di PV",
 		"MindPointLoss": "Perdita di PM",
