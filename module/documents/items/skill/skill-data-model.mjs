@@ -168,6 +168,26 @@ let onRenderAttributeCheck = (sections, check, actor, item) => {
 Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
 
 /**
+ * @type RenderCheckHook
+ */
+const onRenderDisplay = (sections, check, actor, item, additionalFlags) => {
+	if (check.type === 'display' && item.system instanceof SkillDataModel) {
+		/** @type SkillDataModel */
+		const skillData = item.system;
+		sections.push({
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
+			data: {
+				summary: skillData.summary.value,
+				description: skillData.description,
+				collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
+			},
+			order: CHECK_DETAILS,
+		});
+	}
+};
+Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
+
+/**
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
