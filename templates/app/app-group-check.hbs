@@ -1,6 +1,6 @@
 <section class="title-fieldset resource-content flexcol">
     <div class="flex0">
-        <div class='detail-desc flex-group-center grid grid-2col'>
+        <div class='detail-desc flex-group-center grid grid-2col desc'>
             <div class='spin2win'>
                 <i class='fas fa-dice-d20 ra-2x rollable'></i>
                 {{localize (concat 'FU.Attribute' (capitalize groupCheck.attributes.attr1) 'Abbr')}}
@@ -12,13 +12,13 @@
         </div>
     </div>
     <div class="flex0">
-        <div class="detail-desc flexrow flex-group-center">
+        <div class="detail-desc flexrow flex-group-center desc">
             <span>{{localize 'FU.GroupCheckSupporters'}}</span>
         </div>
     </div>
     <div>
         {{#each groupCheck.supporters}}
-            <div class="detail-desc flexrow flex-group-center">
+            <div class="detail-desc flexrow flex-group-center desc">
                 <span>{{lookup (lookup @root.supporters id) 'name'}}</span>
                 <span>{{#if result}}{{localize 'FU.Success'}}{{else}}{{localize 'FU.Failure'}}{{/if}}</span>
                 <span>

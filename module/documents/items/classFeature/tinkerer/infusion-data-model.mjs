@@ -70,7 +70,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 		sections.push({
 			order: CHECK_DETAILS + 1,
 			content: `
-              <div class='detail-desc flexrow flex-group-center' style='padding: 4px;'>
+              <div class='detail-desc flexrow flex-group-center desc' style='padding: 4px;'>
                 <img src="${infusionData.itemImg}" alt="Image" data-item-id="${infusionData.itemId}" class="item-img" style="max-width: 1.5em; cursor: pointer;">
                 <div>
                   <span style="font-size: 105%;">

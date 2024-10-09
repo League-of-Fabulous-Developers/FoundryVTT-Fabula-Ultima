@@ -1,7 +1,7 @@
 {{#if (eq actor.type "npc")}}
 {{!-- Creature Rank --}}
     <div class="flexcol gap-1">
-        <div class="resource-content levelup-container creature flex-group-center desc">
+        <div class="resource-content levelup-container creature flex-group-center">
         <span class="resource-content levelup-container flexcol flex-group-center">
             <label class="resource-label-l" data-tooltip="{{localize 'FU.CreatureType'}}" aria-describedby="tooltip">
                 <i class="fas fa-chart-simple icon"></i>{{localize 'FU.CreatureType'}}
@@ -21,19 +21,19 @@
         <span class="resource-content levelup-container flexcol flex-group-center">
             {{#if (eq system.rank.value 'companion')}}
                 <span class="flexrow combineBar villain-field resource-content flex-group-center">
-            <label class="resource-label-m" for="system.companion.playerLevel"
+            <label class="resource-inputs" for="system.companion.playerLevel"
                    data-tooltip="{{localize 'FU.PlayerLevel'}}">{{ localize 'FU.LevelAbbr'
             }}</label>
             <span class="resource-inputs">
                 <input type="number" id="companionPlayerLevel" name="system.companion.playerLevel"
-                       value="{{ system.companion.playerLevel }}" style="color:white; height: 1.5em; border: none;" />
+                       value="{{ system.companion.playerLevel }}" style="color:inherit; height: 1.5em; border: none;" />
             </span>
-            <label class="resource-label-m" for="system.companion.skillLevel"
+            <label class="resource-inputs" for="system.companion.skillLevel"
                    data-tooltip="{{localize 'FU.SkillLevel'}}">{{ localize
              'FU.SkillLevelAbbr' }}</label>
             <span class="resource-inputs">
                 <input type="number" id="companionSkillLevel" name="system.companion.skillLevel"
-                       value="{{ system.companion.skillLevel }}" style="color:white; height: 1.5em; border: none;" />
+                       value="{{ system.companion.skillLevel }}" style="color:inherit; height: 1.5em; border: none;" />
             </span>
         </span>
             {{else}}

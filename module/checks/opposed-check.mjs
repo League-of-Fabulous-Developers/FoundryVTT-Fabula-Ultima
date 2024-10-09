@@ -66,7 +66,7 @@ const opposeCheck = async (li) => {
 					};
 				},
 				options: {
-					classes: ['projectfu', 'unique-dialog'],
+					classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
 				},
 			});
 			if (result.bonus && Number.isInteger(result.bonus)) {

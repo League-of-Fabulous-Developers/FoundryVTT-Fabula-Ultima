@@ -443,7 +443,7 @@ const SUPPORTED_CHANGE_TYPES = {
 class InlineEffectConfiguration extends FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['form', 'sheet', 'projectfu'],
+			classes: ['form', 'sheet', 'projectfu', 'unique-dialog'],
 			resizable: true,
 			height: 'auto',
 			closeOnSubmit: false,

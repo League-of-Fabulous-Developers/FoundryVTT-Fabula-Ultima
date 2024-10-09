@@ -69,7 +69,7 @@
 	box-shadow: 2px 4px $color-secondary;
 	border: thin $color-shadow-inverted;
 	background: linear-gradient($color-tabStyle-gradient);
-	border-radius: 8px 30px 5px 5px;
+	border-radius: 10px 30px 5px 5px;
 	padding: 5px;
 
 	&.items-label {
@@ -78,7 +78,7 @@
 
 	&.zenit-container {
 		width: 10.5em;
-		border-radius: 8px;
+		border-radius: 10px;
 		font-size: 0.875rem;
 		box-sizing: border-box;
 		white-space: normal;
@@ -156,6 +156,9 @@
 			max-width: 100%;
 			margin: 0;
 			display: flex;
+			width: 100%;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.equipped-item-content {
@@ -163,7 +166,6 @@
 			overflow: hidden;
 			max-width: 70%;
 			margin: 0 2px;
-			width: 100%;
 		}
 	}
 
@@ -183,6 +185,9 @@
 			max-width: 100%;
 			margin: 0;
 			display: flex;
+			width: 100%;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.equipped-item-content {
@@ -190,12 +195,10 @@
 			overflow: hidden;
 			max-width: 70%;
 			margin: 0 2px;
-			width: 100%;
 		}
 	}
 
 	&.two-hand {
-		height: inherit;
 		width: 13em;
 		border-radius: 4px;
 		font-size: 0.875rem;
@@ -213,6 +216,9 @@
 			.icon-letter {
 				margin-left: -10px;
 			}
+			width: 100%;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.equipped-item-content {
@@ -220,12 +226,10 @@
 			overflow: hidden;
 			max-width: 70%;
 			margin: 0 2px;
-			width: 100%;
 		}
 	}
 
 	&.left-hand {
-		height: inherit;
 		width: 13em;
 		border-radius: 4px;
 		font-size: 0.875rem;
@@ -243,6 +247,9 @@
 			.icon-letter {
 				margin-left: -10px;
 			}
+			width: 100%;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.equipped-item-content {
@@ -250,12 +257,10 @@
 			overflow: hidden;
 			max-width: 70%;
 			margin: 0 2px;
-			width: 100%;
 		}
 	}
 
 	&.right-hand {
-		height: inherit;
 		width: 13em;
 		border-radius: 4px;
 		font-size: 0.875rem;
@@ -273,6 +278,9 @@
 			.icon-letter {
 				margin-left: -10px;
 			}
+			width: 100%;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.equipped-item-content {
@@ -280,7 +288,6 @@
 			overflow: hidden;
 			max-width: 70%;
 			margin: 0 2px;
-			width: 100%;
 		}
 	}
 
@@ -303,6 +310,9 @@
 			.icon-letter {
 				margin-left: -10px;
 			}
+			width: 100%;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.equipped-item-content {
@@ -310,7 +320,6 @@
 			overflow: hidden;
 			max-width: 70%;
 			margin: 0 2px;
-			width: 100%;
 		}
 	}
 }
@@ -577,14 +586,13 @@
 }
 
 .end {
-	flex: 0 0 100px;
+	flex: 0 0 90px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: inherit;
 	align-content: center;
 
 	a {
-		font-size: 0.875rem;
 		text-align: center;
 		margin: 0 2px;
 	}

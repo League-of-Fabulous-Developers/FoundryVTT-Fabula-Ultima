@@ -337,7 +337,7 @@ export class FUItem extends Item {
 				</div>
 			</section>
 		</header>
-		<div class='detail-desc flexrow flex-group-center'>
+		<div class='detail-desc flexrow flex-group-center desc'>
 			<label
 				class="total ${rollState} flexrow">
 				<div class="startcap"></div>

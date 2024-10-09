@@ -129,6 +129,7 @@ export function DamageCustomizer(damage, targets, callback, onCancel) {
                 </div>
             </div>
         </form>
+		<hr>
     `;
 
 	// Create and render the dialog

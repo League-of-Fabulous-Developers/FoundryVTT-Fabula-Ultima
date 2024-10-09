@@ -252,26 +252,6 @@ export class FUStandardActorSheet extends ActorSheet {
 							checked: parseInt(progress.current) === i + 1,
 						});
 					}
-
-					// TODO: On progress max display a custom button over clock to activate item's effect
-					// if (progress.current === progress.max) {
-					// 	let maxTitle = `${item.name} MAX!`;
-					// 	let maxDescription = '';
-
-					// 	if (item.type === 'zeroPower') {
-					// 		maxDescription = `Trigger: ${item.system.zeroTrigger?.description || ''}<br>Effect: ${item.system.zeroEffect?.description || ''}`;
-					// 	} else {
-					// 		maxDescription = item.system.description || '';
-					// 	}
-
-					// 	const params = {
-					// 		details: { name: maxTitle },
-					// 		description: maxDescription,
-					// 		speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-					// 	};
-					// 	createChatMessage(params);
-					// }
-
 					item.progressArr = progressArr.reverse();
 				}
 			}
@@ -521,14 +501,14 @@ export class FUStandardActorSheet extends ActorSheet {
 					await item.update({ 'system.quantity.value': newQuantity });
 				},
 			},
-			{
-				types: ['class', 'skill'],
-				update: async (itemData, item) => {
-					const incrementValue = itemData.system.level?.value || 1;
-					const newValue = Math.min((item.system.level.value || 0) + incrementValue, item.system.level.max || 0);
-					await item.update({ 'system.level.value': newValue });
-				},
-			},
+			// {
+			// 	types: ['class', 'skill'],
+			// 	update: async (itemData, item) => {
+			// 		const incrementValue = itemData.system.level?.value || 1;
+			// 		const newValue = Math.min((item.system.level.value || 0) + incrementValue, item.system.level.max || 0);
+			// 		await item.update({ 'system.level.value': newValue });
+			// 	},
+			// },
 			{
 				types: ['effect'],
 				update: async (itemData) => {
@@ -601,21 +581,10 @@ export class FUStandardActorSheet extends ActorSheet {
 		super.activateListeners(html);
 
 		// Render the item sheet for viewing/editing prior to the editable check.
-		html.find('.item-edit').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
-			item.sheet.render(true);
-		});
+		html.find('.item-edit').click(this._onEditItem.bind(this));
 
 		// Render the item sheet for viewing/editing when middle-clicking
-		html.find('.item').mouseup((ev) => {
-			if (ev.button === 1 && !$(ev.target).hasClass('item-edit')) {
-				ev.preventDefault();
-				const li = $(ev.currentTarget);
-				const item = this.actor.items.get(li.data('itemId'));
-				item.sheet.render(true);
-			}
-		});
+		html.find('.item').mouseup(this._onMiddleClickEdit.bind(this));
 
 		// Render the active effect sheet for viewing/editing when middle-clicking
 		html.find('.effect').mouseup((ev) => {
@@ -657,26 +626,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('.item-create-dialog').click(this._onItemCreateDialog.bind(this));
 
 		// Delete Inventory Item
-		html.find('.item-delete').click(async (ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
-			const confirmation = await Dialog.confirm({
-				title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
-				content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
-				rejectClose: false,
-			});
-			if (confirmation) {
-				item.delete();
-				li.slideUp(200, () => this.render(false));
-			}
-		});
+		html.find('.item-delete').click(this._onItemDelete.bind(this));
 
-		// html.find('.study-button').click(() => handleStudyRoll.bind(this)());
-
-		html.find('.study-button').click(async () => {
-			const studyRollHandler = new StudyRollHandler(); // Instantiate the handler
-			await studyRollHandler.handleStudyRoll(this.actor); // Call method on instance
-		});
+		html.find('.study-button').click(async () => await new StudyRollHandler().handleStudyRoll(this.actor));
 
 		// Add event listeners for increment and decrement buttons
 		html.find('.increment-button').on('click contextmenu', (ev) => this._onIncrementButtonClick(ev));
@@ -796,19 +748,23 @@ export class FUStandardActorSheet extends ActorSheet {
 			const maxMP = actor.system.resources.mp?.max;
 			const maxIP = actor.system.resources.ip?.max;
 
-			const updateData = {
+			// Prepare the update data using mergeObject to avoid overwriting other fields
+			let updateData = foundry.utils.mergeObject(actor.toObject(false), {
 				'system.resources.hp.value': maxHP,
 				'system.resources.mp.value': maxMP,
-			};
+			});
 
 			if (isRightClick) {
-				updateData['system.resources.ip.value'] = maxIP;
+				updateData = foundry.utils.mergeObject(updateData, {
+					'system.resources.ip.value': maxIP,
+				});
 			}
 
+			// Update the actor
 			await actor.update(updateData);
 
 			// Rerender the actor's sheet if necessary
-			if (updateData['system.resources.ip.value'] || !isRightClick) {
+			if (isRightClick || updateData['system.resources.ip.value']) {
 				actor.sheet.render(true);
 			}
 		}
@@ -937,6 +893,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		dropZone.on('dragenter', this._onDragEnter.bind(this));
 		dropZone.on('dragleave', this._onDragLeave.bind(this));
 		dropZone.on('drop', this._onDropReset.bind(this));
+		this._attachFrameListeners(html);
 	}
 
 	/* -------------------------------------------- */
@@ -1026,6 +983,103 @@ export class FUStandardActorSheet extends ActorSheet {
 			// Log a message or perform other actions if needed
 		} else {
 			// Checkbox is checked
+		}
+	}
+
+	_attachFrameListeners() {
+		if (!this.contextMenuInitialized) {
+			// eslint-disable-next-line no-undef
+			new ContextMenu(this.element, 'li.item', [
+				{
+					name: game.i18n.localize('FU.Edit'),
+					icon: '<i class="fas fa-edit"></i>',
+					callback: this._onItemEditz.bind(this),
+					condition: (li) => !!li.data('itemId'),
+				},
+				{
+					name: game.i18n.localize('FU.Duplicate'),
+					icon: '<i class="fas fa-clone"></i>',
+					callback: this._onItemDuplicatez.bind(this),
+					condition: (li) => !!li.data('itemId'),
+				},
+				{
+					name: game.i18n.localize('FU.Delete'),
+					icon: '<i class="fas fa-trash"></i>',
+					callback: this._onItemDeletez.bind(this),
+					condition: (li) => !!li.data('itemId'),
+				},
+			]);
+
+			this.contextMenuInitialized = true;
+		}
+	}
+
+	// delete later
+	_onItemEditz(li) {
+		const dataItemId = li.data('itemId');
+		const item = this.actor.items.get(dataItemId);
+		if (item) item.sheet.render(true);
+	}
+
+	async _onItemDuplicatez(li) {
+		const dataItemId = li.data('itemId');
+		const item = this.actor.items.get(dataItemId);
+		if (item) {
+			const duplicateData = item.toObject();
+			duplicateData.name += ' (Copy)';
+			await this.actor.createEmbeddedDocuments('Item', [duplicateData]);
+			this.render();
+		}
+	}
+
+	async _onItemDeletez(li) {
+		const dataItemId = li.data('itemId');
+		const item = this.actor.items.get(dataItemId);
+		const confirmation = await Dialog.confirm({
+			title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
+			content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
+			rejectClose: false,
+		});
+		if (confirmation) {
+			await item.delete(); // Delete the item
+			li.slideUp(200, () => this.render(false));
+		}
+	}
+	// end delete later
+
+	// Method to handle middle-click editing of an item
+	_onMiddleClickEdit(event) {
+		if (event.button === 1 && !$(event.target).hasClass('item-edit')) {
+			event.preventDefault();
+			this._onEditItem(event);
+		}
+	}
+
+	_onEditItem(event) {
+		const li = $(event.currentTarget).closest('.item');
+		const itemId = li.data('itemId');
+
+		if (!itemId) return console.error('No item ID found.');
+
+		const item = this.actor.items.get(itemId);
+		if (!item) return console.error(`Item with ID ${itemId} not found.`);
+
+		item.sheet.render(true);
+	}
+
+	async _onItemDelete(event) {
+		const li = $(event.currentTarget).parents('.item');
+		const item = this.actor.items.get(li.data('itemId'));
+
+		const confirmation = await Dialog.confirm({
+			title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
+			content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
+			rejectClose: false,
+		});
+
+		if (confirmation) {
+			await item.delete(); // Wait for the item deletion to complete
+			li.slideUp(200, () => this.render(false));
 		}
 	}
 
@@ -1700,13 +1754,15 @@ export class FUStandardActorSheet extends ActorSheet {
 			if (dataset.rollType === 'behavior') {
 				return this._rollBehavior();
 			}
+
 			if (dataset.rollType === 'roll-check' || dataset.rollType === 'roll-init') {
-				if (isShift) {
-					return promptOpenCheck(this.actor, 'FU.OpenCheck', 'open');
-				} else {
-					return promptCheck(this.actor);
-				}
+				return promptCheck(this.actor);
 			}
+
+			if (dataset.rollType === 'open-check') {
+				return promptOpenCheck(this.actor, 'FU.OpenCheck', 'open');
+			}
+
 			if (dataset.rollType === 'group-check') {
 				GroupCheck.promptCheck(this.actor, isShift);
 			}

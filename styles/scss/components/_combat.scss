@@ -89,7 +89,7 @@
 
 		text-shadow: 1px 1px 1px $color-black;
 		box-shadow: 3px 3px $color-secondary;
-		border-radius: 8px;
+		border-radius: 10px;
 		background: linear-gradient($color-tabStyle-gradient), $color-secondary;
 		padding: 0.5em 1em 0.5em 1em;
 		height: var(--hud-buttons-height);
@@ -142,7 +142,7 @@
 		color: $color-primary;
 		text-shadow: 1px 1px 1px $color-black;
 		box-shadow: 2px 4px var(--hud-boxshadow-color);
-		border-radius: 8px;
+		border-radius: 10px;
 		background: var(--hud-background-gradient);
 		padding: 0.25em;
 		display: flex;
@@ -173,7 +173,7 @@
 		.combat-row {
 			flex: 0 0 100%;
 			height: var(--combat-info-height);
-			border-radius: 8px;
+			border-radius: 10px;
 			margin: 0 auto;
 			padding: var(--combat-info-content-padding);
 			background: $color-secondary;
@@ -646,7 +646,7 @@
 				background: var(--combat-effects-background);
 				transition: all 0.3s ease-in-out;
 				border: 2px solid $color-secondary;
-				border-radius: 8px;
+				border-radius: 10px;
 				opacity: 0;
 				pointer-events: none;
 
@@ -701,7 +701,7 @@
 
 		text-shadow: 1px 1px 1px $color-black;
 		box-shadow: 3px 3px $color-secondary;
-		border-radius: 8px;
+		border-radius: 10px;
 		background: linear-gradient($color-tabStyle-gradient), $color-secondary;
 		padding: 0.5em 1em 0.5em 1em;
 		height: var(--hud-buttons-height);
@@ -753,7 +753,7 @@
 	.faction-list {
 		color: $color-primary;
 		text-shadow: 1px 1px 1px $color-black;
-		border-radius: 8px;
+		border-radius: 10px;
 		background: transparent;
 		padding: 0.25em;
 		display: flex;
@@ -843,7 +843,7 @@
 		.combat-row {
 			flex: 0 0 100%;
 			height: var(--combat-info-height);
-			border-radius: 8px;
+			border-radius: 10px;
 			margin: 0 auto;
 			padding: var(--combat-info-content-padding);
 			box-shadow: var(--hud-boxshadow-color);

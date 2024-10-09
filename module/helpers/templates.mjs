@@ -40,7 +40,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-favorite.hbs',
 		'systems/projectfu/templates/actor/partials/actor-bonds.hbs',
 
-		'systems/projectfu/templates/actor/partials/actor-divider.hbs',
 		'systems/projectfu/templates/actor/partials/actor-equip.hbs',
 		'systems/projectfu/templates/actor/partials/actor-control.hbs',
 		'systems/projectfu/templates/actor/partials/actor-progress-clock.hbs',

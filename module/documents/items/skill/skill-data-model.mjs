@@ -121,7 +121,7 @@ let onRenderAccuracyCheck = (sections, check, actor, item) => {
 			});
 			sections.push({
 				content: `
-                  <div class='detail-desc flexrow flex-group-center' style='padding: 4px;'>
+                  <div class='detail-desc flexrow flex-group-center desc' style='padding: 4px;'>
                     <div>
                       <span>
                         ${game.i18n.localize('FU.Weapon')}:

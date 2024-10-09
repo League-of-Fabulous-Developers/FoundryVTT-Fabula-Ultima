@@ -1,8 +1,8 @@
 <div>
-    <div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
+    <div class='detail-desc flexrow flex-group-center desc' style='padding: 0 2px;'>
         <div>{{localize 'FU.ChatGroupCheckInitiated' name=leader.name}}</div>
     </div>
-    <div class='detail-desc flex-group-center grid grid-2col'>
+    <div class='detail-desc flex-group-center grid grid-2col desc'>
         <div class='spin2win'>
             <i class='fas fa-dice-d6 ra-2x rollable'></i>
             {{localize (concat 'FU.Attribute' (capitalize attributes.attr1) 'Abbr')}}
@@ -44,7 +44,7 @@
             </div>
         </div>
     {{/if}}
-    <div class='action-button detail-desc flexrow flex-group-center'>
+    <div class='action-style button-style detail-desc flexrow flex-group-center desc'>
         {{#if (eq status 'open')}}
             <button type='button' data-support='{{groupCheckId}}'>{{localize 'FU.ChatGroupCheckSupport'}}</button>
         {{/if}}

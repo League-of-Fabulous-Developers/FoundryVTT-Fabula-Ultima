@@ -66,7 +66,7 @@ export const registerSystemSettings = async function () {
 		scope: 'world',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionZeroPower, {
@@ -75,7 +75,7 @@ export const registerSystemSettings = async function () {
 		scope: 'world',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCampingRules, {
@@ -84,7 +84,7 @@ export const registerSystemSettings = async function () {
 		scope: 'world',
 		config: false,
 		type: Boolean,
-		default: false,
+		default: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionBehaviorRoll, {
@@ -140,7 +140,7 @@ export const registerSystemSettings = async function () {
 		scope: 'world',
 		config: true,
 		type: Boolean,
-		default: false,
+		default: true,
 		requiresReload: true,
 	});
 
@@ -183,6 +183,7 @@ export const registerSystemSettings = async function () {
 		scope: 'world',
 		config: true,
 		type: String,
+		default: 'Bestiary',
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionAlwaysFavorite, {

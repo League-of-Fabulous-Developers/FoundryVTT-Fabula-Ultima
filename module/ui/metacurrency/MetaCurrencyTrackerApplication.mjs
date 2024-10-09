@@ -72,7 +72,7 @@ export class MetaCurrencyTrackerApplication extends FormApplication {
 
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['form', 'backgroundstyle', 'projectfu'],
+			classes: ['form', 'backgroundstyle', 'projectfu', 'unique-dialog'],
 			closeOnSubmit: false,
 			editable: game.user.isGM,
 			sheetConfig: false,

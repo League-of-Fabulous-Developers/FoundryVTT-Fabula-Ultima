@@ -28,7 +28,7 @@
             <ol class="item-list">
                 {{#each section.effects as |effect|}}
                     <li class="effect {{#if (and effect.isSuppressed (not effect.disabled))}}suppressed{{/if}}"
-                        data-effect-id="{{ effect.id }}">
+                        data-effect-id="{{ effect.id }}" data-type="effect">
                         <div class="flexrow">
                             {{!-- Item Name--}}
                             <div class="item-name">
@@ -42,7 +42,7 @@
                                      {{~/if}}"
                                     {{~/if}}>
                                     <div class="item-image">
-                                        <div class="rollable" data-roll-type="item">
+                                        <div class="effect-roll rollable" data-action="roll">
                                             <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}" />
                                         </div>
                                     </div>

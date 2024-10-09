@@ -5,11 +5,11 @@
 
 /* Section Header Title */
 .title-fieldset {
-	border-radius: 12px;
+	border-radius: 10px;
 
 	legend {
 		display: flex;
-		border-radius: 8px;
+		border-radius: 10px;
 		margin: 0 auto;
 		padding: 2px 10px;
 		background: $color-secondary;
@@ -17,6 +17,7 @@
 		position: relative;
 		text-align: center;
 		width: auto;
+		border: 0.01em solid #148782;
 	}
 }
 
@@ -145,7 +146,6 @@
 
 		& input.resource-inputs-charname {
 			color: $color-primary;
-
 			background-color: $color-secondary;
 			margin: 1px;
 		}
@@ -153,7 +153,6 @@
 		& .resource-inputs {
 			width: 100%;
 			padding: 0;
-			margin: 0 5px 0 5px;
 		}
 
 		& .side-bar {
@@ -162,7 +161,7 @@
 
 		&.creature {
 			padding: 0;
-			border-radius: 12px;
+			border-radius: 10px;
 			background: none;
 
 			.resource-inputs {
@@ -190,7 +189,6 @@
 		border-radius: 0 0 0 14px;
 		width: 100%;
 		border: 0.125em solid #c7c7c7;
-		color: white;
 	}
 
 	&.level-field {
@@ -234,6 +232,7 @@
 	text-align: center;
 	border-radius: 5px;
 	padding: 0 0.5rem;
+	height: fit-content;
 }
 
 .npc-level-container {
@@ -241,7 +240,21 @@
 	grid-template-columns: repeat(3, 1fr);
 
 	> label {
-		align-self: center;
+		padding: 2px;
+		border-radius: initial !important;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(44, 74, 66, 0.3294117647);
+		width: 100%;
+		justify-content: center;
+
+		background: url(/systems/projectfu/styles/static/ui/bg.webp), linear-gradient(to right, #f5f5dc, #c9c7b8);
+		background-blend-mode: multiply;
+		background-repeat: repeat-y;
+		background-position: right top;
+		border: 1px solid #6f6c66;
+		background-size: cover;
 	}
 
 	.level-input {

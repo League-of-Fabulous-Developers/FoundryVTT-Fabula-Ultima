@@ -31,7 +31,7 @@
         {{/if}}
         </label>
         <input name="system.resources.exp.value" value="{{ system.resources.exp.value }}" type="number"
-               data-dtype="Number" class="resource-inputs" style="border-radius: 12px 0 0;" />
+               data-dtype="Number" class="resource-inputs" style="border-radius: 10px 0 0;" />
     </span>
     <div class="bar bar-progress grid-span-2" style="height: 10px;">
         <div class="bar-progress-bar bar-level" style="width: {{calculatePercentage system.resources.exp.value 10}};">
@@ -42,13 +42,13 @@
 {{#if (eq actor.type "npc")}}
     <div class="grid-span-2 resource-content npc-level-container">
         <!-- Level -->
-        <label class="resource-label-m align-center" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip">
+        <label class="resource-label-m align-center backgroundstyle" data-tooltip="{{localize 'FU.Level'}}" aria-describedby="tooltip">
             <i class="fas fa-chart-simple icon"></i>
             {{localize 'FU.LevelAbbr'}}
         </label>
         <input type="number" name="system.level.value" min="5" max="60" step="5" value="{{ system.level.value }}" class="resource-inputs grid-span-2 level-input" />
         <!-- Rank -->
-        <label class="resource-label-m align-center" data-tooltip="{{localize 'FU.Rank'}}"
+        <label class="resource-label-m align-center backgroundstyle" data-tooltip="{{localize 'FU.Rank'}}"
                aria-describedby="tooltip"> <i
          class="fas fa-feather-pointed icon"></i>{{localize
          'FU.Rank'}} </label>

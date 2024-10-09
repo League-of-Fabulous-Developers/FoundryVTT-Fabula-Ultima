@@ -55,7 +55,7 @@
                         <label class="resource-label-m rollable" id="pdfLink">
                             {{localize 'FU.Source'}} </label>
                         <input type="text" name="system.source.value" value="{{ system.source.value }}"
-                            data-dtype="String" style="border-radius: 12px 0 0;" class="resource-inputs" />
+                            data-dtype="String" style="border-radius: 10px 0 0;" class="resource-inputs" />
                     </span>
                 </span>
             </div>
@@ -75,7 +75,7 @@
 
     <div class="grid grid-3col w-100">
         {{!-- Sub Type --}}
-        <span id="subtype-section" class="resource-content flexcol flex-group-center desc">
+        <span id="subtype-section" class="resource-content flexrow flex-group-center desc">
             <label class="resource-label-sm" for="item.type"> <i class="fas fa-chart-simple icon"></i>{{localize
             'FU.SubType'}}</label>
             {{#if (eq item.type "heroic")}}
@@ -110,11 +110,11 @@
         </span>
 
         {{!-- Sheet Tab Navigation --}}
-        <nav id="item-navbar" class="sheet-tabs tabs desc flexrow grid-span-2" data-group="primary"
+        <nav id="item-navbar" class="sheet-tabs tabs desc flexrow grid-span-2 gap-5" data-group="primary"
             style="align-self: stretch;">
-            <a class="item tab-style" data-tab="description">{{localize 'FU.Description'}}</a>
-            <a class="item tab-style" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
-            <a class="item tab-style" data-tab="effects">{{localize 'FU.Effects'}}</a>
+            <a class="item rollable tab button-style" data-tab="description">{{localize 'FU.Description'}}</a>
+            <a class="item rollable tab button-style" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
+            <a class="item rollable tab button-style" data-tab="effects">{{localize 'FU.Effects'}}</a>
         </nav>
     </div>
 </header>
