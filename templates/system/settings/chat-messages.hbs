@@ -4,9 +4,8 @@
     <div class="form-group">
         <label for="optionChatMessageHideTags">{{localize "FU.ChatMessageHideTags"}}</label>
         <div class="form-fields">
-            <select name="optionChatMessageHideTags" id="optionChatMessageHideTags">
-                {{selectOptions optionChatMessageHideOptions selected=optionChatMessageHideTags localize=true}}
-            </select>
+            <input type="checkbox" name="optionChatMessageHideTags" id="optionChatMessageHideTags" {{checked
+                optionChatMessageHideTags}} />
         </div>
         <p class="notes">{{localize "FU.ChatMessageHideTagsHint"}}</p>
     </div>
@@ -14,9 +13,8 @@
     <div class="form-group">
         <label for="optionChatMessageHideDescription">{{localize "FU.ChatMessageHideDescription"}}</label>
         <div class="form-fields">
-            <select name="optionChatMessageHideDescription" id="optionChatMessageHideDescription">
-                {{selectOptions optionChatMessageHideOptions selected=optionChatMessageHideDescription localize=true}}
-            </select>
+            <input type="checkbox" name="optionChatMessageHideDescription" id="optionChatMessageHideDescription"
+                {{checked optionChatMessageHideDescription}} />
         </div>
         <p class="notes">{{localize "FU.ChatMessageHideDescriptionHint"}}</p>
     </div>
@@ -24,9 +22,8 @@
     <div class="form-group">
         <label for="optionChatMessageHideQuality">{{localize "FU.ChatMessageHideQuality"}}</label>
         <div class="form-fields">
-            <select name="optionChatMessageHideQuality" id="optionChatMessageHideQuality">
-                {{selectOptions optionChatMessageHideOptions selected=optionChatMessageHideQuality localize=true}}
-            </select>
+            <input type="checkbox" name="optionChatMessageHideQuality" id="optionChatMessageHideQuality" {{checked
+                optionChatMessageHideQuality}} />
         </div>
         <p class="notes">{{localize "FU.ChatMessageHideQualityHint"}}</p>
     </div>
@@ -34,9 +31,8 @@
     <div class="form-group">
         <label for="optionChatMessageHideRollDetails">{{localize "FU.ChatMessageHideRollDetails"}}</label>
         <div class="form-fields">
-            <select name="optionChatMessageHideRollDetails" id="optionChatMessageHideRollDetails">
-                {{selectOptions optionChatMessageHideOptions selected=optionChatMessageHideRollDetails localize=true}}
-            </select>
+            <input type="checkbox" name="optionChatMessageHideRollDetails" id="optionChatMessageHideRollDetails"
+                {{checked optionChatMessageHideRollDetails}} />
         </div>
         <p class="notes">{{localize "FU.ChatMessageHideRollDetailsHint"}}</p>
     </div>

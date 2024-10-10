@@ -68,15 +68,9 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionChatMessageHideTags, {
 		name: game.i18n.localize('FU.ChatMessageHideTags'),
 		hint: game.i18n.localize('FU.ChatMessageHideTagsHint'),
-		scope: 'client',
 		config: false,
-		type: String,
-		default: 'show',
-		choices: {
-			show: game.i18n.localize('FU.ChatMessageShow'),
-			clicked: game.i18n.localize('FU.ChatMessageClicked'),
-			hide: game.i18n.localize('FU.ChatMessageHide'),
-		},
+		type: Boolean,
+		default: false,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionChatMessageHideDescription, {
@@ -84,13 +78,8 @@ export const registerSystemSettings = async function () {
 		hint: game.i18n.localize('FU.ChatMessageHideDescriptionHint'),
 		scope: 'client',
 		config: false,
-		type: String,
-		default: 'show',
-		choices: {
-			show: game.i18n.localize('FU.ChatMessageShow'),
-			clicked: game.i18n.localize('FU.ChatMessageClicked'),
-			hide: game.i18n.localize('FU.ChatMessageHide'),
-		},
+		type: Boolean,
+		default: false,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionChatMessageHideQuality, {
@@ -98,13 +87,8 @@ export const registerSystemSettings = async function () {
 		hint: game.i18n.localize('FU.ChatMessageHideQualityHint'),
 		scope: 'client',
 		config: false,
-		type: String,
-		default: 'show',
-		choices: {
-			show: game.i18n.localize('FU.ChatMessageShow'),
-			clicked: game.i18n.localize('FU.ChatMessageClicked'),
-			hide: game.i18n.localize('FU.ChatMessageHide'),
-		},
+		type: Boolean,
+		default: false,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionChatMessageHideRollDetails, {
@@ -112,13 +96,8 @@ export const registerSystemSettings = async function () {
 		hint: game.i18n.localize('FU.ChatMessageHideRollDetailsHint'),
 		scope: 'client',
 		config: false,
-		type: String,
-		default: 'show',
-		choices: {
-			show: game.i18n.localize('FU.ChatMessageShow'),
-			clicked: game.i18n.localize('FU.ChatMessageClicked'),
-			hide: game.i18n.localize('FU.ChatMessageHide'),
-		},
+		type: Boolean,
+		default: false,
 	});
 
 	game.settings.registerMenu(SYSTEM, 'myOptionalRules', {
