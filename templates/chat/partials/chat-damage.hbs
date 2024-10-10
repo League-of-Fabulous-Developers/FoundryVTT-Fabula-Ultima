@@ -21,26 +21,27 @@
     </a>
 </div>
 
-<div style="clear: both;"></div>
-<div class="flexrow gap-5">
-    <div id='results' class='detail-desc flex-group-center grid grid-2col desc flex2'>
-        <div>
-            <label class="title">{{localize 'FU.HighRollAbbr'}}</label>
-            <label class="detail">
-                {{#if (not damage.hrZero)}}
-                    {{#if (gte result.attr1 result.attr2)}}
-                        {{result.attr1}}
-                    {{else}}
-                        {{result.attr2}}
+<div class="toggle-section damage-results {{#if hideSettings.optionChatMessageHideRollDetails}}hidden{{/if}}">
+    <div class="flexrow gap-5">
+        <div class='detail-desc flex-group-center grid grid-2col desc flex2'>
+            <div>
+                <label class="title">{{localize 'FU.HighRollAbbr'}}</label>
+                <label class="detail">
+                    {{#if (not damage.hrZero)}}
+                        {{#if (gte result.attr1 result.attr2)}}
+                            {{result.attr1}}
+                        {{else}}
+                            {{result.attr2}}
+                        {{/if}}
                     {{/if}}
-                {{/if}}
-            </label>
-        </div>
-        <div {{#if
-            modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"
-            {{/if}}>
-            <label class="title">{{localize 'FU.ModAbbr'}}</label>
-            <label class="detail">{{damage.bonus}}</label>
+                </label>
+            </div>
+            <div {{#if
+                modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"
+                {{/if}}>
+                <label class="title">{{localize 'FU.ModAbbr'}}</label>
+                <label class="detail">{{damage.bonus}}</label>
+            </div>
         </div>
     </div>
 </div>

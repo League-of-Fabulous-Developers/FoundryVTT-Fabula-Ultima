@@ -1,17 +1,23 @@
-<div class="fu-tags">
-    <div class="fu-tag">{{localize (concat 'FU.' (capitalize weapon.category))}}</div>
-    {{#if (eq weapon.hands 'two-handed')}}
-        <div class="fu-tag">{{localize (concat 'FU.TwoHanded' )}}</div>
-    {{else}}
-        <div class="fu-tag">{{localize (concat 'FU.OneHanded' )}}</div>
-    {{/if}}
-    <div class="fu-tag">{{localize (concat 'FU.' (capitalize weapon.type))}}</div>
+<div class="toggle-section tags {{#if optionChatMessageHideTags}}hidden{{/if}}">
+    <div class="fu-tags">
+        <div class="fu-tag">{{localize (concat 'FU.' (capitalize weapon.category))}}</div>
+        {{#if (eq weapon.hands 'two-handed')}}
+            <div class="fu-tag">{{localize (concat 'FU.TwoHanded')}}</div>
+        {{else}}
+            <div class="fu-tag">{{localize (concat 'FU.OneHanded')}}</div>
+        {{/if}}
+        <div class="fu-tag">{{localize (concat 'FU.' (capitalize weapon.type))}}</div>
+    </div>
 </div>
 
 {{#if weapon.quality}}
-    {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=weapon.quality}}
+    <div class="toggle-section quality {{#if optionChatMessageHideQuality}}hidden{{/if}}">
+        {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=weapon.quality}}
+    </div>
 {{/if}}
 
 {{#if (or weapon.summary weapon.description)}}
-    {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=weapon.summary description=weapon.description collapseDescriptions=collapseDescriptions}}
+    <div class="toggle-section description {{#if optionChatMessageHideDescription}}hidden{{/if}}">
+        {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=weapon.summary description=weapon.description collapseDescriptions=collapseDescriptions}}
+    </div>
 {{/if}}

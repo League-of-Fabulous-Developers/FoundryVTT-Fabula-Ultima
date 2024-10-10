@@ -2,6 +2,7 @@ import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
+import { SETTINGS } from '../settings.js';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
 
@@ -134,6 +135,15 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 			};
 		}
 
+		// Fetch game settings for the chat message visibility options
+		const hideSettings = {
+			collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
+			optionChatMessageHideTags: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideTags),
+			optionChatMessageHideDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideDescription),
+			optionChatMessageHideQuality: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideQuality),
+			optionChatMessageHideRollDetails: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideRollDetails),
+		};
+
 		// Push combined data for accuracy and damage
 		data.push({
 			order: CHECK_ROLL,
@@ -141,6 +151,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 			data: {
 				accuracy: accuracyData,
 				damage: damageData,
+				hideSettings: hideSettings,
 			},
 		});
 		/** @type TargetData[] */
