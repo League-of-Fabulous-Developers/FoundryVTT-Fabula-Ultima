@@ -55,7 +55,7 @@ function migratePhysicalAffinity(source) {
 }
 
 function migrateCreatureRanks(source) {
-	if (!('rank' in source)) {
+	if (('isCompanion' in source || 'isElite' in source || 'isChampion' in source) && !('rank' in source)) {
 		source.rank = {
 			value: 'soldier',
 			replacedSoldiers: 1,
