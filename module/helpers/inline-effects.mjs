@@ -110,22 +110,21 @@ function activateListeners(document, html) {
 	}
 
 	html.find('a.inline.inline-effect[draggable]')
-		.on('click', async function () {
+		.on('click', async function (event) {
 			const source = determineSource(document, this);
 			const effectData = fromBase64(this.dataset.effect);
 			const status = this.dataset.status;
-			let targets = await targetHandler();
-			if (targets.length > 0) {
+			const isCtrlClick = event.ctrlKey;
+
+			const targets = await targetHandler();
+			if (!targets.length) return;
+			targets.forEach((actor) => {
 				if (effectData) {
-					targets.forEach((actor) => onApplyEffectToActor(actor, source, effectData));
+					isCtrlClick ? onRemoveEffectFromActor(actor, source, effectData) : onApplyEffectToActor(actor, source, effectData);
 				} else if (status) {
-					targets.forEach((actor) => {
-						if (!actor.statuses.has(status)) {
-							toggleStatusEffect(actor, status, source);
-						}
-					});
+					isCtrlClick ? toggleStatusEffect(actor, status, source, { disable: true }) : !actor.statuses.has(status) && toggleStatusEffect(actor, status, source);
 				}
-			}
+			});
 		})
 		.on('dragstart', function (event) {
 			/** @type DragEvent */
@@ -173,6 +172,25 @@ function activateListeners(document, html) {
 					});
 			}
 		});
+}
+
+function onRemoveEffectFromActor(actor, source, effect) {
+	if (!actor) return;
+
+	const existingEffect = actor.effects.find(
+		(e) =>
+			e.getFlag(SYSTEM, FUActiveEffect.TEMPORARY_FLAG) &&
+			e.origin === source &&
+			e.changes.length === effect.changes.length &&
+			e.changes.every((change, index) => change.key === effect.changes[index].key && change.mode === effect.changes[index].mode && change.value === effect.changes[index].value),
+	);
+
+	if (existingEffect) {
+		console.log(`Removing effect: ${existingEffect.name}`);
+		existingEffect.delete();
+	} else {
+		console.log('No matching effect found to remove.');
+	}
 }
 
 function onApplyEffectToActor(actor, source, effect) {
