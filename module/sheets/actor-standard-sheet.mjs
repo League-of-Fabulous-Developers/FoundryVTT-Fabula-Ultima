@@ -118,6 +118,14 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Prepare active effects
 		context.effects = prepareActiveEffectCategories(game.release.generation >= 11 ? Array.from(this.actor.allApplicableEffects()) : this.actor.effects);
 
+		// Combine all effects into a single array
+		context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];
+
+		// Enrich each effect's description
+		for (const effect of context.allEffects) {
+			effect.enrichedDescription = effect.description ? await TextEditor.enrichHTML(effect.description) : '';
+		}
+
 		// Add the actor object to context for easier access
 		context.actor = actorData;
 

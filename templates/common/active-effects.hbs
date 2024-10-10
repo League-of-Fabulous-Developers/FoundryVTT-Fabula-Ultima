@@ -74,11 +74,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="individual-description">{{#if effect.description}} {{editor effect.description
-                                                                                                target="effect.description"
-                                                                                                rollData=rollData
-                                                                                                button=false owner=owner
-                                                                                                editable=false}} {{/if}}
+                        <div class="individual-description">
+                        {{#if effect.enrichedDescription}}
+                            {{{effect.enrichedDescription}}}
+                        {{/if}}
                         </div>
                     </li>
                 {{/each}}

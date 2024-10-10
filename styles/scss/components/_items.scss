@@ -9,10 +9,17 @@
 .individual-description {
 	overflow: hidden;
 
+	p,
+	span {
+		height: fit-content;
+		min-height: fit-content;
+		padding: 2px 0;
+	}
+
 	.editor {
 		height: fit-content;
 		min-height: fit-content;
-		padding: 0 1px;
+		padding: 2px 0;
 	}
 }
 

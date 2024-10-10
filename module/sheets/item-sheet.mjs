@@ -68,6 +68,14 @@ export class FUItemSheet extends ItemSheet {
 		// Prepare active effects for easier access
 		context.effects = prepareActiveEffectCategories(this.item.effects);
 
+		// Combine all effects into a single array
+		context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];
+
+		// Enrich each effect's description
+		for (const effect of context.allEffects) {
+			effect.enrichedDescription = effect.description ? await TextEditor.enrichHTML(effect.description) : '';
+		}
+
 		//Add CONFIG data required
 		context.attrAbbr = CONFIG.FU.attributeAbbreviations;
 		context.damageTypes = CONFIG.FU.damageTypes;
