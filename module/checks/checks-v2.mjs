@@ -496,6 +496,44 @@ const isCheck = (message, type = allExceptDisplay) => {
 	return false;
 };
 
+document.addEventListener('click', (event) => {
+	const toggleLink = event.target.closest('.universal-toggle');
+	if (!toggleLink) return;
+
+	const chatMessage = toggleLink.closest('.chat-message');
+	const toggleSections = chatMessage.querySelectorAll('.toggle-section');
+	const toggleIcon = toggleLink.querySelector('.toggle-icon');
+	const isHidden = toggleIcon.classList.contains('fa-chevron-up');
+
+	// Get game settings (true means hide, false means show)
+	const settings = {
+		tags: game.settings.get('projectfu', 'optionChatMessageHideTags'),
+		quality: game.settings.get('projectfu', 'optionChatMessageHideQuality'),
+		description: game.settings.get('projectfu', 'optionChatMessageHideDescription'),
+		rollDetails: game.settings.get('projectfu', 'optionChatMessageHideRollDetails'),
+	};
+
+	// Toggle visibility based on current state and settings
+	toggleSections.forEach((section) => {
+		const shouldAlwaysShow = [
+			{ className: 'accuracy-check-results', setting: settings.rollDetails },
+			{ className: 'damage-results', setting: settings.rollDetails },
+			{ className: 'description', setting: settings.description },
+			{ className: 'quality', setting: settings.quality },
+			{ className: 'tags', setting: settings.tags },
+		].some(({ className, setting }) => section.classList.contains(className) && !setting);
+
+		section.classList.toggle('shown', shouldAlwaysShow || isHidden);
+		section.classList.toggle('hidden', !shouldAlwaysShow && !isHidden);
+	});
+
+	// Update toggle icon and tooltip
+	const newState = !isHidden;
+	toggleIcon.classList.toggle('fa-chevron-up', newState);
+	toggleIcon.classList.toggle('fa-chevron-down', !newState);
+	toggleLink.setAttribute('data-tooltip', game.i18n.localize(newState ? 'FU.ChatMessageHide' : 'FU.ChatMessageShow'));
+});
+
 export const ChecksV2 = Object.freeze({
 	display,
 	accuracyCheck,

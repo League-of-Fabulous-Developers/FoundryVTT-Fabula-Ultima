@@ -16,32 +16,27 @@
         {{#if result.fumble}}data-tooltip="{{localize 'FU.Fumble'}}"{{/if}}
     >
         <div class="startcap"></div>
-        <div class="" style="flex: 0 1 auto;">{{result.total}} <label>vs</label> {{uppercase
-            additionalData.targetedDefense}}{{uppercase details.defense}}</div>
+        <div class="" style="flex: 0 1 auto;">{{result.total}} <label>vs</label> {{uppercase additionalData.targetedDefense}}{{uppercase details.defense}}</div>
         <div class="endcap"></div>
     </label>
 </div>
 
-<div style="clear: both;"></div>
-<div class="flexrow gap-5">
-    <div id='results' class='detail-desc flex-group-center grid grid-3col flex3'>
-        <div data-tooltip="(Die Size: {{result.die1}})">
-            <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute)
-                'Abbr')}}</label>
-            <label class="detail">{{result.attr1}}</label>
-        </div>
-        <div data-tooltip="(Die Size: {{result.die2}})">
-            <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute)
-                'Abbr')}}</label>
-            <label class="detail">{{result.attr2}}</label>
-        </div>
-        <div {{#if
-            modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"
-            {{/if}}>
-            <label class="title">{{localize 'FU.ModAbbr'}}</label>
-            <label class="detail">
-                {{result.modifier}}
-            </label>
+<!-- Roll Details Section -->
+<div class="toggle-section accuracy-check-results {{#if hideSettings.optionChatMessageHideRollDetails}}hidden{{/if}}">
+    <div class="flexrow gap-5">
+        <div class='detail-desc flex-group-center grid grid-3col flex3'>
+            <div data-tooltip="(Die Size: {{result.die1}})">
+                <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}}</label>
+                <label class="detail">{{result.attr1}}</label>
+            </div>
+            <div data-tooltip="(Die Size: {{result.die2}})">
+                <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute) 'Abbr')}}</label>
+                <label class="detail">{{result.attr2}}</label>
+            </div>
+            <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}" {{/if}}>
+                <label class="title">{{localize 'FU.ModAbbr'}}</label>
+                <label class="detail">{{result.modifier}}</label>
+            </div>
         </div>
     </div>
 </div>

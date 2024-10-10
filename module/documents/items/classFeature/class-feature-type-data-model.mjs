@@ -14,6 +14,10 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 					partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
 					data: {
 						collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
+						optionChatMessageHideTags: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideTags),
+						optionChatMessageHideDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideDescription),
+						optionChatMessageHideQuality: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideQuality),
+						optionChatMessageHideRollDetails: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideRollDetails),
 						summary: item.system.summary.value,
 						description: v,
 					},

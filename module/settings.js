@@ -36,6 +36,11 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
 	optionCombatHudTrackedResource4: 'optionCombatHudTrackedResource4',
+	optionChatMessageOptions: 'optionChatMessageOptions',
+	optionChatMessageHideTags: 'optionChatMessageHideTags',
+	optionChatMessageHideDescription: 'optionChatMessageHideDescription',
+	optionChatMessageHideQuality: 'optionChatMessageHideQuality',
+	optionChatMessageHideRollDetails: 'optionChatMessageHideRollDetails',
 	optionCombatHudWidth: 'optionCombatHudWidth',
 	optionCombatMouseDown: 'optionCombatMouseDown',
 	optionDefaultTargetingMode: 'optionDefaultTargetingMode',
@@ -51,6 +56,50 @@ export const SETTINGS = Object.freeze({
 });
 
 export const registerSystemSettings = async function () {
+	game.settings.registerMenu(SYSTEM, 'myChatMessageOptions', {
+		name: game.i18n.localize('FU.ChatMessageOptions'),
+		label: game.i18n.localize('FU.ChatMessageOptionsManage'),
+		hint: game.i18n.localize('FU.ChatMessageOptionsSettingsInstuction'),
+		icon: 'fas fa-message',
+		type: ChatMessageOptions,
+		restricted: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionChatMessageHideTags, {
+		name: game.i18n.localize('FU.ChatMessageHideTags'),
+		hint: game.i18n.localize('FU.ChatMessageHideTagsHint'),
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionChatMessageHideDescription, {
+		name: game.i18n.localize('FU.ChatMessageHideDescription'),
+		hint: game.i18n.localize('FU.ChatMessageHideDescriptionHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionChatMessageHideQuality, {
+		name: game.i18n.localize('FU.ChatMessageHideQuality'),
+		hint: game.i18n.localize('FU.ChatMessageHideQualityHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionChatMessageHideRollDetails, {
+		name: game.i18n.localize('FU.ChatMessageHideRollDetails'),
+		hint: game.i18n.localize('FU.ChatMessageHideRollDetailsHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
 	game.settings.registerMenu(SYSTEM, 'myOptionalRules', {
 		name: game.i18n.localize('FU.OptionalRules'),
 		label: game.i18n.localize('FU.OptionalRulesManage'),
@@ -565,6 +614,36 @@ class OptionalRules extends FormApplication {
 		game.settings.set(SYSTEM, SETTINGS.optionQuirks, optionQuirks);
 		game.settings.set(SYSTEM, SETTINGS.optionZeroPower, optionZeroPower);
 		game.settings.set(SYSTEM, SETTINGS.optionCampingRules, optionCampingRules);
+	}
+}
+
+class ChatMessageOptions extends FormApplication {
+	static get defaultOptions() {
+		return foundry.utils.mergeObject(super.defaultOptions, {
+			template: 'systems/projectfu/templates/system/settings/chat-messages.hbs',
+		});
+	}
+
+	getData() {
+		return {
+			optionChatMessageHideTags: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideTags),
+			optionChatMessageHideDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideDescription),
+			optionChatMessageHideQuality: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideQuality),
+			optionChatMessageHideRollDetails: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideRollDetails),
+			optionChatMessageHideOptions: {
+				show: 'FU.ChatMessageShow',
+				clicked: 'FU.ChatMessageClicked',
+				hide: 'FU.ChatMessageHide',
+			},
+		};
+	}
+
+	async _updateObject(event, formData) {
+		const { optionChatMessageHideTags, optionChatMessageHideDescription, optionChatMessageHideQuality, optionChatMessageHideRollDetails } = foundry.utils.expandObject(formData);
+		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideTags, optionChatMessageHideTags);
+		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideDescription, optionChatMessageHideDescription);
+		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideQuality, optionChatMessageHideQuality);
+		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideRollDetails, optionChatMessageHideRollDetails);
 	}
 }
 

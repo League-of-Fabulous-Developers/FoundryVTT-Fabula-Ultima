@@ -50,6 +50,9 @@ function onRenderCheck(data, result, actor, item) {
 					description: await TextEditor.enrichHTML(item.system.description),
 				},
 				collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
+				optionChatMessageHideTags: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideTags),
+				optionChatMessageHideDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideDescription),
+				optionChatMessageHideQuality: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideQuality),
 			},
 		}));
 	}
