@@ -138,6 +138,50 @@
 				"PLAYER": "OBSERVER",
 				"ASSISTANT": "OWNER"
 			}
+		},
+		{
+			"label": "Actor Effects",
+			"type": "Item",
+			"name": "actor-effects",
+			"path": "packs/actor-effects",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Conditions",
+			"type": "Item",
+			"name": "conditions-effects",
+			"path": "packs/conditions-effects",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Equipment Effects",
+			"type": "Item",
+			"name": "equipment-effects",
+			"path": "packs/equipment-effects",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"label": "Qualities",
+			"type": "Item",
+			"name": "qualities",
+			"path": "packs/qualities",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
 		}
 	],
 	"packFolders": [
@@ -152,6 +196,12 @@
 			"sorting": "a",
 			"color": "#276625",
 			"packs": ["classes", "skills", "heroic-skills", "spells"]
+		},
+		{
+			"name": "Effects",
+			"sorting": "a",
+			"color": "#8b5c00",
+			"packs": ["actor-effects", "conditions-effects", "equipment-effects", "qualities"]
 		},
 		{
 			"name": "Equipment",
@@ -207,6 +257,16 @@
 			"lang": "ru",
 			"name": "Русский",
 			"path": "lang/ru.json"
+		},
+		{
+			"lang": "pl",
+			"name": "Polish",
+			"path": "lang/pl.json"
+		},
+		{
+			"lang": "cn",
+			"name": "中文",
+			"path": "lang/cn.json"
 		}
 	],
 	"relationships": {

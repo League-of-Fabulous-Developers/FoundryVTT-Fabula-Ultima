@@ -1,0 +1,76 @@
+{
+  "folder": "jJ6nd24qtwNQXVDs",
+  "name": "Air Immunity",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/air.svg",
+  "system": {
+    "fuid": "air-immunity"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.ZCe1E7RtKJLMgcn8",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Air Immunity",
+      "img": "systems/projectfu/styles/static/affinities/air.svg",
+      "_id": "94GdTX2nFEVnsVRR",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.air.current",
+          "mode": 4,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725752594746,
+        "modifiedTime": 1725753036691,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!ZCe1E7RtKJLMgcn8.94GdTX2nFEVnsVRR"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750163418,
+    "modifiedTime": 1725750163418,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "ZCe1E7RtKJLMgcn8",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!ZCe1E7RtKJLMgcn8"
+}

@@ -13,21 +13,27 @@
 
 		/* Description Format */
 		.desc {
-			background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
-			border-radius: 12px;
+			background: url(/systems/projectfu/styles/static/ui/bg.webp), linear-gradient(to right, #f5f5dc, #c9c7b8);
+			background-blend-mode: multiply;
+			background-repeat: repeat-y;
+			background-position: right top;
+			border-radius: 10px;
 			border: 1px solid #2c4a4254;
-			padding: 5px;
+			padding: 0.25rem;
 			.inline-desc {
 				background: linear-gradient(to right, rgb(233, 243, 234), rgb(233, 243, 234, 0.5));
-				border-radius: 12px;
+				border-radius: 10px;
 				border: 1px solid #a2b29f;
 				padding: 5px;
 			}
 		}
 
 		fieldset {
-			background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
-			border-radius: 12px;
+			background: url(/systems/projectfu/styles/static/ui/bg.webp), linear-gradient(to right, #f5f5dc, #c9c7b8);
+			background-blend-mode: multiply;
+			background-repeat: repeat-y;
+			background-position: right top;
+			border-radius: 10px;
 			border: 1px solid #2c4a4254;
 			padding: 5px;
 			margin-bottom: 5px;
@@ -134,5 +140,12 @@
 		padding: 5px;
 		width: auto;
 		overflow-x: auto;
+	}
+
+	.form-buttons,
+	.action-button {
+		button {
+			background: rgba(255, 255, 240, 0.8);
+		}
 	}
 }

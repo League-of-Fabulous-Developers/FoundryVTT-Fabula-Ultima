@@ -15,7 +15,10 @@ export class FUCombatTracker extends CombatTracker {
 			data.factions = await this.getFactions(data);
 			data.currentTurn = data.combat.getCurrentTurn();
 			data.turnsLeft = this.countTurnsLeft(data.combat);
-			data.totalTurns = data.combat.combatants.reduce((agg, combatant) => (agg[combatant.id] = combatant.totalTurns) && agg, {});
+			data.totalTurns = data.combat.combatants.reduce((agg, combatant) => {
+				agg[combatant.id] = combatant.totalTurns;
+				return agg;
+			}, {});
 			data.turns = data.turns?.map((turn) => {
 				turn.statusEffects = data.combat.combatants.get(turn.id)?.actor.temporaryEffects.map((effect) => ({
 					name: effect.name,

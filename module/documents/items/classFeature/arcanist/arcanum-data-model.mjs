@@ -35,10 +35,17 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 	}
 
 	static async getAdditionalData(model) {
+		// Extract the ID from model.item
+		const itemId = model.item?._id;
+
+		// Get the current active arcanum ID
+		const actorArcanumId = model.actor?.system.equipped.arcanum || null;
+
 		// Provide any additional data needed for the template rendering
 		return {
 			enrichedMerge: await TextEditor.enrichHTML(model.merge),
 			enrichedDismiss: await TextEditor.enrichHTML(model.dismiss),
+			active: itemId === actorArcanumId,
 		};
 	}
 
@@ -62,5 +69,9 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 		};
 
 		ChatMessage.create(chatMessage);
+	}
+
+	transferEffects() {
+		return this.item?.isEquipped ?? false;
 	}
 }

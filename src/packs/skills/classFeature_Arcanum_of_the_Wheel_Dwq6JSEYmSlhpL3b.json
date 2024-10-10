@@ -22,6 +22,7 @@
   },
   "effects": [
     {
+      "origin": "Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -31,42 +32,47 @@
         "startRound": null,
         "startTurn": null
       },
-      "disabled": true,
+      "disabled": false,
       "name": "Merged: Wheel",
-      "_id": "1iKpZOSNd8g7Q6Dn",
+      "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Wheel.png",
+      "_id": "ydG9HFnv5wiV0oTU",
+      "type": "base",
+      "system": {},
       "changes": [
         {
-          "key": "system.derived.def.bonus",
+          "key": "system.derived.def.value",
           "mode": 2,
           "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.immunities.slow.base",
+          "mode": 5,
+          "value": "true",
           "priority": null
         }
       ],
       "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You are immune to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">slow</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">.</span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a +1 bonus to your Defense.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p></li></ul>",
+      "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
+      "sort": 0,
       "flags": {
         "projectfu": {
           "CrisisInteraction": "none"
         }
       },
-      "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
-        "duplicateSource": null
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725598840239,
+        "modifiedTime": 1725606451007,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
       },
-      "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Wheel.png",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!Dwq6JSEYmSlhpL3b.1iKpZOSNd8g7Q6Dn"
+      "_key": "!items.effects!Dwq6JSEYmSlhpL3b.ydG9HFnv5wiV0oTU"
     }
   ],
   "flags": {

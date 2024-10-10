@@ -56,7 +56,7 @@
                     {{!-- Resource Points --}}
                     {{#if item.system.hasResource.value}}
                         <div class="item-m flexcol flex-group-center resource-content">
-                            <label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
+                            <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{ item.system.rp.name }}</label>
                             <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
                                 <a class="decrement-button" data-type="resourceCounter"
                                    data-item-id="{{ item._id }}">-</a>
@@ -159,8 +159,8 @@
 
                     {{!-- Resource Points --}}
                     {{#if item.system.hasResource.value}}
-                        <div class="item-m desc flexcol flex-group-center resource-content">
-                            <label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
+                        <div class="item-m inline-desc flexcol flex-group-center resource-content"  style="padding: 0">
+                            <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{ item.system.rp.name }}</label>
                             <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
                                 <a class="decrement-button" data-type="resourceCounter"
                                    data-item-id="{{ item._id }}">-</a>
@@ -176,7 +176,7 @@
                     {{/if}}
                     {{!-- Clocks --}}
                     {{#if item.system.hasClock.value}}
-                        <div class="item-m desc" style="text-align: initial; padding: 1px;">
+                        <div class="item-m inline-desc" style="text-align: initial; padding: 2px;">
                             <a class="decrement-button align-left" data-type="clockCounter"
                                data-item-id="{{ item._id }}"> <i
                              class="fas fa-minus"></i></a>
@@ -230,7 +230,7 @@
                     </div>
                     {{!-- Clocks --}}
                     {{#if item.system.hasClock.value}}
-                        <div class="item-m desc" style="text-align: initial; padding: 1px;">
+                        <div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
                             <a class="decrement-button align-left" data-type="clockCounter"
                                data-item-id="{{ item._id }}"> <i
                              class="fas fa-minus"></i></a>

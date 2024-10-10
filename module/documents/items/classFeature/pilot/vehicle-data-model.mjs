@@ -86,4 +86,9 @@ export class VehicleDataModel extends RollableClassFeatureDataModel {
 
 		ChatMessage.create(chatMessage);
 	}
+
+	transferEffects() {
+		let vehicleState = this.actor?.system.vehicle;
+		return vehicleState?.vehicle === this.item && vehicleState?.embarked;
+	}
 }

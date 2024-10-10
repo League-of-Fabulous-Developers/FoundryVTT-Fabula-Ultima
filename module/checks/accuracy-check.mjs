@@ -23,7 +23,7 @@ function handleGenericBonus(actor, modifiers) {
 }
 
 /**
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]
  * @param {CheckCallbackRegistration} registerCallback

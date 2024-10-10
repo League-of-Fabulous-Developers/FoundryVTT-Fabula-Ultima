@@ -76,9 +76,10 @@ Major thanks to the following contributors:
 
 - Special thanks to the following contributors found here: [Contributors Link](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/graphs/contributors)
 
-As well as the following localizers who translated the system to their respective language:
+As well as the following localizers who translated the System UI to their respective language:
 
-- Italian ([KzMz](https://github.com/KzMz), RaurosHuntor), German ([Shourn](https://github.com/Shourn)), French ([Zakarik](https://github.com/Zakarik)), Spanish (Jakob_LP, Alejabar), Brazilian Portuguese (Lamegal), Russian (FreeDay).
+- Italian ([KzMz](https://github.com/KzMz), RaurosHuntor), German ([Shourn](https://github.com/Shourn)), French ([Zakarik](https://github.com/Zakarik)), Spanish (Jakob_LP, Alejabar), Brazilian Portuguese (Lamegal), Russian (FreeDay), Polish (Hirtus and Picollo)
+and Chinese (moroboshikan_42246 (诸星观)).
 
 The following assets/code were used from the following projects:
 

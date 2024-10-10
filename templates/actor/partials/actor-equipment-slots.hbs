@@ -1,7 +1,7 @@
 {{#if (or (eq actor.type "character") system.useEquipment.value)}}
     <header class="items-main-header flexrow gap-5" style="height: 28px;">
         <!-- Armor Slot -->
-        <span class="items-main armor-hand slot-style rollable" data-roll-type="item-slot">
+        <span class="armor-hand button-style slot-style rollable" data-roll-type="item-slot">
             {{#if (lookupItemById actor.items actor.system.equipped.armor)}}
                 {{#with (lookupItemById actor.items actor.system.equipped.armor) as |item|}}
                     <div class="equipped-item gap-5" data-tooltip="{{localize 'FU.Armor'}}<br>{{ item.name }}">
@@ -11,6 +11,7 @@
                 {{/with}}
             {{else}}
                 <div class="equipped-item gap-5">
+                    <i class="ra ra-helmet ra-1xh"></i>
                     {{localize 'FU.NoItem'}}
                 </div>
             {{/if}}
@@ -20,9 +21,9 @@
         {{#if (and actor.system.equipped.mainHand actor.system.equipped.offHand (eq actor.system.equipped.mainHand actor.system.equipped.offHand))}}
             {{#if (lookupItemById actor.items actor.system.equipped.mainHand)}}
                 {{#with (lookupItemById actor.items actor.system.equipped.mainHand) as |item|}}
-                    <span class="items-main two-hand slot-style rollable" data-roll-type="item-slot" data-tooltip="{{localize 'FU.TwoHanded'}}<br>{{ item.name }}">
-                        <div class="equipped-item">
-                            <i class="{{ getIconClass item @root.actor.system.equipped }}" style="color: white !important; font-size: 1.25rem; -webkit-text-stroke: transparent;"></i>
+                    <span class="two-hand button-style slot-style rollable" data-roll-type="item-slot" data-tooltip="{{localize 'FU.TwoHanded'}}<br>{{ item.name }}">
+                        <div class="equipped-item gap-5">
+                            <i class="{{ getIconClass item @root.actor.system.equipped }}" style="color: inherit !important; font-size: 1.25rem; -webkit-text-stroke: transparent;"></i>
                             <span class="equipped-item-content">{{ item.name }}</span>
                         </div>
                     </span>
@@ -31,7 +32,7 @@
             <!-- Phantom Hand Slot -->
             {{#if (lookupItemById actor.items actor.system.equipped.phantom)}}
                 {{#with (lookupItemById actor.items actor.system.equipped.phantom) as |item|}}
-                    <span class="items-main phantom-hand slot-style rollable" data-roll-type="item-slot">
+                    <span class="phantom-hand button-style slot-style rollable" data-roll-type="item-slot">
                         <div class="equipped-item gap-5" data-tooltip="{{item.name}}">
                             <i class="ra ra-daggers ra-1x"></i>
                         </div>
@@ -40,7 +41,7 @@
             </span>
         {{else}}
             <!-- Main Hand Slot -->
-            <span class="items-main left-hand slot-style rollable" data-roll-type="item-slot">
+            <span class="left-hand button-style slot-style rollable" data-roll-type="item-slot">
                 {{#if (lookupItemById actor.items actor.system.equipped.mainHand)}}
                     {{#with (lookupItemById actor.items actor.system.equipped.mainHand) as |item|}}
                         <div class="equipped-item gap-5" data-tooltip="{{localize 'FU.MainHand'}}<br>{{ item.name }}">
@@ -59,7 +60,7 @@
             <!-- Phantom Hand Slot -->
             {{#if (lookupItemById actor.items actor.system.equipped.phantom)}}
                 {{#with (lookupItemById actor.items actor.system.equipped.phantom) as |item|}}
-                    <span class="items-main phantom-hand slot-style rollable" data-roll-type="item-slot">
+                    <span class="phantom-hand button-style slot-style rollable" data-roll-type="item-slot">
                         <div class="equipped-item gap-5" data-tooltip="{{item.name}}">
                             <i class="ra ra-daggers ra-1x"></i>
                         </div>
@@ -68,7 +69,7 @@
             </span>
 
             <!-- Off Hand Slot -->
-            <span class="items-main right-hand slot-style rollable" data-roll-type="item-slot">
+            <span class="right-hand button-style slot-style rollable" data-roll-type="item-slot">
                 {{#if (lookupItemById actor.items actor.system.equipped.offHand)}}
                     {{#with (lookupItemById actor.items actor.system.equipped.offHand) as |item|}}
                         <div class="equipped-item gap-5" data-tooltip="{{localize 'FU.OffHand'}}<br>{{ item.name }}">
@@ -90,7 +91,7 @@
         {{/if}}
 
         <!-- Accessory Slot -->
-        <span class="items-main acc-hand slot-style rollable" data-roll-type="item-slot">
+        <span class="acc-hand button-style slot-style rollable" data-roll-type="item-slot">
             {{#if (lookupItemById actor.items actor.system.equipped.accessory)}}
                 {{#with (lookupItemById actor.items actor.system.equipped.accessory) as |item|}}
                     <div class="equipped-item gap-5" data-tooltip="{{localize 'FU.Accessory'}}<br>{{ item.name }}">
@@ -99,7 +100,8 @@
                     </div>
                 {{/with}}
             {{else}}
-                <div class="equipped-item">
+                <div class="equipped-item gap-5">
+                    <i class="fas fa-leaf ra-1xh"></i>
                     {{localize 'FU.NoItem'}}
                 </div>
             {{/if}}

@@ -1,0 +1,76 @@
+{
+  "folder": "KoamGTrOopqqmbxH",
+  "name": "Light Resistance",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/light.svg",
+  "system": {
+    "fuid": "light-resistance"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Light Resistance",
+      "img": "systems/projectfu/styles/static/affinities/light.svg",
+      "_id": "TlCLlu54RBjlIDPN",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.light",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725754568102,
+        "modifiedTime": 1725754587524,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!Xab6AwcRhoxVhygu.TlCLlu54RBjlIDPN"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750014969,
+    "modifiedTime": 1725750014969,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "Xab6AwcRhoxVhygu",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!Xab6AwcRhoxVhygu"
+}

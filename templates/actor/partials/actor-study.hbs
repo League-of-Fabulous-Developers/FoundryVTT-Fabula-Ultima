@@ -1,4 +1,4 @@
-<header class="sheet-header desc" style="background-color:#c9c8b9">
+<header class="sheet-header">
     {{#if (or (eq system.study.value 1) (eq system.study.value 2) (eq system.study.value 3))}}
     {{!-- Name/HP Section --}}
         {{>"systems/projectfu/templates/actor/partials/actor-header.hbs" actor=actor}}
@@ -12,14 +12,16 @@
     {{/if}}
 
     <nav class="sheet-tabs tabs desc flexrow" data-group="primary" style="align-self: stretch;">
-        <a class="item study-style gap-5" data-tooltip="{{localize 'FU.StudyRoll'}}" style="min-width: fit-content;">
-            <i class="fas fa-magnifying-glass icon"></i>
-            <label for="studySelect" style="padding-right: 5px; cursor: pointer;">{{localize 'FU.Study'}}</label>
-            <select name="system.study.value" id="studySelect" data-dtype="Number"
-                    class="resource-label-l" style="color:white;">
+        <span class="action-button button-style study-style grid-span-2 grid-2col" data-tooltip="{{localize 'FU.StudyRoll'}}">
+            <span class="study-button" style="cursor: pointer;">
+                <i class="fas fa-magnifying-glass icon"></i>
+                <label for="studySelect">{{localize 'FU.Study'}}</label>
+            </span>
+
+            <select name="system.study.value" id="studySelect" data-dtype="Number" class="resource-label-l">
                 {{selectOptions studyRoll selected=system.study.value}}
             </select>
-        </a>
+        </span>
     </nav>
 </header>
 

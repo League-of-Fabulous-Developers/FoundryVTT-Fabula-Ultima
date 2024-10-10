@@ -1,0 +1,76 @@
+{
+  "folder": "jJ6nd24qtwNQXVDs",
+  "name": "Light Immunity",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/light.svg",
+  "system": {
+    "fuid": "light-immunity"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.9JSSN3qPJS2hlzcD",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Light Immunity",
+      "img": "systems/projectfu/styles/static/affinities/light.svg",
+      "_id": "5RGoWOEqWfpkNRLv",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.light.current",
+          "mode": 4,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725754273174,
+        "modifiedTime": 1725754306428,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!9JSSN3qPJS2hlzcD.5RGoWOEqWfpkNRLv"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750163418,
+    "modifiedTime": 1725750163418,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "9JSSN3qPJS2hlzcD",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!9JSSN3qPJS2hlzcD"
+}

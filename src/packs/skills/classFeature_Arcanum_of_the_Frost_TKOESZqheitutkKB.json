@@ -22,6 +22,7 @@
   },
   "effects": [
     {
+      "origin": "Compendium.projectfu.skills.Item.TKOESZqheitutkKB",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -31,42 +32,47 @@
         "startRound": null,
         "startTurn": null
       },
-      "disabled": true,
+      "disabled": false,
       "name": "Merged: Frost",
-      "_id": "sHrfDIwt5EVpBL5E",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-frost.png",
+      "_id": "NlNLwaqwYxflNKXr",
+      "type": "base",
+      "system": {},
       "changes": [
         {
-          "key": "system.affinities.ice.bonus",
+          "key": "system.affinities.ice",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "system.immunities.enraged.base",
           "mode": 5,
-          "value": "1",
+          "value": "true",
           "priority": null
         }
       ],
       "description": "<ul><li><p>You have Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p></li><li><p>Any <strong>ice</strong> damage you deal ignores Resistances. </p></li></ul>",
+      "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
+      "sort": 0,
       "flags": {
         "projectfu": {
           "CrisisInteraction": "none"
         }
       },
-      "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
-        "duplicateSource": null
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725596891866,
+        "modifiedTime": 1725597025506,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
       },
-      "img": "icons/magic/water/ice-snowman.webp",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!TKOESZqheitutkKB.sHrfDIwt5EVpBL5E"
+      "_key": "!items.effects!TKOESZqheitutkKB.NlNLwaqwYxflNKXr"
     }
   ],
   "flags": {

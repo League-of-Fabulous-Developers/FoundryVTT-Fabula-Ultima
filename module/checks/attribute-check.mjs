@@ -9,7 +9,7 @@ import { CheckConfiguration } from './check-configuration.mjs';
  * @param {FUItem} [item]
  */
 const onRenderCheck = (data, checkResult, actor, item) => {
-	const { type, primary, modifierTotal, secondary, result } = checkResult;
+	const { type, primary, modifierTotal, secondary, result, critical, fumble } = checkResult;
 	if (type === 'attribute') {
 		const inspector = CheckConfiguration.inspect(checkResult);
 		data.push({
@@ -23,6 +23,8 @@ const onRenderCheck = (data, checkResult, actor, item) => {
 					die2: secondary.dice,
 					modifier: modifierTotal,
 					total: result,
+					crit: critical,
+					fumble: fumble,
 				},
 				check: {
 					attr1: {

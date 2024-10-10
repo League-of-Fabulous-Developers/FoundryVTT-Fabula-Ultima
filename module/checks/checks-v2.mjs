@@ -16,6 +16,7 @@ import { SpecialResults } from './special-results.mjs';
 import { Support } from './support/support.mjs';
 import { OpenCheck } from './open-check.mjs';
 import { OpposedCheck } from './opposed-check.mjs';
+import { CheckRetarget } from './check-retarget.mjs';
 
 /**
  * @param {FUActor} actor
@@ -36,7 +37,7 @@ const accuracyCheck = async (actor, item, configCallback) => {
  * @param {CheckCallback} [configCallback]
  */
 const attributeCheck = async (actor, attributes, configCallback) => {
-	/** @type Partial<Check> */
+	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'attribute',
 		primary: attributes.primary,
@@ -73,7 +74,7 @@ const magicCheck = async (actor, item, configCallback) => {
  * @param {CheckCallback} [configCallback]
  */
 const openCheck = async (actor, attributes, configCallback) => {
-	/** @type Partial<Check> */
+	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'open',
 		primary: attributes.primary,
@@ -88,7 +89,7 @@ const openCheck = async (actor, attributes, configCallback) => {
  * @param {CheckCallback} configCallback
  */
 const opposedCheck = async (actor, configCallback) => {
-	/** @type Partial<Check> */
+	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'opposed',
 	};
@@ -106,7 +107,7 @@ const supportCheck = async (actor, groupCheckId) => {
 
 /**
  * @param {CheckResultV2} check
- * @return {Check}
+ * @return {CheckV2}
  */
 const checkFromCheckResult = (check) => {
 	return {
@@ -124,7 +125,7 @@ const checkFromCheckResult = (check) => {
  * @param {CheckResultV2} check
  * @param {FUActor} actor
  * @param {FUItem} item
- * @return {Promise<{roll: Roll, check: Check} | null>}
+ * @return {Promise<{[roll]: Roll, [check]: CheckV2} | boolean>}
  */
 /**
  * @param {CheckId} checkId
@@ -139,20 +140,20 @@ const modifyCheck = async (checkId, callback) => {
 		const actor = await fromUuid(oldResult.actorUuid);
 		const item = await fromUuid(oldResult.itemUuid);
 		const callbackResult = await callback(oldResult, actor, item);
-		if (callbackResult) {
-			const { check = checkFromCheckResult(oldResult), roll = oldResult.roll } = callbackResult;
-			const result = await processResult(check, roll, actor, item);
-			return renderCheck(result, actor, item, message.flags);
-		}
+		const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = callbackResult ?? {};
+		const result = await processResult(check, roll, actor, item);
+		return renderCheck(result, actor, item, message.flags);
+	} else {
+		throw new Error('Check to be modified not found.');
 	}
 };
 
 /**
- * @param {Partial<Check>} check
+ * @param {Partial<CheckV2>} check
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {CheckCallback} initialConfigCallback
- * @return {Check}
+ * @return {Promise<CheckV2>}
  */
 async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.primary ??= '';
@@ -205,10 +206,10 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 const CRITICAL_THRESHOLD = 6;
 
 /**
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {FUActor} actor
  * @param {FUItem} item
- * @return {Roll}
+ * @return {Promise<Roll>}
  */
 async function rollCheck(check, actor, item) {
 	const { primary, secondary, modifiers } = check;
@@ -253,7 +254,7 @@ const extractDieResults = (term, actor) => {
 };
 
 /**
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {Roll} roll
  * @param {FUActor} actor
  * @param {FUItem} item
@@ -320,28 +321,64 @@ async function renderCheck(result, actor, item, flags = {}) {
 	/**
 	 * @type {CheckSection[]}
 	 */
-	const sections = [];
+	const allSections = [];
 	for (let value of renderData) {
 		value = await (value instanceof Function ? value() : value);
-		sections.push(value);
+		if (value) {
+			allSections.push(value);
+		}
 	}
-	sections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
-	const flavor = item
-		? await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
-				name: item.name,
-				img: item.img,
-				id: item.id,
-			})
-		: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
-				title: FU.checkTypes[result.type] || 'FU.RollCheck',
-			});
+	const partitionedSections = allSections.reduce(
+		(agg, curr) => {
+			if (Number.isNaN(curr.order)) {
+				agg.flavor.push(curr);
+			} else {
+				agg.body.push(curr);
+			}
+			return agg;
+		},
+		{ flavor: [], body: [] },
+	);
+	/**
+	 * @type {CheckSection[]}
+	 */
+	const flavorSections = partitionedSections.flavor;
+	/**
+	 * @type {CheckSection[]}
+	 */
+	const bodySections = partitionedSections.body;
+
+	bodySections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+	let flavor;
+	if (flavorSections.length) {
+		flavor = '';
+		for (let flavorSection of flavorSections) {
+			if (flavorSection.content) {
+				flavor = flavor + flavorSection.content;
+			} else {
+				flavor = await renderTemplate(flavorSection.partial, flavorSection.data);
+			}
+		}
+	}
+	if (!flavor?.trim()) {
+		flavor = item
+			? await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
+					name: item.name,
+					img: item.img,
+					id: item.id,
+				})
+			: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
+					title: FU.checkTypes[result.type] || 'FU.RollCheck',
+				});
+	}
 
 	const rolls = [result.roll, ...result.additionalRolls].filter(Boolean);
 
 	const chatMessage = {
 		flavor: flavor,
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections }),
+		content: await renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections: bodySections }),
 		rolls: rolls,
 		type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
 		speaker: ChatMessage.getSpeaker({ actor }),
@@ -355,39 +392,31 @@ async function renderCheck(result, actor, item, flags = {}) {
 			{ overwrite: false, recursive: true },
 		),
 	};
-	const message = await ChatMessage.create(chatMessage);
-
-	setupItemImageClicks(message.id, actor);
-}
-
-/**
- * Add click listeners to item images in the chat message.
- * @param {string} messageId - The ID of the chat message.
- * @param {FUActor} actor - The actor containing the items.
- */
-function setupItemImageClicks(messageId, actor) {
-	// Use event delegation to handle clicks on dynamically added items
-	document.addEventListener('click', function (event) {
-		if (event.target.classList.contains('item-img')) {
-			const img = event.target;
-			const itemId = img.getAttribute('data-item-id');
-			if (actor) {
-				const item = actor.items.get(itemId);
-				if (item) {
-					item.sheet.render(true);
-				}
-			}
-		}
-	});
+	return void ChatMessage.create(chatMessage);
 }
 
 /**
  * Reapply event listeners when new chat messages are added to the DOM.
  */
 function reapplyClickListeners() {
-	Hooks.on('renderChatMessage', (message) => {
+	Hooks.on('renderChatLog', (app, html) => {
 		// Reapply event listeners for each chat message
-		setupItemImageClicks(message.id, game.actors.get(message.speaker.actor));
+		html.on('click', function (event) {
+			const itemId = event.target.dataset.itemId;
+			if (event.target.dataset.itemId) {
+				const messageId = $(event.target).parents('[data-message-id]').data('messageId');
+				const message = game.messages.get(messageId);
+				if (message) {
+					const actor = ChatMessage.getSpeakerActor(message.speaker);
+					if (actor) {
+						const item = actor.items.get(itemId);
+						if (item) {
+							item.sheet.render(true);
+						}
+					}
+				}
+			}
+		});
 	});
 }
 
@@ -395,7 +424,7 @@ function reapplyClickListeners() {
 reapplyClickListeners();
 
 /**
- * @param {Partial<Check>} check
+ * @param {Partial<CheckV2>} check
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {CheckCallback} [initialConfigCallback]
@@ -435,15 +464,34 @@ const display = async (actor, item) => {
 };
 
 /**
+ * @type {CheckType[]}
+ */
+const allExceptDisplay = ['accuracy', 'attribute', 'group', 'magic', 'open', 'opposed', 'support', 'initiative'];
+/**
  * @param {ChatMessage | string} message a ChatMessage or ID of a ChatMessage
+ * @param {CheckType | CheckType[]} [type]
  * @return boolean
  */
-const isCheck = (message) => {
+const isCheck = (message, type = allExceptDisplay) => {
 	if (typeof message === 'string') {
 		message = game.messages.get(message);
 	}
 	if (message instanceof ChatMessage) {
-		return Boolean(message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2));
+		/** @type CheckResultV2 */
+		const flag = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+		if (flag) {
+			if (type) {
+				if (Array.isArray(type)) {
+					return type.includes(flag.type);
+				} else {
+					return type === flag.type;
+				}
+			} else {
+				return true;
+			}
+		} else {
+			return false;
+		}
 	}
 	return false;
 };
@@ -461,8 +509,9 @@ export const ChecksV2 = Object.freeze({
 	isCheck,
 });
 
-CheckPush.initialize();
+CheckRetarget.initialize();
 CheckReroll.initialize();
+CheckPush.initialize();
 SpecialResults.initialize();
 AccuracyCheck.initialize();
 AttributeCheck.initialize();

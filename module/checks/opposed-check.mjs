@@ -12,15 +12,11 @@ const isOpposableCheck = (li) => {
 	const messageId = li.data('messageId');
 	/** @type ChatMessage | undefined */
 	const message = game.messages.get(messageId);
-	if (ChecksV2.isCheck(message)) {
+	if (ChecksV2.isCheck(message, 'attribute')) {
 		const speaker = ChatMessage.getSpeakerActor(message);
 		const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
 		if (speaker !== character) {
-			/** @type Check */
-			const flag = message?.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
-			if (flag && flag.type === 'attribute') {
-				return true;
-			}
+			return true;
 		}
 	}
 	return false;
@@ -34,7 +30,7 @@ const opposeCheck = async (li) => {
 	const sourceCheck = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 	if (sourceCheck) {
 		const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
-		await ChecksV2.opposedCheck(character, (check) => {
+		await ChecksV2.opposedCheck(character, async (check) => {
 			check.primary = sourceCheck.primary.attribute;
 			check.secondary = sourceCheck.secondary.attribute;
 			check.additionalData[SOURCE_CHECK] = {
@@ -44,6 +40,41 @@ const opposeCheck = async (li) => {
 				critical: sourceCheck.critical,
 			};
 			SpecialResults.skipRender(check);
+			const result = await Dialog.prompt({
+				title: game.i18n.localize('FU.OpposedCheckBonusDialog'),
+				label: game.i18n.localize('FU.Submit'),
+				content: `
+                <fieldset class="flexcol resource-content">
+                  <legend class="resource-text-m">
+                    ${game.i18n.localize('FU.OpposedCheckBonusDialogBonus')}
+                  </legend>
+                  <label for="opposedCheckBonus">
+                    ${game.i18n.localize('FU.OpposedCheckBonusDialogBonusLabel')}
+                    <input id="opposedCheckBonus" type="number" name="bonus" value="0">
+                  </label>
+                  <label for="opposedCheckBonusDescription">
+                    ${game.i18n.localize('FU.OpposedCheckBonusDialogDescriptionLabel')}
+                    <input id="opposedCheckBonusDescription" type="text" name="description" placeholder="${game.i18n.localize('FU.OpposedCheckBonusDialogDescriptionPlaceholder')}">
+                  </label>
+                </fieldset>
+                `,
+				rejectClose: false,
+				callback: (jQuery) => {
+					return {
+						bonus: Number(jQuery.find('[name=bonus]').val()),
+						name: jQuery.find('[name=description]').val().trim(),
+					};
+				},
+				options: {
+					classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+				},
+			});
+			if (result.bonus && Number.isInteger(result.bonus)) {
+				check.modifiers.push({
+					label: result.name || game.i18n.localize('FU.OpposedCheckBonusDialogDescriptionPlaceholder'),
+					value: result.bonus,
+				});
+			}
 		});
 	}
 };
@@ -59,7 +90,7 @@ const onGetChatLogEntryContext = (html, options) => {
 };
 
 /**
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {FUActor} actor
  */
 const onPrepareCheck = (check, actor) => {
@@ -88,8 +119,12 @@ const onRenderCheck = (sections, check, actor) => {
 				result: {
 					attr1: check.primary.result,
 					attr2: check.secondary.result,
+					die1: check.primary.dice,
+					die2: check.secondary.dice,
 					modifier: check.modifierTotal,
 					total: check.result,
+					crit: check.critical,
+					fumble: check.fumble,
 				},
 				check: {
 					attr1: {
@@ -120,7 +155,7 @@ const onRenderCheck = (sections, check, actor) => {
 		const speakerActor = ChatMessage.getSpeakerActor(sourceCheckMessage.speaker);
 
 		sections.push({
-			order: CHECK_RESULT - 1,
+			order: CHECK_ROLL - 1,
 			partial: 'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
 			data: {
 				source: speakerActor.name,
@@ -132,12 +167,15 @@ const onRenderCheck = (sections, check, actor) => {
 		});
 
 		let winner;
+		let margin = 0;
 		if ((sourceCheckData.fumble && check.fumble) || (sourceCheckData.critical && check.critical) || sourceCheckData.result === check.result) {
 			winner = null;
 		} else if (sourceCheckData.fumble || check.critical || sourceCheckData.result < check.result) {
 			winner = actor.name;
+			margin = check.result - sourceCheckData.result;
 		} else {
 			winner = speakerActor.name;
+			margin = sourceCheckData.result - check.result;
 		}
 
 		sections.push({
@@ -145,6 +183,7 @@ const onRenderCheck = (sections, check, actor) => {
 			partial: 'systems/projectfu/templates/chat/partials/chat-opposed-check-result.hbs',
 			data: {
 				winner: winner,
+				margin: margin,
 			},
 		});
 	}

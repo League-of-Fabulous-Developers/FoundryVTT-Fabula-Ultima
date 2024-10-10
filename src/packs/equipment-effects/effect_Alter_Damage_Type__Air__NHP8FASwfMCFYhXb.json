@@ -1,0 +1,76 @@
+{
+  "folder": "Z7sOoJ1jkwGP6nE3",
+  "name": "Alter Damage Type (Air)",
+  "type": "effect",
+  "_id": "NHP8FASwfMCFYhXb",
+  "img": "systems/projectfu/styles/static/affinities/air.svg",
+  "system": {
+    "fuid": "alter-damage-type-air"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.equipment-effects.Item.NHP8FASwfMCFYhXb",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Alter Damage Type (Air)",
+      "img": "systems/projectfu/styles/static/affinities/air.svg",
+      "_id": "4tay6tc1XdWR8IGm",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.damageType.value",
+          "mode": 5,
+          "value": "air",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725774257200,
+        "modifiedTime": 1725774438401,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!NHP8FASwfMCFYhXb.4tay6tc1XdWR8IGm"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725774248217,
+    "modifiedTime": 1725774311403,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!NHP8FASwfMCFYhXb"
+}

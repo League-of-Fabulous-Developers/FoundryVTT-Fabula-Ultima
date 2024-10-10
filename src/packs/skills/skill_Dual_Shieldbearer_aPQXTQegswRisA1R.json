@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may now equip a <strong>shield</strong> in your <strong>main hand</strong> slot. As long as you have two shields equipped, you gain the benefits of both items and may treat them as the following combined two-handed melee <strong>brawling</strong> weapon:</p><table style=\"width:98.7597%\" border=\"1\"><colgroup><col style=\"width:14.4654%\"></col><col style=\"width:20.7547%\"></col><col style=\"width:23.2618%\"></col><col style=\"width:41.5181%\"></col></colgroup><tbody><tr><td><strong>WEAPON</strong></td><td><strong>ACCURACY</strong></td><td><strong>DAMAGE</strong></td><td><strong>QUALITY</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields}</strong></td><td><strong>MIG + MIG</strong></td><td><strong>HR + 5</strong> physical</td><td>Deals extra damage equal to your <strong>【SL】</strong> in <strong>@UUID[Compendium.projectfu.skills.Item.7wF1oulk0Zn7ITTF]{Defensive Mastery}</strong> (above).</td></tr></tbody></table><p><strong>VTT Instructions: </strong>Drag and drop 'Twin Shields' onto the character sheet. Navigate to the Items tab where 'Twin Shields' is located and press 'Ctrl+Click' the icon in 'Equip?' column. The item will be added to the 'Phantom Slot'.</p>",
+    "description": "<p>You may now equip a <strong>shield</strong> in your <strong>main hand</strong> slot. As long as you have two shields equipped, you gain the benefits of both items and may treat them as the following combined two-handed melee <strong>brawling</strong> weapon:</p><table style=\"width:98.7597%\" border=\"1\"><colgroup><col style=\"width:14.4654%\"></col><col style=\"width:20.7547%\"></col><col style=\"width:23.2618%\"></col><col style=\"width:41.5181%\"></col></colgroup><tbody><tr><td><strong>WEAPON</strong></td><td><strong>ACCURACY</strong></td><td><strong>DAMAGE</strong></td><td><strong>QUALITY</strong></td></tr><tr><td><strong>@UUID[Compendium.projectfu.skills.Item.2LyT2btVVPDPYY4h]{Twin Shields}</strong></td><td><strong>MIG + MIG</strong></td><td><strong>HR + 5</strong> physical</td><td>Deals extra damage equal to your <strong>【SL】</strong> in <strong>@UUID[Compendium.projectfu.skills.Item.7wF1oulk0Zn7ITTF]{Defensive Mastery}</strong> (above).</td></tr></tbody></table><p><strong>VTT Instructions: </strong>Drag and drop 'Twin Shields' onto the character sheet. Navigate to the Items tab where 'Twin Shields' is located and press 'Ctrl+Click' the icon in 'Equip?' column. The item will be added to the 'Phantom Slot'.<br />You can also equip shields on both your main and off hand slot.</p>",
     "isFavored": {
       "value": false
     },
@@ -134,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706503515397,
-    "modifiedTime": 1724180862574,
+    "modifiedTime": 1725903870850,
     "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null

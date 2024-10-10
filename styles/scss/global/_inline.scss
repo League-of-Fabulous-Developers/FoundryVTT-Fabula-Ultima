@@ -43,10 +43,22 @@
 	}
 }
 
-#tooltip.link-matches a.content-link,
-.locked-tooltip.link-matches a.content-link {
-	color: $color-white;
-	text-shadow: $text-shadow-side;
+#tooltip {
+	&.link-matches {
+		a.content-link {
+			color: $color-white;
+			text-shadow: $text-shadow-side;
+		}
+	}
+}
+
+.locked-tooltip {
+	&.link-matches {
+		a.content-link {
+			color: $color-white;
+			text-shadow: $text-shadow-side;
+		}
+	}
 }
 
 a.content-link,
@@ -148,19 +160,16 @@ a.inline-roll {
 		.hp {
 			background: linear-gradient(to right, $color-hp, color-mix(in srgb, $color-hp, black 30%));
 			background-clip: text;
-			// -webkit-text-fill-color: transparent;
 		}
 
 		.mp {
 			background: linear-gradient(to right, $color-mp, color-mix(in srgb, $color-mp, black 30%));
 			background-clip: text;
-			// -webkit-text-fill-color: transparent;
 		}
 
 		.ip {
 			background: linear-gradient(to right, $color-ip, color-mix(in srgb, $color-ip, black 30%));
 			background-clip: text;
-			// -webkit-text-fill-color: transparent;
 		}
 	}
 

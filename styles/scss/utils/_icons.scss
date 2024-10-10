@@ -8,9 +8,6 @@ $fus-offensive: url('/systems/projectfu/styles/static/icons/fus-offensive.svg');
 $fus-martial: url('/systems/projectfu/styles/static/icons/fus-martial.svg');
 $ful-offensive: url('/systems/projectfu/styles/static/icons/ful-offensive.svg');
 $ful-martial: url('/systems/projectfu/styles/static/icons/ful-martial.svg');
-// $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
-// $fu-guard: url('/systems/projectfu/styles/static/icons/fu-guard.svg');
-
 $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 
 .fu-zenit {
@@ -51,8 +48,6 @@ $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 	height: 24px;
 	background-size: cover;
 	fill: $color-secondary;
-	font-style: normal;
-	display: inline-block;
 }
 
 .fusl {
@@ -158,13 +153,15 @@ $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 	}
 }
 
-.spin2win:hover {
-	& i {
-		animation: hover-up-down 1s ease-in-out infinite alternate;
-	}
+.spin2win {
+	&:hover {
+		& i {
+			animation: hover-up-down 1s ease-in-out infinite alternate;
+		}
 
-	& label {
-		cursor: pointer;
+		& label {
+			cursor: pointer;
+		}
 	}
 }
 

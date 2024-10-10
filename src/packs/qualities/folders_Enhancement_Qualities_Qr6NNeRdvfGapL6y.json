@@ -1,0 +1,22 @@
+{
+  "name": "Enhancement Qualities",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "Qr6NNeRdvfGapL6y",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725812311720,
+    "modifiedTime": 1725812311720,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!folders!Qr6NNeRdvfGapL6y"
+}

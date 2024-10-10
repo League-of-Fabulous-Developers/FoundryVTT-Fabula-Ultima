@@ -7,7 +7,7 @@ import { SETTINGS } from '../../../settings.js';
 import { slugify } from '../../../util.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
-	if (item?.system instanceof ClassFeatureTypeDataModel) {
+	if (item?.system instanceof ClassFeatureTypeDataModel && !(item.system.data instanceof RollableClassFeatureDataModel)) {
 		if (item.system.summary.value || item.system.description) {
 			sections.push(
 				TextEditor.enrichHTML(item.system.description).then((v) => ({

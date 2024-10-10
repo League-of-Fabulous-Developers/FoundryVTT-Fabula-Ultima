@@ -6,7 +6,7 @@ import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
 
 /**
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]
  * @param {CheckCallbackRegistration} registerCallback
@@ -132,6 +132,6 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	transferEffects() {
-		return !this.parent.actor?.system.vehicle.weaponsActive;
+		return this.parent.isEquipped && !this.parent.actor?.system.vehicle.weaponsActive;
 	}
 }

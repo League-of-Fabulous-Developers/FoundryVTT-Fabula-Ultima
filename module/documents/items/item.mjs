@@ -337,7 +337,7 @@ export class FUItem extends Item {
 				</div>
 			</section>
 		</header>
-		<div class='detail-desc flexrow flex-group-center'>
+		<div class='detail-desc flexrow flex-group-center desc'>
 			<label
 				class="total ${rollState} flexrow">
 				<div class="startcap"></div>
@@ -348,7 +348,7 @@ export class FUItem extends Item {
 
 		<div style="clear: both;"></div>
 		<div class="flexrow gap-5">
-			<div class='detail-desc flex-group-center grid grid-3col flex3'>
+			<div id='results' class='detail-desc flex-group-center grid grid-3col flex3'>
 				<div>
 					<label class="title">${attrs.primary.value.toUpperCase()}</label>
 					<label class="detail">${diceResults[0]}</label>
@@ -402,7 +402,7 @@ export class FUItem extends Item {
 			</div>
 			
 			<div class="flexrow gap-5">
-				<div class='detail-desc flex-group-center grid grid-2col flex2'>
+				<div id='results' class='detail-desc flex-group-center grid grid-2col flex2'>
 					<div>
 						<label class="title">${game.i18n.localize('FU.HighRollAbbr')}</label>
 						<label class="detail">${hr}</label>
@@ -589,6 +589,31 @@ export class FUItem extends Item {
 		return tags ? `<div class="fu-tags">${tags}</div>` : '';
 	}
 
+	async getResourceDataString() {
+		// Check if the item type is 'ritual'
+		if (this.type !== 'miscAbility') {
+			return '';
+		}
+
+		const { rp, hasResource } = this.system;
+
+		// Determine resoure point display status
+		const resourceDisplay =
+			hasResource?.value ?? true
+				? await renderTemplate('systems/projectfu/templates/chat/partials/chat-resource-details.hbs', {
+						data: rp,
+					})
+				: '';
+
+		// Create HTML content
+		const content = `
+			<div style="display: grid;">
+				${resourceDisplay}
+			</div>
+		`;
+		return content;
+	}
+
 	async getClockDataString() {
 		// Check if the item type is 'ritual'
 		if (this.type !== 'ritual' && this.type !== 'miscAbility') {
@@ -601,32 +626,20 @@ export class FUItem extends Item {
 		this.progressArr = this.generateProgressArray(progress);
 
 		// Determine clock display status
-		const clockDisplay = hasClock.value
-			? await renderTemplate('systems/projectfu/templates/chat/chat-progress-clock.hbs', {
-					arr: this.progressArr,
-					data: progress,
-				})
-			: '';
+		const clockDisplay =
+			hasClock?.value ?? true
+				? await renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
+						arr: this.progressArr,
+						data: progress,
+					})
+				: '';
 
 		// Create HTML content
 		const content = `
-			<div style="display: grid;">
-				${
-					hasClock.value
-						? `
-					<fieldset class="title-fieldset desc" style="margin: 5px 0;">
-						<legend class="resource-label-m" aria-describedby="tooltip">
-							<span class="resource-label-m" style="width: 4.5em;">
-								${game.i18n.localize('FU.Clock')}
-							</span>
-						</legend>
-						<div class="unique-clock">${clockDisplay}</div>
-					</fieldset>
-				`
-						: ''
-				}
-			</div>
-		`;
+        <div style="display: grid;">
+            ${clockDisplay}
+        </div>
+    	`;
 		return content;
 	}
 
@@ -832,6 +845,7 @@ export class FUItem extends Item {
 
 	async createChatMessage(item, isShift) {
 		const clockString = await item.getClockDataString();
+		const resourceString = await item.getResourceDataString();
 		const chatdesc = item.getDescriptionString();
 		const [attackData, rolls] = await item.getRollString(isShift);
 		const spellString = item.getSpellDataString();
@@ -846,7 +860,7 @@ export class FUItem extends Item {
 		const attackString = Array.isArray(attackData) ? attackData.join('<br /><br />') : attackData;
 
 		// Prepare the content by filtering and joining various parts.
-		let content = [qualityString, spellString, ritualString, consumableString, treasureString, projectString, heroicString, zeroString, clockString, chatdesc, attackString].filter((part) => part).join('');
+		let content = [qualityString, spellString, ritualString, consumableString, treasureString, projectString, heroicString, zeroString, resourceString, clockString, chatdesc, attackString].filter((part) => part).join('');
 		content = `<div data-item-id="${item.id}">${content}</div>`;
 		return { rolls, content };
 	}
@@ -1232,5 +1246,12 @@ export class FUItem extends Item {
 		await this.update({ 'system.fuid': fuid });
 
 		return fuid;
+	}
+
+	get isEquipped() {
+		if (this.actor) {
+			return this.actor.system.equipped.isEquipped(this);
+		}
+		return false;
 	}
 }

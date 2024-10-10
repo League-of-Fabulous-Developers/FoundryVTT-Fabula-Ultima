@@ -8,7 +8,7 @@ import { FUItemSheet } from './sheets/item-sheet.mjs';
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
 import { registerSystemSettings, SETTINGS } from './settings.js';
-import { addRollContextMenuEntries, createCheckMessage, promptCheck, rollCheck } from './helpers/checks.mjs';
+import { addRollContextMenuEntries, createCheckMessage, promptCheck, promptOpenCheck, rollCheck } from './helpers/checks.mjs';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -47,7 +47,7 @@ import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './do
 import { registerOptionalFeatures } from './documents/items/optionalFeature/optional-features.mjs';
 
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
-import { FUActiveEffect, onApplyActiveEffect, onRenderActiveEffectConfig } from './documents/effects/active-effect.mjs';
+import { FUActiveEffect } from './documents/effects/active-effect.mjs';
 import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
@@ -63,6 +63,7 @@ import { CheckConfiguration } from './checks/check-configuration.mjs';
 import { slugify } from './util.mjs';
 import { ActionHandler } from './helpers/action-handler.mjs';
 import { StudyRollHandler } from './helpers/study-roll.mjs';
+import { ItemCustomizer } from './helpers/item-customizer.mjs';
 import { FUHooks } from './hooks.mjs';
 
 globalThis.projectfu = {
@@ -77,6 +78,7 @@ globalThis.projectfu = {
 	CheckConfiguration,
 	ActionHandler,
 	StudyRollHandler,
+	ItemCustomizer,
 };
 
 /* -------------------------------------------- */
@@ -105,6 +107,7 @@ Hooks.once('init', async () => {
 		ChecksV2,
 		CheckConfiguration,
 		ActionHandler,
+		ItemCustomizer,
 		util: {
 			slugify,
 		},
@@ -162,8 +165,6 @@ Hooks.once('init', async () => {
 		effect: EffectDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
-	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
-	Hooks.on('applyActiveEffect', onApplyActiveEffect);
 
 	// Register system settings
 	registerSystemSettings();
@@ -188,18 +189,22 @@ Hooks.once('init', async () => {
 	Actors.unregisterSheet('core', ActorSheet);
 	Actors.registerSheet('projectfu', FUStandardActorSheet, {
 		makeDefault: true,
+		label: 'Standard Actor Sheet',
 	});
 	Items.unregisterSheet('core', ItemSheet);
 	Items.registerSheet('projectfu', FUItemSheet, {
 		makeDefault: true,
+		label: 'Standard Item Sheet',
 	});
 	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],
 		makeDefault: true,
+		label: 'Class Feature Sheet',
 	});
 	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
 		types: ['optionalFeature'],
 		makeDefault: true,
+		label: 'Optional Feature Sheet',
 	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
@@ -276,6 +281,7 @@ Handlebars.registerHelper('translate', function (str) {
 			ritualism: 'FU.Ritualism',
 			spiritism: 'FU.Spiritism',
 		},
+		CONFIG.FU.damageTypes,
 		CONFIG.FU.itemTypes,
 		CONFIG.FU.weaponTypes,
 	);
@@ -372,7 +378,7 @@ Handlebars.registerHelper('getIconClass', function (item, equippedItems) {
 	if (itemId === equippedItems.mainHand && item.type === 'shield') {
 		return 'ra ra-heavy-shield ra-1xh';
 	}
-	// Special case: if item is in tthe phantom slot
+	// Special case: if item is in the phantom slot
 	if (item.type === 'weapon' && itemId === equippedItems.phantom) {
 		return 'ra ra-daggers ra-1xh';
 	}
@@ -436,6 +442,25 @@ Handlebars.registerHelper('inArray', function (item, array, options) {
 	}
 });
 
+Handlebars.registerHelper('formatResource', function (resourceValue, resourceMax, resourceName) {
+	// Convert value to a string to split into 3 digits
+	const valueString = resourceValue.toString().padStart(3, '0');
+	const isCrisis = resourceValue <= resourceMax / 2;
+	const digitBoxes = valueString
+		.split('')
+		.map(
+			(digit) =>
+				`<div class="digit-box${isCrisis ? ' crisis' : ''}">
+            <span class="inner-shadow">
+                <span class="number">${digit}</span>
+            </span>
+        </div>`,
+		)
+		.join('');
+
+	return new Handlebars.SafeString(`<span>${resourceName}</span><span class="digit-row">${digitBoxes}</span>`);
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
@@ -445,24 +470,40 @@ Hooks.once('ready', async function () {
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
 
 	Hooks.on('rollEquipment', (actor, slot) => {
+		// Detect if the shift key is currently pressed
+		const isShift = game.keyboard.isModifierActive(KeyboardManager.MODIFIER_KEYS.SHIFT);
+
 		// Call the rollEquipment function
-		rollEquipment(actor, slot);
+		rollEquipment(actor, slot, isShift);
 	});
 
-	Hooks.on('promptCheckCalled', (actor) => {
+	function handleNoActor(actor) {
 		if (!actor) {
-			return ui.notification.error('No character for this user');
+			ui.notification.error('No character for this user');
+			return true;
 		}
-		// Call promptCheck function
+		return false;
+	}
+
+	Hooks.on('promptOpenCheckCalled', (actor) => {
+		if (handleNoActor(actor)) return;
+		promptOpenCheck(actor);
+	});
+
+	Hooks.on('promptAttributeCheckCalled', (actor) => {
+		if (handleNoActor(actor)) return;
 		promptCheck(actor);
 	});
 
 	Hooks.on('promptGroupCheckCalled', (actor) => {
-		if (!actor) {
-			return ui.notification.error('No character for this user');
-		}
+		if (handleNoActor(actor)) return;
+		let isShift = false;
+		GroupCheck.promptCheck(actor, isShift);
+	});
+
+	Hooks.on('promptInitiativeCheckCalled', (actor) => {
+		if (handleNoActor(actor)) return;
 		let isShift = true;
-		// Call Group Check promptCheck function
 		GroupCheck.promptCheck(actor, isShift);
 	});
 
@@ -557,20 +598,6 @@ Hooks.once('ready', async function () {
 
 Hooks.once('socketlib.ready', onSocketLibReady);
 
-Hooks.once('mmo-hud.ready', () => {
-	// Do this
-});
-
-Hooks.once('ready', () => {
-	const isPixelated = game.settings.get('projectfu', 'optionImagePixelated');
-	const applyPixelatedStyle = () => {
-		// Apply the style to specific selectors
-		$('img').css('image-rendering', isPixelated ? 'pixelated' : '');
-	};
-	// Apply the style initially
-	applyPixelatedStyle();
-});
-
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
@@ -645,28 +672,30 @@ function rollItemMacro(itemUuid) {
  */
 function rollEquipment(actor, slot, isShift) {
 	// Check if the slot is valid
-	const validSlots = ['mainHand', 'offHand', 'armor', 'accessory'];
+	const validSlots = ['mainHand', 'offHand', 'armor', 'accessory', 'phantom', 'arcanum'];
 	if (!validSlots.includes(slot)) {
 		ui.notifications.warn(`Invalid slot: ${slot}!`);
 		return;
 	}
 
-	// Filter items based on the provided slot
-	const sameSlotItems = actor.items.filter((item) => {
-		return item.system.isEquipped && item.system.isEquipped.slot === slot;
-	});
+	// Get the equipped item for the specified slot from actor.system.equipped
+	const equippedItemId = actor.system.equipped[slot];
 
-	// Check if any item is found in the specified slot
-	if (sameSlotItems.length === 0) {
+	// If no item is equipped in the specified slot
+	if (!equippedItemId) {
 		ui.notifications.warn(`No item equipped in ${slot} slot!`);
 		return;
 	}
 
-	// Get the first item from the filtered collection
-	const item = sameSlotItems[0];
+	// Find the item in the actor's items by ID
+	const item = actor.items.get(equippedItemId);
 
-	// Roll the item
-	item.roll(isShift);
+	// If the item exists, roll it
+	if (item) {
+		item.roll(isShift);
+	} else {
+		ui.notifications.warn(`Equipped item in ${slot} slot not found!`);
+	}
 }
 
 const logo = document.getElementById('logo');

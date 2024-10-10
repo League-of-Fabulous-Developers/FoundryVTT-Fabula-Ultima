@@ -1,0 +1,76 @@
+{
+  "folder": "OkqwV9Qct6wMjKU4",
+  "name": "Open Check Up",
+  "type": "effect",
+  "_id": "JjpKM7hPmzGKt5X3",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "open-check-up"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.JjpKM7hPmzGKt5X3",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Open Check Up",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "_id": "FpqG79i3R7xYMGIv",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.openCheck",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>Increase Open Check bonus by 1.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725745544878,
+        "modifiedTime": 1725745680763,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!JjpKM7hPmzGKt5X3.FpqG79i3R7xYMGIv"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725745537366,
+    "modifiedTime": 1725745674684,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!JjpKM7hPmzGKt5X3"
+}

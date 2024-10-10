@@ -28,6 +28,13 @@
 }
 
 @font-face {
+	font-family: 'trigger-bold';
+	src: url('/systems/projectfu/styles/fonts/trigger-bold/trigger-bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
 	font-family: 'Evilz';
 	src: url('/systems/projectfu/styles/fonts/evil-font/Evilz.ttf') format('truetype');
 	font-weight: normal;
@@ -221,7 +228,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 	.item,
 	.zenit-content {
-		font-size: 0.875rem;
+		font-size: 1rem;
 
 		.item-name {
 			font-size: 0.875rem;
@@ -356,6 +363,7 @@ $font-quote: 'EB Garamond', sans-serif;
 
 				&:not(:first-child) {
 					margin-top: 0.5rem;
+					margin-bottom: 0.5rem;
 				}
 			}
 

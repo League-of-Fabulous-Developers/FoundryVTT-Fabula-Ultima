@@ -172,7 +172,7 @@ function onDropActor(actor, sheet, { type, recoveryType, amount, source, uncappe
 }
 
 async function applyRecovery(actor, resource, amount, source, uncapped) {
-	const amountRecovered = Math.max(0, amount + actor.system.bonuses.recovery[resource]);
+	const amountRecovered = Math.max(0, amount + actor.system.bonuses.incomingRecovery[resource]);
 	const attrKey = `resources.${resource}`;
 	const attr = foundry.utils.getProperty(actor.system, attrKey);
 	const uncappedRecoveryValue = amountRecovered + attr.value;

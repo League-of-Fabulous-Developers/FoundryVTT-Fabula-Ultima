@@ -1,121 +1,108 @@
-.window-app .window-content {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	color: var(--color-text-dark-primary);
-	overflow-y: auto !important;
-	overflow-x: hidden;
-}
+.app.backgroundstyle {
+	background: unset;
+	background-blend-mode: unset;
+	background-repeat: unset;
+	background-position: unset;
+	background-color: unset !important;
+	backdrop-filter: blur(5px);
 
-.window-app .window-header {
-	background: rgba($color-secondary, 0.95);
-}
+	& .window-header {
+		background: rgba($color-secondary, 0.95);
+	}
 
-/* Sheet Background */
-.backgroundstyle {
-	background:
-		#{$background-core},
-		linear-gradient(to right, $color-beige, $color-faint);
-	background-blend-mode: multiply;
-	background-repeat: repeat-y;
-	background-position: right top;
-	background-color: transparent !important;
-	.window-content {
-		background: none;
+	& .window-content {
+		background:
+			#{$background-core},
+			linear-gradient(to right, $color-beige, $color-faint);
+		background-size: 100% auto;
+
+		& .section-container,
+		& .desc,
+		& .resource-content.level-field {
+			background: url(/systems/projectfu/styles/static/ui/bg.webp), linear-gradient(to right, #f5f5dc, #c9c7b8);
+			background-blend-mode: multiply;
+			background-repeat: repeat-y;
+			background-position: right top;
+			border: 1px solid #6f6c66;
+			background-size: cover;
+		}
+
+		& .backgroundstyle {
+			border-radius: 10px;
+		}
 	}
 }
 
 .sheet nav.sheet-tabs .item {
 	margin-block: auto;
-	padding: 4px 0 4px 4px;
+	width: fit-content;
+	padding: 2px;
 }
 
-.selectable {
-	&:hover,
-	&:focus {
-		color: #000;
-		text-shadow: 0 0 10px $color-danger;
-		cursor: pointer;
-	}
+.sheet nav.sheet-tabs > [data-tab] {
+	padding: 0px;
+}
+
+.tabs {
+	margin: 5px 0;
 }
 
 .rollable {
 	&:hover,
 	&:focus {
-		color: #000;
-		text-shadow: 2px 2px 12px $color-info;
+		color: #fff79a;
+		text-shadow: 2px 2px 12px #148782;
 		cursor: pointer;
 	}
-}
-
-.tabs .item.active {
-	text-shadow: 2px 2px 12px $color-info !important;
-}
-
-/* Apply focus style to checkboxes */
-input[type='checkbox']:focus {
-	box-shadow: 0 0 5px $color-danger;
-	outline: none;
 }
 
 @keyframes zoomOutUp {
 	40% {
 		opacity: 1;
-		transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+		transform: scale3d(0.475) translate3d(0, 60px, 0);
 		animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 	}
-
 	to {
 		opacity: 0;
-		transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0);
+		transform: scale3d(0.1) translate3d(0, -2000px, 0);
 		animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
 	}
 }
 
-.zoomOutUp {
-	animation-name: zoomOutUp;
-	transform-origin: center bottom;
-}
-
 @keyframes floating {
-	0% {
-		transform: translate(0, 0px);
+	0%,
+	100% {
+		transform: translate(0);
 	}
-
 	50% {
 		transform: translate(0, 6px);
 	}
-
-	100% {
-		transform: translate(0, -0px);
-	}
 }
 
-.notification.projectfu-spellname {
+.zoomOutUp {
 	animation: zoomOutUp;
-	animation-delay: 4s;
-	animation-duration: 1.5s;
-	animation-timing-function: ease-in-out;
-	text-align: center;
-	color: rgba(255, 255, 255, 0.9);
-	font-size: 45px;
-	text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-	box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.3);
-	background-image: linear-gradient($color-charname-gradient);
-	border-style: solid;
-	border-width: thin;
-	border-color: $color-secondary;
-	padding: 24px;
-	margin: auto;
-	border-radius: 24px;
+	transform-origin: center bottom;
 }
 
-.notification.projectfu-spellname .close {
-	opacity: 0;
-	/* Hide the notification by reducing opacity */
-	pointer-events: none;
-	/* Disable interactions with hidden notifications */
+.notification {
+	&.projectfu-spellname {
+		animation: zoomOutUp 1.5s ease-in-out 4s;
+		text-align: center;
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 45px;
+		text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+		box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.3);
+		background-image: linear-gradient($color-charname-gradient);
+		border: thin solid $color-secondary;
+		padding: 24px;
+		margin: auto;
+		border-radius: 24px;
+
+		.close {
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
 }
 
 .highlight-drop-zone {

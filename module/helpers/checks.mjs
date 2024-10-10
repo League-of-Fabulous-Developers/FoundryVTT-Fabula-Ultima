@@ -348,9 +348,13 @@ async function handleReroll(check) {
 /**
  * @param {CheckParameters} params
  * @param {CheckReroll} reroll
- * @returns {Promise<CheckParameters>}
+ * @returns {Promise<CheckParameters|false>}
  */
 export async function rerollCheck(params, reroll) {
+	if (!(await ChatMessage.getSpeakerActor(params.speaker)?.spendMetaCurrency(true))) {
+		return false;
+	}
+
 	/** @type CheckParameters */
 	const check = { ...params };
 
@@ -450,7 +454,9 @@ export function addRollContextMenuEntries(html, options) {
 					const flags = foundry.utils.duplicate(message.flags);
 					delete flags[SYSTEM][Flags.ChatMessage.CheckParams];
 					const newMessage = await rerollCheck(checkParams, rerollParams);
-					await createCheckMessage(newMessage, flags);
+					if (newMessage) {
+						await createCheckMessage(newMessage, flags);
+					}
 				}
 			}
 		},
@@ -480,7 +486,9 @@ export function addRollContextMenuEntries(html, options) {
 					const flags = foundry.utils.duplicate(message.flags);
 					delete flags[SYSTEM][Flags.ChatMessage.CheckParams];
 					const newMessage = await pushCheck(checkParams, pushParams);
-					await createCheckMessage(newMessage, flags);
+					if (newMessage) {
+						await createCheckMessage(newMessage, flags);
+					}
 				}
 			}
 		},
@@ -510,7 +518,9 @@ export function addRollContextMenuEntries(html, options) {
 					const flags = foundry.utils.duplicate(message.flags);
 					delete flags[SYSTEM][Flags.ChatMessage.CheckParams];
 					const newMessage = await rerollCheck(checkParams, rerollParams);
-					await createCheckMessage(newMessage, flags);
+					if (newMessage) {
+						await createCheckMessage(newMessage, flags);
+					}
 				}
 			}
 		},
@@ -551,9 +561,13 @@ async function handlePush(check) {
  *
  * @param {CheckParameters} params
  * @param {CheckPush} push
- * @returns {Promise<CheckParameters>}
+ * @returns {Promise<CheckParameters|false>}
  */
 async function pushCheck(params, push) {
+	if (!(await ChatMessage.getSpeakerActor(params.speaker)?.spendMetaCurrency(true))) {
+		return false;
+	}
+
 	/** @type CheckParameters */
 	const check = { ...params };
 	check.push = push;
@@ -571,7 +585,7 @@ async function pushCheck(params, push) {
  */
 async function getPushParams(actor) {
 	/** @type CheckPush[] */
-	const bonds = actor.system.resources.bonds.map((value) => {
+	const bonds = actor.system.bonds.map((value) => {
 		const feelings = [];
 		value.admInf.length && feelings.push(value.admInf);
 		value.loyMis.length && feelings.push(value.loyMis);

@@ -1,4 +1,11 @@
-<div class="item-full start gap-2 resource-content">
-    <span><strong>{{localize 'FU.ClassFeatureArcanumDomains'}}: </strong></span>
-    <span class="description-effect">{{system.data.domains}}</span>
+<div class="flexrow item-full start">
+    <div>
+        <span><strong>{{localize 'FU.ClassFeatureArcanumDomains'}}: </strong></span>
+        <span class="description-effect">{{system.data.domains}}</span>
+    </div>
+        <div class="flex0">
+        <a data-action="toggleActiveArcanum" data-item-id="{{item.id}}">
+            <i class="fas {{#if additionalData.active}}fa-circle-check{{else}}fa-circle fa-thin{{/if}}"></i>
+        </a>
+    </div>
 </div>

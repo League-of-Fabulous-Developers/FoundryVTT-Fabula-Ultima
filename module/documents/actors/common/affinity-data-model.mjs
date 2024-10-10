@@ -1,6 +1,3 @@
-import { MathHelper } from '../../../helpers/math-helper.mjs';
-import { FU } from '../../../helpers/config.mjs';
-
 /**
  * @property {number} base
  * @property {number} current
@@ -10,44 +7,102 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { NumberField } = foundry.data.fields;
 		return {
-			base: new NumberField({ initial: 0, min: -1, max: 4, integer: true, nullable: false }),
+			base: new NumberField({ initial: 0, min: -1, max: 3, integer: true, nullable: false }),
 		};
 	}
 
-	_initialize(options = {}) {
-		super._initialize(options);
+	constructor(data, { vulnerable, resistant, immune, absorb, ...options }) {
+		super(data, options);
+		const holder = {
+			vulnerable: vulnerable || this.base === -1,
+			resistant: resistant || this.base === 1,
+			immune: immune || this.base === 2,
+			absorb: absorb || this.base === 3,
+		};
 
-		let current = options.current ?? this.base;
 		Object.defineProperty(this, 'current', {
 			configurable: false,
 			enumerable: true,
-			get() {
-				return MathHelper.clamp(current, -1, 4);
+			get: () => {
+				if (holder.absorb) {
+					return 3;
+				}
+				if (holder.immune) {
+					return 2;
+				}
+				if (holder.resistant && holder.vulnerable) {
+					return 0;
+				}
+				if (holder.resistant) {
+					return 1;
+				}
+				if (holder.vulnerable) {
+					return -1;
+				}
+				return 0;
 			},
-			set(newValue) {
-				current = newValue;
-			},
-		});
-
-		Object.defineProperty(this, 'upgrade', {
-			value: () => {
-				if (current < FU.affValue.resistance) {
-					current += 1;
+			set: (newValue) => {
+				if (typeof newValue === 'number') {
+					if (newValue === 3) {
+						holder.absorb = true;
+					}
+					if (newValue === 2) {
+						holder.immune = true;
+					}
+					if (newValue > this.base) {
+						holder.resistant = true;
+					}
+					if (newValue < this.base) {
+						holder.vulnerable = true;
+					}
 				}
 			},
 		});
 
 		Object.defineProperty(this, 'downgrade', {
 			value: () => {
-				if (current <= FU.affValue.resistance) {
-					current -= 1;
-				}
+				holder.vulnerable = true;
 			},
 		});
-	}
 
-	clone(data = {}, context = {}) {
-		context.current = this.current;
-		return super.clone(data, context);
+		Object.defineProperty(this, 'upgrade', {
+			value: () => {
+				holder.resistant = true;
+			},
+		});
+
+		Object.defineProperty(this, 'vulnerable', {
+			value: () => {
+				holder.vulnerable = true;
+			},
+		});
+
+		Object.defineProperty(this, 'resistant', {
+			value: () => {
+				holder.resistant = true;
+			},
+		});
+
+		Object.defineProperty(this, 'immune', {
+			value: () => {
+				holder.immune = true;
+			},
+		});
+
+		Object.defineProperty(this, 'absorb', {
+			value: () => {
+				holder.absorb = true;
+			},
+		});
+
+		Object.defineProperty(this, 'clone', {
+			value: (data = {}, context = {}) => {
+				context.vulnerable = holder.vulnerable;
+				context.resistant = holder.resistant;
+				context.immune = holder.immune;
+				context.absorb = holder.absorb;
+				return super.clone(data, context);
+			},
+		});
 	}
 }

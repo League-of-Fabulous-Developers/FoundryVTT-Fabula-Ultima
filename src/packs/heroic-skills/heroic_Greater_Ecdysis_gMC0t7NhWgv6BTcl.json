@@ -78,7 +78,7 @@
       "max": 6
     },
     "requirement": {
-      "value": "Sharpshooter, Weaponmaster"
+      "value": "Mutant"
     },
     "benefits": {
       "resources": {
@@ -107,7 +107,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711473807263,
-    "modifiedTime": 1724180863940,
+    "modifiedTime": 1725549606943,
     "lastModifiedBy": "dobQfkKFj2NK96cc",
     "compendiumSource": null,
     "duplicateSource": null

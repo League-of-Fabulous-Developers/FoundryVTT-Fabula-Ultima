@@ -1,0 +1,76 @@
+{
+  "folder": "KoamGTrOopqqmbxH",
+  "name": "Ice Resistance",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/ice.svg",
+  "system": {
+    "fuid": "ice-resistance"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.SWdZeuJTEq1ig6S8",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Ice Resistance",
+      "img": "systems/projectfu/styles/static/affinities/ice.svg",
+      "_id": "iErZlChyo26VxsSz",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.ice",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725754546822,
+        "modifiedTime": 1725754563968,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!SWdZeuJTEq1ig6S8.iErZlChyo26VxsSz"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750014969,
+    "modifiedTime": 1725750014969,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "SWdZeuJTEq1ig6S8",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!SWdZeuJTEq1ig6S8"
+}

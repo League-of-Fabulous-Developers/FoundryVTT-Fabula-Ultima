@@ -23,7 +23,7 @@ export class FUItemSheet extends ItemSheet {
 			],
 			dragDrop: [
 				{
-					dragSelector: '.directory-item.document.item', // Selector for draggable items
+					dragSelector: '.directory-item.document.item, .effects-list .effect', // Selector for draggable items
 					dropSelector: '.desc.drop-zone', // Selector for item sheet
 				},
 			],
@@ -101,13 +101,6 @@ export class FUItemSheet extends ItemSheet {
 	activateListeners(html) {
 		super.activateListeners(html);
 
-		// Everything below here is only needed if the sheet is editable
-		if (!this.isEditable) return;
-
-		// Roll handlers, click handlers, etc. would go here.
-
-		// Cast Spell Button
-
 		// [PDFPager Support] Opening Journal PDF pages from PDF Code
 		$('#pdfLink').click(function () {
 			const inputValue = $('input[name="system.source.value"]').val();
@@ -127,6 +120,36 @@ export class FUItemSheet extends ItemSheet {
 				console.error('Invalid input format. Please use proper syntax "PDFCode PageNumber"');
 			}
 		});
+
+		// Render the active effect sheet for viewing/editing when middle-clicking
+		html.find('.effect').mouseup((ev) => {
+			if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
+				const li = $(ev.currentTarget);
+				const simulatedEvent = {
+					preventDefault: () => {},
+					currentTarget: {
+						dataset: { action: 'edit' },
+						closest: () => li[0],
+						classList: {
+							contains: (cls) => li.hasClass(cls),
+						},
+					},
+				};
+
+				onManageActiveEffect(simulatedEvent, this.item);
+			}
+		});
+
+		// Active Effect Roll management
+		html.on('click', '.effect-roll', (ev) => onManageActiveEffect(ev, this.item));
+
+		// -------------------------------------------------------------
+		// Everything below here is only needed if the sheet is editable
+		if (!this.isEditable) return;
+
+		// Roll handlers, click handlers, etc. would go here.
+
+		// Cast Spell Button
 
 		html.find('.regenerate-fuid-button').click(async (event) => {
 			event.preventDefault();
@@ -177,6 +200,25 @@ export class FUItemSheet extends ItemSheet {
 		dropZone.removeClass('highlight-drop-zone');
 	}
 
+	_onDragStart(event) {
+		const li = event.currentTarget;
+		if ('link' in event.target.dataset) return;
+
+		// Create drag data
+		let dragData;
+
+		// Active Effect
+		if (li.dataset.effectId) {
+			const effect = this.item.effects.get(li.dataset.effectId);
+			dragData = effect.toDragData();
+		}
+
+		if (!dragData) return;
+
+		// Set data transfer
+		event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+	}
+
 	/* -------------------------------------------- */
 
 	async _onDrop(event) {
@@ -186,7 +228,19 @@ export class FUItemSheet extends ItemSheet {
 		// Retrieve drag data using TextEditor
 		const data = TextEditor.getDragEventData(event);
 
-		const itemData = await this._getItemDataFromDropData(data);
+		if (data.type === 'Item') {
+			return this.#handleItemDrop(data, event);
+		}
+		if (data.type === 'ActiveEffect') {
+			const effect = await ActiveEffect.implementation.fromDropData(data);
+			if (!this.item.isOwner || !effect) return false;
+			if (effect.target === this.item) return false;
+			return ActiveEffect.create(effect.toObject(), { parent: this.item });
+		}
+	}
+
+	async #handleItemDrop(data, event) {
+		const itemData = await Item.implementation.fromDropData(data);
 
 		// Determine the configuration based on item type
 		const config = this._findItemConfig(itemData.type);
@@ -205,19 +259,6 @@ export class FUItemSheet extends ItemSheet {
 				// Handle other item drops
 				await this._processItemDrop(itemData, config);
 			}
-		} else {
-			// Default behavior for unknown item types
-			await super._onDrop(event);
-		}
-	}
-
-	// Helper function to get item data from drop data
-	async _getItemDataFromDropData(data) {
-		try {
-			return await Item.implementation.fromDropData(data);
-		} catch (error) {
-			console.error('Failed to get item data from drop data:', error);
-			return null;
 		}
 	}
 
@@ -307,12 +348,12 @@ export class FUItemSheet extends ItemSheet {
 		return `@EFFECT[${encodedEffect}]`;
 	}
 
-	/* -------------------------------------------- */
-
 	_canDragDrop() {
 		console.log('Checking drag drop capability');
 		return this.isEditable;
 	}
+
+	/* -------------------------------------------- */
 
 	_toggleMartial(type) {
 		const system = this.item?.system;

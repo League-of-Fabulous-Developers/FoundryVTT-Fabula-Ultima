@@ -1,3 +1,11 @@
+/**
+ * @property {string} armor
+ * @property {string} mainHand
+ * @property {string} offHand
+ * @property {string} accessory
+ * @property {string} phantom
+ * @property {string} arcanum
+ */
 export class EquipDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { StringField } = foundry.data.fields;
@@ -7,11 +15,11 @@ export class EquipDataModel extends foundry.abstract.DataModel {
 			offHand: new StringField({ nullable: true }),
 			accessory: new StringField({ nullable: true }),
 			phantom: new StringField({ nullable: true }),
+			arcanum: new StringField({ nullable: true }),
 		};
 	}
 
-	transferEffects(itemId) {
-		// Check if the item ID is in any of the equipped slots
-		return Object.values(this).includes(itemId);
+	isEquipped(item) {
+		return item && Object.values(this).includes(item?.id);
 	}
 }

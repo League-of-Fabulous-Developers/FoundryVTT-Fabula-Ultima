@@ -1,5 +1,36 @@
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
+
+/**
+ * @typedef TargetData
+ * @property {string} name
+ * @property {string} uuid
+ * @property {string} link
+ * @property {number} difficulty
+ */
+
+function handleGenericBonus(actor, modifiers) {
+	if (actor.system.bonuses.accuracy.openCheck) {
+		modifiers.push({
+			label: 'FU.OpenCheck',
+			value: actor.system.bonuses.accuracy.openCheck,
+		});
+	}
+}
+
+/**
+ * @param {CheckV2} check
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallbackRegistration} registerCallback
+ */
+const onPrepareCheck = (check, actor, item, registerCallback) => {
+	const { type, modifiers } = check;
+	if (type === 'open') {
+		handleGenericBonus(actor, modifiers);
+	}
+};
+
 /**
  * @param {CheckRenderData} data
  * @param {CheckResultV2} checkResult
@@ -7,7 +38,7 @@ import { CHECK_ROLL } from './default-section-order.mjs';
  * @param {FUItem} [item]
  */
 const onRenderCheck = (data, checkResult, actor, item) => {
-	const { type, primary, modifierTotal, secondary, result } = checkResult;
+	const { type, primary, modifierTotal, secondary, result, critical, fumble } = checkResult;
 	if (type === 'open') {
 		data.push({
 			order: CHECK_ROLL,
@@ -20,6 +51,8 @@ const onRenderCheck = (data, checkResult, actor, item) => {
 					die2: secondary.dice,
 					modifier: modifierTotal,
 					total: result,
+					crit: critical,
+					fumble: fumble,
 				},
 				check: {
 					attr1: {
@@ -36,6 +69,7 @@ const onRenderCheck = (data, checkResult, actor, item) => {
 };
 
 const initialize = () => {
+	Hooks.on(CheckHooks.prepareCheck, onPrepareCheck);
 	Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 };
 

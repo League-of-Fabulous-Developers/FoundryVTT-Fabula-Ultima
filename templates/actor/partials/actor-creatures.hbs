@@ -1,44 +1,39 @@
 {{#if (eq actor.type "npc")}}
 {{!-- Creature Rank --}}
     <div class="flexcol gap-1">
-        <div class="resource-content levelup-container creature flex-group-center desc">
+        <div class="resource-content levelup-container creature flex-group-center">
         <span class="resource-content levelup-container flexcol flex-group-center">
             <label class="resource-label-l" data-tooltip="{{localize 'FU.CreatureType'}}" aria-describedby="tooltip">
                 <i class="fas fa-chart-simple icon"></i>{{localize 'FU.CreatureType'}}
             </label>
             <span class="flexrow combineBar" style="border: 0.125em solid #c7c7c7; margin-bottom: -4px;">
-                <select id="specieSelect" name="system.species.value"
-                        class="resource-inputs">
-                    {{#if system.isCompanion.value}}
+                <select name="system.species.value" class="resource-inputs species-select" style="padding: 3px 0">
+                    {{#if (eq system.rank.value 'companion')}}
                         {{selectOptions FU.companionSpecies selected=system.species.value localize=true}}
                     {{else}}
                         {{selectOptions FU.species selected=system.species.value localize=true}}
                     {{/if}}
                 </select>
-                <span class="resource-inputs">
-                    <input type="checkbox" id="isCompanionCheckbox" data-tooltip="{{localize 'FU.isCompanion'}}"
-                           name="system.isCompanion.value" {{checked system.isCompanion.value}} />
-                </span>
             </span>
         </span>
         </div>
 
         <span class="resource-content levelup-container flexcol flex-group-center">
-            {{#if system.isCompanion.value}}
+            {{#if (eq system.rank.value 'companion')}}
                 <span class="flexrow combineBar villain-field resource-content flex-group-center">
-            <label class="resource-label-m" for="system.companion.playerLevel"
+            <label class="resource-inputs" for="system.companion.playerLevel"
                    data-tooltip="{{localize 'FU.PlayerLevel'}}">{{ localize 'FU.LevelAbbr'
             }}</label>
             <span class="resource-inputs">
                 <input type="number" id="companionPlayerLevel" name="system.companion.playerLevel"
-                       value="{{ system.companion.playerLevel }}" style="color:white; height: 1.5em; border: none;" />
+                       value="{{ system.companion.playerLevel }}" style="color:inherit; height: 1.5em; border: none;" />
             </span>
-            <label class="resource-label-m" for="system.companion.skillLevel"
+            <label class="resource-inputs" for="system.companion.skillLevel"
                    data-tooltip="{{localize 'FU.SkillLevel'}}">{{ localize
              'FU.SkillLevelAbbr' }}</label>
             <span class="resource-inputs">
                 <input type="number" id="companionSkillLevel" name="system.companion.skillLevel"
-                       value="{{ system.companion.skillLevel }}" style="color:white; height: 1.5em; border: none;" />
+                       value="{{ system.companion.skillLevel }}" style="color:inherit; height: 1.5em; border: none;" />
             </span>
         </span>
             {{else}}

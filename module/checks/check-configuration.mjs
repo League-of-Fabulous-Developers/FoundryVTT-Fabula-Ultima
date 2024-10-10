@@ -1,5 +1,6 @@
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
+import { CheckHooks } from './check-hooks.mjs';
 
 const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
@@ -43,11 +44,11 @@ const initHrZero = (hrZero) => (check) => {
  * @property {string} name
  * @property {string} uuid
  * @property {string} link
- * @property {number} difficulty
+ * @property {number} [difficulty]
  */
 
 /**
- * @param {Check, CheckResultV2} check
+ * @param {CheckV2, CheckResultV2} check
  * @return {CheckConfigurer} check
  */
 const configure = (check) => {
@@ -172,7 +173,7 @@ class CheckConfigurer {
 }
 
 /**
- * @param {Check, CheckResultV2, ChatMessage} check
+ * @param {CheckV2, CheckResultV2, ChatMessage} check
  * @return {CheckInspector}
  */
 const inspect = (check) => {
@@ -187,6 +188,13 @@ class CheckInspector {
 
 	constructor(check) {
 		this.#check = check;
+	}
+
+	/**
+	 * @return {CheckV2|CheckResultV2}
+	 */
+	getCheck() {
+		return this.#check;
 	}
 
 	/**
@@ -225,9 +233,37 @@ class CheckInspector {
 	}
 }
 
+/**
+ * @param {CheckResultV2} check
+ * @param {FUActor} actor
+ */
+const registerMetaCurrencyExpenditure = (check, actor) => {
+	const randomId = foundry.utils.randomID();
+	check.additionalData.triggerMetaCurrencyExpenditure = randomId;
+	let hookId;
+	/**
+	 * @type RenderCheckHook
+	 */
+	const spendMetaCurrency = (sections, check, actor) => {
+		if (check.additionalData.triggerMetaCurrencyExpenditure === randomId) {
+			delete check.additionalData.triggerMetaCurrencyExpenditure;
+			Hooks.off(CheckHooks.renderCheck, hookId);
+			sections.push(async () => {
+				const success = await actor.spendMetaCurrency(true);
+				if (!success) {
+					throw new Error('not enough meta currency');
+				}
+			});
+		}
+	};
+
+	hookId = Hooks.on(CheckHooks.renderCheck, spendMetaCurrency);
+};
+
 export const CheckConfiguration = Object.freeze({
 	configure,
 	inspect,
 	initHrZero,
 	initDifficulty,
+	registerMetaCurrencyExpenditure,
 });

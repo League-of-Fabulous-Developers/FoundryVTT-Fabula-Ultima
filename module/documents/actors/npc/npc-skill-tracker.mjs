@@ -62,12 +62,13 @@ export class NpcSkillTracker {
 	}
 
 	#calcAvailableSkillsFromRank() {
-		if (this.#data.isChampion.value > 1) {
-			return this.#data.isChampion.value;
-		} else if (this.#data.isElite.value) {
-			return 1;
-		} else {
-			return 0;
+		switch (this.#data.rank.value) {
+			case 'champion':
+				return this.#data.rank.replacedSoldiers;
+			case 'elite':
+				return 1;
+			default:
+				return 0;
 		}
 	}
 

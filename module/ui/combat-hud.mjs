@@ -80,6 +80,18 @@ export class CombatHUD extends Application {
 					'--hud-background-gradient: linear-gradient(to bottom, rgba(44, 88, 77, var(--hud-opacity)), rgba(160, 205, 188, var(--hud-opacity))), rgba(43, 74, 66, var(--hud-opacity));' +
 					'--hud-boxshadow-color: rgba(43, 74, 66, var(--hud-opacity));'
 				);
+			case 'fu-mother':
+				return (
+					'--hud-opacity: ' +
+					opacity +
+					';' +
+					'--hud-background-gradient: rgba(40, 8, 40, var(--hud-opacity));' +
+					'--hud-boxshadow-color: ' +
+					'0 0 0 5px rgba(56, 48, 80, var(--hud-opacity)), ' +
+					'0 0 0 10px rgba(104, 208, 184, var(--hud-opacity)), ' +
+					'0 0 0 12px rgba(247, 232, 168, var(--hud-opacity)), ' +
+					'0 0 0 15px rgba(61, 60, 85, var(--hud-opacity));'
+				);
 		}
 	}
 
@@ -284,6 +296,9 @@ export class CombatHUD extends Application {
 
 		const combatantImages = html.find('.combat-row .token-image');
 		combatantImages.click((event) => this._onCombatantClick(event));
+
+		const combatantNames = html.find('.token-name');
+		combatantNames.click((event) => this._onCombatantClick(event));
 
 		const popOutButton = html.find('.window-popout');
 		popOutButton.click(this._doPopOut.bind(this));
@@ -591,6 +606,9 @@ export class CombatHUD extends Application {
 		const hOffset = -5;
 		let minWidth = 700;
 		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme) === 'fu-modern') {
+			minWidth = 805;
+		}
+		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme) === 'fu-mother') {
 			minWidth = 805;
 		}
 

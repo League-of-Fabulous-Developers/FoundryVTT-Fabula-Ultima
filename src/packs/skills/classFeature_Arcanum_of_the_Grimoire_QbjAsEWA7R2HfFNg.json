@@ -22,6 +22,7 @@
   },
   "effects": [
     {
+      "origin": "Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -31,42 +32,41 @@
         "startRound": null,
         "startTurn": null
       },
-      "disabled": true,
+      "disabled": false,
       "name": "Merged: Grimoire",
-      "_id": "PcxHyUwPDu1jHdr2",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-grimoire.png",
+      "_id": "N151Mbt6kugCFoBx",
+      "type": "base",
+      "system": {},
       "changes": [
         {
-          "key": "system.attributes.ins.bonus",
-          "mode": 2,
-          "value": "2",
+          "key": "system.attributes.ins",
+          "mode": 0,
+          "value": "upgrade",
           "priority": null
         }
       ],
       "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You are able to read, write, speak and understand all languages.</span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You treat your </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">Insight </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">as if it were one die size higher (up to a maximum of </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">d12</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">).</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p></li></ul>",
+      "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
+      "sort": 0,
       "flags": {
         "projectfu": {
           "CrisisInteraction": "none"
         }
       },
-      "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
-        "duplicateSource": null
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725596664723,
+        "modifiedTime": 1725607044306,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
       },
-      "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Grimoire.png",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!QbjAsEWA7R2HfFNg.PcxHyUwPDu1jHdr2"
+      "_key": "!items.effects!QbjAsEWA7R2HfFNg.N151Mbt6kugCFoBx"
     }
   ],
   "flags": {

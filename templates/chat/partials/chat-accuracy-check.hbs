@@ -9,20 +9,22 @@
     </section>
 </header>
 
-<div class='detail-desc flexrow flex-group-center'>
+<div class='detail-desc flexrow flex-group-center desc'>
     <label
-        class="total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}default{{/if}}{{/if}} flexrow">
+        class="total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}default{{/if}}{{/if}} flexrow"
+        {{#if result.crit}}data-tooltip="{{localize 'FU.Critical'}}"{{/if}}
+        {{#if result.fumble}}data-tooltip="{{localize 'FU.Fumble'}}"{{/if}}
+    >
         <div class="startcap"></div>
         <div class="" style="flex: 0 1 auto;">{{result.total}} <label>vs</label> {{uppercase
             additionalData.targetedDefense}}{{uppercase details.defense}}</div>
-        <div class="endcap">
-        </div>
+        <div class="endcap"></div>
     </label>
 </div>
 
 <div style="clear: both;"></div>
 <div class="flexrow gap-5">
-    <div class='detail-desc flex-group-center grid grid-3col flex3'>
+    <div id='results' class='detail-desc flex-group-center grid grid-3col flex3'>
         <div data-tooltip="(Die Size: {{result.die1}})">
             <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute)
                 'Abbr')}}</label>
@@ -38,7 +40,7 @@
             {{/if}}>
             <label class="title">{{localize 'FU.ModAbbr'}}</label>
             <label class="detail">
-            {{mathAbs result.modifier.}}
+                {{result.modifier}}
             </label>
         </div>
     </div>

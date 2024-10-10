@@ -36,6 +36,8 @@ export async function onManageActiveEffect(event, owner) {
 		case 'copy-inline':
 			await handleCopyInlineEffect(effect);
 			break;
+		case 'roll':
+			return await handleRollEffect(effect, owner);
 	}
 }
 
@@ -112,7 +114,7 @@ export function formatEffect(effect) {
  */
 export async function handleCopyInlineEffect(effect) {
 	try {
-		const encodedEffect = formatEffect(effect); // Use the updated formatEffect function
+		const encodedEffect = formatEffect(effect);
 
 		await navigator.clipboard.writeText(encodedEffect);
 
@@ -126,4 +128,34 @@ export async function handleCopyInlineEffect(effect) {
 
 export function isActiveEffectForStatusEffectId(effect, statusEffectId) {
 	return effect.statuses.size === 1 && effect.statuses.has(statusEffectId);
+}
+
+/**
+ * Handle rolling the effect and creating a chat message.
+ * @param {ActiveEffect} effect  The ActiveEffect to be rolled and encoded
+ * @param {Actor|Item} owner     The owning document (actor or item)
+ */
+async function handleRollEffect(effect, owner) {
+	if (!effect) {
+		ui.notifications.error('Effect not found.');
+		return;
+	}
+
+	const formattedEffect = formatEffect(effect);
+	const description = effect.description ? effect.description : game.i18n.localize('FU.NoItem');
+
+	const messageContent = `
+		<div class="chat-effect-message">
+			<header class="title-desc chat-header flexrow"><h2>${effect.name}</h2></header>
+			<div class="chat-desc">
+				${description}
+				${formattedEffect ? `<div><hr>${formattedEffect}</div>` : ''}
+			</div>
+		</div>
+	`;
+
+	await ChatMessage.create({
+		content: messageContent,
+		speaker: ChatMessage.getSpeaker({ actor: owner }),
+	});
 }

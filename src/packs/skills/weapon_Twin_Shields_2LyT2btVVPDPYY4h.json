@@ -93,14 +93,7 @@
       "disabled": false,
       "name": "Twin Shields",
       "_id": "oaHQT6sqi0iC32QB",
-      "changes": [
-        {
-          "key": "system.derived.def.bonus",
-          "mode": 2,
-          "value": "4",
-          "priority": null
-        }
-      ],
+      "changes": [],
       "description": "",
       "transfer": true,
       "statuses": [],
@@ -115,7 +108,7 @@
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": 1724071198466,
+        "modifiedTime": 1725903776637,
         "lastModifiedBy": "dobQfkKFj2NK96cc",
         "compendiumSource": null,
         "duplicateSource": null

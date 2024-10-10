@@ -12,7 +12,7 @@ const crisisInteractions = {
 	inactive: 'FU.EffectCrisisInteractionInactive',
 };
 
-export function onRenderActiveEffectConfig(sheet, html) {
+function onRenderActiveEffectConfig(sheet, html) {
 	const flag = sheet.document.getFlag(SYSTEM, CRISIS_INTERACTION);
 	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(`
 	<div class="form-group">
@@ -24,6 +24,7 @@ export function onRenderActiveEffectConfig(sheet, html) {
 	`);
 	sheet.setPosition({ ...sheet.position, height: 'auto' });
 }
+Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
 /**
  * @param {FUActor} actor
@@ -31,7 +32,7 @@ export function onRenderActiveEffectConfig(sheet, html) {
  * @param current
  * @param delta
  */
-export function onApplyActiveEffect(actor, change, current, delta) {
+function onApplyActiveEffect(actor, change, current, delta) {
 	if (game.release.isNewer(12)) {
 		if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, change.value) && current[change.value] instanceof Function) {
 			console.debug(`applying ${change.value} to ${change.key}`);
@@ -48,6 +49,7 @@ export function onApplyActiveEffect(actor, change, current, delta) {
 		}
 	}
 }
+Hooks.on('applyActiveEffect', onApplyActiveEffect);
 
 const PRIORITY_CHANGES = [
 	'system.resources.hp.bonus',
@@ -59,6 +61,15 @@ const PRIORITY_CHANGES = [
 	'system.attributes.ins.base',
 	'system.attributes.mig.base',
 	'system.attributes.wlp.base',
+	'system.affinities.air.base',
+	'system.affinities.bolt.base',
+	'system.affinities.dark.base',
+	'system.affinities.earth.base',
+	'system.affinities.fire.base',
+	'system.affinities.ice.base',
+	'system.affinities.light.base',
+	'system.affinities.physical.base',
+	'system.affinities.poison.base',
 ];
 
 export class FUActiveEffect extends ActiveEffect {

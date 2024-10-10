@@ -7,7 +7,7 @@ const affinityMapping = {
 };
 
 function migrateLegacyAffinities(source) {
-	if ('resistances' in source) {
+	if ('resistances' in source && !('affinities' in source)) {
 		const affinities = (source.affinities ??= {});
 
 		for (let [key, value] of Object.entries(source.resistances)) {
@@ -22,7 +22,7 @@ function migrateLegacyAffinities(source) {
 }
 
 function migrateOldAccuracyBonus(source) {
-	if ('accuracy' in source.derived) {
+	if (source.derived && 'accuracy' in source.derived && !('accuracyCheck' in (source.bonuses?.accuracy ?? {}))) {
 		const bonuses = (source.bonuses ??= {});
 		const accuracy = (bonuses.accuracy ??= {});
 		accuracy.accuracyCheck = source.derived.accuracy.bonus ?? 0;
@@ -32,7 +32,7 @@ function migrateOldAccuracyBonus(source) {
 }
 
 function migrateOldMagicBonus(source) {
-	if ('magic' in source.derived) {
+	if (source.derived && 'magic' in source.derived && !('magicCheck' in (source.bonuses?.accuracy ?? {}))) {
 		const bonuses = (source.bonuses ??= {});
 		const accuracy = (bonuses.accuracy ??= {});
 		accuracy.magicCheck = source.derived.magic.bonus ?? 0;
@@ -42,15 +42,40 @@ function migrateOldMagicBonus(source) {
 }
 
 function migrateOldMisspelledVillain(source) {
-	if ('villian' in source) {
+	if ('villian' in source && !('villain' in source)) {
 		const villain = (source.villain ??= {});
 		villain.value = source.villian.value ?? '';
 	}
 }
 
 function migratePhysicalAffinity(source) {
-	if ('phys' in source.affinities && !('physical' in source.affinities)) {
+	if (source.affinities && 'phys' in source.affinities && !('physical' in source.affinities)) {
 		source.affinities.physical = source.affinities.phys;
+	}
+}
+
+function migrateCreatureRanks(source) {
+	if (!('rank' in source)) {
+		source.rank = {
+			value: 'soldier',
+			replacedSoldiers: 1,
+		};
+		if (source.isCompanion?.value) {
+			source.rank.value = 'companion';
+			source.rank.replacedSoldiers = 0;
+		}
+		if (source.isElite?.value) {
+			source.rank.value = 'elite';
+			source.rank.replacedSoldiers = 2;
+		}
+		if (source.isChampion?.value > 1) {
+			source.rank.value = 'champion';
+			source.rank.replacedSoldiers = source.isChampion.value;
+		}
+
+		delete source.isCompanion;
+		delete source.isElite;
+		delete source.isChampion;
 	}
 }
 
@@ -65,5 +90,7 @@ export const NpcMigrations = {
 		migrateOldMisspelledVillain(source);
 
 		migratePhysicalAffinity(source);
+
+		migrateCreatureRanks(source);
 	},
 };

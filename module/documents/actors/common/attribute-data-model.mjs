@@ -43,7 +43,7 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 				return MathHelper.clamp(value, 6, 12);
 			},
 			set(newValue) {
-				holder.current = newValue;
+				holder.current = newValue ?? holder.current;
 			},
 		});
 

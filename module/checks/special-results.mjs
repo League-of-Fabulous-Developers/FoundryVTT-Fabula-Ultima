@@ -28,7 +28,7 @@ const onRenderCheck = (sections, check) => {
 };
 
 /**
- * @param {Check | CheckResultV2} check
+ * @param {CheckV2 | CheckResultV2} check
  */
 const skipRender = (check) => {
 	check.additionalData[SKIP_RENDER] = true;

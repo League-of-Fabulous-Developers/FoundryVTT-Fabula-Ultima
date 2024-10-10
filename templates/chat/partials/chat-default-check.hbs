@@ -1,5 +1,5 @@
 <div class="flexrow gap-5">
-    <div class='detail-desc flex-group-center grid grid-3col flex3'>
+    <div id='results' class='detail-desc flex-group-center grid grid-3col flex3'>
         <div>
             <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}} ({{result.die1}})</label>
             <label class="detail">{{result.attr1}}</label>
@@ -10,7 +10,7 @@
         </div>
         <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}"{{/if}}>
             <label class="title">{{localize 'FU.ModAbbr'}}</label>
-            <label class="detail">+{{result.modifier}}</label>
+            <label class="detail">{{#unless (lt result.modifier 0)}}+{{/unless}}{{result.modifier}}</label>
         </div>
     </div>
     {{#if (gt difficulty 0)}}
@@ -26,7 +26,7 @@
 
 {{#if (or (gt difficulty 0) result.crit result.fumble)}}
     <div style="clear: both;"></div>
-    <div class='detail-desc flexrow flex-group-center'>
+    <div class='detail-desc flexrow flex-group-center desc'>
         <label class="total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}{{#if (and (or result.crit (gte result.total difficulty)) (not result.fumble))}}success{{else}}failure{{/if}}{{/if}}{{/if}} flexrow">
             <div style="flex-grow: 1;"></div>
             <div class="" style="flex: 0 1 auto;">{{result.total}}</div>

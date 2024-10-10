@@ -40,7 +40,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-favorite.hbs',
 		'systems/projectfu/templates/actor/partials/actor-bonds.hbs',
 
-		'systems/projectfu/templates/actor/partials/actor-divider.hbs',
 		'systems/projectfu/templates/actor/partials/actor-equip.hbs',
 		'systems/projectfu/templates/actor/partials/actor-control.hbs',
 		'systems/projectfu/templates/actor/partials/actor-progress-clock.hbs',
@@ -72,7 +71,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
 		'systems/projectfu/templates/chat/chat-group-check-initiated.hbs',
-		'systems/projectfu/templates/chat/chat-progress-clock.hbs',
 
 		// Chat Message Partials
 		'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',
@@ -92,11 +90,14 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-check-targets.hbs',
 		'systems/projectfu/templates/chat/partials/chat-opposed-check-result.hbs',
 		'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
 
 		// UI Components
 		'systems/projectfu/templates/ui/combat-tracker.hbs',
 
 		// Applications
+		'systems/projectfu/templates/app/item-customizer.hbs',
 		'systems/projectfu/templates/app/app-group-check.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-attribute.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
@@ -165,5 +166,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/ui/partials/combat-bar-mp-modern.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-ip-modern.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-zeropower-modern.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-hp-mother.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-mp-mother.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-ip-mother.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-zeropower-mother.hbs',
 	]);
 };

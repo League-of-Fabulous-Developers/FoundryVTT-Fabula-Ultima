@@ -1,0 +1,10 @@
+<div class="bar-container">
+    <div class="resource-value">
+        <div class="resource-text" data-tooltip="
+            {{localize 'FU.HealthAbbr'}}: {{this.actor.system.resources.hp.value}} / {{this.actor.system.resources.hp.max}}<br>
+            {{localize 'FU.Crisis'}}: {{half this.actor.system.resources.hp.max}}
+        ">
+            {{{ formatResource this.actor.system.resources.hp.value this.actor.system.resources.hp.max "HP" }}}
+        </div>
+    </div>
+</div>

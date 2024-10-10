@@ -9,7 +9,7 @@ import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 
 /**
- * @param {Check} check
+ * @param {CheckV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]
  * @param {CheckCallbackRegistration} registerCallback
@@ -169,7 +169,7 @@ export class WeaponDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	transferEffects() {
-		return !this.parent.actor?.system.vehicle.weaponsActive;
+		return this.parent.isEquipped && !this.parent.actor?.system.vehicle?.weaponsActive;
 	}
 
 	/**
