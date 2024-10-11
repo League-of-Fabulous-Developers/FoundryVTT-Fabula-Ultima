@@ -1,4 +1,4 @@
-<div class="toggle-section tags {{#if optionChatMessageHideTags}}hidden{{/if}}">
+<div class="toggle-section tags {{#if (getGameSetting 'optionChatMessageHideTags')}}hidden{{/if}}">
     <div class="fu-tags">
         <div class="fu-tag">
             {{#if spell.duration}}
@@ -25,13 +25,13 @@
 </div>
 
 {{#if spell.opportunity}}
-    <div class="toggle-section quality {{#if optionChatMessageHideQuality}}hidden{{/if}}">
+    <div class="toggle-section quality {{#if (getGameSetting 'optionChatMessageHideQuality')}}hidden{{/if}}">
         {{> 'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs' opportunity=spell.opportunity}}
     </div>
 {{/if}}
 
 {{#if (or spell.summary spell.description)}}
-    <div class="toggle-section description {{#if optionChatMessageHideDescription}}hidden{{/if}}">
-        {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=spell.summary description=spell.description collapseDescriptions=collapseDescriptions}}
+    <div class="toggle-section description {{#if (getGameSetting 'optionChatMessageHideDescription')}}hidden{{/if}}">
+        {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=spell.summary description=spell.description}}
     </div>
 {{/if}}

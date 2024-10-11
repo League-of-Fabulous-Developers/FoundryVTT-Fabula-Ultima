@@ -908,7 +908,7 @@
 		"ChatMessageOptionsManage": "Manage Chat Message Settings",
 		"ChatMessageOptionsSettingsInstuction": "Decide how you want to customize chat messages.",
 		"ChatMessageHideTags": "Hide Tags",
-		"ChatMessageHideTagsHint": "показывать",
+		"ChatMessageHideTagsHint": "Choose how the Tags will be displayed.",
 		"ChatMessageHideDescription": "Hide Descriptions",
 		"ChatMessageHideDescriptionHint": "Choose how chat descriptions on weapons, items, spells and abilities will be shown.",
 		"ChatMessageHideQuality": "Hide Quality",

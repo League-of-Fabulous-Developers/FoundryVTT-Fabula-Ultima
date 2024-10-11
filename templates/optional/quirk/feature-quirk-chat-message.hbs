@@ -1,5 +1,5 @@
 <div class='chat-desc'>
-    <details {{#unless collapseDescriptions}}open{{/unless}}>
+    <details {{#unless (getGameSetting 'collapseDescriptions')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
         {{{description}}}
     </details>

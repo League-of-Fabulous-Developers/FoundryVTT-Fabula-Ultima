@@ -6,8 +6,6 @@ import { SpellMigrations } from './spell-migrations.mjs';
 import { MagicCheck } from '../../../checks/magic-check.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
-import { SYSTEM } from '../../../helpers/config.mjs';
-import { SETTINGS } from '../../../settings.js';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 
@@ -60,10 +58,6 @@ function onRenderCheck(data, result, actor, item) {
 					summary: item.system.summary.value,
 					description: await TextEditor.enrichHTML(item.system.description),
 				},
-				collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
-				optionChatMessageHideTags: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideTags),
-				optionChatMessageHideDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideDescription),
-				optionChatMessageHideQuality: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideQuality),
 			},
 		}));
 	}

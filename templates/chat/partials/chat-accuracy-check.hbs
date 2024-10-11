@@ -22,7 +22,7 @@
 </div>
 
 <!-- Roll Details Section -->
-<div class="toggle-section accuracy-check-results {{#if hideSettings.optionChatMessageHideRollDetails}}hidden{{/if}}">
+<div class="toggle-section accuracy-check-results {{#if (getGameSetting 'optionChatMessageHideRollDetails')}}hidden{{/if}}">
     <div class="flexrow gap-5">
         <div class='detail-desc flex-group-center grid grid-3col flex3'>
             <div data-tooltip="(Die Size: {{result.die1}})">

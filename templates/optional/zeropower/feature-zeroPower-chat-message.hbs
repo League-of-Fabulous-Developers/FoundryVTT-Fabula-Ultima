@@ -4,7 +4,7 @@
 </div>
 {{/if}}
 <div class='chat-desc'>
-    <details {{#unless collapseDescriptions}}open{{/unless}}>
+    <details {{#unless (getGameSetting 'collapseDescriptions')}}open{{/unless}}>
         <summary class="collapsible-description align-center">
             <label class="resource-label-m">
                 <span>{{localize 'FU.LimitTrigger'}}</span>
@@ -17,7 +17,7 @@
     </details>
 </div>
 <div class='chat-desc'>
-    <details {{#unless collapseDescriptions}}open{{/unless}}>
+    <details {{#unless (getGameSetting 'collapseDescriptions')}}open{{/unless}}>
         <summary class="collapsible-description align-center">
             <label class="resource-label-m">
                 <span>{{localize 'FU.LimitEffect'}}</span>

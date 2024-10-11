@@ -88,6 +88,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-result.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-targets.hbs',
+		'systems/projectfu/templates/chat/partials/chat-check-notargets.hbs',
 		'systems/projectfu/templates/chat/partials/chat-opposed-check-result.hbs',
 		'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',

@@ -2,8 +2,6 @@ import { OptionalDataField } from './optional-data-field.mjs';
 import { RollableOptionalFeatureDataModel } from './optional-feature-data-model.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { SYSTEM } from '../../../helpers/config.mjs';
-import { SETTINGS } from '../../../settings.js';
 import { slugify } from '../../../util.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
@@ -13,11 +11,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 				TextEditor.enrichHTML(item.system.description).then((v) => ({
 					partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
 					data: {
-						collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
-						optionChatMessageHideTags: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideTags),
-						optionChatMessageHideDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideDescription),
-						optionChatMessageHideQuality: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideQuality),
-						optionChatMessageHideRollDetails: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideRollDetails),
 						summary: item.system.summary.value,
 						description: v,
 					},
