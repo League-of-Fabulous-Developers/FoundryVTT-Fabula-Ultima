@@ -145,15 +145,18 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 		});
 		/** @type TargetData[] */
 		const targets = inspector.getTargets();
-		if (targets?.length) {
+		const isTargeted = targets?.length > 0;
+		if (targets) {
 			data.push({
 				order: CHECK_RESULT,
-				partial: 'systems/projectfu/templates/chat/partials/chat-check-targets.hbs',
+				partial: isTargeted ? 'systems/projectfu/templates/chat/partials/chat-check-targets.hbs' : 'systems/projectfu/templates/chat/partials/chat-check-notargets.hbs',
 				data: {
 					targets: targets,
 				},
 			});
+		}
 
+		if (isTargeted) {
 			async function showFloatyText(target) {
 				const actor = await fromUuid(target.uuid);
 				if (actor instanceof FUActor) {
