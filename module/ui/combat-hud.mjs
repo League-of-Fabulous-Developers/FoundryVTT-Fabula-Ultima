@@ -221,9 +221,11 @@ export class CombatHUD extends Application {
 
 			if (actorData.hasEffects) {
 				const maxEffectsBeforeMarquee = 5;
-				actorData.shouldEffectsMarquee = actorData.effects.length > maxEffectsBeforeMarquee;
-
 				const effectsMarqueeDuration = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration);
+
+				// Ensure shouldEffectsMarquee is false if effectsMarqueeDuration is over 9000
+				actorData.shouldEffectsMarquee = actorData.effects.length > maxEffectsBeforeMarquee && effectsMarqueeDuration < 9000;
+
 				actorData.effectsMarqueeDuration = effectsMarqueeDuration;
 
 				const marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
