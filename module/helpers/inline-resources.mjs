@@ -30,18 +30,24 @@ const recoveryFlavor = {
 	hp: 'FU.HealthPointRecovery',
 	mp: 'FU.MindPointRecovery',
 	ip: 'FU.InventoryPointRecovery',
+	fp: 'FU.TextEditorButtonCommandGain',
+	exp: 'FU.TextEditorButtonCommandGain',
 };
 
 const lossFlavor = {
 	hp: 'FU.HealthPointLoss',
 	mp: 'FU.MindPointLoss',
 	ip: 'FU.InventoryPointLoss',
+	fp: 'FU.TextEditorButtonCommandLoss',
+	exp: 'FU.TextEditorButtonCommandLoss',
 };
 
 const messages = {
 	hp: 'FU.HealthPointRecoveryMessage',
 	mp: 'FU.MindPointRecoveryMessage',
 	ip: 'FU.InventoryPointRecoveryMessage',
+	fp: 'FU.ChatResourceGain',
+	exp: 'FU.ChatResourceGain',
 };
 
 function createReplacementElement(amount, type, elementClass, uncapped) {
@@ -172,20 +178,36 @@ function onDropActor(actor, sheet, { type, recoveryType, amount, source, uncappe
 }
 
 async function applyRecovery(actor, resource, amount, source, uncapped) {
-	const amountRecovered = Math.max(0, amount + actor.system.bonuses.incomingRecovery[resource]);
+	const amountRecovered = Math.max(0, amount + (actor.system.bonuses.incomingRecovery[resource] || 0));
+	const isValue = resource === 'fp' || resource === 'exp';
 	const attrKey = `resources.${resource}`;
 	const attr = foundry.utils.getProperty(actor.system, attrKey);
 	const uncappedRecoveryValue = amountRecovered + attr.value;
 	const updates = [];
-	if (uncapped === true && uncappedRecoveryValue > attr.max) {
+
+	// Handle uncapped recovery logic
+	if (uncapped === true && uncappedRecoveryValue > (attr.max || 0) && !isValue) {
 		// Overheal recovery
-		let newValue = Object.defineProperties({}, Object.getOwnPropertyDescriptors(attr)); // Clone attribute
+		const newValue = Object.defineProperties({}, Object.getOwnPropertyDescriptors(attr)); // Clone attribute
 		newValue.value = uncappedRecoveryValue;
 		updates.push(actor.modifyTokenAttribute(attrKey, newValue, false, false));
-	} else {
+	} else if (!isValue) {
 		// Normal recovery
 		updates.push(actor.modifyTokenAttribute(attrKey, amountRecovered, true));
 	}
+
+	// Handle specific cases for fp and exp
+	if (isValue) {
+		const currentValue = parseInt(foundry.utils.getProperty(actor.system, `resources.${resource}.value`), 10) || 0;
+		const newValue = Math.floor(currentValue) + Math.floor(amountRecovered);
+
+		// Update the actor's resource directly
+		const updateData = {
+			[`system.resources.${resource}.value`]: Math.floor(newValue),
+		};
+		await actor.update(updateData);
+	}
+
 	updates.push(
 		ChatMessage.create({
 			speaker: ChatMessage.getSpeaker({ actor }),
@@ -194,6 +216,7 @@ async function applyRecovery(actor, resource, amount, source, uncapped) {
 				message: messages[resource],
 				actor: actor.name,
 				amount: amountRecovered,
+				resource: game.i18n.localize(FU.resources[resource]),
 				from: source,
 			}),
 		}),
@@ -203,8 +226,22 @@ async function applyRecovery(actor, resource, amount, source, uncapped) {
 
 async function applyLoss(actor, resource, amount, source) {
 	const amountLost = -amount;
+	const isValue = resource === 'fp' || resource === 'exp';
 	const updates = [];
-	updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountLost, true));
+
+	// Handle specific cases for fp and exp
+	if (isValue) {
+		const currentValue = foundry.utils.getProperty(actor.system, `resources.${resource}.value`) || 0;
+		const newValue = Math.floor(currentValue) + Math.floor(amountLost);
+
+		// Update the actor's resource directly
+		const updateData = {};
+		updateData[`system.resources.${resource}.value`] = Math.floor(newValue);
+		await actor.update(updateData);
+	} else {
+		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountLost, true));
+	}
+
 	updates.push(
 		ChatMessage.create({
 			speaker: ChatMessage.getSpeaker({ actor }),

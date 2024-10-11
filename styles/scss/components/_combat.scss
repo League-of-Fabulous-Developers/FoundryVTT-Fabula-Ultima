@@ -429,6 +429,7 @@
 	--combat-hp-label-color: #ebffed;
 	--combat-mp-label-color: #c0f0ff;
 	--combat-ip-label-color: #ffdfbb;
+	--combat-xp-label-color: #ffd166;
 	--combat-zeropower-label-color: #f0ccff;
 	--combat-bars-background: url('/systems/projectfu/styles/static/ui/combat-hud/bar_bg.svg');
 	--combat-effects-background: rgba(25, 25, 25, 0.6);
@@ -523,6 +524,10 @@
 
 					.bar-label.label-ip {
 						color: var(--combat-ip-label-color);
+					}
+
+					.bar-label.label-xp {
+						color: var(--combat-exp-label-color);
 					}
 
 					.bar-label.label-zeropower {

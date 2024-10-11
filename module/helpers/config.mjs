@@ -394,18 +394,24 @@ FU.resources = {
 	hp: 'FU.HealthPoints',
 	mp: 'FU.MindPoints',
 	ip: 'FU.InventoryPoints',
+	fp: 'FU.FabulaPoints',
+	exp: 'FU.Exp',
 };
 
 FU.resourcesAbbr = {
 	hp: 'FU.HealthAbbr',
 	mp: 'FU.MindAbbr',
 	ip: 'FU.InventoryAbbr',
+	fp: 'FU.FabulaAbbr',
+	exp: 'FU.ExpAbbr',
 };
 
 FU.resourceIcons = {
 	hp: 'fas fa-heart',
 	mp: 'fas fa-hat-wizard',
 	ip: 'ra ra-gear-hammer',
+	fp: 'fas fa-pen-fancy',
+	exp: 'fas fa-feather-pointed',
 };
 
 FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {

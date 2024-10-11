@@ -213,7 +213,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			},
 		});
 
-		// Define maximum mind points (mp) calculation, replace calculation with actual value on write.
+		// Define maximum inventory points (ip) calculation, replace calculation with actual value on write.
 		Object.defineProperty(this.resources.ip, 'max', {
 			configurable: true,
 			enumerable: true,
@@ -225,5 +225,9 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 				this.max = newValue;
 			},
 		});
+
+		// Initialize fp and exp
+		this.resources.fp.value = this.resources.fp.value || 0;
+		this.resources.exp.value = this.resources.exp.value || 0;
 	}
 }

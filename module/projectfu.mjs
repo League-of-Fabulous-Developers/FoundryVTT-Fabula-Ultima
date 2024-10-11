@@ -134,7 +134,7 @@ Hooks.once('init', async () => {
 	CONFIG.Actor.trackableAttributes = {
 		character: {
 			bar: ['resources.hp', 'resources.mp', 'resources.ip'],
-			value: ['resources.fp.value'],
+			value: ['resources.fp.value', 'resources.exp.value'],
 		},
 		npc: {
 			bar: ['resources.hp', 'resources.mp'],
@@ -445,7 +445,7 @@ Handlebars.registerHelper('inArray', function (item, array, options) {
 Handlebars.registerHelper('formatResource', function (resourceValue, resourceMax, resourceName) {
 	// Convert value to a string to split into 3 digits
 	const valueString = resourceValue.toString().padStart(3, '0');
-	const isCrisis = resourceValue <= resourceMax / 2;
+	const isCrisis = resourceValue <= resourceMax / 2 && resourceName == 'HP';
 	const digitBoxes = valueString
 		.split('')
 		.map(

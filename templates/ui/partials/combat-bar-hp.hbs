@@ -1,5 +1,5 @@
 <div class="bar-container">
-    <div class="bar bar-progress">
+    <div class="bar bar-progress" data-tooltip="{{localize 'FU.HealthPoints'}}">
         {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
         <div class="bar-progress-bar bar-hp-crisis"
             style="width: {{calculatePercentage this.actor.system.resources.hp.value this.actor.system.resources.hp.max}};"></div>
