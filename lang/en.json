@@ -1141,6 +1141,7 @@
 		"AccuracyCheckBonusThrown": "Thrown Accuracy Bonus",
 		"BaseDamage": "Base Damage",
 		"CheckPushModifier": "Bond Strength Bonus",
+		"MagicCheckBaseAccuracy": "Base Magic Accuracy",
 		"MagicCheckBonusGeneric": "Generic Magic Check Bonus",
 		"DamageBonusTypeSpell": "Spell Damage Bonus",
 		"DamageBonusTypeMelee": "Melee Damage Bonus",

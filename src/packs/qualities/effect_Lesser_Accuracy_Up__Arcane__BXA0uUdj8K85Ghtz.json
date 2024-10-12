@@ -1,0 +1,81 @@
+{
+  "name": "Lesser Accuracy Up (Arcane)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 800
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Lesser Accuracy Up (Arcane)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.arcane",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain a +1 bonus to Accuracy Checks with the <strong>arcane</strong> weapon category).<br /><strong>Source: </strong>FUCR281 Bandit Jacket</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Check",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_id": "JAXs3VtrjNOezMeU",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728747521979,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!BXA0uUdj8K85Ghtz.JAXs3VtrjNOezMeU"
+    }
+  ],
+  "folder": "G9QbTliORWqM7IoY",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747190299,
+    "modifiedTime": 1728747190299,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "BXA0uUdj8K85Ghtz",
+  "sort": 2400000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!BXA0uUdj8K85Ghtz"
+}

@@ -1,0 +1,81 @@
+{
+  "name": "Multi Accuracy",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 1000
+    }
+  },
+  "effects": [
+    {
+      "disabled": true,
+      "name": "Multi Accuracy",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.accuracyCheck",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "<p>When you perform an attack with <strong>multi</strong>, you gain a +2 bonus to your accuracy check. <br /><strong>Source: </strong>FUCR287 Gloves, Crimson</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Check",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_id": "DbzF7yVOKvp2pfN6",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728747659640,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!feKyPQfluKymMeXP.DbzF7yVOKvp2pfN6"
+    }
+  ],
+  "folder": "G9QbTliORWqM7IoY",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747190299,
+    "modifiedTime": 1728747190299,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "feKyPQfluKymMeXP",
+  "sort": 2300000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!feKyPQfluKymMeXP"
+}

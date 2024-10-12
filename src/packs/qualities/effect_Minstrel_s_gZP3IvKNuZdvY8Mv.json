@@ -1,0 +1,74 @@
+{
+  "name": "Minstrel's",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 850
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Minstrel's",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you attack with this weapon using the <strong>Vibrato</strong> Skill (see <strong>Atlas High Fantasy</strong>,<strong> </strong>page<strong> 137</strong>), all damage dealt by the attack becomes of the same type as the <strong>【key type】</strong> of the last verse you sang.<br /><strong>Source: </strong>FUHF79 Heavy Metal</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Skill",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_id": "xkgOaHU4bnrduM1e",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728752152683,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!gZP3IvKNuZdvY8Mv.xkgOaHU4bnrduM1e"
+    }
+  ],
+  "folder": "wRqZOkZnfCN50Yil",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747194796,
+    "modifiedTime": 1728747194796,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "gZP3IvKNuZdvY8Mv",
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!gZP3IvKNuZdvY8Mv"
+}

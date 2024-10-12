@@ -1,11 +1,11 @@
 {
-  "name": "Offensive Qualities",
+  "name": "Offensive",
   "sorting": "a",
   "folder": null,
   "type": "Item",
-  "_id": "LnZrt3taMWYi3S8M",
+  "_id": "SH8cHX3lJkZlLgj8",
   "description": "",
-  "sort": 0,
+  "sort": 100000,
   "color": null,
   "flags": {},
   "_stats": {
@@ -14,9 +14,9 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1725812242989,
-    "modifiedTime": 1725812242989,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "createdTime": 1728747193064,
+    "modifiedTime": 1728747193064,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
   },
-  "_key": "!folders!LnZrt3taMWYi3S8M"
+  "_key": "!folders!SH8cHX3lJkZlLgj8"
 }

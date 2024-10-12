@@ -1,0 +1,81 @@
+{
+  "name": "Initiative Up",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 500
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Initiative Up",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.resources.ip.bonus",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain a +4 bonus to your Initiative modifier.<br /><strong>Source: </strong>FUCR280</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Resource",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_id": "em0AHUzCr3MeyUDA",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728753267594,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!ioSKLq0Jzt7l90Uj.em0AHUzCr3MeyUDA"
+    }
+  ],
+  "folder": "MoLOhUjPdiKVsj66",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747193936,
+    "modifiedTime": 1728747193936,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "ioSKLq0Jzt7l90Uj",
+  "sort": 1300000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!ioSKLq0Jzt7l90Uj"
+}

@@ -1,0 +1,74 @@
+{
+  "name": "M. Status (Shaken)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 1402
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "M. Status (Shaken)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you hit one or more creatures with an offensive spell, each of them suffers<strong> </strong>@EFFECT[shaken].<br /><strong>Source: </strong>FUCR270 Necronomicon</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Status",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_id": "MkuGkUgfolLl8PIZ",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728752340195,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!AfqIw5DIhfSZeB6Z.MkuGkUgfolLl8PIZ"
+    }
+  ],
+  "folder": "GvNesyOurlR0JNH8",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747195507,
+    "modifiedTime": 1728747195507,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "AfqIw5DIhfSZeB6Z",
+  "sort": 1200000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!AfqIw5DIhfSZeB6Z"
+}

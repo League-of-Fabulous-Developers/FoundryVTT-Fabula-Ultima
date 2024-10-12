@@ -1,0 +1,74 @@
+{
+  "name": "Desperado",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 650
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Desperado",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you use the <strong>Barrage</strong> Skill (see Sharpshooter Class, <strong>Core Rulebook</strong> page <strong>205</strong>), the MP cost is halved.<br /><strong>Source: </strong>FUCR281 Desperado Coat</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Skill",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_id": "4ciiEAEEMQPkqwrK",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728752173615,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!LlRCKBanWqSGmq5Y.4ciiEAEEMQPkqwrK"
+    }
+  ],
+  "folder": "wRqZOkZnfCN50Yil",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747194796,
+    "modifiedTime": 1728747194796,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "LlRCKBanWqSGmq5Y",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!LlRCKBanWqSGmq5Y"
+}

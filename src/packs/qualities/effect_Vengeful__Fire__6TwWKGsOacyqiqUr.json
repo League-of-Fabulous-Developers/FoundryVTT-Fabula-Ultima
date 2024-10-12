@@ -1,0 +1,74 @@
+{
+  "name": "Vengeful (Fire)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 1200
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Vengeful (Fire)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal @DMG[5 fire] damage to that creature (after the attack has been resolved).<br /><strong>Source: </strong>FUCR287 Demongrin</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Offensive",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_id": "2uWK6yawTnDQeDAm",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728747625191,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!6TwWKGsOacyqiqUr.2uWK6yawTnDQeDAm"
+    }
+  ],
+  "folder": "G9QbTliORWqM7IoY",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747190299,
+    "modifiedTime": 1728747894978,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "6TwWKGsOacyqiqUr",
+  "sort": 400000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!6TwWKGsOacyqiqUr"
+}

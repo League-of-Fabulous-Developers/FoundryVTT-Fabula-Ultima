@@ -1141,6 +1141,7 @@
 		"AccuracyCheckBonusThrown": "Бонус точности метательного оружия",
 		"BaseDamage": "Базовый урон",
 		"CheckPushModifier": "Бонус силы Связи",
+		"MagicCheckBaseAccuracy": "Base Magic Accuracy",
 		"MagicCheckBonusGeneric": "Общий бонус магической проверки",
 		"DamageBonusTypeSpell": "Бонус урона магией",
 		"DamageBonusTypeMelee": "Бонус урона ближнего боя",

@@ -1,9 +1,9 @@
 {
-  "name": "Weapons",
+  "name": "Item Damage Bonuses",
   "sorting": "a",
   "folder": null,
   "type": "Item",
-  "_id": "uGo1dANHdWEO8eWi",
+  "_id": "yhBjvKUA0TH2OieA",
   "description": "",
   "sort": 0,
   "color": null,
@@ -14,9 +14,9 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1725905171009,
-    "modifiedTime": 1725905171009,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "createdTime": 1728758714776,
+    "modifiedTime": 1728758714776,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
   },
-  "_key": "!folders!uGo1dANHdWEO8eWi"
+  "_key": "!folders!yhBjvKUA0TH2OieA"
 }

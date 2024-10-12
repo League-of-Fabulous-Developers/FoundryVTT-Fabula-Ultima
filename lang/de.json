@@ -1141,6 +1141,7 @@
 		"AccuracyCheckBonusThrown": "Wurfwaffen Trefferbonus",
 		"BaseDamage": "Basisschaden",
 		"CheckPushModifier": "Bonus von Bindungsstärke",
+		"MagicCheckBaseAccuracy": "Base Magic Accuracy",
 		"MagicCheckBonusGeneric": "Generischer Magieprobenbonus",
 		"DamageBonusTypeSpell": "Bonus Zauberschaden",
 		"DamageBonusTypeMelee": "Bonus Nahkampfschaden",

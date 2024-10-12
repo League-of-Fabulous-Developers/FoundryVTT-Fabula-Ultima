@@ -1141,6 +1141,7 @@
 		"AccuracyCheckBonusThrown": "Bonus Precisione Armi da Lancio",
 		"BaseDamage": "Danno Base",
 		"CheckPushModifier": "Bonus Forza del Legame",
+		"MagicCheckBaseAccuracy": "Base Magic Accuracy",
 		"MagicCheckBonusGeneric": "Generico Bonus Test Magia",
 		"DamageBonusTypeSpell": "Bonus Danno Incantesimi",
 		"DamageBonusTypeMelee": "Bonus Danno Armi da Mischia",

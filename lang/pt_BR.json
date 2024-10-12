@@ -1141,6 +1141,7 @@
 		"AccuracyCheckBonusThrown": "Bônus de Precisão com Arremesso",
 		"BaseDamage": "Dano Base",
 		"CheckPushModifier": "Bônus da Força do Laço",
+		"MagicCheckBaseAccuracy": "Base Magic Accuracy",
 		"MagicCheckBonusGeneric": "Bônus do Teste de Magia Genérico",
 		"DamageBonusTypeSpell": "Bônus de Dano de Feitiço",
 		"DamageBonusTypeMelee": "Bônus de Dano Corpo-a-Corpo",

@@ -1,0 +1,74 @@
+{
+  "name": "Healing Up",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 1500
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Healing Up",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Spells you cast whose effects restore Hit Points will restore 5 extra Hit Points.</p><hr /><p>@GAIN[5 hp]<br /><strong>Source: </strong>FUCR280</p><p></p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Resource",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_id": "LKYZjRrSktGWKO8J",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728759573726,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!OOKlw5WUU43Ob76d.LKYZjRrSktGWKO8J"
+    }
+  ],
+  "folder": "MoLOhUjPdiKVsj66",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747193936,
+    "modifiedTime": 1728747193936,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "OOKlw5WUU43Ob76d",
+  "sort": 1000000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!OOKlw5WUU43Ob76d"
+}

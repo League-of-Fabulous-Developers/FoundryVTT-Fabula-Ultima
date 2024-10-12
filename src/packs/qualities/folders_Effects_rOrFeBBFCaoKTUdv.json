@@ -1,11 +1,11 @@
 {
-  "name": "Enhancement Qualities",
+  "name": "Effects",
   "sorting": "a",
   "folder": null,
   "type": "Item",
-  "_id": "Qr6NNeRdvfGapL6y",
+  "_id": "rOrFeBBFCaoKTUdv",
   "description": "",
-  "sort": 0,
+  "sort": 100000,
   "color": null,
   "flags": {},
   "_stats": {
@@ -14,9 +14,9 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1725812311720,
-    "modifiedTime": 1725812311720,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "createdTime": 1728747192172,
+    "modifiedTime": 1728747192199,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
   },
-  "_key": "!folders!Qr6NNeRdvfGapL6y"
+  "_key": "!folders!rOrFeBBFCaoKTUdv"
 }

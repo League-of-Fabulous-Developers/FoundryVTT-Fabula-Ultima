@@ -1,0 +1,74 @@
+{
+  "name": "Wanderer's",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 900
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Wanderer's",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When your group makes a <strong>discovery</strong> while traveling, you may immediately gain @GAIN[1 fp].<br /><strong>Source: </strong>FUCR286 Wanderer's Boots</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Resource",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_id": "aDI8CAOuWj4T0wid",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728754695917,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!CBxLJhCbYs4SfKUs.aDI8CAOuWj4T0wid"
+    }
+  ],
+  "folder": "MoLOhUjPdiKVsj66",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747193936,
+    "modifiedTime": 1728747193936,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "CBxLJhCbYs4SfKUs",
+  "sort": 1800000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!CBxLJhCbYs4SfKUs"
+}

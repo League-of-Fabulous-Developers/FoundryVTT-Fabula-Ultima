@@ -1,0 +1,22 @@
+{
+  "name": "Defensive",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "i5zeg0gULpbqerRz",
+  "description": "",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747191202,
+    "modifiedTime": 1728747191288,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_key": "!folders!i5zeg0gULpbqerRz"
+}

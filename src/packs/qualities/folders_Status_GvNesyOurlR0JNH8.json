@@ -1,0 +1,22 @@
+{
+  "name": "Status",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "GvNesyOurlR0JNH8",
+  "description": "",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747195475,
+    "modifiedTime": 1728747195537,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_key": "!folders!GvNesyOurlR0JNH8"
+}

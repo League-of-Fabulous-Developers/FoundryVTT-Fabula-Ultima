@@ -35,7 +35,7 @@
         },
         "alwaysAvailableEffects": [
           "... suffers @DMG[20 poison] damage.",
-          "... recovers @GAIN[30 hp]"
+          "... recovers @GAIN[30 hp]."
         ]
       }
     },
@@ -57,8 +57,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710031190668,
-    "modifiedTime": 1724180862288,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1728742418969,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx",
     "compendiumSource": null,
     "duplicateSource": null
   },

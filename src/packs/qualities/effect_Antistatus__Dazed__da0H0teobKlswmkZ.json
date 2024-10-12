@@ -1,0 +1,81 @@
+{
+  "name": "Antistatus (Dazed)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 500
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Antistatus (Dazed)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.dazed.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>You are immune to <strong>dazed</strong> status effect.<br /><strong>Source: </strong>FUCR269</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Status",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_id": "Kyp5s0BQB6tXPSp2",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728752238869,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!da0H0teobKlswmkZ.Kyp5s0BQB6tXPSp2"
+    }
+  ],
+  "folder": "GvNesyOurlR0JNH8",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747195507,
+    "modifiedTime": 1728747195507,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "da0H0teobKlswmkZ",
+  "sort": 2100000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!da0H0teobKlswmkZ"
+}

@@ -1,9 +1,9 @@
 {
-  "name": "Defensive Qualities",
+  "name": "Resistance",
   "sorting": "a",
-  "folder": null,
+  "folder": "i5zeg0gULpbqerRz",
   "type": "Item",
-  "_id": "WK5xm7V7BwPlYJPE",
+  "_id": "VkgMl0dawTfZcJk0",
   "description": "",
   "sort": 0,
   "color": null,
@@ -14,9 +14,9 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1725812232538,
-    "modifiedTime": 1725812232538,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
   },
-  "_key": "!folders!WK5xm7V7BwPlYJPE"
+  "_key": "!folders!VkgMl0dawTfZcJk0"
 }

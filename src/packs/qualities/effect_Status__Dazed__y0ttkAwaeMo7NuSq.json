@@ -1,0 +1,74 @@
+{
+  "name": "Status (Dazed)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 1500
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Status (Dazed)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Each target hit by the weapon suffers @EFFECT[dazed].<br /><strong>Source: </strong>FUCR269</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Status",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_id": "PNrnQ9UtT6Xp0omS",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728752380642,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!y0ttkAwaeMo7NuSq.PNrnQ9UtT6Xp0omS"
+    }
+  ],
+  "folder": "GvNesyOurlR0JNH8",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747195507,
+    "modifiedTime": 1728747195507,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "y0ttkAwaeMo7NuSq",
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!y0ttkAwaeMo7NuSq"
+}

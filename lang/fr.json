@@ -1141,6 +1141,7 @@
 		"AccuracyCheckBonusThrown": "Bonus de précision avec une arme de jet",
 		"BaseDamage": "Dégâts de base",
 		"CheckPushModifier": "Bonus de force du lien",
+		"MagicCheckBaseAccuracy": "Base Magic Accuracy",
 		"MagicCheckBonusGeneric": "Bonus générique aux tests magiques",
 		"DamageBonusTypeSpell": "Bonus de dégâts de sort",
 		"DamageBonusTypeMelee": "Bonus de dégâts en mêlée",
@@ -1200,10 +1201,10 @@
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",
-			"Regenerate": "Regenerate FUID",
-			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
-			"ChangeWarning3": "Do you want to proceed?",
-			"ChangeWarning1": "Proceed with caution!"
+			"Regenerate": "Régénérer le FUID",
+			"ChangeWarning2": "Changer l'ID Fabula Ultima d'un objet peut briser les références à l'objet ! Procédez avec prudence et seulement si vous êtes sûr de vous.",
+			"ChangeWarning3": "Voulez-vous procéder ?",
+			"ChangeWarning1": "Procédez avec prudence !"
 		}
 	}
 }
