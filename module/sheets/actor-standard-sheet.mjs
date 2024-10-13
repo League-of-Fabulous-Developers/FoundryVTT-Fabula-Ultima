@@ -585,6 +585,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.on('mouseup', '.effect', this._onMiddleClickEditEffect.bind(this)); // Middle-click to edit effect
 		html.on('click', '.effect-roll', (ev) => onManageActiveEffect(ev, this.actor)); // Send active effect to chat
 		html.on('click', '.study-button', async () => await new StudyRollHandler().handleStudyRoll(this.actor)); // Handle study roll
+		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor)); // Active Effect management
 
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable

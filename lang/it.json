@@ -907,6 +907,8 @@
 		"Miss": "Mancato",
 		"SettingsSave": "Salva modifiche",
 		"SettingsReset": "Reset modifiche",
+		"ChatMessageSend": "Send",
+		"ChatMessageSendHint": "Send to chat",
 		"ChatMessageShow": "Mostra",
 		"ChatMessageClicked": "Nascondi finché non cliccato",
 		"ChatMessageHide": "Nascondi",

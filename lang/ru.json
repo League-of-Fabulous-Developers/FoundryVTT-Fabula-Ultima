@@ -907,6 +907,8 @@
 		"Miss": "Промах",
 		"SettingsSave": "Сохранить изменения",
 		"SettingsReset": "Сбросить изменения",
+		"ChatMessageSend": "Send",
+		"ChatMessageSendHint": "Send to chat",
 		"ChatMessageShow": "Всегда показывать",
 		"ChatMessageClicked": "Скрыть до клика",
 		"ChatMessageHide": "Скрыть",

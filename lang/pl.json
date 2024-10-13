@@ -907,6 +907,8 @@
 		"Miss": "Pudło",
 		"SettingsSave": "Zapisz Zmiany",
 		"SettingsReset": "Resetuj Zmiany",
+		"ChatMessageSend": "Send",
+		"ChatMessageSendHint": "Send to chat",
 		"ChatMessageShow": "Zawsze pokazuj",
 		"ChatMessageClicked": "Ukryj do kliknięcia",
 		"ChatMessageHide": "Ukryj",

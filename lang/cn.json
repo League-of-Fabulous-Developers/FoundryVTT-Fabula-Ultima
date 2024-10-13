@@ -907,6 +907,8 @@
 		"Miss": "未命中",
 		"SettingsSave": "保存更改",
 		"SettingsReset": "重置更改",
+		"ChatMessageSend": "Send",
+		"ChatMessageSendHint": "Send to chat",
 		"ChatMessageShow": "永远显示",
 		"ChatMessageClicked": "隐藏直到被点击",
 		"ChatMessageHide": "隐藏",
