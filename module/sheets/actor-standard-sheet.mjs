@@ -509,19 +509,11 @@ export class FUStandardActorSheet extends ActorSheet {
 					await item.update({ 'system.quantity.value': newQuantity });
 				},
 			},
-			// {
-			// 	types: ['class', 'skill'],
-			// 	update: async (itemData, item) => {
-			// 		const incrementValue = itemData.system.level?.value || 1;
-			// 		const newValue = Math.min((item.system.level.value || 0) + incrementValue, item.system.level.max || 0);
-			// 		await item.update({ 'system.level.value': newValue });
-			// 	},
-			// },
 			{
 				types: ['effect'],
 				update: async (itemData) => {
 					// Effects are handled separately
-					return; // No default action here
+					return;
 				},
 			},
 		];
@@ -588,91 +580,50 @@ export class FUStandardActorSheet extends ActorSheet {
 	activateListeners(html) {
 		super.activateListeners(html);
 
-		// Render the item sheet for viewing/editing prior to the editable check.
-		html.find('.item-edit').click(this._onEditItem.bind(this));
-
-		// Render the item sheet for viewing/editing when middle-clicking
-		html.find('.item').mouseup(this._onMiddleClickEdit.bind(this));
-
-		// Render the active effect sheet for viewing/editing when middle-clicking
-		html.find('.effect').mouseup((ev) => {
-			const owner = this.actor;
-			if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
-				const li = $(ev.currentTarget);
-				const simulatedEvent = {
-					preventDefault: () => {},
-					currentTarget: {
-						dataset: { action: 'edit' },
-						closest: () => li[0],
-						classList: {
-							contains: (cls) => li.hasClass(cls),
-						},
-					},
-				};
-
-				onManageActiveEffect(simulatedEvent, owner);
-			}
-		});
-
-		// Active Effect Roll management
-		html.on('click', '.effect-roll', (ev) => onManageActiveEffect(ev, this.actor));
+		html.on('click contextmenu', '.item-edit', this._onEditItem.bind(this)); // Edit item
+		html.on('mouseup', '.item', this._onMiddleClickEditItem.bind(this)); // Middle-click to edit item
+		html.on('mouseup', '.effect', this._onMiddleClickEditEffect.bind(this)); // Middle-click to edit effect
+		html.on('click', '.effect-roll', (ev) => onManageActiveEffect(ev, this.actor)); // Send active effect to chat
+		html.on('click', '.study-button', async () => await new StudyRollHandler().handleStudyRoll(this.actor)); // Handle study roll
 
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
 
-		// Use Equipment
-		html.find('.use-equipment').click(this._onUseEquipment.bind(this));
+		// Editable item actions
+		html.on('click', '.use-equipment', this._onUseEquipment.bind(this)); // Toggle use equipment setting for npcs
+		html.on('click', '.item-duplicate', this._onItemDuplicate.bind(this)); // Duplicate item
+		html.on('click', '.item-create', this._onItemCreate.bind(this)); // Create item
+		html.on('click', '.item-create-dialog', this._onItemCreateDialog.bind(this)); // Open item creation dialog
+		html.on('click', '.item-delete', this._onItemDelete.bind(this)); // Delete item
+		html.on('click', '.item-favored', this._onItemFavorite.bind(this)); // Add item to favorites
+		html.on('click', '.item-behavior', this._onItemBehavior.bind(this)); // Add item to behavior roll
+		html.on('click contextmenu', '.increment-button', (ev) => this._onIncrementButtonClick(ev)); // Increment value
+		html.on('click contextmenu', '.decrement-button', (ev) => this._onDecrementButtonClick(ev)); // Decrement value
+		html.on('click', '.is-levelup', (ev) => this._onLevelUp(ev)); // Handle level up
+		html.on('click', '.skillLevel input', (ev) => this._onSkillLevelUpdate(ev)); // Update skill level
+		html.on('contextmenu', '.skillLevel', (ev) => this._onSkillLevelReset(ev)); // Reset skill level
 
-		// Duplicate Inventory Item
-		html.find('.item-duplicate').click(this._onItemDuplicate.bind(this));
-
-		// Add Inventory Item
-		html.find('.item-create').click(this._onItemCreate.bind(this));
-
-		// Add Inventory Item Dialog
-		html.find('.item-create-dialog').click(this._onItemCreateDialog.bind(this));
-
-		// Delete Inventory Item
-		html.find('.item-delete').click(this._onItemDelete.bind(this));
-
-		html.find('.study-button').click(async () => await new StudyRollHandler().handleStudyRoll(this.actor));
-
-		// Add event listeners for increment and decrement buttons
-		html.find('.increment-button').on('click contextmenu', (ev) => this._onIncrementButtonClick(ev));
-		html.find('.decrement-button').on('click contextmenu', (ev) => this._onDecrementButtonClick(ev));
-
-		// Update Character on Level Up
-		html.find('.is-levelup').click((ev) => this._onLevelUp(ev));
-
-		// Update Skill Level
-		html.find('.skillLevel input').click((ev) => this._onSkillLevelUpdate(ev));
-		// Update Skill Level
-		html.find('.skillLevel').contextmenu((ev) => this._onSkillLevelReset(ev));
-
-		// Update Progress - Click Event
+		// Update Progress Increase
 		html.find('.progress input').click((ev) => {
 			const dataType = $(ev.currentTarget).closest('.progress').data('type');
 			this._onProgressUpdate(ev, dataType);
 		});
 
-		// Update Progress - Contextmenu Event
+		// Update Progress Reset
 		html.find('.progress input').contextmenu((ev) => {
 			const dataType = $(ev.currentTarget).closest('.progress').data('type');
 			this._onProgressReset(ev, dataType);
 		});
 
 		// Create an instance of EquipmentHandler
-		const equipmentHandler = new EquipmentHandler(this.actor);
+		const eh = new EquipmentHandler(this.actor);
 
-		// Event bindings for handling clicks
-		html.find('.item-equip').on('click', (ev) => equipmentHandler.handleItemClick(ev, 'left'));
-		html.find('.item-equip').on('contextmenu', (ev) => equipmentHandler.handleItemClick(ev, 'right'));
-		html.find('.item-equip').on('mousedown', (ev) => {
-			if (ev.ctrlKey && ev.which === 1) {
-				equipmentHandler.handleItemClick(ev, 'ctrl');
-				ev.preventDefault();
-			}
+		// Add event listeners for handling equipping items
+		html.find('.item-equip').on({
+			click: (ev) => eh.handleItemClick(ev, 'left'),
+			contextmenu: (ev) => eh.handleItemClick(ev, 'right'),
+			mousedown: (ev) => ev.ctrlKey && ev.which === 1 && (eh.handleItemClick(ev, 'ctrl'), ev.preventDefault()),
 		});
 
 		// Automatically expand elements that are in the _expanded state
@@ -683,7 +634,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 		});
 
-		// Your existing toggle listener logic
+		// Toggle Exapandable Item Description
 		html.find('.click-item').click((ev) => {
 			const el = $(ev.currentTarget);
 			const parentEl = el.closest('li');
@@ -704,27 +655,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			this._saveExpandedState();
 		});
 
-		// Add item to Favorite Section
-		html.find('.item-favored').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const itemId = li.data('itemId');
-			const item = this.actor.items.get(itemId);
-			const isFavoredBool = item.system.isFavored.value;
-			item.update();
-			this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
-		});
-
-		// Add item to Behavior Roll
-		html.find('.item-behavior').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const itemId = li.data('itemId');
-			const item = this.actor.items.get(itemId);
-			const isBehaviorBool = item.system.isBehavior.value;
-			this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
-		});
-
-		// Active Effect management
-		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor));
+		// Toggle status effects
 		html.find('.status-effect-toggle').click((event) => {
 			event.preventDefault();
 			const a = event.currentTarget;
@@ -744,46 +675,10 @@ export class FUStandardActorSheet extends ActorSheet {
 			});
 		}
 
-		/**
-		 * Handles resting actions for the actor, restoring health and possibly other resources.
-		 *
-		 * @param {Actor} actor - The actor performing the rest action.
-		 * @param {boolean} isRightClick - Indicates if the rest action is triggered by a right-click.
-		 * @returns {Promise<void>} A promise that resolves when the rest action is complete.
-		 */
-		async function onRest(actor, isRightClick) {
-			const maxHP = actor.system.resources.hp?.max;
-			const maxMP = actor.system.resources.mp?.max;
-			const maxIP = actor.system.resources.ip?.max;
-
-			// Prepare the update data using mergeObject to avoid overwriting other fields
-			let updateData = foundry.utils.mergeObject(actor.toObject(false), {
-				'system.resources.hp.value': maxHP,
-				'system.resources.mp.value': maxMP,
-			});
-
-			if (isRightClick) {
-				updateData = foundry.utils.mergeObject(updateData, {
-					'system.resources.ip.value': maxIP,
-				});
-			}
-
-			// Update the actor
-			await actor.update(updateData);
-
-			// Rerender the actor's sheet if necessary
-			if (isRightClick || updateData['system.resources.ip.value']) {
-				actor.sheet.render(true);
-			}
-		}
-
 		// Rest on left-click, different behavior on right-click
-		html.find('.rest').on('click contextmenu', async (ev) => {
-			ev.preventDefault();
-			const isRightClick = ev.type === 'contextmenu';
-			await onRest(this.actor, isRightClick);
-		});
+		html.find('.rest').on('click contextmenu', (ev) => this.handleRestClick(ev));
 
+		// Event listener for setting hp to crisis
 		async function hpCrisis(actor) {
 			const maxHP = actor.system.resources.hp.max;
 			const crisisHP = Math.ceil(maxHP / 2);
@@ -896,12 +791,23 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		html.find('span[data-action="clearTempEffects"]').click(this._onClearTempEffects.bind(this));
 
-		// dropzone event listeners
+		// Dropzone event listeners
 		const dropZone = html.find('.desc.drop-zone');
 		dropZone.on('dragenter', this._onDragEnter.bind(this));
 		dropZone.on('dragleave', this._onDragLeave.bind(this));
 		dropZone.on('drop', this._onDropReset.bind(this));
-		this._attachFrameListeners(html);
+
+		// Context menu initialization
+		this._initializeContextMenu();
+	}
+
+	/* -------------------------------------------- */
+
+	/** @override */
+	close(options = {}) {
+		super.close(options);
+		// Reset the context menu initialization flag
+		this.contextMenuInitialized = false;
 	}
 
 	/* -------------------------------------------- */
@@ -994,31 +900,18 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
-	_attachFrameListeners() {
+	_initializeContextMenu() {
 		if (!this.contextMenuInitialized) {
+			console.log('Initializing context menu...');
 			// eslint-disable-next-line no-undef
 			new ContextMenu(this.element, 'li.item', [
-				{
-					name: game.i18n.localize('FU.Edit'),
-					icon: '<i class="fas fa-edit"></i>',
-					callback: this._onItemEditz.bind(this),
-					condition: (li) => !!li.data('itemId'),
-				},
-				{
-					name: game.i18n.localize('FU.Duplicate'),
-					icon: '<i class="fas fa-clone"></i>',
-					callback: this._onItemDuplicatez.bind(this),
-					condition: (li) => !!li.data('itemId'),
-				},
-				{
-					name: game.i18n.localize('FU.Delete'),
-					icon: '<i class="fas fa-trash"></i>',
-					callback: this._onItemDeletez.bind(this),
-					condition: (li) => !!li.data('itemId'),
-				},
+				{ name: game.i18n.localize('FU.Edit'), icon: '<i class="fas fa-edit"></i>', callback: this._onItemEditz.bind(this), condition: (li) => !!li.data('itemId') },
+				{ name: game.i18n.localize('FU.Duplicate'), icon: '<i class="fas fa-clone"></i>', callback: this._onItemDuplicatez.bind(this), condition: (li) => !!li.data('itemId') },
+				{ name: game.i18n.localize('FU.Delete'), icon: '<i class="fas fa-trash"></i>', callback: this._onItemDeletez.bind(this), condition: (li) => !!li.data('itemId') },
 			]);
-
 			this.contextMenuInitialized = true;
+		} else {
+			console.log('Context menu already initialized.');
 		}
 	}
 
@@ -1055,11 +948,30 @@ export class FUStandardActorSheet extends ActorSheet {
 	}
 	// end delete later
 
-	// Method to handle middle-click editing of an item
-	_onMiddleClickEdit(event) {
+	// Handle middle-click editing of an item
+	_onMiddleClickEditItem(event) {
 		if (event.button === 1 && !$(event.target).hasClass('item-edit')) {
 			event.preventDefault();
 			this._onEditItem(event);
+		}
+	}
+
+	_onMiddleClickEditEffect(event) {
+		const owner = this.actor;
+		if (event.button === 1 && !$(event.target).hasClass('effect-control')) {
+			const li = $(event.currentTarget);
+			const simulatedEvent = {
+				preventDefault: () => {},
+				currentTarget: {
+					dataset: { action: 'edit' },
+					closest: () => li[0],
+					classList: {
+						contains: (cls) => li.hasClass(cls),
+					},
+				},
+			};
+
+			onManageActiveEffect(simulatedEvent, owner);
 		}
 	}
 
@@ -1092,7 +1004,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	}
 
 	/**
-	 * Handles the duplication of an item and adds it to the actor's inventory.
+	 * Handle the duplication of an item and adds it to the actor's inventory.
 	 *
 	 * @param {Event} event - The click event triggering the item duplication.
 	 * @returns {Promise<void>} A promise that resolves when the item duplication process is complete.
@@ -1121,6 +1033,65 @@ export class FUStandardActorSheet extends ActorSheet {
 		};
 		// Add the duplicated item to the actor
 		await this.actor.createEmbeddedDocuments('Item', [duplicatedItemData]);
+	}
+
+	// Handle adding item to favorite
+	async _onItemFavorite(event) {
+		const li = $(event.currentTarget).parents('.item');
+		const itemId = li.data('itemId');
+		const item = this.actor.items.get(itemId);
+		const isFavoredBool = item.system.isFavored.value;
+		item.update();
+		this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
+	}
+
+	// Handle adding item to behavior roll
+	async _onItemBehavior(event) {
+		const li = $(event.currentTarget).parents('.item');
+		const itemId = li.data('itemId');
+		const item = this.actor.items.get(itemId);
+		const isBehaviorBool = item.system.isBehavior.value;
+		this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
+	}
+
+	// Handle the rest action click events
+	async handleRestClick(ev) {
+		ev.preventDefault();
+		const isRightClick = ev.type === 'contextmenu';
+		await this.onRest(this.actor, isRightClick);
+	}
+
+	/**
+	 * Handle resting actions for the actor, restoring health and possibly other resources.
+	 *
+	 * @param {Actor} actor - The actor performing the rest action.
+	 * @param {boolean} isRightClick - Indicates if the rest action is triggered by a right-click.
+	 * @returns {Promise<void>} A promise that resolves when the rest action is complete.
+	 */
+	async onRest(actor, isRightClick) {
+		const maxHP = actor.system.resources.hp?.max;
+		const maxMP = actor.system.resources.mp?.max;
+		const maxIP = actor.system.resources.ip?.max;
+
+		// Prepare the update data using mergeObject to avoid overwriting other fields
+		let updateData = foundry.utils.mergeObject(actor.toObject(false), {
+			'system.resources.hp.value': maxHP,
+			'system.resources.mp.value': maxMP,
+		});
+
+		if (isRightClick) {
+			updateData = foundry.utils.mergeObject(updateData, {
+				'system.resources.ip.value': maxIP,
+			});
+		}
+
+		// Update the actor
+		await actor.update(updateData);
+
+		// Rerender the actor's sheet if necessary
+		if (isRightClick || updateData['system.resources.ip.value']) {
+			actor.sheet.render(true);
+		}
 	}
 
 	/**
