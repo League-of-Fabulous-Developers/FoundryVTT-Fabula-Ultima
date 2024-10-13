@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>When you hit one or more creatures with this weapon, you may recover @LOSS[5 hp].<br /><strong>Source: </strong>FUCR270 Cultes des Ghoules</p>",
+      "description": "<p>When you hit one or more creatures with this weapon, you may recover @LOSS[5 hp].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR270"
         }
       },
       "_id": "BGfjDKclA5Z2quCt",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728753339276,
+        "modifiedTime": 1728776520272,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!1X1ghmioMY5szEGK.BGfjDKclA5Z2quCt"

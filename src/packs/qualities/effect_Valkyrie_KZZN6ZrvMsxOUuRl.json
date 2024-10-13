@@ -1,21 +1,21 @@
 {
-  "name": "Minstrel's",
+  "name": "Valkyrie",
   "type": "effect",
   "img": "systems/projectfu/styles/static/statuses/Blank.webp",
   "system": {
     "fuid": "effect",
     "cost": {
-      "value": 850
+      "value": 650
     }
   },
   "effects": [
     {
       "disabled": false,
-      "name": "Minstrel's",
+      "name": "Valkyrie",
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>When you attack with this weapon using the <strong>Vibrato</strong> Skill (see <strong>Atlas High Fantasy</strong>,<strong> </strong>page<strong> 137</strong>), all damage dealt by the attack becomes of the same type as the <strong>【key type】</strong> of the last verse you sang.<br /><strong>Source: </strong>FUHF79 Heavy Metal</p>",
+      "description": "<p>When you cast the <strong>Soaring Strike</strong> spell (see Elementalist Class, <strong>Core Rulebook</strong> page <strong>189</strong>), the MP cost is halved.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,10 +24,11 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Skill",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR281"
         }
       },
-      "_id": "xkgOaHU4bnrduM1e",
+      "_id": "RFGKhQjqQ6QsZvBI",
       "system": {},
       "duration": {
         "startTime": null,
@@ -46,10 +47,10 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728752152683,
+        "modifiedTime": 1728777759618,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
-      "_key": "!items.effects!gZP3IvKNuZdvY8Mv.xkgOaHU4bnrduM1e"
+      "_key": "!items.effects!KZZN6ZrvMsxOUuRl.RFGKhQjqQ6QsZvBI"
     }
   ],
   "folder": "wRqZOkZnfCN50Yil",
@@ -61,14 +62,14 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747194796,
-    "modifiedTime": 1728747194796,
+    "modifiedTime": 1728777764755,
     "lastModifiedBy": "7kOzP8RBVJhI8wKx"
   },
-  "_id": "gZP3IvKNuZdvY8Mv",
-  "sort": 200000,
+  "_id": "KZZN6ZrvMsxOUuRl",
+  "sort": 300000,
   "ownership": {
     "default": 0,
     "7kOzP8RBVJhI8wKx": 3
   },
-  "_key": "!items!gZP3IvKNuZdvY8Mv"
+  "_key": "!items!KZZN6ZrvMsxOUuRl"
 }

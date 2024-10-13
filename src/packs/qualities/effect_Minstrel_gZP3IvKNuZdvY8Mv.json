@@ -1,5 +1,5 @@
 {
-  "name": "Assassin's",
+  "name": "Minstrel",
   "type": "effect",
   "img": "systems/projectfu/styles/static/statuses/Blank.webp",
   "system": {
@@ -10,31 +10,25 @@
   },
   "effects": [
     {
-      "disabled": true,
-      "name": "Assassin's",
+      "disabled": false,
+      "name": "Minstrel",
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
-      "changes": [
-        {
-          "key": "system.damage.value",
-          "mode": 2,
-          "value": "5",
-          "priority": null
-        }
-      ],
-      "description": "<p>Deals 5 Extra damage to targets who are in <strong>Crisis</strong>.<br /><strong>Source: </strong>FUCR273 Assassin's Blade</p>",
+      "changes": [],
+      "description": "<p>When you attack with this weapon using the <strong>Vibrato</strong> Skill (see <strong>Atlas High Fantasy</strong>,<strong> </strong>page<strong> 137</strong>), all damage dealt by the attack becomes of the same type as the <strong>【key type】</strong> of the last verse you sang.</p>",
       "tint": "#ffffff",
-      "transfer": false,
+      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
           "type": "quality",
-          "subtype": "Offensive",
-          "CrisisInteraction": "none"
+          "subtype": "Skill",
+          "CrisisInteraction": "none",
+          "source": "FUHF79"
         }
       },
-      "_id": "NyOZKDlKkHqWDqos",
+      "_id": "xkgOaHU4bnrduM1e",
       "system": {},
       "duration": {
         "startTime": null,
@@ -53,13 +47,13 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728752960274,
+        "modifiedTime": 1728777749716,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
-      "_key": "!items.effects!zb9X9lQ6CsMKhXaV.NyOZKDlKkHqWDqos"
+      "_key": "!items.effects!gZP3IvKNuZdvY8Mv.xkgOaHU4bnrduM1e"
     }
   ],
-  "folder": "SH8cHX3lJkZlLgj8",
+  "folder": "wRqZOkZnfCN50Yil",
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -67,15 +61,15 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1728747193107,
-    "modifiedTime": 1728747193107,
+    "createdTime": 1728747194796,
+    "modifiedTime": 1728777739377,
     "lastModifiedBy": "7kOzP8RBVJhI8wKx"
   },
-  "_id": "zb9X9lQ6CsMKhXaV",
-  "sort": 1700000,
+  "_id": "gZP3IvKNuZdvY8Mv",
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "7kOzP8RBVJhI8wKx": 3
   },
-  "_key": "!items!zb9X9lQ6CsMKhXaV"
+  "_key": "!items!gZP3IvKNuZdvY8Mv"
 }

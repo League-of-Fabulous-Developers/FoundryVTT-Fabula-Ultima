@@ -34,7 +34,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You have Immunity to <strong>(choose two damage types other than physical)</strong> damage, but Vulnerability to <strong>(choose one damage type)</strong> damage.<br /><strong>Source: </strong>FUCR282 Automaton Suit</p>",
+      "description": "<p>You have Immunity to <strong>(choose two damage types other than physical)</strong> damage, but Vulnerability to <strong>(choose one damage type)</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -43,7 +43,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Defensive",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR282"
         }
       },
       "_id": "x2VxVfiIiVG6bIcE",
@@ -65,7 +66,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728748438342,
+        "modifiedTime": 1728774497174,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!TUOOuzz1bX2aNrzg.x2VxVfiIiVG6bIcE"

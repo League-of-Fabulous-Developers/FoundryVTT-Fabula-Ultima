@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>When a <strong>potion</strong> or <strong>magisphere</strong> created with your Inventory Points restores Mind Points, it restores 5 extra<strong> </strong>Mind Points.</p><hr /><p>@GAIN[5 mp] <br /><strong>Source: </strong>FUCR281 Butler Uniform, Maid Uniform</p>",
+      "description": "<p>When a <strong>potion</strong> or <strong>magisphere</strong> created with your Inventory Points restores Mind Points, it restores an extra<strong> </strong>@GAIN[5 mp].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR281"
         }
       },
       "_id": "NvExbNQLvlaRtNWE",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728751291291,
+        "modifiedTime": 1728776137717,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!1WCSDjF12nzCKREW.NvExbNQLvlaRtNWE"

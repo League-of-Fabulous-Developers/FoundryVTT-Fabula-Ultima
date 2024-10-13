@@ -22,7 +22,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You Absorb <strong>fire</strong> damage.<br /><strong>Source: </strong>FUCR277 Nine-Teeth Rake</p>",
+      "description": "<p>You Absorb <strong>fire</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -31,7 +31,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Defensive",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR277"
         }
       },
       "_id": "VmCaLNG9fY95mPnw",
@@ -53,7 +54,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728748098083,
+        "modifiedTime": 1728774237404,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!yWzt84YJGI0hYSuX.VmCaLNG9fY95mPnw"

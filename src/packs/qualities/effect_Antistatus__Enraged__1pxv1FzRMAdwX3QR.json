@@ -22,7 +22,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You are immune to <strong>enraged</strong> status effect.<br /><strong>Source: </strong>FUCR269</p>",
+      "description": "<p>You are immune to <strong>enraged</strong> status effect.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -31,7 +31,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Status",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR269"
         }
       },
       "_id": "XMFoMp9PpV2BnB4T",
@@ -53,7 +54,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728752245647,
+        "modifiedTime": 1728778097074,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!1pxv1FzRMAdwX3QR.XMFoMp9PpV2BnB4T"

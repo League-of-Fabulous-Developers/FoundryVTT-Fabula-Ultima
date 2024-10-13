@@ -22,7 +22,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You gain a +1 bonus to your Magic Checks.<br /><strong>Source: </strong>FUCR280</p>",
+      "description": "<p>You gain a +1 bonus to your Magic Checks.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -31,7 +31,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Check",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR280"
         }
       },
       "_id": "4DoEtLDlT5YfK63Z",
@@ -53,7 +54,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728747737232,
+        "modifiedTime": 1728778429244,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!nWyqjIY3XkhWi3Db.4DoEtLDlT5YfK63Z"

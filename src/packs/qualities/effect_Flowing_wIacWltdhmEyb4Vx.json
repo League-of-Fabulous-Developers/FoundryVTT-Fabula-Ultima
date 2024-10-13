@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>After you reduce a creature’s Hit Points to 0 with this weapon, you may immediately perform a <strong>dance</strong> with a <strong>duration</strong> of “Instantaneous” among those you have learned (see <strong>Atlas High Fantasy</strong>,<strong> </strong>page<strong> 144</strong>); the MP cost of a dance performed this way can <strong>never</strong> be lower than 10.<br /><strong>Source: </strong>FUHF79 Grim Waltz</p>",
+      "description": "<p>After you reduce a creature’s Hit Points to 0 with this weapon, you may immediately perform a <strong>dance</strong> with a <strong>duration</strong> of “Instantaneous” among those you have learned (see <strong>Atlas High Fantasy</strong>,<strong> </strong>page<strong> 144</strong>); the MP cost of a dance performed this way can <strong>never</strong> be lower than 10.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Skill",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUHF79"
         }
       },
       "_id": "rqmf6QJ08JXiCiIG",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728752165103,
+        "modifiedTime": 1728777733375,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!wIacWltdhmEyb4Vx.rqmf6QJ08JXiCiIG"

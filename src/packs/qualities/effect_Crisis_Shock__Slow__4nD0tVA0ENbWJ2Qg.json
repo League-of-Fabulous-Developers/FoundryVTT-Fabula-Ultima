@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>After a creature deals damage to you, if you are in <strong>Crisis</strong>, you may have that creature suffer @EFFECT[slow].<br /><strong>Source: </strong>FUCR283 Demonshield</p>",
+      "description": "<p>After a creature deals damage to you, if you are in <strong>Crisis</strong>, you may have that creature suffer @EFFECT[slow].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Status",
-          "CrisisInteraction": "active"
+          "CrisisInteraction": "active",
+          "source": "FUCR283"
         }
       },
       "_id": "LpkHBLXyQ7HkraXW",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728752321804,
+        "modifiedTime": 1728778033281,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!4nD0tVA0ENbWJ2Qg.LpkHBLXyQ7HkraXW"

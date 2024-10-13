@@ -22,7 +22,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Your attacks with <strong>flail</strong> weapons deal 5 extra damage.<br /><strong>Source: </strong>FUCR282 Black Belt</p>",
+      "description": "<p>Your attacks with <strong>flail</strong> weapons deal 5 extra damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -31,7 +31,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Offensive",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR282"
         }
       },
       "_id": "rEhPw5HtPy7QfeGr",
@@ -53,7 +54,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728749681927,
+        "modifiedTime": 1728775292158,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!FpbuB0diSwGFmz2u.rEhPw5HtPy7QfeGr"

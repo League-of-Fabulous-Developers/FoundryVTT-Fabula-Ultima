@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>When you hit a flying target with this weapon, you may force that target to land immediately.<br /><strong>Source: </strong>FUCR271 Dragontrap Bow</p>",
+      "description": "<p>When you hit a flying target with this weapon, you may force that target to land immediately.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Offensive",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR271"
         }
       },
       "_id": "8CgSd2DBIlfWq53s",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728749399558,
+        "modifiedTime": 1728774772111,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!SuNaI5fwjUzul2py.8CgSd2DBIlfWq53s"

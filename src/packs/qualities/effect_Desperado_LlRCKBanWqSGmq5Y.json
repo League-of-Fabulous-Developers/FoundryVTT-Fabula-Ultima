@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>When you use the <strong>Barrage</strong> Skill (see Sharpshooter Class, <strong>Core Rulebook</strong> page <strong>205</strong>), the MP cost is halved.<br /><strong>Source: </strong>FUCR281 Desperado Coat</p>",
+      "description": "<p>When you use the <strong>Barrage</strong> Skill (see Sharpshooter Class, <strong>Core Rulebook</strong> page <strong>205</strong>), the MP cost is halved.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Skill",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR281"
         }
       },
       "_id": "4ciiEAEEMQPkqwrK",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728752173615,
+        "modifiedTime": 1728777723211,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!LlRCKBanWqSGmq5Y.4ciiEAEEMQPkqwrK"

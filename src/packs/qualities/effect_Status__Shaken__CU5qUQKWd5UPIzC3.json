@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>Each target hit by the weapon suffers @EFFECT[shaken].<br /><strong>Source: </strong>FUCR269</p>",
+      "description": "<p>Each target hit by the weapon suffers @EFFECT[shaken].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Status",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR269"
         }
       },
       "_id": "85IZ3SOH5PzeDJEF",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728752390270,
+        "modifiedTime": 1728777953954,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!CU5qUQKWd5UPIzC3.85IZ3SOH5PzeDJEF"

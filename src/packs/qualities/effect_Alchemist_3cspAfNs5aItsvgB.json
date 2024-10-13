@@ -1,5 +1,5 @@
 {
-  "name": "Alchemist's",
+  "name": "Alchemist",
   "type": "effect",
   "img": "systems/projectfu/styles/static/statuses/Blank.webp",
   "system": {
@@ -11,11 +11,11 @@
   "effects": [
     {
       "disabled": false,
-      "name": "Alchemist's",
+      "name": "Alchemist",
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>Potions you create with your Inventory Points deal 5 extra damage and restore 5 extra Hit Points.</p><hr /><p>@GAIN[5 hp] <br /><strong>Source: </strong>FUCR274 Alchemusket</p>",
+      "description": "<p>Potions you create with your Inventory Points deal 5 extra damage and restore an extra @GAIN[5 hp].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR274"
         }
       },
       "_id": "4RvqveYHiGXyMkEa",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728759717742,
+        "modifiedTime": 1728777853091,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!3cspAfNs5aItsvgB.4RvqveYHiGXyMkEa"
@@ -61,7 +62,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747193936,
-    "modifiedTime": 1728747193936,
+    "modifiedTime": 1728777848029,
     "lastModifiedBy": "7kOzP8RBVJhI8wKx"
   },
   "_id": "3cspAfNs5aItsvgB",

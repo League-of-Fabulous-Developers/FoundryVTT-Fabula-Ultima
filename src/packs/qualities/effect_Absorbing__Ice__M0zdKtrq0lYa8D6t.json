@@ -22,7 +22,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You Absorb <strong>ice</strong> damage.<br /><strong>Source: </strong>FUCR277 Nine-Teeth Rake</p>",
+      "description": "<p>You Absorb <strong>ice</strong> damage.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -31,7 +31,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Defensive",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR277"
         }
       },
       "_id": "lADS1g0J63frv16Q",
@@ -53,7 +54,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728748093179,
+        "modifiedTime": 1728774222681,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!M0zdKtrq0lYa8D6t.lADS1g0J63frv16Q"

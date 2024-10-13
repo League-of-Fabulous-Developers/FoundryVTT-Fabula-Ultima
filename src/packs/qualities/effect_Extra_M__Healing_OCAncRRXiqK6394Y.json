@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>Spells you cast whose effects restore Hit Points will restore 5 extra Hit Points.</p><hr /><p>@GAIN[5 hp]<br /><strong>Source: </strong>FUCR270 Caduceus</p>",
+      "description": "<p>Spells you cast whose effects restore Hit Points will restore an extra @GAIN[5 hp].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR270"
         }
       },
       "_id": "m2IUwUtR5bSkUXsu",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728759729976,
+        "modifiedTime": 1728776863533,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!OCAncRRXiqK6394Y.m2IUwUtR5bSkUXsu"

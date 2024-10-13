@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>After a creature deals damage to you, if you are in <strong>Crisis</strong>, you may have that creature suffer @EFFECT[dazed].<br /><strong>Source: </strong>FUCR283 Demonshield</p>",
+      "description": "<p>After a creature deals damage to you, if you are in <strong>Crisis</strong>, you may have that creature suffer @EFFECT[dazed].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Status",
-          "CrisisInteraction": "active"
+          "CrisisInteraction": "active",
+          "source": "FUCR283"
         }
       },
       "_id": "lNf44HPh2pkERToK",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728752293760,
+        "modifiedTime": 1728778049873,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!0oUdQq3Q4zYCjZf0.lNf44HPh2pkERToK"

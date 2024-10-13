@@ -22,7 +22,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You gain a +1 bonus to Accuracy Checks with the <strong>arcane</strong> weapon category).<br /><strong>Source: </strong>FUCR281 Bandit Jacket</p>",
+      "description": "<p>You gain a +1 bonus to Accuracy Checks with the <strong>arcane</strong> weapon category).</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -31,7 +31,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Check",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR281"
         }
       },
       "_id": "JAXs3VtrjNOezMeU",
@@ -53,7 +54,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728747521979,
+        "modifiedTime": 1728772437129,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!BXA0uUdj8K85Ghtz.JAXs3VtrjNOezMeU"

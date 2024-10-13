@@ -30,6 +30,7 @@ const opposeCheck = async (li) => {
 	const sourceCheck = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 	if (sourceCheck) {
 		const character = canvas.tokens.controlled.at(0)?.document.actor || game.user.character;
+		const opposedCheckBonus = character.system.bonuses.accuracy.opposedCheck || 0;
 		await ChecksV2.opposedCheck(character, async (check) => {
 			check.primary = sourceCheck.primary.attribute;
 			check.secondary = sourceCheck.secondary.attribute;
@@ -48,6 +49,10 @@ const opposeCheck = async (li) => {
                   <legend class="resource-text-m">
                     ${game.i18n.localize('FU.OpposedCheckBonusDialogBonus')}
                   </legend>
+				  <label for="opposedCheckGlobalBonus">
+					${game.i18n.localize('FU.OpposedCheckBonusGeneric')}: 
+					<span id="opposedCheckGlobalBonusValue">${opposedCheckBonus}</span>
+				  </label>
                   <label for="opposedCheckBonus">
                     ${game.i18n.localize('FU.OpposedCheckBonusDialogBonusLabel')}
                     <input id="opposedCheckBonus" type="number" name="bonus" value="0">

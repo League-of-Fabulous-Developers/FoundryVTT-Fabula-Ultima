@@ -22,7 +22,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You have Resistance to <strong>dark</strong> damage type<br /><strong>Source: </strong>FUCR269</p>",
+      "description": "<p>You have Resistance to <strong>dark</strong> damage type.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -31,7 +31,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Defensive",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR269"
         }
       },
       "_id": "6H2WjWx191AJE7ia",
@@ -53,7 +54,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728748236453,
+        "modifiedTime": 1728774426220,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!RdRVDbUtEuOsn8SQ.6H2WjWx191AJE7ia"

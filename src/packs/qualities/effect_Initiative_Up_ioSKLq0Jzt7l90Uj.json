@@ -22,7 +22,7 @@
           "priority": null
         }
       ],
-      "description": "<p>You gain a +4 bonus to your Initiative modifier.<br /><strong>Source: </strong>FUCR280</p>",
+      "description": "<p>You gain a +4 bonus to your Initiative modifier.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -31,7 +31,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR280"
         }
       },
       "_id": "em0AHUzCr3MeyUDA",
@@ -53,7 +54,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728753267594,
+        "modifiedTime": 1728776511304,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!ioSKLq0Jzt7l90Uj.em0AHUzCr3MeyUDA"

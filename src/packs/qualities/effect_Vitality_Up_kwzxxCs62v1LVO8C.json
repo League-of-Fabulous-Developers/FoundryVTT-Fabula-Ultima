@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>Whenever you recover Hit Points, you recover 5 extra Hit Points.</p><hr /><p>@GAIN[5 hp]<br /><strong>Source: </strong>FUCR285</p><p></p>",
+      "description": "<p>Whenever you recover Hit Points, you recover an extra @GAIN[5 hp].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR285"
         }
       },
       "_id": "JbwXmuK3zpoPenXp",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728759625477,
+        "modifiedTime": 1728775849161,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!kwzxxCs62v1LVO8C.JbwXmuK3zpoPenXp"

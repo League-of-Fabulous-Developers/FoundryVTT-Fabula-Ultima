@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>Damage dealt by the weapon ignores Resistances.<br /><strong>Source: </strong>FUCR269</p>",
+      "description": "<p>Damage dealt by the weapon ignores Resistances.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -25,7 +25,8 @@
           "type": "quality",
           "subtype": "Offensive",
           "cost": "400",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR269"
         }
       },
       "_id": "Bcstwj9R41jdjEfh",
@@ -47,7 +48,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1728749884726,
-        "modifiedTime": 1728749892006,
+        "modifiedTime": 1728775168246,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!l8Iw5eSxnGsKIvGj.Bcstwj9R41jdjEfh"

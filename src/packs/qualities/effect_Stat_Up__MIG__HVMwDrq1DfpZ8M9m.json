@@ -22,7 +22,7 @@
           "priority": null
         }
       ],
-      "description": "<p>As long as you have this armor equipped, you treat your<strong> Might</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).<br /><strong>Source: </strong>FUCR282 Granny Vest</p>",
+      "description": "<p>As long as you have this armor equipped, you treat your<strong> Might</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -31,7 +31,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR282"
         }
       },
       "_id": "tZzMZlAA6mxUfvAQ",
@@ -53,7 +54,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728750530506,
+        "modifiedTime": 1728775875788,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!HVMwDrq1DfpZ8M9m.tZzMZlAA6mxUfvAQ"

@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>Whenever you recover Mind Points, you recover 5 extra Mind Points.</p><hr /><p>@GAIN[5 mp]</p><p><strong>Source:</strong> FUCR282 Meditation Robe</p>",
+      "description": "<p>Whenever you recover Mind Points, you recover an extra @GAIN[5 mp].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR282"
         }
       },
       "_id": "Qi2iN6Xi3Y0DD6wp",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728753193179,
+        "modifiedTime": 1728776479526,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!PuVGthegP71MPdFB.Qi2iN6Xi3Y0DD6wp"

@@ -1,21 +1,21 @@
 {
-  "name": "Rookie's",
+  "name": "Wanderer",
   "type": "effect",
   "img": "systems/projectfu/styles/static/statuses/Blank.webp",
   "system": {
     "fuid": "effect",
     "cost": {
-      "value": 600
+      "value": 900
     }
   },
   "effects": [
     {
       "disabled": false,
-      "name": "Rookie's",
+      "name": "Wanderer",
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>When you roll a <strong>fumble</strong>, if you have less than 10 Experience Points, you may immediately gain @GAIN[1 exp]<br /><strong>Source: </strong>FUCR285 Rookie's Boots</p>",
+      "description": "<p>When your group makes a <strong>discovery</strong> while traveling, you may immediately gain @GAIN[1 fp].</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,10 +24,11 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR286"
         }
       },
-      "_id": "P6pS7KeeF3hpcurr",
+      "_id": "aDI8CAOuWj4T0wid",
       "system": {},
       "duration": {
         "startTime": null,
@@ -46,10 +47,10 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728752983321,
+        "modifiedTime": 1728777874672,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
-      "_key": "!items.effects!NsFMu2YMF1YC12YU.P6pS7KeeF3hpcurr"
+      "_key": "!items.effects!CBxLJhCbYs4SfKUs.aDI8CAOuWj4T0wid"
     }
   ],
   "folder": "MoLOhUjPdiKVsj66",
@@ -61,14 +62,14 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747193936,
-    "modifiedTime": 1728747193936,
+    "modifiedTime": 1728777870910,
     "lastModifiedBy": "7kOzP8RBVJhI8wKx"
   },
-  "_id": "NsFMu2YMF1YC12YU",
-  "sort": 1600000,
+  "_id": "CBxLJhCbYs4SfKUs",
+  "sort": 1800000,
   "ownership": {
     "default": 0,
     "7kOzP8RBVJhI8wKx": 3
   },
-  "_key": "!items!NsFMu2YMF1YC12YU"
+  "_key": "!items!CBxLJhCbYs4SfKUs"
 }

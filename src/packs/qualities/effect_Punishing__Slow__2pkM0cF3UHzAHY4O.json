@@ -5,7 +5,7 @@
   "system": {
     "fuid": "effect",
     "cost": {
-      "value": 0
+      "value": 850
     }
   },
   "effects": [
@@ -22,7 +22,7 @@
           "priority": null
         }
       ],
-      "description": "<p>Deals 5 extra damage to <strong>slow</strong> targets.<br /><strong>Source: </strong>FUCR279 Flesh Eater</p>",
+      "description": "<p>Deals 5 extra damage to <strong>slow</strong> targets.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
@@ -31,7 +31,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Offensive",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR279"
         }
       },
       "_id": "JuAg7rDdjjPYpqkq",
@@ -53,7 +54,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728750058827,
+        "modifiedTime": 1728775115037,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!2pkM0cF3UHzAHY4O.JuAg7rDdjjPYpqkq"
@@ -68,7 +69,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747193107,
-    "modifiedTime": 1728747193107,
+    "modifiedTime": 1728777591323,
     "lastModifiedBy": "7kOzP8RBVJhI8wKx"
   },
   "_id": "2pkM0cF3UHzAHY4O",

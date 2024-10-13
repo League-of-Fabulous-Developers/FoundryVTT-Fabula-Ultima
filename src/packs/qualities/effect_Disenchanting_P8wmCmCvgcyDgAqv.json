@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>When you hit a creature with this weapon, if the attack had a <strong>single</strong> target, you may choose a single spell with a <strong>duration</strong> of \"Scene\" affecting the target and end its effects on that creature.<br /><strong>Source: </strong>FUCR273 Spell Sever</p>",
+      "description": "<p>When you hit a creature with this weapon, if the attack had a <strong>single</strong> target, you may choose a single spell with a <strong>duration</strong> of \"Scene\" affecting the target and end its effects on that creature.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Effects",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR273"
         }
       },
       "_id": "IDmDGiZXWrtk5ysf",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728748970483,
+        "modifiedTime": 1728774674171,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!P8wmCmCvgcyDgAqv.IDmDGiZXWrtk5ysf"

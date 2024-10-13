@@ -15,7 +15,7 @@
       "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "type": "base",
       "changes": [],
-      "description": "<p>When reduced to 0 Hit Points, you may instead choose to resist with exactly 1 Hit Point. If you do, the ring breaks (costs 2000 zenit to repair).</p><hr /><p>@GAIN[1 hp]<br /><strong>Source: </strong>FUCR287 Ring of the Egg</p><p></p>",
+      "description": "<p>When reduced to 0 Hit Points, you may instead choose to resist with exactly @GAIN[1 hp]. If you do, the ring breaks (costs 2000 zenit to repair).</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -24,7 +24,8 @@
         "projectfu": {
           "type": "quality",
           "subtype": "Resource",
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "source": "FUCR287"
         }
       },
       "_id": "6RcxrBe1MKaRkBBn",
@@ -46,7 +47,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728750491508,
+        "modifiedTime": 1728775446629,
         "lastModifiedBy": "7kOzP8RBVJhI8wKx"
       },
       "_key": "!items.effects!6NIgH2cLGNbQ0TVT.6RcxrBe1MKaRkBBn"
