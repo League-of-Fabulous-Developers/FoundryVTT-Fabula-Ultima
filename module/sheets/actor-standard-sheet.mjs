@@ -7,6 +7,8 @@ import { GroupCheck } from '../helpers/group-check.mjs';
 import { StudyRollHandler } from '../helpers/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
+import { ChecksV2 } from '../checks/checks-v2.mjs';
+import { GroupCheck as GroupCheckV2 } from '../checks/group-check.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -1744,7 +1746,11 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 
 			if (dataset.rollType === 'group-check') {
-				GroupCheck.promptCheck(this.actor, isShift);
+				if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
+					return ChecksV2.groupCheck(this.actor, isShift ? GroupCheckV2.initInitiativeCheck : GroupCheckV2.initGroupCheck);
+				} else {
+					return GroupCheck.promptCheck(this.actor, isShift);
+				}
 			}
 		}
 

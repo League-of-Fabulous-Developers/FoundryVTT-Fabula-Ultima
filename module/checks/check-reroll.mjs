@@ -208,7 +208,7 @@ const handleReroll = async (result, actor, item) => {
 
 		return { roll };
 	} else {
-		return null;
+		return false;
 	}
 };
 

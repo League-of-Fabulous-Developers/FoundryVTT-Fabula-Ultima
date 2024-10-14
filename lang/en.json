@@ -1162,7 +1162,7 @@
 		"DamageBonusCategorySword": "Sword Damage Bonus",
 		"DamageBonusCategoryThrown": "Thrown Damage Bonus",
 		"CheckSituationalModifier": "Situational Modifier",
-		"GroupCheckSupportCheckBonus": "Support Checks Bonus",
+		"GroupCheckSupportCheckSuccess": "Support from {supporter}",
 		"GroupCheckSupportCheckStrongestBondBonus": "Strongest Bond Bonus",
 		"ChatContextOppose": "Oppose Check",
 		"OpposedCheckBonusGeneric": "Generic Opposed Check Bonus",

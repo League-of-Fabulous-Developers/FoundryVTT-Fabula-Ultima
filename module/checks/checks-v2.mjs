@@ -1,9 +1,3 @@
-/**
- * @typedef CheckAttributes
- * @property {Attribute} primary
- * @property {Attribute} secondary
- */
-
 import { CheckHooks } from './check-hooks.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
@@ -17,6 +11,14 @@ import { Support } from './support/support.mjs';
 import { OpenCheck } from './open-check.mjs';
 import { OpposedCheck } from './opposed-check.mjs';
 import { CheckRetarget } from './check-retarget.mjs';
+import { GroupCheck } from './group-check.mjs';
+import { SupportCheck } from './support-check.mjs';
+
+/**
+ * @typedef CheckAttributes
+ * @property {Attribute} primary
+ * @property {Attribute} secondary
+ */
 
 /**
  * @param {FUActor} actor
@@ -49,11 +51,16 @@ const attributeCheck = async (actor, attributes, configCallback) => {
 
 /**
  * @param {FUActor} actor
- * @param {CheckAttributes | CheckId} attributesOrId
- * @param {CheckCallback} [configCallback]
+ * @param {CheckCallback} configCallback
+ * @return {Promise<void>}
  */
-const groupCheck = async (actor, attributesOrId, configCallback) => {
-	throw new Error('Not yet implemented');
+const groupCheck = async (actor, configCallback) => {
+	/** @type Partial<CheckV2> */
+	const check = {
+		type: 'group',
+	};
+
+	return performCheck(check, actor, undefined, configCallback);
 };
 
 /**
@@ -98,11 +105,16 @@ const opposedCheck = async (actor, configCallback) => {
 };
 
 /**
- * @param actor
- * @param {CheckId} groupCheckId
+ * @param {FUActor} actor
+ * @param {CheckCallback} configCallback
  */
-const supportCheck = async (actor, groupCheckId) => {
-	throw new Error('Not yet implemented');
+const supportCheck = async (actor, configCallback) => {
+	/** @type Partial<CheckV2> */
+	const check = {
+		type: 'support',
+	};
+
+	return performCheck(check, actor, undefined, configCallback);
 };
 
 /**
@@ -140,9 +152,11 @@ const modifyCheck = async (checkId, callback) => {
 		const actor = await fromUuid(oldResult.actorUuid);
 		const item = await fromUuid(oldResult.itemUuid);
 		const callbackResult = await callback(oldResult, actor, item);
-		const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = callbackResult ?? {};
-		const result = await processResult(check, roll, actor, item);
-		return renderCheck(result, actor, item, message.flags);
+		if (callbackResult) {
+			const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = (typeof callbackResult === 'object' && callbackResult) ?? {};
+			const result = await processResult(check, roll, actor, item);
+			return renderCheck(result, actor, item, message.flags);
+		}
 	} else {
 		throw new Error('Check to be modified not found.');
 	}
@@ -162,7 +176,7 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.modifiers ??= [];
 	check.additionalData ??= {};
 	Object.seal(check);
-	await (initialConfigCallback ? initialConfigCallback(check) : undefined);
+	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 	Object.defineProperty(check, 'type', {
 		value: check.type,
 		writable: false,
@@ -193,7 +207,7 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 
 	callbacks.sort((a, b) => a.priority - b.priority);
 	for (let callbackObj of callbacks) {
-		await callbackObj.callback(check);
+		await callbackObj.callback(check, actor, item);
 	}
 
 	if (!check.primary || !check.secondary) {
@@ -424,7 +438,7 @@ function reapplyClickListeners() {
 reapplyClickListeners();
 
 /**
- * @param {Partial<CheckV2>} check
+ * @param {Partial<import('./check-hooks.mjs').CheckV2>} check
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {CheckCallback} [initialConfigCallback]
@@ -556,4 +570,6 @@ AttributeCheck.initialize();
 MagicCheck.initialize();
 OpenCheck.initialize();
 OpposedCheck.initialize();
+GroupCheck.initialize();
+SupportCheck.initialize();
 Support.initialize();
