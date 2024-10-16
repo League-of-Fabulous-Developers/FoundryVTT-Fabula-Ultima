@@ -15,10 +15,9 @@ function addRetargetEntry(html, options) {
 			const isCheck = ChecksV2.isCheck(message);
 			if (isCheck) {
 				const speakerActor = ChatMessage.getSpeakerActor(message?.speaker);
-				return speakerActor?.type === 'character' && !CheckConfiguration.inspect(message).getCheck().fumble;
-			} else {
-				return false;
+				return ['character', 'npc'].includes(speakerActor?.type) && !CheckConfiguration.inspect(message).getCheck().fumble;
 			}
+			return false;
 		},
 		callback: async (li) => {
 			const messageId = li.data('messageId');
