@@ -1,7 +1,8 @@
 <div class="item-sm end">
+    {{!-- remove after fixing contextmenu --}}
     {{#if (eq @root.actor.type "npc")}}
         {{#if (eq (getGameSetting 'optionBehaviorRoll') true)}}
-            <a class="item-control item-behavior"
+            <a class="item-control item-behavior" data-item-id="{{item._id}}"
                data-tooltip="{{#if item.system.isBehavior.value}}{{localize 'FU.BehaviorRemove'}}{{else}}{{localize
                 'FU.BehaviorAdd'}}{{/if}}"
                aria-describedby="tooltip">
@@ -10,7 +11,7 @@
         {{/if}}
     {{/if}}
 
-    <a class="item-control item-favored"
+    <a class="item-control item-favored" data-item-id="{{item._id}}"
        data-tooltip="{{#if item.system.isFavored.value}}{{ localize 'FU.FavoriteRemove' }}{{else}}{{ localize
         'FU.Favorite' }}{{/if}}" aria-describedby="tooltip">
         <i class="{{#if item.system.isFavored.value}}fas active{{else}}far{{/if}} fa-star button-style"></i>
@@ -18,8 +19,8 @@
     {{#if (eq item._id unarmed._id)}}
 
     {{else}}
-        <a class="item-control item-edit" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
-        <i class="fas fa-edit button-style"></i>
+        <a class="item-control item-edit" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
+            <i class="fas fa-edit button-style"></i>
         </a>
         {{!-- <a class="item-control item-duplicate" data-tooltip="{{ localize 'FU.Duplicate' }}" aria-describedby="tooltip">
             <i class="fas fa-copy"></i>
@@ -27,7 +28,7 @@
         <a class="item-control item-delete" data-tooltip="{{ localize 'FU.Delete' }}" aria-describedby="tooltip">
             <i class="fas fa-trash"></i>
         </a> --}}
-        <a class="item-control item-option" data-tooltip="{{ localize 'FU.Options' }}" aria-describedby="tooltip">
+        <a class="item-control item-option" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Settings' }}" aria-describedby="tooltip">
             <i class="fas fa-bars button-style"></i>
         </a>
     {{/if}}

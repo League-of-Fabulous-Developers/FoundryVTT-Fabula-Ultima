@@ -449,18 +449,18 @@ export class FUStandardActorSheet extends ActorSheet {
 
 	/* -------------------------------------------- */
 
-	async _onDrop(event) {
-		event.preventDefault();
+	async _onDrop(ev) {
+		ev.preventDefault();
 
 		// Retrieve drag data using TextEditor
-		const data = TextEditor.getDragEventData(event);
-		if (!data || data.type !== 'Item') return await super._onDrop(event);
+		const data = TextEditor.getDragEventData(ev);
+		if (!data || data.type !== 'Item') return await super._onDrop(ev);
 
 		// Check if the item is embedded within an actor (reordering within the sheet) and uses default behavior
 		if (data.uuid.startsWith('Actor')) {
 			const [, actorId] = data.uuid.split('.');
 			if (actorId === this.actor.id) {
-				return await super._onDrop(event);
+				return await super._onDrop(ev);
 			}
 		}
 
@@ -475,7 +475,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			if (itemData.type === 'effect') {
 				if (activeEditor) {
 					// Handle effect drop into ProseMirror editor
-					await this._handleEditorEffectDrop(itemData, event);
+					await this._handleEditorEffectDrop(itemData, ev);
 				} else {
 					// Handle effect drop into actor sheet
 					await this._importEffectData(itemData);
@@ -486,7 +486,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 		} else {
 			// Default behavior for unknown item types
-			await super._onDrop(event);
+			await super._onDrop(ev);
 		}
 	}
 
@@ -545,14 +545,14 @@ export class FUStandardActorSheet extends ActorSheet {
 	}
 
 	// Handle dropping effects into a text editor
-	async _handleEditorEffectDrop(itemData, event) {
+	async _handleEditorEffectDrop(itemData, ev) {
 		const activeEditor = document.querySelector('.editor-content.ProseMirror');
 		if (activeEditor) {
 			const effects = itemData.effects || [];
 			const formattedEffects = effects.map((effect) => this._formatEffect(effect)).join(' ');
 
-			event.preventDefault();
-			event.stopPropagation();
+			ev.preventDefault();
+			ev.stopPropagation();
 
 			const currentContent = activeEditor.innerHTML;
 
@@ -582,7 +582,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	activateListeners(html) {
 		super.activateListeners(html);
 
-		html.on('click contextmenu', '.item-edit', this._onEditItem.bind(this)); // Edit item
+		html.on('click', '.item-edit', (ev) => this._onItemEdit($(ev.currentTarget)));
 		html.on('mouseup', '.item', this._onMiddleClickEditItem.bind(this)); // Middle-click to edit item
 		html.on('mouseup', '.effect', this._onMiddleClickEditEffect.bind(this)); // Middle-click to edit effect
 		html.on('click', '.effect-roll', (ev) => onManageActiveEffect(ev, this.actor)); // Send active effect to chat
@@ -595,12 +595,10 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Editable item actions
 		html.on('click', '.use-equipment', this._onUseEquipment.bind(this)); // Toggle use equipment setting for npcs
-		html.on('click', '.item-duplicate', this._onItemDuplicate.bind(this)); // Duplicate item
 		html.on('click', '.item-create', this._onItemCreate.bind(this)); // Create item
 		html.on('click', '.item-create-dialog', this._onItemCreateDialog.bind(this)); // Open item creation dialog
-		html.on('click', '.item-delete', this._onItemDelete.bind(this)); // Delete item
 		html.on('click', '.item-favored', this._onItemFavorite.bind(this)); // Add item to favorites
-		html.on('click', '.item-behavior', this._onItemBehavior.bind(this)); // Add item to behavior roll
+		html.on('click', '.item-behavior', (ev) => this._onItemBehavior($(ev.currentTarget))); // Add item to behavior roll
 		html.on('click contextmenu', '.increment-button', (ev) => this._onIncrementButtonClick(ev)); // Increment value
 		html.on('click contextmenu', '.decrement-button', (ev) => this._onDecrementButtonClick(ev)); // Decrement value
 		html.on('click', '.is-levelup', (ev) => this._onLevelUp(ev)); // Handle level up
@@ -659,9 +657,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		});
 
 		// Toggle status effects
-		html.find('.status-effect-toggle').click((event) => {
-			event.preventDefault();
-			const a = event.currentTarget;
+		html.find('.status-effect-toggle').click((ev) => {
+			ev.preventDefault();
+			const a = ev.currentTarget;
 			toggleStatusEffect(this.actor, a.dataset.statusId);
 		});
 
@@ -731,9 +729,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Initialize sortOrder
 		this.sortOrder = 1;
 
-		sortButton.mousedown((event) => {
+		sortButton.mousedown((ev) => {
 			// Right click changes the sort type
-			if (event.button === 2) {
+			if (ev.button === 2) {
 				this.changeSortType();
 			} else {
 				// Left click switches between ascending and descending order
@@ -761,8 +759,8 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 
 		const updatePilotVehicle = (func) => {
-			return (event) => {
-				const item = this.actor.items.get(event.currentTarget.dataset.itemId);
+			return (ev) => {
+				const item = this.actor.items.get(ev.currentTarget.dataset.itemId);
 				this.actor.update({
 					'system.vehicle': this.actor.system.vehicle[func](item),
 				});
@@ -775,8 +773,8 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('[data-action=toggleWeaponModule][data-item-id]').on('click', updatePilotVehicle('updateActiveWeaponModules').bind(this));
 		html.find('[data-action=toggleSupportModule][data-item-id]').on('click', updatePilotVehicle('updateActiveSupportModules').bind(this));
 
-		const updateArcanistArcanum = (event) => {
-			const itemId = event.currentTarget.dataset.itemId;
+		const updateArcanistArcanum = (ev) => {
+			const itemId = ev.currentTarget.dataset.itemId;
 			const currentArcanumId = this.actor.system.equipped.arcanum;
 
 			// Check if the clicked item is already the active arcanum
@@ -800,40 +798,169 @@ export class FUStandardActorSheet extends ActorSheet {
 		dropZone.on('dragleave', this._onDragLeave.bind(this));
 		dropZone.on('drop', this._onDropReset.bind(this));
 
-		// Context menu initialization
-		this._initializeContextMenu();
+		// Initialize the context menu options
+		const contextMenuOptions = [
+			{
+				name: game.i18n.localize('FU.Edit'),
+				icon: '<i class="fas fa-edit"></i>',
+				callback: this._onItemEdit.bind(this),
+				condition: (jq) => !!jq.data('itemId'),
+			},
+			{
+				name: game.i18n.localize('FU.Duplicate'),
+				icon: '<i class="fas fa-clone"></i>',
+				callback: this._onItemDuplicate.bind(this),
+				condition: (jq) => !!jq.data('itemId'),
+			},
+			{
+				name: game.i18n.localize('FU.Delete'),
+				icon: '<i class="fas fa-trash"></i>',
+				callback: this._onItemDelete.bind(this),
+				condition: (jq) => !!jq.data('itemId'),
+			},
+		];
+
+		// TODO: Deal with multiple behaviors spawning
+		// html.on('click', '.item-option', (jq) => {
+		// 	const itemId = jq.currentTarget.dataset.itemId;
+		// 	if (this.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
+		// 		const item = this.actor.items.get(itemId);
+		// 		const behaviorClass = item?.system.isBehavior.value ? 'fas active' : 'far';
+		// 		contextMenuOptions.push({
+		// 			name: game.i18n.localize('FU.Behavior'),
+		// 			icon: `<i class="${behaviorClass} fa-address-book"></i>`,
+		// 			callback: this._onItemBehavior.bind(this),
+		// 			condition: (jq) => !!jq.data('itemId'),
+		// 		});
+		// 	}
+		// });
+
+		// Context
+		// eslint-disable-next-line no-undef
+		new ContextMenu(html, '.item-option', contextMenuOptions, {
+			eventName: 'click',
+			onOpen: (menu) => {
+				setTimeout(() => menu.querySelector('nav#context-menu')?.classList.add('item-options'), 1);
+			},
+			onClose: () => console.log('Context menu closed'),
+		});
+	}
+
+	/**
+	 * Handles the editing of an item.
+	 * @param {jQuery} jq - The element that the ContextMenu was attached to
+	 */
+	_onItemEdit(jq) {
+		const dataItemId = jq.data('itemId');
+		const item = this.actor.items.get(dataItemId);
+		if (item) item.sheet.render(true);
+	}
+
+	/**
+	 * Duplicates the specified item and adds it to the actor's item list.
+	 * @param {jQuery} jq - The element that the ContextMenu was attached to
+	 * @returns {Promise<void>} - A promise that resolves when the item has been duplicated.
+	 */
+	async _onItemDuplicate(jq) {
+		const item = this.actor.items.get(jq.data('itemId'));
+		if (item) {
+			const dupData = foundry.utils.duplicate(item);
+			dupData.name += ` (${game.i18n.localize('FU.Copy')})`;
+			await this.actor.createEmbeddedDocuments('Item', [dupData]);
+			this.render();
+		}
+	}
+
+	/**
+	 * Deletes the specified item after confirming with the user.
+	 * @param {jQuery} jq - The element that the ContextMenu was attached to.
+	 * @returns {Promise<void>} - A promise that resolves when the item has been deleted.
+	 */
+	async _onItemDelete(jq) {
+		const item = this.actor.items.get(jq.data('itemId'));
+		if (
+			await Dialog.confirm({
+				title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
+				content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
+				rejectClose: false,
+			})
+		) {
+			await item.delete();
+			jq.slideUp(200, () => this.render(false));
+		}
+	}
+
+	/**
+	 * Toggles the behavior state of the specified item.
+	 * @param {jQuery} jq - The element that the ContextMenu was attached to.
+	 * @returns {Promise<void>} - A promise that resolves when the item's behavior state has been updated.
+	 */
+	async _onItemBehavior(jq) {
+		const itemId = jq.data('itemId');
+		const item = this.actor.items.get(itemId);
+		const isBehaviorBool = item.system.isBehavior.value;
+		this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
+	}
+
+	// Handle adding item to favorite
+	async _onItemFavorite(ev) {
+		const li = $(ev.currentTarget).parents('.item');
+		const itemId = li.data('itemId');
+		const item = this.actor.items.get(itemId);
+		const isFavoredBool = item.system.isFavored.value;
+		item.update();
+		this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
+	}
+
+	// Handle middle-click editing of an item sheet
+	_onMiddleClickEditItem(ev) {
+		if (ev.button === 1 && !$(ev.target).hasClass('item-edit')) {
+			ev.preventDefault();
+			this._onItemEdit($(ev.currentTarget));
+		}
+	}
+
+	// Handle middle-click to open active effect dialog
+	_onMiddleClickEditEffect(ev) {
+		const owner = this.actor;
+		if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
+			const li = $(ev.currentTarget);
+			const simulatedEvent = {
+				preventDefault: () => {},
+				currentTarget: {
+					dataset: { action: 'edit' },
+					closest: () => li[0],
+					classList: {
+						contains: (cls) => li.hasClass(cls),
+					},
+				},
+			};
+
+			onManageActiveEffect(simulatedEvent, owner);
+		}
 	}
 
 	/* -------------------------------------------- */
 
-	/** @override */
-	close(options = {}) {
-		super.close(options);
-		// Reset the context menu initialization flag
-		this.contextMenuInitialized = false;
-	}
-
-	/* -------------------------------------------- */
-
-	_onDragEnter(event) {
-		event.preventDefault();
+	_onDragEnter(ev) {
+		ev.prevDefault();
 		this.dragCounter++;
-		const dropZone = $(event.currentTarget);
+		const dropZone = $(ev.currentTarget);
 		dropZone.addClass('highlight-drop-zone');
 	}
 
-	_onDragLeave(event) {
-		event.preventDefault();
+	_onDragLeave(ev) {
+		ev.preventDefault();
 		this.dragCounter--;
 		if (this.dragCounter === 0) {
-			const dropZone = $(event.currentTarget);
+			const dropZone = $(ev.currentTarget);
 			dropZone.removeClass('highlight-drop-zone');
 		}
 	}
 
-	_onDropReset(event) {
+	_onDropReset(ev) {
 		this.dragCounter = 0;
-		const dropZone = $(event.currentTarget);
+		const dropZone = $(ev.currentTarget);
 		dropZone.removeClass('highlight-drop-zone');
 	}
 
@@ -843,8 +970,8 @@ export class FUStandardActorSheet extends ActorSheet {
 		this.actor.update({ 'system._expanded': Array.from(this._expanded) });
 	}
 
-	_onClearTempEffects(event) {
-		event.preventDefault();
+	_onClearTempEffects(ev) {
+		ev.preventDefault();
 		const actor = this.actor;
 
 		if (!actor || !actor.system || !actor.system.immunities) return;
@@ -876,11 +1003,11 @@ export class FUStandardActorSheet extends ActorSheet {
 	 * Handles the event when the "Use Equipment" checkbox is clicked.
 	 * If the checkbox is unchecked, it unequips all equipped items in the actor's inventory.
 	 *
-	 * @param {Event} event - The click event triggering the "Use Equipment" checkbox.
+	 * @param {Event} ev - The click ev triggering the "Use Equipment" checkbox.
 	 * @returns {void} The function does not return a promise.
 	 */
-	async _onUseEquipment(event) {
-		const checkbox = event.currentTarget;
+	async _onUseEquipment(ev) {
+		const checkbox = ev.currentTarget;
 		const isChecked = checkbox.checked;
 
 		if (!isChecked) {
@@ -901,160 +1028,6 @@ export class FUStandardActorSheet extends ActorSheet {
 		} else {
 			// Checkbox is checked
 		}
-	}
-
-	_initializeContextMenu() {
-		if (!this.contextMenuInitialized) {
-			console.log('Initializing context menu...');
-			// eslint-disable-next-line no-undef
-			new ContextMenu(this.element, 'li.item', [
-				{ name: game.i18n.localize('FU.Edit'), icon: '<i class="fas fa-edit"></i>', callback: this._onItemEditz.bind(this), condition: (li) => !!li.data('itemId') },
-				{ name: game.i18n.localize('FU.Duplicate'), icon: '<i class="fas fa-clone"></i>', callback: this._onItemDuplicatez.bind(this), condition: (li) => !!li.data('itemId') },
-				{ name: game.i18n.localize('FU.Delete'), icon: '<i class="fas fa-trash"></i>', callback: this._onItemDeletez.bind(this), condition: (li) => !!li.data('itemId') },
-			]);
-			this.contextMenuInitialized = true;
-		} else {
-			console.log('Context menu already initialized.');
-		}
-	}
-
-	// delete later
-	_onItemEditz(li) {
-		const dataItemId = li.data('itemId');
-		const item = this.actor.items.get(dataItemId);
-		if (item) item.sheet.render(true);
-	}
-
-	async _onItemDuplicatez(li) {
-		const dataItemId = li.data('itemId');
-		const item = this.actor.items.get(dataItemId);
-		if (item) {
-			const duplicateData = item.toObject();
-			duplicateData.name += ' (Copy)';
-			await this.actor.createEmbeddedDocuments('Item', [duplicateData]);
-			this.render();
-		}
-	}
-
-	async _onItemDeletez(li) {
-		const dataItemId = li.data('itemId');
-		const item = this.actor.items.get(dataItemId);
-		const confirmation = await Dialog.confirm({
-			title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
-			content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
-			rejectClose: false,
-		});
-		if (confirmation) {
-			await item.delete(); // Delete the item
-			li.slideUp(200, () => this.render(false));
-		}
-	}
-	// end delete later
-
-	// Handle middle-click editing of an item
-	_onMiddleClickEditItem(event) {
-		if (event.button === 1 && !$(event.target).hasClass('item-edit')) {
-			event.preventDefault();
-			this._onEditItem(event);
-		}
-	}
-
-	_onMiddleClickEditEffect(event) {
-		const owner = this.actor;
-		if (event.button === 1 && !$(event.target).hasClass('effect-control')) {
-			const li = $(event.currentTarget);
-			const simulatedEvent = {
-				preventDefault: () => {},
-				currentTarget: {
-					dataset: { action: 'edit' },
-					closest: () => li[0],
-					classList: {
-						contains: (cls) => li.hasClass(cls),
-					},
-				},
-			};
-
-			onManageActiveEffect(simulatedEvent, owner);
-		}
-	}
-
-	_onEditItem(event) {
-		const li = $(event.currentTarget).closest('.item');
-		const itemId = li.data('itemId');
-
-		if (!itemId) return console.error('No item ID found.');
-
-		const item = this.actor.items.get(itemId);
-		if (!item) return console.error(`Item with ID ${itemId} not found.`);
-
-		item.sheet.render(true);
-	}
-
-	async _onItemDelete(event) {
-		const li = $(event.currentTarget).parents('.item');
-		const item = this.actor.items.get(li.data('itemId'));
-
-		const confirmation = await Dialog.confirm({
-			title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
-			content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
-			rejectClose: false,
-		});
-
-		if (confirmation) {
-			await item.delete(); // Wait for the item deletion to complete
-			li.slideUp(200, () => this.render(false));
-		}
-	}
-
-	/**
-	 * Handle the duplication of an item and adds it to the actor's inventory.
-	 *
-	 * @param {Event} event - The click event triggering the item duplication.
-	 * @returns {Promise<void>} A promise that resolves when the item duplication process is complete.
-	 */
-	async _onItemDuplicate(event) {
-		event.preventDefault();
-		const header = event.currentTarget;
-		const itemElement = header.closest('.item');
-
-		if (!itemElement) return;
-
-		// Get the item data
-		const itemId = itemElement.dataset.itemId;
-		const item = this.actor.items.get(itemId);
-
-		if (!item) return;
-
-		// Duplicate the item
-		const duplicatedItemData = foundry.utils.duplicate(item);
-
-		// Modify the duplicated item's name
-		duplicatedItemData.name = `${item.name}`;
-		duplicatedItemData.system.isEquipped = {
-			value: false,
-			slot: 'default',
-		};
-		// Add the duplicated item to the actor
-		await this.actor.createEmbeddedDocuments('Item', [duplicatedItemData]);
-	}
-
-	// Handle adding item to favorite
-	async _onItemFavorite(event) {
-		const li = $(event.currentTarget).parents('.item');
-		const itemId = li.data('itemId');
-		const item = this.actor.items.get(itemId);
-		const isFavoredBool = item.system.isFavored.value;
-		item.update();
-		this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
-	}
-
-	// Handle adding item to behavior roll
-	async _onItemBehavior(event) {
-		const li = $(event.currentTarget).parents('.item');
-		const itemId = li.data('itemId');
-		const item = this.actor.items.get(itemId);
-		const isBehaviorBool = item.system.isBehavior.value;
-		this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
 	}
 
 	// Handle the rest action click events
@@ -1099,12 +1072,12 @@ export class FUStandardActorSheet extends ActorSheet {
 
 	/**
 	 * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-	 * @param {Event} event   The originating click event
+	 * @param {Event} ev   The originating click event
 	 * @private
 	 */
-	async _onItemCreate(event) {
-		event.preventDefault();
-		const header = event.currentTarget;
+	async _onItemCreate(ev) {
+		ev.preventDefault();
+		const header = ev.currentTarget;
 		// Get the type of item to create.
 		const type = header.dataset.type;
 		// Grab any data associated with this control.
@@ -1136,10 +1109,10 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
-	async _onItemCreateDialog(event) {
-		event.preventDefault();
+	async _onItemCreateDialog(ev) {
+		ev.preventDefault();
 
-		const dataType = event.currentTarget.dataset.type;
+		const dataType = ev.currentTarget.dataset.type;
 		let types;
 		let clock = false;
 
@@ -1702,13 +1675,13 @@ export class FUStandardActorSheet extends ActorSheet {
 	 * @param {MouseEvent} event   The originating click event
 	 * @private
 	 */
-	async _onRoll(event) {
-		event.preventDefault();
-		const element = event.currentTarget;
+	async _onRoll(ev) {
+		ev.preventDefault();
+		const element = ev.currentTarget;
 		const dataset = element.dataset;
 
-		const isShift = event.shiftKey;
-		const isCtrl = event.ctrlKey;
+		const isShift = ev.shiftKey;
+		const isCtrl = ev.ctrlKey;
 		// Get the value of optionTargetPriorityRules from game settings
 		const settingPriority = game.settings.get('projectfu', 'optionTargetPriorityRules');
 
@@ -1726,9 +1699,9 @@ export class FUStandardActorSheet extends ActorSheet {
 						}
 						return item.roll({
 							shift: isShift,
-							alt: event.altKey,
-							ctrl: event.ctrlKey,
-							meta: event.metaKey,
+							alt: ev.altKey,
+							ctrl: ev.ctrlKey,
+							meta: ev.metaKey,
 						});
 					}
 				}
@@ -1758,38 +1731,28 @@ export class FUStandardActorSheet extends ActorSheet {
 		if (dataset.rollType === 'item-slot') {
 			// Get the actor's equipped data
 			const equippedData = this.actor.system.equipped;
-			let slot;
+			const slotMap = {
+				'left-hand': 'mainHand',
+				'right-hand': 'offHand',
+				'two-hand': 'mainHand',
+				'phantom-hand': 'phantom',
+				'acc-hand': 'accessory',
+				'armor-hand': 'armor',
+			};
 
-			// Determine the slot based on the header element class
-			if (element.classList.contains('left-hand')) {
-				slot = 'mainHand';
-			} else if (element.classList.contains('right-hand')) {
-				slot = 'offHand';
-			} else if (element.classList.contains('two-hand')) {
-				slot = 'mainHand';
-			} else if (element.classList.contains('phantom-hand')) {
-				slot = 'phantom';
-			} else if (element.classList.contains('acc-hand')) {
-				slot = 'accessory';
-			} else if (element.classList.contains('armor-hand')) {
-				slot = 'armor';
-			} else {
-				slot = 'default';
-			}
+			// Find the first matching slot class or default to 'default'
+			const slot = Object.keys(slotMap).find((className) => element.classList.contains(className)) || 'default';
+			const itemId = equippedData[slotMap[slot]]; // Use the mapped slot
 
-			// Get the item ID from the equipped slot
-			const itemId = equippedData[slot];
-
-			// Retrieve the item from the actor's items using the item ID
 			const item = this.actor.items.get(itemId);
 
 			// Check if the item exists and call its roll method
 			if (item) {
 				return item.roll({
 					shift: isShift,
-					alt: event.altKey,
-					ctrl: event.ctrlKey,
-					meta: event.metaKey,
+					alt: ev.altKey,
+					ctrl: ev.ctrlKey,
+					meta: ev.metaKey,
 				});
 			}
 		}
@@ -1839,14 +1802,14 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
-	async _updateObject(event, data) {
+	async _updateObject(ev, data) {
 		// Foundry's form update handlers send back bond information as an object {0: ..., 1: ....}
 		// So correct an update in that form and create an updated bond array to properly represent the changes
 		const bonds = data.system?.resources?.bonds;
 		if (bonds && !Array.isArray(bonds)) {
 			data.system.bonds = Array.from(Object.values(bonds));
 		}
-		super._updateObject(event, data);
+		super._updateObject(ev, data);
 	}
 }
 

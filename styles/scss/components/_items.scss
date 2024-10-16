@@ -594,7 +594,7 @@
 }
 
 .end {
-	flex: 0 0 90px;
+	flex: 0 0 95px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: inherit;
@@ -609,4 +609,9 @@
 .effects-list .suppressed .item-name .item-name {
 	text-decoration: $color-danger line-through 2px;
 	filter: opacity(60%);
+}
+
+.item-options {
+	right: 0 !important;
+	left: unset !important;
 }
