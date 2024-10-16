@@ -1,4 +1,5 @@
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/effects.mjs';
+import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { FU } from '../helpers/config.mjs';
 
 /**
@@ -384,37 +385,21 @@ export class FUItemSheet extends ItemSheet {
 	}
 
 	_getHeaderButtons() {
-		return [
-			{
-				label: 'Send',
-				class: 'send-to-chat',
-				icon: 'fas fa-comment',
-				onclick: this._onSendToChat.bind(this),
-			},
-			...super._getHeaderButtons(),
-		];
+		const buttons = super._getHeaderButtons();
+		buttons.unshift({
+			label: game.i18n.localize('FU.ChatMessageSend'),
+			class: 'send-to-chat',
+			icon: 'fas fa-comment',
+			onclick: this._onSendToChat.bind(this),
+		});
+		return buttons;
 	}
 
 	_onSendToChat(event) {
 		event.preventDefault();
 		const item = this.item;
-		ChatMessage.create({
-			user: game.user.id,
-			speaker: ChatMessage.getSpeaker(),
-			content: `
-				<div class="chat-item-message">
-					<header class="title-desc chat-header flexrow">
-						<img src="${item.img}" alt="Image" data-item-id="${item.id}" class="item-img">
-						<h2>${item.name}</h2>
-					</header>
-					<div class="chat-desc">
-						<div>${item.system.description || game.i18n.localize('FU.NoItem')}</div><hr>
-						<a class="content-link" draggable="true" data-uuid="Item.${item.id}" data-id="${item.id}" data-type="Item" data-tooltip="${item.name}">
-							<i class="fas fa-suitcase"></i> ${item.name}
-						</a>
-					</div>
-				</div>
-			`,
-		});
+
+		// Call the display method
+		ChecksV2.display(this, item);
 	}
 }

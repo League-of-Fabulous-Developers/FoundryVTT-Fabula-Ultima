@@ -382,6 +382,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 					name: item.name,
 					img: item.img,
 					id: item.id,
+					uuid: item.uuid,
 				})
 			: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
 					title: FU.checkTypes[result.type] || 'FU.RollCheck',
