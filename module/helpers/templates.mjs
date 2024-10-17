@@ -121,6 +121,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs',
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-description.hbs',
 
+		'systems/projectfu/templates/optional/partials/feature-resource-points-sheet.hbs',
+		'systems/projectfu/templates/optional/partials/feature-progress-clock-sheet.hbs',
+
 		// Class Feature Templates
 		'systems/projectfu/templates/feature/feature-basic-preview.hbs',
 		'systems/projectfu/templates/feature/feature-basic-description.hbs',

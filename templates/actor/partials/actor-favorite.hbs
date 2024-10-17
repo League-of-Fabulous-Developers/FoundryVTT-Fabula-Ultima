@@ -35,9 +35,41 @@
                                 {{/with}}
                             {{/with}}
                         {{/if}}
+
+                        {{!-- Optional Features --}}
+                        {{#if (eq item.type "optionalFeature")}}
+                            {{#unless item.system.data.progress}}
+                                {{#with (lookup @root.optionalFeatures item.system.optionalType) as |optionalType|}}
+                                    {{#with (lookup optionalType.items item._id) as |itemData|}}
+                                        {{> (lookup optionalType.optional 'previewTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
+                                    {{/with}}
+                                {{/with}}
+                            {{/unless}}
+                        {{/if}}
+
                         {{!-- Item Equip--}}
                         {{#if (or (eq @root.actor.type "character") @root.actor.system.useEquipment.value)}}
                             {{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" actor=actor item=item}}
+                        {{/if}}
+
+                        {{!-- Resource Points --}}
+                        {{#if item.system.data.hasResource.value}}
+                            <div class="item-l inline-desc flexrow flex-group-center resource-content" style="padding: 0">
+                                <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{item.system.data.rp.name }}</label>
+                                <div class="resource-text-t buttons-inc">
+                                    <a class="decrement-button" data-type="optionalRPCounter"
+                                       data-item-id="{{ item._id }}"
+                                       data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.rp.step}})">-</a>
+                                    <span data-resource="item.rp">{{ item.system.data.rp.current }}</span>
+                                    {{#if (gt item.system.data.rp.max 0)}}
+                                        <span>/</span>
+                                        <span>{{ item.system.data.rp.max }}</span>
+                                    {{/if}}
+                                    <a class="increment-button" data-type="optionalRPCounter"
+                                       data-item-id="{{ item._id }}"
+                                       data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.rp.step}})">+</a>
+                                </div>
+                            </div>
                         {{/if}}
 
                         {{!-- Resource Points --}}
@@ -103,6 +135,22 @@
 
                         {{#if item.system.description}}
                             {{{item.enrichedHtml.description}}}
+                        {{/if}}
+
+                        {{#if (eq item.type "classFeature")}}
+                            {{#with (lookup @root.classFeatures item.system.featureType) as |featureType|}}
+                                {{#with (lookup featureType.items item._id) as |itemData|}}
+                                    {{> (lookup featureType.feature 'expandTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
+                                {{/with}}
+                            {{/with}}
+                        {{/if}}
+
+                        {{#if (eq item.type "optionalFeature")}}
+                            {{#with (lookup @root.optionalFeatures item.system.optionalType) as |optionalType|}}
+                                {{#with (lookup optionalType.items item._id) as |itemData|}}
+                                    {{> (lookup optionalType.optional 'expandTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
+                                {{/with}}
+                            {{/with}}
                         {{/if}}
 
                         {{#if item.system.zeroEffect}}

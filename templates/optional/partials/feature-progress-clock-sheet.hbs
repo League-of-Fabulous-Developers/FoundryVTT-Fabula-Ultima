@@ -1,26 +1,25 @@
-{{!-- Resource Points --}}
-{{#if system.hasResource.value}}
+{{!-- Clocks --}}
+{{#if system.data.hasClock.value}}
 <fieldset class="title-fieldset desc ">
-    <legend class="flex-group-center gap-5"
-        data-tooltip="{{localize 'FU.ResourcePoints'}}<br>{{ system.rp.name }}">
-        <i class="fas fa-hashtag"></i>
-        <input type="text" name="system.rp.name" value="{{ system.rp.name }}" data-dtype="String"
+    <legend class="flex-group-center gap-5" data-tooltip="{{localize 'FU.Clock'}}<br>{{ system.data.progress.name }}">
+        <i class="fas fa-clock"></i>
+        <input type="text" name="system.data.progress.name" value="{{ system.data.progress.name }}" data-dtype="String"
             placeholder="{{localize 'FU.ResourcePoints'}}" class="resource-label-m resource-inputs select-dropdown-l" />
     </legend>
     <div class="grid grid-3col">
         <div class=" flexcol flex-group-center">
             <label class="resource-label-m">{{localize 'FU.Current'}}</label>
-            <input type="number" name="system.rp.current" value="{{ system.rp.current }}"
+            <input type="number" name="system.data.progress.current" value="{{ system.data.progress.current }}"
                 class="resource-inputs select-dropdown-m" />
         </div>
         <div class=" flexcol flex-group-center">
             <label class="resource-label-m">{{localize 'FU.Step'}}</label>
-            <input type="number" name="system.rp.step" value="{{ system.rp.step }}"
+            <input type="number" name="system.data.progress.step" value="{{ system.data.progress.step }}"
                 class="resource-inputs select-dropdown-m" />
         </div>
         <div class=" flexcol flex-group-center">
             <label class="resource-label-m">{{localize 'FU.Max'}}</label>
-            <input type="number" name="system.rp.max" value="{{ system.rp.max }}"
+            <input type="number" name="system.data.progress.max" value="{{ system.data.progress.max }}"
                 class="resource-inputs select-dropdown-m" />
         </div>
     </div>

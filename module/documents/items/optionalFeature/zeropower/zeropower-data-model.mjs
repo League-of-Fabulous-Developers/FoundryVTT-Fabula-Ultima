@@ -76,10 +76,10 @@ export class ZeroPowerDataModel extends RollableOptionalFeatureDataModel {
 
 		// Create HTML content
 		const content = `
-      <div style="display: grid;">
-        ${clockDisplay}
-      </div>
-    `;
+		<div style="display: grid;">
+			${clockDisplay}
+		</div>
+		`;
 		return content;
 	}
 

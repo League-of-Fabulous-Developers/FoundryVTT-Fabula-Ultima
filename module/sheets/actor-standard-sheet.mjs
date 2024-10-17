@@ -1498,6 +1498,9 @@ export class FUStandardActorSheet extends ActorSheet {
 							await this._updateClockProgress(item, increment, rightClick);
 							break;
 
+						case 'optionalRPCounter':
+							await this._updateOptionalRPProgress(item, increment, rightClick);
+							break;
 						case 'featureCounter':
 							await this._updateFeatureProgress(item, increment, rightClick);
 							break;
@@ -1557,6 +1560,24 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 
 		await item.update({ 'system.progress.current': newProgress });
+	}
+
+	async _updateOptionalRPProgress(item, increment, rightClick) {
+		const stepMultiplier = item.system.data.rp.step || 1;
+		const maxProgress = item.system.data.rp.max;
+		let newProgress;
+
+		if (rightClick) {
+			newProgress = item.system.data.rp.current + increment * stepMultiplier;
+		} else {
+			newProgress = item.system.data.rp.current + increment;
+		}
+
+		if (maxProgress !== 0) {
+			newProgress = Math.min(newProgress, maxProgress);
+		}
+
+		await item.update({ 'system.data.rp.current': newProgress });
 	}
 
 	async _updateFeatureProgress(item, increment, rightClick) {
