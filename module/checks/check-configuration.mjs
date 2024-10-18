@@ -235,9 +235,11 @@ class CheckInspector {
 
 /**
  * @param {CheckResultV2} check
- * @param {FUActor} actor
  */
-const registerMetaCurrencyExpenditure = (check, actor) => {
+const registerMetaCurrencyExpenditure = (check) => {
+	if (!game.settings.get(SYSTEM, Flags.ChatMessage.UseMetaCurrency)) {
+		return;
+	}
 	const randomId = foundry.utils.randomID();
 	check.additionalData.triggerMetaCurrencyExpenditure = randomId;
 	let hookId;
