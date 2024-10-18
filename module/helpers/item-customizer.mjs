@@ -27,24 +27,17 @@ export class ItemCustomizer extends FormApplication {
 	}
 
 	getData() {
-		const weaponOptions = this.generateWeaponOptions(this.actor, this.item._id);
-		const damageTypeOptions = this.generateSelectOptions(FU.damageTypes);
-		const weaponTypeOptions = this.generateSelectOptions(FU.weaponTypes);
-		const defenseTypeOptions = this.generateSelectOptions(FU.defenses, true);
-		const primaryOptions = this.generateSelectOptions(FU.attributeAbbreviations);
-		const secondaryOptions = this.generateSelectOptions(FU.attributeAbbreviations);
-
 		return {
 			actor: this.actor,
 			item: this.item,
-			weaponOptions,
-			damageTypeOptions,
-			weaponTypeOptions,
-			defenseTypeOptions,
+			weaponOptions: this.generateWeaponOptions(this.actor, this.item._id),
+			damageTypeOptions: this.generateSelectOptions(FU.damageTypes),
+			weaponTypeOptions: this.generateSelectOptions(FU.weaponTypes),
+			defenseTypeOptions: this.generateSelectOptions(FU.defenses, true),
+			primaryOptions: this.generateSelectOptions(FU.attributeAbbreviations),
+			secondaryOptions: this.generateSelectOptions(FU.attributeAbbreviations),
 			baseWeaponDetails: this.baseWeaponDetails,
 			currentWeaponDetails: this.currentWeaponDetails,
-			primaryOptions,
-			secondaryOptions,
 		};
 	}
 
@@ -69,14 +62,7 @@ export class ItemCustomizer extends FormApplication {
 
 	async _onModify(html) {
 		const { selectedWeapon, hrZeroBool, ...formData } = this.extractFormValues(html);
-		await selectedWeapon.update({
-			'system.accuracy.value': selectedWeapon.system.accuracy.value + formData.accuracyMod,
-			'system.damage.value': selectedWeapon.system.damage.value + formData.damageMod,
-			'system.damageType.value': formData.damageType,
-			'system.type.value': formData.weaponType,
-			'system.defense': formData.defenseType,
-			'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
-		});
+		await this.updateWeapon(selectedWeapon, formData, hrZeroBool);
 		ui.notifications.info(`${selectedWeapon.name} modified for ${this.actor.name}`);
 		this.close();
 	}
@@ -85,86 +71,57 @@ export class ItemCustomizer extends FormApplication {
 		const { selectedWeapon, hrZeroBool, ...formData } = this.extractFormValues(html);
 		const newItemData = foundry.utils.deepClone(selectedWeapon);
 		const newItemName = `${newItemData.name} (Modified)`;
-
 		const newItem = await Item.create(newItemData, { parent: this.actor });
-		await newItem.update({
-			'system.accuracy.value': newItem.system.accuracy.value + formData.accuracyMod,
-			'system.damage.value': newItem.system.damage.value + formData.damageMod,
-			'system.damageType.value': formData.damageType,
-			'system.defense': formData.defenseType,
-			'system.type.value': formData.weaponType,
-			'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
-			name: newItemName,
-		});
+		await this.updateWeapon(newItem, formData, hrZeroBool, newItemName);
 		ui.notifications.info(`${newItem.name} cloned and added to ${this.actor.name}`);
 		this.close();
 	}
 
+	async updateWeapon(item, formData, hrZeroBool, name = item.name) {
+		await item.update({
+			'system.attributes.primary.value': formData.primary,
+			'system.attributes.secondary.value': formData.secondary,
+			'system.accuracy.value': item.system.accuracy.value + formData.accuracyMod,
+			'system.damage.value': item.system.damage.value + formData.damageMod,
+			'system.damageType.value': formData.damageType,
+			'system.type.value': formData.weaponType,
+			'system.defense': formData.defenseType,
+			'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
+			name: name,
+		});
+	}
+
 	async _onTempRoll(html) {
-		const { actor, selectedWeapon, hrZeroBool, ...formData } = this.extractFormValues(html);
-
-		// Original weapon values
-		const originalValues = {
-			// 	primary: selectedWeapon.system.attributes.primary.value,
-			// 	secondary: selectedWeapon.system.attributes.secondary.value,
-			// 	accuracy: selectedWeapon.system.accuracy.value,
-			damage: selectedWeapon.system.damage.value,
-			// 	damageType: selectedWeapon.system.damageType.value,
-			weaponType: selectedWeapon.system.type.value,
-			// 	defenseType: selectedWeapon.system.defense,
-		};
-
-		// New values from form input
-		const newValues = {
-			primary: formData.primary,
-			secondary: formData.secondary,
-			accuracy: formData.accuracyMod,
-			damage: formData.damageMod,
-			damageType: formData.damageType,
-			weaponType: formData.weaponType,
-			defenseType: formData.defenseType,
-		};
-
-		// Clone the selectedWeapon to create a temporary modified version
+		const { selectedWeapon, hrZeroBool, ...formData } = this.extractFormValues(html);
 		const modifiedWeapon = foundry.utils.deepClone(selectedWeapon);
+		await modifiedWeapon.update({ 'system.type.value': formData.weaponType });
 
 		try {
-			// Temporarily update the weapon type on the modifiedWeapon
-			await modifiedWeapon.update({
-				'system.type.value': newValues.weaponType,
-			});
-
-			// Pass the temporary modified weapon to the accuracy check
 			if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
-				Hooks.once(CheckHooks.prepareCheck, (check) => {
-					// Set primary and secondary attributes
-					check.primary = newValues.primary;
-					check.secondary = newValues.secondary;
-
-					// Add situational modifier for accuracy
-					check.modifiers.push({
-						value: newValues.accuracy,
-						label: 'FU.CheckSituationalModifier',
-					});
-
-					// Use CheckConfiguration to configure the check
-					const config = CheckConfiguration.configure(check);
-					config.setDamage(newValues.damageType, originalValues.damage);
-					config.addDamageBonus('FU.CheckSituationalModifier', newValues.damage);
-					config.setTargetedDefense(newValues.defenseType);
-				});
-
-				// Perform the accuracy check using the modified weapon
-				return await ChecksV2.accuracyCheck(actor, modifiedWeapon, CheckConfiguration.initHrZero(hrZeroBool));
+				this.setupCheckHooks(formData, modifiedWeapon, selectedWeapon);
+				return await ChecksV2.accuracyCheck(this.actor, modifiedWeapon, CheckConfiguration.initHrZero(hrZeroBool));
 			}
 		} finally {
-			// After the roll, revert the weapon type back to the original
-			await modifiedWeapon.update({
-				'system.type.value': originalValues.weaponType,
-			});
+			await modifiedWeapon.update({ 'system.type.value': selectedWeapon.system.type.value });
 		}
 
 		this.render(true);
+	}
+
+	setupCheckHooks(formData, modifiedWeapon, selectedWeapon) {
+		Hooks.once(CheckHooks.prepareCheck, (check) => {
+			check.primary = formData.primary;
+			check.secondary = formData.secondary;
+			check.modifiers.push({
+				value: formData.accuracyMod,
+				label: 'FU.CheckSituationalModifier',
+			});
+
+			const config = CheckConfiguration.configure(check);
+			config.setDamage(formData.damageType, selectedWeapon.system.damage.value);
+			config.addDamageBonus('FU.CheckSituationalModifier', formData.damageMod);
+			config.setTargetedDefense(formData.defenseType);
+		});
 	}
 
 	extractFormValues(html) {
@@ -184,15 +141,34 @@ export class ItemCustomizer extends FormApplication {
 
 	// Updates both the base and current weapon details when a new weapon is selected
 	updateWeaponDetails(html) {
-		const selectedWeaponId = html.find('#weapon-item').val();
-		const selectedWeapon = this.actor.items.get(selectedWeaponId);
-
-		// Update the base weapon details to the newly selected weapon
+		const selectedWeapon = this.actor.items.get(html.find('#weapon-item').val());
 		this.baseWeaponDetails = this.getItemDetails(selectedWeapon);
 
 		// Update the current weapon details based on form input and selected weapon
-		this.currentWeaponDetails = this.getItemDetails(
-			selectedWeapon,
+		this.currentWeaponDetails = this.getItemDetails(selectedWeapon, ...this.getFormValues(html));
+		html.find('#base-item').html(this.baseWeaponDetails);
+		html.find('#current-item').html(this.currentWeaponDetails);
+	}
+
+	// Reset current weapon details to base weapon details
+	resetWeaponDetails(html) {
+		const selectedWeapon = this.actor.items.get(html.find('#weapon-item').val()) || this.actor.items.get(this.item._id);
+		// Reset form fields to the base weapon's values
+		html.find('#primary').val(selectedWeapon.system.attributes.primary.value);
+		html.find('#secondary').val(selectedWeapon.system.attributes.secondary.value);
+		html.find('#damage-type').val(selectedWeapon.system.damageType.value);
+		html.find('#weapon-type').val(selectedWeapon.system.type.value);
+		html.find('#defense-type').val(selectedWeapon.system.defense);
+		html.find('#accuracy-mod').val(0);
+		html.find('#damage-mod').val(0);
+		html.find('#hrzero').prop('checked', false);
+
+		// Reflect the reset in the currentWeaponDetails
+		this.updateWeaponDetails(html);
+	}
+
+	getFormValues(html) {
+		return [
 			html.find('#damage-type').val(),
 			html.find('#weapon-type').val(),
 			html.find('#defense-type').val(),
@@ -201,41 +177,12 @@ export class ItemCustomizer extends FormApplication {
 			html.find('#hrzero').prop('checked'),
 			html.find('#primary').val(),
 			html.find('#secondary').val(),
-		);
-
-		// Update the HTML to reflect the new weapon details
-		html.find('#base-item').html(this.baseWeaponDetails);
-		html.find('#current-item').html(this.currentWeaponDetails);
-	}
-
-	// Reset current weapon details to base weapon details
-	resetWeaponDetails(html) {
-		const selectedWeaponId = html.find('#weapon-item').val();
-		const selectedWeapon = this.actor.items.get(selectedWeaponId) || this.actor.items.get(this.item._id);
-		console.log('selectedWeaponId', selectedWeapon);
-
-		// Reset form fields to the base weapon's values
-		html.find('#primary').val(selectedWeapon.system.attributes.primary.value);
-		html.find('#secondary').val(selectedWeapon.system.attributes.secondary.value);
-		html.find('#damage-type').val(selectedWeapon.system.damageType.value);
-		html.find('#weapon-type').val(selectedWeapon.system.type.value);
-		html.find('#defense-type').val(selectedWeapon.system.defense), html.find('#accuracy-mod').val(0);
-		html.find('#damage-mod').val(0);
-		html.find('#hrzero').prop('checked', false);
-
-		// Reflect the reset in the currentWeaponDetails
-		this.updateWeaponDetails(html);
+		];
 	}
 
 	generateSelectOptions(options, nested = false) {
 		return Object.entries(options)
-			.map(([value, label]) => {
-				if (nested) {
-					return `<option value="${value}">${game.i18n.localize(label.name)}</option>`;
-				} else {
-					return `<option value="${value}">${game.i18n.localize(label)}</option>`;
-				}
-			})
+			.map(([value, label]) => `<option value="${value}">${game.i18n.localize(nested ? label.name : label)}</option>`)
 			.join('');
 	}
 
