@@ -943,7 +943,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	/* -------------------------------------------- */
 
 	_onDragEnter(ev) {
-		ev.prevDefault();
+		ev.preventDefault();
 		this.dragCounter++;
 		const dropZone = $(ev.currentTarget);
 		dropZone.addClass('highlight-drop-zone');

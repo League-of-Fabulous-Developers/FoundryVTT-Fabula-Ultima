@@ -11,17 +11,17 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 		};
 	}
 
-	constructor(data, { vulnerable, resistant, immune, absorb, ...options }) {
+	constructor(data, options) {
 		super(data, options);
 		const holder = {
-			vulnerable: vulnerable || this.base === -1,
-			resistant: resistant || this.base === 1,
-			immune: immune || this.base === 2,
-			absorb: absorb || this.base === 3,
+			vulnerable: this.base === -1,
+			resistant: this.base === 1,
+			immune: this.base === 2,
+			absorb: this.base === 3,
 		};
 
 		Object.defineProperty(this, 'current', {
-			configurable: false,
+			configurable: true,
 			enumerable: true,
 			get: () => {
 				if (holder.absorb) {
@@ -42,20 +42,18 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 				return 0;
 			},
 			set: (newValue) => {
-				if (typeof newValue === 'number') {
-					if (newValue === 3) {
-						holder.absorb = true;
-					}
-					if (newValue === 2) {
-						holder.immune = true;
-					}
-					if (newValue > this.base) {
-						holder.resistant = true;
-					}
-					if (newValue < this.base) {
-						holder.vulnerable = true;
-					}
-				}
+				delete this.current;
+				let value = Math.clamp(newValue, -1, 3);
+				Object.defineProperty(this, 'current', {
+					configurable: true,
+					enumerable: true,
+					get: () => value,
+					set: (newValue) => {
+						if (Number.isNumeric(newValue)) {
+							value = Math.clamp(Number(newValue), -1, 3);
+						}
+					},
+				});
 			},
 		});
 
@@ -71,38 +69,36 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 			},
 		});
 
-		Object.defineProperty(this, 'vulnerable', {
-			value: () => {
-				holder.vulnerable = true;
-			},
+		['vulnerability', 'vulnerable', 'vul', 'vu'].forEach((value) => {
+			Object.defineProperty(this, value, {
+				value: () => {
+					holder.vulnerable = true;
+				},
+			});
 		});
 
-		Object.defineProperty(this, 'resistant', {
-			value: () => {
-				holder.resistant = true;
-			},
+		['resistance', 'resistant', 'res', 'rs'].forEach((value) => {
+			Object.defineProperty(this, value, {
+				value: () => {
+					holder.resistant = true;
+				},
+			});
 		});
 
-		Object.defineProperty(this, 'immune', {
-			value: () => {
-				holder.immune = true;
-			},
+		['immunity', 'immune', 'imm', 'im'].forEach((value) => {
+			Object.defineProperty(this, value, {
+				value: () => {
+					holder.immune = true;
+				},
+			});
 		});
 
-		Object.defineProperty(this, 'absorb', {
-			value: () => {
-				holder.absorb = true;
-			},
-		});
-
-		Object.defineProperty(this, 'clone', {
-			value: (data = {}, context = {}) => {
-				context.vulnerable = holder.vulnerable;
-				context.resistant = holder.resistant;
-				context.immune = holder.immune;
-				context.absorb = holder.absorb;
-				return super.clone(data, context);
-			},
+		['absorption', 'absorb', 'abs', 'ab'].forEach((value) => {
+			Object.defineProperty(this, value, {
+				value: () => {
+					holder.absorb = true;
+				},
+			});
 		});
 	}
 }

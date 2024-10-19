@@ -90,6 +90,23 @@ globalThis.projectfu = {
 //   CONFIG.Actor.systemDataModels.character = CharacterData;
 // });
 
+/**
+ * Monkey patch foundry.data.fields.DataField._applyChangeCustom to return the initial value instead of "undefined" when the value was not changed in a way detectable by "!==".
+ */
+function monkeyPatchDataFieldApplyCustomChange() {
+	if (game.release.isNewer('12')) {
+		const original = foundry.data.fields.DataField.prototype._applyChangeCustom;
+		foundry.data.fields.DataField.prototype._applyChangeCustom = function (value, delta, model, change) {
+			const result = original(value, delta, model, change);
+			if (result === undefined) {
+				return foundry.utils.getProperty(model, change.key);
+			} else {
+				return result;
+			}
+		};
+	}
+}
+
 Hooks.once('init', async () => {
 	// Add utility classes to the global game object so that they're more easily
 	// accessible in global contexts.
@@ -124,6 +141,8 @@ Hooks.once('init', async () => {
 		formula: '1d@attributes.dex.current + 1d@attributes.ins.current + @derived.init.value',
 		decimals: 2,
 	};
+
+	monkeyPatchDataFieldApplyCustomChange();
 
 	// Define custom Document classes
 	CONFIG.Actor.documentClass = FUActor;
