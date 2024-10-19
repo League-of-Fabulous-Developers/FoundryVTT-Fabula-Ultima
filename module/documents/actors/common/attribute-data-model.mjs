@@ -1,3 +1,5 @@
+import { MathHelper } from '../../../helpers/math-helper.mjs';
+
 /**
  * @param {number} number
  * @return {boolean}
@@ -26,7 +28,7 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 			configurable: false,
 			enumerable: true,
 			get: () => {
-				return Math.clamp(2 * Math.floor(current / 2), 6, 12);
+				return MathHelper.clamp(2 * Math.floor(current / 2), 6, 12);
 			},
 			set: (newValue) => {
 				if (Number.isNumeric(newValue)) {

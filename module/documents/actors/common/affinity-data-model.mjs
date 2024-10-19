@@ -1,3 +1,5 @@
+import { MathHelper } from '../../../helpers/math-helper.mjs';
+
 /**
  * @property {number} base
  * @property {number} current
@@ -43,14 +45,14 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 			},
 			set: (newValue) => {
 				delete this.current;
-				let value = Math.clamp(newValue, -1, 3);
+				let value = MathHelper.clamp(newValue, -1, 3);
 				Object.defineProperty(this, 'current', {
 					configurable: true,
 					enumerable: true,
 					get: () => value,
 					set: (newValue) => {
 						if (Number.isNumeric(newValue)) {
-							value = Math.clamp(Number(newValue), -1, 3);
+							value = MathHelper.clamp(Number(newValue), -1, 3);
 						}
 					},
 				});
