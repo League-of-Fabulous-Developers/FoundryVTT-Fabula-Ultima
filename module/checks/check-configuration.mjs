@@ -1,3 +1,4 @@
+import { SETTINGS } from '../settings.js';
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CheckHooks } from './check-hooks.mjs';
@@ -237,7 +238,10 @@ class CheckInspector {
  * @param {CheckResultV2} check
  */
 const registerMetaCurrencyExpenditure = (check) => {
-	if (!game.settings.get(SYSTEM, Flags.ChatMessage.UseMetaCurrency)) {
+	// if (!game.settings.get(SYSTEM, Flags.ChatMessage.UseMetaCurrency)) {
+	// 	return;
+	// }
+	if (!game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomation)) {
 		return;
 	}
 	const randomId = foundry.utils.randomID();
