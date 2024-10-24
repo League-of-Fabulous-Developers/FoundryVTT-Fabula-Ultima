@@ -99,6 +99,8 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Applications
 		'systems/projectfu/templates/app/item-customizer.hbs',
+		'systems/projectfu/templates/app/partials/customizer-weapon.hbs',
+		'systems/projectfu/templates/app/partials/customizer-spell.hbs',
 		'systems/projectfu/templates/app/app-group-check.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-attribute.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',

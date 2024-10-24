@@ -145,6 +145,11 @@ export const statusEffects = [
 				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
 				value: 'upgrade',
 			},
+			{
+				key: 'system.bonuses.accuracy.opposedCheck',
+				mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+				value: '2',
+			},
 		],
 	},
 	{

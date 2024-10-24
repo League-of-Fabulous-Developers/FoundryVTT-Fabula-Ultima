@@ -35,7 +35,7 @@
     {{!-- Optional Feature Sections --}}
     {{#each optionalFeatures}}
         {{#each items }}
-            {{#if (and item.system.isFavored.value item.system.data.progress)}}
+            {{#if (and item.system.isFavored.value item.system.data.hasClock.value)}}
             <li class="item flexcol" data-item-id="{{ item._id }}">
                 {{!-- Item Name--}}
                 <h4 class="click-item resource-content">

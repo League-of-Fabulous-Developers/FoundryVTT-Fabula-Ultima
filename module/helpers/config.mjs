@@ -234,18 +234,18 @@ FU.statusEffects = {
 	'wlp-up': 'FU.WLPUp',
 	'dex-down': 'FU.DEXDown',
 	'dex-up': 'FU.DEXUp',
-	'ins-up': 'FU.INSUp',
 	'ins-down': 'FU.INSDown',
-	'mig-up': 'FU.MIGUp',
+	'ins-up': 'FU.INSUp',
 	'mig-down': 'FU.MIGDown',
+	'mig-up': 'FU.MIGUp',
 };
 
 FU.statusEffectRule = {
 	aura: 'FU.Aura',
 	barrier: 'FU.Barrier',
-	crisis: 'FU.Crisis',
-	cover: 'FU.Cover',
-	flying: 'FU.Flying',
+	crisis: 'FU.CrisisRule',
+	cover: 'FU.CoverRule',
+	flying: 'FU.FlyingRule',
 	guard: 'FU.GuardRule',
 	provoked: 'FU.Provoked',
 	slow: 'FU.SlowRule',

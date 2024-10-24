@@ -88,10 +88,14 @@ export class FUStandardActorSheet extends ActorSheet {
 			if (statusEffect) {
 				const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
 				const immune = this.actor.system.immunities?.[statusEffect.id]?.base || false;
+				const ruleKey = FU.statusEffectRule[statusEffect.id] || '';
+				const rule = game.i18n.localize(ruleKey);
+				const tooltip = `${game.i18n.localize(statusEffect.name)}<br>${rule}`;
 				context.statusEffectToggles.push({
 					...statusEffect,
 					active: existing,
 					immune: immune,
+					tooltip: tooltip,
 				});
 			}
 		}

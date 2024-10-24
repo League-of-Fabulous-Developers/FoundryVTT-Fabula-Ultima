@@ -20,9 +20,10 @@ import { Flags } from '../../../../helpers/flags.mjs';
  */
 export class ZeroPowerDataModel extends RollableOptionalFeatureDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, StringField, HTMLField, EmbeddedDataField, BooleanField } = foundry.data.fields;
 		return {
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
+			hasClock: new SchemaField({ value: new BooleanField({ initial: true }) }),
 			zeroTrigger: new SchemaField({
 				value: new StringField(),
 				description: new HTMLField(),
