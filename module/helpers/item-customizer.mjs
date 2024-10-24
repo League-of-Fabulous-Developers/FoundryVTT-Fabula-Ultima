@@ -77,8 +77,8 @@ export class ItemCustomizer extends FormApplication {
 		const { selectedItem, hrZeroBool, ...formData } = this.extractFormValues(html);
 		if (!selectedItem) return;
 
-		const updateFunc = selectedItem.type === 'spell' ? this.updateSpell : this.updateWeapon;
-		await updateFunc.call(this, selectedItem, formData, hrZeroBool);
+		const itemType = selectedItem.type;
+		await this.updateItem(selectedItem, formData, itemType, hrZeroBool);
 
 		ui.notifications.info(`${selectedItem.name} modified for ${this.actor.name}`);
 		this.close();
@@ -90,39 +90,48 @@ export class ItemCustomizer extends FormApplication {
 		const newItemName = `${newItemData.name} (Modified)`;
 		const newItem = await Item.create(newItemData, { parent: this.actor });
 
-		const updateFunc = selectedItem.type === 'spell' ? this.updateSpell : this.updateWeapon;
-		await updateFunc.call(this, newItem, formData, hrZeroBool, newItemName);
+		const itemType = selectedItem.type;
+		await this.updateItem(newItem, formData, itemType, hrZeroBool, newItemName);
 
 		ui.notifications.info(`${newItem.name} cloned and added to ${this.actor.name}`);
 		this.close();
 	}
 
-	async updateWeapon(item, formData, hrZeroBool, name = item.name) {
-		const { primary, secondary, accuracyMod, damageMod, damageType, weaponType, defenseType } = formData;
-		await item.update({
-			'system.attributes.primary.value': primary,
-			'system.attributes.secondary.value': secondary,
-			'system.accuracy.value': item.system.accuracy.value + accuracyMod,
-			'system.damage.value': item.system.damage.value + damageMod,
-			'system.damageType.value': damageType,
-			'system.type.value': weaponType,
-			'system.defense': defenseType,
-			'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
-			name,
-		});
-	}
+	async updateItem(item, formData, itemType, hrZeroBool, name = item.name) {
+		console.log(`Updating item: ${name}, Type: ${itemType}`);
 
-	async updateSpell(item, formData, hrZeroBool, name = item.name) {
-		const { primary, secondary, accuracyMod, damageMod, damageType } = formData;
-		await item.update({
-			'system.rollInfo.attributes.primary.value': primary,
-			'system.rollInfo.attributes.secondary.value': secondary,
-			'system.rollInfo.accuracy.value': item.system.rollInfo.accuracy.value + accuracyMod,
-			'system.rollInfo.damage.value': item.system.rollInfo.damage.value + damageMod,
-			'system.rollInfo.damage.type.value': damageType,
-			'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
-			name,
-		});
+		const updateConfig = {
+			spell: {
+				fields: {
+					'system.rollInfo.attributes.primary.value': formData.primary,
+					'system.rollInfo.attributes.secondary.value': formData.secondary,
+					'system.rollInfo.accuracy.value': (item.system.rollInfo?.accuracy?.value || 0) + formData.accuracyMod,
+					'system.rollInfo.damage.value': (item.system.rollInfo?.damage?.value || 0) + formData.damageMod,
+					'system.rollInfo.damage.type.value': formData.damageType,
+					'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
+				},
+			},
+			weapon: {
+				fields: {
+					'system.attributes.primary.value': formData.primary,
+					'system.attributes.secondary.value': formData.secondary,
+					'system.accuracy.value': (item.system.accuracy?.value || 0) + formData.accuracyMod,
+					'system.damage.value': (item.system.damage?.value || 0) + formData.damageMod,
+					'system.damageType.value': formData.damageType,
+					'system.type.value': formData.weaponType,
+					'system.defense': formData.defenseType,
+					'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
+				},
+			},
+		};
+
+		const updateData = updateConfig[itemType]?.fields || {};
+
+		if (Object.keys(updateData).length === 0) {
+			return;
+		}
+
+		await item.update({ ...updateData, name });
 	}
 
 	async _onTempRoll(html) {
@@ -137,6 +146,8 @@ export class ItemCustomizer extends FormApplication {
 			if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
 				this.setupCheckHooks(formData, modifiedWeapon, selectedItem);
 				return await ChecksV2.accuracyCheck(this.actor, modifiedWeapon, CheckConfiguration.initHrZero(hrZeroBool));
+			} else {
+				ui.notifications.warn(`Enable "Checks V2" Game Setting`);
 			}
 		} finally {
 			if (isWeapon) await modifiedWeapon.update({ 'system.type.value': selectedItem.system.type.value });
@@ -180,17 +191,27 @@ export class ItemCustomizer extends FormApplication {
 	}
 
 	extractFormValues(html) {
+		const itemSelector = html.find('#item-selector').val();
+		const primary = html.find('#primary').val();
+		const secondary = html.find('#secondary').val();
+		const damageType = html.find('#damage-type').val();
+		const weaponType = html.find('#weapon-type').val();
+		const defenseType = html.find('#defense-type').val();
+		const accuracyMod = parseInt(html.find('#accuracy-mod').val(), 10);
+		const damageMod = parseInt(html.find('#damage-mod').val(), 10);
+		const hrZeroBool = html.find('#hrzero').prop('checked');
+
 		return {
 			actor: this.actor,
-			selectedItem: this.actor.items.get(html.find('#item-selector').val()),
-			primary: html.find('#primary').val(),
-			secondary: html.find('#secondary').val(),
-			damageType: html.find('#damage-type').val(),
-			weaponType: html.find('#weapon-type').val(),
-			defenseType: html.find('#defense-type').val(),
-			accuracyMod: parseInt(html.find('#accuracy-mod').val(), 10),
-			damageMod: parseInt(html.find('#damage-mod').val(), 10),
-			hrZeroBool: html.find('#hrzero').prop('checked'),
+			selectedItem: this.actor.items.get(itemSelector),
+			primary,
+			secondary,
+			damageType,
+			weaponType,
+			defenseType,
+			accuracyMod,
+			damageMod,
+			hrZeroBool,
 		};
 	}
 
