@@ -81,6 +81,7 @@ function attachDamageApplicationHandler(message, jQuery) {
 	}
 
 	const handleClick = async (event, getTargetsFunction) => {
+		event.preventDefault();
 		if (!disabled) {
 			disabled = true;
 			const targets = await getTargetsFunction(event);
