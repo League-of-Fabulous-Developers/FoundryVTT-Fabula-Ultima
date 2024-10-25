@@ -1,6 +1,6 @@
 <div class="item-sm end">
     {{!-- remove after fixing contextmenu --}}
-    {{#if (eq @root.actor.type "npc")}}
+    {{!-- {{#if (eq @root.actor.type "npc")}}
         {{#if (eq (getGameSetting 'optionBehaviorRoll') true)}}
             <a class="item-control item-behavior" data-item-id="{{item._id}}"
                data-tooltip="{{#if item.system.isBehavior.value}}{{localize 'FU.BehaviorRemove'}}{{else}}{{localize
@@ -9,7 +9,7 @@
                 <i class="{{#if item.system.isBehavior.value}}fas active{{else}}far{{/if}} fa-address-book button-style"></i>
             </a>
         {{/if}}
-    {{/if}}
+    {{/if}} --}}
 
     <a class="item-control item-favored" data-item-id="{{item._id}}"
        data-tooltip="{{#if item.system.isFavored.value}}{{ localize 'FU.FavoriteRemove' }}{{else}}{{ localize

@@ -824,20 +824,27 @@ export class FUStandardActorSheet extends ActorSheet {
 			},
 		];
 
-		// TODO: Deal with multiple behaviors spawning
-		// html.on('click', '.item-option', (jq) => {
-		// 	const itemId = jq.currentTarget.dataset.itemId;
-		// 	if (this.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll')) {
-		// 		const item = this.actor.items.get(itemId);
-		// 		const behaviorClass = item?.system.isBehavior.value ? 'fas active' : 'far';
-		// 		contextMenuOptions.push({
-		// 			name: game.i18n.localize('FU.Behavior'),
-		// 			icon: `<i class="${behaviorClass} fa-address-book"></i>`,
-		// 			callback: this._onItemBehavior.bind(this),
-		// 			condition: (jq) => !!jq.data('itemId'),
-		// 		});
-		// 	}
-		// });
+		html.on('click', '.item-option', (jq) => {
+			const itemId = jq.currentTarget.dataset.itemId;
+
+			// Check for the Behavior option before adding it
+			const behaviorOptionExists = contextMenuOptions.some((option) => option.name === game.i18n.localize('FU.Behavior'));
+
+			if (this.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll') && !behaviorOptionExists) {
+				const item = this.actor.items.get(itemId);
+
+				if (item?.system?.isBehavior) {
+					const behaviorClass = item.system.isBehavior.value ? 'fas active' : 'far';
+
+					contextMenuOptions.push({
+						name: game.i18n.localize('FU.Behavior'),
+						icon: `<i class="${behaviorClass} fa-address-book"></i>`,
+						callback: this._onItemBehavior.bind(this),
+						condition: (jq) => !!jq.data('itemId'),
+					});
+				}
+			}
+		});
 
 		// Context
 		// eslint-disable-next-line no-undef
