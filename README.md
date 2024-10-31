@@ -3,7 +3,7 @@
 ![Fabula Ultima Mod Logo - White Background](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/assets/16845165/040a116d-3419-47ee-af36-5aed128bdb2d)
 
 ![foundry-v11-green](https://img.shields.io/badge/foundry-v11-green)
-![foundry-v12-yellow](https://img.shields.io/badge/foundry-v12-yellow)
+![foundry-v12-green](https://img.shields.io/badge/foundry-v12-green)
 
 Welcome to the ProjectFU system for [Foundry Virtual Tabletop](https://foundryvtt.com/).
 
@@ -15,7 +15,7 @@ Fabula Ultima is a roleplaying game created by Emanuele Galletto and published b
 
 ## Preview
 
-![Sheet_Preview](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/assets/16845165/5c2ddd38-4132-4087-aec3-bece8fb769ee)
+![Sheet_Preview](https://private-user-images.githubusercontent.com/16845165/378207996-be988378-d111-432c-bbe6-b07f97a09fef.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzAzNjc2NzQsIm5iZiI6MTczMDM2NzM3NCwicGF0aCI6Ii8xNjg0NTE2NS8zNzgyMDc5OTYtYmU5ODgzNzgtZDExMS00MzJjLWJiZTYtYjA3Zjk3YTA5ZmVmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDEwMzElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQxMDMxVDA5MzYxNFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTJiZjk0YTM3NDcyNWU4NWM5NDlhYWI2NTA1OTQ2MWJhMDY5OTA5YWFjN2MyODE0ZTQxMWE3YmE1NzA4NDVjYzImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.dkgcGSHk6N6a9zYQenxVKLz_M7B0iIV4Hthdb6nJm5U)
 
 ## Installation
 
