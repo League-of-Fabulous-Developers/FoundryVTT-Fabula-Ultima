@@ -716,6 +716,3 @@ function rollEquipment(actor, slot, isShift) {
 		ui.notifications.warn(`Equipped item in ${slot} slot not found!`);
 	}
 }
-
-const logo = document.getElementById('logo');
-logo.src = '/systems/projectfu/styles/static/icons/fvtt.png';

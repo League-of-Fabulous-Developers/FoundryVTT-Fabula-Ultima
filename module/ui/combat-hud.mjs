@@ -641,12 +641,13 @@ export class CombatHUD extends Application {
 	_getPosition() {
 		const draggedPosition = game.settings.get(SYSTEM, SETTINGS.optionCombatHudDraggedPosition);
 		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
-		const uiLeft = $('#ui-left');
+		// const uiLeft = $('#ui-left');
 		const uiMiddle = $('#ui-middle');
 
 		const position = {};
 
-		position.left = draggedPosition && draggedPosition.x ? draggedPosition.x : uiMiddle.position().left - uiLeft.width() * 0.5;
+		// position.left = draggedPosition && draggedPosition.x ? draggedPosition.x : uiMiddle.position().left - uiLeft.width() * 0.5;
+		position.left = draggedPosition && draggedPosition.x ? draggedPosition.x : uiMiddle.position().left;
 		if (positionFromTop) {
 			const uiTop = $('#ui-top');
 			position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : uiTop.height() + 20;

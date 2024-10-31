@@ -15,7 +15,7 @@ Fabula Ultima is a roleplaying game created by Emanuele Galletto and published b
 
 ## Preview
 
-![Sheet_Preview](https://private-user-images.githubusercontent.com/16845165/378207996-be988378-d111-432c-bbe6-b07f97a09fef.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzAzNjc2NzQsIm5iZiI6MTczMDM2NzM3NCwicGF0aCI6Ii8xNjg0NTE2NS8zNzgyMDc5OTYtYmU5ODgzNzgtZDExMS00MzJjLWJiZTYtYjA3Zjk3YTA5ZmVmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDEwMzElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQxMDMxVDA5MzYxNFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTJiZjk0YTM3NDcyNWU4NWM5NDlhYWI2NTA1OTQ2MWJhMDY5OTA5YWFjN2MyODE0ZTQxMWE3YmE1NzA4NDVjYzImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.dkgcGSHk6N6a9zYQenxVKLz_M7B0iIV4Hthdb6nJm5U)
+![image](https://github.com/user-attachments/assets/be988378-d111-432c-bbe6-b07f97a09fef)
 
 ## Installation
 
@@ -85,7 +85,7 @@ The following assets/code were used from the following projects:
 
 - **Pixeltier** - All pixel item art referenced in the system compendium are purchased from [Pixeltier](https://itch.io/s/39748/pixeltiers-complete-asset-bundle).
 - **Javier Aumente (Tarot)** (**Email:** <jaauvel@gmail.com>) - All classes/skills/heroic pixel art in the system compendium were provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.
-- **Replacement Art** - iron-knuckle.png icon from **RubenE** (**Social:** @/only_ruben_draw) & magic-tent.png icon from **drak273**.
+- **Replacement Art** - iron-knuckle.png icon from **RubenE** (**Social:** @/only_ruben_draw) & magic-tent.png icon from **drak273** with explicit permission to use for ProjectFU project.
 - **Status Effect Icons**: [styles\static\icons] - default status effect icons from [@\_t3nshi](https://twitter.com/_t3nshi). Explicit permission granted by t3nshi for the use of the Status Effect Icons exclusively in Fabula Ultima games. These icons are not authorized for use in other media without obtaining additional permission from t3nshi.
 - **game-icons**: [game-icons.net](https://game-icons.net), various icons were used from here, licensed under the [CC-BY-3.0 license](https://creativecommons.org/licenses/by/3.0/).
 - **fultimator**: [fultimator](https://github.com/codeclysm/fultimator) by codeclysm, specifically project/ritual/sp counter code, licensed under the [MIT License](https://github.com/codeclysm/fultimator/blob/main/LICENSE.md)
