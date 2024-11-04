@@ -51,6 +51,17 @@ Supplied game rules in the system compendium adhere to and are published under t
 - **Status Effect Icons**: [styles\static\icons] - default status effect icons from [@\_t3nshi](https://twitter.com/_t3nshi)
   - Explicit permission granted by t3nshi for the use of the Status Effect Icons exclusively in Fabula Ultima games. These icons are not authorized for use in other media without obtaining additional permission from t3nshi.
 
+- Created by Rusty, utilizing Blank template from [@\_t3nshi](https://twitter.com/_t3nshi)
+  - Aura.webp
+  - Barrier.webp
+  - Reflect.webp
+  - Provoked.webp
+
+- Created by [Spyrella](https://github.com/spyrella '‌'), utilizing Blank template from  [@\_t3nshi](https://twitter.com/_t3nshi)
+  - KO.webp/KO2.webp
+  - Sleep.webp
+  - Diamond.webp
+
 ## Compendium Assets
 
 [projectfu\styles\static\compendium\  *]  - Refer to [art-reference-master-list.txt](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/tree/main/styles/static/compendium/art-reference-master-list.txt) for reference master list.
@@ -102,11 +113,13 @@ Supplied game rules in the system compendium adhere to and are published under t
 [projectfu\styles\static\ui]
 
 - Fabula Ultima Mod Logo - White Background.png from the [License kit](https://need.games/wp-content/uploads/2024/06/Fabula-Ultima-Third-Party-Tabletop-License-Kit.zip), under the [Fabula Ultima Third Party Tabletop License 1.0](https://need.games/wp-content/uploads/2024/06/Fabula-Ultima-Third-Party-Tabletop-License-1.0.pdf)
-- bg.png & bg.webp: The following art is from Fabula Ultima Core Rulebook, so it will need to be replaced in the future.
 
 - Created by [Joline / Liquitty]('') with explicit permission to use with ProjectFU project
-  - pattern_hojita.png
-  - logo.png
+  - Acento_highres.png
+  - Bkg_highres.png
+  - Bkg_pattern_highres.png
+  - Hojitas_highres.png
+  - HojitasDouble_highres.png
 
 [projectfu\styles\static\ui\combat-hud]
 
