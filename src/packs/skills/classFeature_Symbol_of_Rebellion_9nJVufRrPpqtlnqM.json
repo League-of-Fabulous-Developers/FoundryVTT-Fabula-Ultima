@@ -18,7 +18,50 @@
     "source": "FUHF151",
     "fuid": "symbol-of-rebellion"
   },
-  "effects": [],
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.9nJVufRrPpqtlnqM",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Rebellion",
+      "img": "icons/magic/symbols/rune-sigil-horned-white-purple.webp",
+      "_id": "hKMM7HHVjXKBXyWd",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>If a <strong>Villain</strong> is present on the scene, any Opposed Checks made by the creature bearing this <strong>symbol</strong> trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF151",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730912656043,
+        "modifiedTime": 1730912806848,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!9nJVufRrPpqtlnqM.hKMM7HHVjXKBXyWd"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

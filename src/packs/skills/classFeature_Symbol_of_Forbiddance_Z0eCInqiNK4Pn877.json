@@ -18,7 +18,50 @@
     "source": "FUHF150",
     "fuid": "symbol-of-forbiddance"
   },
-  "effects": [],
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.Z0eCInqiNK4Pn877",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Forbiddance",
+      "img": "icons/magic/symbols/mask-metal-silver-white.webp",
+      "_id": "xCy3B42hkJexsfWO",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>When you create this symbol, choose an action type: <strong>Attack, Guard, Objective, Spell,</strong> or <strong>Skill</strong>. When the creature bearing this <strong>symbol</strong> performs the chosen action, they lose 5 Hit Points and 5 Mind Points (<strong>before</strong> performing that action). Both amounts increase to 10 if you are <strong>level 20 or higher</strong>, or to 20 if you are <strong>level 40 or higher</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF150",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730915916346,
+        "modifiedTime": 1730915992741,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!Z0eCInqiNK4Pn877.xCy3B42hkJexsfWO"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

@@ -18,7 +18,50 @@
     "source": "FUHF151",
     "fuid": "symbol-of-sorcery"
   },
-  "effects": [],
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.SWhDqdjU2KYWDRK5",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Sorcery",
+      "img": "icons/magic/symbols/rune-sigil-black-pink.webp",
+      "_id": "A86q8ga9UBrnbELF",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>The total Mind Point cost of spells that target the creature bearing this <strong>symbol</strong> is reduced by 5 MP (to a minimum total cost of 5 MP). If a spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF151",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730910987672,
+        "modifiedTime": 1730911015571,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!SWhDqdjU2KYWDRK5.A86q8ga9UBrnbELF"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

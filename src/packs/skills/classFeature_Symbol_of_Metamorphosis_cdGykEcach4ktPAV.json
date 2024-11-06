@@ -18,7 +18,50 @@
     "source": "FUHF150",
     "fuid": "symbol-of-metamorphosis"
   },
-  "effects": [],
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.cdGykEcach4ktPAV",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Metamorphosis",
+      "img": "icons/magic/control/encase-creature-spider-hold.webp",
+      "_id": "yytneLMlgoi6TdaG",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>When you create this <strong>symbol</strong>, choose a Species: <strong>beast</strong>, <strong>construct</strong>, <strong>demon</strong>, <strong>elemental</strong>, <strong>monster</strong>, <strong>plant</strong>, or <strong>undead</strong>. The creature bearing this <strong>symbol</strong> is treated as belonging to the chosen Species for the sake of Skills and effects, instead of their normal Species (this does <strong>not</strong> otherwise alter any of the creature’s profile, such as their Affinities or any special rules they may have). This <strong>symbol cannot</strong> be applied to Player Characters.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF150",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730915763182,
+        "modifiedTime": 1730915793314,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!cdGykEcach4ktPAV.yytneLMlgoi6TdaG"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

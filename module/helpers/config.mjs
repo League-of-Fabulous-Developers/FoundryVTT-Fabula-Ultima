@@ -396,6 +396,7 @@ FU.resources = {
 	ip: 'FU.InventoryPoints',
 	fp: 'FU.FabulaPoints',
 	exp: 'FU.Exp',
+	zenit: 'FU.Zenit',
 };
 
 FU.resourcesAbbr = {
@@ -404,6 +405,7 @@ FU.resourcesAbbr = {
 	ip: 'FU.InventoryAbbr',
 	fp: 'FU.FabulaAbbr',
 	exp: 'FU.ExpAbbr',
+	zenit: 'FU.Zenit',
 };
 
 FU.resourceIcons = {

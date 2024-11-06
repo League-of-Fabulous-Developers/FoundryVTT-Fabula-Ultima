@@ -32,6 +32,7 @@ const recoveryFlavor = {
 	ip: 'FU.InventoryPointRecovery',
 	fp: 'FU.TextEditorButtonCommandGain',
 	exp: 'FU.TextEditorButtonCommandGain',
+	zenit: 'FU.TextEditorButtonCommandGain',
 };
 
 const lossFlavor = {
@@ -40,6 +41,7 @@ const lossFlavor = {
 	ip: 'FU.InventoryPointLoss',
 	fp: 'FU.TextEditorButtonCommandLoss',
 	exp: 'FU.TextEditorButtonCommandLoss',
+	zenit: 'FU.TextEditorButtonCommandLoss',
 };
 
 const messages = {
@@ -48,6 +50,7 @@ const messages = {
 	ip: 'FU.InventoryPointRecoveryMessage',
 	fp: 'FU.ChatResourceGain',
 	exp: 'FU.ChatResourceGain',
+	zenit: 'FU.ChatResourceGain',
 };
 
 function createReplacementElement(amount, type, elementClass, uncapped) {
@@ -179,7 +182,7 @@ function onDropActor(actor, sheet, { type, recoveryType, amount, source, uncappe
 
 async function applyRecovery(actor, resource, amount, source, uncapped) {
 	const amountRecovered = Math.max(0, amount + (actor.system.bonuses.incomingRecovery[resource] || 0));
-	const isValue = resource === 'fp' || resource === 'exp';
+	const isValue = resource === 'fp' || resource === 'exp' || resource === 'zenit';
 	const attrKey = `resources.${resource}`;
 	const attr = foundry.utils.getProperty(actor.system, attrKey);
 	const uncappedRecoveryValue = amountRecovered + attr.value;
@@ -226,7 +229,7 @@ async function applyRecovery(actor, resource, amount, source, uncapped) {
 
 async function applyLoss(actor, resource, amount, source) {
 	const amountLost = -amount;
-	const isValue = resource === 'fp' || resource === 'exp';
+	const isValue = resource === 'fp' || resource === 'exp' || resource === 'zenit';
 	const updates = [];
 
 	// Handle specific cases for fp and exp

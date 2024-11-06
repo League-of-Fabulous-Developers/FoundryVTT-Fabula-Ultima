@@ -18,7 +18,50 @@
     "source": "FUHF151",
     "fuid": "symbol-of-truth"
   },
-  "effects": [],
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.FqGCSJ0ZIHp3p8tQ",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Truth",
+      "img": "icons/magic/symbols/star-yellow.webp",
+      "_id": "eJ8MmEcYNf1y6fIw",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>Checks performed to examine or locate the creature bearing this <strong>symbol</strong>, as well as Accuracy Checks and Magic Checks for attacks and offensive spells ( @ICON[offensive] ) that include the creature bearing this <strong>symbol</strong> among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF151",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730910911892,
+        "modifiedTime": 1730910975509,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!FqGCSJ0ZIHp3p8tQ.eJ8MmEcYNf1y6fIw"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

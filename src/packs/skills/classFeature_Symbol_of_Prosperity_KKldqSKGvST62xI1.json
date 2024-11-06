@@ -13,12 +13,55 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When the creature bearing this <strong>symbol</strong> spends 1 Fabula Point to <strong>invoke a Trait or Bond</strong>, they also receive 100 zenit.</p><hr><p>@LOSS[2 ip]</p>"
+      "description": "<p>When the creature bearing this <strong>symbol</strong> spends @LOSS[1 fp] to <strong>invoke a Trait or Bond</strong>, they also receive @GAIN[100 zenit].</p><hr><p>@LOSS[2 ip]</p>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-prosperity"
   },
-  "effects": [],
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.KKldqSKGvST62xI1",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Prosperity",
+      "img": "icons/commodities/currency/coin-engraved-sun-smile-copper.webp",
+      "_id": "PYe2GW1MLyRgNJRb",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>When the creature bearing this <strong>symbol</strong> spends @LOSS[1 fp] to <strong>invoke a Trait or Bond</strong>, they also receive @GAIN[100 zenit].</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF150",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730915198170,
+        "modifiedTime": 1730915714709,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!KKldqSKGvST62xI1.PYe2GW1MLyRgNJRb"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -33,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177778190,
-    "modifiedTime": 1724180862025,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1730914913554,
+    "lastModifiedBy": "B6evqtezy9ZsGZG3",
     "compendiumSource": null,
     "duplicateSource": null
   },
