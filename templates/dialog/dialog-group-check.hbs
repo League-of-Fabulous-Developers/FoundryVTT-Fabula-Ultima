@@ -8,6 +8,10 @@
         <span class="radio-container">{{radioBoxes 'attributes.attr2' attributes checked=attr2 localize=true }}</span>
     </fieldset>
     <fieldset class="flex-group-left resource-content">
+        <label class="resource-text-m">{{localize 'FU.DialogCheckModifier'}}</label>
+        <label class="resource-text-m">
+             <input type="number" name="modifier" value="{{modifier}}" min="0"/>
+        </label>
         <legend class="resource-text-m">{{localize 'FU.DialogCheckDifficulty'}}</legend>
         <label class="resource-text-m">{{localize 'FU.DialogGroupCheckDifficulty'}}</label>
         <label class="resource-text-m">

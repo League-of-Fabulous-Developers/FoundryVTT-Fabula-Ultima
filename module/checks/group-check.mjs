@@ -87,6 +87,7 @@ const initGroupCheck = async (check, actor) => {
 				check: 10,
 				support: 10,
 			},
+			modifier: 0,
 		}),
 		/** @type {(jQuery) => GroupCheckFlag}*/
 		callback: (jQuery) => ({
@@ -101,6 +102,7 @@ const initGroupCheck = async (check, actor) => {
 				check: jQuery.find('[name=difficulty\\.check]').val(),
 				support: jQuery.find('[name=difficulty\\.support]').val(),
 			},
+			modifier: Number(jQuery.find('[name=modifier]').val()),
 			supporters: [],
 		}),
 	});
@@ -115,6 +117,13 @@ const initGroupCheck = async (check, actor) => {
 		CheckConfiguration.configure(check).setDifficulty(checkConfig.difficulty.check);
 	}
 	check.additionalData[groupCheckKey] = { supportDifficulty: checkConfig.difficulty.support };
+
+	if (checkConfig.modifier) {
+		check.modifiers.push({
+			label: game.i18n.localize('FU.CheckSituationalModifier'),
+			value: checkConfig.modifier,
+		});
+	}
 };
 
 /**
