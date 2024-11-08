@@ -1,7 +1,7 @@
 import { AffinityDataModel } from './affinity-data-model.mjs';
 
 /**
- * @property {AffinityDataModel} phys
+ * @property {AffinityDataModel} physical
  * @property {AffinityDataModel} air
  * @property {AffinityDataModel} bolt
  * @property {AffinityDataModel} dark

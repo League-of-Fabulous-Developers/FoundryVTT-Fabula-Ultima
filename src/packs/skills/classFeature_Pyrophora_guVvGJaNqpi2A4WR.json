@@ -1,0 +1,42 @@
+{
+  "folder": "6hLDMWrdgLLCVK8G",
+  "name": "Pyrophora",
+  "type": "classFeature",
+  "img": "icons/magic/fire/flame-burning-eye.webp",
+  "system": {
+    "summary": {
+      "value": "Pyrophora Bombardier beetles, pistol shrimps, fire elementals."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.therioform",
+    "data": {
+      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>fire</strong>. While your <strong>unarmed strikes</strong> deal <strong>fire</strong> damage, any enemy who loses 20 or more Hit Points due to one of your <strong>unarmed strikes</strong> also suffers @EFFECT[dazed].</p>"
+    },
+    "source": "FUTF157",
+    "fuid": "pyrophora"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711428338643,
+    "modifiedTime": 1724180862852,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "guVvGJaNqpi2A4WR",
+  "sort": 0,
+  "_key": "!items!guVvGJaNqpi2A4WR"
+}

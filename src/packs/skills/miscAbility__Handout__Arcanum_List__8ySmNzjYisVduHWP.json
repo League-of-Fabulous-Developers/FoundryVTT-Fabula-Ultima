@@ -1,0 +1,155 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "[Handout: Arcanum List]",
+  "type": "miscAbility",
+  "_id": "8ySmNzjYisVduHWP",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum_v2.png",
+  "system": {
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>fire, heat, metal</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>cold, ice, silence</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>space, travel, void</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>knowledge, revelations, understanding</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>earth, plants, poison</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>fog, rain, storms</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>conquest, heroism, leadership</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>judgment, protection, sacrifice</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>destiny, speed, time</p></td></tr></tbody></table><p>-</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUCR179"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "defense": "def",
+    "fuid": "handout-arcanum-list"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "projectfu-playtest": {
+      "growthClock": false
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710465708129,
+    "modifiedTime": 1724180861610,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!8ySmNzjYisVduHWP"
+}

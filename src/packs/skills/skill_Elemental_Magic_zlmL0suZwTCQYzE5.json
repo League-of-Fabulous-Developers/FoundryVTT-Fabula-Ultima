@@ -1,0 +1,143 @@
+{
+  "folder": "laGyUtQnXPDC2pZG",
+  "name": "Elemental Magic",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_elemental_magic.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>Each time you acquire this Skill, learn one Elementalist spell (<strong>Core Rulebook</strong>, page <strong>188</strong> or @UUID[Compendium.projectfu.spells.Item.GOEbYMBu3cGnszWt]{[Elementalist Spells]}).</p><p>Offensive @ICON[offensive] Elementalist spells use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR187"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "elemental-magic"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "6utNKI7T4Vq4KjiR": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706497980288,
+    "modifiedTime": 1724180863569,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "zlmL0suZwTCQYzE5",
+  "sort": 0,
+  "_key": "!items!zlmL0suZwTCQYzE5"
+}

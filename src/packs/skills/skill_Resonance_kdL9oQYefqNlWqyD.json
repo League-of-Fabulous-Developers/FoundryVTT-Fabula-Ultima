@@ -1,0 +1,144 @@
+{
+  "folder": "9Hit5mtbXhSe0Dht",
+  "name": "Resonance",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_resonance.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>After you affect one or more enemies with a <strong>verse</strong>, if you have an <strong>arcane</strong> weapon equipped, you may choose one option: until the start of your next turn, your allies deal <strong>【SL】</strong> extra damage to those enemies; <strong>or</strong> until the start of your next turn, you recover <strong>【SL】</strong> Mind Points every time one of those enemies suffers damage (if the same source deals damage to two or more of those enemies at the same time, you recover <strong>【SL】</strong> MP for each damaged enemy).</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[1 mp]</p><p>Skill Level <strong>2</strong> - @GAIN[2 mp]</p><p>Skill Level <strong>3</strong> - @GAIN[3 mp]</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Chanter"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUHF137"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "resonance"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706551588442,
+    "modifiedTime": 1724180862995,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "kdL9oQYefqNlWqyD",
+  "sort": 0,
+  "_key": "!items!kdL9oQYefqNlWqyD"
+}

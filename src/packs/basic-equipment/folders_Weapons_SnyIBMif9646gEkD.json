@@ -1,0 +1,19 @@
+{
+  "name": "Weapons",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "SnyIBMif9646gEkD",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1719125573217,
+    "modifiedTime": 1719125573217,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!SnyIBMif9646gEkD"
+}

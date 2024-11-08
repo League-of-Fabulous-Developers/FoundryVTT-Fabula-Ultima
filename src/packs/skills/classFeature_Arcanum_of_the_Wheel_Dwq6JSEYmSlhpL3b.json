@@ -1,0 +1,98 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "Arcanum of the Wheel",
+  "type": "classFeature",
+  "_id": "Dwq6JSEYmSlhpL3b",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-wheel.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<ul><li><p>You are immune to <strong>slow</strong>.</p></li><li><p>You gain a +1 bonus to your Defense.</p></li></ul>",
+      "dismiss": "<ul><li><p><strong>Time Freeze.</strong> Choose any number of creatures you can see: each of them suffers <strong>slow</strong>. If a creature chosen this way is already <strong>slow</strong>, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).</p></li></ul>",
+      "domains": "destiny, speed, time"
+    },
+    "source": "FUCR181",
+    "fuid": "arcanum-of-the-wheel"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Merged: Wheel",
+      "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Wheel.png",
+      "_id": "ydG9HFnv5wiV0oTU",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.derived.def.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.immunities.slow.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You are immune to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">slow</strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">.</span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a +1 bonus to your Defense.</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p></li></ul>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725598840239,
+        "modifiedTime": 1725606451007,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!Dwq6JSEYmSlhpL3b.ydG9HFnv5wiV0oTU"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710464120707,
+    "modifiedTime": 1724180861803,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!Dwq6JSEYmSlhpL3b"
+}

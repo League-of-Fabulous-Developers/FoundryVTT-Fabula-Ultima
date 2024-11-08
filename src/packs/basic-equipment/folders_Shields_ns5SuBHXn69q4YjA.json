@@ -1,0 +1,19 @@
+{
+  "name": "Shields",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "ns5SuBHXn69q4YjA",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1719125580888,
+    "modifiedTime": 1719125580888,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!ns5SuBHXn69q4YjA"
+}

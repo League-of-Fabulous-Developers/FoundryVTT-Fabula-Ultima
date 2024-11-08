@@ -1,0 +1,76 @@
+{
+  "folder": "7NQvpwoHcTkOxvMv",
+  "name": "WLP Base Cap",
+  "type": "effect",
+  "_id": "BOVKFGdnuk8xq5EX",
+  "img": "systems/projectfu/styles/static/statuses/WlpDown.webp",
+  "system": {
+    "fuid": "wlp-base-cap"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.BOVKFGdnuk8xq5EX",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "WLP Base Cap",
+      "img": "systems/projectfu/styles/static/statuses/WlpDown.webp",
+      "_id": "t1T3A6fojAyovrHa",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.attributes.wlp.current",
+          "mode": 3,
+          "value": "@system.attributes.wlp.base",
+          "priority": null
+        }
+      ],
+      "description": "<p>Cap Current Willpower Attribute to Base.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725744105016,
+        "modifiedTime": 1725744315835,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!BOVKFGdnuk8xq5EX.t1T3A6fojAyovrHa"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725743884725,
+    "modifiedTime": 1725744154245,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!BOVKFGdnuk8xq5EX"
+}

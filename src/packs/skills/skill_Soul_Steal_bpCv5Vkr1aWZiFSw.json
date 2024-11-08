@@ -1,0 +1,144 @@
+{
+  "folder": "k463lsw6TLekF6xu",
+  "name": "Soul Steal",
+  "type": "skill",
+  "_id": "bpCv5Vkr1aWZiFSw",
+  "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_soul_steal.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>You may use an action to perform a <strong>【DEX + WLP】</strong> Check against the Magic Defense of a creature you can see. If you succeed and the target is a <strong>soldier</strong>, you recover <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you the target’s <strong>soul treasure</strong>, an item worth an amount of zenit <strong>equal to or lower than</strong> <strong>【the target's level multiplied by 30, or by 50 if they are a Villain】</strong>. This <strong>soul treasure</strong> will appear inside your <strong>backpack</strong>; a creature can be successfully stolen from with this Skill only once.</p><p><span>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【DEX + WLP】 </strong>Checks for this Skill.</span></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Rogue"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR203"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 1
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "mdef",
+    "fuid": "soul-steal"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706504776432,
+    "modifiedTime": 1724180862616,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 500000,
+  "_key": "!items!bpCv5Vkr1aWZiFSw"
+}

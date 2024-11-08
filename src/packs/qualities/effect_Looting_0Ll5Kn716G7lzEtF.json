@@ -1,0 +1,75 @@
+{
+  "name": "Looting",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 800
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Looting",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When you reduce a creature to 0 Hit Points with this weapon, you may immediately recover @GAIN[2 ip].</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Resource",
+          "CrisisInteraction": "none",
+          "source": "FUCR271"
+        }
+      },
+      "_id": "AhrZq2gCmD0PFSou",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728776496721,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!0Ll5Kn716G7lzEtF.AhrZq2gCmD0PFSou"
+    }
+  ],
+  "folder": "MoLOhUjPdiKVsj66",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747193936,
+    "modifiedTime": 1728747193936,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "0Ll5Kn716G7lzEtF",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!0Ll5Kn716G7lzEtF"
+}

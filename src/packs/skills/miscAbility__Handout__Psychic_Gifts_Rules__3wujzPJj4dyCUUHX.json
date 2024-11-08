@@ -1,0 +1,154 @@
+{
+  "folder": "E9XrzgvAjI4iW0aE",
+  "name": "[Handout: Psychic Gifts Rules]",
+  "type": "miscAbility",
+  "_id": "3wujzPJj4dyCUUHX",
+  "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_psychic_gifts.png",
+  "system": {
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<h3>USING A GIFT</h3><p><strong>Gifts</strong> can only be used when specific <strong>events</strong> take place. When this happens, you may spend an amount of Mind Points equal to <strong>【the number of filled sections in your Brainwave Clock, multiplied by 5】</strong> (minimum 5 Mind Points) in order to apply the effects of that gift to the event.</p><ul><li><p>You may only use a <strong>single gift</strong> per event.</p></li><li><p>If a gift causes <strong>HP or MP recovery</strong>, or if it causes <strong>MP loss</strong>, the amounts increase by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher</strong>.</p></li></ul><h3>The Brainwave Clock</h3><p>When you first acquire the <strong>Psychic Gifts</strong> Skill, start a <strong>Brainwave Clock</strong>.</p><ul><li><p>Your Brainwave Clock has <strong>4 sections</strong>, and it begins each scene <strong>empty</strong>.</p></li><li><p>After you resolve one of your <strong>gifts</strong>, <strong>fill 1 section</strong> of your Brainwave Clock (you do so <strong>after</strong> the effects of the <strong>gift</strong> have been calculated and applied).</p></li><li><p>Your Brainwave Clock determines your <strong>gifts' cost in Mind Points</strong>, as well as their <strong>effectiveness</strong> (see above). You can still use your <strong>gifts</strong> when the Clock is full.</p></li><li><p>Sections of your Brainwave Clock <strong>may not be filled</strong> in any way other than described above, and they <strong>may only be erased</strong> through the <strong>Brainwave Discharge</strong> Heroic Skill (see page <strong>171</strong>) or through effects that <strong>expressly</strong> influence Brainwave Clocks.</p></li></ul><h3>Gifts</h3><p><strong>@UUID[Compendium.projectfu.skills.Item.mMeTN3919AnQFJrC]{[Handout: Psychic Gift List]}</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUTF152"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "defense": "def",
+    "fuid": "handout-psychic-gifts-rules"
+  },
+  "effects": [],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "projectfu-playtest": {
+      "growthClock": false
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711422481438,
+    "modifiedTime": 1724180861372,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!3wujzPJj4dyCUUHX"
+}

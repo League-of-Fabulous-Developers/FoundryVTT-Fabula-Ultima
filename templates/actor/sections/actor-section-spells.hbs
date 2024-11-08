@@ -30,7 +30,7 @@
                         <div class="item-m">{{ item.clock }}</div>
                     {{/if}}
                     {{#if item.system.hasClock.value}}
-                        <div class="item-m desc" style="text-align: initial; padding: 1px;">
+                        <div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
                             <a class="decrement-button align-left" data-type="clockCounter"
                                data-item-id="{{ item._id }}"
                                data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})"> <i
@@ -51,7 +51,7 @@
                     {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
                 <span>{{ item.quality }}</span>
-                <div class="individual-description align-left">
+                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                     {{#if item.enrichedHtml.description}}
                         {{{item.enrichedHtml.description}}}
                     {{/if}}
@@ -82,13 +82,13 @@
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                    <div class="item-m">{{ item.duration }}</div>
+                    <div class="item-m">{{ capitalize item.duration }}</div>
                     <div class="item-lg">{{ item.target }}</div>
                     <div class="item-m">{{ item.mpCost }}</div>
                     {{!-- Item Control--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
-                <div class="individual-description align-left">
+                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                     {{#if item.detail}}
                         <div class="item-quality align-left">
                             <strong>{{item.detail}}</strong>

@@ -1,0 +1,19 @@
+{
+  "name": "Elementalist",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "NZHiCa0mU3DKOiVo",
+  "sort": 100000,
+  "color": "#1050D1",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706564343027,
+    "modifiedTime": 1719160074866,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!NZHiCa0mU3DKOiVo"
+}

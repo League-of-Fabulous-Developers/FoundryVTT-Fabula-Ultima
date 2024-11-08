@@ -6,8 +6,11 @@ export const SYSTEM = 'projectfu';
 export const FU = {};
 
 /**
- * The set of Ability Scores used within the sytem.
- * @type {Object}
+ * The set of Ability Scores used within the system.
+ * @typedef {"dex", "ins", "mig", "wlp"} Attribute
+ */
+/**
+ * @type {Object<Attribute, string>}
  */
 FU.attributes = {
 	dex: 'FU.AttributeDex',
@@ -16,6 +19,9 @@ FU.attributes = {
 	wlp: 'FU.AttributeWlp',
 };
 
+/**
+ * @type {Object<Attribute, string>}
+ */
 FU.attributeAbbreviations = {
 	dex: 'FU.AttributeDexAbbr',
 	ins: 'FU.AttributeInsAbbr',
@@ -32,7 +38,7 @@ FU.currencies = {
 };
 
 /**
- * @typedef {"untyped", "physical","air","bolt","dark","earth","fire","ice","light","poison"} DamageType
+ * @typedef {"untyped" | "physical" | "air" | "bolt" | "dark" | "earth" | "fire" | "ice" | "light" | "poison"} DamageType
  */
 /**
  * @type {Object<DamageType, string>}
@@ -50,16 +56,22 @@ FU.damageTypes = {
 	untyped: 'FU.DamageNone',
 };
 
+/**
+ * @typedef {"physical","air","bolt","dark","earth","fire","ice","light","poison"} AffIcon
+ */
+/**
+ * @type {Object<DamageType, string>}
+ */
 FU.affIcon = {
-	physical: 'fun fu-phys',
-	air: 'fun fu-wind',
-	bolt: 'fun fu-bolt',
-	dark: 'fun fu-dark',
-	earth: 'fun fu-earth',
-	fire: 'fun fu-fire',
-	ice: 'fun fu-ice',
-	light: 'fun fu-light',
-	poison: 'fun fu-poison',
+	physical: 'fua fu-phys',
+	air: 'fua fu-wind',
+	bolt: 'fua fu-bolt',
+	dark: 'fua fu-dark',
+	earth: 'fua fu-earth',
+	fire: 'fua fu-fire',
+	ice: 'fua fu-ice',
+	light: 'fua fu-light',
+	poison: 'fua fu-poison',
 };
 
 FU.allIcon = {
@@ -75,15 +87,15 @@ FU.allIcon = {
 	club: 'is-club',
 	heart: 'is-heart',
 	spade: 'is-spade',
-	physical: 'fun fu-phys',
-	air: 'fun fu-wind',
-	bolt: 'fun fu-bolt',
-	dark: 'fun fu-dark',
-	earth: 'fun fu-earth',
-	fire: 'fun fu-fire',
-	ice: 'fun fu-ice',
-	light: 'fun fu-light',
-	poison: 'fun fu-poison',
+	physical: 'fua fu-phys',
+	air: 'fua fu-wind',
+	bolt: 'fua fu-bolt',
+	dark: 'fua fu-dark',
+	earth: 'fua fu-earth',
+	fire: 'fua fu-fire',
+	ice: 'fua fu-ice',
+	light: 'fua fu-light',
+	poison: 'fua fu-poison',
 };
 
 FU.affType = {
@@ -92,7 +104,6 @@ FU.affType = {
 	1: 'FU.AffinityResistance',
 	2: 'FU.AffinityImmune',
 	3: 'FU.AffinityAbsorption',
-	4: 'FU.AffinityRepulsion',
 };
 
 FU.affTypeAbbr = {
@@ -101,7 +112,6 @@ FU.affTypeAbbr = {
 	1: 'FU.AffinityResistanceAbbr',
 	2: 'FU.AffinityImmuneAbbr',
 	3: 'FU.AffinityAbsorptionAbbr',
-	4: 'FU.AffinityRepulsionAbbr',
 };
 
 FU.affValue = {
@@ -110,7 +120,6 @@ FU.affValue = {
 	resistance: 1,
 	immunity: 2,
 	absorption: 3,
-	repulsion: 4,
 };
 
 FU.species = {
@@ -171,6 +180,7 @@ FU.itemTypes = {
 	ritual: 'TYPES.Item.ritual',
 	project: 'TYPES.Item.project',
 	zeroPower: 'TYPES.Item.zeroPower',
+	effect: 'TYPES.Item.effect',
 };
 
 FU.actionTypes = {
@@ -197,10 +207,23 @@ FU.actionRule = {
 	skill: 'FU.SkillRule',
 };
 
+FU.temporaryEffects = {
+	slow: 'FU.Slow',
+	dazed: 'FU.Dazed',
+	weak: 'FU.Weak',
+	shaken: 'FU.Shaken',
+	enraged: 'FU.Enraged',
+	poisoned: 'FU.Poisoned',
+};
+
 FU.statusEffects = {
+	aura: 'FU.Aura',
+	barrier: 'FU.Barrier',
 	crisis: 'FU.Crisis',
 	cover: 'FU.Cover',
+	flying: 'FU.Flying',
 	guard: 'FU.Guard',
+	provoked: 'FU.Provoked',
 	slow: 'FU.Slow',
 	dazed: 'FU.Dazed',
 	weak: 'FU.Weak',
@@ -211,16 +234,20 @@ FU.statusEffects = {
 	'wlp-up': 'FU.WLPUp',
 	'dex-down': 'FU.DEXDown',
 	'dex-up': 'FU.DEXUp',
-	'ins-up': 'FU.INSUp',
 	'ins-down': 'FU.INSDown',
-	'mig-up': 'FU.MIGUp',
+	'ins-up': 'FU.INSUp',
 	'mig-down': 'FU.MIGDown',
+	'mig-up': 'FU.MIGUp',
 };
 
 FU.statusEffectRule = {
+	aura: 'FU.Aura',
+	barrier: 'FU.Barrier',
 	crisis: 'FU.CrisisRule',
 	cover: 'FU.CoverRule',
+	flying: 'FU.FlyingRule',
 	guard: 'FU.GuardRule',
+	provoked: 'FU.Provoked',
 	slow: 'FU.SlowRule',
 	dazed: 'FU.DazedRule',
 	weak: 'FU.WeakRule',
@@ -367,24 +394,50 @@ FU.resources = {
 	hp: 'FU.HealthPoints',
 	mp: 'FU.MindPoints',
 	ip: 'FU.InventoryPoints',
+	fp: 'FU.FabulaPoints',
+	exp: 'FU.Exp',
+	zenit: 'FU.Zenit',
 };
 
 FU.resourcesAbbr = {
 	hp: 'FU.HealthAbbr',
 	mp: 'FU.MindAbbr',
 	ip: 'FU.InventoryAbbr',
+	fp: 'FU.FabulaAbbr',
+	exp: 'FU.ExpAbbr',
+	zenit: 'FU.Zenit',
 };
 
 FU.resourceIcons = {
 	hp: 'fas fa-heart',
 	mp: 'fas fa-hat-wizard',
 	ip: 'ra ra-gear-hammer',
+	fp: 'fas fa-pen-fancy',
+	exp: 'fas fa-feather-pointed',
 };
 
 FU.combatHudResources = foundry.utils.mergeObject(FU.resources, {
 	zeropower: 'ITEM.TypeZeroPower',
 	none: 'FU.None',
 });
+
+/**
+ * @typedef {"attribute", "accuracy", "magic", "open", "opposed", "group", "support", "initiative", "display"} CheckType
+ */
+/**
+ * @type {Object<CheckType, string>}
+ */
+FU.checkTypes = {
+	accuracy: 'FU.AccuracyCheck',
+	attribute: 'FU.AttributeCheck',
+	group: 'FU.GroupCheck',
+	magic: 'FU.MagicCheck',
+	open: 'FU.OpenCheck',
+	opposed: 'FU.OpposedCheck',
+	support: 'FU.SupportCheck',
+	initiative: 'FU.InitiativeCheck',
+	display: 'FU.DisplayItem',
+};
 
 FU.classFeatures = {};
 
@@ -438,4 +491,39 @@ FU.improvisedEffect = {
 	minor: 'FU.ImprovisedEffectMinor',
 	heavy: 'FU.ImprovisedEffectHeavy',
 	massive: 'FU.ImprovisedEffectMassive',
+};
+
+FU.duration = {
+	instantaneous: 'FU.Instantaneous',
+	scene: 'FU.Scene',
+	special: 'FU.Special',
+};
+
+FU.target = {
+	self: 'FU.Self',
+	oneCreature: 'FU.OneCreature',
+	twoCreature: 'FU.TwoCreatures',
+	threeCreature: 'FU.ThreeCreatures',
+	fourCreature: 'FU.FourCreatures',
+	fiveCreature: 'FU.FiveCreatures',
+	oneWeapon: 'FU.OneWeapon',
+};
+
+FU.combatHudThemes = {
+	'fu-default': 'FU.CombatHudDefault',
+	'fu-modern': 'FU.CombatHudModern',
+	'fu-mother': 'FU.CombatHudMother',
+};
+
+FU.combatHudThemeTemplates = {
+	'fu-default': 'combat-hud-default',
+	'fu-modern': 'combat-hud-modern',
+	'fu-mother': 'combat-hud-mother',
+};
+
+FU.rank = {
+	soldier: 'FU.Soldier',
+	elite: 'FU.Elite',
+	champion: 'FU.Champion',
+	companion: 'FU.Companion',
 };

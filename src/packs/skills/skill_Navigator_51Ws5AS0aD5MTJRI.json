@@ -1,0 +1,142 @@
+{
+  "name": "Navigator",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_navigator.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>You can communicate telepathically with any conscious ally <strong>within 1 travel day</strong> of you; you are <strong>able to hear each other </strong>for the sake of Skills and effects.</p><p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline. Additionally, you may use <strong>Ritualism</strong> to <strong>transport creatures</strong> in and out of the soul network, and to <strong>gain information </strong>and track entities while inside the soul network.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 1,
+      "min": 0
+    },
+    "class": {
+      "value": "Esper"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUTF151"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "mig"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "defense": "def",
+    "fuid": "navigator"
+  },
+  "effects": [],
+  "folder": "KIqoW0FNwwyC7ygb",
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711424945464,
+    "modifiedTime": 1724180861441,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "51Ws5AS0aD5MTJRI",
+  "sort": 100000,
+  "_key": "!items!51Ws5AS0aD5MTJRI"
+}

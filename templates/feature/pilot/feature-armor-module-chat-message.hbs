@@ -1,0 +1,34 @@
+{{#if martial}}
+   <div class="fu-tags">
+        <div class="fu-tag gap-5">
+            {{localize 'FU.DefenseAbbr'}}: {{formatMod defenseAttributesMod}}
+        </div>
+            <div class="fu-tag gap-5">
+            {{localize 'FU.MagicDefenseAbbr'}}: {{formatMod mdefenseAttributesMod}}
+        </div>
+    </div>
+{{else}}
+   <div class="fu-tags">
+        <div class="fu-tag gap-5">
+            {{localize 'FU.DefenseAbbr'}}: {{localize defenseAttributeAbbreviations}} {{formatMod defenseAttributesMod}}
+        </div>
+            <div class="fu-tag gap-5">
+            {{localize 'FU.MagicDefenseAbbr'}}: {{localize mdefenseAttributeAbbreviations}} {{formatMod mdefenseAttributesMod}}
+        </div>
+    </div>
+{{/if}}
+
+{{#if quality}}
+    <div class='chat-desc'>
+        <p><strong>{{localize 'FU.Quality'}}: </strong>{{quality}}</p>
+    </div>
+{{/if}}
+
+{{#if description}}
+   <div class='chat-desc'>
+    <details {{#unless (getGameSetting 'collapseDescriptions')}}open{{/unless}}>
+        <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
+        {{{description}}}
+    </details>
+</div>
+{{/if}}

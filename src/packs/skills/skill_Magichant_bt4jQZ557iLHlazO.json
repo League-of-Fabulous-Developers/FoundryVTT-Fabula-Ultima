@@ -1,0 +1,142 @@
+{
+  "folder": "9Hit5mtbXhSe0Dht",
+  "name": "Magichant",
+  "type": "skill",
+  "_id": "bt4jQZ557iLHlazO",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_magichant.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>On your turn during a conflict scene, you may use an action and spend a variable amount of MP to weave voice and music into a magical effect known as a <strong>verse</strong>.</p><p>You may only sing <strong>one verse</strong> per turn, even if you have access to multiple actions.</p><p>When you first acquire this Skill, you learn <strong>all three volumes</strong>, plus <strong>one key</strong> and <strong>one tone</strong>. Whenever you acquire this Skill again, you may learn <strong>one key</strong> or <strong>one tone</strong> (your choice).</p><p>For descriptions of how <strong>verses</strong> are broken down as well as a list of all of the Keys and Tones, please refer to the following handout: @UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Chanter"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUHF137"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "defense": "def",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "fuid": "magichant"
+  },
+  "effects": [],
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706550402521,
+    "modifiedTime": 1724180862627,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!bt4jQZ557iLHlazO"
+}

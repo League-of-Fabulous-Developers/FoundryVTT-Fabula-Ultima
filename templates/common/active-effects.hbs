@@ -1,10 +1,13 @@
-<section class="desc">
+
+{{!-- FUID Field --}}
+{{> "systems/projectfu/templates/item/partials/item-regenerate-fuid.hbs"}}
+<section class="desc drop-zone">
     {{#unless hideHeader}}
         <header class="items-main-header">
 		<span class="items-main">
 			<label class="items-label">{{localize "FU.Effects"}}</label>
 		</span>
-            <span class="effects-clear items-main total-level w-25" data-type="clearTempEffects"
+            <span class="effects-clear items-main total-level w-25" data-action="clearTempEffects"
                   data-tooltip="{{localize 'FU.ClearTemp'}}">
 			<a>{{localize 'FU.Clear'}} <i class="fas fa-eraser"></i></a>
 		</span>
@@ -25,7 +28,7 @@
             <ol class="item-list">
                 {{#each section.effects as |effect|}}
                     <li class="effect {{#if (and effect.isSuppressed (not effect.disabled))}}suppressed{{/if}}"
-                        data-effect-id="{{ effect.id }}">
+                        data-effect-id="{{ effect.id }}" data-type="effect">
                         <div class="flexrow">
                             {{!-- Item Name--}}
                             <div class="item-name">
@@ -39,7 +42,7 @@
                                      {{~/if}}"
                                     {{~/if}}>
                                     <div class="item-image">
-                                        <div class="rollable" data-roll-type="item">
+                                        <div class="effect-roll rollable" data-action="roll">
                                             <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}" />
                                         </div>
                                     </div>
@@ -58,6 +61,9 @@
                                          class="{{#if
                                           effect.disabled}}far fa-circle-check{{else}}fas fa-circle-check{{/if}}"></i>
                                     </a>
+                                    <a class="effect-control" data-action="copy-inline" title="{{localize 'FU.EffectCopy'}}">
+                                        <i class="fas fa-copy"></i>
+                                    </a>
                                     <a class="effect-control" data-action="edit" title="{{localize 'FU.EffectEdit'}}">
                                         <i class="fas fa-edit"></i>
                                     </a>
@@ -68,11 +74,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="individual-description">{{#if effect.description}} {{editor effect.description
-                                                                                                target="effect.description"
-                                                                                                rollData=rollData
-                                                                                                button=false owner=owner
-                                                                                                editable=false}} {{/if}}
+                        <div class="individual-description">
+                        {{#if effect.enrichedDescription}}
+                            {{{effect.enrichedDescription}}}
+                        {{/if}}
                         </div>
                     </li>
                 {{/each}}

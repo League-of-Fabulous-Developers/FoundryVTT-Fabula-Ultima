@@ -1,0 +1,79 @@
+{
+  "folder": "lUNcRxp9DjYR1CDQ",
+  "name": "Alter Target Defense (DEF)",
+  "type": "effect",
+  "_id": "ClYmatnFgHgO5nhP",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "fuid": "alter-target-defense-def",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.equipment-effects.Item.ClYmatnFgHgO5nhP",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Alter Target Defense (DEF)",
+      "img": "icons/svg/aura.svg",
+      "_id": "CYu3xXo2gXLvJ90v",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.defense",
+          "mode": 5,
+          "value": "def",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1728758317799,
+        "modifiedTime": 1728759104289,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!ClYmatnFgHgO5nhP.CYu3xXo2gXLvJ90v"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728758084500,
+    "modifiedTime": 1728758812724,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_key": "!items!ClYmatnFgHgO5nhP"
+}

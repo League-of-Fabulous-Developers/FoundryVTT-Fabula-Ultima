@@ -1,15 +1,4 @@
 // Reset or remove default styles for all HTML elements
-// Reset margin, padding, and box-sizing
-// * {
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: border-box;
-// }
-
-// Remove list styles
-ul,
-ol {
-}
 
 // Reset text decoration for links
 a {
@@ -39,34 +28,21 @@ textarea,
 select {
 	margin: 0;
 	padding: 0;
+}
 
-	option {
+table {
+	td {
+		padding-left: 2px;
 	}
 }
 
-// Reset table styles
-// table {
-// 	border-collapse: collapse;
-// 	width: 100%;
-// }
-
-// th,
-// td {
-// 	border: 1px solid #e2e8f0;
-// 	padding: 8px;
-// 	text-align: left;
-// }
-
-table td {
-	padding-left: 2px;
-}
-
-// Define additional custom styles as needed
-.sheet nav.sheet-tabs {
-	justify-content: center;
-	align-self: stretch;
-	flex: 0;
-	margin: 0;
+.sheet {
+	nav.sheet-tabs {
+		justify-content: center;
+		align-self: stretch;
+		flex: 0;
+		margin: 0;
+	}
 }
 
 blockquote {

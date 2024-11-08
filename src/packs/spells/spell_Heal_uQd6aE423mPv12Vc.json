@@ -1,0 +1,145 @@
+{
+  "folder": "KUerX2dLyeZ8A3Xw",
+  "name": "Heal",
+  "type": "spell",
+  "_id": "uQd6aE423mPv12Vc",
+  "img": "icons/magic/life/heart-cross-strong-green.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>You invigorate your companions, soothing their pain and healing their fatigue. Each target recovers @HEAL[40 hp]<span>. This amount increases to </span>@HEAL[50 hp] <span>if you are <strong>level 20 or higher</strong>, or to </span>@HEAL[60 hp] <span>if you are <strong>level 40 or higher</strong>.</span></p><hr /><p>@LOSS[10 mp] for <strong>one</strong> target.</p><p>@LOSS[20 mp] for <strong>two</strong> targets.</p><p>@LOSS[30 mp] for <strong>three</strong> targets.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Spiritist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "mpCost": {
+      "value": "10"
+    },
+    "target": {
+      "value": "Up to three creatures"
+    },
+    "duration": {
+      "value": "instantaneous"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "source": {
+      "value": "FUCR209"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "maxTargets": {
+      "value": 3
+    },
+    "fuid": "heal"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706572719338,
+    "modifiedTime": 1724180864380,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 1300000,
+  "_key": "!items!uQd6aE423mPv12Vc"
+}

@@ -40,7 +40,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-favorite.hbs',
 		'systems/projectfu/templates/actor/partials/actor-bonds.hbs',
 
-		'systems/projectfu/templates/actor/partials/actor-divider.hbs',
 		'systems/projectfu/templates/actor/partials/actor-equip.hbs',
 		'systems/projectfu/templates/actor/partials/actor-control.hbs',
 		'systems/projectfu/templates/actor/partials/actor-progress-clock.hbs',
@@ -51,16 +50,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/item/partials/item-resource-points.hbs',
 		'systems/projectfu/templates/item/partials/item-controls.hbs',
 		'systems/projectfu/templates/item/partials/item-header.hbs',
-		'systems/projectfu/templates/item/partials/item-weapon-header.hbs',
-		'systems/projectfu/templates/item/partials/item-defense-header.hbs',
-		'systems/projectfu/templates/item/partials/item-consumable-header.hbs',
-		'systems/projectfu/templates/item/partials/item-treasure-header.hbs',
-		'systems/projectfu/templates/item/partials/item-spell-header.hbs',
-		'systems/projectfu/templates/item/partials/item-class-header.hbs',
-		'systems/projectfu/templates/item/partials/item-skill-header.hbs',
-		'systems/projectfu/templates/item/partials/item-heroic-header.hbs',
 		'systems/projectfu/templates/item/partials/item-progress-header.hbs',
 		'systems/projectfu/templates/item/partials/item-behavior-field.hbs',
+		'systems/projectfu/templates/item/partials/item-regenerate-fuid.hbs',
 
 		// Common partials
 		'systems/projectfu/templates/common/active-effects.hbs',
@@ -75,6 +67,7 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Chat Messages
 		'systems/projectfu/templates/chat/chat-check.hbs',
+		'systems/projectfu/templates/chat/chat-check-container.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
 		'systems/projectfu/templates/chat/chat-group-check-initiated.hbs',
@@ -95,20 +88,30 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-result.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-targets.hbs',
+		'systems/projectfu/templates/chat/partials/chat-check-notargets.hbs',
+		'systems/projectfu/templates/chat/partials/chat-opposed-check-result.hbs',
+		'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
 
 		// UI Components
 		'systems/projectfu/templates/ui/combat-tracker.hbs',
 
 		// Applications
+		'systems/projectfu/templates/app/item-customizer.hbs',
+		'systems/projectfu/templates/app/partials/customizer-weapon.hbs',
+		'systems/projectfu/templates/app/partials/customizer-spell.hbs',
 		'systems/projectfu/templates/app/app-group-check.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-attribute.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
+		'systems/projectfu/templates/app/partials/inline-effect-config-modify-status-effects.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-damage-bonuses.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-accuracy.hbs',
 		'systems/projectfu/templates/app/partials/inline-effect-config-modify-defenses.hbs',
 
 		// Optional Rule Templates
 		'systems/projectfu/templates/optional/feature-basic-preview.hbs',
+		'systems/projectfu/templates/optional/feature-basic-description.hbs',
 
 		'systems/projectfu/templates/optional/partials/feature-progress-clock.hbs',
 		'systems/projectfu/templates/optional/partials/feature-progress-clock-xl.hbs',
@@ -118,12 +121,18 @@ export const preloadHandlebarsTemplates = async function () {
 
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-sheet.hbs',
 		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-preview.hbs',
+		'systems/projectfu/templates/optional/zeropower/feature-zeroPower-description.hbs',
+
+		'systems/projectfu/templates/optional/partials/feature-resource-points-sheet.hbs',
+		'systems/projectfu/templates/optional/partials/feature-progress-clock-sheet.hbs',
 
 		// Class Feature Templates
 		'systems/projectfu/templates/feature/feature-basic-preview.hbs',
+		'systems/projectfu/templates/feature/feature-basic-description.hbs',
 
 		'systems/projectfu/templates/feature/arcanist/feature-arcanum-sheet.hbs',
 		'systems/projectfu/templates/feature/arcanist/feature-arcanum-preview.hbs',
+		'systems/projectfu/templates/feature/arcanist/feature-arcanum-description.hbs',
 
 		'systems/projectfu/templates/feature/tinkerer/feature-gadgets-preview.hbs',
 		'systems/projectfu/templates/feature/tinkerer/feature-alchemy-sheet.hbs',
@@ -133,6 +142,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/chanter/feature-key-sheet.hbs',
 		'systems/projectfu/templates/feature/chanter/feature-key-preview.hbs',
 		'systems/projectfu/templates/feature/chanter/feature-tone-sheet.hbs',
+		'systems/projectfu/templates/feature/chanter/feature-tone-description.hbs',
 		'systems/projectfu/templates/feature/chanter/feature-verse-sheet.hbs',
 		'systems/projectfu/templates/feature/chanter/feature-verse-preview.hbs',
 
@@ -157,6 +167,17 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/ui/partials/combat-bar-hp.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-mp.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-ip.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-exp.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-zeropower.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-hp-modern.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-mp-modern.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-ip-modern.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-exp-modern.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-zeropower-modern.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-hp-mother.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-mp-mother.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-ip-mother.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-exp-mother.hbs',
+		'systems/projectfu/templates/ui/partials/combat-bar-zeropower-mother.hbs',
 	]);
 };

@@ -1,0 +1,50 @@
+{
+  "name": "Infusion: Advanced",
+  "type": "consumable",
+  "_id": "EinStehJUI9KA3ng",
+  "img": "icons/skills/ranged/arrows-flying-salvo-yellow.webp",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "For 2 IP the attack deals 5 extra damage, and its damage becomes: air, light, earth, OR dark."
+    },
+    "description": "<h5>Required: Advanced Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p>For <strong>@LOSS[2 ip]</strong> the attack deals 5 extra damage, and its damage becomes: <strong>air</strong>, <strong>light</strong>, <strong>earth</strong>, or <strong>dark</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 2
+    },
+    "source": {
+      "value": "FUCR214"
+    },
+    "fuid": "infusion-advanced"
+  },
+  "effects": [],
+  "folder": "fzwKXW1w0wvmyDbk",
+  "sort": 150000,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1707096656806,
+    "modifiedTime": 1724180864586,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!EinStehJUI9KA3ng"
+}

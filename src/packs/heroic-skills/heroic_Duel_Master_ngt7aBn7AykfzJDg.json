@@ -1,0 +1,122 @@
+{
+  "name": "Duel Master",
+  "type": "heroic",
+  "img": "icons/commodities/currency/coin-embossed-sword-copper.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Your Magic Pairs enhance your attacks."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Ace of Cards</strong>, <strong>Fury</strong>, <strong>Rogue</strong>, <strong>Sharpshooter</strong>, and <strong>Weaponmaster</strong>, and you must have acquired the <strong>Magic Cards</strong> Skill.</p></blockquote><p>When you resolve the <strong>Magic Pair</strong> effect, if you attack with a weapon belonging to the <strong>arcane</strong> or <strong>thrown</strong> Category, you deal extra damage equal to the common value of the resolved cards and regain an amount of Mind Points equal to twice the common value of the resolved cards (for instance, resolving a pair of <strong>5s</strong> will allow you to deal 5 extra damage and regain 10 Mind Points).</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUAC6"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "fuid": "duel-master"
+  },
+  "effects": [],
+  "folder": "1Ky2u7fi2lfxr4JB",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1708940657180,
+    "modifiedTime": 1724180864018,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "ngt7aBn7AykfzJDg",
+  "sort": 0,
+  "_key": "!items!ngt7aBn7AykfzJDg"
+}

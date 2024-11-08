@@ -1,0 +1,42 @@
+{
+  "folder": "OcoOq5td7Ya9GOPU",
+  "name": "Excavation Module",
+  "type": "classFeature",
+  "img": "icons/commodities/tech/bulb.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.supportModule",
+    "data": {
+      "description": "<p>This <strong>personal vehicle</strong> can burrow through the ground and is equipped with powerful lights.</p>",
+      "complex": false
+    },
+    "source": "FUTF168",
+    "fuid": "excavation-module"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711477009006,
+    "modifiedTime": 1724180864703,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "Hi6V9QoWjKofxZkQ",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!Hi6V9QoWjKofxZkQ"
+}

@@ -1,0 +1,10 @@
+{{#if (not target)}}
+    <div class="fu-tags flexrow gap-5">
+        <a data-action="applySelectedDamage" data-tooltip="{{localize 'FU.ChatApplyDamageTooltip'}}">
+            <span class='fu-tag button flex-group-center gap-5' style="width: 100%;white-space: nowrap;">{{localize 'FU.ChatApplySelected'}}<i class="icon fas fa-expand"></i></span>
+        </a>
+        <a data-action="applyTargetedDamage" data-tooltip="{{localize 'FU.ChatApplyDamageTooltip'}}">
+            <span class='fu-tag button flex-group-center gap-5' style="width: 100%;white-space: nowrap;">{{localize 'FU.ChatApplyTargeted'}}<i class="icon fas fa-bullseye"></i></span>
+        </a>
+    </div>
+{{/if}}

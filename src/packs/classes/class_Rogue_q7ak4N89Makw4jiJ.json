@@ -1,0 +1,99 @@
+{
+  "name": "Rogue",
+  "type": "class",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": "I will find my own justice."
+    },
+    "description": "<h5><strong>ALSO: Bandit, Ninja, Thief</strong></h5><p>Be they criminals, rebels, or spies, <strong>Rogues</strong> are more than willing to play dirty to get what they want. Rogues are generally quick, witty, and elusive: while a few of them are infamous for being mostly concerned with their personal wealth and profit, many see themselves as fighting against injustice, tyranny, or social exclusion. Tragically, it is quite common for Rogues to end up being painted as threats by those same people they fight for.</p><hr /><h5><strong>ROGUE FREE BENEFITS</strong></h5><ul><li>Permanently increase your maximum Inventory Points by 2.</li></ul><h2><strong>ROGUE SKILLS</strong></h2><p>@UUID[Compendium.projectfu.skills.Item.c2XRt5pvOab25Tbe]{Cheap Shot} <strong>(SL5)</strong></p><p>When you hit a creature with an attack, if the attack <strong>only</strong> targeted that creature and they are suffering from <strong>one or more status effects</strong>, you may have it deal extra damage equal to <strong>【SL + the number of status effects on the creature】</strong>.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.ksgKc90MZSpDTka7]{Dodge} <strong>(SL3)</strong></p><p>As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by <strong>【SL】</strong>.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.tiu0D74YNxirN6Tr]{High Speed} <strong>(SL3)</strong></p><p>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round: perform a <strong>free attack</strong> with a weapon you have equipped; <strong>or</strong> perform a <strong>Hinder</strong> or <strong>Objective</strong> action. You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.cHKzZJBYjwLuRfDL]{See You Later}</p><p>You may use an action and spend 1 Fabula Point to vanish from the current scene, reappearing whenever you want during a <strong>different</strong> scene in which another Player Character is present. Describe how you escaped and miraculously got here!</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.bpCv5Vkr1aWZiFSw]{Soul Steal} <strong>(SL5)</strong></p><p>You may use an action to perform a <strong>【DEX + WLP】</strong> Check against the Magic Defense of a creature you can see. If you succeed and the target is a <strong>soldier</strong>, you recover <strong>【SL】</strong> Inventory Points; if they are an <strong>elite</strong> or <strong>champion</strong>, the GM gives you the target’s <strong>soul treasure</strong>, an item worth an amount of zenit equal to or lower than <strong>【the target’s level multiplied by 30, or by 50 if they are a Villain】</strong>. This <strong>soul treasure</strong> will appear inside your <strong>backpack</strong>; a creature can be successfully stolen from with this Skill only once.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【DEX + WLP】</strong> Checks for this Skill.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": true
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": false
+        },
+        "shields": {
+          "value": false
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": false
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR203"
+    },
+    "fuid": "rogue"
+  },
+  "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue.png",
+  "effects": [],
+  "folder": null,
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706419959470,
+    "modifiedTime": 1724180861042,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "q7ak4N89Makw4jiJ",
+  "sort": 400000,
+  "_key": "!items!q7ak4N89Makw4jiJ"
+}

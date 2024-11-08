@@ -1,0 +1,92 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "Arcanum of the Forge",
+  "type": "classFeature",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-forge.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<ul><li><p>You have Resistance to fire damage.</p></li><li><p>Any fire damage you deal ignores Resistances.</p></li></ul>",
+      "dismiss": "<p>When you dismiss this Arcanum, choose Forge or Inferno:</p><ul><li><p><strong>Forge.</strong> You create a basic armor, shield, or weapon of your choice (Core Rulebook, pages 130 to 133). If you select this option again, the previously created item vanishes. If you create a weapon this way, it deals fire damage instead of physical.</p></li><li><p><strong>Inferno.</strong> Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 fire]</strong> damage. This damage ignores Resistances.</p></li></ul>",
+      "domains": "fire, heat, metal"
+    },
+    "source": "FUCR179",
+    "fuid": "arcanum-of-the-forge"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Merged: Forge",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-forge.png",
+      "_id": "288fLvNbYksITV4Q",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.fire",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p>You have Resistance to <strong>fire</strong> damage.</p></li><li><p>Any <strong>fire</strong> damage you deal ignores Resistances. </p></li></ul>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725596736998,
+        "modifiedTime": 1725596846135,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!BhLHFeKBx3zZRZD5.288fLvNbYksITV4Q"
+    }
+  ],
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710029700564,
+    "modifiedTime": 1724180861689,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "BhLHFeKBx3zZRZD5",
+  "sort": 500000,
+  "_key": "!items!BhLHFeKBx3zZRZD5"
+}

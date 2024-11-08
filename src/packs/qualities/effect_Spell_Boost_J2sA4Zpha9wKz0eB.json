@@ -1,0 +1,82 @@
+{
+  "name": "Spell Boost",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 2000
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Spell Boost",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.spell",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>Spells you cast deal 5 extra damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Offensive",
+          "CrisisInteraction": "none",
+          "source": "FUCR270"
+        }
+      },
+      "_id": "hznzq2TJedaNVL0K",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728775080100,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!J2sA4Zpha9wKz0eB.hznzq2TJedaNVL0K"
+    }
+  ],
+  "folder": "SH8cHX3lJkZlLgj8",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747193107,
+    "modifiedTime": 1728747193107,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "J2sA4Zpha9wKz0eB",
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!J2sA4Zpha9wKz0eB"
+}

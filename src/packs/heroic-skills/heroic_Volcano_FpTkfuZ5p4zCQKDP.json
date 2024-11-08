@@ -1,0 +1,122 @@
+{
+  "name": "Volcano",
+  "type": "heroic",
+  "img": "icons/magic/lightning/bolt-cloud-sky-white.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Learn the Volcano spell."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Elementalist</strong> Class.</p></blockquote><p><span>You learn the ultimate <strong>Elementalist</strong> spell: <strong>Volcano</strong>.</span></p><table style=\"width:96.2791%\" border=\"1\"><colgroup><col style=\"width:15.3584%\"></col><col style=\"width:12.9693%\"></col><col style=\"width:27.3038%\"></col><col style=\"width:44.3686%\"></col></colgroup><tbody><tr><td style=\"text-align:center\"><strong>Volcano</strong></td><td style=\"text-align:center\"><strong>MP:</strong> 40</td><td style=\"text-align:center\"><strong>Target:</strong> Special</td><td style=\"text-align:center\"><strong>Duration:</strong> Instantaneous</td></tr></tbody></table><p><span>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: one creature you can see suffers @DMG[10 fire] damage; <strong>or</strong> you choose any number of creatures you can see, and each of them suffers @DMG[30 fire] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</span></p><p><span>Damage dealt by this spell ignores Resistances and Immunities.</span></p><p>Add both @UUID[Compendium.projectfu.spells.Item.BfZqKbr38FBxLtmH]{Volcano (Single Target)} and @UUID[Compendium.projectfu.spells.Item.Tp1aelw8OYtmPpQi]{Volcano (Multi Target)} spells to your character sheet from the <strong>Elementalist</strong> spell list.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR241"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "fuid": "volcano"
+  },
+  "effects": [],
+  "folder": "z63bpKominWoy7Nw",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706587625271,
+    "modifiedTime": 1724180863774,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "FpTkfuZ5p4zCQKDP",
+  "sort": 400000,
+  "_key": "!items!FpTkfuZ5p4zCQKDP"
+}

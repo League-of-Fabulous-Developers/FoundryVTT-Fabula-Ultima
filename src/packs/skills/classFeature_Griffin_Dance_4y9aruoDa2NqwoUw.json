@@ -1,0 +1,44 @@
+{
+  "folder": "MF2GB42tc5t7uxF8",
+  "name": "Griffin Dance",
+  "type": "classFeature",
+  "_id": "4y9aruoDa2NqwoUw",
+  "img": "icons/commodities/materials/feather-blue-glowing.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.dance",
+    "data": {
+      "description": "<p>Choose one option: you gain Resistance to <strong>air</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>air</strong>.</p><hr><p>@LOSS[10 mp] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogQWlyIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuYWlyIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvbWFnaWMvZGVmZW5zaXZlL3NoaWVsZC1iYXJyaWVyLWZsYW1pbmctcGVudGFnb24tdGVhbC1wdXJwbGUud2VicCJ9]</p>",
+      "duration": "nextTurn"
+    },
+    "source": "FUHF144",
+    "fuid": "griffin-dance"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710175496075,
+    "modifiedTime": 1724180861413,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 0,
+  "_key": "!items!4y9aruoDa2NqwoUw"
+}

@@ -1,0 +1,76 @@
+{
+  "folder": "Z7sOoJ1jkwGP6nE3",
+  "name": "Alter Damage Type (Earth)",
+  "type": "effect",
+  "_id": "7z4sulLR3j2HIDLd",
+  "img": "systems/projectfu/styles/static/affinities/earth.svg",
+  "system": {
+    "fuid": "alter-damage-type-earth"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.equipment-effects.Item.7z4sulLR3j2HIDLd",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Alter Damage Type (Earth)",
+      "img": "systems/projectfu/styles/static/affinities/earth.svg",
+      "_id": "sI51dmD9J3OQLbsb",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.damageType.value",
+          "mode": 5,
+          "value": "earth",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725775775593,
+        "modifiedTime": 1725775814235,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!7z4sulLR3j2HIDLd.sI51dmD9J3OQLbsb"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725775754748,
+    "modifiedTime": 1725775819595,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!7z4sulLR3j2HIDLd"
+}

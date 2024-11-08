@@ -1,0 +1,122 @@
+{
+  "name": "Bimagus",
+  "type": "heroic",
+  "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Cast one spell right after another, saving MP."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered two or more Classes among <strong>Elementalist</strong>, <strong>Entropist</strong>, and <strong>Spiritist</strong>, and your character must be <strong>level 30 or higher</strong>.</p></blockquote><p>Once per turn during a conflict, if you have an <strong>arcane </strong>weapon equipped, you may use an action and spend <strong>20 to 50 Mind Points</strong> to perform the <strong>Spell </strong>action for free <strong>twice</strong>, casting two spells without needing to pay their MP costs. If you do, the two spells must have a <strong>combined total MP cost equal to or lower than【20 + the amount of MP you spent to use this Skill】</strong>, and the second spell must have a <strong>total MP cost that is equal to or lower than half the total MP cost</strong> of the first spell. </p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": ""
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF154"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "fuid": "bimagus"
+  },
+  "effects": [],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706684543795,
+    "modifiedTime": 1724180864092,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "sx1dhJqczTT4UkYw",
+  "sort": 0,
+  "_key": "!items!sx1dhJqczTT4UkYw"
+}

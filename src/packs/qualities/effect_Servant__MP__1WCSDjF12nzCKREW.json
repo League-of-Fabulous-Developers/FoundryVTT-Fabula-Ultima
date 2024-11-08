@@ -1,0 +1,75 @@
+{
+  "name": "Servant (MP)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 600
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Servant (MP)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>When a <strong>potion</strong> or <strong>magisphere</strong> created with your Inventory Points restores Mind Points, it restores an extra<strong> </strong>@GAIN[5 mp].</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Resource",
+          "CrisisInteraction": "none",
+          "source": "FUCR281"
+        }
+      },
+      "_id": "NvExbNQLvlaRtNWE",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728776137717,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!1WCSDjF12nzCKREW.NvExbNQLvlaRtNWE"
+    }
+  ],
+  "folder": "MoLOhUjPdiKVsj66",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728751080050,
+    "modifiedTime": 1728751101752,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_id": "1WCSDjF12nzCKREW",
+  "sort": 0,
+  "_key": "!items!1WCSDjF12nzCKREW"
+}

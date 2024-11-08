@@ -1,0 +1,145 @@
+{
+  "folder": "3BdwBwfSnD04VRAz",
+  "name": "Dark Weapon",
+  "type": "spell",
+  "_id": "S5jyPShQHxqZdKZB",
+  "img": "icons/weapons/swords/sword-flanged-lightning.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>You imbue a weapon with dark energy. Until this spell ends, all damage dealt by the weapon becomes of the <strong>dark</strong> type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action. This spell can only be cast on a weapon equipped by a willing creature.</p><hr /><p><strong>@LOSS[10 mp]</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Entropist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "mpCost": {
+      "value": "10"
+    },
+    "target": {
+      "value": "One equipped weapon"
+    },
+    "duration": {
+      "value": "scene"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "source": {
+      "value": "FUCR192"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "maxTargets": {
+      "value": 1
+    },
+    "fuid": "dark-weapon"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706568328188,
+    "modifiedTime": 1724180864261,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 0,
+  "_key": "!items!S5jyPShQHxqZdKZB"
+}

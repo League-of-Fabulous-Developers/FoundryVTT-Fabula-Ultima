@@ -1,0 +1,82 @@
+{
+  "name": "Immunity (Air)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 1500
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Immunity (Air)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.air.current",
+          "mode": 4,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "<p>You have Immunity to <strong>air</strong> damage.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Defensive",
+          "CrisisInteraction": "none",
+          "source": "FUCR269"
+        }
+      },
+      "_id": "0m7bZqx8UiBn8Oin",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728774359411,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!lQpf7HAyDedULKIJ.0m7bZqx8UiBn8Oin"
+    }
+  ],
+  "folder": "Ql0JhlMKP6YRtuxt",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747191247,
+    "modifiedTime": 1728747191247,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "lQpf7HAyDedULKIJ",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!lQpf7HAyDedULKIJ"
+}

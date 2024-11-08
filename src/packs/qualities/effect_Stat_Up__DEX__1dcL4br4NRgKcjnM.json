@@ -1,0 +1,82 @@
+{
+  "name": "Stat Up (DEX)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 1900
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Stat Up (DEX)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.attributes.dex",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>As long as you have this armor equipped, you treat your<strong> Dexterity</strong> as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Resource",
+          "CrisisInteraction": "none",
+          "source": "FUCR282"
+        }
+      },
+      "_id": "8AbFG1DAc2XHlcoi",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728776106827,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!1dcL4br4NRgKcjnM.8AbFG1DAc2XHlcoi"
+    }
+  ],
+  "folder": "MoLOhUjPdiKVsj66",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747193936,
+    "modifiedTime": 1728777511933,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "1dcL4br4NRgKcjnM",
+  "sort": 900000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!1dcL4br4NRgKcjnM"
+}

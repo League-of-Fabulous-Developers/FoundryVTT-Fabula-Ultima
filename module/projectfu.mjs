@@ -8,7 +8,7 @@ import { FUItemSheet } from './sheets/item-sheet.mjs';
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
 import { registerSystemSettings, SETTINGS } from './settings.js';
-import { addRollContextMenuEntries, createCheckMessage, promptCheck, rollCheck } from './helpers/checks.mjs';
+import { addRollContextMenuEntries, createCheckMessage, promptCheck, promptOpenCheck, rollCheck } from './helpers/checks.mjs';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
 import { FUCombatant } from './ui/combatant.mjs';
@@ -32,6 +32,7 @@ import { SpellDataModel } from './documents/items/spell/spell-data-model.mjs';
 import { TreasureDataModel } from './documents/items/treasure/treasure-data-model.mjs';
 import { ZeroPowerDataModel } from './documents/items/zeropower/zero-power-data-model.mjs';
 import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs';
+import { EffectDataModel } from './documents/items/effect/effect-data-model.mjs';
 import { onSocketLibReady } from './socket.mjs';
 import { statusEffects } from './helpers/statuses.mjs';
 
@@ -46,7 +47,7 @@ import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './do
 import { registerOptionalFeatures } from './documents/items/optionalFeature/optional-features.mjs';
 
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
-import { FUActiveEffect, onApplyActiveEffect, onRenderActiveEffectConfig } from './documents/effects/active-effect.mjs';
+import { FUActiveEffect } from './documents/effects/active-effect.mjs';
 import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
@@ -57,6 +58,13 @@ import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdow
 import { InlineEffects } from './helpers/inline-effects.mjs';
 import { SystemControls } from './helpers/system-controls.mjs';
 import { PlayerListEnhancements } from './helpers/player-list-enhancements.mjs';
+import { ChecksV2 } from './checks/checks-v2.mjs';
+import { CheckConfiguration } from './checks/check-configuration.mjs';
+import { slugify } from './util.mjs';
+import { ActionHandler } from './helpers/action-handler.mjs';
+import { StudyRollHandler } from './helpers/study-roll.mjs';
+import { ItemCustomizer } from './helpers/item-customizer.mjs';
+import { FUHooks } from './hooks.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -66,6 +74,11 @@ globalThis.projectfu = {
 	SYSTEM,
 	Flags,
 	SystemControls,
+	ChecksV2,
+	CheckConfiguration,
+	ActionHandler,
+	StudyRollHandler,
+	ItemCustomizer,
 };
 
 /* -------------------------------------------- */
@@ -76,6 +89,23 @@ globalThis.projectfu = {
 // Hooks.on("init", () => {
 //   CONFIG.Actor.systemDataModels.character = CharacterData;
 // });
+
+/**
+ * Monkey patch foundry.data.fields.DataField._applyChangeCustom to return the initial value instead of "undefined" when the value was not changed in a way detectable by "!==".
+ */
+function monkeyPatchDataFieldApplyCustomChange() {
+	if (game.release.isNewer('12')) {
+		const original = foundry.data.fields.DataField.prototype._applyChangeCustom;
+		foundry.data.fields.DataField.prototype._applyChangeCustom = function (value, delta, model, change) {
+			const result = original(value, delta, model, change);
+			if (result === undefined) {
+				return foundry.utils.getProperty(model, change.key);
+			} else {
+				return result;
+			}
+		};
+	}
+}
 
 Hooks.once('init', async () => {
 	// Add utility classes to the global game object so that they're more easily
@@ -91,6 +121,13 @@ Hooks.once('init', async () => {
 		RollableClassFeatureDataModel,
 		OptionalFeatureDataModel,
 		RollableOptionalFeatureDataModel,
+		ChecksV2,
+		CheckConfiguration,
+		ActionHandler,
+		ItemCustomizer,
+		util: {
+			slugify,
+		},
 	};
 
 	// Add custom constants for configuration.
@@ -105,6 +142,8 @@ Hooks.once('init', async () => {
 		decimals: 2,
 	};
 
+	monkeyPatchDataFieldApplyCustomChange();
+
 	// Define custom Document classes
 	CONFIG.Actor.documentClass = FUActor;
 	CONFIG.Actor.dataModels = {
@@ -114,7 +153,7 @@ Hooks.once('init', async () => {
 	CONFIG.Actor.trackableAttributes = {
 		character: {
 			bar: ['resources.hp', 'resources.mp', 'resources.ip'],
-			value: ['resources.fp.value'],
+			value: ['resources.fp.value', 'resources.exp.value'],
 		},
 		npc: {
 			bar: ['resources.hp', 'resources.mp'],
@@ -142,10 +181,9 @@ Hooks.once('init', async () => {
 		treasure: TreasureDataModel,
 		weapon: WeaponDataModel,
 		zeroPower: ZeroPowerDataModel,
+		effect: EffectDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
-	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
-	Hooks.on('applyActiveEffect', onApplyActiveEffect);
 
 	// Register system settings
 	registerSystemSettings();
@@ -170,18 +208,22 @@ Hooks.once('init', async () => {
 	Actors.unregisterSheet('core', ActorSheet);
 	Actors.registerSheet('projectfu', FUStandardActorSheet, {
 		makeDefault: true,
+		label: 'Standard Actor Sheet',
 	});
 	Items.unregisterSheet('core', ItemSheet);
 	Items.registerSheet('projectfu', FUItemSheet, {
 		makeDefault: true,
+		label: 'Standard Item Sheet',
 	});
 	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],
 		makeDefault: true,
+		label: 'Class Feature Sheet',
 	});
 	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
 		types: ['optionalFeature'],
 		makeDefault: true,
+		label: 'Optional Feature Sheet',
 	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
@@ -258,6 +300,7 @@ Handlebars.registerHelper('translate', function (str) {
 			ritualism: 'FU.Ritualism',
 			spiritism: 'FU.Spiritism',
 		},
+		CONFIG.FU.damageTypes,
 		CONFIG.FU.itemTypes,
 		CONFIG.FU.weaponTypes,
 	);
@@ -272,6 +315,13 @@ Handlebars.registerHelper('getGameSetting', function (settingKey) {
 Handlebars.registerHelper('capitalize', function (str) {
 	if (str && typeof str === 'string') {
 		return str.charAt(0).toUpperCase() + str.slice(1);
+	}
+	return str;
+});
+
+Handlebars.registerHelper('uppercase', function (str) {
+	if (str && typeof str === 'string') {
+		return str.toUpperCase();
 	}
 	return str;
 });
@@ -305,36 +355,129 @@ Handlebars.registerHelper('crisis', function (value, max) {
 	return value <= half;
 });
 
+Handlebars.registerHelper('lookupItemById', function (items, itemId) {
+	return items.find((item) => item._id === itemId);
+});
+
+Handlebars.registerHelper('isItemEquipped', function (item, equippedItems) {
+	if (!item || !equippedItems) {
+		console.error('Item or equippedItems is missing.');
+		return false;
+	}
+
+	// Ensure equippedItems is an object and includes the item ID
+	if (typeof equippedItems === 'object' && Object.values(equippedItems).includes(item._id)) {
+		return true;
+	}
+
+	return false;
+});
+
 // Define a Handlebars helper to get the icon class based on item properties
-Handlebars.registerHelper('getIconClass', function (item) {
+Handlebars.registerHelper('getIconClass', function (item, equippedItems) {
+	if (!item || !item._id || !equippedItems) {
+		return '';
+	}
+
+	const itemId = item._id;
+
+	// Check if item is equipped in any slot
+	const isEquipped = Object.values(equippedItems).includes(itemId);
+
+	// Default icon if the item is not equipped
+	if (!isEquipped) {
+		return 'fas fa-circle ra-1xh';
+	}
+
+	// Special case: if item is equipped in both mainHand and offHand
+	if (itemId === equippedItems.mainHand && itemId === equippedItems.offHand) {
+		return 'is-two-weapon equip ra-1xh';
+	}
+	// Special case: if shield is equipped in mainHand
+	if (itemId === equippedItems.mainHand && item.type === 'shield') {
+		return 'ra ra-heavy-shield ra-1xh';
+	}
+	// Special case: if item is in the phantom slot
+	if (item.type === 'weapon' && itemId === equippedItems.phantom) {
+		return 'ra ra-daggers ra-1xh';
+	}
 	if (item.type === 'weapon') {
-		if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'two-handed') {
-			return 'ra ra-relic-blade ra-1xh  ra-flip-horizontal';
-		} else if (item.system.isEquipped.slot === 'mainHand' && item.system.hands.value === 'one-handed') {
+		if (itemId === equippedItems.mainHand) {
 			return 'ra ra-sword ra-1xh ra-flip-horizontal';
-		} else if (item.system.isEquipped.slot === 'offHand') {
-			return 'ra  ra-plain-dagger ra-1xh ra-rotate-180';
+		} else if (itemId === equippedItems.offHand) {
+			return 'ra ra-plain-dagger ra-1xh ra-rotate-180';
 		}
 	} else if (item.type === 'shield') {
-		if (item.system.isDualShield && item.system.isDualShield.value) {
-			return 'ra ra-heavy-shield ra-1xh';
-		} else if (item.system.isEquipped.slot === 'offHand' || item.system.isEquipped.slot === 'mainHand') {
+		if (itemId === equippedItems.offHand) {
 			return 'ra ra-shield ra-1xh';
+		} else if (itemId === equippedItems.mainHand) {
+			return 'ra ra-heavy-shield ra-1xh';
 		}
 	} else if (item.type === 'armor') {
-		if (item.system.isEquipped.slot === 'armor') {
+		if (itemId === equippedItems.armor) {
 			return 'ra ra-helmet ra-1xh';
 		}
 	} else if (item.type === 'accessory') {
-		if (item.system.isEquipped.slot === 'accessory') {
+		if (itemId === equippedItems.accessory) {
 			return 'fas fa-leaf ra-1xh';
 		}
 	}
-	return 'fas fa-toolbox';
+
+	return 'fas fa-circle ra-1xh';
+});
+
+Handlebars.registerHelper('getSlot', function (item) {
+	if (!item || !item.system) return '';
+	if (item.type === 'weapon') {
+		return item.system.hands.value === 'two-handed' ? 'mainHand' : 'offHand';
+	} else if (item.type === 'shield') {
+		return 'offHand';
+	} else if (item.type === 'armor') {
+		return 'armor';
+	} else if (item.type === 'accessory') {
+		return 'accessory';
+	}
+	return '';
 });
 
 Handlebars.registerHelper('mathAbs', function (value) {
 	return Math.abs(value);
+});
+
+Handlebars.registerHelper('formatMod', function (value) {
+	if (value > 0) {
+		return '+' + value;
+	} else if (value < 0) {
+		return value;
+	}
+	return value;
+});
+
+Handlebars.registerHelper('inArray', function (item, array, options) {
+	if (Array.isArray(array) && array.includes(item)) {
+		return options.fn(this);
+	} else {
+		return options.inverse ? options.inverse(this) : '';
+	}
+});
+
+Handlebars.registerHelper('formatResource', function (resourceValue, resourceMax, resourceName) {
+	// Convert value to a string to split into 3 digits
+	const valueString = resourceValue.toString().padStart(3, '0');
+	const isCrisis = resourceValue <= resourceMax / 2 && resourceName == 'HP';
+	const digitBoxes = valueString
+		.split('')
+		.map(
+			(digit) =>
+				`<div class="digit-box${isCrisis ? ' crisis' : ''}">
+            <span class="inner-shadow">
+                <span class="number">${digit}</span>
+            </span>
+        </div>`,
+		)
+		.join('');
+
+	return new Handlebars.SafeString(`<span>${resourceName}</span><span class="digit-row">${digitBoxes}</span>`);
 });
 
 /* -------------------------------------------- */
@@ -346,43 +489,133 @@ Hooks.once('ready', async function () {
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
 
 	Hooks.on('rollEquipment', (actor, slot) => {
+		// Detect if the shift key is currently pressed
+		const isShift = game.keyboard.isModifierActive(KeyboardManager.MODIFIER_KEYS.SHIFT);
+
 		// Call the rollEquipment function
-		rollEquipment(actor, slot);
+		rollEquipment(actor, slot, isShift);
 	});
 
-	Hooks.on('promptCheckCalled', (actor) => {
+	function handleNoActor(actor) {
 		if (!actor) {
-			return ui.notification.error('No character for this user');
+			ui.notification.error('No character for this user');
+			return true;
 		}
-		// Call promptCheck function
+		return false;
+	}
+
+	Hooks.on('promptOpenCheckCalled', (actor) => {
+		if (handleNoActor(actor)) return;
+		promptOpenCheck(actor);
+	});
+
+	Hooks.on('promptAttributeCheckCalled', (actor) => {
+		if (handleNoActor(actor)) return;
 		promptCheck(actor);
 	});
 
 	Hooks.on('promptGroupCheckCalled', (actor) => {
-		if (!actor) {
-			return ui.notification.error('No character for this user');
-		}
-		let isShift = true;
-		// Call Group Check promptCheck function
+		if (handleNoActor(actor)) return;
+		let isShift = false;
 		GroupCheck.promptCheck(actor, isShift);
+	});
+
+	Hooks.on('promptInitiativeCheckCalled', (actor) => {
+		if (handleNoActor(actor)) return;
+		let isShift = true;
+		GroupCheck.promptCheck(actor, isShift);
+	});
+
+	Hooks.on('preCreateItem', (itemData, options, userId) => {
+		if (!itemData.system.fuid && itemData.name) {
+			// Generate FUID using the slugify utility
+			const fuid = game.projectfu.util.slugify(itemData.name);
+
+			// Check if slugify returned a valid FUID
+			if (fuid) {
+				itemData.updateSource({ 'system.fuid': fuid });
+			} else {
+				console.error('FUID generation failed for Item:', itemData.name, 'using slugify.');
+			}
+		}
+	});
+
+	Hooks.on('preCreateActiveEffect', (effect, options, userId) => {
+		const actor = effect.parent;
+		if (!actor || !actor.system || !actor.system.immunities) return true;
+
+		// Check if the effect is a status effect
+		const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
+
+		// Check for immunity using statusEffectId
+		if (statusEffectId) {
+			const immunityData = actor.system.immunities[statusEffectId];
+
+			// If immune, block effect creation
+			if (immunityData?.base) {
+				const message = game.i18n.format('FU.ImmunityDescription', {
+					status: statusEffectId,
+				});
+
+				ChatMessage.create({
+					content: message,
+					speaker: ChatMessage.getSpeaker({ actor: actor }),
+				});
+
+				return false; // Prevent the effect from being created
+			}
+		}
+
+		return true; // Allow the effect to be created
+	});
+
+	Hooks.on(FUHooks.DATA_PREPARED_ACTOR, (actor) => {
+		if (!actor.system || !actor.system.immunities) return;
+
+		// Iterate over the actor's active effects
+		for (let effect of actor.effects) {
+			const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
+
+			if (statusEffectId) {
+				const immunityData = actor.system.immunities[statusEffectId];
+
+				// If immune, deletes the effect from the actor
+				if (immunityData?.base) {
+					effect.delete();
+				}
+			}
+		}
+	});
+
+	Hooks.on('preUpdateActor', async (actor, updateData, options, userId) => {
+		const equipped = foundry.utils.getProperty(updateData, 'system.equipped');
+
+		if (!equipped) return;
+
+		// Check if main hand or off hand is being unequipped
+		const mainHandUnequipped = equipped.mainHand === null;
+		const offHandUnequipped = equipped.offHand === null;
+
+		// If neither hand is unequipped, exit early
+		if (!mainHandUnequipped && !offHandUnequipped) return;
+
+		// Get the Unarmed Strike item
+		const unarmedStrike = actor.getSingleItemByFuid('unarmed-strike');
+		if (!unarmedStrike) return;
+
+		// Prepare updates only if necessary
+		const updates = {};
+		if (mainHandUnequipped) updates['system.equipped.mainHand'] = unarmedStrike.id;
+		if (offHandUnequipped) updates['system.equipped.offHand'] = unarmedStrike.id;
+
+		// Perform the update if there are changes
+		if (Object.keys(updates).length > 0) {
+			await actor.update(updates);
+		}
 	});
 });
 
 Hooks.once('socketlib.ready', onSocketLibReady);
-
-Hooks.once('mmo-hud.ready', () => {
-	// Do this
-});
-
-Hooks.once('ready', () => {
-	const isPixelated = game.settings.get('projectfu', 'optionImagePixelated');
-	const applyPixelatedStyle = () => {
-		// Apply the style to specific selectors
-		$('img').css('image-rendering', isPixelated ? 'pixelated' : '');
-	};
-	// Apply the style initially
-	applyPixelatedStyle();
-});
 
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
@@ -458,26 +691,28 @@ function rollItemMacro(itemUuid) {
  */
 function rollEquipment(actor, slot, isShift) {
 	// Check if the slot is valid
-	const validSlots = ['mainHand', 'offHand', 'armor', 'accessory'];
+	const validSlots = ['mainHand', 'offHand', 'armor', 'accessory', 'phantom', 'arcanum'];
 	if (!validSlots.includes(slot)) {
 		ui.notifications.warn(`Invalid slot: ${slot}!`);
 		return;
 	}
 
-	// Filter items based on the provided slot
-	const sameSlotItems = actor.items.filter((item) => {
-		return item.system.isEquipped && item.system.isEquipped.slot === slot;
-	});
+	// Get the equipped item for the specified slot from actor.system.equipped
+	const equippedItemId = actor.system.equipped[slot];
 
-	// Check if any item is found in the specified slot
-	if (sameSlotItems.length === 0) {
+	// If no item is equipped in the specified slot
+	if (!equippedItemId) {
 		ui.notifications.warn(`No item equipped in ${slot} slot!`);
 		return;
 	}
 
-	// Get the first item from the filtered collection
-	const item = sameSlotItems[0];
+	// Find the item in the actor's items by ID
+	const item = actor.items.get(equippedItemId);
 
-	// Roll the item
-	item.roll(isShift);
+	// If the item exists, roll it
+	if (item) {
+		item.roll(isShift);
+	} else {
+		ui.notifications.warn(`Equipped item in ${slot} slot not found!`);
+	}
 }

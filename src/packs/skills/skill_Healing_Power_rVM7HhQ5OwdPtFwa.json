@@ -1,0 +1,144 @@
+{
+  "folder": "LWIsJLQGwkSdYYwN",
+  "name": "Healing Power",
+  "type": "skill",
+  "_id": "rVM7HhQ5OwdPtFwa",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_healing_power.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may have each of those allies recover an amount of Hit Points equal to <strong>【SL, multiplied by the number of Bonds you have】</strong>.</p><p>This healing is separate from any healing caused by the effects of the spell.</p><hr /><table><tbody><tr><td><p>Additional HP regained...</p></td><td><p><strong>Skill Level 1</strong></p></td><td><p><strong>Skill Level 2</strong></p></td></tr><tr><td><p><strong>One Bond</strong></p></td><td><p><strong>@GAIN[1 hp]</strong></p></td><td><p><strong>@GAIN[2 hp]</strong></p></td></tr><tr><td><p><strong>Two Bonds</strong></p></td><td><p><strong>@GAIN[2 hp]</strong></p></td><td><p><strong>@GAIN[4 hp]</strong></p></td></tr><tr><td><p><strong>Three Bonds</strong></p></td><td><p><strong>@GAIN[3 hp]</strong></p></td><td><p><strong>@GAIN[6 hp]</strong></p></td></tr><tr><td><p><strong>Four Bonds</strong></p></td><td><p><strong>@GAIN[4 hp]</strong></p></td><td><p><strong>@GAIN[8 hp]</strong></p></td></tr><tr><td><p><strong>Five Bonds</strong></p></td><td><p><strong>@GAIN[5 hp]</strong></p></td><td><p><strong>@GAIN[10 hp]</strong></p></td></tr><tr><td><p><strong>Six Bonds</strong></p></td><td><p><strong>@GAIN[6 hp]</strong></p></td><td><p><strong>@GAIN[12 hp]</strong></p></td></tr></tbody></table>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 2,
+      "min": 0
+    },
+    "class": {
+      "value": "Spiritist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR207"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "healing-power"
+  },
+  "effects": [],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706507903931,
+    "modifiedTime": 1724180863272,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!rVM7HhQ5OwdPtFwa"
+}

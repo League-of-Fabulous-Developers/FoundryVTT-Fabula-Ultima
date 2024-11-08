@@ -1,0 +1,76 @@
+{
+  "folder": "Rr4bzTcg5QASOjQc",
+  "name": "Slow Immunity",
+  "type": "effect",
+  "_id": "QWbVVZRRKhxwjQAp",
+  "img": "systems/projectfu/styles/static/statuses/Slow.webp",
+  "system": {
+    "fuid": "slow-immunity"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Slow Immunity",
+      "img": "systems/projectfu/styles/static/statuses/Slow.webp",
+      "_id": "BrxOWDu5nPRmcexw",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.immunities.slow.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725755432275,
+        "modifiedTime": 1725755452323,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!QWbVVZRRKhxwjQAp.BrxOWDu5nPRmcexw"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725755227833,
+    "modifiedTime": 1725755331210,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!QWbVVZRRKhxwjQAp"
+}

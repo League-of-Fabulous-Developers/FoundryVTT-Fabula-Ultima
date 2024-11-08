@@ -1,0 +1,41 @@
+{
+  "folder": "GvkyB5G9bl9LjwcL",
+  "name": "Menacing Tone",
+  "type": "classFeature",
+  "_id": "8QMh3jUtgmIMy9Jb",
+  "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.tone",
+    "data": {
+      "description": "<p>The first time each target suffers damage before the start of your next turn, that damage becomes <strong>【@DATA[key.type]】</strong>. This can trigger once for each target of the verse, separately.</p>"
+    },
+    "source": "FUHF139",
+    "fuid": "menacing-tone"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710040204796,
+    "modifiedTime": 1724180861572,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!8QMh3jUtgmIMy9Jb"
+}

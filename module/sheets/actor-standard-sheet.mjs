@@ -1,12 +1,14 @@
 import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../helpers/effects.mjs';
 import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/checks.mjs';
-import { actionHandler } from '../helpers/action-handler.mjs';
+import { ItemCustomizer } from '../helpers/item-customizer.mjs';
+import { ActionHandler } from '../helpers/action-handler.mjs';
+import { EquipmentHandler } from '../helpers/equipment-handler.mjs';
 import { GroupCheck } from '../helpers/group-check.mjs';
-// import { OpposedCheck } from '../helpers/opposed-check.mjs';
-import { handleStudyRoll } from '../helpers/study-roll.mjs';
+import { StudyRollHandler } from '../helpers/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
-import { FUActor } from '../documents/actors/actor.mjs';
+import { ChecksV2 } from '../checks/checks-v2.mjs';
+import { GroupCheck as GroupCheckV2 } from '../checks/group-check.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -17,7 +19,8 @@ const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex
 export class FUStandardActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
+		const defaultOptions = super.defaultOptions;
+		return foundry.utils.mergeObject(defaultOptions, {
 			classes: ['projectfu', 'sheet', 'actor', 'backgroundstyle'],
 			template: 'systems/projectfu/templates/actor/actor-character-sheet.hbs',
 			width: 750,
@@ -30,6 +33,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				},
 			],
 			scrollY: ['.sheet-body'],
+			dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 		});
 	}
 
@@ -57,8 +61,16 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		await this._prepareItems(context);
 		this._prepareCharacterData(context);
-		// Initialize the _expanded set as a local variable within the object or class
-		this._expanded = new Set();
+
+		// Ensure expanded state is initialized
+		if (!this._expanded) {
+			const storedExpanded = this.actor.system._expanded || [];
+			this._expanded = new Set(storedExpanded);
+		}
+
+		// Add expanded item IDs to context
+		context._expandedIds = Array.from(this._expanded);
+
 		// Prepare character data and items.
 		if (actorData.type === 'character') {
 			context.tlTracker = this.actor.tlTracker;
@@ -75,7 +87,16 @@ export class FUStandardActorSheet extends ActorSheet {
 			const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
 			if (statusEffect) {
 				const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
-				context.statusEffectToggles.push({ ...statusEffect, active: existing });
+				const immune = this.actor.system.immunities?.[statusEffect.id]?.base || false;
+				const ruleKey = FU.statusEffectRule[statusEffect.id] || '';
+				const rule = game.i18n.localize(ruleKey);
+				const tooltip = `${game.i18n.localize(statusEffect.name)}<br>${rule}`;
+				context.statusEffectToggles.push({
+					...statusEffect,
+					active: existing,
+					immune: immune,
+					tooltip: tooltip,
+				});
 			}
 		}
 
@@ -102,6 +123,14 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Prepare active effects
 		context.effects = prepareActiveEffectCategories(game.release.generation >= 11 ? Array.from(this.actor.allApplicableEffects()) : this.actor.effects);
+
+		// Combine all effects into a single array
+		context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];
+
+		// Enrich each effect's description
+		for (const effect of context.allEffects) {
+			effect.enrichedDescription = effect.description ? await TextEditor.enrichHTML(effect.description) : '';
+		}
 
 		// Add the actor object to context for easier access
 		context.actor = actorData;
@@ -152,6 +181,11 @@ export class FUStandardActorSheet extends ActorSheet {
 			v.icon = CONFIG.FU.affIcon[k];
 		}
 
+		// Handle immunity
+		for (let [k, v] of Object.entries(context.system.immunities)) {
+			v.label = game.i18n.localize(CONFIG.FU.temporaryEffects[k]) ?? k;
+		}
+
 		// Handle item types
 	}
 
@@ -181,6 +215,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		const projects = [];
 		const rituals = [];
 		const zeroPowers = [];
+		const effects = [];
 
 		// Iterate through items, allocating to containers
 		for (let i of context.items) {
@@ -231,26 +266,6 @@ export class FUStandardActorSheet extends ActorSheet {
 							checked: parseInt(progress.current) === i + 1,
 						});
 					}
-
-					// TODO: On progress max display a custom button over clock to activate item's effect
-					// if (progress.current === progress.max) {
-					// 	let maxTitle = `${item.name} MAX!`;
-					// 	let maxDescription = '';
-
-					// 	if (item.type === 'zeroPower') {
-					// 		maxDescription = `Trigger: ${item.system.zeroTrigger?.description || ''}<br>Effect: ${item.system.zeroEffect?.description || ''}`;
-					// 	} else {
-					// 		maxDescription = item.system.description || '';
-					// 	}
-
-					// 	const params = {
-					// 		details: { name: maxTitle },
-					// 		description: maxDescription,
-					// 		speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-					// 	};
-					// 	createChatMessage(params);
-					// }
-
 					item.progressArr = progressArr.reverse();
 				}
 			}
@@ -314,6 +329,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				i.damageString = weapData.damageString;
 				basics.push(i);
 			} else if (i.type === 'weapon') {
+				i.unarmedStrike = context.actor.getSingleItemByFuid('unarmed-strike');
 				const itemObj = context.actor.items.get(i._id);
 				const weapData = itemObj.getWeaponDisplayData(this.actor);
 				i.quality = weapData.qualityString;
@@ -375,6 +391,8 @@ export class FUStandardActorSheet extends ActorSheet {
 				rituals.push(i);
 			} else if (i.type === 'zeroPower') {
 				zeroPowers.push(i);
+			} else if (i.type === 'effect') {
+				effects.push(i);
 			}
 		}
 
@@ -396,6 +414,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.projects = projects;
 		context.rituals = rituals;
 		context.zeroPowers = zeroPowers;
+		context.effects = effects;
 		context.classFeatures = {};
 		for (const item of this.actor.itemTypes.classFeature) {
 			const featureType = (context.classFeatures[item.system.featureType] ??= {
@@ -434,221 +453,217 @@ export class FUStandardActorSheet extends ActorSheet {
 
 	/* -------------------------------------------- */
 
+	async _onDrop(ev) {
+		ev.preventDefault();
+
+		// Retrieve drag data using TextEditor
+		const data = TextEditor.getDragEventData(ev);
+		if (!data || data.type !== 'Item') return await super._onDrop(ev);
+
+		// Check if the item is embedded within an actor (reordering within the sheet) and uses default behavior
+		if (data.uuid.startsWith('Actor')) {
+			const [, actorId] = data.uuid.split('.');
+			if (actorId === this.actor.id) {
+				return await super._onDrop(ev);
+			}
+		}
+
+		// Proceed if the item is being dragged from the compendium/sidebar or other actors
+		const itemData = await this._getItemDataFromDropData(data);
+
+		// Determine the configuration based on item type
+		const config = this._findItemConfig(itemData.type);
+		if (config) {
+			// Check if there is an active ProseMirror editor
+			const activeEditor = document.querySelector('.editor-content.ProseMirror');
+			if (itemData.type === 'effect') {
+				if (activeEditor) {
+					// Handle effect drop into ProseMirror editor
+					await this._handleEditorEffectDrop(itemData, ev);
+				} else {
+					// Handle effect drop into actor sheet
+					await this._importEffectData(itemData);
+				}
+			} else {
+				// Handle other item drops
+				await this._processItemDrop(itemData, config);
+			}
+		} else {
+			// Default behavior for unknown item types
+			await super._onDrop(ev);
+		}
+	}
+
+	// Helper function to get item data from drop data
+	async _getItemDataFromDropData(data) {
+		try {
+			return await Item.implementation.fromDropData(data);
+		} catch (error) {
+			console.error('Failed to get item data from drop data:', error);
+			return null;
+		}
+	}
+
+	// Helper function to find the appropriate update configuration
+	_findItemConfig(type) {
+		const itemTypeConfigs = [
+			{
+				types: ['classFeature', 'optionalFeature', 'treasure'],
+				update: async (itemData, item) => {
+					const incrementValue = itemData.system.quantity?.value || 1;
+					const newQuantity = (item.system.quantity.value || 0) + incrementValue;
+					await item.update({ 'system.quantity.value': newQuantity });
+				},
+			},
+			{
+				types: ['effect'],
+				update: async (itemData) => {
+					// Effects are handled separately
+					return;
+				},
+			},
+		];
+
+		return itemTypeConfigs.find((config) => config.types.includes(type));
+	}
+
+	// Process item drop based on the configuration
+	async _processItemDrop(itemData, config) {
+		const existingItem = this.actor.items.find((i) => i.name === itemData.name && i.type === itemData.type);
+		if (existingItem) {
+			await config.update(itemData, existingItem);
+		} else {
+			await super._onDrop(event);
+		}
+	}
+
+	// Import effect data to the actor
+	async _importEffectData(itemData) {
+		const effects = itemData.effects || [];
+		const existingEffects = this.actor.items.filter((i) => i.type === 'ActiveEffect').map((e) => e.data.name);
+		for (const effect of effects) {
+			if (!existingEffects.includes(effect.name)) {
+				await this.actor.createEmbeddedDocuments('ActiveEffect', [effect]);
+			}
+		}
+	}
+
+	// Handle dropping effects into a text editor
+	async _handleEditorEffectDrop(itemData, ev) {
+		const activeEditor = document.querySelector('.editor-content.ProseMirror');
+		if (activeEditor) {
+			const effects = itemData.effects || [];
+			const formattedEffects = effects.map((effect) => this._formatEffect(effect)).join(' ');
+
+			ev.preventDefault();
+			ev.stopPropagation();
+
+			const currentContent = activeEditor.innerHTML;
+
+			// Append the formatted effects to the current content of the editor
+			activeEditor.innerHTML = currentContent + formattedEffects;
+
+			console.log(`Appended formatted effects to the ProseMirror editor.`);
+		} else {
+			console.log('No active ProseMirror editor found.');
+		}
+	}
+
+	// Helper function to encode an effect in base64
+	_encodeBase64(data) {
+		return btoa(unescape(encodeURIComponent(data)));
+	}
+
+	// Helper function to generate the @EFFECT format string
+	_formatEffect(effect) {
+		const encodedEffect = this._encodeBase64(JSON.stringify(effect));
+		return `@EFFECT[${encodedEffect}]`;
+	}
+
+	/* -------------------------------------------- */
+
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
 
-		// Render the item sheet for viewing/editing prior to the editable check.
-		html.find('.item-edit').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
-			item.sheet.render(true);
-		});
-
-		// Render the item sheet for viewing/editing when middle-clicking
-		html.find('.item').mouseup((ev) => {
-			if (ev.button === 1 && !$(ev.target).hasClass('item-edit')) {
-				ev.preventDefault();
-				const li = $(ev.currentTarget);
-				const item = this.actor.items.get(li.data('itemId'));
-				item.sheet.render(true);
-			}
-		});
-
-		// Open the active effect dialog when middle-clicking on an effect
-		html.find('.effect').mouseup((ev) => {
-			if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
-				const li = $(ev.currentTarget);
-				const effectId = li.data('effectId');
-				const owner = this.actor;
-				let effect;
-				if (owner instanceof FUActor) {
-					effect = Array.from(owner.allApplicableEffects()).find((value) => value.id === effectId);
-				} else {
-					effect = owner.effects.get(effectId);
-				}
-				// Render the sheet for the active effect
-				effect.sheet.render(true);
-			}
-		});
+		html.on('click', '.item-edit', (ev) => this._onItemEdit($(ev.currentTarget)));
+		html.on('mouseup', '.item', this._onMiddleClickEditItem.bind(this)); // Middle-click to edit item
+		html.on('mouseup', '.effect', this._onMiddleClickEditEffect.bind(this)); // Middle-click to edit effect
+		html.on('click', '.effect-roll', (ev) => onManageActiveEffect(ev, this.actor)); // Send active effect to chat
+		html.on('click', '.study-button', async () => await new StudyRollHandler().handleStudyRoll(this.actor)); // Handle study roll
+		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor)); // Active Effect management
 
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
 
-		// Use Equipment
-		html.find('.use-equipment').click(this._onUseEquipment.bind(this));
+		// Editable item actions
+		html.on('click', '.use-equipment', this._onUseEquipment.bind(this)); // Toggle use equipment setting for npcs
+		html.on('click', '.item-create', this._onItemCreate.bind(this)); // Create item
+		html.on('click', '.item-create-dialog', this._onItemCreateDialog.bind(this)); // Open item creation dialog
+		html.on('click', '.item-favored', this._onItemFavorite.bind(this)); // Add item to favorites
+		html.on('click', '.item-behavior', (ev) => this._onItemBehavior($(ev.currentTarget))); // Add item to behavior roll
+		html.on('click contextmenu', '.increment-button', (ev) => this._onIncrementButtonClick(ev)); // Increment value
+		html.on('click contextmenu', '.decrement-button', (ev) => this._onDecrementButtonClick(ev)); // Decrement value
+		html.on('click', '.is-levelup', (ev) => this._onLevelUp(ev)); // Handle level up
+		html.on('click', '.skillLevel input', (ev) => this._onSkillLevelUpdate(ev)); // Update skill level
+		html.on('contextmenu', '.skillLevel', (ev) => this._onSkillLevelReset(ev)); // Reset skill level
 
-		// Duplicate Inventory Item
-		html.find('.item-duplicate').click(this._onItemDuplicate.bind(this));
-
-		// Add Inventory Item
-		html.find('.item-create').click(this._onItemCreate.bind(this));
-
-		// Add Inventory Item Dialog
-		html.find('.item-create-dialog').click(this._onItemCreateDialog.bind(this));
-
-		// Delete Inventory Item
-		html.find('.item-delete').click(async (ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
-			const confirmation = await Dialog.confirm({
-				title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
-				content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
-				rejectClose: false,
-			});
-			if (confirmation) {
-				item.delete();
-				li.slideUp(200, () => this.render(false));
-			}
-		});
-
-		html.find('.study-button').click(() => handleStudyRoll.bind(this)());
-
-		// Add event listeners for increment and decrement buttons
-		html.find('.increment-button').on('click contextmenu', (ev) => this._onIncrementButtonClick(ev));
-		html.find('.decrement-button').on('click contextmenu', (ev) => this._onDecrementButtonClick(ev));
-
-		// Update Character on Level Up
-		html.find('.is-levelup').click((ev) => this._onLevelUp(ev));
-
-		// Update Skill Level
-		html.find('.skillLevel input').click((ev) => this._onSkillLevelUpdate(ev));
-
-		// Update Progress - Click Event
+		// Update Progress Increase
 		html.find('.progress input').click((ev) => {
 			const dataType = $(ev.currentTarget).closest('.progress').data('type');
 			this._onProgressUpdate(ev, dataType);
 		});
 
-		// Update Progress - Contextmenu Event
+		// Update Progress Reset
 		html.find('.progress input').contextmenu((ev) => {
 			const dataType = $(ev.currentTarget).closest('.progress').data('type');
 			this._onProgressReset(ev, dataType);
 		});
 
-		/**
-		 * Handles item click events, equipping or unequipping items based on the click type.
-		 *
-		 * @param {Event} ev - The click event triggering the item click.
-		 * @param {boolean} isRightClick - Indicates if the item click is a right-click event.
-		 * @returns {void}
-		 */
-		function handleItemClick(ev, isRightClick) {
-			const li = $(ev.currentTarget).parents('.item');
-			const itemId = li.data('itemId');
-			const item = this.actor.items.get(itemId);
-			const itemType = item.system.type;
-			const handType = item.system.hands;
+		// Create an instance of EquipmentHandler
+		const eh = new EquipmentHandler(this.actor);
 
-			// Determine the slot based on item type
-			const slotLookup = {
-				weapon: isRightClick ? 'offHand' : 'mainHand',
-				shield: isRightClick ? 'offHand' : 'mainHand',
-				armor: 'armor',
-				accessory: 'accessory',
-			};
-
-			const slot = slotLookup[item.type] || 'default';
-
-			// Unequip all items in the same slot
-			this.actor.items.forEach((i) => {
-				if (i.system.isEquipped && i.system.isEquipped.slot === slot) {
-					i.update({
-						'system.isEquipped.value': false,
-						'system.isEquipped.slot': 'default',
-					});
-				}
-			});
-
-			// Equip the selected item
-			item.update({
-				'system.isEquipped.value': true,
-				'system.isEquipped.slot': slot,
-			});
-
-			// Update the HTML icon based on the equipped item
-			const icon = li.find('.item-icon');
-			icon.removeClass('fa-circle').addClass(getIconClassForEquippedItem(item, itemType, handType));
-
-			// Prevent the default right-click context menu if it's a right-click event
-			if (isRightClick) {
-				ev.preventDefault();
-			}
-		}
-
-		// Helper function to get the icon class for an equipped item
-		function getIconClassForEquippedItem(item, itemType, handType) {
-			if (item.system.isEquipped.slot === 'mainHand' && itemType === 'weapon' && handType === 'two-handed') {
-				return 'ra ra-relic-blade ra-2x';
-			} else if (item.system.isEquipped.slot === 'mainHand' && itemType === 'weapon' && handType === 'one-handed') {
-				return 'ra ra-sword ra-2x';
-			} else if (item.system.isEquipped.slot === 'offHand' && itemType === 'weapon') {
-				return 'ra ra-sword ra-flip-horizontal ra-2x';
-			} else if (item.system.isEquipped.slot === 'mainHand') {
-				return item.type === 'shield' && item.system.isDualShield && item.system.isDualShield.value ? 'ra ra-heavy-shield' : 'ra ra-shield';
-			} else if (item.system.isEquipped.slot === 'offHand') {
-				return 'ra ra-shield';
-			} else {
-				return 'fas fa-circle';
-			}
-		}
-
-		html.find('.item-equip').on('click', (ev) => {
-			handleItemClick.call(this, ev, false);
+		// Add event listeners for handling equipping items
+		html.find('.item-equip').on({
+			click: (ev) => eh.handleItemClick(ev, 'left'),
+			contextmenu: (ev) => eh.handleItemClick(ev, 'right'),
+			mousedown: (ev) => ev.ctrlKey && ev.which === 1 && (eh.handleItemClick(ev, 'ctrl'), ev.preventDefault()),
 		});
 
-		html.find('.item-equip').on('contextmenu', (ev) => {
-			handleItemClick.call(this, ev, true);
+		// Automatically expand elements that are in the _expanded state
+		this._expanded.forEach((itemId) => {
+			const desc = html.find(`li[data-item-id="${itemId}"] .individual-description`);
+			if (desc.length) {
+				desc.removeClass('hidden').css({ display: 'block', height: 'auto' });
+			}
 		});
 
-		const animDuration = 250;
-
-		const toggleDesc = (ev) => {
+		// Toggle Exapandable Item Description
+		html.find('.click-item').click((ev) => {
 			const el = $(ev.currentTarget);
 			const parentEl = el.closest('li');
-			const itemId = parentEl.data('item-id');
+			const itemId = parentEl.data('itemId');
 			const desc = parentEl.find('.individual-description');
 
 			if (this._expanded.has(itemId)) {
-				desc.slideUp(animDuration, () => desc.css('display', 'none'));
-
+				desc.slideUp(200, () => desc.css('display', 'none'));
 				this._expanded.delete(itemId);
 			} else {
-				desc.slideDown(animDuration, () => {
+				desc.slideDown(200, () => {
 					desc.css('display', 'block');
 					desc.css('height', 'auto');
 				});
 				this._expanded.add(itemId);
 			}
-		};
 
-		html.find('.click-item').click(toggleDesc);
-
-		// Add item to Favorite Section
-		html.find('.item-favored').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const itemId = li.data('itemId');
-			const item = this.actor.items.get(itemId);
-			const isFavoredBool = item.system.isFavored.value;
-			item.update();
-			this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
+			this._saveExpandedState();
 		});
 
-		// Add item to Behavior Roll
-		html.find('.item-behavior').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const itemId = li.data('itemId');
-			const item = this.actor.items.get(itemId);
-			const isBehaviorBool = item.system.isBehavior.value;
-			this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
-		});
-
-		// Active Effect management
-		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor));
-		html.find('.status-effect-toggle').click((event) => {
-			event.preventDefault();
-			const a = event.currentTarget;
+		// Toggle status effects
+		html.find('.status-effect-toggle').click((ev) => {
+			ev.preventDefault();
+			const a = ev.currentTarget;
 			toggleStatusEffect(this.actor, a.dataset.statusId);
 		});
 
@@ -665,42 +680,10 @@ export class FUStandardActorSheet extends ActorSheet {
 			});
 		}
 
-		/**
-		 * Handles resting actions for the actor, restoring health and possibly other resources.
-		 *
-		 * @param {Actor} actor - The actor performing the rest action.
-		 * @param {boolean} isRightClick - Indicates if the rest action is triggered by a right-click.
-		 * @returns {Promise<void>} A promise that resolves when the rest action is complete.
-		 */
-		async function onRest(actor, isRightClick) {
-			const maxHP = actor.system.resources.hp.max;
-			const maxMP = actor.system.resources.mp.max;
-			const maxIP = actor.system.resources.ip.max;
-
-			const updateData = {
-				'system.resources.hp.value': maxHP,
-				'system.resources.mp.value': maxMP,
-			};
-
-			if (isRightClick) {
-				updateData['system.resources.ip.value'] = maxIP;
-			}
-
-			await actor.update(updateData);
-
-			// Rerender the actor's sheet if necessary
-			if (updateData['system.resources.ip.value'] || !isRightClick) {
-				actor.sheet.render(true);
-			}
-		}
-
 		// Rest on left-click, different behavior on right-click
-		html.find('.rest').on('click contextmenu', async (ev) => {
-			ev.preventDefault();
-			const isRightClick = ev.type === 'contextmenu';
-			await onRest(this.actor, isRightClick);
-		});
+		html.find('.rest').on('click contextmenu', (ev) => this.handleRestClick(ev));
 
+		// Event listener for setting hp to crisis
 		async function hpCrisis(actor) {
 			const maxHP = actor.system.resources.hp.max;
 			const crisisHP = Math.ceil(maxHP / 2);
@@ -717,26 +700,10 @@ export class FUStandardActorSheet extends ActorSheet {
 			await hpCrisis(this.actor);
 		});
 
-		// Check if bonds object exists, if not, initialize
-		const bonds = this.actor.system.resources.bonds;
-		if (!bonds) {
-			const initialBonds = [];
-			this.actor.system.resources.bonds = initialBonds;
-			this.actor.update({ 'system.resources.bonds': initialBonds });
-		} else if (!Array.isArray(bonds)) {
-			//Convert bonds as object of indexes to bonds as array
-			const currentBonds = [];
-			for (const k in bonds) {
-				currentBonds[k] = bonds[k];
-			}
-			this.actor.system.resources.bonds = currentBonds;
-			this.actor.update({ 'system.resources.bonds': currentBonds });
-		}
-
 		// Event listener for adding a new bonds
 		html.find('.bond-add').click(async (ev) => {
 			ev.preventDefault();
-			const bonds = this.actor.system.resources.bonds;
+			const bonds = this.actor.system.bonds;
 			const maxBondLength = game.settings.get('projectfu', 'optionBondMaxLength');
 			if (bonds.length >= maxBondLength) {
 				ui.notifications.warn(`Maximum number of bonds (${maxBondLength}) reached.`);
@@ -748,18 +715,17 @@ export class FUStandardActorSheet extends ActorSheet {
 				admInf: '',
 				loyMis: '',
 				affHat: '',
-				strength: 0,
 			});
-			await this.actor.update({ 'system.resources.bonds': newBonds });
+			await this.actor.update({ 'system.bonds': newBonds });
 		});
 
 		// Event listener for deleting a bond
 		html.find('.bond-delete').click(async (ev) => {
 			ev.preventDefault();
 			const bondIndex = $(ev.currentTarget).data('bond-index');
-			const newBonds = [...this.actor.system.resources.bonds];
+			const newBonds = [...this.actor.system.bonds];
 			newBonds.splice(bondIndex, 1);
-			await this.actor.update({ 'system.resources.bonds': newBonds });
+			await this.actor.update({ 'system.bonds': newBonds });
 		});
 
 		const sortButton = html.find('#sortButton');
@@ -767,9 +733,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Initialize sortOrder
 		this.sortOrder = 1;
 
-		sortButton.mousedown((event) => {
+		sortButton.mousedown((ev) => {
 			// Right click changes the sort type
-			if (event.button === 2) {
+			if (ev.button === 2) {
 				this.changeSortType();
 			} else {
 				// Left click switches between ascending and descending order
@@ -797,8 +763,8 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 
 		const updatePilotVehicle = (func) => {
-			return (event) => {
-				const item = this.actor.items.get(event.currentTarget.dataset.itemId);
+			return (ev) => {
+				const item = this.actor.items.get(ev.currentTarget.dataset.itemId);
 				this.actor.update({
 					'system.vehicle': this.actor.system.vehicle[func](item),
 				});
@@ -811,7 +777,226 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('[data-action=toggleWeaponModule][data-item-id]').on('click', updatePilotVehicle('updateActiveWeaponModules').bind(this));
 		html.find('[data-action=toggleSupportModule][data-item-id]').on('click', updatePilotVehicle('updateActiveSupportModules').bind(this));
 
+		const updateArcanistArcanum = (ev) => {
+			const itemId = ev.currentTarget.dataset.itemId;
+			const currentArcanumId = this.actor.system.equipped.arcanum;
+
+			// Check if the clicked item is already the active arcanum
+			const newArcanumId = currentArcanumId === itemId ? null : itemId;
+
+			// Update the arcanum slot
+			this.actor.update({
+				'system.equipped.arcanum': newArcanumId,
+			});
+		};
+
+		html.find('[data-action=toggleActiveArcanum][data-item-id]').on('click', updateArcanistArcanum.bind(this));
+
 		html.find('a[data-action=spendMetaCurrency]').on('click', () => this.actor.spendMetaCurrency());
+
+		html.find('span[data-action="clearTempEffects"]').click(this._onClearTempEffects.bind(this));
+
+		// Dropzone event listeners
+		const dropZone = html.find('.desc.drop-zone');
+		dropZone.on('dragenter', this._onDragEnter.bind(this));
+		dropZone.on('dragleave', this._onDragLeave.bind(this));
+		dropZone.on('drop', this._onDropReset.bind(this));
+
+		// Initialize the context menu options
+		const contextMenuOptions = [
+			{
+				name: game.i18n.localize('FU.Edit'),
+				icon: '<i class="fas fa-edit"></i>',
+				callback: this._onItemEdit.bind(this),
+				condition: (jq) => !!jq.data('itemId'),
+			},
+			{
+				name: game.i18n.localize('FU.Duplicate'),
+				icon: '<i class="fas fa-clone"></i>',
+				callback: this._onItemDuplicate.bind(this),
+				condition: (jq) => !!jq.data('itemId'),
+			},
+			{
+				name: game.i18n.localize('FU.Delete'),
+				icon: '<i class="fas fa-trash"></i>',
+				callback: this._onItemDelete.bind(this),
+				condition: (jq) => !!jq.data('itemId'),
+			},
+		];
+
+		html.on('click', '.item-option', (jq) => {
+			const itemId = jq.currentTarget.dataset.itemId;
+
+			// Check for the Behavior option before adding it
+			const behaviorOptionExists = contextMenuOptions.some((option) => option.name === game.i18n.localize('FU.Behavior'));
+
+			if (this.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll') && !behaviorOptionExists) {
+				const item = this.actor.items.get(itemId);
+
+				if (item?.system?.isBehavior) {
+					const behaviorClass = item.system.isBehavior.value ? 'fas active' : 'far';
+
+					contextMenuOptions.push({
+						name: game.i18n.localize('FU.Behavior'),
+						icon: `<i class="${behaviorClass} fa-address-book"></i>`,
+						callback: this._onItemBehavior.bind(this),
+						condition: (jq) => !!jq.data('itemId'),
+					});
+				}
+			}
+		});
+
+		// Context
+		// eslint-disable-next-line no-undef
+		new ContextMenu(html, '.item-option', contextMenuOptions, {
+			eventName: 'click',
+			onOpen: (menu) => {
+				setTimeout(() => menu.querySelector('nav#context-menu')?.classList.add('item-options'), 1);
+			},
+			onClose: () => console.log('Context menu closed'),
+		});
+	}
+
+	/**
+	 * Handles the editing of an item.
+	 * @param {jQuery} jq - The element that the ContextMenu was attached to
+	 */
+	_onItemEdit(jq) {
+		const dataItemId = jq.data('itemId');
+		const item = this.actor.items.get(dataItemId);
+		if (item) item.sheet.render(true);
+	}
+
+	/**
+	 * Duplicates the specified item and adds it to the actor's item list.
+	 * @param {jQuery} jq - The element that the ContextMenu was attached to
+	 * @returns {Promise<void>} - A promise that resolves when the item has been duplicated.
+	 */
+	async _onItemDuplicate(jq) {
+		const item = this.actor.items.get(jq.data('itemId'));
+		if (item) {
+			const dupData = foundry.utils.duplicate(item);
+			dupData.name += ` (${game.i18n.localize('FU.Copy')})`;
+			await this.actor.createEmbeddedDocuments('Item', [dupData]);
+			this.render();
+		}
+	}
+
+	/**
+	 * Deletes the specified item after confirming with the user.
+	 * @param {jQuery} jq - The element that the ContextMenu was attached to.
+	 * @returns {Promise<void>} - A promise that resolves when the item has been deleted.
+	 */
+	async _onItemDelete(jq) {
+		const item = this.actor.items.get(jq.data('itemId'));
+		if (
+			await Dialog.confirm({
+				title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
+				content: game.i18n.format('FU.DialogDeleteItemDescription', { item: item.name }),
+				rejectClose: false,
+			})
+		) {
+			await item.delete();
+			jq.slideUp(200, () => this.render(false));
+		}
+	}
+
+	/**
+	 * Toggles the behavior state of the specified item.
+	 * @param {jQuery} jq - The element that the ContextMenu was attached to.
+	 * @returns {Promise<void>} - A promise that resolves when the item's behavior state has been updated.
+	 */
+	async _onItemBehavior(jq) {
+		const itemId = jq.data('itemId');
+		const item = this.actor.items.get(itemId);
+		const isBehaviorBool = item.system.isBehavior.value;
+		this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
+	}
+
+	// Handle adding item to favorite
+	async _onItemFavorite(ev) {
+		const li = $(ev.currentTarget).parents('.item');
+		const itemId = li.data('itemId');
+		const item = this.actor.items.get(itemId);
+		const isFavoredBool = item.system.isFavored.value;
+		item.update();
+		this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
+	}
+
+	// Handle middle-click editing of an item sheet
+	_onMiddleClickEditItem(ev) {
+		if (ev.button === 1 && !$(ev.target).hasClass('item-edit')) {
+			ev.preventDefault();
+			this._onItemEdit($(ev.currentTarget));
+		}
+	}
+
+	// Handle middle-click to open active effect dialog
+	_onMiddleClickEditEffect(ev) {
+		const owner = this.actor;
+		if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
+			const li = $(ev.currentTarget);
+			const simulatedEvent = {
+				preventDefault: () => {},
+				currentTarget: {
+					dataset: { action: 'edit' },
+					closest: () => li[0],
+					classList: {
+						contains: (cls) => li.hasClass(cls),
+					},
+				},
+			};
+
+			onManageActiveEffect(simulatedEvent, owner);
+		}
+	}
+
+	/* -------------------------------------------- */
+
+	_onDragEnter(ev) {
+		ev.preventDefault();
+		this.dragCounter++;
+		const dropZone = $(ev.currentTarget);
+		dropZone.addClass('highlight-drop-zone');
+	}
+
+	_onDragLeave(ev) {
+		ev.preventDefault();
+		this.dragCounter--;
+		if (this.dragCounter === 0) {
+			const dropZone = $(ev.currentTarget);
+			dropZone.removeClass('highlight-drop-zone');
+		}
+	}
+
+	_onDropReset(ev) {
+		this.dragCounter = 0;
+		const dropZone = $(ev.currentTarget);
+		dropZone.removeClass('highlight-drop-zone');
+	}
+
+	/* -------------------------------------------- */
+
+	_saveExpandedState() {
+		this.actor.update({ 'system._expanded': Array.from(this._expanded) });
+	}
+
+	_onClearTempEffects(ev) {
+		ev.preventDefault();
+		const actor = this.actor;
+
+		if (!actor || !actor.system || !actor.system.immunities) return;
+
+		// Collect effects to delete
+		const effectsToDelete = actor.effects.filter((effect) => {
+			const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
+			return statusEffectId && actor.system.immunities[statusEffectId];
+		});
+
+		// Delete all collected effects
+		if (effectsToDelete.length > 0) {
+			Promise.all(effectsToDelete.map((effect) => effect.delete()));
+		}
 	}
 
 	// Method to change the sort type
@@ -829,11 +1014,11 @@ export class FUStandardActorSheet extends ActorSheet {
 	 * Handles the event when the "Use Equipment" checkbox is clicked.
 	 * If the checkbox is unchecked, it unequips all equipped items in the actor's inventory.
 	 *
-	 * @param {Event} event - The click event triggering the "Use Equipment" checkbox.
+	 * @param {Event} ev - The click ev triggering the "Use Equipment" checkbox.
 	 * @returns {void} The function does not return a promise.
 	 */
-	async _onUseEquipment(event) {
-		const checkbox = event.currentTarget;
+	async _onUseEquipment(ev) {
+		const checkbox = ev.currentTarget;
 		const isChecked = checkbox.checked;
 
 		if (!isChecked) {
@@ -856,46 +1041,54 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
+	// Handle the rest action click events
+	async handleRestClick(ev) {
+		ev.preventDefault();
+		const isRightClick = ev.type === 'contextmenu';
+		await this.onRest(this.actor, isRightClick);
+	}
+
 	/**
-	 * Handles the duplication of an item and adds it to the actor's inventory.
+	 * Handle resting actions for the actor, restoring health and possibly other resources.
 	 *
-	 * @param {Event} event - The click event triggering the item duplication.
-	 * @returns {Promise<void>} A promise that resolves when the item duplication process is complete.
+	 * @param {Actor} actor - The actor performing the rest action.
+	 * @param {boolean} isRightClick - Indicates if the rest action is triggered by a right-click.
+	 * @returns {Promise<void>} A promise that resolves when the rest action is complete.
 	 */
-	async _onItemDuplicate(event) {
-		event.preventDefault();
-		const header = event.currentTarget;
-		const itemElement = header.closest('.item');
+	async onRest(actor, isRightClick) {
+		const maxHP = actor.system.resources.hp?.max;
+		const maxMP = actor.system.resources.mp?.max;
+		const maxIP = actor.system.resources.ip?.max;
 
-		if (!itemElement) return;
+		// Prepare the update data using mergeObject to avoid overwriting other fields
+		let updateData = foundry.utils.mergeObject(actor.toObject(false), {
+			'system.resources.hp.value': maxHP,
+			'system.resources.mp.value': maxMP,
+		});
 
-		// Get the item data
-		const itemId = itemElement.dataset.itemId;
-		const item = this.actor.items.get(itemId);
+		if (isRightClick) {
+			updateData = foundry.utils.mergeObject(updateData, {
+				'system.resources.ip.value': maxIP,
+			});
+		}
 
-		if (!item) return;
+		// Update the actor
+		await actor.update(updateData);
 
-		// Duplicate the item
-		const duplicatedItemData = foundry.utils.duplicate(item);
-
-		// Modify the duplicated item's name
-		duplicatedItemData.name = `${item.name}`;
-		duplicatedItemData.system.isEquipped = {
-			value: false,
-			slot: 'default',
-		};
-		// Add the duplicated item to the actor
-		await this.actor.createEmbeddedDocuments('Item', [duplicatedItemData]);
+		// Rerender the actor's sheet if necessary
+		if (isRightClick || updateData['system.resources.ip.value']) {
+			actor.sheet.render(true);
+		}
 	}
 
 	/**
 	 * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-	 * @param {Event} event   The originating click event
+	 * @param {Event} ev   The originating click event
 	 * @private
 	 */
-	async _onItemCreate(event) {
-		event.preventDefault();
-		const header = event.currentTarget;
+	async _onItemCreate(ev) {
+		ev.preventDefault();
+		const header = ev.currentTarget;
 		// Get the type of item to create.
 		const type = header.dataset.type;
 		// Grab any data associated with this control.
@@ -915,8 +1108,10 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Check if the game option exists and is enabled
 		if (game.settings.get('projectfu', 'optionAlwaysFavorite')) {
 			let item = await Item.create(itemData, { parent: this.actor });
+			const isV12OrLater = foundry.utils.isNewerVersion(game.version, '12.0.0');
+
 			await item.update({
-				'data.isFavored.value': true,
+				[`${isV12OrLater ? 'system' : 'data'}.isFavored.value`]: true,
 			});
 			return item;
 		} else {
@@ -925,10 +1120,10 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
-	async _onItemCreateDialog(event) {
-		event.preventDefault();
+	async _onItemCreateDialog(ev) {
+		ev.preventDefault();
 
-		const dataType = event.currentTarget.dataset.type;
+		const dataType = ev.currentTarget.dataset.type;
 		let types;
 		let clock = false;
 
@@ -1071,10 +1266,11 @@ export class FUStandardActorSheet extends ActorSheet {
 		const localizedKey = CONFIG.FU.itemTypes[type] || `TYPES.Item.${type}`;
 		const name = game.i18n.localize(localizedKey) || `${subtype ? subtype.split('.')[1].capitalize() : type.capitalize()}`;
 
+		const isV12OrLater = foundry.utils.isNewerVersion(game.version, '12.0.0');
 		const itemData = {
 			name: name,
 			type: type,
-			data: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }), ...(subtype && { optionalType: subtype }) },
+			[isV12OrLater ? 'system' : 'data']: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }), ...(subtype && { optionalType: subtype }) },
 		};
 
 		// Check if the type is 'zeroPower' and set clock to true
@@ -1085,11 +1281,12 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		try {
 			let item = await Item.create(itemData, { parent: this.actor });
+
 			await item.update({
-				'data.hasClock.value': clock,
-				'data.isFavored.value': true,
-				'data.featureType': subtype,
-				'data.optionalType': subtype,
+				[`${isV12OrLater ? 'system' : 'data'}.hasClock.value`]: clock,
+				[`${isV12OrLater ? 'system' : 'data'}.isFavored.value`]: true,
+				[`${isV12OrLater ? 'system' : 'data'}.featureType`]: subtype,
+				[`${isV12OrLater ? 'system' : 'data'}.optionalType`]: subtype,
 			});
 			ui.notifications.info(`${name} created successfully.`);
 			item.sheet.render(true);
@@ -1257,6 +1454,31 @@ export class FUStandardActorSheet extends ActorSheet {
 	}
 
 	/**
+	 * Resets the skill level value to 0 on right-click.
+	 *
+	 * @param {Event} ev - The context menu event.
+	 */
+	_onSkillLevelReset(ev) {
+		ev.preventDefault();
+
+		const input = ev.currentTarget;
+		const li = $(input).closest('.item');
+
+		if (li.length) {
+			const itemId = li.find('input').data('item-id');
+			const item = this.actor.items.get(itemId);
+
+			if (item) {
+				item.update({ 'system.level.value': 0 });
+			} else {
+				console.error(`Item with ID ${itemId} not found.`);
+			}
+		} else {
+			console.error('Parent item not found.');
+		}
+	}
+
+	/**
 	 * Handles button click events to update item level or resource progress.
 	 * @param {Event} ev - The button click event.
 	 * @param {number|string} increment - The value by which to increment or decrement the item level or resource progress.
@@ -1287,6 +1509,9 @@ export class FUStandardActorSheet extends ActorSheet {
 							await this._updateClockProgress(item, increment, rightClick);
 							break;
 
+						case 'optionalRPCounter':
+							await this._updateOptionalRPProgress(item, increment, rightClick);
+							break;
 						case 'featureCounter':
 							await this._updateFeatureProgress(item, increment, rightClick);
 							break;
@@ -1346,6 +1571,24 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 
 		await item.update({ 'system.progress.current': newProgress });
+	}
+
+	async _updateOptionalRPProgress(item, increment, rightClick) {
+		const stepMultiplier = item.system.data.rp.step || 1;
+		const maxProgress = item.system.data.rp.max;
+		let newProgress;
+
+		if (rightClick) {
+			newProgress = item.system.data.rp.current + increment * stepMultiplier;
+		} else {
+			newProgress = item.system.data.rp.current + increment;
+		}
+
+		if (maxProgress !== 0) {
+			newProgress = Math.min(newProgress, maxProgress);
+		}
+
+		await item.update({ 'system.data.rp.current': newProgress });
 	}
 
 	async _updateFeatureProgress(item, increment, rightClick) {
@@ -1461,16 +1704,16 @@ export class FUStandardActorSheet extends ActorSheet {
 
 	/**
 	 * Handles clickable rolls based on different roll types.
-	 * @param {Event} event   The originating click event
+	 * @param {MouseEvent} event   The originating click event
 	 * @private
 	 */
-	_onRoll(event) {
-		event.preventDefault();
-		const element = event.currentTarget;
+	async _onRoll(ev) {
+		ev.preventDefault();
+		const element = ev.currentTarget;
 		const dataset = element.dataset;
 
-		const isShift = event.shiftKey;
-		const isCtrl = event.ctrlKey;
+		const isShift = ev.shiftKey;
+		const isCtrl = ev.ctrlKey;
 		// Get the value of optionTargetPriorityRules from game settings
 		const settingPriority = game.settings.get('projectfu', 'optionTargetPriorityRules');
 
@@ -1480,59 +1723,70 @@ export class FUStandardActorSheet extends ActorSheet {
 				const itemId = element.closest('.item').dataset.itemId;
 				const item = this.actor.items.get(itemId);
 				if (item) {
-					// if (isCtrl) {
-					// 	return promptCheckCustomizer(this.actor, item);
-					// } else {
-					if (settingPriority && this.actor?.type === 'npc') {
-						this._targetPriority();
+					if (isCtrl) {
+						return new ItemCustomizer(this.actor, item).render(true);
+					} else {
+						if (settingPriority && this.actor?.type === 'npc') {
+							this._targetPriority();
+						}
+						return item.roll({
+							shift: isShift,
+							alt: ev.altKey,
+							ctrl: ev.ctrlKey,
+							meta: ev.metaKey,
+						});
 					}
-					return item.roll(isShift);
-					// }
 				}
 			}
 			if (dataset.rollType === 'behavior') {
 				return this._rollBehavior();
 			}
+
 			if (dataset.rollType === 'roll-check' || dataset.rollType === 'roll-init') {
-				if (isShift) {
-					return promptOpenCheck(this.actor);
-				} else if (isCtrl) {
-					// OpposedCheck.promptCheck(this.actor, isShift);
-				} else {
-					return promptCheck(this.actor);
-				}
+				return promptCheck(this.actor);
 			}
+
+			if (dataset.rollType === 'open-check') {
+				return promptOpenCheck(this.actor, 'FU.OpenCheck', 'open');
+			}
+
 			if (dataset.rollType === 'group-check') {
-				GroupCheck.promptCheck(this.actor, isShift);
+				if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
+					return ChecksV2.groupCheck(this.actor, isShift ? GroupCheckV2.initInitiativeCheck : GroupCheckV2.initGroupCheck);
+				} else {
+					return GroupCheck.promptCheck(this.actor, isShift);
+				}
 			}
 		}
 
-		// Handle item-slot rolls.
+		// Handle item-slot rolls using the new equip structure.
 		if (dataset.rollType === 'item-slot') {
-			// Get the actor that owns the item
-			const actor = this.actor;
-			// Get the items that belong to the actor
-			const items = actor.items;
-			// Determine the slot based on the header element class
-			let slot = '';
-			if (element.classList.contains('left-hand')) {
-				slot = 'mainHand';
-			} else if (element.classList.contains('right-hand')) {
-				slot = 'offHand';
-			} else if (element.classList.contains('acc-hand')) {
-				slot = 'accessory';
-			} else if (element.classList.contains('armor-hand')) {
-				slot = 'armor';
-			} else {
-				slot = 'default';
-			}
-			// Filter the items by their equipped slot
-			const sameSlotItems = items.filter((i) => i.system.isEquipped && i.system.isEquipped.slot === slot);
-			// Get the first item from the filtered collection
-			const item = sameSlotItems.find((i) => true);
+			// Get the actor's equipped data
+			const equippedData = this.actor.system.equipped;
+			const slotMap = {
+				'left-hand': 'mainHand',
+				'right-hand': 'offHand',
+				'two-hand': 'mainHand',
+				'phantom-hand': 'phantom',
+				'acc-hand': 'accessory',
+				'armor-hand': 'armor',
+			};
+
+			// Find the first matching slot class or default to 'default'
+			const slot = Object.keys(slotMap).find((className) => element.classList.contains(className)) || 'default';
+			const itemId = equippedData[slotMap[slot]]; // Use the mapped slot
+
+			const item = this.actor.items.get(itemId);
 
 			// Check if the item exists and call its roll method
-			if (item) return item.roll(isShift);
+			if (item) {
+				return item.roll({
+					shift: isShift,
+					alt: ev.altKey,
+					ctrl: ev.ctrlKey,
+					meta: ev.metaKey,
+				});
+			}
 		}
 
 		// Handle affinity-type rolls
@@ -1543,9 +1797,14 @@ export class FUStandardActorSheet extends ActorSheet {
 			const affinityName = affinity.label;
 			const affinityValue = affinity.affTypeCurr;
 
-			let params = {
-				details: { name: affinityName },
-				description: affinityValue,
+			// Get the localized string from FU.AffinityDescription
+			const description = game.i18n.format('FU.AffinityDescription', {
+				affinityName: affinityName,
+				affinityValue: affinityValue,
+			});
+
+			const params = {
+				description: description,
 				speaker: ChatMessage.getSpeaker({ actor }),
 			};
 
@@ -1555,8 +1814,11 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Handle action-type rolls.
 		if (dataset.rollType === 'action-type') {
-			// Determine the type based on the data-action attribute
-			actionHandler(this, dataset.action, isShift);
+			const actor = this.actor;
+			const actionHandlerInstance = new ActionHandler(actor); // Create an instance of ActionHandler
+
+			// Call the handleAction method with the action type and shift key status
+			await actionHandlerInstance.handleAction(dataset.action, isShift);
 		}
 
 		// Handle rolls that supply the formula directly.
@@ -1572,21 +1834,14 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
-	async _updateObject(event, data) {
+	async _updateObject(ev, data) {
 		// Foundry's form update handlers send back bond information as an object {0: ..., 1: ....}
 		// So correct an update in that form and create an updated bond array to properly represent the changes
 		const bonds = data.system?.resources?.bonds;
-		if (bonds) {
-			if (!Array.isArray(bonds)) {
-				const currentBonds = [];
-				const maxIndex = Object.keys(bonds).length;
-				for (let i = 0; i < maxIndex; i++) {
-					currentBonds.push(bonds[i]);
-				}
-				data.system.resources.bonds = currentBonds;
-			}
+		if (bonds && !Array.isArray(bonds)) {
+			data.system.bonds = Array.from(Object.values(bonds));
 		}
-		super._updateObject(event, data);
+		super._updateObject(ev, data);
 	}
 }
 

@@ -32,11 +32,6 @@ export const statusEffects = [
 		],
 	},
 	{
-		id: 'beserk',
-		name: 'FU.Beserk',
-		icon: 'systems/projectfu/styles/static/statuses/Beserk.webp',
-	},
-	{
 		id: 'cover',
 		name: 'FU.Cover',
 		icon: 'systems/projectfu/styles/static/statuses/Cover.webp',
@@ -150,6 +145,11 @@ export const statusEffects = [
 				mode: CONST.ACTIVE_EFFECT_MODES.CUSTOM,
 				value: 'upgrade',
 			},
+			{
+				key: 'system.bonuses.accuracy.opposedCheck',
+				mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+				value: '2',
+			},
 		],
 	},
 	{
@@ -204,6 +204,11 @@ export const statusEffects = [
 				value: 'upgrade',
 			},
 		],
+	},
+	{
+		id: 'provoked',
+		name: 'FU.Provoked',
+		icon: 'systems/projectfu/styles/static/statuses/Provoked.webp',
 	},
 	{
 		id: 'reflect',

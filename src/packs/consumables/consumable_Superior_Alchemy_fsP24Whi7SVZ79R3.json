@@ -1,0 +1,50 @@
+{
+  "folder": "fzwKXW1w0wvmyDbk",
+  "name": "Superior Alchemy",
+  "type": "consumable",
+  "_id": "fsP24Whi7SVZ79R3",
+  "img": "icons/consumables/potions/flask-corked-purple-glow.webp",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p>For <strong>@LOSS[5 ip]</strong> roll <strong>four d20s</strong> and assign one to <strong>target</strong> and one to <strong>effect</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 5
+    },
+    "source": {
+      "value": "FUCR212"
+    },
+    "fuid": "superior-alchemy"
+  },
+  "effects": [],
+  "sort": 168750,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1707098245589,
+    "modifiedTime": 1724180864609,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!fsP24Whi7SVZ79R3"
+}

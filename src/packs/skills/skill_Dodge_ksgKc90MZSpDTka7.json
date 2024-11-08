@@ -1,0 +1,193 @@
+{
+  "folder": "k463lsw6TLekF6xu",
+  "name": "Dodge",
+  "type": "skill",
+  "_id": "ksgKc90MZSpDTka7",
+  "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_dodge.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span>As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by <strong>【SL】</strong>.</span></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Rogue"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR203"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "dodge"
+  },
+  "effects": [
+    {
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Dodge",
+      "_id": "JB8FXzYLdzxU3NgX",
+      "changes": [
+        {
+          "key": "system.derived.def.bonus",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        }
+      ],
+      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">As long as you have no <strong>shields</strong> and no <strong>martial armor</strong> equipped, your Defense score is increased by<strong>【SL】</strong>. </span></p>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.331",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1723766420252,
+        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "systems/projectfu/styles/static/compendium/classes/rogue/rogue_dodge.png",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
+      "_key": "!items.effects!ksgKc90MZSpDTka7.JB8FXzYLdzxU3NgX"
+    }
+  ],
+  "sort": 350000,
+  "ownership": {
+    "default": 3,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706504745151,
+    "modifiedTime": 1724180863013,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!ksgKc90MZSpDTka7"
+}

@@ -1,0 +1,193 @@
+{
+  "folder": "KUerX2dLyeZ8A3Xw",
+  "name": "Barrier",
+  "type": "spell",
+  "_id": "pGDJPfT1bc2vErY9",
+  "img": "icons/magic/defensive/barrier-shield-dome-pink.webp",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><p>@EFFECT[eyJuYW1lIjoiQmFycmllciIsImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvYmFycmllci1zaGllbGQtZG9tZS1waW5rLndlYnAiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uZGVyaXZlZC5kZWYudmFsdWUiLCJtb2RlIjo0LCJ2YWx1ZSI6IjEyIn1dLCJkaXNhYmxlZCI6ZmFsc2UsImR1cmF0aW9uIjp7InN0YXJ0VGltZSI6MCwic2Vjb25kcyI6bnVsbCwiY29tYmF0IjpudWxsLCJyb3VuZHMiOm51bGwsInR1cm5zIjpudWxsLCJzdGFydFJvdW5kIjpudWxsLCJzdGFydFR1cm4iOm51bGx9LCJkZXNjcmlwdGlvbiI6IjxwPjxzcGFuIGNsYXNzPVwiZm9udHN0eWxlMFwiPllvdSBwcm9qZWN0IHlvdXIgc291bCBvdXRzaWRlIHlvdXIgYm9keSBhbmQgd2VhdmUgaXQgaW50byBhIGJhcnJpZXIgdG8gcHJvdGVjdCB0aGXCoHRhcmdldHMgZnJvbSBhdHRhY2tzLiBVbnRpbCB0aGlzIHNwZWxsIGVuZHMsIGVhY2ggdGFyZ2V0IG1heSB0cmVhdCB0aGVpciBEZWZlbnNlIGFzIGJlaW5nwqBlcXVhbCB0byAxMiBhZ2FpbnN0IGFueSBlZmZlY3RzIHRoYXQgdGFyZ2V0IGl0ICh0aGV5IGFyZSBzdGlsbCBmcmVlIHRvIHVzZSB0aGVpciBub3JtYWzCoERlZmVuc2Ugc2NvcmUgaWYgaGlnaGVyIHRoYW4gMTIpLjwvc3Bhbj7CoDwvcD4iLCJvcmlnaW4iOm51bGwsInRpbnQiOm51bGwsInRyYW5zZmVyIjpmYWxzZSwic3RhdHVzZXMiOltdLCJmbGFncyI6eyJwcm9qZWN0ZnUiOnsiQ3Jpc2lzSW50ZXJhY3Rpb24iOiJub25lIn19fQ==]</p><p>@LOSS[5 mp] for <strong>one</strong> target.</p><p>@LOSS[10 mp] for <strong>two</strong> targets.</p><p>@LOSS[15 mp] for <strong>three</strong> targets.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Spiritist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "mpCost": {
+      "value": "5"
+    },
+    "target": {
+      "value": "Up to three creatures"
+    },
+    "duration": {
+      "value": "scene"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "source": {
+      "value": "FUCR208"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "maxTargets": {
+      "value": 3
+    },
+    "fuid": "barrier"
+  },
+  "effects": [
+    {
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Barrier",
+      "_id": "AibGlX3CB1jYxtGU",
+      "changes": [
+        {
+          "key": "system.derived.def.bonus",
+          "mode": 5,
+          "value": "12",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/magic/defensive/barrier-shield-dome-pink.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
+      "_key": "!items.effects!pGDJPfT1bc2vErY9.AibGlX3CB1jYxtGU"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706572145678,
+    "modifiedTime": 1724180864334,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 1000000,
+  "_key": "!items!pGDJPfT1bc2vErY9"
+}

@@ -1,4 +1,6 @@
-import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { SYSTEM } from '../../../../helpers/config.mjs';
+import { Flags } from '../../../../helpers/flags.mjs';
 
 /**
  * Available frame types and their translation keys
@@ -11,14 +13,14 @@ const frames = {
 };
 
 /**
- * @extends ClassFeatureDataModel
+ * @extends RollableClassFeatureDataModel
  * @property {"exoskeleton","mech","steed"} frame
  * @property {number} passengers
  * @property {number} distanceMultiplier
  * @property {number} moduleSlots
  * @property {string} description
  */
-export class VehicleDataModel extends ClassFeatureDataModel {
+export class VehicleDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {
 		const { StringField, NumberField, HTMLField } = foundry.data.fields;
 		return {
@@ -42,8 +44,9 @@ export class VehicleDataModel extends ClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/pilot/vehicle-preview.hbs';
 	}
 
-	static getAdditionalData(model) {
+	static async getAdditionalData(model) {
 		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
 			frames,
 			active: model.item === model.actor?.system.vehicle.vehicle,
 		};
@@ -54,5 +57,38 @@ export class VehicleDataModel extends ClassFeatureDataModel {
 	 */
 	get weaponSlots() {
 		return this.frame === 'steed' ? 1 : 2;
+	}
+
+	static async roll(model, item) {
+		const actor = model.parent.parent.actor;
+		if (!actor) {
+			return;
+		}
+
+		// Localize the frame name
+		const localizedFrame = game.i18n.localize(frames[model.frame]);
+
+		const data = {
+			frame: localizedFrame,
+			moduleSlots: model.moduleSlots,
+			passengers: model.passengers,
+			distanceMultiplier: model.distanceMultiplier,
+			description: await TextEditor.enrichHTML(model.description),
+		};
+
+		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
+		const chatMessage = {
+			speaker,
+			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
+			content: await renderTemplate('systems/projectfu/templates/feature/pilot/feature-vehicle-frame-chat-message.hbs', data),
+			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
+		};
+
+		ChatMessage.create(chatMessage);
+	}
+
+	transferEffects() {
+		let vehicleState = this.actor?.system.vehicle;
+		return vehicleState?.vehicle === this.item && vehicleState?.embarked;
 	}
 }

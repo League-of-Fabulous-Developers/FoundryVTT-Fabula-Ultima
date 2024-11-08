@@ -1,0 +1,42 @@
+{
+  "folder": "6hLDMWrdgLLCVK8G",
+  "name": "Neurophagoida",
+  "type": "classFeature",
+  "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
+  "system": {
+    "summary": {
+      "value": "Parasites, undead, creatures who feed on souls."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.therioform",
+    "data": {
+      "description": "<p>When you use the <strong>Biophagy</strong> Skill, you also recover an amount of Mind Points equal to <strong>【4 + (your Skill Level in Theriomorphosis)】</strong>.</p>"
+    },
+    "source": "FUTF156",
+    "fuid": "neurophagoida"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711428338643,
+    "modifiedTime": 1724180862789,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "f9NciszRYctYrAnb",
+  "sort": 0,
+  "_key": "!items!f9NciszRYctYrAnb"
+}

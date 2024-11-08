@@ -55,6 +55,11 @@ const foundryvtt = {
 			loadTemplates: 'readonly',
 			renderTemplate: 'readonly',
 			ui: 'readonly',
+			Die: 'readonly',
+			DiceTerm: 'readonly',
+			NumericTerm: 'readonly',
+			OperatorTerm: 'readonly',
+			fromUuidSync: 'readonly',
 		},
 	},
 };

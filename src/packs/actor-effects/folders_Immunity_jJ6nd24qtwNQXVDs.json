@@ -1,0 +1,22 @@
+{
+  "name": "Immunity",
+  "sorting": "a",
+  "folder": "sDhJwTqnt0rJlspi",
+  "type": "Item",
+  "_id": "jJ6nd24qtwNQXVDs",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!jJ6nd24qtwNQXVDs"
+}

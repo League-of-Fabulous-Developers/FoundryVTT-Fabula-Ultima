@@ -1,8 +1,8 @@
-<form class="{{ cssClass }} h-100 backgroundstyle" autocomplete="off">
+<form class="{{ cssClass }} h-100" autocomplete="off">
     <div class="sheet-content-wrapper">
         <header class="sheet-header desc">
             <div class="combine-header">
-                <img class="profile-img" src="{{ item.img }}" data-edit="img" title="{{ item.name }}"
+                <img class="item-profile-img" src="{{ item.img }}" data-edit="img" title="{{ item.name }}"
                      style="height: 137px; width: auto; flex: 0;" />
                 <div class="header-fields">
                     <div class="header-start grid grid-6col">
@@ -32,7 +32,7 @@
                                 <label class="resource-label-m rollable" data-action="pdfLink"> <i
                                  class="fas fa-book icon"></i>{{localize 'FU.Source'}} </label>
                                 <input type="text" name="system.source" value="{{ system.source }}" data-dtype="String"
-                                       style="border-radius: 12px 0 0;" class="resource-inputs" />
+                                       style="border-radius: 10px 0 0;" class="resource-inputs" />
                             </span>
                         </span>
                     </div>
@@ -54,23 +54,22 @@
 
             <div class="grid grid-3col w-100">
                 {{!-- Sub Type --}}
-                <span class="resource-content flexcol flex-group-center desc">
+                <span class="resource-content flexrow flex-group-center desc">
                     <label class="resource-label-sm" for="item.type">
                         <i class="fas fa-chart-simple icon"></i>
                         {{localize 'FU.SubType'}}
                     </label>
                     <span>
                         <select name="system.optionalType" class="resource-inputs select-dropdown-l">
-                            {{selectOptions optionals selected=system.optionalType labelAttr='translation'
-                                            localize=true}}
+                            {{selectOptions optionals selected=system.optionalType localize=true}}
                         </select>
                     </span>
                 </span>
 
                 {{!-- Sheet Tab Navigation --}}
-                <nav class="sheet-tabs tabs desc flexrow grid-span-2" data-group="primary" style="align-self: stretch;">
-                    <a class="item tab-style" data-tab="details">{{localize 'FU.ClassFeatureDetails'}}</a>
-                    <a class="item tab-style" data-tab="effects">{{localize 'FU.Effects'}}</a>
+                <nav class="sheet-tabs tabs desc flexrow grid-span-2 gap-5" data-group="primary" style="align-self: stretch;">
+                    <a class="item rollable tab button-style" data-tab="details">{{localize 'FU.ClassFeatureDetails'}}</a>
+                    <a class="item rollable tab button-style" data-tab="effects">{{localize 'FU.Effects'}}</a>
                 </nav>
             </div>
         </header>

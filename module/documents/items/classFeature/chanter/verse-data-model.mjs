@@ -4,20 +4,14 @@ import { KeyDataModel } from './key-data-model.mjs';
 import { ToneDataModel } from './tone-data-model.mjs';
 import { LocallyEmbeddedDocumentField } from '../locally-embedded-document-field.mjs';
 import { FUActor } from '../../../actors/actor.mjs';
-import { FU, SYSTEM } from '../../../../helpers/config.mjs';
+import { FU } from '../../../../helpers/config.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
-import { Flags } from '../../../../helpers/flags.mjs';
+import { VersesApplication } from './verses-application.mjs';
 
 const volumes = {
 	low: 'FU.ClassFeatureVerseVolumeLow',
 	medium: 'FU.ClassFeatureVerseVolumeMedium',
 	high: 'FU.ClassFeatureVerseVolumeHigh',
-};
-
-const volumeTargets = {
-	low: 'FU.ClassFeatureVerseVolumeLowTargets',
-	medium: 'FU.ClassFeatureVerseVolumeMediumTargets',
-	high: 'FU.ClassFeatureVerseVolumeHighTargets',
 };
 
 async function getDescription(model, useAttributes = false) {
@@ -107,42 +101,89 @@ export class VerseDataModel extends RollableClassFeatureDataModel {
 		};
 	}
 
-	static async roll(model, item) {
-		if (!model.key || !model.tone) {
-			return;
-		}
-
-		const volume = await Dialog.prompt({
-			title: game.i18n.localize('FU.ClassFeatureVerseSingDialogTitle'),
-			label: game.i18n.localize('FU.ClassFeatureVerseSingDialogLabel'),
-			content: `<select name="volume">${Object.entries(volumes).map(([key, label]) => `<option value="${key}">${game.i18n.localize(label)}</option>`)}</select>`,
-			rejectClose: false,
-			callback: (html) => html.find('select[name=volume]').val(),
-		});
-
-		const actor = model.parent.parent.actor;
-		if (!volume || !actor) {
-			return;
-		}
-		const data = {
-			verse: model,
-			volume: volumes[volume],
-			cost: model.config[volume],
-			targets: volumeTargets[volume],
-			key: model.key.name,
-			tone: model.tone.name,
-			description: await getDescription(model, true),
-		};
-		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
-		const chatMessage = {
-			speaker,
-			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
-			content: await renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
-			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
-		};
-
-		ChatMessage.create(chatMessage);
+	static roll(model, item, isShift) {
+		new VersesApplication(model).render(true);
 	}
+
+	// static async roll(model, item) {
+	// 	if (!model.key || !model.tone) {
+	// 		return;
+	// 	}
+
+	// 	const keys = model.parent.parent?.actor?.itemTypes.classFeature.filter((item) => item.system.data instanceof KeyDataModel) ?? [];
+	// 	const tones = model.parent.parent?.actor?.itemTypes.classFeature.filter((item) => item.system.data instanceof ToneDataModel) ?? [];
+
+	// 	const volumeSelection = await Dialog.prompt({
+	// 		title: game.i18n.localize('FU.ClassFeatureVerseSingDialogTitle'),
+	// 		label: game.i18n.localize('FU.ClassFeatureVerseSingDialogLabel'),
+	// 		content: `
+	// 			<div>
+	// 				<label>${game.i18n.localize('FU.ClassFeatureVerseSelectVolume')}</label>
+	// 				<select name="volume">
+	// 					${Object.entries(volumes)
+	// 						.map(([key, label]) => `<option value="${key}">${game.i18n.localize(label)}</option>`)
+	// 						.join('')}
+	// 				</select>
+	// 			</div>
+	// 			<div>
+	// 				<label>${game.i18n.localize('FU.ClassFeatureVerseChooseKey')}</label>
+	// 				<select name="key">
+	// 					${keys.map((key) => `<option value="${key.id}">${key.name}</option>`).join('')}
+	// 				</select>
+	// 			</div>
+	// 			<div>
+	// 				<label>${game.i18n.localize('FU.ClassFeatureVerseSelectTone')}</label>
+	// 				<select name="tone">
+	// 					${tones.map((tone) => `<option value="${tone.id}">${tone.name}</option>`).join('')}
+	// 				</select>
+	// 			</div>
+	// 		`,
+	// 		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
+	// 		rejectClose: false,
+	// 		callback: (html) => ({
+	// 			volume: html.find('select[name=volume]').val(),
+	// 			key: html.find('select[name=key]').val(),
+	// 			tone: html.find('select[name=tone]').val(),
+	// 		}),
+	// 	});
+
+	// 	const actor = model.parent.parent.actor;
+	// 	if (!volumeSelection || !actor) {
+	// 		return;
+	// 	}
+
+	// 	// Get the selected key and tone
+	// 	const selectedKey = keys.find((key) => key.id === volumeSelection.key);
+	// 	const selectedTone = tones.find((tone) => tone.id === volumeSelection.tone);
+
+	// 	// Update the model's key and tone directly with FUItem instances
+	// 	if (selectedKey && selectedTone) {
+	// 		model.updateSource({
+	// 			key: selectedKey, // Use the FUItem instance directly
+	// 			tone: selectedTone, // Use the FUItem instance directly
+	// 		});
+	// 	}
+
+	// 	const data = {
+	// 		verse: model,
+	// 		volume: volumes[volumeSelection.volume],
+	// 		cost: model.config[volumeSelection.volume],
+	// 		targets: volumeTargets[volumeSelection.volume],
+	// 		key: model.key.name,
+	// 		tone: model.tone.name,
+	// 		description: await getDescription(model, true),
+	// 	};
+
+	// 	const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
+	// 	const chatMessage = {
+	// 		speaker,
+	// 		flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
+	// 		content: await renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
+	// 		flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
+	// 	};
+
+	// 	ChatMessage.create(chatMessage);
+	// }
 
 	static getTabConfigurations() {
 		return [

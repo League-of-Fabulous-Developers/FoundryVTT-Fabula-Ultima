@@ -1,0 +1,76 @@
+{
+  "folder": "7NQvpwoHcTkOxvMv",
+  "name": "INS Base Cap",
+  "type": "effect",
+  "_id": "3BnJm5HkDhJfm1U1",
+  "img": "systems/projectfu/styles/static/statuses/InsDown.webp",
+  "system": {
+    "fuid": "ins-base-cap"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.3BnJm5HkDhJfm1U1",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "INS Base Cap",
+      "img": "systems/projectfu/styles/static/statuses/InsDown.webp",
+      "_id": "u4go5FNMyYqGUjkF",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.attributes.ins.current",
+          "mode": 3,
+          "value": "@system.attributes.ins.base",
+          "priority": null
+        }
+      ],
+      "description": "<p>Cap Current Insight Attribute to Base.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725743997111,
+        "modifiedTime": 1725744344428,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!3BnJm5HkDhJfm1U1.u4go5FNMyYqGUjkF"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725743850693,
+    "modifiedTime": 1725743995649,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!3BnJm5HkDhJfm1U1"
+}

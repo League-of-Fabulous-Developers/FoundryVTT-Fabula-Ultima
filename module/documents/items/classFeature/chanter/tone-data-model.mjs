@@ -20,8 +20,9 @@ export class ToneDataModel extends ClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/chanter/feature-tone-sheet.hbs';
 	}
 
-	static async getAdditionalData() {
+	static async getAdditionalData(model) {
 		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
 			rollData: {
 				key: {
 					type: game.i18n.localize('FU.ClassFeatureToneDescriptionKeyDamageType'),

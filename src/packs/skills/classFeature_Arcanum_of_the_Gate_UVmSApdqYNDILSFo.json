@@ -1,0 +1,98 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "Arcanum of the Gate",
+  "type": "classFeature",
+  "_id": "UVmSApdqYNDILSFo",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-gate.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<ul><li><p>You have Resistance to <strong>dark</strong> damage.</p></li><li><p>You gain a +1 bonus to your Magic Defense.</p></li></ul>",
+      "dismiss": "<p>When you <strong>dismiss</strong> this Arcanum, choose <strong>Oblivion</strong> or <strong>Warp</strong>:</p><ul><li><p><strong>Oblivion.</strong> Choose any number of creatures you can see: each of them suffers @DMG[30 dark] damage. This damage ignores Resistances.</p></li><li><p><strong>Warp.</strong> You teleport yourself and up to five other nearby willing creatures to a location you previously visited, if that location is within <strong>1 travel day</strong>.</p></li></ul>",
+      "domains": "space, travel, void"
+    },
+    "source": "FUCR179",
+    "fuid": "arcanum-of-the-gate"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Merged: Gate",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-gate.png",
+      "_id": "rPcwIcyyNMYQDwiO",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.dark",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "system.derived.mdef.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You have Resistance to </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">dark</strong> </span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">damage.</span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">You gain a +1 bonus to your Magic Defense.</span></span></p></li></ul>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725597065537,
+        "modifiedTime": 1725606442321,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!UVmSApdqYNDILSFo.rPcwIcyyNMYQDwiO"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710463996976,
+    "modifiedTime": 1724180862317,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 700000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!UVmSApdqYNDILSFo"
+}

@@ -1,5 +1,11 @@
 import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
-import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+
+Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+	if (item?.system instanceof ArmorDataModel) {
+		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+	}
+});
 
 /**
  * @property {string} subtype.value
@@ -10,7 +16,6 @@ import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
  * @property {number} cost.value
  * @property {boolean} isMartial.value
  * @property {string} quality.value
- * @property {IsEquippedDataModel} isEquipped
  * @property {number} def.value
  * @property {number} mdef.value
  * @property {number} init.value
@@ -24,6 +29,7 @@ export class ArmorDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
+			fuid: new StringField(),
 			subtype: new SchemaField({ value: new StringField() }),
 			summary: new SchemaField({ value: new StringField() }),
 			description: new HTMLField(),
@@ -32,7 +38,6 @@ export class ArmorDataModel extends foundry.abstract.TypeDataModel {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
 			quality: new SchemaField({ value: new StringField() }),
-			isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
 			def: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			mdef: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
@@ -55,6 +60,6 @@ export class ArmorDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	transferEffects() {
-		return this.isEquipped.value && !this.parent.actor?.system.vehicle.armorActive;
+		return this.parent.isEquipped && !this.parent.actor?.system.vehicle?.armorActive;
 	}
 }

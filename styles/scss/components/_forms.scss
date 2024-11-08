@@ -1,14 +1,20 @@
 /* Description Format */
+.sheet-body {
+	.desc {
+		margin: 0.25rem;
+	}
+}
+
 .desc {
 	background: linear-gradient(to right, rgba(238, 244, 228, 0.5), rgba(226, 237, 213, 0.5));
-	border-radius: 12px;
+	border-radius: 10px;
 	border: 1px solid #2c4a4254;
-	padding: 5px;
+	padding: 0.25rem;
 	.inline-desc {
 		background: linear-gradient(to right, rgb(233, 243, 234), rgb(233, 243, 234, 0.5));
-		border-radius: 12px;
+		border-radius: 10px;
 		border: 1px solid #a2b29f;
-		padding: 5px;
+		padding: 3px;
 	}
 }
 
@@ -37,9 +43,21 @@
 
 	/* Profile Image */
 	.profile-img {
-		flex: 0 0 200px;
 		height: 200px;
 		width: 200px;
+		margin-right: 0;
+		align-self: start;
+		background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+		background-clip: content-box;
+		border: 1px solid #aeb8a8;
+		border-radius: 10px 0 0 10px;
+	}
+
+	/* Item Profile Image */
+	.item-profile-img {
+		height: 137px;
+		width: auto;
+		flex: 0;
 		margin-right: 0;
 		align-self: start;
 		background-image: linear-gradient(to right, $color-secondary, $color-ternary);
@@ -75,26 +93,26 @@
 
 		.header-center {
 			border-radius: 0 0 12px 0;
-			padding: 2px;
+			padding: 4px 0;
 			grid-row-gap: 2px;
-			height: 145px;
+			height: 147px;
 
 			&.item-header {
-				padding: 3px 10px;
-				height: 148px !important;
+				border-radius: 0 0 12px 0;
+				padding: 10px;
+				height: 84px !important;
 			}
 
 			&.item-feature-header {
 				border-radius: 0 0 12px 0;
 				padding: 10px;
-				height: 85px !important;
+				height: 84px !important;
 			}
 		}
 
 		.header-end {
 			padding: 0;
 			align-self: baseline;
-			margin-bottom: 2px;
 		}
 
 		#status-section,
@@ -222,12 +240,13 @@
 	.sheet-body,
 	.tab {
 		flex: 1;
-		overflow-y: auto;
+		// overflow-y: auto;
 	}
 
 	/* Tabs styling */
 	.sheet-tabs {
 		align-self: stretch;
+		margin-block: auto;
 	}
 
 	/* Footer styling */
@@ -239,7 +258,6 @@
 
 .body-section {
 	gap: 5px;
-	padding: 0 0.5rem 0.5rem 0;
 }
 
 .section-container {
@@ -281,7 +299,7 @@
 
 /* Item Settings */
 .item-settings {
-	margin: -5px 5px 0;
+	margin: 0px 5px 0;
 }
 
 /* Tiny Description */
@@ -379,4 +397,36 @@
 
 .class-feature fieldset {
 	margin-bottom: 0.5em;
+}
+
+.infusion-content {
+	input,
+	select {
+		color: $color-primary;
+		background-color: $color-secondary;
+		border: thin solid $color-secondary;
+		width: 4em;
+		height: auto;
+		padding: 0;
+		justify-content: center;
+		text-align: center;
+		border-color: $color-secondary;
+		border-radius: 5px;
+		option {
+			background-color: #2b4a42;
+			color: #ffffff;
+		}
+	}
+}
+
+& textarea {
+	text-align: left;
+	font-size: 0.875rem;
+	padding: 0.313rem 0.5rem;
+	margin: 5px 0;
+	box-shadow: 1px 2px $color-secondary;
+	background: linear-gradient(to bottom, rgb(212, 231, 232), rgba(195, 219, 214, 0.7));
+	border-radius: 3px;
+	font-family: $font-primary;
+	font-size: 1rem;
 }

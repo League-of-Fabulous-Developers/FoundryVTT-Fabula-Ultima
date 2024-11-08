@@ -42,6 +42,19 @@ export class ClassFeatureDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
+	 * Template to be embedded in the item lists of the actor sheet.
+	 *
+	 * The template receives an Object copy of the classFeature item and with additional keys `additionalData`
+	 * containing the result of {@link getAdditionalData} and `item` containing the actual item instance as context.
+	 *
+	 * The implementing module is expected to load the partial.
+	 * @return string
+	 */
+	static get expandTemplate() {
+		return 'systems/projectfu/templates/feature/feature-basic-description.hbs';
+	}
+
+	/**
 	 * The translation key for the `Class Feature`.
 	 * @return string
 	 */

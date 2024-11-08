@@ -1,0 +1,44 @@
+{
+  "folder": "iZnEw7B6koQcAdRk",
+  "name": "Key of Wind",
+  "type": "classFeature",
+  "_id": "zqNF92stxmhiX85K",
+  "img": "icons/magic/air/air-smoke-casting.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.key",
+    "data": {
+      "type": "air",
+      "attribute": "ins",
+      "recovery": "mp",
+      "status": "slow"
+    },
+    "source": "FUHF138",
+    "fuid": "key-of-wind"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710039571733,
+    "modifiedTime": 1724180863586,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!zqNF92stxmhiX85K"
+}

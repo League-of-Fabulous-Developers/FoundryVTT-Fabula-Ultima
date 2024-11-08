@@ -1,0 +1,42 @@
+{
+  "folder": "6hLDMWrdgLLCVK8G",
+  "name": "Pterotheria",
+  "type": "classFeature",
+  "img": "icons/creatures/abilities/wing-batlike-white-blue.webp",
+  "system": {
+    "summary": {
+      "value": "Bats, birds, winged insects, flying creatures."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.therioform",
+    "data": {
+      "description": "<p>You are able to fly. In addition to the obvious advantages in mobility, your <strong>melee</strong> attacks can target <strong>flying</strong> creatures and you cannot be targeted by <strong>melee</strong> attacks unless the attacker is flying or is somehow able to reach flying targets.</p><p>These benefits do not apply while you are unable to fly freely (such as when inside a vehicle designed for human-sized creatures, or inside a narrow corridor). Additionally, when you suffer <strong>air</strong>, <strong>bolt</strong> or <strong>ice</strong> damage during a conflict scene, you lose these benefits until the start of your next turn.</p>"
+    },
+    "source": "FUTF157",
+    "fuid": "pterotheria"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711428338643,
+    "modifiedTime": 1724180862086,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "NjToAQTqqe3xyn6Y",
+  "sort": 0,
+  "_key": "!items!NjToAQTqqe3xyn6Y"
+}

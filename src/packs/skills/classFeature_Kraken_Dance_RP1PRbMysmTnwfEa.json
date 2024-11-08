@@ -1,0 +1,44 @@
+{
+  "folder": "MF2GB42tc5t7uxF8",
+  "name": "Kraken Dance",
+  "type": "classFeature",
+  "_id": "RP1PRbMysmTnwfEa",
+  "img": "icons/creatures/tentacles/tentacles-octopus-black-pink.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.dance",
+    "data": {
+      "description": "<p>Choose another creature that is able to see you. If that creature is already @EFFECT[dazed], they immediately suffer @EFFECT[slow].</p><hr><p>@LOSS[10 mp]</p>",
+      "duration": "instant"
+    },
+    "source": "FUHF144",
+    "fuid": "kraken-dance"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710175623741,
+    "modifiedTime": 1724180862231,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 0,
+  "_key": "!items!RP1PRbMysmTnwfEa"
+}

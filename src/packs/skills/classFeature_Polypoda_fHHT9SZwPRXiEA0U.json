@@ -1,0 +1,42 @@
+{
+  "folder": "6hLDMWrdgLLCVK8G",
+  "name": "Polypoda",
+  "type": "classFeature",
+  "img": "icons/creatures/tentacles/tentacles-suctioncups-pink.webp",
+  "system": {
+    "summary": {
+      "value": "Squids, octopi, creatures with tendrils or vines."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.therioform",
+    "data": {
+      "description": "<p>Your attacks with <strong>unarmed strikes</strong> gain <strong>multi (3).</strong></p>"
+    },
+    "source": "FUTF157",
+    "fuid": "polypoda"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711428338643,
+    "modifiedTime": 1724180862796,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "fHHT9SZwPRXiEA0U",
+  "sort": 0,
+  "_key": "!items!fHHT9SZwPRXiEA0U"
+}

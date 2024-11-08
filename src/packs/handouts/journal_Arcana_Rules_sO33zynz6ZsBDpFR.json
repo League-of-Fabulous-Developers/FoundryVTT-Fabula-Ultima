@@ -1,0 +1,103 @@
+{
+  "name": "Arcana Rules",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "ARCANA RULES",
+      "type": "text",
+      "_id": "f0x6JHPWDm0cf2hi",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h2><strong>MERGING WITH AN ARCANUM</strong></h2><p>When you summon an Arcanum, you gain its merge benefits; those benefits last until the Arcanum is dismissed (see page 179).</p><p>You cannot summon an Arcanum while already merged with one; you must first dismiss the current Arcanum.</p><h2><strong>DISMISSING AN ARCANUM</strong></h2><p>An Arcanum can be dismissed in several ways:</p><ul><li>Once the current scene ends, all Arcana are automatically dismissed.</li><li>If you die or fall unconscious while merged with an Arcanum, they are dismissed.</li><li>If you leave the scene while merged with an Arcanum, they are dismissed.</li><li>You may <strong>willingly</strong> dismiss your Arcanum: this doesn't require an action, but during a conflict it can only be done on your turn, <strong>before or after</strong> an action.</li></ul><h2><strong>DISMISS EFFECTS</strong></h2><p>Most Arcana have a powerful dismiss effect, which may only be activated when you <strong>willingly</strong> dismiss the Arcanum as described above — if the Arcanum is dismissed for any other reason, the dismiss effect cannot be triggered.</p><p>If the dismiss effect of an Arcanum deals damage, it will deal 10 extra damage if you are <strong>level 20 or higher</strong>, or 20 extra damage if you are <strong>level 40 or higher</strong>.</p><p>You are also free to ignore the dismiss effect if you don't want to use it.</p><h2><strong>DOMAINS</strong></h2><p>Each Arcanum is associated with a few key concepts or domains. The Game Master should use these to establish the trials needed to bind the Arcanum, and to adjudicate Rituals performed through the <strong>Ritual Arcanism</strong> Skill.</p><p>If you create new Arcana for your world, make sure to associate them with domains that allow for interesting Rituals.</p><h2><strong>ALL ARCANA</strong></h2><p><strong>@UUID[.ldBTUg43es8ZUaMN]{ARCANUM LIST}</strong></p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "12.330",
+        "createdTime": 1711758795157,
+        "modifiedTime": 1720886086785,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "_key": "!journal.pages!sO33zynz6ZsBDpFR.f0x6JHPWDm0cf2hi"
+    },
+    {
+      "sort": 200000,
+      "name": "ARCANUM LIST",
+      "type": "text",
+      "_id": "ldBTUg43es8ZUaMN",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.BhLHFeKBx3zZRZD5]{Arcanum of the Forge}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>fire, heat, metal</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.TKOESZqheitutkKB]{Arcanum of the Frost}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>cold, ice, silence</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.UVmSApdqYNDILSFo]{Arcanum of the Gate}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>space, travel, void</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.QbjAsEWA7R2HfFNg]{Arcanum of the Grimoire}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>knowledge, revelations, understanding</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.Y3OzDHLCogR32RlH]{Arcanum of the Oak}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>earth, plants, poison</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.zabsA5F47r9B5h4f]{Arcanum of the Sky}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>fog, rain, storms</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4]{Arcanum of the Sword}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>conquest, heroism, leadership</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.stLDj4YpAoyQFFid]{Arcanum of the Tower}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>judgment, protection, sacrifice</p></td></tr></tbody></table><p>-</p><table><tbody><tr><td data-colwidth=\"51\"><p><strong>Name</strong></p></td><td><p><strong>@UUID[Compendium.projectfu.skills.Item.Dwq6JSEYmSlhpL3b]{Arcanum of the Wheel}</strong></p></td></tr><tr><td data-colwidth=\"51\"><p><strong>Domain</strong></p></td><td><p>destiny, speed, time</p></td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "coreVersion": "12.330",
+        "createdTime": 1711758808592,
+        "modifiedTime": 1720886110763,
+        "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "_key": "!journal.pages!sO33zynz6ZsBDpFR.ldBTUg43es8ZUaMN"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711758758790,
+    "modifiedTime": 1723766576881,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "sO33zynz6ZsBDpFR",
+  "sort": 1400000,
+  "_key": "!journal!sO33zynz6ZsBDpFR"
+}

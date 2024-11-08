@@ -1,0 +1,22 @@
+{
+  "name": "NPC Spells",
+  "sorting": "a",
+  "type": "Item",
+  "color": "#8c3c00",
+  "folder": null,
+  "description": "",
+  "sort": 100000,
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1700549449646,
+    "modifiedTime": 1719224647240,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_id": "PpBzAnM7EK75ayIT",
+  "_key": "!folders!PpBzAnM7EK75ayIT"
+}

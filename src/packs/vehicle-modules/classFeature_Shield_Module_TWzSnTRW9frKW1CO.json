@@ -1,0 +1,58 @@
+{
+  "folder": "BJhRf9J1K7HT9EQu",
+  "name": "Shield Module",
+  "type": "classFeature",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/shield-module.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.weaponModule",
+    "data": {
+      "complex": false,
+      "quality": "",
+      "type": "shield",
+      "description": "<h5>(EXOSKELETON AND MECHA ONLY)</h5><p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Defense and a +2 bonus to Magic Defense. Additionally, this weapon module <strong>does not</strong> count as a “weapon”: instead, it counts as an equipped <strong>shield</strong>. This module <strong>cannot</strong> be equipped in your <strong>main hand slot</strong>, unless you have acquired the <strong>Dual Shieldbearer</strong> Skill (see <strong>Core Rulebook</strong>, page <strong>197</strong>). If you have, your <strong>Twin Shields</strong> deal 2 extra damage (this is cumulative if you have two <strong>Shield modules</strong> enabled at the same time).</p>",
+      "accuracy": {
+        "attr1": "dex",
+        "attr2": "ins",
+        "modifier": 0
+      },
+      "damage": {
+        "type": "physical",
+        "bonus": 0
+      },
+      "category": "arcane",
+      "shield": {
+        "defense": 2,
+        "magicDefense": 2
+      }
+    },
+    "source": "FUTF167",
+    "fuid": "shield-module"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711474486592,
+    "modifiedTime": 1724180864726,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "TWzSnTRW9frKW1CO",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!TWzSnTRW9frKW1CO"
+}

@@ -1,0 +1,143 @@
+{
+  "name": "War Cry",
+  "type": "spell",
+  "img": "icons/skills/wounds/injury-face-impact-orange.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>Until this spell ends, each target gains a +1 bonus to Accuracy Checks</p><hr /><p>@EFFECT[eyJuYW1lIjoiV2FyIENyeSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5ib251c2VzLmFjY3VyYWN5LmFjY3VyYWN5Q2hlY2siLCJtb2RlIjoyLCJ2YWx1ZSI6MX1dLCJpY29uIjoiaWNvbnMvc2tpbGxzL3dvdW5kcy9pbmp1cnktZmFjZS1pbXBhY3Qtb3JhbmdlLndlYnAifQ==]</p><p>@LOSS[10 mp] for <strong>one</strong> target.</p><p>@LOSS[20 mp] for <strong>two</strong> targets.</p><p>@LOSS[30 mp] for <strong>three</strong> targets.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "class": {
+      "value": "NPC"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "mpCost": {
+      "value": "10"
+    },
+    "target": {
+      "value": "Up to three creatures"
+    },
+    "duration": {
+      "value": "instantaneous"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "rollInfo": {
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      },
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR311"
+    },
+    "subtype": {},
+    "opportunity": "",
+    "maxTargets": {
+      "value": 3
+    },
+    "fuid": "war-cry"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": null
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1690417015023,
+    "modifiedTime": 1724180864884,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "folder": "PpBzAnM7EK75ayIT",
+  "_id": "sJc4OnOFGBTiQEzs",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!sJc4OnOFGBTiQEzs"
+}

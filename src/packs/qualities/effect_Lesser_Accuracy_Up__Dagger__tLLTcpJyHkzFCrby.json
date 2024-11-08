@@ -1,0 +1,82 @@
+{
+  "name": "Lesser Accuracy Up (Dagger)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 800
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Lesser Accuracy Up (Dagger)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.dagger",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain a +1 bonus to Accuracy Checks with the <strong>dagger</strong> weapon category).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Check",
+          "CrisisInteraction": "none",
+          "source": "FUCR281"
+        }
+      },
+      "_id": "NBqOqHZ4V0hPDLdB",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728772414882,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!tLLTcpJyHkzFCrby.NBqOqHZ4V0hPDLdB"
+    }
+  ],
+  "folder": "G9QbTliORWqM7IoY",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747190299,
+    "modifiedTime": 1728747190299,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "tLLTcpJyHkzFCrby",
+  "sort": 2100000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!tLLTcpJyHkzFCrby"
+}

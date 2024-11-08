@@ -4,41 +4,14 @@ $fus-star: url('/systems/projectfu/styles/static/icons/fus-star.svg');
 $fus-star2: url('/systems/projectfu/styles/static/icons/fus-star2.svg');
 $fus-star2-border: url('/systems/projectfu/styles/static/icons/fus-star2-border.svg');
 
-$fu-action-melee: url('/systems/projectfu/styles/static/icons/fu-action-melee.svg');
-$fu-action-ranged: url('/systems/projectfu/styles/static/icons/fu-action-ranged.svg');
-$fu-action-skill: url('/systems/projectfu/styles/static/icons/fu-action-skill.svg');
-$fu-action-spell: url('/systems/projectfu/styles/static/icons/fu-action-spell.svg');
 $fus-offensive: url('/systems/projectfu/styles/static/icons/fus-offensive.svg');
 $fus-martial: url('/systems/projectfu/styles/static/icons/fus-martial.svg');
 $ful-offensive: url('/systems/projectfu/styles/static/icons/ful-offensive.svg');
 $ful-martial: url('/systems/projectfu/styles/static/icons/ful-martial.svg');
+$fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 
-$fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
-$fu-guard: url('/systems/projectfu/styles/static/icons/fu-guard.svg');
-$fu-phys: url('/systems/projectfu/styles/static/icons/fu-phys.svg');
-$fu-wind: url('/systems/projectfu/styles/static/icons/fu-wind.svg');
-$fu-bolt: url('/systems/projectfu/styles/static/icons/fu-bolt.svg');
-$fu-dark: url('/systems/projectfu/styles/static/icons/fu-dark.svg');
-$fu-earth: url('/systems/projectfu/styles/static/icons/fu-earth.svg');
-$fu-fire: url('/systems/projectfu/styles/static/icons/fu-fire.svg');
-$fu-ice: url('/systems/projectfu/styles/static/icons/fu-ice.svg');
-$fu-light: url('/systems/projectfu/styles/static/icons/fu-light.svg');
-$fu-poison: url('/systems/projectfu/styles/static/icons/fu-poison.svg');
-
-.fu-action-melee {
-	background-image: $fu-action-melee;
-}
-
-.fu-action-ranged {
-	background-image: $fu-action-ranged;
-}
-
-.fu-action-skill {
-	background-image: $fu-action-skill;
-}
-
-.fu-action-spell {
-	background-image: $fu-action-spell;
+.fu-zenit {
+	background-image: $fu-zenit;
 }
 
 .fus-offensive {
@@ -57,59 +30,23 @@ $fu-poison: url('/systems/projectfu/styles/static/icons/fu-poison.svg');
 	background-image: $ful-martial;
 }
 
-.fu-d20 {
-	background-image: $fu-d20;
-}
-
-.fu-guard {
-	background-image: $fu-guard;
-}
-
-.fu-phys {
-	background-image: $fu-phys;
-}
-
-.fu-wind {
-	background-image: $fu-wind;
-}
-
-.fu-bolt {
-	background-image: $fu-bolt;
-}
-
-.fu-dark {
-	background-image: $fu-dark;
-}
-
-.fu-earth {
-	background-image: $fu-earth;
-}
-
-.fu-fire {
-	background-image: $fu-fire;
-}
-
-.fu-ice {
-	background-image: $fu-ice;
-}
-
-.fu-light {
-	background-image: $fu-light;
-}
-
-.fu-poison {
-	background-image: $fu-poison;
-}
-
 .fu-aura {
 	background-image: url('/icons/svg/aura.svg');
+}
+
+.fua {
+	width: 24px;
+	height: 24px;
+	background-size: cover;
+	font-style: normal;
+	-webkit-text-stroke: 0.05rem black;
+	display: inline-block;
 }
 
 .fun {
 	width: 24px;
 	height: 24px;
 	background-size: cover;
-	margin: -4px 0px;
 	fill: $color-secondary;
 }
 
@@ -118,14 +55,16 @@ $fu-poison: url('/systems/projectfu/styles/static/icons/fu-poison.svg');
 	height: 24px;
 	background-size: cover;
 	fill: $color-secondary;
+	display: inline-block;
 }
 
 .fuk {
 	width: 18px;
 	height: 18px;
 	background-size: cover;
-	margin: -4px 0px;
 	fill: $color-secondary;
+	font-style: normal;
+	display: inline-block;
 }
 
 .ful-sl-star {
@@ -147,8 +86,14 @@ $fu-poison: url('/systems/projectfu/styles/static/icons/fu-poison.svg');
 	background-image: $fus-star2-border;
 }
 
+.ra-1x {
+	font-size: 1.125rem;
+	font-style: normal;
+}
+
 .ra-1xh {
 	font-size: 1.5em;
+	font-style: normal;
 }
 
 .ra.ral {
@@ -208,13 +153,15 @@ $fu-poison: url('/systems/projectfu/styles/static/icons/fu-poison.svg');
 	}
 }
 
-.spin2win:hover {
-	& i {
-		animation: hover-up-down 1s ease-in-out infinite alternate;
-	}
+.spin2win {
+	&:hover {
+		& i {
+			animation: hover-up-down 1s ease-in-out infinite alternate;
+		}
 
-	& label {
-		cursor: pointer;
+		& label {
+			cursor: pointer;
+		}
 	}
 }
 

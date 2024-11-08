@@ -1,0 +1,44 @@
+{
+  "folder": "MF2GB42tc5t7uxF8",
+  "name": "Bat Dance",
+  "type": "classFeature",
+  "_id": "71Cr58HNhFHtzTqN",
+  "img": "icons/creatures/mammals/bat-giant-tattered-purple.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.dance",
+    "data": {
+      "description": "<p>Choose one option: you gain Resistance to <strong>dark</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>dark</strong>.</p><hr><p>@LOSS[10 mp] @EFFECT[eyJuYW1lIjoiUmVzaXN0YW5jZTogRGFyayIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmRhcmsiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi1tYWdlbnRhLndlYnAifQ==]</p>",
+      "duration": "nextTurn"
+    },
+    "source": "FUHF144",
+    "fuid": "bat-dance"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710041957610,
+    "modifiedTime": 1724180861487,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 0,
+  "_key": "!items!71Cr58HNhFHtzTqN"
+}

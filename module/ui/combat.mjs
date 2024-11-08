@@ -22,6 +22,14 @@ export async function onMarkTurnTaken(combatId, combatantId) {
 	}
 }
 
+export async function onTurnChanged() {
+	CombatHUD.turnChanged();
+}
+
+export async function onRoundChanged() {
+	CombatHUD.roundChanged();
+}
+
 /**
  * @property {Collection<FUCombatant>} combatants
  */
@@ -67,11 +75,42 @@ export class FUCombat extends Combat {
 	 * @param {Object<number,string[]>} flag
 	 */
 	async setTurnsTaken(flag) {
+		console.log('setTurnsTaken', flag);
 		return this.setFlag(SYSTEM, Flags.CombatantsTurnTaken, flag);
 	}
 
 	get totalTurns() {
 		return this.combatants.reduce((sum, combatant) => sum + combatant.totalTurns, 0);
+	}
+
+	async _manageTurnEvents(adjustedTurn) {
+		if (!game.users.activeGM?.isSelf) return;
+
+		let prior = undefined;
+		if (this.previous) {
+			prior = this.combatants.get(this.previous.combatantId);
+		}
+
+		// Adjust the turn order before proceeding. Used for embedded document workflows
+		if (Number.isNumeric(adjustedTurn)) await this.update({ turn: adjustedTurn }, { turnEvents: false });
+		if (!this.started) return;
+
+		// Identify what progressed
+		const advanceRound = this.current.round > (this.previous.round ?? -1);
+		const advanceTurn = this.current.turn > (this.previous.turn ?? -1);
+		if (!(advanceTurn || advanceRound)) return;
+
+		// Conclude prior turn
+		if (prior) await this._onEndTurn(prior);
+
+		// Conclude prior round
+		if (advanceRound && this.previous.round !== null) await this._onEndRound();
+
+		// Begin new round
+		if (advanceRound) await this._onStartRound();
+
+		// Begin a new turn
+		await this._onStartTurn(this.combatant);
 	}
 
 	/**
@@ -266,6 +305,7 @@ export class FUCombat extends Combat {
 		const updateData = { round, turn: next };
 		const updateOptions = { advanceTime: CONFIG.time.turnTime, direction: 1 };
 		Hooks.callAll('combatTurn', this, updateData, updateOptions);
+		SOCKET.executeForOthers(MESSAGES.TurnChanged);
 		return this.update(updateData, updateOptions);
 	}
 
@@ -281,6 +321,7 @@ export class FUCombat extends Combat {
 		const updateData = { round: nextRound, turn };
 		const updateOptions = { advanceTime, direction: 1 };
 		Hooks.callAll('combatRound', this, updateData, updateOptions);
+		SOCKET.executeForOthers(MESSAGES.RoundChanged);
 		return this.update(updateData, updateOptions);
 	}
 }

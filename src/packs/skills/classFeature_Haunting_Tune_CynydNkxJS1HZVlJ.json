@@ -1,0 +1,41 @@
+{
+  "folder": "GvkyB5G9bl9LjwcL",
+  "name": "Haunting Tune",
+  "type": "classFeature",
+  "_id": "CynydNkxJS1HZVlJ",
+  "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.tone",
+    "data": {
+      "description": "<p>Each target suffers <strong>【@DATA[key.status]】</strong>. Each target also loses Resistance to <strong>【@DATA[key.type]】</strong> damage (if they have it) until the start of your next turn.</p>"
+    },
+    "source": "FUHF139",
+    "fuid": "haunting-tune"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710040082627,
+    "modifiedTime": 1724180861756,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!CynydNkxJS1HZVlJ"
+}

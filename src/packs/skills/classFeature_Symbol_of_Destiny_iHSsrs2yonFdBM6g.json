@@ -1,0 +1,86 @@
+{
+  "folder": "jAg187YJhvEkI5uc",
+  "name": "Symbol of Destiny",
+  "type": "classFeature",
+  "_id": "iHSsrs2yonFdBM6g",
+  "img": "icons/magic/symbols/star-solid-gold.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.symbol",
+    "data": {
+      "description": "<p>After the creature bearing this <strong>symbol </strong>makes a Check, if you are able to see them, you may spend @LOSS[1 fp] to force that creature to reroll both dice. You may only do so once per Check, and only if the Result was not a <strong>critical success</strong> or <strong>fumble</strong>.</p><hr><p>@LOSS[2 ip]</p>"
+    },
+    "source": "FUHF149",
+    "fuid": "symbol-of-destiny"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.iHSsrs2yonFdBM6g",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Destiny",
+      "img": "icons/magic/symbols/star-solid-gold.webp",
+      "_id": "K7GI9inLxnzRiIVQ",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>After the creature bearing this <strong>symbol </strong>makes a Check, if you are able to see them, you may spend 1 Fabula Point to force that creature to reroll both dice. You may only do so once per Check, and only if the Result was not a <strong>critical success</strong> or <strong>fumble</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF149",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730450095506,
+        "modifiedTime": 1730450118331,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!iHSsrs2yonFdBM6g.K7GI9inLxnzRiIVQ"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710177406622,
+    "modifiedTime": 1730726334277,
+    "lastModifiedBy": "B6evqtezy9ZsGZG3",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 1800000,
+  "_key": "!items!iHSsrs2yonFdBM6g"
+}

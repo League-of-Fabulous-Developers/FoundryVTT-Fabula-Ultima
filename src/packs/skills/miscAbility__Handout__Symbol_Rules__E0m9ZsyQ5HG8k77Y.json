@@ -1,0 +1,156 @@
+{
+  "folder": "jAg187YJhvEkI5uc",
+  "name": "[Handout: Symbol Rules]",
+  "type": "miscAbility",
+  "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_symbolism.png",
+  "system": {
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><strong>Symbols</strong> follow a set of special rules.</p><ul><li><p>A creature may <strong>only bear one symbol at a time</strong> — if they receive a new <strong>symbol</strong>, regardless of source, any previous <strong>symbol</strong> is destroyed.</p></li><li><p><strong>Symbols</strong> and their effects have unlimited durations until destroyed.</p></li><li><p>If a Symbolist dies, each <strong>symbol</strong> they created is immediately and automatically destroyed.</p></li><li><p>If a creature bearing a <strong>symbol</strong> dies, that <strong>symbol</strong> is also destroyed. However, if the creature is an NPC that simply changes its form and statistics when reduced to 0 Hit Points, that does not remove the <strong>symbol</strong>: in short, the symbol is “narratively” tied to that specific character, not to their current manifestation and parameters.</p></li><li><p>A Villain may, during a Game Master scene, spend 1 Ultima Point to destroy any number of <strong>symbols</strong> borne by themselves and by any of their allies that are present during that scene. This is the only possible way to remove a <strong>symbol</strong> against the will of the Symbolist who created it, save for the use of an opportunity appropriate to the scene or an NPC Skill specifically created by the GM (but this should be done no more than two or three times per campaign).</p></li><li><p>A Symbolist may destroy any number of their <strong>symbols</strong> at any time, no action required.</p></li><li><p>If a <strong>symbol</strong> requires you to make a choice when it is created, that choice applies to all copies of the <strong>symbol</strong> created with that action (but does not affect any copies of that <strong>symbol</strong> created through previous actions).</p></li></ul><blockquote><p><em>For instance, if a Symbolist applies two <strong>symbols of weakness (fire)</strong> through the <strong>Symbolism</strong> Skill, combining it with an attack with the <strong>multi (2)</strong> property, the creatures who receive those <strong>symbols</strong> will suffer extra damage from <strong>fire</strong>. If shortly afterwards the Symbolist applies a <strong>symbol of weakness (bolt)</strong> on a third creature, the two previous creatures will still receive extra damage from <strong>fire</strong>, not <strong>bolt</strong>.</em></p></blockquote><p>Remember that the maximum number of <strong>symbols</strong> you may have active at the same time is based on your Skill Level in <strong>Symbolism</strong>.</p><p></p><h3>ALL SYMBOLS</h3><p>@UUID[Compendium.projectfu.skills.Item.v1HYJJsqOzPWrYv8]{[Handout: Symbol List]}</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "progress": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "name": "Name"
+    },
+    "source": {
+      "value": "FUHF148"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": null
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "handout-symbol-rules"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {},
+    "projectfu-playtest": {
+      "growthClock": false
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706573669651,
+    "modifiedTime": 1724180861812,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "E0m9ZsyQ5HG8k77Y",
+  "sort": 700000,
+  "_key": "!items!E0m9ZsyQ5HG8k77Y"
+}

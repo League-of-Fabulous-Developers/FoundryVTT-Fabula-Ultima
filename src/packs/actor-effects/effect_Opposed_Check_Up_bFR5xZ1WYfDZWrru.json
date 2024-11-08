@@ -1,0 +1,76 @@
+{
+  "folder": "OkqwV9Qct6wMjKU4",
+  "name": "Opposed Check Up",
+  "type": "effect",
+  "_id": "bFR5xZ1WYfDZWrru",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "opposed-check-up"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.bFR5xZ1WYfDZWrru",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Opposed Check Up",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "_id": "Rf5G1fGWo3JmMKni",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.opposedCheck",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>Increase Opposed Check bonus by 1.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725746808832,
+        "modifiedTime": 1725746858008,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!bFR5xZ1WYfDZWrru.Rf5G1fGWo3JmMKni"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725746794576,
+    "modifiedTime": 1725746879904,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!bFR5xZ1WYfDZWrru"
+}

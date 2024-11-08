@@ -1,0 +1,43 @@
+{
+  "folder": "E9XrzgvAjI4iW0aE",
+  "name": "Clairvoyance",
+  "type": "classFeature",
+  "img": "icons/magic/holy/meditation-chi-focus-blue.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.psychicGift",
+    "data": {
+      "trigger": "When an NPC becomes your focus or when you create a Bond towards an NPC",
+      "description": "<p>You ask the Game Master a single question about that NPC, and the Game Master must answer truthfully. Then, describe what sensation revealed this information to you. You may use this gift <strong>only once</strong> on each NPC.</p>"
+    },
+    "source": "FUTF152",
+    "fuid": "clairvoyance"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711423314741,
+    "modifiedTime": 1724180862278,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "SbBJH4ofSkOHZ7Mo",
+  "sort": 500000,
+  "_key": "!items!SbBJH4ofSkOHZ7Mo"
+}

@@ -62,12 +62,13 @@ export class NpcSkillTracker {
 	}
 
 	#calcAvailableSkillsFromRank() {
-		if (this.#data.isChampion.value > 1) {
-			return this.#data.isChampion.value;
-		} else if (this.#data.isElite.value) {
-			return 1;
-		} else {
-			return 0;
+		switch (this.#data.rank.value) {
+			case 'champion':
+				return this.#data.rank.replacedSoldiers;
+			case 'elite':
+				return 1;
+			default:
+				return 0;
 		}
 	}
 
@@ -224,8 +225,11 @@ export class NpcSkillTracker {
 	}
 
 	#calcUsedSkillsFromEquipment() {
+		const exclusions = ['unarmed-strike'];
 		const equipmentTypes = ['weapon', 'shield', 'armor'];
-		const sum = equipmentTypes.reduce((total, type) => total + this.#data.actor.itemTypes[type].length, 0);
+		const exclusionCount = exclusions.reduce((total, item) => total + (this.#data.actor.getSingleItemByFuid(item) ? 1 : 0), 0);
+		const totalEquipment = equipmentTypes.reduce((total, type) => total + this.#data.actor.itemTypes[type].length, 0);
+		const sum = totalEquipment - exclusionCount;
 
 		return sum > 0 ? 1 : 0;
 	}

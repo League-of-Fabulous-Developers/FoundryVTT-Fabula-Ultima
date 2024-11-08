@@ -1,0 +1,58 @@
+{
+  "folder": "BJhRf9J1K7HT9EQu",
+  "name": "Claw Module",
+  "type": "classFeature",
+  "img": "systems/projectfu/styles/static/compendium/weapons/unarmed-strike.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.weaponModule",
+    "data": {
+      "quality": "",
+      "description": "<p>This weapon belongs to the <strong>brawling</strong> Category.</p><p>This weapon can be used to interact with the scene as if it were a free hand.</p>",
+      "category": "brawling",
+      "damage": {
+        "bonus": 8,
+        "type": "physical"
+      },
+      "accuracy": {
+        "attr1": "dex",
+        "attr2": "ins",
+        "modifier": 0
+      },
+      "type": "melee",
+      "complex": false,
+      "shield": {
+        "defense": 2,
+        "magicDefense": 2
+      }
+    },
+    "source": "FUTF166",
+    "fuid": "claw-module"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711474388899,
+    "modifiedTime": 1724180864794,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "yn1PgUZxCTogRUH0",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!yn1PgUZxCTogRUH0"
+}

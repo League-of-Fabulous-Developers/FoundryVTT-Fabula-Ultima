@@ -1,0 +1,22 @@
+{
+  "name": "Absorbing",
+  "sorting": "a",
+  "folder": "i5zeg0gULpbqerRz",
+  "type": "Item",
+  "_id": "l6MrG5Cf50uoOXU3",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!l6MrG5Cf50uoOXU3"
+}

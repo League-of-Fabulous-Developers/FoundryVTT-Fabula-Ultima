@@ -5,12 +5,13 @@ import { Flags } from './flags.mjs';
 import { FU, SYSTEM } from './config.mjs';
 import { FUActiveEffect } from '../documents/effects/active-effect.mjs';
 import { toggleStatusEffect } from './effects.mjs';
+import { targetHandler } from './target-handler.mjs';
 
 const INLINE_EFFECT = 'InlineEffect';
 const INLINE_EFFECT_CLASS = 'inline-effect';
 
 const SUPPORTED_STATUSES = ['dazed', 'enraged', 'poisoned', 'shaken', 'slow', 'weak'];
-const BOONS_AND_BANES = ['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover'];
+const BOONS_AND_BANES = ['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked'];
 
 const enricher = {
 	pattern: /@EFFECT\[([a-zA-Z0-9+/-]+={0,3})]/g,
@@ -109,36 +110,21 @@ function activateListeners(document, html) {
 	}
 
 	html.find('a.inline.inline-effect[draggable]')
-		.on('click', function () {
+		.on('click', async function (event) {
 			const source = determineSource(document, this);
 			const effectData = fromBase64(this.dataset.effect);
 			const status = this.dataset.status;
-			const controlledTokens = canvas.tokens.controlled;
-			let actors = [];
+			const isCtrlClick = event.ctrlKey;
 
-			// Use selected token or owned actor
-			if (controlledTokens.length > 0) {
-				actors = controlledTokens.map((token) => token.actor);
-			} else {
-				const actor = game.user.character;
-				if (actor) {
-					actors.push(actor);
-				}
-			}
-
-			if (actors.length > 0) {
+			const targets = await targetHandler();
+			if (!targets.length) return;
+			targets.forEach((actor) => {
 				if (effectData) {
-					actors.forEach((actor) => onApplyEffectToActor(actor, source, effectData));
+					isCtrlClick ? onRemoveEffectFromActor(actor, source, effectData) : onApplyEffectToActor(actor, source, effectData);
 				} else if (status) {
-					actors.forEach((actor) => {
-						if (!actor.statuses.has(status)) {
-							toggleStatusEffect(actor, status, source);
-						}
-					});
+					isCtrlClick ? toggleStatusEffect(actor, status, source, { disable: true }) : !actor.statuses.has(status) && toggleStatusEffect(actor, status, source);
 				}
-			} else {
-				ui.notifications.warn(game.i18n.localize('FU.ChatApplyEffectNoActorsSelected'));
-			}
+			});
 		})
 		.on('dragstart', function (event) {
 			/** @type DragEvent */
@@ -186,6 +172,25 @@ function activateListeners(document, html) {
 					});
 			}
 		});
+}
+
+function onRemoveEffectFromActor(actor, source, effect) {
+	if (!actor) return;
+
+	const existingEffect = actor.effects.find(
+		(e) =>
+			e.getFlag(SYSTEM, FUActiveEffect.TEMPORARY_FLAG) &&
+			e.origin === source &&
+			e.changes.length === effect.changes.length &&
+			e.changes.every((change, index) => change.key === effect.changes[index].key && change.mode === effect.changes[index].mode && change.value === effect.changes[index].value),
+	);
+
+	if (existingEffect) {
+		console.log(`Removing effect: ${existingEffect.name}`);
+		existingEffect.delete();
+	} else {
+		console.log('No matching effect found to remove.');
+	}
 }
 
 function onApplyEffectToActor(actor, source, effect) {
@@ -287,7 +292,7 @@ possible changes from official effects:
 - apply vulnerability (custom) ✔
 - grant immunity (upgrade) ✔
 - grant absorption (custom) ✔
-- grant status immunity (override)
+- grant status immunity (override) ✔
 - change attack damage type (override)
 - grant additional actions (add) -> missing data field
 - lower crit threshold (override) -> not yet supported
@@ -301,6 +306,7 @@ possible changes from official effects:
  */
 
 const damageTypes = (({ untyped, ...rest }) => rest)(FU.damageTypes);
+const temporaryEffects = (({ ...rest }) => rest)(FU.temporaryEffects);
 
 /**
  *
@@ -362,6 +368,7 @@ const SUPPORTED_CHANGE_TYPES = {
 				accuracyAndMagic: 'FU.InlineEffectConfigModifyAccuracyChecksAll',
 				accuracyCheck: 'FU.InlineEffectConfigModifyAccuracyChecksAccuracy',
 				magicCheck: 'FU.InlineEffectConfigModifyAccuracyChecksMagic',
+				openCheck: 'FU.InlineEffectConfigModifyAccuracyOpenChecks',
 			},
 		},
 		toChange: ({ check, value }) => {
@@ -385,8 +392,8 @@ const SUPPORTED_CHANGE_TYPES = {
 		},
 		toChange: ({ defense, value }) => ({
 			key: `system.derived.${defense}.value`,
-			mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
-			value: value,
+			mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+			value,
 		}),
 	},
 	vulnerability: {
@@ -437,12 +444,24 @@ const SUPPORTED_CHANGE_TYPES = {
 			value: String(FU.affValue.absorption),
 		}),
 	},
+	immunityStatus: {
+		label: 'FU.InlineEffectConfigGrantStatusEffectImmunity',
+		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-status-effects.hbs',
+		templateData: {
+			temporaryEffects: temporaryEffects,
+		},
+		toChange: ({ temporaryEffect }) => ({
+			key: `system.immunities.${temporaryEffect}.base`,
+			mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+			value: true,
+		}),
+	},
 };
 
 class InlineEffectConfiguration extends FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['form', 'sheet', 'projectfu'],
+			classes: ['form', 'sheet', 'projectfu', 'unique-dialog'],
 			resizable: true,
 			height: 'auto',
 			closeOnSubmit: false,

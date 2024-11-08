@@ -29,6 +29,75 @@
         {{/each}}
     </ol>
 
+    <!-- Skill Item Section only shown if the actor has skill items -->
+    {{#if skills.length}}
+    <ol class="items-list">
+        <li class="item flexrow items-header">
+            <div class="item-name">{{localize 'FU.Skills'}}</div>
+            <div class="item-lg">{{localize 'FU.SkillLevel'}}</div>
+            <div class="item-m end">
+                <a class="item-control item-create" aria-describedby="tooltip"
+                   data-tooltip="{{localize 'FU.SkillCreate'}}" data-type="skill">
+                    <i class="fas fa-plus icon"></i>
+                    {{localize 'FU.Add'}}
+                </a>
+            </div>
+        </li>
+        {{#each skills as |item id|}}
+            <li class="item" data-item-id="{{ item._id }}">
+                <div class="flexrow" style="height: fit-content; align-items: flex-start;">
+                    <div class="flexcol">
+                        {{!-- Item Name--}}
+                        {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                        {{#if item.quality}}
+                            <div class="item-quality">{{ item.quality }}</div>
+                        {{/if}}
+                    </div>
+                    {{!-- Resource Points --}}
+                    {{#if item.system.hasResource.value}}
+                        <div class="item-m flexcol flex-group-center resource-content">
+                            <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{ item.system.rp.name }}</label>
+                            <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
+                                <a class="decrement-button" data-type="resourceCounter"
+                                   data-item-id="{{ item._id }}">-</a>
+                                <span data-resource="item.rp">{{ item.system.rp.current }}</span>
+                                {{#if (gt item.system.rp.max 0)}}
+                                    <span>/</span>
+                                    <span>{{ item.system.rp.max }}</span>
+                                {{/if}}
+
+                                <a class="increment-button" data-type="resourceCounter"
+                                   data-item-id="{{ item._id }}">+</a>
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{!-- Star Tracker--}}
+                    <div class="skillLevel item-lg sl-stars">
+                        {{#each item.skillArr as |level|}}
+                            <div class="star-radio-container">
+                                <input type="radio" name="skillLevel_{{ item._id }}"
+                                       id="skillLevel_{{ item._id }}_{{ level.id }}" value="{{ level.id }}" {{#if
+                                        level.checked}}checked{{/if}} data-item-id="{{ item._id }}"
+                                       class="hidden-radio">
+                                <label for="skillLevel_{{ item._id }}_{{ level.id }}"
+                                       class="star-label {{#if
+                                        (lte level.id item.system.level.value)}} fus-sl-star {{else}}ful-sl-star{{/if}}"></label>
+                            </div>
+                        {{/each}}
+                    </div>
+                    {{!-- Item Control--}}
+                    {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+                </div>
+                <div class="individual-description align-left">
+                    {{#if item.system.description}}
+                        {{{item.enrichedHtml.description}}}
+                    {{/if}}
+                </div>
+            </li>
+        {{/each}}
+    </ol>
+    {{/if}}
+
     <ol class="items-list">
         <li class="item flexrow items-header">
             <div class="item-name">{{localize 'FU.Spells'}}</div>
@@ -45,14 +114,14 @@
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                    <div class="item-m">{{ item.duration }}</div>
-                    <div class="item-lg">{{ item.target }}</div>
+                    <div class="item-m">{{capitalize item.duration }}</div>
+                    <div class="item-lg">{{capitalize item.target }}</div>
                     <div class="item-m">
                         <span>{{ item.mpCost }}</span>
                     </div>
                     {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
-                <div class="individual-description align-left">
+                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                     {{#if item.system.description}}
                         {{{item.enrichedHtml.description}}}
                     {{/if}}
@@ -79,13 +148,7 @@
                     <div class="flexcol">
                         {{!-- Item Name--}}
                         {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                        {{#if item.system.subtype}}
-                            <div class="item-quality">{{capitalize item.system.subtype.value}}</div>
-                        {{/if}}
                     </div>
-                    {{!-- <div class="item-full start description-effect">
-                        <p>{{ item.system.summary.value}}</p>
-                    </div> --}}
                     <div class="item-full start tiny-desc">
                     <span class="description-effect">
                         {{#if item.system.description}}
@@ -96,8 +159,8 @@
 
                     {{!-- Resource Points --}}
                     {{#if item.system.hasResource.value}}
-                        <div class="item-m desc flexcol flex-group-center resource-content">
-                            <label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
+                        <div class="item-m inline-desc flexcol flex-group-center resource-content"  style="padding: 0">
+                            <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{ item.system.rp.name }}</label>
                             <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
                                 <a class="decrement-button" data-type="resourceCounter"
                                    data-item-id="{{ item._id }}">-</a>
@@ -113,7 +176,7 @@
                     {{/if}}
                     {{!-- Clocks --}}
                     {{#if item.system.hasClock.value}}
-                        <div class="item-m desc" style="text-align: initial; padding: 1px;">
+                        <div class="item-m inline-desc" style="text-align: initial; padding: 2px;">
                             <a class="decrement-button align-left" data-type="clockCounter"
                                data-item-id="{{ item._id }}"> <i
                              class="fas fa-minus"></i></a>
@@ -131,7 +194,7 @@
                     {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                 </div>
                 <span class="item-quality">{{ item.quality }}</span>
-                <div class="individual-description align-left">
+                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                     {{#if item.system.description}}
                         {{{item.enrichedHtml.description}}}
                     {{/if}}
@@ -167,7 +230,7 @@
                     </div>
                     {{!-- Clocks --}}
                     {{#if item.system.hasClock.value}}
-                        <div class="item-m desc" style="text-align: initial; padding: 1px;">
+                        <div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
                             <a class="decrement-button align-left" data-type="clockCounter"
                                data-item-id="{{ item._id }}"> <i
                              class="fas fa-minus"></i></a>

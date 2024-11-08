@@ -1,27 +1,28 @@
 {{!-- Resource Points --}}
 {{#if system.hasResource.value}}
-    <fieldset class="title-fieldset desc ">
-        <legend>
-            <input type="text" name="system.rp.name" value="{{ system.rp.name }}" data-dtype="String"
-                   placeholder="{{localize 'FU.ResourcePoints'}}"
-                   class="resource-label-m resource-inputs select-dropdown-l" />
-        </legend>
-        <div class="grid grid-3col">
-            <div class=" flexcol flex-group-center">
-                <label class="resource-label-m">{{localize 'FU.Current'}}</label>
-                <input type="number" name="system.rp.current" value="{{ system.rp.current }}"
-                       class="resource-inputs select-dropdown-m" />
-            </div>
-            <div class=" flexcol flex-group-center">
-                <label class="resource-label-m">{{localize 'FU.Step'}}</label>
-                <input type="number" name="system.rp.step" value="{{ system.rp.step }}"
-                       class="resource-inputs select-dropdown-m" />
-            </div>
-            <div class=" flexcol flex-group-center">
-                <label class="resource-label-m">{{localize 'FU.Max'}}</label>
-                <input type="number" name="system.rp.max" value="{{ system.rp.max }}"
-                       class="resource-inputs select-dropdown-m" />
-            </div>
+<fieldset class="title-fieldset desc ">
+    <legend class="flex-group-center gap-5"
+        data-tooltip="{{localize 'FU.ResourcePoints'}}<br>{{ system.rp.name }}">
+        <i class="fas fa-hashtag"></i>
+        <input type="text" name="system.rp.name" value="{{ system.rp.name }}" data-dtype="String"
+            placeholder="{{localize 'FU.ResourcePoints'}}" class="resource-label-m resource-inputs select-dropdown-l" />
+    </legend>
+    <div class="grid grid-3col">
+        <div class=" flexcol flex-group-center">
+            <label class="resource-label-m">{{localize 'FU.Current'}}</label>
+            <input type="number" name="system.rp.current" value="{{ system.rp.current }}"
+                class="resource-inputs select-dropdown-m" />
         </div>
-    </fieldset>
+        <div class=" flexcol flex-group-center">
+            <label class="resource-label-m">{{localize 'FU.Step'}}</label>
+            <input type="number" name="system.rp.step" value="{{ system.rp.step }}"
+                class="resource-inputs select-dropdown-m" />
+        </div>
+        <div class=" flexcol flex-group-center">
+            <label class="resource-label-m">{{localize 'FU.Max'}}</label>
+            <input type="number" name="system.rp.max" value="{{ system.rp.max }}"
+                class="resource-inputs select-dropdown-m" />
+        </div>
+    </div>
+</fieldset>
 {{/if}}

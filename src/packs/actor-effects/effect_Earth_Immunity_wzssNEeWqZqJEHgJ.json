@@ -1,0 +1,76 @@
+{
+  "folder": "jJ6nd24qtwNQXVDs",
+  "name": "Earth Immunity",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/earth.svg",
+  "system": {
+    "fuid": "earth-immunity"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.wzssNEeWqZqJEHgJ",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Earth Immunity",
+      "img": "systems/projectfu/styles/static/affinities/earth.svg",
+      "_id": "snfg06uZBDhmV7sq",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.earth.current",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725754115823,
+        "modifiedTime": 1725754220423,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!wzssNEeWqZqJEHgJ.snfg06uZBDhmV7sq"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750163418,
+    "modifiedTime": 1725750163418,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "wzssNEeWqZqJEHgJ",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!wzssNEeWqZqJEHgJ"
+}

@@ -1,0 +1,143 @@
+{
+  "name": "Shell",
+  "type": "spell",
+  "img": "icons/magic/defensive/barrier-shield-dome-pink.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>Until this spell ends, you gain Resistance to <strong>physical</strong> damage.</p><hr /><p>@EFFECT[eyJuYW1lIjoiU2hlbGwiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5waHlzaWNhbCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9iYXJyaWVyLXNoaWVsZC1kb21lLXBpbmsud2VicCJ9]</p><p>@LOSS[10 mp]</p>",
+    "isFavored": {
+      "value": false
+    },
+    "class": {
+      "value": "NPC"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "mpCost": {
+      "value": "10"
+    },
+    "target": {
+      "value": "Self"
+    },
+    "duration": {
+      "value": "instantaneous"
+    },
+    "isOffensive": {
+      "value": false
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "rollInfo": {
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      },
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR311"
+    },
+    "subtype": {},
+    "opportunity": "",
+    "maxTargets": {
+      "value": 1
+    },
+    "fuid": "shell"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": null
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1690417015023,
+    "modifiedTime": 1724180864891,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "folder": "PpBzAnM7EK75ayIT",
+  "_id": "zf8HeDLrqXVMhGt4",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!zf8HeDLrqXVMhGt4"
+}

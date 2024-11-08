@@ -1,10 +1,17 @@
 import { FU, SYSTEM } from './config.mjs';
-import { applyDamage } from './apply-damage.mjs';
+import { applyDamagePipelineWithHook } from './apply-damage.mjs';
 import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
+import { targetHandler } from './target-handler.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
+
+/**
+ * @typedef SourceInfo
+ * @prop {string | null} uuid
+ * @prop {string | null} name
+ */
 
 /**
  * @type {TextEditorEnricherConfig}
@@ -36,30 +43,42 @@ function enricher(text, options) {
 /**
  * @param {ClientDocument} document
  * @param {HTMLElement} element
- * @returns {string}
+ * @returns {SourceInfo}
  */
 function determineSource(document, element) {
 	let source = game.i18n.localize('FU.UnknownDamageSource');
+	let sourceUuid = null;
 	if (document instanceof FUActor) {
 		const itemId = $(element).closest('[data-item-id]').data('itemId');
 		if (itemId) {
-			source = document.items.get(itemId).name;
+			const item = document.items.get(itemId);
+			source = item.name;
+			sourceUuid = item.uuid;
 		} else {
 			source = document.name;
+			sourceUuid = document.uuid;
 		}
 	} else if (document instanceof FUItem) {
 		source = document.name;
+		sourceUuid = document.uuid;
 	} else if (document instanceof ChatMessage) {
 		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
 		if (speakerActor) {
 			source = speakerActor.name;
+			sourceUuid = speakerActor.uuid;
 		}
 		const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
 		if (item) {
 			source = item.name;
+			sourceUuid = item.uuid;
 		}
 	}
-	return source;
+	/** @type {SourceInfo} */
+	const result = {
+		uuid: sourceUuid,
+		name: source,
+	};
+	return result;
 }
 
 /**
@@ -72,28 +91,14 @@ function activateListeners(document, html) {
 	}
 
 	html.find('a.inline.inline-damage[draggable]')
-		.on('click', function () {
+		.on('click', async function () {
 			const amount = Number(this.dataset.amount);
 			const type = this.dataset.type;
-			const user = game.user;
-			const source = determineSource(document, this);
-			const controlledTokens = canvas.tokens.controlled;
-			let actors = [];
-
-			// Use selected token or owned actor
-			if (controlledTokens.length > 0) {
-				actors = controlledTokens.map((token) => token.actor);
-			} else {
-				const actor = user.character;
-				if (actor) {
-					actors.push(actor);
-				}
-			}
-
-			if (actors.length > 0) {
-				applyDamage(actors, type, amount, {}, source || 'inline damage');
-			} else {
-				ui.notifications.warn('FU.ChatApplyDamageNoActorsSelected', { localize: true });
+			const sourceInfo = determineSource(document, this);
+			let targets = await targetHandler();
+			if (targets.length > 0) {
+				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
+				await applyDamagePipelineWithHook({ event: null, targets, sourceUuid: sourceInfo.uuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 			}
 		})
 		.on('dragstart', function (event) {
@@ -102,11 +107,11 @@ function activateListeners(document, html) {
 			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
 				return;
 			}
-			const source = determineSource(document, this);
 
+			const sourceInfo = determineSource(document, this);
 			const data = {
 				type: INLINE_DAMAGE,
-				source: source,
+				source: sourceInfo,
 				damageType: this.dataset.type,
 				amount: this.dataset.amount,
 			};
@@ -117,7 +122,8 @@ function activateListeners(document, html) {
 
 function onDropActor(actor, sheet, { type, damageType, amount, source, ignore }) {
 	if (type === INLINE_DAMAGE) {
-		applyDamage([actor], damageType, Number(amount), {}, source || 'something');
+		const baseDamageInfo = { type: damageType, total: Number(amount), modifierTotal: 0 };
+		applyDamagePipelineWithHook({ event: null, targets: [actor], sourceUuid: source.uuid, sourceName: source.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 		return false;
 	}
 }

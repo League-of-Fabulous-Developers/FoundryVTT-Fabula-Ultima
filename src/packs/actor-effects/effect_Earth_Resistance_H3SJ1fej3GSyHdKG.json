@@ -1,0 +1,76 @@
+{
+  "folder": "KoamGTrOopqqmbxH",
+  "name": "Earth Resistance",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/earth.svg",
+  "system": {
+    "fuid": "earth-resistance"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.H3SJ1fej3GSyHdKG",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Earth Resistance",
+      "img": "systems/projectfu/styles/static/affinities/earth.svg",
+      "_id": "qtuzit3IPq9yaoJ4",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.earth",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725754474466,
+        "modifiedTime": 1725754511362,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!H3SJ1fej3GSyHdKG.qtuzit3IPq9yaoJ4"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750014969,
+    "modifiedTime": 1725750014969,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "H3SJ1fej3GSyHdKG",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!H3SJ1fej3GSyHdKG"
+}

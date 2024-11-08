@@ -1,0 +1,76 @@
+{
+  "name": "Piercing",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 400
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Piercing",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Damage dealt by the weapon ignores Resistances.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Offensive",
+          "cost": "400",
+          "CrisisInteraction": "none",
+          "source": "FUCR269"
+        }
+      },
+      "_id": "Bcstwj9R41jdjEfh",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": "Compendium.world.weaponqualities.Item.IRhl8FEN6dzHAuhT.ActiveEffect.9RYq1bSswXmmUmCR",
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1728749884726,
+        "modifiedTime": 1728775168246,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!l8Iw5eSxnGsKIvGj.Bcstwj9R41jdjEfh"
+    }
+  ],
+  "folder": "SH8cHX3lJkZlLgj8",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747193107,
+    "modifiedTime": 1728747193107,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "l8Iw5eSxnGsKIvGj",
+  "sort": 1900000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!l8Iw5eSxnGsKIvGj"
+}

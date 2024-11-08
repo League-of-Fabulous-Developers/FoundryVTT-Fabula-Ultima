@@ -1,0 +1,79 @@
+{
+  "folder": "yhBjvKUA0TH2OieA",
+  "name": "Weapon Damage Up",
+  "type": "effect",
+  "_id": "Xyj06G4k7oBerngN",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "fuid": "weapon-damage-up",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.equipment-effects.Item.Xyj06G4k7oBerngN",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Weapoon Damage Up",
+      "img": "icons/svg/aura.svg",
+      "_id": "BR1Px5kJR8al9qWM",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.damage.value",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1728758779688,
+        "modifiedTime": 1728759116843,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!Xyj06G4k7oBerngN.BR1Px5kJR8al9qWM"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728758765914,
+    "modifiedTime": 1728758765914,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_key": "!items!Xyj06G4k7oBerngN"
+}

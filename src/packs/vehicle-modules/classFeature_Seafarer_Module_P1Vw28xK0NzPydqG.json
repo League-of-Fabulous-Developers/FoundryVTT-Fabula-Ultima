@@ -1,0 +1,42 @@
+{
+  "folder": "OcoOq5td7Ya9GOPU",
+  "name": "Seafarer Module",
+  "type": "classFeature",
+  "img": "icons/magic/water/wave-water-rolling-blue.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.supportModule",
+    "data": {
+      "description": "<p>This <strong>personal vehicle</strong> can travel on water and underwater.</p>",
+      "complex": false
+    },
+    "source": "FUTF169",
+    "fuid": "seafarer-module"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711477046202,
+    "modifiedTime": 1724180864719,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "P1Vw28xK0NzPydqG",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!P1Vw28xK0NzPydqG"
+}

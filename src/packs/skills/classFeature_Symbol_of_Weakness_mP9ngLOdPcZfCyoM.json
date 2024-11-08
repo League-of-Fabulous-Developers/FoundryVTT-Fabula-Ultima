@@ -1,0 +1,86 @@
+{
+  "folder": "jAg187YJhvEkI5uc",
+  "name": "Symbol of Weakness",
+  "type": "classFeature",
+  "_id": "mP9ngLOdPcZfCyoM",
+  "img": "icons/magic/death/skull-poison-green.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.symbol",
+    "data": {
+      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> suffers 5 extra damage from sources dealing damage of the chosen type.</p><hr><p>@LOSS[2 ip]</p>"
+    },
+    "source": "FUHF151",
+    "fuid": "symbol-of-weakness"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.mP9ngLOdPcZfCyoM",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Weakness",
+      "img": "icons/magic/death/skull-poison-green.webp",
+      "_id": "1k3J3U9qsFPObWVa",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> suffers 5 extra damage from sources dealing damage of the chosen type.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF151",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730910825288,
+        "modifiedTime": 1730910881562,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!mP9ngLOdPcZfCyoM.1k3J3U9qsFPObWVa"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710178202872,
+    "modifiedTime": 1724180863065,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 1900000,
+  "_key": "!items!mP9ngLOdPcZfCyoM"
+}

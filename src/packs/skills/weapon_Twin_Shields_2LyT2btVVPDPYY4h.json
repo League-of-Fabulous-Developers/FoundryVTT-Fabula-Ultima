@@ -1,0 +1,144 @@
+{
+  "folder": "rh1Z5dIGbWFOZSll",
+  "name": "Twin Shields",
+  "type": "weapon",
+  "_id": "2LyT2btVVPDPYY4h",
+  "img": "systems/projectfu/styles/static/compendium/twin-shields/twin-shields.png",
+  "system": {
+    "source": {
+      "value": "FUCR196"
+    },
+    "summary": {
+      "value": ""
+    },
+    "category": {
+      "value": "brawling"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "type": {
+      "value": "melee"
+    },
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "isMartial": {
+      "value": false
+    },
+    "isCustomWeapon": {
+      "value": false
+    },
+    "quality": {
+      "value": "Deals extra damage equal to your【SL】in defensive mastery (above)."
+    },
+    "cost": {
+      "value": 100
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "damage": {
+      "value": 5
+    },
+    "subtype": {},
+    "description": "",
+    "isEquipped": {
+      "value": false
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "defense": "def",
+    "fuid": "twin-shields"
+  },
+  "effects": [
+    {
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Twin Shields",
+      "_id": "oaHQT6sqi0iC32QB",
+      "changes": [],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.331",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1725903776637,
+        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "systems/projectfu/styles/static/compendium/twin-shields/twin-shields.png",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
+      "_key": "!items.effects!2LyT2btVVPDPYY4h.oaHQT6sqi0iC32QB"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1707628405753,
+    "modifiedTime": 1724180861316,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 100000,
+  "_key": "!items!2LyT2btVVPDPYY4h"
+}

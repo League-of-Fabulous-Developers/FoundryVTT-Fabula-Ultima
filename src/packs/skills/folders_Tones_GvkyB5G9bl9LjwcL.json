@@ -1,0 +1,19 @@
+{
+  "name": "Tones",
+  "sorting": "a",
+  "folder": "NSF7G1xLIJ71r9qX",
+  "type": "Item",
+  "_id": "GvkyB5G9bl9LjwcL",
+  "sort": 200000,
+  "color": "#E52424",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706552310732,
+    "modifiedTime": 1708922528145,
+    "lastModifiedBy": "ebg6FQH2cPZYwDuu"
+  },
+  "_key": "!folders!GvkyB5G9bl9LjwcL"
+}

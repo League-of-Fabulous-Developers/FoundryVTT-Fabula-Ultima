@@ -1,0 +1,76 @@
+{
+  "folder": "Z7sOoJ1jkwGP6nE3",
+  "name": "Alter Damage Type (Bolt)",
+  "type": "effect",
+  "_id": "sA4Ow3sFpVUnfcII",
+  "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+  "system": {
+    "fuid": "alter-damage-type-bolt"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.equipment-effects.Item.sA4Ow3sFpVUnfcII",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Alter Damage Type (Bolt)",
+      "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+      "_id": "oZe4OoULtGYRO6od",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.damageType.value",
+          "mode": 5,
+          "value": "bolt",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725774557301,
+        "modifiedTime": 1725774602230,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!sA4Ow3sFpVUnfcII.oZe4OoULtGYRO6od"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725774549485,
+    "modifiedTime": 1725774553301,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!sA4Ow3sFpVUnfcII"
+}

@@ -1,0 +1,44 @@
+{
+  "folder": "iZnEw7B6koQcAdRk",
+  "name": "Key of Frost",
+  "type": "classFeature",
+  "_id": "QZOttsghYTCeqnCx",
+  "img": "icons/magic/water/elemental-water.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.key",
+    "data": {
+      "type": "ice",
+      "status": "weak",
+      "attribute": "wlp",
+      "recovery": "mp"
+    },
+    "source": "FUHF138",
+    "fuid": "key-of-frost"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710038273661,
+    "modifiedTime": 1724180862186,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!QZOttsghYTCeqnCx"
+}

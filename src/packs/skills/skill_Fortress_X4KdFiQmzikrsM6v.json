@@ -1,0 +1,193 @@
+{
+  "folder": "BdAXAA3IkZnarpJX",
+  "name": "Fortress",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_fortress.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>Permanently increase your maximum Hit Points by <strong>【SL × 3】</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Guardian"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR196"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "fortress"
+  },
+  "effects": [
+    {
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Fortress",
+      "_id": "6qHoygYUxyY8biDV",
+      "changes": [
+        {
+          "key": "system.resources.hp.bonus",
+          "mode": 2,
+          "value": "3*@system.level.value",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p>Permanently increase your maximum Hit Points by <strong>【SL × 3】</strong>.</p><table><tbody><tr><td><p><strong>SL1: 3</strong></p></td><td><p><strong>SL2: 6</strong></p></td><td><p><strong>SL3: 9</strong></p></td><td><p><strong>SL4: 12</strong></p></td><td data-colwidth=\"108\"><p><strong>SL5: 15</strong></p></td></tr></tbody></table></li></ul>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.331",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1723766450814,
+        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_fortress.png",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
+      "_key": "!items.effects!X4KdFiQmzikrsM6v.6qHoygYUxyY8biDV"
+    }
+  ],
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706503528196,
+    "modifiedTime": 1724180862401,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "X4KdFiQmzikrsM6v",
+  "sort": 400000,
+  "_key": "!items!X4KdFiQmzikrsM6v"
+}

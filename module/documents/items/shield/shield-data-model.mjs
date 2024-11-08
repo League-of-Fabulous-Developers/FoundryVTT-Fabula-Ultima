@@ -1,6 +1,68 @@
 import { FU } from '../../../helpers/config.mjs';
-import { IsEquippedDataModel } from '../common/is-equipped-data-model.mjs';
 import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
+
+/**
+ * @param {CheckV2} check
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallbackRegistration} registerCallback
+ */
+const prepareCheck = (check, actor, item, registerCallback) => {
+	if (check.type === 'accuracy' && item.system instanceof ShieldDataModel) {
+		check.primary = item.system.attributes.primary.value;
+		check.secondary = item.system.attributes.secondary.value;
+		check.modifiers.push({
+			label: 'FU.AccuracyCheckBaseAccuracy',
+			value: item.system.accuracy.value,
+		});
+
+		const configurer = AccuracyCheck.configure(check)
+			.setDamage(item.system.damageType.value, item.system.damage.value)
+			.setTargetedDefense(item.system.defense)
+			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
+
+		const attackTypeBonus = actor.system.bonuses.damage[item.system.type.value] ?? 0;
+		if (attackTypeBonus) {
+			configurer.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
+		}
+		const weaponCategoryBonus = actor.system.bonuses.damage[item.system.category.value] ?? 0;
+		if (weaponCategoryBonus) {
+			configurer.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
+		}
+	}
+};
+
+Hooks.on(CheckHooks.prepareCheck, prepareCheck);
+
+/**
+ * @param {CheckRenderData} data
+ * @param {CheckResultV2} result
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ */
+function onRenderCheck(data, result, actor, item) {
+	if (item && item.system instanceof ShieldDataModel) {
+		data.push(async () => ({
+			order: CHECK_DETAILS,
+			partial: 'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
+			data: {
+				weapon: {
+					category: item.system.category.value,
+					hands: item.system.hands.value,
+					type: item.system.type.value,
+					quality: item.system.quality.value,
+					summary: item.system.summary.value,
+					description: await TextEditor.enrichHTML(item.system.description),
+				},
+			},
+		}));
+	}
+}
+
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @property {string} subtype.value
@@ -11,7 +73,6 @@ import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mj
  * @property {number} cost.value
  * @property {boolean} isMartial.value
  * @property {string} quality.value
- * @property {IsEquippedDataModel} isEquipped
  * @property {number} def.value
  * @property {number} mdef.value
  * @property {number} init.value
@@ -26,7 +87,6 @@ import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mj
  * @property {DamageType} damageType.value
  * @property {boolean} isBehavior.value
  * @property {number} weight.value
- * @property {boolean} isDualShield.value
  * @property {string} source.value
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  */
@@ -34,6 +94,7 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
+			fuid: new StringField(),
 			subtype: new SchemaField({ value: new StringField() }),
 			summary: new SchemaField({ value: new StringField() }),
 			description: new HTMLField(),
@@ -42,7 +103,6 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			isMartial: new SchemaField({ value: new BooleanField() }),
 			quality: new SchemaField({ value: new StringField() }),
-			isEquipped: new EmbeddedDataField(IsEquippedDataModel, {}),
 			def: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			mdef: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			init: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
@@ -57,7 +117,6 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 			damageType: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			isDualShield: new SchemaField({ value: new BooleanField() }),
 			source: new SchemaField({ value: new StringField() }),
 			rollInfo: new SchemaField({
 				useWeapon: new SchemaField({
@@ -68,6 +127,6 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	transferEffects() {
-		return this.isEquipped.value;
+		return this.parent.isEquipped && !this.parent.actor?.system.vehicle.weaponsActive;
 	}
 }

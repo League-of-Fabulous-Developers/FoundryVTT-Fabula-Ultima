@@ -1,0 +1,75 @@
+{
+  "name": "Mind Drain",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 1000
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Mind Drain",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>Whenever you hit one or more creatures with this weapon, each of them loses @LOSS[10 mp].</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Offensive",
+          "CrisisInteraction": "none",
+          "source": "FUCR270"
+        }
+      },
+      "_id": "lH9bOwSBVE709x02",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728775203880,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!jyLNUQrZZ7MfdueX.lH9bOwSBVE709x02"
+    }
+  ],
+  "folder": "SH8cHX3lJkZlLgj8",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747193107,
+    "modifiedTime": 1728747193107,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "jyLNUQrZZ7MfdueX",
+  "sort": 800000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!jyLNUQrZZ7MfdueX"
+}

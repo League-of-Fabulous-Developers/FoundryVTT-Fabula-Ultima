@@ -1,4 +1,11 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+
+Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+	if (item?.system instanceof RuleDataModel) {
+		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+	}
+});
 
 /**
  * @property {string} subtype.value
@@ -16,6 +23,7 @@ export class RuleDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
+			fuid: new StringField(),
 			subtype: new SchemaField({ value: new StringField() }),
 			summary: new SchemaField({ value: new StringField() }),
 			description: new HTMLField(),

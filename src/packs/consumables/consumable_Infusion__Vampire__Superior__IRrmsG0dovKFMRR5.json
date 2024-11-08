@@ -1,0 +1,50 @@
+{
+  "name": "Infusion: Vampire (Superior)",
+  "type": "consumable",
+  "_id": "IRrmsG0dovKFMRR5",
+  "img": "icons/skills/melee/strike-sword-blood-red.webp",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p>For <strong>@LOSS[2 ip]</strong> choose one option: you recover an amount of HP equal to half the HP loss suffered by the target of the attack; <strong>or</strong> you recover an amount of MP equal to half the HP loss suffered by the target of the attack.</p><p>This infusion can only be used if the attack targeted a single creature.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 2
+    },
+    "source": {
+      "value": "FUCR214"
+    },
+    "fuid": "infusion-vampire-superior"
+  },
+  "effects": [],
+  "folder": "fzwKXW1w0wvmyDbk",
+  "sort": 250000,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1707096643714,
+    "modifiedTime": 1724180864589,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!IRrmsG0dovKFMRR5"
+}

@@ -1,0 +1,86 @@
+{
+  "folder": "jAg187YJhvEkI5uc",
+  "name": "Symbol of Despair",
+  "type": "classFeature",
+  "_id": "Tr7be00yVo0KtNvA",
+  "img": "icons/magic/symbols/mask-yellow-orange.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.symbol",
+    "data": {
+      "description": "<p>When the creature bearing this <strong>symbol </strong>recovers Hit Points and/or Mind Points during conflicts, instead they only recover <strong>half </strong>the normal amount of Hit Points and/or Mind Points, respectively.</p><hr><p>@LOSS[2 ip]</p>"
+    },
+    "source": "FUHF149",
+    "fuid": "symbol-of-despair"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.Tr7be00yVo0KtNvA",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Despair",
+      "img": "icons/magic/symbols/mask-yellow-orange.webp",
+      "_id": "tzKS3xShNJTpezMo",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>When the creature bearing this <strong>symbol </strong>recovers Hit Points and/or Mind Points during conflicts, instead they only recover <strong>half </strong>the normal amount of Hit Points and/or Mind Points, respectively.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF149",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730449967668,
+        "modifiedTime": 1730450033905,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!Tr7be00yVo0KtNvA.tzKS3xShNJTpezMo"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710177366191,
+    "modifiedTime": 1724180862303,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 1100000,
+  "_key": "!items!Tr7be00yVo0KtNvA"
+}

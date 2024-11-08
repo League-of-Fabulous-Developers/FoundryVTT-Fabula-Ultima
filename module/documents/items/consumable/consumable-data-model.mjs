@@ -1,3 +1,12 @@
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { FU } from '../../../helpers/config.mjs';
+
+Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+	if (item?.system instanceof ConsumableDataModel) {
+		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+	}
+});
+
 /**
  * @property {string} subtype.value
  * @property {string} summary.value
@@ -11,7 +20,8 @@ export class ConsumableDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
 		return {
-			subtype: new SchemaField({ value: new StringField() }),
+			fuid: new StringField(),
+			subtype: new SchemaField({ value: new StringField({ initial: 'potion', choices: Object.keys(FU.consumableType) }) }),
 			summary: new SchemaField({ value: new StringField() }),
 			description: new HTMLField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),

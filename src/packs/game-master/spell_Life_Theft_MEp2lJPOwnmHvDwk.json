@@ -1,0 +1,143 @@
+{
+  "name": "Life Theft",
+  "type": "spell",
+  "img": "icons/magic/control/energy-stream-link-large-orange.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>The target suffers <strong>HR + 15</strong> (<strong>choose type</strong>) damage. Then, you recover an amount of Hit Points equal to half the Hit Point loss they suffered.</p><hr /><p>@LOSS[10 mp]</p>",
+    "isFavored": {
+      "value": false
+    },
+    "class": {
+      "value": "NPC"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "mpCost": {
+      "value": "10"
+    },
+    "target": {
+      "value": "One creature"
+    },
+    "duration": {
+      "value": "instantaneous"
+    },
+    "isOffensive": {
+      "value": true
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "rollInfo": {
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": true
+        },
+        "type": {
+          "value": "untyped"
+        },
+        "value": 15
+      },
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "subtype": {},
+    "source": {
+      "value": "FUCR311"
+    },
+    "opportunity": "",
+    "maxTargets": {
+      "value": 1
+    },
+    "fuid": "life-theft"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": null
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1690417015023,
+    "modifiedTime": 1724180864829,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "folder": "PpBzAnM7EK75ayIT",
+  "_id": "MEp2lJPOwnmHvDwk",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!MEp2lJPOwnmHvDwk"
+}

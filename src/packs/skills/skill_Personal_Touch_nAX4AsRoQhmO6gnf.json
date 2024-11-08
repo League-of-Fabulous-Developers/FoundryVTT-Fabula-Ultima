@@ -1,0 +1,144 @@
+{
+  "folder": "SBAHplvEYQmgs8Po",
+  "name": "Personal Touch",
+  "type": "skill",
+  "_id": "nAX4AsRoQhmO6gnf",
+  "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_personal_touch.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When a creature you can see that is bearing one of your <strong>symbols</strong> suffers damage or recovers Hit Points and/or Mind Points, you may have that creature suffer <strong>【SL】</strong> extra damage or recover <strong>【SL】</strong> additional Hit Points and/or Mind Points, respectively).</p><hr /><p>SL <strong>1</strong> - @GAIN[1 hp] &amp; @GAIN[1 mp]</p><p>SL <strong>2</strong> - @GAIN[2 hp] &amp; @GAIN[2 mp]</p><p>SL <strong>3</strong> - @GAIN[3 hp] &amp; @GAIN[3 mp]</p><p>SL <strong>4</strong> - @GAIN[4 hp] &amp; @GAIN[4 mp]</p><p>SL <strong>5</strong> - @GAIN[5 hp] &amp; @GAIN[5 mp]</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Symbolist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUHF147"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "personal-touch"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706563160000,
+    "modifiedTime": 1724180863126,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 0,
+  "_key": "!items!nAX4AsRoQhmO6gnf"
+}

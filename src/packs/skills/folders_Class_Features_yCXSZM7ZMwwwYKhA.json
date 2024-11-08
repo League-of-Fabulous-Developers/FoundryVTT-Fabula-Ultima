@@ -1,0 +1,19 @@
+{
+  "name": "Class Features",
+  "sorting": "a",
+  "folder": "rU6K693IIfEXLUXW",
+  "type": "Item",
+  "_id": "yCXSZM7ZMwwwYKhA",
+  "sort": 0,
+  "color": "#381e18",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": null,
+    "modifiedTime": 1711431209856,
+    "lastModifiedBy": "YN7AhHIwAZeH33Tw"
+  },
+  "_key": "!folders!yCXSZM7ZMwwwYKhA"
+}

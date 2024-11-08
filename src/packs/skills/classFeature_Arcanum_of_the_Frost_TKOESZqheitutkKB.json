@@ -1,0 +1,98 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "Arcanum of the Frost",
+  "type": "classFeature",
+  "_id": "TKOESZqheitutkKB",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-frost.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<ul><li><p>You have Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p></li><li><p>Any <strong>ice</strong> damage you deal <strong>ignores Resistances</strong>.</p></li></ul>",
+      "dismiss": "<ul><li><p><strong>Ice Age.</strong> Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 ice]</strong> damage. This damage ignores Resistances.</p></li></ul>",
+      "domains": "cold, ice, silence"
+    },
+    "source": "FUCR179",
+    "fuid": "arcanum-of-the-frost"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.TKOESZqheitutkKB",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Merged: Frost",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-frost.png",
+      "_id": "NlNLwaqwYxflNKXr",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.ice",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "system.immunities.enraged.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p>You have Resistance to <strong>ice</strong> damage and are immune to <strong>enraged</strong>.</p></li><li><p>Any <strong>ice</strong> damage you deal ignores Resistances. </p></li></ul>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725596891866,
+        "modifiedTime": 1725597025506,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!TKOESZqheitutkKB.NlNLwaqwYxflNKXr"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710463982993,
+    "modifiedTime": 1724180862295,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 600000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!TKOESZqheitutkKB"
+}

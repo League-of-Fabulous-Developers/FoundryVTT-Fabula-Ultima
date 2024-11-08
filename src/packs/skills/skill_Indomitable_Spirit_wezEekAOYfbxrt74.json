@@ -1,0 +1,144 @@
+{
+  "folder": "gf9uvRkGXGXrNE9W",
+  "name": "Indomitable Spirit",
+  "type": "skill",
+  "_id": "wezEekAOYfbxrt74",
+  "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_indomitable_spirit.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you spend one or more Fabula Points, you get an additional benefit — choose one option: you recover <strong>【SL × 5】</strong> Hit Points; <strong>or</strong> you recover <strong>【SL × 5】</strong> Mind Points; or you recover from a single status effect of your choice.</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[5 hp] or @GAIN[5 mp]</p><p>Skill Level <strong>2</strong> - @GAIN[10 hp] or @GAIN[10 mp]</p><p>Skill Level <strong>3</strong> - @GAIN[15 hp] or @GAIN[15 mp]</p><p>Skill Level <strong>4</strong> - @GAIN[20 hp] or @GAIN[20 mp]</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Fury"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR195"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "indomitable-spirit"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706502402161,
+    "modifiedTime": 1724180863470,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 300000,
+  "_key": "!items!wezEekAOYfbxrt74"
+}

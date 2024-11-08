@@ -1,0 +1,122 @@
+{
+  "folder": "NWyKWh1qGp8D9yvJ",
+  "name": "Steel Witch",
+  "type": "heroic",
+  "img": "icons/tools/nautical/anchor-blue-orange.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Gain beneﬁts when you cast spells on a personal vehicle"
+    },
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Pilot</strong> Class.</p></blockquote><p>After you cast the <strong>first</strong> spell of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option (after the spell has been resolved): choose one enabled module and <strong>disable</strong> it, then choose one disabled module and <strong>enable</strong> it; <strong>or</strong> the next spell you cast before the end of this scene that deals damage deals 5 extra damage; <strong>or</strong> the next spell you cast before the end of this scene that restores Hit Points to one or more creatures restores 10 additional Hit Points to each of those creatures.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Pilot"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": "Sharpshooter, Weaponmaster"
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUTF177"
+    },
+    "fuid": "steel-witch"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711473807263,
+    "modifiedTime": 1724180864009,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "m6MWTDpEJqEMAb5a",
+  "sort": 0,
+  "_key": "!items!m6MWTDpEJqEMAb5a"
+}

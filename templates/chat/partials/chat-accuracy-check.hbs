@@ -1,19 +1,42 @@
-<div class="accuracy-desc align-left">
-    <div class="accuracy-box">
-        <span class="accuracy-title">{{localize 'FU.Accuracy'}}</span>
-    </div>
-    <div class="accuracy-details">
-        <span class="accuracy-detail-text">
-          {{result.attr1}} <strong>({{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}}
-            )</strong> +
-            {{result.attr2}} <strong>({{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute) 'Abbr')}}
-            )</strong>
-            {{#if result.modifier}}{{#if (gte result.modifier 0)}}+{{else}}-{{/if}} {{mathAbs result.modifier}}{{/if}}
-            {{#if result.bonus}}{{#if (gte result.bonus 0)}}+{{else}}-{{/if}} {{mathAbs result.bonus}}{{/if}}
-            {{#if result.push}}+ {{result.push}}{{/if}}
-        </span>
-    </div>
-    <div class="float-box acc-float">
-        <span class="float-text" style="">{{result.total}}</span> {{localize 'FU.ToHit'}}
+<header class="title-desc chat-header flexrow">
+    <h2 style="flex-grow: 4;">{{localize 'FU.Accuracy'}}</h2>
+    <section class="targets" style="align-items: end;">
+        <div class="fu-tags flexrow gap-5">
+            <a data-action="selectCheckCustomizer">
+                <span class='fu-tag button flex-group-center gap-5' style="filter: grayscale(100%);" data-tooltip="{{localize 'FU.CheckCustomizer'}}"><i class="icon fas fa-gear"></i></span>
+            </a>
+        </div>
+    </section>
+</header>
+
+<div class='detail-desc flexrow flex-group-center desc'>
+    <label
+        class="total {{#if result.crit}}critical{{else}}{{#if result.fumble}}fumble{{else}}default{{/if}}{{/if}} flexrow"
+        {{#if result.crit}}data-tooltip="{{localize 'FU.Critical'}}"{{/if}}
+        {{#if result.fumble}}data-tooltip="{{localize 'FU.Fumble'}}"{{/if}}
+    >
+        <div class="startcap"></div>
+        <div class="" style="flex: 0 1 auto;">{{result.total}} <label>vs</label> {{uppercase additionalData.targetedDefense}}{{uppercase details.defense}}</div>
+        <div class="endcap"></div>
+    </label>
+</div>
+
+<!-- Roll Details Section -->
+<div class="toggle-section accuracy-check-results {{#if (getGameSetting 'optionChatMessageHideRollDetails')}}hidden{{/if}}">
+    <div class="flexrow gap-5">
+        <div class='detail-desc flex-group-center grid grid-3col flex3'>
+            <div data-tooltip="(Die Size: {{result.die1}})">
+                <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr1.attribute) 'Abbr')}}</label>
+                <label class="detail">{{result.attr1}}</label>
+            </div>
+            <div data-tooltip="(Die Size: {{result.die2}})">
+                <label class="title">{{localize (concat 'FU.Attribute' (capitalize check.attr2.attribute) 'Abbr')}}</label>
+                <label class="detail">{{result.attr2}}</label>
+            </div>
+            <div {{#if modifiers}}data-tooltip="{{#each modifiers}}{{localize label}}: {{value}}{{#unless @last}}<br>{{/unless}}{{/each}}" {{/if}}>
+                <label class="title">{{localize 'FU.ModAbbr'}}</label>
+                <label class="detail">{{result.modifier}}</label>
+            </div>
+        </div>
     </div>
 </div>

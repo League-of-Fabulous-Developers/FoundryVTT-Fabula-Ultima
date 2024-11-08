@@ -1,0 +1,86 @@
+{
+  "folder": "jAg187YJhvEkI5uc",
+  "name": "Symbol of Enmity",
+  "type": "classFeature",
+  "_id": "3J1BQmBqy0Eik9vs",
+  "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.symbol",
+    "data": {
+      "description": "<p>As long as the creature bearing this <strong>symbol</strong> is in <strong>Crisis</strong>, any of that creature’s enemies who are able to see them must include them among the targets of their attacks and offensive spells ( @ICON[offensive] ), if possible.</p><hr><p>@LOSS[2 ip]</p>"
+    },
+    "source": "FUHF149",
+    "fuid": "symbol-of-enmity"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.3J1BQmBqy0Eik9vs",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Enmity",
+      "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
+      "_id": "HO2oVX7TEmvNrJlA",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>As long as the creature bearing this <strong>symbol</strong> is in <strong>Crisis</strong>, any of that creature’s enemies who are able to see them must include them among the targets of their attacks and offensive spells ( @ICON[offensive] ), if possible.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF149",
+          "CrisisInteraction": "active"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730916215232,
+        "modifiedTime": 1730916245506,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!3J1BQmBqy0Eik9vs.HO2oVX7TEmvNrJlA"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710177511545,
+    "modifiedTime": 1724180861349,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 100000,
+  "_key": "!items!3J1BQmBqy0Eik9vs"
+}

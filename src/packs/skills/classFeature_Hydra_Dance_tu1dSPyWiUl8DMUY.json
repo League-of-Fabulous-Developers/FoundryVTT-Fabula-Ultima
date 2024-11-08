@@ -1,0 +1,44 @@
+{
+  "folder": "MF2GB42tc5t7uxF8",
+  "name": "Hydra Dance",
+  "type": "classFeature",
+  "_id": "tu1dSPyWiUl8DMUY",
+  "img": "icons/creatures/reptiles/serpent-horned-green.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.dance",
+    "data": {
+      "duration": "nextTurn",
+      "description": "<p>After you suffer damage, choose one option: you recover @GAIN[5 hp], <strong>or</strong> you recover @GAIN[5 mp].</p><hr><p>@LOSS[10 mp]</p>"
+    },
+    "source": "FUHF144",
+    "fuid": "hydra-dance"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710175574863,
+    "modifiedTime": 1724180863370,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 0,
+  "_key": "!items!tu1dSPyWiUl8DMUY"
+}

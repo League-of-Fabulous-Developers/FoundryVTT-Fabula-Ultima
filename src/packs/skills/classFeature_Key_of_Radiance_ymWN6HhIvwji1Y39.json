@@ -1,0 +1,44 @@
+{
+  "folder": "iZnEw7B6koQcAdRk",
+  "name": "Key of Radiance",
+  "type": "classFeature",
+  "_id": "ymWN6HhIvwji1Y39",
+  "img": "icons/magic/light/explosion-beam-impact-silhouette.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.key",
+    "data": {
+      "type": "light",
+      "status": "dazed",
+      "attribute": "ins",
+      "recovery": "hp"
+    },
+    "source": "FUHF138",
+    "fuid": "key-of-radiance"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710038922334,
+    "modifiedTime": 1724180863519,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!ymWN6HhIvwji1Y39"
+}

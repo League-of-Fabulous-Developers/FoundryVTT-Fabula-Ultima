@@ -1,0 +1,50 @@
+{
+  "name": "Tonic",
+  "type": "consumable",
+  "img": "systems/projectfu/styles/static/compendium/consumables/tonic.png",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "One creature recovers from a single status effect."
+    },
+    "description": "<p>For @LOSS[2 ip] one creature recovers from a single status effect.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 2
+    },
+    "source": {
+      "value": "FUCR104"
+    },
+    "fuid": "tonic"
+  },
+  "effects": [],
+  "folder": "WTJwnSjYUL3GOIyA",
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706516094485,
+    "modifiedTime": 1724180864623,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "mZPZqpxSMxzpQ8uX",
+  "sort": 75000,
+  "_key": "!items!mZPZqpxSMxzpQ8uX"
+}

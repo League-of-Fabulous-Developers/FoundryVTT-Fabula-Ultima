@@ -1,0 +1,143 @@
+{
+  "folder": "NZHiCa0mU3DKOiVo",
+  "name": "Volcano (Single Target)",
+  "type": "spell",
+  "_id": "BfZqKbr38FBxLtmH",
+  "img": "icons/magic/fire/explosion-mushroom-nuke-orange.webp",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<h4>Required Heroic Skill: Volcano</h4><p>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: one creature you can see suffers @DMG[50 fire] damage; <strong>or</strong> you choose any number of creatures you can see, and each of them suffers @DMG[30 fire] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell <strong>ignores Resistances and Immunities</strong>.</p><hr /><p>@LOSS[40 mp]</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Elementalist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "ins"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "mpCost": {
+      "value": "40"
+    },
+    "target": {
+      "value": "One Creature"
+    },
+    "duration": {
+      "value": "instantaneous"
+    },
+    "isOffensive": {
+      "value": true
+    },
+    "source": {
+      "value": "FUCR241"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 50,
+        "type": {
+          "value": "fire"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "maxTargets": {
+      "value": 1
+    },
+    "fuid": "volcano-single-target"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710548265766,
+    "modifiedTime": 1724180864195,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!BfZqKbr38FBxLtmH"
+}

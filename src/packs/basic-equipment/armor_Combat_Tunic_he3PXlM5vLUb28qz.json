@@ -1,0 +1,89 @@
+{
+  "name": "Combat Tunic",
+  "type": "armor",
+  "img": "systems/projectfu/styles/static/compendium/armor/combat-tunic.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 150
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": ""
+    },
+    "isEquipped": {
+      "value": false,
+      "slot": ""
+    },
+    "def": {
+      "value": 1
+    },
+    "mdef": {
+      "value": 1
+    },
+    "init": {
+      "value": 0
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "source": {
+      "value": "FUCR132"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "fuid": "combat-tunic"
+  },
+  "effects": [],
+  "folder": "05D3J15J6lL30XAq",
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706646338093,
+    "modifiedTime": 1724180864523,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "he3PXlM5vLUb28qz",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!he3PXlM5vLUb28qz"
+}

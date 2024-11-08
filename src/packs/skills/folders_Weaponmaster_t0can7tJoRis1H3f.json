@@ -1,0 +1,19 @@
+{
+  "name": "Weaponmaster",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "t0can7tJoRis1H3f",
+  "sort": 100000,
+  "color": "#B35600",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706486460976,
+    "modifiedTime": 1719168422140,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!t0can7tJoRis1H3f"
+}

@@ -1,0 +1,42 @@
+{
+  "folder": "6hLDMWrdgLLCVK8G",
+  "name": "Amphibia",
+  "type": "classFeature",
+  "img": "icons/creatures/amphibians/frog-water-teal.webp",
+  "system": {
+    "summary": {
+      "value": "Frogs, salamanders, regenerating creatures, aquatic monsters."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.therioform",
+    "data": {
+      "description": "<p>You may breathe underwater and your eyes can see perfectly in dim light.</p><p>When you recover Hit Points, you recover an additional @GAIN[5 hp] and you may immediately recover from a single status effect of your choice.</p>"
+    },
+    "source": "FUTF156",
+    "fuid": "amphibia"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711428338643,
+    "modifiedTime": 1724180862223,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "R2Opf7lWAOrOiiC6",
+  "sort": 0,
+  "_key": "!items!R2Opf7lWAOrOiiC6"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Heroic Skills [HF]",
+  "type": "Item",
+  "color": "#861628",
+  "folder": null,
+  "_id": "gaT6Lef2xP8TZKnF",
+  "sorting": "a",
+  "sort": 100000,
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1719170706193,
+    "modifiedTime": 1719342093927,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!gaT6Lef2xP8TZKnF"
+}

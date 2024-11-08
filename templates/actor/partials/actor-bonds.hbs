@@ -7,25 +7,23 @@
         </a>
     </legend>
     <div class="bonds resource-content grid grid-5col">
-        {{#each system.resources.bonds as |bond bondIndex|}}
-            <input type="text" data-tooltip="{{ bond.name }}" name="system.resources.bonds.{{ bondIndex }}.name"
+        {{#each system.bonds as |bond bondIndex|}}
+            <input type="text" data-tooltip="{{ bond.name }}" name="system.bonds.{{ bondIndex }}.name"
                    class="bond-select resource-content resource-inputs" value="{{ bond.name }}" data-dtype="String" />
-            <select name="system.resources.bonds.{{ bondIndex }}.admInf"
+            <select name="system.bonds.{{ bondIndex }}.admInf"
                     class="bond-select resource-content resource-inputs">
                 {{selectOptions @root.FU.bonds.admInf selected=bond.admInf blank="" localize=true}}
             </select>
-            <select name="system.resources.bonds.{{ bondIndex }}.loyMis"
+            <select name="system.bonds.{{ bondIndex }}.loyMis"
                     class="bond-select resource-content resource-inputs">
                 {{selectOptions @root.FU.bonds.loyMis selected=bond.loyMis blank="" localize=true}}
             </select>
-            <select name="system.resources.bonds.{{ bondIndex }}.affHat"
+            <select name="system.bonds.{{ bondIndex }}.affHat"
                     class="bond-select resource-content resource-inputs">
                 {{selectOptions @root.FU.bonds.affHat selected=bond.affHat blank="" localize=true}}
             </select>
             <div class="resource-content flexrow" style="gap: 2px;">
-                <input class="resource-inputs" data-tooltip="{{localize 'FU.BondStrength'}}"
-                       name="system.resources.bonds.{{ bondIndex }}.strength" value="{{ bond.strength }}"
-                       data-dtype="Number" />
+                <input class="resource-inputs" data-tooltip="{{localize 'FU.BondStrength'}}" readonly value="{{ bond.strength }}" />
                 <a class="bond-delete" data-tooltip="{{localize 'FU.BondDelete'}}" data-bond-index="{{ bondIndex }}">
                     <button type="button" class="resource-inputs">
                         <i class="fas fa-xmark"></i>

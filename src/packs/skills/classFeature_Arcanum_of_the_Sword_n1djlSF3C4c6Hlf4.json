@@ -1,0 +1,104 @@
+{
+  "folder": "FyNc3kVrHbI4wz0q",
+  "name": "Arcanum of the Sword",
+  "type": "classFeature",
+  "_id": "n1djlSF3C4c6Hlf4",
+  "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-sword.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.arcanum",
+    "data": {
+      "merge": "<ul><li><p>Your attacks deal 5 extra damage, and all damage dealt by your attacks is treated as having no type (thus being unaffected by damage Affinities). Damage dealt by your attacks cannot gain a type as long as you are merged with this Arcanum.</p></li><li><p>When you perform an attack, you may have that attack gain the <strong>multi (any number of targets)</strong> property. If you do, this Arcanum will be automatically dismissed after the attack is resolved (this is not considered a willing dismiss).</p></li></ul>",
+      "dismiss": "",
+      "domains": "conquest, heroism, leadership"
+    },
+    "source": "FUCR181",
+    "fuid": "arcanum-of-the-sword"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.n1djlSF3C4c6Hlf4",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Merged: Sword",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-sword.png",
+      "_id": "K6M9JQ4eVGH6Qmaa",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.damage.melee",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.ranged",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.spell",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<ul><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">Your attacks deal 5 extra damage, and all damage dealt by your attacks is treated as having no type (thus being unaffected by damage Affinities). Damage dealt by your attacks cannot gain a type as long as you are merged with this Arcanum. </span></span></p></li><li><p style=\"box-sizing:border-box;user-select:text;margin:0px;font-family:'PT Sans Narrow', sans-serif;font-style:normal;font-size:16px;line-height:1.45em\"><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">When you perform an attack, you may have that attack gain the </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">multi (any number of targets)</strong> </span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">property. If you do, this Arcanum will be automatically dismissed after the attack is resolved (this is </span></span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text\">not </strong></span></span><span class=\"fontstyle0\" style=\"box-sizing:border-box;user-select:text\"><span style=\"font-family:'PT Sans Narrow', sans-serif\">considered a willing dismiss).</span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\"> </span></p></li></ul>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725597746753,
+        "modifiedTime": 1725597885632,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!n1djlSF3C4c6Hlf4.K6M9JQ4eVGH6Qmaa"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710464055145,
+    "modifiedTime": 1724180863116,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 1000000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!n1djlSF3C4c6Hlf4"
+}

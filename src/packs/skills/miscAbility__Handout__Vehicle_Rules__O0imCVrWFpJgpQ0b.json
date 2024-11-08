@@ -1,0 +1,154 @@
+{
+  "folder": "yCXSZM7ZMwwwYKhA",
+  "name": "[Handout: Vehicle Rules]",
+  "type": "miscAbility",
+  "_id": "O0imCVrWFpJgpQ0b",
+  "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_personal_vehicle.png",
+  "system": {
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>A Pilot's <strong>personal vehicle</strong> follows a set of special rules.</p><ul><li><p>Entering the <strong>personal vehicle</strong> during a conflict requires the <strong>Objective</strong> action.<br />Normally there is no Check required, but the Game Master may introduce a <strong>Clock</strong> if there are serious dangers or obstacles. If the <strong>personal vehicle</strong> is accessible when the conflict begins, characters may enter it immediately before the Initiative Check (see <strong>Core Rulebook</strong>, page <strong>59</strong>).</p></li><li>Leaving the <strong>personal vehicle</strong> doesn’t require an action, but during a conflict it can only be done on your turn, before or after an action.</li><li>The <strong>personal vehicle</strong> can contain a variable number of human-sized creatures depending on its <strong>frame</strong> and <strong>modules</strong>, but only its Pilot may drive it. Additionally, the other passengers cannot cover creatures when they perform the <strong>Guard</strong> action.</li><li>The maximum number of modules enabled at the same time on a <strong>personal vehicle </strong>is equal to <strong>【3 + its Pilot’s SL in Personal Vehicle】</strong>. The Pilot may freely reassign their personal vehicle’s enabled and disabled modules outside conflicts.</li></ul><p>A <strong>personal vehicle </strong>is made of the following elements:</p><ul><li>A <strong>frame </strong>that informs its general shape: <strong>Steed</strong> for riding animals, bikes, small fighters, skateboards and the likes; <strong>Exoskeleton</strong> for power armor and mechanical limbs; <strong>Mecha</strong> for large combat robots piloted from within. Each Pilot must pick the <strong>frame</strong> for their <strong>personal vehicle </strong>when they obtain the Skill. This remains unchanged for the rest of the game, so make sure to choose carefully based on your character’s style and personality, and consider the role they will have in the campaign. For instance, choosing a fighter plane doesn’t make much sense if your story takes place in the slums of a cyberpunk megalopolis (how about an anti-gravity bike instead?).</li><li>A variable number of <strong>weapon modules</strong>, <strong>armor modules</strong>, and <strong>support modules</strong> that can be connected to the <strong>personal vehicle</strong>’s control systems (enabled) or kept inactive but still attached to the frame (disabled). Some options, such as the <strong>Flexible Configuration</strong> Skill and the <strong>Secondary Offensive</strong> module, may allow you to quickly enable and disable modules, or to briefly activate a disabled module.</li></ul><p>The upcoming pages contain a detailed explanation of the various module types and the rules governing them, followed by lists of standard <strong>frames</strong> and <strong>modules</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUTF160"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "defense": "def",
+    "fuid": "handout-vehicle-rules"
+  },
+  "effects": [],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "projectfu-playtest": {
+      "growthClock": false
+    }
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711431619011,
+    "modifiedTime": 1724180862103,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_key": "!items!O0imCVrWFpJgpQ0b"
+}

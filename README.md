@@ -3,7 +3,7 @@
 ![Fabula Ultima Mod Logo - White Background](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/assets/16845165/040a116d-3419-47ee-af36-5aed128bdb2d)
 
 ![foundry-v11-green](https://img.shields.io/badge/foundry-v11-green)
-![foundry-v12-yellow](https://img.shields.io/badge/foundry-v12-yellow)
+![foundry-v12-green](https://img.shields.io/badge/foundry-v12-green)
 
 Welcome to the ProjectFU system for [Foundry Virtual Tabletop](https://foundryvtt.com/).
 
@@ -15,7 +15,7 @@ Fabula Ultima is a roleplaying game created by Emanuele Galletto and published b
 
 ## Preview
 
-![Sheet_Preview](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/assets/16845165/5c2ddd38-4132-4087-aec3-bece8fb769ee)
+![image](https://github.com/user-attachments/assets/be988378-d111-432c-bbe6-b07f97a09fef)
 
 ## Installation
 
@@ -71,15 +71,22 @@ Major thanks to the following contributors:
 - [Shourn](https://github.com/Shourn) - Refactoring of code infrastructure, the establishment of the system data model, and implementing new features.
 - [Wigginns](https://github.com/Wigginns) - Various improvements (collapsible descriptions) & fixes.
 - [KzMz](https://github.com/KzMz) - Combat HUD.
+- Joline / Liquitty - For providing custom background art for the sheet/chat card.
+- drak273 - Assisted with system compendium setup and selection of item art.
+- nyxthegender (SPG: [Link](https://startplaying.games/gm/nyxthegender)) - Assisted with restructuring system compendium and setting up journal entries.
+
 - Special thanks to the following contributors found here: [Contributors Link](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/graphs/contributors)
 
-As well as the following localizers who translated the system to their respective language:
+As well as the following localizers who translated the System UI to their respective language:
 
-- Italian ([KzMz](https://github.com/KzMz), RaurosHuntor), German ([Shourn](https://github.com/Shourn)), French ([Zakarik](https://github.com/Zakarik)), Spanish (Jakob_LP, Alejabar), Brazilian Portuguese (Lamegal), Russian (FreeDay).
+- Italian ([KzMz](https://github.com/KzMz), RaurosHuntor), German ([Shourn](https://github.com/Shourn)), French ([Zakarik](https://github.com/Zakarik)), Spanish (Jakob_LP, Alejabar), Brazilian Portuguese (Lamegal), Russian (FreeDay), Polish (Hirtus and Picollo)
+and Chinese (moroboshikan_42246 (诸星观)).
 
 The following assets/code were used from the following projects:
 
-- **
+- **Pixeltier** - All pixel item art referenced in the system compendium are purchased from [Pixeltier](https://itch.io/s/39748/pixeltiers-complete-asset-bundle).
+- **Javier Aumente (Tarot)** (**Email:** <jaauvel@gmail.com>) - All classes/skills/heroic pixel art in the system compendium were provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.
+- **Replacement Art** - iron-knuckle.png icon from **RubenE** (**Social:** @/only_ruben_draw) & magic-tent.png icon from **drak273** with explicit permission to use for ProjectFU project.
 - **Status Effect Icons**: [styles\static\icons] - default status effect icons from [@\_t3nshi](https://twitter.com/_t3nshi). Explicit permission granted by t3nshi for the use of the Status Effect Icons exclusively in Fabula Ultima games. These icons are not authorized for use in other media without obtaining additional permission from t3nshi.
 - **game-icons**: [game-icons.net](https://game-icons.net), various icons were used from here, licensed under the [CC-BY-3.0 license](https://creativecommons.org/licenses/by/3.0/).
 - **fultimator**: [fultimator](https://github.com/codeclysm/fultimator) by codeclysm, specifically project/ritual/sp counter code, licensed under the [MIT License](https://github.com/codeclysm/fultimator/blob/main/LICENSE.md)

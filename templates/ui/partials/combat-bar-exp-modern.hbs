@@ -1,0 +1,20 @@
+<div class="bar-container">
+    <div class="bar-label label-xp">
+        <span>{{ localize "FU.ExpAbbr" }}</span>
+    </div>
+    <div class="bar bar-progress diag">
+        <div class="bar-progress-bar diag bar-level"
+            style="width: {{calculatePercentage this.actor.system.resources.exp.value 10}};">
+        </div>
+        <span class="bar-value"></span>
+    </div>
+    <div class="resource-value">
+        {{#if (eq this.actor.system.resources.exp.value 10)}}
+        <div class="resource-text full">
+        {{else}}
+        <div class="resource-text">
+        {{/if}}
+            <span>{{ this.actor.system.resources.exp.value }}</span>
+        </div>
+    </div>
+</div>

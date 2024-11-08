@@ -1,0 +1,22 @@
+{
+  "name": "Alter Target Defense",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "lUNcRxp9DjYR1CDQ",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728758057151,
+    "modifiedTime": 1728758072616,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_key": "!folders!lUNcRxp9DjYR1CDQ"
+}

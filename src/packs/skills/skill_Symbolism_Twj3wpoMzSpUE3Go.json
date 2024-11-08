@@ -1,0 +1,144 @@
+{
+  "folder": "SBAHplvEYQmgs8Po",
+  "name": "Symbolism",
+  "type": "skill",
+  "_id": "Twj3wpoMzSpUE3Go",
+  "img": "systems/projectfu/styles/static/compendium/classes/symbolist/symbolist_symbolism.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>Each time you acquire this Skill, you learn <strong>two symbols</strong>.</p><p>You may have up to <strong>up to 【SL + 1】 symbols active at the same time</strong>; if you create more while at your limit, you must first choose and destroy some of your previous <strong>symbols</strong>.</p><p>You may perform the Inventory action and spend <strong>@LOSS[2 ip]</strong> to create a <strong>symbol</strong> you have learned and choose one option: apply that <strong>symbol</strong> to yourself; <strong>or</strong> apply that <strong>symbol</strong> to an ally you can see; <strong>or</strong> perform a <strong>free attack</strong> with a weapon you have equipped. This attack deals no damage, but you apply a copy of the chosen <strong>symbol</strong> to each enemy hit by the attack (each copy counts as a separate <strong>symbol</strong> towards your limit or <strong>【SL + 1】</strong> active <strong>symbols</strong>).</p><p>Descriptions, as well as all of the rules, for all of the symbols can be found in this handout: <strong>@UUID[Compendium.projectfu.handouts.JournalEntry.t38IeNrS9T7NQspT]{Symbol Rules}</strong></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Symbolist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUHF147"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": true
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "symbolism"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706563320133,
+    "modifiedTime": 1724180862310,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 0,
+  "_key": "!items!Twj3wpoMzSpUE3Go"
+}

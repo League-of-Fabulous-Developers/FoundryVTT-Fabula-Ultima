@@ -1,0 +1,129 @@
+**Pixeltier** - All art referenced below are used in the system compendium and are purchased from [Pixeltier](https://itch.io/s/39748/pixeltiers-complete-asset-bundle).
+fantasy-rpg: rpg - [Pixeltier’s Icons: Fantasy RPG (16x16)](https://pixeltier.itch.io/pixeltiers-16x16-rpg-icon-pack)
+modern-rpg - [Pixeltier's Icons: Modern Survival RPG (16x16)](https://pixeltier.itch.io/pixeltiers-modern-rpg-icon-set)
+alchemy-rpg - [Pixeltier’s Icons: Alchemy Ingredients & Tools (16x16)](https://pixeltier.itch.io/pixeltiers-alchemy-rpg-icon-pack)
+cyberpunk-rpg - [Pixeltier’s Icons: Cyberpunk RPG (16x16)](https://pixeltier.itch.io/pixeltiers-cyberpunk-rpg-icon-pack)
+halloween-rpg - [Pixeltier’s Icons: FREE Halloween Items (16x16)](https://pixeltier.itch.io/pixeltiers-icons-free-halloween-items)
+sword-rpg - [Pixeltier’s Icons: Swords (16x16)](https://pixeltier.itch.io/pixeltiers-icons-swords)
+
+----------------------------------------------------
+[projectfu\styles\static\compendium\armor\*]
+
+Armor/Shield Assets:
+no-armor (modern-rpg, shirt_063)
+travel-garb (fantasy-rpg, jacket_1)
+combat-tunic (fantasy-rpg, armor_85)
+sage-robe (fantasy-rpg, cloak_1)
+runic-shield (fantasy-rpg, shield_66)
+silk-shirt (modern-rpg, shirt_133)
+brigadine (fantasy-rpg, armor_36)
+bronze-plate (fantasy-rpg, armor_69)
+runic-plate (fantasy-rpg, armor_5)
+steel-plate (fantasy-rpg, armor_72)
+bronze-shield (fantasy-rpg, shield_65)
+
+---------------------------------------------------
+[projectfu\styles\static\compendium\consumables\*]
+
+Consumables Assets:
+elixir (alchemy-rpg, bottle_002)
+remedy (alchemy-rpg, bottle_001)
+tonic (alchemy-rpg, bottle_004)
+elemental-shard (fantasy-rpg, crystal_7)
+tent (custom-made by drak273)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\twin-shields\*]
+
+Twin Shield Assets:
+twin-shield (fantasy-rpg, recolor of shield_110)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\magicannon\*]
+
+Magicannon Assets:
+magicannon (modern-rpg, recolor of gun_004)
+magicannon-air (modern-rpg, recolor of gun_004)
+magicannon-bolt (modern-rpg, recolor of gun_004)
+magicannon-earth (modern-rpg, recolor of gun_004)
+magicannon-fire (modern-rpg, recolor of gun_004)
+magicannon-ice (modern-rpg, recolor of gun_004)
+magicannon-physical (modern-rpg, recolor of gun_004)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\ui\*]
+
+UI Assets:
+coins_5 (fantasy-rpg, coins_5)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\weapon-modules\*]
+
+Weapon Modules Assets:
+arcane-module (fantasy-rpg, magicweapon_20)
+axe-module (fantasy-rpg, axe_122)
+blade-module (fantasy-rpg, sword_164)
+bow-module (fantasy-rpg, bow_25)
+claw_module (fantasy-rpg, magicweapon_12)
+claymore-module (sword-rpg, sword_020)
+esoteric-module (fantasy-rpg, magicweapon_3)
+flail-module (fantasy-rpg, weapon_182)
+flamer-module (cyberpunk-rpg, mini_cannon)
+cannon-module (cyberpunk-rpg, arm_cannon)
+machine-gun-module (cyberpunk-rpg, machine_gun)
+rifle-module (modern-rpg, modern-gun_005)
+shield-module (fantasy-rpg, shield_13)
+spear-module (fantasy-rpg, misc-weapon-weapon_27)
+scythe-module (halloween-rpg, scyther)
+sword-module (fantasy-rpg, sword_165)
+trident-module (fantasy-rpg, misc-weapon-weapon_94)
+
+----------------------------------------------------
+[projectfu\styles\static\compendium\weapons\*]
+
+Weapon Assets:
+broadaxe (fantasy-rpg, axe_40)
+bronze-sword (fantasy-rpg, sword_136)
+chain-whip (fantasy-rpg, recolor of weapon_74)
+crossbow (fantasy-rpg, bow_20)
+greatsword (fantasy-rpg, sword_159)
+heavy-spear (fantasy-rpg, weapon_25)
+improvied-melee (fantasy-rpg, log_7)
+improvised-ranged (fantasy-rpg, fabric3_3)
+iron-hammer (fantasy-rpg, hammer_14)
+katana (fantasy-rpg, sword_130)
+light-spear (fantasy-rpg, weapon_3)
+pistol (fantasy-rpg, gun_1)
+rapier (fantasy-rpg, sword_153)
+shortbow (fantasy-rpg, bow_2)
+shuriken (fantasy-rpg, weapon_199)
+staff (fantasy-rpg, magicweapon_28)
+steel-dagger (fantasy-rpg, sword_88)
+tome (fantasy-rpg, book_11)
+unarmed-strike (fantasy-rpg, glove_1)
+waraxe (fantasy-rpg, axe_16)
+ 
+iron-knuckles (custom-made by RubenE) (Social: @/only_ruben_draw)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\classes\arcanum\*]
+
+Arcanum Assets:
+arcanum-of-the-frost (fantasy-rpg, gem_7)
+arcanum-of-the-grimoire (fantasy-rpg, gem_9)
+arcanum-of-the-oak (fantasy-rpg, gem_09)
+arcanum-of-the-sword (fantasy-rpg, gem_05)
+arcanum-of-the-tower (fantasy-rpg, gem_02)
+arcanum-of-the-wheel (fantasy-rpg, gem_10)
+arcanum-of-the-forge (fantasy-rpg, recolor of gem_*)
+arcanum-of-the-gate (fantasy-rpg, recolor of gem_*)
+arcanum-of-the-sky (fantasy-rpg, recolor of gem_*)
+
+--------------------------------------------------
+[projectfu\styles\static\compendium\classes\*]
+
+A majority of the pixel art found in this folder was provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.
+Javier Aumente (Tarot) (Contact Email: <jaauvel@gmail.com>)
+With the exception of the following:
+[projectfu\styles\static\compendium\classes\arcanist\arcanum*] (fantasy-rpg, gem_*)
+[projectfu\styles\static\compendium\classes\arcanist-rework\arcanum*] (fantasy-rpg, recolor of gem_*)

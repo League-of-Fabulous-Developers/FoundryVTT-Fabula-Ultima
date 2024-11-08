@@ -1,0 +1,58 @@
+{
+  "folder": "BJhRf9J1K7HT9EQu",
+  "name": "Flamer Module",
+  "type": "classFeature",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/flamer-module.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.weaponModule",
+    "data": {
+      "type": "ranged",
+      "quality": "",
+      "category": "firearm",
+      "description": "<p>This weapon belongs to the <strong>firearm</strong> Category.</p>",
+      "damage": {
+        "type": "fire",
+        "bonus": 8
+      },
+      "accuracy": {
+        "attr1": "dex",
+        "attr2": "ins",
+        "modifier": 0
+      },
+      "complex": false,
+      "shield": {
+        "defense": 2,
+        "magicDefense": 2
+      }
+    },
+    "source": "FUTF166",
+    "fuid": "flamer-module"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711474433793,
+    "modifiedTime": 1724180864732,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "U0ttIqfIfPVblhCn",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!U0ttIqfIfPVblhCn"
+}

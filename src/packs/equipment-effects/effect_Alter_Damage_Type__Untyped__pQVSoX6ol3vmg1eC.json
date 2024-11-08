@@ -1,0 +1,76 @@
+{
+  "folder": "Z7sOoJ1jkwGP6nE3",
+  "name": "Alter Damage Type (Untyped)",
+  "type": "effect",
+  "_id": "pQVSoX6ol3vmg1eC",
+  "img": "systems/projectfu/styles/static/affinities/melee.svg",
+  "system": {
+    "fuid": "alter-damage-type-untyped"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.equipment-effects.Item.pQVSoX6ol3vmg1eC",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Alter Damage Type (Untyped)",
+      "img": "systems/projectfu/styles/static/affinities/melee.svg",
+      "_id": "OeYBD0qXY8yDrZs7",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.damageType.value",
+          "mode": 5,
+          "value": "untyped",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725776568929,
+        "modifiedTime": 1725776594245,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!pQVSoX6ol3vmg1eC.OeYBD0qXY8yDrZs7"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725776482515,
+    "modifiedTime": 1725776510413,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!pQVSoX6ol3vmg1eC"
+}

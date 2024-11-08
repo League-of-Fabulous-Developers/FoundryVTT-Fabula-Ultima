@@ -1,5 +1,4 @@
 import { MathHelper } from '../../../helpers/math-helper.mjs';
-import { FU } from '../../../helpers/config.mjs';
 
 /**
  * @property {number} base
@@ -10,44 +9,98 @@ export class AffinityDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { NumberField } = foundry.data.fields;
 		return {
-			base: new NumberField({ initial: 0, min: -1, max: 4, integer: true, nullable: false }),
+			base: new NumberField({ initial: 0, min: -1, max: 3, integer: true, nullable: false }),
 		};
 	}
 
-	_initialize(options = {}) {
-		super._initialize(options);
+	constructor(data, options) {
+		super(data, options);
+		const holder = {
+			vulnerable: this.base === -1,
+			resistant: this.base === 1,
+			immune: this.base === 2,
+			absorb: this.base === 3,
+		};
 
-		let current = options.current ?? this.base;
 		Object.defineProperty(this, 'current', {
-			configurable: false,
+			configurable: true,
 			enumerable: true,
-			get() {
-				return MathHelper.clamp(current, -1, 4);
-			},
-			set(newValue) {
-				current = newValue;
-			},
-		});
-
-		Object.defineProperty(this, 'upgrade', {
-			value: () => {
-				if (current < FU.affValue.resistance) {
-					current += 1;
+			get: () => {
+				if (holder.absorb) {
+					return 3;
 				}
+				if (holder.immune) {
+					return 2;
+				}
+				if (holder.resistant && holder.vulnerable) {
+					return 0;
+				}
+				if (holder.resistant) {
+					return 1;
+				}
+				if (holder.vulnerable) {
+					return -1;
+				}
+				return 0;
+			},
+			set: (newValue) => {
+				delete this.current;
+				let value = MathHelper.clamp(newValue, -1, 3);
+				Object.defineProperty(this, 'current', {
+					configurable: true,
+					enumerable: true,
+					get: () => value,
+					set: (newValue) => {
+						if (Number.isNumeric(newValue)) {
+							value = MathHelper.clamp(Number(newValue), -1, 3);
+						}
+					},
+				});
 			},
 		});
 
 		Object.defineProperty(this, 'downgrade', {
 			value: () => {
-				if (current <= FU.affValue.resistance) {
-					current -= 1;
-				}
+				holder.vulnerable = true;
 			},
 		});
-	}
 
-	clone(data = {}, context = {}) {
-		context.current = this.current;
-		return super.clone(data, context);
+		Object.defineProperty(this, 'upgrade', {
+			value: () => {
+				holder.resistant = true;
+			},
+		});
+
+		['vulnerability', 'vulnerable', 'vul', 'vu'].forEach((value) => {
+			Object.defineProperty(this, value, {
+				value: () => {
+					holder.vulnerable = true;
+				},
+			});
+		});
+
+		['resistance', 'resistant', 'res', 'rs'].forEach((value) => {
+			Object.defineProperty(this, value, {
+				value: () => {
+					holder.resistant = true;
+				},
+			});
+		});
+
+		['immunity', 'immune', 'imm', 'im'].forEach((value) => {
+			Object.defineProperty(this, value, {
+				value: () => {
+					holder.immune = true;
+				},
+			});
+		});
+
+		['absorption', 'absorb', 'abs', 'ab'].forEach((value) => {
+			Object.defineProperty(this, value, {
+				value: () => {
+					holder.absorb = true;
+				},
+			});
+		});
 	}
 }

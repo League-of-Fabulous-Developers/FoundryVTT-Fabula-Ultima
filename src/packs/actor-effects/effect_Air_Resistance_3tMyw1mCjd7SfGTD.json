@@ -1,0 +1,76 @@
+{
+  "folder": "KoamGTrOopqqmbxH",
+  "name": "Air Resistance",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/air.svg",
+  "system": {
+    "fuid": "air-resistance"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.3tMyw1mCjd7SfGTD",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Air Resistance",
+      "img": "systems/projectfu/styles/static/affinities/air.svg",
+      "_id": "gcDIqtOEILC8Pukp",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.air",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725754363819,
+        "modifiedTime": 1725754394982,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!3tMyw1mCjd7SfGTD.gcDIqtOEILC8Pukp"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750014969,
+    "modifiedTime": 1725750014969,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "3tMyw1mCjd7SfGTD",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!3tMyw1mCjd7SfGTD"
+}

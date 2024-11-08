@@ -1,0 +1,17 @@
+<div class="combineAccDmg">
+    {{#if accuracy}}
+        <div class="accuracy-check">
+            {{#with accuracy}}
+                {{> 'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs' hideSettings=../hideSettings}}
+            {{/with}}
+        </div>
+    {{/if}}
+
+    {{#if damage}}
+        <div class="damage-check">
+            {{#with damage}}
+                {{> 'systems/projectfu/templates/chat/partials/chat-damage.hbs' hideSettings=../hideSettings}}
+            {{/with}}
+        </div>
+    {{/if}}
+</div>

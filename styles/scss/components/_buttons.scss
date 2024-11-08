@@ -26,115 +26,30 @@
 
 .tab-style {
 	color: $color-primary;
-	font-size: 16px;
+	font-size: 0.875rem;
 	text-shadow: 1px 1px 1px $color-black;
-	box-shadow: 2px 4px $color-secondary;
-	border-radius: 8px;
-	margin: 12px 8px 8px;
+	border-radius: 10px;
 	background: linear-gradient($color-tabStyle-gradient, $color-secondary);
 	word-wrap: break-word;
 	transition:
 		transform 0.2s ease-in-out,
 		box-shadow 0.2s ease-in-out;
-
-	&:hover {
-		transform: translateY(-1px);
-		z-index: 1;
-		text-shadow: $color-info;
-	}
-
-	&.active {
-		border: 1px solid darkslategrey;
-		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-		transform: translateY(3px);
-		border-radius: 8px;
-	}
-
-	&:active {
-		transform: translateY(3px);
-		box-shadow: 1px 2px $color-secondary;
-	}
-
-	&:focus {
-		outline: none;
-		box-shadow: 2px 4px $color-info;
-	}
-}
-
-/* Action Buttons */
-.action-button {
-	gap: 1px;
-	height: 30px;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: normal;
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: left;
-	color: $color-primary;
-	text-shadow: 1px 1px 1px $color-black;
-	box-shadow: 2px 4px $color-secondary;
-	border-radius: 8px;
-	background: linear-gradient($color-tabStyle-gradient), $color-secondary;
-	transition:
-		transform 0.2s ease-in-out,
-		box-shadow 0.2s ease-in-out;
-
-	&.active {
-		border: 1px solid darkslategrey;
-		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-		transform: translateY(3px);
-		border-radius: 8px;
-	}
-
-	&:active {
-		transform: translateY(3px);
-		box-shadow: 1px 2px $color-secondary;
-	}
-
-	&:focus {
-		outline: none;
-		box-shadow: 2px 4px $color-success;
-	}
-
-	button {
-		background-color: transparent;
-		color: $color-white;
-
-		&:hover,
-		&:focus {
-			box-shadow: unset;
-		}
-	}
-
-	&#behavior-action {
-		padding: 5px;
-		font-size: 16px;
-	}
 }
 
 .zenit-style,
 .study-style {
-	color: $color-primary;
-	font-size: 16px;
-	text-shadow: 1px 1px 1px $color-black;
-	box-shadow: 2px 4px $color-secondary;
-	border-radius: 8px;
 	transition:
 		transform 0.2s ease-in-out,
 		box-shadow 0.2s ease-in-out;
-	background-image: linear-gradient($color-tabStyle-gradient);
 
 	input,
 	select,
 	.zenit-text,
 	.study-text {
-		font-size: 16px;
+		font-size: 0.875rem;
 		font-weight: bold;
-		text-shadow: 1px 1px 1px $color-black;
 		background: transparent;
-		color: $color-primary;
+		color: inherit;
 		height: inherit;
 		background-color: transparent;
 		border-color: transparent;
@@ -142,74 +57,49 @@
 		max-width: 78%;
 		padding: 0;
 	}
-
-	&:focus {
-		outline: none;
-		box-shadow: 2px 4px $color-info;
-	}
 }
 
 .zenit-style {
 	flex: 0 0 150px;
 	margin-top: 12px;
 	margin-bottom: 12px;
-	background-color: $color-secondary;
 	margin-right: 8px;
 }
 
 .study-style {
-	flex: 0 0 90px;
+	flex: 0 0 100px;
 	margin-right: 4px;
 	padding: 0;
 }
 
 .tab-style {
 	color: $color-primary;
-	font-size: 16px;
+	font-size: 0.875rem;
 	text-shadow: 1px 1px 1px $color-black;
-	box-shadow: 2px 4px $color-secondary;
-	border-radius: 8px;
-	margin: 12px 8px 8px 0;
+	border-radius: 10px;
 	background-color: $color-secondary;
 	background-image: linear-gradient($color-tabStyle-gradient);
 	word-wrap: break-word;
-	transition:
-		transform 0.2s ease-in-out,
-		box-shadow 0.2s ease-in-out;
 
 	&.active {
-		border: 1px solid darkslategrey;
-		border-radius: 8px;
-		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-		transform: translateY(1px);
-	}
-
-	&:hover {
-		transform: translateY(-1px);
-		z-index: 1;
-		text-shadow: $color-info;
-	}
-
-	&:active {
-		transform: translateY(2px);
-		box-shadow: 1px 2px $color-secondary;
-	}
-
-	&:focus {
-		outline: none;
-		box-shadow: 2px 4px $color-info;
+		border: 1px solid #fff79a;
+		background: linear-gradient(0deg, rgba(226, 128, 121, 0.8) 0%, rgba(241, 163, 114, 0.8) 100%);
 	}
 }
 
 // Slot styles
 .slot-style {
-	color: $color-primary;
-	font-size: 18px;
+	font-size: 1rem;
+	font-weight: bold;
 	box-shadow: 2px 4px $color-secondary;
-	border-radius: 8px;
-	margin: 12px 0;
-	background-color: $color-secondary;
-	background-image: linear-gradient($color-tabStyle-gradient);
+
+	& .equipped-item {
+		overflow: hidden;
+		text-wrap: nowrap;
+		text-overflow: ellipsis;
+		padding: 5px;
+	}
+
 	transition:
 		transform 0.2s ease-in-out,
 		box-shadow 0.2s ease-in-out;
@@ -221,7 +111,7 @@
 
 	&:focus {
 		outline: none;
-		box-shadow: 2px 4px $color-success;
+		box-shadow: 1px 2px $color-success;
 	}
 }
 
@@ -240,4 +130,107 @@
 
 .pointer {
 	cursor: pointer;
+}
+
+.label-style {
+	background: $color-secondary;
+	color: #ebf7af;
+}
+
+.button-style {
+	// padding: 0 !important;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 1.5rem;
+	height: 1.5rem;
+	box-shadow: 1px 2px $color-secondary;
+	border-radius: 10px;
+	border: 0.01em solid #148782;
+	background: $color-secondary;
+	color: #ebf7af;
+	text-decoration: none;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
+
+	&:hover {
+		background: linear-gradient(0deg, rgba(220, 211, 116, 1) 0%, rgba(255, 247, 154, 1) 100%) !important;
+		color: #047470 !important;
+		text-shadow: none;
+	}
+
+	&:active {
+		transform: translateY(1px);
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 1px 2px $color-success;
+	}
+
+	i {
+		font-size: 0.875rem;
+		line-height: 1;
+	}
+
+	a {
+		font-family: 'PT Sans Caption', sans-serif;
+		font-size: 1rem;
+	}
+
+	&.study-style {
+		width: 100% !important;
+		justify-content: space-around;
+	}
+
+	&.active {
+		color: #fff79a;
+		border: 1px solid #753002;
+		background: linear-gradient(0deg, rgba(226, 128, 121, 0.8) 0%, rgba(241, 163, 114, 0.8) 100%);
+		box-shadow: 0 0 5px #d8e08f;
+		text-shadow:
+			1px 1px 2px #753002,
+			-1px -1px 2px #753002;
+	}
+
+	&.active:hover {
+		text-shadow: none;
+	}
+
+	.action-style {
+		width: 100% !important;
+		height: 100% !important;
+	}
+
+	button {
+		border-radius: inherit;
+		color: inherit;
+		background: inherit;
+		border: inherit;
+
+		&:hover,
+		&:focus {
+			box-shadow: unset;
+		}
+	}
+
+	&#behavior-action {
+		padding: 5px;
+		font-size: 0.875rem;
+	}
+
+	button:disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+
+	&:has(button:disabled) {
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		transform: translateY(1px);
+	}
 }

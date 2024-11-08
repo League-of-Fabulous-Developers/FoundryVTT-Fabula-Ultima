@@ -3,9 +3,25 @@ import { NpcMigrations } from './npc-migrations.mjs';
 import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
 import { AttributesDataModel } from '../common/attributes-data-model.mjs';
 import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
-import { BondDataModel } from '../common/bond-data-model.mjs';
+import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
+import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
+
+Hooks.on('preUpdateActor', (document, changed) => {
+	if (document.system instanceof NpcDataModel) {
+		const newVillainType = foundry.utils.getProperty(changed, 'system.villain.value');
+		if (newVillainType !== undefined && newVillainType !== document.system.villain.value) {
+			const ultimaPoints = {
+				minor: 5,
+				major: 10,
+				supreme: 15,
+			};
+
+			foundry.utils.setProperty(changed, 'system.resources.fp.value', ultimaPoints[newVillainType] ?? 0);
+		}
+	}
+});
 
 /**
  * @property {number} level.value
@@ -26,6 +42,7 @@ import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs'
  * @property {number} resources.ip.value
  * @property {number} resources.ip.bonus
  * @property {number} resources.fp.value
+ * @property {string} resources.pronouns.name
  * @property {AffinitiesDataModel} affinities
  * @property {AttributesDataModel} attributes
  * @property {number} derived.init.value
@@ -36,13 +53,12 @@ import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs'
  * @property {number} derived.mdef.bonus
  * @property {BonusesDataModel} bonuses
  * @property {string} traits.value
- * @property {'beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead', 'custom'} species.value
+ * @property {'beast', 'construct', 'demon', 'elemental', 'humanoid', 'monster', 'plant', 'undead'} species.value
  * @property {"", "minor", "major", "supreme"} villain.value
  * @property {number} phases.value
  * @property {string} multipart.value
- * @property {boolean} isElite.value
- * @property {number} isChampion.value
- * @property {boolean} isCompanion.value
+ * @property {"soldier", "elite", "champion", "companion"} rank.value
+ * @property {number} rank.replacedSoldiers
  * @property {number} companion.playerLevel
  * @property {number} companion.skillLevel
  * @property {boolean} useEquipment.value
@@ -53,7 +69,7 @@ import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs'
  */
 export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, BooleanField, ArrayField, HTMLField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, NumberField, StringField, BooleanField, HTMLField, EmbeddedDataField } = foundry.data.fields;
 		return {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
@@ -65,38 +81,24 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					bonus: new NumberField({ initial: 0, integer: true, nullable: false }),
 				}),
-				rp1: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				rp2: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				rp3: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				zenit: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
-				ip: new SchemaField({
-					max: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
-					value: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
-				}),
-				fp: new SchemaField({ value: new NumberField({ initial: 3, min: 0, integer: true, nullable: false }) }),
-				bonds: new ArrayField(new EmbeddedDataField(BondDataModel, {})),
+				fp: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
+				pronouns: new SchemaField({ name: new StringField() }),
 			}),
 			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
 			attributes: new EmbeddedDataField(AttributesDataModel, {}),
 			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
+			equipped: new EmbeddedDataField(EquipDataModel, {}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
+			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			traits: new SchemaField({ value: new StringField({ initial: '' }) }),
 			species: new SchemaField({ value: new StringField({ initial: 'beast', choices: Object.keys(FU.species) }) }),
 			villain: new SchemaField({ value: new StringField({ initial: '', blank: true, choices: Object.keys(FU.villainTypes) }) }),
 			phases: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			multipart: new SchemaField({ value: new StringField({ initial: '' }) }),
-			isElite: new SchemaField({ value: new BooleanField({ initial: false }) }),
-			isChampion: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			isCompanion: new SchemaField({ value: new BooleanField({ initial: false }) }),
+			rank: new SchemaField({
+				value: new StringField({ initial: 'soldier', choices: Object.keys(FU.rank) }),
+				replacedSoldiers: new NumberField({ initial: 1, min: 0, max: 6 }),
+			}),
 			companion: new SchemaField({
 				playerLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
 				skillLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
@@ -121,7 +123,21 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 		return this.parent;
 	}
 
-	prepareBaseData() {}
+	prepareBaseData() {
+		this.#prepareReplacedSoldiers();
+	}
+
+	#prepareReplacedSoldiers() {
+		if (this.rank.value === 'companion') {
+			this.rank.replacedSoldiers = 0;
+		}
+		if (this.rank.value === 'soldier') {
+			this.rank.replacedSoldiers = 1;
+		}
+		if (this.rank.value === 'elite') {
+			this.rank.replacedSoldiers = 2;
+		}
+	}
 
 	prepareDerivedData() {
 		this.spTracker = new NpcSkillTracker(this);
@@ -141,12 +157,12 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			configurable: true,
 			enumerable: true,
 			get() {
-				if (data.isCompanion.value) {
+				if (data.rank.value === 'companion') {
 					// Companion calculation
 					return Math.floor(data.attributes.mig.base * data.companion.skillLevel) + Math.floor(data.companion.playerLevel / 2 + data.resources.hp.bonus);
 				}
 				// Default calculation
-				const hpMultiplier = data.isChampion.value !== 1 ? data.isChampion.value : data.isElite.value ? 2 : 1;
+				const hpMultiplier = data.rank.replacedSoldiers;
 				return (data.attributes.mig.base * 5 + data.level.value * 2 + data.resources.hp.bonus) * hpMultiplier;
 			},
 			set(newValue) {
@@ -160,7 +176,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			configurable: true,
 			enumerable: true,
 			get() {
-				const mpMultiplier = data.isChampion.value !== 1 ? 2 : 1;
+				const mpMultiplier = data.rank.value === 'champion' ? 2 : 1;
 				return (data.attributes.wlp.base * 5 + data.level.value + data.resources.mp.bonus) * mpMultiplier;
 			},
 			set(newValue) {

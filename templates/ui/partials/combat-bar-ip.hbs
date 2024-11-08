@@ -1,5 +1,5 @@
 <div class="bar-container">
-    <div class="bar bar-progress">
+    <div class="bar bar-progress" data-tooltip="{{localize 'FU.InventoryPoints'}}">
         <div class="bar-progress-bar bar-ip"
             style="width: {{calculatePercentage this.actor.system.resources.ip.value this.actor.system.resources.ip.max}};">
         </div>
@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="resource-value">
-        <i class="ra ra-gear-hammer icon"></i>
+        <i class="ra ra-gear-hammer icon" style="font-size: 1.15rem;"></i>
         <div class="resource-text">
             <span>{{ this.actor.system.resources.ip.value }} / {{ this.actor.system.resources.ip.max }}</span>
         </div>

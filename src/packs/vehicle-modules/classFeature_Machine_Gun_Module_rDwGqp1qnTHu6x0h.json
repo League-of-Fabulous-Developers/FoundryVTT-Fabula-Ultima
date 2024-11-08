@@ -1,0 +1,58 @@
+{
+  "folder": "BJhRf9J1K7HT9EQu",
+  "name": "Machine Gun Module",
+  "type": "classFeature",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/machine-gun-module.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.weaponModule",
+    "data": {
+      "quality": "",
+      "description": "<p>This weapon belongs to the <strong>firearm</strong> Category.</p><p>A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled. Additionally, when you perform the <strong>Attack</strong> action and attack with this weapon module, you may perform two separate attacks instead of one (against the same target or against different targets). If you do, both attacks follow the rules for <strong>two-weapon fighting</strong>: each attack loses the <strong>multi</strong> property and cannot gain it, and you treat the High Roll of each Accuracy Check as being equal to 0 when determining damage.</p>",
+      "complex": true,
+      "damage": {
+        "bonus": 10,
+        "type": "physical"
+      },
+      "category": "firearm",
+      "type": "ranged",
+      "accuracy": {
+        "attr1": "dex",
+        "attr2": "ins",
+        "modifier": 0
+      },
+      "shield": {
+        "defense": 2,
+        "magicDefense": 2
+      }
+    },
+    "source": "FUTF167",
+    "fuid": "machine-gun-module"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711474446389,
+    "modifiedTime": 1724180864778,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "rDwGqp1qnTHu6x0h",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!rDwGqp1qnTHu6x0h"
+}

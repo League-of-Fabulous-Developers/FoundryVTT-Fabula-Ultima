@@ -1,0 +1,42 @@
+{
+  "folder": "OcoOq5td7Ya9GOPU",
+  "name": "Advanced Targeting Module",
+  "type": "classFeature",
+  "img": "icons/commodities/tech/metal-blue.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.supportModule",
+    "data": {
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells ( @ICON[offensive] ) you cast.</p><hr><p>@EFFECT[eyJuYW1lIjoiQWNjdXJhY3kvTWFnaWMgVXAiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYm9udXNlcy5hY2N1cmFjeS5hY2N1cmFjeUNoZWNrIiwibW9kZSI6MiwidmFsdWUiOjJ9LHsia2V5Ijoic3lzdGVtLmJvbnVzZXMuYWNjdXJhY3kubWFnaWNDaGVjayIsIm1vZGUiOjIsInZhbHVlIjoyfV0sImljb24iOiJpY29ucy9jb21tb2RpdGllcy90ZWNoL21ldGFsLWJsdWUud2VicCJ9]</p>",
+      "complex": false
+    },
+    "source": "FUTF168",
+    "fuid": "advanced-targeting-module"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711476994639,
+    "modifiedTime": 1724180864685,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "9YM4VR2e6Y4MgmJ2",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!9YM4VR2e6Y4MgmJ2"
+}

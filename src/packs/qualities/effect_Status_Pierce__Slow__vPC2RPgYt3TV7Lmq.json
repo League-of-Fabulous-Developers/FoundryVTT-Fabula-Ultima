@@ -1,0 +1,75 @@
+{
+  "name": "Status Pierce (Slow)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 700
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Status Pierce (Slow)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>All damage you deal to <strong>slow</strong> creatures ignores Resistances.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Offensive",
+          "CrisisInteraction": "none",
+          "source": "FUCR286"
+        }
+      },
+      "_id": "OjuTiQfRfweuWJBT",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728774982821,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!vPC2RPgYt3TV7Lmq.OjuTiQfRfweuWJBT"
+    }
+  ],
+  "folder": "SH8cHX3lJkZlLgj8",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747193107,
+    "modifiedTime": 1728747193107,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "vPC2RPgYt3TV7Lmq",
+  "sort": 4100000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!vPC2RPgYt3TV7Lmq"
+}

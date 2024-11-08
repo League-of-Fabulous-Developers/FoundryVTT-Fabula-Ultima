@@ -1,0 +1,76 @@
+{
+  "folder": "jJ6nd24qtwNQXVDs",
+  "name": "Bolt Immunity",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+  "system": {
+    "fuid": "bolt-immunity"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.51J6SZkx7gIRTosK",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Bolt Immunity",
+      "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+      "_id": "oxBbQkbSWAeOsGei",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.bolt.current",
+          "mode": 4,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725754048483,
+        "modifiedTime": 1725754207688,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!51J6SZkx7gIRTosK.oxBbQkbSWAeOsGei"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750163418,
+    "modifiedTime": 1725750163418,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "51J6SZkx7gIRTosK",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!51J6SZkx7gIRTosK"
+}

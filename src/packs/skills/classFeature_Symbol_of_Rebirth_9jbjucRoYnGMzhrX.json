@@ -1,0 +1,86 @@
+{
+  "folder": "jAg187YJhvEkI5uc",
+  "name": "Symbol of Rebirth",
+  "type": "classFeature",
+  "_id": "9jbjucRoYnGMzhrX",
+  "img": "icons/magic/nature/leaf-rune-glow-green.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.symbol",
+    "data": {
+      "description": "<p><span style=\"font-family: 'PT Sans Narrow', sans-serif\">If the creature bearing this </span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px; color: rgb(25, 24, 19); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">symbol </strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">is about to be reduced to 0 Hit Points, they may destroy this </span><span class=\"fontstyle2\" style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px;\"><span style=\"font-family: 'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing: border-box; user-select: text; margin: 0px; padding: 0px; color: rgb(25, 24, 19); font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">symbol</strong></span></span><span style=\"font-family: 'PT Sans Narrow', sans-serif\">: if they do, they are instead reduced to exactly @GAIN[1 hp]. </span></p><hr><p>@LOSS[2 ip]</p>"
+    },
+    "source": "FUHF151",
+    "fuid": "symbol-of-rebirth"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.9jbjucRoYnGMzhrX",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Rebirth",
+      "img": "icons/magic/nature/leaf-rune-glow-green.webp",
+      "_id": "dRDQ6DAQrwVpkwD4",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">If the creature bearing this </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">symbol </strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">is about to be reduced to 0 Hit Points, they may destroy this </span><span class=\"fontstyle2\" style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px\"><span style=\"font-family:'PT Sans Narrow', sans-serif\"><strong style=\"box-sizing:border-box;user-select:text;margin:0px;padding:0px;color:rgb(25, 24, 19);font-family:'PT Sans Narrow', sans-serif;font-size:16px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">symbol</strong></span></span><span style=\"font-family:'PT Sans Narrow', sans-serif\">: if they do, they are instead reduced to exactly @GAIN[1 hp]. </span></p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF151",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730912483711,
+        "modifiedTime": 1730912514531,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!9jbjucRoYnGMzhrX.dRDQ6DAQrwVpkwD4"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710177955124,
+    "modifiedTime": 1730912423840,
+    "lastModifiedBy": "B6evqtezy9ZsGZG3",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 400000,
+  "_key": "!items!9jbjucRoYnGMzhrX"
+}

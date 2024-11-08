@@ -1,11 +1,16 @@
-<div class='detail-desc flexrow flex-group-center' style='padding: 0 2px;'>
-    <div>{{localize (concat 'FU.' (capitalize basic.type))}}</div>
+<div class="toggle-section tags {{#if (getGameSetting 'optionChatMessageHideTags')}}hidden{{/if}}">
+    <div class="fu-tags">
+        <div class="fu-tag">{{localize (concat 'FU.' (capitalize basic.type))}}</div>
+    </div>
 </div>
-
 {{#if basic.quality}}
-    {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=basic.quality}}
+    <div class="toggle-section quality {{#if (getGameSetting 'optionChatMessageHideQuality')}}hidden{{/if}}">
+        {{> 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs' quality=basic.quality}}
+    </div>
 {{/if}}
 
 {{#if (or basic.summary basic.description)}}
-    {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=basic.summary description=basic.description collapseDescriptions=collapseDescriptions}}
+    <div class="toggle-section description {{#if (getGameSetting 'optionChatMessageHideDescription')}}hidden{{/if}}">
+        {{> 'systems/projectfu/templates/chat/partials/chat-item-description.hbs' summary=basic.summary description=basic.description}}
+    </div>
 {{/if}}

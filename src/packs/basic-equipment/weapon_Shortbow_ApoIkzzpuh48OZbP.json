@@ -1,0 +1,105 @@
+{
+  "name": "Shortbow",
+  "type": "weapon",
+  "img": "systems/projectfu/styles/static/compendium/weapons/shortbow.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "cost": {
+      "value": 200
+    },
+    "isMartial": {
+      "value": false
+    },
+    "quality": {
+      "value": ""
+    },
+    "isEquipped": {
+      "value": false,
+      "slot": ""
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "dex"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "value": 8
+    },
+    "type": {
+      "value": "ranged"
+    },
+    "category": {
+      "value": "bow"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "damageType": {
+      "value": "physical"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "isCustomWeapon": {
+      "value": false
+    },
+    "source": {
+      "value": "FUCR130"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "defense": "def",
+    "fuid": "shortbow"
+  },
+  "effects": [],
+  "folder": "SnyIBMif9646gEkD",
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706648536558,
+    "modifiedTime": 1724180864467,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "ApoIkzzpuh48OZbP",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!ApoIkzzpuh48OZbP"
+}

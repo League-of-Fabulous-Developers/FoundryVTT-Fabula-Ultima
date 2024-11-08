@@ -3,7 +3,8 @@ import { FUItem } from '../items/item.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 
 const CRISIS_INTERACTION = 'CrisisInteraction';
-
+const EFFECT_TYPE = 'type';
+const PAGE_REFERENCE = 'source';
 const TEMPORARY = 'Temporary';
 
 const crisisInteractions = {
@@ -12,9 +13,40 @@ const crisisInteractions = {
 	inactive: 'FU.EffectCrisisInteractionInactive',
 };
 
-export function onRenderActiveEffectConfig(sheet, html) {
+const effectType = {
+	default: 'FU.Effect',
+	quality: 'FU.Quality',
+	customization: 'FU.Customization',
+};
+
+function onRenderActiveEffectConfig(sheet, html) {
 	const flag = sheet.document.getFlag(SYSTEM, CRISIS_INTERACTION);
+	const sourceFlag = sheet.document.getFlag(SYSTEM, PAGE_REFERENCE) || '';
+	const effectTypeFlag = sheet.document.getFlag(SYSTEM, EFFECT_TYPE) || 'default'; // Default to 'effect'
+
+	// Effect Type select field
 	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(`
+		<div class="form-group">
+			<label>${game.i18n.localize('FU.EffectType')}</label>
+			<select name="flags.${SYSTEM}.${EFFECT_TYPE}" ${sheet.isEditable ? '' : 'disabled'}>
+				${Object.entries(effectType).map(
+					([key, value]) =>
+						`<option value="${key}" ${key === effectTypeFlag ? 'selected' : ''}>
+				  ${game.i18n.localize(value)}</option>`,
+				)}
+			</select>
+		</div>
+	`);
+
+	// Source input field
+	html.find('.tab[data-tab=details] .form-group:nth-child(4)').after(`
+		<div class="form-group">
+			<label>${game.i18n.localize('FU.EffectSource')}</label>
+			<input type="text" name="flags.${SYSTEM}.${PAGE_REFERENCE}" value="${sourceFlag}" ${sheet.isEditable ? '' : 'disabled'}>
+		</div>
+	`);
+
+	html.find('.tab[data-tab=details] .form-group:nth-child(5)').after(`
 	<div class="form-group">
         <label>${game.i18n.localize('FU.EffectCrisisInteraction')}</label>
         <select name="flags.${SYSTEM}.${CRISIS_INTERACTION}" ${sheet.isEditable ? '' : 'disabled'}>
@@ -22,32 +54,24 @@ export function onRenderActiveEffectConfig(sheet, html) {
         </select>
     </div>
 	`);
+
 	sheet.setPosition({ ...sheet.position, height: 'auto' });
 }
+Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
 /**
  * @param {FUActor} actor
  * @param {EffectChangeData} change
  * @param current
- * @param delta
  */
-export function onApplyActiveEffect(actor, change, current, delta) {
-	if (game.release.isNewer(12)) {
-		if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, change.value) && current[change.value] instanceof Function) {
-			console.debug(`applying ${change.value} to ${change.key}`);
-			const newValue = current.clone();
-			newValue[change.value]();
-			foundry.utils.setProperty(actor, change.key, newValue);
-			return false;
-		}
-	} else {
-		if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, delta) && current[delta] instanceof Function) {
-			console.debug(`applying ${delta} to ${change.key}`);
-			current[delta]();
-			return false;
-		}
+function onApplyActiveEffect(actor, change, current) {
+	if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, change.value) && current[change.value] instanceof Function) {
+		console.debug(`applying ${change.value} to ${change.key}`);
+		current[change.value]();
+		return false;
 	}
 }
+Hooks.on('applyActiveEffect', onApplyActiveEffect);
 
 const PRIORITY_CHANGES = [
 	'system.resources.hp.bonus',
@@ -59,6 +83,15 @@ const PRIORITY_CHANGES = [
 	'system.attributes.ins.base',
 	'system.attributes.mig.base',
 	'system.attributes.wlp.base',
+	'system.affinities.air.base',
+	'system.affinities.bolt.base',
+	'system.affinities.dark.base',
+	'system.affinities.earth.base',
+	'system.affinities.fire.base',
+	'system.affinities.ice.base',
+	'system.affinities.light.base',
+	'system.affinities.physical.base',
+	'system.affinities.poison.base',
 ];
 
 export class FUActiveEffect extends ActiveEffect {
@@ -75,7 +108,7 @@ export class FUActiveEffect extends ActiveEffect {
 		if (this.target instanceof FUActor) {
 			const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
 			if (flag && flag !== 'none') {
-				if (this.target.statuses.has('crisis')) {
+				if (this.target.effects.find((e) => e.statuses.has('crisis')) != null) {
 					return flag === 'inactive';
 				} else {
 					return flag === 'active';
@@ -85,7 +118,7 @@ export class FUActiveEffect extends ActiveEffect {
 		if (this.target instanceof FUItem && this.target.parent instanceof FUActor) {
 			const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
 			if (flag && flag !== 'none') {
-				if (this.target.parent.statuses.has('crisis')) {
+				if (this.target.parent.effects.find((e) => e.statuses.has('crisis')) != null) {
 					return flag === 'inactive';
 				} else {
 					return flag === 'active';

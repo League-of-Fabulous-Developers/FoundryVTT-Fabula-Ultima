@@ -1,0 +1,82 @@
+{
+  "name": "Mastered",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 1000
+    }
+  },
+  "effects": [
+    {
+      "disabled": true,
+      "name": "Master's",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.damage.value",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "<p>Deals 2 extra damage for each <strong>Class</strong> you have mastered.</p>",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Offensive",
+          "CrisisInteraction": "none",
+          "source": "FUCR278"
+        }
+      },
+      "_id": "orSqm7uVkNwLUQSK",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728775229297,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!Mqo6u7jiNhe2ver2.orSqm7uVkNwLUQSK"
+    }
+  ],
+  "folder": "SH8cHX3lJkZlLgj8",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747193107,
+    "modifiedTime": 1728777829388,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "Mqo6u7jiNhe2ver2",
+  "sort": 900000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!Mqo6u7jiNhe2ver2"
+}

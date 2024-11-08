@@ -1,0 +1,76 @@
+{
+  "folder": "Z7sOoJ1jkwGP6nE3",
+  "name": "Alter Damage Type (Ice)",
+  "type": "effect",
+  "_id": "p34FHmhkyMWI8Xj2",
+  "img": "systems/projectfu/styles/static/affinities/ice.svg",
+  "system": {
+    "fuid": "alter-damage-type-ice"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.equipment-effects.Item.p34FHmhkyMWI8Xj2",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Alter Damage Type (Ice)",
+      "img": "systems/projectfu/styles/static/affinities/ice.svg",
+      "_id": "x8jNIpCDg72PSmmr",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.damageType.value",
+          "mode": 5,
+          "value": "ice",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725775893701,
+        "modifiedTime": 1725775919049,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!p34FHmhkyMWI8Xj2.x8jNIpCDg72PSmmr"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725775891390,
+    "modifiedTime": 1725775925283,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!p34FHmhkyMWI8Xj2"
+}

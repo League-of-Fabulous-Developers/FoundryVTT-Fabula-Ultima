@@ -1,0 +1,76 @@
+{
+  "folder": "rPNBQ4ka3rcyorik",
+  "name": "Earth Absorption",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/affinities/earth.svg",
+  "system": {
+    "fuid": "earth-absorption"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.nNMbClOSsYJtQnHV",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Earth Absorption",
+      "img": "systems/projectfu/styles/static/affinities/earth.svg",
+      "_id": "KTQezfDp5eqi6wG2",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.affinities.earth.current",
+          "mode": 4,
+          "value": "3",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725750832186,
+        "modifiedTime": 1725750849073,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!nNMbClOSsYJtQnHV.KTQezfDp5eqi6wG2"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725750295038,
+    "modifiedTime": 1725750295038,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_id": "nNMbClOSsYJtQnHV",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "_key": "!items!nNMbClOSsYJtQnHV"
+}

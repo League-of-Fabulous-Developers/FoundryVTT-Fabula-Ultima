@@ -1,0 +1,82 @@
+{
+  "name": "Resistance (Dark)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 700
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Resistance (Dark)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.affinities.dark",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>You have Resistance to <strong>dark</strong> damage type.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Defensive",
+          "CrisisInteraction": "none",
+          "source": "FUCR269"
+        }
+      },
+      "_id": "6H2WjWx191AJE7ia",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728774426220,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!RdRVDbUtEuOsn8SQ.6H2WjWx191AJE7ia"
+    }
+  ],
+  "folder": "VkgMl0dawTfZcJk0",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747191247,
+    "modifiedTime": 1728747191247,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "RdRVDbUtEuOsn8SQ",
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!RdRVDbUtEuOsn8SQ"
+}

@@ -1,0 +1,90 @@
+{
+  "folder": "6hLDMWrdgLLCVK8G",
+  "name": "Placophora",
+  "type": "classFeature",
+  "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+  "system": {
+    "summary": {
+      "value": "Crustaceans, turtles, armored creatures and vehicles."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.therioform",
+    "data": {
+      "description": "<p>You may treat your Defense score as being equal to <strong>【13 + (half your Skill Level in Theriomorphosis)】</strong>(you may still use your normal scores if better).</p>"
+    },
+    "source": "FUTF157",
+    "fuid": "placophora"
+  },
+  "effects": [
+    {
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Placophora",
+      "_id": "ZDcnVoPzAVT9GcRO",
+      "changes": [
+        {
+          "key": "system.derived.def.value",
+          "mode": 5,
+          "value": "13 + (0 / 2)",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": "#ffffff",
+      "_stats": {
+        "coreVersion": "12.330",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+      "type": "base",
+      "system": {},
+      "origin": null,
+      "sort": 0,
+      "_key": "!items.effects!aAmIBca4b150uuAH.ZDcnVoPzAVT9GcRO"
+    }
+  ],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711428338643,
+    "modifiedTime": 1724180862557,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "aAmIBca4b150uuAH",
+  "sort": 0,
+  "_key": "!items!aAmIBca4b150uuAH"
+}

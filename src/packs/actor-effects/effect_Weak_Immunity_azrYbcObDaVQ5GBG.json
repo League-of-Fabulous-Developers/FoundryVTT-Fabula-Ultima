@@ -1,0 +1,76 @@
+{
+  "folder": "Rr4bzTcg5QASOjQc",
+  "name": "Weak Immunity",
+  "type": "effect",
+  "_id": "azrYbcObDaVQ5GBG",
+  "img": "systems/projectfu/styles/static/statuses/Weak.webp",
+  "system": {
+    "fuid": "weak-immunity"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Weak Immunity",
+      "img": "systems/projectfu/styles/static/statuses/Weak.webp",
+      "_id": "UdpP2EQc1j0t1Pvp",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.immunities.weak.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1725755388326,
+        "modifiedTime": 1725755579460,
+        "lastModifiedBy": "dobQfkKFj2NK96cc"
+      },
+      "_key": "!items.effects!azrYbcObDaVQ5GBG.UdpP2EQc1j0t1Pvp"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1725755218692,
+    "modifiedTime": 1725755335774,
+    "lastModifiedBy": "dobQfkKFj2NK96cc"
+  },
+  "_key": "!items!azrYbcObDaVQ5GBG"
+}

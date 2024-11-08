@@ -1,0 +1,8 @@
+<div>
+    <label>
+        <span class="d-block">{{localize "FU.StatusEffectImmunity"}}</span>
+        <select name="guided.changes.{{@index}}.temporaryEffect">
+            {{selectOptions templateData.temporaryEffects selected=temporaryEffect localize=true}}
+        </select>
+    </label>
+</div>

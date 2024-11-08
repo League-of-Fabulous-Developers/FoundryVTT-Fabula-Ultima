@@ -1,0 +1,82 @@
+{
+  "name": "Antistatus (Slow)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 500
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Antistatus (Slow)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.immunities.slow.base",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>You are immune to <strong>slow</strong> status effect.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Status",
+          "CrisisInteraction": "none",
+          "source": "FUCR269"
+        }
+      },
+      "_id": "J38ozRyZwkbZj0wm",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728778067644,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!9qAemeMNQKm2IrC5.J38ozRyZwkbZj0wm"
+    }
+  ],
+  "folder": "GvNesyOurlR0JNH8",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747195507,
+    "modifiedTime": 1728747195507,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "9qAemeMNQKm2IrC5",
+  "sort": 1900000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!9qAemeMNQKm2IrC5"
+}

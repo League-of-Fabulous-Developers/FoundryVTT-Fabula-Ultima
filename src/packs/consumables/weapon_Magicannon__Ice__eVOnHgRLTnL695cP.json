@@ -1,0 +1,103 @@
+{
+  "folder": "hOHl36gua4Qp55SR",
+  "name": "Magicannon (Ice)",
+  "type": "weapon",
+  "img": "systems/projectfu/styles/static/compendium/magicannon/magicannon-ice.png",
+  "system": {
+    "source": {
+      "value": "FUCR215"
+    },
+    "summary": {
+      "value": "A magitech firearm that deals ice damage."
+    },
+    "category": {
+      "value": "firearm"
+    },
+    "hands": {
+      "value": "two-handed"
+    },
+    "type": {
+      "value": "ranged"
+    },
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "isMartial": {
+      "value": false
+    },
+    "isCustomWeapon": {
+      "value": false
+    },
+    "quality": {
+      "value": "No Quality"
+    },
+    "cost": {
+      "value": 100
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 1
+    },
+    "damageType": {
+      "value": "ice"
+    },
+    "damage": {
+      "value": 10
+    },
+    "subtype": {},
+    "description": "<p>A magitech firearm that deals <strong>ice</strong> @ICON[ice] damage.</p>",
+    "isEquipped": {
+      "value": false
+    },
+    "impType": {
+      "value": "minor"
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "defense": "def",
+    "fuid": "magicannon-ice"
+  },
+  "effects": [],
+  "sort": 75000,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1707097873590,
+    "modifiedTime": 1724180864606,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "eVOnHgRLTnL695cP",
+  "_key": "!items!eVOnHgRLTnL695cP"
+}

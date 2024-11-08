@@ -1,0 +1,75 @@
+{
+  "name": "Flowing",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 1000
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Flowing",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After you reduce a creature’s Hit Points to 0 with this weapon, you may immediately perform a <strong>dance</strong> with a <strong>duration</strong> of “Instantaneous” among those you have learned (see <strong>Atlas High Fantasy</strong>,<strong> </strong>page<strong> 144</strong>); the MP cost of a dance performed this way can <strong>never</strong> be lower than 10.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Skill",
+          "CrisisInteraction": "none",
+          "source": "FUHF79"
+        }
+      },
+      "_id": "rqmf6QJ08JXiCiIG",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728777733375,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!wIacWltdhmEyb4Vx.rqmf6QJ08JXiCiIG"
+    }
+  ],
+  "folder": "wRqZOkZnfCN50Yil",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747194796,
+    "modifiedTime": 1728747194796,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "wIacWltdhmEyb4Vx",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!wIacWltdhmEyb4Vx"
+}

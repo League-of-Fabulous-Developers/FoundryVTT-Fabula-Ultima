@@ -2,11 +2,14 @@ import { CharacterMigrations } from './character-migrations.mjs';
 import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
 import { AttributesDataModel } from '../common/attributes-data-model.mjs';
 import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
+import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { BondDataModel } from '../common/bond-data-model.mjs';
 import { CharacterSkillTracker } from './character-skill-tracker.mjs';
-import { FU } from '../../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
+import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { PilotVehicleDataModel } from './pilot-vehicle-data-model.mjs';
+import { SETTINGS } from '../../../settings.js';
 
 const CLASS_HP_BENEFITS = 5;
 const CLASS_MP_BENEFITS = 5;
@@ -42,12 +45,12 @@ function heroicMpBenefits(dataModel) {
  * @property {number} resources.ip.bonus
  * @property {Object} resources.fp
  * @property {number} resources.fp.value
- * @property {BondDataModel[]} resources.bonds
+ * @property {BondDataModel[]} bonds
  * @property {number} resources.exp.value
- * @property {string} resources.identity.value
- * @property {string} resources.pronouns.value
- * @property {string} resources.theme.value
- * @property {string} resources.origin.value
+ * @property {string} resources.identity.name
+ * @property {string} resources.pronouns.name
+ * @property {string} resources.theme.name
+ * @property {string} resources.origin.name
  * @property {AffinitiesDataModel} affinities
  * @property {AttributesDataModel} attributes
  * @property {DerivedValuesDataModel} derived
@@ -61,7 +64,15 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { SchemaField, NumberField, StringField, ArrayField, EmbeddedDataField, HTMLField } = foundry.data.fields;
 		return {
-			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
+			level: new SchemaField({
+				value: new NumberField({
+					initial: 5,
+					min: 5,
+					max: 50,
+					integer: true,
+					nullable: false,
+				}),
+			}),
 			resources: new SchemaField({
 				hp: new SchemaField({
 					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
@@ -89,17 +100,26 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
 				fp: new SchemaField({ value: new NumberField({ initial: 3, min: 0, integer: true, nullable: false }) }),
-				bonds: new ArrayField(new EmbeddedDataField(BondDataModel, {})),
 				exp: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 				identity: new SchemaField({ name: new StringField() }),
 				pronouns: new SchemaField({ name: new StringField() }),
 				theme: new SchemaField({ name: new StringField() }),
 				origin: new SchemaField({ name: new StringField() }),
 			}),
+			bonds: new ArrayField(new EmbeddedDataField(BondDataModel, {}), {
+				validate: (value) => {
+					const maxBonds = game.settings.get(SYSTEM, SETTINGS.optionBondMaxLength);
+					if (value.length > maxBonds) {
+						value.splice(maxBonds);
+					}
+				},
+			}),
 			affinities: new EmbeddedDataField(AffinitiesDataModel, {}),
 			attributes: new EmbeddedDataField(AttributesDataModel, {}),
 			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
+			equipped: new EmbeddedDataField(EquipDataModel, {}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
+			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			vehicle: new EmbeddedDataField(PilotVehicleDataModel, {}),
 			description: new HTMLField(),
 		};
@@ -193,7 +213,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			},
 		});
 
-		// Define maximum mind points (mp) calculation, replace calculation with actual value on write.
+		// Define maximum inventory points (ip) calculation, replace calculation with actual value on write.
 		Object.defineProperty(this.resources.ip, 'max', {
 			configurable: true,
 			enumerable: true,
@@ -205,5 +225,9 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 				this.max = newValue;
 			},
 		});
+
+		// Initialize fp and exp
+		this.resources.fp.value = this.resources.fp.value || 0;
+		this.resources.exp.value = this.resources.exp.value || 0;
 	}
 }

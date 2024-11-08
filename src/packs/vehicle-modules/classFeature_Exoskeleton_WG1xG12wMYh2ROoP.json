@@ -1,0 +1,45 @@
+{
+  "folder": "5LrYW4IGy2CUagKM",
+  "name": "Exoskeleton",
+  "type": "classFeature",
+  "img": "icons/commodities/tech/cog-copper.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.vehicle",
+    "data": {
+      "description": "<p>This <strong>personal vehicle</strong> may have up to <strong>2 weapon modules, 1 armor module </strong>and<strong> any number of support modules</strong> enabled.</p><p>If you use the @UUID[Compendium.projectfu.skills.Item.kMQH13lhWY4Mlbh8]{Compression Tech} Skill with this personal vehicle, ignore the IP cost.</p>",
+      "frame": "exoskeleton",
+      "passengers": 0,
+      "distanceMultiplier": 1,
+      "moduleSlots": 3
+    },
+    "source": "FUTF165",
+    "fuid": "exoskeleton"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1712878359536,
+    "modifiedTime": 1724180864734,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "WG1xG12wMYh2ROoP",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!WG1xG12wMYh2ROoP"
+}

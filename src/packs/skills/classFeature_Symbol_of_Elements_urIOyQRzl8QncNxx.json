@@ -1,0 +1,86 @@
+{
+  "folder": "jAg187YJhvEkI5uc",
+  "name": "Symbol of Elements",
+  "type": "classFeature",
+  "_id": "urIOyQRzl8QncNxx",
+  "img": "icons/magic/symbols/rune-sigil-red-orange.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.symbol",
+    "data": {
+      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. When the creature bearing this <strong>symbol</strong> deals damage to one or more creatures, if you can see the creature bearing this <strong>symbol</strong>, you may spend an amount of Mind Points equal to <strong>one third of the total damage being inflicted to those creatures</strong> (including any sources of extra damage). If you do, all damage dealt this way changes type to the type chosen when you created this <strong>symbol</strong>.</p><hr><p>@LOSS[2 ip]</p>"
+    },
+    "source": "FUHF149",
+    "fuid": "symbol-of-elements"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.urIOyQRzl8QncNxx",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Elements",
+      "img": "icons/magic/symbols/rune-sigil-red-orange.webp",
+      "_id": "yba4BkZcSQ7umrMH",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. When the creature bearing this <strong>symbol</strong> deals damage to one or more creatures, if you can see the creature bearing this <strong>symbol</strong>, you may spend an amount of Mind Points equal to <strong>one third of the total damage being inflicted to those creatures</strong> (including any sources of extra damage). If you do, all damage dealt this way changes type to the type chosen when you created this <strong>symbol</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF149",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730916287777,
+        "modifiedTime": 1730916308368,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!urIOyQRzl8QncNxx.yba4BkZcSQ7umrMH"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710177465971,
+    "modifiedTime": 1724180863394,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 2000000,
+  "_key": "!items!urIOyQRzl8QncNxx"
+}

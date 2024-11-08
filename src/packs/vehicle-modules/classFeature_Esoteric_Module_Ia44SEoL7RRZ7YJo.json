@@ -1,0 +1,58 @@
+{
+  "folder": "BJhRf9J1K7HT9EQu",
+  "name": "Esoteric Module",
+  "type": "classFeature",
+  "img": "systems/projectfu/styles/static/compendium/weapon-modules/esoteric-module.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.weaponModule",
+    "data": {
+      "quality": "",
+      "complex": true,
+      "accuracy": {
+        "attr2": "wlp",
+        "attr1": "dex",
+        "modifier": 0
+      },
+      "damage": {
+        "bonus": 12,
+        "type": "physical"
+      },
+      "description": "<p>This weapon belongs to the <strong>arcane</strong> Category.</p><p>A <strong>personal vehicle</strong> with this module enabled cannot have any other <strong>weapon modules</strong> enabled.</p>",
+      "type": "melee",
+      "category": "arcane",
+      "shield": {
+        "defense": 2,
+        "magicDefense": 2
+      }
+    },
+    "source": "FUTF166",
+    "fuid": "esoteric-module"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711474410167,
+    "modifiedTime": 1724180864709,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "Ia44SEoL7RRZ7YJo",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!Ia44SEoL7RRZ7YJo"
+}

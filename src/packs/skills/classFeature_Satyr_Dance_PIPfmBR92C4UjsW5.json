@@ -1,0 +1,44 @@
+{
+  "folder": "MF2GB42tc5t7uxF8",
+  "name": "Satyr Dance",
+  "type": "classFeature",
+  "_id": "PIPfmBR92C4UjsW5",
+  "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.dance",
+    "data": {
+      "description": "<p>Choose another creature that is able to see you. If that creature is already @EFFECT[weak], they immediately suffer @EFFECT[dazed].</p><hr><p>@LOSS[10 mp]</p>",
+      "duration": "instant"
+    },
+    "source": "FUHF145",
+    "fuid": "satyr-dance"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710176620659,
+    "modifiedTime": 1724180862144,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 0,
+  "_key": "!items!PIPfmBR92C4UjsW5"
+}

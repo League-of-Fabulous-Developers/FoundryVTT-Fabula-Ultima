@@ -1,0 +1,144 @@
+{
+  "folder": "Jv2TAynII0DVVBZS",
+  "name": "Gadgets",
+  "type": "skill",
+  "_id": "0ErPA4Q0P97ZPwPE",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer_gadgets.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you first acquire this Skill, choose a gadget type: <strong>@UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Alchemy}, @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Infusion}</strong>, or <strong>@UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Magitech}</strong> (<strong>Core Rulebook</strong>, page <strong>212</strong>). You gain its basic benefits.</p><p>Whenever you take this Skill again, choose one option: you gain the basic benefits of a new gadget type; or you gain the advanced benefits of a gadget type whose basic benefits you already obtained; or you gain the superior benefits of a gadget type whose advanced benefits you already obtained.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Tinkerer"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR211"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "gadgets"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706508711403,
+    "modifiedTime": 1724180861220,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 0,
+  "_key": "!items!0ErPA4Q0P97ZPwPE"
+}

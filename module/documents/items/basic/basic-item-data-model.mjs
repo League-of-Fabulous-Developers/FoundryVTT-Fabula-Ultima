@@ -1,5 +1,59 @@
 import { FU } from '../../../helpers/config.mjs';
 import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
+import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
+import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { ChecksV2 } from '../../../checks/checks-v2.mjs';
+import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
+
+/**
+ * @param {CheckV2} check
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallbackRegistration} registerCallback
+ */
+const prepareCheck = (check, actor, item, registerCallback) => {
+	if (check.type === 'accuracy' && item.system instanceof BasicItemDataModel) {
+		check.primary = item.system.attributes.primary.value;
+		check.secondary = item.system.attributes.secondary.value;
+		check.modifiers.push({
+			label: 'FU.AccuracyCheckBaseAccuracy',
+			value: item.system.accuracy.value,
+		});
+		const attackTypeBonus = actor.system.bonuses.damage[item.system.type.value] ?? 0;
+		AccuracyCheck.configure(check)
+			.setDamage(item.system.damageType.value, item.system.damage.value + attackTypeBonus)
+			.setTargetedDefense(item.system.defense)
+			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
+	}
+};
+
+Hooks.on(CheckHooks.prepareCheck, prepareCheck);
+
+/**
+ * @param {CheckRenderData} data
+ * @param {CheckResultV2} result
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ */
+function onRenderCheck(data, result, actor, item) {
+	if (item && item.system instanceof BasicItemDataModel) {
+		data.push(async () => ({
+			order: CHECK_DETAILS,
+			partial: 'systems/projectfu/templates/chat/partials/chat-basic-attack-details.hbs',
+			data: {
+				basic: {
+					type: item.system.type.value,
+					quality: item.system.quality.value,
+					summary: item.system.summary.value,
+					description: await TextEditor.enrichHTML(item.system.description),
+				},
+			},
+		}));
+	}
+}
+
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
  * @property {string} subtype.value
@@ -24,6 +78,7 @@ export class BasicItemDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
+			fuid: new StringField(),
 			subtype: new SchemaField({ value: new StringField() }),
 			summary: new SchemaField({ value: new StringField() }),
 			description: new HTMLField(),
@@ -35,7 +90,7 @@ export class BasicItemDataModel extends foundry.abstract.TypeDataModel {
 			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			defense: new StringField({ initial: 'def', choices: Object.keys(FU.defenses) }),
 			damage: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
-			type: new SchemaField({ value: new StringField({ choices: Object.keys(FU.weaponTypes) }) }),
+			type: new SchemaField({ value: new StringField({ initial: 'melee', choices: Object.keys(FU.weaponTypes) }) }),
 			damageType: new SchemaField({ value: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes) }) }),
 			cost: new SchemaField({ value: new NumberField({ initial: 100, min: 0, integer: true, nullable: false }) }),
 			quality: new SchemaField({ value: new StringField() }),
@@ -46,5 +101,13 @@ export class BasicItemDataModel extends foundry.abstract.TypeDataModel {
 				}),
 			}),
 		};
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {Promise<void>}
+	 */
+	async roll(modifiers) {
+		return ChecksV2.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
 	}
 }

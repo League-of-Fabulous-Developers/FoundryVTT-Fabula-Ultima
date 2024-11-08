@@ -32,8 +32,9 @@ export class MagitechDataModel extends RollableClassFeatureDataModel {
 		return 'FU.ClassFeatureMagitech';
 	}
 
-	static getAdditionalData() {
+	static async getAdditionalData(model) {
 		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
 			ranks: {
 				basic: 'FU.ClassFeatureGadgetsRankBasic',
 				advanced: 'FU.ClassFeatureGadgetsRankAdvanced',

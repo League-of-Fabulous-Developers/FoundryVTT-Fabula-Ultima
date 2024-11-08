@@ -1,0 +1,153 @@
+{
+  "folder": "wZOSNGoeGDSeFxp6",
+  "name": "[Handout:  Deck]",
+  "type": "miscAbility",
+  "img": "icons/sundries/gaming/playing-cards.webp",
+  "system": {
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>If you use a classic poker deck, the recommended suit types are: <strong>air</strong> ( @ICON[diamond]<strong> </strong>), <strong>earth</strong> ( @ICON[club] ), <strong>fire</strong> ( @ICON[heart] ), and <strong>ice</strong> ( @ICON[spade] ).</p><hr /><p><em><strong>Note</strong>: effects <strong>Blinding Flush</strong>, <strong>Double Trouble</strong>, and <strong>Magic Flush</strong> deal 10 extra damage if you are <strong>level 20 or higher</strong>, or 20 extra damage if you are level <strong>40 or higher.</strong></em></p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9452%\"></col><col style=\"width:72.0548%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Jackpot</strong></td><td style=\"height:17px;border-width:1px\"><strong>4 cards</strong> of the same value, none of which is a joker</td></tr></tbody></table><p>You and every ally present on the scene recover 777 Hit Points and 777 Mind Points; any PCs who have <strong>surrendered</strong> but are still part of the scene immediately regain consciousness (this does not cancel the effects of their <strong>Surrender</strong>).</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9452%\"></col><col style=\"width:72.0548%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Magic Flush</strong></td><td style=\"height:17px;border-width:1px\"><strong>4 cards</strong> of <strong>consecutive values</strong> and of the <strong>same suit.</strong></td></tr></tbody></table><p>You deal damage equal to <strong>【25 + the total value of the resolved cards】</strong> to each enemy present on the scene; the type of this damage matches the <strong>suit</strong> of the resolved cards.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9452%\"></col><col style=\"width:72.0548%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Blinding Flush</strong></td><td style=\"height:17px;border-width:1px\"><strong>4 cards</strong> of <strong>consecutive values</strong></td></tr></tbody></table><p>You deal damage equal to <strong>【15 + the total value of the resolved cards】</strong> to each enemy present on the scene; the type of this damage is <strong>light</strong> if that total is <strong>even</strong>, or <strong>dark</strong> if that total is <strong>odd</strong>.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9452%\"></col><col style=\"width:72.0548%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Full Status</strong></td><td style=\"height:17px;border-width:1px\"><strong>3 cards</strong> of the <strong>same value</strong> + <strong>2 cards</strong> of the <strong>same value.</strong></td></tr></tbody></table><p>Choose <strong>two</strong> status effects among <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, and <strong>weak</strong>: if <strong>【the highest value among resolved cards】</strong> is <strong>even</strong>, you and every ally present on the scene recover from the chosen status effects; if <strong>odd</strong>, each enemy present on the scene suffers them.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9452%\"></col><col style=\"width:72.0548%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Triple Support</strong></td><td style=\"height:17px;border-width:1px\"><strong>3 cards</strong> of <strong>the same value</strong></td></tr></tbody></table><p>You and every ally present on the scene regain an amount of Hit Points and Mind Points equal to <strong>【the total value of the resolved cards, multiplied by 3】</strong>.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9452%\"></col><col style=\"width:72.0548%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Double Trouble</strong></td><td style=\"height:17px;border-width:1px\"><strong>2 cards</strong> of the <strong>same value + 2 cards</strong> of the <strong>same value</strong></td></tr></tbody></table><p>You deal damage equal to <strong>【10 + the highest value among resolved cards】</strong> to each of <strong>up to two</strong> different enemies you can see that are present on the scene; the type of this damage is one of your choice among those matching the suits of the resolved cards.</p><table style=\"height:34px;width:100%;border-width:1px;margin-left:auto;margin-right:auto\" border=\"1\"><colgroup><col style=\"width:27.9452%\"></col><col style=\"width:72.0548%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Effect</strong></td><td style=\"height:17px;border-width:1px\"><strong>Set Requirements</strong></td></tr><tr style=\"height:17px\"><td style=\"height:17px;border-width:1px\"><strong>Magic Pair</strong></td><td style=\"height:17px;border-width:1px\"><strong>2 cards</strong> of the <strong>same value</strong></td></tr></tbody></table><p>You perform a <strong>free attack</strong> with a weapon you have equipped. If this attack deals damage, choose a <strong>suit</strong> among those of the resolved cards; all damage dealt by the attack becomes of the type matching that <strong>suit</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "dex"
+      },
+      "secondary": {
+        "value": "ins"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "progress": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "name": "Name"
+    },
+    "source": {
+      "value": "FUAC5"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        },
+        "hrZero": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "value": 0,
+        "type": {
+          "value": "physical"
+        }
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "handout-deck"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "ebg6FQH2cPZYwDuu": 3,
+    "Vk2gQrsAJ2GZ8hcN": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1707665720251,
+    "modifiedTime": 1724180861872,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "FVmAbnxp6kZyoqkN",
+  "sort": 0,
+  "_key": "!items!FVmAbnxp6kZyoqkN"
+}

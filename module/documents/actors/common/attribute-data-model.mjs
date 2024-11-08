@@ -21,47 +21,32 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 		};
 	}
 
-	_initialize(options = {}) {
-		super._initialize(options);
-		let thiz = this;
-		const { current } = options;
-		let holder = {
-			get current() {
-				return current ?? thiz.base;
-			},
-			set current(value) {
-				delete this.current;
-				this.current = value;
-			},
-		};
-
+	constructor(data, options) {
+		super(data, options);
+		let current = this.base;
 		Object.defineProperty(this, 'current', {
 			configurable: false,
 			enumerable: true,
-			get() {
-				const value = 2 * Math.floor(holder.current / 2);
-				return MathHelper.clamp(value, 6, 12);
+			get: () => {
+				return MathHelper.clamp(2 * Math.floor(current / 2), 6, 12);
 			},
-			set(newValue) {
-				holder.current = newValue;
+			set: (newValue) => {
+				if (Number.isNumeric(newValue)) {
+					current = Number(newValue);
+				}
 			},
 		});
 
 		Object.defineProperty(this, 'upgrade', {
 			value: () => {
-				holder.current += 2;
+				current += 2;
 			},
 		});
 
 		Object.defineProperty(this, 'downgrade', {
 			value: () => {
-				holder.current -= 2;
+				current -= 2;
 			},
 		});
-	}
-
-	clone(data = {}, context = {}) {
-		context.current = this.current;
-		return super.clone(data, context);
 	}
 }

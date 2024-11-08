@@ -1,0 +1,50 @@
+{
+  "name": "Elixir",
+  "type": "consumable",
+  "img": "systems/projectfu/styles/static/compendium/consumables/elixir.png",
+  "system": {
+    "subtype": {
+      "value": "potion"
+    },
+    "summary": {
+      "value": "One creature recovers 50 MP."
+    },
+    "description": "<p>For @LOSS[3 ip] one creature recovers @HEAL[50 mp].</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "ipCost": {
+      "value": 3
+    },
+    "source": {
+      "value": "FUCR104"
+    },
+    "fuid": "elixir"
+  },
+  "effects": [],
+  "folder": "WTJwnSjYUL3GOIyA",
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706515894820,
+    "modifiedTime": 1724180864625,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "mn3F6qOfdVYM405v",
+  "sort": 50000,
+  "_key": "!items!mn3F6qOfdVYM405v"
+}

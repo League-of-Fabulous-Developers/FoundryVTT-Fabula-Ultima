@@ -1,0 +1,75 @@
+{
+  "name": "Vengeful (Physical)",
+  "type": "effect",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 1200
+    }
+  },
+  "effects": [
+    {
+      "disabled": false,
+      "name": "Vengeful (Physical)",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "type": "base",
+      "changes": [],
+      "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal @DMG[5 physical] damage to that creature (after the attack has been resolved).</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "quality",
+          "subtype": "Offensive",
+          "CrisisInteraction": "none",
+          "source": "FUCR282"
+        }
+      },
+      "_id": "5u5eYbQf5l6crY7M",
+      "system": {},
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1728772534587,
+        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+      },
+      "_key": "!items.effects!tRMBKaBfyJ7g2tYZ.5u5eYbQf5l6crY7M"
+    }
+  ],
+  "folder": "G9QbTliORWqM7IoY",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728747190299,
+    "modifiedTime": 1728747190299,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_id": "tRMBKaBfyJ7g2tYZ",
+  "sort": 500000,
+  "ownership": {
+    "default": 0,
+    "7kOzP8RBVJhI8wKx": 3
+  },
+  "_key": "!items!tRMBKaBfyJ7g2tYZ"
+}

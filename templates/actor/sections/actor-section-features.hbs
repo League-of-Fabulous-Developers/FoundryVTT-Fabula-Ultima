@@ -33,6 +33,9 @@
                             {{> (lookup ../feature 'previewTemplate') item additionalData=additionalData item=item}}
                             {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                         </div>
+                        <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
+                            {{> (lookup ../feature 'expandTemplate') item additionalData=additionalData item=item}}
+                        </div>
                     </li>
                 {{/each}}
             </ol>
@@ -60,6 +63,9 @@
                             {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
                             {{> (lookup ../optional 'previewTemplate') item additionalData=additionalData item=item}}
                             {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+                        </div>
+                        <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
+                            {{> (lookup ../optional 'expandTemplate') item additionalData=additionalData item=item}}
                         </div>
                     </li>
                 {{/each}}
@@ -90,7 +96,7 @@
                             <div class="item-lg">{{ item.zeroTrigger }}</div>
                             <div class="item-lg">{{ item.zeroEffect }}</div>
                             {{!-- Clocks --}}
-                            <div class="item-m desc" style="text-align: initial; padding: 1px;">
+                            <div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
                                 <a class="decrement-button align-left" data-type="clockCounter"
                                    data-item-id="{{ item._id }}"> <i
                                  class="fas fa-minus"></i></a>
@@ -150,20 +156,22 @@
                     <li class="item" data-item-id="{{ item._id }}">
                         <div class="flexrow" style="height: fit-content; align-items: flex-start;">
                             <div class="flexcol">
-                                {{!-- Item Name--}}
-                                {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                                <div class="flexrow">
+                                    {{!-- Item Name--}}
+                                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                                    <div class="item-full start description-effect">
+                                        <p>{{ item.system.summary.value}}</p>
+                                    </div>
+                                </div>
                                 {{#if item.system.subtype}}
                                     <div class="item-quality">{{ item.quality }}</div>
                                 {{/if}}
                             </div>
-                            <div class="item-full start description-effect">
-                                <p>{{ item.system.summary.value}}</p>
-                            </div>
                             {{!-- Resource Points --}}
                             {{#if item.system.hasResource.value}}
-                                <div class="item-m desc flexcol flex-group-center resource-content">
-                                    <label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
-                                    <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
+                                <div class="item-m inline-desc" style="text-align: center; padding: 1px;">
+                                    <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{ item.system.rp.name }}</label>
+                                    <div class="resource-text-t buttons-inc" style="padding: 0 4px;">
                                         <a class="decrement-button" data-type="resourceCounter"
                                            data-item-id="{{ item._id }}"
                                            data-tooltip="{{localize
@@ -182,7 +190,7 @@
                             {{/if}}
                             {{!-- Clocks --}}
                             {{#if item.system.hasClock.value}}
-                                <div class="item-m desc" style="text-align: initial; padding: 1px;">
+                                <div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
                                     <a class="decrement-button align-left" data-type="clockCounter"
                                        data-item-id="{{ item._id }}"
                                        data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})">
@@ -204,7 +212,7 @@
                             {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                         </div>
                         <span class="item-quality"></span>
-                        <div class="individual-description align-left">
+                        <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                             {{#if item.enrichedHtml.description}}
                                 {{{item.enrichedHtml.description}}}
                             {{/if}}
@@ -245,25 +253,25 @@
                                 </div>
                             </div>
                             {{!-- Progress Counter --}}
-                            <div class="item-m desc flexcol flex-group-center resource-content"
+                            <div class="item-m inline-desc flexcol flex-group-center resource-content"
                                  style="padding: 0; border-radius: 6px 12px 12px 6px;">
-                                <div class="resource-text-m buttons-inc">
+                                <div class="resource-text-t buttons-inc">
                                     <a class="decrement-button" data-type="projectCounter" data-item-id="{{ item._id }}"
                                        data-tooltip="{{localize
-                                        'FU.DecreaseTooltip'}} ({{system.progressPerDay.value}})">-</a>
+                                        'FU.DecreaseTooltip'}} ({{item.system.progressPerDay.value}})">-</a>
                                     <span data-resource="item.rp">{{ item.system.progress.current }}</span>
                                     <span>/</span>
                                     <span>{{ item.system.progress.max }}</span>
                                     <a class="increment-button" data-type="projectCounter" data-item-id="{{ item._id }}"
                                        data-tooltip="{{localize
-                                        'FU.IncreaseTooltip'}} ({{system.progressPerDay.value}})">+</a>
+                                        'FU.IncreaseTooltip'}} ({{item.system.progressPerDay.value}})">+</a>
                                 </div>
                             </div>
                             {{!-- Item Control--}}
                             {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                         </div>
                         <span>{{ item.quality }}</span>
-                        <div class="individual-description align-left">
+                        <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                             {{#if item.enrichedHtml.description}}
                                 {{{item.enrichedHtml.description}}}
                             {{/if}}
@@ -301,7 +309,7 @@
                             </div>
                             {{!-- Clocks --}}
                             {{#if item.system.hasClock.value}}
-                                <div class="item-m desc" style="text-align: initial; padding: 1px;">
+                                <div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
                                     <a class="decrement-button align-left" data-type="clockCounter"
                                        data-item-id="{{ item._id }}"> <i
                                      class="fas fa-minus"></i></a>

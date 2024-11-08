@@ -1,0 +1,144 @@
+{
+  "folder": "bqBl8kPDVcWqosfM",
+  "name": "Stolen Time",
+  "type": "skill",
+  "_id": "84JARbmkQ5r0j39r",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/entropist_stolen_time.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>During a conflict, you may use an action to interfere with the flow of time by spending up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: one creature you can see suffers @EFFECT[slow]; or one creature you can see recovers from <strong>slow</strong>; or one creature you can see may immediately perform the <strong>Equipment action</strong> for free; <strong>or</strong> choose one ally you can see who has yet to take a turn during this round: that ally may take their turn immediately after yours during this round.</p><p>Each option can only be chosen once per use of this Skill.</p><hr /><p><strong>One</strong> option - @LOSS[5 mp]</p><p><strong>Two</strong> options - @LOSS[10 mp]</p><p><strong>Three</strong> options - @LOSS[15 mp]</p><p><strong>Four</strong> options - @LOSS[20 mp]</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 4,
+      "min": 0
+    },
+    "class": {
+      "value": "Entropist"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "source": {
+      "value": "FUCR191"
+    },
+    "rollInfo": {
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        },
+        "accuracy": {
+          "value": false
+        },
+        "damage": {
+          "value": false
+        }
+      },
+      "attributes": {
+        "primary": {
+          "value": "dex"
+        },
+        "secondary": {
+          "value": "dex"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      }
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "defense": "def",
+    "fuid": "stolen-time"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706486840722,
+    "modifiedTime": 1724180861559,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 100000,
+  "_key": "!items!84JARbmkQ5r0j39r"
+}

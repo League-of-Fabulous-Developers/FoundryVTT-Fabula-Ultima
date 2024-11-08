@@ -2,18 +2,30 @@
 /*  Items Header                             */
 /* ----------------------------------------- */
 
-.individual-description {
+.individual-description.hidden {
 	display: none;
+}
+
+.individual-description {
+	overflow: hidden;
+
+	p,
+	span {
+		font-weight: normal !important;
+		height: fit-content;
+		min-height: fit-content;
+		padding: 2px 0;
+	}
 
 	.editor {
 		height: fit-content;
 		min-height: fit-content;
-		padding: 0 1px;
+		padding: 2px 0;
 	}
 }
 
 .items-header > * {
-	font-size: 14px;
+	font-size: 0.875rem;
 	background: linear-gradient($color-tabStyle-gradient);
 	border-radius: 4px;
 	box-shadow: 1px 2px $color-secondary;
@@ -29,7 +41,7 @@
 
 .items-main-header {
 	height: 34px;
-	margin: 2px 2px 7px 2px;
+	margin: 5px;
 	padding-right: 2px;
 	display: flex;
 	flex-direction: row;
@@ -65,8 +77,8 @@
 	box-shadow: 2px 4px $color-secondary;
 	border: thin $color-shadow-inverted;
 	background: linear-gradient($color-tabStyle-gradient);
-	border-radius: 8px 30px 5px 5px;
-	padding: 4px;
+	border-radius: 10px 30px 5px 5px;
+	padding: 5px;
 
 	&.items-label {
 		margin: 5em;
@@ -74,8 +86,8 @@
 
 	&.zenit-container {
 		width: 10.5em;
-		border-radius: 8px;
-		font-size: 14px;
+		border-radius: 10px;
+		font-size: 0.875rem;
 		box-sizing: border-box;
 		white-space: normal;
 		text-overflow: ellipsis;
@@ -127,7 +139,6 @@
 			height: inherit;
 			background-color: transparent;
 			border: none;
-			/* Use 'border' to remove borders */
 			vertical-align: middle;
 		}
 	}
@@ -138,93 +149,183 @@
 
 	&.armor-hand {
 		width: 10.5em;
-		border-radius: 8px 30px 5px 5px;
-		font-size: 14px;
+		border-radius: 4px;
+		font-size: 0.875rem;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 		white-space: normal;
 		text-overflow: ellipsis;
-		padding: 4px 14px 0px 0;
-		text-align: right;
+		text-align: left;
 
 		.equipped-item {
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			max-width: 100%;
-			margin-left: 10px;
-			gap: 2px;
+			margin: 0;
+			display: flex;
+			width: 100%;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.equipped-item-content {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			max-width: 70%;
+			margin: 0 2px;
 		}
 	}
 
-	// &.armor-hand,
 	&.acc-hand {
 		width: 10.5em;
-		border-radius: 40px 8px 5px 5px;
-		font-size: 14px;
+		border-radius: 4px;
+		font-size: 0.875rem;
 		box-sizing: border-box;
 		white-space: normal;
 		text-overflow: ellipsis;
-		padding: 4px 4px 0px 0;
+		text-align: left;
 
 		.equipped-item {
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			max-width: 100%;
-			margin-left: 10px;
-			gap: 2px;
+			margin: 0;
+			display: flex;
+			width: 100%;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.equipped-item-content {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			max-width: 70%;
+			margin: 0 2px;
+		}
+	}
+
+	&.two-hand {
+		width: 13em;
+		border-radius: 4px;
+		font-size: 0.875rem;
+		white-space: normal;
+		margin: 0;
+		text-align: left;
+
+		.equipped-item {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100%;
+			margin: 0;
+			display: flex;
+			.icon-letter {
+				margin-left: -10px;
+			}
+			width: 100%;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.equipped-item-content {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			max-width: 70%;
+			margin: 0 2px;
 		}
 	}
 
 	&.left-hand {
-		height: inherit;
 		width: 13em;
-		border-radius: 0 0 4px 40px;
-		font-size: 14px;
+		border-radius: 4px;
+		font-size: 0.875rem;
 		white-space: normal;
-		padding: 5px;
 		margin: 0;
+		text-align: left;
 
 		.equipped-item {
-			position: relative;
-			display: flex;
-			align-items: center;
 			white-space: nowrap;
-			justify-content: flex-end;
-			gap: 2px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100%;
+			margin: 0;
+			display: flex;
+			.icon-letter {
+				margin-left: -10px;
+			}
+			width: 100%;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.equipped-item-content {
 			text-overflow: ellipsis;
 			overflow: hidden;
-			max-width: 79%;
-			margin-left: 10px;
+			max-width: 70%;
+			margin: 0 2px;
 		}
 	}
 
 	&.right-hand {
-		height: inherit;
 		width: 13em;
-		border-radius: 0 0 40px 0px;
-		font-size: 14px;
+		border-radius: 4px;
+		font-size: 0.875rem;
 		white-space: normal;
-		padding: 5px;
 		margin: 0;
+		text-align: left;
 
 		.equipped-item {
-			position: relative;
-			display: flex;
-			align-items: center;
 			white-space: nowrap;
-			gap: 2px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100%;
+			margin: 0;
+			display: flex;
+			.icon-letter {
+				margin-left: -10px;
+			}
+			width: 100%;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.equipped-item-content {
 			text-overflow: ellipsis;
-			/* Show ellipsis for overflowing text */
 			overflow: hidden;
-			/* Hide overflowing text */
+			max-width: 70%;
+			margin: 0 2px;
+		}
+	}
+
+	&.phantom-hand {
+		width: auto;
+		max-width: 32px;
+		border-radius: 4px;
+		font-size: 0.875rem;
+		white-space: normal;
+		margin: 0;
+		text-align: left;
+		padding: 0.5em;
+
+		.equipped-item {
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			max-width: 100%;
+			margin: 0;
+			display: flex;
+			.icon-letter {
+				margin-left: -10px;
+			}
+			width: 100%;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.equipped-item-content {
+			text-overflow: ellipsis;
+			overflow: hidden;
 			max-width: 70%;
 			margin: 0 2px;
 		}
@@ -237,7 +338,7 @@
 	color: $color-primary;
 	padding: 0 2px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 10px;
 	margin: 0;
 	flex: 0 0 16px;
 	text-align: center;
@@ -246,7 +347,6 @@
 /* ----------------------------------------- */
 /*  Fixes                                    */
 /* ----------------------------------------- */
-$fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 
 .items-list .item .item-name .item-image,
 .items-list .effect .item-name .item-image {
@@ -254,15 +354,12 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 	padding-right: 5px;
 	flex: 0 0 30px;
 	position: relative;
-}
 
-.items-list .item .item-name .item-image,
-.items-list .effect .item-name .item-image {
 	img {
 		max-width: 100%;
 		display: block;
-		height: 24px;
 		width: 24px;
+		height: 24px;
 		overflow: hidden;
 		border-radius: 5px;
 		background-image: linear-gradient(to right, $color-secondary, $color-ternary);
@@ -271,53 +368,77 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 			opacity 0.3s ease;
 	}
 
-	&:hover {
-		img {
-			transform: scale(1.1);
-			transform-origin: center center;
-			opacity: 0.75;
+	&:hover img {
+		transform: scale(1.1);
+		transform-origin: center;
+		opacity: 0.75;
 
-			&::before {
-				content: '';
-				position: absolute;
-				width: 24px;
-				height: 24px;
-				background: $fu-d20 center/cover;
-				opacity: 0.75;
-				z-index: -1;
-			}
+		&::before {
+			content: '';
+			position: absolute;
+			width: 24px;
+			height: 24px;
+			opacity: 0.75;
+			z-index: -1;
 		}
 	}
 }
 
 .status-effect-toggle {
 	display: flex;
-}
 
-/* Status Effect Icon - Toggle Fading */
-.status-effect-toggle img {
-	flex: 0 0 32px !important;
-	height: 32px !important;
-	width: 32px !important;
-	display: block;
-	margin-top: -1px;
-	border-radius: 4px;
-	border: 0px solid transparent;
-	opacity: 0.4;
-	transition:
-		transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-		opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	/* Status Effect Icon - Toggle Fading */
+	img {
+		flex: 0 0 32px !important;
+		height: 32px !important;
+		width: 32px !important;
+		display: block;
+		margin-top: -1px;
+		border-radius: 4px;
+		border: 0 solid transparent;
+		opacity: 0.4;
+		transition:
+			transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+			opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-	&:hover {
-		opacity: 0.8;
-		transform: scale(1.2);
-		transform-origin: center center;
-		z-index: 100;
+		&:not(.immune):hover {
+			opacity: 0.8;
+			transform: scale(1.2);
+			transform-origin: center;
+			z-index: 100;
+		}
 	}
-}
 
-.status-effect-toggle.active img {
-	opacity: 1;
+	&.active img {
+		opacity: 1;
+	}
+
+	/* Immune Status Indicator */
+	&.immune {
+		position: relative;
+		cursor: not-allowed;
+
+		img {
+			filter: grayscale(100%) contrast(100%) brightness(100%);
+			opacity: 1;
+			transform: scale(1) !important;
+		}
+
+		/* X mark overlay */
+		&::after {
+			content: '✘';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: $color-danger;
+			font-size: 1rem;
+			font-weight: bold;
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+			pointer-events: none;
+			z-index: 101;
+		}
+	}
 }
 
 /* ----------------------------------------- */
@@ -345,7 +466,7 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 .items-list .item-name h3,
 .items-list .item-name h4 {
 	margin: 0;
-	padding: 2px 0;
+	padding: 0;
 	white-space: normal;
 	overflow: hidden;
 	text-overflow: clip;
@@ -386,7 +507,7 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 }
 
 .items-list .items-header > * {
-	font-size: 14px;
+	font-size: 0.875rem;
 	text-align: center;
 	color: $color-primary;
 	text-shadow: 1px 1px 1px $color-black;
@@ -413,86 +534,45 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 	}
 }
 
-// span[data-tooltip] {
-//   display: inline-block;
-// }
+// General item styles
+.item-xs,
+.item-sm,
+.item-m,
+.item-lg,
+.item-xl,
+.item-xxl,
+.item-full {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+	text-align: center;
+}
 
 .item-xs {
 	flex: 0 0 64px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-sm {
 	flex: 0 0 80px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-m {
 	flex: 0 0 100px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-lg {
 	flex: 0 0 150px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-xl {
 	flex: 0 0 256px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-xxl {
 	flex: 0 0 300px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	text-align: center;
-	align-content: center;
 }
-
 .item-full {
 	flex: 2;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-content: center;
 }
 
+// Special progress bar style
 .item-progressbar {
 	flex: 2;
 	display: flex;
@@ -503,6 +583,7 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 	flex-wrap: wrap;
 }
 
+// Alignment helpers
 .start {
 	display: flex;
 	justify-content: flex-start;
@@ -513,14 +594,13 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 }
 
 .end {
-	flex: 0 0 100px;
+	flex: 0 0 95px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: inherit;
 	align-content: center;
 
 	a {
-		font-size: 14px;
 		text-align: center;
 		margin: 0 2px;
 	}
@@ -529,4 +609,9 @@ $fu-d20: url('/systems/projectfu/styles/static/icons/fu-d20.svg');
 .effects-list .suppressed .item-name .item-name {
 	text-decoration: $color-danger line-through 2px;
 	filter: opacity(60%);
+}
+
+.item-options {
+	right: 0 !important;
+	left: unset !important;
 }

@@ -7,7 +7,7 @@
             <div class="resource-content flexcol flex-group-center">
                 <label class="resource-label-m flexlarge">{{localize 'FU.Defense'}}</label>
                 <div class="flexrow gap-5">
-                    <select name="system.data.defense.attribute" class="resource-inputs select-dropdown-m" {{#if
+                    <select name="system.data.defense.attribute" class="resource-inputs select-dropdown-m resource-text-m" {{#if
                         system.data.martial}}disabled{{/if}}>
                         {{#if system.data.martial}}
                         <option>-</option>
@@ -17,7 +17,7 @@
                     </select>
                     <span class="flex0"><i class="fas fa-plus"></i></span>
                     <input type="number" name="system.data.defense.modifier" value="{{system.data.defense.modifier}}"
-                        class="resource-inputs select-dropdown-l">
+                        class="resource-inputs select-dropdown-l resource-text-m">
                 </div>
             </div>
             <div class="flex0">
@@ -29,7 +29,7 @@
             <div class="resource-content flexcol flex-group-center">
                 <label class="resource-label-m flexlarge">{{localize 'FU.MagicDefense'}}</label>
                 <div class="flexrow gap-5">
-                    <select name="system.data.magicDefense.attribute" class="resource-inputs select-dropdown-m" {{#if
+                    <select name="system.data.magicDefense.attribute" class="resource-inputs select-dropdown-m resource-text-m" {{#if
                         system.data.martial}}disabled{{/if}}>
                         {{#if system.data.martial}}
                         <option>-</option>
@@ -40,7 +40,7 @@
                     </select>
                     <span class="flex0"><i class="fas fa-plus"></i></span>
                     <input type="number" name="system.data.magicDefense.modifier"
-                        value="{{system.data.magicDefense.modifier}}" class="resource-inputs select-dropdown-l">
+                        value="{{system.data.magicDefense.modifier}}" class="resource-inputs select-dropdown-l resource-text-m">
                 </div>
             </div>
         </div>
@@ -50,8 +50,17 @@
             <label class="resource-label-m">{{localize 'FU.Quality'}}</label>
         </legend>
         <div class="flexrow">
-            <input type="text" name="system.data.quality" value="{{system.data.quality}}"
-                class="resource-inputs select-dropdown-full">
+            <div class="resource-content flexcol flex-group-center flexgrow-4">
+                <label class="resource-label-m flexlarge">{{localize 'FU.Quality'}}</label>
+                <input type="text" name="system.data.quality" value="{{system.data.quality}}" class="resource-inputs select-dropdown-full resource-text-m">
+            </div>
+
+            <div class="resource-content flexcol flex-group-center">
+                <label class="resource-label-m flexshrink">{{localize 'FU.Cost'}}</label>
+                <div class="flexrow">
+                    <input type="number" name="system.cost.value" value="{{system.cost.value}}" class="resource-inputs select-dropdown-m resource-text-m">
+                </div>
+            </div>
         </div>
     </fieldset>
     <fieldset class="title-fieldset desc resource-content">

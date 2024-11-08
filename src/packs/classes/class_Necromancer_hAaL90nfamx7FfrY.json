@@ -1,0 +1,98 @@
+{
+  "name": "Necromancer",
+  "type": "class",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/necromancer.png",
+  "system": {
+    "summary": {
+      "value": "Waste not, want not."
+    },
+    "description": "<h5><strong>ALSO: Grave Queen, Reanimator, Vampire</strong></h5><p>The arts of soul manipulation have seen a wide variety of uses, but few will strike an instinctual fear in the hearts of people as Necromancy can.</p><p><strong>Necromancers</strong> reap spiritual energy moments before death, when it is at its brightest; this precious power can then be used to fuel their control over the balance of life and death, or even to inhabit a corpse so that it moves again. And yet, as if to mock their dark efforts, true resurrection of a lost one remains a mirage…</p><hr /><h5><strong>NECROMANCER FREE BENEFITS</strong></h5><ul><li>Permanently increase your maximum Hit Points <strong>or</strong> Mind Points by 5 (your choice).</li></ul><h2><strong>NECROMANCER SKILLS</strong></h2><p>@UUID[Compendium.projectfu.skills.Item.QwAuh7RXGBQsCb6l]{Beyond The Realms Of Death} <strong>(SL5)</strong></p><p>When another creature you can see loses Hit Points while in Crisis, if they are not undead, you gain <strong>1 Grave Point</strong>. You may never have more than <strong>【SL + 1】 </strong>Grave Points. When you are reduced to 0 Hit Points, you lose all Grave Points; then, if you lost at least 1 Grave Point this way and this is the <strong>first time</strong> you are reduced to 0 HP during this scene, you do not <strong>Surrender</strong> nor <strong>Sacrifice</strong> yourself: instead, you recover an amount of HP equal to <strong>【SL, multiplied by the amount of Grave Points you lost this way】</strong>.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.kOEljjCw7bS9FyJv]{Children Of The Grave}</p><p>You can always communicate verbally with <strong>undead</strong> creatures. Once per scene, you may ask an <strong>undead</strong> a single question; they are compelled to answer truthfully.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.4TxnpOUnaOaTFCP0]{Fear Is The Key} <strong>(SL3)</strong></p><p>After you cause one or more enemies to lose Hit Points, if you have acquired the <strong>Beyond the Realms of Deat</strong>h Skill and at least one of them is suffering from shaken and/or <strong>weak</strong>, you gain 1 Grave Point and recover <strong>【SL × 2】 </strong>Hit Points and Mind Points.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.oevRD7ES46HQEOKn]{For Whom The Bell Tolls} <strong>(SL3)</strong></p><p>When you <strong>deal damage to a creature with a spell</strong>, if that spell <strong>only deals damage to that creature</strong>, you may spend 1 Grave Point. If you do, choose one option: if that creature is suffering from one or more status effects, the spell deals extra damage equal to <strong>【(SL × 2) + the number of status effects on that creature】</strong>; or if that creature is suffering from no status effects, they suffer <strong>shaken</strong>.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.VSWCJDqDERswimf0]{Rondo Of Nightmare}</p><p>When you cast an offensive spell ( @ICON[offensive] ) with a <strong>target</strong> of “One creature”, you may spend 2 Grave Points to have it target <strong>all</strong> creatures you can see that are present on the scene (perform a single Magic Check and confront it with the Magic Defense of each target). If you do, all damage dealt by the spell becomes <strong>dark</strong> and its type cannot change.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": true
+        },
+        "ip": {
+          "value": false
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": false
+        },
+        "shields": {
+          "value": false
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": false
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNM2"
+    },
+    "subtype": {},
+    "showTitleCard": {
+      "value": false
+    },
+    "fuid": "necromancer"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1684756578950,
+    "modifiedTime": 1724180861025,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "ebg6FQH2cPZYwDuu": 3,
+    "Vk2gQrsAJ2GZ8hcN": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_id": "hAaL90nfamx7FfrY",
+  "sort": 800000,
+  "_key": "!items!hAaL90nfamx7FfrY"
+}

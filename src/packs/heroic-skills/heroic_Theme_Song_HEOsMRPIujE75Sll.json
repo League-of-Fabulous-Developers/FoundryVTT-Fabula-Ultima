@@ -1,0 +1,122 @@
+{
+  "name": "Theme Song",
+  "type": "heroic",
+  "img": "icons/tools/instruments/harp-yellow-teal.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Gain a theme song with a variety of benefits."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Chanter </strong>Class.</p></blockquote><p>When you acquire this Skill, you obtain a <strong>theme song</strong> – give it a name and assign it a <strong>key </strong>from the ones you have learned (you can also choose a real-world song for this).</p><p>Once per conflict scene after you sing a <strong>verse</strong> in your theme song's key, you may start your <strong>theme song</strong> — if it's a real song, it's a great idea to play it in the background!</p><p>While singing your theme song, you gain the following benefits:</p><ul><li><p>You gain Resistance to <strong>【theme song's key type】 </strong>damage.</p></li><li><p>When you deal <strong>【theme song's key type】 </strong>damage, you deal 5 extra damage and the type of that damage cannot be changed.</p></li><li><p>The MP cost for singing <strong>verses </strong>in the same key as your <strong>theme song</strong> is halved. This benefit applies to you and to <strong>any </strong>of your allies who are able to sing <strong>verses</strong>.</p></li></ul><p>The <strong>theme song</strong> lasts until the end of the scene or until you leave the scene, die, or fall unconscious. The <strong>theme song</strong> also ends as soon as you sing a <strong>verse </strong>in a <strong>key </strong>other than the <strong>theme song</strong>'s, if your turn ends and you have not sung any <strong>verse</strong>, or if another character starts their <strong>theme song</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Chanter"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUHF161"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "fuid": "theme-song"
+  },
+  "effects": [],
+  "folder": "gaT6Lef2xP8TZKnF",
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706684770800,
+    "modifiedTime": 1724180863779,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "HEOsMRPIujE75Sll",
+  "sort": 0,
+  "_key": "!items!HEOsMRPIujE75Sll"
+}

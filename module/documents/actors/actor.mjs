@@ -1,9 +1,13 @@
 import { FUItem } from '../items/item.mjs';
+import { FUHooks } from '../../hooks.mjs';
 import { toggleStatusEffect } from '../../helpers/effects.mjs';
+import { SYSTEM } from '../../helpers/config.mjs';
+import { Flags } from '../../helpers/flags.mjs';
 
 /**
  * Extend the base Actor document by defining a custom roll data structure
  * @extends {Actor}
+ * @property {CharacterDataModel | NpcDataModel} system
  */
 export class FUActor extends Actor {
 	/** @override */
@@ -13,7 +17,7 @@ export class FUActor extends Actor {
 		// prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
 		// prepareDerivedData().
 		super.prepareData();
-		Hooks.callAll('projectfu.actor.dataPrepared', this);
+		Hooks.callAll(FUHooks.DATA_PREPARED_ACTOR, this);
 	}
 
 	async getData(options = {}) {
@@ -45,6 +49,15 @@ export class FUActor extends Actor {
 	 */
 	prepareDerivedData() {
 		this.items.forEach((item) => item.applyActiveEffects());
+	}
+
+	/**
+	 * @override
+	 */
+	toObject() {
+		const result = super.toObject();
+		result.uuid = this.uuid;
+		return result;
 	}
 
 	get tlTracker() {
@@ -102,6 +115,24 @@ export class FUActor extends Actor {
 					disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
 				},
 			});
+		}
+	}
+
+	async _onCreate(createData, options, userId) {
+		await super._onCreate(createData, options, userId);
+
+		if (this.type === 'character' || this.type === 'npc') {
+			// Load the compendium
+			const pack = game.packs.get('projectfu.basic-equipment');
+			const content = await pack.getDocuments();
+
+			// Find the item with system.fuid === 'unarmed-strike'
+			const unarmedStrikeItem = content.find((item) => foundry.utils.getProperty(item, 'system.fuid') === 'unarmed-strike');
+
+			if (unarmedStrikeItem) {
+				// Add the item to the character
+				await this.createEmbeddedDocuments('Item', [unarmedStrikeItem.toObject()]);
+			}
 		}
 	}
 
@@ -185,12 +216,16 @@ export class FUActor extends Actor {
 
 	*allApplicableEffects() {
 		for (const effect of super.allApplicableEffects()) {
-			if (effect.parent instanceof FUItem && effect.parent.system.transferEffects instanceof Function) {
-				if (!effect.parent.system.transferEffects()) {
-					continue;
+			const item = effect.parent;
+
+			if (item instanceof FUItem) {
+				if (item.system.transferEffects instanceof Function ? item.system.transferEffects() : true) {
+					yield effect;
 				}
+			} else {
+				// Effects exist directly on the actor
+				yield effect;
 			}
-			yield effect;
 		}
 	}
 
@@ -201,7 +236,35 @@ export class FUActor extends Actor {
 		return super.applyActiveEffects();
 	}
 
-	async spendMetaCurrency() {
+	async gainMetaCurrency() {
+		let metaCurrency;
+		if (this.type === 'character') {
+			metaCurrency = game.i18n.localize('FU.Fabula');
+		}
+		if (this.type === 'npc' && this.system.villain.value) {
+			metaCurrency = game.i18n.localize('FU.Ultima');
+		}
+
+		if (metaCurrency) {
+			await this.update({
+				'system.resources.fp.value': this.system.resources.fp.value + 1,
+			});
+			/** @type ChatMessageData */
+			const chatData = {
+				user: game.user.id,
+				speaker: ChatMessage.getSpeaker({ actor: this.name }),
+				flavor: game.i18n.format('FU.GainMetaCurrencyChatFlavor', { type: metaCurrency }),
+				content: game.i18n.format('FU.GainMetaCurrencyChatMessage', { actor: this.name, type: metaCurrency }),
+			};
+			ChatMessage.create(chatData);
+		}
+	}
+
+	/**
+	 * @param force
+	 * @return {Promise<boolean>}
+	 */
+	async spendMetaCurrency(force = false) {
 		let metaCurrency;
 		if (this.type === 'character') {
 			metaCurrency = game.i18n.localize('FU.Fabula');
@@ -210,25 +273,61 @@ export class FUActor extends Actor {
 			metaCurrency = game.i18n.localize('FU.Ultima');
 		}
 		if (metaCurrency && this.system.resources.fp.value > 0) {
-			const confirmed = await Dialog.confirm({
-				title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }),
-				content: game.i18n.format('FU.UseMetaCurrencyDialogMessage', { type: metaCurrency }),
-				rejectClose: false,
-			});
+			const confirmed =
+				force ||
+				(await Dialog.confirm({
+					title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }),
+					content: game.i18n.format('FU.UseMetaCurrencyDialogMessage', { type: metaCurrency }),
+					options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
+					rejectClose: false,
+				}));
 			if (confirmed && this.system.resources.fp.value > 0) {
 				/** @type ChatMessageData */
 				const data = {
 					speaker: ChatMessage.implementation.getSpeaker({ actor: this }),
 					flavor: game.i18n.format('FU.UseMetaCurrencyChatFlavor', { type: metaCurrency }),
 					content: game.i18n.format('FU.UseMetaCurrencyChatMessage', { actor: this.name, type: metaCurrency }),
+					flags: {
+						[SYSTEM]: {
+							[Flags.ChatMessage.UseMetaCurrency]: true,
+						},
+					},
 				};
 				ChatMessage.create(data);
 				await this.update({
 					'system.resources.fp.value': this.system.resources.fp.value - 1,
 				});
+				return true;
 			}
 		} else {
 			ui.notifications.info(game.i18n.format('FU.UseMetaCurrencyNotificationInsufficientPoints', { actor: this.name, type: metaCurrency }));
+			return false;
 		}
+	}
+
+	/**
+	 * Returns an array of items that match a given FUID and optionally an item type
+	 * @param {string} fuid - The FUID of the item(s) which you want to retrieve
+	 * @param {string} [type] - Optionally, a type name to restrict the search
+	 * @returns {Array} - An array containing the found items
+	 */
+	getItemsByFuid(fuid, type) {
+		const fuidFilter = (i) => i.system.fuid === fuid;
+		if (!type) return this.items.filter(fuidFilter);
+		const itemTypes = this.itemTypes;
+		if (!Object.prototype.hasOwnProperty.call(itemTypes, type)) {
+			throw new Error(`Type ${type} is invalid!`);
+		}
+		return itemTypes[type].filter(fuidFilter);
+	}
+
+	/**
+	 * Fetch an item that matches a given FUID and optionally an item type
+	 * @param {string} fuid - The FUID of the item(s) which you want to retrieve
+	 * @param {string} [type] - Optionally, a type name to restrict the search
+	 * @returns {Object|undefined} - The matching item, or undefined if none was found.
+	 */
+	getSingleItemByFuid(fuid, type) {
+		return this.getItemsByFuid(fuid, type)[0];
 	}
 }

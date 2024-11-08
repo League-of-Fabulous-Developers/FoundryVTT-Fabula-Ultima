@@ -1,0 +1,19 @@
+{
+  "name": "Symbolist",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "SBAHplvEYQmgs8Po",
+  "sort": 100000,
+  "color": "#2E7E8E",
+  "flags": {},
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "11.315",
+    "createdTime": 1706518607708,
+    "modifiedTime": 1719159763038,
+    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+  },
+  "_key": "!folders!SBAHplvEYQmgs8Po"
+}

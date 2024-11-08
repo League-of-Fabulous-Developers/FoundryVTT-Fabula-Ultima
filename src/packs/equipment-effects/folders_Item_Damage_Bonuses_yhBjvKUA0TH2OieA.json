@@ -1,0 +1,22 @@
+{
+  "name": "Item Damage Bonuses",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "yhBjvKUA0TH2OieA",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1728758714776,
+    "modifiedTime": 1728758714776,
+    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+  },
+  "_key": "!folders!yhBjvKUA0TH2OieA"
+}

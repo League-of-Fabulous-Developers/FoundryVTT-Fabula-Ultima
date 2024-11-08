@@ -1,0 +1,143 @@
+{
+  "name": "Curse XL",
+  "type": "spell",
+  "img": "icons/magic/unholy/barrier-fire-pink.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>The target suffers (<strong>choose two: dazed, shaken, slow, weak</strong>).</p><hr /><p>@EFFECT[dazed] @EFFECT[shaken] @EFFECT[slow] @EFFECT[weak]</p><p>@LOSS[10 mp]</p>",
+    "isFavored": {
+      "value": false
+    },
+    "class": {
+      "value": "NPC"
+    },
+    "useWeapon": {
+      "accuracy": {
+        "value": false
+      },
+      "damage": {
+        "value": false
+      },
+      "hrZero": {
+        "value": false
+      }
+    },
+    "attributes": {
+      "primary": {
+        "value": "mig"
+      },
+      "secondary": {
+        "value": "mig"
+      }
+    },
+    "accuracy": {
+      "value": 0
+    },
+    "damage": {
+      "hasDamage": {
+        "value": false
+      },
+      "value": 0,
+      "type": {
+        "value": "physical"
+      }
+    },
+    "impdamage": {
+      "hasImpDamage": {
+        "value": false
+      },
+      "value": 0,
+      "impType": {
+        "value": "minor"
+      },
+      "type": {
+        "value": "physical"
+      }
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "mpCost": {
+      "value": "10"
+    },
+    "target": {
+      "value": "One creature"
+    },
+    "duration": {
+      "value": "instantaneous"
+    },
+    "isOffensive": {
+      "value": true
+    },
+    "hasRoll": {
+      "value": true
+    },
+    "rollInfo": {
+      "attributes": {
+        "primary": {
+          "value": "ins"
+        },
+        "secondary": {
+          "value": "wlp"
+        }
+      },
+      "accuracy": {
+        "value": 0
+      },
+      "damage": {
+        "hasDamage": {
+          "value": false
+        },
+        "type": {
+          "value": "physical"
+        },
+        "value": 0
+      },
+      "useWeapon": {
+        "hrZero": {
+          "value": false
+        }
+      }
+    },
+    "subtype": {},
+    "source": {
+      "value": "FUCR310"
+    },
+    "opportunity": "",
+    "maxTargets": {
+      "value": 1
+    },
+    "fuid": "curse-xl"
+  },
+  "effects": [],
+  "flags": {
+    "core": {},
+    "cf": null
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1690417015023,
+    "modifiedTime": 1724180864837,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "folder": "PpBzAnM7EK75ayIT",
+  "_id": "S291phTQNL0qbGYa",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "_key": "!items!S291phTQNL0qbGYa"
+}

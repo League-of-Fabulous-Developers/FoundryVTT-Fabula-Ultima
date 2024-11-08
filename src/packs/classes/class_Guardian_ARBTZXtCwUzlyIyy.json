@@ -1,0 +1,99 @@
+{
+  "name": "Guardian",
+  "type": "class",
+  "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian.png",
+  "system": {
+    "subtype": {
+      "value": ""
+    },
+    "summary": {
+      "value": "Let me be your shield."
+    },
+    "description": "<h5><strong>ALSO: Paladin, Soldier, Yōjinbō</strong></h5><p>Proud and selfless, <strong>Guardians</strong> are individuals who know the value of life… and are willing to sacrifice themselves for a person, nation or ideal they have sworn to protect. They are often extraordinary and impressive individuals, such as valiant soldiers or veterans scarred by a thousand battles. While some Guardians may appear loud and boisterous, many are simply masking the tormented memory of those they failed to protect.</p><hr /><h5><strong>GUARDIAN FREE BENEFITS</strong></h5><ul><li>Permanently increase your maximum Hit Points by 5.</li><li>Gain the ability to equip <strong>martial armor</strong> and <strong>martial shields.</strong></li></ul><h2><strong>GUARDIAN SKILLS</strong></h2><p>@UUID[Compendium.projectfu.skills.Item.ZvZT5jWlBZVm1Gmd]{Bodyguard}</p><p>If you perform the <strong>Guard</strong> action and choose to provide cover to another creature, that creature gains Resistance to all damage types until the start of your next turn.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.7wF1oulk0Zn7ITTF]{Defensive Mastery} <strong>(SL5)</strong></p><p>As long as you have a <strong>shield</strong> or a <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong> (applied <strong>before</strong> damage Affinities).</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer}</p><p>You may now equip a <strong>shield</strong> in your <strong>main hand</strong> slot. As long as you have two shields equipped, you gain the benefits of both items and may treat them as the following combined two-handed melee <strong>brawling</strong> weapon:</p><table style=\"width:98.7597%;height:53px\" border=\"1\"><colgroup><col style=\"width:14.4654%\"></col><col style=\"width:20.7547%\"></col><col style=\"width:23.2618%\"></col><col style=\"width:41.5181%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"height:17px\"><strong>WEAPON</strong></td><td style=\"height:17px\"><strong>ACCURACY</strong></td><td style=\"height:17px\"><strong>DAMAGE</strong></td><td style=\"height:17px\"><strong>QUALITY</strong></td></tr><tr style=\"height:36px\"><td style=\"height:36px\"><strong>Twin Shields</strong></td><td style=\"height:36px\">【MIG + MIG】</td><td style=\"height:36px\">【HR + 5】physical </td><td style=\"height:36px\">Deals extra damage equal to your 【SL】 in defensive mastery (above).</td></tr></tbody></table><p>Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong> (above).</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.X4KdFiQmzikrsM6v]{Fortress} <strong>(SL5)</strong></p><p>Permanently increase your maximum Hit Points by <strong>【SL × 3】</strong>.</p><hr /><p>@UUID[Compendium.projectfu.skills.Item.Z4WIA15aR4uLL5ES]{Protect}</p><p>When another creature is threatened by an <strong>attack</strong>, <strong>spell</strong> or other <strong>danger</strong>, you may take their place (any Checks that are part of the danger will be performed against you; you may declare the use of this Skill <strong>before</strong> or <strong>after</strong> the Checks have been made). If the danger already affected you, it affects you <strong>twice</strong> (resolve both instances separately); you also cannot protect multiple creatures from the same danger. If you use this Skill during a conflict, you cannot use it again until the start of your next turn.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": true
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": true
+        },
+        "shields": {
+          "value": true
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": false
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUCR196"
+    },
+    "fuid": "guardian"
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "hYECXwi6O8UUBuN4": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1706437992957,
+    "modifiedTime": 1724180860934,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "ARBTZXtCwUzlyIyy",
+  "sort": 700000,
+  "_key": "!items!ARBTZXtCwUzlyIyy"
+}

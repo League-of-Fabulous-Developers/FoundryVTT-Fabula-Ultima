@@ -1,5 +1,5 @@
 function migrateQualityToOpportunity(source) {
-	if ('quality' in source && source.quality.value) {
+	if ('quality' in source && source.quality.value && !('opportunity' in source)) {
 		source.opportunity = source.quality.value;
 		delete source.quality;
 	}

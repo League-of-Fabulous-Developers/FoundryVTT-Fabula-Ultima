@@ -35,16 +35,48 @@
                                 {{/with}}
                             {{/with}}
                         {{/if}}
+
+                        {{!-- Optional Features --}}
+                        {{#if (eq item.type "optionalFeature")}}
+                            {{#unless item.system.data.progress}}
+                                {{#with (lookup @root.optionalFeatures item.system.optionalType) as |optionalType|}}
+                                    {{#with (lookup optionalType.items item._id) as |itemData|}}
+                                        {{> (lookup optionalType.optional 'previewTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
+                                    {{/with}}
+                                {{/with}}
+                            {{/unless}}
+                        {{/if}}
+
                         {{!-- Item Equip--}}
                         {{#if (or (eq @root.actor.type "character") @root.actor.system.useEquipment.value)}}
                             {{> "systems/projectfu/templates/actor/partials/actor-equip.hbs" actor=actor item=item}}
                         {{/if}}
 
                         {{!-- Resource Points --}}
+                        {{#if item.system.data.hasResource.value}}
+                            <div class="item-l inline-desc flexrow flex-group-center resource-content" style="padding: 0">
+                                <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{item.system.data.rp.name }}</label>
+                                <div class="resource-text-t buttons-inc">
+                                    <a class="decrement-button" data-type="optionalRPCounter"
+                                       data-item-id="{{ item._id }}"
+                                       data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.rp.step}})">-</a>
+                                    <span data-resource="item.rp">{{ item.system.data.rp.current }}</span>
+                                    {{#if (gt item.system.data.rp.max 0)}}
+                                        <span>/</span>
+                                        <span>{{ item.system.data.rp.max }}</span>
+                                    {{/if}}
+                                    <a class="increment-button" data-type="optionalRPCounter"
+                                       data-item-id="{{ item._id }}"
+                                       data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.rp.step}})">+</a>
+                                </div>
+                            </div>
+                        {{/if}}
+
+                        {{!-- Resource Points --}}
                         {{#if item.system.hasResource.value}}
-                            <div class="item-l desc flexrow flex-group-center resource-content" style="padding: 0">
-                                <label class="item-quality resource-text-sm">{{ item.system.rp.name }}</label>
-                                <div class="resource-text-m buttons-inc">
+                            <div class="item-l inline-desc flexrow flex-group-center resource-content" style="padding: 0">
+                                <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{item.system.rp.name }}</label>
+                                <div class="resource-text-t buttons-inc">
                                     <a class="decrement-button" data-type="resourceCounter"
                                        data-item-id="{{ item._id }}"
                                        data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.rp.step}})">-</a>
@@ -72,29 +104,29 @@
                                 </div>
                             </div>
                             {{!-- Progress Counter --}}
-                            <div class="item-m desc flexcol flex-group-center resource-content"
+                            <div class="item-m inline-desc flexcol flex-group-center resource-content"
                                  style="padding: 0; border-radius: 6px 12px 12px 6px;">
-                                <div class="resource-text-m buttons-inc">
+                                <div class="resource-text-t buttons-inc">
                                     <a class="decrement-button" data-type="projectCounter" data-item-id="{{ item._id }}"
                                        data-tooltip="{{localize
-                                        'FU.DecreaseTooltip'}} ({{system.progressPerDay.value}})">-</a>
+                                        'FU.DecreaseTooltip'}} ({{item.system.progressPerDay.value}})">-</a>
                                     <span data-resource="item.rp">{{ item.system.progress.current }}</span>
                                     <span>/</span>
                                     <span>{{ item.system.progress.max }}</span>
                                     <a class="increment-button" data-type="projectCounter" data-item-id="{{ item._id }}"
                                        data-tooltip="{{localize
-                                        'FU.IncreaseTooltip'}} ({{system.progressPerDay.value}})">+</a>
+                                        'FU.IncreaseTooltip'}} ({{item.system.progressPerDay.value}})">+</a>
                                 </div>
                             </div>
                         {{/if}}
 
                         {{!-- Item Control--}}
-                        {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+                        {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item unarmed=item.unarmedStrike}}
                     </div>
                     {{#if item.quality}}
                         <div class="item-quality align-left">{{ item.quality }}</div>
                     {{/if}}
-                    <div class="individual-description align-left">
+                    <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
                         {{#if item.detail}}
                             <div class="item-quality align-left">
                                 <strong>{{item.detail}}</strong>
@@ -103,6 +135,22 @@
 
                         {{#if item.system.description}}
                             {{{item.enrichedHtml.description}}}
+                        {{/if}}
+
+                        {{#if (eq item.type "classFeature")}}
+                            {{#with (lookup @root.classFeatures item.system.featureType) as |featureType|}}
+                                {{#with (lookup featureType.items item._id) as |itemData|}}
+                                    {{> (lookup featureType.feature 'expandTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
+                                {{/with}}
+                            {{/with}}
+                        {{/if}}
+
+                        {{#if (eq item.type "optionalFeature")}}
+                            {{#with (lookup @root.optionalFeatures item.system.optionalType) as |optionalType|}}
+                                {{#with (lookup optionalType.items item._id) as |itemData|}}
+                                    {{> (lookup optionalType.optional 'expandTemplate') itemData.item additionalData=itemData.additionalData item=itemData.item}}
+                                {{/with}}
+                            {{/with}}
                         {{/if}}
 
                         {{#if item.system.zeroEffect}}

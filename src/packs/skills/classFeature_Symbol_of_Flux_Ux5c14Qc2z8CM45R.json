@@ -1,0 +1,86 @@
+{
+  "folder": "jAg187YJhvEkI5uc",
+  "name": "Symbol of Flux",
+  "type": "classFeature",
+  "_id": "Ux5c14Qc2z8CM45R",
+  "img": "icons/magic/symbols/triangle-glowing-green.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.symbol",
+    "data": {
+      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr><p>@UUID[Compendium.projectfu.conditions-effects.Item.dl04MUhnkGS7KY5x]{Dazed} @UUID[Compendium.projectfu.conditions-effects.Item.hf6mPrd0GzfLL1ap]{Shaken} @UUID[Compendium.projectfu.conditions-effects.Item.E0TVnMZHPXdeop2v]{Slow} @UUID[Compendium.projectfu.conditions-effects.Item.D9TiA8YXY75bIbNs]{Weak}</p><p>@LOSS[2 ip]</p>"
+    },
+    "source": "FUHF150",
+    "fuid": "symbol-of-flux"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.skills.Item.Ux5c14Qc2z8CM45R",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Symbol of Flux",
+      "img": "icons/magic/symbols/triangle-glowing-green.webp",
+      "_id": "X4izTxnMPUHNJ6ee",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr /><p>@UUID[Compendium.projectfu.conditions-effects.Item.dl04MUhnkGS7KY5x]{Dazed} @UUID[Compendium.projectfu.conditions-effects.Item.hf6mPrd0GzfLL1ap]{Shaken} @UUID[Compendium.projectfu.conditions-effects.Item.E0TVnMZHPXdeop2v]{Slow} @UUID[Compendium.projectfu.conditions-effects.Item.D9TiA8YXY75bIbNs]{Weak}</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF150",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1730916003137,
+        "modifiedTime": 1730916131378,
+        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+      },
+      "_key": "!items.effects!Ux5c14Qc2z8CM45R.X4izTxnMPUHNJ6ee"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "hYECXwi6O8UUBuN4": 3,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1710177560234,
+    "modifiedTime": 1730916108044,
+    "lastModifiedBy": "B6evqtezy9ZsGZG3",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 1300000,
+  "_key": "!items!Ux5c14Qc2z8CM45R"
+}

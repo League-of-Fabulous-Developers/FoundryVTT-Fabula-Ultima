@@ -2,6 +2,7 @@ import { FU, SYSTEM } from './config.mjs';
 import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
+import { targetHandler } from './target-handler.mjs';
 
 const INLINE_RECOVERY = 'InlineRecovery';
 const INLINE_LOSS = 'InlineLoss';
@@ -13,7 +14,7 @@ const classInlineLoss = 'inline-loss';
  * @type {TextEditorEnricherConfig}
  */
 const inlineRecoveryEnricher = {
-	pattern: /@HEAL\[(\d+) (\w+?)]|@GAIN\[(\d+) (\w+?)]/g,
+	pattern: /@(?:HEAL|GAIN)\[\s*(\d+\+?)\s*(\w+)\s*\]/gi,
 	enricher: recoveryEnricher,
 };
 
@@ -21,7 +22,7 @@ const inlineRecoveryEnricher = {
  * @type {TextEditorEnricherConfig}
  */
 const inlineLossEnricher = {
-	pattern: /@LOSS\[(\d+) (\w+?)]/g,
+	pattern: /@LOSS\[\s*(\d+)\s*(\w+)\s*\]/gi,
 	enricher: lossEnricher,
 };
 
@@ -29,28 +30,38 @@ const recoveryFlavor = {
 	hp: 'FU.HealthPointRecovery',
 	mp: 'FU.MindPointRecovery',
 	ip: 'FU.InventoryPointRecovery',
+	fp: 'FU.TextEditorButtonCommandGain',
+	exp: 'FU.TextEditorButtonCommandGain',
+	zenit: 'FU.TextEditorButtonCommandGain',
 };
 
 const lossFlavor = {
 	hp: 'FU.HealthPointLoss',
 	mp: 'FU.MindPointLoss',
 	ip: 'FU.InventoryPointLoss',
+	fp: 'FU.TextEditorButtonCommandLoss',
+	exp: 'FU.TextEditorButtonCommandLoss',
+	zenit: 'FU.TextEditorButtonCommandLoss',
 };
 
 const messages = {
 	hp: 'FU.HealthPointRecoveryMessage',
 	mp: 'FU.MindPointRecoveryMessage',
 	ip: 'FU.InventoryPointRecoveryMessage',
+	fp: 'FU.ChatResourceGain',
+	exp: 'FU.ChatResourceGain',
+	zenit: 'FU.ChatResourceGain',
 };
 
-function createReplacementElement(text, elementClass) {
-	const amount = Number(text[1] ?? text[3]);
-	const type = text[2] ?? text[4];
-
+function createReplacementElement(amount, type, elementClass, uncapped) {
 	if (type in FU.resources && typeof amount === 'number') {
 		const anchor = document.createElement('a');
 		anchor.dataset.type = type;
 		anchor.dataset.amount = amount;
+		// Used to enable over-healing
+		if (uncapped === true) {
+			anchor.dataset.uncapped = 'true';
+		}
 		anchor.draggable = true;
 		anchor.classList.add('inline', elementClass);
 
@@ -72,11 +83,17 @@ function createReplacementElement(text, elementClass) {
 }
 
 function recoveryEnricher(text, options) {
-	return createReplacementElement(text, classInlineRecovery);
+	let uncapped = false;
+	// Detect and handle uncapped recovery
+	if (text[1].match(/^\d+\+$/)) {
+		uncapped = true;
+		text[1] = text[1].slice(0, -1);
+	}
+	return createReplacementElement(parseInt(text[1]), text[2].toLowerCase(), classInlineRecovery, uncapped);
 }
 
 function lossEnricher(text, options) {
-	return createReplacementElement(text, classInlineLoss);
+	return createReplacementElement(parseInt(text[1]), text[2].toLowerCase(), classInlineLoss, false);
 }
 
 /**
@@ -118,32 +135,18 @@ function activateListeners(document, html) {
 	}
 
 	html.find('a.inline.inline-recovery[draggable], a.inline.inline-loss[draggable]')
-		.on('click', function () {
+		.on('click', async function () {
 			const amount = Number(this.dataset.amount);
 			const type = this.dataset.type;
-			const user = game.user;
+			const uncapped = this.dataset.uncapped === 'true';
 			const source = determineSource(document, this);
-			const controlledTokens = canvas.tokens.controlled;
-			let actors = [];
-
-			// Use selected token or owned actor
-			if (controlledTokens.length > 0) {
-				actors = controlledTokens.map((token) => token.actor);
-			} else {
-				const actor = user.character;
-				if (actor) {
-					actors.push(actor);
-				}
-			}
-
-			if (actors.length > 0) {
+			let targets = await targetHandler();
+			if (targets.length > 0) {
 				if (this.classList.contains(classInlineRecovery)) {
-					actors.forEach((actor) => applyRecovery(actor, type, amount, source || 'inline recovery'));
+					targets.forEach((actor) => applyRecovery(actor, type, amount, source || 'inline recovery', uncapped));
 				} else if (this.classList.contains(classInlineLoss)) {
-					actors.forEach((actor) => applyLoss(actor, type, amount, source || 'inline loss'));
+					targets.forEach((actor) => applyLoss(actor, type, amount, source || 'inline loss'));
 				}
-			} else {
-				ui.notifications.warn('FU.ChatApplyEffectNoActorsSelected', { localize: true });
 			}
 		})
 		.on('dragstart', function (event) {
@@ -159,16 +162,17 @@ function activateListeners(document, html) {
 				source: source,
 				recoveryType: this.dataset.type,
 				amount: this.dataset.amount,
+				uncapped: this.dataset.uncapped === 'true',
 			};
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		});
 }
 
-function onDropActor(actor, sheet, { type, recoveryType, amount, source }) {
+function onDropActor(actor, sheet, { type, recoveryType, amount, source, uncapped }) {
 	amount = Number(amount);
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
-		applyRecovery(actor, recoveryType, amount, source);
+		applyRecovery(actor, recoveryType, amount, source, uncapped);
 		return false;
 	} else if (type === INLINE_LOSS && !Number.isNaN(amount)) {
 		applyLoss(actor, recoveryType, amount, source);
@@ -176,10 +180,37 @@ function onDropActor(actor, sheet, { type, recoveryType, amount, source }) {
 	}
 }
 
-async function applyRecovery(actor, resource, amount, source) {
-	const amountRecovered = Math.max(0, amount + actor.system.bonuses.recovery[resource]);
+async function applyRecovery(actor, resource, amount, source, uncapped) {
+	const amountRecovered = Math.max(0, amount + (actor.system.bonuses.incomingRecovery[resource] || 0));
+	const isValue = resource === 'fp' || resource === 'exp' || resource === 'zenit';
+	const attrKey = `resources.${resource}`;
+	const attr = foundry.utils.getProperty(actor.system, attrKey);
+	const uncappedRecoveryValue = amountRecovered + attr.value;
 	const updates = [];
-	updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountRecovered, true));
+
+	// Handle uncapped recovery logic
+	if (uncapped === true && uncappedRecoveryValue > (attr.max || 0) && !isValue) {
+		// Overheal recovery
+		const newValue = Object.defineProperties({}, Object.getOwnPropertyDescriptors(attr)); // Clone attribute
+		newValue.value = uncappedRecoveryValue;
+		updates.push(actor.modifyTokenAttribute(attrKey, newValue, false, false));
+	} else if (!isValue) {
+		// Normal recovery
+		updates.push(actor.modifyTokenAttribute(attrKey, amountRecovered, true));
+	}
+
+	// Handle specific cases for fp and exp
+	if (isValue) {
+		const currentValue = parseInt(foundry.utils.getProperty(actor.system, `resources.${resource}.value`), 10) || 0;
+		const newValue = Math.floor(currentValue) + Math.floor(amountRecovered);
+
+		// Update the actor's resource directly
+		const updateData = {
+			[`system.resources.${resource}.value`]: Math.floor(newValue),
+		};
+		await actor.update(updateData);
+	}
+
 	updates.push(
 		ChatMessage.create({
 			speaker: ChatMessage.getSpeaker({ actor }),
@@ -188,6 +219,7 @@ async function applyRecovery(actor, resource, amount, source) {
 				message: messages[resource],
 				actor: actor.name,
 				amount: amountRecovered,
+				resource: game.i18n.localize(FU.resources[resource]),
 				from: source,
 			}),
 		}),
@@ -197,8 +229,22 @@ async function applyRecovery(actor, resource, amount, source) {
 
 async function applyLoss(actor, resource, amount, source) {
 	const amountLost = -amount;
+	const isValue = resource === 'fp' || resource === 'exp' || resource === 'zenit';
 	const updates = [];
-	updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountLost, true));
+
+	// Handle specific cases for fp and exp
+	if (isValue) {
+		const currentValue = foundry.utils.getProperty(actor.system, `resources.${resource}.value`) || 0;
+		const newValue = Math.floor(currentValue) + Math.floor(amountLost);
+
+		// Update the actor's resource directly
+		const updateData = {};
+		updateData[`system.resources.${resource}.value`] = Math.floor(newValue);
+		await actor.update(updateData);
+	} else {
+		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountLost, true));
+	}
+
 	updates.push(
 		ChatMessage.create({
 			speaker: ChatMessage.getSpeaker({ actor }),

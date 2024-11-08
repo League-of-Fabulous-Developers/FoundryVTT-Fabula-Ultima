@@ -1,0 +1,43 @@
+{
+  "folder": "E9XrzgvAjI4iW0aE",
+  "name": "Gravitokinesis",
+  "type": "classFeature",
+  "img": "icons/magic/earth/projectile-stone-landslide.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.psychicGift",
+    "data": {
+      "trigger": "When you deal damage",
+      "description": "<p>That damage becomes <strong>earth</strong> or <strong>physical</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】</strong>. If the source deals damage to one or more <strong>flying</strong> creatures, they are forced to land immediately.</p>"
+    },
+    "source": "FUTF153",
+    "fuid": "gravitokinesis"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "YN7AhHIwAZeH33Tw": 3,
+    "BwRsFvMHAq9vUtEO": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "coreVersion": "12.331",
+    "createdTime": 1711423314741,
+    "modifiedTime": 1724180863302,
+    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "sDiqo6su9LgYDQVh",
+  "sort": 600000,
+  "_key": "!items!sDiqo6su9LgYDQVh"
+}

@@ -19,4 +19,10 @@ export class SymbolDataModel extends ClassFeatureDataModel {
 	static get template() {
 		return 'systems/projectfu/templates/feature/symbolist/feature-symbol-sheet.hbs';
 	}
+
+	static async getAdditionalData(model) {
+		return {
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
+		};
+	}
 }

@@ -1,6 +1,12 @@
-<div class="title-desc">
-    <div class="flex-group-center backgroundstyle">
-        <img src="{{img}}" alt="Image" />
-        <p>{{name}}</p>
-    </div>
-</div>
+<header class="title-desc chat-header flexrow">
+    <a data-link draggable="true" data-uuid="{{uuid}}" data-type="Item" data-tooltip="{{name}}"><img src="{{img}}"
+            alt="Image" data-item-id="{{id}}" class="item-img"></a>
+    <h2 style="flex-grow: 8;">{{name}}</h2>
+
+    <a class="universal-toggle fu-tags flexrow gap-5" style="align-items:end;"
+        data-tooltip="{{localize 'FU.ChatMessageShow'}}">
+        <span class="fu-tag button" style="padding: 5px;">
+            <i class="fas fa-chevron-up toggle-icon"></i>
+        </span>
+    </a>
+</header>

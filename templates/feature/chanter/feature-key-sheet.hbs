@@ -1,35 +1,35 @@
-<div class='resource-content desc'>
+<div class='resource-content desc gap-5 flexcol'>
     <div>
-        <label class="resource-label-sm">
+        <label class="resource-label-m">
             {{localize 'FU.ClassFeatureKeyDamageType'}}:
-            <select class="resource-text-m" name="system.data.type">
+            <select class="resource-inputs select-dropdown-l resource-text-m" name="system.data.type">
                 {{selectOptions additionalData.types selected=system.data.type localize=true}}
             </select>
         </label>
     </div>
 
     <div>
-        <label class="resource-label-sm">
+        <label class="resource-label-m">
             {{localize 'FU.ClassFeatureKeyStatus'}}:
-            <select class="resource-text-m" name="system.data.status">
+            <select class="resource-inputs select-dropdown-l resource-text-m" name="system.data.status">
                 {{selectOptions additionalData.statuses selected=system.data.status localize=true}}
             </select>
         </label>
     </div>
 
     <div>
-        <label class="resource-label-sm">
+        <label class="resource-label-m">
             {{localize 'FU.ClassFeatureKeyAttribute'}}:
-            <select class="resource-text-m" name="system.data.attribute">
+            <select class="resource-inputs select-dropdown-l resource-text-m" name="system.data.attribute">
                 {{selectOptions additionalData.attributes selected=system.data.attribute localize=true}}
             </select>
         </label>
     </div>
 
     <div>
-        <label class="resource-label-sm">
+        <label class="resource-label-m">
             {{localize 'FU.ClassFeatureKeyRecovery'}}:
-            <select class="resource-text-m" name="system.data.recovery">
+            <select class="resource-inputs select-dropdown-l resource-text-m" name="system.data.recovery">
                 {{selectOptions additionalData.recoveryOptions selected=system.data.recovery localize=true}}
             </select>
         </label>

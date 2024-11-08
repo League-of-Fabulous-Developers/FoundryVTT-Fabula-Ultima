@@ -1,0 +1,16 @@
+{{#if resourceDataString}}
+<div class="clock-display">
+    {{{resourceDataString}}}
+</div>
+{{/if}}
+{{#if clockDataString}}
+<div class="clock-display">
+    {{{clockDataString}}}
+</div>
+{{/if}}
+<div class='chat-desc'>
+    <details {{#unless (getGameSetting 'collapseDescriptions')}}open{{/unless}}>
+        <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
+        {{{description}}}
+    </details>
+</div>

@@ -5,17 +5,19 @@
 
 /* Section Header Title */
 .title-fieldset {
-	border-radius: 12px;
+	border-radius: 10px;
 
 	legend {
-		border-radius: 8px;
+		display: flex;
+		border-radius: 10px;
 		margin: 0 auto;
-		padding: 2px 30px;
+		padding: 2px 10px;
 		background: $color-secondary;
 		color: $color-primary;
 		position: relative;
 		text-align: center;
 		width: auto;
+		border: 0.01em solid #148782;
 	}
 }
 
@@ -45,6 +47,7 @@
 
 		input {
 			height: 2em;
+			text-decoration-line: underline;
 		}
 
 		option {
@@ -132,17 +135,17 @@
 			width: 100%;
 			border-radius: 5px;
 		}
+		&.compact {
+			flex-grow: 1;
+		}
 	}
 
 	/*  Sidebar Section Style */
 	&.levelup-container {
-		background: linear-gradient(#{$color-transparent-gradient});
-		border-color: $color-secondary;
 		border: none;
 
 		& input.resource-inputs-charname {
 			color: $color-primary;
-
 			background-color: $color-secondary;
 			margin: 1px;
 		}
@@ -150,7 +153,6 @@
 		& .resource-inputs {
 			width: 100%;
 			padding: 0;
-			margin: 0 5px 0 5px;
 		}
 
 		& .side-bar {
@@ -159,7 +161,8 @@
 
 		&.creature {
 			padding: 0;
-			border-radius: 12px;
+			border-radius: 10px;
+			background: none;
 
 			.resource-inputs {
 				color: $color-primary;
@@ -178,21 +181,18 @@
 			border-radius: 0px;
 			width: 100%;
 			align-items: center;
-
-			#specieSelect,
-			#championSelect {
-				flex: 4;
-			}
-
-			#isCompanionCheckbox,
-			#isEliteCheckbox {
-				display: flex;
-
-				flex: 0 0 15px;
-				width: 15px;
-				height: 15px;
-			}
 		}
+	}
+
+	& .villain-field {
+		margin-bottom: 6px !important;
+		border-radius: 0 0 0 14px;
+		width: 100%;
+		border: 0.125em solid #c7c7c7;
+	}
+
+	&.level-field {
+		background: linear-gradient(#{$color-transparent-gradient});
 	}
 }
 
@@ -221,6 +221,73 @@
 			background-size: 16px 16px;
 			height: auto;
 			margin: 3px;
+		}
+	}
+}
+
+.bond-strength {
+	color: #ffffff;
+	background-color: $color-secondary;
+	border: thin solid $color-secondary;
+	text-align: center;
+	border-radius: 5px;
+	padding: 0 0.5rem;
+	height: fit-content;
+}
+
+.npc-level-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+
+	> label {
+		padding: 2px;
+		border-radius: initial !important;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(44, 74, 66, 0.3294117647);
+		width: 100%;
+		justify-content: center;
+
+		background: url(/systems/projectfu/styles/static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+		background-blend-mode: multiply;
+		background-repeat: repeat-y;
+		background-position: right top;
+		border: 1px solid #6f6c66;
+		background-size: cover;
+	}
+
+	.level-input {
+		width: 100%;
+		border-radius: 0 12px 0 0;
+	}
+
+	.rank-select,
+	.champion-input {
+		border-radius: 0;
+	}
+	.champion-input {
+		display: inline-flex;
+
+		* {
+			width: 0;
+			flex: 0;
+		}
+
+		input {
+			height: 100%;
+		}
+
+		&::before,
+		&::after {
+			font-size: 120%;
+		}
+
+		&::before {
+			content: '(';
+		}
+		&::after {
+			content: ')';
 		}
 	}
 }
