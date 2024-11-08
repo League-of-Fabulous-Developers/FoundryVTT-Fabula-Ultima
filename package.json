@@ -10,8 +10,8 @@
 		"lint": "eslint --fix .",
 		"watch": "gulp",
 		"gulp": "gulp",
-		"pushLDBtoYML": "node ./tools/pushLDBtoYML.mjs",
-		"pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs",
+		"unpack": "node ./tools/pushLDBtoYML.mjs",
+		"pack": "node ./tools/pullYMLtoLDB.mjs",
 		"c2j": "node ./tools/csvtojson/convert-csv-to-json.mjs && prettier --write .",
 		"j2c": "node ./tools/jsontocsv/convert-json-to-csv.mjs && prettier --write .",
 		"prepare": "husky"
