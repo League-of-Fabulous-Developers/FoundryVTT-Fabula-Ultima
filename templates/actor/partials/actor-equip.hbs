@@ -1,16 +1,24 @@
 {{#if (getSlot item)}}
   <div class="item-xs equipped-icon-container">
     <a class="item-control item-equip" data-slot="{{ getSlot item }}" 
-       {{#if (isItemEquipped item @root.actor.system.equipped) }} 
-           data-tooltip="{{ localize 'FU.UnequipItem' }}" 
-       {{else}} 
-           data-tooltip="{{ localize 'FU.EquipItem' }}" 
-       {{/if}}>
-      {{#if (isItemEquipped item @root.actor.system.equipped)}}
-        <i class="{{ getIconClass item @root.actor.system.equipped }}"></i>
-      {{else}}
-        <i class="far fa-circle ra-1xh"></i>
-      {{/if}}
+       data-tooltip="{{#if (isItemEquipped item @root.actor.system.equipped)}} 
+                      {{#if (eq item.type "weapon")}} 
+                        {{localize 'FU.UnequipWeapon'}}
+                      {{else}} 
+                        {{localize 'FU.UnequipArmor'}}
+                      {{/if}} 
+                    {{else}} 
+                      {{#if (eq item.type "weapon")}} 
+                        {{localize 'FU.EquipWeapon'}}
+                      {{else}} 
+                        {{localize 'FU.EquipArmor'}}
+                      {{/if}} 
+                    {{/if}}">
+      <i class="{{#if (isItemEquipped item @root.actor.system.equipped)}} 
+                  {{getIconClass item @root.actor.system.equipped}} 
+                {{else}} 
+                  far fa-circle ra-1xh 
+                {{/if}}"></i>
     </a>
   </div>
 {{/if}}
