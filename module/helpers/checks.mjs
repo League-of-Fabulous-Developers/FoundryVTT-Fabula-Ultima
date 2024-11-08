@@ -853,6 +853,26 @@ export async function promptCheck(actor, title, action) {
 					}),
 				);
 			}
+
+			let hasRenderCheckHookRegistered = false;
+
+			// Register the renderCheck hook
+			if (!hasRenderCheckHookRegistered) {
+				Hooks.once('projectfu.renderCheck', (sections, check, actor, item) => {
+					const description = game.i18n.localize(FU.actionRule[action]);
+					if (description) {
+						sections.push(
+							TextEditor.enrichHTML(`<div class="chat-desc"><p>${description}</p></div>`).then((v) => ({
+								content: v,
+								order: -1050,
+							})),
+						);
+					}
+				});
+
+				hasRenderCheckHookRegistered = true;
+			}
+
 			return ChecksV2.attributeCheck(actor, { primary: attr1, secondary: attr2 }, CheckConfiguration.initDifficulty(difficulty));
 		}
 		const speaker = ChatMessage.implementation.getSpeaker({ actor });
@@ -886,7 +906,6 @@ export async function promptCheck(actor, title, action) {
 	}
 }
 
-// TODO: Combine promptOpenCheck & promptCheck, conditionally render template and bonuses based on selected check option
 /**
  * @param {FUActor} actor
  * @param {string} title
@@ -975,6 +994,25 @@ export async function promptOpenCheck(actor, title, action) {
 
 			// Register the result handler
 			Hooks.once('projectfu.processCheck', handleResults);
+
+			let hasRenderCheckHookRegistered = false;
+
+			// Register the renderCheck hook
+			if (!hasRenderCheckHookRegistered) {
+				Hooks.once('projectfu.renderCheck', (sections, check, actor, item) => {
+					const description = game.i18n.localize(FU.actionRule[action]);
+					if (description) {
+						sections.push(
+							TextEditor.enrichHTML(`<div class="chat-desc"><p>${description}</p></div>`).then((v) => ({
+								content: v,
+								order: -1050,
+							})),
+						);
+					}
+				});
+
+				hasRenderCheckHookRegistered = true;
+			}
 
 			return ChecksV2.openCheck(actor, { primary: attr1, secondary: attr2 });
 		}
