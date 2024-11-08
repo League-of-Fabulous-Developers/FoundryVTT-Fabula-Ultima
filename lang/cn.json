@@ -23,7 +23,7 @@
 		"TypeZeroPower": "底力",
 		"TypeClassFeature": "职业特性",
 		"TypeOptionalFeature": "可选特性",
-		"TypeEffect": "Effect"
+		"TypeEffect": "效果"
 	},
 	"TYPES": {
 		"Actor": {
@@ -50,7 +50,7 @@
 			"zeroPower": "底力",
 			"classFeature": "职业特性",
 			"optionalFeature": "可选特性",
-			"effect": "Effect"
+			"effect": "效果"
 		}
 	},
 	"FU": {
