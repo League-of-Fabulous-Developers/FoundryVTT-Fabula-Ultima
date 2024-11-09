@@ -72,7 +72,7 @@
       "value": "Up to three creatures"
     },
     "duration": {
-      "value": "instantaneous"
+      "value": "scene"
     },
     "isOffensive": {
       "value": false
@@ -127,8 +127,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1724180864884,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1731165023690,
+    "lastModifiedBy": "eGFjUCXxDy8l2KwV",
     "compendiumSource": null,
     "duplicateSource": null
   },
