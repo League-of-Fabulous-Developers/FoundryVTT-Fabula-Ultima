@@ -902,6 +902,8 @@
 		"CombatHudOpacityHint": "Dostosuj krycie interfejsu HUD-u bojowego.",
 		"CombatHudWidth": "Szerokość HUD",
 		"CombatHudWidthHint": "Dostosuj szerokość HUD-u walki.",
+		"CombatHudPositionButton": "HUD Button Position",
+		"CombatHudPositionButtonHint": "Adjust the position of the Combat HUD's button position",
 		"CombatHudPosition": "Pozycja HUD",
 		"CombatHudPositionHint": "Dostosuj pozycję HUD-u bojowego.",
 		"CombatHudPositionTop": "Góra",

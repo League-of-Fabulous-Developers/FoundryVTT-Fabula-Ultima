@@ -902,6 +902,8 @@
 		"CombatHudOpacityHint": "Adjust the opacity of the Combat HUD.",
 		"CombatHudWidth": "HUD Width",
 		"CombatHudWidthHint": "Adjust the width of the Combat HUD.",
+		"CombatHudPositionButton": "HUD Button Position",
+		"CombatHudPositionButtonHint": "Adjust the position of the Combat HUD's button position",
 		"CombatHudPosition": "HUD Position",
 		"CombatHudPositionHint": "Adjust the position of the Combat HUD.",
 		"CombatHudPositionTop": "Top",

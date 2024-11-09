@@ -902,6 +902,8 @@
 		"CombatHudOpacityHint": "Modifica l'opacità dell'Interfaccia di Conflitto",
 		"CombatHudWidth": "Larghezza HUD",
 		"CombatHudWidthHint": "Modifica la larghezza dell'Interfaccia.",
+		"CombatHudPositionButton": "HUD Button Position",
+		"CombatHudPositionButtonHint": "Adjust the position of the Combat HUD's button position",
 		"CombatHudPosition": "Posizione HUD",
 		"CombatHudPositionHint": "Modifica la posizione dell'Interfaccia.",
 		"CombatHudPositionTop": "In alto",

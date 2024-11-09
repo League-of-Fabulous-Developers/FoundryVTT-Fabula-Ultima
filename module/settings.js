@@ -25,6 +25,7 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudMinimized: 'optionCombatHudMinimized',
 	optionCombatHudOpacity: 'optionCombatHudOpacity',
 	optionCombatHudPortrait: 'optionCombatHudPortrait',
+	optionCombatHudPositionButton: 'optionCombatHudPositionButton',
 	optionCombatHudPosition: 'optionCombatHudPosition',
 	optionCombatHudReordering: 'optionCombatHudReordering',
 	optionCombatHudSaved: 'optionCombatHudSaved',
@@ -300,6 +301,20 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Number,
 		default: 100,
+		requiresReload: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudPositionButton, {
+		name: game.i18n.localize('FU.CombatHudPositionButton'),
+		hint: game.i18n.localize('FU.CombatHudPositionButtonHint'),
+		scope: 'client',
+		config: false,
+		type: String,
+		default: 'top',
+		choices: {
+			top: game.i18n.localize('FU.CombatHudPositionButtonTop'),
+			bottom: game.i18n.localize('FU.CombatHudPositionButtonBottom'),
+		},
 		requiresReload: true,
 	});
 
@@ -682,6 +697,8 @@ class CombatHudSettings extends FormApplication {
 			experimentalCombatHud: game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud),
 			optionCombatHudOpacity: game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity),
 			optionCombatHudWidth: game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth),
+			optionCombatHudPositionButton: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton),
+			optionCombatHudPositionButtonOptions: { bottom: 'FU.CombatHudPositionBottom', top: 'FU.CombatHudPositionTop' },
 			optionCombatHudPosition: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition),
 			optionCombatHudPositionOptions: { bottom: 'FU.CombatHudPositionBottom', top: 'FU.CombatHudPositionTop' },
 			optionCombatHudPortrait: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait),
@@ -715,6 +732,7 @@ class CombatHudSettings extends FormApplication {
 				experimentalCombatHud,
 				optionCombatHudOpacity,
 				optionCombatHudWidth,
+				optionCombatHudPositionButton,
 				optionCombatHudPosition,
 				optionCombatHudPortrait,
 				optionCombatHudShowEffects,
@@ -733,6 +751,7 @@ class CombatHudSettings extends FormApplication {
 			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudOpacity, optionCombatHudOpacity);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudWidth, optionCombatHudWidth);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPositionButton, optionCombatHudPositionButton);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPosition, optionCombatHudPosition);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPortrait, optionCombatHudPortrait);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowEffects, optionCombatHudShowEffects);
@@ -751,6 +770,7 @@ class CombatHudSettings extends FormApplication {
 				experimentalCombatHud,
 				optionCombatHudOpacity,
 				optionCombatHudWidth,
+				optionCombatHudPositionButton,
 				optionCombatHudPosition,
 				optionCombatHudPortrait,
 				optionCombatHudShowEffects,
@@ -762,6 +782,7 @@ class CombatHudSettings extends FormApplication {
 			game.settings.set(SYSTEM, SETTINGS.experimentalCombatHud, experimentalCombatHud);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudOpacity, optionCombatHudOpacity);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudWidth, optionCombatHudWidth);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPositionButton, optionCombatHudPositionButton);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPosition, optionCombatHudPosition);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudPortrait, optionCombatHudPortrait);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowEffects, optionCombatHudShowEffects);

@@ -902,6 +902,8 @@
 		"CombatHudOpacityHint": "Passe die Transparenz des Konflikt-HUD an.",
 		"CombatHudWidth": "HUD Breite",
 		"CombatHudWidthHint": "Passe die Breite des Konflikt-HUD an.",
+		"CombatHudPositionButton": "HUD Button Position",
+		"CombatHudPositionButtonHint": "Adjust the position of the Combat HUD's button position",
 		"CombatHudPosition": "HUD Position",
 		"CombatHudPositionHint": "Passe die Position des Konflikt-HUD an.",
 		"CombatHudPositionTop": "Oben",

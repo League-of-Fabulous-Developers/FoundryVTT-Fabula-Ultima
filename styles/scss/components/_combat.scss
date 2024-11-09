@@ -83,7 +83,8 @@
 
 	.window-button {
 		position: absolute;
-		top: -2em;
+		top: var(--window-button-top);
+		bottom: var(--window-button-bottom);
 		color: $color-white;
 		z-index: 99;
 
@@ -700,7 +701,8 @@
 
 	.window-button {
 		position: absolute;
-		top: -2em;
+		top: var(--window-button-top);
+		bottom: var(--window-button-bottom);
 		color: $color-white;
 		z-index: 99;
 

@@ -902,6 +902,8 @@
 		"CombatHudOpacityHint": "Ajustar la opacidad del HUD de combate",
 		"CombatHudWidth": "Anchura del HUD",
 		"CombatHudWidthHint": "Ajustar la anchura del HUD de combate",
+		"CombatHudPositionButton": "HUD Button Position",
+		"CombatHudPositionButtonHint": "Adjust the position of the Combat HUD's button position",
 		"CombatHudPosition": "Posición del HUD",
 		"CombatHudPositionHint": "Ajustar la posición del HUD de combate",
 		"CombatHudPositionTop": "Superior",

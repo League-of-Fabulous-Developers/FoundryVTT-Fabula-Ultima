@@ -902,6 +902,8 @@
 		"CombatHudOpacityHint": "Изменить прозрачность боевого интерфейса",
 		"CombatHudWidth": "Ширина интерфейса",
 		"CombatHudWidthHint": "Изменить ширину боевого интерфейса",
+		"CombatHudPositionButton": "HUD Button Position",
+		"CombatHudPositionButtonHint": "Adjust the position of the Combat HUD's button position",
 		"CombatHudPosition": "Положение интерфейса",
 		"CombatHudPositionHint": "Изменить положение боевого интерфейса",
 		"CombatHudPositionTop": "Сверху",

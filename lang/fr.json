@@ -902,6 +902,8 @@
 		"CombatHudOpacityHint": "Ajuste l'opacité de l'ATH de combat.",
 		"CombatHudWidth": "Largeur de l'ATH",
 		"CombatHudWidthHint": "Ajuste la largeur de l'ATH de combat.",
+		"CombatHudPositionButton": "HUD Button Position",
+		"CombatHudPositionButtonHint": "Adjust the position of the Combat HUD's button position",
 		"CombatHudPosition": "Position de l'ATH",
 		"CombatHudPositionHint": "Ajuste la position de l'ATH de combat.",
 		"CombatHudPositionTop": "Haut",

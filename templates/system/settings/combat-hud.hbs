@@ -37,6 +37,16 @@
         </div>
         <p class="notes">{{localize "FU.CombatHudWidthHint"}}</p>
     </div>
+    {{!-- optionCombatHudPositionButton --}}
+    <div class="form-group">
+        <label for="optionCombatHudPositionButton">{{localize "FU.CombatHudPositionButton"}}</label>
+        <div class="form-fields">
+            <select name="optionCombatHudPositionButton" id="optionCombatHudPositionButton">
+                {{selectOptions optionCombatHudPositionButtonOptions selected=optionCombatHudPositionButton localize=true}}
+            </select>
+        </div>
+        <p class="notes">{{localize "FU.CombatHudPositionButtonHint"}}</p>
+    </div>
     {{!-- optionCombatHudPosition --}}
     <div class="form-group">
         <label for="optionCombatHudPosition">{{localize "FU.CombatHudPosition"}}</label>

@@ -626,7 +626,7 @@ export class CombatHUD extends Application {
 
 		this.element.css('width', hudWidth + hOffset);
 
-		const position = this._getPosition();
+		const { position, positionButton } = this._getPosition();
 		if (position.top) {
 			this.element.css('top', position.top);
 		}
@@ -636,6 +636,9 @@ export class CombatHUD extends Application {
 		if (position.left) {
 			this.element.css('left', position.left);
 		}
+
+		// Apply button position
+		this._applyButtonPosition(positionButton);
 	}
 
 	_getPosition() {
@@ -646,6 +649,7 @@ export class CombatHUD extends Application {
 
 		const position = {};
 
+		// Handle main element position
 		// position.left = draggedPosition && draggedPosition.x ? draggedPosition.x : uiMiddle.position().left - uiLeft.width() * 0.5;
 		position.left = draggedPosition && draggedPosition.x ? draggedPosition.x : uiMiddle.position().left;
 		if (positionFromTop) {
@@ -653,9 +657,30 @@ export class CombatHUD extends Application {
 			position.top = draggedPosition && draggedPosition.y ? draggedPosition.y : uiTop.height() + 20;
 		} else {
 			const uiBottom = $('#ui-bottom');
-			position.bottom = draggedPosition && draggedPosition.y ? draggedPosition.y : uiBottom.height() + 20;
+			position.bottom = draggedPosition && draggedPosition.y ? draggedPosition.y : uiBottom.height() + 35;
 		}
-		return position;
+
+		const positionButtonFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPositionButton) === 'top';
+
+		const positionButton = {};
+		if (positionButtonFromTop) {
+			// Set button to top if option is set to 'top'
+			positionButton.top = '-2em';
+			positionButton.bottom = 'none';
+		} else {
+			// Set button to bottom if option is set to 'bottom'
+			positionButton.top = 'none';
+			positionButton.bottom = '-2em';
+		}
+
+		return { position, positionButton };
+	}
+
+	_applyButtonPosition(positionButton) {
+		this.element.find('.window-button').css({
+			'--window-button-top': positionButton.top,
+			'--window-button-bottom': positionButton.bottom,
+		});
 	}
 
 	_onUpdateHUD_Round() {
