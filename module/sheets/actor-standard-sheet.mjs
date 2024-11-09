@@ -470,9 +470,10 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Proceed if the item is being dragged from the compendium/sidebar or other actors
 		const itemData = await this._getItemDataFromDropData(data);
+		const subtype = itemData.system.featureType || itemData.system.subtype.value;
 
 		// Determine the configuration based on item type
-		const config = this._findItemConfig(itemData.type);
+		const config = this._findItemConfig(itemData.type, subtype);
 		if (config) {
 			// Check if there is an active ProseMirror editor
 			const activeEditor = document.querySelector('.editor-content.ProseMirror');
@@ -505,10 +506,11 @@ export class FUStandardActorSheet extends ActorSheet {
 	}
 
 	// Helper function to find the appropriate update configuration
-	_findItemConfig(type) {
+	_findItemConfig(type, subtype) {
 		const itemTypeConfigs = [
 			{
-				types: ['classFeature', 'optionalFeature', 'treasure'],
+				types: ['classFeature', 'treasure'],
+				subtypes: ['projectfu-playtest.ingredient', 'artifact', 'material', 'treasure'],
 				update: async (itemData, item) => {
 					const incrementValue = itemData.system.quantity?.value || 1;
 					const newQuantity = (item.system.quantity.value || 0) + incrementValue;
@@ -524,7 +526,13 @@ export class FUStandardActorSheet extends ActorSheet {
 			},
 		];
 
-		return itemTypeConfigs.find((config) => config.types.includes(type));
+		// Find the correct config that matches both type and subtype
+		return itemTypeConfigs.find((config) => {
+			console.log('type', type, 'subtype', subtype);
+			const typeMatch = config.types.includes(type);
+			const subtypeMatch = config.subtypes ? config.subtypes.includes(subtype) : true;
+			return typeMatch && subtypeMatch;
+		});
 	}
 
 	// Process item drop based on the configuration
