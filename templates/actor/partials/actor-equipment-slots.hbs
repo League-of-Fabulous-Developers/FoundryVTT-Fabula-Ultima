@@ -10,7 +10,7 @@
                     </div>
                 {{/with}}
             {{else}}
-                <div class="equipped-item gap-5">
+                <div class="equipped-item gap-5"  data-tooltip="{{localize 'FU.Armor'}}<br>{{localize 'FU.NoItem'}}">
                     <i class="ra ra-helmet ra-1xh"></i>
                     {{localize 'FU.NoItem'}}
                 </div>
@@ -32,8 +32,8 @@
             <!-- Phantom Hand Slot -->
             {{#if (lookupItemById actor.items actor.system.equipped.phantom)}}
                 {{#with (lookupItemById actor.items actor.system.equipped.phantom) as |item|}}
-                    <span class="phantom-hand button-style slot-style rollable" data-roll-type="item-slot">
-                        <div class="equipped-item gap-5" data-tooltip="{{item.name}}">
+                    <span class="phantom-hand button-style slot-style rollable" data-roll-type="item-slot" style="flex: none;">
+                        <div class="equipped-item gap-5" data-tooltip="{{localize 'FU.PhantomHand'}}<br>{{item.name}}" style="margin: -1px;">
                             <i class="ra ra-daggers ra-1x"></i>
                         </div>
                     {{/with}}
@@ -60,8 +60,8 @@
             <!-- Phantom Hand Slot -->
             {{#if (lookupItemById actor.items actor.system.equipped.phantom)}}
                 {{#with (lookupItemById actor.items actor.system.equipped.phantom) as |item|}}
-                    <span class="phantom-hand button-style slot-style rollable" data-roll-type="item-slot">
-                        <div class="equipped-item gap-5" data-tooltip="{{item.name}}">
+                    <span class="phantom-hand button-style slot-style rollable" data-roll-type="item-slot" style="flex: none;">
+                        <div class="equipped-item gap-5" data-tooltip="{{localize 'FU.PhantomHand'}}<br>{{item.name}}" style="margin:-1px;">
                             <i class="ra ra-daggers ra-1x"></i>
                         </div>
                     {{/with}}
@@ -100,7 +100,7 @@
                     </div>
                 {{/with}}
             {{else}}
-                <div class="equipped-item gap-5">
+                <div class="equipped-item gap-5"  data-tooltip="{{localize 'FU.Accessory'}}<br>{{localize 'FU.NoItem'}}">
                     <i class="fas fa-leaf ra-1xh"></i>
                     {{localize 'FU.NoItem'}}
                 </div>

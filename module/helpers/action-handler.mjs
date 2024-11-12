@@ -23,10 +23,7 @@ export class ActionHandler {
 				break;
 			case 'hinderAction':
 				action = 'hinder';
-				if (!isShift) {
-					await this.promptHinderCheck();
-					this.createActionMessage(action);
-				}
+				if (!isShift) await this.promptHinderCheck();
 				break;
 			case 'inventoryAction':
 				action = 'inventory';
@@ -73,6 +70,14 @@ export class ActionHandler {
 	}
 
 	/**
+	 * Prompt a hinder check for the actor.
+	 */
+	async promptHinderCheck() {
+		const action = 'hinder';
+		await promptCheck(this.actor, 'FU.Hinder', action);
+	}
+
+	/**
 	 * Create a chat message for a given action.
 	 * @param {string} action - The type of action to create a message for.
 	 */
@@ -112,12 +117,5 @@ export class ActionHandler {
 			ui.notifications.info('Guard is activated.');
 			await this.createActionMessage('guard');
 		}
-	}
-
-	/**
-	 * Prompt a hinder check for the actor.
-	 */
-	async promptHinderCheck() {
-		await promptCheck(this.actor, 'FU.Hinder');
 	}
 }
