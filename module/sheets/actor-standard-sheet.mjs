@@ -470,7 +470,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Proceed if the item is being dragged from the compendium/sidebar or other actors
 		const itemData = await this._getItemDataFromDropData(data);
-		const subtype = itemData.system.featureType || itemData.system.subtype.value;
+		const subtype = itemData.system.featureType || itemData.system.subtype?.value;
 
 		// Determine the configuration based on item type
 		const config = this._findItemConfig(itemData.type, subtype);
