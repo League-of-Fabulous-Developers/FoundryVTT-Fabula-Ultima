@@ -527,3 +527,19 @@ FU.rank = {
 	champion: 'FU.Champion',
 	companion: 'FU.Companion',
 };
+
+/**
+ * @typedef {"custom", "brute", "hunter", "mage", "saboteur", "sentinel", "support"} RoleType
+ */
+/**
+ * @type {Object<RoleType, string>}
+ */
+FU.role = {
+	custom: 'FU.Custom',
+	brute: 'FU.Brute',
+	hunter: 'FU.Hunter',
+	mage: 'FU.Mage',
+	saboteur: 'FU.Saboteur',
+	sentinel: 'FU.Sentinel',
+	support: 'FU.Support',
+};

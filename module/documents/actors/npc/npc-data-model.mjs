@@ -58,6 +58,7 @@ Hooks.on('preUpdateActor', (document, changed) => {
  * @property {number} phases.value
  * @property {string} multipart.value
  * @property {"soldier", "elite", "champion", "companion"} rank.value
+ * @property {'custom', 'brute', 'hunter', 'mage', 'saboteur', 'sentinel', 'support'} role.value
  * @property {number} rank.replacedSoldiers
  * @property {number} companion.playerLevel
  * @property {number} companion.skillLevel
@@ -98,6 +99,9 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			rank: new SchemaField({
 				value: new StringField({ initial: 'soldier', choices: Object.keys(FU.rank) }),
 				replacedSoldiers: new NumberField({ initial: 1, min: 0, max: 6 }),
+			}),
+			role: new SchemaField({
+				value: new StringField({ initial: 'custom', choices: Object.keys(FU.role) }),
 			}),
 			companion: new SchemaField({
 				playerLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
