@@ -7,8 +7,9 @@ import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
 import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
+import { Role } from '../../../helpers/roles.mjs';
 
-Hooks.on('preUpdateActor', (document, changed) => {
+Hooks.on('preUpdateActor', async (document, changed) => {
 	if (document.system instanceof NpcDataModel) {
 		const newVillainType = foundry.utils.getProperty(changed, 'system.villain.value');
 		if (newVillainType !== undefined && newVillainType !== document.system.villain.value) {
@@ -19,6 +20,15 @@ Hooks.on('preUpdateActor', (document, changed) => {
 			};
 
 			foundry.utils.setProperty(changed, 'system.resources.fp.value', ultimaPoints[newVillainType] ?? 0);
+		}
+
+		// If role or level changed
+		const newRole = foundry.utils.getProperty(changed, 'system.role.value');
+		let roleChanged = newRole !== undefined && newRole !== document.system.role.value;
+		const newLevel = foundry.utils.getProperty(changed, 'system.level.value');
+		let levelChanged = newLevel !== undefined && newLevel !== document.system.level.value;
+		if (roleChanged || levelChanged) {
+			setRoleAttributes(document, newRole);
 		}
 	}
 });
@@ -58,7 +68,7 @@ Hooks.on('preUpdateActor', (document, changed) => {
  * @property {number} phases.value
  * @property {string} multipart.value
  * @property {"soldier", "elite", "champion", "companion"} rank.value
- * @property {'custom', 'brute', 'hunter', 'mage', 'saboteur', 'sentinel', 'support'} role.value
+ * @property {RoleType} role.value
  * @property {number} rank.replacedSoldiers
  * @property {number} companion.playerLevel
  * @property {number} companion.skillLevel
@@ -188,5 +198,49 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 				this.max = newValue;
 			},
 		});
+	}
+}
+
+/**
+ * Sets the NPC's attributes and bonuses based on its role if set
+ * @param {FUStandardActorSheet} actor
+ * @param {*} roleType
+ * @returns
+ */
+async function setRoleAttributes(actor, roleType) {
+	// Do nothing if the role was set to custom
+	if (roleType == 'custom') {
+		return;
+	}
+
+	const level = actor.system.level.value;
+	console.info(`Setting attributes for role ${roleType} at level ${level}`);
+	const updates = {};
+
+	// Set accuracy/damage bonuses
+	let accuracyBonus = Math.floor(level / 10);
+	updates['system.bonuses.accuracy.accuracyCheck'] = accuracyBonus;
+	updates['system.bonuses.accuracy.magicCheck'] = accuracyBonus;
+	let damageBonus = Math.floor(level / 20) * 5;
+	updates['system.bonuses.damage.melee'] = damageBonus;
+	updates['system.bonuses.damage.ranged'] = damageBonus;
+	updates['system.bonuses.damage.spell'] = damageBonus;
+
+	// Set attributes
+	let role = Role.resolve(roleType);
+	let attributes = role.getAttributesForLevel(level);
+	updates['system.attributes.dex.base'] = attributes.dex;
+	updates['system.attributes.ins.base'] = attributes.ins;
+	updates['system.attributes.mig.base'] = attributes.mig;
+	updates['system.attributes.wlp.base'] = attributes.wlp;
+
+	// Restore HP/MP
+	const maxHP = actor.system.resources.hp?.max;
+	const maxMP = actor.system.resources.mp?.max;
+	updates['system.resources.hp.value'] = maxHP;
+	updates['system.resources.mp.value'] = maxMP;
+
+	if (Object.keys(updates).length > 0) {
+		actor.update(updates);
 	}
 }

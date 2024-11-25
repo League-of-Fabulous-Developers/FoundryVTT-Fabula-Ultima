@@ -531,6 +531,7 @@ FU.rank = {
 /**
  * @typedef {"custom", "brute", "hunter", "mage", "saboteur", "sentinel", "support"} RoleType
  */
+
 /**
  * @type {Object<RoleType, string>}
  */
