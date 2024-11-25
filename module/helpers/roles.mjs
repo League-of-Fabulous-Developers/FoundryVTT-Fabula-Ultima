@@ -1,3 +1,6 @@
+/**
+ * An array of the 4 attributes used by a character in the system.
+ */
 export class AttributeArray {
 	/**
 	 * Constructs an array of the 4 attributes used by a character in the system
@@ -30,6 +33,9 @@ export class AttributeArray {
 	}
 }
 
+/**
+ * Model for an NPC role, which determines its attributes, skills, etc.
+ */
 export class Role {
 	/**
 	 * @param {*} attributeSteps The attributes for each step in advancement
@@ -43,8 +49,9 @@ export class Role {
 	 * @returns {AttributeArray} The atttibutes for that level
 	 */
 	getAttributesForLevel(level) {
+		// There's steps at levels: BASE, 20, 40, 60
 		let step = Math.floor(level / 20);
-		console.info(`Getting attributes for step ${step}`);
+		console.info(`Getting attributes for level ${level}, step ${step}`);
 		return this.attributeSteps[step];
 	}
 

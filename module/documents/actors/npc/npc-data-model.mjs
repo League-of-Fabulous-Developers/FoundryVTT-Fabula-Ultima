@@ -28,7 +28,7 @@ Hooks.on('preUpdateActor', async (document, changed) => {
 		const newLevel = foundry.utils.getProperty(changed, 'system.level.value');
 		let levelChanged = newLevel !== undefined && newLevel !== document.system.level.value;
 		if (roleChanged || levelChanged) {
-			setRoleAttributes(document, newRole);
+			setRoleAttributes(document, newRole, newLevel);
 		}
 	}
 });
@@ -207,14 +207,16 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
  * @param {*} roleType
  * @returns
  */
-async function setRoleAttributes(actor, roleType) {
+async function setRoleAttributes(actor, newRole, newLevel) {
+	const role = newRole ?? actor.system.role.value;
+	const level = newLevel ?? actor.system.level.value;
+
 	// Do nothing if the role was set to custom
-	if (roleType == 'custom') {
+	if (role == 'custom') {
 		return;
 	}
 
-	const level = actor.system.level.value;
-	console.info(`Setting attributes for role ${roleType} at level ${level}`);
+	console.info(`Setting attributes for role ${role} at level ${level}`);
 	const updates = {};
 
 	// Set accuracy/damage bonuses
@@ -227,8 +229,8 @@ async function setRoleAttributes(actor, roleType) {
 	updates['system.bonuses.damage.spell'] = damageBonus;
 
 	// Set attributes
-	let role = Role.resolve(roleType);
-	let attributes = role.getAttributesForLevel(level);
+	let roleData = Role.resolve(role);
+	let attributes = roleData.getAttributesForLevel(level);
 	updates['system.attributes.dex.base'] = attributes.dex;
 	updates['system.attributes.ins.base'] = attributes.ins;
 	updates['system.attributes.mig.base'] = attributes.mig;
