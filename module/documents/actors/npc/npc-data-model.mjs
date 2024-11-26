@@ -209,13 +209,13 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
  */
 async function setRoleAttributes(actor, newRole, newLevel) {
 	const role = newRole ?? actor.system.role.value;
-	const level = newLevel ?? actor.system.level.value;
 
 	// Do nothing if the role was set to custom
 	if (role == 'custom') {
 		return;
 	}
 
+	const level = newLevel ?? actor.system.level.value;
 	console.info(`Setting attributes for role ${role} at level ${level}`);
 	const updates = {};
 
@@ -236,11 +236,7 @@ async function setRoleAttributes(actor, newRole, newLevel) {
 	updates['system.attributes.mig.base'] = attributes.mig;
 	updates['system.attributes.wlp.base'] = attributes.wlp;
 
-	// Restore HP/MP
-	const maxHP = actor.system.resources.hp?.max;
-	const maxMP = actor.system.resources.mp?.max;
-	updates['system.resources.hp.value'] = maxHP;
-	updates['system.resources.mp.value'] = maxMP;
+	// TODO: Restore HP/MP to maximum
 
 	if (Object.keys(updates).length > 0) {
 		actor.update(updates);

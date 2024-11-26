@@ -1,4 +1,10 @@
 /**
+ * The following abstractions can be remodeled or folded into
+ * a general one adopted by the system at a later date;
+ * at the time of writing this was the simplest approach I could make.
+ */
+
+/**
  * An array of the 4 attributes used by a character in the system.
  */
 export class AttributeArray {
