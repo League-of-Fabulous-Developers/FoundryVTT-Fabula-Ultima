@@ -220,6 +220,12 @@
 			"sorting": "a",
 			"color": "#237B71",
 			"packs": ["handouts"]
+		},
+		{
+			"name": "Pregenerated PCs",
+			"sorting": "a",
+			"color": "#276625",
+			"packs": []
 		}
 	],
 	"languages": [

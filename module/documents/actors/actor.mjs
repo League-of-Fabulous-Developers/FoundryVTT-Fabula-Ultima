@@ -130,8 +130,13 @@ export class FUActor extends Actor {
 			const unarmedStrikeItem = content.find((item) => foundry.utils.getProperty(item, 'system.fuid') === 'unarmed-strike');
 
 			if (unarmedStrikeItem) {
-				// Add the item to the character
-				await this.createEmbeddedDocuments('Item', [unarmedStrikeItem.toObject()]);
+				// Check if the item already exists in the character's inventory
+				const existingItem = this.items.find((item) => foundry.utils.getProperty(item, 'system.fuid') === 'unarmed-strike');
+
+				if (!existingItem) {
+					// Add the item to the character
+					await this.createEmbeddedDocuments('Item', [unarmedStrikeItem.toObject()]);
+				}
 			}
 		}
 	}

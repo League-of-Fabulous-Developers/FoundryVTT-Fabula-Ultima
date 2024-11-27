@@ -1,9 +1,10 @@
-Icons references from the following icon packs:
-
-Pixeltier
-https://pixeltier.itch.io/pixeltiers-16x16-rpg-icon-pack
-https://pixeltier.itch.io/pixeltiers-modern-rpg-icon-set
-https://pixeltier.itch.io/pixeltiers-alchemy-rpg-icon-pack
+**Pixeltier** - All art referenced below are used in the system compendium and are purchased from [Pixeltier](https://itch.io/s/39748/pixeltiers-complete-asset-bundle).
+fantasy-rpg: rpg - [Pixeltier’s Icons: Fantasy RPG (16x16)](https://pixeltier.itch.io/pixeltiers-16x16-rpg-icon-pack)
+modern-rpg - [Pixeltier's Icons: Modern Survival RPG (16x16)](https://pixeltier.itch.io/pixeltiers-modern-rpg-icon-set)
+alchemy-rpg - [Pixeltier’s Icons: Alchemy Ingredients & Tools (16x16)](https://pixeltier.itch.io/pixeltiers-alchemy-rpg-icon-pack)
+cyberpunk-rpg - [Pixeltier’s Icons: Cyberpunk RPG (16x16)](https://pixeltier.itch.io/pixeltiers-cyberpunk-rpg-icon-pack)
+halloween-rpg - [Pixeltier’s Icons: FREE Halloween Items (16x16)](https://pixeltier.itch.io/pixeltiers-icons-free-halloween-items)
+sword-rpg - [Pixeltier’s Icons: Swords (16x16)](https://pixeltier.itch.io/pixeltiers-icons-swords)
 
 This icon pack may be used in whatever project you are working on. 
 
