@@ -7,8 +7,9 @@ import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
 import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { DerivedValuesDataModel } from '../common/derived-values-data-model.mjs';
+import { Role } from '../../../helpers/roles.mjs';
 
-Hooks.on('preUpdateActor', (document, changed) => {
+Hooks.on('preUpdateActor', async (document, changed) => {
 	if (document.system instanceof NpcDataModel) {
 		const newVillainType = foundry.utils.getProperty(changed, 'system.villain.value');
 		if (newVillainType !== undefined && newVillainType !== document.system.villain.value) {
@@ -19,6 +20,15 @@ Hooks.on('preUpdateActor', (document, changed) => {
 			};
 
 			foundry.utils.setProperty(changed, 'system.resources.fp.value', ultimaPoints[newVillainType] ?? 0);
+		}
+
+		// If role or level changed
+		const newRole = foundry.utils.getProperty(changed, 'system.role.value');
+		let roleChanged = newRole !== undefined && newRole !== document.system.role.value;
+		const newLevel = foundry.utils.getProperty(changed, 'system.level.value');
+		let levelChanged = newLevel !== undefined && newLevel !== document.system.level.value;
+		if (roleChanged || levelChanged) {
+			setRoleAttributes(document, newRole, newLevel);
 		}
 	}
 });
@@ -58,6 +68,7 @@ Hooks.on('preUpdateActor', (document, changed) => {
  * @property {number} phases.value
  * @property {string} multipart.value
  * @property {"soldier", "elite", "champion", "companion"} rank.value
+ * @property {RoleType} role.value
  * @property {number} rank.replacedSoldiers
  * @property {number} companion.playerLevel
  * @property {number} companion.skillLevel
@@ -98,6 +109,9 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			rank: new SchemaField({
 				value: new StringField({ initial: 'soldier', choices: Object.keys(FU.rank) }),
 				replacedSoldiers: new NumberField({ initial: 1, min: 0, max: 6 }),
+			}),
+			role: new SchemaField({
+				value: new StringField({ initial: 'custom', choices: Object.keys(FU.role) }),
 			}),
 			companion: new SchemaField({
 				playerLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
@@ -184,5 +198,47 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 				this.max = newValue;
 			},
 		});
+	}
+}
+
+/**
+ * Sets the NPC's attributes and bonuses based on its role if set
+ * @param {FUStandardActorSheet} actor
+ * @param {*} roleType
+ * @returns
+ */
+async function setRoleAttributes(actor, newRole, newLevel) {
+	const role = newRole ?? actor.system.role.value;
+
+	// Do nothing if the role was set to custom
+	if (role == 'custom') {
+		return;
+	}
+
+	const level = newLevel ?? actor.system.level.value;
+	console.info(`Setting attributes for role ${role} at level ${level}`);
+	const updates = {};
+
+	// Set accuracy/damage bonuses
+	let accuracyBonus = Math.floor(level / 10);
+	updates['system.bonuses.accuracy.accuracyCheck'] = accuracyBonus;
+	updates['system.bonuses.accuracy.magicCheck'] = accuracyBonus;
+	let damageBonus = Math.floor(level / 20) * 5;
+	updates['system.bonuses.damage.melee'] = damageBonus;
+	updates['system.bonuses.damage.ranged'] = damageBonus;
+	updates['system.bonuses.damage.spell'] = damageBonus;
+
+	// Set attributes
+	let roleData = Role.resolve(role);
+	let attributes = roleData.getAttributesForLevel(level);
+	updates['system.attributes.dex.base'] = attributes.dex;
+	updates['system.attributes.ins.base'] = attributes.ins;
+	updates['system.attributes.mig.base'] = attributes.mig;
+	updates['system.attributes.wlp.base'] = attributes.wlp;
+
+	// TODO: Restore HP/MP to maximum
+
+	if (Object.keys(updates).length > 0) {
+		actor.update(updates);
 	}
 }

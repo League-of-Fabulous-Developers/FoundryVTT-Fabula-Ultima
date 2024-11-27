@@ -181,6 +181,31 @@
                                                            includeZero=true}}disabled
                        data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
             </div>
+             <div class="resource-content">
+                <label class="resource-label-sm">{{localize 'FU.MeleeDamageBonus'}}</label>
+                <input type="number" name="system.bonuses.damage.melee"
+                       value="{{ system.bonuses.damage.melee }}" data-dtype="Number"
+                       class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.damage.melee
+                                                           includeZero=true}}disabled
+                       data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+            </div>
+             <div class="resource-content">
+                <label class="resource-label-sm">{{localize 'FU.RangedDamageBonus'}}</label>
+                <input type="number" name="system.bonuses.damage.ranged"
+                       value="{{ system.bonuses.damage.ranged }}" data-dtype="Number"
+                       class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.damage.ranged
+                                                           includeZero=true}}disabled
+                       data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+            </div>
+            <div class="resource-content">
+                <label class="resource-label-sm">{{localize 'FU.SpellDamageBonus'}}</label>
+                <input type="number" name="system.bonuses.damage.spell"
+                       value="{{ system.bonuses.damage.spell }}" data-dtype="Number"
+                       class="resource-inputs bonus" {{#if actor.overrides.system.bonuses.damage.spell
+                                                           includeZero=true}}disabled
+                       data-tooltip="{{localize "FU.DisabledByActiveEffect"}}"{{/if}}/>
+            </div>
+            
         </div>
 
     </fieldset>

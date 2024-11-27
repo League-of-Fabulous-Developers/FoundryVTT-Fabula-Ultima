@@ -56,12 +56,23 @@
             <select name="system.rank.value" class="resource-inputs rank-select">
                 {{selectOptions FU.rank selected=system.rank.value localize=true}}
             </select>
+
             {{#if (eq system.rank.value 'champion')}}
                 <span class="resource-inputs flex0 champion-input">
                     <input type="number" name="system.rank.replacedSoldiers" min="1" max="6" value="{{system.rank.replacedSoldiers}}"
                           class="resource-inputs" />
                 </span>
             {{/if}}
+        </div>
+        <!-- Role -->
+        <label class="resource-label-m align-center backgroundstyle" data-tooltip="{{localize 'FU.Role'}}" aria-describedby="tooltip">
+            <i class="fas fa-wrench-simple icon"></i>
+            {{localize 'FU.Role'}}
+        </label>
+        <div class="grid-span-2 flexrow">
+            <select name="system.role.value" class="resource-inputs">
+                    {{selectOptions FU.role selected=system.role.value localize=true}}
+            </select>
         </div>
     </div>
 {{/if}}
