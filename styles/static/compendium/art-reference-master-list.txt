@@ -121,8 +121,9 @@ arcanum-of-the-sky (fantasy-rpg, recolor of gem_*)
 
 --------------------------------------------------
 [projectfu\styles\static\compendium\classes\*]
+[projectfu\styles\static\compendium\magitech-armament\*]
 
-A majority of the pixel art found in this folder was provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.
+A majority of the pixel art found in the following folders are provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.
 Javier Aumente (Tarot) (Contact Email: <jaauvel@gmail.com>)
 With the exception of the following:
 [projectfu\styles\static\compendium\classes\arcanist\arcanum*] (fantasy-rpg, gem_*)
