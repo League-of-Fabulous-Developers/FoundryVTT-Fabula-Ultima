@@ -114,8 +114,14 @@
 		"ExpAbbr": "XP",
 		"Level": "Level",
 		"LevelAbbr": "LV",
-		"Role": "Role",
 		"LevelUp": "LEVEL UP!",
+		"Role": "Role",
+		"Brute": "Brute",
+		"Hunter": "Hunter",
+		"Mage": "Mage",
+		"Saboteur": "Saboteur",
+		"Sentinel": "Sentinel",
+		"Support": "Support",
 		"Name": "Name",
 		"Roll": "Roll",
 		"Add": "Add",
@@ -1217,12 +1223,6 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		},
-		"Brute": "Brute",
-		"Hunter": "Hunter",
-		"Mage": "Mage",
-		"Saboteur": "Saboteur",
-		"Sentinel": "Sentinel",
-		"Support": "Support"
+		}
 	}
 }

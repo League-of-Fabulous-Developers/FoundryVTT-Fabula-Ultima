@@ -2,10 +2,20 @@
 {{!-- Creature Rank --}}
     <div class="flexcol gap-1">
         <div class="resource-content levelup-container creature flex-group-center">
-        <span class="resource-content levelup-container flexcol flex-group-center">
-            <label class="resource-label-l" data-tooltip="{{localize 'FU.CreatureType'}}" aria-describedby="tooltip">
-                <i class="fas fa-chart-simple icon"></i>{{localize 'FU.CreatureType'}}
-            </label>
+
+            <!-- Role -->
+            <span class="flexrow">
+                <label class="resource-label-m backgroundstyle" data-tooltip="{{localize 'FU.Role'}}" aria-describedby="tooltip">
+                    <i class="fas fa-wrench-simple icon"></i>
+                    {{localize 'FU.Role'}}
+                </label>
+                <div class="grid-span-2 flexrow">
+                    <select name="system.role.value" class="resource-inputs">
+                            {{selectOptions FU.role selected=system.role.value localize=true}}
+                    </select>
+                </div>
+            </span>
+
             <span class="flexrow combineBar" style="border: 0.125em solid #c7c7c7; margin-bottom: -4px;">
                 <select name="system.species.value" class="resource-inputs species-select" style="padding: 3px 0">
                     {{#if (eq system.rank.value 'companion')}}
@@ -15,7 +25,7 @@
                     {{/if}}
                 </select>
             </span>
-        </span>
+
         </div>
 
         <span class="resource-content levelup-container flexcol flex-group-center">
