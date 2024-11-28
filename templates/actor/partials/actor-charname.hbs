@@ -56,6 +56,7 @@
             <select name="system.rank.value" class="resource-inputs rank-select">
                 {{selectOptions FU.rank selected=system.rank.value localize=true}}
             </select>
+
             {{#if (eq system.rank.value 'champion')}}
                 <span class="resource-inputs flex0 champion-input">
                     <input type="number" name="system.rank.replacedSoldiers" min="1" max="6" value="{{system.rank.replacedSoldiers}}"
