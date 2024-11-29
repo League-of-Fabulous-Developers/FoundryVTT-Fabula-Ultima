@@ -92,6 +92,29 @@ async function promptIconSelectionDialog(state, dispatch, view) {
 	}
 }
 
+async function promptCheckDialog(state, dispatch, view) {
+	const result = await Dialog.prompt({
+		title: game.i18n.localize('FU.TextEditorDialogCheckTitle'),
+		label: game.i18n.localize('FU.TextEditorDialogButtonInsert'),
+		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-check.hbs', {
+			difficultyLevels: FU.difficultyLevel,
+			attributes: FU.attributes,
+		}),
+		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
+		callback: (jQuery) => {
+			const first = jQuery.find('select[name=first]').val();
+			const second = jQuery.find('select[name=second]').val();
+			const level = jQuery.find('select[name=level]').val();
+			return { level, first, second };
+		},
+		rejectClose: false,
+	});
+	if (result) {
+		const { first, second, level } = result;
+		dispatch(state.tr.insertText(` @CHECK[${first} ${second}] ${level}`));
+	}
+}
+
 function onGetProseMirrorMenuDropDowns(menu, config) {
 	config['projectfu.textCommands'] = {
 		title: 'FU.TextEditorTextCommands',
@@ -127,6 +150,12 @@ function onGetProseMirrorMenuDropDowns(menu, config) {
 				title: 'FU.TextEditorButtonCommandEffect',
 				group: 1,
 				cmd: InlineEffects.showEffectConfiguration,
+			},
+			{
+				action: 'check',
+				title: 'FU.TextEditorButtonCommandCheck',
+				group: 1,
+				cmd: promptCheckDialog,
 			},
 		],
 	};

@@ -861,7 +861,7 @@
 		"UsedSPResistances": "Used skills from resistances",
 		"UsedSPImmunities": "Used skills from immunities",
 		"UsedSPAbsorption": "Used skills from absorption",
-		"UsedSPSpecialRules": "Used skills from special rules",
+		"UsedSPSpecialRules": "Used skills from specaial rules",
 		"UsedSPOtherAction": "Used skills from other actions",
 		"UsedSPEquipment": "Used skills from equipment",
 		"RecoveryDescriptionTooltip": "To add Damage or Restoration effects, use '@DMG[numeric affinity]' or '@HEAL[numeric hp/mp/ip]'.<br><strong>Example:</strong> 'A creature recovers 50 Hit Points.' can be written as 'A creature recovers @HEAL[ 50 hp]'. <br><strong>Commands must be presented in chat in English. They will be translated when computed.</strong>",
@@ -891,6 +891,8 @@
 		"TextEditorDialogResourceGainTitle": "Resource Gain",
 		"TextEditorButtonCommandLoss": "Resource Loss",
 		"TextEditorDialogResourceLossTitle": "Resource Loss",
+		"TextEditorDialogCheckTitle": "Check",
+		"TextEditorButtonCommandCheck": "Check",
 		"TextEditorDialogButtonInsert": "Insert",
 		"TextEditorButtonCommandIcon": "Icons",
 		"TextEditorDialogSelectIconTitle": "Select Icon",
@@ -1224,5 +1226,19 @@
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
 		}
+
+		},
+		"Brute": "Brute",
+		"Hunter": "Hunter",
+		"Mage": "Mage",
+		"Saboteur": "Saboteur",
+		"Sentinel": "Sentinel",
+		"Support": "Support",
+		"DifficultyLevel": "Difficulty Level",
+		"Easy": "Easy",
+		"Normal": "Normal",
+		"Hard": "Hard",
+		"VeryHard": "Very Hard",
+		"InlineRollCheck": "Roll an attribute check on the selected actors"
 	}
 }
