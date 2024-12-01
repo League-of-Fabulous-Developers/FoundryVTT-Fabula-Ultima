@@ -116,12 +116,12 @@
 		"LevelAbbr": "NV",
 		"LevelUp": "¡SUBES DE NIVEL!",
 		"Role": "Role",
-		"Brute": "Brute",
-		"Hunter": "Hunter",
-		"Mage": "Mage",
-		"Saboteur": "Saboteur",
-		"Sentinel": "Sentinel",
-		"Support": "Support",
+		"Brute": "Bruto",
+		"Hunter": "Cazador",
+		"Mage": "Mago",
+		"Saboteur": "Saboteador",
+		"Sentinel": "Centinel",
+		"Support": "Soporte",
 		"Name": "Nombre",
 		"Roll": "Tirada",
 		"Add": "Añadir",
@@ -1224,6 +1224,11 @@
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
 		},
+		"DifficultyLevel": "Nivel de Dificultad",
+		"Easy": "Facil",
+		"Normal": "Normal",
+		"Hard": "Dificil",
+		"VeryHard": "Muy Dificil",
 		"InlineRollCheck": "Realizar una comprobación de atributos en los actores seleccionados"
 	}
 }
