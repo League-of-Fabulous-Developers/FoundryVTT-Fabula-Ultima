@@ -1,0 +1,23 @@
+<div class="desc">
+
+    <fieldset class="title-fieldset resource-content flex-group-center">
+        <legend class="resource-label-sm">{{localize "FU.Attributes"}}</legend>
+        <select name="first" class="resource-inputs select-dropdown-xl">
+            {{selectOptions attributes localize=true}}
+        </select>
+    </fieldset>
+
+    <fieldset class="title-fieldset resource-content flex-group-center">
+        <legend class="resource-label-sm">{{localize "FU.Attributes"}}</legend>
+        <select name="second" class="resource-inputs select-dropdown-xl">
+            {{selectOptions attributes localize=true}}
+        </select>
+    </fieldset>
+
+    <fieldset class="title-fieldset resource-content flex-group-center">
+        <legend class="resource-label-sm">{{localize "FU.DifficultyLevel"}}</legend>
+        <select name="level" class="resource-inputs select-dropdown-xl">
+            {{selectOptions difficultyLevels localize=true}}
+        </select>
+    </fieldset>
+</div>

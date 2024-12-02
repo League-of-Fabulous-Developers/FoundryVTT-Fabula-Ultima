@@ -25,7 +25,7 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 		super(data, options);
 		let current = this.base;
 		Object.defineProperty(this, 'current', {
-			configurable: true,
+			configurable: false,
 			enumerable: true,
 			get: () => {
 				return MathHelper.clamp(2 * Math.floor(current / 2), 6, 12);

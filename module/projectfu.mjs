@@ -52,6 +52,7 @@ import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
 import { InlineResources } from './helpers/inline-resources.mjs';
+import { InlineChecks } from './helpers/inline-check.mjs';
 import { Flags } from './helpers/flags.mjs';
 import { InlineIcon } from './helpers/inline-icons.mjs';
 import { TextEditorCommandDropdown } from './helpers/text-editor-command-dropdown.mjs';
@@ -247,6 +248,12 @@ Hooks.once('init', async () => {
 	Hooks.on('renderActorSheet', InlineResources.activateListeners);
 	Hooks.on('renderItemSheet', InlineResources.activateListeners);
 	Hooks.on('dropActorSheetData', InlineResources.onDropActor);
+
+	CONFIG.TextEditor.enrichers.push(InlineChecks.enricher);
+	Hooks.on('renderChatMessage', InlineChecks.activateListeners);
+	Hooks.on('renderApplication', InlineChecks.activateListeners);
+	Hooks.on('renderActorSheet', InlineChecks.activateListeners);
+	Hooks.on('renderItemSheet', InlineChecks.activateListeners);
 
 	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 

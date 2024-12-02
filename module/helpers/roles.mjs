@@ -115,10 +115,10 @@ export class Role {
 
 	static get saboteur() {
 		let attributeSteps = {};
-		attributeSteps[0] = new AttributeArray(10, 8, 6, 8);
-		attributeSteps[1] = new AttributeArray(10, 8, 8, 8);
-		attributeSteps[2] = new AttributeArray(10, 10, 8, 8);
-		attributeSteps[3] = new AttributeArray(12, 10, 8, 8);
+		attributeSteps[0] = new AttributeArray(8, 8, 8, 8);
+		attributeSteps[1] = new AttributeArray(8, 8, 8, 10);
+		attributeSteps[2] = new AttributeArray(8, 10, 8, 10);
+		attributeSteps[3] = new AttributeArray(10, 10, 8, 10);
 		let role = new Role(attributeSteps);
 		return role;
 	}
