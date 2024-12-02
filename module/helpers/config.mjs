@@ -544,3 +544,17 @@ FU.role = {
 	sentinel: 'FU.Sentinel',
 	support: 'FU.Support',
 };
+
+/**
+ * @typedef {"easy", "normal", "hard", "veryHard" } DifficultyLevel
+ */
+
+/**
+ * @type {Object<DifficultyLevel, string>}
+ */
+FU.difficultyLevel = {
+	easy: 'FU.Easy',
+	normal: 'FU.Normal',
+	hard: 'FU.Hard',
+	veryHard: 'FU.VeryHard',
+};
