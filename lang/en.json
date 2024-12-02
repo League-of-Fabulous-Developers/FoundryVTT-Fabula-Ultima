@@ -122,6 +122,12 @@
 		"Saboteur": "Saboteur",
 		"Sentinel": "Sentinel",
 		"Support": "Support",
+		"DifficultyLevel": "Difficulty Level",
+		"Easy": "Easy",
+		"Normal": "Normal",
+		"Hard": "Hard",
+		"VeryHard": "Very Hard",
+		"InlineRollCheck": "Roll an attribute check on the selected actors",
 		"Name": "Name",
 		"Roll": "Roll",
 		"Add": "Add",
@@ -861,7 +867,7 @@
 		"UsedSPResistances": "Used skills from resistances",
 		"UsedSPImmunities": "Used skills from immunities",
 		"UsedSPAbsorption": "Used skills from absorption",
-		"UsedSPSpecialRules": "Used skills from specaial rules",
+		"UsedSPSpecialRules": "Used skills from special rules",
 		"UsedSPOtherAction": "Used skills from other actions",
 		"UsedSPEquipment": "Used skills from equipment",
 		"RecoveryDescriptionTooltip": "To add Damage or Restoration effects, use '@DMG[numeric affinity]' or '@HEAL[numeric hp/mp/ip]'.<br><strong>Example:</strong> 'A creature recovers 50 Hit Points.' can be written as 'A creature recovers @HEAL[ 50 hp]'. <br><strong>Commands must be presented in chat in English. They will be translated when computed.</strong>",
@@ -1225,12 +1231,6 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		},
-		"DifficultyLevel": "Difficulty Level",
-		"Easy": "Easy",
-		"Normal": "Normal",
-		"Hard": "Hard",
-		"VeryHard": "Very Hard",
-		"InlineRollCheck": "Roll an attribute check on the selected actors"
+		}
 	}
 }
