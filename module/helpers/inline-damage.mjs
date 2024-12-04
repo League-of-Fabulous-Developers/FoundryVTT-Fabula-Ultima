@@ -47,8 +47,8 @@ function enricher(text, options) {
 }
 
 /**
- * @param {*} anchor The root html element for this inline command
- * @param {*} amount An integer for the value or an improvised effect label (minor,heavy,massive)
+ * @param {HTMLAnchorElement}} anchor The root html element for this inline command
+ * @param {*} amount An integer for the value OR an improvised effect label (minor,heavy,massive)
  * @returns {boolean} True if the amount was appended
  */
 function appendAmount(anchor, amount) {
@@ -115,22 +115,6 @@ function determineSource(document, element) {
 	return result;
 }
 
-function assignEffectAmount(actor, dataset) {
-	if (dataset.effect === undefined) {
-		return;
-	}
-
-	let level = 5;
-	if (actor !== undefined) {
-		level = actor.system.level.value;
-	} else {
-		console.warn(`No actor was given to determine level, thus used the default (5).`);
-	}
-
-	dataset.amount = ImprovisedEffect.calculateAmount(level, dataset.effect);
-	console.info(`Calculated amount for level ${level}, effect ${dataset.effect} = ${dataset.amount}`);
-}
-
 /**
  * @param {ClientDocument} document
  * @param {jQuery} html
@@ -142,14 +126,15 @@ function activateListeners(document, html) {
 
 	html.find('a.inline.inline-damage[draggable]')
 		.on('click', async function () {
-			// Support for improvised effect calculation
 			const sourceInfo = determineSource(document, this);
-			assignEffectAmount(sourceInfo.actor, this.dataset);
-			const amount = Number(this.dataset.amount);
 			const type = this.dataset.type;
 			let targets = await targetHandler();
+
+			// Support for improvised effect calculation
+			const effectAmount = ImprovisedEffect.calculateAmountFromContext(this.dataset.effect, sourceInfo.actor, targets);
+			const amount = effectAmount ?? Number(this.dataset.amount);
 			if (targets.length > 0) {
-				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
+				const baseDamageInfo = { type, total: amount, modifierTotal: 0, effect: this.dataset.effect };
 				await applyDamagePipelineWithHook({ event: null, targets, sourceUuid: sourceInfo.uuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 			}
 		})
@@ -161,12 +146,12 @@ function activateListeners(document, html) {
 			}
 
 			const sourceInfo = determineSource(document, this);
-			assignEffectAmount(sourceInfo.actor, this.dataset);
 			const data = {
 				type: INLINE_DAMAGE,
 				source: sourceInfo,
 				damageType: this.dataset.type,
 				amount: this.dataset.amount,
+				effect: this.dataset.effect,
 			};
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
@@ -175,7 +160,8 @@ function activateListeners(document, html) {
 
 function onDropActor(actor, sheet, { type, damageType, amount, source, ignore }) {
 	if (type === INLINE_DAMAGE) {
-		const baseDamageInfo = { type: damageType, total: Number(amount), modifierTotal: 0 };
+		const effectAmount = ImprovisedEffect.calculateAmountFromContext(this.dataset.amount, null, [actor]);
+		const baseDamageInfo = { type: damageType, total: effectAmount ?? Number(amount), modifierTotal: 0 };
 		applyDamagePipelineWithHook({ event: null, targets: [actor], sourceUuid: source.uuid, sourceName: source.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 		return false;
 	}
