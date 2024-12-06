@@ -21,7 +21,7 @@ const inlineRecoveryEnricher = {
  * @type {TextEditorEnricherConfig}
  */
 const inlineLossEnricher = {
-	pattern: /@LOSS\[\s*(?<amount>\d+)\s*(?<type>\w+)\s*\]/gi,
+	pattern: /@LOSS\[\s*(?<amount>\w+)\s*(?<type>\w+)\s*\]/gi,
 	enricher: lossEnricher,
 };
 
@@ -52,10 +52,11 @@ const messages = {
 	zenit: 'FU.ChatResourceGain',
 };
 
-function createReplacementElement(amount, type, elementClass, uncapped) {
+function createReplacementElement(amount, type, elementClass, uncapped, tooltip) {
 	if (type in FU.resources) {
 		const anchor = document.createElement('a');
 		anchor.dataset.type = type;
+		anchor.setAttribute('data-tooltip', game.i18n.localize(tooltip));
 
 		// Used to enable over-healing
 		if (uncapped === true) {
@@ -96,15 +97,13 @@ function recoveryEnricher(text, options) {
 
 	const amount = text[1];
 	const type = text[2];
-	const anchor = createReplacementElement(amount, type.toLowerCase(), classInlineRecovery, uncapped);
-	if (anchor != null) {
-		anchor.setAttribute('data-tooltip', game.i18n.localize('FU.InlineRecovery'));
-	}
-	return anchor;
+	return createReplacementElement(amount, type.toLowerCase(), classInlineRecovery, uncapped, `FU.InlineRecovery`);
 }
 
 function lossEnricher(text, options) {
-	return createReplacementElement(parseInt(text[1]), text[2].toLowerCase(), classInlineLoss, false);
+	const amount = text[1];
+	const type = text[2];
+	return createReplacementElement(amount, type.toLowerCase(), classInlineLoss, false, `FU.InlineLoss`);
 }
 
 /**

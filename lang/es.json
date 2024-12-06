@@ -130,6 +130,7 @@
 		"InlineRollCheck": "Realizar una comprobación de atributos en los actores seleccionados",
 		"InlineDamage": "Aplicar daño a la ficha seleccionada",
 		"InlineRecovery": "Aplicar recuperación de recursos al token seleccionado",
+		"InlineLoss": "Aplicar pérdida de recursos a los tokens seleccionados",
 		"Name": "Nombre",
 		"Roll": "Tirada",
 		"Add": "Añadir",
