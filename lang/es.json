@@ -128,6 +128,8 @@
 		"Hard": "Dificil",
 		"VeryHard": "Muy Dificil",
 		"InlineRollCheck": "Realizar una comprobación de atributos en los actores seleccionados",
+		"InlineDamage": "Aplicar daño a la ficha seleccionada",
+		"InlineRecovery": "Aplicar recuperación de recursos al token seleccionado",
 		"Name": "Nombre",
 		"Roll": "Tirada",
 		"Add": "Añadir",

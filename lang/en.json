@@ -128,6 +128,8 @@
 		"Hard": "Hard",
 		"VeryHard": "Very Hard",
 		"InlineRollCheck": "Roll an attribute check on the selected actors",
+		"InlineDamage": "Apply damage to selected token",
+		"InlineRecovery": "Apply resource recovery to selected token",
 		"Name": "Name",
 		"Roll": "Roll",
 		"Add": "Add",

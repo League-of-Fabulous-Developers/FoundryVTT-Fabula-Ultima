@@ -1,3 +1,5 @@
+import { FU } from './config.mjs';
+
 /**
  * @param {number} level The level of the character
  * @returns The character tier.
@@ -47,14 +49,15 @@ function calculateAmount(level, effect) {
 
 /**
  * Calculates the improvised amount for a given effect
- * @param {ImprovisedEffectType} effect
+ * @param {*} dataset
  * @param {FUActor} source
  * @param {FUActor[]} targets
  * @returns The amount as an integer, null otherwise
  */
-function calculateAmountFromContext(effect, source, targets) {
+function calculateAmountFromContext(dataset, source, targets) {
+	const effect = dataset.effect;
 	if (effect === undefined) {
-		return null;
+		return Number(dataset.amount);
 	}
 
 	let level = 5;
@@ -73,10 +76,33 @@ function calculateAmountFromContext(effect, source, targets) {
 	return amount;
 }
 
+/**
+ * @param {HTMLAnchorElement}} anchor The root html element for this inline command
+ * @param {*} amount An integer for the value OR an improvised effect label (minor,heavy,massive)
+ * @returns {boolean} True if the amount was appended
+ */
+function appendAmountToAnchor(anchor, amount) {
+	if (amount in FU.improvisedEffect) {
+		anchor.append(`${game.i18n.localize(FU.improvisedEffect[amount])}`);
+		anchor.dataset.effect = amount;
+		return true;
+	} else {
+		const amountNumber = Number(amount);
+		if (!Number.isNaN(amount)) {
+			anchor.dataset.amount = amountNumber;
+			anchor.append(`${amount} `);
+			return true;
+		}
+	}
+
+	return false;
+}
+
 export const ImprovisedEffect = {
 	Minor: 'minor',
 	Heavy: 'heavy',
 	Massive: 'massive',
 	calculateAmount,
 	calculateAmountFromContext,
+	appendAmountToAnchor,
 };
