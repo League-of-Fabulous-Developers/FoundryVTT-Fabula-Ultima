@@ -2,7 +2,7 @@ import { FU } from './config.mjs';
 
 /**
  * @param {number} level The level of the character
- * @returns The character tier.
+ * @returns The character tier (0,1,2)
  */
 function getCharacterTier(level) {
 	if (level >= 40) {
@@ -23,11 +23,15 @@ const effectIndex = {
 };
 
 /**
- * Tier: Effect [Minor,Heavy,Massive]
+ * The scalar amount of each improvised effect
+ * ordered by the character tier  / level range [5-19, 20-39, 40+ ]
  */
-const amountPerTier = [
+const amountPerLevelRange = [
+	// Minor (0)
 	[10, 30, 40],
+	// Heavy (1)
 	[20, 40, 60],
+	// Massive (2)
 	[30, 50, 80],
 ];
 
@@ -38,13 +42,12 @@ const amountPerTier = [
 /**
  * @param {Number} level The character level
  * @param {ImprovisedEffectType} effect The improvised effect type
- * @returns
+ * @returns {Number}
  */
 function calculateAmount(level, effect) {
 	const tier = getCharacterTier(level);
 	const index = effectIndex[effect];
-	const amount = amountPerTier[tier][index];
-	return amount;
+	return amountPerLevelRange[tier][index];
 }
 
 /**
@@ -52,12 +55,16 @@ function calculateAmount(level, effect) {
  * @param {*} dataset
  * @param {FUActor} source
  * @param {FUActor[]} targets
- * @returns The amount as an integer, null otherwise
+ * @returns {Number} The amount as an integer, null otherwise
  */
 function calculateAmountFromContext(dataset, source, targets) {
 	const effect = dataset.effect;
 	if (effect === undefined) {
-		return Number(dataset.amount);
+		if (dataset.amount !== undefined) {
+			return Number(dataset.amount);
+		} else {
+			return null;
+		}
 	}
 
 	let level = 5;
@@ -71,9 +78,7 @@ function calculateAmountFromContext(dataset, source, targets) {
 		}
 	}
 
-	const amount = ImprovisedEffect.calculateAmount(level, effect);
-	console.info(`Calculated amount for level ${level}, effect ${effect} = ${amount}`);
-	return amount;
+	return ImprovisedEffect.calculateAmount(level, effect);
 }
 
 /**
