@@ -72,7 +72,9 @@ function calculateAmountFromContext(dataset, source, targets) {
 		level = source.system.level.value;
 	} else {
 		if (targets.length > 0) {
-			level = targets.reduce((a, b) => b.system.level.value > a.system.level.value);
+			level = targets.reduce((max, target) => {
+				return Math.max(max, target.system.level.value);
+			}, -Infinity);
 		} else {
 			console.warn(`No actor was given to determine level, thus used the default (5).`);
 		}
