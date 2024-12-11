@@ -111,7 +111,7 @@ async function promptCheckDialog(state, dispatch, view) {
 	});
 	if (result) {
 		const { first, second, level } = result;
-		dispatch(state.tr.insertText(` @CHECK[${first} ${second}] ${level}`));
+		dispatch(state.tr.insertText(` @CHECK[${first} ${second} ${level}]`));
 	}
 }
 
