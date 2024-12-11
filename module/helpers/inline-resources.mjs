@@ -1,8 +1,7 @@
-import { FU, SYSTEM } from './config.mjs';
-import { Flags } from './flags.mjs';
-import { FUActor } from '../documents/actors/actor.mjs';
-import { FUItem } from '../documents/items/item.mjs';
+import { FU } from './config.mjs';
 import { targetHandler } from './target-handler.mjs';
+import { ImprovisedEffect } from './improvised-effect.mjs';
+import { InlineHelper } from './inline-helper.mjs';
 
 const INLINE_RECOVERY = 'InlineRecovery';
 const INLINE_LOSS = 'InlineLoss';
@@ -14,7 +13,7 @@ const classInlineLoss = 'inline-loss';
  * @type {TextEditorEnricherConfig}
  */
 const inlineRecoveryEnricher = {
-	pattern: /@(?:HEAL|GAIN)\[\s*(\d+\+?)\s*(\w+)\s*\]/gi,
+	pattern: /@(?:HEAL|GAIN)\[\s*(?<amount>\w+\+?)\s*(?<type>\w+)\s*\]/gi,
 	enricher: recoveryEnricher,
 };
 
@@ -22,7 +21,7 @@ const inlineRecoveryEnricher = {
  * @type {TextEditorEnricherConfig}
  */
 const inlineLossEnricher = {
-	pattern: /@LOSS\[\s*(\d+)\s*(\w+)\s*\]/gi,
+	pattern: /@LOSS\[\s*(?<amount>\w+)\s*(?<type>\w+)\s*\]/gi,
 	enricher: lossEnricher,
 };
 
@@ -53,11 +52,12 @@ const messages = {
 	zenit: 'FU.ChatResourceGain',
 };
 
-function createReplacementElement(amount, type, elementClass, uncapped) {
-	if (type in FU.resources && typeof amount === 'number') {
+function createReplacementElement(amount, type, elementClass, uncapped, tooltip) {
+	if (type in FU.resources) {
 		const anchor = document.createElement('a');
 		anchor.dataset.type = type;
-		anchor.dataset.amount = amount;
+		anchor.setAttribute('data-tooltip', game.i18n.localize(tooltip));
+
 		// Used to enable over-healing
 		if (uncapped === true) {
 			anchor.dataset.uncapped = 'true';
@@ -69,8 +69,13 @@ function createReplacementElement(amount, type, elementClass, uncapped) {
 		indicator.classList.add('indicator');
 		anchor.append(indicator);
 
-		anchor.append(`${amount} ${game.i18n.localize(FU.resourcesAbbr[type])}`);
-
+		// AMOUNT
+		if (!ImprovisedEffect.appendAmountToAnchor(anchor, amount)) {
+			return null;
+		}
+		// TYPE
+		anchor.append(` ${game.i18n.localize(FU.resourcesAbbr[type])}`);
+		// ICON
 		const icon = document.createElement('i');
 		icon.className = FU.resourceIcons[type];
 		icon.classList.add(type);
@@ -83,46 +88,22 @@ function createReplacementElement(amount, type, elementClass, uncapped) {
 }
 
 function recoveryEnricher(text, options) {
-	let uncapped = false;
 	// Detect and handle uncapped recovery
+	let uncapped = false;
 	if (text[1].match(/^\d+\+$/)) {
 		uncapped = true;
 		text[1] = text[1].slice(0, -1);
 	}
-	return createReplacementElement(parseInt(text[1]), text[2].toLowerCase(), classInlineRecovery, uncapped);
+
+	const amount = text[1];
+	const type = text[2];
+	return createReplacementElement(amount, type.toLowerCase(), classInlineRecovery, uncapped, `FU.InlineRecovery`);
 }
 
 function lossEnricher(text, options) {
-	return createReplacementElement(parseInt(text[1]), text[2].toLowerCase(), classInlineLoss, false);
-}
-
-/**
- * @param {ClientDocument} document
- * @param {HTMLElement} element
- * @returns {string}
- */
-function determineSource(document, element) {
-	let source = game.i18n.localize('FU.UnknownRecoverySource');
-	if (document instanceof FUActor) {
-		const itemId = $(element).closest('[data-item-id]').data('itemId');
-		if (itemId) {
-			source = document.items.get(itemId).name;
-		} else {
-			source = document.name;
-		}
-	} else if (document instanceof FUItem) {
-		source = document.name;
-	} else if (document instanceof ChatMessage) {
-		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
-		if (speakerActor) {
-			source = speakerActor.name;
-		}
-		const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-		if (item) {
-			source = item.name;
-		}
-	}
-	return source;
+	const amount = text[1];
+	const type = text[2];
+	return createReplacementElement(amount, type.toLowerCase(), classInlineLoss, false, `FU.InlineLoss`);
 }
 
 /**
@@ -136,11 +117,13 @@ function activateListeners(document, html) {
 
 	html.find('a.inline.inline-recovery[draggable], a.inline.inline-loss[draggable]')
 		.on('click', async function () {
-			const amount = Number(this.dataset.amount);
+			const sourceInfo = InlineHelper.determineSource(document, this);
+			let targets = await targetHandler();
+
+			const amount = ImprovisedEffect.calculateAmountFromContext(this.dataset, sourceInfo.actor, targets);
 			const type = this.dataset.type;
 			const uncapped = this.dataset.uncapped === 'true';
-			const source = determineSource(document, this);
-			let targets = await targetHandler();
+			const source = sourceInfo.name;
 			if (targets.length > 0) {
 				if (this.classList.contains(classInlineRecovery)) {
 					targets.forEach((actor) => applyRecovery(actor, type, amount, source || 'inline recovery', uncapped));
@@ -155,11 +138,11 @@ function activateListeners(document, html) {
 			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
 				return;
 			}
-			const source = determineSource(document, this);
+			const sourceInfo = InlineHelper.determineSource(document, this);
 
 			const data = {
 				type: this.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
-				source: source,
+				source: sourceInfo,
 				recoveryType: this.dataset.type,
 				amount: this.dataset.amount,
 				uncapped: this.dataset.uncapped === 'true',
@@ -170,7 +153,7 @@ function activateListeners(document, html) {
 }
 
 function onDropActor(actor, sheet, { type, recoveryType, amount, source, uncapped }) {
-	amount = Number(amount);
+	amount = ImprovisedEffect.calculateAmountFromContext(this.dataset, null, [actor]);
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
 		applyRecovery(actor, recoveryType, amount, source, uncapped);
 		return false;
