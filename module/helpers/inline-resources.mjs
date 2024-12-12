@@ -1,7 +1,6 @@
 import { FU } from './config.mjs';
 import { targetHandler } from './target-handler.mjs';
-import { ImprovisedEffect } from './improvised-effect.mjs';
-import { InlineHelper } from './inline-helper.mjs';
+import { InlineAmount, InlineContext, InlineHelper } from './inline-helper.mjs';
 
 const INLINE_RECOVERY = 'InlineRecovery';
 const INLINE_LOSS = 'InlineLoss';
@@ -13,7 +12,7 @@ const classInlineLoss = 'inline-loss';
  * @type {TextEditorEnricherConfig}
  */
 const inlineRecoveryEnricher = {
-	pattern: /@(?:HEAL|GAIN)\[\s*(?<amount>\w+\+?)\s*(?<type>\w+)\s*\]/gi,
+	pattern: /@(?:HEAL|GAIN)\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]/gi,
 	enricher: recoveryEnricher,
 };
 
@@ -21,7 +20,7 @@ const inlineRecoveryEnricher = {
  * @type {TextEditorEnricherConfig}
  */
 const inlineLossEnricher = {
-	pattern: /@LOSS\[\s*(?<amount>\w+)\s*(?<type>\w+)\s*\]/gi,
+	pattern: /@LOSS\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]/gi,
 	enricher: lossEnricher,
 };
 
@@ -56,7 +55,7 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip)
 	if (type in FU.resources) {
 		const anchor = document.createElement('a');
 		anchor.dataset.type = type;
-		anchor.setAttribute('data-tooltip', game.i18n.localize(tooltip));
+		anchor.setAttribute('data-tooltip', `${game.i18n.localize(tooltip)} (${amount})`);
 
 		// Used to enable over-healing
 		if (uncapped === true) {
@@ -70,9 +69,7 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip)
 		anchor.append(indicator);
 
 		// AMOUNT
-		if (!ImprovisedEffect.appendAmountToAnchor(anchor, amount)) {
-			return null;
-		}
+		InlineAmount.appendToAnchor(anchor, amount);
 		// TYPE
 		anchor.append(` ${game.i18n.localize(FU.resourcesAbbr[type])}`);
 		// ICON
@@ -117,18 +114,19 @@ function activateListeners(document, html) {
 
 	html.find('a.inline.inline-recovery[draggable], a.inline.inline-loss[draggable]')
 		.on('click', async function () {
-			const sourceInfo = InlineHelper.determineSource(document, this);
 			let targets = await targetHandler();
-
-			const amount = ImprovisedEffect.calculateAmountFromContext(this.dataset, sourceInfo.actor, targets);
-			const type = this.dataset.type;
-			const uncapped = this.dataset.uncapped === 'true';
-			const source = sourceInfo.name;
 			if (targets.length > 0) {
+				const sourceInfo = InlineHelper.determineSource(document, this);
+				const type = this.dataset.type;
+				const uncapped = this.dataset.uncapped === 'true';
+				const context = new InlineContext(sourceInfo.actor, sourceInfo.item, targets);
+				const _amount = new InlineAmount(this.dataset.amount);
+				const amount = _amount.evaluate(context);
+
 				if (this.classList.contains(classInlineRecovery)) {
-					targets.forEach((actor) => applyRecovery(actor, type, amount, source || 'inline recovery', uncapped));
+					targets.forEach((actor) => applyRecovery(actor, type, amount, sourceInfo.name || 'inline recovery', uncapped));
 				} else if (this.classList.contains(classInlineLoss)) {
-					targets.forEach((actor) => applyLoss(actor, type, amount, source || 'inline loss'));
+					targets.forEach((actor) => applyLoss(actor, type, amount, sourceInfo.name || 'inline loss'));
 				}
 			}
 		})
@@ -152,8 +150,11 @@ function activateListeners(document, html) {
 		});
 }
 
-function onDropActor(actor, sheet, { type, recoveryType, amount, source, uncapped }) {
-	amount = ImprovisedEffect.calculateAmountFromContext(this.dataset, null, [actor]);
+function onDropActor(actor, sheet, { type, recoveryType, datasetAmount, source, uncapped }) {
+	const context = new InlineContext(source.actor, source.item, [actor]);
+	const _amount = new InlineAmount(datasetAmount);
+	const amount = _amount.evaluate(context);
+
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
 		applyRecovery(actor, recoveryType, amount, source, uncapped);
 		return false;

@@ -58,6 +58,20 @@ export class InlineAmount {
 	}
 
 	/**
+	 * @param {HTMLAnchorElement} anchor
+	 * @param {String} amount
+	 */
+	static appendToAnchor(anchor, amount) {
+		anchor.dataset.amount = amount;
+		const dynamicAmount = InlineAmount.isDynamic(amount);
+		if (dynamicAmount) {
+			anchor.append(game.i18n.localize('FU.Variable'));
+		} else {
+			anchor.append(amount);
+		}
+	}
+
+	/**
 	 * @param {InlineContext} context
 	 * @return {Number} The evaluated amount
 	 */
@@ -95,6 +109,9 @@ function evaluateFunctions(expression, context) {
 
 			const functionPath = `system.${path}`;
 			const resolvedFunction = getFunctionFromPath(context.actor, functionPath);
+			if (resolvedFunction === undefined) {
+				throw new Error(`No function in path "${functionPath}" of object ${context.actor}`);
+			}
 			const result = resolvedFunction.apply(context.actor.system, splitArgs);
 			console.info(`Resolved function ${functionPath}: ${result}`);
 			return result;
@@ -147,7 +164,7 @@ function evaluateProperties(expression, context) {
 
 /**
  * @param obj The object to resolve the function  from
- * @param path
+ * @param path The path to the function, in dot notation
  * @returns {Function} The resolved function
  */
 function getFunctionFromPath(obj, path) {
@@ -175,6 +192,11 @@ function getFunctionFromPath(obj, path) {
 	return current;
 }
 
+/**
+ * @param obj The object to resolve the property from
+ * @param path The path to the property, in dot notation
+ * @returns {undefined|*} The value of the property
+ */
 function getPropertyValueByPath(obj, path) {
 	const keys = path.split('.');
 	let value = obj;
@@ -201,9 +223,11 @@ function determineSource(document, element) {
 	let actor = undefined;
 	let item = null;
 
+	// TODO: Make sure item always gets resolved
+	const itemId = $(element).closest('[data-item-id]').data('itemId');
+
 	if (document instanceof FUActor) {
 		actor = document;
-		const itemId = $(element).closest('[data-item-id]').data('itemId');
 		if (itemId) {
 			item = document.items.get(itemId);
 			name = item.name;
@@ -235,5 +259,6 @@ function determineSource(document, element) {
 
 export const InlineHelper = {
 	getPropertyValueByPath,
+	getFunctionFromPath,
 	determineSource,
 };

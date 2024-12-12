@@ -15,7 +15,7 @@ const INLINE_DAMAGE = 'InlineDamage';
  * @type {TextEditorEnricherConfig}
  */
 const inlineDamageEnricher = {
-	pattern: /@DMG\[(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]\B/g,
+	pattern: /@DMG\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]\B/g,
 	enricher: enricher,
 };
 
@@ -32,14 +32,7 @@ function enricher(text, options) {
 		// TOOLTIP
 		anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineDamage')} (${amount})`);
 		// AMOUNT
-		anchor.dataset.amount = amount;
-		const dynamicAmount = InlineAmount.isDynamic(amount);
-		// TODO: Replace with icon
-		if (dynamicAmount) {
-			anchor.append(`Dynamic`);
-		} else {
-			anchor.append(amount);
-		}
+		InlineAmount.appendToAnchor(anchor, amount);
 		// TYPE
 		anchor.append(` ${game.i18n.localize(FU.damageTypes[type])}`);
 		// ICON
@@ -98,8 +91,8 @@ function activateListeners(document, html) {
 function onDropActor(actor, sheet, { type, damageType, amount, source, ignore }) {
 	if (type === INLINE_DAMAGE) {
 		const context = new InlineContext(source.actor, source.item, [actor]);
-		const amount = new InlineAmount(this.dataset.amount);
-		const _total = amount.evaluate(context);
+		const _amount = new InlineAmount(amount);
+		const _total = _amount.evaluate(context);
 		const baseDamageInfo = { type: damageType, total: _total, modifierTotal: 0 };
 		applyDamagePipelineWithHook({ event: null, targets: [actor], sourceUuid: source.uuid, sourceName: source.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 		return false;
