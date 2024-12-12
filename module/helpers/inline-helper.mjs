@@ -30,7 +30,7 @@ export class InlineContext {
 	constructor(actor, item, targets) {
 		this.actor = actor;
 		this.item = item;
-		this.target = targets;
+		this.targets = targets;
 	}
 }
 
@@ -38,7 +38,6 @@ export class InlineContext {
 const referenceSymbol = '@';
 const actorLabel = `actor`;
 const itemLabel = `item`;
-const functionSymbol = '$';
 
 /**
  * @property {String} text The raw text
@@ -67,61 +66,11 @@ export class InlineAmount {
 			return Number(this.text);
 		}
 
-		// Match all the variables in the string
-		const pattern = /(?<variable>[@|$]?([a-zA-Z]+\.?)+)/gm;
 		let expression = this.text;
 
 		// Evaluate the expression
-		function evaluateVariable(match, p1, p2, /* …, */ pN, offset, string, groups) {
-			// ImprovisedEffect
-			if (match in FU.improvisedEffect) {
-				return ImprovisedEffect.calculateAmountFromContext(match, context);
-			}
-			// Property Reference
-			else if (match.includes(referenceSymbol)) {
-				// TODO: Refactor
-				let root = null;
-				let propertyPath = '';
-
-				if (match.includes(itemLabel)) {
-					if (context.item == null) {
-						ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
-						throw new Error(`No reference to an item provided for "${match}"`);
-					}
-					root = context.item;
-					propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system.');
-				} else if (match.includes(actorLabel)) {
-					if (context.actor == null) {
-						ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
-						throw new Error(`No reference to an actor provided for "${match}"`);
-					}
-					root = context.actor;
-					propertyPath = match.replace(`${referenceSymbol}${actorLabel}.`, 'system.');
-				}
-
-				// Evaluate the property value
-				const propertyValue = getPropertyValueByPath(root, propertyPath);
-				if (propertyValue === undefined) {
-					throw new Error(`Unexpected variable "${propertyPath}" in object ${root}`);
-				}
-				return propertyValue;
-			} else if (match.includes(functionSymbol)) {
-				if (match.includes(actorLabel)) {
-					if (context.actor == null) {
-						ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
-						throw new Error(`No reference to an actor provided for "${match}"`);
-					}
-
-					const functionPath = match.replace(`${functionSymbol}${actorLabel}.`, `system.`);
-					const resolvedFunction = getFunctionFromPath(context.actor, functionPath);
-					console.info(`Resolved function path ${functionPath} = ${resolvedFunction}`);
-				}
-			}
-
-			return match;
-		}
-
-		const substitutedExpression = expression.replace(pattern, evaluateVariable);
+		let substitutedExpression = evaluateProperties(expression, context);
+		substitutedExpression = evaluateFunctions(substitutedExpression, context);
 		const result = MathHelper.evaluate(substitutedExpression);
 
 		if (Number.isNaN(result)) {
@@ -131,6 +80,69 @@ export class InlineAmount {
 		console.info(`Substituted expression ${expression} > ${substitutedExpression} > ${result}`);
 		return result;
 	}
+}
+
+function evaluateFunctions(expression, context) {
+	const pattern = /\$(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
+	function evaluate(match, label, path, p3, args, groups) {
+		if (match.includes(actorLabel)) {
+			if (context.actor == null) {
+				ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
+				throw new Error(`No reference to an actor provided for "${match}"`);
+			}
+
+			let splitArgs = args.split(',');
+
+			const functionPath = `system.${path}`;
+			const resolvedFunction = getFunctionFromPath(context.actor, functionPath);
+			const result = resolvedFunction.apply(context.actor.system, splitArgs);
+			console.info(`Resolved function ${functionPath}: ${result}`);
+			return result;
+		}
+	}
+	return expression.replace(pattern, evaluate);
+}
+
+function evaluateProperties(expression, context) {
+	const pattern = /(?<variable>@?([a-zA-Z]+\.?)+)/gm;
+	function evaluate(match, label, path, pN, offset, string, groups) {
+		// ImprovisedEffect
+		if (match in FU.improvisedEffect) {
+			return ImprovisedEffect.calculateAmountFromContext(match, context);
+		}
+		// Property Reference
+		else if (match.includes(referenceSymbol)) {
+			// TODO: Refactor
+			let root = null;
+			let propertyPath = '';
+
+			if (match.includes(itemLabel)) {
+				if (context.item == null) {
+					ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
+					throw new Error(`No reference to an item provided for "${match}"`);
+				}
+				root = context.item;
+				propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system.');
+			} else if (match.includes(actorLabel)) {
+				if (context.actor == null) {
+					ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
+					throw new Error(`No reference to an actor provided for "${match}"`);
+				}
+				root = context.actor;
+				propertyPath = match.replace(`${referenceSymbol}${actorLabel}.`, 'system.');
+			}
+
+			// Evaluate the property value
+			const propertyValue = getPropertyValueByPath(root, propertyPath);
+			if (propertyValue === undefined) {
+				throw new Error(`Unexpected variable "${propertyPath}" in object ${root}`);
+			}
+			return propertyValue;
+		}
+		return match;
+	}
+
+	return expression.replace(pattern, evaluate);
 }
 
 /**
@@ -151,7 +163,7 @@ function getFunctionFromPath(obj, path) {
 
 	for (const part of parts) {
 		if (current[part] === undefined) {
-			throw new Error(`Path not found: ${path}`);
+			throw new Error(`Path not found in ${obj}: ${path}`);
 		}
 		current = current[part];
 	}
