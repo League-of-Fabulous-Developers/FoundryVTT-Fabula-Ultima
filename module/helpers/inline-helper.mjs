@@ -34,6 +34,12 @@ export class InlineContext {
 	}
 }
 
+// DSL supported by the inline amount expression
+const referenceSymbol = '@';
+const actorLabel = `actor`;
+const itemLabel = `item`;
+const functionSymbol = '$';
+
 /**
  * @property {String} text The raw text
  * @property {Boolean} dynamic Whether the amount needs to be evaluated based on the context
@@ -45,17 +51,9 @@ export class InlineAmount {
 	}
 
 	/**
-	 * @param text
-	 * @returns {*|string}
+	 * @param text The raw text of the amount
+	 * @returns {boolean} True if the amount is dynamic
 	 */
-	static generateLabel(text) {
-		if (InlineAmount.isDynamic(text)) {
-			return 'Dynamic';
-		} else {
-			return text;
-		}
-	}
-
 	static isDynamic(text) {
 		return !Number.isInteger(Number(text));
 	}
@@ -70,44 +68,56 @@ export class InlineAmount {
 		}
 
 		// Match all the variables in the string
-		const pattern = /(?<variable>@?([a-zA-Z]+\.?)+)/gm;
+		const pattern = /(?<variable>[@|$]?([a-zA-Z]+\.?)+)/gm;
 		let expression = this.text;
 
 		// Evaluate the expression
 		function evaluateVariable(match, p1, p2, /* …, */ pN, offset, string, groups) {
-			// Improvised effect label
+			// ImprovisedEffect
 			if (match in FU.improvisedEffect) {
 				return ImprovisedEffect.calculateAmountFromContext(match, context);
 			}
-			// Reference to properties
-			else if (match.includes(`@`)) {
+			// Property Reference
+			else if (match.includes(referenceSymbol)) {
 				// TODO: Refactor
-				const itemReference = '@item.';
-				const actorReference = `@actor.`;
 				let root = null;
 				let propertyPath = '';
 
-				if (match.includes(itemReference)) {
+				if (match.includes(itemLabel)) {
 					if (context.item == null) {
+						ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
 						throw new Error(`No reference to an item provided for "${match}"`);
 					}
 					root = context.item;
-					propertyPath = match.replace(itemReference, '');
-				} else if (match.includes(actorReference)) {
+					propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system.');
+				} else if (match.includes(actorLabel)) {
 					if (context.actor == null) {
+						ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
 						throw new Error(`No reference to an actor provided for "${match}"`);
 					}
 					root = context.actor;
-					propertyPath = match.replace(actorReference, '');
+					propertyPath = match.replace(`${referenceSymbol}${actorLabel}.`, 'system.');
 				}
 
 				// Evaluate the property value
-				const propertyValue = getValueByPath(root, propertyPath);
+				const propertyValue = getPropertyValueByPath(root, propertyPath);
 				if (propertyValue === undefined) {
 					throw new Error(`Unexpected variable "${propertyPath}" in object ${root}`);
 				}
 				return propertyValue;
+			} else if (match.includes(functionSymbol)) {
+				if (match.includes(actorLabel)) {
+					if (context.actor == null) {
+						ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
+						throw new Error(`No reference to an actor provided for "${match}"`);
+					}
+
+					const functionPath = match.replace(`${functionSymbol}${actorLabel}.`, `system.`);
+					const resolvedFunction = getFunctionFromPath(context.actor, functionPath);
+					console.info(`Resolved function path ${functionPath} = ${resolvedFunction}`);
+				}
 			}
+
 			return match;
 		}
 
@@ -123,7 +133,37 @@ export class InlineAmount {
 	}
 }
 
-function getValueByPath(obj, path) {
+/**
+ * @param obj The object to resolve the function  from
+ * @param path
+ * @returns {Function} The resolved function
+ */
+function getFunctionFromPath(obj, path) {
+	if (typeof path !== 'string') {
+		throw new Error('Path must be a string');
+	}
+	if (typeof obj !== 'object' || obj === null) {
+		throw new Error('Invalid object provided');
+	}
+
+	const parts = path.split('.');
+	let current = obj;
+
+	for (const part of parts) {
+		if (current[part] === undefined) {
+			throw new Error(`Path not found: ${path}`);
+		}
+		current = current[part];
+	}
+
+	if (typeof current !== 'function') {
+		throw new Error(`Path does not resolve to a function: ${path}`);
+	}
+
+	return current;
+}
+
+function getPropertyValueByPath(obj, path) {
 	const keys = path.split('.');
 	let value = obj;
 
@@ -182,5 +222,6 @@ function determineSource(document, element) {
 }
 
 export const InlineHelper = {
+	getPropertyValueByPath,
 	determineSource,
 };

@@ -106,4 +106,5 @@ export const ImprovisedEffect = {
 	calculateAmount,
 	calculateAmountFromContext,
 	appendAmountToAnchor,
+	getCharacterTier,
 };
