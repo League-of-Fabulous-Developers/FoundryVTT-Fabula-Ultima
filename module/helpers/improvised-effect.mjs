@@ -52,27 +52,21 @@ function calculateAmount(level, effect) {
 
 /**
  * Calculates the improvised amount for a given effect
- * @param {*} dataset
- * @param {FUActor} source
- * @param {FUActor[]} targets
+ * @param {*} effect
+ * @param {InlineContext} context
  * @returns {Number} The amount as an integer, null otherwise
  */
-function calculateAmountFromContext(dataset, source, targets) {
-	const effect = dataset.effect;
+function calculateAmountFromContext(effect, context) {
 	if (effect === undefined) {
-		if (dataset.amount !== undefined) {
-			return Number(dataset.amount);
-		} else {
-			return null;
-		}
+		return null;
 	}
 
 	let level = 5;
-	if (source !== undefined) {
-		level = source.system.level.value;
+	if (context.source !== undefined) {
+		level = context.source.system.level.value;
 	} else {
-		if (targets.length > 0) {
-			level = targets.reduce((max, target) => {
+		if (context.targets.length > 0) {
+			level = context.targets.reduce((max, target) => {
 				return Math.max(max, target.system.level.value);
 			}, -Infinity);
 		} else {
