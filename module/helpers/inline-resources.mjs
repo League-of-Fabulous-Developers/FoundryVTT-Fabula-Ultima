@@ -1,6 +1,7 @@
 import { FU } from './config.mjs';
 import { targetHandler } from './target-handler.mjs';
-import { InlineAmount, InlineContext, InlineHelper } from './inline-helper.mjs';
+import { InlineHelper } from './inline-helper.mjs';
+import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 
 const INLINE_RECOVERY = 'InlineRecovery';
 const INLINE_LOSS = 'InlineLoss';
@@ -69,7 +70,7 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip)
 		anchor.append(indicator);
 
 		// AMOUNT
-		InlineAmount.appendToAnchor(anchor, amount);
+		InlineHelper.appendAmountToAnchor(anchor, amount);
 		// TYPE
 		anchor.append(` ${game.i18n.localize(FU.resourcesAbbr[type])}`);
 		// ICON
@@ -119,9 +120,8 @@ function activateListeners(document, html) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
 				const uncapped = this.dataset.uncapped === 'true';
-				const context = new InlineContext(sourceInfo.actor, sourceInfo.item, targets);
-				const _amount = new InlineAmount(this.dataset.amount);
-				const amount = _amount.evaluate(context);
+				const context = new ExpressionContext(sourceInfo.actor, sourceInfo.item, targets);
+				const amount = Expressions.evaluate(this.dataset.amount, context);
 
 				if (this.classList.contains(classInlineRecovery)) {
 					targets.forEach((actor) => applyRecovery(actor, type, amount, sourceInfo.name || 'inline recovery', uncapped));
@@ -151,9 +151,8 @@ function activateListeners(document, html) {
 }
 
 function onDropActor(actor, sheet, { type, recoveryType, datasetAmount, source, uncapped }) {
-	const context = new InlineContext(source.actor, source.item, [actor]);
-	const _amount = new InlineAmount(datasetAmount);
-	const amount = _amount.evaluate(context);
+	const context = new ExpressionContext(source.actor, source.item, [actor]);
+	const amount = Expressions.evaluate(datasetAmount, context);
 
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
 		applyRecovery(actor, recoveryType, amount, source, uncapped);

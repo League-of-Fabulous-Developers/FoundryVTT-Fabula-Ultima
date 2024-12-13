@@ -52,8 +52,8 @@ function calculateAmount(level, effect) {
 
 /**
  * Calculates the improvised amount for a given effect
- * @param {*} effect
- * @param {InlineContext} context
+ * @param {ImprovisedEffectType} effect
+ * @param {ExpressionContext} context
  * @returns {Number} The amount as an integer, null otherwise
  */
 function calculateAmountFromContext(effect, context) {
@@ -62,10 +62,12 @@ function calculateAmountFromContext(effect, context) {
 	}
 
 	let level = 5;
-	if (context.source !== undefined) {
-		level = context.source.system.level.value;
+	if (context.actor !== undefined) {
+		level = context.actor.system.level.value;
+		console.debug(`Used the source actor to calculate level`);
 	} else {
 		if (context.targets.length > 0) {
+			console.debug(`Used the target actors to calculate level`);
 			level = context.targets.reduce((max, target) => {
 				return Math.max(max, target.system.level.value);
 			}, -Infinity);
@@ -74,12 +76,12 @@ function calculateAmountFromContext(effect, context) {
 		}
 	}
 
-	return ImprovisedEffect.calculateAmount(level, effect);
+	return calculateAmount(level, effect);
 }
 
 /**
- * @param {HTMLAnchorElement}} anchor The root html element for this inline command
- * @param {*} amount An integer for the value OR an improvised effect label (minor,heavy,massive)
+ * @param {HTMLAnchorElement} anchor The root html element for this inline command
+ * @param {Number|ImprovisedEffectType} amount An integer for the value OR an improvised effect label (minor,heavy,massive)
  * @returns {boolean} True if the amount was appended
  */
 function appendAmountToAnchor(anchor, amount) {

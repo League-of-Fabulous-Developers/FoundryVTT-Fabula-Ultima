@@ -1,7 +1,8 @@
 import { FU } from './config.mjs';
 import { applyDamagePipelineWithHook } from './apply-damage.mjs';
 import { targetHandler } from './target-handler.mjs';
-import { InlineAmount, InlineContext, InlineHelper } from './inline-helper.mjs';
+import { InlineHelper } from './inline-helper.mjs';
+import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
 
@@ -32,7 +33,7 @@ function enricher(text, options) {
 		// TOOLTIP
 		anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineDamage')} (${amount})`);
 		// AMOUNT
-		InlineAmount.appendToAnchor(anchor, amount);
+		InlineHelper.appendAmountToAnchor(anchor, amount);
 		// TYPE
 		anchor.append(` ${game.i18n.localize(FU.damageTypes[type])}`);
 		// ICON
@@ -60,11 +61,10 @@ function activateListeners(document, html) {
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
-				const context = new InlineContext(sourceInfo.actor, sourceInfo.item, targets);
-				const amount = new InlineAmount(this.dataset.amount);
-				const _total = amount.evaluate(context);
+				const context = new ExpressionContext(sourceInfo.actor, sourceInfo.item, targets);
+				const amount = Expressions.evaluate(this.dataset.amount, context);
 
-				const baseDamageInfo = { type, total: _total, modifierTotal: 0 };
+				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
 				await applyDamagePipelineWithHook({ event: null, targets, sourceUuid: sourceInfo.uuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 			}
 		})
@@ -90,10 +90,9 @@ function activateListeners(document, html) {
 // TODO: Implement
 function onDropActor(actor, sheet, { type, damageType, amount, source, ignore }) {
 	if (type === INLINE_DAMAGE) {
-		const context = new InlineContext(source.actor, source.item, [actor]);
-		const _amount = new InlineAmount(amount);
-		const _total = _amount.evaluate(context);
-		const baseDamageInfo = { type: damageType, total: _total, modifierTotal: 0 };
+		const context = new ExpressionContext(source.actor, source.item, [actor]);
+		const _amount = Expressions.evaluate(amount, context);
+		const baseDamageInfo = { type: damageType, total: _amount, modifierTotal: 0 };
 		applyDamagePipelineWithHook({ event: null, targets: [actor], sourceUuid: source.uuid, sourceName: source.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 		return false;
 	}
