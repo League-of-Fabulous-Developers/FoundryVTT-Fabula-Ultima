@@ -21,11 +21,12 @@ export class InlineSourceInfo {
 }
 
 /**
+ * @description Attempts to determine the item/actor source within an html element
  * @param {Document} document
  * @param {HTMLElement} element
  * @returns {InlineSourceInfo}
  */
-function determineSource(document, element) {
+async function determineSource(document, element) {
 	let name = game.i18n.localize('FU.UnknownDamageSource');
 	let uuid = null;
 	let actor = undefined;
@@ -53,10 +54,16 @@ function determineSource(document, element) {
 			name = speakerActor.name;
 			uuid = speakerActor.uuid;
 		}
-		item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-		if (item) {
-			name = item.name;
-			uuid = item.uuid;
+		const check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+		if (check) {
+			const itemUuid = check.itemUuid;
+			item = await fromUuid(itemUuid);
+		} else {
+			item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
+			if (item) {
+				name = item.name;
+				uuid = item.uuid;
+			}
 		}
 	}
 

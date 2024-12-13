@@ -117,7 +117,7 @@ function activateListeners(document, html) {
 		.on('click', async function () {
 			let targets = await targetHandler();
 			if (targets.length > 0) {
-				const sourceInfo = InlineHelper.determineSource(document, this);
+				const sourceInfo = await InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
 				const uncapped = this.dataset.uncapped === 'true';
 				const context = new ExpressionContext(sourceInfo.actor, sourceInfo.item, targets);
@@ -130,13 +130,13 @@ function activateListeners(document, html) {
 				}
 			}
 		})
-		.on('dragstart', function (event) {
+		.on('dragstart', async function (event) {
 			/** @type DragEvent */
 			event = event.originalEvent;
 			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
 				return;
 			}
-			const sourceInfo = InlineHelper.determineSource(document, this);
+			const sourceInfo = await InlineHelper.determineSource(document, this);
 
 			const data = {
 				type: this.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
