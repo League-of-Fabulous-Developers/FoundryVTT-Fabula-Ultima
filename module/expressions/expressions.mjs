@@ -1,4 +1,3 @@
-import { FU } from '../helpers/config.mjs';
 import { ImprovisedEffect } from '../helpers/improvised-effect.mjs';
 import { MathHelper } from '../helpers/math-helper.mjs';
 
@@ -29,21 +28,30 @@ function requiresContext(expression) {
 	return !Number.isInteger(Number(expression));
 }
 
+// TODO: Provide a system of hooks
+// Order of operations probably matters
+const evaluationFunctions = [evaluateFunctions, evaluateProperties, evaluateEffects];
+
 /**
  * @description Evaluates the given expression using the supported DSL
  * @param {String} expression
  * @param {ExpressionContext} context
  * @return {Number} The evaluated amount
+ * @example (@actor.level.value*2+minor+@item.level.value)
+ * @example $actor.byLevel(40,50,60)
+ * @example (minor + 5)
  */
 function evaluate(expression, context) {
 	if (!requiresContext(expression)) {
 		return Number(expression);
 	}
 
-	// TODO: Provide a system of hooks
 	// Evaluate the expression's variables
-	let substitutedExpression = evaluateProperties(expression, context);
-	substitutedExpression = evaluateFunctions(substitutedExpression, context);
+	let substitutedExpression = expression;
+	evaluationFunctions.forEach((evaluateFunction) => {
+		substitutedExpression = evaluateFunction(substitutedExpression, context);
+	});
+
 	// Now that the expression's variables have been substituted, evaluate it arithmetically
 	const result = MathHelper.evaluate(substitutedExpression);
 
@@ -56,7 +64,7 @@ function evaluate(expression, context) {
 }
 
 /**
- * Evaluates functions within the expression using the available context
+ * @description Evaluates functions within the expression using the available context
  * @param {String}  expression
  * @param {ExpressionContext} context
  * @returns {String}
@@ -88,49 +96,54 @@ function evaluateFunctions(expression, context) {
 }
 
 /**
+ * @description Evaluates improvised effects
+ * @param {String} expression
+ * @param {ExpressionContext} context
+ * @returns {String}
+ */
+function evaluateEffects(expression, context) {
+	const pattern = /(minor)|(heavy)|(massive)/gm;
+	function evaluate(match) {
+		return ImprovisedEffect.calculateAmountFromContext(match, context);
+	}
+	return expression.replace(pattern, evaluate);
+}
+
+/**
  * Evaluates properties  within the expression using the available context
  * @param {String}  expression
  * @param {ExpressionContext} context
  * @returns {String}
  */
 function evaluateProperties(expression, context) {
-	const pattern = /(?<variable>@?([a-zA-Z]+\.?)+)/gm;
-
+	const pattern = /(?<variable>@([a-zA-Z]+\.?)+)/gm;
 	function evaluate(match, label, path, pN, offset, string, groups) {
-		// ImprovisedEffect
-		if (match in FU.improvisedEffect) {
-			return ImprovisedEffect.calculateAmountFromContext(match, context);
-		}
-		// Property Reference
-		else if (match.includes(referenceSymbol)) {
-			// TODO: Refactor
-			let root = null;
-			let propertyPath = '';
+		// TODO: Refactor
+		let root = null;
+		let propertyPath = '';
 
-			if (match.includes(itemLabel)) {
-				if (context.item == null) {
-					ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
-					throw new Error(`No reference to an item provided for "${match}"`);
-				}
-				root = context.item;
-				propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system.');
-			} else if (match.includes(actorLabel)) {
-				if (context.actor == null) {
-					ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
-					throw new Error(`No reference to an actor provided for "${match}"`);
-				}
-				root = context.actor;
-				propertyPath = match.replace(`${referenceSymbol}${actorLabel}.`, 'system.');
+		if (match.includes(itemLabel)) {
+			if (context.item == null) {
+				ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
+				throw new Error(`No reference to an item provided for "${match}"`);
 			}
-
-			// Evaluate the property value
-			const propertyValue = getPropertyValueByPath(root, propertyPath);
-			if (propertyValue === undefined) {
-				throw new Error(`Unexpected variable "${propertyPath}" in object ${root}`);
+			root = context.item;
+			propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system.');
+		} else if (match.includes(actorLabel)) {
+			if (context.actor == null) {
+				ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
+				throw new Error(`No reference to an actor provided for "${match}"`);
 			}
-			return propertyValue;
+			root = context.actor;
+			propertyPath = match.replace(`${referenceSymbol}${actorLabel}.`, 'system.');
 		}
-		return match;
+
+		// Evaluate the property value
+		const propertyValue = getPropertyValueByPath(root, propertyPath);
+		if (propertyValue === undefined) {
+			throw new Error(`Unexpected variable "${propertyPath}" in object ${root}`);
+		}
+		return propertyValue;
 	}
 
 	return expression.replace(pattern, evaluate);
