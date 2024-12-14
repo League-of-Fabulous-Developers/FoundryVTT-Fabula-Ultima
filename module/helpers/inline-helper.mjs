@@ -26,7 +26,7 @@ export class InlineSourceInfo {
  * @param {HTMLElement} element
  * @returns {InlineSourceInfo}
  */
-async function determineSource(document, element) {
+function determineSource(document, element) {
 	let name = game.i18n.localize('FU.UnknownDamageSource');
 	let uuid = null;
 	let actor = undefined;
@@ -57,7 +57,7 @@ async function determineSource(document, element) {
 		const check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 		if (check) {
 			const itemUuid = check.itemUuid;
-			item = await fromUuid(itemUuid);
+			item = fromUuidSync(itemUuid);
 		} else {
 			item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
 			if (item) {
@@ -66,8 +66,6 @@ async function determineSource(document, element) {
 			}
 		}
 	}
-
-	// TODO: Make sure item always gets resolved
 	return new InlineSourceInfo(name, uuid, actor, item);
 }
 

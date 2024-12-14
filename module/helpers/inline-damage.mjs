@@ -59,7 +59,7 @@ function activateListeners(document, html) {
 		.on('click', async function () {
 			let targets = await targetHandler();
 			if (targets.length > 0) {
-				const sourceInfo = await InlineHelper.determineSource(document, this);
+				const sourceInfo = InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
 				const context = new ExpressionContext(sourceInfo.actor, sourceInfo.item, targets);
 				const amount = Expressions.evaluate(this.dataset.amount, context);
@@ -68,14 +68,14 @@ function activateListeners(document, html) {
 				await applyDamagePipelineWithHook({ event: null, targets, sourceUuid: sourceInfo.uuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 			}
 		})
-		.on('dragstart', async function (event) {
+		.on('dragstart', function (event) {
 			/** @type DragEvent */
 			event = event.originalEvent;
 			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
 				return;
 			}
 
-			const sourceInfo = await InlineHelper.determineSource(document, this);
+			const sourceInfo = InlineHelper.determineSource(document, this);
 			const data = {
 				type: INLINE_DAMAGE,
 				source: sourceInfo,
