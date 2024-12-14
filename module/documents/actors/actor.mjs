@@ -335,4 +335,19 @@ export class FUActor extends Actor {
 	getSingleItemByFuid(fuid, type) {
 		return this.getItemsByFuid(fuid, type)[0];
 	}
+
+	/**
+	 * @param {string} name The human-readable name of the item
+	 * @param {string} type The item's type
+	 * @return {Object|undefined} The item if found, undefined otherwise
+	 */
+	getSingleItemByName(name, type) {
+		const filter = (i) => i.name === name;
+		if (!type) return this.items.filter(filter)[0];
+		const itemTypes = this.itemTypes;
+		if (!Object.prototype.hasOwnProperty.call(itemTypes, type)) {
+			throw new Error(`Type ${type} is invalid!`);
+		}
+		return itemTypes[type].filter(filter)[0];
+	}
 }

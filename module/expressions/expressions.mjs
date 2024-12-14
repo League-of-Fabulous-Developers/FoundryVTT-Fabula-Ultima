@@ -162,6 +162,14 @@ function evaluateMacros(expression, context) {
 		const splitArgs = params.split(',');
 		switch (name) {
 			// TODO: Level of named skill owned by actor
+			case `sl`: {
+				const skillName = splitArgs[0].match(/(\w+\s*)+/gm)[0];
+				const skill = context.actor.getSingleItemByName(skillName, 'skill');
+				if (!skill) {
+					throw new Error(`The actor ${context.actor.name} does not have a skill named ${skillName}`);
+				}
+				return skill.system.level.value;
+			}
 			case 'step':
 				assertActorInContext(context, match);
 				return context.actor.system.byLevel.apply(context.actor.system, splitArgs);
