@@ -853,6 +853,7 @@
 		"ChatApplyDamageAbsorb": "<strong>{actor} absorbed {type}</strong> damage from <strong>{from}</strong> and was healed by <strong>{damage}</strong> HP",
 		"ChatEvaluateAmountNoActor": "No reference to an actor provided",
 		"ChatEvaluateAmountNoItem": "No reference to an item provided",
+		"ChatEvaluateNoSkill": "The referenced skill was not found in the actor",
 		"TotalAvailableSkills": "Total Available Skills",
 		"TotalSPAvailable": "Total SP Available",
 		"AvailableSPLevels": "Available skills from levels",
