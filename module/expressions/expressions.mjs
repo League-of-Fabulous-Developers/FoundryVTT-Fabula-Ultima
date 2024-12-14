@@ -30,7 +30,7 @@ function requiresContext(expression) {
 
 // TODO: Provide a system of hooks
 // Order of operations matters
-const evaluationFunctions = [evaluateFunctions, evaluateProperties, evaluateEffects];
+const evaluationFunctions = [evaluateVariables, evaluateEffects, evaluateReferencedFunctions, evaluateReferencedProperties, evaluateMacros];
 
 /**
  * @description Evaluates the given expression using the supported DSL
@@ -63,22 +63,32 @@ function evaluate(expression, context) {
 	return result;
 }
 
+function assertActorInContext(context, match) {
+	if (context.actor == null) {
+		ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
+		throw new Error(`No reference to an actor provided while evaluating "${match}"`);
+	}
+}
+
+function assertItemInContext(context, match) {
+	if (context.item == null) {
+		ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
+		throw new Error(`No reference to an item provided while evaluating expression "${match}"`);
+	}
+}
+
 /**
  * @description Evaluates functions within the expression using the available context
  * @param {String}  expression
  * @param {ExpressionContext} context
  * @returns {String}
  */
-function evaluateFunctions(expression, context) {
+function evaluateReferencedFunctions(expression, context) {
 	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
 
 	function evaluate(match, label, path, p3, args, groups) {
 		if (match.includes(actorLabel)) {
-			if (context.actor == null) {
-				ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
-				throw new Error(`No reference to an actor provided for "${match}"`);
-			}
-
+			assertActorInContext(context, match);
 			let splitArgs = args.split(',');
 
 			const functionPath = `system.${path}`;
@@ -110,12 +120,65 @@ function evaluateEffects(expression, context) {
 }
 
 /**
+ * @description Evaluates special variables
+ * @param expression
+ * @param context
+ * @example $sl*10
+ * @example $cl/2
+ * */
+function evaluateVariables(expression, context) {
+	const pattern = /\$(?<symbol>\w+)/gm;
+	function evaluate(match, symbol) {
+		switch (symbol) {
+			// TODO: TARGET number of status effects (throw if more than 1 selected?)
+			// TODO: CHARACTER highest strength among bonds
+			// TODO: CHARACTER number of bonds
+			// Character level
+			case 'cl':
+				assertActorInContext(context, match);
+				return context.actor.system.level.value;
+			// Item level / skill level
+			case 'il':
+			case 'sl':
+				assertItemInContext(context, match);
+				return context.item.system.level.value;
+			default:
+				throw new Error(`Unsupported symbol ${symbol}`);
+		}
+	}
+	return expression.replace(pattern, evaluate);
+}
+
+/**
+ * @description Custom functions provided by the expression engine
+ * @param expression
+ * @param context
+ * @returns {String}
+ * @example &step(40,50,60)
+ */
+function evaluateMacros(expression, context) {
+	const pattern = /&(?<name>[a-zA-Z]+)\((?<params>.*?)\)/gm;
+	function evaluateMacro(match, name, params) {
+		const splitArgs = params.split(',');
+		switch (name) {
+			// TODO: Level of named skill owned by actor
+			case 'step':
+				assertActorInContext(context, match);
+				return context.actor.system.byLevel.apply(context.actor.system, splitArgs);
+			default:
+				throw new Error(`Unsupported macro ${name}`);
+		}
+	}
+	return expression.replace(pattern, evaluateMacro);
+}
+
+/**
  * Evaluates properties  within the expression using the available context
  * @param {String}  expression
  * @param {ExpressionContext} context
  * @returns {String}
  */
-function evaluateProperties(expression, context) {
+function evaluateReferencedProperties(expression, context) {
 	const pattern = /(?<variable>@([a-zA-Z]+\.?)+)/gm;
 	function evaluate(match, label, path, pN, offset, string, groups) {
 		// TODO: Refactor
@@ -123,17 +186,11 @@ function evaluateProperties(expression, context) {
 		let propertyPath = '';
 
 		if (match.includes(itemLabel)) {
-			if (context.item == null) {
-				ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
-				throw new Error(`No reference to an item provided for "${match}"`);
-			}
+			assertItemInContext(context, match);
 			root = context.item;
 			propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system.');
 		} else if (match.includes(actorLabel)) {
-			if (context.actor == null) {
-				ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
-				throw new Error(`No reference to an actor provided for "${match}"`);
-			}
+			assertActorInContext(context, match);
 			root = context.actor;
 			propertyPath = match.replace(`${referenceSymbol}${actorLabel}.`, 'system.');
 		}
