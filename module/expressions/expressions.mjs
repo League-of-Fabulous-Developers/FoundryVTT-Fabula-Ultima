@@ -29,7 +29,7 @@ function requiresContext(expression) {
 }
 
 // TODO: Provide a system of hooks
-// Order of operations probably matters
+// Order of operations matters
 const evaluationFunctions = [evaluateFunctions, evaluateProperties, evaluateEffects];
 
 /**
@@ -38,7 +38,7 @@ const evaluationFunctions = [evaluateFunctions, evaluateProperties, evaluateEffe
  * @param {ExpressionContext} context
  * @return {Number} The evaluated amount
  * @example (@actor.level.value*2+minor+@item.level.value)
- * @example $actor.byLevel(40,50,60)
+ * @example @actor.byLevel(40,50,60)
  * @example (minor + 5)
  */
 function evaluate(expression, context) {
@@ -70,7 +70,7 @@ function evaluate(expression, context) {
  * @returns {String}
  */
 function evaluateFunctions(expression, context) {
-	const pattern = /\$(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
+	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
 
 	function evaluate(match, label, path, p3, args, groups) {
 		if (match.includes(actorLabel)) {
