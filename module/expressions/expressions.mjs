@@ -133,6 +133,11 @@ function evaluateVariables(expression, context) {
 			// TODO: TARGET number of status effects (throw if more than 1 selected?)
 			// TODO: CHARACTER highest strength among bonds
 			// TODO: CHARACTER number of bonds
+			// Improvised effects
+			case 'minor':
+			case 'heavy':
+			case 'massive':
+				return ImprovisedEffect.calculateAmountFromContext(symbol, context);
 			// Character level
 			case 'cl':
 				assertActorInContext(context, match);
@@ -151,8 +156,8 @@ function evaluateVariables(expression, context) {
 
 /**
  * @description Custom functions provided by the expression engine
- * @param expression
- * @param context
+ * @param {String} expression
+ * @param {ExpressionContext} context
  * @returns {String}
  * @example &step(40,50,60)
  */
@@ -172,12 +177,32 @@ function evaluateMacros(expression, context) {
 				return skill.system.level.value;
 			}
 			case 'step':
-				return context.actor.system.byLevel.apply(context.actor.system, splitArgs);
+				return stepByLevel(context.actor, splitArgs[0], splitArgs[1], splitArgs[2]);
 			default:
 				throw new Error(`Unsupported macro ${name}`);
 		}
 	}
 	return expression.replace(pattern, evaluateMacro);
+}
+
+/**
+ * @description Given 3 amounts, picks the one for this characters' level
+ * @param {FUActor} actor
+ * @param {Number} first
+ * @param {Number} second
+ * @param {Number} third
+ */
+function stepByLevel(actor, first, second, third) {
+	const tier = ImprovisedEffect.getCharacterTier(actor.system.level.value);
+	switch (tier) {
+		case 0:
+			return first;
+		case 1:
+			return second;
+		case 2:
+			return third;
+	}
+	return null;
 }
 
 /**
