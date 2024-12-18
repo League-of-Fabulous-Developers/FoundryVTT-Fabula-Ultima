@@ -2,28 +2,26 @@ import { SYSTEM } from './config.mjs';
 import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
+import { Expressions } from '../expressions/expressions.mjs';
 
 /**
- * Information about a lookup for the source of an inline element
+ * @description Information about a lookup for the source of an inline element
+ * @property {String} name
+ * @property {Number} uuid
+ * @property {FUActor} actor
+ * @property {FUItem} item
  */
 export class InlineSourceInfo {
-	constructor(name, uuid, actor) {
-		this._name = name;
-		this._uuid = uuid;
-		this._actor = actor;
-	}
-	get actor() {
-		return this._actor;
-	}
-	get uuid() {
-		return this._uuid;
-	}
-	get name() {
-		return this._name;
+	constructor(name, uuid, actor, item) {
+		this.name = name;
+		this.uuid = uuid;
+		this.actor = actor;
+		this.item = item;
 	}
 }
 
 /**
+ * @description Attempts to determine the item/actor source within an html element
  * @param {Document} document
  * @param {HTMLElement} element
  * @returns {InlineSourceInfo}
@@ -32,12 +30,13 @@ function determineSource(document, element) {
 	let name = game.i18n.localize('FU.UnknownDamageSource');
 	let uuid = null;
 	let actor = undefined;
+	let item = null;
 
 	if (document instanceof FUActor) {
 		actor = document;
 		const itemId = $(element).closest('[data-item-id]').data('itemId');
 		if (itemId) {
-			const item = document.items.get(itemId);
+			item = document.items.get(itemId);
 			name = item.name;
 			uuid = item.uuid;
 		} else {
@@ -45,6 +44,7 @@ function determineSource(document, element) {
 			uuid = document.uuid;
 		}
 	} else if (document instanceof FUItem) {
+		item = document;
 		name = document.name;
 		uuid = document.uuid;
 	} else if (document instanceof ChatMessage) {
@@ -54,16 +54,36 @@ function determineSource(document, element) {
 			name = speakerActor.name;
 			uuid = speakerActor.uuid;
 		}
-		const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-		if (item) {
-			name = item.name;
-			uuid = item.uuid;
+		const check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
+		if (check) {
+			const itemUuid = check.itemUuid;
+			item = fromUuidSync(itemUuid);
+		} else {
+			item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
+			if (item) {
+				name = item.name;
+				uuid = item.uuid;
+			}
 		}
 	}
+	return new InlineSourceInfo(name, uuid, actor, item);
+}
 
-	return new InlineSourceInfo(name, uuid, actor);
+/**
+ * @param {HTMLAnchorElement} anchor
+ * @param {String} amount
+ */
+function appendAmountToAnchor(anchor, amount) {
+	anchor.dataset.amount = amount;
+	const dynamicAmount = Expressions.requiresContext(amount);
+	if (dynamicAmount) {
+		anchor.append(game.i18n.localize('FU.Variable'));
+	} else {
+		anchor.append(amount);
+	}
 }
 
 export const InlineHelper = {
 	determineSource,
+	appendAmountToAnchor,
 };

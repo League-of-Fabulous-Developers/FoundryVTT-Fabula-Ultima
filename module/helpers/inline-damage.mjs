@@ -1,8 +1,8 @@
 import { FU } from './config.mjs';
 import { applyDamagePipelineWithHook } from './apply-damage.mjs';
 import { targetHandler } from './target-handler.mjs';
-import { ImprovisedEffect } from './improvised-effect.mjs';
 import { InlineHelper } from './inline-helper.mjs';
+import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
 
@@ -16,7 +16,7 @@ const INLINE_DAMAGE = 'InlineDamage';
  * @type {TextEditorEnricherConfig}
  */
 const inlineDamageEnricher = {
-	pattern: /@DMG\[(?<amount>\w+) (?<type>\w+?)]/g,
+	pattern: /@DMG\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]\B/g,
 	enricher: enricher,
 };
 
@@ -26,15 +26,14 @@ function enricher(text, options) {
 
 	if (type in FU.damageTypes) {
 		const anchor = document.createElement('a');
-		anchor.setAttribute('data-tooltip', game.i18n.localize('FU.InlineDamage'));
 		anchor.classList.add('inline', 'inline-damage');
 		anchor.dataset.type = type;
 		anchor.draggable = true;
 
+		// TOOLTIP
+		anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineDamage')} (${amount})`);
 		// AMOUNT
-		if (!ImprovisedEffect.appendAmountToAnchor(anchor, amount)) {
-			return null;
-		}
+		InlineHelper.appendAmountToAnchor(anchor, amount);
 		// TYPE
 		anchor.append(` ${game.i18n.localize(FU.damageTypes[type])}`);
 		// ICON
@@ -58,14 +57,14 @@ function activateListeners(document, html) {
 
 	html.find('a.inline.inline-damage[draggable]')
 		.on('click', async function () {
-			const sourceInfo = InlineHelper.determineSource(document, this);
-			const type = this.dataset.type;
 			let targets = await targetHandler();
-
-			// Support for improvised effect calculation
-			const amount = ImprovisedEffect.calculateAmountFromContext(this.dataset, sourceInfo.actor, targets);
 			if (targets.length > 0) {
-				const baseDamageInfo = { type, total: amount, modifierTotal: 0, effect: this.dataset.effect };
+				const sourceInfo = InlineHelper.determineSource(document, this);
+				const type = this.dataset.type;
+				const context = new ExpressionContext(sourceInfo.actor, sourceInfo.item, targets);
+				const amount = Expressions.evaluate(this.dataset.amount, context);
+
+				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
 				await applyDamagePipelineWithHook({ event: null, targets, sourceUuid: sourceInfo.uuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 			}
 		})
@@ -82,17 +81,18 @@ function activateListeners(document, html) {
 				source: sourceInfo,
 				damageType: this.dataset.type,
 				amount: this.dataset.amount,
-				effect: this.dataset.effect,
 			};
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		});
 }
 
+// TODO: Implement
 function onDropActor(actor, sheet, { type, damageType, amount, source, ignore }) {
 	if (type === INLINE_DAMAGE) {
-		const amount = ImprovisedEffect.calculateAmountFromContext(this.dataset, source.actor, [actor]);
-		const baseDamageInfo = { type: damageType, total: amount, modifierTotal: 0 };
+		const context = new ExpressionContext(source.actor, source.item, [actor]);
+		const _amount = Expressions.evaluate(amount, context);
+		const baseDamageInfo = { type: damageType, total: _amount, modifierTotal: 0 };
 		applyDamagePipelineWithHook({ event: null, targets: [actor], sourceUuid: source.uuid, sourceName: source.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 		return false;
 	}

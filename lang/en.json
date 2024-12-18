@@ -851,6 +851,9 @@
 		"ChatApplyDamageImmune": "<strong>{actor}</strong> was <strong>immune</strong> to <strong>{type}</strong> and took <strong>{damage}</strong> damage from <strong>{from}</strong>",
 		"ChatApplyDamageImmuneIgnored": "<strong>{actor}</strong> took <strong>{damage} {type}</strong> damage from <strong>{from} (Immunity ignored)</strong>",
 		"ChatApplyDamageAbsorb": "<strong>{actor} absorbed {type}</strong> damage from <strong>{from}</strong> and was healed by <strong>{damage}</strong> HP",
+		"ChatEvaluateAmountNoActor": "No reference to an actor provided",
+		"ChatEvaluateAmountNoItem": "No reference to an item provided",
+		"ChatEvaluateNoSkill": "The referenced skill was not found in the actor",
 		"TotalAvailableSkills": "Total Available Skills",
 		"TotalSPAvailable": "Total SP Available",
 		"AvailableSPLevels": "Available skills from levels",
@@ -1234,6 +1237,7 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"Variable": "Variable"
 	}
 }
