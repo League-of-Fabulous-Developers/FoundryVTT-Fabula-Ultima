@@ -838,6 +838,7 @@ export class FUItem extends Item {
 				speaker: speaker,
 				rollMode: rollMode,
 				flavor: label,
+				flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
 			});
 			return roll;
 		}

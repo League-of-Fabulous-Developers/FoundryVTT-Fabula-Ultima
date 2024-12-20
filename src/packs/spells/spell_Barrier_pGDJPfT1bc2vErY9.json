@@ -137,28 +137,30 @@
       "_id": "AibGlX3CB1jYxtGU",
       "changes": [
         {
-          "key": "system.derived.def.bonus",
-          "mode": 5,
+          "key": "system.derived.def.value",
+          "mode": 4,
           "value": "12",
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUCR208"
         }
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1733862708795,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
         "compendiumSource": null,
         "duplicateSource": null
       },
