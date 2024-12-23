@@ -13,6 +13,25 @@ export class ExpressionContext {
 		this.item = item;
 		this.targets = targets;
 	}
+
+	/**
+	 * @param {String} actorUuid
+	 * @param {String} itemUuid
+	 * @param {FUActor[]} targets
+	 * @returns {ExpressionContext}
+	 */
+	static fromUuid(actorUuid, itemUuid, targets) {
+		let actor = undefined;
+		if (actorUuid !== undefined) {
+			actor = fromUuidSync(actorUuid);
+		}
+
+		let item = undefined;
+		if (itemUuid !== undefined) {
+			item = fromUuidSync(itemUuid);
+		}
+		return new ExpressionContext(actor, item, targets);
+	}
 }
 
 // DSL supported by the inline amount expression
@@ -169,6 +188,7 @@ function evaluateMacros(expression, context) {
 			case `sl`: {
 				assertActorInContext(context, match);
 				const skillId = splitArgs[0].match(/(\w+-*\s*)+/gm)[0];
+				console.debug(`Resolved actor ${context.actor} from chat message`);
 				const skill = context.actor.getSingleItemByFuid(skillId, 'skill');
 				if (!skill) {
 					ui.notifications.warn('FU.ChatEvaluateNoSkill', { localize: true });
