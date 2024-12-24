@@ -6,12 +6,53 @@ import { MathHelper } from '../helpers/math-helper.mjs';
  * @property {FUActor} actor
  * @property {FUItem} item
  * @property {FUActor[]} targets
+ * @remarks Do not serialize this class, as it references full objects. Instead store their uuids
+ * and resolve them with the static constructor
  */
 export class ExpressionContext {
 	constructor(actor, item, targets) {
 		this.actor = actor;
 		this.item = item;
 		this.targets = targets;
+	}
+
+	/**
+	 * @param {String} actorUuid
+	 * @param {String} itemUuid
+	 * @param {FUActor[]} targets
+	 * @returns {ExpressionContext}
+	 */
+	static fromUuid(actorUuid, itemUuid, targets) {
+		let actor = undefined;
+		if (actorUuid !== undefined) {
+			actor = fromUuidSync(actorUuid);
+		}
+
+		let item = undefined;
+		if (itemUuid !== undefined) {
+			item = fromUuidSync(itemUuid);
+		}
+		return new ExpressionContext(actor, item, targets);
+	}
+
+	/**
+	 * @param {String} match
+	 */
+	assertActor(match) {
+		if (this.actor == null) {
+			ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
+			throw new Error(`No reference to an actor provided while evaluating expression "${match}"`);
+		}
+	}
+
+	/**
+	 * @param {String} match
+	 */
+	assertItem(match) {
+		if (this.item == null) {
+			ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
+			throw new Error(`No reference to an item provided while evaluating expression "${match}"`);
+		}
 	}
 }
 
@@ -63,20 +104,6 @@ function evaluate(expression, context) {
 	return result;
 }
 
-function assertActorInContext(context, match) {
-	if (context.actor == null) {
-		ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
-		throw new Error(`No reference to an actor provided while evaluating "${match}"`);
-	}
-}
-
-function assertItemInContext(context, match) {
-	if (context.item == null) {
-		ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
-		throw new Error(`No reference to an item provided while evaluating expression "${match}"`);
-	}
-}
-
 /**
  * @description Evaluates functions within the expression using the available context
  * @param {String}  expression
@@ -88,7 +115,7 @@ function evaluateReferencedFunctions(expression, context) {
 
 	function evaluate(match, label, path, p3, args, groups) {
 		if (match.includes(actorLabel)) {
-			assertActorInContext(context, match);
+			context.assertActor(match);
 			let splitArgs = args.split(',');
 
 			const functionPath = `system.${path}`;
@@ -140,12 +167,12 @@ function evaluateVariables(expression, context) {
 				return ImprovisedEffect.calculateAmountFromContext(symbol, context);
 			// Character level
 			case 'cl':
-				assertActorInContext(context, match);
+				context.assertActor(match);
 				return context.actor.system.level.value;
 			// Item level / skill level
 			case 'il':
 			case 'sl':
-				assertItemInContext(context, match);
+				context.assertItem(match);
 				return context.item.system.level.value;
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
@@ -167,8 +194,9 @@ function evaluateMacros(expression, context) {
 		const splitArgs = params.split(',');
 		switch (name) {
 			case `sl`: {
-				assertActorInContext(context, match);
+				context.assertActor(match);
 				const skillId = splitArgs[0].match(/(\w+-*\s*)+/gm)[0];
+				console.debug(`Resolved actor ${context.actor} from chat message`);
 				const skill = context.actor.getSingleItemByFuid(skillId, 'skill');
 				if (!skill) {
 					ui.notifications.warn('FU.ChatEvaluateNoSkill', { localize: true });
@@ -219,11 +247,11 @@ function evaluateReferencedProperties(expression, context) {
 		let propertyPath = '';
 
 		if (match.includes(itemLabel)) {
-			assertItemInContext(context, match);
+			context.assertItem(match);
 			root = context.item;
 			propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system.');
 		} else if (match.includes(actorLabel)) {
-			assertActorInContext(context, match);
+			context.assertActor(match);
 			root = context.actor;
 			propertyPath = match.replace(`${referenceSymbol}${actorLabel}.`, 'system.');
 		}

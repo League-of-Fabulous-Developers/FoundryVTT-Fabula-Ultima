@@ -61,11 +61,11 @@ function activateListeners(document, html) {
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
-				const context = new ExpressionContext(sourceInfo.actor, sourceInfo.item, targets);
+				const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
 				const amount = Expressions.evaluate(this.dataset.amount, context);
 
 				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
-				await applyDamagePipelineWithHook({ event: null, targets, sourceUuid: sourceInfo.uuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
+				await applyDamagePipelineWithHook({ event: null, targets, sourceUuid: sourceInfo.actorUuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 			}
 		})
 		.on('dragstart', function (event) {
@@ -78,7 +78,7 @@ function activateListeners(document, html) {
 			const sourceInfo = InlineHelper.determineSource(document, this);
 			const data = {
 				type: INLINE_DAMAGE,
-				source: sourceInfo,
+				sourceInfo: sourceInfo,
 				damageType: this.dataset.type,
 				amount: this.dataset.amount,
 			};
@@ -88,12 +88,12 @@ function activateListeners(document, html) {
 }
 
 // TODO: Implement
-function onDropActor(actor, sheet, { type, damageType, amount, source, ignore }) {
+function onDropActor(actor, sheet, { type, damageType, amount, sourceInfo, ignore }) {
 	if (type === INLINE_DAMAGE) {
-		const context = new ExpressionContext(source.actor, source.item, [actor]);
+		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
 		const _amount = Expressions.evaluate(amount, context);
 		const baseDamageInfo = { type: damageType, total: _amount, modifierTotal: 0 };
-		applyDamagePipelineWithHook({ event: null, targets: [actor], sourceUuid: source.uuid, sourceName: source.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
+		applyDamagePipelineWithHook({ event: null, targets: [actor], sourceUuid: sourceInfo.actorUuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 		return false;
 	}
 }

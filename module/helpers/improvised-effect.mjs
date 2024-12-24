@@ -62,7 +62,7 @@ function calculateAmountFromContext(effect, context) {
 	}
 
 	let level = 5;
-	if (context.actor !== undefined) {
+	if (context.actor) {
 		level = context.actor.system.level.value;
 		console.debug(`Used the source actor to calculate level`);
 	} else {

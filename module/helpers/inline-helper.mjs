@@ -7,16 +7,14 @@ import { Expressions } from '../expressions/expressions.mjs';
 /**
  * @description Information about a lookup for the source of an inline element
  * @property {String} name
- * @property {Number} uuid
- * @property {FUActor} actor
- * @property {FUItem} item
+ * @property {String} itemUuid
+ * @property {String} actorUuid
  */
 export class InlineSourceInfo {
-	constructor(name, uuid, actor, item) {
+	constructor(name, actorUuid, itemUuid) {
 		this.name = name;
-		this.uuid = uuid;
-		this.actor = actor;
-		this.item = item;
+		this.itemUuid = itemUuid;
+		this.actorUuid = actorUuid;
 	}
 }
 
@@ -28,45 +26,44 @@ export class InlineSourceInfo {
  */
 function determineSource(document, element) {
 	let name = game.i18n.localize('FU.UnknownDamageSource');
-	let uuid = null;
-	let actor = undefined;
-	let item = null;
+	let itemUuid = null;
+	let actorUuid = null;
 
+	// Happens when clicked from the actor window
 	if (document instanceof FUActor) {
-		actor = document;
+		actorUuid = document.uuid;
+		console.debug(`Determining source document as Actor ${actorUuid}`);
 		const itemId = $(element).closest('[data-item-id]').data('itemId');
 		if (itemId) {
-			item = document.items.get(itemId);
+			let item = document.items.get(itemId);
+			itemUuid = itemId;
 			name = item.name;
-			uuid = item.uuid;
 		} else {
 			name = document.name;
-			uuid = document.uuid;
 		}
 	} else if (document instanceof FUItem) {
-		item = document;
 		name = document.name;
-		uuid = document.uuid;
+		itemUuid = document.uuid;
+		console.debug(`Determining source document as Item ${itemUuid}`);
 	} else if (document instanceof ChatMessage) {
 		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
 		if (speakerActor) {
-			actor = speakerActor;
+			actorUuid = speakerActor.uuid;
 			name = speakerActor.name;
-			uuid = speakerActor.uuid;
 		}
 		const check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 		if (check) {
-			const itemUuid = check.itemUuid;
-			item = fromUuidSync(itemUuid);
+			itemUuid = check.itemUuid;
 		} else {
-			item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
+			let item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
 			if (item) {
 				name = item.name;
-				uuid = item.uuid;
+				itemUuid = item.uuid;
 			}
 		}
+		console.debug(`Determining source document as ChatMessage ${name}`);
 	}
-	return new InlineSourceInfo(name, uuid, actor, item);
+	return new InlineSourceInfo(name, actorUuid, itemUuid);
 }
 
 /**
