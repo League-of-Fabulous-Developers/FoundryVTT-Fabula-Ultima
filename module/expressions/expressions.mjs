@@ -172,7 +172,7 @@ function evaluateVariables(expression, context) {
 			// Item level / skill level
 			case 'il':
 			case 'sl':
-				context.assertActor(match);
+				context.assertItem(match);
 				return context.item.system.level.value;
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
