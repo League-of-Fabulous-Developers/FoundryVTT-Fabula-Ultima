@@ -1,6 +1,18 @@
 import { FUHooks } from '../hooks.mjs';
-import { FU } from '../helpers/config.mjs';
-import { PipelineRequest } from './pipeline.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
+import { Pipeline, PipelineRequest } from './pipeline.mjs';
+import { Flags } from '../helpers/flags.mjs';
+import { ChecksV2 } from '../checks/checks-v2.mjs';
+import { CheckConfiguration } from '../checks/check-configuration.mjs';
+import { DamageCustomizer } from './damage-customizer.mjs';
+import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+
+/**
+ * @typedef ApplyTargetOverrides
+ * @prop {number | null} affinity
+ * @prop {number | null} total
+ */
 
 /**
  * @property {BaseDamageInfo} baseDamageInfo
@@ -57,6 +69,13 @@ export class DamageRequest extends PipelineRequest {
 		return true;
 	}
 }
+
+/**
+ * @callback DamageModifier
+ * @param {number} baseDamage
+ * @param {ClickModifiers} modifiers
+ * @return {number}
+ */
 
 /**
  * @type {Record<number, DamageModifier>}
@@ -149,6 +168,103 @@ async function process(request) {
 	await applyDamageInternal(request);
 }
 
+/**
+ * @param {?} message
+ * @param {jQuery} jQuery
+ */
+function onRenderChatMessage(message, jQuery) {
+	const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
+	let sourceUuid = null;
+	let sourceName;
+	let baseDamageInfo;
+	let disabled = false;
+
+	if (check && check.damage) {
+		sourceName = check.details.name;
+		baseDamageInfo = {
+			total: check.damage.total,
+			type: check.damage.type,
+			modifierTotal: check.damage.modifierTotal,
+		};
+	}
+
+	if (ChecksV2.isCheck(message)) {
+		const damage = CheckConfiguration.inspect(message).getDamage();
+		if (damage) {
+			sourceUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.itemUuid;
+			sourceName = message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name;
+			baseDamageInfo = {
+				total: damage.total,
+				type: damage.type,
+				modifierTotal: damage.modifierTotal,
+			};
+		}
+	}
+
+	const handleClick = async (event, getTargetsFunction) => {
+		event.preventDefault();
+		if (!disabled) {
+			disabled = true;
+			const targets = await getTargetsFunction(event);
+			if (event.ctrlKey || event.metaKey) {
+				DamageCustomizer(
+					baseDamageInfo,
+					targets,
+					(extraDamageInfo) => {
+						handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo);
+						disabled = false;
+					},
+					() => {
+						disabled = false;
+					},
+				);
+			} else {
+				handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, {});
+				disabled = false;
+			}
+		}
+	};
+
+	jQuery.find(`a[data-action=applySingleDamage]`).click((event) => handleClick(event, Pipeline.getSingleTarget));
+	jQuery.find(`a[data-action=applySelectedDamage]`).click((event) => handleClick(event, getSelected));
+	jQuery.find(`a[data-action=applyTargetedDamage]`).click((event) => handleClick(event, getTargeted));
+	jQuery.find(`a[data-action=selectDamageCustomizer]`).click(async (event) => {
+		if (!disabled) {
+			disabled = true;
+			const targets = await getTargeted(event);
+			DamageCustomizer(
+				baseDamageInfo,
+				targets,
+				(extraDamageInfo) => {
+					handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo);
+					disabled = false;
+				},
+				() => {
+					disabled = false;
+				},
+			);
+		}
+	});
+}
+
+/**
+ *
+ * @param {Event} event
+ * @param {FUActor[]} targets
+ * @param {string} sourceUuid
+ * @param {string} sourceName
+ * @param {import('../helpers/typedefs.mjs').BaseDamageInfo} baseDamageInfo
+ * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
+ * @returns {void}
+ */
+async function handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo) {
+	const sourceInfo = new InlineSourceInfo(sourceName, sourceUuid, null);
+	const request = new DamageRequest(sourceInfo, targets, baseDamageInfo, extraDamageInfo);
+	request.setEvent(event);
+	await DamagePipeline.process(request);
+}
+
 export const DamagePipeline = {
 	process,
+	onRenderChatMessage,
 };

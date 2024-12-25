@@ -1,4 +1,11 @@
 /**
+ * @typedef ClickModifiers
+ * @prop {boolean} alt
+ * @prop {boolean} ctrl
+ * @prop {boolean} shift
+ */
+
+/**
  * @property {FUActor[]} targets
  * @property {InlineSourceInfo} sourceInfo
  * @property {Event | null} event
@@ -38,6 +45,21 @@ async function process(request, getUpdatesForActor) {
 	return Promise.all(updates);
 }
 
+/**
+ * @param {Event} event
+ * @returns {FUActor[]}
+ */
+function getSingleTarget(event) {
+	const dataId = $(event.target).closest('a').data('id');
+	const actor = fromUuidSync(dataId);
+	if (!actor) {
+		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });
+		return [];
+	}
+	return [actor];
+}
+
 export const Pipeline = {
+	getSingleTarget,
 	process,
 };
