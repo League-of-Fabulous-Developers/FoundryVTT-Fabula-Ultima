@@ -130,7 +130,7 @@ function resolveAffinity(context) {
  */
 function calculateDamageFromAffinity(context) {
 	const calculateDamage = affinityDamageModifier[context.affinity] ?? affinityDamageModifier[FU.affValue.none];
-	context.result = calculateDamage(context.amount, context.clickModifiers);
+	context.result = -calculateDamage(context.amount, context.clickModifiers);
 	return true;
 }
 
@@ -163,7 +163,7 @@ async function applyDamageInternal(request) {
 		}
 
 		// Damage application
-		const damageTaken = request.overrides?.total || -context.result;
+		const damageTaken = context.result;
 		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
 		// Chat message
 		const affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
