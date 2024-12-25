@@ -86,9 +86,14 @@ const affinityKeys = {
 };
 
 /**
+ * @type {string} The name of the event
+ */
+const eventName = 'processDamage';
+
+/**
  * @type PipelineStep
  */
-function calculateDamageFromAffinity(context) {
+function resolveAffinity(context) {
 	let affinity = FU.affValue.none; // Default to no affinity
 	let affinityIcon = '';
 
@@ -114,11 +119,18 @@ function calculateDamageFromAffinity(context) {
 		affinity = FU.affValue.none;
 	}
 
-	const calculateDamage = affinityDamageModifier[affinity] ?? affinityDamageModifier[FU.affValue.none];
 	context.affinity = affinity;
 	context.affinityIcon = affinityIcon;
-	context.result = calculateDamage(context.amount, context.clickModifiers);
 
+	return true;
+}
+
+/**
+ * @type PipelineStep
+ */
+function calculateDamageFromAffinity(context) {
+	const calculateDamage = affinityDamageModifier[context.affinity] ?? affinityDamageModifier[FU.affValue.none];
+	context.result = calculateDamage(context.amount, context.clickModifiers);
 	return true;
 }
 
@@ -134,11 +146,6 @@ function useDamageFromOverride(context) {
 }
 
 /**
- * @type {string} The name of the event
- */
-const eventName = 'processDamage';
-
-/**
  * @param {DamageRequest} request
  * @return {Promise<Awaited<unknown>[]>}
  */
@@ -146,10 +153,6 @@ async function applyDamageInternal(request) {
 	if (!request.validate()) {
 		return;
 	}
-
-	// TODO: Remove with the newer hooks?
-	Hooks.callAll(FUHooks.DAMAGE_APPLY_BEFORE, request);
-	Hooks.callAll(FUHooks.DAMAGE_APPLY_TARGET, request);
 
 	const updates = [];
 	for (const actor of request.targets) {
@@ -189,6 +192,9 @@ async function applyDamageInternal(request) {
  * @return {Promise<Awaited<unknown>[]>}
  */
 async function process(request) {
+	// TODO: Remove with the newer hooks?
+	Hooks.callAll(FUHooks.DAMAGE_APPLY_BEFORE, request);
+	Hooks.callAll(FUHooks.DAMAGE_APPLY_TARGET, request);
 	await applyDamageInternal(request);
 }
 
@@ -275,6 +281,7 @@ function onRenderChatMessage(message, jQuery) {
  * Registers the default steps used by the pipeline
  */
 function registerDefaultSteps() {
+	Hooks.on(eventName, resolveAffinity);
 	Hooks.on(eventName, calculateDamageFromAffinity);
 	Hooks.on(eventName, useDamageFromOverride);
 }

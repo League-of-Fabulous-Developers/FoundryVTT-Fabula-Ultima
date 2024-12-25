@@ -45,6 +45,7 @@ export class PipelineContext {
  * @callback PipelineStep
  * @param {PipelineContext} context
  * @returns {Boolean} False if the no further calls in the pipeline are needed
+ * @remarks Only to be used synchronously
  */
 
 /**
