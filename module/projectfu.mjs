@@ -228,6 +228,8 @@ Hooks.once('init', async () => {
 	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
+
+	DamagePipeline.registerDefaultSteps();
 	Hooks.on('renderChatMessage', DamagePipeline.onRenderChatMessage);
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);

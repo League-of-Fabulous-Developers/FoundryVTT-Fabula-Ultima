@@ -6,11 +6,10 @@
  */
 
 /**
- * @property {FUActor[]} targets
  * @property {InlineSourceInfo} sourceInfo
+ * @property {FUActor[]} targets
  * @property {Event | null} event
  * @property {ClickModifiers | null} clickModifiers
- * @property {String} chatTemplateName The name of the template used for rendering the request
  */
 export class PipelineRequest {
 	constructor(sourceInfo, targets) {
@@ -26,11 +25,27 @@ export class PipelineRequest {
 			shift: event.shiftKey,
 		};
 	}
+}
 
-	setTemplate(template) {
-		this.chatTemplateName = template;
+/**
+ * @property {InlineSourceInfo} sourceInfo
+ * @property {FUActor} actor
+ * @property {Event | null} event
+ * @property {ClickModifiers | null} clickModifiers
+ * @property {?} result The result output
+ */
+export class PipelineContext {
+	constructor(request, actor) {
+		this.actor = actor;
+		Object.assign(this, request);
 	}
 }
+
+/**
+ * @callback PipelineStep
+ * @param {PipelineContext} context
+ * @returns {Boolean} False if the no further calls in the pipeline are needed
+ */
 
 /**
  * @param {PipelineRequest} request

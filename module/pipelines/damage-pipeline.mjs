@@ -1,6 +1,6 @@
 import { FUHooks } from '../hooks.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
-import { Pipeline, PipelineRequest } from './pipeline.mjs';
+import { Pipeline, PipelineContext, PipelineRequest } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
@@ -17,6 +17,8 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 /**
  * @property {BaseDamageInfo} baseDamageInfo
  * @property {ExtraDamageInfo} extraDamageInfo
+ * @property {Number} amount
+ * @property {String} damageType
  * @property {ApplyTargetOverrides} overrides
  * @extends PipelineRequest
  */
@@ -25,24 +27,11 @@ export class DamageRequest extends PipelineRequest {
 		super(sourceInfo, targets);
 		this.baseDamageInfo = baseDamageInfo;
 		this.extraDamageInfo = extraDamageInfo || {};
-		this.overrides = {};
-		this.setTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs');
-	}
-
-	/**
-	 * @returns {Number}
-	 */
-	get amount() {
-		return this.extraDamageInfo.hrZero
+		this.damageType = this.extraDamageInfo.damageType || this.baseDamageInfo.type;
+		this.amount = this.extraDamageInfo.hrZero
 			? this.extraDamageInfo.damageBonus + this.baseDamageInfo.modifierTotal + (this.extraDamageInfo.extraDamage || 0)
 			: this.baseDamageInfo.total + (this.extraDamageInfo.damageBonus || 0) + (this.extraDamageInfo.extraDamage || 0);
-	}
-
-	/**
-	 * @returns {*|"untyped"|"physical"|"air"|"bolt"|"dark"|"earth"|"fire"|"ice"|"light"|"poison"}
-	 */
-	get damageType() {
-		return this.extraDamageInfo.damageType || this.baseDamageInfo.type;
+		this.overrides = {};
 	}
 
 	/**
@@ -97,6 +86,59 @@ const affinityKeys = {
 };
 
 /**
+ * @type PipelineStep
+ */
+function calculateDamageFromAffinity(context) {
+	let affinity = FU.affValue.none; // Default to no affinity
+	let affinityIcon = '';
+
+	if (context.overrides?.affinity) {
+		affinity = context.overrides.affinity;
+		affinityIcon = FU.affIcon[context.damageType];
+	} else if (context.damageType in context.actor.system.affinities) {
+		affinity = context.actor.system.affinities[context.damageType].current;
+		affinityIcon = FU.affIcon[context.damageType];
+	}
+
+	// Check if affinity should be ignored
+	if (affinity === FU.affValue.vulnerability && context.extraDamageInfo.ignoreVulnerable) {
+		affinity = FU.affValue.none;
+	}
+	if (affinity === FU.affValue.resistance && context.extraDamageInfo.ignoreResistance) {
+		affinity = FU.affValue.none;
+	}
+	if (affinity === FU.affValue.immunity && context.extraDamageInfo.ignoreImmunities) {
+		affinity = FU.affValue.none;
+	}
+	if (affinity === FU.affValue.absorption && context.extraDamageInfo.ignoreAbsorption) {
+		affinity = FU.affValue.none;
+	}
+
+	const calculateDamage = affinityDamageModifier[affinity] ?? affinityDamageModifier[FU.affValue.none];
+	context.affinity = affinity;
+	context.affinityIcon = affinityIcon;
+	context.result = calculateDamage(context.amount, context.clickModifiers);
+
+	return true;
+}
+
+/**
+ * @type PipelineStep
+ */
+function useDamageFromOverride(context) {
+	if (context.overrides?.total) {
+		context.result = context.overrides.total;
+		return false;
+	}
+	return true;
+}
+
+/**
+ * @type {string} The name of the event
+ */
+const eventName = 'processDamage';
+
+/**
  * @param {DamageRequest} request
  * @return {Promise<Awaited<unknown>[]>}
  */
@@ -105,49 +147,32 @@ async function applyDamageInternal(request) {
 		return;
 	}
 
+	// TODO: Remove with the newer hooks?
+	Hooks.callAll(FUHooks.DAMAGE_APPLY_BEFORE, request);
+	Hooks.callAll(FUHooks.DAMAGE_APPLY_TARGET, request);
+
 	const updates = [];
 	for (const actor of request.targets) {
-		Hooks.callAll(FUHooks.DAMAGE_APPLY_TARGET, request);
-
-		let affinity = FU.affValue.none; // Default to no affinity
-		let affinityIcon = '';
-		let affinityString = '';
-		if (request.overrides?.affinity) {
-			affinity = request.overrides.affinity;
-			affinityIcon = FU.affIcon[request.damageType];
-		} else if (request.damageType in actor.system.affinities) {
-			affinity = actor.system.affinities[request.damageType].current;
-			affinityIcon = FU.affIcon[request.damageType];
-		}
-		affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
-			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
-			affinityIcon: affinityIcon,
-		});
-
-		// Check if affinity should be ignored
-		if (affinity === FU.affValue.vulnerability && request.extraDamageInfo.ignoreVulnerable) {
-			affinity = FU.affValue.none;
-		}
-		if (affinity === FU.affValue.resistance && request.extraDamageInfo.ignoreResistance) {
-			affinity = FU.affValue.none;
-		}
-		if (affinity === FU.affValue.immunity && request.extraDamageInfo.ignoreImmunities) {
-			affinity = FU.affValue.none;
-		}
-		if (affinity === FU.affValue.absorption && request.extraDamageInfo.ignoreAbsorption) {
-			affinity = FU.affValue.none;
+		let context = new PipelineContext(request, actor);
+		Hooks.call(eventName, context);
+		if (context.result === undefined) {
+			throw new Error('Failed to generate result during pipeline');
 		}
 
-		const damageMod = affinityDamageModifier[affinity] ?? affinityDamageModifier[FU.affValue.none];
-		const damageTaken = request.overrides?.total || -damageMod(request.amount, request.clickModifiers);
-
+		// Damage application
+		const damageTaken = request.overrides?.total || -context.result;
 		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
+		// Chat message
+		const affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
+			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
+			affinityIcon: context.affinityIcon,
+		});
 		updates.push(
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker({ actor }),
-				flavor: game.i18n.localize(FU.affType[affinity]),
-				content: await renderTemplate(request.chatTemplateName, {
-					message: affinityKeys[affinity](request.clickModifiers),
+				flavor: game.i18n.localize(FU.affType[context.affinity]),
+				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
+					message: affinityKeys[context.affinity](request.clickModifiers),
 					actor: actor.name,
 					damage: Math.abs(damageTaken),
 					type: affinityString,
@@ -164,7 +189,6 @@ async function applyDamageInternal(request) {
  * @return {Promise<Awaited<unknown>[]>}
  */
 async function process(request) {
-	Hooks.callAll(FUHooks.DAMAGE_APPLY_BEFORE, request);
 	await applyDamageInternal(request);
 }
 
@@ -248,6 +272,14 @@ function onRenderChatMessage(message, jQuery) {
 }
 
 /**
+ * Registers the default steps used by the pipeline
+ */
+function registerDefaultSteps() {
+	Hooks.on(eventName, calculateDamageFromAffinity);
+	Hooks.on(eventName, useDamageFromOverride);
+}
+
+/**
  *
  * @param {Event} event
  * @param {FUActor[]} targets
@@ -265,6 +297,8 @@ async function handleDamageApplication(event, targets, sourceUuid, sourceName, b
 }
 
 export const DamagePipeline = {
+	eventName: eventName,
 	process,
+	registerDefaultSteps,
 	onRenderChatMessage,
 };
