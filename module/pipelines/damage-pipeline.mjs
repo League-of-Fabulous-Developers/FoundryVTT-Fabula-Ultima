@@ -1,40 +1,14 @@
 import { FUHooks } from '../hooks.mjs';
 import { FU } from '../helpers/config.mjs';
-
-/**
- * @property {FUActor[]} targets
- * @property {InlineSourceInfo} sourceInfo
- * @property {Event | null} event
- * @property {ClickModifiers | null} clickModifiers
- * @property {String} chatTemplateName The name of the template used for rendering the request
- */
-class ResourceRequest {
-	constructor(sourceInfo, targets) {
-		this.sourceInfo = sourceInfo;
-		this.targets = targets;
-	}
-
-	setEvent(event) {
-		this.event = event;
-		this.clickModifiers = {
-			alt: event.altKey,
-			ctrl: event.ctrlKey || event.metaKey,
-			shift: event.shiftKey,
-		};
-	}
-
-	setTemplate(template) {
-		this.chatTemplateName = template;
-	}
-}
+import { PipelineRequest } from './pipeline.mjs';
 
 /**
  * @property {BaseDamageInfo} baseDamageInfo
  * @property {ExtraDamageInfo} extraDamageInfo
  * @property {ApplyTargetOverrides} overrides
- * @extends ResourceRequest
+ * @extends PipelineRequest
  */
-export class DamageRequest extends ResourceRequest {
+export class DamageRequest extends PipelineRequest {
 	constructor(sourceInfo, targets, baseDamageInfo, extraDamageInfo = null) {
 		super(sourceInfo, targets);
 		this.baseDamageInfo = baseDamageInfo;
@@ -46,7 +20,7 @@ export class DamageRequest extends ResourceRequest {
 	/**
 	 * @returns {Number}
 	 */
-	get total() {
+	get amount() {
 		return this.extraDamageInfo.hrZero
 			? this.extraDamageInfo.damageBonus + this.baseDamageInfo.modifierTotal + (this.extraDamageInfo.extraDamage || 0)
 			: this.baseDamageInfo.total + (this.extraDamageInfo.damageBonus || 0) + (this.extraDamageInfo.extraDamage || 0);
@@ -146,7 +120,7 @@ async function applyDamageInternal(request) {
 		}
 
 		const damageMod = affinityDamageModifier[affinity] ?? affinityDamageModifier[FU.affValue.none];
-		const damageTaken = request.overrides?.total || -damageMod(request.total, request.clickModifiers);
+		const damageTaken = request.overrides?.total || -damageMod(request.amount, request.clickModifiers);
 
 		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
 		updates.push(
