@@ -48,7 +48,7 @@ import { registerOptionalFeatures } from './documents/items/optionalFeature/opti
 
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
 import { FUActiveEffect } from './documents/effects/active-effect.mjs';
-import { registerChatInteraction } from './helpers/apply-damage.mjs';
+import { registerChatInteraction } from './pipelines/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
 import { InlineResources } from './helpers/inline-resources.mjs';

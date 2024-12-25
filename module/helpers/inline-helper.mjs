@@ -13,8 +13,8 @@ import { Expressions } from '../expressions/expressions.mjs';
 export class InlineSourceInfo {
 	constructor(name, actorUuid, itemUuid) {
 		this.name = name;
-		this.itemUuid = itemUuid;
 		this.actorUuid = actorUuid;
+		this.itemUuid = itemUuid;
 	}
 }
 
