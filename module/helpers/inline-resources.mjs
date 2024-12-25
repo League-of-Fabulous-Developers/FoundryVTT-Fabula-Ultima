@@ -120,7 +120,7 @@ function activateListeners(document, html) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
 				const uncapped = this.dataset.uncapped === 'true';
-				const context = new ExpressionContext(sourceInfo.actor, sourceInfo.item, targets);
+				const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
 				const amount = Expressions.evaluate(this.dataset.amount, context);
 
 				if (this.classList.contains(classInlineRecovery)) {
@@ -136,8 +136,8 @@ function activateListeners(document, html) {
 			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
 				return;
 			}
-			const sourceInfo = InlineHelper.determineSource(document, this);
 
+			const sourceInfo = InlineHelper.determineSource(document, this);
 			const data = {
 				type: this.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
 				sourceInfo: sourceInfo,
@@ -151,7 +151,7 @@ function activateListeners(document, html) {
 }
 
 function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInfo, uncapped }) {
-	const context = new ExpressionContext(sourceInfo.actor, sourceInfo.item, [actor]);
+	const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
 	amount = Expressions.evaluate(amount, context);
 
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
