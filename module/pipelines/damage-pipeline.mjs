@@ -17,7 +17,6 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 /**
  * @property {BaseDamageInfo} baseDamageInfo
  * @property {ExtraDamageInfo} extraDamageInfo
- * @property {Number} amount
  * @property {String} damageType
  * @property {ApplyTargetOverrides} overrides
  * @extends PipelineRequest
@@ -28,9 +27,6 @@ export class DamageRequest extends PipelineRequest {
 		this.baseDamageInfo = baseDamageInfo;
 		this.extraDamageInfo = extraDamageInfo || {};
 		this.damageType = this.extraDamageInfo.damageType || this.baseDamageInfo.type;
-		this.amount = this.extraDamageInfo.hrZero
-			? this.extraDamageInfo.damageBonus + this.baseDamageInfo.modifierTotal + (this.extraDamageInfo.extraDamage || 0)
-			: this.baseDamageInfo.total + (this.extraDamageInfo.damageBonus || 0) + (this.extraDamageInfo.extraDamage || 0);
 		this.overrides = {};
 	}
 
@@ -123,6 +119,28 @@ function resolveAffinity(context) {
 	context.affinityIcon = affinityIcon;
 
 	return true;
+}
+
+/**
+ * @param {PipelineContext} context
+ * @type PipelineStep
+ */
+function calculateAmount(context) {
+	let amount = context.extraDamageInfo.hrZero
+		? context.extraDamageInfo.damageBonus + context.baseDamageInfo.modifierTotal + (context.extraDamageInfo.extraDamage || 0)
+		: context.baseDamageInfo.total + (context.extraDamageInfo.damageBonus || 0) + (context.extraDamageInfo.extraDamage || 0);
+
+	// Source
+	if (context.sourceActor) {
+		const outgoing = context.sourceActor.system.bonuses.damage;
+		amount += outgoing.all;
+	}
+
+	// Target
+	const incoming = context.actor.system.bonuses.incomingDamage;
+	amount += incoming.all;
+
+	context.amount = amount;
 }
 
 /**
@@ -282,6 +300,7 @@ function onRenderChatMessage(message, jQuery) {
  */
 function registerDefaultSteps() {
 	Hooks.on(eventName, resolveAffinity);
+	Hooks.on(eventName, calculateAmount);
 	Hooks.on(eventName, calculateDamageFromAffinity);
 	Hooks.on(eventName, useDamageFromOverride);
 }

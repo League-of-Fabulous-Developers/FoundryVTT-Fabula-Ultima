@@ -16,6 +16,16 @@ export class InlineSourceInfo {
 		this.actorUuid = actorUuid;
 		this.itemUuid = itemUuid;
 	}
+
+	/**
+	 * @returns {FUActor|null}
+	 */
+	resolveActor() {
+		if (this.actorUuid) {
+			return fromUuidSync(this.actorUuid);
+		}
+		return null;
+	}
 }
 
 /**

@@ -29,6 +29,7 @@ export class PipelineRequest {
 
 /**
  * @property {InlineSourceInfo} sourceInfo
+ * @property {FUActor} sourceActor
  * @property {FUActor} actor
  * @property {Event | null} event
  * @property {ClickModifiers | null} clickModifiers
@@ -38,6 +39,7 @@ export class PipelineContext {
 	constructor(request, actor) {
 		this.actor = actor;
 		Object.assign(this, request);
+		this.sourceActor = this.sourceInfo.resolveActor();
 	}
 }
 
