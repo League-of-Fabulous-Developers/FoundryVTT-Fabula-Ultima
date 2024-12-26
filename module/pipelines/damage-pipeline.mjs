@@ -17,7 +17,7 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 /**
  * @property {BaseDamageInfo} baseDamageInfo
  * @property {ExtraDamageInfo} extraDamageInfo
- * @property {String} damageType
+ * @property {FU.damageTypes} damageType
  * @property {ApplyTargetOverrides} overrides
  * @extends PipelineRequest
  */
@@ -134,11 +134,13 @@ function calculateAmount(context) {
 	if (context.sourceActor) {
 		const outgoing = context.sourceActor.system.bonuses.damage;
 		amount += outgoing.all;
+		amount += outgoing[context.damageType];
 	}
 
 	// Target
 	const incoming = context.actor.system.bonuses.incomingDamage;
 	amount += incoming.all;
+	amount += incoming[context.damageType];
 
 	context.amount = amount;
 }
@@ -174,6 +176,7 @@ async function applyDamageInternal(request) {
 
 	const updates = [];
 	for (const actor of request.targets) {
+		// Create an initial context then run the pipeline (invoke all the callback steps)
 		let context = new PipelineContext(request, actor);
 		Hooks.call(eventName, context);
 		if (context.result === undefined) {
