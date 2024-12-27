@@ -82,11 +82,6 @@ const affinityKeys = {
 };
 
 /**
- * @type {string} The name of the event
- */
-const eventName = 'processDamage';
-
-/**
  * @type PipelineStep
  */
 function resolveAffinity(context) {
@@ -122,8 +117,19 @@ function resolveAffinity(context) {
 }
 
 /**
- * @param {PipelineContext} context
  * @type PipelineStep
+ */
+function useDamageFromOverride(context) {
+	if (context.overrides?.total) {
+		context.result = context.overrides.total;
+		return false;
+	}
+	return true;
+}
+
+/**
+ * @param {PipelineContext} context
+ * @return Boolean
  */
 function calculateAmount(context) {
 	let amount = context.extraDamageInfo.hrZero
@@ -143,25 +149,34 @@ function calculateAmount(context) {
 	amount += incoming[context.damageType];
 
 	context.amount = amount;
+	Hooks.call(FUHooks.DAMAGE_PIPELINE_BEFORE_AFFINITIES, context);
 }
 
 /**
- * @type PipelineStep
+ * @param {PipelineContext} context
+ * @return Boolean
+ * @remarks These flags can be set on an active effect with the key: `flags.projectfu.<SKILL>`, change mode: `Override`, effect value: `true`.
  */
-function calculateDamageFromAffinity(context) {
+function applySkillModifiers(context) {
+	const target = context.actor;
+	let amount = context.amount;
+
+	// Zero Shield
+	if (target.getFlag(Flags.Scope, Flags.Skill.ZeroShield)) {
+		amount = amount * 0.5;
+	}
+
+	context.amount = amount;
+}
+
+/**
+ * @param {PipelineContext} context
+ * @return Boolean
+ */
+function applyAffinityModifiers(context) {
 	const calculateDamage = affinityDamageModifier[context.affinity] ?? affinityDamageModifier[FU.affValue.none];
 	context.result = -calculateDamage(context.amount, context.clickModifiers);
-	return true;
-}
-
-/**
- * @type PipelineStep
- */
-function useDamageFromOverride(context) {
-	if (context.overrides?.total) {
-		context.result = context.overrides.total;
-		return false;
-	}
+	Hooks.call(FUHooks.DAMAGE_PIPELINE_AFTER_AFFINITIES, context);
 	return true;
 }
 
@@ -178,7 +193,8 @@ async function applyDamageInternal(request) {
 	for (const actor of request.targets) {
 		// Create an initial context then run the pipeline (invoke all the callback steps)
 		let context = new PipelineContext(request, actor);
-		Hooks.call(eventName, context);
+		resolveAffinity(context);
+		Hooks.call(FUHooks.DAMAGE_PIPELINE, context);
 		if (context.result === undefined) {
 			throw new Error('Failed to generate result during pipeline');
 		}
@@ -215,8 +231,8 @@ async function applyDamageInternal(request) {
 async function process(request) {
 	// TODO: Remove with the newer hooks?
 	Hooks.callAll(FUHooks.DAMAGE_APPLY_BEFORE, request);
-	Hooks.callAll(FUHooks.DAMAGE_APPLY_TARGET, request);
 	await applyDamageInternal(request);
+	Hooks.callAll(FUHooks.DAMAGE_APPLY_TARGET, request);
 }
 
 /**
@@ -302,10 +318,11 @@ function onRenderChatMessage(message, jQuery) {
  * Registers the default steps used by the pipeline
  */
 function registerDefaultSteps() {
-	Hooks.on(eventName, resolveAffinity);
-	Hooks.on(eventName, calculateAmount);
-	Hooks.on(eventName, calculateDamageFromAffinity);
-	Hooks.on(eventName, useDamageFromOverride);
+	Hooks.on(FUHooks.DAMAGE_PIPELINE, resolveAffinity);
+	Hooks.on(FUHooks.DAMAGE_PIPELINE, useDamageFromOverride);
+	Hooks.on(FUHooks.DAMAGE_PIPELINE, calculateAmount);
+	Hooks.on(FUHooks.DAMAGE_PIPELINE, applySkillModifiers);
+	Hooks.on(FUHooks.DAMAGE_PIPELINE, applyAffinityModifiers);
 }
 
 /**
@@ -326,7 +343,6 @@ async function handleDamageApplication(event, targets, sourceUuid, sourceName, b
 }
 
 export const DamagePipeline = {
-	eventName: eventName,
 	process,
 	registerDefaultSteps,
 	onRenderChatMessage,
