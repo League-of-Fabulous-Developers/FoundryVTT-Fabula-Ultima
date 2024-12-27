@@ -140,13 +140,13 @@ function calculateAmount(context) {
 	if (context.sourceActor) {
 		const outgoing = context.sourceActor.system.bonuses.damage;
 		amount += outgoing.all;
-		amount += outgoing[context.damageType];
+		amount += outgoing[context.damageType] ?? 0;
 	}
 
 	// Target
 	const incoming = context.actor.system.bonuses.incomingDamage;
 	amount += incoming.all;
-	amount += incoming[context.damageType];
+	amount += incoming[context.damageType] ?? 0;
 
 	context.amount = amount;
 	Hooks.call(FUHooks.DAMAGE_PIPELINE_BEFORE_AFFINITIES, context);
