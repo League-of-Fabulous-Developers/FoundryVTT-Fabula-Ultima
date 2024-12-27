@@ -19,7 +19,7 @@ export const Flags = Object.freeze({
 		UseMetaCurrency: 'UseMetaCurrency',
 	}),
 	Scope: 'projectfu',
-	Skill: Object.freeze({
-		ZeroShield: 'zeroShield',
+	Modifier: Object.freeze({
+		ScaleIncomingDamage: 'scaleIncomingDamage',
 	}),
 });

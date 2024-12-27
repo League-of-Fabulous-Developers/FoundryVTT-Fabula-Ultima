@@ -162,8 +162,9 @@ function applySkillModifiers(context) {
 	let amount = context.amount;
 
 	// Zero Shield
-	if (target.getFlag(Flags.Scope, Flags.Skill.ZeroShield)) {
-		amount = amount * 0.5;
+	const scaleIncomingDamage = target.getFlag(Flags.Scope, Flags.Modifier.ScaleIncomingDamage);
+	if (scaleIncomingDamage) {
+		amount = Math.floor(amount * scaleIncomingDamage);
 	}
 
 	context.amount = amount;
