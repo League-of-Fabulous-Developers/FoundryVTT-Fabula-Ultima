@@ -1,3 +1,8 @@
+/**
+ * @description The keys for scoped flags commonly used by the system. They are stored and accessed by documents such as actors,
+ * chat messages.
+ * @example actor.getFlag(Flags.Scope, Flags.CurrentTurn)
+ */
 export const Flags = Object.freeze({
 	CombatantsTurnTaken: 'CombatantsTurnTaken',
 	CurrentTurn: 'CurrentTurn',

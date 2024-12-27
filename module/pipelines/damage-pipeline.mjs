@@ -181,20 +181,30 @@ function applyAffinityModifiers(context) {
 }
 
 /**
+ * Registers the default steps used by the pipeline
+ */
+function registerDefaultSteps() {
+	Hooks.on(FUHooks.DAMAGE_PIPELINE_STEP, resolveAffinity);
+	Hooks.on(FUHooks.DAMAGE_PIPELINE_STEP, useDamageFromOverride);
+	Hooks.on(FUHooks.DAMAGE_PIPELINE_STEP, calculateAmount);
+	Hooks.on(FUHooks.DAMAGE_PIPELINE_STEP, applySkillModifiers);
+	Hooks.on(FUHooks.DAMAGE_PIPELINE_STEP, applyAffinityModifiers);
+}
+
+/**
  * @param {DamageRequest} request
  * @return {Promise<Awaited<unknown>[]>}
  */
-async function applyDamageInternal(request) {
+async function process(request) {
 	if (!request.validate()) {
-		return;
+		return Promise.reject('Request was not valid');
 	}
 
 	const updates = [];
 	for (const actor of request.targets) {
 		// Create an initial context then run the pipeline (invoke all the callback steps)
 		let context = new PipelineContext(request, actor);
-		resolveAffinity(context);
-		Hooks.call(FUHooks.DAMAGE_PIPELINE, context);
+		Hooks.call(FUHooks.DAMAGE_PIPELINE_STEP, context);
 		if (context.result === undefined) {
 			throw new Error('Failed to generate result during pipeline');
 		}
@@ -222,17 +232,6 @@ async function applyDamageInternal(request) {
 		);
 	}
 	return Promise.all(updates);
-}
-
-/**
- * @param {DamageRequest} request
- * @return {Promise<Awaited<unknown>[]>}
- */
-async function process(request) {
-	// TODO: Remove with the newer hooks?
-	Hooks.callAll(FUHooks.DAMAGE_APPLY_BEFORE, request);
-	await applyDamageInternal(request);
-	Hooks.callAll(FUHooks.DAMAGE_APPLY_TARGET, request);
 }
 
 /**
@@ -312,17 +311,6 @@ function onRenderChatMessage(message, jQuery) {
 			);
 		}
 	});
-}
-
-/**
- * Registers the default steps used by the pipeline
- */
-function registerDefaultSteps() {
-	Hooks.on(FUHooks.DAMAGE_PIPELINE, resolveAffinity);
-	Hooks.on(FUHooks.DAMAGE_PIPELINE, useDamageFromOverride);
-	Hooks.on(FUHooks.DAMAGE_PIPELINE, calculateAmount);
-	Hooks.on(FUHooks.DAMAGE_PIPELINE, applySkillModifiers);
-	Hooks.on(FUHooks.DAMAGE_PIPELINE, applyAffinityModifiers);
 }
 
 /**

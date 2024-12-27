@@ -67,7 +67,6 @@ function activateListeners(document, html) {
 				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
 				const request = new DamageRequest(sourceInfo, targets, baseDamageInfo);
 				await DamagePipeline.process(request);
-				//await applyDamagePipelineWithHook({ event: null, targets, sourceUuid: sourceInfo.actorUuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
 			}
 		})
 		.on('dragstart', function (event) {
