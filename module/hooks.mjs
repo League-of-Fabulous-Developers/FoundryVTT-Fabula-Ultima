@@ -5,20 +5,16 @@
  */
 export const FUHooks = {
 	/**
-	 * @description Append a step to the damage pipeline
-	 * @example callback(context) { context.result = 42; return true; }
+	 * @description Modify the bonuses and modifiers before the result is calculated.
+	 * @example callback(context) { context.modifiers.set("foobar", 42); return true; }
+	 * @example callback(context) { context.modifiers.delete("affinity"); return true; }
 	 */
-	DAMAGE_PIPELINE_STEP: 'projectfu.pipelines.damage',
+	DAMAGE_PIPELINE_BEFORE_RESULT: 'projectfu.pipelines.damage.beforeResult',
 	/**
-	 * @description Modify the amount before affinities have been applied (which is then stored as the result)
-	 * @example callback(context) { context.amount += 42; return true; }
-	 */
-	DAMAGE_PIPELINE_BEFORE_AFFINITIES: 'projectfu.pipelines.damage.beforeAffinities',
-	/**
-	 * @description Modify the result after affinities have been applied.
+	 * @description Modify the result after it's been calculated.
 	 * @example callback(context) { context.result += 42; return true; }
 	 */
-	DAMAGE_PIPELINE_AFTER_AFFINITIES: 'projectfu.pipelines.damage.afterAffinities',
+	DAMAGE_PIPELINE_AFTER_RESULT: 'projectfu.pipelines.damage.afterResult',
 	/**
 	 * @deprecated Replaced by {DAMAGE_PIPELINE_BEFORE_AFFINITIES}
 	 * @example calllback(data) { ... }

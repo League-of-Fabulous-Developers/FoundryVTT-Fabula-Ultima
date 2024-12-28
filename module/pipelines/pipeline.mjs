@@ -8,37 +8,29 @@
 /**
  * @property {InlineSourceInfo} sourceInfo
  * @property {FUActor[]} targets
+ * @property {Set<String>} traits
  * @property {Event | null} event
- * @property {ClickModifiers | null} clickModifiers
  */
 export class PipelineRequest {
 	constructor(sourceInfo, targets) {
 		this.sourceInfo = sourceInfo;
 		this.targets = targets;
-	}
-
-	setEvent(event) {
-		this.event = event;
-		this.clickModifiers = {
-			alt: event.altKey,
-			ctrl: event.ctrlKey || event.metaKey,
-			shift: event.shiftKey,
-		};
+		this.traits = new Set();
 	}
 }
 
 /**
  * @property {InlineSourceInfo} sourceInfo
  * @property {FUActor} sourceActor
- * @property {FUActor} actor
+ * @property {FUActor} actor The actor the pipeline is modifying
+ * @property {Set<String>} traits
  * @property {Event | null} event
- * @property {ClickModifiers | null} clickModifiers
  * @property {?} result The result output
  */
 export class PipelineContext {
 	constructor(request, actor) {
-		this.actor = actor;
 		Object.assign(this, request);
+		this.actor = actor;
 		this.sourceActor = this.sourceInfo.resolveActor();
 	}
 }

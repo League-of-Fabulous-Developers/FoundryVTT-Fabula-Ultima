@@ -19,16 +19,17 @@ import { ApplyTargetHookData, BeforeApplyHookData } from './legacy-hook-data.mjs
  * @property {BaseDamageInfo} baseDamageInfo
  * @property {ExtraDamageInfo} extraDamageInfo
  * @property {FU.damageTypes} damageType
- * @property {ApplyTargetOverrides} overrides
+ * @property {ApplyTargetOverrides} overrides *
  * @extends PipelineRequest
  */
 export class DamageRequest extends PipelineRequest {
-	constructor(sourceInfo, targets, baseDamageInfo, extraDamageInfo = null) {
+	constructor(sourceInfo, targets, baseDamageInfo, extraDamageInfo = {}) {
 		super(sourceInfo, targets);
 		this.baseDamageInfo = baseDamageInfo;
-		this.extraDamageInfo = extraDamageInfo || {};
+		this.extraDamageInfo = extraDamageInfo;
 		this.damageType = this.extraDamageInfo.damageType || this.baseDamageInfo.type;
 		this.overrides = {};
+		this.amount = extraDamageInfo.hrZero ? extraDamageInfo.damageBonus + baseDamageInfo.modifierTotal + (extraDamageInfo.extraDamage || 0) : baseDamageInfo.total + (extraDamageInfo.damageBonus || 0) + (extraDamageInfo.extraDamage || 0);
 	}
 
 	/**
@@ -56,141 +57,164 @@ export class DamageRequest extends PipelineRequest {
 	}
 }
 
-/**
- * @callback DamageModifier
- * @param {number} baseDamage
- * @param {ClickModifiers} modifiers
- * @return {number}
- */
+// TODO: Decide whether to define in config.mjs. Though it's probably fine if they are all in english
+const Traits = {
+	IgnoreResistance: 'ignore-resistance',
+	IgnoreImmunity: 'ignore-immunity',
+};
 
 /**
- * @type {Record<number, DamageModifier>}
+ * @property {Number} affinity The index of the affinity
+ * @property {String} affinityMessage The localized affinity message to use
+ * @property {FU.damageTypes} damageType
+ * @property {Number} amount The base amount before bonuses or modifiers are applied
+ * @property {Map<String, Number>} bonuses Increments / Decrements
+ * @property {Map<String, Number>} modifiers Multipliers
+ * @extends PipelineContext
+ */
+export class DamagePipelineContext extends PipelineContext {
+	constructor(request, actor) {
+		super(request, actor);
+		this.bonuses = new Map();
+		this.modifiers = new Map();
+	}
+}
+
+/**
+ * @type {Record<Number, Number>}
+ * @description Index : Multiplier
  */
 const affinityDamageModifier = {
-	[FU.affValue.vulnerability]: (damage) => damage * 2,
-	[FU.affValue.none]: (damage) => damage,
-	[FU.affValue.resistance]: (damage, { shift }) => (shift ? damage : Math.floor(damage / 2)),
-	[FU.affValue.immunity]: (damage, { shift, ctrl }) => (shift && ctrl ? damage : 0),
-	[FU.affValue.absorption]: (damage) => -damage,
-};
-
-const affinityKeys = {
-	[FU.affValue.vulnerability]: () => 'FU.ChatApplyDamageVulnerable',
-	[FU.affValue.none]: () => 'FU.ChatApplyDamageNormal',
-	[FU.affValue.resistance]: ({ shift }) => (shift ? 'FU.ChatApplyDamageResistantIgnored' : 'FU.ChatApplyDamageResistant'),
-	[FU.affValue.immunity]: ({ shift, ctrl }) => (shift && ctrl ? 'FU.ChatApplyDamageImmuneIgnored' : 'FU.ChatApplyDamageImmune'),
-	[FU.affValue.absorption]: () => 'FU.ChatApplyDamageAbsorb',
+	[FU.affValue.vulnerability]: 2,
+	[FU.affValue.none]: 1,
+	[FU.affValue.resistance]: 0.5,
+	[FU.affValue.immunity]: 0,
+	[FU.affValue.absorption]: -1,
 };
 
 /**
- * @type PipelineStep
+ * @param {DamagePipelineContext} context
+ * @return {Boolean}
  */
 function resolveAffinity(context) {
-	let affinity = FU.affValue.none; // Default to no affinity
-	let affinityIcon = '';
+	// Default to no affinity
+	let affinity = FU.affValue.none;
+	let affinityMessage = 'FU.ChatApplyDamageNormal';
 
 	if (context.overrides?.affinity) {
 		affinity = context.overrides.affinity;
-		affinityIcon = FU.affIcon[context.damageType];
 	} else if (context.damageType in context.actor.system.affinities) {
 		affinity = context.actor.system.affinities[context.damageType].current;
-		affinityIcon = FU.affIcon[context.damageType];
 	}
 
 	// Check if affinity should be ignored
-	if (affinity === FU.affValue.vulnerability && context.extraDamageInfo.ignoreVulnerable) {
-		affinity = FU.affValue.none;
+	if (affinity === FU.affValue.vulnerability) {
+		affinityMessage = 'FU.ChatApplyDamageVulnerable';
+		if (context.extraDamageInfo.ignoreVulnerable) {
+			affinity = FU.affValue.none;
+		}
 	}
-	if (affinity === FU.affValue.resistance && context.extraDamageInfo.ignoreResistance) {
-		affinity = FU.affValue.none;
+	if (affinity === FU.affValue.resistance) {
+		if (context.extraDamageInfo.ignoreResistance || context.traits.has(Traits.IgnoreResistance)) {
+			affinity = FU.affValue.none;
+			affinityMessage = 'FU.ChatApplyDamageResistantIgnored';
+		} else {
+			affinityMessage = `FU.ChatApplyDamageResistant`;
+		}
 	}
-	if (affinity === FU.affValue.immunity && context.extraDamageInfo.ignoreImmunities) {
-		affinity = FU.affValue.none;
+	if (affinity === FU.affValue.immunity) {
+		if (context.extraDamageInfo.ignoreImmunities || context.traits.has(Traits.IgnoreImmunity)) {
+			affinity = FU.affValue.none;
+			affinityMessage = `FU.ChatApplyDamageImmuneIgnored`;
+		} else {
+			affinityMessage = `FU.ChatApplyDamageImmune`;
+		}
 	}
-	if (affinity === FU.affValue.absorption && context.extraDamageInfo.ignoreAbsorption) {
-		affinity = FU.affValue.none;
+	if (affinity === FU.affValue.absorption) {
+		if (context.extraDamageInfo.ignoreAbsorption) {
+			affinity = FU.affValue.none;
+		} else {
+			affinityMessage = 'FU.ChatApplyDamageAbsorb';
+		}
 	}
 
+	context.affinityMessage = affinityMessage;
 	context.affinity = affinity;
-	context.affinityIcon = affinityIcon;
-
 	return true;
 }
 
 /**
- * @type PipelineStep
+ * @param {DamagePipelineContext} context
+ * @return {Boolean} True if the result was overridden
  */
-function useDamageFromOverride(context) {
+function overrideResult(context) {
 	if (context.overrides?.total) {
 		context.result = context.overrides.total;
-		return false;
+		return true;
 	}
-	return true;
+	return false;
 }
 
 /**
- * @param {PipelineContext} context
- * @return Boolean
+ * @param {DamagePipelineContext} context
+ * @return {Boolean}
  */
-function calculateAmount(context) {
-	let amount = context.extraDamageInfo.hrZero
-		? context.extraDamageInfo.damageBonus + context.baseDamageInfo.modifierTotal + (context.extraDamageInfo.extraDamage || 0)
-		: context.baseDamageInfo.total + (context.extraDamageInfo.damageBonus || 0) + (context.extraDamageInfo.extraDamage || 0);
-
+function collectBonuses(context) {
 	// Source
 	if (context.sourceActor) {
-		const outgoing = context.sourceActor.system.bonuses.damage;
-		amount += outgoing.all;
-		amount += outgoing[context.damageType] ?? 0;
+		if (context.sourceActor.system.bonuses) {
+			const outgoing = context.sourceActor.system.bonuses.damage;
+			context.bonuses.set('outgoingDamage.all', outgoing.all);
+			context.bonuses.set('outgoingDamage.damageType', outgoing[context.damageType] ?? 0);
+		}
 	}
 
 	// Target
-	const incoming = context.actor.system.bonuses.incomingDamage;
-	amount += incoming.all;
-	amount += incoming[context.damageType] ?? 0;
-
-	context.amount = amount;
-	Hooks.call(FUHooks.DAMAGE_PIPELINE_BEFORE_AFFINITIES, context);
+	if (context.actor.system.bonuses) {
+		const incoming = context.actor.system.bonuses.incomingDamage;
+		context.bonuses.set('incomingDamage.all', incoming.all);
+		context.bonuses.set('incomingDamage.damageType', incoming[context.damageType] ?? 0);
+	}
 }
 
 /**
- * @param {PipelineContext} context
- * @return Boolean
+ * @param {DamagePipelineContext} context
+ * @return {Boolean}
  * @remarks These flags can be set on an active effect with the key: `flags.projectfu.<SKILL>`, change mode: `Override`, effect value: `true`.
  */
-function applySkillModifiers(context) {
+function collectMultipliers(context) {
 	const target = context.actor;
-	let amount = context.amount;
 
-	// Zero Shield
+	// Custom Modifiers
 	const scaleIncomingDamage = target.getFlag(Flags.Scope, Flags.Modifier.ScaleIncomingDamage);
 	if (scaleIncomingDamage) {
-		amount = Math.floor(amount * scaleIncomingDamage);
+		context.modifiers.set('scaleIncomingDamage', scaleIncomingDamage);
+	}
+	// Affinities
+	context.modifiers.set('affinity', affinityDamageModifier[context.affinity]);
+}
+
+/**
+ * @description
+ * @param {DamagePipelineContext} context
+ * @return {Boolean}
+ */
+function calculateResult(context) {
+	Hooks.call(FUHooks.DAMAGE_PIPELINE_BEFORE_RESULT, context);
+
+	let result = context.amount;
+	// Bonuses (+-)
+	for (const [, value] of context.bonuses) {
+		result += value;
+	}
+	// Modifiers (*/)
+	for (const [, value] of context.modifiers) {
+		result *= value;
 	}
 
-	context.amount = amount;
-}
-
-/**
- * @param {PipelineContext} context
- * @return Boolean
- */
-function applyAffinityModifiers(context) {
-	const calculateDamage = affinityDamageModifier[context.affinity] ?? affinityDamageModifier[FU.affValue.none];
-	context.result = -calculateDamage(context.amount, context.clickModifiers);
-	Hooks.call(FUHooks.DAMAGE_PIPELINE_AFTER_AFFINITIES, context);
+	context.result = result;
+	Hooks.call(FUHooks.DAMAGE_PIPELINE_AFTER_RESULT, context);
 	return true;
-}
-
-/**
- * Registers the default steps used by the pipeline
- */
-function registerDefaultSteps() {
-	Hooks.on(FUHooks.DAMAGE_PIPELINE_STEP, resolveAffinity);
-	Hooks.on(FUHooks.DAMAGE_PIPELINE_STEP, useDamageFromOverride);
-	Hooks.on(FUHooks.DAMAGE_PIPELINE_STEP, calculateAmount);
-	Hooks.on(FUHooks.DAMAGE_PIPELINE_STEP, applySkillModifiers);
-	Hooks.on(FUHooks.DAMAGE_PIPELINE_STEP, applyAffinityModifiers);
 }
 
 /**
@@ -208,9 +232,14 @@ async function process(request) {
 
 	const updates = [];
 	for (const actor of request.targets) {
-		// Create an initial context then run the pipeline (invoke all the callback steps)
-		let context = new PipelineContext(request, actor);
-		Hooks.call(FUHooks.DAMAGE_PIPELINE_STEP, context);
+		// Create an initial context then run the pipeline
+		let context = new DamagePipelineContext(request, actor);
+		resolveAffinity(context);
+		if (!overrideResult(context)) {
+			collectBonuses(context);
+			collectMultipliers(context);
+			calculateResult(context);
+		}
 		if (context.result === undefined) {
 			throw new Error('Failed to generate result during pipeline');
 		}
@@ -220,19 +249,19 @@ async function process(request) {
 		Hooks.call(FUHooks.DAMAGE_APPLY_TARGET, applyTargetHookData);
 
 		// Damage application
-		const damageTaken = context.result;
+		const damageTaken = -context.result;
 		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
 		// Chat message
 		const affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
-			affinityIcon: context.affinityIcon,
+			affinityIcon: FU.affIcon[context.damageType],
 		});
 		updates.push(
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker({ actor }),
 				flavor: game.i18n.localize(FU.affType[context.affinity]),
 				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
-					message: affinityKeys[context.affinity](request.clickModifiers),
+					message: context.affinityMessage,
 					actor: actor.name,
 					damage: Math.abs(damageTaken),
 					type: affinityString,
@@ -244,6 +273,7 @@ async function process(request) {
 	return Promise.all(updates);
 }
 
+// TODO: Move elsewhere
 /**
  * @param {?} message
  * @param {jQuery} jQuery
@@ -336,12 +366,17 @@ function onRenderChatMessage(message, jQuery) {
 async function handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo) {
 	const sourceInfo = new InlineSourceInfo(sourceName, sourceUuid, null);
 	const request = new DamageRequest(sourceInfo, targets, baseDamageInfo, extraDamageInfo);
-	request.setEvent(event);
+	request.event = event;
+	if (event.shiftKey) {
+		request.traits.add(Traits.IgnoreResistance);
+		if (event.ctrlKey || event.metaKey) {
+			request.traits.add(Traits.IgnoreImmunity);
+		}
+	}
 	await DamagePipeline.process(request);
 }
 
 export const DamagePipeline = {
 	process,
-	registerDefaultSteps,
 	onRenderChatMessage,
 };
