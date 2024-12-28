@@ -7,6 +7,7 @@ import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { ApplyTargetHookData, BeforeApplyHookData } from './legacy-hook-data.mjs';
 
 /**
  * @typedef ApplyTargetOverrides
@@ -201,6 +202,10 @@ async function process(request) {
 		return Promise.reject('Request was not valid');
 	}
 
+	// TODO: Remove once users have migrated from legacy hooks
+	const beforeApplyHookData = new BeforeApplyHookData(request);
+	Hooks.call(FUHooks.DAMAGE_APPLY_BEFORE, beforeApplyHookData);
+
 	const updates = [];
 	for (const actor of request.targets) {
 		// Create an initial context then run the pipeline (invoke all the callback steps)
@@ -209,6 +214,10 @@ async function process(request) {
 		if (context.result === undefined) {
 			throw new Error('Failed to generate result during pipeline');
 		}
+
+		// TODO: Remove once users have migrated from legacy hooks
+		const applyTargetHookData = new ApplyTargetHookData(request, actor, context.result);
+		Hooks.call(FUHooks.DAMAGE_APPLY_TARGET, applyTargetHookData);
 
 		// Damage application
 		const damageTaken = context.result;
