@@ -70,6 +70,7 @@ const Traits = {
  * @property {Number} amount The base amount before bonuses or modifiers are applied
  * @property {Map<String, Number>} bonuses Increments
  * @property {Map<String, Number>} modifiers Multipliers
+ * @property {String} breakdown
  * @extends PipelineContext
  */
 export class DamagePipelineContext extends PipelineContext {
@@ -160,20 +161,27 @@ function overrideResult(context) {
  * @return {Boolean}
  */
 function collectIncrements(context) {
+	// Only collect if the value is not 0
+	function tryAdd(key, value) {
+		if (value !== 0) {
+			context.bonuses.set(key, value);
+		}
+	}
+
 	// Source
 	if (context.sourceActor) {
 		if (context.sourceActor.system.bonuses) {
 			const outgoing = context.sourceActor.system.bonuses.damage;
-			context.bonuses.set('outgoingDamage.all', outgoing.all);
-			context.bonuses.set('outgoingDamage.damageType', outgoing[context.damageType] ?? 0);
+			tryAdd('outgoingDamage.all', outgoing.all);
+			tryAdd(`outgoingDamage.${context.damageType}`, outgoing[context.damageType] ?? 0);
 		}
 	}
 
 	// Target
 	if (context.actor.system.bonuses) {
 		const incoming = context.actor.system.bonuses.incomingDamage;
-		context.bonuses.set('incomingDamage.all', incoming.all);
-		context.bonuses.set('incomingDamage.damageType', incoming[context.damageType] ?? 0);
+		tryAdd(`incomingDamage.all`, incoming.all);
+		tryAdd(`incomingDamage.${context.damageType}`, incoming[context.damageType] ?? 0);
 	}
 }
 
@@ -204,17 +212,23 @@ function collectMultipliers(context) {
  */
 function calculateResult(context) {
 	let result = context.amount;
+	let breakdown = `<ul>`;
+	breakdown += `<li> amount: ${context.amount} </li>`;
 
 	// Increments (+-)
-	for (const [, value] of context.bonuses) {
+	for (const [key, value] of context.bonuses) {
 		result += value;
+		breakdown += `<li> ${key}: +${value}</li>`;
 	}
 	// Multipliers (*)
-	for (const [, value] of context.modifiers) {
+	for (const [key, value] of context.modifiers) {
 		result *= value;
+		breakdown += `<li> ${key}: *${value}</li>`;
 	}
+	breakdown += `</ul>`;
 
 	context.result = result;
+	context.breakdown = breakdown;
 	Hooks.call(FUHooks.DAMAGE_PIPELINE_CALCULATE, context);
 	return true;
 }
@@ -257,6 +271,7 @@ async function process(request) {
 		const affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
 			affinityIcon: FU.affIcon[context.damageType],
+			breakdown: context.breakdown,
 		});
 		updates.push(
 			ChatMessage.create({
