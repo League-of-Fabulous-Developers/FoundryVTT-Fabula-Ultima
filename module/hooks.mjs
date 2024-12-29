@@ -5,23 +5,23 @@
  */
 export const FUHooks = {
 	/**
-	 * @description Modify the bonuses and modifiers before the result is calculated.
+	 * @description Add/modify the bonuses and modifiers before the result is calculated.
 	 * @example callback(context) { context.modifiers.set("foobar", 42); return true; }
 	 * @example callback(context) { context.modifiers.delete("affinity"); return true; }
 	 */
-	DAMAGE_PIPELINE_BEFORE_RESULT: 'projectfu.pipelines.damage.beforeResult',
+	DAMAGE_PIPELINE_COLLECT: 'projectfu.pipelines.damage.collect',
 	/**
 	 * @description Modify the result after it's been calculated.
 	 * @example callback(context) { context.result += 42; return true; }
 	 */
-	DAMAGE_PIPELINE_AFTER_RESULT: 'projectfu.pipelines.damage.afterResult',
+	DAMAGE_PIPELINE_CALCULATE: 'projectfu.pipelines.damage.calculate',
 	/**
-	 * @deprecated Replaced by {DAMAGE_PIPELINE_BEFORE_AFFINITIES}
+	 * @deprecated Replaced by {DAMAGE_PIPELINE_COLLECT}
 	 * @example calllback(data) { ... }
 	 */
 	DAMAGE_APPLY_BEFORE: 'projectfu.damage.beforeApply',
 	/**
-	 * @deprecated Replaced by {DAMAGE_PIPELINE_BEFORE_AFFINITIES}
+	 * @deprecated Replaced by {DAMAGE_PIPELINE_CALCULATE}
 	 * @example calllback(data) { ... }
 	 */
 	DAMAGE_APPLY_TARGET: 'projectfu.damage.applyTarget',

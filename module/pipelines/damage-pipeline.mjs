@@ -68,7 +68,7 @@ const Traits = {
  * @property {String} affinityMessage The localized affinity message to use
  * @property {FU.damageTypes} damageType
  * @property {Number} amount The base amount before bonuses or modifiers are applied
- * @property {Map<String, Number>} bonuses Increments / Decrements
+ * @property {Map<String, Number>} bonuses Increments
  * @property {Map<String, Number>} modifiers Multipliers
  * @extends PipelineContext
  */
@@ -159,7 +159,7 @@ function overrideResult(context) {
  * @param {DamagePipelineContext} context
  * @return {Boolean}
  */
-function collectBonuses(context) {
+function collectIncrements(context) {
 	// Source
 	if (context.sourceActor) {
 		if (context.sourceActor.system.bonuses) {
@@ -190,8 +190,11 @@ function collectMultipliers(context) {
 	if (scaleIncomingDamage) {
 		context.modifiers.set('scaleIncomingDamage', scaleIncomingDamage);
 	}
-	// Affinities
+
 	context.modifiers.set('affinity', affinityDamageModifier[context.affinity]);
+
+	// We invoke the hook here since the increment order doesn't matter; multipliers shouldn't matter outside of affinity going last.
+	Hooks.call(FUHooks.DAMAGE_PIPELINE_COLLECT, context);
 }
 
 /**
@@ -200,20 +203,19 @@ function collectMultipliers(context) {
  * @return {Boolean}
  */
 function calculateResult(context) {
-	Hooks.call(FUHooks.DAMAGE_PIPELINE_BEFORE_RESULT, context);
-
 	let result = context.amount;
-	// Bonuses (+-)
+
+	// Increments (+-)
 	for (const [, value] of context.bonuses) {
 		result += value;
 	}
-	// Modifiers (*/)
+	// Multipliers (*)
 	for (const [, value] of context.modifiers) {
 		result *= value;
 	}
 
 	context.result = result;
-	Hooks.call(FUHooks.DAMAGE_PIPELINE_AFTER_RESULT, context);
+	Hooks.call(FUHooks.DAMAGE_PIPELINE_CALCULATE, context);
 	return true;
 }
 
@@ -236,7 +238,7 @@ async function process(request) {
 		let context = new DamagePipelineContext(request, actor);
 		resolveAffinity(context);
 		if (!overrideResult(context)) {
-			collectBonuses(context);
+			collectIncrements(context);
 			collectMultipliers(context);
 			calculateResult(context);
 		}
