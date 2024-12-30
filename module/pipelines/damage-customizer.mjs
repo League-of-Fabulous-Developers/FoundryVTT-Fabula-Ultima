@@ -1,4 +1,3 @@
-// import { FUActor } from '../documents/actors/actor.mjs';
 import { FU } from '../helpers/config.mjs';
 import { getTargeted } from '../helpers/target-handler.mjs';
 

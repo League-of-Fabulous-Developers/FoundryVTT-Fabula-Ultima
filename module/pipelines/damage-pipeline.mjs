@@ -200,9 +200,6 @@ function collectMultipliers(context) {
 	}
 
 	context.modifiers.set('affinity', affinityDamageModifier[context.affinity]);
-
-	// We invoke the hook here since the increment order doesn't matter; multipliers shouldn't matter outside of affinity going last.
-	Hooks.call(FUHooks.DAMAGE_PIPELINE_COLLECT, context);
 }
 
 /**
@@ -211,6 +208,9 @@ function collectMultipliers(context) {
  * @return {Boolean}
  */
 function calculateResult(context) {
+	// We invoke the hook here since the increment order doesn't matter; multipliers shouldn't matter outside of affinity going last.
+	Hooks.call(FUHooks.DAMAGE_PIPELINE_PRE_CALCULATE, context);
+
 	let result = context.amount;
 	let breakdown = `<ul>`;
 	breakdown += `<li> amount: ${context.amount} </li>`;
@@ -229,7 +229,7 @@ function calculateResult(context) {
 
 	context.result = result;
 	context.breakdown = breakdown;
-	Hooks.call(FUHooks.DAMAGE_PIPELINE_CALCULATE, context);
+	Hooks.call(FUHooks.DAMAGE_PIPELINE_POST_CALCULATE, context);
 	return true;
 }
 
