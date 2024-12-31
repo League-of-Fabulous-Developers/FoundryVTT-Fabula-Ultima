@@ -9,12 +9,12 @@ export const FUHooks = {
 	 * @example callback(context) { context.modifiers.set("foobar", 42); return true; }
 	 * @example callback(context) { context.modifiers.delete("affinity"); return true; }
 	 */
-	DAMAGE_PIPELINE_PRE_CALCULATE: 'projectfu.pipelines.damage.collect',
+	DAMAGE_PIPELINE_PRE_CALCULATE: 'projectfu.pipelines.damage.preCalculate',
 	/**
 	 * @description Modify the result after it's been calculated.
 	 * @example callback(context) { context.result += 42; return true; }
 	 */
-	DAMAGE_PIPELINE_POST_CALCULATE: 'projectfu.pipelines.damage.calculate',
+	DAMAGE_PIPELINE_POST_CALCULATE: 'projectfu.pipelines.damage.postCalculate',
 	/**
 	 * @deprecated Replaced by {DAMAGE_PIPELINE_PRE_CALCULATE}
 	 * @example calllback(data) { ... }

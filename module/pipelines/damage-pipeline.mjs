@@ -85,6 +85,18 @@ export class DamagePipelineContext extends PipelineContext {
 			? this.extraDamageInfo.damageBonus + this.baseDamageInfo.modifierTotal + (this.extraDamageInfo.extraDamage || 0)
 			: this.baseDamageInfo.total + (this.extraDamageInfo.damageBonus || 0) + (this.extraDamageInfo.extraDamage || 0);
 	}
+
+	addBonus(key, value) {
+		if (value !== 0) {
+			this.bonuses.set(key, value);
+			return true;
+		}
+		return false;
+	}
+
+	addModifier(key, value) {
+		this.modifiers.set(key, value);
+	}
 }
 
 // TODO: Provide variant option to modify resistance/vulnerability scaling
@@ -168,27 +180,20 @@ function overrideResult(context) {
  * @return {Boolean}
  */
 function collectIncrements(context) {
-	// Only collect if the value is not 0
-	function tryAdd(key, value) {
-		if (value !== 0) {
-			context.bonuses.set(key, value);
-		}
-	}
-
 	// Source
 	if (context.sourceActor) {
 		if (context.sourceActor.system.bonuses) {
 			const outgoing = context.sourceActor.system.bonuses.damage;
-			tryAdd('outgoingDamage.all', outgoing.all);
-			tryAdd(`outgoingDamage.${context.damageType}`, outgoing[context.damageType] ?? 0);
+			context.addBonus('outgoingDamage.all', outgoing.all);
+			context.addBonus(`outgoingDamage.${context.damageType}`, outgoing[context.damageType] ?? 0);
 		}
 	}
 
 	// Target
 	if (context.actor.system.bonuses) {
 		const incoming = context.actor.system.bonuses.incomingDamage;
-		tryAdd(`incomingDamage.all`, incoming.all);
-		tryAdd(`incomingDamage.${context.damageType}`, incoming[context.damageType] ?? 0);
+		context.addBonus(`incomingDamage.all`, incoming.all);
+		context.addBonus(`incomingDamage.${context.damageType}`, incoming[context.damageType] ?? 0);
 	}
 }
 
@@ -203,10 +208,10 @@ function collectMultipliers(context) {
 	// Custom Modifiers
 	const scaleIncomingDamage = target.getFlag(Flags.Scope, Flags.Modifier.ScaleIncomingDamage);
 	if (scaleIncomingDamage) {
-		context.modifiers.set('scaleIncomingDamage', scaleIncomingDamage);
+		context.addModifier('scaleIncomingDamage', scaleIncomingDamage);
 	}
 
-	context.modifiers.set('affinity', affinityDamageModifier[context.affinity]);
+	context.addModifier('affinity', affinityDamageModifier[context.affinity]);
 }
 
 /**
