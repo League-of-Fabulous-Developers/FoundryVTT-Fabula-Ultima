@@ -29,7 +29,6 @@ export class DamageRequest extends PipelineRequest {
 		this.extraDamageInfo = extraDamageInfo;
 		this.damageType = this.extraDamageInfo.damageType || this.baseDamageInfo.type;
 		this.overrides = {};
-		this.amount = extraDamageInfo.hrZero ? extraDamageInfo.damageBonus + baseDamageInfo.modifierTotal + (extraDamageInfo.extraDamage || 0) : baseDamageInfo.total + (extraDamageInfo.damageBonus || 0) + (extraDamageInfo.extraDamage || 0);
 	}
 
 	/**
@@ -78,9 +77,17 @@ export class DamagePipelineContext extends PipelineContext {
 		super(request, actor);
 		this.bonuses = new Map();
 		this.modifiers = new Map();
+		this.calculateAmount();
+	}
+
+	calculateAmount() {
+		this.amount = this.extraDamageInfo.hrZero
+			? this.extraDamageInfo.damageBonus + this.baseDamageInfo.modifierTotal + (this.extraDamageInfo.extraDamage || 0)
+			: this.baseDamageInfo.total + (this.extraDamageInfo.damageBonus || 0) + (this.extraDamageInfo.extraDamage || 0);
 	}
 }
 
+// TODO: Provide variant option to modify resistance/vulnerability scaling
 /**
  * @type {Record<Number, Number>}
  * @description Index : Multiplier
@@ -245,11 +252,14 @@ async function process(request) {
 	// TODO: Remove once users have migrated from legacy hooks
 	const beforeApplyHookData = new BeforeApplyHookData(request);
 	Hooks.call(FUHooks.DAMAGE_APPLY_BEFORE, beforeApplyHookData);
+	request.baseDamageInfo = beforeApplyHookData.baseDamageInfo;
+	request.extraDamageInfo = beforeApplyHookData.extraDamageInfo;
 
 	const updates = [];
 	for (const actor of request.targets) {
 		// Create an initial context then run the pipeline
 		let context = new DamagePipelineContext(request, actor);
+
 		resolveAffinity(context);
 		if (!overrideResult(context)) {
 			collectIncrements(context);
@@ -263,6 +273,7 @@ async function process(request) {
 		// TODO: Remove once users have migrated from legacy hooks
 		const applyTargetHookData = new ApplyTargetHookData(request, actor, context.result);
 		Hooks.call(FUHooks.DAMAGE_APPLY_TARGET, applyTargetHookData);
+		context.result = applyTargetHookData.total;
 
 		// Damage application
 		const damageTaken = -context.result;
