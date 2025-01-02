@@ -1,3 +1,6 @@
 <section>
-    {{{localize message actor=actor damage=damage type=type from=from}}}
+    {{{localize message actor=actor damage=damage type=type from=from}}}.
+    <a data-action="revertDamage" data-uuid="{{uuid}}" data-amount="{{damage}}" data-tooltip="{{localize 'FU.ChatRevertDamage'}}">
+        <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-undo"></i></span>
+    </a>
 </section>

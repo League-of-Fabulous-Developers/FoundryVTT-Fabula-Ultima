@@ -125,6 +125,10 @@ function activateListeners(document, html) {
 }
 
 function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInfo, uncapped }) {
+	if (sourceInfo === undefined) {
+		return true;
+	}
+
 	const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
 	amount = Expressions.evaluate(amount, context);
 

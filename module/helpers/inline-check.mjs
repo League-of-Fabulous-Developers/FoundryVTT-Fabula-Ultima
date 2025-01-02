@@ -3,17 +3,19 @@ import { targetHandler } from './target-handler.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DifficultyLevel } from '../checks/difficulty-level.mjs';
+import { InlineHelper } from './inline-helper.mjs';
+import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 
 /**
  * @type {TextEditorEnricherConfig}
  */
 const inlineCheckEnricher = {
-	pattern: /@CHECK\[\s*(?<first>\w+)\s*(?<second>\w+)\s*(?<level>\w+)?\]/g,
+	pattern: /@CHECK\[\s*(?<first>\w+)\s*(?<second>\w+)\s*(?<modifier>\(.*?\))*\s*(?<level>\w+)?\]/g,
 	enricher: checkEnricher,
 };
 
 /**
- * @param {*} match The text within a chat message that matches the given pattern
+ * @param {RegExpMatchArray} match The text within a chat message that matches the given pattern
  * @param {*} options
  * @returns A formatted html element
  */
@@ -23,10 +25,11 @@ function checkEnricher(match, options) {
 
 	if (first in FU.attributes && second in FU.attributes) {
 		const anchor = document.createElement('a');
-		anchor.setAttribute('data-tooltip', game.i18n.localize('FU.InlineRollCheck'));
 		anchor.dataset.first = first;
 		anchor.dataset.second = second;
 		anchor.classList.add('inline', 'inline-check');
+
+		let tooltip = game.i18n.localize('FU.InlineRollCheck');
 
 		// ICON
 		const icon = document.createElement('i');
@@ -40,13 +43,24 @@ function checkEnricher(match, options) {
 		anchor.append(connectorIcon);
 		// SECOND ATTRIBUTE
 		anchor.append(` ${game.i18n.localize(FU.attributeAbbreviations[second])} `);
+		// [OPTIONAL] Modifier
+		let modifier = match.groups.modifier;
+		if (modifier) {
+			const modifierConnector = document.createElement(`i`);
+			modifierConnector.classList.add(`connector`, `fa-plus`);
+			modifierConnector.textContent = ' ';
+			anchor.append(modifierConnector);
+			InlineHelper.appendVariableToAnchor(anchor, 'modifier', modifier, `MOD`);
+			tooltip += ` Modifier: (${modifier})`;
+		} else {
+			anchor.dataset.modifier = 0;
+		}
 		// [OPTIONAL] DIFFICULTY
-		let level = match[3];
+		let level = match.groups.level;
 		if (level !== undefined) {
 			appendDifficulty(level, anchor);
-		} else {
-			anchor.dataset.difficulty = -1;
 		}
+		anchor.setAttribute('data-tooltip', tooltip);
 		return anchor;
 	}
 	return null;
@@ -87,26 +101,55 @@ function activateListeners(document, html) {
 		document = document.document;
 	}
 
-	html.find('a.inline.inline-check').on('click', async function () {
+	html.find('a.inline.inline-check').on('click', async function (event) {
 		const first = this.dataset.first;
 		const second = this.dataset.second;
-		const difficulty = this.dataset.difficulty;
+		let difficulty = this.dataset.difficulty;
+		const prompt = event.shiftKey;
 
 		let attributes = {
 			primary: first,
 			secondary: second,
 		};
 
-		let callback = undefined;
-
-		if (difficulty > 0) {
-			callback = CheckConfiguration.initDifficulty(difficulty);
-		}
-
 		let targets = await targetHandler();
 		if (targets.length > 0) {
 			for (const actor of targets) {
-				ChecksV2.attributeCheck(actor, attributes, callback);
+				ChecksV2.attributeCheck(actor, attributes, async (check) => {
+					let config = CheckConfiguration.configure(check);
+					let modifier = 0;
+
+					if (this.dataset.modifier !== undefined) {
+						const sourceInfo = InlineHelper.determineSource(document, this);
+						const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
+						modifier = Expressions.evaluate(this.dataset.modifier, context);
+					}
+
+					if (prompt) {
+						const promptResult = await ChecksV2.promptConfiguration(
+							actor,
+							{
+								primary: check.primary,
+								secondary: check.secondary,
+								modifier: modifier,
+								difficulty: difficulty,
+							},
+							null,
+						);
+
+						config.setAttributes(promptResult.primary, promptResult.secondary);
+						modifier = promptResult.modifier;
+						difficulty = promptResult.difficulty;
+					}
+
+					if (difficulty > 0) {
+						config.setDifficulty(difficulty);
+					}
+
+					if (modifier !== 0) {
+						config.addModifier('Inline Modifier', modifier);
+					}
+				});
 			}
 		}
 	});

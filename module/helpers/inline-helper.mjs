@@ -90,7 +90,24 @@ function appendAmountToAnchor(anchor, amount) {
 	}
 }
 
+/**
+ * @param {HTMLAnchorElement} anchor
+ * @param {String} key The key in the `anchor.dataset`
+ * @param {String} expression
+ * @param {String} localization
+ */
+function appendVariableToAnchor(anchor, key, expression, localization = 'FU.Variable') {
+	anchor.dataset[key] = expression;
+	const dynamicAmount = Expressions.requiresContext(expression);
+	if (dynamicAmount) {
+		anchor.append(game.i18n.localize(localization));
+	} else {
+		anchor.append(expression);
+	}
+}
+
 export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
+	appendVariableToAnchor,
 };

@@ -230,7 +230,7 @@ function calculateResult(context) {
 	// Increments (+-)
 	for (const [key, value] of context.bonuses) {
 		result += value;
-		breakdown += `<li> ${key}: +${value}</li>`;
+		breakdown += `<li> ${key}: ${value}</li>`;
 	}
 	// Multipliers (*)
 	for (const [key, value] of context.modifiers) {
@@ -285,6 +285,7 @@ async function process(request) {
 		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
 		// Chat message
 		const affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
+			damage: Math.abs(damageTaken),
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
 			affinityIcon: FU.affIcon[context.damageType],
 			breakdown: context.breakdown,
@@ -296,6 +297,7 @@ async function process(request) {
 				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
 					message: context.affinityMessage,
 					actor: actor.name,
+					uuid: actor.uuid,
 					damage: Math.abs(damageTaken),
 					type: affinityString,
 					from: request.sourceInfo.name,
@@ -367,6 +369,7 @@ function onRenderChatMessage(message, jQuery) {
 	jQuery.find(`a[data-action=applySingleDamage]`).click((event) => handleClick(event, Pipeline.getSingleTarget));
 	jQuery.find(`a[data-action=applySelectedDamage]`).click((event) => handleClick(event, getSelected));
 	jQuery.find(`a[data-action=applyTargetedDamage]`).click((event) => handleClick(event, getTargeted));
+
 	jQuery.find(`a[data-action=selectDamageCustomizer]`).click(async (event) => {
 		if (!disabled) {
 			disabled = true;
@@ -383,6 +386,28 @@ function onRenderChatMessage(message, jQuery) {
 				},
 			);
 		}
+	});
+
+	const revertDamage = jQuery.find(`a[data-action=revertDamage]`);
+	revertDamage.click(async (event) => {
+		const amount = revertDamage.data(`amount`);
+		const uuid = revertDamage.data(`uuid`);
+		const target = fromUuidSync(uuid);
+		const updates = [];
+		const amountRecovered = Math.max(0, amount + (target.system.bonuses.incomingRecovery['hp'] || 0));
+		updates.push(target.modifyTokenAttribute('resources.hp', amountRecovered, true));
+
+		// Disable the revert
+		event.preventDefault();
+		revertDamage.addClass('disabled').css({
+			'pointer-events': 'none',
+			opacity: '0.5',
+		});
+		jQuery.addClass('strikethrough').css({
+			'text-decoration': 'line-through',
+		});
+
+		return Promise.all(updates);
 	});
 }
 
