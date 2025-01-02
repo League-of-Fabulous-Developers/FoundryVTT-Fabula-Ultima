@@ -1,6 +1,7 @@
 import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
+import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 
 const CRISIS_INTERACTION = 'CrisisInteraction';
 const EFFECT_TYPE = 'type';
@@ -144,11 +145,15 @@ export class FUActiveEffect extends ActiveEffect {
 	}
 
 	apply(target, change) {
+		// Support expressions
 		if (change.value && typeof change.value === 'string') {
 			try {
+				// First, evaluate using built-in support
 				const expression = Roll.replaceFormulaData(change.value, this.parent);
-				const value = Roll.validate(expression) ? Roll.safeEval(expression) : change.value;
-				console.debug('Substituting change variable:', change.value, value);
+				// Second, evaluate with our custom expressions
+				const context = ExpressionContext.resolveTarget(target);
+				const value = Expressions.evaluate(expression, context);
+				console.debug('Substituting active effect change variable:', change.value, value);
 				change.value = String(value ?? 0);
 			} catch (e) {
 				console.error(e);
