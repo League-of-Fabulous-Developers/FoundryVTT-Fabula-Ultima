@@ -76,34 +76,35 @@ class CheckConfigurer {
 		return this;
 	}
 
-	/**
-	 * @description Add general damage bonuses
-	 * @param {FUActor} actor
-	 * @param {FUItem} item
-	 */
-	addDefaultDamageBonuses(item, actor) {
-		// All Damage
-		const globalBonus = actor.system.bonuses.damage.all;
-		if (globalBonus) {
-			this.addDamageBonus(`FU.DamageBonusAll`, globalBonus);
-		}
-		// Damage Type
-		const damageTypeBonus = actor.system.bonuses.damage[item.system.damageType.value];
-		if (damageTypeBonus) {
-			this.addDamageBonus(`FU.DamageBonus${item.system.damageType.value}`, damageTypeBonus);
-		}
-		// Attack Type
-		const attackTypeBonus = actor.system.bonuses.damage[item.system.type.value] ?? 0;
-		if (attackTypeBonus) {
-			this.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
-		}
-		// Weapon Category
-		const weaponCategoryBonus = actor.system.bonuses.damage[item.system.category.value] ?? 0;
-		if (weaponCategoryBonus) {
-			this.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
-		}
-		return this;
-	}
+    /**
+     * @description Add general damage bonuses
+     * @param {FUActor} actor
+     * @param {FUItem} item
+     */
+    addDefaultDamageBonuses(item, actor) {
+
+        // All Damage
+        const globalBonus = actor.system.bonuses.damage.all;
+        if (globalBonus) {
+            this.addDamageBonus(`FU.DamageBonusAll`, globalBonus)
+        }
+        // Damage Type
+        const damageTypeBonus = actor.system.bonuses.damage[item.system.damageType.value];
+        if (damageTypeBonus) {
+            this.addDamageBonus(`FU.DamageBonus${item.system.damageType.value}`, damageTypeBonus);
+        }
+        // Attack Type
+        const attackTypeBonus = actor.system.bonuses.damage[item.system.type.value] ?? 0;
+        if (attackTypeBonus) {
+            this.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
+        }
+        // Weapon Category
+        const weaponCategoryBonus = actor.system.bonuses.damage[item.system.category.value] ?? 0;
+        if (weaponCategoryBonus) {
+            this.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
+        }
+        return this;
+    }
 
 	/**
 	 * @param {(damage: DamageData | null) => DamageData | null} callback
