@@ -26,7 +26,11 @@ async function prompt(actor) {
 	const offHand = getWeapon(actor, 'offHand');
 	const armor = getWeapon(actor, 'armor');
 
-	const equippedWeapons = [mainHand, offHand, armor].filter((value) => value);
+	let equippedWeapons = [mainHand, armor];
+	if (offHand !== mainHand) {
+		equippedWeapons.push(offHand);
+	}
+	equippedWeapons = equippedWeapons.filter((value) => value);
 
 	if (!equippedWeapons.length) {
 		return false;
@@ -45,8 +49,8 @@ async function prompt(actor) {
 
 	const selectedWeapon = await new Promise((resolve) => {
 		const dialog = new Dialog({
-			title: 'FU.ChooseWeaponDialogTitle',
-			label: 'FU.Submit',
+			title: game.i18n.localize('FU.ChooseWeaponDialogTitle'),
+			label: game.i18n.localize('FU.Submit'),
 			rejectClose: false,
 			content: content,
 			render: (jQuery) => {

@@ -48,7 +48,6 @@ import { registerOptionalFeatures } from './documents/items/optionalFeature/opti
 
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
 import { FUActiveEffect } from './documents/effects/active-effect.mjs';
-import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
 import { InlineResources } from './helpers/inline-resources.mjs';
@@ -66,6 +65,7 @@ import { ActionHandler } from './helpers/action-handler.mjs';
 import { StudyRollHandler } from './helpers/study-roll.mjs';
 import { ItemCustomizer } from './helpers/item-customizer.mjs';
 import { FUHooks } from './hooks.mjs';
+import { DamagePipeline } from './pipelines/damage-pipeline.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -228,7 +228,7 @@ Hooks.once('init', async () => {
 	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
-	registerChatInteraction();
+	Hooks.on('renderChatMessage', DamagePipeline.onRenderChatMessage);
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);

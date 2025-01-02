@@ -2,6 +2,7 @@ import { FU } from './config.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { InlineHelper } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
+import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
 
 const INLINE_RECOVERY = 'InlineRecovery';
 const INLINE_LOSS = 'InlineLoss';
@@ -23,33 +24,6 @@ const inlineRecoveryEnricher = {
 const inlineLossEnricher = {
 	pattern: /@LOSS\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]/gi,
 	enricher: lossEnricher,
-};
-
-const recoveryFlavor = {
-	hp: 'FU.HealthPointRecovery',
-	mp: 'FU.MindPointRecovery',
-	ip: 'FU.InventoryPointRecovery',
-	fp: 'FU.TextEditorButtonCommandGain',
-	exp: 'FU.TextEditorButtonCommandGain',
-	zenit: 'FU.TextEditorButtonCommandGain',
-};
-
-const lossFlavor = {
-	hp: 'FU.HealthPointLoss',
-	mp: 'FU.MindPointLoss',
-	ip: 'FU.InventoryPointLoss',
-	fp: 'FU.TextEditorButtonCommandLoss',
-	exp: 'FU.TextEditorButtonCommandLoss',
-	zenit: 'FU.TextEditorButtonCommandLoss',
-};
-
-const messages = {
-	hp: 'FU.HealthPointRecoveryMessage',
-	mp: 'FU.MindPointRecoveryMessage',
-	ip: 'FU.InventoryPointRecoveryMessage',
-	fp: 'FU.ChatResourceGain',
-	exp: 'FU.ChatResourceGain',
-	zenit: 'FU.ChatResourceGain',
 };
 
 function createReplacementElement(amount, type, elementClass, uncapped, tooltip) {
@@ -124,9 +98,9 @@ function activateListeners(document, html) {
 				const amount = Expressions.evaluate(this.dataset.amount, context);
 
 				if (this.classList.contains(classInlineRecovery)) {
-					targets.forEach((actor) => applyRecovery(actor, type, amount, sourceInfo.name || 'inline recovery', uncapped));
+					await applyRecovery(sourceInfo, targets, type, amount, uncapped);
 				} else if (this.classList.contains(classInlineLoss)) {
-					targets.forEach((actor) => applyLoss(actor, type, amount, sourceInfo.name || 'inline loss'));
+					await applyLoss(sourceInfo, targets, type, amount);
 				}
 			}
 		})
@@ -155,93 +129,22 @@ function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInfo, unc
 	amount = Expressions.evaluate(amount, context);
 
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
-		applyRecovery(actor, recoveryType, amount, sourceInfo.name, uncapped);
+		applyRecovery(sourceInfo, [actor], recoveryType, amount, uncapped);
 		return false;
 	} else if (type === INLINE_LOSS && !Number.isNaN(amount)) {
-		applyLoss(actor, recoveryType, amount, sourceInfo.name);
+		applyLoss(sourceInfo, [actor], recoveryType, amount);
 		return false;
 	}
 }
 
-async function applyRecovery(actor, resource, amount, source, uncapped) {
-	const amountRecovered = Math.max(0, amount + (actor.system.bonuses.incomingRecovery[resource] || 0));
-	const isValue = resource === 'fp' || resource === 'exp' || resource === 'zenit';
-	const attrKey = `resources.${resource}`;
-	const attr = foundry.utils.getProperty(actor.system, attrKey);
-	const uncappedRecoveryValue = amountRecovered + attr.value;
-	const updates = [];
-
-	// Handle uncapped recovery logic
-	if (uncapped === true && uncappedRecoveryValue > (attr.max || 0) && !isValue) {
-		// Overheal recovery
-		const newValue = Object.defineProperties({}, Object.getOwnPropertyDescriptors(attr)); // Clone attribute
-		newValue.value = uncappedRecoveryValue;
-		updates.push(actor.modifyTokenAttribute(attrKey, newValue, false, false));
-	} else if (!isValue) {
-		// Normal recovery
-		updates.push(actor.modifyTokenAttribute(attrKey, amountRecovered, true));
-	}
-
-	// Handle specific cases for fp and exp
-	if (isValue) {
-		const currentValue = parseInt(foundry.utils.getProperty(actor.system, `resources.${resource}.value`), 10) || 0;
-		const newValue = Math.floor(currentValue) + Math.floor(amountRecovered);
-
-		// Update the actor's resource directly
-		const updateData = {
-			[`system.resources.${resource}.value`]: Math.floor(newValue),
-		};
-		await actor.update(updateData);
-	}
-
-	updates.push(
-		ChatMessage.create({
-			speaker: ChatMessage.getSpeaker({ actor }),
-			flavor: game.i18n.localize(recoveryFlavor[resource]),
-			content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-recovery.hbs', {
-				message: messages[resource],
-				actor: actor.name,
-				amount: amountRecovered,
-				resource: game.i18n.localize(FU.resources[resource]),
-				from: source,
-			}),
-		}),
-	);
-	return Promise.all(updates);
+async function applyRecovery(sourceInfo, targets, resourceType, amount, uncapped) {
+	const request = new ResourceRequest(sourceInfo, targets, resourceType, amount, uncapped);
+	return ResourcePipeline.processRecovery(request);
 }
 
-async function applyLoss(actor, resource, amount, source) {
-	const amountLost = -amount;
-	const isValue = resource === 'fp' || resource === 'exp' || resource === 'zenit';
-	const updates = [];
-
-	// Handle specific cases for fp and exp
-	if (isValue) {
-		const currentValue = foundry.utils.getProperty(actor.system, `resources.${resource}.value`) || 0;
-		const newValue = Math.floor(currentValue) + Math.floor(amountLost);
-
-		// Update the actor's resource directly
-		const updateData = {};
-		updateData[`system.resources.${resource}.value`] = Math.floor(newValue);
-		await actor.update(updateData);
-	} else {
-		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountLost, true));
-	}
-
-	updates.push(
-		ChatMessage.create({
-			speaker: ChatMessage.getSpeaker({ actor }),
-			flavor: game.i18n.localize(lossFlavor[resource]),
-			content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-loss.hbs', {
-				message: 'FU.ChatResourceLoss',
-				actor: actor.name,
-				amount: amount,
-				resource: game.i18n.localize(FU.resources[resource]),
-				from: source,
-			}),
-		}),
-	);
-	return Promise.all(updates);
+async function applyLoss(sourceInfo, targets, resourceType, amount) {
+	const request = new ResourceRequest(sourceInfo, targets, resourceType, amount);
+	return ResourcePipeline.processLoss(request);
 }
 
 export const InlineResources = {
