@@ -84,7 +84,7 @@ class CheckConfigurer {
 	addDefaultAccuracyBonuses(item, actor) {
 		const category = item.system.category?.value;
 		if (category && actor.system.bonuses.accuracy[category]) {
-			this.#check.push({
+			this.#check.modifiers.push({
 				label: `FU.AccuracyCheckBonus${category.capitalize()}`,
 				value: actor.system.bonuses.accuracy[category],
 			});
