@@ -24,28 +24,9 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 				value: baseAccuracy,
 			});
 		}
-		const category = item.system.category?.value;
-		if (category && actor.system.bonuses.accuracy[category]) {
-			check.modifiers.push({
-				label: `FU.AccuracyCheckBonus${category.capitalize()}`,
-				value: actor.system.bonuses.accuracy[category],
-			});
-		}
-
-		const attackType = item.system.type?.value;
-		if (attackType === 'melee' && actor.system.bonuses.accuracy.accuracyMelee) {
-			check.modifiers.push({
-				label: 'FU.AccuracyCheckBonusMelee',
-				value: actor.system.bonuses.accuracy.accuracyMelee,
-			});
-		} else if (attackType === 'ranged' && actor.system.bonuses.accuracy.accuracyRanged) {
-			check.modifiers.push({
-				label: 'FU.AccuracyCheckBonusRanged',
-				value: actor.system.bonuses.accuracy.accuracyRanged,
-			});
-		}
 
 		AccuracyCheck.configure(check)
+			.addDefaultAccuracyBonuses(item, actor)
 			.setDamage(item.system.damageType.value, item.system.damage.value)
 			.setTargetedDefense(item.system.defense)
 			.addDefaultDamageBonuses(item, actor)

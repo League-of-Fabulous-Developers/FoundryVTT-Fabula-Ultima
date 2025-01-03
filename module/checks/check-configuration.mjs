@@ -76,35 +76,62 @@ class CheckConfigurer {
 		return this;
 	}
 
-    /**
-     * @description Add general damage bonuses
-     * @param {FUActor} actor
-     * @param {FUItem} item
-     */
-    addDefaultDamageBonuses(item, actor) {
+	/**
+	 * @description Add default accuracy bonuses
+	 * @param {FUActor} actor
+	 * @param {FUItem} item
+	 */
+	addDefaultAccuracyBonuses(item, actor) {
+		const category = item.system.category?.value;
+		if (category && actor.system.bonuses.accuracy[category]) {
+			this.#check.push({
+				label: `FU.AccuracyCheckBonus${category.capitalize()}`,
+				value: actor.system.bonuses.accuracy[category],
+			});
+		}
+		const attackType = item.system.type?.value;
+		if (attackType === 'melee' && actor.system.bonuses.accuracy.accuracyMelee) {
+			this.#check.modifiers.push({
+				label: 'FU.AccuracyCheckBonusMelee',
+				value: actor.system.bonuses.accuracy.accuracyMelee,
+			});
+		} else if (attackType === 'ranged' && actor.system.bonuses.accuracy.accuracyRanged) {
+			this.#check.modifiers.push({
+				label: 'FU.AccuracyCheckBonusRanged',
+				value: actor.system.bonuses.accuracy.accuracyRanged,
+			});
+		}
+		return this;
+	}
 
-        // All Damage
-        const globalBonus = actor.system.bonuses.damage.all;
-        if (globalBonus) {
-            this.addDamageBonus(`FU.DamageBonusAll`, globalBonus)
-        }
-        // Damage Type
-        const damageTypeBonus = actor.system.bonuses.damage[item.system.damageType.value];
-        if (damageTypeBonus) {
-            this.addDamageBonus(`FU.DamageBonus${item.system.damageType.value}`, damageTypeBonus);
-        }
-        // Attack Type
-        const attackTypeBonus = actor.system.bonuses.damage[item.system.type.value] ?? 0;
-        if (attackTypeBonus) {
-            this.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
-        }
-        // Weapon Category
-        const weaponCategoryBonus = actor.system.bonuses.damage[item.system.category.value] ?? 0;
-        if (weaponCategoryBonus) {
-            this.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
-        }
-        return this;
-    }
+	/**
+	 * @description Add default damage bonuses
+	 * @param {FUActor} actor
+	 * @param {FUItem} item
+	 */
+	addDefaultDamageBonuses(item, actor) {
+		// All Damage
+		const globalBonus = actor.system.bonuses.damage.all;
+		if (globalBonus) {
+			this.addDamageBonus(`FU.DamageBonusAll`, globalBonus);
+		}
+		// Damage Type
+		const damageTypeBonus = actor.system.bonuses.damage[item.system.damageType.value];
+		if (damageTypeBonus) {
+			this.addDamageBonus(`FU.DamageBonus${item.system.damageType.value}`, damageTypeBonus);
+		}
+		// Attack Type
+		const attackTypeBonus = actor.system.bonuses.damage[item.system.type.value] ?? 0;
+		if (attackTypeBonus) {
+			this.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
+		}
+		// Weapon Category
+		const weaponCategoryBonus = actor.system.bonuses.damage[item.system.category.value] ?? 0;
+		if (weaponCategoryBonus) {
+			this.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
+		}
+		return this;
+	}
 
 	/**
 	 * @param {(damage: DamageData | null) => DamageData | null} callback

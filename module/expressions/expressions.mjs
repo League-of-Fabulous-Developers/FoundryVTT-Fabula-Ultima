@@ -18,18 +18,17 @@ export class ExpressionContext {
 		this.targets = targets;
 	}
 
-    /**
-     * @description Resolves the context based on the target type
-     * @param {FUActor|FUItem} target
-     */
-    static resolveTarget(target) {
-        if (target instanceof FUActor) {
-            return new ExpressionContext(target, null,[])
-        }
-        else if (target instanceof FUItem) {
-            return new ExpressionContext(null, target,[])
-        }
-    }
+	/**
+	 * @description Resolves the context based on the target type
+	 * @param {FUActor|FUItem} target
+	 */
+	static resolveTarget(target) {
+		if (target instanceof FUActor) {
+			return new ExpressionContext(target, null, []);
+		} else if (target instanceof FUItem) {
+			return new ExpressionContext(null, target, []);
+		}
+	}
 
 	/**
 	 * @param {String} actorUuid
