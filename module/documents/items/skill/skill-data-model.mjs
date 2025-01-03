@@ -44,31 +44,17 @@ const onPrepareAccuracyCheck = (check, actor, item, registerCallback) => {
 					if (skillData.rollInfo.useWeapon.damage.value) {
 						configurer
 							.setDamage(weaponData.damageType.value, weaponData.damage.value)
+							.addItemAccuracyBonuses(weapon, actor)
+							.addItemDamageBonuses(weapon, actor)
 							.modifyHrZero((hrZero) => hrZero || skillData.rollInfo.useWeapon.hrZero.value)
 							.setTargetedDefense(weaponData.defense);
-
-						const { [weaponData.type.value]: weaponTypeDamageBonus, [weaponData.category.value]: weaponCategoryDamageBonus } = actor.system.bonuses.damage;
-
-						if (weaponTypeDamageBonus) {
-							configurer.addDamageBonus(`FU.DamageBonusType${weaponData.type.value.capitalize()}`, weaponTypeDamageBonus);
-						}
-						if (weaponCategoryDamageBonus) {
-							configurer.addDamageBonus(`FU.DamageBonusCategory${weaponData.category.value.capitalize()}`, weaponCategoryDamageBonus);
-						}
 					} else {
 						configurer
 							.setDamage(skillData.rollInfo.damage.type.value, skillData.rollInfo.damage.value)
+							.addItemDamageBonuses(weapon, actor)
+							.addItemAccuracyBonuses(weapon, actor)
 							.modifyHrZero((hrZero) => hrZero || skillData.rollInfo.useWeapon.hrZero.value)
 							.setTargetedDefense(weaponData.defense);
-
-						const { [weaponData.type.value]: weaponTypeDamageBonus, [weaponData.category.value]: weaponCategoryDamageBonus } = actor.system.bonuses.damage;
-
-						if (weaponTypeDamageBonus) {
-							configurer.addDamageBonus(`FU.DamageBonusType${weaponData.type.value.capitalize()}`, weaponTypeDamageBonus);
-						}
-						if (weaponCategoryDamageBonus) {
-							configurer.addDamageBonus(`FU.DamageBonusCategory${weaponData.category.value.capitalize()}`, weaponCategoryDamageBonus);
-						}
 					}
 				}
 			} else {

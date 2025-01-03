@@ -1175,6 +1175,7 @@
 		"CheckPushModifier": "Bond Strength Bonus",
 		"MagicCheckBaseAccuracy": "Base Magic Accuracy",
 		"MagicCheckBonusGeneric": "Generic Magic Check Bonus",
+		"DamageBonusAll": "Global Damage Bonus",
 		"DamageBonusTypeSpell": "Spell Damage Bonus",
 		"DamageBonusTypeMelee": "Melee Damage Bonus",
 		"DamageBonusTypeRanged": "Ranged Damage Bonus",

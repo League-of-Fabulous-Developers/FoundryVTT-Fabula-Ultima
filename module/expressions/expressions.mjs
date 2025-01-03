@@ -1,5 +1,7 @@
 import { ImprovisedEffect } from '../helpers/improvised-effect.mjs';
 import { MathHelper } from '../helpers/math-helper.mjs';
+import { FUActor } from '../documents/actors/actor.mjs';
+import { FUItem } from '../documents/items/item.mjs';
 
 /**
  * @description Contains contextual objects used for evaluating expressions
@@ -14,6 +16,18 @@ export class ExpressionContext {
 		this.actor = actor;
 		this.item = item;
 		this.targets = targets;
+	}
+
+	/**
+	 * @description Resolves the context based on the target type
+	 * @param {FUActor|FUItem} target
+	 */
+	static resolveTarget(target) {
+		if (target instanceof FUActor) {
+			return new ExpressionContext(target, null, []);
+		} else if (target instanceof FUItem) {
+			return new ExpressionContext(null, target, []);
+		}
 	}
 
 	/**
@@ -234,10 +248,11 @@ function stepByLevel(actor, first, second, third) {
 }
 
 /**
- * Evaluates properties  within the expression using the available context
+ * Evaluates properties within the expression using the available context
  * @param {String}  expression
  * @param {ExpressionContext} context
  * @returns {String}
+ * @example @system.value.thingie
  */
 function evaluateReferencedProperties(expression, context) {
 	const pattern = /(?<variable>@([a-zA-Z]+\.?)+)/gm;
@@ -254,6 +269,10 @@ function evaluateReferencedProperties(expression, context) {
 			context.assertActor(match);
 			root = context.actor;
 			propertyPath = match.replace(`${referenceSymbol}${actorLabel}.`, 'system.');
+		}
+		// Don't evaluate the built-in expressions
+		else {
+			return match;
 		}
 
 		// Evaluate the property value

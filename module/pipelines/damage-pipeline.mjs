@@ -230,7 +230,7 @@ function calculateResult(context) {
 	// Increments (+-)
 	for (const [key, value] of context.bonuses) {
 		result += value;
-		breakdown += `<li> ${key}: +${value}</li>`;
+		breakdown += `<li> ${key}: ${value}</li>`;
 	}
 	// Multipliers (*)
 	for (const [key, value] of context.modifiers) {
