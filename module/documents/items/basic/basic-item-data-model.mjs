@@ -20,9 +20,8 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			label: 'FU.AccuracyCheckBaseAccuracy',
 			value: item.system.accuracy.value,
 		});
-		const attackTypeBonus = actor.system.bonuses.damage[item.system.type.value] ?? 0;
 		AccuracyCheck.configure(check)
-			.setDamage(item.system.damageType.value, item.system.damage.value + attackTypeBonus)
+			.setDamage(item.system.damageType.value, item.system.damage.value)
 			.setTargetedDefense(item.system.defense)
 			.addDefaultAccuracyBonuses(item, actor)
 			.addDefaultDamageBonuses(item, actor)

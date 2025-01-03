@@ -126,9 +126,11 @@ class CheckConfigurer {
 			this.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
 		}
 		// Weapon Category
-		const weaponCategoryBonus = actor.system.bonuses.damage[item.system.category.value] ?? 0;
-		if (weaponCategoryBonus) {
-			this.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
+		if (item.system.category) {
+			const weaponCategoryBonus = actor.system.bonuses.damage[item.system.category.value] ?? 0;
+			if (weaponCategoryBonus) {
+				this.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
+			}
 		}
 		return this;
 	}
