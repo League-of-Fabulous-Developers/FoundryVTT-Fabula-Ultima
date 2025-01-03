@@ -44,15 +44,15 @@ const onPrepareAccuracyCheck = (check, actor, item, registerCallback) => {
 					if (skillData.rollInfo.useWeapon.damage.value) {
 						configurer
 							.setDamage(weaponData.damageType.value, weaponData.damage.value)
-							.addDefaultAccuracyBonuses(weapon, actor)
-							.addDefaultDamageBonuses(weapon, actor)
+							.addItemAccuracyBonuses(weapon, actor)
+							.addItemDamageBonuses(weapon, actor)
 							.modifyHrZero((hrZero) => hrZero || skillData.rollInfo.useWeapon.hrZero.value)
 							.setTargetedDefense(weaponData.defense);
 					} else {
 						configurer
 							.setDamage(skillData.rollInfo.damage.type.value, skillData.rollInfo.damage.value)
-							.addDefaultDamageBonuses(weapon, actor)
-							.addDefaultAccuracyBonuses(weapon, actor)
+							.addItemDamageBonuses(weapon, actor)
+							.addItemAccuracyBonuses(weapon, actor)
 							.modifyHrZero((hrZero) => hrZero || skillData.rollInfo.useWeapon.hrZero.value)
 							.setTargetedDefense(weaponData.defense);
 					}
