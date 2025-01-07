@@ -1,7 +1,7 @@
 {
   "name": "Extra M. Healing",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/Regen.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -12,7 +12,7 @@
     {
       "disabled": false,
       "name": "Extra M. Healing",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/Regen.webp",
       "type": "base",
       "changes": [],
       "description": "<p>Spells you cast whose effects restore Hit Points will restore an extra @GAIN[5 hp].</p>",
@@ -47,8 +47,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728776863533,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736220804324,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!OCAncRRXiqK6394Y.m2IUwUtR5bSkUXsu"
     }
@@ -62,8 +62,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747193936,
-    "modifiedTime": 1728747193936,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736220798852,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_id": "OCAncRRXiqK6394Y",
   "sort": 0,

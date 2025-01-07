@@ -1,7 +1,7 @@
 {
   "name": "Lesser Weapon Up (Arcane)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -12,7 +12,7 @@
     {
       "disabled": false,
       "name": "Lesser Weapon Up (Arcane)",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "type": "base",
       "changes": [
         {
@@ -54,8 +54,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728775322156,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736223386047,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!zhp3g41ZQVWINSrf.ZeS8OChFCU4QHqdT"
     }
@@ -69,8 +69,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747193107,
-    "modifiedTime": 1728747193107,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736223380849,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_id": "zhp3g41ZQVWINSrf",
   "sort": 3800000,

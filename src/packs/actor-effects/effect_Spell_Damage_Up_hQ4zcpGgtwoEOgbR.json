@@ -3,7 +3,7 @@
   "name": "Spell Damage Up",
   "type": "effect",
   "_id": "hQ4zcpGgtwoEOgbR",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
   "system": {
     "fuid": "spell-damage-up"
   },
@@ -21,7 +21,7 @@
       },
       "disabled": false,
       "name": "Spell Damage Up",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
       "_id": "JsnTwmVR1MqWVqWL",
       "type": "base",
       "system": {},
@@ -40,7 +40,9 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": ""
         }
       },
       "_stats": {
@@ -50,8 +52,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725745046631,
-        "modifiedTime": 1725745110630,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1736279200303,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!hQ4zcpGgtwoEOgbR.JsnTwmVR1MqWVqWL"
     }
@@ -69,8 +71,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725745026520,
-    "modifiedTime": 1725745036304,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1736279193743,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_key": "!items!hQ4zcpGgtwoEOgbR"
 }

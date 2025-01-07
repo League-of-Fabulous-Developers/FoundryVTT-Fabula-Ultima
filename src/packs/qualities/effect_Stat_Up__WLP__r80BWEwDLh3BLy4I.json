@@ -1,7 +1,7 @@
 {
   "name": "Stat Up (WLP)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -12,7 +12,7 @@
     {
       "disabled": false,
       "name": "Stat Up (WLP)",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/WlpUp.webp",
       "type": "base",
       "changes": [
         {
@@ -54,8 +54,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728775862699,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736220256607,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!r80BWEwDLh3BLy4I.tCjcWX6rLsfgObFk"
     }
@@ -69,8 +69,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747193936,
-    "modifiedTime": 1728777501280,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736220248502,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_id": "r80BWEwDLh3BLy4I",
   "sort": 700000,

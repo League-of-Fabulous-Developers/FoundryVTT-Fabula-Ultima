@@ -1,7 +1,7 @@
 {
   "name": "Lesser Accuracy Up (Bow)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -12,7 +12,7 @@
     {
       "disabled": false,
       "name": "Lesser Accuracy Up (Bow)",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
       "type": "base",
       "changes": [
         {
@@ -54,8 +54,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728772429082,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736274342457,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!smyUnT3kbI1Pd2cG.ONQIPmJkdRx50TPu"
     }
@@ -69,8 +69,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747190299,
-    "modifiedTime": 1728747190299,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736274345927,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_id": "smyUnT3kbI1Pd2cG",
   "sort": 2000000,
