@@ -95,6 +95,18 @@ const PRIORITY_CHANGES = [
 	'system.affinities.poison.base',
 ];
 
+/**
+ * @description The system implementation
+ * @property {DataModel} parent
+ * @property {Boolean} isSuppressed Is there some system logic that makes this active effect ineligible for application?
+ * @property {Document} target Retrieve the Document that this ActiveEffect targets for modification.
+ * @property {Boolean} active Whether the Active Effect currently applying its changes to the target.
+ * @property {Boolean modifiesActor Does this Active Effect currently modify an Actor?
+ * @property {Boolean} isTemporary Describe whether the ActiveEffect has a temporary duration based on combat turns or rounds.
+ * @property {Boolean} isEmbedded Test whether this Document is embedded within a parent Document
+ * @property {String} uuid
+ * @remarks https://foundryvtt.com/api/classes/client.ActiveEffect.html
+ * */
 export class FUActiveEffect extends ActiveEffect {
 	static get TEMPORARY_FLAG() {
 		return TEMPORARY;
@@ -144,6 +156,11 @@ export class FUActiveEffect extends ActiveEffect {
 		}
 	}
 
+	/**
+	 * @param {FUActor|FUItem} target
+	 * @param {EffectChangeData} change
+	 * @returns {{}|*}
+	 */
 	apply(target, change) {
 		// Support expressions
 		if (change.value && typeof change.value === 'string') {
