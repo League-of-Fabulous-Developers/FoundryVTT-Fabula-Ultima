@@ -146,6 +146,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 				modifiers: damage.modifiers,
 			};
 		}
+		const applyDamage = damageData != null;
 
 		// Push combined data for accuracy and damage
 		data.push({
@@ -166,6 +167,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 				partial: isTargeted ? 'systems/projectfu/templates/chat/partials/chat-check-targets.hbs' : 'systems/projectfu/templates/chat/partials/chat-check-notargets.hbs',
 				data: {
 					targets: targets,
+					applyDamage: applyDamage,
 				},
 			});
 		}

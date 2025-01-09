@@ -21,6 +21,14 @@ import { SupportCheck } from './support-check.mjs';
  */
 
 /**
+ * @typedef {Object} CheckConfigurationPromptData
+ * @property {Attribute} primary
+ * @property {Attribute} secondary
+ * @property {Number} modifier
+ * @property {Number} difficulty
+ */
+
+/**
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {CheckCallback} [configCallback]
@@ -511,6 +519,54 @@ const isCheck = (message, type = allExceptDisplay) => {
 	return false;
 };
 
+/**
+ * @param {FUActor} actor
+ * @param {CheckConfigurationPromptData} check
+ * @param {String} title
+ * @returns {Promise<CheckConfigurationPromptData>}
+ */
+async function promptConfiguration(actor, check, title) {
+	title = title || 'FU.DialogCheckTitle';
+	const attributes = actor.system.attributes;
+	return await Dialog.wait(
+		{
+			title: game.i18n.localize(title),
+			content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check.hbs', {
+				attributes: FU.attributes,
+				attributeAbbr: FU.attributeAbbreviations,
+				attributeValues: Object.entries(attributes).reduce(
+					(previousValue, [attribute, { current }]) => ({
+						...previousValue,
+						[attribute]: current,
+					}),
+					{},
+				),
+				primary: check.primary || 'mig',
+				secondary: check.secondary || 'mig',
+				modifier: check.modifier || 0,
+				difficulty: check.difficulty || 0,
+			}),
+			buttons: [
+				{
+					icon: '<i class="fas fa-dice"></i>',
+					label: game.i18n.localize('FU.DialogCheckRoll'),
+					callback: (jQuery) => {
+						return {
+							primary: jQuery.find('*[name=primary]:checked').val(),
+							secondary: jQuery.find('*[name=secondary]:checked').val(),
+							modifier: +jQuery.find('*[name=modifier]').val(),
+							difficulty: +jQuery.find('*[name=difficulty]').val(),
+						};
+					},
+				},
+			],
+		},
+		{
+			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+		},
+	);
+}
+
 document.addEventListener('click', (event) => {
 	const toggleLink = event.target.closest('.universal-toggle');
 	if (!toggleLink) return;
@@ -560,6 +616,7 @@ export const ChecksV2 = Object.freeze({
 	supportCheck,
 	modifyCheck,
 	isCheck,
+	promptConfiguration,
 });
 
 CheckRetarget.initialize();
