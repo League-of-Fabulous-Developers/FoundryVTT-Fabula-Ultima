@@ -22,12 +22,14 @@ const editorEnricher = {
 			anchor.dataset.traits = match.groups.traits;
 			// TOOLTIP
 			anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineWeapon')} (${traits})`);
-			// TEXT
-			anchor.text = traits.map(InlineHelper.capitalize).join(' ');
+
+			const label = traits.map(InlineHelper.capitalize).join(' ');
 			// ICON
 			const icon = document.createElement('i');
-			icon.className = FU.allIcon.twoweapon;
+			icon.classList.add(`fui`, FU.allIcon.weaponEnchant);
 			anchor.append(icon);
+			// TEXT
+			anchor.append(label);
 			return anchor;
 		}
 

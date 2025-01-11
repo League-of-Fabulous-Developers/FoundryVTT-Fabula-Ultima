@@ -29,6 +29,13 @@ import { FUActiveEffect } from './active-effect.mjs';
  */
 
 /**
+ * @description These are active effect keys that are handled by custom logic
+ */
+const customAttributeKeys = Object.freeze({
+	linkedEffect: 'linked-effect',
+});
+
+/**
  * @param {Actor|Item} owner The owning document which manages this effect
  * @param {String} effectType
  * @param {String} name
@@ -47,6 +54,7 @@ function createTemporaryEffect(owner, effectType, name) {
 }
 
 /**
+ * @description Creates an effect with a reference to another effect
  * @param {ActiveEffectData} effect The original effect
  * @returns {ActiveEffectData}
  */
@@ -56,7 +64,7 @@ function createLinkedEffect(effect) {
 		img: effect.img,
 		changes: [
 			{
-				key: linkedEffectsKey,
+				key: customAttributeKeys.linkedEffect,
 				mode: Effects.modes.Custom,
 				// item id : effect id
 				value: `${effect.parent.id}.${effect.id}`,
@@ -65,9 +73,8 @@ function createLinkedEffect(effect) {
 	};
 }
 
-const linkedEffectsKey = 'linked-effect';
-
 /**
+ * @description Creates a linked effect that when deleted, also leads to the linked effect being deleted as well
  * @param {FUActor} actor
  * @param {ActiveEffectData} effect
  * @returns {Promise<void>}
@@ -75,11 +82,6 @@ const linkedEffectsKey = 'linked-effect';
 async function linkEffectToActor(actor, effect) {
 	const linkedEffectData = Effects.createLinkedEffect(effect);
 	await Effects.onApplyEffectToActor(actor, effect.origin, linkedEffectData);
-
-	// Record the linked effect uuid as well
-	const linkedEffects = actor.system.linkedEffects.value;
-	linkedEffects.add(effect._id);
-	await actor.update({ linkedEffectsKey: linkedEffects });
 }
 
 /**
@@ -103,22 +105,8 @@ export async function onManageActiveEffect(event, owner) {
 			return createTemporaryEffect(owner, li.dataset.effectType);
 		case 'edit':
 			return effect.sheet.render(true);
-		case 'delete': {
-			const linkedEffectChange = effect.changes.find((c) => c.key === linkedEffectsKey);
-			if (linkedEffectChange) {
-				const path = linkedEffectChange.value.split('.');
-				const itemId = path[0];
-				const item = owner.items.find((i) => i.id === itemId);
-
-				const effectId = path[1];
-				const linkedEffect = item.effects.get(effectId);
-				if (linkedEffect) {
-					console.info(`Will remove the linked effect ${linkedEffect}`);
-					linkedEffect.delete();
-				}
-			}
+		case 'delete':
 			return effect.delete();
-		}
 		case 'toggle':
 			return effect.update({ disabled: !effect.disabled });
 		case 'copy-inline':
@@ -285,29 +273,14 @@ async function onApplyEffectToActor(actor, sourceUuid, effect) {
 	}
 }
 
-// /**
-//  * @param {FUItem} item
-//  * @param {String} sourceUuid
-//  * @param {ActiveEffectData} effect
-//  */
-// function onApplyEffectItem(item, sourceUuid, effect) {
-//     if (item) {
-//         ActiveEffect.create(
-//          {
-//              ...effect,
-//              origin: sourceUuid,
-//              flags: foundry.utils.mergeObject(effect.flags ?? {}, { [SYSTEM]: { [FUActiveEffect.TEMPORARY_FLAG]: true } }),
-//          },
-//          { parent: item },
-//         );
-//     }
-// }
-
 const SUPPORTED_STATUSES = ['dazed', 'enraged', 'poisoned', 'shaken', 'slow', 'weak'];
 const BOONS_AND_BANES = ['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked'];
 const damageTypes = (({ untyped, ...rest }) => rest)(FU.damageTypes);
 const temporaryEffects = (({ ...rest }) => rest)(FU.temporaryEffects);
 
+/**
+ * @description Contains key functions and properties for dealing with ActiveEffect documents in the system
+ */
 export const Effects = Object.freeze({
 	statuses: SUPPORTED_STATUSES,
 	boonsAndBanes: BOONS_AND_BANES,
@@ -329,4 +302,5 @@ export const Effects = Object.freeze({
 		Upgrade: 4,
 		Override: 5,
 	},
+	customAttributeKeys,
 });
