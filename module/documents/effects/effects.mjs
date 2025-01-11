@@ -12,32 +12,20 @@ import { FUActiveEffect } from './active-effect.mjs';
  */
 
 /**
- *
- * Change Modes
- * {
- *     "Add" : 0,
- *     "Multiply" : 1,
- *     "Override": 2,
- *     "Downgrade": 3,
- *     "Upgrade": 4,
- *     "Custom": 5
- * }
- */
-
-/**
  * @typedef {Object} ActiveEffectData
- * @property {string} _id - The unique identifier of the active effect.
- * @property {string} name - The name of the active effect.
- * @property {string} img - The image path associated with the active effect.
- * @property {EffectChangeData[]} changes - An array of changes applied by the active effect.
+ * @property {string} _id The unique identifier of the active effect.
+ * @property {string} name - The name of the which describes the name of the ActiveEffect
+ * @property {string} img - An image path used to depict the ActiveEffect as an icon
+ * @property {EffectChangeData[]} changes - The array of EffectChangeData objects which the ActiveEffect applies
  * @property {boolean} disabled - Whether the active effect is disabled.
  * @property {EffectDurationData} duration - The duration data of the active effect.
  * @property {string} description - The description of the active effect.
- * @property {string} origin - The source or origin of the active effect.
- * @property {string} tint - The tint color applied to the active effect.
- * @property {boolean} transfer - Whether the active effect can be transferred.
- * @property {Set<string>} statuses - A set of statuses associated with the active effect.
- * @property {Object} flags - Additional flags or metadata for the active effect.
+ * @property {string} origin - A UUID reference to the document from which this ActiveEffect originated
+ * @property {string} tint - A color string which applies a tint to the ActiveEffect icon
+ * @property {Boolean} transfer - Does this ActiveEffect automatically transfer from an Item to an Actor?
+ * @property {Set<string>} statuses - Special status IDs that pertain to this effect
+ * @property {Object} flags - An object of optional key/value flags
+ * @remarks https://foundryvtt.com/api/interfaces/foundry.types.ActiveEffectData.html
  */
 
 /**
@@ -50,12 +38,48 @@ function createTemporaryEffect(owner, effectType, name) {
 	return owner.createEmbeddedDocuments('ActiveEffect', [
 		{
 			label: name ?? game.i18n.localize('FU.NewEffect'),
-			icon: 'icons/svg/aura.svg',
+			img: 'icons/svg/aura.svg',
 			origin: owner.uuid,
 			'duration.rounds': effectType === 'temporary' ? 1 : undefined,
 			disabled: effectType === 'inactive',
 		},
 	]);
+}
+
+/**
+ * @param {ActiveEffectData} effect The original effect
+ * @returns {ActiveEffectData}
+ */
+function createLinkedEffect(effect) {
+	return {
+		name: `${effect.parent.name} - ${effect.name}`,
+		img: effect.img,
+		changes: [
+			{
+				key: linkedEffectsKey,
+				mode: Effects.modes.Custom,
+				// item id : effect id
+				value: `${effect.parent.id}.${effect.id}`,
+			},
+		],
+	};
+}
+
+const linkedEffectsKey = 'linked-effect';
+
+/**
+ * @param {FUActor} actor
+ * @param {ActiveEffectData} effect
+ * @returns {Promise<void>}
+ */
+async function linkEffectToActor(actor, effect) {
+	const linkedEffectData = Effects.createLinkedEffect(effect);
+	await Effects.onApplyEffectToActor(actor, effect.origin, linkedEffectData);
+
+	// Record the linked effect uuid as well
+	const linkedEffects = actor.system.linkedEffects.value;
+	linkedEffects.add(effect._id);
+	await actor.update({ linkedEffectsKey: linkedEffects });
 }
 
 /**
@@ -79,8 +103,22 @@ export async function onManageActiveEffect(event, owner) {
 			return createTemporaryEffect(owner, li.dataset.effectType);
 		case 'edit':
 			return effect.sheet.render(true);
-		case 'delete':
+		case 'delete': {
+			const linkedEffectChange = effect.changes.find((c) => c.key === linkedEffectsKey);
+			if (linkedEffectChange) {
+				const path = linkedEffectChange.value.split('.');
+				const itemId = path[0];
+				const item = owner.items.find((i) => i.id === itemId);
+
+				const effectId = path[1];
+				const linkedEffect = item.effects.get(effectId);
+				if (linkedEffect) {
+					console.info(`Will remove the linked effect ${linkedEffect}`);
+					linkedEffect.delete();
+				}
+			}
 			return effect.delete();
+		}
 		case 'toggle':
 			return effect.update({ disabled: !effect.disabled });
 		case 'copy-inline':
@@ -230,13 +268,13 @@ function onRemoveEffectFromActor(actor, source, effect) {
 }
 
 /**
- * @param {FUActor} actor
+ * @param {FUActor|FUItem} actor
  * @param {String} sourceUuid
  * @param {ActiveEffectData} effect
  */
-function onApplyEffectToActor(actor, sourceUuid, effect) {
+async function onApplyEffectToActor(actor, sourceUuid, effect) {
 	if (actor) {
-		ActiveEffect.create(
+		return await ActiveEffect.create(
 			{
 				...effect,
 				origin: sourceUuid,
@@ -246,6 +284,24 @@ function onApplyEffectToActor(actor, sourceUuid, effect) {
 		);
 	}
 }
+
+// /**
+//  * @param {FUItem} item
+//  * @param {String} sourceUuid
+//  * @param {ActiveEffectData} effect
+//  */
+// function onApplyEffectItem(item, sourceUuid, effect) {
+//     if (item) {
+//         ActiveEffect.create(
+//          {
+//              ...effect,
+//              origin: sourceUuid,
+//              flags: foundry.utils.mergeObject(effect.flags ?? {}, { [SYSTEM]: { [FUActiveEffect.TEMPORARY_FLAG]: true } }),
+//          },
+//          { parent: item },
+//         );
+//     }
+// }
 
 const SUPPORTED_STATUSES = ['dazed', 'enraged', 'poisoned', 'shaken', 'slow', 'weak'];
 const BOONS_AND_BANES = ['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked'];
@@ -257,7 +313,20 @@ export const Effects = Object.freeze({
 	boonsAndBanes: BOONS_AND_BANES,
 	damageTypes: damageTypes,
 	temporaryEffects: temporaryEffects,
+	createLinkedEffect,
+	linkEffectToActor,
 	onRemoveEffectFromActor,
 	onApplyEffectToActor,
 	createTemporaryEffect,
+	/**
+	 * @description Matches that of the Foundry constant 'CONST.ACTIVE_EFFECT_MODES'
+	 */
+	modes: {
+		Custom: 0,
+		Multiply: 1,
+		Add: 2,
+		Downgrade: 3,
+		Upgrade: 4,
+		Override: 5,
+	},
 });
