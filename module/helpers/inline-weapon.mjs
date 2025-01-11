@@ -3,7 +3,6 @@ import { InlineHelper } from './inline-helper.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
-import { statusEffects } from './statuses.mjs';
 import { Effects } from '../documents/effects/effects.mjs';
 
 const INLINE_WEAPON = 'InlineWeapon';
@@ -20,7 +19,7 @@ const editorEnricher = {
 			const anchor = document.createElement('a');
 			anchor.classList.add('inline', className);
 			anchor.draggable = true;
-			anchor.dataset.traits = traits;
+			anchor.dataset.traits = match.groups.traits;
 			// TOOLTIP
 			anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineWeapon')} (${traits})`);
 			// TEXT
@@ -50,7 +49,7 @@ function activateListeners(document, html) {
 			let targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
-				const traits = this.dataset.traits;
+				const traits = this.dataset.traits.split(' ');
 				targets.forEach(async (target) => {
 					await applyTraitsToWeapon(target, sourceInfo, traits);
 				});
@@ -74,6 +73,26 @@ function activateListeners(document, html) {
 }
 
 /**
+ * @param {String} type
+ * @returns {ActiveEffectData}
+ */
+function createAlterDamageTypeEffect(type) {
+	return {
+		fuid: `alter-damage-type-${type}`,
+		name: `Alter Damage Type (${InlineHelper.capitalize(type)})`,
+		img: `systems/projectfu/styles/static/affinities/${type}.svg`,
+		transfer: false,
+		changes: [
+			{
+				key: 'system.damageType.value',
+				mode: Effects.modes.Override,
+				value: type,
+			},
+		],
+	};
+}
+
+/**
  * @param {FUActor} actor
  * @param {InlineSourceInfo} sourceInfo
  * @param {string[]} traits
@@ -82,9 +101,18 @@ async function applyTraitsToWeapon(actor, sourceInfo, traits) {
 	if (actor.system instanceof CharacterDataModel) {
 		const source = sourceInfo.resolve();
 		const weapon = await ChooseWeaponDialog.prompt(actor);
-		const effect = statusEffects[0];
-		Effects.onApplyEffectToActor(weapon, source, effect);
-		console.info(`Applied ${traits} from ${sourceInfo.name} to weapon '${weapon.uuid}' on actor '${actor.uuid}'`);
+
+		traits.forEach(async (trait) => {
+			if (trait in FU.damageTypes) {
+				const effectData = createAlterDamageTypeEffect(trait);
+				const effect = await Effects.onApplyEffectToActor(weapon, source, effectData);
+				console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}, id: ${weapon.id}`);
+
+				return Effects.linkEffectToActor(actor, effect);
+			}
+		});
+
+		console.info(`Applied ${traits} from ${sourceInfo.name} to weapon '${weapon.uuid}' on actor '${actor.uuid}' from source ${source.uuid}`);
 	} else {
 		ui.notifications.error('FU.ChatApplyNoCharacterSelected', { localize: true });
 	}
