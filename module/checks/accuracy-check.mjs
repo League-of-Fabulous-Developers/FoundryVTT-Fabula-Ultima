@@ -1,17 +1,9 @@
 import { CheckHooks } from './check-hooks.mjs';
-import { CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
-import { FUActor } from '../documents/actors/actor.mjs';
+import { CHECK_ROLL } from './default-section-order.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
-
-/**
- * @typedef TargetData
- * @property {string} name
- * @property {string} uuid
- * @property {string} link
- * @property {number} difficulty
- */
+import { Targeting } from '../helpers/targeting.mjs';
 
 function handleGenericBonus(actor, modifiers) {
 	if (actor.system.bonuses.accuracy.accuracyCheck) {
@@ -146,7 +138,6 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 				modifiers: damage.modifiers,
 			};
 		}
-		const applyDamage = damageData != null;
 
 		// Push combined data for accuracy and damage
 		data.push({
@@ -160,38 +151,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 
 		/** @type TargetData[] */
 		const targets = inspector.getTargets();
-		const isTargeted = targets?.length > 0;
-		if (targets) {
-			data.push({
-				order: CHECK_RESULT,
-				partial: isTargeted ? 'systems/projectfu/templates/chat/partials/chat-check-targets.hbs' : 'systems/projectfu/templates/chat/partials/chat-check-notargets.hbs',
-				data: {
-					targets: targets,
-					applyDamage: applyDamage,
-				},
-			});
-		}
-
-		if (isTargeted) {
-			async function showFloatyText(target) {
-				const actor = await fromUuid(target.uuid);
-				if (actor instanceof FUActor) {
-					actor.showFloatyText(game.i18n.localize(target.result === 'hit' ? 'FU.Hit' : 'FU.Miss'));
-				}
-			}
-
-			if (game.dice3d) {
-				Hooks.once('diceSoNiceRollComplete', () => {
-					for (const target of targets) {
-						showFloatyText(target);
-					}
-				});
-			} else {
-				for (const target of targets) {
-					showFloatyText(target);
-				}
-			}
-		}
+		Targeting.addDamageTargetingSection(data, actor, item, targets, flags, accuracyData, damageData);
 
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();
 	}

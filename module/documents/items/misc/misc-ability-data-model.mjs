@@ -11,6 +11,8 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
+import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (check.type === 'accuracy' && item?.system instanceof MiscAbilityDataModel) {
@@ -63,6 +65,8 @@ const ABILITY_USED_WEAPON = 'AbilityUsedWeapon';
  * @property {string} source.value
  * @property {boolean} isOffensive.value
  * @property {boolean} hasRoll.value
+ * @property {ActionCostDataModel} cost
+ * @property {TargetingDataModel} targeting
  */
 export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 	static {
@@ -109,6 +113,8 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			rp: new EmbeddedDataField(ProgressDataModel, {}),
 			source: new SchemaField({ value: new StringField() }),
 			hasRoll: new SchemaField({ value: new BooleanField() }),
+			cost: new EmbeddedDataField(ActionCostDataModel, {}),
+			targeting: new EmbeddedDataField(TargetingDataModel, {}),
 		};
 	}
 

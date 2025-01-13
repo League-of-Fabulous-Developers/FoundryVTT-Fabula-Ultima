@@ -1,9 +1,9 @@
 import { CheckHooks } from './check-hooks.mjs';
-import { CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
-import { FUActor } from '../documents/actors/actor.mjs';
+import { CHECK_ROLL } from './default-section-order.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
+import { Targeting } from '../helpers/targeting.mjs';
 
 /**
  * @param {CheckV2} check
