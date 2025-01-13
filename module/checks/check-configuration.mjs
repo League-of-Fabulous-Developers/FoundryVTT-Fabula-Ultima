@@ -40,14 +40,6 @@ const initHrZero = (hrZero) => (check) => {
  */
 
 /**
- * @typedef TargetData
- * @property {string} name
- * @property {string} uuid
- * @property {string} link
- * @property {number} [difficulty]
- */
-
-/**
  * @param {CheckV2, CheckResultV2} check
  * @return {CheckConfigurer} check
  */
