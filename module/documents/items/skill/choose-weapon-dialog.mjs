@@ -19,18 +19,26 @@ function getWeapon(actor, slot) {
 
 /**
  * @param {FUActor} actor
+ * @param {boolean=false} includeWeaponModules
  * @return {Promise<FUItem|null|false>} chosen weapon or false for no equipped weapons or null for no selection
  */
-async function prompt(actor) {
-	const mainHand = getWeapon(actor, 'mainHand');
-	const offHand = getWeapon(actor, 'offHand');
-	const armor = getWeapon(actor, 'armor');
+async function prompt(actor, includeWeaponModules = false) {
+	const equippedWeapons = [];
 
-	let equippedWeapons = [mainHand, armor];
-	if (offHand !== mainHand) {
-		equippedWeapons.push(offHand);
+	if (includeWeaponModules && actor.system.vehicle.embarked) {
+		equippedWeapons.push(...actor.system.vehicle.weapons);
+	} else {
+		const mainHand = getWeapon(actor, 'mainHand');
+		const offHand = getWeapon(actor, 'offHand');
+		const armor = getWeapon(actor, 'armor');
+
+		equippedWeapons.push(mainHand, armor);
+		if (offHand !== mainHand) {
+			equippedWeapons.push(offHand);
+		}
 	}
-	equippedWeapons = equippedWeapons.filter((value) => value);
+
+	equippedWeapons.splice(0, equippedWeapons.length, ...equippedWeapons.filter((value) => value != null));
 
 	if (!equippedWeapons.length) {
 		return false;

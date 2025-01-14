@@ -1,6 +1,7 @@
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../documents/effects/effects.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { FU } from '../helpers/config.mjs';
+import { InlineHelper } from '../helpers/inline-helper.mjs';
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -346,14 +347,9 @@ export class FUItemSheet extends ItemSheet {
 		}
 	}
 
-	// Helper function to encode an effect in base64
-	_encodeBase64(data) {
-		return btoa(unescape(encodeURIComponent(data)));
-	}
-
 	// Helper function to generate the @EFFECT format string
 	_formatEffect(effect) {
-		const encodedEffect = this._encodeBase64(JSON.stringify(effect));
+		const encodedEffect = InlineHelper.toBase64(effect);
 		return `@EFFECT[${encodedEffect}]`;
 	}
 
@@ -378,7 +374,6 @@ export class FUItemSheet extends ItemSheet {
 		// Prevent submitting overridden values
 		const overrides = foundry.utils.flattenObject(this.item.overrides);
 		for (let k of Object.keys(overrides)) {
-			if (k.startsWith('system.')) delete data[`data.${k.slice(7)}`]; // Band-aid for < v10 data
 			delete data[k];
 		}
 		return data;

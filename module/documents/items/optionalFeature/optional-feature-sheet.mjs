@@ -1,5 +1,6 @@
 import { OptionalFeatureDataModel } from './optional-feature-data-model.mjs';
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../../effects/effects.mjs';
+import { InlineHelper } from '../../../helpers/inline-helper.mjs';
 
 export class FUOptionalFeatureSheet extends ItemSheet {
 	// Initialize drag counter
@@ -337,14 +338,9 @@ export class FUOptionalFeatureSheet extends ItemSheet {
 		}
 	}
 
-	// Helper function to encode an effect in base64
-	_encodeBase64(data) {
-		return btoa(unescape(encodeURIComponent(data)));
-	}
-
 	// Helper function to generate the @EFFECT format string
 	_formatEffect(effect) {
-		const encodedEffect = this._encodeBase64(JSON.stringify(effect));
+		const encodedEffect = InlineHelper.toBase64(effect);
 		return `@EFFECT[${encodedEffect}]`;
 	}
 

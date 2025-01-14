@@ -1,6 +1,7 @@
 import { FUActor } from '../actors/actor.mjs';
 import { FU, SYSTEM } from '../../helpers/config.mjs';
 import { FUActiveEffect } from './active-effect.mjs';
+import { InlineHelper } from '../../helpers/inline-helper.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -29,13 +30,6 @@ import { FUActiveEffect } from './active-effect.mjs';
  */
 
 /**
- * @description These are active effect keys that are handled by custom logic
- */
-const customAttributeKeys = Object.freeze({
-	linkedEffect: 'linked-effect',
-});
-
-/**
  * @param {Actor|Item} owner The owning document which manages this effect
  * @param {String} effectType
  * @param {String} name
@@ -54,37 +48,6 @@ function createTemporaryEffect(owner, effectType, name) {
 }
 
 /**
- * @description Creates an effect with a reference to another effect
- * @param {ActiveEffectData} effect The original effect
- * @returns {ActiveEffectData}
- */
-function createLinkedEffect(effect) {
-	return {
-		name: `${effect.parent.name} - ${effect.name}`,
-		img: effect.img,
-		changes: [
-			{
-				key: customAttributeKeys.linkedEffect,
-				mode: Effects.modes.Custom,
-				// item id : effect id
-				value: `${effect.parent.id}.${effect.id}`,
-			},
-		],
-	};
-}
-
-/**
- * @description Creates a linked effect that when deleted, also leads to the linked effect being deleted as well
- * @param {FUActor} actor
- * @param {ActiveEffectData} effect
- * @returns {Promise<void>}
- */
-async function linkEffectToActor(actor, effect) {
-	const linkedEffectData = Effects.createLinkedEffect(effect);
-	await Effects.onApplyEffectToActor(actor, effect.origin, linkedEffectData);
-}
-
-/**
  * Manage Active Effect instances through the Actor Sheet via effect control buttons.
  * @param {MouseEvent} event      The left-click event on the effect control
  * @param {Actor|Item} owner      The owning document which manages this effect
@@ -96,24 +59,26 @@ export async function onManageActiveEffect(event, owner) {
 	const effectId = li.dataset.effectId;
 	let effect;
 	if (owner instanceof FUActor) {
-		effect = Array.from(owner.allApplicableEffects()).find((value) => value.id === effectId);
+		effect = Array.from(owner.allEffects()).find((value) => value.id === effectId);
 	} else {
 		effect = owner.effects.get(effectId);
 	}
-	switch (a.dataset.action) {
-		case 'create':
-			return createTemporaryEffect(owner, li.dataset.effectType);
-		case 'edit':
-			return effect.sheet.render(true);
-		case 'delete':
-			return effect.delete();
-		case 'toggle':
-			return effect.update({ disabled: !effect.disabled });
-		case 'copy-inline':
-			await handleCopyInlineEffect(effect);
-			break;
-		case 'roll':
-			return await handleRollEffect(effect, owner);
+	if (effect) {
+		switch (a.dataset.action) {
+			case 'create':
+				return createTemporaryEffect(owner, li.dataset.effectType);
+			case 'edit':
+				return effect.sheet.render(true);
+			case 'delete':
+				return effect.delete();
+			case 'toggle':
+				return effect.update({ disabled: !effect.disabled });
+			case 'copy-inline':
+				await handleCopyInlineEffect(effect);
+				break;
+			case 'roll':
+				return await handleRollEffect(effect, owner);
+		}
 	}
 }
 
@@ -173,14 +138,9 @@ export async function toggleStatusEffect(actor, statusEffectId, source = undefin
 	}
 }
 
-// Helper function to encode an effect in base64
-export function encodeBase64(data) {
-	return btoa(unescape(encodeURIComponent(data)));
-}
-
 // Helper function to generate the @EFFECT format string
 export function formatEffect(effect) {
-	const encodedEffect = encodeBase64(JSON.stringify(effect.toJSON()));
+	const encodedEffect = InlineHelper.toBase64(effect.toJSON());
 	return `@EFFECT[${encodedEffect}]`;
 }
 
@@ -273,34 +233,19 @@ async function onApplyEffectToActor(actor, sourceUuid, effect) {
 	}
 }
 
-const SUPPORTED_STATUSES = ['dazed', 'enraged', 'poisoned', 'shaken', 'slow', 'weak'];
-const BOONS_AND_BANES = ['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked'];
-const damageTypes = (({ untyped, ...rest }) => rest)(FU.damageTypes);
-const temporaryEffects = (({ ...rest }) => rest)(FU.temporaryEffects);
+const BOONS_AND_BANES = Object.freeze(
+	Object.fromEntries(['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked'].map((value) => [value, FU.statusEffects[value]])),
+);
+const DAMAGE_TYPES = Object.freeze((({ untyped, ...rest }) => rest)(FU.damageTypes));
+const STATUS_EFFECTS = Object.freeze({ ...FU.temporaryEffects });
 
 /**
  * @description Contains key functions and properties for dealing with ActiveEffect documents in the system
  */
 export const Effects = Object.freeze({
-	statuses: SUPPORTED_STATUSES,
-	boonsAndBanes: BOONS_AND_BANES,
-	damageTypes: damageTypes,
-	temporaryEffects: temporaryEffects,
-	createLinkedEffect,
-	linkEffectToActor,
 	onRemoveEffectFromActor,
 	onApplyEffectToActor,
-	createTemporaryEffect,
-	/**
-	 * @description Matches that of the Foundry constant 'CONST.ACTIVE_EFFECT_MODES'
-	 */
-	modes: {
-		Custom: 0,
-		Multiply: 1,
-		Add: 2,
-		Downgrade: 3,
-		Upgrade: 4,
-		Override: 5,
-	},
-	customAttributeKeys,
+	BOONS_AND_BANES,
+	DAMAGE_TYPES,
+	STATUS_EFFECTS,
 });

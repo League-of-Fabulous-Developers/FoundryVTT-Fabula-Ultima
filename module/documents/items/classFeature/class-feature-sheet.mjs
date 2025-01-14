@@ -1,6 +1,7 @@
 import { ClassFeatureDataModel } from './class-feature-data-model.mjs';
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../../effects/effects.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { InlineHelper } from '../../../helpers/inline-helper.mjs';
 
 export class FUClassFeatureSheet extends ItemSheet {
 	// Initialize drag counter
@@ -341,14 +342,9 @@ export class FUClassFeatureSheet extends ItemSheet {
 		}
 	}
 
-	// Helper function to encode an effect in base64
-	_encodeBase64(data) {
-		return btoa(unescape(encodeURIComponent(data)));
-	}
-
 	// Helper function to generate the @EFFECT format string
 	_formatEffect(effect) {
-		const encodedEffect = this._encodeBase64(JSON.stringify(effect));
+		const encodedEffect = InlineHelper.toBase64(effect);
 		return `@EFFECT[${encodedEffect}]`;
 	}
 
@@ -357,5 +353,15 @@ export class FUClassFeatureSheet extends ItemSheet {
 	_canDragDrop() {
 		console.log('Checking drag drop capability');
 		return this.isEditable;
+	}
+
+	_getSubmitData(updateData = {}) {
+		const data = super._getSubmitData(updateData);
+		// Prevent submitting overridden values
+		const overrides = foundry.utils.flattenObject(this.item.overrides);
+		for (let k of Object.keys(overrides)) {
+			delete data[k];
+		}
+		return data;
 	}
 }

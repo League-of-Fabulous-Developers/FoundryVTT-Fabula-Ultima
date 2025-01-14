@@ -234,6 +234,37 @@ export class FUActor extends Actor {
 		}
 	}
 
+	/**
+	 * @return {Generator<ActiveEffect, void, void>}
+	 */
+	*allEffects() {
+		for (const effect of this.effects) {
+			yield effect;
+		}
+		for (const item of this.items) {
+			for (const effect of item.effects) {
+				yield effect;
+			}
+		}
+	}
+
+	/**
+	 * @override
+	 */
+	get temporaryEffects() {
+		const effects = super.temporaryEffects;
+		for (const item of this.items) {
+			if (item.system.transferEffects instanceof Function ? item.system.transferEffects() : true) {
+				for (const effect of item.effects) {
+					if (effect.isTemporary && effect.target === item) {
+						effects.push(effect);
+					}
+				}
+			}
+		}
+		return effects;
+	}
+
 	applyActiveEffects() {
 		if (this.system.prepareEmbeddedData instanceof Function) {
 			this.system.prepareEmbeddedData();

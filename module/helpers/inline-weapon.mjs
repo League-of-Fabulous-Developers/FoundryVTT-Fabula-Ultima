@@ -4,6 +4,9 @@ import { targetHandler } from './target-handler.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
 import { Effects } from '../documents/effects/effects.mjs';
+import { WeaponDataModel } from '../documents/items/weapon/weapon-data-model.mjs';
+import { ClassFeatureTypeDataModel } from '../documents/items/classFeature/class-feature-type-data-model.mjs';
+import { WeaponModuleDataModel } from '../documents/items/classFeature/pilot/weapon-module-data-model.mjs';
 
 const INLINE_WEAPON = 'InlineWeapon';
 const className = `inline-weapon`;
@@ -15,7 +18,7 @@ const editorEnricher = {
 	pattern: /@WEAPON\[(?<traits>.*?)\]/g,
 	enricher: (match, options) => {
 		const traits = match.groups.traits.split(' ');
-		if (traits.length >= 1) {
+		if (traits.length === 1 && traits.every((value) => value in FU.damageTypes)) {
 			const anchor = document.createElement('a');
 			anchor.classList.add('inline', className);
 			anchor.draggable = true;
@@ -75,22 +78,32 @@ function activateListeners(document, html) {
 }
 
 /**
+ * @param {FUItem} weapon
  * @param {String} type
  * @returns {ActiveEffectData}
  */
-function createAlterDamageTypeEffect(type) {
+function createAlterDamageTypeEffect(weapon, type) {
+	let key = null;
+	if (weapon.system instanceof WeaponDataModel) {
+		key = 'system.damageType.value';
+	} else if (weapon.system instanceof ClassFeatureTypeDataModel && weapon.system.data instanceof WeaponModuleDataModel) {
+		key = 'system.data.damage.type';
+	}
+
 	return {
 		fuid: `alter-damage-type-${type}`,
-		name: `Alter Damage Type (${InlineHelper.capitalize(type)})`,
-		img: `systems/projectfu/styles/static/affinities/${type}.svg`,
+		name: game.i18n.format('FU.InlineWeaponActiveEffectName', { damageType: game.i18n.localize(`FU.Damage${InlineHelper.capitalize(type)}`) }),
+		img: type === 'untyped' ? 'icons/svg/circle.svg' : `systems/projectfu/styles/static/affinities/${type}.svg`,
 		transfer: false,
-		changes: [
-			{
-				key: 'system.damageType.value',
-				mode: Effects.modes.Override,
-				value: type,
-			},
-		],
+		changes: key
+			? [
+					{
+						key: key,
+						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+						value: type,
+					},
+				]
+			: [],
 	};
 }
 
@@ -102,19 +115,18 @@ function createAlterDamageTypeEffect(type) {
 async function applyTraitsToWeapon(actor, sourceInfo, traits) {
 	if (actor.system instanceof CharacterDataModel) {
 		const source = sourceInfo.resolve();
-		const weapon = await ChooseWeaponDialog.prompt(actor);
+		const weapon = await ChooseWeaponDialog.prompt(actor, true);
 
-		traits.forEach(async (trait) => {
+		traits.forEach((trait) => {
 			if (trait in FU.damageTypes) {
-				const effectData = createAlterDamageTypeEffect(trait);
-				const effect = await Effects.onApplyEffectToActor(weapon, source, effectData);
-				console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}, id: ${weapon.id}`);
-
-				return Effects.linkEffectToActor(actor, effect);
+				const effectData = createAlterDamageTypeEffect(weapon, trait);
+				Effects.onApplyEffectToActor(weapon, source?.uuid, effectData).then((effect) => {
+					console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}, id: ${weapon.id}`);
+				});
 			}
 		});
 
-		console.info(`Applied ${traits} from ${sourceInfo.name} to weapon '${weapon.uuid}' on actor '${actor.uuid}' from source ${source.uuid}`);
+		console.info(`Applied ${traits} from ${sourceInfo.name} to weapon '${weapon.uuid}' on actor '${actor.uuid}' from source ${source?.uuid}`);
 	} else {
 		ui.notifications.error('FU.ChatApplyNoCharacterSelected', { localize: true });
 	}

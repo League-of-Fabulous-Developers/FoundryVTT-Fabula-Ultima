@@ -2,7 +2,6 @@ import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
-import { Effects } from './effects.mjs';
 
 const CRISIS_INTERACTION = 'CrisisInteraction';
 const EFFECT_TYPE = 'type';
@@ -117,27 +116,6 @@ export class FUActiveEffect extends ActiveEffect {
 	async _preCreate(data, options, user) {
 		this.updateSource({ name: game.i18n.localize(data.name) });
 		return super._preCreate(data, options, user);
-	}
-
-	_onDelete(options, userId) {
-		const owner = options.parent;
-		if (owner instanceof FUActor) {
-			this.changes.forEach((change) => {
-				if (change.key === Effects.customAttributeKeys.linkedEffect) {
-					const path = change.value.split('.');
-					const itemId = path[0];
-					const item = owner.items.find((i) => i.id === itemId);
-
-					const effectId = path[1];
-					const linkedEffect = item.effects.get(effectId);
-					if (linkedEffect) {
-						console.debug(`Will remove the linked effect ${linkedEffect}`);
-						linkedEffect.delete();
-					}
-				}
-			});
-		}
-		super._onDelete(options, userId);
 	}
 
 	get isSuppressed() {
