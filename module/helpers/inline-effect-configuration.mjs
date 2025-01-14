@@ -27,15 +27,6 @@ possible changes from official effects:
  */
 
 /**
- * @typedef GuidedInlineEffectConfig
- * @property {string} name
- * @property {string} icon
- * @property {string} description
- * @property {Object[]} changes
- */
-
-/**
- *
  * @type {Record<string, GuidedInlineEffectChangeTemplate>}
  */
 const SUPPORTED_CHANGE_TYPES = {
@@ -126,7 +117,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		label: 'FU.InlineEffectConfigApplyVulnerability',
 		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
 		templateData: {
-			damageTypes: Effects.damageTypes,
+			damageTypes: Effects.DAMAGE_TYPES,
 		},
 		toChange: ({ damageType }) => ({
 			key: `system.affinities.${damageType}`,
@@ -138,7 +129,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		label: 'FU.InlineEffectConfigGrantResistance',
 		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
 		templateData: {
-			damageTypes: Effects.damageTypes,
+			damageTypes: Effects.DAMAGE_TYPES,
 		},
 		toChange: ({ damageType }) => ({
 			key: `system.affinities.${damageType}`,
@@ -150,7 +141,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		label: 'FU.InlineEffectConfigGrantImmunity',
 		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
 		templateData: {
-			damageTypes: Effects.damageTypes,
+			damageTypes: Effects.DAMAGE_TYPES,
 		},
 		toChange: ({ damageType }) => ({
 			key: `system.affinities.${damageType}.current`,
@@ -162,7 +153,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		label: 'FU.InlineEffectConfigGrantAbsorption',
 		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-affinity.hbs',
 		templateData: {
-			damageTypes: Effects.damageTypes,
+			damageTypes: Effects.DAMAGE_TYPES,
 		},
 		toChange: ({ damageType }) => ({
 			key: `system.affinities.${damageType}.current`,
@@ -174,7 +165,7 @@ const SUPPORTED_CHANGE_TYPES = {
 		label: 'FU.InlineEffectConfigGrantStatusEffectImmunity',
 		template: 'systems/projectfu/templates/app/partials/inline-effect-config-modify-status-effects.hbs',
 		templateData: {
-			temporaryEffects: Effects.temporaryEffects,
+			temporaryEffects: Effects.STATUS_EFFECTS,
 		},
 		toChange: ({ temporaryEffect }) => ({
 			key: `system.immunities.${temporaryEffect}.base`,
@@ -237,12 +228,8 @@ export class InlineEffectConfiguration extends FormApplication {
 				guided: 'FU.InlineEffectTypeGuided',
 				custom: 'FU.InlineEffectTypeCustom',
 			},
-			statuses: Object.entries(FU.statusEffects)
-				.filter(([key]) => Effects.statuses.includes(key))
-				.reduce((agg, [key, value]) => (agg[key] = value) && agg, {}),
-			boonsAndBanes: Object.entries(FU.statusEffects)
-				.filter(([key]) => Effects.boonsAndBanes.includes(key))
-				.reduce((agg, [key, value]) => (agg[key] = value) && agg, {}),
+			statuses: Effects.STATUS_EFFECTS,
+			boonsAndBanes: Effects.BOONS_AND_BANES,
 			changeTypes: SUPPORTED_CHANGE_TYPES,
 			defaultIcon: this.#defaultIcon,
 			defaultName: this.#defaultName,

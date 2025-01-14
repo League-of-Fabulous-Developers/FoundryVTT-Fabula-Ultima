@@ -12,9 +12,6 @@ import { InlineHelper } from './inline-helper.mjs';
 const INLINE_EFFECT = 'InlineEffect';
 const INLINE_EFFECT_CLASS = 'inline-effect';
 
-const SUPPORTED_STATUSES = Effects.statuses;
-const BOONS_AND_BANES = Effects.boonsAndBanes;
-
 /**
  * @typedef InlineEffectConfig
  * @property {"status", "boonOrBane", "custom"} type
@@ -69,7 +66,7 @@ function inlineEffectEnricher(text, options) {
 	/** @type string */
 	const effectValue = text[1];
 
-	if (SUPPORTED_STATUSES.includes(effectValue) || BOONS_AND_BANES.includes(effectValue)) {
+	if (effectValue in Effects.STATUS_EFFECTS || effectValue in Effects.BOONS_AND_BANES) {
 		const status = statusEffects.find((value) => value.id === effectValue);
 		if (status) {
 			return createStatusAnchor(effectValue, status);

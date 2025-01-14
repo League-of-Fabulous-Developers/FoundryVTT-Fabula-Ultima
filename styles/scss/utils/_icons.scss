@@ -34,6 +34,21 @@ $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 	background-image: url('/icons/svg/aura.svg');
 }
 
+.fu-weapon-enchant {
+	background-image: url('/systems/projectfu/styles/static/icons/fus-weapon-enchant.svg');
+}
+
+/* Icon in inline element */
+.fui {
+	width: 16px;
+	height: 16px;
+	background-size: cover;
+	font-style: normal;
+	-webkit-text-stroke: 0.05rem black;
+	display: inline-block;
+	margin-right: 4px;
+}
+
 .fua {
 	width: 24px;
 	height: 24px;

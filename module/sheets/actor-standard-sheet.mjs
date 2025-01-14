@@ -9,6 +9,7 @@ import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { GroupCheck as GroupCheckV2 } from '../checks/group-check.mjs';
+import { InlineHelper } from '../helpers/inline-helper.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -122,7 +123,11 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.rollData = context.actor.getRollData();
 
 		// Prepare active effects
-		context.effects = prepareActiveEffectCategories(game.release.generation >= 11 ? Array.from(this.actor.allApplicableEffects()) : this.actor.effects);
+		const effects = Array.from(this.actor.allApplicableEffects());
+		this.actor.temporaryEffects.forEach((effect) => {
+			if (effects.indexOf(effect) < 0) effects.push(effect);
+		});
+		context.effects = prepareActiveEffectCategories(effects);
 
 		// Combine all effects into a single array
 		context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];
@@ -577,14 +582,9 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 	}
 
-	// Helper function to encode an effect in base64
-	_encodeBase64(data) {
-		return btoa(unescape(encodeURIComponent(data)));
-	}
-
 	// Helper function to generate the @EFFECT format string
 	_formatEffect(effect) {
-		const encodedEffect = this._encodeBase64(JSON.stringify(effect));
+		const encodedEffect = InlineHelper.toBase64(effect);
 		return `@EFFECT[${encodedEffect}]`;
 	}
 

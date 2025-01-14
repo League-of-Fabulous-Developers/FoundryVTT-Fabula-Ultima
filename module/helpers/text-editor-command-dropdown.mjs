@@ -115,6 +115,24 @@ async function promptCheckDialog(state, dispatch, view) {
 	}
 }
 
+async function promptWeaponEnchantmentDialog(state, dispatch, view) {
+	const result = await Dialog.prompt({
+		title: game.i18n.localize('FU.TextEditorDialogWeaponEnchantmentTitle'),
+		label: game.i18n.localize('FU.TextEditorDialogButtonInsert'),
+		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-weapon-enchantment.hbs', {
+			damageTypes: FU.damageTypes,
+		}),
+		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
+		callback: (jQuery) => {
+			return jQuery.find('select[name=type]').val();
+		},
+		rejectClose: false,
+	});
+	if (result) {
+		dispatch(state.tr.insertText(` @WEAPON[${result}]`));
+	}
+}
+
 function onGetProseMirrorMenuDropDowns(menu, config) {
 	config['projectfu.textCommands'] = {
 		title: 'FU.TextEditorTextCommands',
@@ -156,6 +174,12 @@ function onGetProseMirrorMenuDropDowns(menu, config) {
 				title: 'FU.TextEditorButtonCommandCheck',
 				group: 1,
 				cmd: promptCheckDialog,
+			},
+			{
+				action: 'weapon',
+				title: 'FU.TextEditorButtonCommandWeaponEnchantment',
+				group: 1,
+				cmd: promptWeaponEnchantmentDialog,
 			},
 		],
 	};
