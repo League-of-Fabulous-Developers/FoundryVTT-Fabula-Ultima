@@ -145,7 +145,7 @@ const checkFromCheckResult = (check) => {
  * @param {CheckResultV2} check
  * @param {FUActor} actor
  * @param {FUItem} item
- * @return {Promise<{[roll]: Roll, [check]: CheckV2} | boolean>}
+ * @return {Promise<{[roll]: Roll, [check]: CheckV2} | boolean | void>} returning false will abort the operation, returning nothing, true or an object with changed check configuration will proceed
  */
 /**
  * @param {CheckId} checkId
@@ -159,7 +159,10 @@ const modifyCheck = async (checkId, callback) => {
 		const oldResult = foundry.utils.duplicate(message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2));
 		const actor = await fromUuid(oldResult.actorUuid);
 		const item = await fromUuid(oldResult.itemUuid);
-		const callbackResult = await callback(oldResult, actor, item);
+		let callbackResult = await callback(oldResult, actor, item);
+		if (typeof callbackResult === 'undefined') {
+			callbackResult = true;
+		}
 		if (callbackResult) {
 			const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = (typeof callbackResult === 'object' && callbackResult) ?? {};
 			const result = await processResult(check, roll, actor, item);
