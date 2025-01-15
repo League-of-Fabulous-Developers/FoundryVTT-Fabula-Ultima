@@ -1,10 +1,41 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
-import { FU } from '../../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
+import { SETTINGS } from '../../../settings.js';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ProjectDataModel) {
-		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+		sections.push({
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
+			data: {
+				tags: [
+					{
+						tag: `${item.system.cost.value - item.system.discount.value} ${game.settings.get(SYSTEM, SETTINGS.optionRenameCurrency)}`,
+						tooltip: item.system.discount.value && `${item.system.cost.value} - ${item.system.discount.value} = ${item.system.cost.value - item.system.discount.value}`,
+					},
+					{
+						tag: `${item.system.progress.current} / ${item.system.progress.max}  ${game.i18n.localize('FU.Progress')}`,
+					},
+					{
+						tag: `${item.system.days.value} ${game.i18n.localize('FU.Days')}`,
+					},
+					{
+						tag: `${item.system.progressPerDay.value} ${game.i18n.localize('FU.ProgressPerDay')}`,
+					},
+				],
+			},
+		});
+
+		if (item.system.summary.value || item.system.description) {
+			sections.push(async () => ({
+				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
+				data: {
+					summary: item.system.summary.value,
+					description: await TextEditor.enrichHTML(item.system.description),
+				},
+			}));
+		}
 	}
 });
 
@@ -32,6 +63,11 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} clock.value
  */
 export class ProjectDataModel extends foundry.abstract.TypeDataModel {
+	static {
+		deprecationNotice(this, 'clock.value');
+		deprecationNotice(this, 'hasClock.value');
+	}
+
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
@@ -41,7 +77,6 @@ export class ProjectDataModel extends foundry.abstract.TypeDataModel {
 			description: new HTMLField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
-			hasClock: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			potency: new SchemaField({ value: new StringField({ initial: 'minor', choices: Object.keys(FU.potency) }) }),
 			area: new SchemaField({ value: new StringField({ initial: 'individual', choices: Object.keys(FU.area) }) }),
@@ -51,7 +86,6 @@ export class ProjectDataModel extends foundry.abstract.TypeDataModel {
 			numTinker: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			numHelper: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
 			lvlVision: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 5, integer: true, nullable: false }) }),
-			clock: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 			source: new SchemaField({ value: new StringField() }),
 		};
 	}
