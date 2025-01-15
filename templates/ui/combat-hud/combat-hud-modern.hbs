@@ -41,7 +41,7 @@
                 
                 <div class="combat-image">
                     <div class="combat-image-bg" style="opacity: {{ this.opacity }};"></div>
-                    <img class="token-image" src="{{this.img}}" alt="{{this.actor.name}}" />
+                    <img class="token-image" src="{{this.img}}" alt="{{name}}" />
                 </div>
 
                 <div class="combat-info">
@@ -51,7 +51,7 @@
                                 {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                     <span class="combat-order">{{ this.order }}</span>.&nbsp;
                                 {{/if}}
-                                {{ this.actor.name }}
+                                {{ name }}
                             </h2>
                         </div>
                     {{else}}
@@ -60,7 +60,7 @@
                                 {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                     <span class="combat-order">{{ this.order }}</span>.&nbsp;
                                 {{/if}}
-                                {{ this.actor.name }}
+                                {{ name }}
                             </h2>
                         </div>
                     {{/if}}
@@ -110,7 +110,7 @@
                 {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
                 <div class="combat-image">
                     <div class="combat-image-bg" style="opacity: {{ this.opacity }};"></div>
-                    <img class="token-image" src="{{this.img}}" alt="{{this.actor.name}}" />
+                    <img class="token-image" src="{{this.img}}" alt="{{name}}" />
                 </div>
                 
                 <div class="combat-info">
@@ -120,7 +120,7 @@
                                 {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                     <span class="combat-order">{{ this.order }}</span>.&nbsp;
                                 {{/if}}
-                                {{ this.actor.name }}
+                                {{ name }}
                             </h2>
                         </div>
                     {{else}}
@@ -129,7 +129,7 @@
                                 {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                     <span class="combat-order">{{ this.order }}</span>.&nbsp;
                                 {{/if}}
-                                {{ this.actor.name }}
+                                {{ name }}
                             </h2>
                         </div>
                     {{/if}}

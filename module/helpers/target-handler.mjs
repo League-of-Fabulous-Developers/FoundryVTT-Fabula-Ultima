@@ -61,12 +61,13 @@ export async function getSelected() {
 }
 
 /**
- * @return {Actor[]}
+ * @param tokens returns targeted tokens instead of actors if true
+ * @return {Actor[] | Token[]}
  */
-export function getTargeted() {
+export function getTargeted(tokens = false) {
 	const targets = Array.from(game.user.targets)
-		.map((target) => target.actor)
-		.filter((actor) => actor);
+		.map((target) => (tokens ? target : target.actor))
+		.filter((element) => element);
 
 	if (targets.length === 0) {
 		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });

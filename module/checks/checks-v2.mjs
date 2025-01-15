@@ -399,12 +399,19 @@ async function renderCheck(result, actor, item, flags = {}) {
 
 	const rolls = [result.roll, ...result.additionalRolls].filter(Boolean);
 
+	let speaker = ChatMessage.getSpeaker({ actor });
+	if (speaker.scene && speaker.token) {
+		const token = game.scenes.get(speaker.scene)?.tokens?.get(speaker.token);
+		if (token) {
+			speaker = ChatMessage.getSpeaker({ token });
+		}
+	}
 	const chatMessage = {
 		flavor: flavor,
 		content: await renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections: bodySections }),
 		rolls: rolls,
 		type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
-		speaker: ChatMessage.getSpeaker({ actor }),
+		speaker: speaker,
 		flags: foundry.utils.mergeObject(
 			{
 				[SYSTEM]: {

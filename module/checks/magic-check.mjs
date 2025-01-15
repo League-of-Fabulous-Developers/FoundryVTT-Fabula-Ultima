@@ -20,7 +20,7 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
 				[...game.user.targets]
 					.filter((token) => !!token.actor)
 					.map((token) => ({
-						name: token.actor.name,
+						name: token.name,
 						uuid: token.actor.uuid,
 						link: token.actor.link,
 						difficulty: token.actor.system.derived.mdef.value,
