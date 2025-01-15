@@ -29,7 +29,7 @@ export const deprecationNotice = (root, key, replacementKey, once = true) => {
 		Object.defineProperty(currentObject, propertyKey, {
 			get() {
 				if (!alreadyPrinted.has(fqn)) {
-					console.log(`${fqn} is deprecated and replaced by ${replacementKey}`, new Stacktrace());
+					console.log(`${fqn} is deprecated and replaced by ${root.name}${replacementKey}`, new Stacktrace());
 					if (once) {
 						alreadyPrinted.add(fqn);
 					}
@@ -38,7 +38,7 @@ export const deprecationNotice = (root, key, replacementKey, once = true) => {
 			},
 			set(v) {
 				if (!alreadyPrinted.has(fqn)) {
-					console.log(`${fqn} is deprecated and replaced by ${replacementKey}`, new Stacktrace());
+					console.log(`${fqn} is deprecated and replaced by ${root.name}${replacementKey}`, new Stacktrace());
 					if (once) {
 						alreadyPrinted.add(fqn);
 					}
@@ -66,7 +66,6 @@ export const deprecationNotice = (root, key, replacementKey, once = true) => {
 						alreadyPrinted.add(fqn);
 					}
 				}
-				console.log(`${fqn} is deprecated without replacement`, new Stacktrace());
 			},
 			configurable: false,
 			enumerable: false,

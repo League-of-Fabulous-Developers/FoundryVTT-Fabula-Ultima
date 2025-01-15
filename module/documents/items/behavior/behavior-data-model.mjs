@@ -2,7 +2,15 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof BehaviorDataModel) {
-		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+		if (item.system.summary.value || item.system.description) {
+			sections.push(async () => ({
+				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
+				data: {
+					summary: item.system.summary.value,
+					description: await TextEditor.enrichHTML(item.system.description),
+				},
+			}));
+		}
 	}
 });
 
