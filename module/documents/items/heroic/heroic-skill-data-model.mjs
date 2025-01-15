@@ -1,14 +1,50 @@
-import { UseWeaponDataModel } from '../common/use-weapon-data-model.mjs';
-import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
-import { DamageDataModel } from '../common/damage-data-model.mjs';
-import { ImprovisedDamageDataModel } from '../common/improvised-damage-data-model.mjs';
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof HeroicSkillDataModel) {
-		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+		sections.push({
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
+			data: {
+				tags: [
+					{
+						tag: 'FU.Heroic',
+						show: true,
+					},
+					{
+						tag: game.i18n.localize('FU.Class') + ':',
+						value: item.system.class.value,
+						show: item.system.class.value,
+					},
+					{
+						tag: game.i18n.localize('FU.Requirements') + ':',
+						value: item.system.requirement.value,
+						show: item.system.requirement.value,
+					},
+				].filter(({ show }) => show),
+			},
+		});
+
+		if (item.system.hasResource.value) {
+			sections.push({
+				partial: 'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
+				data: {
+					data: item.system.rp.toObject(),
+				},
+			});
+		}
+
+		if (item.system.summary.value || item.system.description) {
+			sections.push(async () => ({
+				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
+				data: {
+					summary: item.system.summary.value,
+					description: await TextEditor.enrichHTML(item.system.description),
+				},
+			}));
+		}
 	}
 });
 
@@ -18,15 +54,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} description
  * @property {boolean} isFavored.value
  * @property {boolean} showTitleCard.value
- * @property {number} level.value
- * @property {number} level.min
- * @property {number} level.max
  * @property {string} class.value
- * @property {UseWeaponDataModel} useWeapon
- * @property {ItemAttributesDataModel} attributes
- * @property {number} accuracy.value
- * @property {DamageDataModel} damage
- * @property {ImprovisedDamageDataModel} impdamage
  * @property {string} requirement.value
  * @property {boolean} benefits.resources.hp.value
  * @property {boolean} benefits.resources.mp.value
@@ -34,8 +62,26 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} source.value
  */
 export class HeroicSkillDataModel extends foundry.abstract.TypeDataModel {
+	static {
+		deprecationNotice(this, 'level.min');
+		deprecationNotice(this, 'level.value');
+		deprecationNotice(this, 'level.max');
+		deprecationNotice(this, 'useWeapon.accuracy.value');
+		deprecationNotice(this, 'useWeapon.damage.value');
+		deprecationNotice(this, 'useWeapon.hrZero.value');
+		deprecationNotice(this, 'attributes.primary.value');
+		deprecationNotice(this, 'attributes.secondary.value');
+		deprecationNotice(this, 'accuracy.value');
+		deprecationNotice(this, 'damage.hasDamage.value');
+		deprecationNotice(this, 'damage.value');
+		deprecationNotice(this, 'damage.type.value');
+		deprecationNotice(this, 'impdamage.hasImpDamage.value');
+		deprecationNotice(this, 'impdamage.impType.value');
+		deprecationNotice(this, 'impdamage.type.value');
+	}
+
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, StringField, HTMLField, BooleanField, EmbeddedDataField } = foundry.data.fields;
 		return {
 			fuid: new StringField(),
 			subtype: new SchemaField({ value: new StringField({ initial: 'skill', choices: Object.keys(FU.heroicType) }) }),
@@ -43,17 +89,7 @@ export class HeroicSkillDataModel extends foundry.abstract.TypeDataModel {
 			description: new HTMLField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			showTitleCard: new SchemaField({ value: new BooleanField() }),
-			level: new SchemaField({
-				value: new NumberField({ initial: 1, min: 0, integer: true, nullable: false }),
-				max: new NumberField({ initial: 10, min: 1, integer: true, nullable: false }),
-				min: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-			}),
 			class: new SchemaField({ value: new StringField() }),
-			useWeapon: new EmbeddedDataField(UseWeaponDataModel, {}),
-			attributes: new EmbeddedDataField(ItemAttributesDataModel, { initial: { primary: { value: 'ins' }, secondary: { value: 'mig' } } }),
-			accuracy: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
-			damage: new EmbeddedDataField(DamageDataModel, {}),
-			impdamage: new EmbeddedDataField(ImprovisedDamageDataModel, {}),
 			hasResource: new SchemaField({ value: new BooleanField() }),
 			rp: new EmbeddedDataField(ProgressDataModel, {}),
 			requirement: new SchemaField({ value: new StringField() }),
