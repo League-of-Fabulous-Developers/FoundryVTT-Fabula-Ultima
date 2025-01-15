@@ -3,7 +3,26 @@ import { FU } from '../../../helpers/config.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ConsumableDataModel) {
-		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+		sections.push({
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
+			data: {
+				tags: [
+					{
+						tag: `${item.system.ipCost.value} ${game.i18n.localize('FU.InventoryAbbr')}`,
+					},
+				],
+			},
+		});
+
+		if (item.system.summary.value || item.system.description) {
+			sections.push(async () => ({
+				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
+				data: {
+					summary: item.system.summary.value,
+					description: await TextEditor.enrichHTML(item.system.description),
+				},
+			}));
+		}
 	}
 });
 
