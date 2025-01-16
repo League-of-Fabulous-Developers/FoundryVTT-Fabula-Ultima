@@ -86,6 +86,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-basic-attack-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-ability-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-ability-weapon.hbs',
 		'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-result.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-targets.hbs',

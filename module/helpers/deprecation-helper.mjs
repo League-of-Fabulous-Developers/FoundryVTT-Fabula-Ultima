@@ -14,9 +14,18 @@ export const deprecationNotice = (root, key, replacementKey, once = true) => {
 	let currentObject = root.prototype;
 	for (let parentKey of parentKeys) {
 		if (!(parentKey in currentObject)) {
-			const obj = {};
+			const obj = {
+				get root() {
+					let current = this._root;
+					while (current && !(current instanceof root)) {
+						current = current._root;
+					}
+					return current;
+				},
+			};
 			Object.defineProperty(currentObject, parentKey, {
 				get() {
+					obj._root = this;
 					return obj;
 				},
 			});
@@ -29,21 +38,21 @@ export const deprecationNotice = (root, key, replacementKey, once = true) => {
 		Object.defineProperty(currentObject, propertyKey, {
 			get() {
 				if (!alreadyPrinted.has(fqn)) {
-					console.log(`${fqn} is deprecated and replaced by ${root.name}${replacementKey}`, new Stacktrace());
+					console.log(`${fqn} is deprecated and replaced by ${root.name}.${replacementKey}`, new Stacktrace());
 					if (once) {
 						alreadyPrinted.add(fqn);
 					}
 				}
-				return foundry.utils.getProperty(this, replacementKey);
+				return foundry.utils.getProperty(this.root, replacementKey);
 			},
 			set(v) {
 				if (!alreadyPrinted.has(fqn)) {
-					console.log(`${fqn} is deprecated and replaced by ${root.name}${replacementKey}`, new Stacktrace());
+					console.log(`${fqn} is deprecated and replaced by ${root.name}.${replacementKey}`, new Stacktrace());
 					if (once) {
 						alreadyPrinted.add(fqn);
 					}
 				}
-				foundry.utils.setProperty(this, replacementKey, v);
+				foundry.utils.setProperty(this.root, replacementKey, v);
 			},
 			configurable: false,
 			enumerable: false,

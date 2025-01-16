@@ -7,7 +7,6 @@ const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
 const DIFFICULTY = 'difficulty';
 const DAMAGE = 'damage';
-const HAS_DAMAGE = 'hasDamage';
 
 /**
  *
@@ -303,7 +302,7 @@ class CheckInspector {
 	 * @return {DamageData|null}
 	 */
 	getDamage() {
-		return (this.#check.additionalData[HAS_DAMAGE] == null || this.#check.additionalData[HAS_DAMAGE] === true) && this.#check.additionalData[DAMAGE] != null ? foundry.utils.duplicate(this.#check.additionalData[DAMAGE]) : null;
+		return this.#check.additionalData[DAMAGE] != null ? foundry.utils.duplicate(this.#check.additionalData[DAMAGE]) : null;
 	}
 
 	/**
