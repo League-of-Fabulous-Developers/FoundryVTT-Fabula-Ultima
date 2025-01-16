@@ -54,30 +54,40 @@ function createTemporaryEffect(owner, effectType, name) {
  */
 export async function onManageActiveEffect(event, owner) {
 	event.preventDefault();
-	const a = event.currentTarget;
-	const li = a.closest('li');
-	const effectId = li.dataset.effectId;
-	let effect;
-	if (owner instanceof FUActor) {
-		effect = Array.from(owner.allEffects()).find((value) => value.id === effectId);
-	} else {
-		effect = owner.effects.get(effectId);
-	}
-	if (effect) {
-		switch (a.dataset.action) {
-			case 'create':
-				return createTemporaryEffect(owner, li.dataset.effectType);
-			case 'edit':
-				return effect.sheet.render(true);
-			case 'delete':
-				return effect.delete();
-			case 'toggle':
-				return effect.update({ disabled: !effect.disabled });
-			case 'copy-inline':
-				await handleCopyInlineEffect(effect);
-				break;
-			case 'roll':
-				return await handleRollEffect(effect, owner);
+	const anchor = event.currentTarget;
+	const listItem = anchor.closest('li');
+
+	/**
+	 * @returns {FUActiveEffect}
+	 */
+	const resolveEffect = () => {
+		const effectId = listItem.dataset.effectId;
+		let effect;
+		if (owner instanceof FUActor) {
+			effect = Array.from(owner.allEffects()).find((value) => value.id === effectId);
+		} else {
+			effect = owner.effects.get(effectId);
+		}
+		return effect;
+	};
+
+	switch (anchor.dataset.action) {
+		case 'create':
+			return createTemporaryEffect(owner, listItem.dataset.effectType);
+		case 'edit':
+			return resolveEffect().sheet.render(true);
+		case 'delete':
+			return resolveEffect().delete();
+		case 'toggle': {
+			const effect = resolveEffect();
+			return effect.update({ disabled: !effect.disabled });
+		}
+		case 'copy-inline': {
+			await handleCopyInlineEffect(resolveEffect());
+			break;
+		}
+		case 'roll': {
+			return await handleRollEffect(resolveEffect(), owner);
 		}
 	}
 }
