@@ -228,6 +228,31 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	return check;
 }
 
+/**
+ * Executes only the check preparation workflow, including hooks, and returns the prepared check.
+ * If an error is thrown during preparation it will be present in the error property of the returned object and the check may be in a partially configured state.
+ *
+ * @param {CheckType} type
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallback} [initialConfigCallback]
+ * @return {Promise<{check: CheckV2, error: any}>}
+ */
+async function prepareCheckDryRun(type, actor, item, initialConfigCallback) {
+	/** @type CheckV2 */
+	let check = { type };
+	let error;
+	try {
+		check = await prepareCheck(check, actor, item, initialConfigCallback);
+	} catch (e) {
+		error = e;
+	}
+	return {
+		check,
+		error,
+	};
+}
+
 const CRITICAL_THRESHOLD = 6;
 
 /**
@@ -627,6 +652,7 @@ export const ChecksV2 = Object.freeze({
 	modifyCheck,
 	isCheck,
 	promptConfiguration,
+	prepareCheckDryRun,
 });
 
 CheckRetarget.initialize();

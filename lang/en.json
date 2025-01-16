@@ -696,6 +696,7 @@
 		"GroupCheckNotPlayerCharacter": "NPCs can't support Group Checks.",
 		"GroupCheckMissingCharacter": "No character selected.",
 		"AbilityNoWeaponEquipped": "No weapons equipped!",
+		"AbilityUsingWeapon": "Using weapon:",
 		"CombatTakeTurnOutOfTurn": "[Shift + Click] to use a turn outside of the normal turn order",
 		"Accelerated": "Accelerated",
 		"Aura": "Aura",
