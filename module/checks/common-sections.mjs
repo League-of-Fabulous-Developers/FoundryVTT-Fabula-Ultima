@@ -1,3 +1,5 @@
+import { CHECK_FLAVOR } from './default-section-order.mjs';
+
 /**
  * @param {CheckRenderData} sections
  * @param {string} description
@@ -11,8 +13,8 @@ const description = (sections, description, summary, order) => {
 			data: {
 				summary,
 				description: await TextEditor.enrichHTML(description),
-				order,
 			},
+			order,
 		}));
 	}
 };
@@ -34,22 +36,107 @@ const clock = (sections, clock, order) => {
 };
 
 /**
+ * @typedef Tag
+ * @property {string} [tag] gets localized
+ * @property {any} [value] doesn't get localized
+ * @property {string} [tooltip] tooltip to attach to the tag, gets localized
+ * @property {boolean} [flip] switches the position of tag and value
+ * @property {string} [separator] placed between tag and
+ * @property {any} [show] can be omitted, if defined and falsy doesn't render tag
+ */
+
+/**
  * @param {CheckRenderData} sections
- * @param {{tag?:string, value?: string}[]} tags tags are localized, values are rendered as is
+ * @param {Tag[]} tags
  * @param {number} [order]
  */
-const tags = (sections, tags, order) => {
+const tags = (sections, tags = [], order) => {
+	tags = tags.filter((tag) => !('show' in tag) || tag.show);
+	if (tags.length > 0) {
+		sections.push(async () => ({
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
+			data: {
+				tags: tags,
+			},
+			order: order,
+		}));
+	}
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {string} quality
+ * @param {number} [order]
+ */
+const quality = (sections, quality, order) => {
+	if (quality) {
+		sections.push({
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs',
+			data: {
+				quality,
+			},
+			order,
+		});
+	}
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {ProgressDataModel} resource
+ * @param {number} [order]
+ */
+const resource = (sections, resource, order) => {
 	sections.push(async () => ({
-		partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
+		partial: 'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
 		data: {
-			tags,
+			data: resource,
 		},
 		order: order,
 	}));
+};
+
+/**
+ * Sets chat message flavor by default. Specify order for other usecases.
+ * @param {CheckRenderData} sections
+ * @param {{name: string, img: string, id: string, uuid: string}} item
+ * @param {number} [order]
+ */
+const itemFlavor = (sections, item, order = CHECK_FLAVOR) => {
+	sections.push({
+		order: order,
+		partial: 'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
+		data: {
+			name: item.name,
+			img: item.img,
+			id: item.id,
+			uuid: item.uuid,
+		},
+	});
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {string} opportunity
+ * @param {number} [order]
+ */
+const opportunity = (sections, opportunity, order) => {
+	if (opportunity) {
+		sections.push({
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs',
+			data: {
+				opportunity: opportunity,
+			},
+			order: order,
+		});
+	}
 };
 
 export const CommonSections = Object.freeze({
 	description,
 	clock,
 	tags,
+	quality,
+	resource,
+	itemFlavor,
+	opportunity,
 });

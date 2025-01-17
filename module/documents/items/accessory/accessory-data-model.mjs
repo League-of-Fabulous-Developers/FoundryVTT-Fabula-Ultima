@@ -1,49 +1,29 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof AccessoryDataModel) {
-		const tags = [
+		CommonSections.tags(sections, [
 			{
 				tag: 'FU.DefenseAbbr',
 				value: item.system.def.value,
+				show: item.system.def.value,
 			},
 			{
 				tag: 'FU.MagicDefenseAbbr',
 				value: item.system.mdef.value,
+				show: item.system.mdef.value,
 			},
 			{
 				tag: 'FU.InitiativeAbbr',
 				value: item.system.init.value,
+				show: item.system.init.value,
 			},
-		].filter(({ value }) => value !== 0);
-		if (tags.length > 0) {
-			sections.push({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
-				data: {
-					tags,
-				},
-			});
-		}
+		]);
 
-		if (item.system.quality.value) {
-			sections.push({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs',
-				data: {
-					quality: item.system.quality.value,
-				},
-			});
-		}
-
-		if (item.system.summary.value || item.system.description) {
-			sections.push(async () => ({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
-				data: {
-					summary: item.system.summary.value,
-					description: await TextEditor.enrichHTML(item.system.description),
-				},
-			}));
-		}
+		CommonSections.quality(sections, item.system.quality.value);
+		CommonSections.description(sections, item.system.description, item.system.summary.value);
 	}
 });
 

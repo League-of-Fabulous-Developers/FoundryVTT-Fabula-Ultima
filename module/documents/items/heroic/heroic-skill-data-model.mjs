@@ -2,49 +2,35 @@ import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof HeroicSkillDataModel) {
-		sections.push({
-			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
-			data: {
-				tags: [
-					{
-						tag: 'FU.Heroic',
-						show: true,
-					},
-					{
-						tag: game.i18n.localize('FU.Class') + ':',
-						value: item.system.class.value,
-						show: item.system.class.value,
-					},
-					{
-						tag: game.i18n.localize('FU.Requirements') + ':',
-						value: item.system.requirement.value,
-						show: item.system.requirement.value,
-					},
-				].filter(({ show }) => show),
+		CommonSections.tags(sections, [
+			{
+				tag: FU.heroicType[item.system.subtype.value],
 			},
-		});
+			{
+				tag: 'FU.Class',
+				separator: ':',
+				value: item.system.class.value,
+				show: item.system.class.value,
+			},
+		]);
+
+		if (item.system.requirement.value)
+			sections.push({
+				content: `
+                  <div class='chat-desc'>
+                    <p><strong>${game.i18n.localize('FU.Requirements')}: </strong>${item.system.requirement.value}</p>
+                  </div>`,
+			});
 
 		if (item.system.hasResource.value) {
-			sections.push({
-				partial: 'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
-				data: {
-					data: item.system.rp.toObject(),
-				},
-			});
+			CommonSections.resource(sections, item.system.rp);
 		}
 
-		if (item.system.summary.value || item.system.description) {
-			sections.push(async () => ({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
-				data: {
-					summary: item.system.summary.value,
-					description: await TextEditor.enrichHTML(item.system.description),
-				},
-			}));
-		}
+		CommonSections.description(sections, item.system.description, item.system.summary.value);
 	}
 });
 
