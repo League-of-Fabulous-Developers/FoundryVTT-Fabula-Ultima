@@ -33,7 +33,23 @@ const clock = (sections, clock, order) => {
 	}));
 };
 
+/**
+ * @param {CheckRenderData} sections
+ * @param {{tag?:string, value?: string}[]} tags tags are localized, values are rendered as is
+ * @param {number} [order]
+ */
+const tags = (sections, tags, order) => {
+	sections.push(async () => ({
+		partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
+		data: {
+			tags,
+		},
+		order: order,
+	}));
+};
+
 export const CommonSections = Object.freeze({
 	description,
 	clock,
+	tags,
 });
