@@ -1,16 +1,9 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof BehaviorDataModel) {
-		if (item.system.summary.value || item.system.description) {
-			sections.push(async () => ({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
-				data: {
-					summary: item.system.summary.value,
-					description: await TextEditor.enrichHTML(item.system.description),
-				},
-			}));
-		}
+		CommonSections.description(sections, item.system.description, item.system.summary.value);
 	}
 });
 

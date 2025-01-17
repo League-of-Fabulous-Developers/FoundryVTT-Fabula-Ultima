@@ -1,5 +1,6 @@
 import { ClassMigrations } from './class-migrations.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 const tagProperties = {
 	'benefits.resources.hp.value': 'FU.BenefitHp',
@@ -19,25 +20,10 @@ const tagProperties = {
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ClassDataModel) {
-		const tags = Object.entries(tagProperties)
-			.filter(([property]) => foundry.utils.getProperty(item.system, property))
-			.map(([, translation]) => ({ tag: translation }));
-		if (tags.length > 0) {
-			sections.push({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
-				data: { tags },
-			});
-		}
+		const tags = Object.entries(tagProperties).map(([key, translation]) => ({ tag: translation, show: foundry.utils.getProperty(item.system, key) }));
+		CommonSections.tags(sections, tags);
 
-		if (item.system.summary.value || item.system.description) {
-			sections.push(async () => ({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
-				data: {
-					summary: item.system.summary.value,
-					description: await TextEditor.enrichHTML(item.system.description),
-				},
-			}));
-		}
+		CommonSections.description(sections, item.system.description, item.system.summary.value);
 	}
 });
 

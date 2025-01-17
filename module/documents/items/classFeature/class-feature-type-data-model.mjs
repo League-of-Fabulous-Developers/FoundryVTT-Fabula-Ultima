@@ -3,20 +3,11 @@ import { RollableClassFeatureDataModel } from './class-feature-data-model.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { slugify } from '../../../util.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ClassFeatureTypeDataModel && !(item.system.data instanceof RollableClassFeatureDataModel)) {
-		if (item.system.summary.value || item.system.description) {
-			sections.push(
-				TextEditor.enrichHTML(item.system.description).then((v) => ({
-					partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
-					data: {
-						summary: item.system.summary.value,
-						description: v,
-					},
-				})),
-			);
-		}
+		CommonSections.description(sections, item.system.description, item.system.summary.value);
 	}
 });
 

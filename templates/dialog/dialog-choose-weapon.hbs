@@ -13,6 +13,15 @@
                         <span>{{localize 'FU.DamagePretty' damage=system.damage.value}}{{localize (lookup @root.FU.damageTypes system.damageType.value)}}</span>
                     </span>
                     {{/if}}
+                    {{#if (eq type 'basic')}}
+                        <span>
+                        <span>
+                            {{localize 'FU.AttributesPretty' attr1=(localize (lookup @root.FU.attributeAbbreviations system.attributes.primary.value)) attr2=(localize (lookup @root.FU.attributeAbbreviations system.attributes.secondary.value))}}
+                            {{#if system.accuracy.value}}{{#if (gt system.accuracy.value 0)}}+{{/if}}{{system.accuracy.value}}{{/if}}
+                        </span>
+                        <span>{{localize 'FU.DamagePretty' damage=system.damage.value}}{{localize (lookup @root.FU.damageTypes system.damageType.value)}}</span>
+                    </span>
+                    {{/if}}
                     {{#if (and (eq type 'classFeature') (eq system.featureType 'projectfu.weaponModule'))}}
                         <span>
                         <span>

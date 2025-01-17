@@ -2,10 +2,15 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { FU } from '../../../helpers/config.mjs';
 import { ArmorMigrations } from './armor-migrations.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ArmorDataModel) {
-		const tags = [
+		CommonSections.tags(sections, [
+			{
+				tag: 'FU.Martial',
+				show: item.system.isMartial.value,
+			},
 			{
 				tag: 'FU.DefenseAbbr',
 				value: item.system.def.attribute ? `${game.i18n.localize(FU.attributeAbbreviations[item.system.def.attribute])} + ${item.system.def.value}` : `${item.system.def.value}`,
@@ -18,37 +23,10 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 				tag: 'FU.InitiativeAbbr',
 				value: item.system.init.value,
 			},
-		];
-		if (item.system.isMartial.value) {
-			tags.unshift({
-				tag: 'FU.Martial',
-			});
-		}
-		sections.push({
-			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
-			data: {
-				tags,
-			},
-		});
+		]);
 
-		if (item.system.quality.value) {
-			sections.push({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-quality.hbs',
-				data: {
-					quality: item.system.quality.value,
-				},
-			});
-		}
-
-		if (item.system.summary.value || item.system.description) {
-			sections.push(async () => ({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
-				data: {
-					summary: item.system.summary.value,
-					description: await TextEditor.enrichHTML(item.system.description),
-				},
-			}));
-		}
+		CommonSections.quality(sections, item.system.quality.value);
+		CommonSections.description(sections, item.system.description, item.system.summary.value);
 	}
 });
 

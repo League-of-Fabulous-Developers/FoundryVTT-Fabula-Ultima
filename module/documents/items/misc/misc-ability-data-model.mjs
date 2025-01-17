@@ -9,30 +9,16 @@ import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
-import { CHECK_DETAILS, CHECK_FLAVOR } from '../../../checks/default-section-order.mjs';
+import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (check.type === 'accuracy' && item?.system instanceof MiscAbilityDataModel) {
 		const weapon = fromUuidSync(check.additionalData[ABILITY_USED_WEAPON]);
 		if (check.critical) {
-			sections.push({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs',
-				data: {
-					opportunity: item.system.opportunity,
-				},
-				order: CHECK_DETAILS,
-			});
+			CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
 		}
-		if (item.system.summary.value || item.system.description) {
-			sections.push(async () => ({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
-				data: {
-					summary: item.system.summary.value,
-					description: await TextEditor.enrichHTML(item.system.description),
-				},
-				order: CHECK_DETAILS,
-			}));
-		}
+		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		sections.push(() => ({
 			partial: 'systems/projectfu/templates/chat/partials/chat-ability-weapon.hbs',
 			data: {
@@ -44,37 +30,13 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 
 	if (check.type === 'attribute' && check.additionalData[ABILITY_USED_WEAPON]) {
 		const ability = fromUuidSync(check.additionalData[ABILITY_USED_WEAPON]);
-		sections.push({
-			order: CHECK_FLAVOR,
-			partial: 'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
-			data: {
-				name: ability.name,
-				img: ability.img,
-				id: ability.id,
-				uuid: ability.uuid,
-			},
-		});
+		CommonSections.itemFlavor(sections, ability);
 
 		if (check.critical) {
-			sections.push({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs',
-				data: {
-					opportunity: ability.system.opportunity,
-				},
-				order: CHECK_DETAILS,
-			});
+			CommonSections.opportunity(sections, ability.system.opportunity, CHECK_DETAILS);
 		}
 
-		if (ability.system.summary.value || ability.system.description) {
-			sections.push(async () => ({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
-				data: {
-					summary: ability.system.summary.value,
-					description: await TextEditor.enrichHTML(ability.system.description),
-				},
-				order: CHECK_DETAILS,
-			}));
-		}
+		CommonSections.description(sections, ability.system.description, ability.system.summary.value, CHECK_DETAILS);
 	}
 });
 

@@ -1,5 +1,7 @@
 import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { CharacterDataModel } from '../../actors/character/character-data-model.mjs';
+import { NpcDataModel } from '../../actors/npc/npc-data-model.mjs';
 
 /**
  * @param {FUActor} actor
@@ -25,16 +27,32 @@ function getWeapon(actor, slot) {
 async function prompt(actor, includeWeaponModules = false) {
 	const equippedWeapons = [];
 
-	if (includeWeaponModules && actor.system.vehicle.embarked) {
-		equippedWeapons.push(...actor.system.vehicle.weapons);
-	} else {
-		const mainHand = getWeapon(actor, 'mainHand');
-		const offHand = getWeapon(actor, 'offHand');
-		const armor = getWeapon(actor, 'armor');
+	if (actor.system instanceof CharacterDataModel) {
+		if (includeWeaponModules && actor.system.vehicle.embarked) {
+			equippedWeapons.push(...actor.system.vehicle.weapons);
+		} else {
+			const mainHand = getWeapon(actor, 'mainHand');
+			const offHand = getWeapon(actor, 'offHand');
+			const armor = getWeapon(actor, 'armor');
 
-		equippedWeapons.push(mainHand, armor);
-		if (offHand !== mainHand) {
-			equippedWeapons.push(offHand);
+			equippedWeapons.push(mainHand, armor);
+			if (offHand !== mainHand) {
+				equippedWeapons.push(offHand);
+			}
+		}
+	}
+	if (actor.system instanceof NpcDataModel) {
+		if (actor.system.useEquipment.value) {
+			const mainHand = getWeapon(actor, 'mainHand');
+			const offHand = getWeapon(actor, 'offHand');
+			const armor = getWeapon(actor, 'armor');
+
+			equippedWeapons.push(mainHand, armor);
+			if (offHand !== mainHand) {
+				equippedWeapons.push(offHand);
+			}
+		} else {
+			equippedWeapons.push(...actor.itemTypes.basic);
 		}
 	}
 

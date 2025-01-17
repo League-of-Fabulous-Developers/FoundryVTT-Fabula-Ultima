@@ -7,6 +7,7 @@ import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 /**
  * @type {PrepareCheckHook}
@@ -23,46 +24,33 @@ Hooks.on(CheckHooks.prepareCheck, prepareCheck);
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof RitualDataModel) {
-		const tags = [
-			{
-				value: `${item.system.mpCost.value} ${game.i18n.localize('FU.MindAbbr')}`,
-			},
-			{
-				tag: 'FU.DLAbbr',
-				value: item.system.dLevel.value,
-			},
-		];
+		CommonSections.tags(
+			sections,
+			[
+				{
+					tag: 'FU.MindAbbr',
+					value: item.system.mpCost.value,
+					flip: true,
+				},
+				{
+					tag: 'FU.DLAbbr',
+					value: item.system.dLevel.value,
+				},
+				{
+					tag: 'FU.Clock',
+					value: item.system.progress.max,
+					show: item.system.hasClock.value,
+					flip: true,
+				},
+			],
+			CHECK_DETAILS,
+		);
+
 		if (item.system.hasClock.value) {
-			tags.push({
-				tag: 'FU.Clock',
-				value: item.system.progress.max,
-			});
-			sections.push(async () => ({
-				partial: 'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
-				data: {
-					data: item.system.progress,
-					arr: item.system.progress.generateProgressArray(),
-				},
-				order: CHECK_DETAILS,
-			}));
+			CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
 		}
-		sections.unshift({
-			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
-			data: {
-				tags: tags,
-			},
-			order: CHECK_DETAILS,
-		});
-		if (item.system.summary.value || item.system.description) {
-			sections.push(async () => ({
-				partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
-				data: {
-					summary: item.system.summary.value,
-					description: await TextEditor.enrichHTML(item.system.description),
-				},
-				order: CHECK_DETAILS,
-			}));
-		}
+
+		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
 });
 
