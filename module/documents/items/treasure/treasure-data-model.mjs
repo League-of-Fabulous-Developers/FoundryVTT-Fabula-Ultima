@@ -1,9 +1,32 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { FU } from '../../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../../helpers/config.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
+import { SETTINGS } from '../../../settings.js';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof TreasureDataModel) {
-		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+		const tags = [
+			{
+				tag: FU.treasureType[item.system.subtype.value],
+			},
+		];
+		if (item.system.cost.value) {
+			tags.push({
+				value: `${item.system.cost.value} ${game.settings.get(SYSTEM, SETTINGS.optionRenameCurrency)}`,
+			});
+		}
+		if (item.system.quantity.value) {
+			tags.push({
+				value: `${game.i18n.localize('FU.Quantity')}: ${item.system.quantity.value}`,
+			});
+		}
+		if (item.system.origin.value) {
+			tags.push({
+				value: `${game.i18n.localize('FU.Origin')}: ${item.system.origin.value}`,
+			});
+		}
+		CommonSections.tags(sections, tags);
+		CommonSections.description(sections, item.system.description, item.system.summary.value);
 	}
 });
 
