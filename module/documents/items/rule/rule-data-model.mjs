@@ -1,9 +1,14 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof RuleDataModel) {
-		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+		if (item.system.hasClock.value) {
+			CommonSections.clock(sections, item.system.progress);
+		}
+
+		CommonSections.description(sections, item.system.description, item.system.summary.value);
 	}
 });
 
