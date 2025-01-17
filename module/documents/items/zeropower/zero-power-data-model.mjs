@@ -3,7 +3,10 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ZeroPowerDataModel) {
-		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+		sections.push({
+			content:
+				'This item type is deprecated and will be removed on a future update. Please use the new optional feature zero power which can be enabled via game settings under "Manage Optional Rules". Create a new item of type "Optional Feature" and set Sub Type to "Zero Power"',
+		});
 	}
 });
 
