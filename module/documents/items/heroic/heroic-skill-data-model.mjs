@@ -62,6 +62,7 @@ export class HeroicSkillDataModel extends foundry.abstract.TypeDataModel {
 		deprecationNotice(this, 'damage.value');
 		deprecationNotice(this, 'damage.type.value');
 		deprecationNotice(this, 'impdamage.hasImpDamage.value');
+		deprecationNotice(this, 'impdamage.value');
 		deprecationNotice(this, 'impdamage.impType.value');
 		deprecationNotice(this, 'impdamage.type.value');
 	}
