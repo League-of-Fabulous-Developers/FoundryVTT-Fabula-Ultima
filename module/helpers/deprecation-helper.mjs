@@ -1,6 +1,14 @@
+/**
+ * Track which deprecated method has already been logged.
+ * @type {Set<string>}
+ */
 const alreadyPrinted = new Set();
 
 /**
+ * Add a log message to a removed field in a data model.
+ * For nested fields the required nested objects will be defined on the class.
+ * If the field has no replacement its value will be undefined, and it cannot be set to any other value.
+ * If the field has a designated replacement it will reflect the value of its replacement and will set the value of its replacement.
  * @param {typeof foundry.abstract.DataModel} root the DataModel subclass
  * @param {string} key
  * @param {string} [replacementKey]
