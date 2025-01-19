@@ -10,12 +10,12 @@ import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
 import { SETTINGS } from '../../../settings.js';
-import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { CHECK_DETAILS, CHECK_FLAVOR } from '../../../checks/default-section-order.mjs';
+import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
+import { Targeting } from '../../../helpers/targeting.mjs';
 
 const weaponUsedBySkill = 'weaponUsedBySkill';
 const skillForAttributeCheck = 'skillForAttributeCheck';
@@ -90,7 +90,7 @@ Hooks.on(CheckHooks.prepareCheck, onPrepareAttributeCheck);
 /**
  * @type RenderCheckHook
  */
-let onRenderAccuracyCheck = (sections, check, actor, item) => {
+let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 	if (check.type === 'accuracy' && item?.system instanceof SkillDataModel) {
 		if (check.additionalData[weaponUsedBySkill]) {
 			const weapon = fromUuidSync(check.additionalData[weaponUsedBySkill]);
@@ -128,6 +128,8 @@ let onRenderAccuracyCheck = (sections, check, actor, item) => {
 				order: CHECK_DETAILS + 1,
 			});
 		}
+
+		const targets = Targeting.getSerializedTargetData();
 		ResourcePipeline.addSpendResourceChatMessageSection(sections, actor, item, targets, flags);
 	}
 };

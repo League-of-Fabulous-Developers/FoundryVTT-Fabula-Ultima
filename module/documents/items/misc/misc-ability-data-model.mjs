@@ -14,7 +14,7 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (check.type === 'accuracy' && item?.system instanceof MiscAbilityDataModel) {
 		const weapon = fromUuidSync(check.additionalData[ABILITY_USED_WEAPON]);
 		if (check.critical) {
