@@ -1,9 +1,9 @@
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
-import { FU, SYSTEM } from '../helpers/config.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { Targeting } from '../helpers/targeting.mjs';
+import { CommonSections } from './common-sections.mjs';
 
 function handleGenericBonus(actor, modifiers) {
 	if (actor.system.bonuses.accuracy.accuracyCheck) {
@@ -87,57 +87,11 @@ const onProcessCheck = (check, actor, item) => {
  * @param {Object} flags
  */
 function onRenderCheck(data, checkResult, actor, item, flags) {
-	const { type, primary, modifierTotal, secondary, result, modifiers, additionalData, critical, fumble } = checkResult;
-
-	if (type === 'accuracy') {
+	if (checkResult.type === 'accuracy') {
 		const inspector = CheckConfiguration.inspect(checkResult);
 
-		const accuracyData = {
-			result: {
-				attr1: primary.result,
-				attr2: secondary.result,
-				die1: primary.dice,
-				die2: secondary.dice,
-				modifier: modifierTotal,
-				total: result,
-				crit: critical,
-				fumble: fumble,
-			},
-			check: {
-				attr1: {
-					attribute: primary.attribute,
-				},
-				attr2: {
-					attribute: secondary.attribute,
-				},
-			},
-			modifiers,
-			additionalData,
-		};
-
-		const damage = inspector.getDamage();
-		const hrZero = inspector.getHrZero();
-		let damageData = null;
-
-		if (damage) {
-			damageData = {
-				result: {
-					attr1: primary.result,
-					attr2: secondary.result,
-				},
-				damage: {
-					hrZero: hrZero,
-					bonus: damage.modifierTotal,
-					total: damage.total,
-					type: damage.type,
-				},
-				translation: {
-					damageTypes: FU.damageTypes,
-					damageIcon: FU.affIcon,
-				},
-				modifiers: damage.modifiers,
-			};
-		}
+		const accuracyData = inspector.getAccuracyData();
+		const damageData = inspector.getDamageData();
 
 		// Push combined data for accuracy and damage
 		data.push({
@@ -151,7 +105,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 
 		/** @type TargetData[] */
 		const targets = inspector.getTargets();
-		Targeting.addDamageTargetingSection(data, actor, item, targets, flags, accuracyData, damageData);
+		CommonSections.damage(data, actor, item, targets, flags, accuracyData, damageData);
 
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();
 	}
