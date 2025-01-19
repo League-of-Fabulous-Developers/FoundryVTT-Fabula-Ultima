@@ -8,10 +8,10 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
-import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 import { TargetChatSectionBuilder } from '../../../helpers/targeting.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 /**
  * @param {CheckV2} check
@@ -73,7 +73,7 @@ function onRenderCheck(data, result, actor, item, flags, targets) {
 			targetingSection.push();
 		}
 
-		ResourcePipeline.addSpendResourceChatMessageSection(data, actor, item, targets, flags);
+		CommonSections.spendResource(data, actor, item, targets, flags);
 	}
 }
 

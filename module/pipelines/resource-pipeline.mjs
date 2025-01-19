@@ -1,9 +1,7 @@
 import { Pipeline, PipelineRequest } from './pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
-import { CHECK_RESULT } from '../checks/default-section-order.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { RenderCheckSectionBuilder } from '../checks/check-hooks.mjs';
 
 /**
  * @property {Number} amount
@@ -190,34 +188,6 @@ async function processLoss(request) {
 }
 
 /**
- * @param {CheckRenderData} data
- * @param {FUActor} actor
- * @param {FUItem} item
- * @param {TargetData[]} targets
- * @param {Object} flags
- */
-function addSpendResourceChatMessageSection(data, actor, item, targets, flags) {
-	if (item.system.cost) {
-		if (item.system.cost.amount === 0) {
-			return;
-		}
-
-		const expense = calculateExpense(item, targets);
-		if (expense.amount === 0) {
-			return;
-		}
-
-		const builder = new RenderCheckSectionBuilder(data, actor, item, targets, flags, CHECK_RESULT, 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs');
-		builder.addData(async (data) => {
-			data.expense = expense;
-			data.icon = FU.resourceIcons[item.system.cost.resource];
-		});
-		builder.toggleFlag(Flags.ChatMessage.ResourceLoss);
-		builder.push();
-	}
-}
-
-/**
  * @typedef ResourceExpense
  * @property {String} resource
  * @property {Number} amount
@@ -287,5 +257,5 @@ export const ResourcePipeline = {
 	processRecovery,
 	processLoss,
 	onRenderChatMessage,
-	addSpendResourceChatMessageSection,
+	calculateExpense,
 };

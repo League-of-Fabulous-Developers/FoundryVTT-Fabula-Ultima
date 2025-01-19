@@ -13,7 +13,6 @@ import { SETTINGS } from '../../../settings.js';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
-import { ResourcePipeline } from '../../../pipelines/resource-pipeline.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 import { Targeting } from '../../../helpers/targeting.mjs';
 
@@ -130,7 +129,7 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 		}
 
 		const targets = Targeting.getSerializedTargetData();
-		ResourcePipeline.addSpendResourceChatMessageSection(sections, actor, item, targets, flags);
+		CommonSections.spendResource(sections, actor, item, targets, flags);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);

@@ -1,6 +1,10 @@
-import { CHECK_FLAVOR } from './default-section-order.mjs';
+import { CHECK_FLAVOR, CHECK_RESULT } from './default-section-order.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { TargetChatSectionBuilder, Targeting } from '../helpers/targeting.mjs';
+import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
+import { RenderCheckSectionBuilder } from './check-hooks.mjs';
+import { FU } from '../helpers/config.mjs';
+import { Flags } from '../helpers/flags.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -133,10 +137,19 @@ const opportunity = (sections, opportunity, order) => {
 	}
 };
 
-const damage = (data, actor, item, targets, flags, accuracyData, damageData) => {
+/**
+ * @param {CheckRenderData} sections
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {TargetData[]} targets
+ * @param {Object} flags
+ * @param accuracyData
+ * @param damageData
+ */
+const damage = (sections, actor, item, targets, flags, accuracyData, damageData) => {
 	const isTargeted = targets?.length > 0 || !Targeting.STRICT_TARGETING;
 	if (isTargeted) {
-		const targetingSection = new TargetChatSectionBuilder(data, actor, item, targets, flags);
+		const targetingSection = new TargetChatSectionBuilder(sections, actor, item, targets, flags);
 		targetingSection.withDefaultTargeting(targets);
 		targetingSection.applyDamage(accuracyData, damageData);
 		targetingSection.push();
@@ -162,6 +175,34 @@ const damage = (data, actor, item, targets, flags, accuracyData, damageData) => 
 	}
 };
 
+/**
+ * @param {CheckRenderData} data
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @param {TargetData[]} targets
+ * @param {Object} flags
+ */
+const spendResource = (data, actor, item, targets, flags) => {
+	if (item.system.cost) {
+		if (item.system.cost.amount === 0) {
+			return;
+		}
+
+		const expense = ResourcePipeline.calculateExpense(item, targets);
+		if (expense.amount === 0) {
+			return;
+		}
+
+		const builder = new RenderCheckSectionBuilder(data, actor, item, targets, flags, CHECK_RESULT, 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs');
+		builder.addData(async (data) => {
+			data.expense = expense;
+			data.icon = FU.resourceIcons[item.system.cost.resource];
+		});
+		builder.toggleFlag(Flags.ChatMessage.ResourceLoss);
+		builder.push();
+	}
+};
+
 export const CommonSections = Object.freeze({
 	description,
 	clock,
@@ -171,4 +212,5 @@ export const CommonSections = Object.freeze({
 	itemFlavor,
 	opportunity,
 	damage,
+	spendResource,
 });
