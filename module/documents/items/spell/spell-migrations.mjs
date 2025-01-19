@@ -11,12 +11,24 @@ function migrateQualityToOpportunity(source) {
  * @param {SpellDataModel} source
  */
 function migrateCostAndTargets(source) {
-	if (source.mpCost && source.cost && source.targeting) {
+	if (source.mpCost && !source.cost) {
+		source.cost = {};
 		source.cost.resource = 'mp';
-		source.cost.amount = source.mpCost.value;
+		const costRegex = /^\s*(?<cost>\d*)/;
+		const match = costRegex.exec(source.mpCost.value);
+		source.cost.amount = match ? Number(match.groups.cost) : 0;
+		// Delete old fields for clarity
+		delete source.mpCost;
+	}
+	if (source.maxTargets && source.target && !source.targeting) {
+		source.targeting = {};
 		source.targeting.max = source.maxTargets.value;
 
-		if (source.targeting.max > 1) {
+		if (/weapon/i.test(source.target.value)) {
+			source.targeting.rule = Targeting.rule.weapon;
+		} else if (/special/i.test(source.target.value)) {
+			source.targeting.rule = Targeting.rule.special;
+		} else if (source.targeting.max > 1) {
 			source.targeting.rule = Targeting.rule.multiple;
 		} else if (source.targeting.max === 1) {
 			source.targeting.rule = Targeting.rule.single;
@@ -24,8 +36,7 @@ function migrateCostAndTargets(source) {
 			source.targeting.rule = Targeting.rule.self;
 		}
 
-		// Delete old properties?
-		delete source.mpCost;
+		// Delete old fields for clarity
 		delete source.maxTargets;
 		delete source.target;
 	}
