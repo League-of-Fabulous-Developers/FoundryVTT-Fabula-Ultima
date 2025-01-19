@@ -860,7 +860,7 @@
 		"ChatApplyDamageImmuneIgnored": "<strong>{actor}</strong> took <strong>{damage} {type}</strong> damage from <strong>{from} (Immunity ignored)</strong>",
 		"ChatApplyDamageAbsorb": "<strong>{actor} absorbed {type}</strong> damage from <strong>{from}</strong> and was healed by <strong>{damage}</strong> HP",
 		"ChatApplyResourceLoss": "Spend",
-		"ChatApplyResourceLostsTooltip": "Click to spend the given resource on the actor who performed this action.",
+		"ChatApplyResourceLossTooltip": "Click to spend the given resource on the actor who performed this action.",
 		"ChatApplyResourceLossSelected": "Spend Selected",
 		"ChatApplyResourceLossTargeted": "Spend Targeted",
 		"ChatRevertDamage": "Revert applied damage",
