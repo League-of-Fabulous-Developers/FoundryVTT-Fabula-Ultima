@@ -1,4 +1,6 @@
 import { CHECK_FLAVOR } from './default-section-order.mjs';
+import { FUActor } from '../documents/actors/actor.mjs';
+import { TargetChatSectionBuilder, Targeting } from '../helpers/targeting.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -131,6 +133,35 @@ const opportunity = (sections, opportunity, order) => {
 	}
 };
 
+const damage = (data, actor, item, targets, flags, accuracyData, damageData) => {
+	const isTargeted = targets?.length > 0 || !Targeting.STRICT_TARGETING;
+	if (isTargeted) {
+		const targetingSection = new TargetChatSectionBuilder(data, actor, item, targets, flags);
+		targetingSection.withDefaultTargeting(targets);
+		targetingSection.applyDamage(accuracyData, damageData);
+		targetingSection.push();
+
+		async function showFloatyText(target) {
+			const actor = await fromUuid(target.uuid);
+			if (actor instanceof FUActor) {
+				actor.showFloatyText(game.i18n.localize(target.result === 'hit' ? 'FU.Hit' : 'FU.Miss'));
+			}
+		}
+
+		if (game.dice3d) {
+			Hooks.once('diceSoNiceRollComplete', () => {
+				for (const target of targets) {
+					showFloatyText(target);
+				}
+			});
+		} else {
+			for (const target of targets) {
+				showFloatyText(target);
+			}
+		}
+	}
+};
+
 export const CommonSections = Object.freeze({
 	description,
 	clock,
@@ -139,4 +170,5 @@ export const CommonSections = Object.freeze({
 	resource,
 	itemFlavor,
 	opportunity,
+	damage,
 });

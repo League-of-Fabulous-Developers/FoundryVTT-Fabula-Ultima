@@ -4,6 +4,7 @@ import { SYSTEM } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
+import { CommonSections } from './common-sections.mjs';
 
 /**
  * @param {CheckV2} check
@@ -94,7 +95,7 @@ function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags
 	});
 
 	const targets = Targeting.getSerializedTargetData();
-	Targeting.addDamageTargetingSection(data, actor, item, targets, flags, accuracyData, damageData);
+	CommonSections.damage(data, actor, item, targets, flags, accuracyData, damageData);
 }
 
 /**

@@ -3,7 +3,6 @@ import { CHECK_RESULT } from '../checks/default-section-order.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { Flags } from './flags.mjs';
 import { SYSTEM } from './config.mjs';
-import { FUActor } from '../documents/actors/actor.mjs';
 import { RenderCheckSectionBuilder } from '../checks/check-hooks.mjs';
 import { getTargeted } from './target-handler.mjs';
 
@@ -243,35 +242,6 @@ function onRenderChatMessage(document, jQuery) {
 	});
 }
 
-function addDamageTargetingSection(data, actor, item, targets, flags, accuracyData, damageData) {
-	const isTargeted = targets?.length > 0 || !STRICT_TARGETING;
-	if (isTargeted) {
-		const targetingSection = new TargetChatSectionBuilder(data, actor, item, targets, flags);
-		targetingSection.withDefaultTargeting(targets);
-		targetingSection.applyDamage(accuracyData, damageData);
-		targetingSection.push();
-
-		async function showFloatyText(target) {
-			const actor = await fromUuid(target.uuid);
-			if (actor instanceof FUActor) {
-				actor.showFloatyText(game.i18n.localize(target.result === 'hit' ? 'FU.Hit' : 'FU.Miss'));
-			}
-		}
-
-		if (game.dice3d) {
-			Hooks.once('diceSoNiceRollComplete', () => {
-				for (const target of targets) {
-					showFloatyText(target);
-				}
-			});
-		} else {
-			for (const target of targets) {
-				showFloatyText(target);
-			}
-		}
-	}
-}
-
 function validateCombatant(token) {
 	const canvas = game.canvas;
 	if (!canvas.ready || token.scene.id !== canvas.scene.id) {
@@ -308,5 +278,5 @@ export const Targeting = Object.freeze({
 	serializeTargetData,
 	deserializeTargetData,
 	onRenderChatMessage,
-	addDamageTargetingSection,
+	STRICT_TARGETING,
 });
