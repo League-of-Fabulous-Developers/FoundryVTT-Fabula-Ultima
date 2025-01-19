@@ -79,7 +79,7 @@ const onProcessCheck = (check, actor, item) => {
  * @param {CheckInspector} inspector
  * @param {CheckRenderData} data
  */
-function renderCombatMagicCheck(checkResult, inspector, data) {
+function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
 	const { primary, modifierTotal, secondary, result, modifiers, additionalData, critical, fumble } = checkResult;
 	const accuracyData = {
 		result: {
@@ -137,39 +137,9 @@ function renderCombatMagicCheck(checkResult, inspector, data) {
 			damage: damageData,
 		},
 	});
-	/** @type TargetData[] */
-	const targets = inspector.getTargets();
-	const isTargeted = targets?.length > 0;
-	if (targets) {
-		data.push({
-			order: CHECK_RESULT,
-			partial: isTargeted ? 'systems/projectfu/templates/chat/partials/chat-check-targets.hbs' : 'systems/projectfu/templates/chat/partials/chat-check-notargets.hbs',
-			data: {
-				targets: targets,
-			},
-		});
-	}
 
-	if (isTargeted) {
-		async function showFloatyText(target) {
-			const actor = await fromUuid(target.uuid);
-			if (actor instanceof FUActor) {
-				actor.showFloatyText(game.i18n.localize(target.result === 'hit' ? 'FU.Hit' : 'FU.Miss'));
-			}
-		}
-
-		if (game.dice3d) {
-			Hooks.once('diceSoNiceRollComplete', () => {
-				for (const target of targets) {
-					showFloatyText(target);
-				}
-			});
-		} else {
-			for (const target of targets) {
-				showFloatyText(target);
-			}
-		}
-	}
+	const targets = Targeting.getSerializedTargetData();
+	Targeting.addDamageTargetingSection(data, actor, item, targets, flags, accuracyData, damageData);
 }
 
 /**
@@ -220,7 +190,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 		if (inspector.getDifficulty()) {
 			renderNonCombatMagicCheck(checkResult, inspector, data);
 		} else {
-			renderCombatMagicCheck(checkResult, inspector, data);
+			renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags);
 		}
 
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();
