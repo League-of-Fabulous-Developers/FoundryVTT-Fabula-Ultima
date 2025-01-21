@@ -14,6 +14,7 @@ const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex
 const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
 const SKILL_TYPES = ['skill'];
 const RESOURCE_POINT_TYPES = ['miscAbility', 'skill', 'heroic'];
+const WEARABLE_TYPES = ['armor', 'shield', 'accessory'];
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -198,56 +199,6 @@ export class FUStandardActorSheet extends ActorSheet {
 	 *
 	 * @return {undefined}
 	 */
-
-	handleClock(item) {
-		const progressArr = [];
-		const progress = item.system.progress || { current: 0, max: 6 };
-
-		for (let i = 0; i < progress.max; i++) {
-			progressArr.push({
-				id: i + 1,
-				checked: parseInt(progress.current) === i + 1,
-			});
-		}
-		item.progressArr = progressArr.reverse();
-			
-	}
-	handleResourcePoints(item){
-			const rpArr = [];
-			const rp = item.system.rp || { current: 0, max: 6 };
-
-			for (let i = 0; i < rp.max; i++) {
-				rpArr.push({
-					id: i + 1,
-					checked: parseInt(rp.current) === i + 1,
-				});
-			}
-
-			item.rpArr = rpArr.reverse();
-	
-	}
-	handleSlStars(item){
-			const skillArr = [];
-			const level = item.system.level || { value: 0, max: 8 };
-
-			for (let i = 0; i < level.max; i++) {
-				skillArr.push({
-					id: i + 1,
-					checked: parseInt(level.value) === i + 1,
-				});
-			}
-
-			item.skillArr = skillArr;
-		}
-
-		async handleEnritchHTML(item){
-			item.enrichedHtml = {
-				description: await TextEditor.enrichHTML(item.system?.description ?? ''),
-				zeroTrigger: await TextEditor.enrichHTML(item.system?.zeroTrigger?.description ?? ''),
-				zeroEffect: await TextEditor.enrichHTML(item.system?.zeroEffect?.description ?? ''),
-			};
-		}
-
 	async _prepareItems(context) {
 		// Initialize containers.
 		const basics = [];
@@ -271,7 +222,6 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Iterate through items, allocating to containers
 		for (let item of context.items) {
-
 			item.img = item.img || CONST.DEFAULT_TOKEN;
 
 			if (item.system.quality?.value) {
@@ -306,21 +256,50 @@ export class FUStandardActorSheet extends ActorSheet {
 			item.progressMax = item.system.progress?.max;
 
 			if (CLOCK_TYPES.includes(item.type)){
-				this.handleClock(item);
+				const progressArr = [];
+				const progress = item.system.progress || { current: 0, max: 6 };
+				for (let i = 0; i < progress.max; i++) {
+					progressArr.push({
+						id: i + 1,
+						checked: parseInt(progress.current) === i + 1,
+					});
+				}
+				item.progressArr = progressArr.reverse();
 			}
 			if (RESOURCE_POINT_TYPES.includes(item.type)){
-				this.handleResourcePoints(item);
+				const rpArr = [];
+				const rp = item.system.rp || { current: 0, max: 6 };
+				for (let i = 0; i < rp.max; i++) {
+					rpArr.push({
+						id: i + 1,
+						checked: parseInt(rp.current) === i + 1,
+					});
+				}
+				item.rpArr = rpArr.reverse();
 			}
 			if (SKILL_TYPES.includes(item.type)){
-				this.handleSlStars(item);
+				const skillArr = [];
+				const level = item.system.level || { value: 0, max: 8 };
+				for (let i = 0; i < level.max; i++) {
+					skillArr.push({
+						id: i + 1,
+						checked: parseInt(level.value) === i + 1,
+					});
+				}
+				item.skillArr = skillArr;
 			}
-			await this.handleEnritchHTML(item);
-
-			if (['armor', 'shield', 'accessory'].includes(item.type)) {
+			if (WEARABLE_TYPES.includes(item.type)) {
 				item.def = item.isMartial && item.type === 'armor' ? item.system.def.value : `+${item.system.def.value}`;
 				item.mdef = `+${item.system.mdef.value}`;
 				item.init = item.system.init.value > 0 ? `+${item.system.init.value}` : item.system.init.value;
 			}
+
+			item.enrichedHtml = {
+				description: await TextEditor.enrichHTML(item.system?.description ?? ''),
+				zeroTrigger: await TextEditor.enrichHTML(item.system?.zeroTrigger?.description ?? ''),
+				zeroEffect: await TextEditor.enrichHTML(item.system?.zeroEffect?.description ?? ''),
+			};
+
 			if (item.type === 'basic') {
 				const itemObj = context.actor.items.get(item._id);
 				const weapData = itemObj.getWeaponDisplayData(this.actor);
