@@ -13,7 +13,6 @@ import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
-import { Targeting } from '../../../helpers/targeting.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (check.type === 'accuracy' && item?.system instanceof MiscAbilityDataModel) {
@@ -29,7 +28,8 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 			},
 			order: CHECK_DETAILS,
 		}));
-		const targets = Targeting.getSerializedTargetData();
+
+		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
 		CommonSections.spendResource(sections, actor, item, targets, flags);
 	}
 

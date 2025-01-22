@@ -49,7 +49,7 @@ Hooks.on(CheckHooks.prepareCheck, prepareCheck);
  * @param {Object} flags
  * @param {TargetData[]} targets
  */
-function onRenderCheck(data, result, actor, item, flags, targets) {
+function onRenderCheck(data, result, actor, item, flags) {
 	if (item && item.system instanceof SpellDataModel) {
 		data.push(async () => ({
 			order: CHECK_DETAILS,
@@ -65,6 +65,8 @@ function onRenderCheck(data, result, actor, item, flags, targets) {
 				},
 			},
 		}));
+
+		const targets = CheckConfiguration.inspect(result).getTargetsOrDefault();
 
 		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
 		if (!item.system.hasRoll.value) {
