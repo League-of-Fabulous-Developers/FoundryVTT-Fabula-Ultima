@@ -10,7 +10,6 @@ import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
-import { TargetChatSectionBuilder } from '../../../helpers/targeting.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 
 /**
@@ -69,8 +68,7 @@ function onRenderCheck(data, result, actor, item, flags, targets) {
 
 		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
 		if (!item.system.hasRoll.value) {
-			const targetingSection = new TargetChatSectionBuilder(data, actor, item, targets, flags);
-			targetingSection.push();
+			CommonSections.damage(data, actor, item, targets, flags);
 		}
 
 		CommonSections.spendResource(data, actor, item, targets, flags);
