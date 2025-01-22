@@ -381,7 +381,7 @@ function onRenderChatMessage(message, jQuery) {
 	jQuery.find(`a[data-action=selectDamageCustomizer]`).click(async (event) => {
 		if (!disabled) {
 			disabled = true;
-			const targets = await getTargeted(event);
+			const targets = await getTargeted();
 			DamageCustomizer(
 				baseDamageInfo,
 				targets,
@@ -398,10 +398,9 @@ function onRenderChatMessage(message, jQuery) {
 
 	Pipeline.handleClickRevert(jQuery, 'revertDamage', async (dataset) => {
 		const uuid = dataset.uuid;
-		const amount = dataset.amount;
 		const target = fromUuidSync(uuid);
 		const updates = [];
-		const amountRecovered = Math.max(0, amount + (target.system.bonuses.incomingRecovery['hp'] || 0));
+		const amountRecovered = dataset.amount;
 		updates.push(target.modifyTokenAttribute('resources.hp', amountRecovered, true));
 
 		return Promise.all(updates);

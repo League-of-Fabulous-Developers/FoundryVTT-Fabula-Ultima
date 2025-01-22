@@ -19,6 +19,7 @@ export const Flags = Object.freeze({
 		ResourceLoss: 'ResourceLoss',
 		UseMetaCurrency: 'UseMetaCurrency',
 		Targets: 'Targets',
+		RevertedAction: 'RevertedAction',
 	}),
 	Scope: 'projectfu',
 	Modifier: Object.freeze({
