@@ -1,9 +1,6 @@
 import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
-import { CHECK_RESULT } from '../checks/default-section-order.mjs';
-import { Pipeline } from '../pipelines/pipeline.mjs';
 import { Flags } from './flags.mjs';
 import { SYSTEM } from './config.mjs';
-import { RenderCheckSectionBuilder } from '../checks/check-hooks.mjs';
 import { getTargeted } from './target-handler.mjs';
 
 /**
@@ -77,7 +74,7 @@ async function filterTargetsByRule(actor, item, targets) {
  * @property {Object} fields The fields to use for the action's dataset
  * @remarks Expects an action handler where dataset.id is a reference to an actor
  */
-class TargetAction {
+export class TargetAction {
 	constructor(name, icon, tooltip, fields) {
 		this.name = name;
 		this.icon = icon;
@@ -91,104 +88,6 @@ class TargetAction {
  * @description Target the token
  */
 const defaultAction = new TargetAction('targetSingle', 'fa-bullseye', 'FU.ChatContextRetarget');
-
-/**
- * @inheritDoc
- * @property {TargetAction[]} section.data.actions
- * @property {TargetAction} section.data.selectedAction
- */
-export class TargetChatSectionBuilder extends RenderCheckSectionBuilder {
-	constructor(data, actor, item, targets, flags) {
-		super(data, actor, item, targets, flags, CHECK_RESULT, 'systems/projectfu/templates/chat/partials/chat-targets.hbs');
-		Pipeline.toggleFlag(flags, Flags.ChatMessage.Targets);
-		this.section.data.actions = [];
-		this.section.data.selectedActions = [];
-		if (item.system.targeting) {
-			this.withTargetingFromModel();
-		}
-		this.addTargetAction(defaultAction);
-	}
-
-	/**
-	 * Adds targeting data if the {@link FUItem}'s data model has a {@link TargetingDataModel}
-	 */
-	withTargetingFromModel() {
-		this.targeting = this.item.system.targeting;
-		this.section.data.rule = this.targeting.rule ?? Targeting.rule.multiple;
-		this.addData(async (data) => {
-			data.targets = await filterTargetsByRule(this.actor, this.item, this.targets);
-		});
-		return this;
-	}
-
-	/**
-	 * @description Adds targeting data directly
-	 * @param {TargetData[]} targets
-	 *
-	 */
-	withDefaultTargeting() {
-		this.section.data.rule = this.targets?.length > 1 ? Targeting.rule.multiple : Targeting.rule.single;
-		this.section.data.targets = this.targets;
-		return this;
-	}
-
-	/**
-	 * @param {TargetAction} action An action to be applied on a target that was snapshot when the message was created
-	 */
-	addTargetAction(action) {
-		this.addData(async (data) => {
-			data.actions.push(action);
-		});
-	}
-
-	/**
-	 * @param {TargetAction} action An action to be applied on a target that is selected when invokeed
-	 */
-	addSelectedAction(action) {
-		this.addData(async (data) => {
-			data.selectedActions.push(action);
-		});
-	}
-
-	applyDamage(accuracyData, damageData) {
-		const action = new TargetAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
-			accuracy: accuracyData,
-			damage: damageData,
-		});
-
-		this.addTargetAction(action);
-
-		const selectedAction = new TargetAction('applyDamageSelected', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
-			accuracy: accuracyData,
-			damage: damageData,
-		});
-
-		this.addSelectedAction(selectedAction);
-	}
-
-	validate() {
-		if (!super.validate()) {
-			return false;
-		}
-
-		if (!STRICT_TARGETING) {
-			return true;
-		}
-
-		const rule = this.section.data.rule;
-		const targets = this.section.data.targets;
-		switch (rule) {
-			case Targeting.rule.multiple:
-				return targets.length >= 1;
-			case Targeting.rule.single:
-			case Targeting.rule.self:
-				return targets.length === 1;
-			default:
-				break;
-		}
-		return true;
-	}
-}
 
 /**
  * @returns {TargetData[]}
@@ -279,4 +178,5 @@ export const Targeting = Object.freeze({
 	deserializeTargetData,
 	onRenderChatMessage,
 	STRICT_TARGETING,
+	defaultAction,
 });
