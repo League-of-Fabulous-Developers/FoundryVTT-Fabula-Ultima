@@ -67,7 +67,7 @@ const recoveryMessages = {
  * @param {String} resourcePath
  * @returns {number|number}
  */
-function getResourcetValue(actor, resourcePath) {
+function getResourceValue(actor, resourcePath) {
 	return parseInt(foundry.utils.getProperty(actor.system, resourcePath), 10) || 0;
 }
 
@@ -78,12 +78,12 @@ function getResourcetValue(actor, resourcePath) {
  * @returns {Promise<*>
  */
 function createUpdateForRecovery(actor, attributePath, amountRecovered) {
-	const currentValue = getResourcetValue(actor, attributePath);
-	const newValue = Math.floor(currentValue) + Math.floor(amountRecovered);
+	const currentValue = getResourceValue(actor, attributePath);
+	const newValue = Math.floor(currentValue + amountRecovered);
 
 	// Update the actor's resource directly
 	const updateData = {
-		[`system.${attributePath}`]: Math.floor(newValue),
+		[`system.${attributePath}`]: newValue,
 	};
 	return actor.update(updateData);
 }
@@ -102,20 +102,20 @@ async function processRecovery(request) {
 		const uncappedRecoveryValue = amountRecovered + attr.value;
 		const updates = [];
 
-		// Handle uncapped recovery logic
-		if (request.uncapped === true && uncappedRecoveryValue > (attr.max || 0) && !request.isMetaCurrency) {
-			// Overheal recovery
-			const newValue = Object.defineProperties({}, Object.getOwnPropertyDescriptors(attr)); // Clone attribute
-			newValue.value = uncappedRecoveryValue;
-			updates.push(actor.modifyTokenAttribute(request.attributeKey, newValue, false, false));
-		} else if (!request.isMetaCurrency) {
-			// Normal recovery
-			updates.push(actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true));
-		}
-
-		// Handle specific cases for fp and exp
 		if (request.isMetaCurrency) {
 			updates.push(createUpdateForRecovery(actor, request.attributePath, amountRecovered));
+		} else {
+			// Overheal recovery (uncapped)
+			if (request.uncapped === true && uncappedRecoveryValue > (attr.max || 0)) {
+				// Clone attribute
+				const newValue = Object.defineProperties({}, Object.getOwnPropertyDescriptors(attr));
+				newValue.value = uncappedRecoveryValue;
+				updates.push(actor.modifyTokenAttribute(request.attributeKey, newValue, false, false));
+			}
+			// Normal recovery
+			else {
+				updates.push(actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true));
+			}
 		}
 
 		updates.push(
@@ -155,15 +155,14 @@ async function processLoss(request) {
 	const updates = [];
 	for (const actor of request.targets) {
 		if (request.isMetaCurrency) {
-			const currentValue = foundry.utils.getProperty(actor.system, `${request.attributeKey}.value`) || 0;
-			const newValue = Math.floor(currentValue) + Math.floor(amountLost);
-
+			const currentValue = foundry.utils.getProperty(actor.system, request.attributePath) || 0;
+			const newValue = Math.floor(currentValue + amountLost);
 			// Update the actor's resource directly
 			const updateData = {};
-			updateData[`system.${request.attributeKey}.value`] = Math.floor(newValue);
+			updateData[`system.${request.attributePath}`] = newValue;
 			updates.push(actor.update(updateData));
 		} else {
-			updates.push(actor.modifyTokenAttribute(`${request.attributeKey}`, amountLost, true));
+			updates.push(actor.modifyTokenAttribute(request.attributeKey, amountLost, true));
 		}
 
 		updates.push(

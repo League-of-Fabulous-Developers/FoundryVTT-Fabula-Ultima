@@ -81,7 +81,7 @@ function getSingleTarget(event) {
 async function handleClick(event, dataset, getTargetsFunction, defaultAction, alternateAction = null) {
 	event.preventDefault();
 	if (!dataset.disabled) {
-		dataset.disabled = true;
+		delete dataset.disabled;
 		const targets = getTargetsFunction ? await getTargetsFunction(event) : [];
 		if (event.ctrlKey || event.metaKey) {
 			if (alternateAction) {
