@@ -13,7 +13,6 @@ import { OpposedCheck } from './opposed-check.mjs';
 import { CheckRetarget } from './check-retarget.mjs';
 import { GroupCheck } from './group-check.mjs';
 import { SupportCheck } from './support-check.mjs';
-import { Targeting } from '../helpers/targeting.mjs';
 
 /**
  * @typedef CheckAttributes
@@ -366,10 +365,8 @@ async function renderCheck(result, actor, item, flags = {}) {
 	 */
 	const renderData = [];
 	const additionalFlags = {};
-	// TODO: Pass in as a parameter
-	const targets = Targeting.getSerializedTargetData();
 
-	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags, targets);
+	Hooks.callAll(CheckHooks.renderCheck, renderData, result, actor, item, additionalFlags);
 
 	/**
 	 * @type {CheckSection[]}

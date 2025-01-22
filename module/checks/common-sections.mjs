@@ -138,6 +138,7 @@ const opportunity = (sections, opportunity, order) => {
 };
 
 /**
+ * @description Adds a damage section to the message that lists the targets and provides buttons to apply damage to them
  * @param {CheckRenderData} sections
  * @param {FUActor} actor
  * @param {FUItem} item

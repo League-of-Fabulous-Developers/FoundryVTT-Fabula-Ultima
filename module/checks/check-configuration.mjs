@@ -329,6 +329,13 @@ class CheckInspector {
 	}
 
 	/**
+	 * @return {TargetData[]}
+	 */
+	getTargetsOrDefault() {
+		return this.getTargets() || [];
+	}
+
+	/**
 	 * @remarks Used for templating
 	 */
 	getAccuracyData() {

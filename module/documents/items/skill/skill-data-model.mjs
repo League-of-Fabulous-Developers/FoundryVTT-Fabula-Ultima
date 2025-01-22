@@ -14,7 +14,6 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
-import { Targeting } from '../../../helpers/targeting.mjs';
 
 const weaponUsedBySkill = 'weaponUsedBySkill';
 const skillForAttributeCheck = 'skillForAttributeCheck';
@@ -128,7 +127,8 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 			});
 		}
 
-		const targets = Targeting.getSerializedTargetData();
+		const inspector = CheckConfiguration.inspect(check);
+		const targets = inspector.getTargets();
 		CommonSections.spendResource(sections, actor, item, targets, flags);
 	}
 };
@@ -153,13 +153,15 @@ Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
 /**
  * @type RenderCheckHook
  */
-const onRenderDisplay = (sections, check, actor, item, additionalFlags) => {
+const onRenderDisplay = (sections, check, actor, item, flags) => {
 	if (check.type === 'display' && item.system instanceof SkillDataModel) {
 		CommonSections.tags(sections, [{ tag: 'FU.Class', separator: ':', value: item.system.class.value }], CHECK_DETAILS);
 		if (item.system.hasResource.value) {
 			CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
 		}
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
+		CommonSections.spendResource(sections, actor, item, targets, flags);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
