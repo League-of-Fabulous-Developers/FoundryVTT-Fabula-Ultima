@@ -195,26 +195,31 @@ const damage = (sections, actor, item, targets, flags, accuracyData, damageData)
 			};
 		});
 
-		async function showFloatyText(target) {
-			const actor = await fromUuid(target.uuid);
-			if (actor instanceof FUActor) {
-				actor.showFloatyText(game.i18n.localize(target.result === 'hit' ? 'FU.Hit' : 'FU.Miss'));
-			}
-		}
-
 		if (game.dice3d) {
 			Hooks.once('diceSoNiceRollComplete', () => {
 				for (const target of targets) {
-					showFloatyText(target);
+					showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
 				}
 			});
 		} else {
 			for (const target of targets) {
-				showFloatyText(target);
+				showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
 			}
 		}
 	}
 };
+
+/**
+ * @param {TargetData} targetData
+ * @param {String} localizedText Text what will be localized by the system
+ * @returns {Promise<void>}
+ */
+async function showFloatyText(targetData, localizedText) {
+	const actor = await fromUuid(targetData.uuid);
+	if (actor instanceof FUActor) {
+		actor.showFloatyText(game.i18n.localize(localizedText));
+	}
+}
 
 /**
  * @param {CheckRenderData} sections
@@ -234,6 +239,7 @@ const spendResource = (sections, actor, item, targets, flags) => {
 			return;
 		}
 
+		Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
 		sections.push({
 			order: CHECK_RESULT,
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
@@ -244,7 +250,6 @@ const spendResource = (sections, actor, item, targets, flags) => {
 				expense: expense,
 				icon: FU.resourceIcons[item.system.cost.resource],
 			},
-			flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceLoss, true),
 		});
 	}
 };
