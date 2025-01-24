@@ -15,25 +15,30 @@ import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
-	if (check.type === 'accuracy' && item?.system instanceof MiscAbilityDataModel) {
-		const weapon = fromUuidSync(check.additionalData[ABILITY_USED_WEAPON]);
-		if (check.critical) {
-			CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
+	if (item?.system instanceof MiscAbilityDataModel) {
+		// Optional accuracy
+		let weapon;
+		if (check.type === 'accuracy') {
+			weapon = fromUuidSync(check.additionalData[ABILITY_USED_WEAPON]);
+			if (check.critical) {
+				CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
+			}
 		}
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
-		sections.push(() => ({
-			partial: 'systems/projectfu/templates/chat/partials/chat-ability-weapon.hbs',
-			data: {
-				weapon,
-			},
-			order: CHECK_DETAILS,
-		}));
+		if (weapon) {
+			sections.push(() => ({
+				partial: 'systems/projectfu/templates/chat/partials/chat-ability-weapon.hbs',
+				data: {
+					weapon,
+				},
+				order: CHECK_DETAILS,
+			}));
+		}
 
+		// Optional resource
 		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
 		CommonSections.spendResource(sections, actor, item, targets, flags);
-	}
-
-	if (check.type === 'attribute' && check.additionalData[ABILITY_USED_WEAPON]) {
+	} else if (check.type === 'attribute' && check.additionalData[ABILITY_USED_WEAPON]) {
 		const ability = fromUuidSync(check.additionalData[ABILITY_USED_WEAPON]);
 		CommonSections.itemFlavor(sections, ability);
 

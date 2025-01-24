@@ -399,11 +399,11 @@ function onRenderChatMessage(message, jQuery) {
 
 	Pipeline.handleClickRevert(jQuery, 'revertDamage', async (dataset) => {
 		const uuid = dataset.uuid;
-		const target = fromUuidSync(uuid);
+		const actor = fromUuidSync(uuid);
 		const updates = [];
 		const amountRecovered = dataset.amount;
-		updates.push(target.modifyTokenAttribute('resources.hp', amountRecovered, true));
-
+		updates.push(actor.modifyTokenAttribute('resources.hp', amountRecovered, true));
+		actor.showFloatyText(`${amountRecovered} HP`, `lightgreen`);
 		return Promise.all(updates);
 	});
 }
