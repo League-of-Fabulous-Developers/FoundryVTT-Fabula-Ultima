@@ -118,6 +118,7 @@ async function processRecovery(request) {
 			}
 		}
 
+		actor.showFloatyText(`${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
 		updates.push(
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker({ actor }),
@@ -165,6 +166,7 @@ async function processLoss(request) {
 			updates.push(actor.modifyTokenAttribute(request.attributeKey, amountLost, true));
 		}
 
+		actor.showFloatyText(`${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
 		updates.push(
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker({ actor }),

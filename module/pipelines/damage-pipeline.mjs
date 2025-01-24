@@ -283,6 +283,7 @@ async function process(request) {
 		// Damage application
 		const damageTaken = -context.result;
 		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
+		actor.showFloatyText(`${damageTaken} HP`, `red`);
 		// Chat message
 		const affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
 			damage: Math.abs(damageTaken),
