@@ -246,6 +246,7 @@ function onRenderChatMessage(document, jQuery) {
 		const attributeKey = dataset.key;
 		const updates = [];
 		updates.push(actor.modifyTokenAttribute(attributeKey, amount, true));
+		actor.showFloatyText(`${amount} HP`, `lightgreen`);
 		return Promise.all(updates);
 	});
 
