@@ -5,6 +5,7 @@ import { ResourcePipeline } from '../pipelines/resource-pipeline.mjs';
 import { FU } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
+import { ConsumableDataModel } from '../documents/items/consumable/consumable-data-model.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -229,16 +230,30 @@ async function showFloatyText(targetData, localizedText) {
  * @param {Object} flags
  */
 const spendResource = (sections, actor, item, targets, flags) => {
+	/**
+	 * @type ResourceExpense
+	 */
+	let expense;
+
+	// If using the newer cost data model
 	if (item.system.cost) {
 		if (item.system.cost.amount === 0) {
 			return;
 		}
-
-		const expense = ResourcePipeline.calculateExpense(item, targets);
+		expense = ResourcePipeline.calculateExpense(item, targets);
 		if (expense.amount === 0) {
 			return;
 		}
+	}
+	// Support for consumables
+	else if (item.system instanceof ConsumableDataModel) {
+		expense = {
+			resource: 'ip',
+			amount: item.system.ipCost.value,
+		};
+	}
 
+	if (expense) {
 		Pipeline.toggleFlag(flags, Flags.ChatMessage.ResourceLoss);
 		sections.push({
 			order: CHECK_RESULT,
@@ -248,7 +263,7 @@ const spendResource = (sections, actor, item, targets, flags) => {
 				actor: actor.uuid,
 				item: item.uuid,
 				expense: expense,
-				icon: FU.resourceIcons[item.system.cost.resource],
+				icon: FU.resourceIcons[expense.resource],
 			},
 		});
 	}
