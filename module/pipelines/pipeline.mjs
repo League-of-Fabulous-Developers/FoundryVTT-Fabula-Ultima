@@ -6,6 +6,7 @@
  */
 
 import { SYSTEM } from '../helpers/config.mjs';
+import { Flags } from '../helpers/flags.mjs';
 
 /**
  * @property {InlineSourceInfo} sourceInfo
@@ -96,25 +97,28 @@ async function handleClick(event, dataset, getTargetsFunction, defaultAction, al
 }
 
 /**
+ * @param {ChatMessage} message
  * @param {jQuery} jQuery
  * @param {String} actionName The name of the data-action in the html, e.g: `a[data-action=...]`
  * @param {Function<Object, Promise>} action
  * @returns {Promise<*>}
  */
-async function handleClickRevert(jQuery, actionName, action) {
+async function handleClickRevert(message, jQuery, actionName, action) {
 	const revert = jQuery.find(`a[data-action=${actionName}]`);
-	revert.click(async (event) => {
-		event.preventDefault();
-		revert.addClass('disabled').css({
-			'pointer-events': 'none',
-			opacity: '0.5',
-		});
-		jQuery.addClass('strikethrough').css({
-			'text-decoration': 'line-through',
-		});
-
-		return action(revert.data());
-	});
+	if (revert) {
+		if (message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction)?.includes(actionName)) {
+			jQuery.find('.message-content').addClass('strikethrough');
+			revert.addClass('action-disabled');
+		} else {
+			revert.click(async (event) => {
+				event.preventDefault();
+				await action(revert.data());
+				const revertedActions = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction) ?? [];
+				revertedActions.push(actionName);
+				message.setFlag(SYSTEM, Flags.ChatMessage.RevertedAction, revertedActions);
+			});
+		}
+	}
 }
 
 /**

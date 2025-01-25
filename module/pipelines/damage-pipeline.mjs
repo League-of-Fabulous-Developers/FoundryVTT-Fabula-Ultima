@@ -397,7 +397,7 @@ function onRenderChatMessage(message, jQuery) {
 		}
 	});
 
-	Pipeline.handleClickRevert(jQuery, 'revertDamage', async (dataset) => {
+	Pipeline.handleClickRevert(message, jQuery, 'revertDamage', async (dataset) => {
 		const uuid = dataset.uuid;
 		const actor = fromUuidSync(uuid);
 		const updates = [];

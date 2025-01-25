@@ -240,7 +240,7 @@ function onRenderChatMessage(document, jQuery) {
 		return ResourcePipeline.processLoss(request);
 	};
 
-	Pipeline.handleClickRevert(jQuery, 'revertResourceLoss', async (dataset) => {
+	Pipeline.handleClickRevert(document, jQuery, 'revertResourceLoss', async (dataset) => {
 		const actor = fromUuidSync(dataset.uuid);
 		const amount = dataset.amount;
 		const attributeKey = dataset.key;
