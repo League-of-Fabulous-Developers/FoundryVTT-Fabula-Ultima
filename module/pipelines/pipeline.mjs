@@ -81,18 +81,13 @@ function getSingleTarget(event) {
  */
 async function handleClick(event, dataset, getTargetsFunction, defaultAction, alternateAction = null) {
 	event.preventDefault();
-	if (!dataset.disabled) {
-		delete dataset.disabled;
-		const targets = getTargetsFunction ? await getTargetsFunction(event) : [];
-		if (event.ctrlKey || event.metaKey) {
-			if (alternateAction) {
-				await alternateAction(event, dataset, targets);
-			}
-			dataset.disabled = false;
-		} else {
-			await defaultAction(event, dataset, targets);
-			dataset.disabled = false;
+	const targets = getTargetsFunction ? await getTargetsFunction(event) : [];
+	if (event.ctrlKey || event.metaKey) {
+		if (alternateAction) {
+			await alternateAction(event, dataset, targets);
 		}
+	} else {
+		await defaultAction(event, dataset, targets);
 	}
 }
 
