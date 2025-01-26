@@ -2,6 +2,7 @@ import { Pipeline, PipelineRequest } from './pipeline.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
+import { Targeting } from '../helpers/targeting.mjs';
 
 /**
  * @property {Number} amount
@@ -202,9 +203,9 @@ async function processLoss(request) {
 function calculateExpense(item, targets) {
 	let amount = item.system.cost.amount;
 	let resource = item.system.cost.resource;
-	let maxTargets = item.system.targeting.max;
+	const targeting = item.system.targeting;
 
-	if (maxTargets > 1) {
+	if (targeting.rule === Targeting.rule.multiple && targeting.max > 1) {
 		if (targets.length === 0) {
 			console.warn(`Wrong number of targets given (${targets.length}) for calculating resource expense. Using default of 1.`);
 		} else {

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you deal damage to one or more creatures, if you have a <strong>Bond</strong> towards at least one of those creatures, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[2 hp] and @GAIN[2 mp]</p><p>Skill Level <strong>2</strong> - @GAIN[4 hp] and @GAIN[4 mp]</p><p>Skill Level <strong>3</strong> - @GAIN[6 hp] and @GAIN[6 mp]</p><p>Skill Level <strong>4</strong> - @GAIN[8 hp] and @GAIN[8 mp]</p><p>Skill Level <strong>5</strong> - @GAIN[10 hp] and @GAIN[10 mp]</p>",
+    "description": "<p>After you deal damage to one or more creatures, if you have a <strong>Bond</strong> towards at least one of those creatures, you may recover <strong>【SL × 2】</strong> Hit Points and <strong>【SL × 2】</strong> Mind Points.</p><hr /><ul><li><p><strong>You: </strong>@GAIN[$sl*2 hp]@GAIN[$sl*2 mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -132,10 +132,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706496854934,
-    "modifiedTime": 1724180862000,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737920616578,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

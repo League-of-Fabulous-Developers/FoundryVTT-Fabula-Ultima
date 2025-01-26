@@ -117,7 +117,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "dance"
+    "fuid": "dance",
+    "cost": {
+      "amount": 0
+    }
   },
   "effects": [],
   "ownership": {
@@ -131,10 +134,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706558084944,
-    "modifiedTime": 1724180863496,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737922923403,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

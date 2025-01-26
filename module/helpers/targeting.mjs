@@ -63,7 +63,7 @@ async function filterTargetsByRule(actor, item, targets) {
 			return [weapon];
 		}
 		case 'special':
-			return [];
+			return targets;
 	}
 }
 

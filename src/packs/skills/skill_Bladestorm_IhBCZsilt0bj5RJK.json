@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform a <strong>melee</strong> attack, you may spend <strong>@LOSS[10 mp]</strong> to choose one option: the attack gains <strong>multi (2)</strong>; <strong>or</strong> you increase the attack's <strong>multi</strong> property by one, up to a maximum of <strong>multi (3)</strong>.</p>",
+    "description": "<p>When you perform a <strong>melee</strong> attack, you may spend <strong>10  MP </strong> to choose one option: the attack gains <strong>multi (2)</strong>; <strong>or</strong> you increase the attack's <strong>multi</strong> property by one, up to a maximum of <strong>multi (3)</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -78,10 +78,10 @@
           "value": false
         },
         "accuracy": {
-          "value": false
+          "value": true
         },
         "damage": {
-          "value": false
+          "value": true
         }
       },
       "attributes": {
@@ -97,7 +97,7 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "type": {
           "value": "physical"
@@ -106,7 +106,7 @@
       }
     },
     "hasRoll": {
-      "value": false
+      "value": true
     },
     "hasResource": {
       "value": false
@@ -118,7 +118,13 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "bladestorm"
+    "fuid": "bladestorm",
+    "cost": {
+      "amount": 10
+    },
+    "targeting": {
+      "rule": "special"
+    }
   },
   "effects": [],
   "ownership": {
@@ -132,10 +138,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706514077118,
-    "modifiedTime": 1724180861981,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737922428167,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

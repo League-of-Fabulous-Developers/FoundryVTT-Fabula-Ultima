@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action and spend @LOSS[5 mp] to choose another creature that can hear and understand you. That creature recovers <strong>【SL × 5】</strong> Hit Points and chooses @EFFECT[dex-up], @EFFECT[ins-up], @EFFECT[mig-up], or @EFFECT[wlp-up]: they treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[5 hp]</p><p>Skill Level <strong>2</strong> - @GAIN[10 hp]</p><p>Skill Level <strong>3</strong> - @GAIN[15 hp]</p><p>Skill Level <strong>4</strong> - @GAIN[20 hp]</p><p>Skill Level <strong>5</strong> - @GAIN[25 hp]</p><p>Skill Level <strong>6</strong> - @GAIN[30 hp]</p>",
+    "description": "<p>During a conflict, you may use an action and spend 5 MP to choose <strong>another creature</strong> that can hear and understand you. That creature recovers <strong>【SL × 5】</strong> Hit Points and chooses <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>; they treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p><hr /><ul><li><p><strong>Target: </strong>@GAIN[5*$sl hp] @EFFECT[dex-up], @EFFECT[ins-up], @EFFECT[mig-up], @EFFECT[wlp-up]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -118,7 +118,13 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "encourage"
+    "fuid": "encourage",
+    "cost": {
+      "amount": 5
+    },
+    "targeting": {
+      "rule": "single"
+    }
   },
   "effects": [],
   "ownership": {
@@ -132,10 +138,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706504115400,
-    "modifiedTime": 1724180861188,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737923005022,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

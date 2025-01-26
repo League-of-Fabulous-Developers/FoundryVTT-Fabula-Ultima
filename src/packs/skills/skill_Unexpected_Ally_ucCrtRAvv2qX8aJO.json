@@ -118,7 +118,11 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "unexpected-ally"
+    "fuid": "unexpected-ally",
+    "cost": {
+      "resource": "fp",
+      "amount": 1
+    }
   },
   "effects": [],
   "ownership": {
@@ -132,10 +136,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706504159609,
-    "modifiedTime": 1724180863378,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737921159830,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

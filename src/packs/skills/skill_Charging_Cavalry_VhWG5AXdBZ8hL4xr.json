@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action and spend @LOSS[10 mp] to choose one ally that can hear you. That ally may immediately perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong> if they are an NPC). They gain a bonus equal to <strong>【SL】</strong> to the Accuracy Check, but treat their <strong>High Roll (HR)</strong> as 0 when calculating damage.</p>",
+    "description": "<p>During a conflict, you may use an action and spend <strong>10 MP</strong> to choose one ally that can hear you. That ally may immediately perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong> if they are an NPC). They gain a bonus equal to <strong>【SL】</strong> to the Accuracy Check, but treat their <strong>High Roll (HR)</strong> as 0 when calculating damage.</p>",
     "isFavored": {
       "value": false
     },
@@ -118,7 +118,13 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "charging-cavalry"
+    "fuid": "charging-cavalry",
+    "cost": {
+      "amount": 10
+    },
+    "targeting": {
+      "rule": "single"
+    }
   },
   "effects": [],
   "ownership": {
@@ -132,10 +138,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706555516636,
-    "modifiedTime": 1724180862355,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737922719479,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

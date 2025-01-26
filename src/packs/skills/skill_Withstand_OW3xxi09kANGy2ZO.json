@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform the @EFFECT[guard] action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【SL, multiplied by the highest strength among your Bonds】</strong> and choose @EFFECT[mig-up] or @EFFECT[wlp-up]: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><table><tbody><tr><td><p><strong>Recover…</strong></p></td><td><p><strong>One Emotion</strong></p></td><td><p><strong>Two Emotions</strong></p></td><td><p><strong>Three Emotions</strong></p></td></tr><tr><td><p>Skill Level <strong>1</strong></p></td><td><p><strong>@GAIN[1 hp]</strong></p></td><td><p><strong>@GAIN[2 hp]</strong></p></td><td><p><strong>@GAIN[3 hp]</strong></p></td></tr><tr><td><p>Skill Level <strong>2</strong></p></td><td><p><strong>@GAIN[2 hp]</strong></p></td><td><p><strong>@GAIN[4 hp]</strong></p></td><td><p><strong>@GAIN[6 hp]</strong></p></td></tr><tr><td><p>Skill Level <strong>3</strong></p></td><td><p><strong>@GAIN[3 hp]</strong></p></td><td><p><strong>@GAIN[6 hp]</strong></p></td><td><p><strong>@GAIN[9 hp]</strong></p></td></tr><tr><td><p>Skill Level <strong>4</strong></p></td><td><p><strong>@GAIN[4 hp]</strong></p></td><td><p><strong>@GAIN[8 hp]</strong></p></td><td><p><strong>@GAIN[12 hp]</strong></p></td></tr><tr><td><p>Skill Level <strong>5</strong></p></td><td><p><strong>@GAIN[5 hp]</strong></p></td><td><p><strong>@GAIN[10 hp]</strong></p></td><td><p><strong>@GAIN[15 hp]</strong></p></td></tr></tbody></table>",
+    "description": "<p>When you perform the @EFFECT[guard] action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【SL, multiplied by the highest strength among your Bonds】</strong> and choose @EFFECT[mig-up] or @EFFECT[wlp-up]: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><ul><li><p><strong>One Emotion: </strong>@GAIN[1*$sl hp]</p></li><li><p><strong>Two Emotions: </strong>@GAIN[2*$sl hp]</p></li><li><p><strong>Three Emotions: </strong>@GAIN[3*$sl hp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -132,10 +132,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706502423483,
-    "modifiedTime": 1724180862111,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737920148992,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },
