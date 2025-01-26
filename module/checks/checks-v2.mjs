@@ -13,6 +13,7 @@ import { OpposedCheck } from './opposed-check.mjs';
 import { CheckRetarget } from './check-retarget.mjs';
 import { GroupCheck } from './group-check.mjs';
 import { SupportCheck } from './support-check.mjs';
+import { CheckConfiguration } from './check-configuration.mjs';
 
 /**
  * @typedef CheckAttributes
@@ -181,6 +182,7 @@ const modifyCheck = async (checkId, callback) => {
  * @return {Promise<CheckV2>}
  */
 async function prepareCheck(check, actor, item, initialConfigCallback) {
+	// Define the check structure
 	check.primary ??= '';
 	check.secondary ??= '';
 	check.id ??= foundry.utils.randomID();
@@ -205,6 +207,9 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	if (!check.id) {
 		throw new Error('check id missing');
 	}
+
+	// Set initial targets (actions without rolls can have targeting)
+	CheckConfiguration.configure(check).setDefaultTargets();
 
 	/**
 	 * @type {{callback: Promise | (() => Promise | void), priority: number}[]}
@@ -517,6 +522,9 @@ const display = async (actor, item) => {
 		critical: null,
 		additionalData: {},
 	});
+	// Set initial targets (actions without rolls can have targeting)
+	CheckConfiguration.configure(check).setDefaultTargets();
+
 	Hooks.callAll(CheckHooks.processCheck, check, actor, item);
 	await renderCheck(check, actor, item);
 };

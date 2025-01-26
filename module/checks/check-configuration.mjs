@@ -236,6 +236,22 @@ class CheckConfigurer {
 	}
 
 	/**
+	 * @description Assign actors currently targeted by the users
+	 * @return {CheckConfigurer}
+	 */
+	setDefaultTargets() {
+		return this.setTargets(
+			[...game.user.targets]
+				.filter((token) => !!token.actor)
+				.map((token) => ({
+					name: token.name,
+					uuid: token.actor.uuid,
+					link: token.actor.link,
+				})),
+		);
+	}
+
+	/**
 	 * @param {(targets: TargetData[] | null) => TargetData[] | null} callback
 	 * @return {CheckConfigurer}
 	 */

@@ -23,15 +23,6 @@ function handleGenericBonus(actor, modifiers) {
 const onPrepareCheck = (check, actor, item, registerCallback) => {
 	const { type, modifiers } = check;
 	if (type === 'accuracy') {
-		CheckConfiguration.configure(check).setTargets(
-			[...game.user.targets]
-				.filter((token) => !!token.actor)
-				.map((token) => ({
-					name: token.name,
-					uuid: token.actor.uuid,
-					link: token.actor.link,
-				})),
-		);
 		handleGenericBonus(actor, modifiers);
 	}
 };
