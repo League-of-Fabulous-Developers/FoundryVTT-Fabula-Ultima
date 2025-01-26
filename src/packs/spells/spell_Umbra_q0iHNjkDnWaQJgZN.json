@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>A storm of dark energy turns matter into ash. Each target hit by this spell suffers <strong>【HR + 15】 dark </strong>damage.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[weak].</p><hr /><p>@LOSS[10 mp] for <strong>one</strong> target.</p><p>@LOSS[20 mp] for <strong>two</strong> targets.</p><p>@LOSS[30 mp] for <strong>three</strong> targets.</p>",
+    "description": "<p>A storm of dark energy turns matter into ash. Each target hit by this spell suffers <strong>【HR + 15】 dark </strong>damage.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[weak].</p>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706571857966,
-    "modifiedTime": 1724180864343,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737918167040,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You alter the very nature of your target. Until this spell ends, if the target would suffer damage of a type they Absorb or are Immune to, they are instead treated as if they were Vulnerable to that damage type. Once that happens, this spell ends.</p><hr /><p>@LOSS[20 mp]</p>",
+    "description": "<p>You alter the very nature of your target. Until this spell ends, if the target would suffer damage of a type they Absorb or are Immune to, they are instead treated as if they were Vulnerable to that damage type. Once that happens, this spell ends.</p>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706568237548,
-    "modifiedTime": 1724180864398,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737917987010,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

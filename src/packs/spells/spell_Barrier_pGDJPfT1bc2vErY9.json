@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><p>@EFFECT[eyJuYW1lIjoiQmFycmllciIsImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvYmFycmllci1zaGllbGQtZG9tZS1waW5rLndlYnAiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uZGVyaXZlZC5kZWYudmFsdWUiLCJtb2RlIjo0LCJ2YWx1ZSI6IjEyIn1dLCJkaXNhYmxlZCI6ZmFsc2UsImR1cmF0aW9uIjp7InN0YXJ0VGltZSI6MCwic2Vjb25kcyI6bnVsbCwiY29tYmF0IjpudWxsLCJyb3VuZHMiOm51bGwsInR1cm5zIjpudWxsLCJzdGFydFJvdW5kIjpudWxsLCJzdGFydFR1cm4iOm51bGx9LCJkZXNjcmlwdGlvbiI6IjxwPjxzcGFuIGNsYXNzPVwiZm9udHN0eWxlMFwiPllvdSBwcm9qZWN0IHlvdXIgc291bCBvdXRzaWRlIHlvdXIgYm9keSBhbmQgd2VhdmUgaXQgaW50byBhIGJhcnJpZXIgdG8gcHJvdGVjdCB0aGXCoHRhcmdldHMgZnJvbSBhdHRhY2tzLiBVbnRpbCB0aGlzIHNwZWxsIGVuZHMsIGVhY2ggdGFyZ2V0IG1heSB0cmVhdCB0aGVpciBEZWZlbnNlIGFzIGJlaW5nwqBlcXVhbCB0byAxMiBhZ2FpbnN0IGFueSBlZmZlY3RzIHRoYXQgdGFyZ2V0IGl0ICh0aGV5IGFyZSBzdGlsbCBmcmVlIHRvIHVzZSB0aGVpciBub3JtYWzCoERlZmVuc2Ugc2NvcmUgaWYgaGlnaGVyIHRoYW4gMTIpLjwvc3Bhbj7CoDwvcD4iLCJvcmlnaW4iOm51bGwsInRpbnQiOm51bGwsInRyYW5zZmVyIjpmYWxzZSwic3RhdHVzZXMiOltdLCJmbGFncyI6eyJwcm9qZWN0ZnUiOnsiQ3Jpc2lzSW50ZXJhY3Rpb24iOiJub25lIn19fQ==]</p><p>@LOSS[5 mp] for <strong>one</strong> target.</p><p>@LOSS[10 mp] for <strong>two</strong> targets.</p><p>@LOSS[15 mp] for <strong>three</strong> targets.</p>",
+    "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><ul><li><p><strong>Target:</strong> @EFFECT[barrier]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -183,10 +183,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706572145678,
-    "modifiedTime": 1724180864334,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737917808062,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },
