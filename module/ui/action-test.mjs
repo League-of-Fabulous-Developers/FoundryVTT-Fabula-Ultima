@@ -58,8 +58,7 @@ const applyDamageAction = new Action(
 );
 
 const onRenderChatMessage = (message, html, messageData) => {
-	someAction.attach(message, html);
-	applyDamageAction.attach(message, html);
+	Action.attachAll(message, html, someAction, applyDamageAction);
 };
 
 export const ActionTest = Object.freeze({
