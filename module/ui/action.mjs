@@ -6,10 +6,15 @@
  */
 
 /**
+ * @typedef {ActionPermissionCheck} ActionAttachCheck
+ */
+
+/**
  * @typedef ActionOptions
  * @property {string} [dataAttribute="action"] - the name of the "data attribute" in the HTML, minus the leading "data-". Has to be exactly the same as in the HTML.
  * @property {boolean} [requireOwner=true] - if the action should only be possible for the owner of the document. Defaults to true, unless "hasPermission" is specified, then defaults to false
  * @property {ActionPermissionCheck} [hasPermission] - callback to check if the current user is allowed to perform the action
+ * @property {ActionAttachCheck} [shouldAttach] - callback to check if listeners should be attached at all.
  */
 
 /**
@@ -25,6 +30,16 @@
  * If a user is not allowed to trigger the action, the element will be hidden from them.
  */
 export class Action {
+	/**
+	 * Attach multiple actions in one call.
+	 * @param {foundry.abstract.Document} document - the document represented by the HTML
+	 * @param {jQuery} jQuery - the "top level" jQuery object for the HTML representing the document, usually available as a hook param
+	 * @param {Action} actions - the actions to attach
+	 */
+	static attachAll(document, jQuery, ...actions) {
+		actions.forEach((action) => action.attach(document, jQuery));
+	}
+
 	/** @type string */
 	#action;
 	/** @type ActionOptions */
@@ -44,14 +59,18 @@ export class Action {
 		this.#options.dataAttribute = options.dataAttribute ?? 'action';
 		this.#options.requireOwner = options.requireOwner ?? !(typeof options.hasPermission === 'function');
 		this.#options.hasPermission = options.hasPermission;
+		this.#options.shouldAttach = options.shouldAttach;
 	}
 
 	/**
 	 * Attach the action to the document and HTML
-	 * @param {foundry.abstract.Document} document the document represented by the HTML
-	 * @param {jQuery} jQuery the "top level" jQuery object for the HTML representing the document, usually available as a hook param
+	 * @param {foundry.abstract.Document} document - the document represented by the HTML
+	 * @param {jQuery} jQuery - the "top level" jQuery object for the HTML representing the document, usually available as a hook param
 	 */
 	attach(document, jQuery) {
+		if (typeof this.#options.shouldAttach === 'function' && !this.#options.shouldAttach(document, jQuery)) {
+			return;
+		}
 		const queryString = `[data-${this.#options.dataAttribute}="${this.#action}"]`;
 		let actionElements = jQuery.find(queryString);
 		if (actionElements && actionElements.length) {

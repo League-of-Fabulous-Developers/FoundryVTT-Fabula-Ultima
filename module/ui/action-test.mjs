@@ -1,5 +1,6 @@
 import { Action } from './action.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
+import { ChecksV2 } from '../checks/checks-v2.mjs';
 
 const handleChatCommand = (chatLog, message, data) => {
 	if (/^\/test$/i.test(message)) {
@@ -7,7 +8,16 @@ const handleChatCommand = (chatLog, message, data) => {
 		const chatMessageData = {
 			user: data.user,
 			speaker: data.speaker,
-			content: `<div><a data-some-action="someAction">Click to test some action!</a></div><div><a data-some-action="revertSomeAction">Click to revert some action!</a></div>`,
+			content: `
+<div>
+  <a data-some-action="someAction">Click to test some action!</a>
+</div>
+<div>
+  <a data-some-action="revertSomeAction">Click to revert some action!</a>
+</div>
+<div>
+  <a data-action="applyDamage">The apply damage action will not be attached because this chat message is not a check.</a>
+</div>`,
 		};
 		ChatMessage.create(chatMessageData);
 		return false;
@@ -36,6 +46,14 @@ const applyDamageAction = new Action(
 	},
 	{
 		hasPermission: (document, element) => fromUuidSync(element.dataset.id).testUserPermission(game.user, 'OWNER'),
+		shouldAttach: (document) => {
+			if (ChecksV2.isCheck(document)) {
+				return true;
+			} else {
+				console.log('Not attaching ApplyDamageAction');
+				return false;
+			}
+		},
 	},
 );
 
