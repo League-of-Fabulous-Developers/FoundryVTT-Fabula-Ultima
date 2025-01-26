@@ -868,6 +868,7 @@
 		"ChatEvaluateAmountNoActor": "No reference to an actor provided",
 		"ChatEvaluateAmountNoItem": "No reference to an item provided",
 		"ChatEvaluateNoSkill": "The referenced skill was not found in the actor",
+		"ChatPingTarget": "Ping the targeted actor",
 		"TotalAvailableSkills": "Total Available Skills",
 		"TotalSPAvailable": "Total SP Available",
 		"AvailableSPLevels": "Available skills from levels",

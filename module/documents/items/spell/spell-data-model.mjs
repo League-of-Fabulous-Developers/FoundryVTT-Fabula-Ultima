@@ -58,7 +58,8 @@ function onRenderCheck(data, result, actor, item, flags) {
 				spell: {
 					duration: item.system.duration.value,
 					target: item.system.targeting.rule,
-					mpCost: item.system.cost.value,
+					max: item.system.targeting.max,
+					mpCost: item.system.cost.amount,
 					opportunity: item.system.opportunity,
 					summary: item.system.summary.value,
 					description: await TextEditor.enrichHTML(item.system.description),
