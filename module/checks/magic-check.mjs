@@ -81,7 +81,12 @@ const onProcessCheck = (check, actor, item) => {
  */
 function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
 	const accuracyData = inspector.getAccuracyData();
-	const damageData = inspector.getDamageData();
+
+	let damageData;
+	const hasDamage = item.system.rollInfo?.damage?.hasDamage.value;
+	if (hasDamage) {
+		damageData = inspector.getDamageData();
+	}
 
 	// Push combined data for accuracy and damage
 	data.push({

@@ -87,7 +87,7 @@ export class TargetAction {
  * @type {TargetAction}
  * @description Target the token
  */
-const defaultAction = new TargetAction('targetSingle', 'fa-bullseye', 'FU.ChatContextRetarget');
+const defaultAction = new TargetAction('targetSingle', 'fa-bullseye', 'FU.ChatPingTarget');
 
 /**
  * @returns {TargetData[]}

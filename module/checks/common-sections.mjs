@@ -180,6 +180,8 @@ const damage = (sections, actor, item, targets, flags, accuracyData, damageData)
 				rule = targets?.length > 1 ? Targeting.rule.multiple : Targeting.rule.single;
 			}
 
+			Pipeline.toggleFlag(flags, Flags.ChatMessage.Targets);
+
 			return {
 				order: CHECK_RESULT,
 				partial: 'systems/projectfu/templates/chat/partials/chat-targets.hbs',
@@ -192,7 +194,6 @@ const damage = (sections, actor, item, targets, flags, accuracyData, damageData)
 					actions: actions,
 					selectedActions: selectedActions,
 				},
-				flags: Pipeline.initializedFlags(Flags.ChatMessage.Targets, true),
 			};
 		});
 
