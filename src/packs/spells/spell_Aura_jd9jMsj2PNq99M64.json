@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><p>@EFFECT[eyJuYW1lIjoiQXVyYSIsImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvYmFycmllci1zaGllbGQtZG9tZS1kZWZsZWN0LWJsdWUud2VicCIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5kZXJpdmVkLm1kZWYudmFsdWUiLCJtb2RlIjo0LCJ2YWx1ZSI6IjEyIn1dLCJkaXNhYmxlZCI6ZmFsc2UsImR1cmF0aW9uIjp7InN0YXJ0VGltZSI6MCwic2Vjb25kcyI6bnVsbCwiY29tYmF0IjpudWxsLCJyb3VuZHMiOm51bGwsInR1cm5zIjpudWxsLCJzdGFydFJvdW5kIjpudWxsLCJzdGFydFR1cm4iOm51bGx9LCJkZXNjcmlwdGlvbiI6IjxwPjxzcGFuIHN0eWxlPVwiZm9udC1mYW1pbHk6ICdQVCBTYW5zIE5hcnJvdycsIHNhbnMtc2VyaWZcIj5Zb3UgcHJvamVjdCB5b3VyIHNvdWwgb3V0c2lkZSB5b3VyIGJvZHkgYW5kIGRpcmVjdCBpdCB0byBzdXJyb3VuZCB0aGUgdGFyZ2V0cywgc2hpZWxkaW5nIHRoZW0gZnJvbSBkYW5nZXJvdXMgbWFnaWMuIFVudGlsIHRoaXMgc3BlbGwgZW5kcywgZWFjaCB0YXJnZXQgbWF5IHRyZWF0IHRoZWlyIE1hZ2ljIERlZmVuc2UgYXMgYmVpbmcgZXF1YWwgdG8gMTIgYWdhaW5zdCBhbnkgZWZmZWN0cyB0aGF0IHRhcmdldCBpdCAodGhleSBhcmUgc3RpbGwgZnJlZSB0byB1c2UgdGhlaXIgbm9ybWFsIERlZmVuc2Ugc2NvcmUgaWYgaGlnaGVyIHRoYW4gMTIpLsKgPC9zcGFuPjwvcD4iLCJvcmlnaW4iOm51bGwsInRpbnQiOm51bGwsInRyYW5zZmVyIjpmYWxzZSwic3RhdHVzZXMiOltdLCJmbGFncyI6eyJwcm9qZWN0ZnUiOnsiQ3Jpc2lzSW50ZXJhY3Rpb24iOiJub25lIn19fQ==]</p><p>@LOSS[5 mp] for <strong>one</strong> target.</p><p>@LOSS[10 mp] for <strong>two</strong> targets.</p><p>@LOSS[15 mp] for <strong>three</strong> targets.</p>",
+    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><ul><li><p><strong>Target:</strong> @EFFECT[aura]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -183,10 +183,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706571961584,
-    "modifiedTime": 1733862628111,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "modifiedTime": 1737917726504,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You bend the fabric of time. Until this spell ends, the target gains the ability to perform a single additional action during each of their turns. Once the target has performed a total of two additional actions granted by this spell, this spell ends.</p><hr /><p>@LOSS[20 mp]</p>",
+    "description": "<p>You bend the fabric of time. Until this spell ends, the target gains the ability to perform a single additional action during each of their turns. Once the target has performed a total of two additional actions granted by this spell, this spell ends.</p>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706567990806,
-    "modifiedTime": 1724180864330,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737917976939,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

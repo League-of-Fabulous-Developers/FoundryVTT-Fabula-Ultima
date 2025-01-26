@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You alter the senses of your enemies, causing them to experience bizarre or frightening hallucinations. <br />Choose @EFFECT[dazed] or @EFFECT[shaken]: you inflict the chosen status effect on each target hit by this spell.</p><hr /><p>@LOSS[5 mp] for <strong>one</strong> target.</p><p>@LOSS[10 mp] for <strong>two</strong> targets.</p><p>@LOSS[15 mp] for <strong>three</strong> targets.</p>",
+    "description": "<p>You alter the senses of your enemies, causing them to experience bizarre or frightening hallucinations. <br />Choose @EFFECT[dazed] or @EFFECT[shaken]: you inflict the chosen status effect on each target hit by this spell.</p><p></p>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706572612784,
-    "modifiedTime": 1724180864224,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737917859659,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

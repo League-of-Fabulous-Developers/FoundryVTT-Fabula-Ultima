@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You invigorate your companions, soothing their pain and healing their fatigue. Each target recovers @HEAL[40 hp]<span>. This amount increases to </span>@HEAL[50 hp] <span>if you are <strong>level 20 or higher</strong>, or to </span>@HEAL[60 hp] <span>if you are <strong>level 40 or higher</strong>.</span></p><hr /><p>@LOSS[10 mp] for <strong>one</strong> target.</p><p>@LOSS[20 mp] for <strong>two</strong> targets.</p><p>@LOSS[30 mp] for <strong>three</strong> targets.</p>",
+    "description": "<p>You invigorate your companions, soothing their pain and healing their fatigue. Each target recovers 40 HP<span>. This amount increases to </span>50 HP <span>if you are <strong>level 20 or higher</strong>, or to </span>60 HP <span>if you are <strong>level 40 or higher</strong>.</span></p><hr /><ul><li><p><strong>Targets:</strong> @GAIN[&amp;step(40,50,60) hp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706572719338,
-    "modifiedTime": 1724180864380,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737917872204,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

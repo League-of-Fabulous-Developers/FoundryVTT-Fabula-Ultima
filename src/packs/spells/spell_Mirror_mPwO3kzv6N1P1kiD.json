@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You twist the laws of magic. Until this spell ends, if an offensive ( @ICON[offensive] ) spell is cast on the target, the creature who cast that offensive spell will be targeted in their stead (any other targets of the offensive spell will be targeted as normal). Once that happens, this spell ends.</p><hr /><p>@LOSS[10 mp]</p>",
+    "description": "<p>You twist the laws of magic. Until this spell ends, if an offensive ( @ICON[offensive] ) spell is cast on the target, the creature who cast that offensive spell will be targeted in their stead (any other targets of the offensive spell will be targeted as normal). Once that happens, this spell ends.</p>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706571563973,
-    "modifiedTime": 1724180864326,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737918138160,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },
