@@ -97,7 +97,7 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "type": {
           "value": "physical"
@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "queens-gambit"
+    "fuid": "queens-gambit",
+    "targeting": {
+      "rule": "single"
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,7 +137,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.330",
     "createdTime": 1706555569192,
-    "modifiedTime": 1737922824184,
+    "modifiedTime": 1738001109786,
     "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null

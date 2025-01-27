@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this symbol, choose an action type: <strong>Attack, Guard, Objective, Spell,</strong> or <strong>Skill</strong>. When the creature bearing this <strong>symbol</strong> performs the chosen action, they lose 5 Hit Points and 5 Mind Points (<strong>before</strong> performing that action). Both amounts increase to 10 if you are <strong>level 20 or higher</strong>, or to 20 if you are <strong>level 40 or higher</strong>.</p><hr><p>@LOSS[2 ip]</p>"
+      "description": "<p>When you create this symbol, choose an action type: <strong>Attack, Guard, Objective, Spell,</strong> or <strong>Skill</strong>. When the creature bearing this <strong>symbol</strong> performs the chosen action, they lose 5 Hit Points and 5 Mind Points (<strong>before</strong> performing that action). Both amounts increase to 10 if you are <strong>level 20 or higher</strong>, or to 20 if you are <strong>level 40 or higher</strong>.</p><hr><ul><li><p><strong>You:</strong> @LOSS[2 ip]</p></li><li><p><strong>Target: </strong>@LOSS[&step(5,10,20) hp] @LOSS[&step(5,10,20) mp]</p></li></ul>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-forbiddance"
@@ -74,10 +74,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1710177608648,
-    "modifiedTime": 1724180862501,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737994472220,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

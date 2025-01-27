@@ -1,0 +1,81 @@
+{
+  "folder": "ZRup8UZGBBD2SFVi",
+  "name": "Bolt Weakness",
+  "type": "effect",
+  "_id": "MRNCMGIcZStGVV9J",
+  "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+  "system": {
+    "fuid": "bolt-weakness",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+      "origin": "Compendium.projectfu.actor-effects.Item.MRNCMGIcZStGVV9J",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Bolt Weakness",
+      "_id": "8d7eCqdpQlJhgkbn",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.bolt",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>You suffer <strong>5 extra damage</strong> from the given element.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.330",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1737993735607,
+        "modifiedTime": 1737994133518,
+        "lastModifiedBy": "esOkelwPNblkbxW3"
+      },
+      "_key": "!items.effects!MRNCMGIcZStGVV9J.8d7eCqdpQlJhgkbn"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "esOkelwPNblkbxW3": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.330",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1737993733855,
+    "modifiedTime": 1737993755913,
+    "lastModifiedBy": "esOkelwPNblkbxW3"
+  },
+  "_key": "!items!MRNCMGIcZStGVV9J"
+}
