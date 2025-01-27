@@ -1,7 +1,7 @@
 {
   "name": "Magic Up",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -12,7 +12,7 @@
     {
       "disabled": false,
       "name": "Magic Up",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
       "type": "base",
       "changes": [
         {
@@ -54,8 +54,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728778429244,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736274244448,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!nWyqjIY3XkhWi3Db.4DoEtLDlT5YfK63Z"
     }
@@ -69,8 +69,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747190299,
-    "modifiedTime": 1728747190299,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736274251762,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_id": "nWyqjIY3XkhWi3Db",
   "sort": 900000,

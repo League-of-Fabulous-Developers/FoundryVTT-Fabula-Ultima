@@ -1,6 +1,7 @@
 import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
+import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 
 const CRISIS_INTERACTION = 'CrisisInteraction';
 const EFFECT_TYPE = 'type';
@@ -94,6 +95,19 @@ const PRIORITY_CHANGES = [
 	'system.affinities.poison.base',
 ];
 
+/**
+ * @description The system implementation
+ * @property {DataModel} parent
+ * @property {Boolean} isSuppressed Is there some system logic that makes this active effect ineligible for application?
+ * @property {Document} target Retrieve the Document that this ActiveEffect targets for modification.
+ * @property {Boolean} active Whether the Active Effect currently applying its changes to the target.
+ * @property {Boolean modifiesActor Does this Active Effect currently modify an Actor?
+ * @property {Boolean} isTemporary Describe whether the ActiveEffect has a temporary duration based on combat turns or rounds.
+ * @property {Boolean} isEmbedded Test whether this Document is embedded within a parent Document
+ * @property {String} uuid
+ * @property {EffectChangeData[]} changes - The array of EffectChangeData objects which the ActiveEffect applies
+ * @remarks https://foundryvtt.com/api/classes/client.ActiveEffect.html
+ * */
 export class FUActiveEffect extends ActiveEffect {
 	static get TEMPORARY_FLAG() {
 		return TEMPORARY;
@@ -143,12 +157,20 @@ export class FUActiveEffect extends ActiveEffect {
 		}
 	}
 
+	/**
+	 * @param {FUActor|FUItem} target
+	 * @param {EffectChangeData} change
+	 * @returns {{}|*}
+	 */
 	apply(target, change) {
+		// Support expressions
 		if (change.value && typeof change.value === 'string') {
 			try {
+				// First, evaluate using built-in support
 				const expression = Roll.replaceFormulaData(change.value, this.parent);
-				const value = Roll.validate(expression) ? Roll.safeEval(expression) : change.value;
-				console.debug('Substituting change variable:', change.value, value);
+				// Second, evaluate with our custom expressions
+				const context = ExpressionContext.resolveTarget(target);
+				const value = Expressions.evaluate(expression, context);
 				change.value = String(value ?? 0);
 			} catch (e) {
 				console.error(e);

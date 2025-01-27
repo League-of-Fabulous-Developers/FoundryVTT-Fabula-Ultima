@@ -38,24 +38,24 @@
             <div class="combat-row {{ this.rowClass }}" data-type="character" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
                  data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
                  {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
-                {{!-- <img class="token-image" src="{{this.img}}" alt="{{this.actor.name}}" /> --}}
+                {{!-- <img class="token-image" src="{{this.img}}" alt="{{name}}" /> --}}
                 <div class="combat-info">
                     {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
                         <div class="combat-name crisis {{#unless this.hasEffects}}full-height{{/unless}}">
-                            <h2 class="token-name" data-tooltip="{{ this.actor.name }}">
+                            <h2 class="token-name" data-tooltip="{{ name }}">
                                 {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                     <span class="combat-order">{{ this.order }}</span>.&nbsp;
                                 {{/if}}
-                                {{ this.actor.name }}
+                                {{ name }}
                             </h2>
                         </div>
                     {{else}}
                         <div class="combat-name {{#unless this.hasEffects}}full-height{{/unless}}">
-                            <h2  class="token-name" data-tooltip="{{ this.actor.name }}">
+                            <h2  class="token-name" data-tooltip="{{ name }}">
                                 {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                     <span class="combat-order">{{ this.order }}</span>.&nbsp;
                                 {{/if}}
-                                {{ this.actor.name }}
+                                {{ name }}
                             </h2>
                         </div>
                     {{/if}}

@@ -1,7 +1,7 @@
 {
   "name": "Initiative Up",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/Accelerated.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -16,7 +16,7 @@
       "type": "base",
       "changes": [
         {
-          "key": "system.resources.ip.bonus",
+          "key": "system.derived.init.value",
           "mode": 2,
           "value": "4",
           "priority": null
@@ -54,8 +54,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728776511304,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736219201661,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!ioSKLq0Jzt7l90Uj.em0AHUzCr3MeyUDA"
     }
@@ -69,8 +69,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747193936,
-    "modifiedTime": 1728747193936,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736220205859,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_id": "ioSKLq0Jzt7l90Uj",
   "sort": 1300000,

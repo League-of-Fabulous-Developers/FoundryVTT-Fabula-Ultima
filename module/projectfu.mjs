@@ -48,7 +48,6 @@ import { registerOptionalFeatures } from './documents/items/optionalFeature/opti
 
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
 import { FUActiveEffect } from './documents/effects/active-effect.mjs';
-import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
 import { InlineResources } from './helpers/inline-resources.mjs';
@@ -66,6 +65,10 @@ import { ActionHandler } from './helpers/action-handler.mjs';
 import { StudyRollHandler } from './helpers/study-roll.mjs';
 import { ItemCustomizer } from './helpers/item-customizer.mjs';
 import { FUHooks } from './hooks.mjs';
+import { DamagePipeline } from './pipelines/damage-pipeline.mjs';
+import { ResourcePipeline } from './pipelines/resource-pipeline.mjs';
+import { InlineWeapon } from './helpers/inline-weapon.mjs';
+import { Targeting } from './helpers/targeting.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -228,7 +231,9 @@ Hooks.once('init', async () => {
 	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
-	registerChatInteraction();
+	Hooks.on('renderChatMessage', DamagePipeline.onRenderChatMessage);
+	Hooks.on(`renderChatMessage`, ResourcePipeline.onRenderChatMessage);
+	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
@@ -254,6 +259,13 @@ Hooks.once('init', async () => {
 	Hooks.on('renderApplication', InlineChecks.activateListeners);
 	Hooks.on('renderActorSheet', InlineChecks.activateListeners);
 	Hooks.on('renderItemSheet', InlineChecks.activateListeners);
+
+	CONFIG.TextEditor.enrichers.push(InlineWeapon.enricher);
+	Hooks.on('renderChatMessage', InlineWeapon.activateListeners);
+	Hooks.on('renderApplication', InlineWeapon.activateListeners);
+	Hooks.on('renderActorSheet', InlineWeapon.activateListeners);
+	Hooks.on('renderItemSheet', InlineWeapon.activateListeners);
+	Hooks.on('dropActorSheetData', InlineWeapon.onDropActor);
 
 	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 

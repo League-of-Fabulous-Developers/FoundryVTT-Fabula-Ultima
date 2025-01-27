@@ -1,6 +1,6 @@
 import { FUItem } from '../items/item.mjs';
 import { FUHooks } from '../../hooks.mjs';
-import { toggleStatusEffect } from '../../helpers/effects.mjs';
+import { toggleStatusEffect } from '../effects/effects.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { Flags } from '../../helpers/flags.mjs';
 
@@ -157,10 +157,6 @@ export class FUActor extends Actor {
 	}
 
 	async _onUpdate(changed, options, userId) {
-		if (options.damageTaken) {
-			this.showFloatyText(options.damageTaken);
-		}
-
 		const { hp } = this.system?.resources || {};
 
 		if (hp && userId === game.userId) {
@@ -181,7 +177,7 @@ export class FUActor extends Actor {
 		super._onUpdate(changed, options, userId);
 	}
 
-	async showFloatyText(input) {
+	async showFloatyText(input, fill) {
 		if (!canvas.scene) {
 			return;
 		}
@@ -194,7 +190,7 @@ export class FUActor extends Actor {
 				{ x: token.x + gridSize / 2, y: token.y + gridSize - 20 },
 				Math.abs(input),
 				{
-					fill: input < 0 ? 'lightgreen' : 'white',
+					fill: fill ?? (input < 0 ? 'lightgreen' : 'white'),
 					fontSize: 32,
 					stroke: 0x000000,
 					strokeThickness: 4,
@@ -208,7 +204,7 @@ export class FUActor extends Actor {
 				{ x: token.x + gridSize / 2, y: token.y + gridSize - 20 },
 				input,
 				{
-					fill: 'white',
+					fill: fill ?? 'white',
 					fontSize: 32,
 					stroke: 0x000000,
 					strokeThickness: 4,
@@ -232,6 +228,37 @@ export class FUActor extends Actor {
 				yield effect;
 			}
 		}
+	}
+
+	/**
+	 * @return {Generator<ActiveEffect, void, void>}
+	 */
+	*allEffects() {
+		for (const effect of this.effects) {
+			yield effect;
+		}
+		for (const item of this.items) {
+			for (const effect of item.effects) {
+				yield effect;
+			}
+		}
+	}
+
+	/**
+	 * @override
+	 */
+	get temporaryEffects() {
+		const effects = super.temporaryEffects;
+		for (const item of this.items) {
+			if (item.system.transferEffects instanceof Function ? item.system.transferEffects() : true) {
+				for (const effect of item.effects) {
+					if (effect.isTemporary && effect.target === item) {
+						effects.push(effect);
+					}
+				}
+			}
+		}
+		return effects;
 	}
 
 	applyActiveEffects() {

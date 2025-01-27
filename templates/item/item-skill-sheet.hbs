@@ -1,6 +1,6 @@
 <form class="{{ cssClass }} h-100" autocomplete="off">
     <div class="sheet-content-wrapper">
-        {{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+        {{> "systems/projectfu/templates/item/partials/item-header.hbs"}}
 
         {{!-- Sheet Wrapper --}}
         <div class="sheet-wrapper">
@@ -170,6 +170,12 @@
 
                         {{!-- Resource Pointts --}}
                         {{> "systems/projectfu/templates/item/partials/item-resource-points.hbs"}}
+
+                        {{!-- Action Cost --}}
+                        {{> "systems/projectfu/templates/item/partials/item-action-cost.hbs"}}
+
+                        {{!-- Targeting  --}}
+                        {{> "systems/projectfu/templates/item/partials/item-targeting.hbs"}}
 
                     </section>
                 </div>

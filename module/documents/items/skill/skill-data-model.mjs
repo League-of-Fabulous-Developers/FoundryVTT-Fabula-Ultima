@@ -10,7 +10,10 @@ import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
 import { SETTINGS } from '../../../settings.js';
-import { CHECK_DETAILS, CHECK_FLAVOR } from '../../../checks/default-section-order.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
+import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
+import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
+import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 
 const weaponUsedBySkill = 'weaponUsedBySkill';
 const skillForAttributeCheck = 'skillForAttributeCheck';
@@ -44,31 +47,17 @@ const onPrepareAccuracyCheck = (check, actor, item, registerCallback) => {
 					if (skillData.rollInfo.useWeapon.damage.value) {
 						configurer
 							.setDamage(weaponData.damageType.value, weaponData.damage.value)
+							.addItemAccuracyBonuses(weapon, actor)
+							.addItemDamageBonuses(weapon, actor)
 							.modifyHrZero((hrZero) => hrZero || skillData.rollInfo.useWeapon.hrZero.value)
 							.setTargetedDefense(weaponData.defense);
-
-						const { [weaponData.type.value]: weaponTypeDamageBonus, [weaponData.category.value]: weaponCategoryDamageBonus } = actor.system.bonuses.damage;
-
-						if (weaponTypeDamageBonus) {
-							configurer.addDamageBonus(`FU.DamageBonusType${weaponData.type.value.capitalize()}`, weaponTypeDamageBonus);
-						}
-						if (weaponCategoryDamageBonus) {
-							configurer.addDamageBonus(`FU.DamageBonusCategory${weaponData.category.value.capitalize()}`, weaponCategoryDamageBonus);
-						}
 					} else {
 						configurer
 							.setDamage(skillData.rollInfo.damage.type.value, skillData.rollInfo.damage.value)
+							.addItemDamageBonuses(weapon, actor)
+							.addItemAccuracyBonuses(weapon, actor)
 							.modifyHrZero((hrZero) => hrZero || skillData.rollInfo.useWeapon.hrZero.value)
 							.setTargetedDefense(weaponData.defense);
-
-						const { [weaponData.type.value]: weaponTypeDamageBonus, [weaponData.category.value]: weaponCategoryDamageBonus } = actor.system.bonuses.damage;
-
-						if (weaponTypeDamageBonus) {
-							configurer.addDamageBonus(`FU.DamageBonusType${weaponData.type.value.capitalize()}`, weaponTypeDamageBonus);
-						}
-						if (weaponCategoryDamageBonus) {
-							configurer.addDamageBonus(`FU.DamageBonusCategory${weaponData.category.value.capitalize()}`, weaponCategoryDamageBonus);
-						}
 					}
 				}
 			} else {
@@ -99,12 +88,16 @@ Hooks.on(CheckHooks.prepareCheck, onPrepareAttributeCheck);
 /**
  * @type RenderCheckHook
  */
-let onRenderAccuracyCheck = (sections, check, actor, item) => {
+let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 	if (check.type === 'accuracy' && item?.system instanceof SkillDataModel) {
 		if (check.additionalData[weaponUsedBySkill]) {
 			const weapon = fromUuidSync(check.additionalData[weaponUsedBySkill]);
 			/** @type WeaponDataModel */
 			const weaponData = weapon.system;
+			CommonSections.tags(sections, [{ tag: 'FU.Class', separator: ':', value: item.system.class.value }], CHECK_DETAILS);
+			if (item.system.hasResource.value) {
+				CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
+			}
 			sections.push({
 				partial: 'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
 				data: {
@@ -117,7 +110,7 @@ let onRenderAccuracyCheck = (sections, check, actor, item) => {
 					},
 					collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
 				},
-				order: CHECK_DETAILS,
+				order: CHECK_DETAILS + 2,
 			});
 			sections.push({
 				content: `
@@ -130,9 +123,13 @@ let onRenderAccuracyCheck = (sections, check, actor, item) => {
                     </div>
                   </div>
                   `,
-				order: CHECK_DETAILS - 1,
+				order: CHECK_DETAILS + 1,
 			});
 		}
+
+		const inspector = CheckConfiguration.inspect(check);
+		const targets = inspector.getTargets();
+		CommonSections.spendResource(sections, actor, item, targets, flags);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
@@ -143,26 +140,12 @@ Hooks.on(CheckHooks.renderCheck, onRenderAccuracyCheck);
 let onRenderAttributeCheck = (sections, check, actor, item) => {
 	if (check.type === 'attribute' && check.additionalData[skillForAttributeCheck]) {
 		const skill = fromUuidSync(check.additionalData[skillForAttributeCheck]);
-		/** @type SkillDataModel */
-		const skillData = skill.system;
-		sections.push({
-			partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
-			data: {
-				summary: skillData.summary.value,
-				description: skillData.description,
-				collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
-			},
-			order: CHECK_DETAILS,
-		});
-		sections.push({
-			order: CHECK_FLAVOR,
-			partial: 'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
-			data: {
-				name: skill.name,
-				img: skill.img,
-				id: skill.id,
-			},
-		});
+		CommonSections.itemFlavor(sections, skill);
+		CommonSections.tags(sections, [{ tag: 'FU.Class', separator: ':', value: skill.system.class.value }], CHECK_DETAILS);
+		if (skill.system.hasResource.value) {
+			CommonSections.resource(sections, skill.system.rp, CHECK_DETAILS);
+		}
+		CommonSections.description(sections, skill.system.description, skill.system.summary.value, CHECK_DETAILS);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
@@ -170,19 +153,15 @@ Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
 /**
  * @type RenderCheckHook
  */
-const onRenderDisplay = (sections, check, actor, item, additionalFlags) => {
+const onRenderDisplay = (sections, check, actor, item, flags) => {
 	if (check.type === 'display' && item.system instanceof SkillDataModel) {
-		/** @type SkillDataModel */
-		const skillData = item.system;
-		sections.push({
-			partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
-			data: {
-				summary: skillData.summary.value,
-				description: skillData.description,
-				collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
-			},
-			order: CHECK_DETAILS,
-		});
+		CommonSections.tags(sections, [{ tag: 'FU.Class', separator: ':', value: item.system.class.value }], CHECK_DETAILS);
+		if (item.system.hasResource.value) {
+			CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
+		}
+		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
+		CommonSections.spendResource(sections, actor, item, targets, flags);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
@@ -209,6 +188,8 @@ Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
  * @property {number} rollInfo.accuracy.value
  * @property {DamageDataModel} rollInfo.damage
  * @property {boolean} hasRoll.value
+ * @property {ActionCostDataModel} cost
+ * @property {TargetingDataModel} targeting
  */
 export class SkillDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
@@ -252,6 +233,8 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 				damage: new EmbeddedDataField(DamageDataModel, {}),
 			}),
 			hasRoll: new SchemaField({ value: new BooleanField() }),
+			cost: new EmbeddedDataField(ActionCostDataModel, {}),
+			targeting: new EmbeddedDataField(TargetingDataModel, {}),
 		};
 	}
 

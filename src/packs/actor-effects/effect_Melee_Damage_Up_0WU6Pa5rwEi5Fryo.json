@@ -3,7 +3,7 @@
   "name": "Melee Damage Up",
   "type": "effect",
   "_id": "0WU6Pa5rwEi5Fryo",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
   "system": {
     "fuid": "melee-damage-up"
   },
@@ -21,7 +21,7 @@
       },
       "disabled": false,
       "name": "Melee Damage Up",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
       "_id": "Hd5k1JDoHHXaOiDh",
       "type": "base",
       "system": {},
@@ -40,7 +40,9 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": ""
         }
       },
       "_stats": {
@@ -50,8 +52,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725744840092,
-        "modifiedTime": 1725745132128,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1736279175423,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!0WU6Pa5rwEi5Fryo.Hd5k1JDoHHXaOiDh"
     }
@@ -69,8 +71,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725744829293,
-    "modifiedTime": 1725744838946,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1736279171223,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_key": "!items!0WU6Pa5rwEi5Fryo"
 }

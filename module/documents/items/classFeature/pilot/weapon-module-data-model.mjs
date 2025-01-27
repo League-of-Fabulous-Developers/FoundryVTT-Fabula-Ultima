@@ -24,40 +24,22 @@ const weaponModuleTypes = {
 const prepareCheck = (check, actor, item, registerCallback) => {
 	if (check.type === 'accuracy' && item.system instanceof ClassFeatureTypeDataModel && item.system.data instanceof WeaponModuleDataModel) {
 		/** @type WeaponModuleDataModel */
-		const data = item.system.data;
-		check.primary = data.accuracy.attr1;
-		check.secondary = data.accuracy.attr2;
-		const baseAccuracy = data.accuracy.modifier;
+		const module = item.system.data;
+		check.primary = module.accuracy.attr1;
+		check.secondary = module.accuracy.attr2;
+		const baseAccuracy = module.accuracy.modifier;
 		if (baseAccuracy) {
 			check.modifiers.push({
 				label: 'FU.AccuracyCheckBaseAccuracy',
 				value: baseAccuracy,
 			});
 		}
-		const category = data.category;
-		if (category && actor.system.bonuses.accuracy[category]) {
-			check.modifiers.push({
-				label: `FU.AccuracyCheckBonus${category.capitalize()}`,
-				value: actor.system.bonuses.accuracy[category],
-			});
-		}
 
-		const attackType = data.type;
-		if (attackType === 'melee' && actor.system.bonuses.accuracy.accuracyMelee) {
-			check.modifiers.push({
-				label: 'FU.AccuracyCheckBonusMelee',
-				value: actor.system.bonuses.accuracy.accuracyMelee,
-			});
-		} else if (attackType === 'ranged' && actor.system.bonuses.accuracy.accuracyRanged) {
-			check.modifiers.push({
-				label: 'FU.AccuracyCheckBonusRanged',
-				value: actor.system.bonuses.accuracy.accuracyRanged,
-			});
-		}
+		const configurer = AccuracyCheck.configure(check).setDamage(module.damage.type, module.damage.bonus).addModelAccuracyBonuses(module, actor).setTargetedDefense(module.accuracy.defense);
 
-		const configurer = AccuracyCheck.configure(check).setDamage(data.damage.type, data.damage.bonus);
+		const category = module.category;
 
-		const attackTypeBonus = actor.system.bonuses.damage[data.type] ?? 0;
+		const attackTypeBonus = actor.system.bonuses.damage[module.type] ?? 0;
 		if (attackTypeBonus) {
 			configurer.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
 		}

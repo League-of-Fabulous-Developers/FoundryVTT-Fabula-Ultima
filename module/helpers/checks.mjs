@@ -782,73 +782,35 @@ const KEY_RECENT_CHECKS = 'fabulaultima.recentChecks';
 /**
  * @param {FUActor} actor
  * @param {string} title
+ * @param {String} action
  * @returns {Promise<ChatMessage|Object>}
  */
 export async function promptCheck(actor, title, action) {
 	const recentChecks = JSON.parse(sessionStorage.getItem(KEY_RECENT_CHECKS) || '{}');
-	const recentActorChecks = recentChecks[actor.uuid] || (recentChecks[actor.uuid] = {});
+	let check = recentChecks[actor.uuid] || (recentChecks[actor.uuid] = {});
 	try {
 		const attributes = actor.system.attributes;
-		const titleMain = title || 'FU.DialogCheckTitle';
-		let bonus;
 		if (action === 'study') {
-			recentActorChecks.attr1 = 'ins';
-			recentActorChecks.attr2 = 'ins';
+			check.primary = 'ins';
+			check.secondardy = 'ins';
 		}
 		if (action === 'open') {
-			recentActorChecks.difficulty = 0;
-			bonus = actor.system.bonuses.accuracy.opposedCheck;
+			check.difficulty = 0;
+			check.modifier = actor.system.bonuses.accuracy.opposedCheck;
 		}
-		const { attr1, attr2, difficulty, modifier } = await Dialog.wait(
-			{
-				title: game.i18n.localize(titleMain),
-				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check.hbs', {
-					attributes: FU.attributes,
-					attributeAbbr: FU.attributeAbbreviations,
-					attributeValues: Object.entries(attributes).reduce(
-						(previousValue, [attribute, { current }]) => ({
-							...previousValue,
-							[attribute]: current,
-						}),
-						{},
-					),
-					attr1: recentActorChecks.attr1 || 'mig',
-					attr2: recentActorChecks.attr2 || 'mig',
-					modifier: recentActorChecks.modifier || 0,
-					difficulty: recentActorChecks.difficulty || 0,
-					bonus: bonus || 0,
-				}),
-				buttons: [
-					{
-						icon: '<i class="fas fa-dice"></i>',
-						label: game.i18n.localize('FU.DialogCheckRoll'),
-						callback: (jQuery) => {
-							return {
-								attr1: jQuery.find('*[name=attr1]:checked').val(),
-								attr2: jQuery.find('*[name=attr2]:checked').val(),
-								modifier: +jQuery.find('*[name=modifier]').val(),
-								difficulty: +jQuery.find('*[name=difficulty]').val(),
-							};
-						},
-					},
-				],
-			},
-			{
-				classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
-			},
-		);
 
-		recentActorChecks.attr1 = attr1;
-		recentActorChecks.attr2 = attr2;
-		recentActorChecks.modifier = modifier;
-		recentActorChecks.difficulty = difficulty;
+		check = await ChecksV2.promptConfiguration(actor, check, title);
+		// Legacy compatibility
+		check.attr1 = check.primary;
+		check.attr2 = check.secondary;
+
 		sessionStorage.setItem(KEY_RECENT_CHECKS, JSON.stringify(recentChecks));
 
 		if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
-			if (modifier) {
+			if (check.modifier) {
 				Hooks.once(CheckHooks.prepareCheck, (check) =>
 					check.modifiers.push({
-						value: modifier,
+						value: check.modifier,
 						label: 'FU.CheckSituationalModifier',
 					}),
 				);
@@ -873,7 +835,7 @@ export async function promptCheck(actor, title, action) {
 				hasRenderCheckHookRegistered = true;
 			}
 
-			return ChecksV2.attributeCheck(actor, { primary: attr1, secondary: attr2 }, CheckConfiguration.initDifficulty(difficulty));
+			return ChecksV2.attributeCheck(actor, { primary: check.attr1, secondary: check.attr2 }, CheckConfiguration.initDifficulty(check.difficulty));
 		}
 		const speaker = ChatMessage.implementation.getSpeaker({ actor });
 
@@ -883,17 +845,17 @@ export async function promptCheck(actor, title, action) {
 		let params = {
 			check: {
 				attr1: {
-					attribute: attr1,
-					dice: attributes[attr1].current,
+					attribute: check.attr1,
+					dice: attributes[check.attr1].current,
 				},
 				attr2: {
-					attribute: attr2,
-					dice: attributes[attr2].current,
+					attribute: check.attr2,
+					dice: attributes[check.attr2].current,
 				},
-				modifier: modifier,
+				modifier: check.modifier,
 				title: title || 'FU.RollCheck',
 			},
-			difficulty: difficulty,
+			difficulty: check.difficulty,
 			speaker: speaker,
 		};
 		const rolledCheck = await rollCheck(params);

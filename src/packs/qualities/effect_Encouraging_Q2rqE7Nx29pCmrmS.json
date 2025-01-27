@@ -1,7 +1,7 @@
 {
   "name": "Encouraging",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/SpellPlus.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -12,7 +12,7 @@
     {
       "disabled": false,
       "name": "Encouraging",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/SpellPlus.webp",
       "type": "base",
       "changes": [],
       "description": "<p>When you hit one or more creatures with this weapon, you may recover @GAIN[10 mp].</p>",
@@ -47,8 +47,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728774785901,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736223549365,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!Q2rqE7Nx29pCmrmS.sepX3zcs0PD7UTw2"
     }
@@ -62,8 +62,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747193107,
-    "modifiedTime": 1728747193107,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736223542343,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_id": "Q2rqE7Nx29pCmrmS",
   "sort": 700000,

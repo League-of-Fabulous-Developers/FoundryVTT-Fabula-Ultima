@@ -1,8 +1,8 @@
 import { FU } from './config.mjs';
-import { applyDamagePipelineWithHook } from './apply-damage.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { InlineHelper } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
+import { DamagePipeline, DamageRequest } from '../pipelines/damage-pipeline.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
 
@@ -65,7 +65,8 @@ function activateListeners(document, html) {
 				const amount = Expressions.evaluate(this.dataset.amount, context);
 
 				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
-				await applyDamagePipelineWithHook({ event: null, targets, sourceUuid: sourceInfo.actorUuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
+				const request = new DamageRequest(sourceInfo, targets, baseDamageInfo);
+				await DamagePipeline.process(request);
 			}
 		})
 		.on('dragstart', function (event) {
@@ -93,7 +94,8 @@ function onDropActor(actor, sheet, { type, damageType, amount, sourceInfo, ignor
 		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
 		const _amount = Expressions.evaluate(amount, context);
 		const baseDamageInfo = { type: damageType, total: _amount, modifierTotal: 0 };
-		applyDamagePipelineWithHook({ event: null, targets: [actor], sourceUuid: sourceInfo.actorUuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
+		const request = new DamageRequest(sourceInfo, [actor], baseDamageInfo);
+		DamagePipeline.process(request);
 		return false;
 	}
 }

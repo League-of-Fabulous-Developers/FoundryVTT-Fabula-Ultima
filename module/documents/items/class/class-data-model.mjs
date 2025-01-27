@@ -1,9 +1,29 @@
 import { ClassMigrations } from './class-migrations.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
+
+const tagProperties = {
+	'benefits.resources.hp.value': 'FU.BenefitHp',
+	'benefits.resources.mp.value': 'FU.BenefitMp',
+	'benefits.resources.ip.value': 'FU.BenefitIp',
+	'benefits.martials.melee.value': 'FU.BenefitMelee',
+	'benefits.martials.ranged.value': 'FU.BenefitRanged',
+	'benefits.martials.armor.value': 'FU.BenefitArmor',
+	'benefits.martials.shields.value': 'FU.BenefitShields',
+	'benefits.rituals.arcanism.value': 'FU.Arcanism',
+	'benefits.rituals.chimerism.value': 'FU.Chimerism',
+	'benefits.rituals.elementalism.value': 'FU.Elementalism',
+	'benefits.rituals.entropism.value': 'FU.Entropism',
+	'benefits.rituals.ritualism.value': 'FU.Ritualism',
+	'benefits.rituals.spiritism.value': 'FU.Spiritism',
+};
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ClassDataModel) {
-		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+		const tags = Object.entries(tagProperties).map(([key, translation]) => ({ tag: translation, show: foundry.utils.getProperty(item.system, key) }));
+		CommonSections.tags(sections, tags);
+
+		CommonSections.description(sections, item.system.description, item.system.summary.value);
 	}
 });
 

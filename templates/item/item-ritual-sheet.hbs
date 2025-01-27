@@ -1,6 +1,6 @@
 <form class="{{ cssClass }} h-100" autocomplete="off">
     <div class="sheet-content-wrapper">
-    {{> "systems/projectfu/templates/item/partials/item-header.hbs" dtypes=dtypes}}
+        {{> "systems/projectfu/templates/item/partials/item-header.hbs"}}
 
         {{!-- Sheet Wrapper --}}
         <div class="sheet-wrapper">
@@ -20,8 +20,8 @@
                             {{localize 'FU.Description'}}
                             <i class="fas fa-info-circle"></i>
                         </label>
-                    {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-                    button=true owner=owner editable=editable }}
+                        {{editor enrichedHtml.description target="system.description" engine="prosemirror"
+                                 rollData=rollData button=true owner=owner editable=editable }}
                     </fieldset>
                 </div>
 
@@ -43,105 +43,60 @@
                                         {{else}}
                                             <i class="far fa-clock"></i>
                                         {{/if}}
-                                    </span><input type="checkbox" name="system.hasClock.value" {{ checked system.hasClock.value
-                                }} />
+                                    </span>
+                                    <input type="checkbox" name="system.hasClock.value" {{ checked system.hasClock.value }} />
                                 </label>
                                 <label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsRoll'}}</span><input
-                                type="checkbox" name="system.hasRoll.value" {{ checked system.hasRoll.value }} />
+                                 type="checkbox" name="system.hasRoll.value" {{ checked system.hasRoll.value }} />
                                 </label>
-                                <label class="checkbox resource-label-sm"> <span>{{localize 'FU.hasCollateral'}}</span><input
-                                type="checkbox" name="system.rollInfo.impdamage.hasImpDamage.value" {{ checked
-                                    system.rollInfo.impdamage.hasImpDamage.value }} /> </label>
                             </div>
 
                             <div class="grid grid-3col">
                                 <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.rollInfo.attributes.primary.value" class="resource-label-sm">{{localize
-                                    'FU.Primary'}} </label>
-                                    <select
-                                    name="system.rollInfo.attributes.primary.value"
-                                    class="resource-inputs select-dropdown">
-                                        {{selectOptions attrAbbr selected=system.rollInfo.attributes.primary.value sort=true
-                                                        localize=true}}
+                                    <label for="system.attributes.primary" class="resource-label-sm">
+                                        {{localize 'FU.Primary'}}
+                                    </label>
+                                    <select name="system.attributes.primary" class="resource-inputs select-dropdown">
+                                        {{selectOptions attrAbbr selected=system.attributes.primary sort=true localize=true}}
                                     </select>
                                 </div>
                                 <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.rollInfo.attributes.secondary.value" class="resource-label-sm">{{localize
-                                    'FU.Secondary'}} </label>
-                                    <select
-                                    name="system.rollInfo.attributes.secondary.value"
-                                    class="resource-inputs select-dropdown">
-                                        {{selectOptions attrAbbr selected=system.rollInfo.attributes.secondary.value sort=true
-                                                        localize=true}}
+                                    <label for="system.attributes.secondary" class="resource-label-sm">
+                                        {{localize 'FU.Secondary'}}
+                                    </label>
+                                    <select name="system.attributes.secondary" class="resource-inputs select-dropdown">
+                                        {{selectOptions attrAbbr selected=system.attributes.secondary sort=true localize=true}}
                                     </select>
                                 </div>
                                 <div class="resource-content flexcol flex-group-center">
-                                    <label class="resource-label-sm">{{localize 'FU.AccuracyBonus'}}</label>
-                                    <input type="text" name="system.rollInfo.accuracy.value"
-                                        value="{{ system.rollInfo.accuracy.value }}" class="resource-inputs"
-                                        data-dtype="Number" />
-                                </div>
-                            </div>
-
-                            <div class="grid grid-3col">
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.rollInfo.impdamage.impType.value"
-                                        class="resource-label-sm flexlarge align-left">{{localize
-                                    'FU.DamageTypeCollateral'}}</label>
-                                    <select
-                                    name="system.rollInfo.impdamage.impType.value"
-                                    class="resource-inputs select-dropdown-m">
-                                        {{selectOptions FU.improvisedEffect selected=system.rollInfo.impdamage.impType.value localize=true}}
-                                    </select>
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label for="system.rollInfo.impdamage.type.value"
-                                        class="resource-label-sm flexlarge align-left">{{localize 'FU.DamageType'}} </label>
-                                    <select
-                                    name="system.rollInfo.impdamage.type.value"
-                                    class="resource-inputs select-dropdown-m">
-                                        {{selectOptions damageTypes selected=system.rollInfo.impdamage.type.value sort=true
-                                                        localize=true}}
-                                    </select>
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label class="resource-label-sm">{{localize 'FU.DamageBonus'}}</label>
-                                    <input type="text" name="system.rollInfo.damage.value"
-                                        value="{{ system.rollInfo.damage.value }}" class="resource-inputs"
-                                        data-dtype="Number"
-                                        disabled />
+                                    <label class="resource-label-sm">{{localize 'FU.MagicCheckBonus'}}</label>
+                                    <input type="number" name="system.modifier" value="{{ system.modifier }}" class="resource-inputs" />
                                 </div>
                             </div>
 
                             <div class="grid grid-2col">
                                 <div class="resource-content flexcol flex-group-center">
                                     <label class="resource-label-sm">{{localize 'FU.Potency'}}</label>
-                                    <select class="resource-inputs select-dropdown-m"
-                                            name="system.potency.value">
+                                    <select class="resource-inputs select-dropdown-m" name="system.potency.value">
                                         {{selectOptions FU.potency selected=system.potency.value localize=true}}
                                     </select>
                                 </div>
                                 <div class="resource-content flexcol flex-group-center">
                                     <label class="resource-label-sm">{{localize 'FU.Area'}}</label>
-                                    <select class="resource-inputs select-dropdown-m"
-                                            name="system.area.value">
+                                    <select class="resource-inputs select-dropdown-m" name="system.area.value">
                                         {{selectOptions FU.area selected=system.area.value localize=true}}
                                     </select>
                                 </div>
                             </div>
-
-                            <div class="grid grid-3col">
+                            <hr>
+                            <div class="grid grid-2col">
                                 <div class="resource-content flexcol flex-group-center">
                                     <label class="resource-label-sm">{{localize 'FU.MindPointCost'}}</label>
-                                    <input type="text" name="system.mpCost.value" value="{{ system.mpCost.value }}" disabled />
+                                    <input type="text" value="{{ system.mpCost.value }}" disabled />
                                 </div>
                                 <div class="resource-content flexcol flex-group-center">
                                     <label class="resource-label-sm">{{localize 'FU.DL'}}</label>
-                                    <input type="text" name="system.dLevel.value" value="{{ system.dLevel.value }}" disabled />
-                                </div>
-                                <div class="resource-content flexcol flex-group-center">
-                                    <label class="resource-label-sm">{{localize 'FU.Clock'}}</label>
-                                    <input type="text" name="system.clock.value" value="{{ system.clock.value }}" disabled />
+                                    <input type="text" value="{{ system.dLevel.value }}" disabled />
                                 </div>
                             </div>
                         </fieldset>
@@ -150,24 +105,16 @@
                         {{#if system.hasClock.value}}
                             <fieldset class="title-fieldset desc resource-content">
                                 <legend>
-                                    <label class="resource-label-m">{{localize 'FU.Clocks'}}</label>
+                                    <label class="resource-label-m">{{localize 'FU.Clock'}}</label>
                                 </legend>
-                                <div class="grid grid-3col">
+                                <div class="grid grid-2col">
                                     <div class="resource-content flexcol flex-group-center">
                                         <label class="resource-label-m">{{localize 'FU.Current'}}</label>
-                                        <input type="number" name="system.progress.current"
-                                            value="{{ system.progress.current }}"
-                                            class="resource-inputs select-dropdown-m" />
-                                    </div>
-                                    <div class="resource-content flexcol flex-group-center">
-                                        <label class="resource-label-m">{{localize 'FU.Step'}}</label>
-                                        <input type="number" name="system.progress.step" value="{{ system.progress.step }}"
-                                            class="resource-inputs select-dropdown-m" />
+                                        <input type="number" name="system.progress.current" value="{{ system.progress.current }}" max="{{ system.progress.max }}" class="resource-inputs select-dropdown-m" />
                                     </div>
                                     <div class="resource-content flexcol flex-group-center">
                                         <label class="resource-label-m">{{localize 'FU.Max'}}</label>
-                                        <input type="number" name="system.progress.max" value="{{ system.progress.max }}"
-                                            class="resource-inputs select-dropdown-m" />
+                                        <input type="number" value="{{ system.progress.max }}" class="resource-inputs select-dropdown-m" disabled>
                                     </div>
                                 </div>
                             </fieldset>

@@ -1,15 +1,14 @@
-// import { FUActor } from '../documents/actors/actor.mjs';
-import { FU } from './config.mjs';
-import { getTargeted } from './target-handler.mjs';
+import { FU } from '../helpers/config.mjs';
+import { getTargeted } from '../helpers/target-handler.mjs';
 
 /**
  * @typedef BaseDamageInfo
- * @type {import('./typedefs.mjs').BaseDamageInfo}
+ * @type {import('../helpers/typedefs.mjs').BaseDamageInfo}
  */
 
 /**
  * @typedef DamageType
- * @type {import('./config.mjs').DamageType}
+ * @type {import('../helpers/config.mjs').DamageType}
  */
 
 /**

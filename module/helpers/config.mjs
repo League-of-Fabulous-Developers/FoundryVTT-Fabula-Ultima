@@ -96,6 +96,7 @@ FU.allIcon = {
 	ice: 'fua fu-ice',
 	light: 'fua fu-light',
 	poison: 'fua fu-poison',
+	weaponEnchant: 'fu-weapon-enchant',
 };
 
 FU.affType = {
@@ -557,4 +558,15 @@ FU.difficultyLevel = {
 	normal: 'FU.Normal',
 	hard: 'FU.Hard',
 	veryHard: 'FU.VeryHard',
+};
+
+/**
+ * @typedef {"self", "single", "multiple", "weapon", "special"} TargetingRule
+ */
+FU.targetingRules = {
+	self: 'FU.Self',
+	single: 'FU.Single',
+	multiple: 'FU.Multiple',
+	weapon: `FU.Weapon`,
+	special: `FU.Special`,
 };
