@@ -9,6 +9,7 @@ import { ChecksV2 } from '../../checks/checks-v2.mjs';
 import { slugify } from '../../util.mjs';
 import { FUHooks } from '../../hooks.mjs';
 
+const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
 const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(0).toUpperCase() + string.slice(1) : string);
 
 /**
@@ -615,8 +616,7 @@ export class FUItem extends Item {
 	}
 
 	async getClockDataString() {
-		// Check if the item type is 'ritual'
-		if (this.type !== 'ritual' && this.type !== 'miscAbility') {
+		if (!this.isClockType()) {
 			return '';
 		}
 
@@ -641,6 +641,10 @@ export class FUItem extends Item {
         </div>
     	`;
 		return content;
+	}
+
+	isClockType(){
+		return CLOCK_TYPES.includes(this.type);
 	}
 
 	// Helper function to generate progress array

@@ -12,7 +12,6 @@ import { GroupCheck as GroupCheckV2 } from '../checks/group-check.mjs';
 import { InlineHelper } from '../helpers/inline-helper.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
-const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
 const SKILL_TYPES = ['skill'];
 const RESOURCE_POINT_TYPES = ['miscAbility', 'skill', 'heroic'];
 const WEARABLE_TYPES = ['armor', 'shield', 'accessory'];
@@ -260,17 +259,11 @@ export class FUStandardActorSheet extends ActorSheet {
 			item.progressStep = item.system.progress?.step;
 			item.progressMax = item.system.progress?.max;
 
-			if (CLOCK_TYPES.includes(item.type)){
-				const progressArr = [];
+			if (item.isClockType()){
 				const progress = item.system.progress || { current: 0, max: 6 };
-				for (let i = 0; i < progress.max; i++) {
-					progressArr.push({
-						id: i + 1,
-						checked: parseInt(progress.current) === i + 1,
-					});
-				}
-				item.progressArr = progressArr.reverse();
+				item.progressArr = item.generateProgressArray(progress);
 			}
+
 			if (RESOURCE_POINT_TYPES.includes(item.type)){
 				const rpArr = [];
 				const rp = item.system.rp || { current: 0, max: 6 };
