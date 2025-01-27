@@ -407,17 +407,9 @@ export class FUStandardActorSheet extends ActorSheet {
 			const relevantTypes = ['optionalFeature'];
 
 			if (relevantTypes.includes(item.type)) {
-				const progressArr = [];
+				const itemObj = context.actor.items.get(item._id);
 				const progress = item.system.data.progress || { current: 0, max: 6 };
-
-				for (let i = 0; i < progress.max; i++) {
-					progressArr.push({
-						id: i + 1,
-						checked: parseInt(progress.current) === i + 1,
-					});
-				}
-
-				item.progressArr = progressArr.reverse();
+				item.progressArr = itemObj.generateProgressArray(progress);
 			}
 		}
 	}
