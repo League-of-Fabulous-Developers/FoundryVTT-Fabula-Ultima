@@ -120,7 +120,57 @@
     "defense": "def",
     "fuid": "defensive-mastery"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/guardian/guardian_defensive_mastery.png",
+      "origin": "Compendium.projectfu.skills.Item.7wF1oulk0Zn7ITTF",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Defensive Mastery",
+      "_id": "w7qI5rqewX56TrEC",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.all",
+          "mode": 2,
+          "value": "-@system.level.value",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.330",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1737920245228,
+        "modifiedTime": 1737920276899,
+        "lastModifiedBy": "esOkelwPNblkbxW3"
+      },
+      "_key": "!items.effects!7wF1oulk0Zn7ITTF.w7qI5rqewX56TrEC"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

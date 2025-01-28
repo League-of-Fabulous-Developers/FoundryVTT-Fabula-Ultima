@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action and spend </span><strong>@LOSS[10 mp]</strong><span class=\"fontstyle0\"> to choose one option: no creature can recover Hit Points or Mind Points; </span><span class=\"fontstyle2\"><strong>OR</strong> </span><span class=\"fontstyle0\">all effects that restore Mind Points restore</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">additional Mind Points. The chosen effect lasts until the start of your next turn.</span> </p><hr /><p>Skill Level <strong>1</strong> - <strong>@GAIN[5 mp]</strong></p><p>Skill Level <strong>2</strong> - <strong>@GAIN[10 mp]</strong></p><p>Skill Level <strong>3</strong> - <strong>@GAIN[15 mp]</strong></p><p>Skill Level <strong>4</strong> - <strong>@GAIN[20 mp]</strong></p>",
+    "description": "<p><span class=\"fontstyle0\">During a conflict, you may use an action and spend </span><strong>@LOSS[10 mp]</strong><span class=\"fontstyle0\"> to choose one option: no creature can recover Hit Points or Mind Points; </span><span class=\"fontstyle2\"><strong>OR</strong> </span><span class=\"fontstyle0\">all effects that restore Mind Points restore</span><span class=\"fontstyle3\"><strong>【</strong></span><span class=\"fontstyle2\"><strong>SL × 5</strong></span><span class=\"fontstyle3\"><strong>】</strong></span><span class=\"fontstyle0\">additional Mind Points. The chosen effect lasts until the start of your next turn.</span> </p><hr /><ul><li><p><strong>Everyone: </strong>@GAIN[$sl*5 mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -118,7 +118,13 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "kings-castle"
+    "fuid": "kings-castle",
+    "cost": {
+      "amount": 10
+    },
+    "targeting": {
+      "rule": "special"
+    }
   },
   "effects": [],
   "ownership": {
@@ -132,10 +138,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706555549756,
-    "modifiedTime": 1724180861497,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737922768515,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

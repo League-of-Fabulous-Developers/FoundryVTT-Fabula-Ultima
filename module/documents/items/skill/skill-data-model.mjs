@@ -94,7 +94,7 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 			const weapon = fromUuidSync(check.additionalData[weaponUsedBySkill]);
 			/** @type WeaponDataModel */
 			const weaponData = weapon.system;
-			CommonSections.tags(sections, [{ tag: 'FU.Class', separator: ':', value: item.system.class.value }], CHECK_DETAILS);
+			CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
 			if (item.system.hasResource.value) {
 				CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
 			}
@@ -141,7 +141,7 @@ let onRenderAttributeCheck = (sections, check, actor, item) => {
 	if (check.type === 'attribute' && check.additionalData[skillForAttributeCheck]) {
 		const skill = fromUuidSync(check.additionalData[skillForAttributeCheck]);
 		CommonSections.itemFlavor(sections, skill);
-		CommonSections.tags(sections, [{ tag: 'FU.Class', separator: ':', value: skill.system.class.value }], CHECK_DETAILS);
+		CommonSections.tags(sections, getTags(skill), CHECK_DETAILS);
 		if (skill.system.hasResource.value) {
 			CommonSections.resource(sections, skill.system.rp, CHECK_DETAILS);
 		}
@@ -155,7 +155,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
  */
 const onRenderDisplay = (sections, check, actor, item, flags) => {
 	if (check.type === 'display' && item.system instanceof SkillDataModel) {
-		CommonSections.tags(sections, [{ tag: 'FU.Class', separator: ':', value: item.system.class.value }], CHECK_DETAILS);
+		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
 		if (item.system.hasResource.value) {
 			CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
 		}
@@ -165,6 +165,16 @@ const onRenderDisplay = (sections, check, actor, item, flags) => {
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
+
+/**
+ * @param {FUItem} skill
+ */
+function getTags(skill) {
+	return [
+		{ tag: 'FU.Class', separator: ':', value: skill.system.class.value },
+		{ tag: 'FU.SkillLevelAbbr', separator: ' ', value: skill.system.level.value },
+	];
+}
 
 /**
  * @property {string} subtype.value

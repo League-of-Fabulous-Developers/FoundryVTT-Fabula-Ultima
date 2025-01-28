@@ -1,19 +1,22 @@
 {
   "name": "Spiritist",
   "sorting": "a",
-  "folder": null,
+  "folder": "SBAHplvEYQmgs8Po",
   "type": "Item",
   "_id": "LWIsJLQGwkSdYYwN",
-  "sort": 100000,
-  "color": "#17635F",
+  "sort": 200000,
+  "color": "#17635f",
   "flags": {},
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "11.315",
+    "coreVersion": "12.330",
     "createdTime": 1706486446040,
-    "modifiedTime": 1719163013183,
-    "lastModifiedBy": "BwRsFvMHAq9vUtEO"
+    "modifiedTime": 1737994844389,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
+  "description": "",
   "_key": "!folders!LWIsJLQGwkSdYYwN"
 }

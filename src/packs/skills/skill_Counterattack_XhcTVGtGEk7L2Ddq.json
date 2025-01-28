@@ -97,7 +97,7 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "type": {
           "value": "physical"
@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "counterattack"
+    "fuid": "counterattack",
+    "targeting": {
+      "rule": "single"
+    }
   },
   "effects": [],
   "ownership": {
@@ -132,10 +135,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706514121336,
-    "modifiedTime": 1724180862448,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737922621508,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

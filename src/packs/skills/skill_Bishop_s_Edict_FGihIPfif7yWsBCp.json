@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action and spend @LOSS[10 mp] to choose one option: all MP costs are doubled; <strong>or</strong> all sources of damage deal <strong>【SL × 3】</strong> extra damage.</p><p>The chosen effect lasts until the start of your next turn.</p>",
+    "description": "<p>During a conflict, you may use an action and spend <strong>10 MP</strong> to choose one option: all MP costs are doubled; <strong>or</strong> all sources of damage deal <strong>【SL × 3】</strong> extra damage.</p><p>The chosen effect lasts until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -118,7 +118,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "bishops-edict"
+    "fuid": "bishops-edict",
+    "cost": {
+      "amount": 10
+    }
   },
   "effects": [],
   "ownership": {
@@ -132,10 +135,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706555501421,
-    "modifiedTime": 1724180861857,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737922692365,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -260,7 +260,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			item.progressStep = item.system.progress?.step;
 			item.progressMax = item.system.progress?.max;
 
-			if (CLOCK_TYPES.includes(item.type)){
+			if (CLOCK_TYPES.includes(item.type)) {
 				const progressArr = [];
 				const progress = item.system.progress || { current: 0, max: 6 };
 				for (let i = 0; i < progress.max; i++) {
@@ -271,7 +271,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				}
 				item.progressArr = progressArr.reverse();
 			}
-			if (RESOURCE_POINT_TYPES.includes(item.type)){
+			if (RESOURCE_POINT_TYPES.includes(item.type)) {
 				const rpArr = [];
 				const rp = item.system.rp || { current: 0, max: 6 };
 				for (let i = 0; i < rp.max; i++) {
@@ -282,7 +282,7 @@ export class FUStandardActorSheet extends ActorSheet {
 				}
 				item.rpArr = rpArr.reverse();
 			}
-			if (SKILL_TYPES.includes(item.type)){
+			if (SKILL_TYPES.includes(item.type)) {
 				const skillArr = [];
 				const level = item.system.level || { value: 0, max: 8 };
 				for (let i = 0; i < level.max; i++) {

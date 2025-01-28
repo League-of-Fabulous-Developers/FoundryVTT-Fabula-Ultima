@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When a creature you can see that is bearing one of your <strong>symbols</strong> suffers damage or recovers Hit Points and/or Mind Points, you may have that creature suffer <strong>【SL】</strong> extra damage or recover <strong>【SL】</strong> additional Hit Points and/or Mind Points, respectively).</p><hr /><p>SL <strong>1</strong> - @GAIN[1 hp] &amp; @GAIN[1 mp]</p><p>SL <strong>2</strong> - @GAIN[2 hp] &amp; @GAIN[2 mp]</p><p>SL <strong>3</strong> - @GAIN[3 hp] &amp; @GAIN[3 mp]</p><p>SL <strong>4</strong> - @GAIN[4 hp] &amp; @GAIN[4 mp]</p><p>SL <strong>5</strong> - @GAIN[5 hp] &amp; @GAIN[5 mp]</p>",
+    "description": "<p>When a creature you can see that is bearing one of your <strong>symbols</strong> suffers damage or recovers Hit Points and/or Mind Points, you may have that creature suffer <strong>【SL】</strong> extra damage or recover <strong>【SL】</strong> additional Hit Points and/or Mind Points, respectively).</p><hr /><ul><li><p><strong>Ally: </strong>@GAIN[$sl hp] @GAIN[$sl mp]</p></li><li><p><strong>Enemy:</strong> @LOSS[$sl hp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -132,10 +132,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706563160000,
-    "modifiedTime": 1724180863126,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737922176723,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

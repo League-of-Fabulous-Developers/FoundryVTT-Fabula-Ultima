@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After one of your attacks or offensive spells ( @ICON[offensive] ) causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p>",
+    "description": "<p>After one of your attacks or offensive spells ( @ICON[offensive] ) causes one or more enemies to lose Hit Points, if you are in <strong>Crisis</strong>, you may recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><ul><li><p><strong>You: </strong>@GAIN[$sl*5 hp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -163,10 +163,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1711429218464,
-    "modifiedTime": 1724180863003,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737920761381,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

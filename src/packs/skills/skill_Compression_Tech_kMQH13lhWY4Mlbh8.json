@@ -9,7 +9,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>As long as there is no one aboard your <strong>personal vehicle</strong>, you may have it safely disappear from the game world at any time. What magic or technology allows it?</span></p><p><span>If your <strong>personal vehicle</strong> is not present in the game world and you are in a space big enough to contain it, you may perform the <strong>Inventory</strong> action and spend @LOSS[2 ip] to have the vehicle appear near you and <strong>enter</strong> it for free.</span></p>",
+    "description": "<p><span>As long as there is no one aboard your <strong>personal vehicle</strong>, you may have it safely disappear from the game world at any time. What magic or technology allows it?</span></p><p><span>If your <strong>personal vehicle</strong> is not present in the game world and you are in a space big enough to contain it, you may perform the <strong>Inventory</strong> action and spend <strong>2 IP</strong>  to have the vehicle appear near you and <strong>enter</strong> it for free.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -116,7 +116,11 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "compression-tech"
+    "fuid": "compression-tech",
+    "cost": {
+      "resource": "ip",
+      "amount": 2
+    }
   },
   "effects": [],
   "sort": 0,
@@ -129,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1711431286236,
-    "modifiedTime": 1724180862941,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737921186244,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

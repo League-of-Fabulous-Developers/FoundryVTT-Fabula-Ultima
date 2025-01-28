@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend <strong>@LOSS[10 mp].</strong> If you do, choose one option: the next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage; <strong>or</strong>, the next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities); <strong>or</strong>, you recover from a status effect of your choice among <strong>slow</strong> and <strong>weak</strong>.</span></p>",
+    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend <strong>10 MP. </strong>If you do, choose one option: the next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage; <strong>or</strong>, the next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities); <strong>or</strong>, you recover from a status effect of your choice among <strong>slow</strong> and <strong>weak</strong>.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -115,7 +115,10 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "heart-in-the-engine"
+    "fuid": "heart-in-the-engine",
+    "cost": {
+      "amount": 10
+    }
   },
   "effects": [],
   "ownership": {
@@ -129,10 +132,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1711431286236,
-    "modifiedTime": 1724180861954,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737921292434,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },
