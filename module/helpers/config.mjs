@@ -494,10 +494,26 @@ FU.improvisedEffect = {
 	massive: 'FU.ImprovisedEffectMassive',
 };
 
+/**
+ * @description Spell durations
+ */
 FU.duration = {
 	instantaneous: 'FU.Instantaneous',
 	scene: 'FU.Scene',
 	special: 'FU.Special',
+};
+
+/**
+ * @description Combat Events
+ *
+ */
+FU.combatEvent = {
+	startOfCombat: 'FU.StartOfCombat',
+	startOfTurn: 'FU.StartOfTurn',
+	endOfTurn: 'FU.EndOfTurn',
+	endOfRound: 'FU.EndOfRound',
+	endOfScene: 'FU.EndOfScene',
+	endOfCombat: `FU.EndOfCombat`,
 };
 
 FU.target = {

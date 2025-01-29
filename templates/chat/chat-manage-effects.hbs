@@ -1,0 +1,28 @@
+<section>
+    {{{localize message actor=actor}}} ({{localize event}}, {{localize 'FU.Round'}} {{round}})
+
+    <ol class="effects-list">
+    {{#each effects as |effect|}}
+        <li class="effect">
+            <div class="flexrow item-name">
+                <div class="effect-roll rollable" data-action="roll">
+                    <img class="image-icon-s" src="{{ effect.img }}" data-tooltip="{{ effect.name }}" />
+                </div>
+                <!-- Label -->
+                <div class="item-lg">{{effect.name}}</div>
+                <!-- Duration Information -->
+                <div>
+                    <span> {{effect.duration.turns }} Turns </span>
+                </div>
+                <!-- Remove Action -->
+                <span class="fu-tags" style="flex: 0 1 auto;padding: 2px;">
+                    <a data-action="removeEffect" data-name="{{effect.name}}" data-id="{{effect._id}}" data-actor-id="{{../uuid}}">
+                        <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-trash }"></i></span>
+                    </a>
+                </span>
+            </div>
+        </li>
+    {{/each}}
+    </ol>
+
+</section>

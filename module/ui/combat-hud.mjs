@@ -2,6 +2,7 @@ import { SETTINGS } from '../settings.js';
 
 import { SystemControls } from '../helpers/system-controls.mjs';
 import { SYSTEM, FU } from '../helpers/config.mjs';
+import { FUHooks } from '../hooks.mjs';
 
 Hooks.once('setup', () => {
 	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
@@ -22,6 +23,7 @@ export class CombatHUD extends Application {
 		this._emptyImage = document.createElement('img');
 		this._emptyImage.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
+		console.debug(`Combat HUD: Constructing`);
 		Hooks.callAll('combatHudInit', this);
 		this.#hooks.push({ hook: 'createCombatant', func: this._onUpdateHUD.bind(this) });
 		this.#hooks.push({ hook: 'deleteCombatant', func: this._onUpdateHUD.bind(this) });
@@ -39,15 +41,17 @@ export class CombatHUD extends Application {
 
 		this.#hooks.push({ hook: 'combatStart', func: this._onUpdateHUD.bind(this) });
 		this.#hooks.push({ hook: 'combatTurn', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'combatRound', func: this._onUpdateHUD_Round.bind(this) });
+		this.#hooks.push({ hook: 'combatTurnChange', func: this._onUpdateHUD.bind(this) });
+		this.#hooks.push({ hook: `combatRound`, func: this._onUpdateHUD_Round.bind(this) });
 
 		this.#hooks.push({ hook: 'deleteCombat', func: this._onCombatEnd.bind(this) });
 
 		//this.#hooks.push({ hook: 'updateSettings', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'studyRoll', func: this._onStudyRoll.bind(this) });
+		this.#hooks.push({ hook: FUHooks.ROLL_STUDY, func: this._onStudyRoll.bind(this) });
 
 		this.#hooks.forEach(({ hook, func }) => Hooks.on(hook, func));
 		Hooks.once('ready', this._onGameReady.bind(this));
+		console.debug(`Combat HUD: Ready`);
 	}
 
 	static get defaultOptions() {
@@ -174,6 +178,11 @@ export class CombatHUD extends Application {
 		const turnsLeft = ui.combat.countTurnsLeft(game.combat);
 		// const round = game.combat.round;
 
+		/** @type FUCombat **/
+		const combat = game.combat;
+		data.turnStarted = combat.isTurnStarted;
+		data.hasCombatStarted = game.combat.started;
+
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
 
@@ -250,9 +259,8 @@ export class CombatHUD extends Application {
 				});
 			}
 
+			actorData.isOwner = combatant.isOwner;
 			actorData.order = order;
-			actorData.hasActed = turnsLeft[combatant.id] === 0;
-			actorData.hasCombatStarted = game.combat.started;
 
 			actorData.totalTurns = combatant.totalTurns;
 			if (NPCTurnsLeftMode === 'never') {
@@ -270,6 +278,10 @@ export class CombatHUD extends Application {
 				actorData.isCurrentTurn = currentTurn === 'hostile';
 				data.npcs.push(actorData);
 			}
+
+			// Decides whether combatant can (start turn | take turn)
+			actorData.isCurrentCombatant = combat.isCurrentCombatant(combatant);
+			actorData.hasTurns = turnsLeft[combatant.id] && actorData.isCurrentTurn;
 		}
 
 		data.characters.sort((a, b) => a.order - b.order);
@@ -331,20 +343,8 @@ export class CombatHUD extends Application {
 			this._stopCombatButton.removeClass('hidden');
 		}
 
-		if (!game.user.isGM) return;
-		const turnButtons = html.find('[data-action=take-turn]');
-		turnButtons.click((event) => this._doTakeTurn(event));
-
-		const turnOutOfTurnButtons = html.find('[data-action=take-turn-out-of-turn]');
-		turnOutOfTurnButtons.click((event) => this._doTakeTurnOutOfTurn(event));
-	}
-
-	async _doTakeTurn(event) {
-		await ui.combat.handleTakeTurn(event);
-	}
-
-	async _doTakeTurnOutOfTurn(event) {
-		await ui.combat.handleTakeTurnOutOfTurn(event);
+		html.find('a[data-action=start-turn]').click((event) => ui.combat.handleStartTurn(event));
+		html.find('a[data-action=end-turn]').click((event) => ui.combat.handleEndTurn(event));
 	}
 
 	_doHudDragStart(event) {
@@ -374,6 +374,8 @@ export class CombatHUD extends Application {
 		if (!game.user.isGM) return;
 		if (!game.combat) return;
 
+		console.debug(`Combat HUD: Starting combat`);
+
 		await game.combat.startCombat();
 
 		this._startCombatButton.addClass('hidden');
@@ -385,6 +387,8 @@ export class CombatHUD extends Application {
 	async _doStopCombat() {
 		if (!game.user.isGM) return;
 		if (!game.combat) return;
+
+		console.debug(`Combat HUD: Stopping combat`);
 
 		await game.combat.endCombat();
 
@@ -485,6 +489,7 @@ export class CombatHUD extends Application {
 	}
 
 	_doMinimize() {
+		console.debug(`Combat HUD: Minimizing (Internal)`);
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudMinimized, true);
 
 		const tokenButton = ui.controls.controls.find((control) => control.name === SYSTEM);
@@ -592,11 +597,14 @@ export class CombatHUD extends Application {
 		return a + alpha * (b - a);
 	}
 
+	/**
+	 * @override
+	 */
 	async _render(force, options) {
-		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
-			this.close();
-			return;
-		}
+		// if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
+		// 	this.close();
+		// 	return;
+		// }
 
 		await super._render(force, options);
 		if (this._poppedOut) {
@@ -738,7 +746,11 @@ export class CombatHUD extends Application {
 		this._onUpdateHUD();
 	}
 
+	/**
+	 *  @override
+	 */
 	close() {
+		console.debug(`Combat HUD: Close`);
 		if (this._poppedOut) {
 			this._poppedOut = false;
 			this.element.find('.window-popout').css('display', 'block');
@@ -767,7 +779,9 @@ export class CombatHUD extends Application {
 	}
 
 	static init() {
+		console.debug(`Combat HUD: Initializing statically`);
 		ui.combatHud ??= new CombatHUD();
+		console.debug(`Combat HUD: First render`);
 
 		ui.combatHud.render(true);
 
@@ -784,6 +798,8 @@ export class CombatHUD extends Application {
 				ui.controls.render(true);
 			}
 		}, 200);
+
+		console.debug(`Combat HUD: Initializing finished`);
 	}
 
 	static update() {
@@ -796,18 +812,20 @@ export class CombatHUD extends Application {
 	}
 
 	static close() {
+		console.debug(`Combat HUD: Closing`);
 		if (ui.combatHud) {
-			ui.combatHud.close();
 			ui.combatHud.unregisterHooks();
+			ui.combatHud.close();
 		}
 
 		ui.combatHud = null;
 	}
 
 	static minimize() {
+		console.debug(`Combat HUD: Minimizing`);
 		if (ui.combatHud) {
-			ui.combatHud._doMinimize();
 			ui.combatHud.unregisterHooks();
+			ui.combatHud._doMinimize();
 		}
 
 		ui.combatHud = null;
@@ -815,7 +833,7 @@ export class CombatHUD extends Application {
 
 	static restore() {
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudMinimized, false);
-
+		console.debug(`Combat HUD: Restore`);
 		if (game.combat && game.combat.isActive) CombatHUD.init();
 	}
 

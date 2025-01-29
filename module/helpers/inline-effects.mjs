@@ -4,7 +4,7 @@ import { FUItem } from '../documents/items/item.mjs';
 import { Flags } from './flags.mjs';
 import { SYSTEM } from './config.mjs';
 import { FUActiveEffect } from '../documents/effects/active-effect.mjs';
-import { Effects, toggleStatusEffect } from '../documents/effects/effects.mjs';
+import { Effects, toggleStatusEffect } from '../pipelines/effects.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
 import { InlineHelper } from './inline-helper.mjs';

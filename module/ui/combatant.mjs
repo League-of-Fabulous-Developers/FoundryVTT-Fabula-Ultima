@@ -8,6 +8,22 @@ Hooks.on('preCreateCombatant', function (document, data, options, userId) {
 	}
 });
 
+/**
+ * @typedef Combatant
+ * @property {Number} id
+ * @property {Number} actorId
+ * @property {FUActor} actor
+ * @property {TokenDocument} token
+ * @property {Boolean} isNPC
+ * @property {Boolean} visible
+ * @property {Boolean} isDefeated
+ * @remarks {@link https://foundryvtt.com/api/classes/client.Combatant.html}
+ */
+
+/**
+ * @extends Combatant
+ * @inheritDoc
+ */
 export class FUCombatant extends Combatant {
 	/**
 	 * @return {"friendly" | "hostile"}

@@ -69,6 +69,7 @@ import { DamagePipeline } from './pipelines/damage-pipeline.mjs';
 import { ResourcePipeline } from './pipelines/resource-pipeline.mjs';
 import { InlineWeapon } from './helpers/inline-weapon.mjs';
 import { Targeting } from './helpers/targeting.mjs';
+import { Effects } from './pipelines/effects.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -232,6 +233,7 @@ Hooks.once('init', async () => {
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	DamagePipeline.initialize();
+	Effects.initialize();
 	Hooks.on(`renderChatMessage`, ResourcePipeline.onRenderChatMessage);
 	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 

@@ -96,7 +96,7 @@ const PRIORITY_CHANGES = [
 ];
 
 /**
- * @description The system implementation
+ * @typedef ActiveEffect
  * @property {DataModel} parent
  * @property {Boolean} isSuppressed Is there some system logic that makes this active effect ineligible for application?
  * @property {Document} target Retrieve the Document that this ActiveEffect targets for modification.
@@ -104,9 +104,20 @@ const PRIORITY_CHANGES = [
  * @property {Boolean modifiesActor Does this Active Effect currently modify an Actor?
  * @property {Boolean} isTemporary Describe whether the ActiveEffect has a temporary duration based on combat turns or rounds.
  * @property {Boolean} isEmbedded Test whether this Document is embedded within a parent Document
+ * @property {String} id Canonical name
  * @property {String} uuid
+ * @property {String} name
  * @property {EffectChangeData[]} changes - The array of EffectChangeData objects which the ActiveEffect applies
  * @remarks https://foundryvtt.com/api/classes/client.ActiveEffect.html
+ * @property {Function<Promise<Document>>} delete Delete this Document, removing it from the database.
+ * @property {Function<void>} update Update this Document using incremental data, saving it to the database.
+ * @property {Function<String, String, *, void>} setFlag Assign a "flag" to this document. Flags represent key-value type data which can be used to store flexible or arbitrary data required by either the core software, game systems, or user-created modules.
+ * @property {Function<String, String, *>} getFlag Get the value of a "flag" for this document See the setFlag method for more details on flags
+ */
+
+/**
+ * @extends ActiveEffect
+ * @inheritDoc
  * */
 export class FUActiveEffect extends ActiveEffect {
 	static get TEMPORARY_FLAG() {
@@ -143,6 +154,10 @@ export class FUActiveEffect extends ActiveEffect {
 	}
 
 	get isTemporary() {
+		// TODO: Handle differently or?
+		if (this.statuses.has('crisis')) {
+			return false;
+		}
 		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY);
 	}
 

@@ -1,0 +1,15 @@
+{{#if @root.hasCombatStarted}}
+    {{#if (and this.hasTurns this.isOwner)}}
+        {{#if @root.turnStarted}}
+            {{#if this.isCurrentCombatant}}
+                <a class="combatant-control take-turn" role="button" data-action="end-turn">
+                    <i class="mats-o mats-fill">check_circle</i>
+                </a>
+            {{/if}}
+        {{else}}
+            <a class="combatant-control take-turn" role="button" data-action="start-turn">
+                <i class="mats-o mats-fill">counter_{{this.turnsLeft}}</i>
+            </a>
+        {{/if}}
+    {{/if}}
+{{/if}}

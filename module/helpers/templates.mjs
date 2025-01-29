@@ -185,5 +185,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/ui/partials/combat-bar-ip-mother.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-exp-mother.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-zeropower-mother.hbs',
+		'systems/projectfu/templates/ui/partials/combat-hud-turn.hbs',
 	]);
 };

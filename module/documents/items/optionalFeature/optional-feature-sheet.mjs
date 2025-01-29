@@ -1,5 +1,5 @@
 import { OptionalFeatureDataModel } from './optional-feature-data-model.mjs';
-import { onManageActiveEffect, prepareActiveEffectCategories } from '../../effects/effects.mjs';
+import { onManageActiveEffect, prepareActiveEffectCategories } from '../../../pipelines/effects.mjs';
 import { InlineHelper } from '../../../helpers/inline-helper.mjs';
 
 export class FUOptionalFeatureSheet extends ItemSheet {
