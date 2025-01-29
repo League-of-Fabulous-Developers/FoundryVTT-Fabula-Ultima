@@ -120,6 +120,6 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	transferEffects() {
-		return this.parent.isEquipped && !this.parent.actor?.system.vehicle.weaponsActive;
+		return this.parent.isEquipped && !this.parent.actor?.system.vehicle?.weaponsActive;
 	}
 }
