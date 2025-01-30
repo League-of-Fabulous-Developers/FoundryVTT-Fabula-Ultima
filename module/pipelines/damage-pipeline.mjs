@@ -6,7 +6,7 @@ import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
-import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ApplyTargetHookData, BeforeApplyHookData } from './legacy-hook-data.mjs';
 
 /**
@@ -56,6 +56,13 @@ export class DamageRequest extends PipelineRequest {
 	}
 }
 
+/**
+ * @typedef DamageBreakdown
+ * @property {String} step
+ * @property {String} effect
+ * @property {String} total
+ */
+
 // TODO: Decide whether to define in config.mjs. Though it's probably fine if they are all in english
 const Traits = {
 	IgnoreResistance: 'ignore-resistance',
@@ -69,7 +76,7 @@ const Traits = {
  * @property {Number} amount The base amount before bonuses or modifiers are applied
  * @property {Map<String, Number>} bonuses Increments
  * @property {Map<String, Number>} modifiers Multipliers
- * @property {String} breakdown
+ * @property {DamageBreakdown[]} breakdown
  * @extends PipelineContext
  */
 export class DamagePipelineContext extends PipelineContext {
@@ -77,6 +84,7 @@ export class DamagePipelineContext extends PipelineContext {
 		super(request, actor);
 		this.bonuses = new Map();
 		this.modifiers = new Map();
+		this.breakdown = [];
 		this.calculateAmount();
 	}
 
@@ -95,7 +103,24 @@ export class DamagePipelineContext extends PipelineContext {
 	}
 
 	addModifier(key, value) {
-		this.modifiers.set(key, value);
+		if (value !== 1) {
+			this.modifiers.set(key, value);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @param {String} step
+	 * @param {String} effect
+	 * @param {Number} total
+	 */
+	recordStep(step, effect, total) {
+		this.breakdown.push({
+			step: InlineHelper.nicifyString(step),
+			effect: effect,
+			total: total,
+		});
 	}
 }
 
@@ -224,23 +249,22 @@ function calculateResult(context) {
 	Hooks.call(FUHooks.DAMAGE_PIPELINE_PRE_CALCULATE, context);
 
 	let result = context.amount;
-	let breakdown = `<ul>`;
-	breakdown += `<li> amount: ${context.amount} </li>`;
+
+	/** @type DamageBreakdown[] */
+	context.recordStep('initial', '', context.amount);
 
 	// Increments (+-)
 	for (const [key, value] of context.bonuses) {
 		result += value;
-		breakdown += `<li> ${key}: ${value}</li>`;
+		context.recordStep(key, value, result);
 	}
 	// Multipliers (*)
 	for (const [key, value] of context.modifiers) {
 		result *= value;
-		breakdown += `<li> ${key}: *${value}</li>`;
+		context.recordStep(key, `* ${value}`, result);
 	}
-	breakdown += `</ul>`;
 
 	context.result = result;
-	context.breakdown = breakdown;
 	Hooks.call(FUHooks.DAMAGE_PIPELINE_POST_CALCULATE, context);
 	return true;
 }

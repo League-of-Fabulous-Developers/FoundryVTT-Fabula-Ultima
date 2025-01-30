@@ -867,7 +867,7 @@
 		"ChatRevertDamage": "Revert applied damage",
 		"ChatRevertResourceLoss": "Revert resource loss",
 		"ChatAbsorbHitPoints": "Absorb half of hit points lost",
-		"ChatAbsorbMindPoints": "Absorb half of hit points lost",
+		"ChatAbsorbMindPoints": "Absorb half of mind points lost",
 		"ChatEvaluateAmountNoActor": "No reference to an actor provided",
 		"ChatEvaluateAmountNoItem": "No reference to an item provided",
 		"ChatEvaluateNoSkill": "The referenced skill was not found in the actor",
