@@ -289,7 +289,6 @@ async function process(request) {
 			damage: Math.abs(damageTaken),
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
 			affinityIcon: FU.affIcon[context.damageType],
-			breakdown: context.breakdown,
 		});
 		updates.push(
 			ChatMessage.create({
@@ -302,6 +301,7 @@ async function process(request) {
 					damage: Math.abs(damageTaken),
 					type: affinityString,
 					from: request.sourceInfo.name,
+					breakdown: context.breakdown,
 				}),
 			}),
 		);
@@ -405,6 +405,11 @@ function onRenderChatMessage(message, jQuery) {
 		updates.push(actor.modifyTokenAttribute('resources.hp', amountRecovered, true));
 		actor.showFloatyText(`${amountRecovered} HP`, `lightgreen`);
 		return Promise.all(updates);
+	});
+
+	jQuery.find(`a[data-action=toggleBreakdown]`).click(function (event) {
+		event.preventDefault();
+		jQuery.find('#breakdown').toggleClass('hidden');
 	});
 }
 

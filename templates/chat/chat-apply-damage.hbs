@@ -1,6 +1,68 @@
 <section>
     {{{localize message actor=actor damage=damage type=type from=from}}}.
+</section>
+
+<section style="margin-top: 4px;">
     <a data-action="revertDamage" data-uuid="{{uuid}}" data-amount="{{damage}}" data-tooltip="{{localize 'FU.ChatRevertDamage'}}">
         <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-undo"></i></span>
     </a>
+
+    <a data-action="toggleBreakdown" data-tooltip="{{localize 'FU.ChatToggleDamageBreakdown'}}">
+        <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fa fa-info-circle"></i></span>
+    </a>
+
+    <a data-action="absorbHitPoints" data-amount="{{damage}}" data-tooltip="{{localize 'FU.ChatAbsorbHitPoints'}}">
+        <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-arrow-circle-left"></i></span>
+    </a>
+
+    <a data-action="absorbMindPoints" data-amount="{{damage}}" data-tooltip="{{localize 'FU.ChatAbsorbMindPoints'}}">
+        <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-arrow-circle-right"></i></span>
+    </a>
+</section>
+
+<section id="breakdown" class="hidden">
+    <div class='project-fu'>
+        <table>
+            <caption>Modifiers</caption>
+            <thead>
+            <tr>
+                <th>Step</th>
+                <th>Effect</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>Original</th>
+                <td>&nbsp;</td>
+                <td>22 physical</td>
+            </tr>
+            <tr>
+                <th>Type Change</th>
+                <td>Fire</td>
+                <td>22 fire</td>
+            </tr>
+            <tr>
+                <th>Outgoing</th>
+                <td>+10 fire</td>
+                <td>32 fire</td>
+            </tr>
+            <tr>
+                <th>Incoming</th>
+                <td>-5 all</td>
+                <td>27 fire</td>
+            </tr>
+            <tr>
+                <th>Incoming</th>
+                <td>1/2 all</td>
+                <td>13 fire</td>
+            </tr>
+            <tr>
+                <th>Fire Affinity</th>
+                <td>Vuln. (x2)</td>
+                <td>26 fire</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
