@@ -256,12 +256,12 @@ function calculateResult(context) {
 	// Increments (+-)
 	for (const [key, value] of context.bonuses) {
 		result += value;
-		context.recordStep(key, value, result);
+		context.recordStep(key, value > 0 ? `+${value}` : value, result);
 	}
 	// Multipliers (*)
 	for (const [key, value] of context.modifiers) {
 		result *= value;
-		context.recordStep(key, `* ${value}`, result);
+		context.recordStep(key, `*${value}`, result);
 	}
 
 	context.result = result;
