@@ -327,6 +327,7 @@ async function process(request) {
 					type: affinityString,
 					from: request.sourceInfo.name,
 					sourceActorUuid: request.sourceInfo.actorUuid,
+					sourceItemUuid: request.sourceInfo.itemUuid,
 					breakdown: context.breakdown,
 				}),
 			}),
@@ -447,8 +448,11 @@ function onRenderChatMessage(message, jQuery) {
 		event.preventDefault();
 		const amount = Number.parseInt(this.dataset.amount);
 		const resource = this.dataset.resource;
-		const uuid = this.dataset.uuid;
-		const sourceInfo = new InlineSourceInfo(`${resource.toUpperCase()} Leech`, uuid);
+
+		const actorUuid = this.dataset.uuid;
+		const itemUuid = this.dataset.itemUuid;
+
+		const sourceInfo = InlineSourceInfo.resolveName(actorUuid, itemUuid);
 		const targets = [sourceInfo.resolveActor()];
 		const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
 		ResourcePipeline.processRecovery(request);

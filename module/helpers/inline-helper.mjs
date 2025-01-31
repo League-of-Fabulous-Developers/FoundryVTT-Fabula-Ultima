@@ -27,6 +27,16 @@ export class InlineSourceInfo {
 	}
 
 	/**
+	 * @param {String} actorUuid
+	 * @param {String} itemUuid
+	 * @return {InlineSourceInfo}
+	 */
+	static resolveName(actorUuid, itemUuid) {
+		const resolvedModel = fromUuidSync(itemUuid ?? actorUuid);
+		return new InlineSourceInfo(resolvedModel.name, actorUuid, itemUuid);
+	}
+
+	/**
 	 * @returns {FUActor|null}
 	 */
 	resolveActor() {
