@@ -58,6 +58,8 @@ export class InlineSourceInfo {
 		}
 		return null;
 	}
+
+	static none = Object.freeze(new InlineSourceInfo('Unknown'));
 }
 
 /**

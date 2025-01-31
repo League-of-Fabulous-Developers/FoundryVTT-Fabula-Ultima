@@ -2,22 +2,29 @@
     {{{localize message actor=actor damage=damage type=type from=from}}}.
 </section>
 
-<section style="margin-top: 4px;">
-    <a data-action="revertDamage" data-uuid="{{uuid}}" data-amount="{{damage}}" data-tooltip="{{localize 'FU.ChatRevertDamage'}}">
-        <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-undo"></i></span>
-    </a>
+<section style="margin-top: 4px; display: flex; justify-content: space-between; ">
 
-    <a data-action="toggleBreakdown" data-tooltip="{{localize 'FU.ChatToggleDamageBreakdown'}}">
-        <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fa fa-info-circle"></i></span>
-    </a>
+    <div>
+        <a data-action="revertDamage" data-uuid="{{uuid}}" data-amount="{{damage}}" data-tooltip="{{localize 'FU.ChatRevertDamage'}}">
+            <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-undo"></i></span>
+        </a>
 
-    <a data-action="absorbHitPoints" data-amount="{{damage}}" data-tooltip="{{localize 'FU.ChatAbsorbHitPoints'}}">
-        <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-arrow-circle-left"></i></span>
-    </a>
+        <a data-action="toggleBreakdown" data-tooltip="{{localize 'FU.ChatToggleDamageBreakdown'}}">
+            <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fa fa-info-circle"></i></span>
+        </a>
+    </div>
 
-    <a data-action="absorbMindPoints" data-amount="{{damage}}" data-tooltip="{{localize 'FU.ChatAbsorbMindPoints'}}">
-        <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-arrow-circle-right"></i></span>
-    </a>
+
+    <div>
+        <a data-action="absorbDamage" data-uuid="{{sourceActorUuid}}" data-amount="{{damage}}" data-resource="hp" data-tooltip="{{localize 'FU.ChatAbsorbHitPoints'}}">
+            <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fa-solid fa-heart" style="color:darkred"></i></span>
+        </a>
+
+        <a data-action="absorbDamage" data-uuid="{{sourceActorUuid}}" data-amount="{{damage}}" data-resource="mp" data-tooltip="{{localize 'FU.ChatAbsorbMindPoints'}}">
+            <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fa-solid fa-heart" style="color:darkblue"></i></span>
+        </a>
+    </div>
+
 </section>
 
 <section id="breakdown" class="hidden">

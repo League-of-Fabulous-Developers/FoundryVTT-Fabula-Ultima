@@ -98,7 +98,8 @@ async function processRecovery(request) {
 
 	const updates = [];
 	for (const actor of request.targets) {
-		const amountRecovered = Math.max(0, request.amount + (actor.system.bonuses.incomingRecovery[request.resourceType] || 0));
+		const recoveryBonus = actor.system.bonuses.incomingRecovery[request.resourceType] || 0;
+		const amountRecovered = Math.max(0, request.amount + recoveryBonus);
 		const attr = foundry.utils.getProperty(actor.system, request.attributeKey);
 		const uncappedRecoveryValue = amountRecovered + attr.value;
 		const updates = [];

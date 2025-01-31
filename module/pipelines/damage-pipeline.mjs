@@ -8,6 +8,7 @@ import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
 import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ApplyTargetHookData, BeforeApplyHookData } from './legacy-hook-data.mjs';
+import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
 
 /**
  * @typedef ApplyTargetOverrides
@@ -325,6 +326,7 @@ async function process(request) {
 					damage: Math.abs(damageTaken),
 					type: affinityString,
 					from: request.sourceInfo.name,
+					sourceActorUuid: request.sourceInfo.actorUuid,
 					breakdown: context.breakdown,
 				}),
 			}),
@@ -340,10 +342,13 @@ async function process(request) {
  */
 function onRenderChatMessage(message, jQuery) {
 	const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
-	let sourceUuid = null;
+	let sourceItemUuid = null;
+	let sourceActorUuid = null;
 	let sourceName;
 	let baseDamageInfo;
 	let disabled = false;
+	/** @type InlineSourceInfo **/
+	let sourceInfo = null;
 
 	if (check && check.damage) {
 		sourceName = check.details.name;
@@ -357,8 +362,10 @@ function onRenderChatMessage(message, jQuery) {
 	if (ChecksV2.isCheck(message)) {
 		const damage = CheckConfiguration.inspect(message).getDamage();
 		if (damage) {
-			sourceUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.itemUuid;
+			sourceActorUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.actorUuid;
+			sourceItemUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.itemUuid;
 			sourceName = message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name;
+			sourceInfo = new InlineSourceInfo(sourceName, sourceActorUuid, sourceItemUuid);
 			baseDamageInfo = {
 				total: damage.total,
 				type: damage.type,
@@ -372,7 +379,7 @@ function onRenderChatMessage(message, jQuery) {
 			baseDamageInfo,
 			targets,
 			async (extraDamageInfo) => {
-				await handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo);
+				await handleDamageApplication(event, targets, sourceInfo, baseDamageInfo, extraDamageInfo);
 				disabled = false;
 			},
 			() => {
@@ -382,7 +389,7 @@ function onRenderChatMessage(message, jQuery) {
 	};
 
 	const applyDefaultDamage = async (event, targets) => {
-		return handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, {});
+		return handleDamageApplication(event, targets, sourceInfo, baseDamageInfo, {});
 	};
 
 	const handleClick = async (event, getTargetsFunction, action, alternateAction) => {
@@ -411,7 +418,7 @@ function onRenderChatMessage(message, jQuery) {
 				baseDamageInfo,
 				targets,
 				(extraDamageInfo) => {
-					handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo);
+					handleDamageApplication(event, targets, sourceInfo, baseDamageInfo, extraDamageInfo);
 					disabled = false;
 				},
 				() => {
@@ -435,20 +442,29 @@ function onRenderChatMessage(message, jQuery) {
 		event.preventDefault();
 		jQuery.find('#breakdown').toggleClass('hidden');
 	});
+
+	jQuery.find(`a[data-action=absorbDamage]`).click(async function (event) {
+		event.preventDefault();
+		const amount = Number.parseInt(this.dataset.amount);
+		const resource = this.dataset.resource;
+		const uuid = this.dataset.uuid;
+		const sourceInfo = new InlineSourceInfo(`${resource.toUpperCase()} Leech`, uuid);
+		const targets = [sourceInfo.resolveActor()];
+		const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
+		ResourcePipeline.processRecovery(request);
+	});
 }
 
 /**
  *
  * @param {Event} event
  * @param {FUActor[]} targets
- * @param {string} sourceUuid
- * @param {string} sourceName
+ * @param {InlineSourceInfo} sourceInfo
  * @param {import('../helpers/typedefs.mjs').BaseDamageInfo} baseDamageInfo
  * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
  * @returns {void}
  */
-async function handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo) {
-	const sourceInfo = new InlineSourceInfo(sourceName, sourceUuid, null);
+async function handleDamageApplication(event, targets, sourceInfo, baseDamageInfo, extraDamageInfo) {
 	const request = new DamageRequest(sourceInfo, targets, baseDamageInfo, extraDamageInfo);
 	request.event = event;
 	if (event.shiftKey) {
