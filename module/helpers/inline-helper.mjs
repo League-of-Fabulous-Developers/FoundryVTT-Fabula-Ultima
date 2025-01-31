@@ -37,6 +37,15 @@ export class InlineSourceInfo {
 	}
 
 	/**
+	 * @description Used for reconstruction during deserialization
+	 * @param {Object} obj An object containing the properties of this class
+	 * @returns {InlineSourceInfo}
+	 */
+	static fromObject(obj) {
+		return new InlineSourceInfo(obj.name, obj.actorUuid, obj.itemUuid);
+	}
+
+	/**
 	 * @returns {FUActor|null}
 	 */
 	resolveActor() {

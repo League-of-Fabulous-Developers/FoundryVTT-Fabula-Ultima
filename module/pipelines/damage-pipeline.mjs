@@ -453,7 +453,9 @@ function onRenderChatMessage(message, jQuery) {
 		const itemUuid = this.dataset.itemUuid;
 
 		const sourceInfo = InlineSourceInfo.resolveName(actorUuid, itemUuid);
-		const targets = [sourceInfo.resolveActor()];
+		const alternateUsage = event.shiftKey;
+
+		const targets = alternateUsage ? await getSelected() : [sourceInfo.resolveActor()];
 		const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
 		ResourcePipeline.processRecovery(request);
 	});

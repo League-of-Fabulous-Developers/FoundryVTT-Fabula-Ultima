@@ -24,7 +24,7 @@ export class PipelineRequest {
 
 /**
  * @property {InlineSourceInfo} sourceInfo
- * @property {FUActor} sourceActor
+ * @property {FUActor} sourceActor The actor whose action triggered the pipeline
  * @property {FUActor} actor The actor the pipeline is modifying
  * @property {Set<String>} traits
  * @property {Event | null} event
@@ -34,7 +34,7 @@ export class PipelineContext {
 	constructor(request, actor) {
 		Object.assign(this, request);
 		this.actor = actor;
-		this.sourceActor = this.sourceInfo.resolveActor();
+		this.sourceActor = request.sourceInfo.resolveActor();
 	}
 }
 
