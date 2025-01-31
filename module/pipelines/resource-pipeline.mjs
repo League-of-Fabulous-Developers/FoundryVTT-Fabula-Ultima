@@ -125,11 +125,15 @@ async function processRecovery(request) {
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker({ actor }),
 				flavor: flavor,
+				flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true),
 				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-recovery.hbs', {
 					message: recoveryMessages[request.resourceType],
 					actor: actor.name,
+					uuid: actor.uuid,
 					amount: amountRecovered,
-					resource: request.resourceLabel,
+					key: request.attributeKey,
+					resource: request.resourceType,
+					resourceLabel: request.resourceLabel,
 					from: request.sourceInfo.name,
 				}),
 			}),
@@ -179,8 +183,8 @@ async function processLoss(request) {
 					actor: actor.name,
 					amount: request.amount,
 					uuid: actor.uuid,
-					resource: request.resourceType,
 					key: request.attributeKey,
+					resource: request.resourceType,
 					resourceLabel: request.resourceLabel,
 					from: request.sourceInfo.name,
 				}),
@@ -225,7 +229,7 @@ function calculateExpense(item, targets) {
  * @param {jQuery} jQuery
  */
 function onRenderChatMessage(document, jQuery) {
-	if (!document.getFlag(SYSTEM, Flags.ChatMessage.ResourceLoss)) {
+	if (!document.getFlag(SYSTEM, Flags.ChatMessage.ResourceLoss) && !document.getFlag(SYSTEM, Flags.ChatMessage.ResourceGain)) {
 		return;
 	}
 
@@ -249,6 +253,16 @@ function onRenderChatMessage(document, jQuery) {
 		const updates = [];
 		updates.push(actor.modifyTokenAttribute(attributeKey, amount, true));
 		actor.showFloatyText(`${amount} ${dataset.resource.toUpperCase()}`, `lightgreen`);
+		return Promise.all(updates);
+	});
+
+	Pipeline.handleClickRevert(document, jQuery, 'revertResourceGain', async (dataset) => {
+		const actor = fromUuidSync(dataset.uuid);
+		const amount = dataset.amount;
+		const attributeKey = dataset.key;
+		const updates = [];
+		updates.push(actor.modifyTokenAttribute(attributeKey, -amount, true));
+		actor.showFloatyText(`${amount} ${dataset.resource.toUpperCase()}`, `red`);
 		return Promise.all(updates);
 	});
 

@@ -18,6 +18,7 @@ export const Flags = Object.freeze({
 		Item: 'Item',
 		Damage: 'Damage',
 		Source: 'Source',
+		ResourceGain: 'ResourceGain',
 		ResourceLoss: 'ResourceLoss',
 		UseMetaCurrency: 'UseMetaCurrency',
 		Targets: 'Targets',

@@ -865,6 +865,7 @@
 		"ChatApplyResourceLossTargeted": "Spend Targeted",
 		"ChatToggleDamageBreakdown": "Toggle Damage Breakdown",
 		"ChatRevertDamage": "Revert applied damage",
+		"ChatRevertResourceGain": "Revert resource gain",
 		"ChatRevertResourceLoss": "Revert resource loss",
 		"ChatAbsorbHitPoints": "Recover half lost as HP",
 		"ChatAbsorbMindPoints": "Recover half lost as MP",
