@@ -126,6 +126,18 @@ function toggleFlag(flags, key) {
 }
 
 /**
+ * @param {Map} flags
+ * @param {String} key
+ * @param {*} value
+ * @returns {Map}
+ * @remarks Documented in {@link Flags}
+ */
+function setFlag(flags, key, value) {
+	(flags[SYSTEM] ??= {})[key] ??= value;
+	return flags;
+}
+
+/**
  * @description Constructs an initialized flags object to be assigned in a ChatMessage
  * @param {String} key
  * @param {*} value
@@ -142,5 +154,6 @@ export const Pipeline = {
 	handleClick,
 	handleClickRevert,
 	toggleFlag,
+	setFlag,
 	initializedFlags,
 };

@@ -16,6 +16,8 @@ export const Flags = Object.freeze({
 		SupportCheck: 'Supporter',
 		GroupCheckSupporters: 'GroupCheckSupporters',
 		Item: 'Item',
+		Damage: 'Damage',
+		Source: 'Source',
 		ResourceLoss: 'ResourceLoss',
 		UseMetaCurrency: 'UseMetaCurrency',
 		Targets: 'Targets',

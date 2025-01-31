@@ -9,6 +9,7 @@ import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
 import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ApplyTargetHookData, BeforeApplyHookData } from './legacy-hook-data.mjs';
 import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
+import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
 
 /**
  * @typedef ApplyTargetOverrides
@@ -315,10 +316,15 @@ async function process(request) {
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
 			affinityIcon: FU.affIcon[context.damageType],
 		});
+
+		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, context.result);
+		Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
+
 		updates.push(
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker({ actor }),
 				flavor: game.i18n.localize(FU.affType[context.affinity]),
+				flags: flags,
 				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
 					message: context.affinityMessage,
 					actor: actor.name,
@@ -336,6 +342,13 @@ async function process(request) {
 	return Promise.all(updates);
 }
 
+function getSourceInfoFromChatMessage(message) {
+	const sourceActorUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.actorUuid;
+	const sourceItemUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.itemUuid;
+	const sourceName = message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name;
+	return new InlineSourceInfo(sourceName, sourceActorUuid, sourceItemUuid);
+}
+
 // TODO: Move elsewhere
 /**
  * @param {Document} message
@@ -343,16 +356,12 @@ async function process(request) {
  */
 function onRenderChatMessage(message, jQuery) {
 	const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
-	let sourceItemUuid = null;
-	let sourceActorUuid = null;
-	let sourceName;
 	let baseDamageInfo;
 	let disabled = false;
 	/** @type InlineSourceInfo **/
 	let sourceInfo = null;
 
 	if (check && check.damage) {
-		sourceName = check.details.name;
 		baseDamageInfo = {
 			total: check.damage.total,
 			type: check.damage.type,
@@ -363,10 +372,7 @@ function onRenderChatMessage(message, jQuery) {
 	if (ChecksV2.isCheck(message)) {
 		const damage = CheckConfiguration.inspect(message).getDamage();
 		if (damage) {
-			sourceActorUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.actorUuid;
-			sourceItemUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.itemUuid;
-			sourceName = message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name;
-			sourceInfo = new InlineSourceInfo(sourceName, sourceActorUuid, sourceItemUuid);
+			sourceInfo = getSourceInfoFromChatMessage(message);
 			baseDamageInfo = {
 				total: damage.total,
 				type: damage.type,
@@ -443,22 +449,6 @@ function onRenderChatMessage(message, jQuery) {
 		event.preventDefault();
 		jQuery.find('#breakdown').toggleClass('hidden');
 	});
-
-	jQuery.find(`a[data-action=absorbDamage]`).click(async function (event) {
-		event.preventDefault();
-		const amount = Number.parseInt(this.dataset.amount) * 0.5;
-		const resource = this.dataset.resource;
-
-		const actorUuid = this.dataset.uuid;
-		const itemUuid = this.dataset.itemUuid;
-
-		const sourceInfo = InlineSourceInfo.resolveName(actorUuid, itemUuid);
-		const alternateUsage = event.shiftKey;
-
-		const targets = alternateUsage ? await getSelected() : [sourceInfo.resolveActor()];
-		const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
-		ResourcePipeline.processRecovery(request);
-	});
 }
 
 /**
@@ -482,7 +472,29 @@ async function handleDamageApplication(event, targets, sourceInfo, baseDamageInf
 	await DamagePipeline.process(request);
 }
 
+/**
+ * @description Initialize the pipeline's hooks
+ */
+function initialize() {
+	Hooks.on('renderChatMessage', onRenderChatMessage);
+
+	const absorbDamage = async (message, resource) => {
+		const amount = message.getFlag(SYSTEM, Flags.ChatMessage.Damage) * 0.5;
+		const sourceInfo = message.getFlag(SYSTEM, Flags.ChatMessage.Source);
+		const targets = await getSelected();
+		const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
+		ResourcePipeline.processRecovery(request);
+	};
+
+	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbMindPoints`, FU.resourceIcons.mp, (message) => {
+		absorbDamage(message, 'mp');
+	});
+	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbHitPoints`, FU.resourceIcons.hp, (message) => {
+		absorbDamage(message, 'hp');
+	});
+}
+
 export const DamagePipeline = {
+	initialize,
 	process,
-	onRenderChatMessage,
 };
