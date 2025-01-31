@@ -446,7 +446,7 @@ function onRenderChatMessage(message, jQuery) {
 
 	jQuery.find(`a[data-action=absorbDamage]`).click(async function (event) {
 		event.preventDefault();
-		const amount = Number.parseInt(this.dataset.amount);
+		const amount = Number.parseInt(this.dataset.amount) * 0.5;
 		const resource = this.dataset.resource;
 
 		const actorUuid = this.dataset.uuid;
