@@ -80,9 +80,14 @@ export class FUItem extends Item {
 
 		function translate(string) {
 			const allTranslations = Object.assign({}, CONFIG.FU.handedness, CONFIG.FU.weaponCategories, CONFIG.FU.weaponTypes, CONFIG.FU.attributeAbbreviations, CONFIG.FU.damageTypes);
+			if (string?.includes('.') && CONFIG.FU.defenses[string.split('.')[0]]) {
+				const [category, subkey] = string.split('.');
+				return game.i18n.localize(CONFIG.FU.defenses[category]?.[subkey] ?? string);
+			}
 
 			return game.i18n.localize(allTranslations?.[string] ?? string);
 		}
+
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
 		const qualText = this.system.quality?.value || '';
 		let qualityString = '';
@@ -98,6 +103,8 @@ export class FUItem extends Item {
 		const accuracyTotal = accuracyValue + accuracyGlobalValue;
 		const damageValue = this.system.damage?.value ?? 0;
 		const weaponType = this.system.type?.value;
+		const defenseString = this.system?.defense ? translate(`${this.system.defense}.abbr`) : '';
+
 		let damageGlobalValue = 0;
 		if (weaponType === 'melee') {
 			damageGlobalValue = actor.system.bonuses.damage?.melee ?? 0;
@@ -114,10 +121,10 @@ export class FUItem extends Item {
 
 		if (isWeapon) {
 			detailString = [attackString, damageString].filter(Boolean).join('⬥');
-			qualityString = [translate(this.system.category?.value), translate(this.system.hands?.value), translate(this.system.type?.value), qualText].filter(Boolean).join(' ⬥ ');
+			qualityString = [translate(this.system.category?.value), translate(this.system.hands?.value), translate(this.system.type?.value), defenseString, qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
 			detailString = [attackString, damageString].filter(Boolean).join('⬥');
-			qualityString = [attackString, damageString, qualText].filter(Boolean).join(' ⬥ ');
+			qualityString = [translate(this.system.type?.value), defenseString, qualText].filter(Boolean).join(' ⬥ ');
 		}
 
 		return {
