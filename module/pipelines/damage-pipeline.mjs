@@ -266,7 +266,7 @@ function calculateResult(context) {
 		context.recordStep(key, `*${value}`, result);
 	}
 
-	context.result = result;
+	context.result = Math.floor(result);
 	Hooks.call(FUHooks.DAMAGE_PIPELINE_POST_CALCULATE, context);
 	return true;
 }
@@ -312,7 +312,7 @@ async function process(request) {
 		actor.showFloatyText(`${damageTaken} HP`, `red`);
 		// Chat message
 		const affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
-			damage: Math.abs(damageTaken),
+			damage: context.result,
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
 			affinityIcon: FU.affIcon[context.damageType],
 		});
@@ -329,7 +329,7 @@ async function process(request) {
 					message: context.affinityMessage,
 					actor: actor.name,
 					uuid: actor.uuid,
-					damage: Math.abs(damageTaken),
+					damage: context.result,
 					type: affinityString,
 					from: request.sourceInfo.name,
 					sourceActorUuid: request.sourceInfo.actorUuid,

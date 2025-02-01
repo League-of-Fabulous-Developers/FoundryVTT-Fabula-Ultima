@@ -99,7 +99,7 @@ async function processRecovery(request) {
 	const updates = [];
 	for (const actor of request.targets) {
 		const recoveryBonus = actor.system.bonuses.incomingRecovery[request.resourceType] || 0;
-		const amountRecovered = Math.max(0, request.amount + recoveryBonus);
+		const amountRecovered = Math.max(0, Math.floor(request.amount + recoveryBonus));
 		const attr = foundry.utils.getProperty(actor.system, request.attributeKey);
 		const uncappedRecoveryValue = amountRecovered + attr.value;
 		const updates = [];
@@ -156,14 +156,14 @@ const lossFlavor = {
  * @return {Promise<Awaited<unknown>[]>}
  */
 async function processLoss(request) {
-	const amountLost = -request.amount;
+	const amountLost = -Math.floor(request.amount);
 	const flavor = game.i18n.localize(lossFlavor[request.resourceType]);
 
 	const updates = [];
 	for (const actor of request.targets) {
 		if (request.isMetaCurrency) {
 			const currentValue = foundry.utils.getProperty(actor.system, request.attributePath) || 0;
-			const newValue = Math.floor(currentValue + amountLost);
+			const newValue = currentValue + amountLost;
 			// Update the actor's resource directly
 			const updateData = {};
 			updateData[`system.${request.attributePath}`] = newValue;
@@ -181,7 +181,7 @@ async function processLoss(request) {
 				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-loss.hbs', {
 					message: 'FU.ChatResourceLoss',
 					actor: actor.name,
-					amount: request.amount,
+					amount: Math.abs(amountLost),
 					uuid: actor.uuid,
 					key: request.attributeKey,
 					resource: request.resourceType,
