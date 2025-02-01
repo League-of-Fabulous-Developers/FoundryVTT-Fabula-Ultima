@@ -29,6 +29,7 @@ function createEffectAnchor(effect) {
 	anchor.draggable = true;
 	anchor.dataset.effect = InlineHelper.toBase64(effect);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
+	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect})`);
 	const icon = document.createElement('i');
 	icon.classList.add('fun', 'fu-aura');
 	anchor.append(icon);
@@ -51,10 +52,13 @@ function createStatusAnchor(effectValue, status) {
 	anchor.draggable = true;
 	anchor.dataset.status = effectValue;
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
+	const localizedName = game.i18n.localize(status.name);
+	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${localizedName})`);
 	const icon = document.createElement('i');
-	icon.classList.add('fun', 'fu-aura');
+	const statusClass = `fu-${effectValue}`;
+	icon.classList.add('fue', statusClass);
 	anchor.append(icon);
-	anchor.append(game.i18n.localize(status.name));
+	anchor.append(localizedName);
 	return anchor;
 }
 

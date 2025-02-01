@@ -10,6 +10,94 @@ $ful-offensive: url('/systems/projectfu/styles/static/icons/ful-offensive.svg');
 $ful-martial: url('/systems/projectfu/styles/static/icons/ful-martial.svg');
 $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 
+$fu-shaken: url('/systems/projectfu/styles/static/statuses/Shaken.webp');
+$fu-dazed: url('/systems/projectfu/styles/static/statuses/Dazed.webp');
+$fu-slow: url('/systems/projectfu/styles/static/statuses/Slow.webp');
+$fu-weak: url('/systems/projectfu/styles/static/statuses/Weak.webp');
+$fu-enraged: url('/systems/projectfu/styles/static/statuses/Enraged.webp');
+$fu-poisoned: url('/systems/projectfu/styles/static/statuses/Poisoned.webp');
+
+$fu-flying: url('/systems/projectfu/styles/static/statuses/Flying.webp');
+$fu-guard: url('/systems/projectfu/styles/static/statuses/Guard.webp');
+$fu-cover: url('/systems/projectfu/styles/static/statuses/Cover.webp');
+
+$fu-ins-up: url('/systems/projectfu/styles/static/statuses/InsUp.webp');
+$fu-ins-down: url('/systems/projectfu/styles/static/statuses/InsDown.webp');
+$fu-dex-up: url('/systems/projectfu/styles/static/statuses/DexUp.webp');
+$fu-dex-down: url('/systems/projectfu/styles/static/statuses/DexDown.webp');
+$fu-mig-up: url('/systems/projectfu/styles/static/statuses/MigUp.webp');
+$fu-mig-down: url('/systems/projectfu/styles/static/statuses/MigDown.webp');
+$fu-wlp-up: url('/systems/projectfu/styles/static/statuses/WlpUp.webp');
+$fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
+
+.fu-shaken {
+	background-image: $fu-shaken;
+}
+
+.fu-dazed {
+	background-image: $fu-dazed;
+}
+
+.fu-weak {
+	background-image: $fu-weak;
+}
+
+.fu-slow {
+	background-image: $fu-slow;
+}
+
+.fu-enraged {
+	background-image: $fu-enraged;
+}
+
+.fu-poisoned {
+	background-image: $fu-poisoned;
+}
+
+.fu-guard {
+	background-image: $fu-guard;
+}
+
+.fu-flying {
+	background-image: $fu-flying;
+}
+
+.fu-cover {
+	background-image: $fu-cover;
+}
+
+.fu-wlp-up {
+	background-image: $fu-wlp-up;
+}
+
+.fu-wlp-down {
+	background-image: $fu-wlp-down;
+}
+
+.fu-dex-up {
+	background-image: $fu-dex-up;
+}
+
+.fu-dex-down {
+	background-image: $fu-dex-down;
+}
+
+.fu-mig-up {
+	background-image: $fu-mig-up;
+}
+
+.fu-mig-down {
+	background-image: $fu-mig-down;
+}
+
+.fu-ins-up {
+	background-image: $fu-ins-up;
+}
+
+.fu-ins-down {
+	background-image: $fu-ins-down;
+}
+
 .fu-zenit {
 	background-image: $fu-zenit;
 }
@@ -79,6 +167,15 @@ $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 	background-size: cover;
 	fill: $color-secondary;
 	font-style: normal;
+	display: inline-block;
+}
+
+/* Webp Icons */
+.fue {
+	width: 20px;
+	height: 20px;
+	margin-right: 4px;
+	background-size: cover;
 	display: inline-block;
 }
 
