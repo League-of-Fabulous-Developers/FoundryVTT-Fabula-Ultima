@@ -262,7 +262,7 @@ function onRenderChatMessage(document, jQuery) {
 		const attributeKey = dataset.key;
 		const updates = [];
 		updates.push(actor.modifyTokenAttribute(attributeKey, -amount, true));
-		actor.showFloatyText(`${amount} ${dataset.resource.toUpperCase()}`, `red`);
+		actor.showFloatyText(`${amount} ${FU.resourcesAbbr[dataset.resource]}`, `red`);
 		return Promise.all(updates);
 	});
 

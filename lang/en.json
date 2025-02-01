@@ -649,6 +649,7 @@
 		"Critical": "Critical",
 		"Failure": "Failure",
 		"Fumble": "Fumble",
+		"Breakdown": "Breakdown",
 		"ChatDifficulty": "Difficulty",
 		"DialogCheckTitle": "Configure Check",
 		"DialogCheckRoll": "Roll Check",
