@@ -29,9 +29,9 @@ function createEffectAnchor(effect) {
 	anchor.draggable = true;
 	anchor.dataset.effect = InlineHelper.toBase64(effect);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
-	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect})`);
+	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})`);
 	const icon = document.createElement('i');
-	icon.classList.add('fun', 'fu-aura');
+	icon.classList.add('fue', 'fu-effect-placeholder');
 	anchor.append(icon);
 	anchor.append(effect.name);
 	return anchor;

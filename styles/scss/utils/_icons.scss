@@ -20,6 +20,8 @@ $fu-poisoned: url('/systems/projectfu/styles/static/statuses/Poisoned.webp');
 $fu-flying: url('/systems/projectfu/styles/static/statuses/Flying.webp');
 $fu-guard: url('/systems/projectfu/styles/static/statuses/Guard.webp');
 $fu-cover: url('/systems/projectfu/styles/static/statuses/Cover.webp');
+$fu-aura: url('/systems/projectfu/styles/static/statuses/Aura.webp');
+$fu-barrier: url('/systems/projectfu/styles/static/statuses/Barrier.webp');
 
 $fu-ins-up: url('/systems/projectfu/styles/static/statuses/InsUp.webp');
 $fu-ins-down: url('/systems/projectfu/styles/static/statuses/InsDown.webp');
@@ -64,6 +66,14 @@ $fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
 
 .fu-cover {
 	background-image: $fu-cover;
+}
+
+.fu-aura {
+	background-image: $fu-aura;
+}
+
+.fu-barrier {
+	background-image: $fu-barrier;
 }
 
 .fu-wlp-up {
@@ -118,7 +128,7 @@ $fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
 	background-image: $ful-martial;
 }
 
-.fu-aura {
+.fu-effect-placeholder {
 	background-image: url('/icons/svg/aura.svg');
 }
 
