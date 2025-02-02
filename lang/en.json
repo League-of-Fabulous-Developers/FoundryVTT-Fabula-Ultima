@@ -1261,6 +1261,19 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"DamagePipelineStepInitial": "Initial",
+		"DamagePipelineStepScaleIncomingDamage": "Scale Incoming Damage",
+		"DamagePipelineStepAffinity": "Affinity",
+		"DamagePipelineStepIncomingDamageAll": "Incoming Damage: All",
+		"DamagePipelineStepIncomingDamagePhysical": "Incoming Damage: Physical",
+		"DamagePipelineStepIncomingDamageAir": "Incoming Damage: Air",
+		"DamagePipelineStepIncomingDamageBolt": "Incoming Damage: Bolt",
+		"DamagePipelineStepIncomingDamageDark": "Incoming Damage: Dark",
+		"DamagePipelineStepIncomingDamageEarth": "Incoming Damage: Earth",
+		"DamagePipelineStepIncomingDamageFire": "Incoming Damage: Fire",
+		"DamagePipelineStepIncomingDamageIce": "Incoming Damage: Ice",
+		"DamagePipelineStepIncomingDamageLight": "Incoming Damage: Light",
+		"DamagePipelineStepIncomingDamagePoison": "Incoming Damage: Poison"
 	}
 }

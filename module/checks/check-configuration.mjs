@@ -150,7 +150,7 @@ class CheckConfigurer {
 		if (model.damageType) {
 			const damageTypeBonus = actor.system.bonuses.damage[model.damageType.value];
 			if (damageTypeBonus) {
-				this.addDamageBonus(`FU.DamageBonus${model.damageType.value}`, damageTypeBonus);
+				this.addDamageBonus(`FU.DamageBonus${model.damageType.value.capitalize()}`, damageTypeBonus);
 			}
 		}
 		// Attack Type

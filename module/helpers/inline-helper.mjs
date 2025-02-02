@@ -185,16 +185,6 @@ function capitalize(word) {
 	return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }
 
-function nicifyString(str) {
-	return str
-		.replace(/([a-z])([A-Z])/g, '$1 $2')
-		.replace(/[_.]+/g, ' ')
-		.trim()
-		.split(/\s+/)
-		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(' ');
-}
-
 export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
@@ -202,5 +192,4 @@ export const InlineHelper = {
 	toBase64,
 	fromBase64,
 	capitalize,
-	nicifyString,
 };

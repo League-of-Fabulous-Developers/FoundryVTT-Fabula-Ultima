@@ -6,10 +6,36 @@ import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
-import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ApplyTargetHookData, BeforeApplyHookData } from './legacy-hook-data.mjs';
 import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
 import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
+
+/**
+ * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
+ */
+
+/**
+ * @typedef {"initial", "scaleIncomingDamage", "affinity", DamagePipelineStepIncomingDamage} DamagePipelineStep
+ */
+
+const PIPELINE_STEP_LOCALIZATION_KEYS = {
+	initial: 'FU.DamagePipelineStepInitial',
+	scaleIncomingDamage: 'FU.DamagePipelineStepScaleIncomingDamage',
+	affinity: 'FU.DamagePipelineStepAffinity',
+	incomingDamage: {
+		all: 'FU.DamagePipelineStepIncomingDamageAll',
+		physical: 'FU.DamagePipelineStepIncomingDamagePhysical',
+		air: 'FU.DamagePipelineStepIncomingDamageAir',
+		bolt: 'FU.DamagePipelineStepIncomingDamageBolt',
+		dark: 'FU.DamagePipelineStepIncomingDamageDark',
+		earth: 'FU.DamagePipelineStepIncomingDamageEarth',
+		fire: 'FU.DamagePipelineStepIncomingDamageFire',
+		ice: 'FU.DamagePipelineStepIncomingDamageIce',
+		light: 'FU.DamagePipelineStepIncomingDamageLight',
+		poison: 'FU.DamagePipelineStepIncomingDamagePoison',
+	},
+};
 
 /**
  * @typedef ApplyTargetOverrides
@@ -113,16 +139,20 @@ export class DamagePipelineContext extends PipelineContext {
 	}
 
 	/**
-	 * @param {String} step
+	 * @param {DamagePipelineStep} step
 	 * @param {String} effect
 	 * @param {Number} total
 	 */
 	recordStep(step, effect, total) {
 		this.breakdown.push({
-			step: InlineHelper.nicifyString(step),
+			step: this.#localizeStep(step),
 			effect: effect,
 			total: total,
 		});
+	}
+
+	#localizeStep(step) {
+		return foundry.utils.getProperty(PIPELINE_STEP_LOCALIZATION_KEYS, step) ?? step;
 	}
 }
 
@@ -207,15 +237,6 @@ function overrideResult(context) {
  * @return {Boolean}
  */
 function collectIncrements(context) {
-	// Source
-	if (context.sourceActor) {
-		if (context.sourceActor.system.bonuses) {
-			const outgoing = context.sourceActor.system.bonuses.damage;
-			context.addBonus('outgoingDamage.all', outgoing.all);
-			context.addBonus(`outgoingDamage.${context.damageType}`, outgoing[context.damageType] ?? 0);
-		}
-	}
-
 	// Target
 	if (context.actor.system.bonuses) {
 		const incoming = context.actor.system.bonuses.incomingDamage;
