@@ -8,6 +8,34 @@ import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ApplyTargetHookData, BeforeApplyHookData } from './legacy-hook-data.mjs';
+import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
+import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
+
+/**
+ * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
+ */
+
+/**
+ * @typedef {"initial", "scaleIncomingDamage", "affinity", DamagePipelineStepIncomingDamage} DamagePipelineStep
+ */
+
+const PIPELINE_STEP_LOCALIZATION_KEYS = {
+	initial: 'FU.DamagePipelineStepInitial',
+	scaleIncomingDamage: 'FU.DamagePipelineStepScaleIncomingDamage',
+	affinity: 'FU.DamagePipelineStepAffinity',
+	incomingDamage: {
+		all: 'FU.DamagePipelineStepIncomingDamageAll',
+		physical: 'FU.DamagePipelineStepIncomingDamagePhysical',
+		air: 'FU.DamagePipelineStepIncomingDamageAir',
+		bolt: 'FU.DamagePipelineStepIncomingDamageBolt',
+		dark: 'FU.DamagePipelineStepIncomingDamageDark',
+		earth: 'FU.DamagePipelineStepIncomingDamageEarth',
+		fire: 'FU.DamagePipelineStepIncomingDamageFire',
+		ice: 'FU.DamagePipelineStepIncomingDamageIce',
+		light: 'FU.DamagePipelineStepIncomingDamageLight',
+		poison: 'FU.DamagePipelineStepIncomingDamagePoison',
+	},
+};
 
 /**
  * @typedef ApplyTargetOverrides
@@ -56,6 +84,13 @@ export class DamageRequest extends PipelineRequest {
 	}
 }
 
+/**
+ * @typedef DamageBreakdown
+ * @property {String} step
+ * @property {String} effect
+ * @property {String} total
+ */
+
 // TODO: Decide whether to define in config.mjs. Though it's probably fine if they are all in english
 const Traits = {
 	IgnoreResistance: 'ignore-resistance',
@@ -69,7 +104,7 @@ const Traits = {
  * @property {Number} amount The base amount before bonuses or modifiers are applied
  * @property {Map<String, Number>} bonuses Increments
  * @property {Map<String, Number>} modifiers Multipliers
- * @property {String} breakdown
+ * @property {DamageBreakdown[]} breakdown
  * @extends PipelineContext
  */
 export class DamagePipelineContext extends PipelineContext {
@@ -77,6 +112,7 @@ export class DamagePipelineContext extends PipelineContext {
 		super(request, actor);
 		this.bonuses = new Map();
 		this.modifiers = new Map();
+		this.breakdown = [];
 		this.calculateAmount();
 	}
 
@@ -95,7 +131,28 @@ export class DamagePipelineContext extends PipelineContext {
 	}
 
 	addModifier(key, value) {
-		this.modifiers.set(key, value);
+		if (value !== 1) {
+			this.modifiers.set(key, value);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @param {DamagePipelineStep} step
+	 * @param {String} effect
+	 * @param {Number} total
+	 */
+	recordStep(step, effect, total) {
+		this.breakdown.push({
+			step: this.#localizeStep(step),
+			effect: effect,
+			total: total,
+		});
+	}
+
+	#localizeStep(step) {
+		return foundry.utils.getProperty(PIPELINE_STEP_LOCALIZATION_KEYS, step) ?? step;
 	}
 }
 
@@ -180,15 +237,6 @@ function overrideResult(context) {
  * @return {Boolean}
  */
 function collectIncrements(context) {
-	// Source
-	if (context.sourceActor) {
-		if (context.sourceActor.system.bonuses) {
-			const outgoing = context.sourceActor.system.bonuses.damage;
-			context.addBonus('outgoingDamage.all', outgoing.all);
-			context.addBonus(`outgoingDamage.${context.damageType}`, outgoing[context.damageType] ?? 0);
-		}
-	}
-
 	// Target
 	if (context.actor.system.bonuses) {
 		const incoming = context.actor.system.bonuses.incomingDamage;
@@ -224,23 +272,22 @@ function calculateResult(context) {
 	Hooks.call(FUHooks.DAMAGE_PIPELINE_PRE_CALCULATE, context);
 
 	let result = context.amount;
-	let breakdown = `<ul>`;
-	breakdown += `<li> amount: ${context.amount} </li>`;
+
+	/** @type DamageBreakdown[] */
+	context.recordStep('initial', '', context.amount);
 
 	// Increments (+-)
 	for (const [key, value] of context.bonuses) {
 		result += value;
-		breakdown += `<li> ${key}: ${value}</li>`;
+		context.recordStep(key, value > 0 ? `+${value}` : value, result);
 	}
 	// Multipliers (*)
 	for (const [key, value] of context.modifiers) {
 		result *= value;
-		breakdown += `<li> ${key}: *${value}</li>`;
+		context.recordStep(key, `*${value}`, result);
 	}
-	breakdown += `</ul>`;
 
-	context.result = result;
-	context.breakdown = breakdown;
+	context.result = Math.floor(result);
 	Hooks.call(FUHooks.DAMAGE_PIPELINE_POST_CALCULATE, context);
 	return true;
 }
@@ -286,27 +333,41 @@ async function process(request) {
 		actor.showFloatyText(`${damageTaken} HP`, `red`);
 		// Chat message
 		const affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
-			damage: Math.abs(damageTaken),
+			damage: context.result,
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
 			affinityIcon: FU.affIcon[context.damageType],
-			breakdown: context.breakdown,
 		});
+
+		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, context.result);
+		Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
+
 		updates.push(
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker({ actor }),
 				flavor: game.i18n.localize(FU.affType[context.affinity]),
+				flags: flags,
 				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
 					message: context.affinityMessage,
 					actor: actor.name,
 					uuid: actor.uuid,
-					damage: Math.abs(damageTaken),
+					damage: context.result,
 					type: affinityString,
 					from: request.sourceInfo.name,
+					sourceActorUuid: request.sourceInfo.actorUuid,
+					sourceItemUuid: request.sourceInfo.itemUuid,
+					breakdown: context.breakdown,
 				}),
 			}),
 		);
 	}
 	return Promise.all(updates);
+}
+
+function getSourceInfoFromChatMessage(message) {
+	const sourceActorUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.actorUuid;
+	const sourceItemUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.itemUuid;
+	const sourceName = message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name;
+	return new InlineSourceInfo(sourceName, sourceActorUuid, sourceItemUuid);
 }
 
 // TODO: Move elsewhere
@@ -316,13 +377,12 @@ async function process(request) {
  */
 function onRenderChatMessage(message, jQuery) {
 	const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
-	let sourceUuid = null;
-	let sourceName;
 	let baseDamageInfo;
 	let disabled = false;
+	/** @type InlineSourceInfo **/
+	let sourceInfo = null;
 
 	if (check && check.damage) {
-		sourceName = check.details.name;
 		baseDamageInfo = {
 			total: check.damage.total,
 			type: check.damage.type,
@@ -333,8 +393,7 @@ function onRenderChatMessage(message, jQuery) {
 	if (ChecksV2.isCheck(message)) {
 		const damage = CheckConfiguration.inspect(message).getDamage();
 		if (damage) {
-			sourceUuid = message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2)?.itemUuid;
-			sourceName = message.getFlag(SYSTEM, Flags.ChatMessage.Item)?.name;
+			sourceInfo = getSourceInfoFromChatMessage(message);
 			baseDamageInfo = {
 				total: damage.total,
 				type: damage.type,
@@ -348,7 +407,7 @@ function onRenderChatMessage(message, jQuery) {
 			baseDamageInfo,
 			targets,
 			async (extraDamageInfo) => {
-				await handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo);
+				await handleDamageApplication(event, targets, sourceInfo, baseDamageInfo, extraDamageInfo);
 				disabled = false;
 			},
 			() => {
@@ -358,7 +417,7 @@ function onRenderChatMessage(message, jQuery) {
 	};
 
 	const applyDefaultDamage = async (event, targets) => {
-		return handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, {});
+		return handleDamageApplication(event, targets, sourceInfo, baseDamageInfo, {});
 	};
 
 	const handleClick = async (event, getTargetsFunction, action, alternateAction) => {
@@ -387,7 +446,7 @@ function onRenderChatMessage(message, jQuery) {
 				baseDamageInfo,
 				targets,
 				(extraDamageInfo) => {
-					handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo);
+					handleDamageApplication(event, targets, sourceInfo, baseDamageInfo, extraDamageInfo);
 					disabled = false;
 				},
 				() => {
@@ -406,20 +465,23 @@ function onRenderChatMessage(message, jQuery) {
 		actor.showFloatyText(`${amountRecovered} HP`, `lightgreen`);
 		return Promise.all(updates);
 	});
+
+	jQuery.find(`a[data-action=toggleBreakdown]`).click(function (event) {
+		event.preventDefault();
+		jQuery.find('#breakdown').toggleClass('hidden');
+	});
 }
 
 /**
  *
  * @param {Event} event
  * @param {FUActor[]} targets
- * @param {string} sourceUuid
- * @param {string} sourceName
+ * @param {InlineSourceInfo} sourceInfo
  * @param {import('../helpers/typedefs.mjs').BaseDamageInfo} baseDamageInfo
  * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
  * @returns {void}
  */
-async function handleDamageApplication(event, targets, sourceUuid, sourceName, baseDamageInfo, extraDamageInfo) {
-	const sourceInfo = new InlineSourceInfo(sourceName, sourceUuid, null);
+async function handleDamageApplication(event, targets, sourceInfo, baseDamageInfo, extraDamageInfo) {
 	const request = new DamageRequest(sourceInfo, targets, baseDamageInfo, extraDamageInfo);
 	request.event = event;
 	if (event.shiftKey) {
@@ -431,7 +493,29 @@ async function handleDamageApplication(event, targets, sourceUuid, sourceName, b
 	await DamagePipeline.process(request);
 }
 
+/**
+ * @description Initialize the pipeline's hooks
+ */
+function initialize() {
+	Hooks.on('renderChatMessage', onRenderChatMessage);
+
+	const absorbDamage = async (message, resource) => {
+		const amount = message.getFlag(SYSTEM, Flags.ChatMessage.Damage) * 0.5;
+		const sourceInfo = message.getFlag(SYSTEM, Flags.ChatMessage.Source);
+		const targets = await getSelected();
+		const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
+		ResourcePipeline.processRecovery(request);
+	};
+
+	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbMindPoints`, FU.resourceIcons.mp, (message) => {
+		absorbDamage(message, 'mp');
+	});
+	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbHitPoints`, FU.resourceIcons.hp, (message) => {
+		absorbDamage(message, 'hp');
+	});
+}
+
 export const DamagePipeline = {
+	initialize,
 	process,
-	onRenderChatMessage,
 };
