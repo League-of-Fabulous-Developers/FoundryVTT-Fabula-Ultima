@@ -119,7 +119,7 @@ function determineSource(document, element) {
 			itemUuid = check.itemUuid;
 		} else {
 			let item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-			if (item) {
+			if (item instanceof FUItem) {
 				name = item.name;
 				itemUuid = item.uuid;
 			}
@@ -185,6 +185,15 @@ function capitalize(word) {
 	return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }
 
+function registerEnricher(enricher, activateListeners, onDropActor) {
+	CONFIG.TextEditor.enrichers.push(enricher);
+	Hooks.on('renderChatMessage', activateListeners);
+	Hooks.on('renderApplication', activateListeners);
+	Hooks.on('renderActorSheet', activateListeners);
+	Hooks.on('renderItemSheet', activateListeners);
+	Hooks.on('dropActorSheetData', onDropActor);
+}
+
 export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
@@ -192,4 +201,5 @@ export const InlineHelper = {
 	toBase64,
 	fromBase64,
 	capitalize,
+	registerEnricher,
 };

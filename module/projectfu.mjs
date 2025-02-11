@@ -69,6 +69,8 @@ import { DamagePipeline } from './pipelines/damage-pipeline.mjs';
 import { ResourcePipeline } from './pipelines/resource-pipeline.mjs';
 import { InlineWeapon } from './helpers/inline-weapon.mjs';
 import { Targeting } from './helpers/targeting.mjs';
+import { InlineHelper } from './helpers/inline-helper.mjs';
+import { InlineAffinity } from './helpers/inline-affinity.mjs';
 import { Effects } from './pipelines/effects.mjs';
 
 globalThis.projectfu = {
@@ -268,6 +270,8 @@ Hooks.once('init', async () => {
 	Hooks.on('renderActorSheet', InlineWeapon.activateListeners);
 	Hooks.on('renderItemSheet', InlineWeapon.activateListeners);
 	Hooks.on('dropActorSheetData', InlineWeapon.onDropActor);
+
+	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
 
 	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 

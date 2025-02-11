@@ -104,27 +104,30 @@ function requiresContext(expression) {
 
 // TODO: Provide a system of hooks
 // Order of operations matters
+/**
+ * @type {[Promise<String>]}
+ */
 const evaluationFunctions = [evaluateVariables, evaluateEffects, evaluateReferencedFunctions, evaluateReferencedProperties, evaluateMacros];
 
 /**
  * @description Evaluates the given expression using the supported DSL
  * @param {String} expression
  * @param {ExpressionContext} context
- * @return {Number} The evaluated amount
  * @example (@actor.level.value*2+minor+@item.level.value)
  * @example @actor.byLevel(40,50,60)
  * @example (minor + 5)
+ * @return {Promise<Number>} The evaluated amount
  */
-function evaluate(expression, context) {
+async function evaluate(expression, context) {
 	if (!requiresContext(expression)) {
 		return Number(expression);
 	}
 
 	// Evaluate the expression's variables
 	let substitutedExpression = expression;
-	evaluationFunctions.forEach((evaluateFunction) => {
-		substitutedExpression = evaluateFunction(substitutedExpression, context);
-	});
+	for (const fn of evaluationFunctions) {
+		substitutedExpression = await fn(substitutedExpression, context);
+	}
 
 	// Now that the expression's variables have been substituted, evaluate it arithmetically
 	const result = MathHelper.evaluate(substitutedExpression);
@@ -141,9 +144,9 @@ function evaluate(expression, context) {
  * @description Evaluates functions within the expression using the available context
  * @param {String}  expression
  * @param {ExpressionContext} context
- * @returns {String}
+ * @returns {Promise<String>}
  */
-function evaluateReferencedFunctions(expression, context) {
+async function evaluateReferencedFunctions(expression, context) {
 	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
 
 	function evaluate(match, label, path, p3, args, groups) {
@@ -169,9 +172,9 @@ function evaluateReferencedFunctions(expression, context) {
  * @description Evaluates improvised effects
  * @param {String} expression
  * @param {ExpressionContext} context
- * @returns {String}
+ * @returns {Promise<String>}
  */
-function evaluateEffects(expression, context) {
+async function evaluateEffects(expression, context) {
 	const pattern = /(minor)|(heavy)|(massive)/gm;
 	function evaluate(match) {
 		return ImprovisedEffect.calculateAmountFromContext(match, context);
@@ -181,12 +184,14 @@ function evaluateEffects(expression, context) {
 
 /**
  * @description Evaluates special variables
- * @param expression
- * @param context
- * @example $sl*10
- * @example $cl/2
+ * @param {String} expression
+ * @param {ExpressionContext} context
+ * @returns {Promise<String>}
+ * @example $sl*10 Skill Level
+ * @example $cl/2 Character Level
+ * @example $dex Dexterity Roll
  * */
-function evaluateVariables(expression, context) {
+async function evaluateVariables(expression, context) {
 	const pattern = /\$(?<symbol>\w+)/gm;
 	function evaluate(match, symbol) {
 		switch (symbol) {
@@ -207,6 +212,15 @@ function evaluateVariables(expression, context) {
 			case 'sl':
 				context.assertItem(match);
 				return context.item.system.level.value;
+			// Attributes
+			case 'mig':
+			case 'dex':
+			case 'wlp':
+			case 'ins': {
+				context.assertActor(match);
+				return getAttributeSize(context.actor, symbol);
+			}
+			case 'se':
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
 		}
@@ -218,18 +232,17 @@ function evaluateVariables(expression, context) {
  * @description Custom functions provided by the expression engine
  * @param {String} expression
  * @param {ExpressionContext} context
- * @returns {String}
+ * @returns {Promise<String>}
  * @example &step(40,50,60)
  */
-function evaluateMacros(expression, context) {
+async function evaluateMacros(expression, context) {
 	const pattern = /&(?<name>[a-zA-Z]+)\((?<params>.*?)\)/gm;
-	function evaluateMacro(match, name, params) {
+	async function evaluateMacro(match, name, params) {
 		const splitArgs = params.split(',');
 		switch (name) {
 			case `sl`: {
 				context.assertActor(match);
 				const skillId = splitArgs[0].match(/(\w+-*\s*)+/gm)[0];
-				console.debug(`Resolved actor ${context.actor} from chat message`);
 				const skill = context.actor.getSingleItemByFuid(skillId, 'skill');
 				if (!skill) {
 					ui.notifications.warn('FU.ChatEvaluateNoSkill', { localize: true });
@@ -237,44 +250,30 @@ function evaluateMacros(expression, context) {
 				}
 				return skill.system.level.value;
 			}
+			// Attribute roll
+			case 'ar': {
+				context.assertActor(match);
+				const attr = splitArgs[0];
+				return await rollAttributeDie(context.actor, attr);
+			}
 			case 'step':
 				return stepByLevel(context, splitArgs[0], splitArgs[1], splitArgs[2]);
 			default:
 				throw new Error(`Unsupported macro ${name}`);
 		}
 	}
-	return expression.replace(pattern, evaluateMacro);
-}
-
-/**
- * @description Given 3 amounts, picks the one for this characters' level
- * @param {ExpressionContext} context
- * @param {Number} first
- * @param {Number} second
- * @param {Number} third
- */
-function stepByLevel(context, first, second, third) {
-	const actor = context.resolveActorOrHighestLevelTarget();
-	const tier = ImprovisedEffect.getCharacterTier(actor.system.level.value);
-	switch (tier) {
-		case 0:
-			return first;
-		case 1:
-			return second;
-		case 2:
-			return third;
-	}
-	return null;
+	return replaceAsync(expression, pattern, evaluateMacro);
+	//return expression.replace(pattern, evaluateMacro);
 }
 
 /**
  * Evaluates properties within the expression using the available context
  * @param {String}  expression
  * @param {ExpressionContext} context
- * @returns {String}
+ * @returns {Promise<String>}
  * @example @system.value.thingie
  */
-function evaluateReferencedProperties(expression, context) {
+async function evaluateReferencedProperties(expression, context) {
 	const pattern = /(?<variable>@([a-zA-Z]+\.?)+)/gm;
 	function evaluate(match, label, path, pN, offset, string, groups) {
 		// TODO: Refactor
@@ -304,6 +303,65 @@ function evaluateReferencedProperties(expression, context) {
 	}
 
 	return expression.replace(pattern, evaluate);
+}
+
+/**
+ * @description Given 3 amounts, picks the one for this characters' level
+ * @param {ExpressionContext} context
+ * @param {Number} first
+ * @param {Number} second
+ * @param {Number} third
+ */
+function stepByLevel(context, first, second, third) {
+	const actor = context.resolveActorOrHighestLevelTarget();
+	const tier = ImprovisedEffect.getCharacterTier(actor.system.level.value);
+	switch (tier) {
+		case 0:
+			return first;
+		case 1:
+			return second;
+		case 2:
+			return third;
+	}
+	return null;
+}
+
+/**
+ * @param {String} str
+ * @param {RegExp} regExp
+ * @param {Promise<string, string, string>} replacerFunction
+ * @returns {Promise<*>}
+ */
+async function replaceAsync(str, regExp, replacerFunction) {
+	const matches = str.matchAll(regExp);
+	let replacements = [];
+	for (const match of matches) {
+		replacements.push(await replacerFunction(...match));
+	}
+	let i = 0;
+	return str.replace(regExp, () => replacements[i++]);
+}
+
+/**
+ * @param {FUActor} actor
+ * @param {FU.attributes} key
+ * @returns {Promise<*>}
+ */
+async function rollAttributeDie(actor, key) {
+	const dice = getAttributeSize(actor, key);
+	const formula = `d${dice}`;
+	const roll = await new Roll(formula).evaluate();
+	return roll.total;
+}
+
+/**
+ * @param {FUActor} actor
+ * @param {FU.attributes} key
+ * @returns {Number}
+ */
+function getAttributeSize(actor, key) {
+	const attributes = actor.system.attributes;
+	return attributes[key].current;
 }
 
 /**

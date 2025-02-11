@@ -7,6 +7,7 @@ function clamp(value, min, max) {
  * @param {String} expression A simple arithmetic expression
  * @returns {Number} The evaluated value
  * @author Uses Foundry's API
+ * @remarks Uses {@link https://foundryvtt.com/api/classes/foundry.dice.Roll.html#roll}
  */
 function evaluate(expression) {
 	try {

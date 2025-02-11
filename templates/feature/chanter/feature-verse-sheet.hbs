@@ -10,7 +10,7 @@
                     {{localize 'FU.ClassFeatureVerseKey'}}:
                     <select class="resource-inputs select-dropdown-xl resource-text-m" name='system.data.key'>
                         <option value="">-</option>
-                        {{selectOptions additionalData.keys selected=system.data.key.id nameAttr='id' labelAttr='name'}}
+                        {{selectOptions additionalData.keys selected=system.data.key.id valueAttr='id' labelAttr='name'}}
                     </select>
                 </label>
             </div>
@@ -20,7 +20,7 @@
                     {{localize 'FU.ClassFeatureVerseTone'}}:
                     <select class="resource-inputs select-dropdown-xl" name='system.data.tone'>
                         <option value="">-</option>
-                        {{selectOptions additionalData.tones selected=system.data.tone.id nameAttr='id'
+                        {{selectOptions additionalData.tones selected=system.data.tone.id valueAttr='id'
                                         labelAttr='name'}}
                     </select>
                 </label>

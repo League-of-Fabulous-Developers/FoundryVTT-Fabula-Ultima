@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target suffers <strong>【@DATA[key.status]】</strong>. Each target also loses Resistance to <strong>【@DATA[key.type]】</strong> damage (if they have it) until the start of your next turn.</p>"
+      "description": "<p>Each target suffers<strong>【@DATA[key.status]】</strong>. Each target also <strong>loses Resistance</strong> to<strong>【@DATA[key.type]】</strong>damage until the <strong>start of your next turn.</strong></p><ul><li><p><strong>Target:【@DATA[key.normal]】</strong>if they have that resistance.</p></li></ul>"
     },
     "source": "FUHF139",
     "fuid": "haunting-tune"
@@ -30,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1710040082627,
-    "modifiedTime": 1724180861756,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1739382317987,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

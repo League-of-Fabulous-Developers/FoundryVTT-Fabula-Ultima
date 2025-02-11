@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>On your turn during a conflict scene, you may use an action and spend a variable amount of MP to weave voice and music into a magical effect known as a <strong>verse</strong>.</p><p>You may only sing <strong>one verse</strong> per turn, even if you have access to multiple actions.</p><p>When you first acquire this Skill, you learn <strong>all three volumes</strong>, plus <strong>one key</strong> and <strong>one tone</strong>. Whenever you acquire this Skill again, you may learn <strong>one key</strong> or <strong>one tone</strong> (your choice).</p><p>For descriptions of how <strong>verses</strong> are broken down as well as a list of all of the Keys and Tones, please refer to the following handout: @UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</p>",
+    "description": "<p>On your turn during a conflict scene, you may use an action and spend a variable amount of MP to weave voice and music into a magical effect known as a <strong>verse</strong>.</p><p>You may only sing <strong>one verse</strong> per turn, even if you have access to multiple actions.</p><p>When you first acquire this Skill, you learn <strong>all three volumes</strong>, plus <strong>one key</strong> and <strong>one tone</strong>. Whenever you acquire this Skill again, you may learn <strong>one key</strong> or <strong>one tone</strong> (your choice).</p><hr /><ul><li><p>For descriptions of how <strong>verses</strong> are broken down as well as a list of all of the Keys and Tones, please refer to the following handout: @UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</p></li><li><p>For purposes of <strong>automation</strong>, please add the following feature to your character sheet and click on it to <strong>perform</strong>: @UUID[Compendium.projectfu.skills.nu7QnUu7tmVv6zxU]{Verse}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -131,10 +131,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706550402521,
-    "modifiedTime": 1724180862627,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1739292831887,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

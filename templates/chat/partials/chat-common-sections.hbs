@@ -1,0 +1,14 @@
+<!-- Used with CommonSections API-->
+<div>
+    {{#each sections}}
+        <div data-order="{{order}}">
+            {{#if content}}
+                {{{content}}}
+            {{else}}
+                {{#if partial}}
+                    {{> (lookup this 'partial') data}}
+                {{/if}}
+            {{/if}}
+        </div>
+    {{/each}}
+</div>
