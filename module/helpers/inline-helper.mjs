@@ -23,7 +23,14 @@ export class InlineSourceInfo {
 	 * @return {InlineSourceInfo}
 	 */
 	static fromInstance(actor, item) {
-		return new InlineSourceInfo(item.name, actor.uuid, item.uuid);
+		if (actor) {
+			if (item) {
+				return new InlineSourceInfo(item.name, actor.uuid, item.uuid);
+			}
+			return new InlineSourceInfo(actor.name, actor.uuid, null);
+		} else if (item) {
+			return new InlineSourceInfo(item.name, null, item.uuid);
+		}
 	}
 
 	/**

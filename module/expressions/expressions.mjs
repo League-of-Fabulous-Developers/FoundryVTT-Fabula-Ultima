@@ -2,12 +2,22 @@ import { ImprovisedEffect } from '../helpers/improvised-effect.mjs';
 import { MathHelper } from '../helpers/math-helper.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
+import { Targeting } from '../helpers/targeting.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
+import { FU } from '../helpers/config.mjs';
+
+/**
+ * @typedef Roll
+ * @property {Number} total
+ */
 
 /**
  * @description Contains contextual objects used for evaluating expressions
  * @property {FUActor} actor The source of the action
  * @property {FUItem} item
  * @property {FUActor[]} targets
+ * @property {InlineSourceInfo} sourceInfo
  * @remarks Do not serialize this class, as it references full objects. Instead, store their uuids
  * and resolve them with the static constructor
  */
@@ -16,18 +26,29 @@ export class ExpressionContext {
 		this.actor = actor;
 		this.item = item;
 		this.targets = targets;
+		this.sourceInfo = InlineSourceInfo.fromInstance(this.actor, this.item);
 	}
 
 	/**
 	 * @description Resolves the context based on the target type
 	 * @param {FUActor|FUItem} target
+	 * @param {FUActor|FUItem} parent
 	 */
-	static resolveTarget(target) {
+	static resolveTarget(target, parent) {
+		let actor;
+		let item;
+
 		if (target instanceof FUActor) {
-			return new ExpressionContext(target, null, []);
+			actor = target;
+			if (parent instanceof FUItem) {
+				item = parent;
+			}
 		} else if (target instanceof FUItem) {
-			return new ExpressionContext(null, target, []);
+			item = target;
+			actor = item.actor;
 		}
+
+		return new ExpressionContext(actor, item, []);
 	}
 
 	/**
@@ -50,12 +71,32 @@ export class ExpressionContext {
 	}
 
 	/**
+	 * @property {FUActor} actor The source of the action
+	 * @property {FUItem} item
+	 * @param {FUActor[]} targets
+	 * @returns {ExpressionContext}
+	 */
+	static fromTargetData(actor, item, targets) {
+		return new ExpressionContext(actor, item, Targeting.deserializeTargetData(targets));
+	}
+
+	/**
 	 * @param {String} match
 	 */
 	assertActor(match) {
 		if (this.actor == null) {
 			ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
 			throw new Error(`No reference to an actor provided while evaluating expression "${match}"`);
+		}
+	}
+
+	/**
+	 * @param {String} match
+	 */
+	assertSingleTarget(match) {
+		if (this.targets.length !== 1) {
+			ui.notifications.warn('FU.ChatApplyMaxTargetWarning', { localize: true });
+			throw new Error(`Requires a single target for "${match}"`);
 		}
 	}
 
@@ -86,6 +127,13 @@ export class ExpressionContext {
 
 		ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
 		throw new Error(`No reference to an actor or targets provided while evaluating expression"`);
+	}
+
+	/**
+	 * @returns {FUActor} The single target of the expression
+	 */
+	get target() {
+		return this.targets[0];
 	}
 }
 
@@ -220,7 +268,12 @@ async function evaluateVariables(expression, context) {
 				context.assertActor(match);
 				return getAttributeSize(context.actor, symbol);
 			}
-			case 'se':
+			// Target status count
+			case 'tsc': {
+				context.assertActor(match);
+				context.assertSingleTarget(match);
+				return countStatusEffects(context.target);
+			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
 		}
@@ -238,8 +291,9 @@ async function evaluateVariables(expression, context) {
 async function evaluateMacros(expression, context) {
 	const pattern = /&(?<name>[a-zA-Z]+)\((?<params>.*?)\)/gm;
 	async function evaluateMacro(match, name, params) {
-		const splitArgs = params.split(',');
+		const splitArgs = params.split(',').map((i) => i.trim());
 		switch (name) {
+			// Skill level
 			case `sl`: {
 				context.assertActor(match);
 				const skillId = splitArgs[0].match(/(\w+-*\s*)+/gm)[0];
@@ -254,8 +308,17 @@ async function evaluateMacros(expression, context) {
 			case 'ar': {
 				context.assertActor(match);
 				const attr = splitArgs[0];
-				return await rollAttributeDie(context.actor, attr);
+				const roll = await rollAttributeDie(context.actor, attr);
+				return roll.total;
 			}
+			// Backlash: Roll attribute, spend resource
+			case 'backlash': {
+				context.assertActor(match);
+				const attr = splitArgs[0];
+				const res = splitArgs[1];
+				return await backlash(context.actor, attr, res, context.sourceInfo);
+			}
+			// Scale from 5-19, 20-39, 40+
 			case 'step':
 				return stepByLevel(context, splitArgs[0], splitArgs[1], splitArgs[2]);
 			default:
@@ -264,6 +327,15 @@ async function evaluateMacros(expression, context) {
 	}
 	return replaceAsync(expression, pattern, evaluateMacro);
 	//return expression.replace(pattern, evaluateMacro);
+}
+
+/**
+ * @param {FUActor} actor
+ * @return {Number}
+ */
+function countStatusEffects(actor) {
+	const relevantStatusEffects = Object.keys(FU.temporaryEffects);
+	return relevantStatusEffects.filter((status) => actor.statuses.has(status)).length;
 }
 
 /**
@@ -306,6 +378,24 @@ async function evaluateReferencedProperties(expression, context) {
 }
 
 /**
+ * @param {FUActor} actor
+ * @param {FU.attributes} key
+ * @param {FU.resources} resource
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {Number}
+ */
+async function backlash(actor, key, resource, sourceInfo) {
+	if (!(resource in FU.resources)) {
+		throw Error(`${resource} is not a valid resource type`);
+	}
+	const roll = await rollAttributeDie(actor, key);
+	const value = roll.total;
+	const request = new ResourceRequest(sourceInfo, [actor], resource, value);
+	await ResourcePipeline.processLoss(request);
+	return value;
+}
+
+/**
  * @description Given 3 amounts, picks the one for this characters' level
  * @param {ExpressionContext} context
  * @param {Number} first
@@ -345,13 +435,14 @@ async function replaceAsync(str, regExp, replacerFunction) {
 /**
  * @param {FUActor} actor
  * @param {FU.attributes} key
- * @returns {Promise<*>}
+ * @returns {Promise<Roll>} Retrieve from total
  */
 async function rollAttributeDie(actor, key) {
 	const dice = getAttributeSize(actor, key);
 	const formula = `d${dice}`;
-	const roll = await new Roll(formula).evaluate();
-	return roll.total;
+	const roll = await new Roll(formula).roll();
+	await game.dice3d.showForRoll(roll);
+	return roll;
 }
 
 /**

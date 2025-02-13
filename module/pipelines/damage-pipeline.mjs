@@ -10,6 +10,7 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ApplyTargetHookData, BeforeApplyHookData } from './legacy-hook-data.mjs';
 import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
 import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
+import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -21,6 +22,7 @@ import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
 
 const PIPELINE_STEP_LOCALIZATION_KEYS = {
 	initial: 'FU.DamagePipelineStepInitial',
+	extra: 'FU.Extra',
 	scaleIncomingDamage: 'FU.DamagePipelineStepScaleIncomingDamage',
 	affinity: 'FU.DamagePipelineStepAffinity',
 	incomingDamage: {
@@ -34,6 +36,26 @@ const PIPELINE_STEP_LOCALIZATION_KEYS = {
 		ice: 'FU.DamagePipelineStepIncomingDamageIce',
 		light: 'FU.DamagePipelineStepIncomingDamageLight',
 		poison: 'FU.DamagePipelineStepIncomingDamagePoison',
+
+		beast: `FU.Beast`,
+		construct: 'FU.Construct',
+		demon: 'FU.Demon',
+		elemental: 'FU.Elemental',
+		humanoid: 'FU.Humanoid',
+		monster: 'FU.Monster',
+		plant: 'FU.Plant',
+		undead: 'FU.Undead',
+	},
+	// TODO: Better way to not duplicate?
+	damage: {
+		beast: `FU.Beast`,
+		construct: 'FU.Construct',
+		demon: 'FU.Demon',
+		elemental: 'FU.Elemental',
+		humanoid: 'FU.Humanoid',
+		monster: 'FU.Monster',
+		plant: 'FU.Plant',
+		undead: 'FU.Undead',
 	},
 };
 
@@ -101,6 +123,7 @@ const Traits = {
  * @property {Number} affinity The index of the affinity
  * @property {String} affinityMessage The localized affinity message to use
  * @property {FU.damageTypes} damageType
+ * @property {String} extra An optional expression to evaluate for extra damage
  * @property {Number} amount The base amount before bonuses or modifiers are applied
  * @property {Map<String, Number>} bonuses Increments
  * @property {Map<String, Number>} modifiers Multipliers
@@ -113,6 +136,7 @@ export class DamagePipelineContext extends PipelineContext {
 		this.bonuses = new Map();
 		this.modifiers = new Map();
 		this.breakdown = [];
+		this.extra = request.baseDamageInfo.extra;
 		this.calculateAmount();
 	}
 
@@ -234,14 +258,37 @@ function overrideResult(context) {
 
 /**
  * @param {DamagePipelineContext} context
- * @return {Boolean}
+ * @return {Promise<Boolean>}
  */
-function collectIncrements(context) {
+async function collectIncrements(context) {
 	// Target
 	if (context.actor.system.bonuses) {
 		const incoming = context.actor.system.bonuses.incomingDamage;
+
 		context.addBonus(`incomingDamage.all`, incoming.all);
 		context.addBonus(`incomingDamage.${context.damageType}`, incoming[context.damageType] ?? 0);
+
+		// Potentially modify damage FROM a specific species (NPC)
+		if (context.sourceActor.system.species) {
+			const species = context.sourceActor.system.species.value;
+			context.addBonus(`incomingDamage.${species}`, incoming[species] ?? 0);
+		}
+
+		// Potentially modify damage TO a specific species (from a PC)
+		if (context.actor.system.species) {
+			const species = context.actor.system.species.value;
+			const outgoing = context.sourceActor.system.bonuses.damage;
+			context.addBonus(`damage.${species}`, outgoing[species] ?? 0);
+		}
+	}
+
+	// Expression
+	if (context.extra) {
+		const exprCtx = new ExpressionContext(context.sourceActor, context.item, [context.actor]);
+		const bonusValue = await Expressions.evaluate(context.extra, exprCtx);
+		if (bonusValue > 0) {
+			context.addBonus(`extra`, bonusValue);
+		}
 	}
 }
 
@@ -314,7 +361,7 @@ async function process(request) {
 
 		resolveAffinity(context);
 		if (!overrideResult(context)) {
-			collectIncrements(context);
+			await collectIncrements(context);
 			collectMultipliers(context);
 			calculateResult(context);
 		}
@@ -376,29 +423,18 @@ function getSourceInfoFromChatMessage(message) {
  * @param {jQuery} jQuery
  */
 function onRenderChatMessage(message, jQuery) {
-	const check = message.getFlag(SYSTEM, Flags.ChatMessage.CheckParams);
-	let baseDamageInfo;
 	let disabled = false;
+
+	/** @type BaseDamageInfo **/
+	let baseDamageInfo;
 	/** @type InlineSourceInfo **/
 	let sourceInfo = null;
-
-	if (check && check.damage) {
-		baseDamageInfo = {
-			total: check.damage.total,
-			type: check.damage.type,
-			modifierTotal: check.damage.modifierTotal,
-		};
-	}
 
 	if (ChecksV2.isCheck(message)) {
 		const damage = CheckConfiguration.inspect(message).getDamage();
 		if (damage) {
 			sourceInfo = getSourceInfoFromChatMessage(message);
-			baseDamageInfo = {
-				total: damage.total,
-				type: damage.type,
-				modifierTotal: damage.modifierTotal,
-			};
+			baseDamageInfo = damage;
 		}
 	}
 

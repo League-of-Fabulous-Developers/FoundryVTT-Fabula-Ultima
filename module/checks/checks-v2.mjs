@@ -189,7 +189,7 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	check.modifiers ??= [];
 	check.additionalData ??= {};
 	Object.seal(check);
-	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
+
 	Object.defineProperty(check, 'type', {
 		value: check.type,
 		writable: false,
@@ -210,7 +210,8 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 
 	// Set initial targets (actions without rolls can have targeting)
 	CheckConfiguration.configure(check).setDefaultTargets();
-
+	// Initial callback
+	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 	/**
 	 * @type {{callback: Promise | (() => Promise | void), priority: number}[]}
 	 */

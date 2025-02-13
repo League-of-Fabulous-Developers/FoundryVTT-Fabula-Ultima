@@ -184,7 +184,7 @@ export class FUActiveEffect extends ActiveEffect {
 				// First, evaluate using built-in support
 				const expression = Roll.replaceFormulaData(change.value, this.parent);
 				// Second, evaluate with our custom expressions
-				const context = ExpressionContext.resolveTarget(target);
+				const context = ExpressionContext.resolveTarget(target, this.parent);
 				const value = await Expressions.evaluate(expression, context);
 				change.value = String(value ?? 0);
 				console.debug(`Assigning ${change.key} = ${change.value}`);

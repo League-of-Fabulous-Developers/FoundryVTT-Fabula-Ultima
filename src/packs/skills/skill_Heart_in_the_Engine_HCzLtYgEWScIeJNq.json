@@ -52,7 +52,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "expression": "",
+      "extra": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -120,7 +122,106 @@
       "amount": 10
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_heart_in_the_engine.png",
+      "origin": "Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Heart In The Engine - Offensive",
+      "_id": "vDQ9W1rj7jQ8qlMS",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "2*$sl",
+          "priority": null
+        }
+      ],
+      "description": "<p><span>The next time you deal damage this turn you deal<strong>【SL × 2】</strong>extra damage.</span></p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.330",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1739628878997,
+        "modifiedTime": 1739629918708,
+        "lastModifiedBy": "esOkelwPNblkbxW3"
+      },
+      "_key": "!items.effects!HCzLtYgEWScIeJNq.vDQ9W1rj7jQ8qlMS"
+    },
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_heart_in_the_engine.png",
+      "origin": "Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Heart In The Engine - Defensive",
+      "_id": "rPpbi48lLhPU5hQo",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.all",
+          "mode": 2,
+          "value": "-2*$sl",
+          "priority": null
+        }
+      ],
+      "description": "<p><span>The next time you suffer damage this turn, that damage is reduced by <strong>【SL × 2】.</strong></span></p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.330",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1739629767056,
+        "modifiedTime": 1739629974761,
+        "lastModifiedBy": "esOkelwPNblkbxW3"
+      },
+      "_key": "!items.effects!HCzLtYgEWScIeJNq.rPpbi48lLhPU5hQo"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
@@ -134,7 +235,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.330",
     "createdTime": 1711431286236,
-    "modifiedTime": 1737921292434,
+    "modifiedTime": 1739629979147,
     "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null

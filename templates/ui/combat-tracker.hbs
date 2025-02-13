@@ -79,7 +79,7 @@
         {{#each factions as |combatants faction| }}
             <h2 class="faction">{{localize (concat 'FU.CombatFaction' (capitalize faction))}} {{combatants.length}}</h2>
             {{#each combatants}}
-                <li class="combatant actor directory-item flexrow {{faction}} {{this.css}}"
+                <li class="combatant actor directory-item flexrow {{faction}} {{this.css}} {{#if (eq @root.combatant.id this.id)}}started-turn{{/if}}"
                     data-combatant-id="{{this.id}}">
                     <img class="token-image" data-src="{{this.img}}" alt="{{this.name}}" />
                     <div class="token-name flexcol">

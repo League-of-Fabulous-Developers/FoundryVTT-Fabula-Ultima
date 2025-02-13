@@ -12,13 +12,16 @@ import { ConsumableDataModel } from '../documents/items/consumable/consumable-da
  * @param {string} description
  * @param {string} summary
  * @param {number} [order]
+ * @param {Boolean} open Defaults to true
  */
-const description = (sections, description, summary, order) => {
+const description = (sections, description, summary, order, open = true) => {
 	if (summary || description) {
 		sections.push(async () => ({
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
 			data: {
 				summary,
+				//The open attribute needs to be present without a value to be considered true.
+				open: open ? 'open' : '',
 				description: await TextEditor.enrichHTML(description),
 			},
 			order,
@@ -146,7 +149,7 @@ const opportunity = (sections, opportunity, order) => {
  * @param {TargetData[]} targets
  * @param {Object} flags
  * @param accuracyData
- * @param damageData
+ * @param {TemplateDamageData} damageData
  */
 const damage = (sections, actor, item, targets, flags, accuracyData, damageData) => {
 	const isTargeted = targets?.length > 0 || !Targeting.STRICT_TARGETING;

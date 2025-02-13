@@ -20,8 +20,15 @@ const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(
  */
 
 /**
- * Extend the basic Item with some very simple modifications.
+ * @typedef Item
+ * @property {Actor} actor
+ * @proeprty {String} uuid
+ */
+
+/**
+ * @description Extend the basic Item document with some very simple modifications.
  * @extends {Item}
+ * @inheritDoc
  */
 export class FUItem extends Item {
 	overrides = this.overrides ?? {};

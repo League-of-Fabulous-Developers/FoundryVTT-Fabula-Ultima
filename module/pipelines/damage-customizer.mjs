@@ -2,11 +2,6 @@ import { FU } from '../helpers/config.mjs';
 import { getTargeted } from '../helpers/target-handler.mjs';
 
 /**
- * @typedef BaseDamageInfo
- * @type {import('../helpers/typedefs.mjs').BaseDamageInfo}
- */
-
-/**
  * @typedef DamageType
  * @type {import('../helpers/config.mjs').DamageType}
  */
