@@ -1,6 +1,6 @@
 import { FU } from './config.mjs';
 import { InlineHelper } from './inline-helper.mjs';
-import { Effects } from '../documents/effects/effects.mjs';
+import { Effects } from '../pipelines/effects.mjs';
 
 /*
 possible changes from official effects:

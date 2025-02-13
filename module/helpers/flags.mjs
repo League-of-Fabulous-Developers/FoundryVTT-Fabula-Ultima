@@ -4,7 +4,9 @@
  * @example actor.getFlag(Flags.Scope, Flags.CurrentTurn)
  */
 export const Flags = Object.freeze({
+	CombatantsTurnStarted: 'CombatantsTurnStarted',
 	CombatantsTurnTaken: 'CombatantsTurnTaken',
+	CombatantId: 'CombatantId',
 	CurrentTurn: 'CurrentTurn',
 	FirstTurn: 'FirstTurn',
 	ChatMessage: Object.freeze({
@@ -23,6 +25,7 @@ export const Flags = Object.freeze({
 		UseMetaCurrency: 'UseMetaCurrency',
 		Targets: 'Targets',
 		RevertedAction: 'RevertedAction',
+		Effects: 'Effects',
 	}),
 	Scope: 'projectfu',
 	Modifier: Object.freeze({

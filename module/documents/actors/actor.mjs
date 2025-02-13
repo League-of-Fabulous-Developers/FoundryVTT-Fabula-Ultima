@@ -1,13 +1,27 @@
 import { FUItem } from '../items/item.mjs';
 import { FUHooks } from '../../hooks.mjs';
-import { toggleStatusEffect } from '../effects/effects.mjs';
+import { toggleStatusEffect } from '../../pipelines/effects.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { Flags } from '../../helpers/flags.mjs';
 
 /**
- * Extend the base Actor document by defining a custom roll data structure
+ * @typedef Actor
+ * @description The client-side Actor document which extends the common BaseActor model.
+ * @property {Boolean} isToken
+ * @property {ActiveEffect[]} appliedEffects
+ * @property {ActiveEffect[]} temporaryEffects
+ * @property {Boolean} inCombat
+ * @property {String} id The canonical identifier for this Document.
+ * @property {String} uuid A Universally Unique Identifier (uuid) for this Document instance.
+ */
+
+/**
+ * @class
+ * @description Extend the base Actor document by defining a custom roll data structure
  * @extends {Actor}
  * @property {CharacterDataModel | NpcDataModel} system
+ * @remarks {@link https://foundryvtt.com/api/classes/client.Actor.html}
+ * @inheritDoc
  */
 export class FUActor extends Actor {
 	/** @override */
@@ -246,6 +260,7 @@ export class FUActor extends Actor {
 
 	/**
 	 * @override
+	 * @returns {ActiveEffect[]}
 	 */
 	get temporaryEffects() {
 		const effects = super.temporaryEffects;
@@ -351,6 +366,29 @@ export class FUActor extends Actor {
 			throw new Error(`Type ${type} is invalid!`);
 		}
 		return itemTypes[type].filter(fuidFilter);
+	}
+
+	/**
+	 * @description Deletes all temporary effets on the actor
+	 */
+	clearTemporaryEffects() {
+		// Collect effects to delete
+		const effectsToDelete = this.effects.filter((effect) => {
+			// If it's a status effect
+			const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
+			if (statusEffectId) {
+				const immunity = this.system.immunities[statusEffectId];
+				if (immunity) {
+					return immunity;
+				}
+			}
+			return effect.isTemporary;
+		});
+
+		// Delete all collected effects
+		if (effectsToDelete.length > 0) {
+			Promise.all(effectsToDelete.map((effect) => effect.delete()));
+		}
 	}
 
 	/**

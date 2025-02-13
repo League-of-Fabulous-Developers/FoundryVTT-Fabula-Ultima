@@ -543,6 +543,7 @@
 		"DefenseFormula": "Defense Formula",
 		"PlayerTurn": "Player Turn",
 		"EnemyTurn": "Enemy Turn",
+		"Round": "Round",
 		"SurpriseRound": "Surprise Round",
 		"Quirk": "Quirk",
 		"Quirks": "Quirks",
@@ -873,6 +874,7 @@
 		"ChatEvaluateAmountNoActor": "No reference to an actor provided",
 		"ChatEvaluateAmountNoItem": "No reference to an item provided",
 		"ChatEvaluateNoSkill": "The referenced skill was not found in the actor",
+		"ChatManageEffects": "<b>{actor}</b> is currently affected by the following effects:",
 		"ChatPingTarget": "Ping the targeted actor",
 		"TotalAvailableSkills": "Total Available Skills",
 		"TotalSPAvailable": "Total SP Available",
@@ -954,6 +956,10 @@
 		"CombatHudPositionBottom": "Bottom",
 		"Hit": "Hit",
 		"Miss": "Miss",
+		"ChatCombatStart": "Combat started on round {round}.",
+		"ChatCombatEnd": "Combat ended on round {round}.",
+		"ChatClearTemporaryEffects": "Clear Temporary Effects",
+		"ChatEndScene": "End the current scene, dispatching a notification event.",
 		"SettingsSave": "Save Changes",
 		"SettingsReset": "Reset Changes",
 		"ChatMessageSend": "Send",
@@ -1274,6 +1280,9 @@
 		"DamagePipelineStepIncomingDamageFire": "Incoming Damage: Fire",
 		"DamagePipelineStepIncomingDamageIce": "Incoming Damage: Ice",
 		"DamagePipelineStepIncomingDamageLight": "Incoming Damage: Light",
-		"DamagePipelineStepIncomingDamagePoison": "Incoming Damage: Poison"
+		"DamagePipelineStepIncomingDamagePoison": "Incoming Damage: Poison",
+		"EndOfTurn": "End of Turn",
+		"EndOfRound": "End of Round",
+		"EndOfCombat": "End of Combat"
 	}
 }

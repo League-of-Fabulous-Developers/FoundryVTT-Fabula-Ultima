@@ -1,5 +1,9 @@
 /**
- * @property {FUCombat} viewed
+ * @class
+ * @property {FUCombat} viewed The currently tracked combat encounter
+ * @property {Function<Promise<object>>} getData
+ * @property {Function<Combatant, Boolean, void>} hoverCombatant
+ * @remarks {@link https://foundryvtt.com/api/classes/client.CombatTracker.html}
  */
 export class FUCombatTracker extends CombatTracker {
 	static get defaultOptions() {
@@ -9,24 +13,44 @@ export class FUCombatTracker extends CombatTracker {
 		});
 	}
 
+	/**
+	 * @description The data context used by the rendering
+	 * @param options
+	 * @returns {Promise<*>}
+	 */
 	async getData(options = {}) {
 		const data = await super.getData(options);
-		if (data.combat) {
-			data.factions = await this.getFactions(data);
-			data.currentTurn = data.combat.getCurrentTurn();
-			data.turnsLeft = this.countTurnsLeft(data.combat);
-			data.totalTurns = data.combat.combatants.reduce((agg, combatant) => {
+		/** @type FUCombat **/
+		const combat = data.combat;
+		if (combat) {
+			data.turnStarted = combat.isTurnStarted;
+			data.combatant = combat.combatant;
+			// What faction's turn it is
+			data.currentTurn = combat.getCurrentTurn();
+			// ID : Turns Left
+			data.turnsLeft = this.countTurnsLeft(combat);
+			// ID : Total Turns
+			data.totalTurns = combat.combatants.reduce((agg, combatant) => {
 				agg[combatant.id] = combatant.totalTurns;
 				return agg;
 			}, {});
 			data.turns = data.turns?.map((turn) => {
-				turn.statusEffects = data.combat.combatants.get(turn.id)?.actor.temporaryEffects.map((effect) => ({
+				turn.statusEffects = combat.combatants.get(turn.id)?.actor.temporaryEffects.map((effect) => ({
 					name: effect.name,
 					img: effect.img,
 				}));
 				turn.css = turn.css.replace('active', '');
 				return turn;
 			});
+			if (data.turns.size === 0) {
+				console.error(`Found no available turns on combat ${combat}`);
+			}
+			data.factions = await this.getFactions(data.turns, combat);
+			// if (data.factions.friendly.length === 0 || data.factions.friendly.length === 0) {
+			// 	console.error(`Factions were not set up on combat ${combat}`);
+			// }
+			// TODO: Set option to toggle?
+			data.outOfTurn = false;
 		}
 		return data;
 	}
@@ -48,7 +72,8 @@ export class FUCombatTracker extends CombatTracker {
 	 */
 	activateListeners(html) {
 		super.activateListeners(html);
-		html.find('a[data-action=take-turn]').click((event) => this.handleTakeTurn(event));
+		html.find('a[data-action=start-turn]').click((event) => this.handleStartTurn(event));
+		html.find('a[data-action=end-turn]').click((event) => this.handleEndTurn(event));
 		html.find('a[data-action=take-turn-out-of-turn]').click((event) => this.handleTakeTurnOutOfTurn(event));
 		html.find('.combatant')
 			.off('click')
@@ -98,12 +123,14 @@ export class FUCombatTracker extends CombatTracker {
 	}
 
 	/**
+	 * @param turns
+	 * @param {FUCombat} combat
 	 * @return {Object.<"friendly"|"neutral"|"hostile", {}[]>}
 	 */
-	async getFactions(data) {
-		return data.turns.reduce(
+	async getFactions(turns, combat) {
+		return turns.reduce(
 			(agg, combatantData) => {
-				const combatant = data.combat.combatants.get(combatantData.id);
+				const combatant = combat.combatants.get(combatantData.id);
 				if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
 					agg.friendly.push(combatantData);
 				} else {
@@ -115,8 +142,17 @@ export class FUCombatTracker extends CombatTracker {
 		);
 	}
 
-	async handleTakeTurn(event) {
+	async handleStartTurn(event) {
 		const combatantId = $(event.currentTarget).parents('[data-combatant-id]').data('combatantId');
+		const combatant = this.viewed.combatants.get(combatantId);
+		if (combatant) {
+			await this.viewed.startTurn(combatant);
+		}
+	}
+
+	async handleEndTurn(event) {
+		const combatantId = $(event.currentTarget).parents('[data-combatant-id]').data('combatantId');
+		/** @type Combatant  */
 		const combatant = this.viewed.combatants.get(combatantId);
 		if (combatant) {
 			if (combatant.isDefeated) {
@@ -129,13 +165,13 @@ export class FUCombatTracker extends CombatTracker {
 					return;
 				}
 			}
-			await this.viewed.markTurnTaken(combatant);
+			await this.viewed.endTurn(combatant);
 		}
 	}
 
 	async handleTakeTurnOutOfTurn(event) {
 		if (event.shiftKey) {
-			await this.handleTakeTurn(event);
+			await this.handleEndTurn(event);
 		} else {
 			ui.notifications.info('FU.CombatTakeTurnOutOfTurn', { localize: true });
 		}

@@ -79,7 +79,7 @@ function getSingleTarget(event) {
  * @param {Function<Event, Object, FUActor[], Promise>} defaultAction
  * @param {Function<Event, Object, FUActor[], Promise>} alternateAction
  */
-async function handleClick(event, dataset, getTargetsFunction, defaultAction, alternateAction = null) {
+async function _handleClick(event, dataset, getTargetsFunction, defaultAction, alternateAction = null) {
 	event.preventDefault();
 	const targets = getTargetsFunction ? await getTargetsFunction(event) : [];
 	if (event.ctrlKey || event.metaKey) {
@@ -88,6 +88,23 @@ async function handleClick(event, dataset, getTargetsFunction, defaultAction, al
 		}
 	} else {
 		await defaultAction(event, dataset, targets);
+	}
+}
+
+/**
+ * @param {ChatMessage} message
+ * @param {jQuery} jQuery
+ * @param {String} actionName The name of the data-action in the html, e.g: `a[data-action=...]`
+ * @param {Function<Object, Promise>} onClick
+ * @returns {Promise<*>}
+ */
+async function handleClick(message, jQuery, actionName, onClick) {
+	const dataAction = jQuery.find(`a[data-action=${actionName}]`);
+	if (dataAction) {
+		dataAction.click(async (event) => {
+			event.preventDefault();
+			await onClick(dataAction.data());
+		});
 	}
 }
 
@@ -151,6 +168,7 @@ function initializedFlags(key, value) {
 export const Pipeline = {
 	getSingleTarget,
 	process,
+	_handleClick,
 	handleClick,
 	handleClickRevert,
 	toggleFlag,

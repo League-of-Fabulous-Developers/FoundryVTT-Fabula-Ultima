@@ -3,7 +3,7 @@ import { InlineHelper } from './inline-helper.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
-import { Effects } from '../documents/effects/effects.mjs';
+import { Effects } from '../pipelines/effects.mjs';
 import { WeaponDataModel } from '../documents/items/weapon/weapon-data-model.mjs';
 import { ClassFeatureTypeDataModel } from '../documents/items/classFeature/class-feature-type-data-model.mjs';
 import { WeaponModuleDataModel } from '../documents/items/classFeature/pilot/weapon-module-data-model.mjs';

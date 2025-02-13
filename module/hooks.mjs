@@ -40,4 +40,8 @@ export const FUHooks = {
 	 * @example callback(actor, journalEntry) { ... }
 	 */
 	ROLL_STUDY: 'studyRoll',
+	/**
+	 * @description Invoked when there's a change in the combat state
+	 */
+	COMBAT_EVENT: 'projectfu.combat',
 };

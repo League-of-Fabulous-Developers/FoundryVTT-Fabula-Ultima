@@ -1,4 +1,4 @@
-import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../documents/effects/effects.mjs';
+import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../pipelines/effects.mjs';
 import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/checks.mjs';
 import { ItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
@@ -975,21 +975,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		if (!actor || !actor.system || !actor.system.immunities) return;
 
-		// Collect effects to delete
-		const effectsToDelete = actor.effects.filter((effect) => {
-			// Status Effect
-			const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
-			if (statusEffectId) {
-				return actor.system.immunities[statusEffectId];
-			}
-
-			return effect.isTemporary;
-		});
-
-		// Delete all collected effects
-		if (effectsToDelete.length > 0) {
-			Promise.all(effectsToDelete.map((effect) => effect.delete()));
-		}
+		actor.clearTemporaryEffects();
 	}
 
 	// Method to change the sort type

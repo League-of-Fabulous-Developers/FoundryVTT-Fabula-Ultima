@@ -65,18 +65,18 @@
                                 <div class="marquee"
                                      style="animation-duration: {{this.effectsMarqueeDuration}}s; animation-direction: {{this.marqueeDirection}};">
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}"
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}"
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                 </div>
                             {{else}}
                                 <div>
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}"
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                 </div>
@@ -84,30 +84,8 @@
                         </div>
                     {{/if}}
                 </div>
+                {{> "systems/projectfu/templates/ui/partials/combat-hud-turn.hbs"}}
 
-                {{#if this.hasCombatStarted}}
-                    {{#if this.hasActed}}
-                    {{else}}
-                        {{#if this.isCurrentTurn}}
-                        <a class="combatant-control take-turn" role="button" data-action="take-turn">
-                            {{#if (gt this.totalTurns 1)}}
-                                <i class="mats-o mats-fill">counter_{{this.turnsLeft}}</i>
-                            {{else}}
-                                <i class="mats-o mats-fill">check_circle</i>
-                            {{/if}}
-                        </a>
-                        {{else}}
-                        <a class="combatant-control take-turn out-of-turn"
-                            data-action="take-turn-out-of-turn">
-                            {{#if (gt this.totalTurns 1)}}
-                                <i class="mats-o">counter_{{this.turnsLeft}}</i>
-                            {{else}}
-                                <i class="mats-o">check_circle</i>
-                            {{/if}}
-                        </a>
-                        {{/if}}
-                    {{/if}}
-                {{/if}}
             </div>
         {{/each}}
     </div>
@@ -143,18 +121,18 @@
                                 <div class="marquee"
                                      style="animation-duration: {{this.effectsMarqueeDuration}}s; animation-direction: {{this.marqueeDirection}};">
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                 </div>
                             {{else}}
                                 <div>
                                     {{#each this.effects as |effect|}}
-                                        <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
+                                        <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                     {{/each}}
                                 </div>
@@ -174,29 +152,7 @@
                     {{/if}}
                 </div>
 
-                {{#if this.hasCombatStarted}}
-                    {{#if this.hasActed}}
-                    {{else}}
-                        {{#if this.isCurrentTurn}}
-                        <a class="combatant-control take-turn" role="button" data-action="take-turn">
-                            {{#if (gt this.totalTurns 1)}}
-                                <i class="mats-o mats-fill">counter_{{this.turnsLeft}}</i>
-                            {{else}}
-                                <i class="mats-o mats-fill">check_circle</i>
-                            {{/if}}
-                        </a>
-                        {{else}}
-                        <a class="combatant-control take-turn out-of-turn"
-                            data-action="take-turn-out-of-turn">
-                            {{#if (gt this.totalTurns 1)}}
-                                <i class="mats-o">counter_{{this.turnsLeft}}</i>
-                            {{else}}
-                                <i class="mats-o">check_circle</i>
-                            {{/if}}
-                        </a>
-                        {{/if}}
-                    {{/if}}
-                {{/if}}
+                {{> "systems/projectfu/templates/ui/partials/combat-hud-turn.hbs"}}
             </div>
         {{/each}}
     </div>
