@@ -42,6 +42,56 @@ export const FUHooks = {
 	ROLL_STUDY: 'studyRoll',
 	/**
 	 * @description Invoked when there's a change in the combat state
+	 * @example callback(event)
+	 * @remarks Uses {@link CombatEvent}
 	 */
-	COMBAT_EVENT: 'projectfu.combat',
+	COMBAT_EVENT: 'projectfu.events.combat',
+	/**
+	 * @description Invoked after an attack (involving an accuracy check) has been performed by an actor
+	 * @example callback(event)
+	 * @remarks Uses {@link AttackEvent}
+	 */
+	ATTACK_EVENT: 'projectfu.events.attack',
+	/**
+	 * @description Invoked after a spell (without a magic check) has been performed by an actor
+	 * @example callback(event)
+	 * @remarks Uses {@link SpellEvent}
+	 */
+	SPELL_EVENT: 'projectfu.events.spell',
+	/**
+	 * @description Invoked after damage has been applied to an actor
+	 * @example callback(event)
+	 * @remarks Uses {@link DamageEvent}
+	 */
+	DAMAGE_EVENT: 'projectfu.events.damage',
+	/**
+	 * @description Invoked after resource gain has been applied to an actor
+	 * @example callback(event)
+	 * @remarks Uses {@link GainEvent}
+	 */
+	GAIN_EVENT: 'projectfu.events.gain',
+	/**
+	 * @description Dispatched after resource loss has been applied to an actor
+	 * @example callback(event)
+	 * @remarks Uses {@link LossEvent}.
+	 */
+	LOSS_EVENT: 'projectfu.events.loss',
+	/**
+	 * @description Dispatched after an actor enters or exits crisis.
+	 * @example callback(event)
+	 * @remarks Uses {@link CrisisEvent}. This can happen after a {@link DAMAGE_EVENT}.
+	 */
+	CRISIS_EVENT: 'projectfu.events.crisis',
+	/**
+	 * @description Invoked after an actor is reduced to 0 hit points
+	 * @example callback(event)
+	 * @remarks Uses {@link DefeatEvent}. This can happen after a {@link DAMAGE_EVENT}.
+	 */
+	DEFEAT_EVENT: 'projectfu.events.defeat',
+	/**
+	 * @description Dispatched after an actor has a status effect applied on them.
+	 * @example callback(event)
+	 * @remarks Uses {@link StatusEvent}. It happens AFTER the status effect has been applied.
+	 */
+	STATUS_EVENT: 'projectfu.events.status',
 };

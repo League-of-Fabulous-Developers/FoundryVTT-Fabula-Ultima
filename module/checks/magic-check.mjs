@@ -4,6 +4,7 @@ import { SYSTEM } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
+import { CommonEvents } from './common-events.mjs';
 
 /**
  * @param {CheckV2} check
@@ -100,6 +101,7 @@ function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags
 
 	const targets = inspector.getTargets();
 	CommonSections.damage(data, actor, item, targets, flags, accuracyData, damageData);
+	CommonEvents.attack(inspector, actor, item);
 }
 
 /**
