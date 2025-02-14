@@ -97,7 +97,7 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "type": {
           "value": "physical"
@@ -131,10 +131,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706551925144,
-    "modifiedTime": 1724180863196,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1739537265015,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

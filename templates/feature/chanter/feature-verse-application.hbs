@@ -9,7 +9,7 @@
                     <label>
                         <span class="resource-label-sm">{{localize "FU.ClassFeatureVerseChooseKey"}}</span><br>
                         <select class="resource-inputs select-dropdown-full grid-span-4" name="performance.key">
-                            {{selectOptions keys selected=performance.key nameAttr="id" labelAttr="name"}}
+                            {{selectOptions keys selected=performance.key valueAttr="id" labelAttr="name"}}
                         </select>
                     </label>
                 </div>
@@ -17,7 +17,7 @@
                     <label>
                         <span class="resource-label-sm">{{localize "FU.ClassFeatureVerseChooseTone"}}</span><br>
                         <select class="resource-inputs select-dropdown-full grid-span-4" name="performance.tone">
-                            {{selectOptions tones selected=performance.tone nameAttr="id" labelAttr="name"}}
+                            {{selectOptions tones selected=performance.tone valueAttr="id" labelAttr="name"}}
                         </select>
                     </label>
                 </div>
@@ -25,7 +25,7 @@
                     <label>
                         <span class="resource-label-sm">{{localize "FU.ClassFeatureVerseChooseVolume"}}</span><br>
                         <select class="resource-inputs select-dropdown-full grid-span-4" name="performance.volume">
-                            {{selectOptions volume selected=performance.volume nameAttr="id" labelAttr="name"}}
+                            {{selectOptions volume selected=performance.volume valueAttr="id" labelAttr="name"}}
                         </select>
                     </label>
                 </div>

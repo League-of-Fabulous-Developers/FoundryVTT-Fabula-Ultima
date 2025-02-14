@@ -1,5 +1,5 @@
 import { FU } from './config.mjs';
-import { InlineHelper } from './inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
@@ -67,14 +67,23 @@ function activateListeners(document, html) {
 				return;
 			}
 
-			const sourceInfo = InlineHelper.determineSource(document, this);
 			const data = {
 				type: INLINE_WEAPON,
-				sourceInfo: sourceInfo,
+				sourceInfo: InlineHelper.determineSource(document, this),
+				traits: this.dataset.traits,
 			};
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		});
+}
+
+async function onDropActor(actor, sheet, { type, sourceInfo, traits, ignore }) {
+	if (type === INLINE_WEAPON) {
+		sourceInfo = InlineSourceInfo.fromObject(sourceInfo);
+		traits = traits.split(' ');
+		await applyTraitsToWeapon(actor, sourceInfo, traits);
+		return false;
+	}
 }
 
 /**
@@ -129,12 +138,6 @@ async function applyTraitsToWeapon(actor, sourceInfo, traits) {
 		console.info(`Applied ${traits} from ${sourceInfo.name} to weapon '${weapon.uuid}' on actor '${actor.uuid}' from source ${source?.uuid}`);
 	} else {
 		ui.notifications.error('FU.ChatApplyNoCharacterSelected', { localize: true });
-	}
-}
-
-function onDropActor(actor, sheet, { type, sourceInfo, ignore }) {
-	if (type === INLINE_WEAPON) {
-		return false;
 	}
 }
 

@@ -22,7 +22,7 @@ const inlineDamageEnricher = {
 
 function enricher(text, options) {
 	const amount = text[1];
-	const type = text[2];
+	const type = text[2].toLowerCase();
 
 	if (type in FU.damageTypes) {
 		const anchor = document.createElement('a');
@@ -62,7 +62,7 @@ function activateListeners(document, html) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
 				const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
-				const amount = Expressions.evaluate(this.dataset.amount, context);
+				const amount = await Expressions.evaluate(this.dataset.amount, context);
 
 				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
 				const request = new DamageRequest(sourceInfo, targets, baseDamageInfo);
@@ -89,12 +89,12 @@ function activateListeners(document, html) {
 }
 
 // TODO: Implement
-function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo, ignore }) {
+async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo, ignore }) {
 	if (type === INLINE_DAMAGE) {
 		// Need to rebuild the class after it was deserialized
 		const sourceInfo = InlineSourceInfo.fromObject(_sourceInfo);
 		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
-		const _amount = Expressions.evaluate(amount, context);
+		const _amount = await Expressions.evaluate(amount, context);
 		const baseDamageInfo = { type: damageType, total: _amount, modifierTotal: 0 };
 
 		const request = new DamageRequest(sourceInfo, [actor], baseDamageInfo);

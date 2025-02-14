@@ -229,29 +229,28 @@ async function showFloatyText(targetData, localizedText) {
  * @param {FUItem} item
  * @param {TargetData[]} targets
  * @param {Object} flags
+ * @param {ResourceExpense} expense
  */
-const spendResource = (sections, actor, item, targets, flags) => {
-	/**
-	 * @type ResourceExpense
-	 */
-	let expense;
-
-	// If using the newer cost data model
-	if (item.system.cost) {
-		if (item.system.cost.amount === 0) {
-			return;
+const spendResource = (sections, actor, item, targets, flags, expense) => {
+	// Resolve the expense if not explicit
+	if (expense === undefined) {
+		// If using the newer cost data model
+		if (item.system.cost) {
+			if (item.system.cost.amount === 0) {
+				return;
+			}
+			expense = ResourcePipeline.calculateExpense(item, targets);
+			if (expense.amount === 0) {
+				return;
+			}
 		}
-		expense = ResourcePipeline.calculateExpense(item, targets);
-		if (expense.amount === 0) {
-			return;
+		// Support for consumables
+		else if (item.system instanceof ConsumableDataModel) {
+			expense = {
+				resource: 'ip',
+				amount: item.system.ipCost.value,
+			};
 		}
-	}
-	// Support for consumables
-	else if (item.system instanceof ConsumableDataModel) {
-		expense = {
-			resource: 'ip',
-			amount: item.system.ipCost.value,
-		};
 	}
 
 	if (expense) {

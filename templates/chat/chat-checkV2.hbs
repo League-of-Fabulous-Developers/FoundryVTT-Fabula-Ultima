@@ -1,13 +1,1 @@
-<div>
-    {{#each sections}}
-        <div data-order="{{order}}">
-            {{#if content}}
-                {{{content}}}
-            {{else}}
-                {{#if partial}}
-                    {{> (lookup this 'partial') data}}
-                {{/if}}
-            {{/if}}
-        </div>
-    {{/each}}
-</div>
+{{> 'systems/projectfu/templates/chat/partials/chat-common-sections.hbs'}}

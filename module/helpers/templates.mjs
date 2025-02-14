@@ -99,6 +99,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-targets.hbs',
+		'systems/projectfu/templates/chat/partials/chat-common-sections.hbs',
 
 		// UI Components
 		'systems/projectfu/templates/ui/combat-tracker.hbs',

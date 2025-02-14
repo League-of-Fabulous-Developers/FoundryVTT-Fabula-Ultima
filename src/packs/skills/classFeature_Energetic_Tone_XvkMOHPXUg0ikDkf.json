@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Until the start of your next turn, when a target succeeds on a Check that includes <strong>【@DATA[key.attribute]】</strong> and that Check allows them to advance or turn back a Clock, they may fill or erase an additional section of that Clock.</p>"
+      "description": "<p>Until the <strong>start of your next turn</strong>, when a target <strong>succeeds</strong> on a <strong>Check</strong> that includes <strong>【@DATA[key.attribute]】</strong> and that Check allows them to advance or turn back a Clock, they may <strong>fill or erase</strong> an additional section of that Clock.</p>"
     },
     "source": "FUHF139",
     "fuid": "energetic-tone"
@@ -30,10 +30,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1710039830425,
-    "modifiedTime": 1724180862455,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1739382369014,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

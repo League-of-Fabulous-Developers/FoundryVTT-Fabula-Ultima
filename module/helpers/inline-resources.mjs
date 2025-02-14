@@ -95,7 +95,7 @@ function activateListeners(document, html) {
 				const type = this.dataset.type;
 				const uncapped = this.dataset.uncapped === 'true';
 				const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
-				const amount = Expressions.evaluate(this.dataset.amount, context);
+				const amount = await Expressions.evaluate(this.dataset.amount, context);
 
 				if (this.classList.contains(classInlineRecovery)) {
 					await applyRecovery(sourceInfo, targets, type, amount, uncapped);
@@ -124,15 +124,14 @@ function activateListeners(document, html) {
 		});
 }
 
-function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInfo, uncapped }) {
+async function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInfo, uncapped }) {
 	if (sourceInfo === undefined) {
 		return true;
 	}
 
-	const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
-	amount = Expressions.evaluate(amount, context);
-
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
+		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
+		amount = await Expressions.evaluate(amount, context);
 		applyRecovery(sourceInfo, [actor], recoveryType, amount, uncapped);
 		return false;
 	} else if (type === INLINE_LOSS && !Number.isNaN(amount)) {

@@ -225,28 +225,28 @@ function calculateExpense(item, targets) {
 }
 
 /**
- * @param {Document} document
+ * @param {Document} message
  * @param {jQuery} jQuery
  */
-function onRenderChatMessage(document, jQuery) {
-	if (!document.getFlag(SYSTEM, Flags.ChatMessage.ResourceLoss) && !document.getFlag(SYSTEM, Flags.ChatMessage.ResourceGain)) {
+function onRenderChatMessage(message, jQuery) {
+	if (!message.getFlag(SYSTEM, Flags.ChatMessage.ResourceLoss) && !message.getFlag(SYSTEM, Flags.ChatMessage.ResourceGain)) {
 		return;
 	}
 
 	/**
-	 * @param {Event} event
 	 * @param dataset
 	 * @param {FUActor[]} targets
 	 * @returns {Promise<Awaited<*>[]>}
 	 */
-	const applyResourceLoss = async (event, dataset) => {
+	const applyResourceLoss = async (dataset) => {
 		const sourceInfo = new InlineSourceInfo(dataset.name, dataset.actor, dataset.item);
 		const actor = sourceInfo.resolveActor();
 		const request = new ResourceRequest(sourceInfo, [actor], dataset.resource, dataset.amount);
 		return ResourcePipeline.processLoss(request);
 	};
+	Pipeline.handleClick(message, jQuery, 'applyResourceLoss', applyResourceLoss);
 
-	Pipeline.handleClickRevert(document, jQuery, 'revertResourceLoss', async (dataset) => {
+	Pipeline.handleClickRevert(message, jQuery, 'revertResourceLoss', async (dataset) => {
 		const actor = fromUuidSync(dataset.uuid);
 		const amount = dataset.amount;
 		const attributeKey = dataset.key;
@@ -256,7 +256,7 @@ function onRenderChatMessage(document, jQuery) {
 		return Promise.all(updates);
 	});
 
-	Pipeline.handleClickRevert(document, jQuery, 'revertResourceGain', async (dataset) => {
+	Pipeline.handleClickRevert(message, jQuery, 'revertResourceGain', async (dataset) => {
 		const actor = fromUuidSync(dataset.uuid);
 		const amount = dataset.amount;
 		const attributeKey = dataset.key;
@@ -264,10 +264,6 @@ function onRenderChatMessage(document, jQuery) {
 		updates.push(actor.modifyTokenAttribute(attributeKey, -amount, true));
 		actor.showFloatyText(`${amount} ${FU.resourcesAbbr[dataset.resource]}`, `red`);
 		return Promise.all(updates);
-	});
-
-	jQuery.find(`a[data-action=applyResourceLoss]`).click(function (event) {
-		return Pipeline.handleClick(event, this.dataset, null, applyResourceLoss);
 	});
 }
 

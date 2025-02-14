@@ -69,6 +69,7 @@ export class KeyDataModel extends RollableClassFeatureDataModel {
 		if (!actor) {
 			return;
 		}
+
 		const data = {
 			types: FU.damageTypes[model.type],
 			statuses: KeyDataModel.statuses[model.status],
