@@ -1,11 +1,11 @@
 import { FU } from './config.mjs';
-import { InlineHelper } from './inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { NpcDataModel } from '../documents/actors/npc/npc-data-model.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 
-const dataType = 'InlineWeapon';
+const INLINE_DATA_TYPE = 'InlineAffinity';
 const className = `inline-affinity`;
 
 /**
@@ -72,12 +72,22 @@ function activateListeners(document, html) {
 
 			const sourceInfo = InlineHelper.determineSource(document, this);
 			const data = {
-				type: dataType,
+				type: INLINE_DATA_TYPE,
 				sourceInfo: sourceInfo,
+				affinity: this.dataset.type,
+				value: this.dataset.value,
 			};
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		});
+}
+
+async function onDropActor(actor, sheet, { type, sourceInfo, affinity, value, ignore }) {
+	if (type === INLINE_DATA_TYPE) {
+		sourceInfo = InlineSourceInfo.fromObject(sourceInfo);
+		await applyEffect(actor, sourceInfo, affinity, value);
+		return false;
+	}
 }
 
 /**
@@ -125,12 +135,6 @@ async function applyEffect(actor, sourceInfo, type, value) {
 		});
 	} else {
 		ui.notifications.error('FU.ChatApplyNoCharacterSelected', { localize: true });
-	}
-}
-
-function onDropActor(actor, sheet, { type, sourceInfo, ignore }) {
-	if (type === dataType) {
-		return false;
 	}
 }
 

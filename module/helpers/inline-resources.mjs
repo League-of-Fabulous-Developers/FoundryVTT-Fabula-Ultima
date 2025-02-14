@@ -129,10 +129,9 @@ async function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInf
 		return true;
 	}
 
-	const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
-	amount = await Expressions.evaluate(amount, context);
-
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
+		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
+		amount = await Expressions.evaluate(amount, context);
 		applyRecovery(sourceInfo, [actor], recoveryType, amount, uncapped);
 		return false;
 	} else if (type === INLINE_LOSS && !Number.isNaN(amount)) {
