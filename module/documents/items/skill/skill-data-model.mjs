@@ -291,7 +291,7 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 				// Append expression value if present
 				const extra = item.system.damage.extra;
 				if (extra) {
-					configure.addExtraDamage(extra);
+					configure.setExtraDamage(extra);
 				}
 			}
 		};

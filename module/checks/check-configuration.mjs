@@ -219,7 +219,7 @@ class CheckConfigurer {
 	 * @param {String} extra
 	 * @return {CheckConfigurer}
 	 */
-	addExtraDamage(extra) {
+	setExtraDamage(extra) {
 		this.damage.extra = extra;
 		return this;
 	}
