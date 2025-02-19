@@ -441,7 +441,9 @@ async function rollAttributeDie(actor, key) {
 	const dice = getAttributeSize(actor, key);
 	const formula = `d${dice}`;
 	const roll = await new Roll(formula).roll();
-	await game.dice3d.showForRoll(roll);
+	if (game.dice3d) {
+		await game.dice3d.showForRoll(roll);
+	}
 	return roll;
 }
 

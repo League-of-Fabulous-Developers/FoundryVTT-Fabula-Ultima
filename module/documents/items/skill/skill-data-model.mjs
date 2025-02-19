@@ -256,22 +256,18 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 			check.secondary = weaponCheck.secondary;
 			check.additionalData[ABILITY_USED_WEAPON] = weapon.uuid;
 
-			const inspect = CheckConfiguration.inspect(weaponCheck);
 			/** @type WeaponDataModel **/
 			const weaponData = weapon.system;
 
 			// Uses accuracy
-			if (this.hasRoll) {
-				if (this.useWeapon) {
-					configure.addModifier('FU.CheckBonus', weaponData.accuracy.value);
-					configure.addItemAccuracyBonuses(weapon, actor).setTargetedDefense(weaponData.defense);
-				} else if (this.accuracy) {
-					check.modifiers.push({
-						label: 'FU.CheckBonus',
-						value: this.accuracy,
-					});
-					check.modifiers.push(...weaponCheck.modifiers);
-				}
+			configure.addModifier('FU.CheckBonus', weaponData.accuracy.value);
+			configure.addItemAccuracyBonuses(weapon, actor).setTargetedDefense(weaponData.defense);
+			if (this.accuracy) {
+				check.modifiers.push({
+					label: 'FU.CheckBonus',
+					value: this.accuracy,
+				});
+				check.modifiers.push(...weaponCheck.modifiers);
 			}
 
 			// Uses damage
@@ -280,13 +276,7 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 					// If the damage type is not untyped, override the weapons
 					const damageType = this.damage.type && this.damage.type !== FU.damageTypes.untyped ? this.damage.type : weaponData.damageType.value;
 					configure.setDamage(damageType, weaponData.damage.value);
-				} else {
-					configure.setDamage(this.damage.type, this.damage.value);
 				}
-
-				configure.addItemDamageBonuses(weapon, actor);
-				configure.setHrZero(this.damage.hrZero || modifiers.shift);
-				configure.setTargetedDefense(this.defense || inspect.getTargetedDefense());
 
 				// Append expression value if present
 				const extra = item.system.damage.extra;
