@@ -24,6 +24,7 @@ export class FUCombatTracker extends CombatTracker {
 		const combat = data.combat;
 		if (combat) {
 			data.turnStarted = combat.isTurnStarted;
+			// The current combatant, if any
 			data.combatant = combat.combatant;
 			// What faction's turn it is
 			data.currentTurn = combat.getCurrentTurn();
@@ -131,6 +132,7 @@ export class FUCombatTracker extends CombatTracker {
 		return turns.reduce(
 			(agg, combatantData) => {
 				const combatant = combat.combatants.get(combatantData.id);
+				combatant.startedTurn = combat.isCurrentCombatant(combatant);
 				if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
 					agg.friendly.push(combatantData);
 				} else {

@@ -35,8 +35,27 @@ const initHrZero = (hrZero) => (check) => {
  * @typedef DamageData
  * @property {DamageType} type
  * @property {BonusDamage[]} modifiers
- * @property {number} [modifierTotal]
+ * @property {number} modifierTotal
  * @property {number} [total]
+ * @property {String} extra An expression to evaluate to add extra damage
+ */
+
+/**
+ * @typedef TemplateDamageData
+ * @property {Object} result - The result attributes from the check.
+ * @property {number} result.attr1 - The primary check result.
+ * @property {number} result.attr2 - The secondary check result.
+ * @property {Object} damage - The damage details.
+ * @property {number} damage.hrZero - The HR zero value.
+ * @property {number} damage.bonus - The total damage bonus.
+ * @property {number} damage.total - The total calculated damage.
+ * @property {string} damage.type - The type of damage.
+ * @property {String} damage.extra - Additional damage information.
+ * @property {Object} translation - Translation details for damage types and icons.
+ * @property {Object} translation.damageTypes - The available damage types.
+ * @property {Object} translation.damageIcon - The icon representation of damage types.
+ * @property {Array} modifiers - Modifiers applied to the damage.
+ *
  */
 
 /**
@@ -77,6 +96,13 @@ class CheckConfigurer {
 	}
 
 	/**
+	 * @returns {DamageData}
+	 */
+	get damage() {
+		return this.#check.additionalData[DAMAGE];
+	}
+
+	/**
 	 * @param {FUItem} item
 	 * @param {FUActor} actor
 	 * @return {CheckConfigurer}
@@ -91,7 +117,7 @@ class CheckConfigurer {
 	 * @return {CheckConfigurer}
 	 */
 	addModelAccuracyBonuses(model, actor) {
-		// Wewapon Category
+		// Weapon Category
 		const category = model.category?.value;
 		if (category && actor.system.bonuses.accuracy[category]) {
 			this.#check.modifiers.push({
@@ -116,6 +142,7 @@ class CheckConfigurer {
 	}
 
 	/**
+	 * @description A modifier to the check (accuracy)
 	 * @param {String} label
 	 * @param {Number} value
 	 */
@@ -185,6 +212,15 @@ class CheckConfigurer {
 	 */
 	addDamageBonus(label, value) {
 		this.#check.additionalData[DAMAGE]?.modifiers.push({ label, value });
+		return this;
+	}
+
+	/**
+	 * @param {String} extra
+	 * @return {CheckConfigurer}
+	 */
+	setExtraDamage(extra) {
+		this.damage.extra = extra;
 		return this;
 	}
 
@@ -382,6 +418,7 @@ class CheckInspector {
 	}
 
 	/**
+	 * @returns {TemplateDamageData}
 	 * @remarks Used for templating
 	 */
 	getDamageData() {
@@ -400,6 +437,7 @@ class CheckInspector {
 					bonus: damage.modifierTotal,
 					total: damage.total,
 					type: damage.type,
+					extra: damage.extra,
 				},
 				translation: {
 					damageTypes: FU.damageTypes,

@@ -339,6 +339,9 @@ export class FUCombat extends Combat {
 		if (!this.isTurnStarted) {
 			return false;
 		}
+		if (!combatant) {
+			return false;
+		}
 		return combatant.id === this.combatant.id;
 	}
 

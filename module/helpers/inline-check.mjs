@@ -122,7 +122,7 @@ function activateListeners(document, html) {
 					if (this.dataset.modifier !== undefined) {
 						const sourceInfo = InlineHelper.determineSource(document, this);
 						const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
-						modifier = await Expressions.evaluate(this.dataset.modifier, context);
+						modifier = await Expressions.evaluateAsync(this.dataset.modifier, context);
 					}
 
 					if (prompt) {

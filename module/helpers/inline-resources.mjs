@@ -95,7 +95,7 @@ function activateListeners(document, html) {
 				const type = this.dataset.type;
 				const uncapped = this.dataset.uncapped === 'true';
 				const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
-				const amount = await Expressions.evaluate(this.dataset.amount, context);
+				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);
 
 				if (this.classList.contains(classInlineRecovery)) {
 					await applyRecovery(sourceInfo, targets, type, amount, uncapped);
@@ -131,7 +131,7 @@ async function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInf
 
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
 		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
-		amount = await Expressions.evaluate(amount, context);
+		amount = await Expressions.evaluateAsync(amount, context);
 		applyRecovery(sourceInfo, [actor], recoveryType, amount, uncapped);
 		return false;
 	} else if (type === INLINE_LOSS && !Number.isNaN(amount)) {

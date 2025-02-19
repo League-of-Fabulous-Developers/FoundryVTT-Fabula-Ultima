@@ -177,15 +177,15 @@ export class FUActiveEffect extends ActiveEffect {
 	 * @param {EffectChangeData} change
 	 * @returns {{}|*}
 	 */
-	async apply(target, change) {
+	apply(target, change) {
 		// Support expressions
 		if (change.value && typeof change.value === 'string') {
 			try {
 				// First, evaluate using built-in support
 				const expression = Roll.replaceFormulaData(change.value, this.parent);
 				// Second, evaluate with our custom expressions
-				const context = ExpressionContext.resolveTarget(target);
-				const value = await Expressions.evaluate(expression, context);
+				const context = ExpressionContext.resolveTarget(target, this.parent);
+				const value = Expressions.evaluate(expression, context);
 				change.value = String(value ?? 0);
 				console.debug(`Assigning ${change.key} = ${change.value}`);
 			} catch (e) {

@@ -62,7 +62,7 @@ function activateListeners(document, html) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
 				const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
-				const amount = await Expressions.evaluate(this.dataset.amount, context);
+				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);
 
 				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
 				const request = new DamageRequest(sourceInfo, targets, baseDamageInfo);
@@ -94,7 +94,7 @@ async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo
 		// Need to rebuild the class after it was deserialized
 		const sourceInfo = InlineSourceInfo.fromObject(_sourceInfo);
 		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
-		const _amount = await Expressions.evaluate(amount, context);
+		const _amount = await Expressions.evaluateAsync(amount, context);
 		const baseDamageInfo = { type: damageType, total: _amount, modifierTotal: 0 };
 
 		const request = new DamageRequest(sourceInfo, [actor], baseDamageInfo);
