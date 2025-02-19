@@ -230,6 +230,10 @@
 						color: $color-hp-crisis;
 					}
 
+					&.ko {
+						text-decoration: line-through $color-hp-ko;
+					}
+
 					&.full-height {
 						height: 100%;
 					}
