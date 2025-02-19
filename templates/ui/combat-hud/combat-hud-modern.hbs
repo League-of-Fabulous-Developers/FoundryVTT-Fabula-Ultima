@@ -35,7 +35,7 @@
     <div class="window-header" style="display: none;">Combat HUD</div>
     <div class="faction-list npcs {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }};">
         {{#each npcs}}
-            <div class="combat-row effects-on-hover" data-type="npc" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
+            <div class="combat-row effects-on-hover {{#if (inSet "crisis" this.actor.statuses)}}crisis{{/if}} {{#if (inSet "ko" this.actor.statuses)}}ko{{/if}}" data-type="npc" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
                  data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
                  {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
                 
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="combat-info">
-                    <div class="combat-name {{#if (inSet "crisis" this.actor.statuses)}}crisis{{/if}} {{#if (inSet "ko" this.actor.statuses)}}ko{{/if}} {{#unless this.hasEffects}}full-height{{/unless}}">
+                    <div class="combat-name {{#unless this.hasEffects}}full-height{{/unless}}">
                         <h2 class="token-name">
                             {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                 <span class="combat-order">{{ this.order }}</span>.&nbsp;
@@ -72,7 +72,7 @@
     </div>
     <div class="faction-list characters {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }}">
         {{#each characters}}
-            <div class="combat-row {{ this.rowClass }}" data-type="character" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
+            <div class="combat-row {{ this.rowClass }} {{#if (inSet "crisis" this.actor.statuses)}}crisis{{/if}} {{#if (inSet "ko" this.actor.statuses)}}ko{{/if}}" data-type="character" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
                  data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
                 {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
                 <div class="combat-image">
@@ -81,7 +81,7 @@
                 </div>
                 
                 <div class="combat-info">
-                    <div class="combat-name {{#if (inSet "crisis" this.actor.statuses)}}crisis{{/if}} {{#if (inSet "ko" this.actor.statuses)}}ko{{/if}} {{#unless this.hasEffects}}full-height{{/unless}}">
+                    <div class="combat-name {{#unless this.hasEffects}}full-height{{/unless}}">
                         <h2>
                             {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                 <span class="combat-order">{{ this.order }}</span>.&nbsp;
