@@ -150,10 +150,8 @@ function requiresContext(expression) {
 	return !Number.isInteger(Number(expression));
 }
 
-// TODO: Provide a system of hooks
-// Order of operations matters
 /**
- * @type {[Promise<String>]}
+ * @type {[Function<String>]}
  */
 const evaluationFunctions = [evaluateVariables, evaluateEffects, evaluateReferencedFunctions, evaluateReferencedProperties, evaluateMacros];
 
@@ -164,16 +162,53 @@ const evaluationFunctions = [evaluateVariables, evaluateEffects, evaluateReferen
  * @example (@actor.level.value*2+minor+@item.level.value)
  * @example @actor.byLevel(40,50,60)
  * @example (minor + 5)
- * @return {Promise<Number>} The evaluated amount
+ * @return {Number} The evaluated amount
  */
-async function evaluate(expression, context) {
+function evaluate(expression, context) {
 	if (!requiresContext(expression)) {
 		return Number(expression);
 	}
 
-	// Evaluate the expression's variables
+	// Evaluate the expression over each function
 	let substitutedExpression = expression;
 	for (const fn of evaluationFunctions) {
+		substitutedExpression = fn(substitutedExpression, context);
+	}
+
+	// Now that the expression's variables have been substituted, evaluate it arithmetically
+	const result = MathHelper.evaluate(substitutedExpression);
+
+	if (Number.isNaN(result)) {
+		throw new Error(`Failed to evaluate expression ${substitutedExpression}`);
+	}
+
+	console.debug(`Evaluated expression ${expression} = ${substitutedExpression} = ${result}`);
+	return result;
+}
+
+/**
+ * @type {[Promise<String>]}
+ */
+const asyncFunctions = [evaluateMacrosAsync];
+
+/**
+ * @description Evaluates the given expression using a superset of the DSL
+ * @param {String} expression
+ * @param {ExpressionContext} context
+ * @return {Promise<Number>} The evaluated amount
+ */
+async function evaluateAsync(expression, context) {
+	if (!requiresContext(expression)) {
+		return Number(expression);
+	}
+
+	let substitutedExpression = expression;
+	// Evaluate the expression over each synchronous function
+	for (const fn of evaluationFunctions) {
+		substitutedExpression = fn(substitutedExpression, context);
+	}
+	// Evaluate the expression over each asynchronous function
+	for (const fn of asyncFunctions) {
 		substitutedExpression = await fn(substitutedExpression, context);
 	}
 
@@ -192,9 +227,9 @@ async function evaluate(expression, context) {
  * @description Evaluates functions within the expression using the available context
  * @param {String}  expression
  * @param {ExpressionContext} context
- * @returns {Promise<String>}
+ * @returns {String}
  */
-async function evaluateReferencedFunctions(expression, context) {
+function evaluateReferencedFunctions(expression, context) {
 	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
 
 	function evaluate(match, label, path, p3, args, groups) {
@@ -220,9 +255,9 @@ async function evaluateReferencedFunctions(expression, context) {
  * @description Evaluates improvised effects
  * @param {String} expression
  * @param {ExpressionContext} context
- * @returns {Promise<String>}
+ * @returns {String}
  */
-async function evaluateEffects(expression, context) {
+function evaluateEffects(expression, context) {
 	const pattern = /(minor)|(heavy)|(massive)/gm;
 	function evaluate(match) {
 		return ImprovisedEffect.calculateAmountFromContext(match, context);
@@ -234,16 +269,15 @@ async function evaluateEffects(expression, context) {
  * @description Evaluates special variables
  * @param {String} expression
  * @param {ExpressionContext} context
- * @returns {Promise<String>}
+ * @returns {String}
  * @example $sl*10 Skill Level
  * @example $cl/2 Character Level
  * @example $dex Dexterity Roll
  * */
-async function evaluateVariables(expression, context) {
+function evaluateVariables(expression, context) {
 	const pattern = /\$(?<symbol>\w+)/gm;
 	function evaluate(match, symbol) {
 		switch (symbol) {
-			// TODO: TARGET number of status effects (throw if more than 1 selected?)
 			// TODO: CHARACTER highest strength among bonds
 			// TODO: CHARACTER number of bonds
 			// Improvised effects
@@ -285,12 +319,12 @@ async function evaluateVariables(expression, context) {
  * @description Custom functions provided by the expression engine
  * @param {String} expression
  * @param {ExpressionContext} context
- * @returns {Promise<String>}
+ * @returns {String}
  * @example &step(40,50,60)
  */
-async function evaluateMacros(expression, context) {
+function evaluateMacros(expression, context) {
 	const pattern = /&(?<name>[a-zA-Z]+)\((?<params>.*?)\)/gm;
-	async function evaluateMacro(match, name, params) {
+	function evaluateMacro(match, name, params) {
 		const splitArgs = params.split(',').map((i) => i.trim());
 		switch (name) {
 			// Skill level
@@ -304,8 +338,31 @@ async function evaluateMacros(expression, context) {
 				}
 				return skill.system.level.value;
 			}
+			// Scale from 5-19, 20-39, 40+
+			case 'step':
+				return stepByLevel(context, splitArgs[0], splitArgs[1], splitArgs[2]);
+			default:
+				throw new Error(`Unsupported macro ${name}`);
+		}
+	}
+	//return replaceAsync(expression, pattern, evaluateMacro);
+	return expression.replace(pattern, evaluateMacro);
+}
+
+/**
+ * @description Custom async functions provided by the expression engine
+ * @param {String} expression
+ * @param {ExpressionContext} context
+ * @returns {Promise<String>}
+ * @example &step(40,50,60)
+ */
+async function evaluateMacrosAsync(expression, context) {
+	const pattern = /\^(?<name>[a-zA-Z]+)\((?<params>.*?)\)/gm;
+	async function evaluateMacro(match, name, params) {
+		const splitArgs = params.split(',').map((i) => i.trim());
+		switch (name) {
 			// Attribute roll
-			case 'ar': {
+			case 'aroll': {
 				context.assertActor(match);
 				const attr = splitArgs[0];
 				const roll = await rollAttributeDie(context.actor, attr);
@@ -318,15 +375,9 @@ async function evaluateMacros(expression, context) {
 				const res = splitArgs[1];
 				return await backlash(context.actor, attr, res, context.sourceInfo);
 			}
-			// Scale from 5-19, 20-39, 40+
-			case 'step':
-				return stepByLevel(context, splitArgs[0], splitArgs[1], splitArgs[2]);
-			default:
-				throw new Error(`Unsupported macro ${name}`);
 		}
 	}
 	return replaceAsync(expression, pattern, evaluateMacro);
-	//return expression.replace(pattern, evaluateMacro);
 }
 
 /**
@@ -345,7 +396,7 @@ function countStatusEffects(actor) {
  * @returns {Promise<String>}
  * @example @system.value.thingie
  */
-async function evaluateReferencedProperties(expression, context) {
+function evaluateReferencedProperties(expression, context) {
 	const pattern = /(?<variable>@([a-zA-Z]+\.?)+)/gm;
 	function evaluate(match, label, path, pN, offset, string, groups) {
 		// TODO: Refactor
@@ -509,6 +560,7 @@ function getPropertyValueByPath(obj, path) {
 
 export const Expressions = {
 	evaluate,
+	evaluateAsync,
 	requiresContext,
 	getFunctionFromPath,
 	getPropertyValueByPath,

@@ -285,7 +285,7 @@ async function collectIncrements(context) {
 	// Expression
 	if (context.extra) {
 		const exprCtx = new ExpressionContext(context.sourceActor, context.item, [context.actor]);
-		const bonusValue = await Expressions.evaluate(context.extra, exprCtx);
+		const bonusValue = await Expressions.evaluateAsync(context.extra, exprCtx);
 		if (bonusValue > 0) {
 			context.addBonus(`extra`, bonusValue);
 		}

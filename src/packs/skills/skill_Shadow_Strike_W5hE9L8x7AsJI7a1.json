@@ -54,7 +54,7 @@
       "type": {
         "value": "physical"
       },
-      "extra": "&backlash(mig, hp)+$sl"
+      "extra": "^backlash(mig, hp)+$sl"
     },
     "impdamage": {
       "hasImpDamage": {
@@ -136,7 +136,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.330",
     "createdTime": 1706496911469,
-    "modifiedTime": 1739630123229,
+    "modifiedTime": 1739986865587,
     "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
