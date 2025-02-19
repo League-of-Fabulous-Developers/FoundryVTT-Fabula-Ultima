@@ -201,7 +201,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 					label: 'FU.CheckBonus',
 					value: this.accuracy,
 				});
-				check.modifiers.push(...weaponCheck.modifiers);
+				check.modifiers.push(...weaponCheck.modifiers.filter(({ label }) => label !== 'FU.AccuracyCheckBonusGeneric'));
 			}
 
 			if (this.damage.hasDamage) {
@@ -218,7 +218,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 						});
 					}
 					if (item.system.useWeapon.damage) {
-						damageMods.push(...damage.modifiers.filter(({ label }) => label !== 'FU.AccuracyCheckBonusGeneric'));
+						damageMods.push(...damage.modifiers);
 					}
 					return {
 						type: this.damage.type || damage.type,

@@ -242,11 +242,6 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 			if (weapon == null) {
 				throw new Error('no selection');
 			}
-
-			const configure = CheckConfiguration.configure(check);
-			// Will be checked during the dry run
-			configure.setDamage('untyped', 0);
-
 			const { check: weaponCheck, error } = await ChecksV2.prepareCheckDryRun('accuracy', actor, weapon);
 			if (error) {
 				throw error;
@@ -256,30 +251,41 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 			check.secondary = weaponCheck.secondary;
 			check.additionalData[ABILITY_USED_WEAPON] = weapon.uuid;
 
-			/** @type WeaponDataModel **/
-			const weaponData = weapon.system;
+			const inspect = CheckConfiguration.inspect(weaponCheck);
+			const configure = CheckConfiguration.configure(check);
 
-			// Uses accuracy
-			configure.addModifier('FU.CheckBonus', weaponData.accuracy.value);
-			configure.addItemAccuracyBonuses(weapon, actor).setTargetedDefense(weaponData.defense);
 			if (this.accuracy) {
 				check.modifiers.push({
 					label: 'FU.CheckBonus',
 					value: this.accuracy,
 				});
-				check.modifiers.push(...weaponCheck.modifiers);
+				check.modifiers.push(...weaponCheck.modifiers.filter(({ label }) => label !== 'FU.AccuracyCheckBonusGeneric'));
 			}
 
-			// Uses damage
 			if (this.damage.hasDamage) {
-				if (this.useWeapon.damage) {
-					// If the damage type is not untyped, override the weapons
-					const damageType = this.damage.type && this.damage.type !== FU.damageTypes.untyped ? this.damage.type : weaponData.damageType.value;
-					configure.setDamage(damageType, weaponData.damage.value);
-				}
+				configure.setHrZero(this.damage.hrZero || modifiers.shift);
+				configure.setTargetedDefense(this.defense || inspect.getTargetedDefense());
+				configure.modifyDamage(() => {
+					const damage = inspect.getDamage();
+					/** @type BonusDamage[] */
+					const damageMods = [];
+					if (item.system.damage.value) {
+						damageMods.push({
+							label: 'FU.DamageBonus',
+							value: item.system.damage.value,
+						});
+					}
+					if (item.system.useWeapon.damage) {
+						damageMods.push(...damage.modifiers);
+					}
+					return {
+						type: this.damage.type || damage.type,
+						modifiers: damageMods,
+					};
+				});
 
 				// Append expression value if present
-				const extra = item.system.damage.extra;
+				const extra = this.damage.extra;
 				if (extra) {
 					configure.setExtraDamage(extra);
 				}
