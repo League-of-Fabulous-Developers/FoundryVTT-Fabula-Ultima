@@ -29,6 +29,7 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 				CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
 			}
 		}
+		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		if (weapon) {
 			sections.push(() => ({
@@ -96,10 +97,11 @@ Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
 
 /**
  * @param {FUItem} skill
+ * @return Tag[]
  */
 function getTags(skill) {
 	return [
-		{ tag: 'FU.Class', separator: ':', value: skill.system.class.value },
+		{ tag: 'FU.Class', separator: ':', value: skill.system.class.value, show: skill.system.class.value },
 		{ tag: 'FU.SkillLevelAbbr', separator: ' ', value: skill.system.level.value },
 	];
 }
