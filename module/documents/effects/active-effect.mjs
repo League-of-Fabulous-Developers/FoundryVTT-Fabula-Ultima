@@ -155,9 +155,9 @@ export class FUActiveEffect extends ActiveEffect {
 
 	get isTemporary() {
 		// TODO: Handle differently or?
-		if (this.statuses.has('crisis')) {
-			return false;
-		}
+		// if (this.statuses.has('crisis')) {
+		// 	return false;
+		// }
 		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY);
 	}
 
