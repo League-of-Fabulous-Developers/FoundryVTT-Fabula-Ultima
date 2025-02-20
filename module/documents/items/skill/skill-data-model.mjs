@@ -1,10 +1,9 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
-import { FU, SYSTEM } from '../../../helpers/config.mjs';
+import { FU } from '../../../helpers/config.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { ChooseWeaponDialog } from './choose-weapon-dialog.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
-import { SETTINGS } from '../../../settings.js';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
@@ -23,42 +22,37 @@ const skillForAttributeCheck = 'skillForAttributeCheck';
  */
 let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 	if (check.type === 'accuracy' && item?.system instanceof SkillDataModel) {
-		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS, false);
-		if (check.additionalData[weaponUsedBySkill]) {
-			const weapon = fromUuidSync(check.additionalData[weaponUsedBySkill]);
-			/** @type WeaponDataModel */
-			const weaponData = weapon.system;
-			CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
-			if (item.system.hasResource.value) {
-				CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
+		let weapon;
+		if (check.type === 'accuracy') {
+			weapon = fromUuidSync(check.additionalData[weaponUsedBySkill]);
+			if (check.critical) {
+				CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
 			}
-			sections.push({
-				partial: 'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
+		}
+		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
+		if (weapon) {
+			sections.push(() => ({
+				partial: 'systems/projectfu/templates/chat/partials/chat-ability-weapon.hbs',
 				data: {
-					weapon: {
-						category: weaponData.category.value,
-						hands: weaponData.hands.value,
-						type: weaponData.type.value,
-						summary: item.system.summary.value,
-						description: item.system.description,
-					},
-					collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
+					weapon,
 				},
-				order: CHECK_DETAILS + 2,
-			});
-			sections.push({
-				content: `
-                  <div class='detail-desc flexrow flex-group-center desc' style='padding: 4px;'>
-                    <div>
-                      <span>
-                        ${game.i18n.localize('FU.Weapon')}:
-                        <strong>${weapon.name}</strong>
-                      </span>
-                    </div>
-                  </div>
-                  `,
-				order: CHECK_DETAILS + 1,
-			});
+				order: CHECK_DETAILS,
+			}));
+			CommonSections.tags(
+				sections,
+				[
+					{
+						tag: `FU.${weapon.system.category.value.capitalize()}`,
+					},
+					{
+						tag: weapon.system.hands.value === 'one-handed' ? 'FU.OneHanded' : 'FU.TwoHanded',
+					},
+					{
+						tag: `FU.${weapon.system.type.value.capitalize()}`,
+					},
+				],
+				CHECK_DETAILS,
+			);
 		}
 
 		const inspector = CheckConfiguration.inspect(check);
@@ -109,8 +103,6 @@ function getTags(skill) {
 		{ tag: 'FU.SkillLevelAbbr', separator: ' ', value: skill.system.level.value },
 	];
 }
-
-const ABILITY_USED_WEAPON = 'AbilityUsedWeapon';
 
 /**
  * @property {string} subtype.value
@@ -249,7 +241,7 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 
 			check.primary = weaponCheck.primary;
 			check.secondary = weaponCheck.secondary;
-			check.additionalData[ABILITY_USED_WEAPON] = weapon.uuid;
+			check.additionalData[weaponUsedBySkill] = weapon.uuid;
 
 			const inspect = CheckConfiguration.inspect(weaponCheck);
 			const configure = CheckConfiguration.configure(check);
@@ -305,7 +297,7 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 				label: 'FU.CheckBonus',
 				value: this.accuracy,
 			});
-			check.additionalData[ABILITY_USED_WEAPON] = this.parent.uuid;
+			check.additionalData[skillForAttributeCheck] = this.parent.uuid;
 		};
 	}
 }

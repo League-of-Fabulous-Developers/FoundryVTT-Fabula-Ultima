@@ -33,6 +33,21 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 				},
 				order: CHECK_DETAILS,
 			}));
+			CommonSections.tags(
+				sections,
+				[
+					{
+						tag: `FU.${weapon.system.category.value.capitalize()}`,
+					},
+					{
+						tag: weapon.system.hands.value === 'one-handed' ? 'FU.OneHanded' : 'FU.TwoHanded',
+					},
+					{
+						tag: `FU.${weapon.system.type.value.capitalize()}`,
+					},
+				],
+				CHECK_DETAILS,
+			);
 		}
 
 		// Optional resource
