@@ -62,8 +62,7 @@
                             <div class="item-settings">
                                 {{> "systems/projectfu/templates/item/partials/item-controls.hbs" actor=actor}}
                                 <label class="checkbox resource-label-sm"> <span>{{localize 'FU.HRZeroStatus'}}</span><input
-                                        type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked
-                                        system.rollInfo.useWeapon.hrZero.value }} />
+                                        type="checkbox" name="system.damage.hrZero" {{ checked system.damage.hrZero }} />
                                 </label>
                                 <label class="checkbox resource-label-m" data-tooltip="{{localize 'FU.ResourceStatus'}}">
                                     <span>

@@ -201,6 +201,9 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 					label: 'FU.CheckBonus',
 					value: this.accuracy,
 				});
+			}
+
+			if (this.useWeapon.accuracy) {
 				check.modifiers.push(...weaponCheck.modifiers.filter(({ label }) => label !== 'FU.AccuracyCheckBonusGeneric'));
 			}
 
