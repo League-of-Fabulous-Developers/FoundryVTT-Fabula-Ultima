@@ -123,7 +123,7 @@ const Traits = {
  * @property {Number} affinity The index of the affinity
  * @property {String} affinityMessage The localized affinity message to use
  * @property {FU.damageTypes} damageType
- * @property {String} extra An optional expression to evaluate for extra damage
+ * @property {String} extra An optional expression to evaluate for onApply damage
  * @property {Number} amount The base amount before bonuses or modifiers are applied
  * @property {Map<String, Number>} bonuses Increments
  * @property {Map<String, Number>} modifiers Multipliers
