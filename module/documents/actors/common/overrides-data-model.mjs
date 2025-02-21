@@ -9,7 +9,7 @@ export class OverridesDataModel extends foundry.abstract.DataModel {
 		const { StringField, NumberField } = foundry.data.fields;
 		return {
 			turns: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
-			damageType: new StringField({ initial: 'untyped', choices: Object.keys(FU.damageTypes), blank: true, nullable: false }),
+			damageType: new StringField({ initial: '', choices: Object.keys(FU.damageTypes), blank: true, nullable: false }),
 		};
 	}
 }
