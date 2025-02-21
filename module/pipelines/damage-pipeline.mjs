@@ -326,6 +326,9 @@ function calculateResult(context) {
 	// Increments (+-)
 	for (const [key, value] of context.bonuses) {
 		result += value;
+		if (result < 0) {
+			result = 0;
+		}
 		context.recordStep(key, value > 0 ? `+${value}` : value, result);
 	}
 	// Multipliers (*)
