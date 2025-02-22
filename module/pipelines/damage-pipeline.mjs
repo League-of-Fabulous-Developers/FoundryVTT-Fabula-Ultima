@@ -326,10 +326,11 @@ function calculateResult(context) {
 	// Increments (+-)
 	for (const [key, value] of context.bonuses) {
 		result += value;
-		if (result < 0) {
-			result = 0;
-		}
 		context.recordStep(key, value > 0 ? `+${value}` : value, result);
+	}
+	// If negative modifiers reduce incoming damage below 0...
+	if (result < 0) {
+		result = 0;
 	}
 	// Multipliers (*)
 	for (const [key, value] of context.modifiers) {
