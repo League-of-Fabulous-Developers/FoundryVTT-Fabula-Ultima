@@ -47,7 +47,8 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "extra": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -144,10 +145,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1707718165836,
-    "modifiedTime": 1724180862976,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1740076916686,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -48,8 +48,9 @@
       "hasDamage": true,
       "value": 0,
       "type": "",
+      "extra": "$sl+$tsc",
       "onRoll": "",
-      "onApply": "$sl+$tsc"
+      "onApply": "(min($tsc, 1) * $sl) + $tsc"
     },
     "impdamage": {
       "hasImpDamage": {
@@ -131,7 +132,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.330",
     "createdTime": 1706504733585,
-    "modifiedTime": 1740068885201,
+    "modifiedTime": 1740435390578,
     "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null

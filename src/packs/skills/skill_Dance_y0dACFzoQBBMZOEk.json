@@ -54,7 +54,10 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "expression": "",
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -136,7 +139,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.330",
     "createdTime": 1706558084944,
-    "modifiedTime": 1737922923403,
+    "modifiedTime": 1740172865404,
     "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
