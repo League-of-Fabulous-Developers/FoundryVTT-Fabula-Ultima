@@ -320,15 +320,34 @@ class CheckConfigurer {
 	/**
 	 * @description Handles specific overrides on the actor
 	 * @param {FUActor} actor
+	 * @param {FU.damageOverrideScope} scope
 	 * @return {CheckConfigurer}
+	 * @remarks Only really executed on PCs
 	 */
-	setOverrides(actor) {
+	setDamageOverride(actor, scope) {
 		// Potential override to damage type
 		if (actor.system instanceof CharacterDataModel) {
-			const characterData = actor.system;
-			const damageType = characterData.overrides.damageType;
-			if (damageType && damageType !== 'untyped') {
-				this.#check.additionalData[DAMAGE].type = damageType;
+			/** @type DamageTypeOverrideDataModel **/
+			let scopeField;
+			switch (scope) {
+				case 'attack':
+					scopeField = actor.system.overrides.damageType.attack;
+					break;
+				case 'skill':
+					scopeField = actor.system.overrides.damageType.skill;
+					break;
+				case 'spell':
+					scopeField = actor.system.overrides.damageType.spell;
+					break;
+				default:
+					break;
+			}
+			let resolvedType = scopeField.resolve();
+			if (!resolvedType) {
+				resolvedType = actor.system.overrides.damageType.all.resolve();
+			}
+			if (resolvedType) {
+				this.#check.additionalData[DAMAGE].type = resolvedType;
 			}
 		}
 		return this;

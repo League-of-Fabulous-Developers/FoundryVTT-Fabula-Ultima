@@ -37,17 +37,18 @@ export class FUCombatant extends Combatant {
 	 * @return number
 	 */
 	get totalTurns() {
+		let result = 0;
 		if (this.token?.actor) {
 			if (this.token.actor.system instanceof NpcDataModel) {
-				return this.token.actor.system.rank.replacedSoldiers;
+				result += this.token.actor.system.rank.replacedSoldiers;
 			} else if (this.token.actor.system instanceof CharacterDataModel) {
-				/** @type CharacterDataModel **/
-				const characterData = this.token.actor.system;
-				if (characterData.overrides && characterData.overrides.turns) {
-					return characterData.overrides.turns;
-				}
+				result += 1;
+			}
+			// Apply bonuses
+			if (this.token.actor.system.bonuses.turns) {
+				result += this.token.actor.system.bonuses.turns;
 			}
 		}
-		return 1;
+		return result;
 	}
 }

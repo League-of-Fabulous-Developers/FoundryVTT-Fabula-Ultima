@@ -586,3 +586,10 @@ FU.targetingRules = {
 	weapon: `FU.Weapon`,
 	special: `FU.Special`,
 };
+
+FU.damageOverrideScope = {
+	all: 'FU.All',
+	attack: 'FU.Attack',
+	spell: 'FU.Spell',
+	skill: 'FU.Skill',
+};

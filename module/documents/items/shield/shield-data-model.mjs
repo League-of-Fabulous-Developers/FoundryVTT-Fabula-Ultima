@@ -25,7 +25,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			.addItemDamageBonuses(item, actor)
 			.addItemAccuracyBonuses(item, actor)
 			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value)
-			.setOverrides(actor);
+			.setDamageOverride(actor, 'attack');
 	}
 };
 
