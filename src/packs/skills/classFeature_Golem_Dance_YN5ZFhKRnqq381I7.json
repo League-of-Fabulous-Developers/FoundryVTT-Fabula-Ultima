@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>bolt</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>bolt</strong>.</p><hr><ul><li><p><strong>You:</strong> @LOSS[10 mp] @AFFINITY[bolt resistance] @AFFINITY[bolt damage]</p></li></ul>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>bolt</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>bolt</strong>.</p><hr><ul><li><p><strong>You:</strong> @LOSS[10 mp] @AFFINITY[bolt resistance] @TYPE[damage all bolt]</p></li></ul>",
       "duration": "nextTurn"
     },
     "source": "FUHF144",
@@ -34,7 +34,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.330",
     "createdTime": 1710175451986,
-    "modifiedTime": 1740175276449,
+    "modifiedTime": 1740435539333,
     "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null

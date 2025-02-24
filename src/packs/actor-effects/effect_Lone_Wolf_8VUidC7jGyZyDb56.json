@@ -30,9 +30,9 @@
       "system": {},
       "changes": [
         {
-          "key": "system.overrides.turns",
+          "key": "system.bonuses.turns",
           "mode": 2,
-          "value": "2",
+          "value": "1",
           "priority": null
         },
         {
@@ -61,7 +61,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1740170720297,
-        "modifiedTime": 1740171140461,
+        "modifiedTime": 1740434987968,
         "lastModifiedBy": "esOkelwPNblkbxW3"
       },
       "_key": "!items.effects!8VUidC7jGyZyDb56.mQzgJKqdYcJo1nNI"
