@@ -1,9 +1,9 @@
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
-import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
+import { CheckConfiguration } from './check-configuration.mjs';
 
 function handleGenericBonus(actor, modifiers) {
 	if (actor.system.bonuses.accuracy.accuracyCheck) {

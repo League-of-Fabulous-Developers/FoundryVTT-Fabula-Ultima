@@ -17,7 +17,7 @@ const editorEnricher = {
 		const type = match.groups.type.toLowerCase();
 		const value = match.groups.value;
 
-		if (type && type in FU.damageTypes && (value in FU.affValue || value === 'damage')) {
+		if (type && type in FU.damageTypes && value in FU.affValue) {
 			const anchor = document.createElement('a');
 			anchor.classList.add('inline', className);
 			anchor.draggable = true;
@@ -27,8 +27,7 @@ const editorEnricher = {
 			anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineAffinity')} (${type})`);
 			// TYPE
 			const localizedType = game.i18n.localize(FU.damageTypes[type]);
-			const isDamage = value === 'damage';
-			const localizedValue = game.i18n.localize(isDamage ? 'FU.Damage' : FU.affType[FU.affValue[value]]);
+			const localizedValue = game.i18n.localize(FU.affType[FU.affValue[value]]);
 			anchor.append(`${localizedType} ${localizedValue}`);
 			// ICON
 			const icon = document.createElement('i');
@@ -96,24 +95,11 @@ async function onDropActor(actor, sheet, { type, sourceInfo, affinity, value, ig
  * @returns {ActiveEffectData}
  */
 function createEffect(type, value) {
-	// If overriding the character's damage type for all actions
-	let attributeKey;
-	let attributeValue;
-	let name;
 	const localizedType = game.i18n.localize(FU.damageTypes[type]);
-	if (value === 'damage') {
-		attributeKey = `system.overrides.damageType`;
-		attributeValue = type;
-		name = `${localizedType} ${game.i18n.localize('FU.Damage')}`;
-	}
-	// Otherwise just adjusting their affinities
-	else {
-		attributeKey = `system.affinities.${type}.current`;
-		attributeValue = FU.affValue[value];
-		const localizedValue = game.i18n.localize(FU.affType[attributeValue]);
-		name = `${localizedType} ${localizedValue}`;
-	}
-
+	const attributeKey = `system.affinities.${type}.current`;
+	const attributeValue = FU.affValue[value];
+	const localizedValue = game.i18n.localize(FU.affType[attributeValue]);
+	const name = `${localizedType} ${localizedValue}`;
 	/** @type Number **/
 
 	return {

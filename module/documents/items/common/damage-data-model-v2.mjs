@@ -15,8 +15,8 @@ export class DamageDataModelV2 extends foundry.abstract.DataModel {
 			hasDamage: new BooleanField(),
 			hrZero: new BooleanField(),
 			value: new NumberField({ initial: 0, integer: true, nullable: false }),
-			onRoll: new StringField({ nullable: true }),
-			onApply: new StringField({ nullable: true }),
+			onRoll: new StringField({ blank: true }),
+			onApply: new StringField({ blank: true }),
 			type: new StringField({ initial: 'physical', choices: Object.keys(FU.damageTypes), blank: true, nullable: false }),
 		};
 	}

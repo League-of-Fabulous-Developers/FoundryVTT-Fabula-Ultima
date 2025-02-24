@@ -72,6 +72,7 @@ import { Targeting } from './helpers/targeting.mjs';
 import { InlineHelper } from './helpers/inline-helper.mjs';
 import { InlineAffinity } from './helpers/inline-affinity.mjs';
 import { Effects } from './pipelines/effects.mjs';
+import { InlineType } from './helpers/inline-type.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -272,6 +273,7 @@ Hooks.once('init', async () => {
 	Hooks.on('dropActorSheetData', InlineWeapon.onDropActor);
 
 	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
+	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
 
 	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 
