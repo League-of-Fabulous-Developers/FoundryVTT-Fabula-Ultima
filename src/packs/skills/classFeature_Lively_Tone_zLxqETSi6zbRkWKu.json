@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target gains<strong>【@DATA[key.boost]】</strong>until the <strong>start of your next turn.</strong></p>"
+      "description": "<p>Each target gains<strong>【</strong>@EFFECT[@DATA[key.attribute]-up]<strong>】</strong>until the <strong>start of your next turn.</strong></p>"
     },
     "source": "FUHF139",
     "fuid": "lively-tone"
@@ -32,7 +32,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.330",
     "createdTime": 1710040149139,
-    "modifiedTime": 1739302712373,
+    "modifiedTime": 1740682637675,
     "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null

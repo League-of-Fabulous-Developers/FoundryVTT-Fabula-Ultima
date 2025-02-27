@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target suffers<strong>【@DATA[key.damage]】</strong> damage.</p>"
+      "description": "<p>Each target suffers<strong>【</strong>@DMG[($wlp*2)+&step(0,10,20) @DATA[key.type]]<strong>】</strong>damage.</p>"
     },
     "source": "FUHF139",
     "fuid": "frantic-tone"
@@ -32,7 +32,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.330",
     "createdTime": 1710039980800,
-    "modifiedTime": 1739301576275,
+    "modifiedTime": 1740682576141,
     "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
