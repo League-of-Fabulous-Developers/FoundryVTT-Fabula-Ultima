@@ -91,8 +91,13 @@ export async function onManageActiveEffect(event, owner) {
 			return createTemporaryEffect(owner, listItem.dataset.effectType);
 		case 'edit':
 			return resolveEffect().sheet.render(true);
-		case 'delete':
-			return resolveEffect().delete();
+		case 'delete': {
+			const _effect = resolveEffect();
+			if (canBeRemoved(_effect)) {
+				return resolveEffect().delete();
+			}
+			break;
+		}
 		case 'toggle': {
 			const effect = resolveEffect();
 			return effect.update({ disabled: !effect.disabled });
@@ -167,6 +172,14 @@ export async function toggleStatusEffect(actor, statusEffectId, source = undefin
 		}
 		return true;
 	}
+}
+
+/**
+ * @param effect
+ * @returns {boolean} True if the effect can only be managed by the system
+ */
+function canBeRemoved(effect) {
+	return !effect.statuses.has('crisis') && !effect.statuses.has('ko');
 }
 
 // Helper function to generate the @EFFECT format string
@@ -426,6 +439,7 @@ export const Effects = Object.freeze({
 	initialize,
 	onRemoveEffectFromActor,
 	onApplyEffectToActor,
+	canBeRemoved,
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,

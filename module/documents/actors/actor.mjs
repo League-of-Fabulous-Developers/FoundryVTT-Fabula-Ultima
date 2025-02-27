@@ -1,6 +1,6 @@
 import { FUItem } from '../items/item.mjs';
 import { FUHooks } from '../../hooks.mjs';
-import { toggleStatusEffect } from '../../pipelines/effects.mjs';
+import { Effects, toggleStatusEffect } from '../../pipelines/effects.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { Flags } from '../../helpers/flags.mjs';
 
@@ -420,7 +420,7 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @description Deletes all temporary effets on the actor
+	 * @description Deletes all temporary effects on the actor
 	 */
 	clearTemporaryEffects() {
 		// Collect effects to delete
@@ -433,7 +433,7 @@ export class FUActor extends Actor {
 					return immunity;
 				}
 			}
-			return effect.isTemporary;
+			return effect.isTemporary && Effects.canBeRemoved(effect);
 		});
 
 		// Delete all collected effects
