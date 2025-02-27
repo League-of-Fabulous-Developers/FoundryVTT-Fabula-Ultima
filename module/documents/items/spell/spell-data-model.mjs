@@ -65,11 +65,11 @@ function onRenderCheck(data, result, actor, item, flags) {
 					max: item.system.targeting.max,
 					mpCost: item.system.cost.amount,
 					opportunity: item.system.opportunity,
-					summary: item.system.summary.value,
-					description: await TextEditor.enrichHTML(item.system.description),
 				},
 			},
 		}));
+
+		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
 		const targets = CheckConfiguration.inspect(result).getTargetsOrDefault();
 

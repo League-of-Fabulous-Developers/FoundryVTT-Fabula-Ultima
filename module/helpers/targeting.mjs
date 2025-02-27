@@ -92,7 +92,7 @@ const defaultAction = new TargetAction('targetSingle', 'fa-bullseye', 'FU.ChatPi
  * @returns {TargetData[]}
  */
 function getSerializedTargetData() {
-	const targets = getTargeted();
+	const targets = getTargeted(false, false);
 	return serializeTargetData(targets);
 }
 

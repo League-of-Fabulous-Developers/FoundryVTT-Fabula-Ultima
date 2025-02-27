@@ -62,7 +62,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 			CommonSections.opportunity(sections, ability.system.opportunity, CHECK_DETAILS);
 		}
 
-		CommonSections.description(sections, ability.system.description, ability.system.summary.value, CHECK_DETAILS);
+		CommonSections.description(sections, ability.system.description, ability.system.summary.value, CHECK_DETAILS, true);
 	}
 });
 
