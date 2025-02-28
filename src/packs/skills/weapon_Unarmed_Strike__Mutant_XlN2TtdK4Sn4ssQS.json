@@ -93,16 +93,16 @@
       "system": {},
       "changes": [
         {
-          "key": "system.bonuses.damage.value",
-          "value": "6+(&sl(\"akromorphosis\")l*2)",
+          "key": "system.damage.value",
           "mode": 2,
-          "priority": 30
+          "value": "6+(&sl(\"akromorphosis\")l*2)",
+          "priority": null
         },
         {
           "key": "system.accuracy.value",
-          "value": "&sl(\"akromorphosis\")",
           "mode": 2,
-          "priority": 30
+          "value": "&sl(\"akromorphosis\")",
+          "priority": null
         }
       ],
       "disabled": false,
@@ -135,7 +135,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1740172175749,
-        "modifiedTime": 1740172175749,
+        "modifiedTime": 1740774908907,
         "lastModifiedBy": "esOkelwPNblkbxW3"
       },
       "_id": "v81MYXQ0Fkt9JjVa",

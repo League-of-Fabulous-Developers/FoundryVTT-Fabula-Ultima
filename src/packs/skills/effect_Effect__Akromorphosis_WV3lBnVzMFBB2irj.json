@@ -30,7 +30,7 @@
       "system": {},
       "changes": [
         {
-          "key": "system.bonuses.damage.value",
+          "key": "system.damage.value",
           "mode": 2,
           "value": "6+(&sl(\"akromorphosis\")l*2)",
           "priority": null
@@ -61,7 +61,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1740171581074,
-        "modifiedTime": 1740172041667,
+        "modifiedTime": 1740774915731,
         "lastModifiedBy": "esOkelwPNblkbxW3"
       },
       "_key": "!items.effects!WV3lBnVzMFBB2irj.LxZDU3Qgsf5a6Vfh"
