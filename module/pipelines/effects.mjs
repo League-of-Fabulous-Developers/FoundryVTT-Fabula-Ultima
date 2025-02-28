@@ -6,6 +6,7 @@ import { FUHooks } from '../hooks.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
+import { CommonEvents } from '../checks/common-events.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -90,8 +91,13 @@ export async function onManageActiveEffect(event, owner) {
 			return createTemporaryEffect(owner, listItem.dataset.effectType);
 		case 'edit':
 			return resolveEffect().sheet.render(true);
-		case 'delete':
-			return resolveEffect().delete();
+		case 'delete': {
+			const _effect = resolveEffect();
+			if (canBeRemoved(_effect)) {
+				return resolveEffect().delete();
+			}
+			break;
+		}
 		case 'toggle': {
 			const effect = resolveEffect();
 			return effect.update({ disabled: !effect.disabled });
@@ -151,15 +157,29 @@ export function prepareActiveEffectCategories(effects) {
 export async function toggleStatusEffect(actor, statusEffectId, source = undefined) {
 	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
 	if (existing.length > 0) {
-		await Promise.all(existing.map((e) => e.delete()));
+		await Promise.all(
+			existing.map((e) => {
+				CommonEvents.status(actor, statusEffectId, false);
+				return e.delete();
+			}),
+		);
 		return false;
 	} else {
 		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId);
 		if (statusEffect) {
 			await ActiveEffect.create({ ...statusEffect, statuses: [statusEffectId], origin: source }, { parent: actor });
+			CommonEvents.status(actor, statusEffectId, true);
 		}
 		return true;
 	}
+}
+
+/**
+ * @param effect
+ * @returns {boolean} True if the effect can only be managed by the system
+ */
+function canBeRemoved(effect) {
+	return !effect.statuses.has('crisis') && !effect.statuses.has('ko');
 }
 
 // Helper function to generate the @EFFECT format string
@@ -419,6 +439,7 @@ export const Effects = Object.freeze({
 	initialize,
 	onRemoveEffectFromActor,
 	onApplyEffectToActor,
+	canBeRemoved,
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,

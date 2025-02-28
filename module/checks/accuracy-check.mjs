@@ -3,6 +3,7 @@ import { CHECK_ROLL } from './default-section-order.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
+import { CommonEvents } from './common-events.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 
 function handleGenericBonus(actor, modifiers) {
@@ -38,6 +39,11 @@ const onProcessCheck = (check, actor, item) => {
 	if (type === 'accuracy') {
 		const configurer = CheckConfiguration.configure(check);
 		configurer.modifyTargetedDefense((value) => value ?? 'def');
+		if (critical) {
+			configurer.addTraits('critical');
+		} else if (fumble) {
+			configurer.addTraits('fumble');
+		}
 		configurer.modifyTargets((targets) => {
 			if (targets?.length) {
 				const targetedDefense = CheckConfiguration.inspect(check).getTargetedDefense();
@@ -80,7 +86,6 @@ const onProcessCheck = (check, actor, item) => {
 function onRenderCheck(data, checkResult, actor, item, flags) {
 	if (checkResult.type === 'accuracy') {
 		const inspector = CheckConfiguration.inspect(checkResult);
-
 		const accuracyData = inspector.getAccuracyData();
 		const damageData = inspector.getDamageData();
 
@@ -97,6 +102,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 		/** @type TargetData[] */
 		const targets = inspector.getTargets();
 		CommonSections.damage(data, actor, item, targets, flags, accuracyData, damageData);
+		CommonEvents.attack(inspector, actor, item);
 
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();
 	}

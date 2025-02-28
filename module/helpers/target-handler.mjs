@@ -13,7 +13,7 @@ export async function targetHandler() {
 			targets = await getSelected();
 			break;
 		case 'tokenTargeted':
-			targets = await getTargeted();
+			targets = await getTargeted(false, false);
 			break;
 	}
 
@@ -61,15 +61,16 @@ export async function getSelected() {
 }
 
 /**
- * @param tokens returns targeted tokens instead of actors if true
+ * @param {Boolean} tokens returns targeted tokens instead of actors if true
+ * @param {Boolean} warn
  * @return {Actor[] | Token[]}
  */
-export function getTargeted(tokens = false) {
+export function getTargeted(tokens = false, warn = true) {
 	const targets = Array.from(game.user.targets)
 		.map((target) => (tokens ? target : target.actor))
 		.filter((element) => element);
 
-	if (targets.length === 0) {
+	if (targets.length === 0 && warn) {
 		ui.notifications.warn('FU.ChatApplyEffectNoActorsTargeted', { localize: true });
 	}
 	return targets || [];

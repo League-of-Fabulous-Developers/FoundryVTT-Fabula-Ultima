@@ -13,6 +13,7 @@ import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
+import { Traits } from '../../../pipelines/traits.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (item?.system instanceof MiscAbilityDataModel) {
@@ -61,7 +62,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 			CommonSections.opportunity(sections, ability.system.opportunity, CHECK_DETAILS);
 		}
 
-		CommonSections.description(sections, ability.system.description, ability.system.summary.value, CHECK_DETAILS);
+		CommonSections.description(sections, ability.system.description, ability.system.summary.value, CHECK_DETAILS, true);
 	}
 });
 
@@ -210,6 +211,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 
 			const inspect = CheckConfiguration.inspect(weaponCheck);
 			const configure = CheckConfiguration.configure(check);
+			configure.addTraits(Traits.Skill);
 
 			if (this.accuracy) {
 				check.modifiers.push({

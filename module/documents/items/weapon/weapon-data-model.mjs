@@ -6,6 +6,7 @@ import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 /**
  * @param {CheckV2} check
@@ -28,6 +29,8 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		AccuracyCheck.configure(check)
 			.setDamage(item.system.damageType.value, item.system.damage.value)
 			.addItemAccuracyBonuses(item, actor)
+			.addWeaponTraits(item.system)
+			.addTraits(item.system.damageType.value)
 			.setTargetedDefense(item.system.defense)
 			.addItemDamageBonuses(item, actor)
 			.setDamageOverride(actor, 'attack')
@@ -54,11 +57,10 @@ function onRenderCheck(data, result, actor, item) {
 					hands: item.system.hands.value,
 					type: item.system.type.value,
 					quality: item.system.quality.value,
-					summary: item.system.summary.value,
-					description: await TextEditor.enrichHTML(item.system.description),
 				},
 			},
 		}));
+		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
 }
 

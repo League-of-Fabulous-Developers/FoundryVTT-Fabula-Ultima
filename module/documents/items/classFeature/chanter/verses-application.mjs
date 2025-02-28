@@ -5,8 +5,6 @@ import { Flags } from '../../../../helpers/flags.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { Targeting } from '../../../../helpers/targeting.mjs';
 
-const SCALING_FORMULA = '($wlp*2)+&step(0,10,20)';
-
 async function getDescription(model, useAttributes = false) {
 	const key = model.key;
 	const tone = model.tone;
@@ -35,15 +33,14 @@ async function getDescription(model, useAttributes = false) {
 		// Set rollData based on the key
 		const keyData = key.system.data;
 		rollData.key = {
-			type: game.i18n.localize(FU.damageTypes[keyData.type]),
-			damage: `@DMG[${SCALING_FORMULA} ${keyData.type}]`,
-			status: `@EFFECT[${keyData.status}]`,
-			attribute: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
-			boost: `@EFFECT[${keyData.attribute}-up]`,
-			resistance: `@AFFINITY[${keyData.type} resistance]`,
-			normal: `@AFFINITY[${keyData.type} none]`,
-			vulnerability: `@AFFINITY[${keyData.type} vulnerability]`,
-			recovery: `@GAIN[${SCALING_FORMULA} ${keyData.recovery}]`,
+			type: keyData.type,
+			typeLocal: game.i18n.localize(FU.damageTypes[keyData.type]),
+			status: keyData.status,
+			statusLocal: game.i18n.localize(FU.statusEffects[keyData.status]),
+			attribute: keyData.attribute,
+			attributeLocal: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
+			resource: keyData.recovery,
+			resourceLocal: game.i18n.localize(FU.resources[keyData.recovery]),
 		};
 
 		const actor = model.parent?.parent?.actor;

@@ -3,6 +3,7 @@ import { FU, SYSTEM } from '../helpers/config.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
+import { CommonEvents } from '../checks/common-events.mjs';
 
 /**
  * @property {Number} amount
@@ -120,6 +121,8 @@ async function processRecovery(request) {
 			}
 		}
 
+		CommonEvents.gain(actor, request.resourceType, amountRecovered);
+
 		actor.showFloatyText(`${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
 		updates.push(
 			ChatMessage.create({
@@ -171,6 +174,9 @@ async function processLoss(request) {
 		} else {
 			updates.push(actor.modifyTokenAttribute(request.attributeKey, amountLost, true));
 		}
+
+		// Dispatch event
+		CommonEvents.loss(actor, request.resourceType, amountLost);
 
 		actor.showFloatyText(`${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
 		updates.push(

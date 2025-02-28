@@ -13,7 +13,6 @@ import { getTargeted } from './target-handler.mjs';
  * @property {string} uuid The uuid of the actor
  * @property {string} link An html link to the actor
  * @property {"none", "hit", "miss"} result
- * //TODO: Add a map of optional properties?
  * @property {number} difficulty Additional information
  */
 
@@ -93,7 +92,7 @@ const defaultAction = new TargetAction('targetSingle', 'fa-bullseye', 'FU.ChatPi
  * @returns {TargetData[]}
  */
 function getSerializedTargetData() {
-	const targets = getTargeted();
+	const targets = getTargeted(false, false);
 	return serializeTargetData(targets);
 }
 

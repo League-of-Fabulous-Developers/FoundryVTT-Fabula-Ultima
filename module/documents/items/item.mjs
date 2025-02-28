@@ -22,11 +22,13 @@ const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(
 /**
  * @typedef Item
  * @property {Actor} actor
- * @proeprty {String} uuid
+ * @property {String} uuid
+ * @property {String} name
  */
 
 /**
  * @description Extend the basic Item document with some very simple modifications.
+ * @property {foundry.abstract.TypeDataModel} system
  * @extends {Item}
  * @inheritDoc
  */
