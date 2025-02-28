@@ -447,14 +447,14 @@ class CheckInspector {
 	}
 
 	/**
-	 * @return {String[]|null}
+	 * @return {String[]}
 	 */
 	getTraits() {
 		return this.#check.additionalData[TRAITS] ?? null;
 	}
 
 	/**
-	 * @return {TargetData[]|null}
+	 * @return {TargetData[]}
 	 */
 	getTargets() {
 		return this.#check.additionalData[TARGETS] ? foundry.utils.duplicate(this.#check.additionalData[TARGETS]) : null;

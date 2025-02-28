@@ -77,7 +77,7 @@ export const FUHooks = {
 	 */
 	LOSS_EVENT: 'projectfu.events.loss',
 	/**
-	 * @description Dispatched after an actor enters or exits crisis.
+	 * @description Dispatched after an actor enters crisis.
 	 * @example callback(event)
 	 * @remarks Uses {@link CrisisEvent}. This can happen after a {@link DAMAGE_EVENT}.
 	 */
@@ -89,7 +89,7 @@ export const FUHooks = {
 	 */
 	DEFEAT_EVENT: 'projectfu.events.defeat',
 	/**
-	 * @description Dispatched after an actor has a status effect applied on them.
+	 * @description Dispatched after an actor has a status effect applied or removed on them.
 	 * @example callback(event)
 	 * @remarks Uses {@link StatusEvent}. It happens AFTER the status effect has been applied.
 	 */

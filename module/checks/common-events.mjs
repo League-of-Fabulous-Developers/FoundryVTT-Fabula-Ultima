@@ -2,7 +2,7 @@ import { FUHooks } from '../hooks.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 
 /**
- * @description Contains both information about a target in a combat event
+ * @description Contains information about a target in a combat event
  * @typedef EventTarget
  * @property {Token} token
  * @property {FUActor} actor
@@ -67,8 +67,8 @@ function attack(inspector, actor, item) {
  * @property {Number} amount
  * @property {FUActor} actor
  * @property {Token} token
- * @property {EventTarget} source
  * @property {Set<String>} traits
+ * @property {EventTarget|null} source
  */
 
 /**
@@ -97,12 +97,14 @@ function damage(type, amount, traits, actor, sourceActor) {
  * @description Dispatched when an actor enters crisis
  * @typedef CrisisEvent
  * @property {FUActor} actor
+ * @property {Token} token
  */
 
 /**
  * @description Dispatched when an actor is reduced to 0 HP
  * @typedef DefeatEvent
  * @property {FUActor} actor
+ * @property {Token} token
  */
 
 /**
