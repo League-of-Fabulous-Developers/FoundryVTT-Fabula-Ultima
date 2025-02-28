@@ -105,26 +105,22 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 
 		// Sort the items array in-place based on the current sorting method
-		let sortFn = (a, b) => {
-			// Default
-			this.sortOrder * (a.sort || 0) - this.sortOrder * (b.sort || 0);
-		};
 		if (this.sortMethod === 'name') {
-			sortFn = (a, b) => {
+			context.items.sort((a, b) => {
 				const nameA = a.name.toUpperCase();
 				const nameB = b.name.toUpperCase();
 				return this.sortOrder * nameA.localeCompare(nameB);
-			};
+			});
 		} else if (this.sortMethod === 'type') {
-			sortFn = (a, b) => {
+			context.items.sort((a, b) => {
 				const typeA = a.type.toUpperCase();
 				const typeB = b.type.toUpperCase();
 				return this.sortOrder * typeA.localeCompare(typeB);
-			};
+			});
+		} else {
+			// Default sorting by 'sort' property
+			context.items.sort((a, b) => this.sortOrder * (a.sort || 0) - this.sortOrder * (b.sort || 0));
 		}
-		context.items.sort(sortFn);
-		Object.keys(context.classFeatures).forEach((k) => context.classFeatures[k].items.sort(sortFn));
-		Object.keys(context.optionalFeatures).forEach((k) => context.optionalFeatures[k].items.sort(sortFn));
 
 		// Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
