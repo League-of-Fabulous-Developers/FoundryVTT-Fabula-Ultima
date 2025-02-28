@@ -450,7 +450,7 @@ class CheckInspector {
 	 * @return {String[]}
 	 */
 	getTraits() {
-		return this.#check.additionalData[TRAITS] ?? null;
+		return this.#check.additionalData[TRAITS] ?? [];
 	}
 
 	/**
