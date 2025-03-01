@@ -4,6 +4,7 @@ import { FU, SYSTEM } from '../../../../helpers/config.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { Targeting } from '../../../../helpers/targeting.mjs';
+import { CommonEvents } from '../../../../checks/common-events.mjs';
 
 async function getDescription(model, useAttributes = false) {
 	const key = model.key;
@@ -236,6 +237,7 @@ export class VersesApplication extends FormApplication {
 			amount: cost,
 		};
 		CommonSections.spendResource(sections, actor, item, targets, flags, expense);
+		CommonEvents.skill(actor, item);
 
 		// Data for the template
 		const data = {

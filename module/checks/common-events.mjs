@@ -224,6 +224,42 @@ function spell(actor, item) {
 }
 
 /**
+ * @description Dispatched when an actor performs a skill without am accuracy check.
+ * @typedef SkillEvent
+ * @property {ItemReference} item
+ * @property {Set<String>} traits
+ * @property {FUActor} actor
+ * @property {Token} token
+ * @property {EventTarget[]} targets
+ */
+
+/**
+ * @description Dispatches an event to signal a skill event
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ */
+function skill(actor, item) {
+	/** @type SkillDataModel **/
+	const spell = item.system;
+	const traits = new Set();
+	traits.add('skill');
+	traits.add(spell.cost.resource);
+
+	const targets = Targeting.getSerializedTargetData();
+	const eventTargets = getEventTargets(targets);
+
+	/** @type SpellEvent  **/
+	const event = {
+		item: toItemReference(item),
+		actor: actor,
+		token: actor.resolveToken(),
+		targets: eventTargets,
+		traits: traits,
+	};
+	Hooks.call(FUHooks.SKILL_EVENT, event);
+}
+
+/**
  * @param {TargetData[]} targets
  * @returns {EventTarget[]}
  */
@@ -262,4 +298,5 @@ export const CommonEvents = Object.freeze({
 	gain,
 	loss,
 	spell,
+	skill,
 });

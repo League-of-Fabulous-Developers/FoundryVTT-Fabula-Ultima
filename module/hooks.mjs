@@ -59,6 +59,12 @@ export const FUHooks = {
 	 */
 	SPELL_EVENT: 'projectfu.events.spell',
 	/**
+	 * @description Invoked after a skill (without an accuracy check) has been performed by an actor
+	 * @example callback(event)
+	 * @remarks Uses {@link SkillEvent}
+	 */
+	SKILL_EVENT: 'projectfu.events.skill',
+	/**
 	 * @description Invoked after damage has been applied to an actor
 	 * @example callback(event)
 	 * @remarks Uses {@link DamageEvent}

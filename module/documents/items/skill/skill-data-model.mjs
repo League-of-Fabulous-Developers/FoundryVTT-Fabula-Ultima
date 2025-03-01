@@ -15,6 +15,7 @@ import { DamageDataModelV2 } from '../common/damage-data-model-v2.mjs';
 import { SkillMigrations } from './skill-migrations.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { Traits } from '../../../pipelines/traits.mjs';
+import { CommonEvents } from '../../../checks/common-events.mjs';
 
 const weaponUsedBySkill = 'weaponUsedBySkill';
 const skillForAttributeCheck = 'skillForAttributeCheck';
@@ -93,6 +94,7 @@ const onRenderDisplay = (sections, check, actor, item, flags) => {
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
 		CommonSections.spendResource(sections, actor, item, targets, flags);
+		CommonEvents.skill(actor, item);
 	}
 };
 Hooks.on(CheckHooks.renderCheck, onRenderDisplay);
