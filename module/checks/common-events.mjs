@@ -240,10 +240,12 @@ function spell(actor, item) {
  */
 function skill(actor, item) {
 	/** @type SkillDataModel **/
-	const spell = item.system;
+	const skill = item.system;
 	const traits = new Set();
 	traits.add('skill');
-	traits.add(spell.cost.resource);
+	if (skill.cost) {
+		traits.add(skill.cost.resource);
+	}
 
 	const targets = Targeting.getSerializedTargetData();
 	const eventTargets = getEventTargets(targets);
