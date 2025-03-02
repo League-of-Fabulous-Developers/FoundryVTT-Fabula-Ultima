@@ -21,6 +21,13 @@ const WEARABLE_TYPES = ['armor', 'shield', 'accessory'];
  * @extends {ActorSheet}
  */
 export class FUStandardActorSheet extends ActorSheet {
+	constructor(...args) {
+		super(...args);
+
+		// Initialize sortOrder
+		this.sortOrder = 1;
+	}
+
 	/** @override */
 	static get defaultOptions() {
 		const defaultOptions = super.defaultOptions;
@@ -105,22 +112,16 @@ export class FUStandardActorSheet extends ActorSheet {
 		}
 
 		// Sort the items array in-place based on the current sorting method
+		let sortFn = this.sortByOrder;
 		if (this.sortMethod === 'name') {
-			context.items.sort((a, b) => {
-				const nameA = a.name.toUpperCase();
-				const nameB = b.name.toUpperCase();
-				return this.sortOrder * nameA.localeCompare(nameB);
-			});
+			sortFn = this.sortByName;
 		} else if (this.sortMethod === 'type') {
-			context.items.sort((a, b) => {
-				const typeA = a.type.toUpperCase();
-				const typeB = b.type.toUpperCase();
-				return this.sortOrder * typeA.localeCompare(typeB);
-			});
-		} else {
-			// Default sorting by 'sort' property
-			context.items.sort((a, b) => this.sortOrder * (a.sort || 0) - this.sortOrder * (b.sort || 0));
+			sortFn = this.sortByType;
 		}
+		sortFn = sortFn.bind(this);
+		context.items.sort(sortFn);
+		Object.keys(context.classFeatures).forEach((k) => (context.classFeatures[k].items = Object.fromEntries(Object.entries(context.classFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
+		Object.keys(context.optionalFeatures).forEach((k) => (context.optionalFeatures[k].items = Object.fromEntries(Object.entries(context.optionalFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
 
 		// Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
@@ -718,9 +719,6 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		const sortButton = html.find('#sortButton');
 
-		// Initialize sortOrder
-		this.sortOrder = 1;
-
 		sortButton.mousedown((ev) => {
 			// Right click changes the sort type
 			if (ev.button === 2) {
@@ -976,6 +974,22 @@ export class FUStandardActorSheet extends ActorSheet {
 		if (!actor || !actor.system || !actor.system.immunities) return;
 
 		actor.clearTemporaryEffects();
+	}
+
+	sortByOrder(a, b) {
+		return this.sortOrder * (a.sort || 0) - this.sortOrder * (b.sort || 0);
+	}
+
+	sortByName(a, b) {
+		const nameA = a.name.toUpperCase();
+		const nameB = b.name.toUpperCase();
+		return this.sortOrder * nameA.localeCompare(nameB);
+	}
+
+	sortByType(a, b) {
+		const typeA = a.type.toUpperCase();
+		const typeB = b.type.toUpperCase();
+		return this.sortOrder * typeA.localeCompare(typeB);
 	}
 
 	// Method to change the sort type
