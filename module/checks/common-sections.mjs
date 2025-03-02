@@ -142,7 +142,7 @@ const opportunity = (sections, opportunity, order) => {
 };
 
 /**
- * @description Adds a damage section to the message that lists the targets and provides buttons to apply damage to them
+ * @description Adds a target section to the message that lists the targets and provides contextual buttons
  * @param {CheckRenderData} sections
  * @param {FUActor} actor
  * @param {FUItem} item
@@ -151,7 +151,7 @@ const opportunity = (sections, opportunity, order) => {
  * @param accuracyData
  * @param {TemplateDamageData} damageData
  */
-const damage = (sections, actor, item, targets, flags, accuracyData, damageData) => {
+const targeted = (sections, actor, item, targets, flags, accuracyData, damageData) => {
 	const isTargeted = targets?.length > 0 || !Targeting.STRICT_TARGETING;
 	if (isTargeted) {
 		sections.push(async function () {
@@ -173,6 +173,18 @@ const damage = (sections, actor, item, targets, flags, accuracyData, damageData)
 						damage: damageData,
 					}),
 				);
+
+				if (game.dice3d) {
+					Hooks.once('diceSoNiceRollComplete', () => {
+						for (const target of targets) {
+							showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
+						}
+					});
+				} else {
+					for (const target of targets) {
+						showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
+					}
+				}
 			}
 
 			let rule;
@@ -199,18 +211,6 @@ const damage = (sections, actor, item, targets, flags, accuracyData, damageData)
 				},
 			};
 		});
-
-		if (game.dice3d) {
-			Hooks.once('diceSoNiceRollComplete', () => {
-				for (const target of targets) {
-					showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
-				}
-			});
-		} else {
-			for (const target of targets) {
-				showFloatyText(target, target.result === 'hit' ? 'FU.Hit' : 'FU.Miss');
-			}
-		}
 	}
 };
 
@@ -280,6 +280,6 @@ export const CommonSections = Object.freeze({
 	resource,
 	itemFlavor,
 	opportunity,
-	damage,
+	targeted,
 	spendResource,
 });

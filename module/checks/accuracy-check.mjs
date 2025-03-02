@@ -101,7 +101,7 @@ function onRenderCheck(data, checkResult, actor, item, flags) {
 
 		/** @type TargetData[] */
 		const targets = inspector.getTargets();
-		CommonSections.damage(data, actor, item, targets, flags, accuracyData, damageData);
+		CommonSections.targeted(data, actor, item, targets, flags, accuracyData, damageData);
 		CommonEvents.attack(inspector, actor, item);
 
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();

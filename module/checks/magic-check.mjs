@@ -100,7 +100,7 @@ function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags
 	});
 
 	const targets = inspector.getTargets();
-	CommonSections.damage(data, actor, item, targets, flags, accuracyData, damageData);
+	CommonSections.targeted(data, actor, item, targets, flags, accuracyData, damageData);
 	CommonEvents.attack(inspector, actor, item);
 }
 
