@@ -38,7 +38,7 @@
             <div class="combat-row" data-type="npc" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
                  data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
                  {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
-                <img class="token-image" src="{{this.img}}" alt="{{this.actor.name}}" />
+                <img class="token-image" src="{{this.img}}" alt="{{this.token.name}}" />
                 <div class="combat-info">
                     {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
                         <div class="combat-name crisis {{#unless this.hasEffects}}full-height{{/unless}}">
@@ -46,7 +46,7 @@
                                 {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                     <span class="combat-order">{{ this.order }}</span>.&nbsp;
                                 {{/if}}
-                                {{ this.actor.name }}
+                                {{ this.token.name }}
                             </h2>
                         </div>
                     {{else}}
@@ -55,7 +55,7 @@
                                 {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                     <span class="combat-order">{{ this.order }}</span>.&nbsp;
                                 {{/if}}
-                                {{ this.actor.name }}
+                                {{ this.token.name }}
                             </h2>
                         </div>
                     {{/if}}
@@ -116,7 +116,7 @@
             <div class="combat-row {{ this.rowClass }}" data-type="character" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
                  data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
                  {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
-                <img class="token-image" src="{{this.img}}" alt="{{this.actor.name}}" />
+                <img class="token-image" src="{{this.img}}" alt="{{this.token.name}}" />
                 <div class="combat-info">
                     {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
                         <div class="combat-name crisis {{#unless this.hasEffects}}full-height{{/unless}}">
@@ -124,7 +124,7 @@
                                 {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                     <span class="combat-order">{{ this.order }}</span>.&nbsp;
                                 {{/if}}
-                                {{ this.actor.name }}
+                                {{ this.token.name }}
                             </h2>
                         </div>
                     {{else}}
@@ -133,7 +133,7 @@
                                 {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
                                     <span class="combat-order">{{ this.order }}</span>.&nbsp;
                                 {{/if}}
-                                {{ this.actor.name }}
+                                {{ this.token.name }}
                             </h2>
                         </div>
                     {{/if}}
