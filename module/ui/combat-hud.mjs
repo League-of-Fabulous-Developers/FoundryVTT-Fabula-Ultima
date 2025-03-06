@@ -722,7 +722,7 @@ export class CombatHUD extends Application {
 			foundry.utils.hasProperty(changes, 'actorId') || 
 			foundry.utils.hasProperty(changes, 'disposition') || 
 			(
-				game.settings.get('projectfu', 'optionCombatHudPortrait') === 'token' && 
+				game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && 
 				foundry.utils.hasProperty(changes, 'texture.src')
 			)
 		) {
