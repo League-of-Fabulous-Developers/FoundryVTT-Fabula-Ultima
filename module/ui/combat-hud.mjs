@@ -332,6 +332,10 @@ export class CombatHUD extends Application {
 		dragButton.on('drag', this._doHudDrag.bind(this));
 		dragButton.on('dragend', this._doHudDrop.bind(this));
 
+		if(navigator.userAgent.toLowerCase().includes('firefox')) {
+			$(window.document).on('dragover', this._fireFoxDragWorkaround.bind(this));
+		}
+
 		this._dragOffsetX = -dragButton.width() * 1.5;
 		this._dragOffsetY = dragButton.height() / 2;
 
@@ -354,21 +358,45 @@ export class CombatHUD extends Application {
 		event.originalEvent.dataTransfer.setDragImage(this._emptyImage, 0, 0);
 	}
 
+	_fireFoxDragWorkaround(event) {
+		// FireFox does not populate event.clientX or event.clientY
+		// during drag events. A workaround is to bind a seperate handler
+		// to the dragover event instead, which gets processed directly
+		// before any drag event and allows us to record the current drag position.
+		this._dragX = event.clientX;
+		this._dragY = event.clientY;
+	}
+
 	_doHudDrag(event) {
-		if (event.clientX <= 0 || event.clientY <= 0) return;
+		let dragPosition;
 
+		if (navigator.userAgent.toLowerCase().includes('firefox')) {
+			// Workaround: FireFox doesn't populate event.<clientX/clientY> during drag events
+			dragPosition = { x: this._dragX, y: this._dragY };
+		} else {
+			dragPosition = { x: event.clientX, y: event.clientY };
+		}
 		event.originalEvent.dataTransfer.dropEffect = 'move';
-		this.element.css('left', this._dragOffsetX + event.clientX);
 
-		this.element.css('bottom', 'initial');
-		this.element.css('top', this._dragOffsetY + event.clientY);
+		if (this._dragAnimationFrame) cancelAnimationFrame(this._dragAnimationFrame);
+    this._dragAnimationFrame = requestAnimationFrame(() => {
+				this.element.css('left', this._dragOffsetX + dragPosition.x);
+				this.element.css('top', this._dragOffsetY + dragPosition.y);
+				if (this.element.css('bottom') !== 'initial') {
+					this.element.css('bottom', 'initial');
+				}
+    });
+
 	}
 
 	_doHudDrop(event) {
+		const offset = this.element.offset();
+		const height = this.element.outerHeight();
 		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
+
 		const draggedPosition = {
-			x: this.element.css('left'),
-			y: positionFromTop ? this.element.css('top') : this.element.css('bottom'),
+				x: offset.left,
+				y: positionFromTop ? offset.top : $(window).height() - offset.top - height
 		};
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
 	}
