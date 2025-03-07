@@ -379,14 +379,13 @@ export class CombatHUD extends Application {
 		event.originalEvent.dataTransfer.dropEffect = 'move';
 
 		if (this._dragAnimationFrame) cancelAnimationFrame(this._dragAnimationFrame);
-    this._dragAnimationFrame = requestAnimationFrame(() => {
-				this.element.css('left', this._dragOffsetX + dragPosition.x);
-				this.element.css('top', this._dragOffsetY + dragPosition.y);
-				if (this.element.css('bottom') !== 'initial') {
-					this.element.css('bottom', 'initial');
-				}
-    });
-
+		this._dragAnimationFrame = requestAnimationFrame(() => {
+			this.element.css('left', this._dragOffsetX + dragPosition.x);
+			this.element.css('top', this._dragOffsetY + dragPosition.y);
+			if (this.element.css('bottom') !== 'initial') {
+				this.element.css('bottom', 'initial');
+			}
+		});
 	}
 
 	_doHudDrop(event) {
@@ -395,8 +394,8 @@ export class CombatHUD extends Application {
 		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
 
 		const draggedPosition = {
-				x: offset.left,
-				y: positionFromTop ? offset.top : $(window).height() - offset.top - height
+			x: offset.left,
+			y: positionFromTop ? offset.top : $(window).height() - offset.top - height
 		};
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
 	}
