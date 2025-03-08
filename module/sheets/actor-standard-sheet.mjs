@@ -1,4 +1,4 @@
-import { isActiveEffectForStatusEffectId, onManageActiveEffect, prepareActiveEffectCategories, toggleStatusEffect } from '../pipelines/effects.mjs';
+import { isActiveEffectForStatusEffectId, onManageActiveEffect, toggleStatusEffect } from '../pipelines/effects.mjs';
 import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/checks.mjs';
 import { ItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
@@ -127,11 +127,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.rollData = context.actor.getRollData();
 
 		// Prepare active effects
-		const effects = Array.from(this.actor.allApplicableEffects());
-		this.actor.temporaryEffects.forEach((effect) => {
-			if (effects.indexOf(effect) < 0) effects.push(effect);
-		});
-		context.effects = prepareActiveEffectCategories(effects);
+		context.effects = this.actor.effectCategories;
 
 		// Combine all effects into a single array
 		context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];

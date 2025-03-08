@@ -59,6 +59,17 @@ export class CombatEvent {
  */
 
 /**
+ * @typedef CombatRenderData
+ * @description Used by component rendering (such as the combat tracker, combat hud)
+ * @property {Boolean} turnStarted
+ * @property {Combatant} combatant
+ * @property {Boolean} hasCombatStarted
+ * @property turnsLeft
+ * @property factions
+ * @property currentTurn The faction whose turn it is
+ */
+
+/**
  * @typedef Combat
  * @property {Combatant[]} turns
  * @property {Combatant} combatant Get the Combatant who has the current turn.
@@ -346,17 +357,48 @@ export class FUCombat extends Combat {
 	}
 
 	/**
-	 * @param {FUCombatant} combatant
-	 * @returns {Boolean} True if the given combatant is that has started their turn
+	 * @param {CombatRenderData} data Used by the rendering components
 	 */
-	isCurrentCombatant(combatant) {
-		if (!this.isTurnStarted) {
-			return false;
+	populateData(data) {
+		// Whether combat has started
+		data.hasCombatStarted = this.started;
+		data.totalTurns = this.combatants.reduce((agg, combatant) => {
+			agg[combatant.id] = combatant.totalTurns;
+			return agg;
+		}, {});
+		// The current round
+		data.round = this.round;
+		// Whether an actor has started their turn
+		data.turnStarted = this.isTurnStarted;
+		// The current combatant, if any
+		data.combatant = this.combatant;
+		// ID : Turns Left
+		data.turnsLeft = this.countTurnsLeft();
+		// What faction's turn it is
+		data.currentTurn = this.getCurrentTurn();
+		// Whether the user is a GM
+		data.isGM = game.user.isGM;
+
+		console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
+		for (const combatant of this.combatants) {
+			const canStartTurn = data.currentTurn === combatant.faction;
+			console.debug(`- Combatant name: ${combatant.name}, id: ${combatant.id}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}, canStartTurn: ${canStartTurn}`);
 		}
-		if (!combatant) {
-			return false;
-		}
-		return combatant.id === this.combatant.id;
+	}
+
+	/**
+	 * @returns {{}}
+	 */
+	countTurnsLeft() {
+		const countTurnsTaken = this.currentRoundTurnsTaken.reduce((agg, currentValue) => {
+			agg[currentValue] = (agg[currentValue] ?? 0) + 1;
+			return agg;
+		}, {});
+
+		return this.combatants.reduce((agg, combatant) => {
+			agg[combatant.id] = combatant.totalTurns - (countTurnsTaken[combatant.id] ?? 0);
+			return agg;
+		}, {});
 	}
 
 	/**
