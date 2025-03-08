@@ -28,16 +28,16 @@ export class CombatHUD extends Application {
 		this.#hooks.push({ hook: 'createCombatant', func: this._onUpdateHUD.bind(this) });
 		this.#hooks.push({ hook: 'deleteCombatant', func: this._onUpdateHUD.bind(this) });
 
-		this.#hooks.push({ hook: 'updateActor', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'updateToken', func: this._onUpdateHUD.bind(this) });
+		this.#hooks.push({ hook: 'updateActor', func: this._onUpdateActor.bind(this) });
+		this.#hooks.push({ hook: 'updateToken', func: this._onUpdateToken.bind(this) });
 
-		this.#hooks.push({ hook: 'updateItem', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'createItem', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'deleteItem', func: this._onUpdateHUD.bind(this) });
+		this.#hooks.push({ hook: 'updateItem', func: this._onUpdateItem.bind(this) });
+		this.#hooks.push({ hook: 'createItem', func: this._onCreateDeleteItem.bind(this) });
+		this.#hooks.push({ hook: 'deleteItem', func: this._onCreateDeleteItem.bind(this) });
 
-		this.#hooks.push({ hook: 'createActiveEffect', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'updateActiveEffect', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'deleteActiveEffect', func: this._onUpdateHUD.bind(this) });
+		this.#hooks.push({ hook: 'createActiveEffect', func: this._onModifyActiveEffect.bind(this) });
+		this.#hooks.push({ hook: 'updateActiveEffect', func: this._onModifyActiveEffect.bind(this) });
+		this.#hooks.push({ hook: 'deleteActiveEffect', func: this._onModifyActiveEffect.bind(this) });
 
 		this.#hooks.push({ hook: 'combatStart', func: this._onUpdateHUD.bind(this) });
 		this.#hooks.push({ hook: 'combatTurn', func: this._onUpdateHUD.bind(this) });
@@ -193,7 +193,10 @@ export class CombatHUD extends Application {
 				actor: combatant.actor,
 				token: combatant.token,
 				effects: activeEffects,
-				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? combatant.token.texture.src : combatant.actor.img,
+				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? 
+					// token._source should contain the most current version of the token's texture.
+					combatant.token._source.texture.src : 
+					combatant.actor.img,
 				trackedResourcePart1: trackedResourcePart1,
 				trackedResourcePart2: trackedResourcePart2,
 				trackedResourcePart3: trackedResourcePart3,
@@ -329,6 +332,10 @@ export class CombatHUD extends Application {
 		dragButton.on('drag', this._doHudDrag.bind(this));
 		dragButton.on('dragend', this._doHudDrop.bind(this));
 
+		if(navigator.userAgent.toLowerCase().includes('firefox')) {
+			$(window.document).on('dragover', this._fireFoxDragWorkaround.bind(this));
+		}
+
 		this._dragOffsetX = -dragButton.width() * 1.5;
 		this._dragOffsetY = dragButton.height() / 2;
 
@@ -351,21 +358,44 @@ export class CombatHUD extends Application {
 		event.originalEvent.dataTransfer.setDragImage(this._emptyImage, 0, 0);
 	}
 
+	_fireFoxDragWorkaround(event) {
+		// FireFox does not populate event.clientX or event.clientY
+		// during drag events. A workaround is to bind a seperate handler
+		// to the dragover event instead, which gets processed directly
+		// before any drag event and allows us to record the current drag position.
+		this._dragX = event.clientX;
+		this._dragY = event.clientY;
+	}
+
 	_doHudDrag(event) {
-		if (event.clientX <= 0 || event.clientY <= 0) return;
+		let dragPosition;
 
+		if (navigator.userAgent.toLowerCase().includes('firefox')) {
+			// Workaround: FireFox doesn't populate event.<clientX/clientY> during drag events
+			dragPosition = { x: this._dragX, y: this._dragY };
+		} else {
+			dragPosition = { x: event.clientX, y: event.clientY };
+		}
 		event.originalEvent.dataTransfer.dropEffect = 'move';
-		this.element.css('left', this._dragOffsetX + event.clientX);
 
-		this.element.css('bottom', 'initial');
-		this.element.css('top', this._dragOffsetY + event.clientY);
+		if (this._dragAnimationFrame) cancelAnimationFrame(this._dragAnimationFrame);
+		this._dragAnimationFrame = requestAnimationFrame(() => {
+			this.element.css('left', this._dragOffsetX + dragPosition.x);
+			this.element.css('top', this._dragOffsetY + dragPosition.y);
+			if (this.element.css('bottom') !== 'initial') {
+				this.element.css('bottom', 'initial');
+			}
+		});
 	}
 
 	_doHudDrop(event) {
+		const offset = this.element.offset();
+		const height = this.element.outerHeight();
 		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
+
 		const draggedPosition = {
-			x: this.element.css('left'),
-			y: positionFromTop ? this.element.css('top') : this.element.css('bottom'),
+			x: offset.left,
+			y: positionFromTop ? offset.top : $(window).height() - offset.top - height
 		};
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
 	}
@@ -705,6 +735,120 @@ export class CombatHUD extends Application {
 		if (!game.combat.isActive) return;
 
 		this.render(true);
+	}
+
+	_onUpdateToken(token, changes) {
+		// Is the updated token in the current combat?
+		if(!game.combat?.combatants.some(c => c.token.uuid === token.uuid)) {
+			return;
+		}
+
+		// Are any of the changes relevant to the Combat HUD?
+		if (
+			foundry.utils.hasProperty(changes, 'name') ||
+			foundry.utils.hasProperty(changes, 'actorId') || 
+			foundry.utils.hasProperty(changes, 'disposition') || 
+			(
+				game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && 
+				foundry.utils.hasProperty(changes, 'texture.src')
+			)
+		) {
+			this._onUpdateHUD();
+		}
+	}
+
+	_onUpdateActor(actor, changes) {
+		// Is the updated actor in the current combat?
+		if(!game.combat?.combatants.some(c => c.actor.uuid === actor.uuid)) {
+			return;
+		}
+
+		const systemResources = [
+			'hp', 'mp', 'ip', 'fp', 'exp', 'zenit'
+		];
+
+		const trackedResources = [
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource4),
+		];
+
+		// Are any of the changes relevant to the Combat HUD?
+		if (
+			trackedResources.filter(r => systemResources.includes(r))
+				.some(r => foundry.utils.hasProperty(changes, `system.resources.${r}`))
+		) {
+			this._onUpdateHUD();
+		}
+	}
+
+	_onCreateDeleteItem(item) {
+		this._onModifyItem(item);
+	}
+
+	_onUpdateItem(item, changes) {
+		this._onModifyItem(item, changes);
+	}
+
+	_onModifyItem(item, changes) {
+		// Is the item owned by an actor in the current combat?
+		if (
+			item.parent?.documentName !== 'Actor' || 
+			!game.combat?.combatants.some(c => c.actor.uuid === item.parent.uuid)
+		) {
+			return;
+		}
+
+		const trackedResources = [
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource4),
+		];
+
+		// Are any of the changes relevant to the combat HUD?
+		if (
+			trackedResources.includes('zeropower') &&
+			item.type === 'optionalFeature' && 
+			(
+				item.system.optionalType === 'projectfu.zeroPower') || 
+				// The optionalType can theoretically change, so make sure to check for it.
+				foundry.utils.hasProperty(changes, 'system.optionalType'
+			)
+			&&
+			(
+				// Progress changes aren't relevant during create/delete hooks.
+				!changes ||
+				foundry.utils.hasProperty(changes, 'system.data.progress.current') ||
+				foundry.utils.hasProperty(changes, 'system.data.progress.max')
+			)
+		) {
+			this._onUpdateHUD();
+		}
+	}
+
+	_onModifyActiveEffect(activeEffect, changes) {
+		if (
+			// Is the active effect targeting an actor in the current combat?
+			!(
+				activeEffect.target &&
+				game.combat?.combatants.some(c => c.actor.uuid === activeEffect.target.uuid)
+			)
+			&&
+			// Did the transfer property change on an effect on an item owned by an actor in the current combat?
+			!(
+				activeEffect.parent?.documentName === 'Item' &&
+				activeEffect.parent.parent?.documentName === 'Actor' &&
+				foundry.utils.hasProperty(changes, 'transfer') &&
+				game.combat?.combatants.some(c => c.actor.uuid === activeEffect.parent.parent.uuid)
+			)
+		) {
+			return;
+		}
+
+		// At this point the effect stands a pretty good chance of being relevant, so this is optimal enough.
+		this._onUpdateHUD();
 	}
 
 	_onHoverIn(event) {
