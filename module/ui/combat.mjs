@@ -59,6 +59,16 @@ export class CombatEvent {
  */
 
 /**
+ * @typedef CombatRenderData
+ * @description Used by component rendering (such as the combat tracker, combat hud)
+ * @property {Boolean} turnStarted
+ * @property {Combatant} combatant
+ * @property {Boolean} hasCombatStarted
+ * @property turnsLeft
+ * @property currentTurn The faction whose turn it is
+ */
+
+/**
  * @typedef Combat
  * @property {Combatant[]} turns
  * @property {Combatant} combatant Get the Combatant who has the current turn.
@@ -343,6 +353,68 @@ export class FUCombat extends Combat {
 	 */
 	get isTurnStarted() {
 		return this.combatant != null;
+	}
+
+	/**
+	 * @param {CombatRenderData} data Used by the rendering components
+	 */
+	populateData(data) {
+		data.hasCombatStarted = this.started;
+		data.totalTurns = this.combatants.reduce((agg, combatant) => {
+			agg[combatant.id] = combatant.totalTurns;
+			return agg;
+		}, {});
+		data.turnStarted = this.isTurnStarted;
+		// The current combatant, if any
+		data.combatant = this.combatant;
+		// ID : Turns Left
+		data.turnsLeft = this.countTurnsLeft();
+		data.factions = this.getFactions();
+		// What faction's turn it is
+		data.currentTurn = this.getCurrentTurn();
+		data.outOfTurn = false;
+		data.round = this.round;
+		data.isGM = game.user.isGM;
+
+		console.debug(`Combat round ${this.round}, current faction ${data.currentTurn}`);
+		for (const combatant of this.combatants) {
+			console.debug(`- Combatant: ${combatant.name}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}`);
+		}
+	}
+
+	/**
+	 * @param turns
+	 * @param {FUCombat} combat
+	 * @return {Object.<"friendly"|"neutral"|"hostile", {}[]>}
+	 */
+	getFactions() {
+		return this.combatants.reduce(
+			(agg, combatant) => {
+				//const combatant = combat.combatants.get(combatantData.id);
+				if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
+					agg.friendly.push(combatant);
+				} else {
+					agg.hostile.push(combatant);
+				}
+				return agg;
+			},
+			{ friendly: [], hostile: [] },
+		);
+	}
+
+	/**
+	 * @returns {{}}
+	 */
+	countTurnsLeft() {
+		const countTurnsTaken = this.currentRoundTurnsTaken.reduce((agg, currentValue) => {
+			agg[currentValue] = (agg[currentValue] ?? 0) + 1;
+			return agg;
+		}, {});
+
+		return this.combatants.reduce((agg, combatant) => {
+			agg[combatant.id] = combatant.totalTurns - (countTurnsTaken[combatant.id] ?? 0);
+			return agg;
+		}, {});
 	}
 
 	/**

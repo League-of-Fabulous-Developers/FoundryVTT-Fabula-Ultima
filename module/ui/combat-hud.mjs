@@ -142,13 +142,11 @@ export class CombatHUD extends Application {
 		data.cssClasses = this.options.classes.join(' ');
 		data.cssId = this.options.id;
 		data.isCompact = game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
-		data.isGM = game.user.isGM;
 
 		const opacity = game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity) / 100;
 		data.additionalStyle = this._getAdditionalStyle(opacity);
 
 		const ordering = game.settings.get(SYSTEM, SETTINGS.optionCombatHudActorOrdering);
-
 		data.npcs = [];
 		data.characters = [];
 
@@ -174,14 +172,9 @@ export class CombatHUD extends Application {
 
 		const NPCTurnsLeftMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode);
 
-		const currentTurn = game.combat.getCurrentTurn();
-		const turnsLeft = ui.combat.countTurnsLeft(game.combat);
-		// const round = game.combat.round;
-
 		/** @type FUCombat **/
 		const combat = game.combat;
-		data.turnStarted = combat.isTurnStarted;
-		data.hasCombatStarted = game.combat.started;
+		combat.populateData(data);
 
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
@@ -191,12 +184,16 @@ export class CombatHUD extends Application {
 				id: combatant.id,
 				name: combatant.name,
 				actor: combatant.actor,
+				isOwner: combatant.isOwner,
+				totalTurns: combatant.totalTurns,
 				token: combatant.token,
+				faction: combatant.faction,
 				effects: activeEffects,
-				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? 
-					// token._source should contain the most current version of the token's texture.
-					combatant.token._source.texture.src : 
-					combatant.actor.img,
+				img:
+					game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token'
+						? // token._source should contain the most current version of the token's texture.
+							combatant.token._source.texture.src
+						: combatant.actor.img,
 				trackedResourcePart1: trackedResourcePart1,
 				trackedResourcePart2: trackedResourcePart2,
 				trackedResourcePart3: trackedResourcePart3,
@@ -238,7 +235,6 @@ export class CombatHUD extends Application {
 
 				// Ensure shouldEffectsMarquee is false if effectsMarqueeDuration is over 9000
 				actorData.shouldEffectsMarquee = actorData.effects.length > maxEffectsBeforeMarquee && effectsMarqueeDuration < 9000;
-
 				actorData.effectsMarqueeDuration = effectsMarqueeDuration;
 
 				const marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
@@ -262,29 +258,19 @@ export class CombatHUD extends Application {
 				});
 			}
 
-			actorData.isOwner = combatant.isOwner;
 			actorData.order = order;
 
-			actorData.totalTurns = combatant.totalTurns;
 			if (NPCTurnsLeftMode === 'never') {
 				actorData.totalTurns = 1;
 			} else if (NPCTurnsLeftMode === 'only-studied' && !this._isNPCStudied(combatant.token)) {
 				actorData.totalTurns = 1;
 			}
 
-			actorData.turnsLeft = turnsLeft[combatant.id] ?? 0;
-
 			if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
-				actorData.isCurrentTurn = currentTurn === 'friendly';
 				data.characters.push(actorData);
 			} else {
-				actorData.isCurrentTurn = currentTurn === 'hostile';
 				data.npcs.push(actorData);
 			}
-
-			// Decides whether combatant can (start turn | take turn)
-			actorData.isCurrentCombatant = combat.isCurrentCombatant(combatant);
-			actorData.hasTurns = turnsLeft[combatant.id] && actorData.isCurrentTurn;
 		}
 
 		data.characters.sort((a, b) => a.order - b.order);
@@ -332,7 +318,7 @@ export class CombatHUD extends Application {
 		dragButton.on('drag', this._doHudDrag.bind(this));
 		dragButton.on('dragend', this._doHudDrop.bind(this));
 
-		if(navigator.userAgent.toLowerCase().includes('firefox')) {
+		if (navigator.userAgent.toLowerCase().includes('firefox')) {
 			$(window.document).on('dragover', this._fireFoxDragWorkaround.bind(this));
 		}
 
@@ -352,6 +338,7 @@ export class CombatHUD extends Application {
 
 		html.find('a[data-action=start-turn]').click((event) => ui.combat.handleStartTurn(event));
 		html.find('a[data-action=end-turn]').click((event) => ui.combat.handleEndTurn(event));
+		html.find('a[data-action=take-turn-out-of-turn]').click((event) => ui.combat.handleTakeTurnOutOfTurn(event));
 	}
 
 	_doHudDragStart(event) {
@@ -395,7 +382,7 @@ export class CombatHUD extends Application {
 
 		const draggedPosition = {
 			x: offset.left,
-			y: positionFromTop ? offset.top : $(window).height() - offset.top - height
+			y: positionFromTop ? offset.top : $(window).height() - offset.top - height,
 		};
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
 	}
@@ -739,19 +726,16 @@ export class CombatHUD extends Application {
 
 	_onUpdateToken(token, changes) {
 		// Is the updated token in the current combat?
-		if(!game.combat?.combatants.some(c => c.token.uuid === token.uuid)) {
+		if (!game.combat?.combatants.some((c) => c.token.uuid === token.uuid)) {
 			return;
 		}
 
 		// Are any of the changes relevant to the Combat HUD?
 		if (
 			foundry.utils.hasProperty(changes, 'name') ||
-			foundry.utils.hasProperty(changes, 'actorId') || 
-			foundry.utils.hasProperty(changes, 'disposition') || 
-			(
-				game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && 
-				foundry.utils.hasProperty(changes, 'texture.src')
-			)
+			foundry.utils.hasProperty(changes, 'actorId') ||
+			foundry.utils.hasProperty(changes, 'disposition') ||
+			(game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && foundry.utils.hasProperty(changes, 'texture.src'))
 		) {
 			this._onUpdateHUD();
 		}
@@ -759,13 +743,11 @@ export class CombatHUD extends Application {
 
 	_onUpdateActor(actor, changes) {
 		// Is the updated actor in the current combat?
-		if(!game.combat?.combatants.some(c => c.actor.uuid === actor.uuid)) {
+		if (!game.combat?.combatants.some((c) => c.actor.uuid === actor.uuid)) {
 			return;
 		}
 
-		const systemResources = [
-			'hp', 'mp', 'ip', 'fp', 'exp', 'zenit'
-		];
+		const systemResources = ['hp', 'mp', 'ip', 'fp', 'exp', 'zenit'];
 
 		const trackedResources = [
 			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1),
@@ -775,10 +757,7 @@ export class CombatHUD extends Application {
 		];
 
 		// Are any of the changes relevant to the Combat HUD?
-		if (
-			trackedResources.filter(r => systemResources.includes(r))
-				.some(r => foundry.utils.hasProperty(changes, `system.resources.${r}`))
-		) {
+		if (trackedResources.filter((r) => systemResources.includes(r)).some((r) => foundry.utils.hasProperty(changes, `system.resources.${r}`))) {
 			this._onUpdateHUD();
 		}
 	}
@@ -793,10 +772,7 @@ export class CombatHUD extends Application {
 
 	_onModifyItem(item, changes) {
 		// Is the item owned by an actor in the current combat?
-		if (
-			item.parent?.documentName !== 'Actor' || 
-			!game.combat?.combatants.some(c => c.actor.uuid === item.parent.uuid)
-		) {
+		if (item.parent?.documentName !== 'Actor' || !game.combat?.combatants.some((c) => c.actor.uuid === item.parent.uuid)) {
 			return;
 		}
 
@@ -809,20 +785,11 @@ export class CombatHUD extends Application {
 
 		// Are any of the changes relevant to the combat HUD?
 		if (
-			trackedResources.includes('zeropower') &&
-			item.type === 'optionalFeature' && 
-			(
-				item.system.optionalType === 'projectfu.zeroPower') || 
-				// The optionalType can theoretically change, so make sure to check for it.
-				foundry.utils.hasProperty(changes, 'system.optionalType'
-			)
-			&&
-			(
+			(trackedResources.includes('zeropower') && item.type === 'optionalFeature' && item.system.optionalType === 'projectfu.zeroPower') ||
+			// The optionalType can theoretically change, so make sure to check for it.
+			(foundry.utils.hasProperty(changes, 'system.optionalType') &&
 				// Progress changes aren't relevant during create/delete hooks.
-				!changes ||
-				foundry.utils.hasProperty(changes, 'system.data.progress.current') ||
-				foundry.utils.hasProperty(changes, 'system.data.progress.max')
-			)
+				(!changes || foundry.utils.hasProperty(changes, 'system.data.progress.current') || foundry.utils.hasProperty(changes, 'system.data.progress.max')))
 		) {
 			this._onUpdateHUD();
 		}
@@ -831,17 +798,13 @@ export class CombatHUD extends Application {
 	_onModifyActiveEffect(activeEffect, changes) {
 		if (
 			// Is the active effect targeting an actor in the current combat?
-			!(
-				activeEffect.target &&
-				game.combat?.combatants.some(c => c.actor.uuid === activeEffect.target.uuid)
-			)
-			&&
+			!(activeEffect.target && game.combat?.combatants.some((c) => c.actor.uuid === activeEffect.target.uuid)) &&
 			// Did the transfer property change on an effect on an item owned by an actor in the current combat?
 			!(
 				activeEffect.parent?.documentName === 'Item' &&
 				activeEffect.parent.parent?.documentName === 'Actor' &&
 				foundry.utils.hasProperty(changes, 'transfer') &&
-				game.combat?.combatants.some(c => c.actor.uuid === activeEffect.parent.parent.uuid)
+				game.combat?.combatants.some((c) => c.actor.uuid === activeEffect.parent.parent.uuid)
 			)
 		) {
 			return;
