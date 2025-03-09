@@ -100,4 +100,16 @@ export const FUHooks = {
 	 * @remarks Uses {@link StatusEvent}. It happens AFTER the status effect has been applied.
 	 */
 	STATUS_EVENT: 'projectfu.events.status',
+	/**
+	 * @description Dispatched after an actor uses a consumable
+	 * @example callback(event)
+	 * @remarks Uses {@link ItemEvent}
+	 */
+	ITEM_EVENT: 'projectfu.events.item',
+	/**
+	 * @description Dispatched after an actor performs a study check
+	 * @example callback(event)
+	 * @remarks Uses {@link StudyEvent}
+	 */
+	STUDY_EVENT: 'projectfu.events.study',
 };

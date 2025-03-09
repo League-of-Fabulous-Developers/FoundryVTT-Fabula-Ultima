@@ -23,18 +23,8 @@ export class FUCombatTracker extends CombatTracker {
 		/** @type FUCombat **/
 		const combat = data.combat;
 		if (combat) {
-			data.turnStarted = combat.isTurnStarted;
-			// The current combatant, if any
-			data.combatant = combat.combatant;
-			// What faction's turn it is
-			data.currentTurn = combat.getCurrentTurn();
-			// ID : Turns Left
-			data.turnsLeft = this.countTurnsLeft(combat);
+			combat.populateData(data);
 			// ID : Total Turns
-			data.totalTurns = combat.combatants.reduce((agg, combatant) => {
-				agg[combatant.id] = combatant.totalTurns;
-				return agg;
-			}, {});
 			data.turns = data.turns?.map((turn) => {
 				turn.statusEffects = combat.combatants.get(turn.id)?.actor.temporaryEffects.map((effect) => ({
 					name: effect.name,
@@ -46,26 +36,8 @@ export class FUCombatTracker extends CombatTracker {
 			if (data.turns.size === 0) {
 				console.error(`Found no available turns on combat ${combat}`);
 			}
-			data.factions = await this.getFactions(data.turns, combat);
-			// if (data.factions.friendly.length === 0 || data.factions.friendly.length === 0) {
-			// 	console.error(`Factions were not set up on combat ${combat}`);
-			// }
-			// TODO: Set option to toggle?
-			data.outOfTurn = false;
 		}
 		return data;
-	}
-
-	countTurnsLeft(combat) {
-		const countTurnsTaken = combat.currentRoundTurnsTaken.reduce((agg, currentValue) => {
-			agg[currentValue] = (agg[currentValue] ?? 0) + 1;
-			return agg;
-		}, {});
-
-		return combat.combatants.reduce((agg, combatant) => {
-			agg[combatant.id] = combatant.totalTurns - (countTurnsTaken[combatant.id] ?? 0);
-			return agg;
-		}, {});
 	}
 
 	/**
@@ -132,7 +104,6 @@ export class FUCombatTracker extends CombatTracker {
 		return turns.reduce(
 			(agg, combatantData) => {
 				const combatant = combat.combatants.get(combatantData.id);
-				combatant.startedTurn = combat.isCurrentCombatant(combatant);
 				if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
 					agg.friendly.push(combatantData);
 				} else {
@@ -173,7 +144,7 @@ export class FUCombatTracker extends CombatTracker {
 
 	async handleTakeTurnOutOfTurn(event) {
 		if (event.shiftKey) {
-			await this.handleEndTurn(event);
+			await this.handleStartTurn(event);
 		} else {
 			ui.notifications.info('FU.CombatTakeTurnOutOfTurn', { localize: true });
 		}

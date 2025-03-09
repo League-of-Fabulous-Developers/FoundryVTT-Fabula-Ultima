@@ -1,6 +1,5 @@
 import { ChooseWeaponDialog } from '../documents/items/skill/choose-weapon-dialog.mjs';
 import { Flags } from './flags.mjs';
-import { SYSTEM } from './config.mjs';
 import { getTargeted } from './target-handler.mjs';
 
 /**
@@ -125,7 +124,7 @@ function deserializeTargetData(targetData) {
  * @param {jQuery} jQuery
  */
 function onRenderChatMessage(document, jQuery) {
-	if (!document.getFlag(SYSTEM, Flags.ChatMessage.Targets)) {
+	if (!document.getFlag(Flags.Scope, Flags.ChatMessage.Targets)) {
 		return;
 	}
 
