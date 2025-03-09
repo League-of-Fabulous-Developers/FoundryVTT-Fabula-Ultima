@@ -23,6 +23,15 @@ export class CombatHUD extends Application {
 		this._emptyImage = document.createElement('img');
 		this._emptyImage.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
+		// Drag trackers
+		this.dragInitialX = 0;
+		this.dragInitialY = 0;
+		this.dragInitialTop = 0;
+		this.dragInitialLeft = 0;
+
+		// TODO: Move such browser checks to a higher scope
+		this.isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
 		console.debug(`Combat HUD: Constructing`);
 		Hooks.callAll('combatHudInit', this);
 		this.#hooks.push({ hook: 'createCombatant', func: this._onUpdateHUD.bind(this) });
@@ -193,10 +202,8 @@ export class CombatHUD extends Application {
 				actor: combatant.actor,
 				token: combatant.token,
 				effects: activeEffects,
-				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? 
-					// token._source should contain the most current version of the token's texture.
-					combatant.token._source.texture.src : 
-					combatant.actor.img,
+				// token._source should contain the most current version of the token's texture.
+				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? combatant.token._source.texture.src : combatant.actor.img,
 				trackedResourcePart1: trackedResourcePart1,
 				trackedResourcePart2: trackedResourcePart2,
 				trackedResourcePart3: trackedResourcePart3,
@@ -332,7 +339,7 @@ export class CombatHUD extends Application {
 		dragButton.on('drag', this._doHudDrag.bind(this));
 		dragButton.on('dragend', this._doHudDrop.bind(this));
 
-		if(navigator.userAgent.toLowerCase().includes('firefox')) {
+		if (this.isFirefox) {
 			$(window.document).on('dragover', this._fireFoxDragWorkaround.bind(this));
 		}
 
@@ -356,32 +363,60 @@ export class CombatHUD extends Application {
 
 	_doHudDragStart(event) {
 		event.originalEvent.dataTransfer.setDragImage(this._emptyImage, 0, 0);
+
+		// Set drag tracking vars
+		const nativeEvent = event.originalEvent;
+		const elementPos = this.element.position();
+		this.dragInitialLeft = elementPos.left;
+		this.dragInitialTop = elementPos.top;
+		this.dragInitialX = nativeEvent.clientX;
+		this.dragInitialY = nativeEvent.clientY;
 	}
 
+	// FireFox does not populate event.clientX or event.clientY
+	// during drag events. A workaround is to bind a seperate handler
+	// to the dragover event instead, which gets processed directly
+	// before any drag event and allows us to record the current drag position.
 	_fireFoxDragWorkaround(event) {
-		// FireFox does not populate event.clientX or event.clientY
-		// during drag events. A workaround is to bind a seperate handler
-		// to the dragover event instead, which gets processed directly
-		// before any drag event and allows us to record the current drag position.
-		this._dragX = event.clientX;
-		this._dragY = event.clientY;
+		// Keep this check; drag events can trigger with (0,0) when outside the window or target
+		// and they should be treated as invalid
+		if (event.clientX <= 0 || event.clientY <= 0) return;
+
+		this.updatePosition(event.clientX, event.clientY);
 	}
 
 	_doHudDrag(event) {
-		let dragPosition;
+		// Keep this check; drag events can trigger with (0,0) when outside the window or target
+		// and they should be treated as invalid
+		if (event.clientX <= 0 || event.clientY <= 0) return;
 
-		if (navigator.userAgent.toLowerCase().includes('firefox')) {
-			// Workaround: FireFox doesn't populate event.<clientX/clientY> during drag events
-			dragPosition = { x: this._dragX, y: this._dragY };
-		} else {
-			dragPosition = { x: event.clientX, y: event.clientY };
-		}
 		event.originalEvent.dataTransfer.dropEffect = 'move';
 
-		if (this._dragAnimationFrame) cancelAnimationFrame(this._dragAnimationFrame);
+		// Firefox doesn't handle drag events the same as other browsers
+		// We use the 'dragOver' event for that
+		if (this.isFirefox) {
+			return;
+		}
+
+		this.updatePosition(event.clientX, event.clientY);
+	}
+
+	updatePosition(x, y) {
+		if (this._dragAnimationFrame) {
+			cancelAnimationFrame(this._dragAnimationFrame);
+		}
 		this._dragAnimationFrame = requestAnimationFrame(() => {
-			this.element.css('left', this._dragOffsetX + dragPosition.x);
-			this.element.css('top', this._dragOffsetY + dragPosition.y);
+			// Calculate deltas
+			const deltaX = x - this.dragInitialX;
+			const deltaY = y - this.dragInitialY;
+
+			// Calculate final values
+			const newLeft = this.dragInitialLeft + deltaX;
+			const newTop = this.dragInitialTop + deltaY;
+
+			// Apply
+			this.element.css('left', newLeft);
+			this.element.css('top', newTop);
 			if (this.element.css('bottom') !== 'initial') {
 				this.element.css('bottom', 'initial');
 			}
@@ -395,7 +430,7 @@ export class CombatHUD extends Application {
 
 		const draggedPosition = {
 			x: offset.left,
-			y: positionFromTop ? offset.top : $(window).height() - offset.top - height
+			y: positionFromTop ? offset.top : $(window).height() - offset.top - height,
 		};
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
 	}
@@ -739,19 +774,16 @@ export class CombatHUD extends Application {
 
 	_onUpdateToken(token, changes) {
 		// Is the updated token in the current combat?
-		if(!game.combat?.combatants.some(c => c.token.uuid === token.uuid)) {
+		if (!game.combat?.combatants.some((c) => c.token.uuid === token.uuid)) {
 			return;
 		}
 
 		// Are any of the changes relevant to the Combat HUD?
 		if (
 			foundry.utils.hasProperty(changes, 'name') ||
-			foundry.utils.hasProperty(changes, 'actorId') || 
-			foundry.utils.hasProperty(changes, 'disposition') || 
-			(
-				game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && 
-				foundry.utils.hasProperty(changes, 'texture.src')
-			)
+			foundry.utils.hasProperty(changes, 'actorId') ||
+			foundry.utils.hasProperty(changes, 'disposition') ||
+			(game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && foundry.utils.hasProperty(changes, 'texture.src'))
 		) {
 			this._onUpdateHUD();
 		}
@@ -759,13 +791,11 @@ export class CombatHUD extends Application {
 
 	_onUpdateActor(actor, changes) {
 		// Is the updated actor in the current combat?
-		if(!game.combat?.combatants.some(c => c.actor.uuid === actor.uuid)) {
+		if (!game.combat?.combatants.some((c) => c.actor.uuid === actor.uuid)) {
 			return;
 		}
 
-		const systemResources = [
-			'hp', 'mp', 'ip', 'fp', 'exp', 'zenit'
-		];
+		const systemResources = ['hp', 'mp', 'ip', 'fp', 'exp', 'zenit'];
 
 		const trackedResources = [
 			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1),
@@ -775,10 +805,7 @@ export class CombatHUD extends Application {
 		];
 
 		// Are any of the changes relevant to the Combat HUD?
-		if (
-			trackedResources.filter(r => systemResources.includes(r))
-				.some(r => foundry.utils.hasProperty(changes, `system.resources.${r}`))
-		) {
+		if (trackedResources.filter((r) => systemResources.includes(r)).some((r) => foundry.utils.hasProperty(changes, `system.resources.${r}`))) {
 			this._onUpdateHUD();
 		}
 	}
@@ -793,10 +820,7 @@ export class CombatHUD extends Application {
 
 	_onModifyItem(item, changes) {
 		// Is the item owned by an actor in the current combat?
-		if (
-			item.parent?.documentName !== 'Actor' || 
-			!game.combat?.combatants.some(c => c.actor.uuid === item.parent.uuid)
-		) {
+		if (item.parent?.documentName !== 'Actor' || !game.combat?.combatants.some((c) => c.actor.uuid === item.parent.uuid)) {
 			return;
 		}
 
@@ -809,20 +833,11 @@ export class CombatHUD extends Application {
 
 		// Are any of the changes relevant to the combat HUD?
 		if (
-			trackedResources.includes('zeropower') &&
-			item.type === 'optionalFeature' && 
-			(
-				item.system.optionalType === 'projectfu.zeroPower') || 
-				// The optionalType can theoretically change, so make sure to check for it.
-				foundry.utils.hasProperty(changes, 'system.optionalType'
-			)
-			&&
-			(
+			(trackedResources.includes('zeropower') && item.type === 'optionalFeature' && item.system.optionalType === 'projectfu.zeroPower') ||
+			// The optionalType can theoretically change, so make sure to check for it.
+			(foundry.utils.hasProperty(changes, 'system.optionalType') &&
 				// Progress changes aren't relevant during create/delete hooks.
-				!changes ||
-				foundry.utils.hasProperty(changes, 'system.data.progress.current') ||
-				foundry.utils.hasProperty(changes, 'system.data.progress.max')
-			)
+				(!changes || foundry.utils.hasProperty(changes, 'system.data.progress.current') || foundry.utils.hasProperty(changes, 'system.data.progress.max')))
 		) {
 			this._onUpdateHUD();
 		}
@@ -831,17 +846,13 @@ export class CombatHUD extends Application {
 	_onModifyActiveEffect(activeEffect, changes) {
 		if (
 			// Is the active effect targeting an actor in the current combat?
-			!(
-				activeEffect.target &&
-				game.combat?.combatants.some(c => c.actor.uuid === activeEffect.target.uuid)
-			)
-			&&
+			!(activeEffect.target && game.combat?.combatants.some((c) => c.actor.uuid === activeEffect.target.uuid)) &&
 			// Did the transfer property change on an effect on an item owned by an actor in the current combat?
 			!(
 				activeEffect.parent?.documentName === 'Item' &&
 				activeEffect.parent.parent?.documentName === 'Actor' &&
 				foundry.utils.hasProperty(changes, 'transfer') &&
-				game.combat?.combatants.some(c => c.actor.uuid === activeEffect.parent.parent.uuid)
+				game.combat?.combatants.some((c) => c.actor.uuid === activeEffect.parent.parent.uuid)
 			)
 		) {
 			return;
