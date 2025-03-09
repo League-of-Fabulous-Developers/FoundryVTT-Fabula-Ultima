@@ -262,6 +262,38 @@ function skill(actor, item) {
 }
 
 /**
+ * @description Dispatched when an actor performs a skill without am accuracy check.
+ * @typedef ItemEvent
+ * @property {ItemReference} item
+ * @property {FUActor} actor
+ * @property {String} type The item type
+ * @property {Token} token
+ * @property {EventTarget[]} targets
+ */
+
+/**
+ * @description Dispatches an event to signal the usage of a consumable
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ */
+function item(actor, item) {
+	/** @type ConsumableDataModel  **/
+	const consumable = item.system;
+	const targets = Targeting.getSerializedTargetData();
+	const eventTargets = getEventTargets(targets);
+
+	/** @type ItemEvent  **/
+	const event = {
+		item: toItemReference(item),
+		actor: actor,
+		type: consumable.subtype.value,
+		token: actor.resolveToken(),
+		targets: eventTargets,
+	};
+	Hooks.call(FUHooks.ITEM_EVENT, event);
+}
+
+/**
  * @param {TargetData[]} targets
  * @returns {EventTarget[]}
  */
@@ -301,4 +333,5 @@ export const CommonEvents = Object.freeze({
 	loss,
 	spell,
 	skill,
+	item,
 });
