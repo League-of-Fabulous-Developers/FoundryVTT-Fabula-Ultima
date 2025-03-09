@@ -294,6 +294,27 @@ function item(actor, item) {
 }
 
 /**
+ * @description Dispatched when an actor performs a study check
+ * @typedef StudyEvent
+ * @property {FUActor} actor
+ * @property {Token} token
+ * @property {EventTarget[]} targets
+ */
+
+function study(actor, targets) {
+	const targetData = Targeting.serializeTargetData(targets);
+	const eventTargets = getEventTargets(targetData);
+
+	/** @type ItemEvent  **/
+	const event = {
+		actor: actor,
+		token: actor.resolveToken(),
+		targets: eventTargets,
+	};
+	Hooks.call(FUHooks.STUDY_EVENT, event);
+}
+
+/**
  * @param {TargetData[]} targets
  * @returns {EventTarget[]}
  */
@@ -334,4 +355,5 @@ export const CommonEvents = Object.freeze({
 	spell,
 	skill,
 	item,
+	study,
 });
