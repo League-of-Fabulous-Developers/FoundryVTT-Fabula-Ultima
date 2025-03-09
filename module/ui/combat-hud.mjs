@@ -28,6 +28,8 @@ export class CombatHUD extends Application {
 		this.dragInitialY = 0;
 		this.dragInitialTop = 0;
 		this.dragInitialLeft = 0;
+		this.firefoxDragX = 0;
+		this.firefoxDragY = 0;
 
 		// TODO: Move such browser checks to a higher scope
 		this.isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
@@ -371,6 +373,8 @@ export class CombatHUD extends Application {
 		this.dragInitialTop = elementPos.top;
 		this.dragInitialX = nativeEvent.clientX;
 		this.dragInitialY = nativeEvent.clientY;
+		this.firefoxDragX = 0;
+		this.firefoxDragY = 0;
 	}
 
 	// FireFox does not populate event.clientX or event.clientY
@@ -382,33 +386,37 @@ export class CombatHUD extends Application {
 		// and they should be treated as invalid
 		if (event.clientX <= 0 || event.clientY <= 0) return;
 
-		this.updatePosition(event.clientX, event.clientY);
+		// These need to be tracked separately
+		// The listener is listening to *any* drag on window, and may not be relevant to the combatHUD
+		// So the actual update should be deferred to _doHudDrag which is bound specifically to combatHUD
+		this.firefoxDragX = event.clientX;
+		this.firefoxDragY = event.clientY;
 	}
 
 	_doHudDrag(event) {
-		// Keep this check; drag events can trigger with (0,0) when outside the window or target
-		// and they should be treated as invalid
-		if (event.clientX <= 0 || event.clientY <= 0) return;
-
 		event.originalEvent.dataTransfer.dropEffect = 'move';
 
 		// Firefox doesn't handle drag events the same as other browsers
 		// We use the 'dragOver' event for that
+		let dragPosition;
 		if (this.isFirefox) {
-			return;
+			dragPosition = { x: this.firefoxDragX, y: this.firefoxDragY };
+		} else {
+			dragPosition = { x: event.clientX, y: event.clientY };
 		}
 
-		this.updatePosition(event.clientX, event.clientY);
-	}
+		// Keep this check; drag events can trigger with (0,0) when outside the window or target
+		// and they should be treated as invalid
+		if (dragPosition.x <= 0 || dragPosition.y <= 0) return;
 
-	updatePosition(x, y) {
+		// Update
 		if (this._dragAnimationFrame) {
 			cancelAnimationFrame(this._dragAnimationFrame);
 		}
 		this._dragAnimationFrame = requestAnimationFrame(() => {
 			// Calculate deltas
-			const deltaX = x - this.dragInitialX;
-			const deltaY = y - this.dragInitialY;
+			const deltaX = dragPosition.x - this.dragInitialX;
+			const deltaY = dragPosition.y - this.dragInitialY;
 
 			// Calculate final values
 			const newLeft = this.dragInitialLeft + deltaX;
