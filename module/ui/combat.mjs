@@ -362,20 +362,19 @@ export class FUCombat extends Combat {
 	populateData(data) {
 		// Whether combat has started
 		data.hasCombatStarted = this.started;
+		// What faction's turn it is
+		data.currentTurn = this.getCurrentTurn();
+		// Combatant.ID : Total Turns
 		data.totalTurns = this.combatants.reduce((agg, combatant) => {
 			agg[combatant.id] = combatant.totalTurns;
 			return agg;
 		}, {});
-		// The current round
-		data.round = this.round;
+		// Combatant ID : Turns Left
+		data.turnsLeft = this.countTurnsLeft();
 		// Whether an actor has started their turn
 		data.turnStarted = this.isTurnStarted;
 		// The current combatant, if any
 		data.combatant = this.combatant;
-		// ID : Turns Left
-		data.turnsLeft = this.countTurnsLeft();
-		// What faction's turn it is
-		data.currentTurn = this.getCurrentTurn();
 		// Whether the user is a GM
 		data.isGM = game.user.isGM;
 

@@ -1,6 +1,6 @@
 {{#if @root.hasCombatStarted}}
     {{! If the combatant HAS turns left }}
-    {{#if (and @root.round (lookup @root.turnsLeft this.id))}}
+    {{#if (lookup @root.turnsLeft this.id)}}
     {{! If a combatant has already started a turn }}
         {{#if @root.turnStarted}}
             {{#if (eq @root.combatant.id this.id)}}
