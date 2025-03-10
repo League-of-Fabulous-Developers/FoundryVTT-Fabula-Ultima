@@ -200,6 +200,9 @@ export class FUCombat extends Combat {
 			return this;
 		}
 
+		const updateData = { round: 1 };
+		await this.update(updateData);
+
 		await this.setFirstTurn(firstTurnFaction);
 		await this.setCurrentTurn(firstTurnFaction);
 		console.debug(`Combat started for ${this.combatants.length} combatants`);
