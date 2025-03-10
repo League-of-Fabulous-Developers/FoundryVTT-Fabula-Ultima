@@ -26,7 +26,6 @@ export class StudyRollHandler {
 			}
 		}
 
-		// Iterate over each targeted actor
 		for (const actor of targets) {
 			await this.handleStudyRollCallback(actor);
 		}
@@ -87,7 +86,7 @@ export class StudyRollHandler {
 		);
 
 		// Render the dialog
-		dialog.render(true);
+		await dialog.render(true);
 	}
 
 	/**
