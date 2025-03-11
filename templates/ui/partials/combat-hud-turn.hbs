@@ -1,15 +1,37 @@
 {{#if @root.hasCombatStarted}}
-    {{#if (and this.hasTurns this.isOwner)}}
+    {{! If the combatant HAS turns left }}
+    {{#if (lookup @root.turnsLeft this.id)}}
+    {{! If a combatant has already started a turn }}
         {{#if @root.turnStarted}}
-            {{#if this.isCurrentCombatant}}
+            {{#if (eq @root.combatant.id this.id)}}
                 <a class="combatant-control take-turn" role="button" data-action="end-turn">
                     <i class="mats-o mats-fill">check_circle</i>
                 </a>
+            {{else}}
+                <a class="combatant-control" style="opacity: 0.5">
+                    <i class="mats-o mats-fill">counter_{{lookup @root.turnsLeft this.id}}</i>
+                </a>
             {{/if}}
+        {{! If a combatant can start a turn }}
         {{else}}
-            <a class="combatant-control take-turn" role="button" data-action="start-turn">
-                <i class="mats-o mats-fill">counter_{{this.turnsLeft}}</i>
-            </a>
+            {{! If the combatant's faction CAN take a turn}}
+            {{#if (eq @root.currentTurn this.faction)}}
+                <a class="combatant-control take-turn" role="button" data-action="start-turn">
+                    <i class="mats-o mats-fill">counter_{{lookup @root.turnsLeft this.id}}</i>
+                </a>
+            {{! If the turn is taken out of order due to some mechanic }}
+            {{else}}
+                {{#if this.isOwner}}
+                    <a class="combatant-control take-turn out-of-turn" data-action="take-turn-out-of-turn">
+                        <i class="mats-o">counter_{{lookup @root.turnsLeft this.id}}</i>
+                    </a>
+                {{/if}}
+            {{/if}}
         {{/if}}
+    {{! If the combatant has NO turns left }}
+    {{else}}
+        <a class="combatant-control" style="opacity: 0.5">
+            <i class="mats-o mats-fill">check_circle</i>
+        </a>
     {{/if}}
 {{/if}}

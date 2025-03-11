@@ -151,7 +151,7 @@ const opportunity = (sections, opportunity, order) => {
  * @param accuracyData
  * @param {TemplateDamageData} damageData
  */
-const targeted = (sections, actor, item, targets, flags, accuracyData, damageData) => {
+const targeted = (sections, actor, item, targets, flags, accuracyData = undefined, damageData = undefined) => {
 	const isTargeted = targets?.length > 0 || !Targeting.STRICT_TARGETING;
 	if (isTargeted) {
 		sections.push(async function () {
@@ -234,7 +234,7 @@ async function showFloatyText(targetData, localizedText) {
  * @param {Object} flags
  * @param {ResourceExpense} expense
  */
-const spendResource = (sections, actor, item, targets, flags, expense) => {
+const spendResource = (sections, actor, item, targets, flags, expense = undefined) => {
 	// Resolve the expense if not explicit
 	if (expense === undefined) {
 		// If using the newer cost data model

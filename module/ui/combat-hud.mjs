@@ -153,13 +153,11 @@ export class CombatHUD extends Application {
 		data.cssClasses = this.options.classes.join(' ');
 		data.cssId = this.options.id;
 		data.isCompact = game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
-		data.isGM = game.user.isGM;
 
 		const opacity = game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity) / 100;
 		data.additionalStyle = this._getAdditionalStyle(opacity);
 
 		const ordering = game.settings.get(SYSTEM, SETTINGS.optionCombatHudActorOrdering);
-
 		data.npcs = [];
 		data.characters = [];
 
@@ -185,14 +183,9 @@ export class CombatHUD extends Application {
 
 		const NPCTurnsLeftMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode);
 
-		const currentTurn = game.combat.getCurrentTurn();
-		const turnsLeft = ui.combat.countTurnsLeft(game.combat);
-		// const round = game.combat.round;
-
 		/** @type FUCombat **/
 		const combat = game.combat;
-		data.turnStarted = combat.isTurnStarted;
-		data.hasCombatStarted = game.combat.started;
+		combat.populateData(data);
 
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
@@ -202,7 +195,10 @@ export class CombatHUD extends Application {
 				id: combatant.id,
 				name: combatant.name,
 				actor: combatant.actor,
+				isOwner: combatant.isOwner,
+				totalTurns: combatant.totalTurns,
 				token: combatant.token,
+				faction: combatant.faction,
 				effects: activeEffects,
 				// token._source should contain the most current version of the token's texture.
 				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? combatant.token._source.texture.src : combatant.actor.img,
@@ -247,7 +243,6 @@ export class CombatHUD extends Application {
 
 				// Ensure shouldEffectsMarquee is false if effectsMarqueeDuration is over 9000
 				actorData.shouldEffectsMarquee = actorData.effects.length > maxEffectsBeforeMarquee && effectsMarqueeDuration < 9000;
-
 				actorData.effectsMarqueeDuration = effectsMarqueeDuration;
 
 				const marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
@@ -271,29 +266,19 @@ export class CombatHUD extends Application {
 				});
 			}
 
-			actorData.isOwner = combatant.isOwner;
 			actorData.order = order;
 
-			actorData.totalTurns = combatant.totalTurns;
 			if (NPCTurnsLeftMode === 'never') {
 				actorData.totalTurns = 1;
 			} else if (NPCTurnsLeftMode === 'only-studied' && !this._isNPCStudied(combatant.token)) {
 				actorData.totalTurns = 1;
 			}
 
-			actorData.turnsLeft = turnsLeft[combatant.id] ?? 0;
-
 			if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
-				actorData.isCurrentTurn = currentTurn === 'friendly';
 				data.characters.push(actorData);
 			} else {
-				actorData.isCurrentTurn = currentTurn === 'hostile';
 				data.npcs.push(actorData);
 			}
-
-			// Decides whether combatant can (start turn | take turn)
-			actorData.isCurrentCombatant = combat.isCurrentCombatant(combatant);
-			actorData.hasTurns = turnsLeft[combatant.id] && actorData.isCurrentTurn;
 		}
 
 		data.characters.sort((a, b) => a.order - b.order);
@@ -361,6 +346,7 @@ export class CombatHUD extends Application {
 
 		html.find('a[data-action=start-turn]').click((event) => ui.combat.handleStartTurn(event));
 		html.find('a[data-action=end-turn]').click((event) => ui.combat.handleEndTurn(event));
+		html.find('a[data-action=take-turn-out-of-turn]').click((event) => ui.combat.handleTakeTurnOutOfTurn(event));
 	}
 
 	_doHudDragStart(event) {

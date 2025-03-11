@@ -1,6 +1,6 @@
 import { FUItem } from '../items/item.mjs';
 import { FUHooks } from '../../hooks.mjs';
-import { Effects, toggleStatusEffect } from '../../pipelines/effects.mjs';
+import { Effects, prepareActiveEffectCategories, toggleStatusEffect } from '../../pipelines/effects.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { Flags } from '../../helpers/flags.mjs';
 
@@ -33,6 +33,7 @@ import { Flags } from '../../helpers/flags.mjs';
  * @description Extend the base Actor document by defining a custom roll data structure
  * @extends {Actor}
  * @property {CharacterDataModel | NpcDataModel} system
+ * @property {EffectCategories} effectCategories
  * @remarks {@link https://foundryvtt.com/api/classes/client.Actor.html}
  * @inheritDoc
  */
@@ -308,6 +309,18 @@ export class FUActor extends Actor {
 			}
 		}
 		return effects;
+	}
+
+	/**
+	 * @returns {EffectCategories}
+	 * @remarks Used by modules mostly
+	 */
+	get effectCategories() {
+		const effects = Array.from(this.allApplicableEffects());
+		this.temporaryEffects.forEach((effect) => {
+			if (effects.indexOf(effect) < 0) effects.push(effect);
+		});
+		return prepareActiveEffectCategories(effects);
 	}
 
 	applyActiveEffects() {
