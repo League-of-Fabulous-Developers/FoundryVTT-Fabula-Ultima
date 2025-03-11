@@ -23,7 +23,6 @@ export class FUCombatTracker extends CombatTracker {
 		/** @type FUCombat **/
 		const combat = data.combat;
 		if (combat) {
-			// We assign it afterwards, since factions will be assigned if empty
 			combat.populateData(data);
 			// We add more data to the turns objects
 			data.turns = data.turns?.map((turn) => {
@@ -106,8 +105,9 @@ export class FUCombatTracker extends CombatTracker {
 		return turns.reduce(
 			(agg, combatantData) => {
 				const combatant = combat.combatants.get(combatantData.id);
-				// The tracker rendering needs this!
+				// The tracker rendering needs this! Do not remove!
 				combatantData.faction = combatant.faction;
+				combatantData.isOwner = combatant.isOwner;
 				if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
 					agg.friendly.push(combatantData);
 				} else {
