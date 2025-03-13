@@ -30,7 +30,7 @@ import { CommonEvents } from '../checks/common-events.mjs';
  * @typedef {Object} ActiveEffectData
  * @property {string} _id The unique identifier of the active effect.
  * @property {string} name - The name of the which describes the name of the ActiveEffect
- * @property {string} img - An image path used to depict the ActiveEffect as an icon
+ * @property {string} img - An image path used to 3depict the ActiveEffect as an icon
  * @property {EffectChangeData[]} changes - The array of EffectChangeData objects which the ActiveEffect applies
  * @property {boolean} disabled - Whether the active effect is disabled.
  * @property {EffectDurationData} duration - The duration data of the active effect.

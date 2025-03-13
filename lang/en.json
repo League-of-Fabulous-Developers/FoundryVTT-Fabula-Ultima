@@ -1290,6 +1290,7 @@
 		"EndOfCombat": "End of Combat",
 		"EndOfScene": "End of Scene",
 		"Extra": "Extra",
-		"Event": "Event"
+		"Event": "Event",
+		"Interval": "Interval"
 	}
 }

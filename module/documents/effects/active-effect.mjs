@@ -1,6 +1,6 @@
 import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
-import { SYSTEM } from '../../helpers/config.mjs';
+import { FU, SYSTEM } from '../../helpers/config.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 
 const CRISIS_INTERACTION = 'CrisisInteraction';
@@ -39,12 +39,25 @@ const PRIORITY_CHANGES = [
  * @property {String} id Canonical name
  * @property {String} uuid
  * @property {String} name
+ * @property {EffectDurationData} duration
  * @property {EffectChangeData[]} changes - The array of EffectChangeData objects which the ActiveEffect applies
  * @remarks https://foundryvtt.com/api/classes/client.ActiveEffect.html
  * @property {Function<Promise<Document>>} delete Delete this Document, removing it from the database.
  * @property {Function<void>} update Update this Document using incremental data, saving it to the database.
  * @property {Function<String, String, *, void>} setFlag Assign a "flag" to this document. Flags represent key-value type data which can be used to store flexible or arbitrary data required by either the core software, game systems, or user-created modules.
  * @property {Function<String, String, *>} getFlag Get the value of a "flag" for this document See the setFlag method for more details on flags
+ */
+
+/**
+ * @typedef {EffectDurationData} ActiveEffectDuration
+ * @property {string} type            The duration type, either "seconds", "turns", or "none"
+ * @property {number|null} duration   The total effect duration, in seconds of world time or as a decimal
+ *                                    number with the format {rounds}.{turns}
+ * @property {number|null} remaining  The remaining effect duration, in seconds of world time or as a decimal
+ *                                    number with the format {rounds}.{turns}
+ * @property {string} label           A formatted string label that represents the remaining duration
+ * @property {number} [_worldTime]    An internal flag used determine when to recompute seconds-based duration
+ * @property {number} [_combatTime]   An internal flag used determine when to recompute turns-based duration
  */
 
 /**
@@ -62,6 +75,11 @@ export class FUActiveEffect extends ActiveEffect {
 		return super._preCreate(data, options, user);
 	}
 
+	/**
+	 * @description Automatically deactivate effects with expired durations
+	 * @override
+	 * @returns {Boolean}
+	 */
 	get isSuppressed() {
 		if (this.target instanceof FUActor) {
 			const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
@@ -86,14 +104,59 @@ export class FUActiveEffect extends ActiveEffect {
 		return false;
 	}
 
+	/**
+	 * @description Check if the effect's subtype has special handling, otherwise fallback to normal `duration` and `statuses` check
+	 * @override
+	 */
 	get isTemporary() {
-		// TODO: Handle differently or?
-		// if (this.statuses.has('crisis')) {
-		// 	return false;
-		// }
 		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY);
 	}
 
+	/**
+	 * @description Compute derived data related to active effect duration.
+	 * @returns {{
+	 *   type: string,
+	 *   duration: number|null,
+	 *   remaining: number|null,
+	 *   label: string,
+	 *   [_worldTime]: number,
+	 *   [_combatTime]: number}
+	 * }
+	 * @private
+	 * @override
+	 */
+	_prepareDuration() {
+		// No duration
+		if (this.system.duration.event === FU.effectDuration.endOfScene) {
+			return {
+				type: 'none',
+				duration: null,
+				remaining: null,
+				label: game.i18n.localize('None'),
+			};
+		}
+
+		// TODO: Calculate.. ?
+		switch (this.system.duration.event) {
+			case FU.effectDuration.startOfTurn:
+				break;
+			case FU.effectDuration.endOfTurn:
+				break;
+			case FU.effectDuration.endOfRound:
+				break;
+		}
+
+		return {
+			type: 'none',
+			duration: null,
+			remaining: null,
+			label: game.i18n.localize('None'),
+		};
+	}
+
+	/**
+	 * @override
+	 */
 	prepareBaseData() {
 		super.prepareBaseData();
 		for (let change of this.changes) {

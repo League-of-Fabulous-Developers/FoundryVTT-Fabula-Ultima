@@ -30,6 +30,7 @@ export async function onRenderActiveEffectConfig(sheet, html, context) {
 	const effectTypeFlag = sheet.document.getFlag(SYSTEM, EFFECT_TYPE) || 'default'; // Default to 'effect'
 	const data = {
 		effect: sheet.document,
+		system: sheet.document.system,
 		effectDuration: FU.effectDuration,
 	};
 
@@ -67,8 +68,7 @@ export async function onRenderActiveEffectConfig(sheet, html, context) {
 	// Duration Tab (Replace)
 	const durationTab = html.find('.tab[data-tab=duration]');
 	durationTab.empty();
-	const templatePath = `systems/projectfu/templates/common/active-effect-duration.hbs`;
-	const durationTemplate = await renderTemplate(templatePath, data);
+	const durationTemplate = await renderTemplate(`systems/projectfu/templates/common/active-effect-duration.hbs`, data);
 	durationTab.append(durationTemplate);
 
 	sheet.setPosition({ ...sheet.position, height: 'auto' });
