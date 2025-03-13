@@ -1,9 +1,24 @@
 import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
 import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
 
+/**
+ * @description The system's id
+ */
 export const SYSTEM = 'projectfu';
 
+/**
+ * @description A constant with MANY definitions used throughout the project
+ */
 export const FU = {};
+
+/**
+ * @description Translates repository paths to Foundry Data paths
+ * @param {string} path - A path relative to the root of this repository
+ * @returns {string} The path relative to the Foundry data folder
+ */
+export function systemPath(path) {
+	return `systems/${SYSTEM}/${path}`;
+}
 
 /**
  * The set of Ability Scores used within the system.
@@ -511,7 +526,6 @@ FU.combatEvent = {
 	startOfTurn: 'FU.StartOfTurn',
 	endOfTurn: 'FU.EndOfTurn',
 	endOfRound: 'FU.EndOfRound',
-	endOfScene: 'FU.EndOfScene',
 	endOfCombat: `FU.EndOfCombat`,
 };
 

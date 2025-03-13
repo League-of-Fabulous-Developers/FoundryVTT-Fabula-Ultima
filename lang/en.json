@@ -1284,9 +1284,12 @@
 		"DamagePipelineStepIncomingDamageIce": "Incoming Damage: Ice",
 		"DamagePipelineStepIncomingDamageLight": "Incoming Damage: Light",
 		"DamagePipelineStepIncomingDamagePoison": "Incoming Damage: Poison",
+		"StartOfTurn": "Start of Turn",
 		"EndOfTurn": "End of Turn",
 		"EndOfRound": "End of Round",
 		"EndOfCombat": "End of Combat",
-		"Extra": "Extra"
+		"EndOfScene": "End of Scene",
+		"Extra": "Extra",
+		"Event": "Event"
 	}
 }

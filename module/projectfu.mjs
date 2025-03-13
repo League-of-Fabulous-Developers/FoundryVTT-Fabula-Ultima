@@ -74,6 +74,7 @@ import { InlineAffinity } from './helpers/inline-affinity.mjs';
 import { Effects } from './pipelines/effects.mjs';
 import { InlineType } from './helpers/inline-type.mjs';
 import { FUActiveEffectModel } from './documents/effects/active-effect-model.mjs';
+import { onRenderActiveEffectConfig } from './documents/effects/active-effect-config.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -194,6 +195,11 @@ Hooks.once('init', async () => {
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
 	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
+	// DocumentSheetConfig.unregisterSheet(ActiveEffect, 'core', ActiveEffectConfig);
+	// DocumentSheetConfig.registerSheet(ActiveEffect, SYSTEM, FUActiveEffectConfig, {
+	// 	makeDefault: true,
+	// 	label: 'Active Effect Sheet',
+	// });
 
 	// Register system settings
 	registerSystemSettings();
@@ -273,6 +279,8 @@ Hooks.once('init', async () => {
 	Hooks.on('renderActorSheet', InlineWeapon.activateListeners);
 	Hooks.on('renderItemSheet', InlineWeapon.activateListeners);
 	Hooks.on('dropActorSheetData', InlineWeapon.onDropActor);
+
+	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
 	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
 	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
