@@ -7,6 +7,7 @@ import { Pipeline } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
+import { SETTINGS } from '../settings.js';
 
 /**
  * @typedef EffectChangeData
@@ -30,7 +31,7 @@ import { CommonEvents } from '../checks/common-events.mjs';
  * @typedef {Object} ActiveEffectData
  * @property {string} _id The unique identifier of the active effect.
  * @property {string} name - The name of the which describes the name of the ActiveEffect
- * @property {string} img - An image path used to depict the ActiveEffect as an icon
+ * @property {string} img - An image path used to 3depict the ActiveEffect as an icon
  * @property {EffectChangeData[]} changes - The array of EffectChangeData objects which the ActiveEffect applies
  * @property {boolean} disabled - Whether the active effect is disabled.
  * @property {EffectDurationData} duration - The duration data of the active effect.
@@ -54,7 +55,7 @@ function createTemporaryEffect(owner, effectType, name) {
 		{
 			label: name ?? game.i18n.localize('FU.NewEffect'),
 			img: 'icons/svg/aura.svg',
-			origin: owner.uuid,
+			source: owner.uuid,
 			'duration.rounds': effectType === 'temporary' ? 1 : undefined,
 			disabled: effectType === 'inactive',
 		},
@@ -107,7 +108,7 @@ export async function onManageActiveEffect(event, owner) {
 			break;
 		}
 		case 'roll': {
-			return await handleRollEffect(resolveEffect(), owner);
+			return await renderEffect(resolveEffect(), owner);
 		}
 	}
 }
@@ -154,34 +155,6 @@ export function prepareActiveEffectCategories(effects) {
 }
 
 /**
- * A helper function to toggle a status effect on an Actor.
- * Designed based off TokenDocument#toggleActiveEffect to properly interact with token hud.
- * @param {FUActor} actor the actor the status should get applied to
- * @param {string} statusEffectId The status effect id based on CONFIG.statusEffects
- * @param {string} [source] the UUID of the document that caused the effect
- * @returns {Promise<boolean>} Whether the ActiveEffect is now on or off
- */
-export async function toggleStatusEffect(actor, statusEffectId, source = undefined) {
-	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
-	if (existing.length > 0) {
-		await Promise.all(
-			existing.map((e) => {
-				CommonEvents.status(actor, statusEffectId, false);
-				return e.delete();
-			}),
-		);
-		return false;
-	} else {
-		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId);
-		if (statusEffect) {
-			await ActiveEffect.create({ ...statusEffect, statuses: [statusEffectId], origin: source }, { parent: actor });
-			CommonEvents.status(actor, statusEffectId, true);
-		}
-		return true;
-	}
-}
-
-/**
  * @param effect
  * @returns {boolean} True if the effect can only be managed by the system
  */
@@ -218,11 +191,11 @@ export function isActiveEffectForStatusEffectId(effect, statusEffectId) {
 }
 
 /**
- * Handle rolling the effect and creating a chat message.
+ * @description Handle renders the effect by creating a chat message.
  * @param {ActiveEffect} effect  The ActiveEffect to be rolled and encoded
  * @param {Actor|Item} owner     The owning document (actor or item)
  */
-async function handleRollEffect(effect, owner) {
+async function renderEffect(effect, owner) {
 	if (!effect) {
 		ui.notifications.error('Effect not found.');
 		return;
@@ -241,10 +214,77 @@ async function handleRollEffect(effect, owner) {
 		</div>
 	`;
 
+	// TODO: More information?
 	await ChatMessage.create({
 		content: messageContent,
 		speaker: ChatMessage.getSpeaker({ actor: owner }),
 	});
+}
+
+/**
+ * @typedef InlineEffectConfiguration
+ * @property {String} event e:
+ * @property {Number} interval i:
+ * @property {String} tracking t:
+ */
+
+/**
+ * A helper function to toggle a status effect on an Actor.
+ * Designed based off TokenDocument#toggleActiveEffect to properly interact with token hud.
+ * @param {FUActor} actor the actor the status should get applied to
+ * @param {string} statusEffectId The status effect id based on CONFIG.statusEffects
+ * @param {InlineSourceInfo} sourceInfo
+ * @param {InlineEffectConfiguration} config
+ * @returns {Promise<boolean>} Whether the ActiveEffect is now on or off
+ */
+export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = undefined, config = undefined) {
+	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
+	if (existing.length > 0) {
+		await Promise.all(
+			existing.map((e) => {
+				CommonEvents.status(actor, statusEffectId, false);
+				return e.delete();
+			}),
+		);
+		return false;
+	} else {
+		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId);
+		if (statusEffect) {
+			const instance = await ActiveEffect.create(
+				{
+					...statusEffect,
+					statuses: [statusEffectId],
+					flags: createEffectFlags(statusEffect, sourceInfo),
+				},
+				{ parent: actor },
+			);
+			await applyConfiguration(instance, config);
+			CommonEvents.status(actor, statusEffectId, true);
+		}
+		return true;
+	}
+}
+
+/**
+ * @param {FUActor|FUItem} actor
+ * @param {ActiveEffectData} effect
+ * @param {InlineSourceInfo} sourceInfo
+ * @param {InlineEffectConfiguration} config
+ * @returns {FUActiveEffect}
+ */
+async function onApplyEffectToActor(actor, effect, sourceInfo, config = undefined) {
+	if (actor) {
+		const flags = createEffectFlags(effect, sourceInfo);
+		const instance = await ActiveEffect.create(
+			{
+				...effect,
+				flags: flags,
+			},
+			{ parent: actor },
+		);
+		await applyConfiguration(instance, config);
+		return instance;
+	}
 }
 
 function onRemoveEffectFromActor(actor, source, effect) {
@@ -253,7 +293,7 @@ function onRemoveEffectFromActor(actor, source, effect) {
 	const existingEffect = actor.effects.find(
 		(e) =>
 			e.getFlag(SYSTEM, FUActiveEffect.TEMPORARY_FLAG) &&
-			e.origin === source &&
+			e.source === source &&
 			e.changes.length === effect.changes.length &&
 			e.changes.every((change, index) => change.key === effect.changes[index].key && change.mode === effect.changes[index].mode && change.value === effect.changes[index].value),
 	);
@@ -267,68 +307,163 @@ function onRemoveEffectFromActor(actor, source, effect) {
 }
 
 /**
- * @param {FUActor|FUItem} actor
- * @param {String} sourceUuid
- * @param {ActiveEffectData} effect
+ * @param {FUActiveEffect} effect
+ * @param {InlineEffectConfiguration} configuration
+ * @returns {Promise<void>}
  */
-async function onApplyEffectToActor(actor, sourceUuid, effect) {
-	if (actor) {
-		return await ActiveEffect.create(
-			{
-				...effect,
-				origin: sourceUuid,
-				flags: foundry.utils.mergeObject(effect.flags ?? {}, { [SYSTEM]: { [FUActiveEffect.TEMPORARY_FLAG]: true } }),
-			},
-			{ parent: actor },
-		);
+async function applyConfiguration(effect, configuration) {
+	if (!configuration) {
+		return;
+	}
+	const updates = {};
+	if (configuration.event) {
+		updates['system.duration.event'] = configuration.event;
+	}
+	if (configuration.interval) {
+		updates['system.duration.interval'] = configuration.interval;
+		updates[`system.duration.remaining`] = configuration.interval;
+	}
+	if (configuration.tracking) {
+		updates['system.duration.tracking'] = configuration.tracking;
+	}
+	if (Object.keys(updates).length > 0) {
+		effect.update(updates);
 	}
 }
 
 /**
+ * @param {ActiveEffectData} effect
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {Object}
+ */
+function createEffectFlags(effect, sourceInfo) {
+	return foundry.utils.mergeObject(effect.flags ?? {}, {
+		[SYSTEM]: {
+			[FUActiveEffect.TEMPORARY_FLAG]: true,
+			[Flags.ActiveEffect.Source]: sourceInfo,
+		},
+	});
+}
+
+/**
+ * @typedef ManagedEffectData
+ * @property {String} name
+ * @property {String} img
+ * @property {String} id
+ * @property {String} actorName
+ * @property {String} actorId
+ * @property {Number} remaining
+ * @property {String} description
+ */
+
+/**
  * @description Manages active effects during a combat
- * @param {FUActor} actor
  * @param {CombatEvent} event
  * @returns {Promise<void>}
  */
-async function manageEffectDuration(actor, event) {
-	// TODO: Support later
-	if (event.type !== '42') {
-		return;
-	}
+async function manageEffectDuration(event) {
+	console.debug(`Managing active effects on ${event.type}`);
 
-	console.debug(`Managing effects for ${actor.name} on ${event.type}`);
+	/** @type ManagedEffectData[] **/
+	const managedEffects = [];
+	const updates = [];
+	const effectsToDelete = [];
+	const autoRemove = game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects);
+	const remind = game.settings.get(SYSTEM, SETTINGS.optionAutomationEffectsReminder);
 
-	// TODO: Filter by the event
-	const effects = actor.temporaryEffects.filter((e) => {
-		// Tick down duration here?
-		switch (event.type) {
-			case FU.combatEvent.endOfTurn:
-				break;
-			case FU.combatEvent.endOfRound:
-				break;
+	// TODO: Add source-tracked effects into a single collection to check
+	for (const actor of event.actors) {
+		const effects = actor.temporaryEffects.filter(
+			/** @type FUActiveEffect **/ (effect) => {
+				// The duration data
+				const duration = effect.system.duration;
+				const eventType = FU.effectDuration[duration.event];
+
+				// Not based on this event type
+				if (eventType !== event.type) {
+					return false;
+				}
+
+				// If it's not tracking this actor
+				if (duration.tracking === 'self') {
+					if (actor.uuid !== event.actor.uuid) {
+						return false;
+					}
+				} else if (duration.tracking === 'source') {
+					if (effect.source.actorUuid !== event.actor.uuid) {
+						return false;
+					}
+				}
+
+				// Already expired
+				if (duration.remaining === 0) {
+					if (autoRemove) {
+						console.debug(`Automatically removing ${effect.name} on round ${event.round}`);
+						effectsToDelete.push(effect);
+					}
+					return true;
+				}
+
+				// Tick down remaining
+				console.debug(`Decreasing remaining effect duration (${duration.remaining}) of ${effect.name} in ${event.type}`);
+				updates.push(
+					effect.update({
+						[`system.duration.remaining`]: duration.remaining - 1,
+					}),
+				);
+
+				// Just expired
+				const expired = duration.remaining - 1 === 0;
+				if (expired) {
+					if (autoRemove) {
+						console.debug(`Automatically removing ${effect.name}`);
+						effectsToDelete.push(effect);
+					}
+					return true;
+				}
+				// Not yet expired
+				return remind;
+			},
+		);
+
+		if (effects.length > 0) {
+			/** @type ManagedEffectData[] **/
+			const effectData = effects.map((effect) => ({
+				name: effect.name,
+				id: effect.id,
+				img: effect.img,
+				actorName: actor.name,
+				actorId: actor.uuid,
+				remaining: effect.system.duration.remaining - 1, // The update happens later okay?
+				description: effect.description,
+			}));
+
+			managedEffects.push(...effectData);
 		}
+	}
 
-		console.debug(`Will manage duration of ${e.name}: ${JSON.stringify(e.duration)}`);
-
-		return true;
-	});
-
-	if (effects.length === 0) {
+	if (managedEffects.length === 0) {
 		return;
 	}
+	await Promise.all(updates);
+
+	// TODO: Maybe link to the originals if deletions are about to happen
 
 	ChatMessage.create({
-		speaker: ChatMessage.getSpeaker({ actor }),
+		//speaker: ChatMessage.getSpeaker({ actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
 		content: await renderTemplate('systems/projectfu/templates/chat/chat-manage-effects.hbs', {
 			message: 'FU.ChatManageEffects',
-			actor: actor.name,
-			uuid: actor.uuid,
-			effects: effects,
+			effects: managedEffects,
 			round: event.round,
 			event: event.type,
 		}),
 	});
+
+	// Safe to delete now that it's been posted
+	for (const e of effectsToDelete) {
+		e.delete();
+	}
 }
 
 /**
@@ -346,6 +481,13 @@ async function promptEffectRemoval(event) {
 		return;
 	}
 
+	if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
+		event.actors.forEach((actor) => {
+			actor.clearTemporaryEffects();
+		});
+		return;
+	}
+
 	let message;
 	switch (event.type) {
 		case FU.combatEvent.startOfCombat:
@@ -356,12 +498,12 @@ async function promptEffectRemoval(event) {
 			break;
 	}
 
-	const serializeddActors = Targeting.serializeTargetData(event.actors);
+	const serializedActors = Targeting.serializeTargetData(event.actors);
 	ChatMessage.create({
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
 		content: await renderTemplate('systems/projectfu/templates/chat/chat-combat-end.hbs', {
 			message: message,
-			actors: JSON.stringify(serializeddActors),
+			actors: JSON.stringify(serializedActors),
 			round: event.round,
 			count: count,
 		}),
@@ -390,6 +532,16 @@ function onRenderChatMessage(message, jQuery) {
 		}
 	});
 
+	Pipeline.handleClick(message, jQuery, 'display', async (dataset) => {
+		const description = dataset.description;
+		const actorId = dataset.actorId;
+		const actor = fromUuidSync(actorId);
+		await ChatMessage.create({
+			content: description,
+			speaker: ChatMessage.getSpeaker({ actor: actor }),
+		});
+	});
+
 	Pipeline.handleClick(message, jQuery, 'clearEffects', (dataset) => {
 		const actors = Targeting.deserializeTargetData(dataset.actors);
 		actors.forEach((actor) => {
@@ -403,24 +555,20 @@ function onRenderChatMessage(message, jQuery) {
  * @returns {Promise<void>}
  */
 async function onCombatEvent(event) {
+	if (!game.settings.get(SYSTEM, SETTINGS.optionAutomationManageEffects)) {
+		return;
+	}
+
 	switch (event.type) {
 		case FU.combatEvent.startOfCombat:
 		case FU.combatEvent.endOfCombat:
 			await promptEffectRemoval(event);
 			break;
 
-		// TODO: Set up active effect data model with duration, in order to make use of these
 		case FU.combatEvent.startOfTurn:
 		case FU.combatEvent.endOfTurn:
-			await manageEffectDuration(event.actor, event);
-			break;
-
 		case FU.combatEvent.endOfRound:
-			{
-				event.actors.forEach((actor) => {
-					manageEffectDuration(actor, event);
-				});
-			}
+			await manageEffectDuration(event);
 			break;
 	}
 }

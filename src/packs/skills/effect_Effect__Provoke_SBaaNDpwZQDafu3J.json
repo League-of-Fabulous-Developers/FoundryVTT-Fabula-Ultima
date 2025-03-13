@@ -1,0 +1,80 @@
+{
+  "folder": "WONVaH9GTHooWU93",
+  "name": "Effect: Provoke",
+  "type": "effect",
+  "_id": "SBaaNDpwZQDafu3J",
+  "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
+  "system": {
+    "fuid": "effect-provoke",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Provoke",
+      "_id": "X0ncNBybozMcN7Z2",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "stack": 1
+      },
+      "changes": [],
+      "description": "<p>You are compelled to focus your attention on the character who provoked you.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1742491472722,
+        "modifiedTime": 1742491612013,
+        "lastModifiedBy": "JXPd932s9DHQRD0w"
+      },
+      "_key": "!items.effects!SBaaNDpwZQDafu3J.X0ncNBybozMcN7Z2"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "JXPd932s9DHQRD0w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742491445138,
+    "modifiedTime": 1742491470917,
+    "lastModifiedBy": "JXPd932s9DHQRD0w"
+  },
+  "_key": "!items!SBaaNDpwZQDafu3J"
+}

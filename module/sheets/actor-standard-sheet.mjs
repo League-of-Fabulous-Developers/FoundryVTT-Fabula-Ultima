@@ -9,7 +9,7 @@ import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { GroupCheck as GroupCheckV2 } from '../checks/group-check.mjs';
-import { InlineHelper } from '../helpers/inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
@@ -649,7 +649,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('.status-effect-toggle').click((ev) => {
 			ev.preventDefault();
 			const a = ev.currentTarget;
-			toggleStatusEffect(this.actor, a.dataset.statusId);
+			toggleStatusEffect(this.actor, a.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
 		});
 
 		// Rollable abilities.

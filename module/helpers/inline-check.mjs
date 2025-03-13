@@ -10,7 +10,7 @@ import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
  * @type {TextEditorEnricherConfig}
  */
 const inlineCheckEnricher = {
-	pattern: /@CHECK\[\s*(?<first>\w+)\s*(?<second>\w+)\s*(?<modifier>\(.*?\))*\s*(?<level>\w+)?\]/g,
+	pattern: /@CHECK\[\s*(?<first>\w+)\s*(?<second>\w+)\s*(?<modifier>\(.*?\))*\s*(?<level>\w+)?]({(?<label>\w+)})?/g,
 	enricher: checkEnricher,
 };
 
@@ -22,6 +22,7 @@ const inlineCheckEnricher = {
 function checkEnricher(match, options) {
 	let first = match[1];
 	let second = match[2];
+	const label = match.groups.label;
 
 	if (first in FU.attributes && second in FU.attributes) {
 		const anchor = document.createElement('a');
@@ -35,14 +36,20 @@ function checkEnricher(match, options) {
 		const icon = document.createElement('i');
 		icon.classList.add(`icon`, 'fu-check');
 		anchor.prepend(icon);
-		// FIRST ATTRIBUTE
-		anchor.append(`${game.i18n.localize(FU.attributeAbbreviations[first])} `);
-		// CONNECTOR
-		const connectorIcon = document.createElement(`i`);
-		connectorIcon.classList.add(`connector`, `fa-plus`);
-		anchor.append(connectorIcon);
-		// SECOND ATTRIBUTE
-		anchor.append(` ${game.i18n.localize(FU.attributeAbbreviations[second])} `);
+
+		if (label) {
+			anchor.append(label);
+			anchor.dataset.label = label;
+		} else {
+			// FIRST ATTRIBUTE
+			anchor.append(`${game.i18n.localize(FU.attributeAbbreviations[first])} `);
+			// CONNECTOR
+			const connectorIcon = document.createElement(`i`);
+			connectorIcon.classList.add(`connector`, `fa-plus`);
+			anchor.append(connectorIcon);
+			// SECOND ATTRIBUTE
+			anchor.append(` ${game.i18n.localize(FU.attributeAbbreviations[second])} `);
+		}
 		// [OPTIONAL] Modifier
 		let modifier = match.groups.modifier;
 		if (modifier) {
@@ -58,7 +65,7 @@ function checkEnricher(match, options) {
 		// [OPTIONAL] DIFFICULTY
 		let level = match.groups.level;
 		if (level !== undefined) {
-			appendDifficulty(level, anchor);
+			appendDifficulty(level, anchor, label === undefined);
 		}
 		anchor.setAttribute('data-tooltip', tooltip);
 		return anchor;
@@ -66,7 +73,7 @@ function checkEnricher(match, options) {
 	return null;
 }
 
-function appendDifficulty(level, anchor) {
+function appendDifficulty(level, anchor, show) {
 	// If using the level enumeration
 	if (level in FU.difficultyLevel) {
 		anchor.dataset.level = level;
@@ -82,14 +89,16 @@ function appendDifficulty(level, anchor) {
 		}
 	}
 
-	const dlConnectorIcon = document.createElement(`i`);
-	dlConnectorIcon.classList.add(`connector`, `fa`, `fa-caret-right`);
-	anchor.append(dlConnectorIcon);
+	if (show) {
+		const dlConnectorIcon = document.createElement(`i`);
+		dlConnectorIcon.classList.add(`connector`, `fa`, `fa-caret-right`);
+		anchor.append(dlConnectorIcon);
 
-	const difficultyText = document.createElement(`i`);
-	difficultyText.classList.add(`difficulty`);
-	difficultyText.append(`${anchor.dataset.difficulty}`);
-	anchor.append(difficultyText);
+		const difficultyText = document.createElement(`i`);
+		difficultyText.classList.add(`difficulty`);
+		difficultyText.append(`${anchor.dataset.difficulty}`);
+		anchor.append(difficultyText);
+	}
 }
 
 /**

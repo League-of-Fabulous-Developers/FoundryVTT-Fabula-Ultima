@@ -128,9 +128,8 @@ function createEffect(type, value) {
  */
 async function applyEffect(actor, sourceInfo, type, value) {
 	if (actor.system instanceof CharacterDataModel || actor.system instanceof NpcDataModel) {
-		const source = sourceInfo.resolve();
 		const effectData = createEffect(type, value);
-		Effects.onApplyEffectToActor(actor, source?.uuid, effectData).then((effect) => {
+		Effects.onApplyEffectToActor(actor, effectData, sourceInfo).then((effect) => {
 			console.info(`Created effect: ${effect.uuid} on actor uuid: ${actor.uuid}`);
 		});
 	} else {

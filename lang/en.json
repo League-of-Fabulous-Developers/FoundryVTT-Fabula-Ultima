@@ -877,9 +877,10 @@
 		"ChatAbsorbHitPoints": "Recover half lost as HP",
 		"ChatAbsorbMindPoints": "Recover half lost as MP",
 		"ChatEvaluateAmountNoActor": "No reference to an actor provided",
+		"ChatEvaluateAmountNoSource": "No reference to a source provided",
 		"ChatEvaluateAmountNoItem": "No reference to an item provided",
 		"ChatEvaluateNoSkill": "The referenced skill was not found in the actor",
-		"ChatManageEffects": "<b>{actor}</b> is currently affected by the following effects:",
+		"ChatManageEffects": "Affected by the following effects:",
 		"ChatPingTarget": "Ping the targeted actor",
 		"TotalAvailableSkills": "Total Available Skills",
 		"TotalSPAvailable": "Total SP Available",
@@ -1287,5 +1288,26 @@
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
 		}
+		"StartOfTurn": "Start of Turn",
+		"EndOfTurn": "End of Turn",
+		"EndOfRound": "End of Round",
+		"EndOfCombat": "End of Combat",
+		"EndOfScene": "End of Scene",
+		"Downtime": "Downtime",
+		"Extra": "Extra",
+		"Event": "Event",
+		"Interval": "Interval",
+		"Predicate": "Predicate",
+		"Tracking": "Tracking",
+		"Remaining": "Remaining",
+		"ChatActiveEffectDeleted": "The selected active effect has been deleted",
+		"AutomationManageEffects": "Manage Active Effects",
+		"AutomationManageEffectsHint": "Whether active effect durations and more are managed during combat",
+		"AutomationRemoveExpiredEffects": "Remove Expired Active Effects",
+		"AutomationRemoveExpiredEffectsHint": "Whether active effect durations and more are managed during combat",
+		"AutomationEffectsReminder": "Active Effects Reminder",
+		"AutomationEffectsReminderHint": "Whether to post chat messages as effect durations decrease",
+		"Actor": "Actor",
+		"Combatant": "Combatant"
 	}
 }

@@ -85,6 +85,16 @@ export class InlineSourceInfo {
 		return null;
 	}
 
+	/**
+	 * @returns {String} The uuid of the item, or the actor
+	 */
+	get uuid() {
+		if (this.itemUuid) {
+			return this.itemUuid;
+		}
+		return this.actorUuid;
+	}
+
 	static none = Object.freeze(new InlineSourceInfo('Unknown'));
 }
 
@@ -204,12 +214,28 @@ function registerEnricher(enricher, activateListeners, onDropActor) {
 	Hooks.on('dropActorSheetData', onDropActor);
 }
 
+function appendImageToAnchor(anchor, path) {
+	const img = document.createElement('img');
+	img.src = path;
+	img.width = 16;
+	img.height = 16;
+	img.style.marginLeft = img.style.marginRight = '4px';
+	anchor.append(img);
+}
+
+function propertyPattern(identifier, key, value) {
+	return `(\\s+${key}:(?<${identifier}>${value}))?`;
+}
+
 export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
+	appendImageToAnchor,
 	appendVariableToAnchor,
 	toBase64,
 	fromBase64,
 	capitalize,
 	registerEnricher,
+	labelPattern: '({(?<label>\\w+)})?',
+	propertyPattern,
 };

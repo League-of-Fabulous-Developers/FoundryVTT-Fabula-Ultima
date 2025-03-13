@@ -3,6 +3,7 @@ import { FUHooks } from '../../hooks.mjs';
 import { Effects, prepareActiveEffectCategories, toggleStatusEffect } from '../../pipelines/effects.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { Flags } from '../../helpers/flags.mjs';
+import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
 
 /**
  * @typedef Actor
@@ -205,7 +206,7 @@ export class FUActor extends Actor {
 						token: this.resolveToken(),
 					},
 				);
-				await toggleStatusEffect(this, 'crisis');
+				await toggleStatusEffect(this, 'crisis', InlineSourceInfo.fromInstance(this));
 			}
 
 			// Handle KO status
@@ -220,7 +221,7 @@ export class FUActor extends Actor {
 						token: this.resolveToken(),
 					},
 				);
-				await toggleStatusEffect(this, 'ko');
+				await toggleStatusEffect(this, 'ko', InlineSourceInfo.fromInstance(this));
 			}
 		}
 		super._onUpdate(changed, options, userId);
