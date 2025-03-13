@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> suffers 5 extra damage from sources dealing damage of the chosen type.</p><hr><ul><li><p><strong>You:</strong> @LOSS[2 ip]</p></li><li><p><strong>Target: @UUID[Compendium.projectfu.actor-effects.aI4tsuVswH5gfGab]{Air Weakness}, @UUID[Compendium.projectfu.actor-effects.MRNCMGIcZStGVV9J]{Bolt Weakness}, @UUID[Compendium.projectfu.actor-effects.zFQpa3KcSAmBCWdE]{Dark Weakness}, @UUID[Compendium.projectfu.actor-effects.YpXM5ClzMzIcwCgd]{Earth Weakness}, @UUID[Compendium.projectfu.actor-effects.dAFACJSQzCbcU9We]{Fire Weakness}, @UUID[Compendium.projectfu.actor-effects.BVOW692emrw4yxR0]{Ice Weakness}, @UUID[Compendium.projectfu.actor-effects.aPBdnNy1hA8aRctl]{Light Weakness}, @UUID[Compendium.projectfu.actor-effects.2sXIFIXiWxRHt8CP]{Poison Weakness}</strong></p></li></ul>"
+      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> suffers 5 extra damage from sources dealing damage of the chosen type.</p><hr><ul><li><p><strong>You:</strong> @LOSS[2 ip]</p></li><li><p><strong>Target: @EFFECT[Compendium.projectfu.actor-effects.aI4tsuVswH5gfGab]{Symbol of Weakness: Air}, @EFFECT[Compendium.projectfu.actor-effects.MRNCMGIcZStGVV9J]{Symbol of Weakness: Bolt}@EFFECT[Compendium.projectfu.actor-effects.zFQpa3KcSAmBCWdE]{Symbol of Weakness: Dark}, @EFFECT[Compendium.projectfu.actor-effects.YpXM5ClzMzIcwCgd]{Symbol of Weakness: Earth}, @EFFECT[Compendium.projectfu.actor-effects.dAFACJSQzCbcU9We]{Symbol of Weakness: Fire}, @EFFECT[Compendium.projectfu.actor-effects.BVOW692emrw4yxR0]{Symbol of Weakness: Ice}, @EFFECT[Compendium.projectfu.actor-effects.aPBdnNy1hA8aRctl]{Symbol of Weakness: Light}, @EFFECT[Compendium.projectfu.actor-effects.2sXIFIXiWxRHt8CP]{Symbol of Weakness: Poison}</strong></p></li></ul>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-weakness"
@@ -74,10 +74,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710178202872,
-    "modifiedTime": 1737994238621,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1742583502931,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -134,6 +134,7 @@
 		"InlineWeapon": "Apply effect to equipped weapon on character",
 		"InlineWeaponActiveEffectName": "Alter Damage Type ({damageType})",
 		"InlineAffinity": "Alter affinity {type} to {affinity} on character",
+		"InlineDamageType": "Alter damage type {type} to {affinity} on character",
 		"Name": "Name",
 		"Roll": "Roll",
 		"Add": "Add",
@@ -1365,6 +1366,23 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"StartOfTurn": "Start of Turn",
+		"EndOfScene": "End of Scene",
+		"Downtime": "Downtime",
+		"Event": "Event",
+		"Interval": "Interval",
+		"Predicate": "Predicate",
+		"Tracking": "Tracking",
+		"Remaining": "Remaining",
+		"ChatActiveEffectDeleted": "The selected active effect has been deleted",
+		"AutomationManageEffects": "Manage Active Effects",
+		"AutomationManageEffectsHint": "Whether active effect durations and more are managed during combat",
+		"AutomationRemoveExpiredEffects": "Remove Expired Active Effects",
+		"AutomationRemoveExpiredEffectsHint": "Whether active effect that have expired are automatically removed",
+		"AutomationEffectsReminder": "Active Effects Reminder",
+		"AutomationEffectsReminderHint": "Whether to post chat messages as effect durations decrease",
+		"Actor": "Actor",
+		"Combatant": "Combatant"
 	}
 }

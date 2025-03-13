@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr><p>@UUID[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B]{Dazed Immunity} @UUID[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Shaken Immunity} @UUID[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp]{Slow Immunity} @UUID[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Weak Immunity}</p><p>@LOSS[2 ip]</p>"
+      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr><ul><li><p><strong>You</strong>: @LOSS[2 ip]</p></li><li><p><strong>Creature: </strong>@EFFECT[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B]{Symbol of Flux: Dazed Immunity} @EFFECT[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Symbol of Flux: Shaken Immunity} @EFFECT[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp]{Symbol of Flux: Slow Immunity} @EFFECT[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Symbol of Flux: Weak Immunity}</p></li></ul><p></p>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-flux"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177560234,
-    "modifiedTime": 1741950474606,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1742583609991,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },
