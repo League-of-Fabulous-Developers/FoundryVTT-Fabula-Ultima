@@ -73,6 +73,7 @@ import { InlineHelper } from './helpers/inline-helper.mjs';
 import { InlineAffinity } from './helpers/inline-affinity.mjs';
 import { Effects } from './pipelines/effects.mjs';
 import { InlineType } from './helpers/inline-type.mjs';
+import { FUActiveEffectModel } from './documents/effects/active-effect-model.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -192,6 +193,7 @@ Hooks.once('init', async () => {
 		effect: EffectDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
+	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
 
 	// Register system settings
 	registerSystemSettings();

@@ -20,60 +20,6 @@ const effectType = {
 	customization: 'FU.Customization',
 };
 
-function onRenderActiveEffectConfig(sheet, html) {
-	const flag = sheet.document.getFlag(SYSTEM, CRISIS_INTERACTION);
-	const sourceFlag = sheet.document.getFlag(SYSTEM, PAGE_REFERENCE) || '';
-	const effectTypeFlag = sheet.document.getFlag(SYSTEM, EFFECT_TYPE) || 'default'; // Default to 'effect'
-
-	// Effect Type select field
-	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(`
-		<div class="form-group">
-			<label>${game.i18n.localize('FU.EffectType')}</label>
-			<select name="flags.${SYSTEM}.${EFFECT_TYPE}" ${sheet.isEditable ? '' : 'disabled'}>
-				${Object.entries(effectType).map(
-					([key, value]) =>
-						`<option value="${key}" ${key === effectTypeFlag ? 'selected' : ''}>
-				  ${game.i18n.localize(value)}</option>`,
-				)}
-			</select>
-		</div>
-	`);
-
-	// Source input field
-	html.find('.tab[data-tab=details] .form-group:nth-child(4)').after(`
-		<div class="form-group">
-			<label>${game.i18n.localize('FU.EffectSource')}</label>
-			<input type="text" name="flags.${SYSTEM}.${PAGE_REFERENCE}" value="${sourceFlag}" ${sheet.isEditable ? '' : 'disabled'}>
-		</div>
-	`);
-
-	html.find('.tab[data-tab=details] .form-group:nth-child(5)').after(`
-	<div class="form-group">
-        <label>${game.i18n.localize('FU.EffectCrisisInteraction')}</label>
-        <select name="flags.${SYSTEM}.${CRISIS_INTERACTION}" ${sheet.isEditable ? '' : 'disabled'}>
-          ${Object.entries(crisisInteractions).map(([key, value]) => `<option value="${key}" ${key === flag ? 'selected' : ''}>${game.i18n.localize(value)}</option>`)}
-        </select>
-    </div>
-	`);
-
-	sheet.setPosition({ ...sheet.position, height: 'auto' });
-}
-Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
-
-/**
- * @param {FUActor} actor
- * @param {EffectChangeData} change
- * @param current
- */
-function onApplyActiveEffect(actor, change, current) {
-	if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, change.value) && current[change.value] instanceof Function) {
-		console.debug(`applying ${change.value} to ${change.key}`);
-		current[change.value]();
-		return false;
-	}
-}
-Hooks.on('applyActiveEffect', onApplyActiveEffect);
-
 const PRIORITY_CHANGES = [
 	'system.resources.hp.bonus',
 	'system.resources.hp.attribute',
@@ -117,6 +63,7 @@ const PRIORITY_CHANGES = [
 
 /**
  * @extends ActiveEffect
+ * @property {FUActiveEffectModel} system
  * @inheritDoc
  * */
 export class FUActiveEffect extends ActiveEffect {
@@ -204,3 +151,57 @@ export class FUActiveEffect extends ActiveEffect {
 		return super.apply(target, change);
 	}
 }
+
+function onRenderActiveEffectConfig(sheet, html) {
+	const flag = sheet.document.getFlag(SYSTEM, CRISIS_INTERACTION);
+	const sourceFlag = sheet.document.getFlag(SYSTEM, PAGE_REFERENCE) || '';
+	const effectTypeFlag = sheet.document.getFlag(SYSTEM, EFFECT_TYPE) || 'default'; // Default to 'effect'
+
+	// Effect Type select field
+	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(`
+		<div class="form-group">
+			<label>${game.i18n.localize('FU.EffectType')}</label>
+			<select name="flags.${SYSTEM}.${EFFECT_TYPE}" ${sheet.isEditable ? '' : 'disabled'}>
+				${Object.entries(effectType).map(
+					([key, value]) =>
+						`<option value="${key}" ${key === effectTypeFlag ? 'selected' : ''}>
+				  ${game.i18n.localize(value)}</option>`,
+				)}
+			</select>
+		</div>
+	`);
+
+	// Source input field
+	html.find('.tab[data-tab=details] .form-group:nth-child(4)').after(`
+		<div class="form-group">
+			<label>${game.i18n.localize('FU.EffectSource')}</label>
+			<input type="text" name="flags.${SYSTEM}.${PAGE_REFERENCE}" value="${sourceFlag}" ${sheet.isEditable ? '' : 'disabled'}>
+		</div>
+	`);
+
+	html.find('.tab[data-tab=details] .form-group:nth-child(5)').after(`
+	<div class="form-group">
+        <label>${game.i18n.localize('FU.EffectCrisisInteraction')}</label>
+        <select name="flags.${SYSTEM}.${CRISIS_INTERACTION}" ${sheet.isEditable ? '' : 'disabled'}>
+          ${Object.entries(crisisInteractions).map(([key, value]) => `<option value="${key}" ${key === flag ? 'selected' : ''}>${game.i18n.localize(value)}</option>`)}
+        </select>
+    </div>
+	`);
+
+	sheet.setPosition({ ...sheet.position, height: 'auto' });
+}
+Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
+
+/**
+ * @param {FUActor} actor
+ * @param {EffectChangeData} change
+ * @param current
+ */
+function onApplyActiveEffect(actor, change, current) {
+	if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, change.value) && current[change.value] instanceof Function) {
+		console.debug(`applying ${change.value} to ${change.key}`);
+		current[change.value]();
+		return false;
+	}
+}
+Hooks.on('applyActiveEffect', onApplyActiveEffect);

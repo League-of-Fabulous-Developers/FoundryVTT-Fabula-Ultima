@@ -504,8 +504,7 @@ FU.duration = {
 };
 
 /**
- * @description Combat Events
- *
+ * @description Events dispatched during conflict scenes
  */
 FU.combatEvent = {
 	startOfCombat: 'FU.StartOfCombat',
@@ -514,6 +513,16 @@ FU.combatEvent = {
 	endOfRound: 'FU.EndOfRound',
 	endOfScene: 'FU.EndOfScene',
 	endOfCombat: `FU.EndOfCombat`,
+};
+
+/**
+ * @description Active effect durations
+ */
+FU.effectDuration = {
+	startOfTurn: 'FU.StartOfTurn',
+	endOfTurn: 'FU.EndOfTurn',
+	endOfRound: 'FU.EndOfRound',
+	endOfScene: 'FU.EndOfScene',
 };
 
 FU.target = {
