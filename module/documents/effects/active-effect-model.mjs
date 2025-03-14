@@ -35,6 +35,7 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 
 /**
  * @description Used to toggle the active effect on/off based on the state
+ * @property {String} crisisInteraction
  */
 export class ActiveEffectPredicateModel extends foundry.abstract.DataModel {
 	static defineSchema() {

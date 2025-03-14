@@ -3,7 +3,6 @@ import { FUItem } from '../items/item.mjs';
 import { FU, SYSTEM } from '../../helpers/config.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 
-const CRISIS_INTERACTION = 'CrisisInteraction';
 const TEMPORARY = 'Temporary';
 
 const PRIORITY_CHANGES = [
@@ -79,15 +78,25 @@ export class FUActiveEffect extends ActiveEffect {
 		return super._preCreate(data, options, user);
 	}
 
+	/**
+	 * @private
+	 * @override
+	 */
 	async _onCreate(data, options, userId) {
 		await super._onCreate(data, options, userId);
 		// No duration
-		if (this.system.duration.event !== FU.effectDuration.endOfScene) {
+		switch (this.system.duration.event) {
 			// Update the effect duration interval back to maximum
-			const updateData = {
-				[`system.duration.remaining`]: this.system.duration.interval,
-			};
-			this.update(updateData);
+			case 'startOfTurn':
+			case 'endOfTurn':
+			case 'endOfRound':
+				{
+					const updateData = {
+						[`system.duration.remaining`]: this.system.duration.interval,
+					};
+					this.update(updateData);
+				}
+				break;
 		}
 		console.debug(`Created active effect ${this.name} with interval ${this.duration.remaining}`);
 	}
@@ -98,8 +107,9 @@ export class FUActiveEffect extends ActiveEffect {
 	 * @returns {Boolean}
 	 */
 	get isSuppressed() {
+		// TODO: Refactor, handle other predicates
 		if (this.target instanceof FUActor) {
-			const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
+			const flag = this.system.predicate.crisisInteraction;
 			if (flag && flag !== 'none') {
 				if (this.target.effects.find((e) => e.statuses.has('crisis')) != null) {
 					return flag === 'inactive';
@@ -109,7 +119,7 @@ export class FUActiveEffect extends ActiveEffect {
 			}
 		}
 		if (this.target instanceof FUItem && this.target.parent instanceof FUActor) {
-			const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
+			const flag = this.system.predicate.crisisInteraction;
 			if (flag && flag !== 'none') {
 				if (this.target.parent.effects.find((e) => e.statuses.has('crisis')) != null) {
 					return flag === 'inactive';
