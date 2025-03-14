@@ -30,7 +30,7 @@
                     <li class="effect {{#if (and effect.isSuppressed (not effect.disabled))}}suppressed{{/if}}"
                         data-effect-id="{{ effect.id }}" data-type="effect">
                         <div class="flexrow">
-                            {{!-- Item Name--}}
+                            {{!-- Name--}}
                             <div class="item-name">
                                 <div class="item-name"
                                     {{~#if (and effect.isSuppressed (not effect.disabled))~}}
@@ -52,8 +52,11 @@
                                 </span>
                                     </h4>
                                 </div>
+                                {{!-- Source --}}
                                 <div class="item-lg">{{ effect.sourceName }}</div>
-                                <div class="item-lg">{{ effect.duration.name }}</div>
+                                {{!-- Duration--}}
+                                <div class="item-lg">{{effect.system.eventLabel}}</div>
+                                {{!-- Controls--}}
                                 <div class="item-m end flexrow">
                                     <a class="effect-control" data-action="toggle"
                                        title="{{localize 'FU.EffectToggle'}}">

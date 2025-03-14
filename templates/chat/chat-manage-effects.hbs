@@ -1,39 +1,36 @@
 <section>
-    <div>
-        {{{localize message actor=actor}}}:
-    </div>
-    <div>
-        ({{localize event}}, {{localize 'FU.Round'}} {{round}})
-    </div>
+        <div class='projectfu'>
+            <table>
+            <caption>{{localize event}}, {{localize 'FU.Round'}} {{round}}</caption>
+                <thead>
+                <tr>
+                    <th>{{localize 'FU.Effect'}}</th>
+                    <th>{{localize 'FU.Remaining'}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each effects as |effect|}}
+                    <tr>
+                        <td>
+                            <div class="effect-roll rollable" data-action="roll">
+                                <img class="image-icon-s" src="{{ effect.img }}" data-tooltip="{{ effect.name }}" />
+                                {{effect.name}}
+                            </div>
+                        </td>
 
-    <ol class="effects-list">
-    {{#each effects as |effect|}}
-        <li class="effect">
-            <div class="flexrow item-name">
-                <div class="effect-roll rollable" data-action="roll">
-                    <img class="image-icon-s" src="{{ effect.img }}" data-tooltip="{{ effect.name }}" />
-                </div>
-                <!-- Label -->
-                <div class="item-lg">{{effect.name}}</div>
-                <!-- Duration Information -->
-                <div>
-                    {{#if (eq effect.system.duration.remaining 0)}}
-                        <span>Expired</span>
-                    {{else}}
-                        <span>{{effect.system.duration.remaining}}</span>
-                    {{/if}}
-                </div>
-                <!-- Remove Action -->
-                <span class="fu-tags" style="flex: 0 1 auto;padding: 2px;">
-                    {{#if (eq effect.system.duration.remaining 0)}}
-                        <a data-action="removeEffect" data-name="{{effect.name}}" data-id="{{effect._id}}" data-actor-id="{{../uuid}}">
-                            <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-trash }"></i></span>
-                        </a>
-                    {{/if}}
-                </span>
-            </div>
-        </li>
-    {{/each}}
-    </ol>
-
+                        <td>
+                            {{#if (eq effect.system.duration.remaining 0)}}
+                                <span>Expired</span>
+                                <a data-action="removeEffect" data-name="{{effect.name}}" data-id="{{effect._id}}" data-actor-id="{{../uuid}}">
+                                    <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-trash }"></i></span>
+                                </a>
+                            {{else}}
+                                <span>{{effect.system.duration.remaining}}</span>
+                            {{/if}}
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
 </section>

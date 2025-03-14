@@ -533,6 +533,7 @@ FU.combatEvent = {
  * @description Active effect durations
  */
 FU.effectDuration = {
+	none: 'FU.None',
 	startOfTurn: 'FU.StartOfTurn',
 	endOfTurn: 'FU.EndOfTurn',
 	endOfRound: 'FU.EndOfRound',

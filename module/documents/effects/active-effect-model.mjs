@@ -17,12 +17,19 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 			type: new StringField({ initial: 'default', choices: Object.keys(FU.effectType) }),
 			predicate: new EmbeddedDataField(ActiveEffectPredicateModel, {}),
 			duration: new SchemaField({
-				event: new StringField({ initial: 'endOfTurn', choices: Object.keys(FU.effectDuration) }),
+				event: new StringField({ initial: 'none', choices: Object.keys(FU.effectDuration) }),
 				interval: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
 				remaining: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 			}),
 			stack: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
 		};
+	}
+
+	/**
+	 * @returns {String}
+	 */
+	get eventLabel() {
+		return game.i18n.localize(FU.effectDuration[this.duration.event]);
 	}
 }
 
