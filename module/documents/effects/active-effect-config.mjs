@@ -2,22 +2,6 @@ import { FU, SYSTEM } from '../../helpers/config.mjs';
 
 // TODO: Replace with ActiveEffectConfig override in V13?
 
-const CRISIS_INTERACTION = 'CrisisInteraction';
-const EFFECT_TYPE = 'type';
-const PAGE_REFERENCE = 'source';
-
-const crisisInteractions = {
-	none: 'FU.EffectCrisisInteractionNone',
-	active: 'FU.EffectCrisisInteractionActive',
-	inactive: 'FU.EffectCrisisInteractionInactive',
-};
-
-const effectType = {
-	default: 'FU.Effect',
-	quality: 'FU.Quality',
-	customization: 'FU.Customization',
-};
-
 /**
  * A hook event that fires when the ActiveEffectConfig application is rendered
  * @param {ActiveEffectConfig} sheet The Application instance being rendered
@@ -25,45 +9,17 @@ const effectType = {
  * @param {Record<string, any>} context The object of data used when rendering the application
  */
 export async function onRenderActiveEffectConfig(sheet, html, context) {
-	const flag = sheet.document.getFlag(SYSTEM, CRISIS_INTERACTION);
-	const sourceFlag = sheet.document.getFlag(SYSTEM, PAGE_REFERENCE) || '';
-	const effectTypeFlag = sheet.document.getFlag(SYSTEM, EFFECT_TYPE) || 'default'; // Default to 'effect'
 	const data = {
 		effect: sheet.document,
 		system: sheet.document.system,
 		effectDuration: FU.effectDuration,
+		effectType: FU.effectType,
+		crisisInteractions: FU.crisisInteractions,
 	};
 
 	// Effect Type select field
-	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(`
-		<div class="form-group">
-			<label>${game.i18n.localize('FU.EffectType')}</label>
-			<select name="flags.${SYSTEM}.${EFFECT_TYPE}" ${sheet.isEditable ? '' : 'disabled'}>
-				${Object.entries(effectType).map(
-					([key, value]) =>
-						`<option value="${key}" ${key === effectTypeFlag ? 'selected' : ''}>
-				  ${game.i18n.localize(value)}</option>`,
-				)}
-			</select>
-		</div>
-	`);
-
-	// Source input field
-	html.find('.tab[data-tab=details] .form-group:nth-child(4)').after(`
-		<div class="form-group">
-			<label>${game.i18n.localize('FU.EffectSource')}</label>
-			<input type="text" name="flags.${SYSTEM}.${PAGE_REFERENCE}" value="${sourceFlag}" ${sheet.isEditable ? '' : 'disabled'}>
-		</div>
-	`);
-
-	html.find('.tab[data-tab=details] .form-group:nth-child(5)').after(`
-	<div class="form-group">
-        <label>${game.i18n.localize('FU.EffectCrisisInteraction')}</label>
-        <select name="flags.${SYSTEM}.${CRISIS_INTERACTION}" ${sheet.isEditable ? '' : 'disabled'}>
-          ${Object.entries(crisisInteractions).map(([key, value]) => `<option value="${key}" ${key === flag ? 'selected' : ''}>${game.i18n.localize(value)}</option>`)}
-        </select>
-    </div>
-	`);
+	const detailsTemplate = await renderTemplate(`systems/projectfu/templates/common/active-effect-details.hbs`, data);
+	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(detailsTemplate);
 
 	// Duration Tab (Replace)
 	const durationTab = html.find('.tab[data-tab=duration]');
@@ -72,4 +28,31 @@ export async function onRenderActiveEffectConfig(sheet, html, context) {
 	durationTab.append(durationTemplate);
 
 	sheet.setPosition({ ...sheet.position, height: 'auto' });
+}
+
+const CRISIS_INTERACTION = 'CrisisInteraction';
+const EFFECT_TYPE = 'type';
+
+export class ActiveEffectMigrations {
+	/**
+	 * @param {FUActiveEffect} source
+	 */
+	static run(source) {
+		// If this flag is not present, then neither are the other flags
+		const effectTypeFlag = source.flags[SYSTEM][EFFECT_TYPE];
+		if (!effectTypeFlag) {
+			return;
+		}
+		const crisisFlag = source.flags[SYSTEM][CRISIS_INTERACTION];
+		if (!crisisFlag) {
+			return;
+		}
+		console.debug(`Migrating active effect ${source.name} to newer data model`);
+		source.system.type = effectTypeFlag;
+		source.system.crisisInteraction = crisisFlag;
+		delete source.flags;
+		//source.flags = {};
+		// source.unsetFlag(SYSTEM, EFFECT_TYPE);
+		// source.unsetFlag(SYSTEM, CRISIS_INTERACTION);
+	}
 }

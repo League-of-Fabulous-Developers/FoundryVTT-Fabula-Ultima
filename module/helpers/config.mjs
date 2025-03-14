@@ -539,6 +539,25 @@ FU.effectDuration = {
 	endOfScene: 'FU.EndOfScene',
 };
 
+/**
+ * @type {{none: string, active: string, inactive: string}}
+ */
+FU.crisisInteractions = {
+	none: 'FU.EffectCrisisInteractionNone',
+	active: 'FU.EffectCrisisInteractionActive',
+	inactive: 'FU.EffectCrisisInteractionInactive',
+};
+
+/**
+ * @description The type of active effect
+ * @type {{default: string, quality: string, customization: string}}
+ */
+FU.effectType = {
+	default: 'FU.Effect',
+	quality: 'FU.Quality',
+	customization: 'FU.Customization',
+};
+
 FU.target = {
 	self: 'FU.Self',
 	oneCreature: 'FU.OneCreature',

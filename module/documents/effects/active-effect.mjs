@@ -2,6 +2,7 @@ import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
 import { FU, SYSTEM } from '../../helpers/config.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
+import { ActiveEffectMigrations } from './active-effect-config.mjs';
 
 const CRISIS_INTERACTION = 'CrisisInteraction';
 const TEMPORARY = 'Temporary';
@@ -198,6 +199,11 @@ export class FUActiveEffect extends ActiveEffect {
 		}
 
 		return super.apply(target, change);
+	}
+
+	static migrateData(source) {
+		ActiveEffectMigrations.run(source);
+		return source;
 	}
 }
 

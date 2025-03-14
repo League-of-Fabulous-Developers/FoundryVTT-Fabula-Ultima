@@ -1,14 +1,16 @@
-{{!-- Core Fields --}}
-<fieldset>
-    <div class="form-group">
-        <div class="form-fields">
-            <label class="resource-label-m flexlarge">{{localize 'FU.Event'}}</label>
-            <select name="system.duration.event" class="resource-inputs select-dropdown-m">
-                {{selectOptions effectDuration selected=system.duration.event sort=true localize=true}}
-            </select>
 
-            <label class="resource-label-m">{{localize 'FU.Interval'}}</label>
-            <input type="number" name="system.duration.interval" value="{{ system.duration.interval }}" class="resource-inputs" {{disabled (eq system.duration.event FU.EndOfScene)}}/>
-        </div>
-    </div>
+<fieldset>
+
 </fieldset>
+
+<div class="form-group">
+    <div class="form-fields">
+        <label class="resource-label-m flexlarge">{{localize 'FU.Event'}}</label>
+        <select name="system.duration.event" class="resource-inputs select-dropdown-m">
+            {{selectOptions effectDuration selected=system.duration.event sort=true localize=true}}
+        </select>
+
+        <label class="resource-label-m">{{localize 'FU.Interval'}}</label>
+        <input type="number" name="system.duration.interval" value="{{ system.duration.interval }}" class="resource-inputs" {{disabled (eq system.duration.event FU.EndOfScene)}}/>
+    </div>
+</div>
