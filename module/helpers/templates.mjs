@@ -60,8 +60,10 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Common partials
 		'systems/projectfu/templates/common/active-effects.hbs',
-		'systems/projectfu/templates/common/active-effect-details.hbs',
-		'systems/projectfu/templates/common/active-effect-duration.hbs',
+		// Effects
+		'systems/projectfu/templates/effects/active-effect-details.hbs',
+		'systems/projectfu/templates/effects/active-effect-duration.hbs',
+		'systems/projectfu/templates/effects/active-effect-predicate.hbs',
 
 		// Dialogs
 		'systems/projectfu/templates/dialog/dialog-check.hbs',

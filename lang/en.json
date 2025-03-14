@@ -1291,6 +1291,7 @@
 		"EndOfScene": "End of Scene",
 		"Extra": "Extra",
 		"Event": "Event",
-		"Interval": "Interval"
+		"Interval": "Interval",
+		"Predicate": "Predicate"
 	}
 }

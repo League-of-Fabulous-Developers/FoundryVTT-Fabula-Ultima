@@ -18,16 +18,27 @@ export async function onRenderActiveEffectConfig(sheet, html, context) {
 	};
 
 	// Effect Type select field (Append)
-	const detailsTemplate = await renderTemplate(`systems/projectfu/templates/common/active-effect-details.hbs`, data);
+	const detailsTemplate = await renderTemplate(`systems/projectfu/templates/effects/active-effect-details.hbs`, data);
 	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(detailsTemplate);
 
-	// Predicate Tab (Add)
+	// Find the navigation element
+	let nav = html.find('nav.sheet-tabs.tabs');
+	if (nav.length) {
+		// Create the new navigation entry
+		const predicateLabel = game.i18n.localize('FU.Predicate');
+		let predicateTab = `<a class="item" data-tab="predicate"><i class="fas fa-book"></i>${predicateLabel}</a>`;
+		let targetTab = nav.find('a[data-tab="effects"]');
+		targetTab.before(predicateTab);
+	}
 
 	// Duration Tab (Replace)
 	const durationTab = html.find('.tab[data-tab=duration]');
 	durationTab.empty();
-	const durationTemplate = await renderTemplate(`systems/projectfu/templates/common/active-effect-duration.hbs`, data);
+	const durationTemplate = await renderTemplate(`systems/projectfu/templates/effects/active-effect-duration.hbs`, data);
 	durationTab.append(durationTemplate);
+	// Predicate Tab (Add)
+	const predicateTemplate = await renderTemplate(`systems/projectfu/templates/effects/active-effect-predicate.hbs`, data);
+	durationTab.before(predicateTemplate);
 
 	sheet.setPosition({ ...sheet.position, height: 'auto' });
 }

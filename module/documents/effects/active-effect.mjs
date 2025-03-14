@@ -136,16 +136,7 @@ export class FUActiveEffect extends ActiveEffect {
 			};
 		}
 
-		// TODO: Calculate.. ?
-		switch (this.system.duration.event) {
-			case FU.effectDuration.startOfTurn:
-				break;
-			case FU.effectDuration.endOfTurn:
-				break;
-			case FU.effectDuration.endOfRound:
-				break;
-		}
-
+		// We handle this through the event system
 		return {
 			type: 'none',
 			duration: null,
@@ -165,6 +156,21 @@ export class FUActiveEffect extends ActiveEffect {
 			} else {
 				change.priority = (change.mode + 1) * 10;
 			}
+		}
+	}
+
+	/**
+	 * @description Resets the duration of this active effect
+	 */
+	async resetDuration() {
+		// TODO: Calculate.. ?
+		switch (this.system.duration.event) {
+			case FU.effectDuration.startOfTurn:
+				break;
+			case FU.effectDuration.endOfTurn:
+				break;
+			case FU.effectDuration.endOfRound:
+				break;
 		}
 	}
 
@@ -200,10 +206,9 @@ export class FUActiveEffect extends ActiveEffect {
 		return super.apply(target, change);
 	}
 
+	// TODO: Remove once everyone's migrated
 	static CRISIS_INTERACTION = 'CrisisInteraction';
 	static EFFECT_TYPE = 'type';
-
-	// TODO: Remove once everyone's migrated
 	static migrateData(source) {
 		this._addDataFieldMigration(source, `flags.${SYSTEM}.${this.EFFECT_TYPE}`, 'system.type');
 		this._addDataFieldMigration(source, `flags.${SYSTEM}.${this.CRISIS_INTERACTION}`, 'system.predicate.crisisInteraction');
