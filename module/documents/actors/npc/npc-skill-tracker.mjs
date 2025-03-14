@@ -225,12 +225,12 @@ export class NpcSkillTracker {
 	}
 
 	#calcUsedSkillsFromEquipment() {
+		let species = this.#data.species.value;
 		const exclusions = ['unarmed-strike'];
 		const equipmentTypes = ['weapon', 'shield', 'armor'];
 		const exclusionCount = exclusions.reduce((total, item) => total + (this.#data.actor.getSingleItemByFuid(item) ? 1 : 0), 0);
 		const totalEquipment = equipmentTypes.reduce((total, type) => total + this.#data.actor.itemTypes[type].length, 0);
-		const sum = totalEquipment - exclusionCount;
-
+		let sum = species === 'humanoid' ? 0 : totalEquipment - exclusionCount;
 		return sum > 0 ? 1 : 0;
 	}
 }
