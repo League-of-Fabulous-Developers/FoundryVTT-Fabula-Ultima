@@ -2,7 +2,6 @@ import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
 import { FU, SYSTEM } from '../../helpers/config.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
-import { ActiveEffectMigrations } from './active-effect-config.mjs';
 
 const CRISIS_INTERACTION = 'CrisisInteraction';
 const TEMPORARY = 'Temporary';
@@ -201,9 +200,14 @@ export class FUActiveEffect extends ActiveEffect {
 		return super.apply(target, change);
 	}
 
+	static CRISIS_INTERACTION = 'CrisisInteraction';
+	static EFFECT_TYPE = 'type';
+
+	// TODO: Remove once everyone's migrated
 	static migrateData(source) {
-		ActiveEffectMigrations.run(source);
-		return source;
+		this._addDataFieldMigration(source, `flags.${SYSTEM}.${this.EFFECT_TYPE}`, 'system.type');
+		this._addDataFieldMigration(source, `flags.${SYSTEM}.${this.CRISIS_INTERACTION}`, 'system.predicate.crisisInteraction');
+		return super.migrateData(source);
 	}
 }
 

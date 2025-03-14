@@ -1,4 +1,4 @@
-import { FU, SYSTEM } from '../../helpers/config.mjs';
+import { FU } from '../../helpers/config.mjs';
 
 // TODO: Replace with ActiveEffectConfig override in V13?
 
@@ -17,9 +17,11 @@ export async function onRenderActiveEffectConfig(sheet, html, context) {
 		crisisInteractions: FU.crisisInteractions,
 	};
 
-	// Effect Type select field
+	// Effect Type select field (Append)
 	const detailsTemplate = await renderTemplate(`systems/projectfu/templates/common/active-effect-details.hbs`, data);
 	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(detailsTemplate);
+
+	// Predicate Tab (Add)
 
 	// Duration Tab (Replace)
 	const durationTab = html.find('.tab[data-tab=duration]');
@@ -28,31 +30,4 @@ export async function onRenderActiveEffectConfig(sheet, html, context) {
 	durationTab.append(durationTemplate);
 
 	sheet.setPosition({ ...sheet.position, height: 'auto' });
-}
-
-const CRISIS_INTERACTION = 'CrisisInteraction';
-const EFFECT_TYPE = 'type';
-
-export class ActiveEffectMigrations {
-	/**
-	 * @param {FUActiveEffect} source
-	 */
-	static run(source) {
-		// If this flag is not present, then neither are the other flags
-		const effectTypeFlag = source.flags[SYSTEM][EFFECT_TYPE];
-		if (!effectTypeFlag) {
-			return;
-		}
-		const crisisFlag = source.flags[SYSTEM][CRISIS_INTERACTION];
-		if (!crisisFlag) {
-			return;
-		}
-		console.debug(`Migrating active effect ${source.name} to newer data model`);
-		source.system.type = effectTypeFlag;
-		source.system.crisisInteraction = crisisFlag;
-		delete source.flags;
-		//source.flags = {};
-		// source.unsetFlag(SYSTEM, EFFECT_TYPE);
-		// source.unsetFlag(SYSTEM, CRISIS_INTERACTION);
-	}
 }
