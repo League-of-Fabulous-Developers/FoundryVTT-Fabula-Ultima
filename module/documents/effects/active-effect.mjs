@@ -70,9 +70,26 @@ export class FUActiveEffect extends ActiveEffect {
 		return TEMPORARY;
 	}
 
+	/**
+	 * @private
+	 * @override
+	 */
 	async _preCreate(data, options, user) {
 		this.updateSource({ name: game.i18n.localize(data.name) });
 		return super._preCreate(data, options, user);
+	}
+
+	async _onCreate(data, options, userId) {
+		await super._onCreate(data, options, userId);
+		// No duration
+		if (this.system.duration.event !== FU.effectDuration.endOfScene) {
+			// Update the effect duration interval back to maximum
+			const updateData = {
+				[`system.duration.remaining`]: this.system.duration.interval,
+			};
+			this.update(updateData);
+		}
+		console.debug(`Created active effect ${this.name} with interval ${this.duration.remaining}`);
 	}
 
 	/**
@@ -126,16 +143,6 @@ export class FUActiveEffect extends ActiveEffect {
 	 * @override
 	 */
 	_prepareDuration() {
-		// No duration
-		if (this.system.duration.event === FU.effectDuration.endOfScene) {
-			return {
-				type: 'none',
-				duration: null,
-				remaining: null,
-				label: game.i18n.localize('None'),
-			};
-		}
-
 		// We handle this through the event system
 		return {
 			type: 'none',
@@ -189,7 +196,7 @@ export class FUActiveEffect extends ActiveEffect {
 				const context = ExpressionContext.resolveTarget(target, this.parent);
 				const value = Expressions.evaluate(expression, context);
 				change.value = String(value ?? 0);
-				console.debug(`Assigning ${change.key} = ${change.value}`);
+				console.debug(`Assigning ${change.key} ${change.mode}: ${change.value}`);
 			} catch (e) {
 				console.error(e);
 				ui.notifications?.error(
@@ -223,7 +230,7 @@ export class FUActiveEffect extends ActiveEffect {
  */
 function onApplyActiveEffect(actor, change, current) {
 	if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, change.value) && current[change.value] instanceof Function) {
-		console.debug(`applying ${change.value} to ${change.key}`);
+		console.debug(`Applying change ${change.value} to ${change.key}`);
 		current[change.value]();
 		return false;
 	}

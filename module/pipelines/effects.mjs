@@ -291,31 +291,45 @@ async function onApplyEffectToActor(actor, sourceUuid, effect) {
  * @returns {Promise<void>}
  */
 async function manageEffectDuration(actor, event) {
-	// TODO: Support later
-	if (event.type !== '42') {
-		return;
-	}
-
 	console.debug(`Managing effects for ${actor.name} on ${event.type}`);
+	const updates = [];
 
-	// TODO: Filter by the event
 	const effects = actor.temporaryEffects.filter((e) => {
-		// Tick down duration here?
-		switch (event.type) {
-			case FU.combatEvent.endOfTurn:
-				break;
-			case FU.combatEvent.endOfRound:
-				break;
+		const duration = e.system.duration;
+		const eventType = FU.effectDuration[duration.event];
+
+		// Not tracked
+		if (eventType !== event.type) {
+			return false;
 		}
 
-		console.debug(`Will manage duration of ${e.name}: ${JSON.stringify(e.duration)}`);
+		// Already expired
+		if (duration.remaining === 0) {
+			return true;
+		}
 
+		// Tick down remaining
+		console.debug(`Decreasing remaining effect duration (${duration.remaining}) of ${e.name} in ${event.type}`);
+		updates.push(
+			e.update({
+				[`system.duration.remaining`]: duration.remaining - 1,
+			}),
+		);
+
+		// TODO: Disable when expired or..?
+		// Just expired
+		// const expired = duration.remaining - 1 === 0;
+		// if (expired) {
+		// 	updates.push(e.update({ disabled: true }));
+		// }
 		return true;
 	});
 
 	if (effects.length === 0) {
 		return;
 	}
+
+	await Promise.all(updates);
 
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
@@ -409,7 +423,6 @@ async function onCombatEvent(event) {
 			await promptEffectRemoval(event);
 			break;
 
-		// TODO: Set up active effect data model with duration, in order to make use of these
 		case FU.combatEvent.startOfTurn:
 		case FU.combatEvent.endOfTurn:
 			await manageEffectDuration(event.actor, event);

@@ -1,5 +1,10 @@
 <section>
-    {{{localize message actor=actor}}} ({{localize event}}, {{localize 'FU.Round'}} {{round}})
+    <div>
+        {{{localize message actor=actor}}}:
+    </div>
+    <div>
+        ({{localize event}}, {{localize 'FU.Round'}} {{round}})
+    </div>
 
     <ol class="effects-list">
     {{#each effects as |effect|}}
@@ -12,13 +17,19 @@
                 <div class="item-lg">{{effect.name}}</div>
                 <!-- Duration Information -->
                 <div>
-                    <span> {{effect.duration.turns }} Turns </span>
+                    {{#if (eq effect.system.duration.remaining 0)}}
+                        <span>Expired</span>
+                    {{else}}
+                        <span>{{effect.system.duration.remaining}}</span>
+                    {{/if}}
                 </div>
                 <!-- Remove Action -->
                 <span class="fu-tags" style="flex: 0 1 auto;padding: 2px;">
-                    <a data-action="removeEffect" data-name="{{effect.name}}" data-id="{{effect._id}}" data-actor-id="{{../uuid}}">
-                        <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-trash }"></i></span>
-                    </a>
+                    {{#if (eq effect.system.duration.remaining 0)}}
+                        <a data-action="removeEffect" data-name="{{effect.name}}" data-id="{{effect._id}}" data-actor-id="{{../uuid}}">
+                            <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-trash }"></i></span>
+                        </a>
+                    {{/if}}
                 </span>
             </div>
         </li>
