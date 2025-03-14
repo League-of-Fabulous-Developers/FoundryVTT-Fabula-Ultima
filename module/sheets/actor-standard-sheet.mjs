@@ -1731,8 +1731,14 @@ export class FUStandardActorSheet extends ActorSheet {
 				return this._rollBehavior();
 			}
 
-			if (dataset.rollType === 'roll-check' || dataset.rollType === 'roll-init') {
+			if (dataset.rollType === 'roll-check') {
 				return promptCheck(this.actor);
+			}
+
+			if (dataset.rollType === 'roll-init') {
+				if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
+					return ChecksV2.groupCheck(this.actor, GroupCheckV2.initInitiativeCheck);
+				}
 			}
 
 			if (dataset.rollType === 'open-check') {
