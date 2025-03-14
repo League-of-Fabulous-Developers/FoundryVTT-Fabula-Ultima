@@ -684,10 +684,15 @@ export class CombatHUD extends Application {
 
 		const uiLeft = $('#ui-left');
 		const uiMiddle = $('#ui-middle');
+		const uiRight = $('#ui-right');
+
 		let hudWidth = uiMiddle.width() + uiLeft.width() * 0.5;
 		if (hudWidth < minWidth) {
 			hudWidth = minWidth;
 		}
+
+		let uiRightWidth = uiRight.length ? uiRight.width() : 0;
+		hudWidth -= uiRightWidth * 0.5;
 
 		const alpha = game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100;
 		hudWidth = this.lerp(minWidth, hudWidth, alpha);
