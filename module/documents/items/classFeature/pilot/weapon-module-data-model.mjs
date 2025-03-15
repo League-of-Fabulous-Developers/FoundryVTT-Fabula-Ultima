@@ -74,7 +74,7 @@ function onRenderCheck(data, result, actor, item) {
 					summary: item.system.summary.value,
 					description: await TextEditor.enrichHTML(item.system.description),
 				},
-				collapseDescriptions: game.settings.get(SYSTEM, SETTINGS.collapseDescriptions),
+				optionChatMessageCollapseDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageCollapseDescription),
 			},
 		}));
 	}

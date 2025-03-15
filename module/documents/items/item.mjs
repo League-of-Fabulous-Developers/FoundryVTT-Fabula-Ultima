@@ -534,7 +534,7 @@ export class FUItem extends Item {
 	getDescriptionString() {
 		const summary = this.system.summary.value?.trim() || '';
 		const description = this.system.description?.trim() || '';
-		const collapseDescriptions = game.settings.get('projectfu', 'collapseDescriptions') ? '' : 'open';
+		const optionChatMessageCollapseDescription = game.settings.get('projectfu', 'optionChatMessageCollapseDescription') ? '' : 'open';
 
 		// Prepare summary and description HTML
 		const summaryHtml = summary ? `<blockquote class="summary quote">${summary}</blockquote>` : '';
@@ -546,7 +546,7 @@ export class FUItem extends Item {
 		return content
 			? `
 			<div class='chat-desc'>
-				<details ${collapseDescriptions}>
+				<details ${optionChatMessageCollapseDescription}>
 					<summary class="align-center">${game.i18n.localize('FU.Description')}</summary>
 					${content}
 				</details>
