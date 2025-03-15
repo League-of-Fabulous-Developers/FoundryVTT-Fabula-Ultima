@@ -219,7 +219,7 @@ export function isActiveEffectForStatusEffectId(effect, statusEffectId) {
 }
 
 /**
- * Handle rolling the effect and creating a chat message.
+ * @description Handle rolling the effect and creating a chat message.
  * @param {ActiveEffect} effect  The ActiveEffect to be rolled and encoded
  * @param {Actor|Item} owner     The owning document (actor or item)
  */
@@ -242,6 +242,7 @@ async function handleRollEffect(effect, owner) {
 		</div>
 	`;
 
+	// TODO: More information?
 	await ChatMessage.create({
 		content: messageContent,
 		speaker: ChatMessage.getSpeaker({ actor: owner }),
@@ -427,6 +428,19 @@ function onRenderChatMessage(message, jQuery) {
 		const effect = actor.effects.get(effectId);
 		if (effect) {
 			effect.delete();
+		}
+	});
+
+	Pipeline.handleClick(message, jQuery, 'roll', (dataset) => {
+		const effectId = dataset.id;
+		const actorId = dataset.actorId;
+		const actor = fromUuidSync(actorId);
+		const effect = actor.effects.get(effectId);
+		if (effect) {
+			console.debug(`Showing effect information ${effect.name}`);
+			handleRollEffect(effect, actor);
+		} else {
+			ui.notifications.warn('FU.ChatActiveEffectDeleted', { localize: true });
 		}
 	});
 

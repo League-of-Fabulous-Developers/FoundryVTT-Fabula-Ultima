@@ -34,7 +34,7 @@ import { ZeroPowerDataModel } from './documents/items/zeropower/zero-power-data-
 import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs';
 import { EffectDataModel } from './documents/items/effect/effect-data-model.mjs';
 import { onSocketLibReady } from './socket.mjs';
-import { statusEffects } from './helpers/statuses.mjs';
+import { statusEffects } from './documents/effects/statuses.mjs';
 
 import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-feature-type-data-model.mjs';
 import { FUClassFeatureSheet } from './documents/items/classFeature/class-feature-sheet.mjs';

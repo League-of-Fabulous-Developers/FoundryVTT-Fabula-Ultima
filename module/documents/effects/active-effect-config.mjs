@@ -14,6 +14,7 @@ export async function onRenderActiveEffectConfig(sheet, html, context) {
 		system: sheet.document.system,
 		effectDuration: FU.effectDuration,
 		effectType: FU.effectType,
+		effectTracking: FU.effectTracking,
 		crisisInteractions: FU.crisisInteractions,
 	};
 

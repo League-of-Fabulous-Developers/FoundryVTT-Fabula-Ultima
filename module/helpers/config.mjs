@@ -541,6 +541,15 @@ FU.effectDuration = {
 };
 
 /**
+ * @description How the active effect's duration is tracked
+ * @type {{self: string, source: string}}
+ */
+FU.effectTracking = {
+	self: 'FU.Self',
+	source: 'FU.Source',
+};
+
+/**
  * @type {{none: string, active: string, inactive: string}}
  */
 FU.crisisInteractions = {

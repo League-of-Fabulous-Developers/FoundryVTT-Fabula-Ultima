@@ -19,6 +19,7 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 			duration: new SchemaField({
 				event: new StringField({ initial: 'none', choices: Object.keys(FU.effectDuration) }),
 				interval: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
+				tracking: new StringField({ initial: 'self', choices: Object.keys(FU.effectTracking) }),
 				remaining: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 			}),
 			stack: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),

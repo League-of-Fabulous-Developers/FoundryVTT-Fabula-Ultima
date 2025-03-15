@@ -1,4 +1,4 @@
-import { statusEffects } from './statuses.mjs';
+import { statusEffects } from '../documents/effects/statuses.mjs';
 import { SYSTEM } from './config.mjs';
 import { FUActiveEffect } from '../documents/effects/active-effect.mjs';
 import { Effects, toggleStatusEffect } from '../pipelines/effects.mjs';

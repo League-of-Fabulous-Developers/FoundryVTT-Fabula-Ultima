@@ -12,10 +12,10 @@
                 {{#each effects as |effect|}}
                     <tr>
                         <td>
-                            <div class="effect-roll rollable" data-action="roll">
+                            <a data-action="roll" data-id="{{effect._id}}" data-actor-id="{{../uuid}}">
                                 <img class="image-icon-s" src="{{ effect.img }}" data-tooltip="{{ effect.name }}" />
                                 {{effect.name}}
-                            </div>
+                            </a>
                         </td>
 
                         <td>
