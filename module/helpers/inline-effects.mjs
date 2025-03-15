@@ -1,6 +1,4 @@
 import { statusEffects } from '../documents/effects/statuses.mjs';
-import { SYSTEM } from './config.mjs';
-import { FUActiveEffect } from '../documents/effects/active-effect.mjs';
 import { Effects, toggleStatusEffect } from '../pipelines/effects.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
@@ -166,7 +164,7 @@ function activateListeners(document, html) {
 			}
 			if (effectData) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
-				effectData.origin = sourceInfo.uuid;
+				effectData.source = sourceInfo.uuid;
 				const cls = getDocumentClass('ActiveEffect');
 				delete effectData.id;
 				cls.migrateDataSafe(effectData);
@@ -190,14 +188,7 @@ function onDropActor(actor, sheet, { type, source, effect, status }) {
 				toggleStatusEffect(actor, status, source);
 			}
 		} else if (effect) {
-			ActiveEffect.create(
-				{
-					...effect,
-					origin: source,
-					flags: foundry.utils.mergeObject(effect.flags ?? {}, { [SYSTEM]: { [FUActiveEffect.TEMPORARY_FLAG]: true } }),
-				},
-				{ parent: actor },
-			);
+			Effects.onRemoveEffectFromActor(actor, source, effect);
 		}
 		return false;
 	}

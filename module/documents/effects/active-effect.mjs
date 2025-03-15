@@ -98,7 +98,7 @@ export class FUActiveEffect extends ActiveEffect {
 				}
 				break;
 		}
-		console.debug(`Created active effect ${this.name} with origin: ${this.origin}`);
+		console.debug(`Created active effect ${this.name} with origin: ${this.origin}, source: ${this.source}`);
 	}
 
 	/**
