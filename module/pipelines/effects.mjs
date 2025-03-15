@@ -7,6 +7,7 @@ import { Pipeline } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
+import { SETTINGS } from '../settings.js';
 
 /**
  * @typedef EffectChangeData
@@ -293,6 +294,9 @@ async function onApplyEffectToActor(actor, sourceUuid, effect) {
 async function manageEffectDuration(actor, event) {
 	console.debug(`Managing effects for ${actor.name} on ${event.type}`);
 	const updates = [];
+	const effectsToDelete = [];
+	const autoRemove = game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects);
+	const remind = game.settings.get(SYSTEM, SETTINGS.optionAutomationEffectsReminder);
 
 	const effects = actor.temporaryEffects.filter((e) => {
 		const duration = e.system.duration;
@@ -305,6 +309,10 @@ async function manageEffectDuration(actor, event) {
 
 		// Already expired
 		if (duration.remaining === 0) {
+			if (autoRemove) {
+				console.debug(`Automatically removing ${e.name} on round ${event.round}`);
+				effectsToDelete.push(e);
+			}
 			return true;
 		}
 
@@ -316,13 +324,17 @@ async function manageEffectDuration(actor, event) {
 			}),
 		);
 
-		// TODO: Disable when expired or..?
 		// Just expired
-		// const expired = duration.remaining - 1 === 0;
-		// if (expired) {
-		// 	updates.push(e.update({ disabled: true }));
-		// }
-		return true;
+		const expired = duration.remaining - 1 === 0;
+		if (expired) {
+			if (autoRemove) {
+				console.debug(`Automatically removing ${e.name}`);
+				effectsToDelete.push(e);
+			}
+			return true;
+		}
+		// Not yet expired
+		return remind;
 	});
 
 	if (effects.length === 0) {
@@ -330,6 +342,8 @@ async function manageEffectDuration(actor, event) {
 	}
 
 	await Promise.all(updates);
+
+	// TODO: Maybe link to the originals if deletions are about to happen
 
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
@@ -343,6 +357,11 @@ async function manageEffectDuration(actor, event) {
 			event: event.type,
 		}),
 	});
+
+	// Safe to delete now that it's been posted
+	for (const e of effectsToDelete) {
+		e.delete();
+	}
 }
 
 /**
@@ -360,6 +379,13 @@ async function promptEffectRemoval(event) {
 		return;
 	}
 
+	if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
+		event.actors.forEach((actor) => {
+			actor.clearTemporaryEffects();
+		});
+		return;
+	}
+
 	let message;
 	switch (event.type) {
 		case FU.combatEvent.startOfCombat:
@@ -370,12 +396,12 @@ async function promptEffectRemoval(event) {
 			break;
 	}
 
-	const serializeddActors = Targeting.serializeTargetData(event.actors);
+	const serializedActors = Targeting.serializeTargetData(event.actors);
 	ChatMessage.create({
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
 		content: await renderTemplate('systems/projectfu/templates/chat/chat-combat-end.hbs', {
 			message: message,
-			actors: JSON.stringify(serializeddActors),
+			actors: JSON.stringify(serializedActors),
 			round: event.round,
 			count: count,
 		}),
@@ -417,6 +443,10 @@ function onRenderChatMessage(message, jQuery) {
  * @returns {Promise<void>}
  */
 async function onCombatEvent(event) {
+	if (!game.settings.get(SYSTEM, SETTINGS.optionAutomationManageEffects)) {
+		return;
+	}
+
 	switch (event.type) {
 		case FU.combatEvent.startOfCombat:
 		case FU.combatEvent.endOfCombat:

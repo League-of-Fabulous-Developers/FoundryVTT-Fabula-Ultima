@@ -102,6 +102,15 @@ export class FUActiveEffect extends ActiveEffect {
 	}
 
 	/**
+	 * @override
+	 * @returns {Promise<void>}
+	 */
+	async delete() {
+		console.debug(`Deleting active effect ${this.name}`);
+		super.delete();
+	}
+
+	/**
 	 * @description Automatically deactivate effects with expired durations
 	 * @override
 	 * @returns {Boolean}
