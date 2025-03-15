@@ -1,6 +1,6 @@
 import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
-import { FU, SYSTEM } from '../../helpers/config.mjs';
+import { SYSTEM } from '../../helpers/config.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 
 const TEMPORARY = 'Temporary';
@@ -98,7 +98,7 @@ export class FUActiveEffect extends ActiveEffect {
 				}
 				break;
 		}
-		console.debug(`Created active effect ${this.name} with interval ${this.duration.remaining}`);
+		console.debug(`Created active effect ${this.name} with origin: ${this.origin}`);
 	}
 
 	/**
@@ -182,21 +182,6 @@ export class FUActiveEffect extends ActiveEffect {
 			} else {
 				change.priority = (change.mode + 1) * 10;
 			}
-		}
-	}
-
-	/**
-	 * @description Resets the duration of this active effect
-	 */
-	async resetDuration() {
-		// TODO: Calculate.. ?
-		switch (this.system.duration.event) {
-			case FU.effectDuration.startOfTurn:
-				break;
-			case FU.effectDuration.endOfTurn:
-				break;
-			case FU.effectDuration.endOfRound:
-				break;
 		}
 	}
 
