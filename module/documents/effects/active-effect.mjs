@@ -2,6 +2,7 @@ import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
+import { Flags } from '../../helpers/flags.mjs';
 
 const TEMPORARY = 'Temporary';
 
@@ -108,6 +109,13 @@ export class FUActiveEffect extends ActiveEffect {
 	async delete() {
 		console.debug(`Deleting active effect ${this.name}`);
 		super.delete();
+	}
+
+	/**
+	 * @returns {String} The uuid of the actor or item that this effect was applied from
+	 */
+	get source() {
+		return this.getFlag(Flags.Scope, Flags.ActiveEffect.Source);
 	}
 
 	/**

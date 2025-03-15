@@ -226,10 +226,10 @@ async function renderEffect(effect, owner) {
  * Designed based off TokenDocument#toggleActiveEffect to properly interact with token hud.
  * @param {FUActor} actor the actor the status should get applied to
  * @param {string} statusEffectId The status effect id based on CONFIG.statusEffects
- * @param {string} [source] the UUID of the document that caused the effect
+ * @param {string} sourceUuid the UUID of the document that caused the effect
  * @returns {Promise<boolean>} Whether the ActiveEffect is now on or off
  */
-export async function toggleStatusEffect(actor, statusEffectId, source = undefined) {
+export async function toggleStatusEffect(actor, statusEffectId, sourceUuid = undefined) {
 	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
 	if (existing.length > 0) {
 		await Promise.all(
@@ -242,7 +242,14 @@ export async function toggleStatusEffect(actor, statusEffectId, source = undefin
 	} else {
 		const statusEffect = CONFIG.statusEffects.find((e) => e.id === statusEffectId);
 		if (statusEffect) {
-			await ActiveEffect.create({ ...statusEffect, statuses: [statusEffectId], source: source }, { parent: actor });
+			await ActiveEffect.create(
+				{
+					...statusEffect,
+					statuses: [statusEffectId],
+					flags: createEffectFlags(statusEffect, sourceUuid),
+				},
+				{ parent: actor },
+			);
 			CommonEvents.status(actor, statusEffectId, true);
 		}
 		return true;
@@ -279,11 +286,20 @@ async function onApplyEffectToActor(actor, sourceUuid, effect) {
 			{
 				...effect,
 				source: sourceUuid,
-				flags: foundry.utils.mergeObject(effect.flags ?? {}, { [SYSTEM]: { [FUActiveEffect.TEMPORARY_FLAG]: true } }),
+				flags: createEffectFlags(effect, sourceUuid, effect),
 			},
 			{ parent: actor },
 		);
 	}
+}
+
+function createEffectFlags(effect, sourceUuid) {
+	return foundry.utils.mergeObject(effect.flags ?? {}, {
+		[SYSTEM]: {
+			[FUActiveEffect.TEMPORARY_FLAG]: true,
+			[Flags.ActiveEffect.Source]: sourceUuid,
+		},
+	});
 }
 
 /**
