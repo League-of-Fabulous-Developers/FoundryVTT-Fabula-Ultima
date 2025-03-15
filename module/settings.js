@@ -54,6 +54,10 @@ export const SETTINGS = Object.freeze({
 	optionZeroPower: 'optionZeroPower',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
 	useRevisedStudyRule: 'useRevisedStudyRule',
+	// Automation
+	optionAutomationManageEffects: 'optionAutomationManageEffects',
+	optionAutomationRemoveExpiredEffects: 'optionAutomationRemoveExpiredEffects',
+	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
 });
 
 export const registerSystemSettings = async function () {
@@ -606,6 +610,33 @@ export const registerSystemSettings = async function () {
 			always: game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeAlways'),
 			'only-studied': game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeOnlyStudied'),
 		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAutomationManageEffects, {
+		name: game.i18n.localize('FU.AutomationManageEffects'),
+		hint: game.i18n.localize('FU.AutomationManageEffectsHint'),
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAutomationEffectsReminder, {
+		name: game.i18n.localize('FU.AutomationEffectsReminder'),
+		hint: game.i18n.localize('FU.AutomationEffectsReminderHint'),
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects, {
+		name: game.i18n.localize('FU.AutomationRemoveExpiredEffects'),
+		hint: game.i18n.localize('FU.AutomationRemoveExpiredEffectsHint'),
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
 	});
 };
 

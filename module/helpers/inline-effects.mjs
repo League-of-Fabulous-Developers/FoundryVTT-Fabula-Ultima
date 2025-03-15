@@ -1,9 +1,4 @@
-import { statusEffects } from './statuses.mjs';
-import { FUActor } from '../documents/actors/actor.mjs';
-import { FUItem } from '../documents/items/item.mjs';
-import { Flags } from './flags.mjs';
-import { SYSTEM } from './config.mjs';
-import { FUActiveEffect } from '../documents/effects/active-effect.mjs';
+import { statusEffects } from '../documents/effects/statuses.mjs';
 import { Effects, toggleStatusEffect } from '../pipelines/effects.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
@@ -86,30 +81,30 @@ function inlineEffectEnricher(text, options) {
 }
 
 // TODO: Use the helper
-/**
- * @param {ClientDocument} document
- * @param {HTMLElement} element - The target HTML element associated with the event.
- * @returns {string|null}
- */
-function determineSource(document, element) {
-	if (document instanceof FUActor) {
-		const itemId = $(element).closest('[data-item-id]').data('itemId'); // Changed event.target to element
-		return itemId ? document.items.get(itemId).uuid : document.uuid;
-	} else if (document instanceof FUItem) {
-		return document.uuid;
-	} else if (document instanceof ChatMessage) {
-		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
-		const flagItem = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-		if (flagItem && speakerActor) {
-			const item = speakerActor.items.get(flagItem._id);
-			return item ? item.uuid : null;
-		}
-		if (speakerActor) {
-			return speakerActor.uuid;
-		}
-	}
-	return null;
-}
+// /**
+//  * @param {ClientDocument} document
+//  * @param {HTMLElement} element - The target HTML element associated with the event.
+//  * @returns {string|null}
+//  */
+// function determineSource(document, element) {
+// 	if (document instanceof FUActor) {
+// 		const itemId = $(element).closest('[data-item-id]').data('itemId'); // Changed event.target to element
+// 		return itemId ? document.items.get(itemId).uuid : document.uuid;
+// 	} else if (document instanceof FUItem) {
+// 		return document.uuid;
+// 	} else if (document instanceof ChatMessage) {
+// 		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
+// 		const flagItem = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
+// 		if (flagItem && speakerActor) {
+// 			const item = speakerActor.items.get(flagItem._id);
+// 			return item ? item.uuid : null;
+// 		}
+// 		if (speakerActor) {
+// 			return speakerActor.uuid;
+// 		}
+// 	}
+// 	return null;
+// }
 
 /**
  * @param {ClientDocument} document
@@ -122,7 +117,7 @@ function activateListeners(document, html) {
 
 	html.find('a.inline.inline-effect[draggable]')
 		.on('click', async function (event) {
-			const source = determineSource(document, this);
+			const sourceInfo = InlineHelper.determineSource(document, this);
 			const effectData = InlineHelper.fromBase64(this.dataset.effect);
 			const status = this.dataset.status;
 			const isCtrlClick = event.ctrlKey;
@@ -131,9 +126,9 @@ function activateListeners(document, html) {
 			if (!targets.length) return;
 			targets.forEach((actor) => {
 				if (effectData) {
-					isCtrlClick ? Effects.onRemoveEffectFromActor(actor, source, effectData) : Effects.onApplyEffectToActor(actor, source, effectData);
+					isCtrlClick ? Effects.onRemoveEffectFromActor(actor, sourceInfo.uuid, effectData) : Effects.onApplyEffectToActor(actor, sourceInfo.uuid, effectData);
 				} else if (status) {
-					isCtrlClick ? toggleStatusEffect(actor, status, source, { disable: true }) : !actor.statuses.has(status) && toggleStatusEffect(actor, status, source);
+					isCtrlClick ? toggleStatusEffect(actor, status, sourceInfo.uuid, { disable: true }) : !actor.statuses.has(status) && toggleStatusEffect(actor, status, sourceInfo.uuid);
 				}
 			});
 		})
@@ -143,11 +138,11 @@ function activateListeners(document, html) {
 			if (!(event.target instanceof HTMLElement) || !event.dataTransfer) {
 				return;
 			}
-			const source = determineSource(document, this);
+			const sourceInfo = InlineHelper.determineSource(document, this);
 
 			const data = {
 				type: INLINE_EFFECT,
-				source: source,
+				source: sourceInfo.uuid,
 				effect: InlineHelper.fromBase64(this.dataset.effect),
 				status: this.dataset.status,
 			};
@@ -168,7 +163,8 @@ function activateListeners(document, html) {
 				effectData = InlineHelper.fromBase64(this.dataset.effect);
 			}
 			if (effectData) {
-				effectData.origin = determineSource(document, this);
+				const sourceInfo = InlineHelper.determineSource(document, this);
+				effectData.source = sourceInfo.uuid;
 				const cls = getDocumentClass('ActiveEffect');
 				delete effectData.id;
 				cls.migrateDataSafe(effectData);
@@ -192,14 +188,7 @@ function onDropActor(actor, sheet, { type, source, effect, status }) {
 				toggleStatusEffect(actor, status, source);
 			}
 		} else if (effect) {
-			ActiveEffect.create(
-				{
-					...effect,
-					origin: source,
-					flags: foundry.utils.mergeObject(effect.flags ?? {}, { [SYSTEM]: { [FUActiveEffect.TEMPORARY_FLAG]: true } }),
-				},
-				{ parent: actor },
-			);
+			Effects.onRemoveEffectFromActor(actor, source, effect);
 		}
 		return false;
 	}

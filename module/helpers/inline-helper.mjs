@@ -85,6 +85,16 @@ export class InlineSourceInfo {
 		return null;
 	}
 
+	/**
+	 * @returns {String} The uuid of the item, or the actor
+	 */
+	get uuid() {
+		if (this.itemUuid) {
+			return this.itemUuid;
+		}
+		return this.actorUuid;
+	}
+
 	static none = Object.freeze(new InlineSourceInfo('Unknown'));
 }
 
