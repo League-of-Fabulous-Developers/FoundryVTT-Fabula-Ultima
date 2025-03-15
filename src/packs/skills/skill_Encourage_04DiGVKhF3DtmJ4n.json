@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action and spend 5 MP to choose <strong>another creature</strong> that can hear and understand you. That creature recovers <strong>【SL × 5】</strong> Hit Points and chooses <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>; they treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p><hr /><ul><li><p><strong>Target: </strong>@GAIN[5*$sl hp] @EFFECT[dex-up], @EFFECT[ins-up], @EFFECT[mig-up], @EFFECT[wlp-up]</p></li></ul>",
+    "description": "<p>During a conflict, you may use an action and spend 5 MP to choose <strong>another creature</strong> that can hear and understand you. That creature recovers <strong>【SL × 5】</strong> Hit Points and chooses <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>; they treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p><hr /><ul><li><p><strong>Target Recovers: </strong>@GAIN[5*$sl hp]</p></li><li><p><strong>Target Receives:</strong> @EFFECT[dex-up], @EFFECT[ins-up], @EFFECT[mig-up], <strong>or</strong> @EFFECT[wlp-up]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -138,10 +140,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706504115400,
-    "modifiedTime": 1739302576823,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1741973601121,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

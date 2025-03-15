@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -135,14 +137,14 @@
       "_id": "Iut1nlmgSnsh7FEY",
       "changes": [
         {
-          "key": "system.affinities.dark.bonus",
-          "mode": 5,
+          "key": "system.affinities.dark.current",
+          "mode": 4,
           "value": "1",
           "priority": null
         },
         {
-          "key": "system.affinities.poison.bonus",
-          "mode": 5,
+          "key": "system.affinities.poison.current",
+          "mode": 4,
           "value": "1",
           "priority": null
         }
@@ -152,21 +154,23 @@
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "active"
+          "CrisisInteraction": "active",
+          "type": "default",
+          "source": "FUCR185"
         }
       },
       "tint": "#ffffff",
       "_stats": {
         "coreVersion": "12.331",
-        "systemId": null,
-        "systemVersion": null,
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1723766499666,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1741947935545,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
-      "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_dark_blood.pngsystems/projectfu/styles/static/compendium/classes/darkblade/darkblade_dark_blood.png",
+      "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_dark_blood.png",
       "type": "base",
       "system": {},
       "origin": null,
@@ -188,8 +192,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706496871786,
-    "modifiedTime": 1724180861718,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741947914346,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

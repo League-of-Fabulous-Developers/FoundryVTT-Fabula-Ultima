@@ -53,7 +53,9 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUCR180"
         }
       },
       "_stats": {
@@ -63,8 +65,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725596664723,
-        "modifiedTime": 1725607044306,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1741996385265,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!QbjAsEWA7R2HfFNg.N151Mbt6kugCFoBx"
     }

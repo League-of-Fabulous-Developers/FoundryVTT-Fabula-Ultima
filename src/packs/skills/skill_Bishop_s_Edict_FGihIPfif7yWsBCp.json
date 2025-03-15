@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action and spend <strong>10 MP</strong> to choose one option: all MP costs are doubled; <strong>or</strong> all sources of damage deal <strong>【SL × 3】</strong> extra damage.</p><p>The chosen effect lasts until the start of your next turn.</p>",
+    "description": "<p>During a conflict, you may use an action and spend 10 Mind Points to choose one option: all MP costs are doubled; <strong>or</strong> all sources of damage deal <strong>【SL × 3】</strong> extra damage.</p><p>The chosen effect lasts until the start of your next turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -135,10 +137,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706555501421,
-    "modifiedTime": 1737922692365,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1741989575701,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

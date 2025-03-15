@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>At the start of a conflict, you may spend <strong>10 MP</strong>. If you do, choose one option and apply it before the start of the first round: perform a <strong>free attack</strong> with a weapon you have equipped; <strong>or </strong>perform a <strong>Hinder </strong>or <strong>Objective </strong>action. You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p>",
+    "description": "<p><span>At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round: perform a <strong>free attack</strong> with a weapon you have equipped; <strong>or </strong>perform a <strong>Hinder </strong>or <strong>Objective </strong>action. You also gain a bonus equal to <strong>【SL】</strong> to all Checks you perform as part of the chosen option.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -135,10 +137,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706504755033,
-    "modifiedTime": 1737921332159,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1741971384010,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

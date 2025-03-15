@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><ul><li><p><strong>You: </strong>@gain[$SL*2 mp]</p></li></ul>",
+    "description": "<p>After you deal damage to one or more creatures with a spell, if you have an <strong>arcane</strong>, <strong>dagger</strong>, or <strong>flail</strong> weapon equipped, you recover <strong>【SL × 2】</strong> Mind Points.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[$SL*2 mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -132,10 +134,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706495586490,
-    "modifiedTime": 1737922883001,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1741990441972,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

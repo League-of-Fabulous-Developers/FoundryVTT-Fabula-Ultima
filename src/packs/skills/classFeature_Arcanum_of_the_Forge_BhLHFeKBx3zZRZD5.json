@@ -13,7 +13,7 @@
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>You have Resistance to fire damage.</p></li><li><p>Any fire damage you deal ignores Resistances.</p></li></ul>",
-      "dismiss": "<p>When you dismiss this Arcanum, choose Forge or Inferno:</p><ul><li><p><strong>Forge.</strong> You create a basic armor, shield, or weapon of your choice (Core Rulebook, pages 130 to 133). If you select this option again, the previously created item vanishes. If you create a weapon this way, it deals fire damage instead of physical.</p></li><li><p><strong>Inferno.</strong> Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 fire]</strong> damage. This damage ignores Resistances.</p></li></ul>",
+      "dismiss": "<p>When you dismiss this Arcanum, choose Forge or Inferno:</p><ul><li><p><strong>Forge.</strong> You create a basic armor, shield, or weapon of your choice (see <strong>Core Rulebook,</strong> pages <strong>130</strong> to<strong> 133</strong>). If you select this option again, the previously created item vanishes. If you create a weapon this way, it deals fire damage instead of physical.</p></li><li><p><strong>Inferno.</strong> Choose any number of creatures you can see: each of them suffers <strong>@DMG[30 fire]</strong> damage. This damage ignores Resistances.</p></li></ul>",
       "domains": "fire, heat, metal"
     },
     "source": "FUCR179",
@@ -52,7 +52,9 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUCR179"
         }
       },
       "_stats": {
@@ -62,8 +64,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725596736998,
-        "modifiedTime": 1725596846135,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1741996346476,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!BhLHFeKBx3zZRZD5.288fLvNbYksITV4Q"
     }
@@ -81,8 +83,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710029700564,
-    "modifiedTime": 1724180861689,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741996300507,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

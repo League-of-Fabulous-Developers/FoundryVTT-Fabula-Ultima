@@ -14,7 +14,7 @@
     "featureType": "projectfu.arcanum",
     "data": {
       "merge": "<ul><li><p>You have Resistance to <strong>earth</strong> and <strong>poison</strong> damage and are immune to <strong>poisoned</strong>.</p></li><li><p>Whenever you recover Hit Points, you recover 5 extra Hit Points.</p></li></ul>",
-      "dismiss": "<ul><li><p><strong>Blossom.</strong> Choose any number of creatures you can see (you may also choose yourself): each of them recovers from the <strong>poisoned</strong> status effect and recovers <span>@GAIN[40 hp]</span>. This amount increases to <span>@GAIN[50 hp]</span> if you are <strong>level 20 or higher</strong>, or to <span>@GAIN[60 hp]</span> if you are <strong>level 40 or higher</strong>.</p></li></ul><hr><p>@GAIN[&step(40,50,60) hp]</p>",
+      "dismiss": "<ul><li><p><strong>Blossom.</strong> Choose any number of creatures you can see (you may also choose yourself): each of them recovers from the <strong>poisoned</strong> status effect and recovers 40 Hit Points. This amount increases to 50 Hit Points if you are <strong>level 20 or higher</strong>, or to 60 Hit Points if you are <strong>level 40 or higher</strong>.</p></li></ul><hr><p>@GAIN[&step(40,50,60) hp]</p>",
       "domains": "earth, plants, poison"
     },
     "source": "FUCR180",
@@ -34,7 +34,7 @@
       },
       "disabled": false,
       "name": "Merged: Oak",
-      "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Oak.png",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-oak.png",
       "_id": "TyNFvNkkXHQxaJeq",
       "type": "base",
       "system": {},
@@ -65,7 +65,9 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": ""
         }
       },
       "_stats": {
@@ -75,8 +77,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725597554468,
-        "modifiedTime": 1725597654088,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1741996408829,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!Y3OzDHLCogR32RlH.TyNFvNkkXHQxaJeq"
     }
@@ -89,8 +91,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710464030279,
-    "modifiedTime": 1734538532686,
-    "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+    "modifiedTime": 1741996112300,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

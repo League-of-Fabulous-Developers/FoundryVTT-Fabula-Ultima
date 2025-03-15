@@ -13,7 +13,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<h2><strong>MERGING WITH AN ARCANUM</strong></h2><p>When you summon an Arcanum, you gain its merge benefits; those benefits last until the Arcanum is dismissed (see page 179).</p><p>You cannot summon an Arcanum while already merged with one; you must first dismiss the current Arcanum.</p><h2><strong>DISMISSING AN ARCANUM</strong></h2><p>An Arcanum can be dismissed in several ways:</p><ul><li>Once the current scene ends, all Arcana are automatically dismissed.</li><li>If you die or fall unconscious while merged with an Arcanum, they are dismissed.</li><li>If you leave the scene while merged with an Arcanum, they are dismissed.</li><li>You may <strong>willingly</strong> dismiss your Arcanum: this doesn't require an action, but during a conflict it can only be done on your turn, <strong>before or after</strong> an action.</li></ul><h2><strong>DISMISS EFFECTS</strong></h2><p>Most Arcana have a powerful dismiss effect, which may only be activated when you <strong>willingly</strong> dismiss the Arcanum as described above — if the Arcanum is dismissed for any other reason, the dismiss effect cannot be triggered.</p><p>If the dismiss effect of an Arcanum deals damage, it will deal 10 extra damage if you are <strong>level 20 or higher</strong>, or 20 extra damage if you are <strong>level 40 or higher</strong>.</p><p>You are also free to ignore the dismiss effect if you don't want to use it.</p><h2><strong>DOMAINS</strong></h2><p>Each Arcanum is associated with a few key concepts or domains. The Game Master should use these to establish the trials needed to bind the Arcanum, and to adjudicate Rituals performed through the <strong>Ritual Arcanism</strong> Skill.</p><p>If you create new Arcana for your world, make sure to associate them with domains that allow for interesting Rituals.</p><h2><strong>ALL ARCANA</strong></h2><p><strong>@UUID[.ldBTUg43es8ZUaMN]{ARCANUM LIST}</strong></p>",
+        "content": "<h2><strong>MERGING WITH AN ARCANUM</strong></h2><p>When you summon an Arcanum, you gain its merge benefits; those benefits last until the Arcanum is dismissed (see <strong>Core Rulebook</strong>, page <strong>179</strong>).</p><p>You cannot summon an Arcanum while already merged with one; you must first dismiss the current Arcanum.</p><h2><strong>DISMISSING AN ARCANUM</strong></h2><p>An Arcanum can be dismissed in several ways:</p><ul><li>Once the current scene ends, all Arcana are automatically dismissed.</li><li>If you die or fall unconscious while merged with an Arcanum, they are dismissed.</li><li>If you leave the scene while merged with an Arcanum, they are dismissed.</li><li>You may <strong>willingly</strong> dismiss your Arcanum: this doesn't require an action, but during a conflict it can only be done on your turn, <strong>before or after</strong> an action.</li></ul><h2><strong>DISMISS EFFECTS</strong></h2><p>Most Arcana have a powerful dismiss effect, which may only be activated when you <strong>willingly</strong> dismiss the Arcanum as described above — if the Arcanum is dismissed for any other reason, the dismiss effect cannot be triggered.</p><p>If the dismiss effect of an Arcanum deals damage, it will deal 10 extra damage if you are <strong>level 20 or higher</strong>, or 20 extra damage if you are <strong>level 40 or higher</strong>.</p><p>You are also free to ignore the dismiss effect if you don't want to use it.</p><h2><strong>DOMAINS</strong></h2><p>Each Arcanum is associated with a few key concepts or domains. The Game Master should use these to establish the trials needed to bind the Arcanum, and to adjudicate Rituals performed through the <strong>Ritual Arcanism</strong> Skill.</p><p>If you create new Arcana for your world, make sure to associate them with domains that allow for interesting Rituals.</p><h2><strong>ALL ARCANA</strong></h2><p><strong>@UUID[.ldBTUg43es8ZUaMN]{ARCANUM LIST}</strong></p>",
         "markdown": ""
       },
       "video": {
@@ -30,10 +30,10 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "createdTime": 1711758795157,
-        "modifiedTime": 1720886086785,
-        "lastModifiedBy": "GJ92IIuRRh2w5uWU",
+        "modifiedTime": 1741998870259,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },

@@ -77,7 +77,7 @@
       "value": "instantaneous"
     },
     "isOffensive": {
-      "value": true
+      "value": false
     },
     "source": {
       "value": "FUCR235"
@@ -101,7 +101,7 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "value": 40,
         "type": {
@@ -128,10 +128,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710548744272,
-    "modifiedTime": 1737918052502,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1741947621141,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

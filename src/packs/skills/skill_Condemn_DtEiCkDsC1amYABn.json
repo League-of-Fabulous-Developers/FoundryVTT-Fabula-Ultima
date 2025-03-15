@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action and spend 5 MP to perform an Opposed <strong>【INS + WLP】</strong> Check against a creature that can hear and understand you — describe your accusations! If you succeed, the target loses <strong>【SL × 10】</strong> Mind Points and suffers @EFFECT[dazed] or @EFFECT[shaken] (your choice).</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【INS + WLP】</strong> Checks for this Skill.</p><hr /><ul><li><p><strong>You: </strong>@CHECK[ins wlp ($sl)]</p></li><li><p><strong>Target</strong>: @CHECK[ins wlp] @LOSS[$sl*10 mp]</p></li></ul>",
+    "description": "<p>You may use an action and spend 5 MP to perform an Opposed <strong>【INS + WLP】</strong> Check against a creature that can hear and understand you — describe your accusations! If you succeed, the target loses <strong>【SL × 10】</strong> Mind Points and suffers <strong>dazed</strong> or <strong>shaken</strong> (your choice).</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【INS + WLP】</strong> Checks for this Skill.</p><hr /><ul><li><p><strong>You Perform: </strong>@CHECK[ins wlp ($sl)]</p></li><li><p><strong>Target Loses</strong>: @LOSS[$sl*10 mp]</p></li><li><p><strong>Target Suffers:</strong> @EFFECT[dazed] <strong>or</strong> @EFFECT[shaken]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -135,10 +137,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706504101200,
-    "modifiedTime": 1737920973005,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1741973222863,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

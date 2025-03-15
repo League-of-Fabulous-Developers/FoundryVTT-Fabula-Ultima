@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may <strong>bind</strong> Arcana to your soul and <strong>summon</strong> them later. The Game Master will tell you the details of each binding process when you first encounter the Arcanum in question.</p><p>You may use an action and spend @LOSS[40 mp] to <strong>summon</strong> an Arcanum you have bound: the details of this process are explained on the next page.</p><p>If you take this Skill at character creation, you begin play with one Arcanum of your choice already bound to you, chosen from the list on the next pages. Other than that, you may only obtain new Arcana through exploration and story progression.</p><p>Descriptions, as well as all of the rules, for all of the arcanums can be found in this handout: @UUID[Compendium.projectfu.handouts.JournalEntry.sO33zynz6ZsBDpFR]{Arcana Rules}</p><p></p>",
+    "description": "<p>You may <strong>bind</strong> Arcana to your soul and <strong>summon</strong> them later. The Game Master will tell you the details of each binding process when you first encounter the Arcanum in question.</p><p>You may use an action and spend 40 Mind Points to <strong>summon</strong> an Arcanum you have bound: the details of this process are explained on the next page.</p><p>If you take this Skill at character creation, you begin play with one Arcanum of your choice already bound to you, chosen from the list on the next pages. Other than that, you may only obtain new Arcana through exploration and story progression.</p><hr /><ul><li><p>For <strong>arcana</strong> breakdown and a list of Arcanums, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.sO33zynz6ZsBDpFR]{Arcana Rules}</p></li></ul><p></p>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -118,7 +120,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "bind-and-summon"
+    "fuid": "bind-and-summon",
+    "cost": {
+      "amount": 40
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +139,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706494654131,
-    "modifiedTime": 1724180862829,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741994220802,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

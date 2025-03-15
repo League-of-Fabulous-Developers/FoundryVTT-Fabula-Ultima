@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -136,19 +138,7 @@
       "_id": "M8kqwCdFQHllfjGs",
       "changes": [
         {
-          "key": "system.bonuses.accuracy.bow",
-          "mode": 2,
-          "value": "@system.level.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.firearm",
-          "mode": 2,
-          "value": "@system.level.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.accuracy.thrown",
+          "key": "system.bonuses.accuracy.accuracyRanged",
           "mode": 2,
           "value": "@system.level.value",
           "priority": null
@@ -159,17 +149,19 @@
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUCR205"
         }
       },
       "tint": "#ffffff",
       "_stats": {
         "coreVersion": "12.331",
-        "systemId": null,
-        "systemVersion": null,
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1723766400107,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1741967522588,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -196,8 +188,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706506773814,
-    "modifiedTime": 1724180861241,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741951326214,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

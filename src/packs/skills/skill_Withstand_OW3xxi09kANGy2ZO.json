@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform the @EFFECT[guard] action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【SL, multiplied by the highest strength among your Bonds】</strong> and choose @EFFECT[mig-up] or @EFFECT[wlp-up]: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><ul><li><p><strong>One Emotion: </strong>@GAIN[1*$sl hp]</p></li><li><p><strong>Two Emotions: </strong>@GAIN[2*$sl hp]</p></li><li><p><strong>Three Emotions: </strong>@GAIN[3*$sl hp]</p></li></ul>",
+    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><ul><li><p><strong>One Emotion: </strong>@GAIN[1*$sl hp]</p></li><li><p><strong>Two Emotions: </strong>@GAIN[2*$sl hp]</p></li><li><p><strong>Three Emotions: </strong>@GAIN[3*$sl hp]</p></li><li><p><strong>You Receive: </strong>@EFFECT[mig-up] <strong>or</strong> @EFFECT[wlp-up]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -132,10 +134,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706502423483,
-    "modifiedTime": 1737920148992,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1741977138714,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

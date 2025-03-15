@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>As long as you have a <strong>shield</strong> or <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong> (applied before damage Affinities).</p>",
+    "description": "<p>As long as you have a <strong>shield</strong> or <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong> (applied <strong>before</strong> damage Affinities).</p>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -146,7 +148,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>As long as you have a <strong>shield</strong> or <strong>martial armor</strong> equipped, all damage you suffer is reduced by <strong>【SL】</strong> (applied <strong>before</strong> damage Affinities).</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -154,19 +156,19 @@
       "flags": {
         "projectfu": {
           "type": "default",
-          "source": "",
+          "source": "FUCR196",
           "CrisisInteraction": "none"
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737920245228,
-        "modifiedTime": 1737920276899,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1741975052104,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!7wF1oulk0Zn7ITTF.w7qI5rqewX56TrEC"
     }
@@ -184,8 +186,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706503498917,
-    "modifiedTime": 1724180861547,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741975021843,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

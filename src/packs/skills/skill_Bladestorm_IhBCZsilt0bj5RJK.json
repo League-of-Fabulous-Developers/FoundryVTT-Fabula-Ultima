@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform a <strong>melee</strong> attack, you may spend <strong>10  MP </strong> to choose one option: the attack gains <strong>multi (2)</strong>; <strong>or</strong> you increase the attack's <strong>multi</strong> property by one, up to a maximum of <strong>multi (3)</strong>.</p>",
+    "description": "<p>When you perform a <strong>melee</strong> attack, you may spend 10 Mind Points to choose one option: the attack gains <strong>multi (2)</strong>; <strong>or</strong> you increase the attack's <strong>multi</strong> property by one, up to a maximum of <strong>multi (3)</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -138,10 +140,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706514077118,
-    "modifiedTime": 1737922428167,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1741970498808,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

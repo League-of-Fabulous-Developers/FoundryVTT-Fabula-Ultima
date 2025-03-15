@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, you learn <strong>two symbols</strong>.</p><p>You may have up to <strong>up to 【SL + 1】 symbols active at the same time</strong>; if you create more while at your limit, you must first choose and destroy some of your previous <strong>symbols</strong>.</p><p>You may perform the Inventory action and spend <strong>@LOSS[2 ip]</strong> to create a <strong>symbol</strong> you have learned and choose one option: apply that <strong>symbol</strong> to yourself; <strong>or</strong> apply that <strong>symbol</strong> to an ally you can see; <strong>or</strong> perform a <strong>free attack</strong> with a weapon you have equipped. This attack deals no damage, but you apply a copy of the chosen <strong>symbol</strong> to each enemy hit by the attack (each copy counts as a separate <strong>symbol</strong> towards your limit or <strong>【SL + 1】</strong> active <strong>symbols</strong>).</p><p>Descriptions, as well as all of the rules, for all of the symbols can be found in this handout: <strong>@UUID[Compendium.projectfu.handouts.JournalEntry.t38IeNrS9T7NQspT]{Symbol Rules}</strong></p>",
+    "description": "<p>Each time you acquire this Skill, you learn <strong>two symbols</strong> (see <strong>High Fantasy Atlas</strong>, page <strong>148</strong>).</p><p>You may have up to <strong>up to 【SL + 1】 symbols active at the same time</strong>; if you create more while at your limit, you must first choose and destroy some of your previous <strong>symbols</strong>.</p><p>You may perform the <strong>Inventory</strong> action and spend <strong>2 Inventory Points</strong> to create a <strong>symbol</strong> you have learned and choose one option: apply that <strong>symbol</strong> to yourself; <strong>or</strong> apply that <strong>symbol</strong> to an ally you can see; <strong>or</strong> perform a <strong>free attack</strong> with a weapon you have equipped. This attack deals no damage, but you apply a copy of the chosen <strong>symbol</strong> to each enemy hit by the attack (each copy counts as a separate <strong>symbol</strong> towards your limit or <strong>【SL + 1】</strong> active <strong>symbols</strong>).</p><hr /><ul><li><p>For <strong>symbol</strong> breakdown and a list of Symbols, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.t38IeNrS9T7NQspT]{Symbol Rules}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -27,9 +27,7 @@
       "value": "Symbolist"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
+      "accuracy": false,
       "damage": {
         "value": false
       },
@@ -55,7 +53,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -106,7 +106,7 @@
       }
     },
     "hasRoll": {
-      "value": true
+      "value": false
     },
     "hasResource": {
       "value": false
@@ -118,7 +118,11 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "symbolism"
+    "fuid": "symbolism",
+    "cost": {
+      "resource": "ip",
+      "amount": 2
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +138,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706563320133,
-    "modifiedTime": 1724180862310,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742001457802,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

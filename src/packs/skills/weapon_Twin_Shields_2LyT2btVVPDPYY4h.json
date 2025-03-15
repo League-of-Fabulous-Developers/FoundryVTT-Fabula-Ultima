@@ -40,7 +40,7 @@
       "value": false
     },
     "quality": {
-      "value": "Deals extra damage equal to your【SL】in defensive mastery (above)."
+      "value": ""
     },
     "cost": {
       "value": 100
@@ -63,7 +63,7 @@
       "value": 5
     },
     "subtype": {},
-    "description": "",
+    "description": "<p>Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</p>",
     "isEquipped": {
       "value": false
     },
@@ -101,24 +101,24 @@
           "priority": null
         }
       ],
-      "description": "",
-      "transfer": true,
+      "description": "<p>Deals extra damage equal to your <strong>【SL】</strong> in <strong>defensive mastery</strong>.</p>",
+      "transfer": false,
       "statuses": [],
       "flags": {
         "projectfu": {
           "CrisisInteraction": "none",
           "type": "default",
-          "source": ""
+          "source": "FUCR196"
         }
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1737923153693,
-        "lastModifiedBy": "esOkelwPNblkbxW3",
+        "modifiedTime": 1741979894499,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -143,8 +143,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707628405753,
-    "modifiedTime": 1724180861316,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741974918408,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

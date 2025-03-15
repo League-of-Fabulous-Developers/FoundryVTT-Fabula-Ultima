@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>During a conflict, you may use an action to interfere with the flow of time by spending up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: one creature you can see suffers @EFFECT[slow]; or one creature you can see recovers from <strong>slow</strong>; or one creature you can see may immediately perform the <strong>Equipment action</strong> for free; <strong>or</strong> choose one ally you can see who has yet to take a turn during this round: that ally may take their turn immediately after yours during this round.</p><p>Each option can only be chosen once per use of this Skill.</p><hr /><p><strong>One</strong> option - @LOSS[5 mp]</p><p><strong>Two</strong> options - @LOSS[10 mp]</p><p><strong>Three</strong> options - @LOSS[15 mp]</p><p><strong>Four</strong> options - @LOSS[20 mp]</p>",
+    "description": "<p>During a conflict, you may use an action to interfere with the flow of time by spending up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: one creature you can see suffers <strong>slow</strong>; or one creature you can see recovers from <strong>slow</strong>; or one creature you can see may immediately perform the <strong>Equipment action</strong> for free; <strong>or</strong> choose one ally you can see who has yet to take a turn during this round: that ally may take their turn immediately after yours during this round.</p><p>Each option can only be chosen once per use of this Skill.</p><hr /><ul><li><p><strong>Target Suffers:</strong> @EFFECT[slow]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -118,7 +120,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "stolen-time"
+    "fuid": "stolen-time",
+    "cost": {
+      "amount": 5
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +139,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706486840722,
-    "modifiedTime": 1724180861559,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741987169063,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

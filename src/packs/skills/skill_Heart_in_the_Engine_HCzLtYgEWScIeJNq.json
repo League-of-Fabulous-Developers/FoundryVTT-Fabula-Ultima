@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend <strong>10 MP. </strong>If you do, choose one option: the next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage; <strong>or</strong>, the next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities); <strong>or</strong>, you recover from a status effect of your choice among <strong>slow</strong> and <strong>weak</strong>.</span></p>",
+    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points<strong>. </strong>If you do, choose one option: the next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage; <strong>or</strong>, the next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities); <strong>or</strong>, you recover from a status effect of your choice among <strong>slow</strong> and <strong>weak</strong>.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -54,7 +54,9 @@
         "value": "physical"
       },
       "expression": "",
-      "extra": ""
+      "extra": "",
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -156,19 +158,19 @@
       "flags": {
         "projectfu": {
           "type": "default",
-          "source": "",
+          "source": "FUTF159",
           "CrisisInteraction": "none"
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1739628878997,
-        "modifiedTime": 1739629918708,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1741968403120,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!HCzLtYgEWScIeJNq.vDQ9W1rj7jQ8qlMS"
     },
@@ -205,19 +207,19 @@
       "flags": {
         "projectfu": {
           "type": "default",
-          "source": "",
+          "source": "FUTF159",
           "CrisisInteraction": "none"
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1739629767056,
-        "modifiedTime": 1739629974761,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1741968406284,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!HCzLtYgEWScIeJNq.rPpbi48lLhPU5hQo"
     }
@@ -233,10 +235,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1711431286236,
-    "modifiedTime": 1739629979147,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1741968202344,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

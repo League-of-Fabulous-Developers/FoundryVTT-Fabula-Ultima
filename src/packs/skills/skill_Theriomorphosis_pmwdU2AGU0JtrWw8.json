@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, you learn a <strong>therioform</strong> (see @UUID[Compendium.projectfu.skills.Item.9ww1Sa24R1VsLqgA]{[Handout: Therioform List]})</p><p>You may use an action and spend <strong>one third of your current Hit Points</strong> (rounded down) to manifest the effects of <strong>up to two therioforms</strong> you have learned. The details of this transformation are explained on the next page.</p>",
+    "description": "<p>Each time you acquire this Skill, you learn a <strong>therioform </strong>(see <strong>Techno Fantasy Atlas</strong>, page <strong>156</strong>).</p><p>You may use an action and spend <strong>one third of your current Hit Points</strong> (rounded down) to manifest the effects of <strong>up to two therioforms</strong> you have learned. The details of this transformation are explained on the next page.</p><hr /><ul><li><p><span style=\"font-family:'PT Sans Narrow', sans-serif\">For </span><strong>therioform</strong> breakdown and a list of <strong>Therioforms</strong>, refer to:<strong> </strong>@UUID[Compendium.projectfu.handouts.JournalEntry.aXZh9r7OxySQ484p]{Therioforms Rules}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -52,7 +52,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -124,8 +126,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711429218464,
-    "modifiedTime": 1724180863204,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742001222642,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

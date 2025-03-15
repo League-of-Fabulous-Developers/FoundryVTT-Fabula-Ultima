@@ -39,18 +39,6 @@ Twin Shield Assets:
 twin-shield (fantasy-rpg, recolor of shield_110)
 
 --------------------------------------------------
-[projectfu\styles\static\compendium\magicannon\*]
-
-Magicannon Assets:
-magicannon (modern-rpg, recolor of gun_004)
-magicannon-air (modern-rpg, recolor of gun_004)
-magicannon-bolt (modern-rpg, recolor of gun_004)
-magicannon-earth (modern-rpg, recolor of gun_004)
-magicannon-fire (modern-rpg, recolor of gun_004)
-magicannon-ice (modern-rpg, recolor of gun_004)
-magicannon-physical (modern-rpg, recolor of gun_004)
-
---------------------------------------------------
 [projectfu\styles\static\compendium\ui\*]
 
 UI Assets:
@@ -103,7 +91,8 @@ tome (fantasy-rpg, book_11)
 unarmed-strike (fantasy-rpg, glove_1)
 waraxe (fantasy-rpg, axe_16)
  
-iron-knuckles (custom-made by RubenE) (Social: @/only_ruben_draw)
+iron-knuckles (current version custom-made by Mildew)
+iron-knuckles (previous version custom-made by RubenE) (Social: @/only_ruben_draw)
 
 --------------------------------------------------
 [projectfu\styles\static\compendium\classes\arcanum\*]
@@ -121,6 +110,7 @@ arcanum-of-the-sky (fantasy-rpg, recolor of gem_*)
 
 --------------------------------------------------
 [projectfu\styles\static\compendium\classes\*]
+[projectfu\styles\static\compendium\magicannon\*]
 [projectfu\styles\static\compendium\magitech-armament\*]
 
 A majority of the pixel art found in the following folders are provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.

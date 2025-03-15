@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -141,22 +143,24 @@
           "priority": null
         }
       ],
-      "description": "<ul><li><p><strong>Trigger:</strong> <strong>Arcane</strong> weapon equipped.</p></li><li><p><strong>Effect:</strong> Magic Check +<span class=\"fontstyle0\"><strong>【</strong></span><span class=\"fontstyle1\"><strong>SL × 2</strong></span><span class=\"fontstyle0\"><strong>】</strong></span></p></li></ul><table><tbody><tr><td><p><strong>SL1: 2</strong></p></td><td><p><strong>SL: 4</strong></p></td><td><p><strong>SL: 6</strong></p></td></tr></tbody></table>",
+      "description": "<p>When you cast an offensive (@ICON[offensive]) spell, if you have an <strong>arcane</strong> weapon equipped, you gain a bonus to your Magic Check equal to <strong>【SL × 2】</strong>.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUCR187"
         }
       },
       "tint": "#ffffff",
       "_stats": {
         "coreVersion": "12.331",
-        "systemId": null,
-        "systemVersion": null,
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1723766487702,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1741989009557,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -182,8 +186,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706497996319,
-    "modifiedTime": 1724180862608,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742002045081,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

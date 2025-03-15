@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action and spend <strong>5 MP</strong> to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target a <strong>single creature</strong>. If the attack is successful, it deals no damage and you choose one option: you destroy one shield equipped by the target; <strong>or</strong> you destroy the target's equipped armor; <strong>or</strong> whenever the target suffers damage from a source before the start of your next turn, that source deals <strong>【SL × 2】</strong> extra damage to them.</p>",
+    "description": "<p>You may use an action and spend 5 Mind Points to perform a <strong>free attack</strong> with a <strong>melee</strong> weapon you have equipped. This attack must target a <strong>single creature</strong>. If the attack is successful, it deals no damage and you choose one option: you destroy one shield equipped by the target; <strong>or</strong> you destroy the target's equipped armor; <strong>or</strong> whenever the target suffers damage from a source before the start of your next turn, that source deals <strong>【SL × 2】</strong> extra damage to them.</p>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -138,10 +140,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706514105557,
-    "modifiedTime": 1737922582237,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1741964114513,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

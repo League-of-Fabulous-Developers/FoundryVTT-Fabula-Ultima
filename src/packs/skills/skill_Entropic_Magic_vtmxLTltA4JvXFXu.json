@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, learn one Entropist spell (@UUID[Compendium.projectfu.spells.Item.W9ZYH88gvlcg7atp]{[Entropist Spells]}, Core Rulebook, page <strong>192</strong>).</p><p>Offensive ( @ICON[offensive] ) Entropist spells use <strong>【INS + WLP】</strong> for the Magic Check.</p><p> </p>",
+    "description": "<p>Each time you acquire this Skill, learn one Entropist spell (see <strong>Core Rulebook</strong>, page <strong>192</strong>).</p><p>Offensive ( @ICON[offensive] ) Entropist spells use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><ul><li><p>For <strong>spell</strong> breakdown and a list of Entropist Spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.jZeTJrK0mFsRyz8S]{Entropist Rules}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -52,7 +52,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -128,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706421766290,
-    "modifiedTime": 1724180863435,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742002024109,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

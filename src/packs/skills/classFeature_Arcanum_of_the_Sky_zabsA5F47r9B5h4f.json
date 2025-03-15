@@ -34,7 +34,7 @@
       },
       "disabled": false,
       "name": "Merged: Sky",
-      "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Sky.png",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-sky.png",
       "_id": "Nm6hnzBAzx3GZpTj",
       "type": "base",
       "system": {},
@@ -59,7 +59,9 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUCR180"
         }
       },
       "_stats": {
@@ -69,8 +71,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725597617033,
-        "modifiedTime": 1725597708749,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1741996437105,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!zabsA5F47r9B5h4f.Nm6hnzBAzx3GZpTj"
     }

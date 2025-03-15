@@ -148,7 +148,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>After you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you gain a bonus equal to <strong>【SL × 2】</strong> to all Opposed Checks that rely on <strong>acrobatics</strong>, <strong>coordination</strong>, or <strong>speed</strong> until the start of your next turn.</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -156,19 +156,19 @@
       "flags": {
         "projectfu": {
           "type": "default",
-          "source": "",
+          "source": "FUHF143",
           "CrisisInteraction": "none"
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1740175867509,
-        "modifiedTime": 1740176047881,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1741989445886,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!R0F1K6i1gjNWNklq.2IMJA47lvSXwD8a6"
     }

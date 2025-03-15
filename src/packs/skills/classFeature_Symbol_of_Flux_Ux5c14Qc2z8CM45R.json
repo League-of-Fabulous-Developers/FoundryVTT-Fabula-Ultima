@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr><p>@UUID[Compendium.projectfu.conditions-effects.Item.dl04MUhnkGS7KY5x]{Dazed} @UUID[Compendium.projectfu.conditions-effects.Item.hf6mPrd0GzfLL1ap]{Shaken} @UUID[Compendium.projectfu.conditions-effects.Item.E0TVnMZHPXdeop2v]{Slow} @UUID[Compendium.projectfu.conditions-effects.Item.D9TiA8YXY75bIbNs]{Weak}</p><p>@LOSS[2 ip]</p>"
+      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr><p>@UUID[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B]{Dazed Immunity} @UUID[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Shaken Immunity} @UUID[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp]{Slow Immunity} @UUID[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Weak Immunity}</p><p>@LOSS[2 ip]</p>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-flux"
@@ -37,7 +37,7 @@
       "type": "base",
       "system": {},
       "changes": [],
-      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr /><p>@UUID[Compendium.projectfu.conditions-effects.Item.dl04MUhnkGS7KY5x]{Dazed} @UUID[Compendium.projectfu.conditions-effects.Item.hf6mPrd0GzfLL1ap]{Shaken} @UUID[Compendium.projectfu.conditions-effects.Item.E0TVnMZHPXdeop2v]{Slow} @UUID[Compendium.projectfu.conditions-effects.Item.D9TiA8YXY75bIbNs]{Weak}</p>",
+      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr /><p>@UUID[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B]{Dazed Immunity} @UUID[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Shaken Immunity} @UUID[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp]{Slow Immunity} @UUID[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Weak Immunity}</p>",
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
@@ -56,8 +56,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1730916003137,
-        "modifiedTime": 1730916131378,
-        "lastModifiedBy": "B6evqtezy9ZsGZG3"
+        "modifiedTime": 1741950499812,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!Ux5c14Qc2z8CM45R.X4izTxnMPUHNJ6ee"
     }
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177560234,
-    "modifiedTime": 1730916108044,
-    "lastModifiedBy": "B6evqtezy9ZsGZG3",
+    "modifiedTime": 1741950474606,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
