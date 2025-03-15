@@ -381,11 +381,11 @@ export class FUCombat extends Combat {
 		// Whether the user is a GM
 		data.isGM = game.user.isGM;
 
-		console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
-		for (const combatant of this.combatants) {
-			const canStartTurn = data.currentTurn === combatant.faction;
-			console.debug(`- Combatant name: ${combatant.name}, id: ${combatant.id}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}, canStartTurn: ${canStartTurn}`);
-		}
+		//console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
+		// for (const combatant of this.combatants) {
+		// 	const canStartTurn = data.currentTurn === combatant.faction;
+		// 	console.debug(`- Combatant name: ${combatant.name}, id: ${combatant.id}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}, canStartTurn: ${canStartTurn}`);
+		// }
 	}
 
 	/**

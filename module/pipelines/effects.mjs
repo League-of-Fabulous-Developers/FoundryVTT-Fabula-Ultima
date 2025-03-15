@@ -108,7 +108,7 @@ export async function onManageActiveEffect(event, owner) {
 			break;
 		}
 		case 'roll': {
-			return await handleRollEffect(resolveEffect(), owner);
+			return await renderEffect(resolveEffect(), owner);
 		}
 	}
 }
@@ -219,11 +219,11 @@ export function isActiveEffectForStatusEffectId(effect, statusEffectId) {
 }
 
 /**
- * @description Handle rolling the effect and creating a chat message.
+ * @description Handle renders the effect by creating a chat message.
  * @param {ActiveEffect} effect  The ActiveEffect to be rolled and encoded
  * @param {Actor|Item} owner     The owning document (actor or item)
  */
-async function handleRollEffect(effect, owner) {
+async function renderEffect(effect, owner) {
 	if (!effect) {
 		ui.notifications.error('Effect not found.');
 		return;
@@ -287,6 +287,15 @@ async function onApplyEffectToActor(actor, sourceUuid, effect) {
 }
 
 /**
+ * @typedef ManagedEffectData
+ * @property {String} name
+ * @property {String} img
+ * @property {String} id
+ * @property {Number} remaining
+ * @property {String} description
+ */
+
+/**
  * @description Manages active effects during a combat
  * @param {FUActor} actor
  * @param {CombatEvent} event
@@ -345,6 +354,14 @@ async function manageEffectDuration(actor, event) {
 	await Promise.all(updates);
 
 	// TODO: Maybe link to the originals if deletions are about to happen
+	/** @type ManagedEffectData[] **/
+	const effectData = effects.map((effect) => ({
+		name: effect.name,
+		id: effect.id,
+		img: effect.img,
+		remaining: effect.system.duration.remaining,
+		description: effect.description,
+	}));
 
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
@@ -353,7 +370,7 @@ async function manageEffectDuration(actor, event) {
 			message: 'FU.ChatManageEffects',
 			actor: actor.name,
 			uuid: actor.uuid,
-			effects: effects,
+			effects: effectData,
 			round: event.round,
 			event: event.type,
 		}),
@@ -431,17 +448,14 @@ function onRenderChatMessage(message, jQuery) {
 		}
 	});
 
-	Pipeline.handleClick(message, jQuery, 'roll', (dataset) => {
-		const effectId = dataset.id;
+	Pipeline.handleClick(message, jQuery, 'display', async (dataset) => {
+		const description = dataset.description;
 		const actorId = dataset.actorId;
 		const actor = fromUuidSync(actorId);
-		const effect = actor.effects.get(effectId);
-		if (effect) {
-			console.debug(`Showing effect information ${effect.name}`);
-			handleRollEffect(effect, actor);
-		} else {
-			ui.notifications.warn('FU.ChatActiveEffectDeleted', { localize: true });
-		}
+		await ChatMessage.create({
+			content: description,
+			speaker: ChatMessage.getSpeaker({ actor: actor }),
+		});
 	});
 
 	Pipeline.handleClick(message, jQuery, 'clearEffects', (dataset) => {
