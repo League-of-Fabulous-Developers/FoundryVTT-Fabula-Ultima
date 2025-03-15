@@ -66,18 +66,18 @@
                             <div class="marquee"
                                     style="animation-duration: {{this.effectsMarqueeDuration}}s; animation-direction: {{this.marqueeDirection}};">
                                 {{#each this.effects as |effect|}}
-                                    <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
+                                    <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                 {{/each}}
                                 {{#each this.effects as |effect|}}
-                                    <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
+                                    <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                 {{/each}}
                             </div>
                         {{else}}
                             <div>
                                 {{#each this.effects as |effect|}}
-                                    <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
+                                    <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                 {{/each}}
                             </div>

@@ -347,6 +347,38 @@ export class CombatHUD extends Application {
 		html.find('a[data-action=start-turn]').click((event) => ui.combat.handleStartTurn(event));
 		html.find('a[data-action=end-turn]').click((event) => ui.combat.handleEndTurn(event));
 		html.find('a[data-action=take-turn-out-of-turn]').click((event) => ui.combat.handleTakeTurnOutOfTurn(event));
+
+		const effectImages = html.find('.combat-effect-img');
+
+		effectImages.on('click', async (event) => {
+			event.preventDefault();
+			const effectImg = event.currentTarget;
+			const effectId = effectImg.dataset.effectId;
+			const actorId = effectImg.dataset.actorId;
+			const actor = game.actors.get(actorId);
+			if (!actor) return;
+
+			if (event.button === 0) {
+				const effect = actor.effects.get(effectId);
+				if (effect) {
+					await effect.update({ disabled: !effect.disabled });
+				}
+			}
+		});
+
+		effectImages.on('contextmenu', async (event) => {
+			event.preventDefault();
+			const effectImg = event.currentTarget;
+			const effectId = effectImg.dataset.effectId;
+			const actorId = effectImg.dataset.actorId;
+			const actor = game.actors.get(actorId);
+			if (!actor) return;
+
+			const effect = actor.effects.get(effectId);
+			if (effect) {
+				new ActiveEffectConfig(effect).render(true);
+			}
+		});
 	}
 
 	_doHudDragStart(event) {
