@@ -497,7 +497,7 @@ export class StudyRollHandler {
                     display: flex;
                     flex-direction: column;
                 ">
-                <img src="${imgSrc}" alt="${actor.name}" width="200">
+                <img src="${imgSrc}" alt="${actor.name}" width="128" height="128" style="object-fit: contain;">
                 <div style="${headerStyle}">
                   <span style="${headerText}">
                     <strong>${actor.name}</strong>
