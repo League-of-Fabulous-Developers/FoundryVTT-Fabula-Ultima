@@ -105,6 +105,8 @@ export class FUCombatTracker extends CombatTracker {
 		return turns.reduce(
 			(agg, combatantData) => {
 				const combatant = combat.combatants.get(combatantData.id);
+                // Skip combatants that can't be found or don't have a token.
+                if (!combatant?.token) return agg;
 				// The tracker rendering needs this! Do not remove!
 				combatantData.faction = combatant.faction;
 				combatantData.isOwner = combatant.isOwner;
