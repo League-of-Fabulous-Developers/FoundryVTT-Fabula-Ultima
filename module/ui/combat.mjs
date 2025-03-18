@@ -65,8 +65,10 @@ export class CombatEvent {
  * @property {Combatant} combatant
  * @property {Boolean} hasCombatStarted
  * @property turnsLeft
+ * @property totalTurns
  * @property factions
  * @property currentTurn The faction whose turn it is
+ * @property isGM
  */
 
 /**
@@ -379,7 +381,7 @@ export class FUCombat extends Combat {
 		// The current combatant, if any
 		data.combatant = this.combatant;
 		// Whether the user is a GM
-		data.isGM = game.user.isGM;
+		data.isGM = game.user?.isGM;
 
 		console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
 		for (const combatant of this.combatants) {
