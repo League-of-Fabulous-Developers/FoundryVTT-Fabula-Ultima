@@ -40,6 +40,10 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		if (spellBonus) {
 			configurer.addDamageBonus('FU.DamageBonusTypeSpell', spellBonus);
 		}
+		const damageTypeBonus = actor.system.bonuses.damage[item.system.rollInfo.damage.type.value];
+		if (damageTypeBonus) {
+			configurer.addDamageBonus(`FU.DamageBonus${item.system.rollInfo.damage.type.value.capitalize()}`, damageTypeBonus);
+		}
 	}
 };
 

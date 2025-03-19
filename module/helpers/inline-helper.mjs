@@ -114,6 +114,9 @@ function determineSource(document, element) {
 	} else if (document instanceof FUItem) {
 		name = document.name;
 		itemUuid = document.uuid;
+		if (document.isEmbedded) {
+			actorUuid = document.parent.uuid;
+		}
 		console.debug(`Determining source document as Item ${itemUuid}`);
 	} else if (document instanceof ChatMessage) {
 		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);

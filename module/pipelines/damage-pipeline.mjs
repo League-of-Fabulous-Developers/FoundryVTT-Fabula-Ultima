@@ -265,7 +265,7 @@ async function collectIncrements(context) {
 		context.addBonus(`incomingDamage.${context.damageType}`, incoming[context.damageType] ?? 0);
 
 		// Potentially modify damage FROM a specific species (NPC)
-		if (context.sourceActor.system.species) {
+		if (context.sourceActor && context.sourceActor.system.species) {
 			const species = context.sourceActor.system.species.value;
 			context.addBonus(`incomingDamage.${species}`, incoming[species] ?? 0);
 		}
