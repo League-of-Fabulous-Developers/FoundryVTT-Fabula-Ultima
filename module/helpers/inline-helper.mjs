@@ -223,6 +223,30 @@ function appendImageToAnchor(anchor, path) {
 	anchor.append(img);
 }
 
+/**
+ * @param {String} name The name of the command
+ * @param {String} required
+ * @param {String[]|null} optional
+ * @returns {RegExp}
+ * @remarks Expects regex subpatterns to be already escaped
+ */
+function compose(name, required, optional = undefined) {
+	const joinedOptional = optional ? optional.join('') : '';
+	const pattern = `@${name}\\[${required}${joinedOptional}\\]${labelPattern}`;
+	return new RegExp(pattern, 'g');
+}
+
+/**
+ * @type {string} The pattern used for optional labeling
+ */
+const labelPattern = '(\\{(?<label>.*?)\\})?';
+
+/**
+ * @param {String} identifier The name of the regex group
+ * @param key The key of the property
+ * @param value The value of the property
+ * @returns {String}
+ */
 function propertyPattern(identifier, key, value) {
 	return `(\\s+${key}:(?<${identifier}>${value}))?`;
 }
@@ -236,6 +260,7 @@ export const InlineHelper = {
 	fromBase64,
 	capitalize,
 	registerEnricher,
-	labelPattern: '(\\{(?<label>.*?)\\})?',
+	compose,
+	labelPattern,
 	propertyPattern,
 };

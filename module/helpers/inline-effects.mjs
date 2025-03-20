@@ -15,17 +15,10 @@ const INLINE_EFFECT_CLASS = 'inline-effect';
  * @property {GuidedInlineEffectConfig} guided
  */
 
+const configurationPropertyGroups = [InlineHelper.propertyPattern('event', 'e', '\\w+'), InlineHelper.propertyPattern('interval', 'i', '\\d'), InlineHelper.propertyPattern('tracking', 't', '\\w+')];
+
 const enricher = {
-	pattern: new RegExp(
-		'@EFFECT\\[(?<id>[a-zA-Z0-9+/.-]*)' +
-			InlineHelper.propertyPattern('event', 'e', '\\w+') +
-			InlineHelper.propertyPattern('interval', 'i', '\\d') +
-			InlineHelper.propertyPattern('tracking', 't', '\\w+') +
-			'\\]' +
-			InlineHelper.labelPattern,
-		'g',
-	),
-	//pattern: /@EFFECT\[(?<id>[a-zA-Z0-9+/.-]*)(\s+e:(?<event>\w\w\w))?(\s+i:(?<interval>\d))?]({(?<label>\w+)})?/g,
+	pattern: InlineHelper.compose('EFFECT', '(?<id>[a-zA-Z0-9+/.-]*)', configurationPropertyGroups),
 	enricher: inlineEffectEnricher,
 };
 
@@ -249,5 +242,6 @@ function initialize() {
 
 export const InlineEffects = {
 	showEffectConfiguration,
+	parseConfigData,
 	initialize,
 };

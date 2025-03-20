@@ -10,7 +10,7 @@ import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
  * @type {TextEditorEnricherConfig}
  */
 const inlineCheckEnricher = {
-	pattern: new RegExp('@CHECK\\[\\s*(?<first>\\w+)\\s*(?<second>\\w+)\\s*(?<modifier>\\(.*?\\))*\\s*(?<level>\\w+)?]' + InlineHelper.labelPattern, 'g'),
+	pattern: InlineHelper.compose('CHECK', '\\s*(?<first>\\w+)\\s*(?<second>\\w+)\\s*(?<modifier>\\(.*?\\))*\\s*(?<level>\\w+)?'),
 	enricher: checkEnricher,
 };
 
