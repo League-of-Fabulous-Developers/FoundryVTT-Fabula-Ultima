@@ -5,6 +5,8 @@ import { CharacterDataModel } from '../documents/actors/character/character-data
 import { NpcDataModel } from '../documents/actors/npc/npc-data-model.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 
+// TODO: Remove, as its been replaced by `@TYPE[affinity...]`
+
 const INLINE_DATA_TYPE = 'InlineAffinity';
 const className = `inline-affinity`;
 
