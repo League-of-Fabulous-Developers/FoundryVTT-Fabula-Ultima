@@ -243,5 +243,6 @@ function initialize() {
 export const InlineEffects = {
 	showEffectConfiguration,
 	parseConfigData,
+	configurationPropertyGroups,
 	initialize,
 };

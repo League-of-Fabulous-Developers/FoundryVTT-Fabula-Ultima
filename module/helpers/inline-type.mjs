@@ -4,6 +4,7 @@ import { targetHandler } from './target-handler.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { NpcDataModel } from '../documents/actors/npc/npc-data-model.mjs';
 import { Effects } from '../pipelines/effects.mjs';
+import { InlineEffects } from './inline-effects.mjs';
 
 const INLINE_TYPE = 'InlineType';
 const className = `inline-type`;
@@ -17,7 +18,8 @@ const supportedTypes = {
  * @type {TextEditorEnricherConfig}
  */
 const editorEnricher = {
-	pattern: /@TYPE\[\s*(?<type>\w+)(?<args>(\s+\w+)+)s*\]/g,
+	pattern: InlineHelper.compose('TYPE', `\\s*(?<type>\\w+)(?<args>(\\s+\\w+)+)s*`, InlineEffects.configurationPropertyGroups),
+	//pattern: /@TYPE\[\s*(?<type>\w+)(?<args>(\s+\w+)+)s*\]/g,
 	enricher: (match, options) => {
 		const type = match.groups.type.toLowerCase();
 		const args = match.groups.args.trimStart();
@@ -29,6 +31,10 @@ const editorEnricher = {
 			anchor.dataset.type = type;
 			anchor.dataset.args = args;
 
+			const config = InlineEffects.parseConfigData(match);
+			anchor.dataset.config = InlineHelper.toBase64(config);
+			const label = match.groups.label;
+
 			if (type === 'damage') {
 				// TOOLTIP
 				const damageType = args.split(' ')[1];
@@ -36,10 +42,15 @@ const editorEnricher = {
 					return null;
 				}
 				anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineAffinity')} (${type})`);
+				if (label) {
+					anchor.append(label);
+				}
 				// TYPE
-				const localizedType = game.i18n.localize(FU.damageTypes[damageType]);
-				const localizedValue = game.i18n.localize('FU.Damage');
-				anchor.append(`${localizedType} ${localizedValue}`);
+				else {
+					const localizedType = game.i18n.localize(FU.damageTypes[damageType]);
+					const localizedValue = game.i18n.localize('FU.Damage');
+					anchor.append(`${localizedType} ${localizedValue}`);
+				}
 				// ICON
 				const icon = document.createElement('i');
 				icon.className = FU.affIcon[damageType] ?? '';
@@ -68,9 +79,10 @@ function activateListeners(document, html) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
 				const args = this.dataset.args;
+				const config = InlineHelper.fromBase64(this.dataset.config);
 
 				targets.forEach(async (target) => {
-					await applyEffect(target, sourceInfo, type, args);
+					await applyEffect(target, sourceInfo, type, args, config);
 				});
 			}
 		})
@@ -85,6 +97,7 @@ function activateListeners(document, html) {
 			const data = {
 				dataType: INLINE_TYPE,
 				sourceInfo: sourceInfo,
+				config: InlineHelper.fromBase64(this.dataset.config),
 				type: this.dataset.type,
 				args: this.dataset.args,
 			};
@@ -93,10 +106,10 @@ function activateListeners(document, html) {
 		});
 }
 
-async function onDropActor(actor, sheet, { dataType, sourceInfo, type, args, ignore }) {
+async function onDropActor(actor, sheet, { dataType, sourceInfo, type, args, config, ignore }) {
 	if (dataType === INLINE_TYPE) {
 		sourceInfo = InlineSourceInfo.fromObject(sourceInfo);
-		await applyEffect(actor, sourceInfo, type, args);
+		await applyEffect(actor, sourceInfo, type, args, config);
 		return false;
 	}
 }
@@ -152,13 +165,14 @@ function createEffect(type, args) {
  * @param {InlineSourceInfo} sourceInfo
  * @param {String} type
  * @param {String} args
+ * @param {InlineEffectConfiguration} config
  *
  */
-async function applyEffect(actor, sourceInfo, type, args) {
+async function applyEffect(actor, sourceInfo, type, args, config) {
 	if (actor.system instanceof CharacterDataModel || actor.system instanceof NpcDataModel) {
 		//const source = sourceInfo.resolve();
 		const effectData = createEffect(type, args.split(' '));
-		Effects.onApplyEffectToActor(actor, effectData, sourceInfo).then((effect) => {
+		Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config).then((effect) => {
 			console.info(`Created effect: ${effect.uuid} on actor uuid: ${actor.uuid}`);
 		});
 	} else {
