@@ -236,6 +236,6 @@ export const InlineHelper = {
 	fromBase64,
 	capitalize,
 	registerEnricher,
-	labelPattern: '({(?<label>\\w+)})?',
+	labelPattern: '(\\{(?<label>.*?)\\})?',
 	propertyPattern,
 };

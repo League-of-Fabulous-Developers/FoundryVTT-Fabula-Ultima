@@ -10,7 +10,7 @@ import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
  * @type {TextEditorEnricherConfig}
  */
 const inlineCheckEnricher = {
-	pattern: /@CHECK\[\s*(?<first>\w+)\s*(?<second>\w+)\s*(?<modifier>\(.*?\))*\s*(?<level>\w+)?]({(?<label>\w+)})?/g,
+	pattern: new RegExp('@CHECK\\[\\s*(?<first>\\w+)\\s*(?<second>\\w+)\\s*(?<modifier>\\(.*?\\))*\\s*(?<level>\\w+)?]' + InlineHelper.labelPattern, 'g'),
 	enricher: checkEnricher,
 };
 
@@ -53,11 +53,15 @@ function checkEnricher(match, options) {
 		// [OPTIONAL] Modifier
 		let modifier = match.groups.modifier;
 		if (modifier) {
-			const modifierConnector = document.createElement(`i`);
-			modifierConnector.classList.add(`connector`, `fa-plus`);
-			modifierConnector.textContent = ' ';
-			anchor.append(modifierConnector);
-			InlineHelper.appendVariableToAnchor(anchor, 'modifier', modifier, `MOD`);
+			if (label) {
+				anchor.dataset.modifier = modifier;
+			} else {
+				const modifierConnector = document.createElement(`i`);
+				modifierConnector.classList.add(`connector`, `fa-plus`);
+				modifierConnector.textContent = ' ';
+				anchor.append(modifierConnector);
+				InlineHelper.appendVariableToAnchor(anchor, 'modifier', modifier, `MOD`);
+			}
 			tooltip += ` Modifier: (${modifier})`;
 		} else {
 			anchor.dataset.modifier = 0;
