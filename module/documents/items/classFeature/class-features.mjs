@@ -14,6 +14,7 @@ import { VehicleDataModel } from './pilot/vehicle-data-model.mjs';
 import { ArmorModuleDataModel } from './pilot/armor-module-data-model.mjs';
 import { WeaponModuleDataModel } from './pilot/weapon-module-data-model.mjs';
 import { SupportModuleDataModel } from './pilot/support-module-data-model.mjs';
+import { MagiseedDataModel } from './floralist/magiseed-data-model.mjs';
 
 /**
  * Registers system-provided class features.
@@ -35,4 +36,5 @@ export function registerClassFeatures(registry) {
 	FU.classFeatures.armorModule = registry.register(SYSTEM, 'armorModule', ArmorModuleDataModel);
 	FU.classFeatures.weaponModule = registry.register(SYSTEM, 'weaponModule', WeaponModuleDataModel);
 	FU.classFeatures.supportModule = registry.register(SYSTEM, 'supportModule', SupportModuleDataModel);
+	FU.classFeatures.magiseed = registry.register(SYSTEM, 'magiseed', MagiseedDataModel);
 }

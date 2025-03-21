@@ -11,6 +11,7 @@ import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { PilotVehicleDataModel } from './pilot-vehicle-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { OverridesDataModel } from '../common/overrides-data-model.mjs';
+import { GardenDataModel } from './garden-data-model.mjs';
 
 const CLASS_HP_BENEFITS = 5;
 const CLASS_MP_BENEFITS = 5;
@@ -124,6 +125,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			vehicle: new EmbeddedDataField(PilotVehicleDataModel, {}),
 			overrides: new EmbeddedDataField(OverridesDataModel, {}),
+			garden: new EmbeddedDataField(GardenDataModel, {}),
 			description: new HTMLField(),
 		};
 	}

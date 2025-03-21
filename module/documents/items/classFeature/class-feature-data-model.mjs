@@ -94,9 +94,10 @@ export class ClassFeatureDataModel extends foundry.abstract.DataModel {
 	/**
 	 * Adjust update formdata before the update call. Most useful to fix up Foundry array handling.
 	 * @param data relevant subset of formdata submitted
+	 * @param model the model instance to be updated
 	 * @return cleaned up data
 	 */
-	static processUpdateData(data) {
+	static processUpdateData(data, model) {
 		return data;
 	}
 

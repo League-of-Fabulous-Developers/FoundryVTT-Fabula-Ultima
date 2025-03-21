@@ -34,6 +34,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-item-name.hbs',
 		'systems/projectfu/templates/actor/partials/actor-actions.hbs',
 		'systems/projectfu/templates/actor/partials/actor-vehicle.hbs',
+		'systems/projectfu/templates/actor/partials/actor-garden.hbs',
 		'systems/projectfu/templates/actor/partials/actor-clocks.hbs',
 		'systems/projectfu/templates/actor/partials/actor-npc-items.hbs',
 		'systems/projectfu/templates/actor/partials/actor-npc-skills.hbs',
@@ -171,6 +172,12 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/pilot/weapon-module-preview.hbs',
 		'systems/projectfu/templates/feature/pilot/support-module-sheet.hbs',
 		'systems/projectfu/templates/feature/pilot/support-module-preview.hbs',
+
+		'systems/projectfu/templates/feature/floralist/magiseed-chat-message.hbs',
+		'systems/projectfu/templates/feature/floralist/magiseed-chat-effect.hbs',
+		'systems/projectfu/templates/feature/floralist/magiseed-description.hbs',
+		'systems/projectfu/templates/feature/floralist/magiseed-preview.hbs',
+		'systems/projectfu/templates/feature/floralist/magiseed-sheet.hbs',
 
 		// Combat HUD Partials
 		'systems/projectfu/templates/ui/partials/combat-bar-hp.hbs',

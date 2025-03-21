@@ -1304,6 +1304,17 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"ClassFeatureMagiseedLabel": "Magiseed",
+		"ClassFeatureMagiseedGardenLabel": "Garden",
+		"ClassFeatureMagiseedEffectCount": "Number of effects",
+		"ClassFeatureMagiseedEffect": "Effect",
+		"ClassFeatureMagiseedEffectStart": "Start",
+		"ClassFeatureMagiseedEffectEnd": "End",
+		"ClassFeatureMagiseedGrowthClockNoClockFound": "No <strong>Growth Clock</strong> found. Please mark a Misc Ability with a clock as dedicated Growth Clock.",
+		"ClassFeatureMagiseedGrowthClockNoMatchingEffect": "Filled clock sections do not correspond to an effect.",
+		"ClassFeatureMagiseedGardenAdded": "<strong>{item}</strong> added to <strong>{garden}</strong>.",
+		"ClassFeatureMagiseedGardenRemoved": "<strong>{item}</strong> removed from <strong>{garden}</strong>.",
+		"ClassFeatureMagiseedGardenIsGrowthClock": "Is Growth Clock?"
 	}
 }

@@ -1,0 +1,46 @@
+{{#if system.garden.planted}}
+    <fieldset class="title-fieldset desc resource-content garden-section">
+        {{#unless system.garden.clock.name}}
+            <legend class="resource-label-m">{{localize 'FU.ClassFeatureMagiseedGardenLabel'}}</legend>
+        {{else}}
+            <legend class="item resource-label-m" data-item-id="{{ system.garden.clock.id }}">
+                {{system.garden.clock.name}}
+            </legend>
+        {{/unless}}
+        <div class="items-list">
+            <div class="item" data-item-id="{{system.garden.planted.id}}">
+                <div class="flexrow">
+                    <div class="item-name">
+                        <div class="item-image">
+                            <div class="rollable" data-roll-type="item">
+                                <img src="{{system.garden.planted.img}}" data-tooltip="{{system.garden.planted.name}}">
+                            </div>
+                        </div>
+                        <h4 class="click-item resource-content">
+                        <span class="resource-text-m" style="display: flex; align-items: center; gap: 3px">
+                            {{system.garden.planted.name}}
+                        </span>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if system.garden.clock}}
+            {{#with system.garden.clock as |clock|}}
+                <hr>
+                <div class="item growth-clock" data-item-id="{{ clock.id }}">
+                    {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs" arr=clock.system.progress.progressArray data=clock.system.progress}}
+                    <a class="increment-button" data-type="clockCounter" data-item-id="{{ clock.id }}">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                    <a class="decrement-button" data-type="clockCounter" data-item-id="{{ clock.id }}">
+                        <i class="fas fa-minus"></i>
+                    </a>
+                    <h4 class="item-name resource-content">
+                        <span class="resource-label-m">{{ clock.system.progress.name }}</span>
+                    </h4>
+                </div>
+            {{/with}}
+        {{/if}}
+    </fieldset>
+{{/if}}

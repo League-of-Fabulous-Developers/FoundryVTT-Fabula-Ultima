@@ -502,9 +502,10 @@ const performCheck = async (check, actor, item, initialConfigCallback = undefine
 /**
  * @param {FUActor} actor
  * @param {FUItem} item
+ * @param {CheckCallback} [initialConfigCallback]
  * @return {Promise<void>}
  */
-const display = async (actor, item) => {
+const display = async (actor, item, initialConfigCallback = undefined) => {
 	/** @type CheckResultV2 */
 	const check = Object.freeze({
 		type: 'display',
@@ -524,6 +525,7 @@ const display = async (actor, item) => {
 	});
 	// Set initial targets (actions without rolls can have targeting)
 	CheckConfiguration.configure(check).setDefaultTargets();
+	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 
 	Hooks.callAll(CheckHooks.processCheck, check, actor, item);
 	await renderCheck(check, actor, item);
