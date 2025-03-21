@@ -223,6 +223,7 @@ async function renderEffect(effect, owner) {
 
 /**
  * @typedef InlineEffectConfiguration
+ * @property {String} name
  * @property {String} event e:
  * @property {Number} interval i:
  * @property {String} tracking t:
@@ -316,6 +317,9 @@ async function applyConfiguration(effect, configuration) {
 		return;
 	}
 	const updates = {};
+	if (configuration.name) {
+		updates['name'] = configuration.name;
+	}
 	if (configuration.event) {
 		updates['system.duration.event'] = configuration.event;
 	}

@@ -134,6 +134,7 @@
 		"InlineWeapon": "Apply effect to equipped weapon on character",
 		"InlineWeaponActiveEffectName": "Alter Damage Type ({damageType})",
 		"InlineAffinity": "Alter affinity {type} to {affinity} on character",
+		"InlineDamageType": "Alter damage type {type} to {affinity} on character",
 		"Name": "Name",
 		"Roll": "Roll",
 		"Add": "Add",

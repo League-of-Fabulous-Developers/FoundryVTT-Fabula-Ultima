@@ -45,7 +45,7 @@ const editorEnricher = {
 				if (!(damageType in FU.damageTypes)) {
 					return null;
 				}
-				anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineAffinity')} (${type})`);
+				anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineAffinity')} (${damageType})`);
 				// LABEL ? TYPE
 				if (label) {
 					anchor.append(label);
@@ -70,7 +70,7 @@ const editorEnricher = {
 					return null;
 				}
 				// TOOLTIP
-				anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineAffinity')} (${type})`);
+				anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineAffinity')} (${damageType})`);
 				// LABEL
 				if (label) {
 					anchor.append(label);

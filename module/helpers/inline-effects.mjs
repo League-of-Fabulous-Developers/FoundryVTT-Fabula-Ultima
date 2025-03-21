@@ -95,10 +95,12 @@ function parseConfigData(match) {
 	}
 	const interval = match.groups.interval;
 	const tracking = match.groups.tracking;
+	const label = match.groups.label;
 	return {
 		event: event,
 		interval: interval,
 		tracking: tracking,
+		name: label,
 	};
 }
 
