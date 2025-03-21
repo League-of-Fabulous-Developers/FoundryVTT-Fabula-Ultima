@@ -1,0 +1,40 @@
+.cookbook-sheet {
+	.taste-container {
+		gap: 0.5em;
+		margin-bottom: 0.5em;
+	}
+
+	.taste > input[type='radio'] {
+		display: none;
+	}
+
+	.taste > input + * {
+		color: #ffffff;
+		font-size: 17px;
+		text-shadow: 1px 1px 1px #000000;
+		box-shadow: 2px 4px #2b4a42;
+		border-radius: 8px;
+		background-color: #2b4a42;
+		background-image: linear-gradient(to bottom, #2c584d, #a0cdbc);
+		word-wrap: break-word;
+		transition:
+			-webkit-transform 0.2s ease-in-out,
+			-webkit-box-shadow 0.2s ease-in-out;
+		display: block;
+	}
+
+	.taste > input:checked + * {
+		border: 1px solid darkslategrey;
+		border-radius: 8px;
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		transform: translateY(1px);
+	}
+
+	.combination {
+		display: none;
+
+		&.active {
+			display: revert;
+		}
+	}
+}

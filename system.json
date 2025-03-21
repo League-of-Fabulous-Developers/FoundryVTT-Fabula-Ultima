@@ -27,7 +27,7 @@
 	],
 	"scripts": [],
 	"esmodules": ["module/projectfu.mjs"],
-	"styles": ["styles/css/projectfu.css"],
+	"styles": ["styles/css/projectfu.css", "styles/projectfu.css"],
 	"packs": [
 		{
 			"label": "Classes",

@@ -511,6 +511,18 @@ Handlebars.registerHelper('formatResource', function (resourceValue, resourceMax
 	return new Handlebars.SafeString(`<span>${resourceName}</span><span class="digit-row">${digitBoxes}</span>`);
 });
 
+Handlebars.registerHelper('math', function (left, operator, right) {
+	left = parseFloat(left);
+	right = parseFloat(right);
+	return {
+		'+': left + right,
+		'-': left - right,
+		'*': left * right,
+		'/': left / right,
+		'%': left % right,
+	}[operator];
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */

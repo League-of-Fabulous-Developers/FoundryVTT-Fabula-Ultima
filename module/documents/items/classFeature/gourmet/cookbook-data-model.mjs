@@ -1,6 +1,21 @@
 import { TASTES } from './ingredient-data-model.mjs';
 import { CookingApplication } from './cooking-application.mjs';
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { CheckHooks } from '../../../../checks/check-hooks.mjs';
+
+/**
+ * @type RenderCheckHook
+ */
+const renderCheck = (sections, check, actor, item, additionalFlags) => {
+	if (check.type === 'display' && item.system.data instanceof CookbookDataModel && check.additionalData['action'] === 'cooking') {
+		sections.push({
+			partial: 'systems/projectfu/templates/feature/gourmet/cooking-chat-message.hbs',
+			data: check.additionalData['cooking'],
+		});
+	}
+};
+
+Hooks.on(CheckHooks.renderCheck, renderCheck);
 
 export class CookbookDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {

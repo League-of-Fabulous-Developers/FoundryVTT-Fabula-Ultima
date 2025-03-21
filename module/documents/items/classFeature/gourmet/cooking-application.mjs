@@ -1,5 +1,6 @@
 import { IngredientDataModel, tasteComparator, TASTES } from './ingredient-data-model.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
+import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
 
 const ALL_YOU_CAN_EAT_FLAG = 'AllYouCanEat';
 
@@ -134,15 +135,12 @@ export class CookingApplication extends FormApplication {
 		});
 		updates.push(actor.updateEmbeddedDocuments('Item', ingredientUpdates));
 
-		/**
-		 * @type ChatMessageData
-		 */
-		const messageData = {
-			speaker: ChatMessage.implementation.getSpeaker({ actor: actor }),
-			content: await renderTemplate('systems/projectfu/templates/feature/gourmet/cooking-chat-message.hbs', renderData),
-		};
-
-		updates.unshift(ChatMessage.create(messageData));
+		updates.unshift(
+			ChecksV2.display(actor, this.#cookbook.item, (check) => {
+				check.additionalData['action'] = 'cooking';
+				check.additionalData['cooking'] = renderData;
+			}),
+		);
 
 		return Promise.all(updates);
 	}
