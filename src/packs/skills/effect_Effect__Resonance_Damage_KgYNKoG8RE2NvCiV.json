@@ -1,18 +1,18 @@
 {
-  "folder": "WONVaH9GTHooWU93",
-  "name": "Effect: Provoke",
+  "folder": "W4fiI5cqJwfMJtiD",
+  "name": "Effect: Resonance Damage",
   "type": "effect",
-  "_id": "SBaaNDpwZQDafu3J",
-  "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
+  "_id": "KgYNKoG8RE2NvCiV",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_resonance.png",
   "system": {
-    "fuid": "effect-provoke",
+    "fuid": "effect-resonance-damage",
     "cost": {
       "value": 0
     }
   },
   "effects": [
     {
-      "img": "systems/projectfu/styles/static/compendium/classes/fury/fury_provoke.png",
+      "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_resonance.png",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -23,8 +23,8 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Provoke",
-      "_id": "X0ncNBybozMcN7Z2",
+      "name": "Effect: Resonance Damage",
+      "_id": "Lev9SGzxq42XCB8M",
       "type": "base",
       "system": {
         "type": "default",
@@ -32,22 +32,26 @@
           "crisisInteraction": "none"
         },
         "duration": {
-          "event": "endOfScene",
+          "event": "startOfTurn",
           "interval": 1,
-          "tracking": "self",
+          "tracking": "source",
           "remaining": 0
         },
         "stack": 1
       },
-      "changes": [],
-      "description": "<p>You are compelled to focus your attention on the character who provoked you.</p>",
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.all",
+          "mode": 2,
+          "value": "~&sl(\"resonance\")",
+          "priority": null
+        }
+      ],
+      "description": "<p>You suffer<strong>【SL】</strong>extra from the dancer's allies due to @UUID[Compendium.projectfu.skills.kdL9oQYefqNlWqyD]{Resonance}.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
-      "statuses": [
-        "provoked",
-        "enraged"
-      ],
+      "statuses": [],
       "sort": 0,
       "flags": {},
       "_stats": {
@@ -56,11 +60,11 @@
         "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1742491472722,
-        "modifiedTime": 1742582179804,
+        "createdTime": 1742581876605,
+        "modifiedTime": 1742582016221,
         "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
-      "_key": "!items.effects!SBaaNDpwZQDafu3J.X0ncNBybozMcN7Z2"
+      "_key": "!items.effects!KgYNKoG8RE2NvCiV.Lev9SGzxq42XCB8M"
     }
   ],
   "sort": 0,
@@ -75,9 +79,9 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742491445138,
-    "modifiedTime": 1742491470917,
+    "createdTime": 1742581874929,
+    "modifiedTime": 1742581905880,
     "lastModifiedBy": "JXPd932s9DHQRD0w"
   },
-  "_key": "!items!SBaaNDpwZQDafu3J"
+  "_key": "!items!KgYNKoG8RE2NvCiV"
 }
