@@ -452,8 +452,14 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Proceed if the item is being dragged from the compendium/sidebar or other actors
 		const itemData = await this._getItemDataFromDropData(data);
-		const subtype = itemData.system.featureType || itemData.system.subtype?.value;
 
+		if (typeof itemData.system.onActorDrop === 'function') {
+			if (itemData.system.onActorDrop(this.actor) === false) {
+				return;
+			}
+		}
+
+		const subtype = itemData.system.subtype?.value;
 		// Determine the configuration based on item type
 		const config = this._findItemConfig(itemData.type, subtype);
 		if (config) {
@@ -491,8 +497,8 @@ export class FUStandardActorSheet extends ActorSheet {
 	_findItemConfig(type, subtype) {
 		const itemTypeConfigs = [
 			{
-				types: ['classFeature', 'treasure'],
-				subtypes: ['projectfu-playtest.ingredient', 'artifact', 'material', 'treasure'],
+				types: ['treasure'],
+				subtypes: ['artifact', 'material', 'treasure'],
 				update: async (itemData, item) => {
 					const incrementValue = itemData.system.quantity?.value || 1;
 					const newQuantity = (item.system.quantity.value || 0) + incrementValue;

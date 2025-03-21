@@ -1,0 +1,43 @@
+<div class="cooking-message">
+    <header class="message-header flexrow">
+        <section class="title-desc">
+            <div class="flex-group-center backgroundstyle">
+                <p>{{localize "FU.ClassFeatureCookbookCookingTitle"}}</p>
+            </div>
+        </section>
+    </header>
+    <fieldset class="chat-desc ingredients-list">
+        <legend class="resource-label-m">
+            {{localize "FU.ClassFeatureCookbookCookingIngredients"}}
+        </legend>
+        {{#each ingredients}}
+            <div class="flexrow">
+                <img src="{{img}}" class="flex0"/>
+                <div>
+                    {{name}}
+                </div>
+            </div>
+        {{/each}}
+    </fieldset>
+    <fieldset class="chat-desc effect-list">
+        <legend class="resource-label-m">
+            {{localize "FU.ClassFeatureCookbookCookingEffects"}}
+        </legend>
+        {{#each effects}}
+            <fieldset class="desc title-fieldset resource-content">
+                <legend class="resource-label-sm flex-group-center">
+                    <span>{{localize taste1.label}}</span>
+                    <span>+</span>
+                    <span>{{localize taste2.label}}</span>
+                </legend>
+                <div>
+                    {{#if effect}}
+                        {{{effect}}}
+                    {{else}}
+                        {{localize "FU.ClassFeatureCookbookCookingUnknownEffectChat"}}
+                    {{/if}}
+                </div>
+            </fieldset>
+        {{/each}}
+    </fieldset>
+</div>

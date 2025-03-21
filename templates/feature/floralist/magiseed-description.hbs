@@ -1,11 +1,11 @@
 <!-- override ClassFeatureDataModel.expandTemplate to supply your own template -->
 <div class="flexcol resource-content gap-2 mb-3">
-    <label class="resource-label-m">{{localize 'FU-PT.magiseed.effect1'}}</label>
-    <div class="description-effect">{{{additionalData.enrichedEffect1}}}</div>
-    
-    <label class="resource-label-m">{{localize 'FU-PT.magiseed.effect2'}}</label>
-    <div class="description-effect">{{{additionalData.enrichedEffect2}}}</div>
-
-    <label class="resource-label-m">{{localize 'FU-PT.magiseed.effect3'}}</label>
-    <div class="description-effect">{{{additionalData.enrichedEffect3}}}</div>
+    {{#each system.data.effects}}
+    <label class="resource-label-m">
+        <span>{{localize 'FU.ClassFeatureMagiseedEffect'}}</span>
+        <span>{{#if (eq start end)}}{{start}}{{else}}{{start}} - {{end}}{{/if}}</span>
+        <i class="fa-regular fa-clock"></i>
+    </label>
+    <div class="description-effect">{{{lookup ../additionalData.effects @index}}}</div>
+    {{/each}}
 </div>

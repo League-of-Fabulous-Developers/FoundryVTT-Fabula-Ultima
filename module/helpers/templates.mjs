@@ -176,8 +176,14 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/floralist/magiseed-chat-message.hbs',
 		'systems/projectfu/templates/feature/floralist/magiseed-chat-effect.hbs',
 		'systems/projectfu/templates/feature/floralist/magiseed-description.hbs',
-		'systems/projectfu/templates/feature/floralist/magiseed-preview.hbs',
 		'systems/projectfu/templates/feature/floralist/magiseed-sheet.hbs',
+
+		'systems/projectfu/templates/feature/gourmet/cookbook-sheet.hbs',
+		'systems/projectfu/templates/feature/gourmet/cookbook-preview.hbs',
+		'systems/projectfu/templates/feature/gourmet/cooking-application.hbs',
+		'systems/projectfu/templates/feature/gourmet/cooking-chat-message.hbs',
+		'systems/projectfu/templates/feature/gourmet/ingredient-preview.hbs',
+		'systems/projectfu/templates/feature/gourmet/ingredient-sheet.hbs',
 
 		// Combat HUD Partials
 		'systems/projectfu/templates/ui/partials/combat-bar-hp.hbs',

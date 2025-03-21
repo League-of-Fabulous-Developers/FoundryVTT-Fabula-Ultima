@@ -1,0 +1,25 @@
+<div>
+    <fieldset class="title-fieldset desc resource-content">
+        <legend class="resource-label-full">
+            <label class="resource-label-m">{{localize 'FU.ClassFeatureIngredient'}}</label>
+        </legend>
+        <div class="flexrow flex-group-center">
+            <label class="resource-label-m">
+                {{localize 'FU.Cost'}}
+                <input type="number" name="system.data.cost" value="{{ system.data.cost }}" class="resource-inputs select-dropdown-l resource-text-m" />
+            </label>
+            <label class="resource-label-m">
+                {{localize 'FU.Quantity'}}
+                <input type="number" name="system.data.quantity" value="{{ system.data.quantity }}" class="resource-inputs select-dropdown-l resource-text-m" />
+            </label>
+            <label class="resource-label-m">
+                {{localize 'FU.ClassFeatureIngredientTaste'}}
+                <select name="system.data.taste" class="resource-inputs select-dropdown-l resource-text-m">
+                    {{selectOptions additionalData.tastes selected=system.data.taste localize=true}}
+                </select>
+            </label>
+        </div>
+        <hr>
+        {{editor additionalData.description target="system.data.description" engine='prosemirror' button=true }}
+    </fieldset>
+</div>

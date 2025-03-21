@@ -54,7 +54,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenAdded', {
 							item: item.name,
-							garden: actor?.system?.garden?.clock?.name ?? game.i18n.localize('FU.ClassFeatureMagiseedGardenLabel'),
+							garden: actor?.system?.garden?.clock?.name ?? game.i18n.localize('FU.ClassFeatureMagiseedGarden'),
 						}),
 					},
 				});
@@ -66,7 +66,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenRemoved', {
 							item: item.name,
-							garden: actor?.system?.garden?.clock?.name ?? game.i18n.localize('FU.ClassFeatureMagiseedGardenLabel'),
+							garden: actor?.system?.garden?.clock?.name ?? game.i18n.localize('FU.ClassFeatureMagiseedGarden'),
 						}),
 					},
 				});
@@ -110,16 +110,12 @@ export class MagiseedDataModel extends RollableClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/floralist/magiseed-sheet.hbs';
 	}
 
-	static get previewTemplate() {
-		return 'systems/projectfu/templates/feature/floralist/magiseed-preview.hbs';
-	}
-
 	static get expandTemplate() {
 		return 'systems/projectfu/templates/feature/floralist/magiseed-description.hbs';
 	}
 
 	static get translation() {
-		return 'FU.ClassFeatureMagiseedLabel';
+		return 'FU.ClassFeatureMagiseed';
 	}
 
 	static async getAdditionalData(model) {
