@@ -1,18 +1,18 @@
 {
-  "folder": "QuNf8s62yW4VtqUO",
-  "name": "Effect: Breach",
+  "folder": "l4GzpixRQaRbzHKh",
+  "name": "Effect: Hydra Dance",
   "type": "effect",
-  "_id": "Cc1391vhlS1yIMrI",
-  "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_breach.png",
+  "_id": "v7HpgVautZEWUbS7",
+  "img": "icons/creatures/reptiles/serpent-horned-green.webp",
   "system": {
-    "fuid": "effect-breach",
+    "fuid": "hydra-dance-effect",
     "cost": {
       "value": 0
     }
   },
   "effects": [
     {
-      "img": "systems/projectfu/styles/static/compendium/classes/weaponmaster/weaponmaster_breach.png",
+      "img": "icons/creatures/reptiles/serpent-horned-green.webp",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -23,8 +23,8 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Breach",
-      "_id": "zoOqCdNwgemMCpvA",
+      "name": "Effect: Hydra Dance",
+      "_id": "6pWZZ25JH3nhZdjg",
       "type": "base",
       "system": {
         "type": "default",
@@ -34,20 +34,13 @@
         "duration": {
           "event": "startOfTurn",
           "interval": 1,
-          "tracking": "source",
+          "tracking": "self",
           "remaining": 0
         },
         "stack": 1
       },
-      "changes": [
-        {
-          "key": "system.bonuses.incomingDamage.all",
-          "mode": 2,
-          "value": "~&sl(\"breach\")*2",
-          "priority": null
-        }
-      ],
-      "description": "<p>Whenever you suffer damage from a source before the start of your next turn, that source deals <strong>【SL × 2】</strong> extra damage to you.</p>",
+      "changes": [],
+      "description": "<p>After you <strong>suffer</strong> <strong>damage</strong>, choose one option: you recover @GAIN[5 hp], or you recover @GAIN[5 mp].</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -60,14 +53,14 @@
         "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1742152985738,
-        "modifiedTime": 1742155195565,
+        "createdTime": 1742579460750,
+        "modifiedTime": 1742579791240,
         "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
-      "_key": "!items.effects!Cc1391vhlS1yIMrI.zoOqCdNwgemMCpvA"
+      "_key": "!items.effects!v7HpgVautZEWUbS7.6pWZZ25JH3nhZdjg"
     }
   ],
-  "sort": 100000,
+  "sort": 0,
   "ownership": {
     "default": 0,
     "JXPd932s9DHQRD0w": 3
@@ -79,9 +72,9 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742152963885,
-    "modifiedTime": 1742492895869,
+    "createdTime": 1742579439673,
+    "modifiedTime": 1742579806821,
     "lastModifiedBy": "JXPd932s9DHQRD0w"
   },
-  "_key": "!items!Cc1391vhlS1yIMrI"
+  "_key": "!items!v7HpgVautZEWUbS7"
 }
