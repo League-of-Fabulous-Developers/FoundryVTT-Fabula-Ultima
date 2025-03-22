@@ -117,7 +117,7 @@
     },
     "fuid": "for-whom-the-bell-tolls"
   },
-  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/for_who_bells.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/for_whom_the_bell_tolls.png",
   "effects": [],
   "flags": {
     "core": {},
@@ -128,7 +128,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1684757022676,
-    "modifiedTime": 1742579054174,
+    "modifiedTime": 1742653169196,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

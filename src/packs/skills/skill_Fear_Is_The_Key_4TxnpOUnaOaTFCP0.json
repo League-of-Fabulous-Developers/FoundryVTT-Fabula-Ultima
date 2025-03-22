@@ -117,7 +117,7 @@
     },
     "fuid": "fear-is-the-key"
   },
-  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/fear_is_key.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/fear_is_the_key.png",
   "effects": [],
   "flags": {
     "core": {},
@@ -128,7 +128,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1684757022310,
-    "modifiedTime": 1742579062412,
+    "modifiedTime": 1742653164369,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

@@ -117,7 +117,7 @@
     },
     "fuid": "children-of-the-grave"
   },
-  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/childrenave.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/children_of_the_grave.png",
   "effects": [],
   "flags": {
     "core": {},
@@ -128,7 +128,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1684757022956,
-    "modifiedTime": 1742579078188,
+    "modifiedTime": 1742653157859,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
