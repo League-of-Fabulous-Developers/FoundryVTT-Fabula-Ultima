@@ -5,12 +5,12 @@ export const statusEffects = [
 	{
 		id: 'accelerated',
 		name: 'FU.Accelerated',
-		icon: 'systems/projectfu/styles/static/statuses/Accelerated.webp',
+		img: 'systems/projectfu/styles/static/statuses/Accelerated.webp',
 	},
 	{
 		id: 'aura',
 		name: 'FU.Aura',
-		icon: 'systems/projectfu/styles/static/statuses/Aura.webp',
+		img: 'systems/projectfu/styles/static/statuses/Aura.webp',
 		changes: [
 			{
 				key: 'system.derived.mdef.value',
@@ -22,7 +22,7 @@ export const statusEffects = [
 	{
 		id: 'barrier',
 		name: 'FU.Barrier',
-		icon: 'systems/projectfu/styles/static/statuses/Barrier.webp',
+		img: 'systems/projectfu/styles/static/statuses/Barrier.webp',
 		changes: [
 			{
 				key: 'system.derived.def.value',
@@ -34,12 +34,12 @@ export const statusEffects = [
 	{
 		id: 'cover',
 		name: 'FU.Cover',
-		icon: 'systems/projectfu/styles/static/statuses/Cover.webp',
+		img: 'systems/projectfu/styles/static/statuses/Cover.webp',
 	},
 	{
 		id: 'dazed',
 		name: 'FU.Dazed',
-		icon: 'systems/projectfu/styles/static/statuses/Dazed.webp',
+		img: 'systems/projectfu/styles/static/statuses/Dazed.webp',
 		changes: [
 			{
 				key: 'system.attributes.ins',
@@ -51,7 +51,7 @@ export const statusEffects = [
 	{
 		id: 'dex-down',
 		name: 'FU.DEXDown',
-		icon: 'systems/projectfu/styles/static/statuses/DexDown.webp',
+		img: 'systems/projectfu/styles/static/statuses/DexDown.webp',
 		changes: [
 			{
 				key: 'system.attributes.dex',
@@ -63,7 +63,7 @@ export const statusEffects = [
 	{
 		id: 'dex-up',
 		name: 'FU.DEXUp',
-		icon: 'systems/projectfu/styles/static/statuses/DexUp.webp',
+		img: 'systems/projectfu/styles/static/statuses/DexUp.webp',
 		changes: [
 			{
 				key: 'system.attributes.dex',
@@ -75,7 +75,7 @@ export const statusEffects = [
 	{
 		id: 'enraged',
 		name: 'FU.Enraged',
-		icon: 'systems/projectfu/styles/static/statuses/Enraged.webp',
+		img: 'systems/projectfu/styles/static/statuses/Enraged.webp',
 		changes: [
 			{
 				key: 'system.attributes.ins',
@@ -92,12 +92,12 @@ export const statusEffects = [
 	{
 		id: 'flying',
 		name: 'FU.Flying',
-		icon: 'systems/projectfu/styles/static/statuses/Flying.webp',
+		img: 'systems/projectfu/styles/static/statuses/Flying.webp',
 	},
 	{
 		id: 'guard',
 		name: 'FU.Guard',
-		icon: 'systems/projectfu/styles/static/statuses/Guard.webp',
+		img: 'systems/projectfu/styles/static/statuses/Guard.webp',
 		changes: [
 			{
 				key: 'system.affinities.physical',
@@ -155,7 +155,7 @@ export const statusEffects = [
 	{
 		id: 'ins-down',
 		name: 'FU.INSDown',
-		icon: 'systems/projectfu/styles/static/statuses/InsDown.webp',
+		img: 'systems/projectfu/styles/static/statuses/InsDown.webp',
 		changes: [
 			{
 				key: 'system.attributes.ins',
@@ -167,7 +167,7 @@ export const statusEffects = [
 	{
 		id: 'ins-up',
 		name: 'FU.INSUp',
-		icon: 'systems/projectfu/styles/static/statuses/InsUp.webp',
+		img: 'systems/projectfu/styles/static/statuses/InsUp.webp',
 		changes: [
 			{
 				key: 'system.attributes.ins',
@@ -179,12 +179,12 @@ export const statusEffects = [
 	{
 		id: 'ko',
 		name: 'FU.KO',
-		icon: 'systems/projectfu/styles/static/statuses/KO.webp',
+		img: 'systems/projectfu/styles/static/statuses/KO.webp',
 	},
 	{
 		id: 'mig-down',
 		name: 'FU.MIGDown',
-		icon: 'systems/projectfu/styles/static/statuses/MigDown.webp',
+		img: 'systems/projectfu/styles/static/statuses/MigDown.webp',
 		changes: [
 			{
 				key: 'system.attributes.mig',
@@ -196,7 +196,7 @@ export const statusEffects = [
 	{
 		id: 'mig-up',
 		name: 'FU.MIGUp',
-		icon: 'systems/projectfu/styles/static/statuses/MigUp.webp',
+		img: 'systems/projectfu/styles/static/statuses/MigUp.webp',
 		changes: [
 			{
 				key: 'system.attributes.mig',
@@ -208,22 +208,22 @@ export const statusEffects = [
 	{
 		id: 'provoked',
 		name: 'FU.Provoked',
-		icon: 'systems/projectfu/styles/static/statuses/Provoked.webp',
+		img: 'systems/projectfu/styles/static/statuses/Provoked.webp',
 	},
 	{
 		id: 'reflect',
 		name: 'FU.Reflect',
-		icon: 'systems/projectfu/styles/static/statuses/Reflect.webp',
+		img: 'systems/projectfu/styles/static/statuses/Reflect.webp',
 	},
 	{
 		id: 'regen',
 		name: 'FU.Regen',
-		icon: 'systems/projectfu/styles/static/statuses/Regen.webp',
+		img: 'systems/projectfu/styles/static/statuses/Regen.webp',
 	},
 	{
 		id: 'shaken',
 		name: 'FU.Shaken',
-		icon: 'systems/projectfu/styles/static/statuses/Shaken.webp',
+		img: 'systems/projectfu/styles/static/statuses/Shaken.webp',
 		changes: [
 			{
 				key: 'system.attributes.wlp',
@@ -235,12 +235,12 @@ export const statusEffects = [
 	{
 		id: 'sleep',
 		name: 'FU.Sleep',
-		icon: 'systems/projectfu/styles/static/statuses/Sleep.webp',
+		img: 'systems/projectfu/styles/static/statuses/Sleep.webp',
 	},
 	{
 		id: 'slow',
 		name: 'FU.Slow',
-		icon: 'systems/projectfu/styles/static/statuses/Slow.webp',
+		img: 'systems/projectfu/styles/static/statuses/Slow.webp',
 		changes: [
 			{
 				key: 'system.attributes.dex',
@@ -252,7 +252,7 @@ export const statusEffects = [
 	{
 		id: 'poisoned',
 		name: 'FU.Poisoned',
-		icon: 'systems/projectfu/styles/static/statuses/Poisoned.webp',
+		img: 'systems/projectfu/styles/static/statuses/Poisoned.webp',
 		changes: [
 			{
 				key: 'system.attributes.mig',
@@ -269,7 +269,7 @@ export const statusEffects = [
 	{
 		id: 'weak',
 		name: 'FU.Weak',
-		icon: 'systems/projectfu/styles/static/statuses/Weak.webp',
+		img: 'systems/projectfu/styles/static/statuses/Weak.webp',
 		changes: [
 			{
 				key: 'system.attributes.mig',
@@ -281,7 +281,7 @@ export const statusEffects = [
 	{
 		id: 'wlp-down',
 		name: 'FU.WLPDown',
-		icon: 'systems/projectfu/styles/static/statuses/WlpDown.webp',
+		img: 'systems/projectfu/styles/static/statuses/WlpDown.webp',
 		changes: [
 			{
 				key: 'system.attributes.wlp',
@@ -293,7 +293,7 @@ export const statusEffects = [
 	{
 		id: 'wlp-up',
 		name: 'FU.WLPUp',
-		icon: 'systems/projectfu/styles/static/statuses/WlpUp.webp',
+		img: 'systems/projectfu/styles/static/statuses/WlpUp.webp',
 		changes: [
 			{
 				key: 'system.attributes.wlp',
@@ -305,6 +305,6 @@ export const statusEffects = [
 	{
 		id: 'crisis',
 		name: 'FU.Crisis',
-		icon: 'systems/projectfu/styles/static/statuses/Crisis.webp',
+		img: 'systems/projectfu/styles/static/statuses/Crisis.webp',
 	},
 ];

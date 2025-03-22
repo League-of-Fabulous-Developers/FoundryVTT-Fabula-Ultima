@@ -10,7 +10,9 @@ import { DamageBonusesDataModel } from './damage-bonuses-data-model.mjs';
  * @property {number} outgoingRecovery.mp
  * @property {number} outgoingRecovery.ip
  * @property {AccuracyBonusesDataModel} accuracy
+ * @property {DamageBonusesDataModel} incomingDamage
  * @property {DamageBonusesDataModel} damage
+ * @property {Number} turns Number of additional turns this character can take each round
  */
 export class BonusesDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
@@ -28,7 +30,9 @@ export class BonusesDataModel extends foundry.abstract.DataModel {
 				ip: new NumberField({ initial: 0, integer: true }),
 			}),
 			accuracy: new EmbeddedDataField(AccuracyBonusesDataModel, {}),
+			incomingDamage: new EmbeddedDataField(DamageBonusesDataModel, {}),
 			damage: new EmbeddedDataField(DamageBonusesDataModel, {}),
+			turns: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 		};
 	}
 }

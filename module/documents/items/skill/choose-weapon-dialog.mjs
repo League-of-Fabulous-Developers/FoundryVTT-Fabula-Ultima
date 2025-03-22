@@ -1,5 +1,7 @@
 import { WeaponDataModel } from '../weapon/weapon-data-model.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { CharacterDataModel } from '../../actors/character/character-data-model.mjs';
+import { NpcDataModel } from '../../actors/npc/npc-data-model.mjs';
 
 /**
  * @param {FUActor} actor
@@ -19,14 +21,42 @@ function getWeapon(actor, slot) {
 
 /**
  * @param {FUActor} actor
+ * @param {boolean=false} includeWeaponModules
  * @return {Promise<FUItem|null|false>} chosen weapon or false for no equipped weapons or null for no selection
  */
-async function prompt(actor) {
-	const mainHand = getWeapon(actor, 'mainHand');
-	const offHand = getWeapon(actor, 'offHand');
-	const armor = getWeapon(actor, 'armor');
+async function prompt(actor, includeWeaponModules = false) {
+	const equippedWeapons = [];
 
-	const equippedWeapons = [mainHand, offHand, armor].filter((value) => value);
+	if (actor.system instanceof CharacterDataModel) {
+		if (includeWeaponModules && actor.system.vehicle.embarked) {
+			equippedWeapons.push(...actor.system.vehicle.weapons);
+		} else {
+			const mainHand = getWeapon(actor, 'mainHand');
+			const offHand = getWeapon(actor, 'offHand');
+			const armor = getWeapon(actor, 'armor');
+
+			equippedWeapons.push(mainHand, armor);
+			if (offHand !== mainHand) {
+				equippedWeapons.push(offHand);
+			}
+		}
+	}
+	if (actor.system instanceof NpcDataModel) {
+		if (actor.system.useEquipment.value) {
+			const mainHand = getWeapon(actor, 'mainHand');
+			const offHand = getWeapon(actor, 'offHand');
+			const armor = getWeapon(actor, 'armor');
+
+			equippedWeapons.push(mainHand, armor);
+			if (offHand !== mainHand) {
+				equippedWeapons.push(offHand);
+			}
+		} else {
+			equippedWeapons.push(...actor.itemTypes.basic);
+		}
+	}
+
+	equippedWeapons.splice(0, equippedWeapons.length, ...equippedWeapons.filter((value) => value != null));
 
 	if (!equippedWeapons.length) {
 		return false;
@@ -45,8 +75,8 @@ async function prompt(actor) {
 
 	const selectedWeapon = await new Promise((resolve) => {
 		const dialog = new Dialog({
-			title: 'FU.ChooseWeaponDialogTitle',
-			label: 'FU.Submit',
+			title: game.i18n.localize('FU.ChooseWeaponDialogTitle'),
+			label: game.i18n.localize('FU.Submit'),
 			rejectClose: false,
 			content: content,
 			render: (jQuery) => {

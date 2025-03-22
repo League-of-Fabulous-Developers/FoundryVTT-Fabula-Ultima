@@ -9,7 +9,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h4>Required Heroic Skill: Comet</h4><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option: one creature you can see suffers @DMG[60 untyped] damage; or you choose any number of creatures you can see, and each of them suffers @DMG[40 untyped] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.<br />Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p><hr /><p>@LOSS[50 mp]</p>",
+    "description": "<h4>Required Heroic Skill: Comet</h4><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option: one creature you can see suffers @DMG[60 untyped] damage; or you choose any number of creatures you can see, and each of them suffers @DMG[40 untyped] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>. Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "value": "instantaneous"
     },
     "isOffensive": {
-      "value": true
+      "value": false
     },
     "source": {
       "value": "FUCR235"
@@ -102,11 +102,11 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "value": 60,
         "type": {
-          "value": "physical"
+          "value": "untyped"
         }
       }
     },
@@ -134,8 +134,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710548744272,
-    "modifiedTime": 1724180864238,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741947613543,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

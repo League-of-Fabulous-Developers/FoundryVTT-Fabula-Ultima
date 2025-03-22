@@ -48,7 +48,6 @@ import { registerOptionalFeatures } from './documents/items/optionalFeature/opti
 
 import { rolldataHtmlEnricher } from './helpers/rolldata-html-enricher.mjs';
 import { FUActiveEffect } from './documents/effects/active-effect.mjs';
-import { registerChatInteraction } from './helpers/apply-damage.mjs';
 import { InlineDamage } from './helpers/inline-damage.mjs';
 import { CanvasDragDrop } from './helpers/canvas-drag-drop.mjs';
 import { InlineResources } from './helpers/inline-resources.mjs';
@@ -66,6 +65,14 @@ import { ActionHandler } from './helpers/action-handler.mjs';
 import { StudyRollHandler } from './helpers/study-roll.mjs';
 import { ItemCustomizer } from './helpers/item-customizer.mjs';
 import { FUHooks } from './hooks.mjs';
+import { DamagePipeline } from './pipelines/damage-pipeline.mjs';
+import { ResourcePipeline } from './pipelines/resource-pipeline.mjs';
+import { InlineWeapon } from './helpers/inline-weapon.mjs';
+import { Targeting } from './helpers/targeting.mjs';
+import { InlineHelper } from './helpers/inline-helper.mjs';
+import { InlineAffinity } from './helpers/inline-affinity.mjs';
+import { Effects } from './pipelines/effects.mjs';
+import { InlineType } from './helpers/inline-type.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -228,7 +235,10 @@ Hooks.once('init', async () => {
 	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
-	registerChatInteraction();
+	DamagePipeline.initialize();
+	Effects.initialize();
+	Hooks.on(`renderChatMessage`, ResourcePipeline.onRenderChatMessage);
+	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
@@ -254,6 +264,16 @@ Hooks.once('init', async () => {
 	Hooks.on('renderApplication', InlineChecks.activateListeners);
 	Hooks.on('renderActorSheet', InlineChecks.activateListeners);
 	Hooks.on('renderItemSheet', InlineChecks.activateListeners);
+
+	CONFIG.TextEditor.enrichers.push(InlineWeapon.enricher);
+	Hooks.on('renderChatMessage', InlineWeapon.activateListeners);
+	Hooks.on('renderApplication', InlineWeapon.activateListeners);
+	Hooks.on('renderActorSheet', InlineWeapon.activateListeners);
+	Hooks.on('renderItemSheet', InlineWeapon.activateListeners);
+	Hooks.on('dropActorSheetData', InlineWeapon.onDropActor);
+
+	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
+	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
 
 	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 
@@ -466,6 +486,10 @@ Handlebars.registerHelper('inArray', function (item, array, options) {
 	} else {
 		return options.inverse ? options.inverse(this) : '';
 	}
+});
+
+Handlebars.registerHelper('inSet', function (item, set) {
+	return set.has(item);
 });
 
 Handlebars.registerHelper('formatResource', function (resourceValue, resourceMax, resourceName) {

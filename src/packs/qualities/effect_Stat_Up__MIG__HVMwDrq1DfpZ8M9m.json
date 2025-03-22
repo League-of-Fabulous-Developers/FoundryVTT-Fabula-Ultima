@@ -1,7 +1,7 @@
 {
   "name": "Stat Up (MIG)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/MigUp.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -12,7 +12,7 @@
     {
       "disabled": false,
       "name": "Stat Up (MIG)",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/MigUp.webp",
       "type": "base",
       "changes": [
         {
@@ -54,8 +54,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728775875788,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736220271718,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!HVMwDrq1DfpZ8M9m.tZzMZlAA6mxUfvAQ"
     }
@@ -69,8 +69,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747193936,
-    "modifiedTime": 1728747193936,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736220265611,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_id": "HVMwDrq1DfpZ8M9m",
   "sort": 600000,

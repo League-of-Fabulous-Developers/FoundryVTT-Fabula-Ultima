@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>A roaring gale surrounds you, blowing away arrows and bullets. Until this spell ends, you gain a +2 bonus to your Defense against <strong>ranged</strong> attacks.</p><hr /><p>@LOSS[10 mp]</p>",
+    "description": "<p>A roaring gale surrounds you, blowing away arrows and bullets. Until this spell ends, you gain a +2 bonus to your Defense against <strong>ranged</strong> attacks.</p>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706567400781,
-    "modifiedTime": 1724180864308,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737918219344,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

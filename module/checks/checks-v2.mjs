@@ -13,11 +13,20 @@ import { OpposedCheck } from './opposed-check.mjs';
 import { CheckRetarget } from './check-retarget.mjs';
 import { GroupCheck } from './group-check.mjs';
 import { SupportCheck } from './support-check.mjs';
+import { CheckConfiguration } from './check-configuration.mjs';
 
 /**
  * @typedef CheckAttributes
  * @property {Attribute} primary
  * @property {Attribute} secondary
+ */
+
+/**
+ * @typedef {Object} CheckConfigurationPromptData
+ * @property {Attribute} primary
+ * @property {Attribute} secondary
+ * @property {Number} modifier
+ * @property {Number} difficulty
  */
 
 /**
@@ -137,7 +146,7 @@ const checkFromCheckResult = (check) => {
  * @param {CheckResultV2} check
  * @param {FUActor} actor
  * @param {FUItem} item
- * @return {Promise<{[roll]: Roll, [check]: CheckV2} | boolean>}
+ * @return {Promise<{[roll]: Roll, [check]: CheckV2} | boolean | void>} returning false will abort the operation, returning nothing, true or an object with changed check configuration will proceed
  */
 /**
  * @param {CheckId} checkId
@@ -151,7 +160,10 @@ const modifyCheck = async (checkId, callback) => {
 		const oldResult = foundry.utils.duplicate(message.getFlag(SYSTEM, Flags.ChatMessage.CheckV2));
 		const actor = await fromUuid(oldResult.actorUuid);
 		const item = await fromUuid(oldResult.itemUuid);
-		const callbackResult = await callback(oldResult, actor, item);
+		let callbackResult = await callback(oldResult, actor, item);
+		if (typeof callbackResult === 'undefined') {
+			callbackResult = true;
+		}
 		if (callbackResult) {
 			const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = (typeof callbackResult === 'object' && callbackResult) ?? {};
 			const result = await processResult(check, roll, actor, item);
@@ -170,12 +182,16 @@ const modifyCheck = async (checkId, callback) => {
  * @return {Promise<CheckV2>}
  */
 async function prepareCheck(check, actor, item, initialConfigCallback) {
+	// Define the check structure
 	check.primary ??= '';
 	check.secondary ??= '';
 	check.id ??= foundry.utils.randomID();
 	check.modifiers ??= [];
 	check.additionalData ??= {};
 	Object.seal(check);
+	// Set initial targets (actions without rolls can have targeting)
+	CheckConfiguration.configure(check).setDefaultTargets();
+	// Initial callback
 	await (initialConfigCallback ? initialConfigCallback(check, actor, item) : undefined);
 	Object.defineProperty(check, 'type', {
 		value: check.type,
@@ -215,6 +231,31 @@ async function prepareCheck(check, actor, item, initialConfigCallback) {
 	}
 
 	return check;
+}
+
+/**
+ * Executes only the check preparation workflow, including hooks, and returns the prepared check.
+ * If an error is thrown during preparation it will be present in the error property of the returned object and the check may be in a partially configured state.
+ *
+ * @param {CheckType} type
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallback} [initialConfigCallback]
+ * @return {Promise<{check: CheckV2, error: any}>}
+ */
+async function prepareCheckDryRun(type, actor, item, initialConfigCallback) {
+	/** @type CheckV2 */
+	let check = { type };
+	let error;
+	try {
+		check = await prepareCheck(check, actor, item, initialConfigCallback);
+	} catch (e) {
+		error = e;
+	}
+	return {
+		check,
+		error,
+	};
 }
 
 const CRITICAL_THRESHOLD = 6;
@@ -391,12 +432,19 @@ async function renderCheck(result, actor, item, flags = {}) {
 
 	const rolls = [result.roll, ...result.additionalRolls].filter(Boolean);
 
+	let speaker = ChatMessage.getSpeaker({ actor });
+	if (speaker.scene && speaker.token) {
+		const token = game.scenes.get(speaker.scene)?.tokens?.get(speaker.token);
+		if (token) {
+			speaker = ChatMessage.getSpeaker({ token });
+		}
+	}
 	const chatMessage = {
 		flavor: flavor,
 		content: await renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections: bodySections }),
 		rolls: rolls,
 		type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
-		speaker: ChatMessage.getSpeaker({ actor }),
+		speaker: speaker,
 		flags: foundry.utils.mergeObject(
 			{
 				[SYSTEM]: {
@@ -474,6 +522,9 @@ const display = async (actor, item) => {
 		critical: null,
 		additionalData: {},
 	});
+	// Set initial targets (actions without rolls can have targeting)
+	CheckConfiguration.configure(check).setDefaultTargets();
+
 	Hooks.callAll(CheckHooks.processCheck, check, actor, item);
 	await renderCheck(check, actor, item);
 };
@@ -510,6 +561,54 @@ const isCheck = (message, type = allExceptDisplay) => {
 	}
 	return false;
 };
+
+/**
+ * @param {FUActor} actor
+ * @param {CheckConfigurationPromptData} check
+ * @param {String} title
+ * @returns {Promise<CheckConfigurationPromptData>}
+ */
+async function promptConfiguration(actor, check, title) {
+	title = title || 'FU.DialogCheckTitle';
+	const attributes = actor.system.attributes;
+	return await Dialog.wait(
+		{
+			title: game.i18n.localize(title),
+			content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check.hbs', {
+				attributes: FU.attributes,
+				attributeAbbr: FU.attributeAbbreviations,
+				attributeValues: Object.entries(attributes).reduce(
+					(previousValue, [attribute, { current }]) => ({
+						...previousValue,
+						[attribute]: current,
+					}),
+					{},
+				),
+				primary: check.primary || 'mig',
+				secondary: check.secondary || 'mig',
+				modifier: check.modifier || 0,
+				difficulty: check.difficulty || 0,
+			}),
+			buttons: [
+				{
+					icon: '<i class="fas fa-dice"></i>',
+					label: game.i18n.localize('FU.DialogCheckRoll'),
+					callback: (jQuery) => {
+						return {
+							primary: jQuery.find('*[name=primary]:checked').val(),
+							secondary: jQuery.find('*[name=secondary]:checked').val(),
+							modifier: +jQuery.find('*[name=modifier]').val(),
+							difficulty: +jQuery.find('*[name=difficulty]').val(),
+						};
+					},
+				},
+			],
+		},
+		{
+			classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
+		},
+	);
+}
 
 document.addEventListener('click', (event) => {
 	const toggleLink = event.target.closest('.universal-toggle');
@@ -560,6 +659,8 @@ export const ChecksV2 = Object.freeze({
 	supportCheck,
 	modifyCheck,
 	isCheck,
+	promptConfiguration,
+	prepareCheckDryRun,
 });
 
 CheckRetarget.initialize();

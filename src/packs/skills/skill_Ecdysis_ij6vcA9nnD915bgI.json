@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you lose Hit Points due to damage, if that damage had a type <strong>other than physical</strong>, you may spend @LOSS[10 hp] to gain Resistance to that damage type until you use this Skill again. You cannot use this Skill if doing so would reduce you to 0 HP.</p>",
+    "description": "<p>After you lose Hit Points due to damage, if that damage had a type <strong>other than physical</strong>, you may spend 10 HP to gain Resistance to that damage type until you use this Skill again. You cannot use this Skill if doing so would reduce you to 0 HP.</p>",
     "isFavored": {
       "value": false
     },
@@ -52,7 +52,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -115,7 +117,11 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "ecdysis"
+    "fuid": "ecdysis",
+    "cost": {
+      "amount": 10,
+      "resource": "hp"
+    }
   },
   "effects": [],
   "flags": {},
@@ -124,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711429218464,
-    "modifiedTime": 1724180862922,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741974351518,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -30,9 +30,7 @@
       "accuracy": {
         "value": false
       },
-      "damage": {
-        "value": false
-      },
+      "damage": true,
       "hrZero": {
         "value": false
       }
@@ -55,7 +53,10 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "extra": "^backlash(mig, hp)+$sl",
+      "onRoll": "^backlash(mig,hp)+$sl",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -118,7 +119,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "shadow-strike"
+    "fuid": "shadow-strike",
+    "targeting": {
+      "rule": "special"
+    }
   },
   "effects": [],
   "ownership": {
@@ -132,10 +136,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706496911469,
-    "modifiedTime": 1724180862364,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1740068853274,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -3,7 +3,7 @@
   "name": "Magic Check Up",
   "type": "effect",
   "_id": "c9zl1Xr8nOK66ED1",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
   "system": {
     "fuid": "magic-check-up"
   },
@@ -21,7 +21,7 @@
       },
       "disabled": false,
       "name": "Magic Check Up",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/MagicUp.webp",
       "_id": "dQ7P3tKLUYpLZ0jb",
       "type": "base",
       "system": {},
@@ -40,7 +40,9 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": ""
         }
       },
       "_stats": {
@@ -50,8 +52,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725745488597,
-        "modifiedTime": 1725745832564,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1736279124676,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!c9zl1Xr8nOK66ED1.dQ7P3tKLUYpLZ0jb"
     }
@@ -69,8 +71,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725745480218,
-    "modifiedTime": 1725745525538,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1736279119875,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_key": "!items!c9zl1Xr8nOK66ED1"
 }

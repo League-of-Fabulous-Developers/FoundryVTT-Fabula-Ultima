@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong> (see @UUID[Compendium.projectfu.skills.Item.mMeTN3919AnQFJrC]{[Handout: Psychic Gift List]}). The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p>",
+    "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong> (see <strong>Techno Fantasy Atlas</strong>, page <strong>152</strong>). The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p><hr /><ul><li><p>For <strong>gift</strong> breakdown and a list of Psychic Gifts, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -51,7 +51,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -131,8 +133,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711424945464,
-    "modifiedTime": 1724180863386,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742001433899,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

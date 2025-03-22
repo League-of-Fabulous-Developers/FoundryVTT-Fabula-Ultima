@@ -48,6 +48,10 @@ export const preloadHandlebarsTemplates = async function () {
 		// Item partials
 		'systems/projectfu/templates/item/partials/item-progress-clock.hbs',
 		'systems/projectfu/templates/item/partials/item-resource-points.hbs',
+		'systems/projectfu/templates/item/partials/item-damage-section.hbs',
+		'systems/projectfu/templates/item/partials/item-accuracy-section.hbs',
+		'systems/projectfu/templates/item/partials/item-action-cost.hbs',
+		'systems/projectfu/templates/item/partials/item-targeting.hbs',
 		'systems/projectfu/templates/item/partials/item-controls.hbs',
 		'systems/projectfu/templates/item/partials/item-header.hbs',
 		'systems/projectfu/templates/item/partials/item-progress-header.hbs',
@@ -78,13 +82,16 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
 		'systems/projectfu/templates/chat/partials/chat-item-description.hbs',
 		'systems/projectfu/templates/chat/partials/chat-item-quality.hbs',
+		'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
 		'systems/projectfu/templates/chat/partials/chat-spell-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-item-spend-resource.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-push.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-reroll.hbs',
 		'systems/projectfu/templates/chat/partials/chat-basic-attack-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-ability-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-ability-weapon.hbs',
 		'systems/projectfu/templates/chat/partials/chat-item-opportunity.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-result.hbs',
 		'systems/projectfu/templates/chat/partials/chat-check-targets.hbs',
@@ -93,6 +100,8 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-opposed-check-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
+		'systems/projectfu/templates/chat/partials/chat-targets.hbs',
+		'systems/projectfu/templates/chat/partials/chat-common-sections.hbs',
 
 		// UI Components
 		'systems/projectfu/templates/ui/combat-tracker.hbs',
@@ -179,5 +188,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/ui/partials/combat-bar-ip-mother.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-exp-mother.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-zeropower-mother.hbs',
+		'systems/projectfu/templates/ui/partials/combat-hud-turn.hbs',
 	]);
 };

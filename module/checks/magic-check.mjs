@@ -1,9 +1,10 @@
 import { CheckHooks } from './check-hooks.mjs';
-import { CHECK_RESULT, CHECK_ROLL } from './default-section-order.mjs';
-import { FUActor } from '../documents/actors/actor.mjs';
-import { FU, SYSTEM } from '../helpers/config.mjs';
+import { CHECK_ROLL } from './default-section-order.mjs';
+import { SYSTEM } from '../helpers/config.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
+import { CommonSections } from './common-sections.mjs';
+import { CommonEvents } from './common-events.mjs';
 
 /**
  * @param {CheckV2} check
@@ -20,7 +21,7 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
 				[...game.user.targets]
 					.filter((token) => !!token.actor)
 					.map((token) => ({
-						name: token.actor.name,
+						name: token.name,
 						uuid: token.actor.uuid,
 						link: token.actor.link,
 						difficulty: token.actor.system.derived.mdef.value,
@@ -75,6 +76,69 @@ const onProcessCheck = (check, actor, item) => {
 };
 
 /**
+ * @param {CheckResultV2} checkResult
+ * @param {CheckInspector} inspector
+ * @param {CheckRenderData} data
+ */
+function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
+	const accuracyData = inspector.getAccuracyData();
+
+	let damageData;
+	const hasDamage = item.system.rollInfo?.damage?.hasDamage.value;
+	if (hasDamage) {
+		damageData = inspector.getDamageData();
+	}
+
+	// Push combined data for accuracy and damage
+	data.push({
+		order: CHECK_ROLL,
+		partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
+		data: {
+			accuracy: accuracyData,
+			damage: damageData,
+		},
+	});
+
+	const targets = inspector.getTargets();
+	CommonSections.targeted(data, actor, item, targets, flags, accuracyData, damageData);
+	CommonEvents.attack(inspector, actor, item);
+}
+
+/**
+ * @param {CheckResultV2} checkResult
+ * @param {CheckInspector} inspector
+ * @param {CheckRenderData} data
+ */
+function renderNonCombatMagicCheck(checkResult, inspector, data) {
+	data.push({
+		order: CHECK_ROLL,
+		partial: 'systems/projectfu/templates/chat/partials/chat-default-check.hbs',
+		data: {
+			result: {
+				attr1: checkResult.primary.result,
+				attr2: checkResult.secondary.result,
+				die1: checkResult.primary.dice,
+				die2: checkResult.secondary.dice,
+				modifier: checkResult.modifierTotal,
+				total: checkResult.result,
+				crit: checkResult.critical,
+				fumble: checkResult.fumble,
+			},
+			check: {
+				attr1: {
+					attribute: checkResult.primary.attribute,
+				},
+				attr2: {
+					attribute: checkResult.secondary.attribute,
+				},
+			},
+			difficulty: inspector.getDifficulty(),
+			modifiers: checkResult.modifiers,
+		},
+	});
+}
+
+/**
  * @param {CheckRenderData} data
  * @param {CheckResultV2} checkResult
  * @param {FUActor} actor
@@ -82,99 +146,13 @@ const onProcessCheck = (check, actor, item) => {
  * @param {Object} flags
  */
 function onRenderCheck(data, checkResult, actor, item, flags) {
-	const { type, primary, modifierTotal, secondary, result, modifiers, additionalData, critical, fumble } = checkResult;
-
-	if (type === 'magic') {
+	if (checkResult.type === 'magic') {
 		const inspector = CheckConfiguration.inspect(checkResult);
 
-		const accuracyData = {
-			result: {
-				attr1: primary.result,
-				attr2: secondary.result,
-				die1: primary.dice,
-				die2: secondary.dice,
-				modifier: modifierTotal,
-				total: result,
-				crit: critical,
-				fumble: fumble,
-			},
-			check: {
-				attr1: {
-					attribute: primary.attribute,
-				},
-				attr2: {
-					attribute: secondary.attribute,
-				},
-			},
-			modifiers,
-			additionalData,
-		};
-
-		const damage = inspector.getDamage();
-		const hrZero = inspector.getHrZero();
-		let damageData = null;
-
-		if (damage) {
-			damageData = {
-				result: {
-					attr1: primary.result,
-					attr2: secondary.result,
-				},
-				damage: {
-					hrZero: hrZero,
-					bonus: damage.modifierTotal,
-					total: damage.total,
-					type: damage.type,
-				},
-				translation: {
-					damageTypes: FU.damageTypes,
-					damageIcon: FU.affIcon,
-				},
-				modifiers: damage.modifiers,
-			};
-		}
-
-		// Push combined data for accuracy and damage
-		data.push({
-			order: CHECK_ROLL,
-			partial: 'systems/projectfu/templates/chat/chat-check-container.hbs',
-			data: {
-				accuracy: accuracyData,
-				damage: damageData,
-			},
-		});
-		/** @type TargetData[] */
-		const targets = inspector.getTargets();
-		const isTargeted = targets?.length > 0;
-		if (targets) {
-			data.push({
-				order: CHECK_RESULT,
-				partial: isTargeted ? 'systems/projectfu/templates/chat/partials/chat-check-targets.hbs' : 'systems/projectfu/templates/chat/partials/chat-check-notargets.hbs',
-				data: {
-					targets: targets,
-				},
-			});
-		}
-
-		if (isTargeted) {
-			async function showFloatyText(target) {
-				const actor = await fromUuid(target.uuid);
-				if (actor instanceof FUActor) {
-					actor.showFloatyText(game.i18n.localize(target.result === 'hit' ? 'FU.Hit' : 'FU.Miss'));
-				}
-			}
-
-			if (game.dice3d) {
-				Hooks.once('diceSoNiceRollComplete', () => {
-					for (const target of targets) {
-						showFloatyText(target);
-					}
-				});
-			} else {
-				for (const target of targets) {
-					showFloatyText(target);
-				}
-			}
+		if (inspector.getDifficulty()) {
+			renderNonCombatMagicCheck(checkResult, inspector, data);
+		} else {
+			renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags);
 		}
 
 		(flags[SYSTEM] ??= {})[Flags.ChatMessage.Item] ??= item.toObject();

@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target recovers <strong>【@DATA[key.recovery]】</strong> equal to <strong>【10 + twice your current Willpower die size】</strong>. This amount increases by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher</strong>.</p><p><span>If this tone causes MP recovery, it has <strong>no effect</strong> on the character who sings it.</span></p>"
+      "description": "<p>Each target recovers <strong>【</strong>@GAIN[(($wlp*2)+&step(10,20,30)) @DATA[key.resource]]<strong>】</strong></p><p><span>If this tone causes MP recovery, it has <strong>no effect</strong> on the character who sings it.</span></p>"
     },
     "source": "FUHF139",
     "fuid": "calm-tone"
@@ -32,8 +32,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710038336377,
-    "modifiedTime": 1724180862408,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741997105258,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

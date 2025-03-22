@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -140,17 +142,19 @@
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "active"
+          "CrisisInteraction": "active",
+          "type": "default",
+          "source": "FUCR177"
         }
       },
       "tint": "#ffffff",
       "_stats": {
         "coreVersion": "12.331",
-        "systemId": null,
-        "systemVersion": null,
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1723766540216,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1741991977703,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -175,8 +179,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706494667215,
-    "modifiedTime": 1724180862566,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741991980586,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

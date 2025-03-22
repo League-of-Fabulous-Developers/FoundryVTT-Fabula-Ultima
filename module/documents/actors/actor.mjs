@@ -1,13 +1,41 @@
 import { FUItem } from '../items/item.mjs';
 import { FUHooks } from '../../hooks.mjs';
-import { toggleStatusEffect } from '../../helpers/effects.mjs';
+import { Effects, prepareActiveEffectCategories, toggleStatusEffect } from '../../pipelines/effects.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { Flags } from '../../helpers/flags.mjs';
 
 /**
- * Extend the base Actor document by defining a custom roll data structure
+ * @typedef Actor
+ * @description The client-side Actor document which extends the common BaseActor model.
+ * @property {Boolean} isToken
+ * @property {ActiveEffect[]} appliedEffects
+ * @property {ActiveEffect[]} temporaryEffects
+ * @property {Boolean} inCombat
+ * @property {String} id The canonical identifier for this Document.
+ * @property {String} uuid A Universally Unique Identifier (uuid) for this Document instance.
+ * @property {Function<Boolean, Boolean,[Token]>} getActiveTokens Retrieve an Array of active tokens which represent this Actor in the current
+ * canvas Scene. If the canvas is not currently active, or there are no linked actors, the returned Array will be empty.
+ * If the Actor is a synthetic token actor, only the exact Token which it represents will be returned.
+ */
+
+/**
+ * @typedef Token
+ * @description A Token is an implementation of PlaceableObject which represents an Actor within a viewed Scene on the game canvas.
+ * @property {String} name Convenience access to the token's nameplate string
+ * @property {Actor} actor A convenient reference to the Actor object associated with the Token embedded document.
+ * @property {Combatant} combatant Return a reference to a Combatant that represents this Token, if one is present in the current encounter.
+ * @property {Boolean} isTargeted An indicator for whether the Token is currently targeted by the active game User
+ * @property {Point} center The Token's current central position
+ */
+
+/**
+ * @class
+ * @description Extend the base Actor document by defining a custom roll data structure
  * @extends {Actor}
  * @property {CharacterDataModel | NpcDataModel} system
+ * @property {EffectCategories} effectCategories
+ * @remarks {@link https://foundryvtt.com/api/classes/client.Actor.html}
+ * @inheritDoc
  */
 export class FUActor extends Actor {
 	/** @override */
@@ -156,11 +184,12 @@ export class FUActor extends Actor {
 		await super._preUpdate(changed, options, user);
 	}
 
+	/**
+	 * @returns {Promise<void>}
+	 * @private
+	 * @override
+	 */
 	async _onUpdate(changed, options, userId) {
-		if (options.damageTaken) {
-			this.showFloatyText(options.damageTaken);
-		}
-
 		const { hp } = this.system?.resources || {};
 
 		if (hp && userId === game.userId) {
@@ -168,6 +197,14 @@ export class FUActor extends Actor {
 			const shouldBeInCrisis = hp.value <= crisisThreshold;
 			const isInCrisis = this.statuses.has('crisis');
 			if (shouldBeInCrisis !== isInCrisis) {
+				Hooks.call(
+					FUHooks.CRISIS_EVENT,
+					/** @type CrisisEvent **/
+					{
+						actor: this,
+						token: this.resolveToken(),
+					},
+				);
 				await toggleStatusEffect(this, 'crisis');
 			}
 
@@ -175,13 +212,21 @@ export class FUActor extends Actor {
 			const shouldBeKO = hp.value === 0; // KO when HP is 0
 			const isKO = this.statuses.has('ko');
 			if (shouldBeKO !== isKO) {
+				Hooks.call(
+					FUHooks.DEFEAT_EVENT,
+					/** @type DefeatEvent **/
+					{
+						actor: this,
+						token: this.resolveToken(),
+					},
+				);
 				await toggleStatusEffect(this, 'ko');
 			}
 		}
 		super._onUpdate(changed, options, userId);
 	}
 
-	async showFloatyText(input) {
+	async showFloatyText(input, fill) {
 		if (!canvas.scene) {
 			return;
 		}
@@ -194,7 +239,7 @@ export class FUActor extends Actor {
 				{ x: token.x + gridSize / 2, y: token.y + gridSize - 20 },
 				Math.abs(input),
 				{
-					fill: input < 0 ? 'lightgreen' : 'white',
+					fill: fill ?? (input < 0 ? 'lightgreen' : 'white'),
 					fontSize: 32,
 					stroke: 0x000000,
 					strokeThickness: 4,
@@ -208,7 +253,7 @@ export class FUActor extends Actor {
 				{ x: token.x + gridSize / 2, y: token.y + gridSize - 20 },
 				input,
 				{
-					fill: 'white',
+					fill: fill ?? 'white',
 					fontSize: 32,
 					stroke: 0x000000,
 					strokeThickness: 4,
@@ -232,6 +277,50 @@ export class FUActor extends Actor {
 				yield effect;
 			}
 		}
+	}
+
+	/**
+	 * @return {Generator<ActiveEffect, void, void>}
+	 */
+	*allEffects() {
+		for (const effect of this.effects) {
+			yield effect;
+		}
+		for (const item of this.items) {
+			for (const effect of item.effects) {
+				yield effect;
+			}
+		}
+	}
+
+	/**
+	 * @override
+	 * @returns {ActiveEffect[]}
+	 */
+	get temporaryEffects() {
+		const effects = super.temporaryEffects;
+		for (const item of this.items) {
+			if (item.system.transferEffects instanceof Function ? item.system.transferEffects() : true) {
+				for (const effect of item.effects) {
+					if (effect.isTemporary && effect.target === item) {
+						effects.push(effect);
+					}
+				}
+			}
+		}
+		return effects;
+	}
+
+	/**
+	 * @returns {EffectCategories}
+	 * @remarks Used by modules mostly
+	 */
+	get effectCategories() {
+		const effects = Array.from(this.allApplicableEffects());
+		this.temporaryEffects.forEach((effect) => {
+			if (effects.indexOf(effect) < 0) effects.push(effect);
+		});
+		return prepareActiveEffectCategories(effects);
 	}
 
 	applyActiveEffects() {
@@ -311,6 +400,23 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @returns {Token}
+	 * @remarks https://foundryvtt.com/api/classes/client.TokenDocument.html
+	 */
+	resolveToken() {
+		// For unlinked actors (usually NPCs)
+		if (this.token) {
+			return this.token.object;
+		}
+		// For linked actors (PCs, sometimes villains?)
+		const tokens = this.getActiveTokens();
+		if (tokens) {
+			return tokens[0];
+		}
+		throw Error(`Failed to get token for ${this.uuid}`);
+	}
+
+	/**
 	 * Returns an array of items that match a given FUID and optionally an item type
 	 * @param {string} fuid - The FUID of the item(s) which you want to retrieve
 	 * @param {string} [type] - Optionally, a type name to restrict the search
@@ -324,6 +430,29 @@ export class FUActor extends Actor {
 			throw new Error(`Type ${type} is invalid!`);
 		}
 		return itemTypes[type].filter(fuidFilter);
+	}
+
+	/**
+	 * @description Deletes all temporary effects on the actor
+	 */
+	clearTemporaryEffects() {
+		// Collect effects to delete
+		const effectsToDelete = this.effects.filter((effect) => {
+			// If it's a status effect
+			const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
+			if (statusEffectId) {
+				const immunity = this.system.immunities[statusEffectId];
+				if (immunity) {
+					return immunity;
+				}
+			}
+			return effect.isTemporary && Effects.canBeRemoved(effect);
+		});
+
+		// Delete all collected effects
+		if (effectsToDelete.length > 0) {
+			Promise.all(effectsToDelete.map((effect) => effect.delete()));
+		}
 	}
 
 	/**

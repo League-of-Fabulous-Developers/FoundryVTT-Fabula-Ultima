@@ -5,7 +5,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you cause one or more enemies to lose Hit Points, if you have acquired the <strong>Beyond the Realms of Death</strong> Skill and at least one of them is suffering from shaken and/or <strong>weak</strong>, you gain 1 Grave Point and recover <strong>【SL × 2】 </strong>Hit Points and Mind Points.</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[2 hp] &amp; @GAIN[2 mp]</p><p>Skill Level <strong>2</strong> - @GAIN[4 hp] &amp; @GAIN[4 mp]</p><p>Skill Level <strong>3</strong> - @GAIN[6 hp] &amp; @GAIN[6 mp]</p>",
+    "description": "<p>After you cause one or more enemies to lose Hit Points, if you have acquired the <strong>Beyond the Realms of Death</strong> Skill and at least one of them is suffering from <strong>shaken</strong> and/or <strong>weak</strong>, you gain 1 Grave Point and recover <strong>【SL × 2】 </strong>Hit Points and Mind Points.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[2*$sl hp] <strong>and </strong>@GAIN[2*$sl mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -46,7 +46,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -115,7 +117,7 @@
     },
     "fuid": "fear-is-the-key"
   },
-  "img": "icons/magic/death/skull-energy-light-purple.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/fear_is_the_key.png",
   "effects": [],
   "flags": {
     "core": {},
@@ -126,8 +128,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1684757022310,
-    "modifiedTime": 1724180861393,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742653164369,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -4,7 +4,6 @@ import { SYSTEM, FU } from './helpers/config.mjs';
 
 export const SETTINGS = Object.freeze({
 	checksV2: 'checksV2',
-	collapseDescriptions: 'collapseDescriptions',
 	experimentalCombatHud: 'experimentalCombatHud',
 	experimentalCombatTracker: 'experimentalCombatTracker',
 	metaCurrencyAutomaticallyDistributeExp: 'metaCurrencyAutomaticallyDistributeExp',
@@ -40,6 +39,7 @@ export const SETTINGS = Object.freeze({
 	optionChatMessageOptions: 'optionChatMessageOptions',
 	optionChatMessageHideTags: 'optionChatMessageHideTags',
 	optionChatMessageHideDescription: 'optionChatMessageHideDescription',
+	optionChatMessageCollapseDescription: 'optionChatMessageCollapseDescription',
 	optionChatMessageHideQuality: 'optionChatMessageHideQuality',
 	optionChatMessageHideRollDetails: 'optionChatMessageHideRollDetails',
 	optionCombatHudWidth: 'optionCombatHudWidth',
@@ -77,6 +77,15 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.optionChatMessageHideDescription, {
 		name: game.i18n.localize('FU.ChatMessageHideDescription'),
 		hint: game.i18n.localize('FU.ChatMessageHideDescriptionHint'),
+		scope: 'client',
+		config: false,
+		type: Boolean,
+		default: false,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionChatMessageCollapseDescription, {
+		name: game.i18n.localize('FU.ChatMessageCollapseDescription'),
+		hint: game.i18n.localize('FU.ChatMessageCollapseDescriptionHint'),
 		scope: 'client',
 		config: false,
 		type: Boolean,
@@ -171,15 +180,6 @@ export const registerSystemSettings = async function () {
 		hint: game.i18n.localize('FU.TotalPartyMemberRulesSettingsHint'),
 		scope: 'world',
 		config: false,
-		type: Boolean,
-		default: false,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.collapseDescriptions, {
-		name: game.i18n.localize('FU.CollapseDescriptionSettings'),
-		hint: game.i18n.localize('FU.CollapseDescriptionSettingsHint'),
-		scope: 'world',
-		config: true,
 		type: Boolean,
 		default: false,
 	});
@@ -643,6 +643,7 @@ class ChatMessageOptions extends FormApplication {
 		return {
 			optionChatMessageHideTags: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideTags),
 			optionChatMessageHideDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideDescription),
+			optionChatMessageCollapseDescription: game.settings.get(SYSTEM, SETTINGS.optionChatMessageCollapseDescription),
 			optionChatMessageHideQuality: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideQuality),
 			optionChatMessageHideRollDetails: game.settings.get(SYSTEM, SETTINGS.optionChatMessageHideRollDetails),
 			optionChatMessageHideOptions: {
@@ -654,9 +655,10 @@ class ChatMessageOptions extends FormApplication {
 	}
 
 	async _updateObject(event, formData) {
-		const { optionChatMessageHideTags, optionChatMessageHideDescription, optionChatMessageHideQuality, optionChatMessageHideRollDetails } = foundry.utils.expandObject(formData);
+		const { optionChatMessageHideTags, optionChatMessageHideDescription, optionChatMessageCollapseDescription, optionChatMessageHideQuality, optionChatMessageHideRollDetails } = foundry.utils.expandObject(formData);
 		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideTags, optionChatMessageHideTags);
 		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideDescription, optionChatMessageHideDescription);
+		game.settings.set(SYSTEM, SETTINGS.optionChatMessageCollapseDescription, optionChatMessageCollapseDescription);
 		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideQuality, optionChatMessageHideQuality);
 		game.settings.set(SYSTEM, SETTINGS.optionChatMessageHideRollDetails, optionChatMessageHideRollDetails);
 	}

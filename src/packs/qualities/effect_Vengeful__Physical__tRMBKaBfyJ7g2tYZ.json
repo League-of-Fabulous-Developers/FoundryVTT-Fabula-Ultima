@@ -1,7 +1,7 @@
 {
   "name": "Vengeful (Physical)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -12,7 +12,7 @@
     {
       "disabled": false,
       "name": "Vengeful (Physical)",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "type": "base",
       "changes": [],
       "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal @DMG[5 physical] damage to that creature (after the attack has been resolved).</p>",
@@ -47,13 +47,13 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728772534587,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736273999304,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!tRMBKaBfyJ7g2tYZ.5u5eYbQf5l6crY7M"
     }
   ],
-  "folder": "G9QbTliORWqM7IoY",
+  "folder": "SH8cHX3lJkZlLgj8",
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -62,11 +62,11 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747190299,
-    "modifiedTime": 1728747190299,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736273993312,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_id": "tRMBKaBfyJ7g2tYZ",
-  "sort": 500000,
+  "sort": 4600000,
   "ownership": {
     "default": 0,
     "7kOzP8RBVJhI8wKx": 3

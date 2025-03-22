@@ -3,7 +3,7 @@
   "name": "Weapon Damage Up",
   "type": "effect",
   "_id": "Xyj06G4k7oBerngN",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
   "system": {
     "fuid": "weapon-damage-up",
     "cost": {
@@ -24,7 +24,7 @@
       },
       "disabled": false,
       "name": "Weapoon Damage Up",
-      "img": "icons/svg/aura.svg",
+      "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "_id": "BR1Px5kJR8al9qWM",
       "type": "base",
       "system": {},
@@ -43,7 +43,9 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": ""
         }
       },
       "_stats": {
@@ -53,8 +55,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1728758779688,
-        "modifiedTime": 1728759116843,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736274518342,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!Xyj06G4k7oBerngN.BR1Px5kJR8al9qWM"
     }
@@ -72,8 +74,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728758765914,
-    "modifiedTime": 1728758765914,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736274521495,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_key": "!items!Xyj06G4k7oBerngN"
 }

@@ -1,6 +1,7 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
+import { CommonEvents } from '../../../../checks/common-events.mjs';
 
 const durations = {
 	instant: 'FU.ClassFeatureDanceDurationInstant',
@@ -55,6 +56,7 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 			},
 		};
 
+		CommonEvents.skill(item.actor, item);
 		ChatMessage.create(chatMessage);
 	}
 }

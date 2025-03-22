@@ -2,6 +2,7 @@ import { SETTINGS } from '../settings.js';
 
 import { SystemControls } from '../helpers/system-controls.mjs';
 import { SYSTEM, FU } from '../helpers/config.mjs';
+import { FUHooks } from '../hooks.mjs';
 
 Hooks.once('setup', () => {
 	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
@@ -22,32 +23,46 @@ export class CombatHUD extends Application {
 		this._emptyImage = document.createElement('img');
 		this._emptyImage.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
+		// Drag trackers
+		this.dragInitialX = 0;
+		this.dragInitialY = 0;
+		this.dragInitialTop = 0;
+		this.dragInitialLeft = 0;
+		this.firefoxDragX = 0;
+		this.firefoxDragY = 0;
+
+		// TODO: Move such browser checks to a higher scope
+		this.isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
+		console.debug(`Combat HUD: Constructing`);
 		Hooks.callAll('combatHudInit', this);
 		this.#hooks.push({ hook: 'createCombatant', func: this._onUpdateHUD.bind(this) });
 		this.#hooks.push({ hook: 'deleteCombatant', func: this._onUpdateHUD.bind(this) });
 
-		this.#hooks.push({ hook: 'updateActor', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'updateToken', func: this._onUpdateHUD.bind(this) });
+		this.#hooks.push({ hook: 'updateActor', func: this._onUpdateActor.bind(this) });
+		this.#hooks.push({ hook: 'updateToken', func: this._onUpdateToken.bind(this) });
 
-		this.#hooks.push({ hook: 'updateItem', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'createItem', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'deleteItem', func: this._onUpdateHUD.bind(this) });
+		this.#hooks.push({ hook: 'updateItem', func: this._onUpdateItem.bind(this) });
+		this.#hooks.push({ hook: 'createItem', func: this._onCreateDeleteItem.bind(this) });
+		this.#hooks.push({ hook: 'deleteItem', func: this._onCreateDeleteItem.bind(this) });
 
-		this.#hooks.push({ hook: 'createActiveEffect', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'updateActiveEffect', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'deleteActiveEffect', func: this._onUpdateHUD.bind(this) });
+		this.#hooks.push({ hook: 'createActiveEffect', func: this._onModifyActiveEffect.bind(this) });
+		this.#hooks.push({ hook: 'updateActiveEffect', func: this._onModifyActiveEffect.bind(this) });
+		this.#hooks.push({ hook: 'deleteActiveEffect', func: this._onModifyActiveEffect.bind(this) });
 
 		this.#hooks.push({ hook: 'combatStart', func: this._onUpdateHUD.bind(this) });
 		this.#hooks.push({ hook: 'combatTurn', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'combatRound', func: this._onUpdateHUD_Round.bind(this) });
+		this.#hooks.push({ hook: 'combatTurnChange', func: this._onUpdateHUD.bind(this) });
+		this.#hooks.push({ hook: `combatRound`, func: this._onUpdateHUD_Round.bind(this) });
 
 		this.#hooks.push({ hook: 'deleteCombat', func: this._onCombatEnd.bind(this) });
 
 		//this.#hooks.push({ hook: 'updateSettings', func: this._onUpdateHUD.bind(this) });
-		this.#hooks.push({ hook: 'studyRoll', func: this._onStudyRoll.bind(this) });
+		this.#hooks.push({ hook: FUHooks.ROLL_STUDY, func: this._onStudyRoll.bind(this) });
 
 		this.#hooks.forEach(({ hook, func }) => Hooks.on(hook, func));
 		Hooks.once('ready', this._onGameReady.bind(this));
+		console.debug(`Combat HUD: Ready`);
 	}
 
 	static get defaultOptions() {
@@ -138,13 +153,11 @@ export class CombatHUD extends Application {
 		data.cssClasses = this.options.classes.join(' ');
 		data.cssId = this.options.id;
 		data.isCompact = game.settings.get(SYSTEM, SETTINGS.optionCombatHudCompact);
-		data.isGM = game.user.isGM;
 
 		const opacity = game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity) / 100;
 		data.additionalStyle = this._getAdditionalStyle(opacity);
 
 		const ordering = game.settings.get(SYSTEM, SETTINGS.optionCombatHudActorOrdering);
-
 		data.npcs = [];
 		data.characters = [];
 
@@ -170,20 +183,25 @@ export class CombatHUD extends Application {
 
 		const NPCTurnsLeftMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode);
 
-		const currentTurn = game.combat.getCurrentTurn();
-		const turnsLeft = ui.combat.countTurnsLeft(game.combat);
-		// const round = game.combat.round;
+		/** @type FUCombat **/
+		const combat = game.combat;
+		combat.populateData(data);
 
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
 
-			const activeEffects = (game.release.generation >= 11 ? Array.from(combatant.actor.allApplicableEffects()) : combatant.actor.effects).filter((e) => !e.disabled && !e.isSuppressed);
+			const activeEffects = (game.release.generation >= 11 ? Array.from(combatant.actor.temporaryEffects) : combatant.actor.effects.filter((e) => e.isTemporary)).filter((e) => !e.disabled && !e.isSuppressed);
 			const actorData = {
 				id: combatant.id,
+				name: combatant.name,
 				actor: combatant.actor,
+				isOwner: combatant.isOwner,
+				totalTurns: combatant.totalTurns,
 				token: combatant.token,
+				faction: combatant.faction,
 				effects: activeEffects,
-				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? combatant.token.texture.src : combatant.actor.img,
+				// token._source should contain the most current version of the token's texture.
+				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? combatant.token._source.texture.src : combatant.actor.img,
 				trackedResourcePart1: trackedResourcePart1,
 				trackedResourcePart2: trackedResourcePart2,
 				trackedResourcePart3: trackedResourcePart3,
@@ -225,7 +243,6 @@ export class CombatHUD extends Application {
 
 				// Ensure shouldEffectsMarquee is false if effectsMarqueeDuration is over 9000
 				actorData.shouldEffectsMarquee = actorData.effects.length > maxEffectsBeforeMarquee && effectsMarqueeDuration < 9000;
-
 				actorData.effectsMarqueeDuration = effectsMarqueeDuration;
 
 				const marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
@@ -250,23 +267,16 @@ export class CombatHUD extends Application {
 			}
 
 			actorData.order = order;
-			actorData.hasActed = turnsLeft[combatant.id] === 0;
-			actorData.hasCombatStarted = game.combat.started;
 
-			actorData.totalTurns = combatant.totalTurns;
 			if (NPCTurnsLeftMode === 'never') {
 				actorData.totalTurns = 1;
 			} else if (NPCTurnsLeftMode === 'only-studied' && !this._isNPCStudied(combatant.token)) {
 				actorData.totalTurns = 1;
 			}
 
-			actorData.turnsLeft = turnsLeft[combatant.id] ?? 0;
-
 			if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
-				actorData.isCurrentTurn = currentTurn === 'friendly';
 				data.characters.push(actorData);
 			} else {
-				actorData.isCurrentTurn = currentTurn === 'hostile';
 				data.npcs.push(actorData);
 			}
 		}
@@ -316,6 +326,10 @@ export class CombatHUD extends Application {
 		dragButton.on('drag', this._doHudDrag.bind(this));
 		dragButton.on('dragend', this._doHudDrop.bind(this));
 
+		if (this.isFirefox) {
+			$(window.document).on('dragover', this._fireFoxDragWorkaround.bind(this));
+		}
+
 		this._dragOffsetX = -dragButton.width() * 1.5;
 		this._dragOffsetY = dragButton.height() / 2;
 
@@ -330,41 +344,119 @@ export class CombatHUD extends Application {
 			this._stopCombatButton.removeClass('hidden');
 		}
 
-		if (!game.user.isGM) return;
-		const turnButtons = html.find('[data-action=take-turn]');
-		turnButtons.click((event) => this._doTakeTurn(event));
+		html.find('a[data-action=start-turn]').click((event) => ui.combat.handleStartTurn(event));
+		html.find('a[data-action=end-turn]').click((event) => ui.combat.handleEndTurn(event));
+		html.find('a[data-action=take-turn-out-of-turn]').click((event) => ui.combat.handleTakeTurnOutOfTurn(event));
 
-		const turnOutOfTurnButtons = html.find('[data-action=take-turn-out-of-turn]');
-		turnOutOfTurnButtons.click((event) => this._doTakeTurnOutOfTurn(event));
-	}
+		const effectImages = html.find('.combat-effect-img');
 
-	async _doTakeTurn(event) {
-		await ui.combat.handleTakeTurn(event);
-	}
+		effectImages.on('click', async (event) => {
+			event.preventDefault();
+			const effectImg = event.currentTarget;
+			const effectId = effectImg.dataset.effectId;
+			const actorId = effectImg.dataset.actorId;
+			const actor = game.actors.get(actorId);
+			if (!actor) return;
 
-	async _doTakeTurnOutOfTurn(event) {
-		await ui.combat.handleTakeTurnOutOfTurn(event);
+			if (event.button === 0) {
+				const effect = actor.effects.get(effectId);
+				if (effect) {
+					await effect.update({ disabled: !effect.disabled });
+				}
+			}
+		});
+
+		effectImages.on('contextmenu', async (event) => {
+			event.preventDefault();
+			const effectImg = event.currentTarget;
+			const effectId = effectImg.dataset.effectId;
+			const actorId = effectImg.dataset.actorId;
+			const actor = game.actors.get(actorId);
+			if (!actor) return;
+
+			const effect = actor.effects.get(effectId);
+			if (effect) {
+				new ActiveEffectConfig(effect).render(true);
+			}
+		});
 	}
 
 	_doHudDragStart(event) {
 		event.originalEvent.dataTransfer.setDragImage(this._emptyImage, 0, 0);
+
+		// Set drag tracking vars
+		const nativeEvent = event.originalEvent;
+		const elementPos = this.element.position();
+		this.dragInitialLeft = elementPos.left;
+		this.dragInitialTop = elementPos.top;
+		this.dragInitialX = nativeEvent.clientX;
+		this.dragInitialY = nativeEvent.clientY;
+		this.firefoxDragX = 0;
+		this.firefoxDragY = 0;
+	}
+
+	// FireFox does not populate event.clientX or event.clientY
+	// during drag events. A workaround is to bind a seperate handler
+	// to the dragover event instead, which gets processed directly
+	// before any drag event and allows us to record the current drag position.
+	_fireFoxDragWorkaround(event) {
+		// Keep this check; drag events can trigger with (0,0) when outside the window or target
+		// and they should be treated as invalid
+		if (event.clientX <= 0 || event.clientY <= 0) return;
+
+		// These need to be tracked separately
+		// The listener is listening to *any* drag on window, and may not be relevant to the combatHUD
+		// So the actual update should be deferred to _doHudDrag which is bound specifically to combatHUD
+		this.firefoxDragX = event.clientX;
+		this.firefoxDragY = event.clientY;
 	}
 
 	_doHudDrag(event) {
-		if (event.clientX <= 0 || event.clientY <= 0) return;
-
 		event.originalEvent.dataTransfer.dropEffect = 'move';
-		this.element.css('left', this._dragOffsetX + event.clientX);
 
-		this.element.css('bottom', 'initial');
-		this.element.css('top', this._dragOffsetY + event.clientY);
+		// Firefox doesn't handle drag events the same as other browsers
+		// We use the 'dragOver' event for that
+		let dragPosition;
+		if (this.isFirefox) {
+			dragPosition = { x: this.firefoxDragX, y: this.firefoxDragY };
+		} else {
+			dragPosition = { x: event.clientX, y: event.clientY };
+		}
+
+		// Keep this check; drag events can trigger with (0,0) when outside the window or target
+		// and they should be treated as invalid
+		if (dragPosition.x <= 0 || dragPosition.y <= 0) return;
+
+		// Update
+		if (this._dragAnimationFrame) {
+			cancelAnimationFrame(this._dragAnimationFrame);
+		}
+		this._dragAnimationFrame = requestAnimationFrame(() => {
+			// Calculate deltas
+			const deltaX = dragPosition.x - this.dragInitialX;
+			const deltaY = dragPosition.y - this.dragInitialY;
+
+			// Calculate final values
+			const newLeft = this.dragInitialLeft + deltaX;
+			const newTop = this.dragInitialTop + deltaY;
+
+			// Apply
+			this.element.css('left', newLeft);
+			this.element.css('top', newTop);
+			if (this.element.css('bottom') !== 'initial') {
+				this.element.css('bottom', 'initial');
+			}
+		});
 	}
 
 	_doHudDrop(event) {
+		const offset = this.element.offset();
+		const height = this.element.outerHeight();
 		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
+
 		const draggedPosition = {
-			x: this.element.css('left'),
-			y: positionFromTop ? this.element.css('top') : this.element.css('bottom'),
+			x: offset.left,
+			y: positionFromTop ? offset.top : $(window).height() - offset.top - height,
 		};
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
 	}
@@ -372,6 +464,8 @@ export class CombatHUD extends Application {
 	async _doStartCombat() {
 		if (!game.user.isGM) return;
 		if (!game.combat) return;
+
+		console.debug(`Combat HUD: Starting combat`);
 
 		await game.combat.startCombat();
 
@@ -384,6 +478,8 @@ export class CombatHUD extends Application {
 	async _doStopCombat() {
 		if (!game.user.isGM) return;
 		if (!game.combat) return;
+
+		console.debug(`Combat HUD: Stopping combat`);
 
 		await game.combat.endCombat();
 
@@ -484,6 +580,7 @@ export class CombatHUD extends Application {
 	}
 
 	_doMinimize() {
+		console.debug(`Combat HUD: Minimizing (Internal)`);
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudMinimized, true);
 
 		const tokenButton = ui.controls.controls.find((control) => control.name === SYSTEM);
@@ -591,11 +688,14 @@ export class CombatHUD extends Application {
 		return a + alpha * (b - a);
 	}
 
+	/**
+	 * @override
+	 */
 	async _render(force, options) {
-		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
-			this.close();
-			return;
-		}
+		// if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
+		// 	this.close();
+		// 	return;
+		// }
 
 		await super._render(force, options);
 		if (this._poppedOut) {
@@ -616,10 +716,15 @@ export class CombatHUD extends Application {
 
 		const uiLeft = $('#ui-left');
 		const uiMiddle = $('#ui-middle');
+		const uiRight = $('#ui-right');
+
 		let hudWidth = uiMiddle.width() + uiLeft.width() * 0.5;
 		if (hudWidth < minWidth) {
 			hudWidth = minWidth;
 		}
+
+		let uiRightWidth = uiRight.length ? uiRight.width() : 0;
+		hudWidth -= uiRightWidth * 0.5;
 
 		const alpha = game.settings.get(SYSTEM, SETTINGS.optionCombatHudWidth) / 100;
 		hudWidth = this.lerp(minWidth, hudWidth, alpha);
@@ -698,6 +803,96 @@ export class CombatHUD extends Application {
 		this.render(true);
 	}
 
+	_onUpdateToken(token, changes) {
+		// Is the updated token in the current combat?
+		if (!game.combat?.combatants.some((c) => c.token.uuid === token.uuid)) {
+			return;
+		}
+
+		// Are any of the changes relevant to the Combat HUD?
+		if (
+			foundry.utils.hasProperty(changes, 'name') ||
+			foundry.utils.hasProperty(changes, 'actorId') ||
+			foundry.utils.hasProperty(changes, 'disposition') ||
+			(game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && foundry.utils.hasProperty(changes, 'texture.src'))
+		) {
+			this._onUpdateHUD();
+		}
+	}
+
+	_onUpdateActor(actor, changes) {
+		// Is the updated actor in the current combat?
+		if (!game.combat?.combatants.some((c) => c.actor.uuid === actor.uuid)) {
+			return;
+		}
+
+		const systemResources = ['hp', 'mp', 'ip', 'fp', 'exp', 'zenit'];
+
+		const trackedResources = [
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource4),
+		];
+
+		// Are any of the changes relevant to the Combat HUD?
+		if (trackedResources.filter((r) => systemResources.includes(r)).some((r) => foundry.utils.hasProperty(changes, `system.resources.${r}`))) {
+			this._onUpdateHUD();
+		}
+	}
+
+	_onCreateDeleteItem(item) {
+		this._onModifyItem(item);
+	}
+
+	_onUpdateItem(item, changes) {
+		this._onModifyItem(item, changes);
+	}
+
+	_onModifyItem(item, changes) {
+		// Is the item owned by an actor in the current combat?
+		if (item.parent?.documentName !== 'Actor' || !game.combat?.combatants.some((c) => c.actor.uuid === item.parent.uuid)) {
+			return;
+		}
+
+		const trackedResources = [
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource1),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3),
+			game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource4),
+		];
+
+		// Are any of the changes relevant to the combat HUD?
+		if (
+			(trackedResources.includes('zeropower') && item.type === 'optionalFeature' && item.system.optionalType === 'projectfu.zeroPower') ||
+			// The optionalType can theoretically change, so make sure to check for it.
+			(foundry.utils.hasProperty(changes, 'system.optionalType') &&
+				// Progress changes aren't relevant during create/delete hooks.
+				(!changes || foundry.utils.hasProperty(changes, 'system.data.progress.current') || foundry.utils.hasProperty(changes, 'system.data.progress.max')))
+		) {
+			this._onUpdateHUD();
+		}
+	}
+
+	_onModifyActiveEffect(activeEffect, changes) {
+		if (
+			// Is the active effect targeting an actor in the current combat?
+			!(activeEffect.target && game.combat?.combatants.some((c) => c.actor.uuid === activeEffect.target.uuid)) &&
+			// Did the transfer property change on an effect on an item owned by an actor in the current combat?
+			!(
+				activeEffect.parent?.documentName === 'Item' &&
+				activeEffect.parent.parent?.documentName === 'Actor' &&
+				foundry.utils.hasProperty(changes, 'transfer') &&
+				game.combat?.combatants.some((c) => c.actor.uuid === activeEffect.parent.parent.uuid)
+			)
+		) {
+			return;
+		}
+
+		// At this point the effect stands a pretty good chance of being relevant, so this is optimal enough.
+		this._onUpdateHUD();
+	}
+
 	_onHoverIn(event) {
 		event.preventDefault();
 		if (!canvas.ready) return;
@@ -737,7 +932,11 @@ export class CombatHUD extends Application {
 		this._onUpdateHUD();
 	}
 
+	/**
+	 *  @override
+	 */
 	close() {
+		console.debug(`Combat HUD: Close`);
 		if (this._poppedOut) {
 			this._poppedOut = false;
 			this.element.find('.window-popout').css('display', 'block');
@@ -766,7 +965,9 @@ export class CombatHUD extends Application {
 	}
 
 	static init() {
+		console.debug(`Combat HUD: Initializing statically`);
 		ui.combatHud ??= new CombatHUD();
+		console.debug(`Combat HUD: First render`);
 
 		ui.combatHud.render(true);
 
@@ -783,6 +984,8 @@ export class CombatHUD extends Application {
 				ui.controls.render(true);
 			}
 		}, 200);
+
+		console.debug(`Combat HUD: Initializing finished`);
 	}
 
 	static update() {
@@ -795,18 +998,20 @@ export class CombatHUD extends Application {
 	}
 
 	static close() {
+		console.debug(`Combat HUD: Closing`);
 		if (ui.combatHud) {
-			ui.combatHud.close();
 			ui.combatHud.unregisterHooks();
+			ui.combatHud.close();
 		}
 
 		ui.combatHud = null;
 	}
 
 	static minimize() {
+		console.debug(`Combat HUD: Minimizing`);
 		if (ui.combatHud) {
-			ui.combatHud._doMinimize();
 			ui.combatHud.unregisterHooks();
+			ui.combatHud._doMinimize();
 		}
 
 		ui.combatHud = null;
@@ -814,7 +1019,7 @@ export class CombatHUD extends Application {
 
 	static restore() {
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudMinimized, false);
-
+		console.debug(`Combat HUD: Restore`);
 		if (game.combat && game.combat.isActive) CombatHUD.init();
 	}
 

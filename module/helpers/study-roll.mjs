@@ -26,7 +26,6 @@ export class StudyRollHandler {
 			}
 		}
 
-		// Iterate over each targeted actor
 		for (const actor of targets) {
 			await this.handleStudyRollCallback(actor);
 		}
@@ -87,7 +86,7 @@ export class StudyRollHandler {
 		);
 
 		// Render the dialog
-		dialog.render(true);
+		await dialog.render(true);
 	}
 
 	/**
@@ -498,7 +497,7 @@ export class StudyRollHandler {
                     display: flex;
                     flex-direction: column;
                 ">
-                <img src="${imgSrc}" alt="${actor.name}" width="200">
+                <img src="${imgSrc}" alt="${actor.name}" width="128" height="128" style="object-fit: contain;">
                 <div style="${headerStyle}">
                   <span style="${headerText}">
                     <strong>${actor.name}</strong>

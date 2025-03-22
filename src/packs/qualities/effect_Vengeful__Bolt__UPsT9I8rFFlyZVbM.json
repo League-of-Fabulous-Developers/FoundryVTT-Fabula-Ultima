@@ -1,7 +1,7 @@
 {
   "name": "Vengeful (Bolt)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -12,7 +12,7 @@
     {
       "disabled": false,
       "name": "Vengeful (Bolt)",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/DamageUp.webp",
       "type": "base",
       "changes": [],
       "description": "<p>After a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal @DMG[5 bolt] damage to that creature (after the attack has been resolved).</p>",
@@ -47,13 +47,13 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728772610775,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736274197541,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!UPsT9I8rFFlyZVbM.xWfVftFbRuv0ZNwi"
     }
   ],
-  "folder": "G9QbTliORWqM7IoY",
+  "folder": "SH8cHX3lJkZlLgj8",
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -62,11 +62,11 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747190299,
-    "modifiedTime": 1728747887075,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736274200444,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_id": "UPsT9I8rFFlyZVbM",
-  "sort": 1100000,
+  "sort": 5200000,
   "ownership": {
     "default": 0,
     "7kOzP8RBVJhI8wKx": 3

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform a <strong>ranged</strong> attack, you may spend <strong>@LOSS[10 mp]</strong> to choose one option: the attack gains <strong>multi (2)</strong>; <strong>or</strong> you increase the attack's <strong>multi</strong> property by one, up to a maximum of <strong>multi (3)</strong>.</p>",
+    "description": "<p>When you perform a <strong>ranged</strong> attack, you may spend 10 Mind Points to choose one option: the attack gains <strong>multi (2)</strong>; <strong>or</strong> you increase the attack's <strong>multi</strong> property by one, up to a maximum of <strong>multi (3)</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -78,10 +80,10 @@
           "value": false
         },
         "accuracy": {
-          "value": false
+          "value": true
         },
         "damage": {
-          "value": false
+          "value": true
         }
       },
       "attributes": {
@@ -97,7 +99,7 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "type": {
           "value": "physical"
@@ -106,7 +108,7 @@
       }
     },
     "hasRoll": {
-      "value": false
+      "value": true
     },
     "hasResource": {
       "value": false
@@ -118,7 +120,14 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "barrage"
+    "fuid": "barrage",
+    "cost": {
+      "amount": 10
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 3
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +143,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706506734196,
-    "modifiedTime": 1724180863022,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741971220194,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

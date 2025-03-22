@@ -2,13 +2,13 @@
   "folder": "DSK88QwlFKfnapAU",
   "name": "Double or Nothing",
   "type": "skill",
-  "img": "icons/sundries/gaming/dice-runed-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/double_or_nothing.png",
   "system": {
     "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<p>Before you perform an Accuracy Check, a Magic Check for an offensive spell ( @ICON[offensive] ), or a Check to advance or turn back a Clock, you may declare <strong>double or nothing</strong>. If you do and the Check triggers a <strong>critical success</strong>, double the damage dealt by that attack or spell or the filled or erased sections of that Clock, respectively; however, any other Result is considered a <strong>critical failure</strong>.</p>",
+    "description": "<p>Before you perform an Accuracy Check, a Magic Check for an offensive spell (@ICON[offensive]), or a Check to advance or turn back a Clock, you may declare <strong>double or nothing</strong>. If you do and the Check triggers a <strong>critical success</strong>, double the damage dealt by that attack or spell or the filled or erased sections of that Clock, respectively; however, any other Result is considered a <strong>critical failure</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -52,7 +52,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -132,8 +134,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707643024284,
-    "modifiedTime": 1724180863319,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742578990031,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

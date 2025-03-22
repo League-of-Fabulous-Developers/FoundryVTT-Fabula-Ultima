@@ -19,19 +19,13 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			value: item.system.accuracy.value,
 		});
 
-		const configurer = AccuracyCheck.configure(check)
+		AccuracyCheck.configure(check)
 			.setDamage(item.system.damageType.value, item.system.damage.value)
 			.setTargetedDefense(item.system.defense)
-			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
-
-		const attackTypeBonus = actor.system.bonuses.damage[item.system.type.value] ?? 0;
-		if (attackTypeBonus) {
-			configurer.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
-		}
-		const weaponCategoryBonus = actor.system.bonuses.damage[item.system.category.value] ?? 0;
-		if (weaponCategoryBonus) {
-			configurer.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
-		}
+			.addItemDamageBonuses(item, actor)
+			.addItemAccuracyBonuses(item, actor)
+			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value)
+			.setDamageOverride(actor, 'attack');
 	}
 };
 
@@ -127,6 +121,6 @@ export class ShieldDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	transferEffects() {
-		return this.parent.isEquipped && !this.parent.actor?.system.vehicle.weaponsActive;
+		return this.parent.isEquipped && !this.parent.actor?.system.vehicle?.weaponsActive;
 	}
 }

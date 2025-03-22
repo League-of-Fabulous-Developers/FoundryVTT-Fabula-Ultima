@@ -3,7 +3,7 @@
   "name": "All Check Up",
   "type": "effect",
   "_id": "obBS9muc9G5Gn4FK",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
   "system": {
     "fuid": "all-check-up"
   },
@@ -21,7 +21,7 @@
       },
       "disabled": false,
       "name": "All Check Up",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
       "_id": "ZawAzHClEtivFmVp",
       "type": "base",
       "system": {},
@@ -46,7 +46,9 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": ""
         }
       },
       "_stats": {
@@ -56,8 +58,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725745340560,
-        "modifiedTime": 1725745826748,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1736279285540,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!obBS9muc9G5Gn4FK.ZawAzHClEtivFmVp"
     }
@@ -75,8 +77,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725745334468,
-    "modifiedTime": 1725745338785,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1736279280225,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_key": "!items!obBS9muc9G5Gn4FK"
 }

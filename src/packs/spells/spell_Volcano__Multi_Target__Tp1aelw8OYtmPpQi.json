@@ -77,7 +77,7 @@
       "value": "instantaneous"
     },
     "isOffensive": {
-      "value": true
+      "value": false
     },
     "source": {
       "value": "FUCR241"
@@ -101,7 +101,7 @@
       },
       "damage": {
         "hasDamage": {
-          "value": false
+          "value": true
         },
         "value": 30,
         "type": {
@@ -130,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710548265766,
-    "modifiedTime": 1724180864266,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741947458120,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

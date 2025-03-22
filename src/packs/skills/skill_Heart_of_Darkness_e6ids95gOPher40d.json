@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -140,21 +142,23 @@
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "active"
+          "CrisisInteraction": "active",
+          "type": "default",
+          "source": "FUCR185"
         }
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1741989231599,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
-      "img": "icons/magic/life/heart-cross-purple-orange.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/darkblade/darkblade_heart_of_darkness.png",
       "type": "base",
       "system": {},
       "origin": null,
@@ -175,8 +179,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706496883354,
-    "modifiedTime": 1724180862762,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741989227562,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

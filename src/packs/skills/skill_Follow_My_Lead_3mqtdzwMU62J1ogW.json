@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you may spend @LOSS[10 mp]. If you do, choose one ally you can see towards whom you have a Bond of <strong>affection</strong>: apply the benefits of the <strong>dance</strong> to that ally as well as yourself (the benefits still last until the start of <strong>your</strong> next turn).</p>",
+    "description": "<p>When you perform a <strong>dance</strong> with a <strong>duration</strong> of “Until the start of your next turn”, you may spend <strong>10 MP</strong>. If you do, choose one ally you can see towards whom you have a Bond of <strong>affection</strong>: apply the benefits of the <strong>dance</strong> to that ally as well as yourself (the benefits still last until the start of <strong>your</strong> next turn).</p>",
     "isFavored": {
       "value": false
     },
@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -117,7 +119,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "follow-my-lead"
+    "fuid": "follow-my-lead",
+    "cost": {
+      "amount": 10
+    }
   },
   "effects": [],
   "ownership": {
@@ -133,8 +138,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706560181599,
-    "modifiedTime": 1724180861363,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741989420595,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

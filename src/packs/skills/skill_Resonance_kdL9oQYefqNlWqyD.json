@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you affect one or more enemies with a <strong>verse</strong>, if you have an <strong>arcane</strong> weapon equipped, you may choose one option: until the start of your next turn, your allies deal <strong>【SL】</strong> extra damage to those enemies; <strong>or</strong> until the start of your next turn, you recover <strong>【SL】</strong> Mind Points every time one of those enemies suffers damage (if the same source deals damage to two or more of those enemies at the same time, you recover <strong>【SL】</strong> MP for each damaged enemy).</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[1 mp]</p><p>Skill Level <strong>2</strong> - @GAIN[2 mp]</p><p>Skill Level <strong>3</strong> - @GAIN[3 mp]</p>",
+    "description": "<p>After you affect one or more enemies with a <strong>verse</strong>, if you have an <strong>arcane</strong> weapon equipped, you may choose one option: until the start of your next turn, your allies deal <strong>【SL】</strong> extra damage to those enemies; <strong>or</strong> until the start of your next turn, you recover <strong>【SL】</strong> Mind Points every time one of those enemies suffers damage (if the same source deals damage to two or more of those enemies at the same time, you recover <strong>【SL】</strong> MP for each damaged enemy).</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[$sl mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -133,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706551588442,
-    "modifiedTime": 1724180862995,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741991192443,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

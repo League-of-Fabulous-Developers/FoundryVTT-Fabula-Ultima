@@ -2,6 +2,10 @@ import { KeyDataModel } from './key-data-model.mjs';
 import { ToneDataModel } from './tone-data-model.mjs';
 import { FU, SYSTEM } from '../../../../helpers/config.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
+import { CommonSections } from '../../../../checks/common-sections.mjs';
+import { Targeting } from '../../../../helpers/targeting.mjs';
+import { CommonEvents } from '../../../../checks/common-events.mjs';
+
 async function getDescription(model, useAttributes = false) {
 	const key = model.key;
 	const tone = model.tone;
@@ -30,10 +34,14 @@ async function getDescription(model, useAttributes = false) {
 		// Set rollData based on the key
 		const keyData = key.system.data;
 		rollData.key = {
-			type: game.i18n.localize(FU.damageTypes[keyData.type]),
-			status: game.i18n.localize(KeyDataModel.statuses[keyData.status]),
-			attribute: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
-			recovery: game.i18n.localize(KeyDataModel.recoveryOptions[keyData.recovery]),
+			type: keyData.type,
+			typeLocal: game.i18n.localize(FU.damageTypes[keyData.type]),
+			status: keyData.status,
+			statusLocal: game.i18n.localize(FU.statusEffects[keyData.status]),
+			attribute: keyData.attribute,
+			attributeLocal: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
+			resource: keyData.recovery,
+			resourceLocal: game.i18n.localize(FU.resources[keyData.recovery]),
 		};
 
 		const actor = model.parent?.parent?.actor;
@@ -77,6 +85,16 @@ export class VersesApplication extends FormApplication {
 	 */
 	#verse;
 
+	/**
+	 * @type KeyDataModel
+	 */
+	#defaultKey;
+
+	/**
+	 * @type ToneDataModel
+	 */
+	#defaultTone;
+
 	constructor(verse, options = {}) {
 		super(verse);
 		if (verse.app) {
@@ -87,40 +105,59 @@ export class VersesApplication extends FormApplication {
 		verse.app = this;
 
 		// Set predefined key and tone if provided in options
-		if (options.predefinedKey) {
-			this.#verse.key = verse.actor.items.get(options.predefinedKey);
-		}
-		if (options.predefinedTone) {
-			this.#verse.tone = verse.actor.items.get(options.predefinedTone);
-		}
+		this.#defaultKey = options.predefinedKey ? verse.actor.items.get(options.predefinedKey) : this.keys[0];
+		this.#defaultTone = options.predefinedTone ? verse.actor.items.get(options.predefinedTone) : this.tones[0];
+	}
+
+	/**
+	 * @returns {[]}
+	 */
+	get keys() {
+		const _keys = this.#verse.actor.itemTypes.classFeature
+			.filter((item) => item.system.data instanceof KeyDataModel)
+			.reduce((agg, item) => {
+				agg[item.id] = item;
+				return agg;
+			}, {});
+		return Object.values(_keys);
+	}
+
+	/**
+	 * @returns {[]}
+	 */
+	get tones() {
+		const _tones = this.#verse.actor.itemTypes.classFeature
+			.filter((item) => item.system.data instanceof ToneDataModel)
+			.reduce((agg, item) => {
+				agg[item.id] = item;
+				return agg;
+			}, {});
+		return Object.values(_tones);
 	}
 
 	get template() {
 		return 'systems/projectfu/templates/feature/chanter/feature-verse-application.hbs';
 	}
 
+	get defaultVolume() {
+		return 'low';
+	}
+
 	async getData(options = {}) {
-		// Prepare data for the form template
-		let keys = this.#verse.actor.itemTypes.classFeature
-			.filter((item) => item.system.data instanceof KeyDataModel)
-			.reduce((agg, item) => {
-				agg[item.id] = item;
-				return agg;
-			}, {});
-
-		let tones = this.#verse.actor.itemTypes.classFeature
-			.filter((item) => item.system.data instanceof ToneDataModel)
-			.reduce((agg, item) => {
-				agg[item.id] = item;
-				return agg;
-			}, {});
-
 		// Define volume options
 		const volume = [
 			{ id: 'low', name: game.i18n.localize('FU.ClassFeatureVerseVolumeLow') },
 			{ id: 'medium', name: game.i18n.localize('FU.ClassFeatureVerseVolumeMedium') },
 			{ id: 'high', name: game.i18n.localize('FU.ClassFeatureVerseVolumeHigh') },
 		];
+
+		// Set defaults if missing
+		if (this.#verse.key == null || this.#verse.tone == null) {
+			await this.#verse.updateSource({
+				key: this.#defaultKey,
+				tone: this.#defaultTone,
+			});
+		}
 
 		// Fetch the initial description
 		const effects = await getDescription(this.#verse, true);
@@ -129,12 +166,12 @@ export class VersesApplication extends FormApplication {
 		let performance = {
 			key: this.#verse.key?.id || '',
 			tone: this.#verse.tone?.id || '',
-			volume: this.#verse.volume || 'low',
+			volume: this.#verse.volume || this.defaultVolume,
 		};
 
 		return {
-			keys: Object.values(keys), // Convert object to array for dropdown
-			tones: Object.values(tones), // Convert object to array for dropdown
+			keys: this.keys, // Convert object to array for dropdown
+			tones: this.tones, // Convert object to array for dropdown
 			volume,
 			performance,
 			effects, // Include description effects
@@ -172,7 +209,7 @@ export class VersesApplication extends FormApplication {
 			return;
 		}
 
-		const volumeSelection = this.#verse.volume || 'medium';
+		const volumeSelection = this.#verse.volume || this.defaultVolume;
 
 		const volumes = {
 			low: game.i18n.localize('FU.ClassFeatureVerseVolumeLow'),
@@ -187,24 +224,39 @@ export class VersesApplication extends FormApplication {
 		};
 
 		// Prepare the data object for the chat message
+		let flags = { [SYSTEM]: { [Flags.ChatMessage.Item]: this.#verse } };
+		const cost = this.#verse.config[volumeSelection];
+		const actor = this.#verse.actor;
+		const item = this.#verse.item;
+		const targets = Targeting.getSerializedTargetData();
+
+		// SpendResource
+		const sections = [];
+		const expense = {
+			resource: 'mp',
+			amount: cost,
+		};
+		CommonSections.spendResource(sections, actor, item, targets, flags, expense);
+		CommonEvents.skill(actor, item);
+
+		// Data for the template
 		const data = {
 			verse: this.#verse,
 			volume: volumes[volumeSelection],
-			cost: this.#verse.config[volumeSelection],
+			cost: cost,
 			targets: volumeTargets[volumeSelection],
 			key: this.#verse.key?.name || '',
 			tone: this.#verse.tone?.name || '',
 			description: await getDescription(this.#verse, true),
+			sections: sections,
 		};
-
-		const actor = this.#verse.actor;
 
 		// Prepare the chat message data
 		const chatMessage = {
 			speaker: ChatMessage.implementation.getSpeaker({ actor }),
 			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', this.#verse.parent.parent),
 			content: await renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
-			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: this.#verse } },
+			flags: flags,
 		};
 
 		// Create the chat message

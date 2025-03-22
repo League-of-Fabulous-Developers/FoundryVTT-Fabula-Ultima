@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you cast an <strong>instantaneous</strong> spell, if you have an <strong>arcane</strong> weapon equipped, you may increase the spell's total MP cost by up to <strong>【SL × 10】</strong> Mind Points. If you do so and the spell deals damage to one or more creatures, it will deal 5 extra damage to each creature for every 10 Mind Points by which you increased its total MP cost.</p><hr /><p>Skill Level <strong>1</strong> - @LOSS[10 mp]</p><p>Skill Level <strong>2</strong> - @LOSS[20 mp]</p><p>Skill Level <strong>3</strong> - @LOSS[30 mp]</p>",
+    "description": "<p>When you cast an <strong>instantaneous</strong> spell, if you have an <strong>arcane</strong> weapon equipped, you may increase the spell's total MP cost by up to <strong>【SL × 10】</strong> Mind Points. If you do so and the spell deals damage to one or more creatures, it will deal 5 extra damage to each creature for every 10 Mind Points by which you increased its total MP cost.</p>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -118,7 +120,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "cataclysm"
+    "fuid": "cataclysm",
+    "cost": {
+      "amount": 10
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +139,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706497962110,
-    "modifiedTime": 1724180863108,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741988724293,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

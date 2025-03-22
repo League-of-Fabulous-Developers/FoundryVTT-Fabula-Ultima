@@ -1,6 +1,7 @@
 import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
+import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 
 const CRISIS_INTERACTION = 'CrisisInteraction';
 const EFFECT_TYPE = 'type';
@@ -94,6 +95,30 @@ const PRIORITY_CHANGES = [
 	'system.affinities.poison.base',
 ];
 
+/**
+ * @typedef ActiveEffect
+ * @property {DataModel} parent
+ * @property {Boolean} isSuppressed Is there some system logic that makes this active effect ineligible for application?
+ * @property {Document} target Retrieve the Document that this ActiveEffect targets for modification.
+ * @property {Boolean} active Whether the Active Effect currently applying its changes to the target.
+ * @property {Boolean modifiesActor Does this Active Effect currently modify an Actor?
+ * @property {Boolean} isTemporary Describe whether the ActiveEffect has a temporary duration based on combat turns or rounds.
+ * @property {Boolean} isEmbedded Test whether this Document is embedded within a parent Document
+ * @property {String} id Canonical name
+ * @property {String} uuid
+ * @property {String} name
+ * @property {EffectChangeData[]} changes - The array of EffectChangeData objects which the ActiveEffect applies
+ * @remarks https://foundryvtt.com/api/classes/client.ActiveEffect.html
+ * @property {Function<Promise<Document>>} delete Delete this Document, removing it from the database.
+ * @property {Function<void>} update Update this Document using incremental data, saving it to the database.
+ * @property {Function<String, String, *, void>} setFlag Assign a "flag" to this document. Flags represent key-value type data which can be used to store flexible or arbitrary data required by either the core software, game systems, or user-created modules.
+ * @property {Function<String, String, *>} getFlag Get the value of a "flag" for this document See the setFlag method for more details on flags
+ */
+
+/**
+ * @extends ActiveEffect
+ * @inheritDoc
+ * */
 export class FUActiveEffect extends ActiveEffect {
 	static get TEMPORARY_FLAG() {
 		return TEMPORARY;
@@ -129,6 +154,10 @@ export class FUActiveEffect extends ActiveEffect {
 	}
 
 	get isTemporary() {
+		// TODO: Handle differently or?
+		// if (this.statuses.has('crisis')) {
+		// 	return false;
+		// }
 		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY);
 	}
 
@@ -143,13 +172,22 @@ export class FUActiveEffect extends ActiveEffect {
 		}
 	}
 
+	/**
+	 * @param {FUActor|FUItem} target
+	 * @param {EffectChangeData} change
+	 * @returns {{}|*}
+	 */
 	apply(target, change) {
+		// Support expressions
 		if (change.value && typeof change.value === 'string') {
 			try {
+				// First, evaluate using built-in support
 				const expression = Roll.replaceFormulaData(change.value, this.parent);
-				const value = Roll.validate(expression) ? Roll.safeEval(expression) : change.value;
-				console.debug('Substituting change variable:', change.value, value);
+				// Second, evaluate with our custom expressions
+				const context = ExpressionContext.resolveTarget(target, this.parent);
+				const value = Expressions.evaluate(expression, context);
 				change.value = String(value ?? 0);
+				console.debug(`Assigning ${change.key} = ${change.value}`);
 			} catch (e) {
 				console.error(e);
 				ui.notifications?.error(

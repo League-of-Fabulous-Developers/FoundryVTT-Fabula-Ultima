@@ -2,7 +2,7 @@
   "folder": "wZOSNGoeGDSeFxp6",
   "name": "[Handout:  Deck]",
   "type": "miscAbility",
-  "img": "icons/sundries/gaming/playing-cards.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/magic_cards.png",
   "system": {
     "subtype": {
       "value": "other"
@@ -46,7 +46,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -135,15 +137,18 @@
     "BwRsFvMHAq9vUtEO": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "projectfu-playtest": {
+      "growthClock": false
+    }
   },
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707665720251,
-    "modifiedTime": 1724180861872,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742580063009,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

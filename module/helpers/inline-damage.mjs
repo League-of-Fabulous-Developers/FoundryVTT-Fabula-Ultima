@@ -1,8 +1,8 @@
 import { FU } from './config.mjs';
-import { applyDamagePipelineWithHook } from './apply-damage.mjs';
 import { targetHandler } from './target-handler.mjs';
-import { InlineHelper } from './inline-helper.mjs';
+import { InlineHelper, InlineSourceInfo } from './inline-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
+import { DamagePipeline, DamageRequest } from '../pipelines/damage-pipeline.mjs';
 
 const INLINE_DAMAGE = 'InlineDamage';
 
@@ -22,7 +22,7 @@ const inlineDamageEnricher = {
 
 function enricher(text, options) {
 	const amount = text[1];
-	const type = text[2];
+	const type = text[2].toLowerCase();
 
 	if (type in FU.damageTypes) {
 		const anchor = document.createElement('a');
@@ -62,10 +62,11 @@ function activateListeners(document, html) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
 				const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
-				const amount = Expressions.evaluate(this.dataset.amount, context);
+				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);
 
 				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
-				await applyDamagePipelineWithHook({ event: null, targets, sourceUuid: sourceInfo.actorUuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
+				const request = new DamageRequest(sourceInfo, targets, baseDamageInfo);
+				await DamagePipeline.process(request);
 			}
 		})
 		.on('dragstart', function (event) {
@@ -78,7 +79,7 @@ function activateListeners(document, html) {
 			const sourceInfo = InlineHelper.determineSource(document, this);
 			const data = {
 				type: INLINE_DAMAGE,
-				sourceInfo: sourceInfo,
+				_sourceInfo: sourceInfo,
 				damageType: this.dataset.type,
 				amount: this.dataset.amount,
 			};
@@ -88,12 +89,16 @@ function activateListeners(document, html) {
 }
 
 // TODO: Implement
-function onDropActor(actor, sheet, { type, damageType, amount, sourceInfo, ignore }) {
+async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo, ignore }) {
 	if (type === INLINE_DAMAGE) {
+		// Need to rebuild the class after it was deserialized
+		const sourceInfo = InlineSourceInfo.fromObject(_sourceInfo);
 		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
-		const _amount = Expressions.evaluate(amount, context);
+		const _amount = await Expressions.evaluateAsync(amount, context);
 		const baseDamageInfo = { type: damageType, total: _amount, modifierTotal: 0 };
-		applyDamagePipelineWithHook({ event: null, targets: [actor], sourceUuid: sourceInfo.actorUuid, sourceName: sourceInfo.name || 'inline damage', baseDamageInfo, extraDamageInfo: {}, clickModifiers: null });
+
+		const request = new DamageRequest(sourceInfo, [actor], baseDamageInfo);
+		DamagePipeline.process(request);
 		return false;
 	}
 }

@@ -1,5 +1,12 @@
+/**
+ * @description The keys for scoped flags commonly used by the system. They are stored and accessed by documents such as actors,
+ * chat messages.
+ * @example actor.getFlag(Flags.Scope, Flags.CurrentTurn)
+ */
 export const Flags = Object.freeze({
+	CombatantsTurnStarted: 'CombatantsTurnStarted',
 	CombatantsTurnTaken: 'CombatantsTurnTaken',
+	CombatantId: 'CombatantId',
 	CurrentTurn: 'CurrentTurn',
 	FirstTurn: 'FirstTurn',
 	ChatMessage: Object.freeze({
@@ -11,6 +18,17 @@ export const Flags = Object.freeze({
 		SupportCheck: 'Supporter',
 		GroupCheckSupporters: 'GroupCheckSupporters',
 		Item: 'Item',
+		Damage: 'Damage',
+		Source: 'Source',
+		ResourceGain: 'ResourceGain',
+		ResourceLoss: 'ResourceLoss',
 		UseMetaCurrency: 'UseMetaCurrency',
+		Targets: 'Targets',
+		RevertedAction: 'RevertedAction',
+		Effects: 'Effects',
+	}),
+	Scope: 'projectfu',
+	Modifier: Object.freeze({
+		ScaleIncomingDamage: 'scaleIncomingDamage',
 	}),
 });

@@ -1,0 +1,22 @@
+{
+  "name": "Weakness",
+  "sorting": "a",
+  "folder": "sDhJwTqnt0rJlspi",
+  "type": "Item",
+  "_id": "ZRup8UZGBBD2SFVi",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.330",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!ZRup8UZGBBD2SFVi"
+}

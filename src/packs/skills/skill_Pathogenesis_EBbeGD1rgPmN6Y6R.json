@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers @EFFECT[poisoned].</p>",
+    "description": "<p>When you deal damage to one or more creatures with one of your Chimerist spells, each of those creatures that share their <strong>Species</strong> with the creature you originally learned that spell from suffers <strong>poisoned</strong>.</p><hr /><ul><li><p><strong>Targets Suffers: </strong>@EFFECT[poisoned]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -134,8 +136,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706495623351,
-    "modifiedTime": 1724180861823,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741990532674,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

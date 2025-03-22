@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -135,19 +137,7 @@
       "_id": "kTPwUE4IK9FTRBIX",
       "changes": [
         {
-          "key": "system.bonuses.damage.melee",
-          "mode": 2,
-          "value": "2*@system.level.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.ranged",
-          "mode": 2,
-          "value": "2*@system.level.value",
-          "priority": null
-        },
-        {
-          "key": "system.bonuses.damage.spell",
+          "key": "system.bonuses.damage.all",
           "mode": 2,
           "value": "2*@system.level.value",
           "priority": null
@@ -158,17 +148,19 @@
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "active"
+          "CrisisInteraction": "active",
+          "type": "default",
+          "source": "FUCR195"
         }
       },
       "tint": "#ffffff",
       "_stats": {
         "coreVersion": "12.331",
-        "systemId": null,
-        "systemVersion": null,
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1723766471819,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1741976181611,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -194,8 +186,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706502375594,
-    "modifiedTime": 1724180861782,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741976205033,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

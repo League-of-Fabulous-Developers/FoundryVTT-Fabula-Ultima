@@ -1,7 +1,7 @@
 {
   "name": "Hounding",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -12,7 +12,7 @@
     {
       "disabled": true,
       "name": "Hounding",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/AccuracyUp.webp",
       "type": "base",
       "changes": [
         {
@@ -60,8 +60,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728766879547,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736274375053,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!YWpULyMuk55HT40W.OJVOtK52HlYmKlsk"
     }
@@ -75,8 +75,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728747190299,
-    "modifiedTime": 1728747190299,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736274367773,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_id": "YWpULyMuk55HT40W",
   "sort": 300000,

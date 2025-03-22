@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>At the start of a conflict, you may spend up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: choose a creature you can see and the GM reveals one of their <strong>Traits</strong>; or name a damage type and choose a creature you can see, and the GM reveals that creature's <strong>Affinity </strong>towards that damage type.</p><hr /><p>Skill Level <strong>1</strong> - @LOSS[5 mp]</p><p>Skill Level <strong>2</strong> - @LOSS[10 mp]</p><p>Skill Level <strong>3</strong> - @LOSS[15 mp]</p><p>Skill Level <strong>4</strong> - @LOSS[20 mp]</p><p>Skill Level <strong>5</strong> - @LOSS[25 mp]</p><p>Skill Level <strong>6</strong> - @LOSS[30 mp]</p>",
+    "description": "<p>At the start of a conflict, you may spend up to <strong>【SL × 5】</strong> Mind Points. For every 5 Mind Points you spend this way, choose one option: choose a creature you can see and the GM reveals one of their <strong>Traits</strong>; or name a damage type and choose a creature you can see, and the GM reveals that creature's <strong>Affinity </strong>towards that damage type.</p>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -118,7 +120,13 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "quick-assessment"
+    "fuid": "quick-assessment",
+    "cost": {
+      "amount": 5
+    },
+    "targeting": {
+      "rule": "special"
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +142,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706487865484,
-    "modifiedTime": 1724180862483,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741974850648,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

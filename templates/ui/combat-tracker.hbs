@@ -77,9 +77,9 @@
             <h1>{{localize 'COMBAT.NotStarted'}}</h1>
         {{/if}}
         {{#each factions as |combatants faction| }}
-            <h2 class="faction">{{localize (concat 'FU.CombatFaction' (capitalize faction))}}</h2>
+            <h2 class="faction">{{localize (concat 'FU.CombatFaction' (capitalize faction))}} {{combatants.length}}</h2>
             {{#each combatants}}
-                <li class="combatant actor directory-item flexrow {{faction}} {{this.css}}"
+                <li class="combatant actor directory-item flexrow {{faction}} {{this.css}} {{#if (eq @root.combatant.id this.id)}}started-turn{{/if}}"
                     data-combatant-id="{{this.id}}">
                     <img class="token-image" data-src="{{this.img}}" alt="{{this.name}}" />
                     <div class="token-name flexcol">
@@ -122,32 +122,7 @@
                     {{/if}}
 
                     <div class="token-initiative">
-                        {{#if (and @root.round (lookup @root.turnsLeft this.id))}}
-                            {{#if (and this.owner (eq faction @root.currentTurn))}}
-                                <a class="combatant-control take-turn" role="button" data-action="take-turn">
-                                    {{#if (gt (lookup @root.totalTurns this.id) 1)}}
-                                        <i class="mats-o mats-fill">counter_{{lookup @root.turnsLeft this.id}}</i>
-                                    {{else}}
-                                        <i class="mats-o mats-fill">check_circle</i>
-                                    {{/if}}
-                                </a>
-                            {{else}}
-                                {{#if this.owner}}
-                                    <a class="combatant-control take-turn out-of-turn"
-                                       data-action="take-turn-out-of-turn">
-                                        {{# if (gt (lookup @root.totalTurns this.id) 1)}}
-                                            <i class="mats-o">counter_{{lookup @root.turnsLeft this.id}}</i>
-                                        {{else}}
-                                            <i class="mats-o">check_circle</i>
-                                        {{/if}}
-                                    </a>
-                                {{else}}
-                                    <span class="combatant-control take-turn">
-                                        <i class="mats-o">check_circle</i>
-                                    </span>
-                                {{/if}}
-                            {{/if}}
-                        {{/if}}
+                        {{> "systems/projectfu/templates/ui/partials/combat-hud-turn.hbs"}}
                     </div>
                 </li>
             {{/each}}

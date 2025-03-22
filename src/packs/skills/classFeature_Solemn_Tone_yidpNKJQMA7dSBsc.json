@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.tone",
     "data": {
-      "description": "<p>Each target recovers from <strong>【@DATA[key.status]】</strong>. Each target also gains Resistance to <strong>【@DATA[key.type]】</strong> damage until the start of your next turn.</p>"
+      "description": "<p>Each target recovers from<strong>【@DATA[key.statusLocal]】</strong>and also gains <strong>【@AFFINITY[@DATA[key.type] resistance]】</strong>until the <strong>start of your next turn</strong>.</p>"
     },
     "source": "FUHF139",
     "fuid": "solemn-tone"
@@ -32,8 +32,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710040272509,
-    "modifiedTime": 1724180863511,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741997164671,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

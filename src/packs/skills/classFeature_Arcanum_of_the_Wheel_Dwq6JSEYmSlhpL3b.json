@@ -34,7 +34,7 @@
       },
       "disabled": false,
       "name": "Merged: Wheel",
-      "img": "modules/fabula-ultima-core-rulebook/artwork/class/Arcana/Arcanum%20of%20the%20Wheel.png",
+      "img": "systems/projectfu/styles/static/compendium/classes/arcanist/arcanum/arcanum-of-the-wheel.png",
       "_id": "ydG9HFnv5wiV0oTU",
       "type": "base",
       "system": {},
@@ -59,7 +59,9 @@
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUCR181"
         }
       },
       "_stats": {
@@ -69,8 +71,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725598840239,
-        "modifiedTime": 1725606451007,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1741996507806,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!Dwq6JSEYmSlhpL3b.ydG9HFnv5wiV0oTU"
     }

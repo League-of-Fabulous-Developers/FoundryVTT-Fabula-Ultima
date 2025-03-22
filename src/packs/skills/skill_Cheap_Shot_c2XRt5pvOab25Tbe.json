@@ -27,12 +27,8 @@
       "value": "Rogue"
     },
     "useWeapon": {
-      "accuracy": {
-        "value": false
-      },
-      "damage": {
-        "value": false
-      },
+      "accuracy": true,
+      "damage": true,
       "hrZero": {
         "value": false
       }
@@ -49,13 +45,12 @@
       "value": 0
     },
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": true,
       "value": 0,
-      "type": {
-        "value": "physical"
-      }
+      "type": "",
+      "extra": "$sl+$tsc",
+      "onRoll": "",
+      "onApply": "(min($tsc, 1) * $sl) + $tsc"
     },
     "impdamage": {
       "hasImpDamage": {
@@ -106,7 +101,7 @@
       }
     },
     "hasRoll": {
-      "value": false
+      "value": true
     },
     "hasResource": {
       "value": false
@@ -118,7 +113,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "cheap-shot"
+    "fuid": "cheap-shot",
+    "targeting": {
+      "rule": "single"
+    }
   },
   "effects": [],
   "ownership": {
@@ -132,10 +130,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706504733585,
-    "modifiedTime": 1724180862648,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1740435390578,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

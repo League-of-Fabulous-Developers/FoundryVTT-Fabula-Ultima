@@ -90,7 +90,9 @@ Supplied game rules in the system compendium adhere to and are published under t
 
 [projectfu\styles\static\compendium\weapons\iron-knuckle.png]
 
-- iron-knuckle.png icon from [@only_ruben_draw](https://x.com/Only_Ruben_Draw) with explicit permission to use for ProjectFU project.
+- iron-knuckle.png icon from Mildew with explicit permission to use for ProjectFU project.
+
+- previous iron-knuckle.png icon from [@only_ruben_draw](https://x.com/Only_Ruben_Draw) with explicit permission to use for ProjectFU project.
 
 ## Extra Icons
 

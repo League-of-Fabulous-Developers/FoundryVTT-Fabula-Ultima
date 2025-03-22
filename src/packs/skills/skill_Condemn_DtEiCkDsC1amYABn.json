@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action and spend @LOSS[5 mp] to perform an Opposed <strong>【INS + WLP】</strong> Check against a creature that can hear and understand you — describe your accusations! If you succeed, the target loses <strong>【SL × 10】</strong> Mind Points and suffers @EFFECT[dazed] or @EFFECT[shaken] (your choice).</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【INS + WLP】</strong> Checks for this Skill.</p><hr /><p>Skill Level <strong>1</strong> - Target loses @LOSS[10 mp]</p><p>Skill Level <strong>2</strong> - Target loses @LOSS[20 mp]</p><p>Skill Level <strong>3</strong> - Target loses @LOSS[30 mp]</p><p>Skill Level <strong>4</strong> - Target loses @LOSS[40 mp]</p>",
+    "description": "<p>You may use an action and spend 5 MP to perform an Opposed <strong>【INS + WLP】</strong> Check against a creature that can hear and understand you — describe your accusations! If you succeed, the target loses <strong>【SL × 10】</strong> Mind Points and suffers <strong>dazed</strong> or <strong>shaken</strong> (your choice).</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【INS + WLP】</strong> Checks for this Skill.</p><hr /><ul><li><p><strong>You Perform: </strong>@CHECK[ins wlp ($sl)]</p></li><li><p><strong>Target Loses</strong>: @LOSS[$sl*10 mp]</p></li><li><p><strong>Target Suffers:</strong> @EFFECT[dazed] <strong>or</strong> @EFFECT[shaken]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -118,7 +120,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "condemn"
+    "fuid": "condemn",
+    "cost": {
+      "amount": 5
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +139,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706504101200,
-    "modifiedTime": 1724180861792,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741973222863,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

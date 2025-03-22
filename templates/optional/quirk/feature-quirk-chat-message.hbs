@@ -9,8 +9,8 @@
 </div>
 {{/if}}
 <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'collapseDescriptions')}}open{{/unless}}>
+    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
-        {{{description}}}
+        {{{enrichedDescription}}}
     </details>
 </div>

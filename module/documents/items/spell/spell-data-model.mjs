@@ -8,6 +8,11 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
+import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
+import { TargetingDataModel } from '../common/targeting-data-model.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
+import { Traits } from '../../../pipelines/traits.mjs';
+import { CommonEvents } from '../../../checks/common-events.mjs';
 
 /**
  * @param {CheckV2} check
@@ -26,12 +31,18 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		check.additionalData.hasDamage = item.system.rollInfo.damage.hasDamage.value;
 		const configurer = MagicCheck.configure(check)
 			.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
+			.addTraits(item.system.rollInfo.damage.type.value, Traits.Spell)
 			.setTargetedDefense('mdef')
+			.setDamageOverride(actor, 'spell')
 			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
 
 		const spellBonus = actor.system.bonuses.damage.spell;
 		if (spellBonus) {
 			configurer.addDamageBonus('FU.DamageBonusTypeSpell', spellBonus);
+		}
+		const damageTypeBonus = actor.system.bonuses.damage[item.system.rollInfo.damage.type.value];
+		if (damageTypeBonus) {
+			configurer.addDamageBonus(`FU.DamageBonus${item.system.rollInfo.damage.type.value.capitalize()}`, damageTypeBonus);
 		}
 	}
 };
@@ -43,8 +54,10 @@ Hooks.on(CheckHooks.prepareCheck, prepareCheck);
  * @param {CheckResultV2} result
  * @param {FUActor} actor
  * @param {FUItem} [item]
+ * @param {Object} flags
+ * @param {TargetData[]} targets
  */
-function onRenderCheck(data, result, actor, item) {
+function onRenderCheck(data, result, actor, item, flags) {
 	if (item && item.system instanceof SpellDataModel) {
 		data.push(async () => ({
 			order: CHECK_DETAILS,
@@ -52,20 +65,31 @@ function onRenderCheck(data, result, actor, item) {
 			data: {
 				spell: {
 					duration: item.system.duration.value,
-					target: item.system.target.value,
-					mpCost: item.system.mpCost.value,
+					target: item.system.targeting.rule,
+					max: item.system.targeting.max,
+					mpCost: item.system.cost.amount,
 					opportunity: item.system.opportunity,
-					summary: item.system.summary.value,
-					description: await TextEditor.enrichHTML(item.system.description),
 				},
 			},
 		}));
+
+		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
+
+		const targets = CheckConfiguration.inspect(result).getTargetsOrDefault();
+
+		// TODO: Find a better way to handle this, as it's needed when using a spell without accuracy
+		if (!item.system.hasRoll.value) {
+			CommonSections.targeted(data, actor, item, targets, flags, null, null);
+		}
+
+		CommonSections.spendResource(data, actor, item, targets, flags);
 	}
 }
 
 Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
+ * @property {String} fuid
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
@@ -85,11 +109,14 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {boolean} isOffensive.value
  * @property {string} opportunity
  * @property {string} source.value
+ * @property {Number} maxTargets.value
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  * @property {ItemAttributesDataModel} rollInfo.attributes
  * @property {number} rollInfo.accuracy.value
  * @property {DamageDataModel} rollInfo.damage
  * @property {boolean} hasRoll.value
+ * @property {ActionCostDataModel} cost
+ * @property {TargetingDataModel} targeting
  */
 export class SpellDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
@@ -109,9 +136,6 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 			impdamage: new EmbeddedDataField(ImprovisedDamageDataModel, {}),
 			isBehavior: new SchemaField({ value: new BooleanField() }),
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
-			mpCost: new SchemaField({ value: new StringField() }),
-			maxTargets: new SchemaField({ value: new NumberField({ initial: 0, integer: true, nullable: false }) }),
-			target: new SchemaField({ value: new StringField() }),
 			duration: new SchemaField({ value: new StringField() }),
 			isOffensive: new SchemaField({ value: new BooleanField() }),
 			opportunity: new StringField(),
@@ -125,6 +149,8 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 				damage: new EmbeddedDataField(DamageDataModel, {}),
 			}),
 			hasRoll: new SchemaField({ value: new BooleanField() }),
+			cost: new EmbeddedDataField(ActionCostDataModel, {}),
+			targeting: new EmbeddedDataField(TargetingDataModel, {}),
 		};
 	}
 
@@ -141,6 +167,7 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 		if (this.hasRoll.value) {
 			return ChecksV2.magicCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
 		} else {
+			CommonEvents.spell(this.parent.actor, this.parent);
 			return ChecksV2.display(this.parent.actor, this.parent);
 		}
 	}

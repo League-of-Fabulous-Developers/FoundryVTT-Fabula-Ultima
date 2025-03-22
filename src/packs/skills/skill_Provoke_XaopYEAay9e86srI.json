@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may use an action and spend <strong>@LOSS[5 mp]</strong> to perform an Opposed <strong>【MIG + WLP】</strong> Check against a creature you can see — describe how you taunt them! If you succeed, the target suffers <strong>@EFFECT[enraged]</strong> and is compelled to focus their attention on you (their attacks and offensive spells must include you among the targets if possible). This compulsion ends if you fall unconscious or leave the scene, if the creature is no longer enraged, or if they are successfully provoked by someone else.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【MIG + WLP】</strong> Checks for this Skill.</p>",
+    "description": "<p>You may use an action and spend 5 Mind Points to perform an Opposed <strong>【MIG + WLP】</strong> Check against a creature you can see — describe how you taunt them! If you succeed, the target suffers <strong>enraged</strong> and is compelled to focus their attention on you (their attacks and offensive spells must include you among the targets if possible). This compulsion ends if you fall unconscious or leave the scene, if the creature is no longer <strong>enraged</strong>, or if they are successfully <strong>provoked</strong> by someone else.</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【MIG + WLP】</strong> Checks for this Skill.</p><hr /><ul><li><p><strong>You Perform: </strong>@CHECK[mig wlp ($sl)]</p></li><li><p><strong>Target Suffers: </strong>@EFFECT[enraged]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -118,7 +120,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "provoke"
+    "fuid": "provoke",
+    "cost": {
+      "amount": 5
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +139,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706502413549,
-    "modifiedTime": 1724180862430,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741976470034,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

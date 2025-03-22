@@ -12,8 +12,10 @@
 		"gulp": "gulp",
 		"unpack": "node ./tools/pushLDBtoYML.mjs",
 		"pack": "node ./tools/pullYMLtoLDB.mjs",
+		"downloadcsv": "node ./tools/csvtojson/download-csv.mjs",
 		"c2j": "node ./tools/csvtojson/convert-csv-to-json.mjs && prettier --write .",
 		"j2c": "node ./tools/jsontocsv/convert-json-to-csv.mjs && prettier --write .",
+		"localize": "npm run downloadcsv && npm run c2j",
 		"prepare": "husky"
 	},
 	"browserslist": [
@@ -39,6 +41,7 @@
 	"dependencies": {
 		"animate.css": "^4.1.1",
 		"rpg-awesome": "^0.2.0",
-		"papaparse": "^5.4.1"
+		"papaparse": "^5.4.1",
+		"axios": "^1.7.9"
 	}
 }

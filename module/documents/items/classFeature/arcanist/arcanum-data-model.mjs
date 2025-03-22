@@ -1,6 +1,7 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
+import { CommonEvents } from '../../../../checks/common-events.mjs';
 
 /**
  * @extends ClassFeatureDataModel
@@ -68,6 +69,7 @@ export class ArcanumDataModel extends RollableClassFeatureDataModel {
 			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
 		};
 
+		CommonEvents.skill(item.actor, item);
 		ChatMessage.create(chatMessage);
 	}
 

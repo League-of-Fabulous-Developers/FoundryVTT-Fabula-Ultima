@@ -1,0 +1,82 @@
+{
+  "folder": "Z7sOoJ1jkwGP6nE3",
+  "name": "Damage Change (Dark)",
+  "type": "effect",
+  "_id": "oCoDJyldCweASnBk",
+  "img": "systems/projectfu/styles/static/affinities/dark.svg",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 300
+    }
+  },
+  "effects": [
+    {
+      "origin": "Compendium.projectfu.qualities.Item.oCoDJyldCweASnBk",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Damage Change (Dark)",
+      "img": "systems/projectfu/styles/static/affinities/dark.svg",
+      "_id": "XL0xoMW8mFxCsNws",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.damageType.value",
+          "mode": 5,
+          "value": "dark",
+          "priority": null
+        }
+      ],
+      "description": "<p>All damage dealt by your weapons, spells, and Skills becomes <strong>dark</strong> damage type.</p>",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none",
+          "type": "quality",
+          "source": "FUCR284"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1736275030812,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
+      },
+      "_key": "!items.effects!oCoDJyldCweASnBk.XL0xoMW8mFxCsNws"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "dobQfkKFj2NK96cc": 3,
+    "TV9jtuLKd5CvcqvO": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1736274698159,
+    "modifiedTime": 1736278099984,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
+  },
+  "_key": "!items!oCoDJyldCweASnBk"
+}

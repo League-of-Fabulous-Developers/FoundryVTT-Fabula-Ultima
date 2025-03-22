@@ -35,30 +35,19 @@
     <div class="window-header" style="display: none;">Combat HUD</div>
     <div class="faction-list characters {{#if isCompact }}compact{{/if}}" style="{{ additionalStyle }}">
         {{#each characters}}
-            <div class="combat-row {{ this.rowClass }}" data-type="character" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
+            <div class="combat-row {{ this.rowClass }} {{#if (inSet "crisis" this.actor.statuses)}}crisis{{/if}} {{#if (inSet "ko" this.actor.statuses)}}ko{{/if}}" data-type="character" data-actor-id="{{ this.actor.id }}" data-combatant-id="{{ this.id }}"
                  data-token-id="{{ this.token.id }}" data-order="{{ this.order }}"
                  {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
-                {{!-- <img class="token-image" src="{{this.img}}" alt="{{this.actor.name}}" /> --}}
+                {{!-- <img class="token-image" src="{{this.img}}" alt="{{name}}" /> --}}
                 <div class="combat-info">
-                    {{#if (crisis this.actor.system.resources.hp.value this.actor.system.resources.hp.max)}}
-                        <div class="combat-name crisis {{#unless this.hasEffects}}full-height{{/unless}}">
-                            <h2 class="token-name" data-tooltip="{{ this.actor.name }}">
-                                {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
-                                    <span class="combat-order">{{ this.order }}</span>.&nbsp;
-                                {{/if}}
-                                {{ this.actor.name }}
-                            </h2>
-                        </div>
-                    {{else}}
-                        <div class="combat-name {{#unless this.hasEffects}}full-height{{/unless}}">
-                            <h2  class="token-name" data-tooltip="{{ this.actor.name }}">
-                                {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
-                                    <span class="combat-order">{{ this.order }}</span>.&nbsp;
-                                {{/if}}
-                                {{ this.actor.name }}
-                            </h2>
-                        </div>
-                    {{/if}}
+                    <div class="combat-name {{#unless this.hasEffects}}full-height{{/unless}}">
+                        <h2 class="token-name" data-tooltip="{{ name }}">
+                            {{#if (getGameSetting "optionCombatHudShowOrderNumbers")}}
+                                <span class="combat-order">{{ this.order }}</span>.&nbsp;
+                            {{/if}}
+                            {{ name }}
+                        </h2>
+                    </div>
                 </div>
                 <div class="combat-bars">
                     {{#if this.trackedResourcePart1}}
@@ -77,49 +66,27 @@
                             <div class="marquee"
                                     style="animation-duration: {{this.effectsMarqueeDuration}}s; animation-direction: {{this.marqueeDirection}};">
                                 {{#each this.effects as |effect|}}
-                                    <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
+                                    <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                 {{/each}}
                                 {{#each this.effects as |effect|}}
-                                    <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
+                                    <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                 {{/each}}
                             </div>
                         {{else}}
                             <div>
                                 {{#each this.effects as |effect|}}
-                                    <img src="{{ effect.icon }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}"
+                                    <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                             style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
                                 {{/each}}
                             </div>
                         {{/if}}
                     </div>
                 {{/if}}
-                {{#if this.hasCombatStarted}}
-                    {{#if this.hasActed}}
-                    {{else}}
-                        {{#if this.isCurrentTurn}}
-                        <a class="combatant-control take-turn gap-3" role="button" data-action="take-turn">
-                            <span>End Turn</span>
-                            {{#if (gt this.totalTurns 1)}}
-                                <i class="mats-o mats-fill">counter_{{this.turnsLeft}}</i>
-                            {{else}}
-                                <i class="mats-o mats-fill">check_circle</i>
-                            {{/if}}
-                        </a>
-                        {{else}}
-                        <a class="combatant-control take-turn out-of-turn gap-3"
-                            data-action="take-turn-out-of-turn">
-                            <span>Paused</span>
-                            {{#if (gt this.totalTurns 1)}}
-                                <i class="mats-o">counter_{{this.turnsLeft}}</i>
-                            {{else}}
-                                <i class="mats-o">check_circle</i>
-                            {{/if}}
-                        </a>
-                        {{/if}}
-                    {{/if}}
-                {{/if}}
+
+                {{> "systems/projectfu/templates/ui/partials/combat-hud-turn.hbs"}}
+
             </div>
         {{/each}}
     </div>

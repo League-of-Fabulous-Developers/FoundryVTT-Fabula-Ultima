@@ -5,7 +5,10 @@
   "_id": "NHP8FASwfMCFYhXb",
   "img": "systems/projectfu/styles/static/affinities/air.svg",
   "system": {
-    "fuid": "alter-damage-type-air"
+    "fuid": "alter-damage-type-air",
+    "cost": {
+      "value": 0
+    }
   },
   "effects": [
     {
@@ -33,14 +36,16 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>All damage dealt by your weapons, spells, and Skills becomes of a specific type.</p>",
       "tint": "#ffffff",
       "transfer": false,
       "statuses": [],
       "sort": 0,
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "quality",
+          "source": "FUCR284"
         }
       },
       "_stats": {
@@ -50,8 +55,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725774257200,
-        "modifiedTime": 1725774438401,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1736274881144,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!NHP8FASwfMCFYhXb.4tay6tc1XdWR8IGm"
     }
@@ -69,8 +74,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725774248217,
-    "modifiedTime": 1725774311403,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1736274887410,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "_key": "!items!NHP8FASwfMCFYhXb"
 }

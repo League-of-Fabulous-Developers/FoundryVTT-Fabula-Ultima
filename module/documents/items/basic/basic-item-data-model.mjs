@@ -5,6 +5,7 @@ import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 /**
  * @param {CheckV2} check
@@ -20,10 +21,12 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			label: 'FU.AccuracyCheckBaseAccuracy',
 			value: item.system.accuracy.value,
 		});
-		const attackTypeBonus = actor.system.bonuses.damage[item.system.type.value] ?? 0;
 		AccuracyCheck.configure(check)
-			.setDamage(item.system.damageType.value, item.system.damage.value + attackTypeBonus)
+			.setDamage(item.system.damageType.value, item.system.damage.value)
 			.setTargetedDefense(item.system.defense)
+			.addAttackTraits(item.system)
+			.addItemAccuracyBonuses(item, actor)
+			.addItemDamageBonuses(item, actor)
 			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
 	}
 };
@@ -45,11 +48,10 @@ function onRenderCheck(data, result, actor, item) {
 				basic: {
 					type: item.system.type.value,
 					quality: item.system.quality.value,
-					summary: item.system.summary.value,
-					description: await TextEditor.enrichHTML(item.system.description),
 				},
 			},
 		}));
+		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 	}
 }
 

@@ -46,7 +46,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -115,7 +117,7 @@
     },
     "fuid": "rondo-of-nightmare"
   },
-  "img": "icons/magic/unholy/beams-impact-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/rondo_of_nightmare.png",
   "effects": [],
   "flags": {
     "core": {},
@@ -126,8 +128,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1684757023346,
-    "modifiedTime": 1724180862332,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742653172902,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

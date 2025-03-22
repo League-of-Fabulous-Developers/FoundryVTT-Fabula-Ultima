@@ -14,4 +14,11 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 			max: new NumberField({ initial: 6, min: 0, integer: true, nullable: false }),
 		};
 	}
+
+	generateProgressArray() {
+		return Array.from({ length: this.max }, (_, i) => ({
+			id: i + 1,
+			checked: this.current === i + 1,
+		})).reverse();
+	}
 }

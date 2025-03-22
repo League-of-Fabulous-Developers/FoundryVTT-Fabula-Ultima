@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -166,26 +168,28 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>After you perform a <strong>dance</strong>, your attacks with <strong>brawling</strong>, <strong>dagger</strong>, <strong>flail</strong>, and <strong>thrown weapons</strong> deal <strong>【SL】</strong> extra damage until the start of your next turn. If you have an <strong>arcane weapon equipped, </strong>offensive spells (@ICON[offensive]) you cast also deal <strong>【SL】</strong> extra damage until the start of your next turn.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUHF143"
         }
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1741989492931,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
-      "img": "icons/skills/ranged/daggers-thrown-salvo-orange.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/dancer/dancer_wardancer.png",
       "type": "base",
       "system": {},
       "origin": null,
@@ -205,8 +209,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706560640482,
-    "modifiedTime": 1724180862061,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742002074272,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

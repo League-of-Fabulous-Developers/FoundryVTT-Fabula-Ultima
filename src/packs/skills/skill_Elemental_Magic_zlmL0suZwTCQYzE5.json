@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you acquire this Skill, learn one Elementalist spell (<strong>Core Rulebook</strong>, page <strong>188</strong> or @UUID[Compendium.projectfu.spells.Item.GOEbYMBu3cGnszWt]{[Elementalist Spells]}).</p><p>Offensive @ICON[offensive] Elementalist spells use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
+    "description": "<p>Each time you acquire this Skill, learn one Elementalist spell (see <strong>Core Rulebook</strong>, page <strong>188</strong>).</p><p>Offensive ( @ICON[offensive] ) Elementalist spells use <strong>【INS + WLP】</strong> for the Magic Check.</p><hr /><ul><li><p>For <strong>spell</strong> breakdown and a list of Elemental Spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.hK8r8lsQNaknSqdq]{Elementalist Rules}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -54,7 +54,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -132,8 +134,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706497980288,
-    "modifiedTime": 1724180863569,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742002038510,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

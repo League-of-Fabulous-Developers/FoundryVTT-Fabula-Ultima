@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -118,7 +120,11 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "unexpected-ally"
+    "fuid": "unexpected-ally",
+    "cost": {
+      "resource": "fp",
+      "amount": 1
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +140,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706504159609,
-    "modifiedTime": 1724180863378,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741951947253,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

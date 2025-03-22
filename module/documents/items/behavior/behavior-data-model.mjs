@@ -1,8 +1,9 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof BehaviorDataModel) {
-		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+		CommonSections.description(sections, item.system.description, item.system.summary.value);
 	}
 });
 

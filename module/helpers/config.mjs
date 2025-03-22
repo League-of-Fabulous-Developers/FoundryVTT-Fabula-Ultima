@@ -96,6 +96,7 @@ FU.allIcon = {
 	ice: 'fua fu-ice',
 	light: 'fua fu-light',
 	poison: 'fua fu-poison',
+	weaponEnchant: 'fu-weapon-enchant',
 };
 
 FU.affType = {
@@ -493,10 +494,26 @@ FU.improvisedEffect = {
 	massive: 'FU.ImprovisedEffectMassive',
 };
 
+/**
+ * @description Spell durations
+ */
 FU.duration = {
 	instantaneous: 'FU.Instantaneous',
 	scene: 'FU.Scene',
 	special: 'FU.Special',
+};
+
+/**
+ * @description Combat Events
+ *
+ */
+FU.combatEvent = {
+	startOfCombat: 'FU.StartOfCombat',
+	startOfTurn: 'FU.StartOfTurn',
+	endOfTurn: 'FU.EndOfTurn',
+	endOfRound: 'FU.EndOfRound',
+	endOfScene: 'FU.EndOfScene',
+	endOfCombat: `FU.EndOfCombat`,
 };
 
 FU.target = {
@@ -557,4 +574,22 @@ FU.difficultyLevel = {
 	normal: 'FU.Normal',
 	hard: 'FU.Hard',
 	veryHard: 'FU.VeryHard',
+};
+
+/**
+ * @typedef {"self", "single", "multiple", "weapon", "special"} TargetingRule
+ */
+FU.targetingRules = {
+	self: 'FU.Self',
+	single: 'FU.Single',
+	multiple: 'FU.Multiple',
+	weapon: `FU.Weapon`,
+	special: `FU.Special`,
+};
+
+FU.damageOverrideScope = {
+	all: 'FU.All',
+	attack: 'FU.Attack',
+	spell: 'FU.Spell',
+	skill: 'FU.Skill',
 };

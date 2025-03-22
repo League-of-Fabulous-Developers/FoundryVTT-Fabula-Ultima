@@ -11,13 +11,11 @@
     <div class="fu-tag">
         {{localize targets}}
     </div>
-    <div class="fu-tag">
-        {{cost}} {{localize 'FU.MindAbbr'}}
-    </div>
 </div>
 <div class='chat-desc'>
-    <details {{#unless (getGameSetting 'collapseDescriptions')}}open{{/unless}}>
+    <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}open{{/unless}}>
         <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
         {{{description}}}
     </details>
 </div>
+{{> 'systems/projectfu/templates/chat/partials/chat-common-sections.hbs'}}

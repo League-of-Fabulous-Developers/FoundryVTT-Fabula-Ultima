@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the potion only restores half the normal amount of HP and MP to each creature.</p>",
+    "description": "<p>When you create a <strong>potion</strong> that restores a <strong>single</strong> creature's HP and/or MP, you may have it affect up to <strong>【SL】</strong> additional creatures. If you do, the potion only restores half the normal amount of HP and MP to each creature.</p><hr /><ul><li><p>@UUID[Compendium.projectfu.consumables.iLidslBpjoLfrsT9]{Remedy}: @GAIN[25 hp]</p></li><li><p>@UUID[Compendium.projectfu.consumables.mn3F6qOfdVYM405v]{Elixir}: @GAIN[25 mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -118,7 +120,11 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "potion-rain"
+    "fuid": "potion-rain",
+    "cost": {
+      "resource": "ip",
+      "amount": 3
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +140,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706508730921,
-    "modifiedTime": 1724180863487,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741970827041,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

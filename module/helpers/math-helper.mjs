@@ -7,9 +7,14 @@ function clamp(value, min, max) {
  * @param {String} expression A simple arithmetic expression
  * @returns {Number} The evaluated value
  * @author Uses Foundry's API
+ * @remarks Uses {@link https://foundryvtt.com/api/classes/foundry.dice.Roll.html#roll}
  */
 function evaluate(expression) {
-	return Roll.safeEval(expression);
+	try {
+		return Roll.safeEval(expression);
+	} catch (e) {
+		return expression;
+	}
 }
 
 export const MathHelper = Object.freeze({

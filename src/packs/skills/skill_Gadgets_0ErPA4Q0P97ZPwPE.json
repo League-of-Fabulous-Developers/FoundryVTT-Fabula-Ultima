@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you first acquire this Skill, choose a gadget type: <strong>@UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Alchemy}, @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Infusion}</strong>, or <strong>@UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Magitech}</strong> (<strong>Core Rulebook</strong>, page <strong>212</strong>). You gain its basic benefits.</p><p>Whenever you take this Skill again, choose one option: you gain the basic benefits of a new gadget type; or you gain the advanced benefits of a gadget type whose basic benefits you already obtained; or you gain the superior benefits of a gadget type whose advanced benefits you already obtained.</p>",
+    "description": "<p>When you first acquire this Skill, choose a gadget type: <strong>alchemy, infusion</strong>, or <strong>magitech</strong> (see <strong>Core Rulebook</strong>, page <strong>212</strong>). You gain its <strong>basic benefits</strong>.</p><p>Whenever you take this Skill again, choose one option: you gain the <strong>basic benefits</strong> of a new gadget type; <strong>or</strong> you gain the <strong>advanced benefits</strong> of a gadget type whose <strong>basic benefits</strong> you already obtained; <strong>or</strong> you gain the <strong>superior benefits</strong> of a gadget type whose <strong>advanced benefits</strong> you already obtained.</p><hr /><ul><li><p><strong>Handout:</strong> @UUID[Compendium.projectfu.handouts.JournalEntry.TV4Cj3UI0LWNZaOk]{Gadget Rules}</p></li><li><p><strong>Choose a gadget type:</strong> @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Alchemy}, @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Infusion}, <strong>or</strong> @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Magitech}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -134,8 +136,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706508711403,
-    "modifiedTime": 1724180861220,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742001539237,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

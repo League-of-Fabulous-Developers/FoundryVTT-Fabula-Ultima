@@ -1,9 +1,18 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { FU } from '../../../helpers/config.mjs';
+import { CommonSections } from '../../../checks/common-sections.mjs';
+import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
+import { CommonEvents } from '../../../checks/common-events.mjs';
 
-Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
+Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (item?.system instanceof ConsumableDataModel) {
-		sections.push(item.createChatMessage(item, false).then((v) => ({ content: v.content })));
+		CommonSections.tags(sections, [{ tag: FU.consumableType[item.system.subtype.value] }, { tag: 'FU.InventoryAbbr', value: item.system.ipCost.value, flip: true }]);
+		CommonSections.description(sections, item.system.description, item.system.summary.value);
+		const targets = CheckConfiguration.inspect(check).getTargetsOrDefault();
+		CommonSections.targeted(sections, actor, item, targets, flags);
+		CommonSections.spendResource(sections, actor, item, [], flags);
+
+		CommonEvents.item(actor, item);
 	}
 });
 

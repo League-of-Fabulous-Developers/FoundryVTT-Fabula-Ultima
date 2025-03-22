@@ -20,8 +20,17 @@ const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(
  */
 
 /**
- * Extend the basic Item with some very simple modifications.
+ * @typedef Item
+ * @property {Actor} actor
+ * @property {String} uuid
+ * @property {String} name
+ */
+
+/**
+ * @description Extend the basic Item document with some very simple modifications.
+ * @property {foundry.abstract.TypeDataModel} system
  * @extends {Item}
+ * @inheritDoc
  */
 export class FUItem extends Item {
 	overrides = this.overrides ?? {};
@@ -80,9 +89,14 @@ export class FUItem extends Item {
 
 		function translate(string) {
 			const allTranslations = Object.assign({}, CONFIG.FU.handedness, CONFIG.FU.weaponCategories, CONFIG.FU.weaponTypes, CONFIG.FU.attributeAbbreviations, CONFIG.FU.damageTypes);
+			if (string?.includes('.') && CONFIG.FU.defenses[string.split('.')[0]]) {
+				const [category, subkey] = string.split('.');
+				return game.i18n.localize(CONFIG.FU.defenses[category]?.[subkey] ?? string);
+			}
 
 			return game.i18n.localize(allTranslations?.[string] ?? string);
 		}
+
 		const hrZeroText = this.system.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
 		const qualText = this.system.quality?.value || '';
 		let qualityString = '';
@@ -98,6 +112,8 @@ export class FUItem extends Item {
 		const accuracyTotal = accuracyValue + accuracyGlobalValue;
 		const damageValue = this.system.damage?.value ?? 0;
 		const weaponType = this.system.type?.value;
+		const defenseString = this.system?.defense ? translate(`${this.system.defense}.abbr`) : '';
+
 		let damageGlobalValue = 0;
 		if (weaponType === 'melee') {
 			damageGlobalValue = actor.system.bonuses.damage?.melee ?? 0;
@@ -114,10 +130,10 @@ export class FUItem extends Item {
 
 		if (isWeapon) {
 			detailString = [attackString, damageString].filter(Boolean).join('⬥');
-			qualityString = [translate(this.system.category?.value), translate(this.system.hands?.value), translate(this.system.type?.value), qualText].filter(Boolean).join(' ⬥ ');
+			qualityString = [translate(this.system.category?.value), translate(this.system.hands?.value), translate(this.system.type?.value), defenseString, qualText].filter(Boolean).join(' ⬥ ');
 		} else if (isBasic) {
 			detailString = [attackString, damageString].filter(Boolean).join('⬥');
-			qualityString = [attackString, damageString, qualText].filter(Boolean).join(' ⬥ ');
+			qualityString = [translate(this.system.type?.value), defenseString, qualText].filter(Boolean).join(' ⬥ ');
 		}
 
 		return {
@@ -153,7 +169,7 @@ export class FUItem extends Item {
 
 		const qualText = this.system.quality?.value || '';
 		const detailString = [attackString, damageString].filter(Boolean).join('⬥');
-		const qualityString = [capitalizeFirst(this.system.mpCost.value), capitalizeFirst(this.system.target.value), capitalizeFirst(this.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
+		const qualityString = [capitalizeFirst(this.system.cost.amount), capitalizeFirst(this.system.targeting.rule), capitalizeFirst(this.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
 
 		return {
 			attackString,
@@ -518,7 +534,7 @@ export class FUItem extends Item {
 	getDescriptionString() {
 		const summary = this.system.summary.value?.trim() || '';
 		const description = this.system.description?.trim() || '';
-		const collapseDescriptions = game.settings.get('projectfu', 'collapseDescriptions') ? '' : 'open';
+		const optionChatMessageCollapseDescription = game.settings.get('projectfu', 'optionChatMessageCollapseDescription') ? '' : 'open';
 
 		// Prepare summary and description HTML
 		const summaryHtml = summary ? `<blockquote class="summary quote">${summary}</blockquote>` : '';
@@ -530,7 +546,7 @@ export class FUItem extends Item {
 		return content
 			? `
 			<div class='chat-desc'>
-				<details ${collapseDescriptions}>
+				<details ${optionChatMessageCollapseDescription}>
 					<summary class="align-center">${game.i18n.localize('FU.Description')}</summary>
 					${content}
 				</details>
@@ -883,7 +899,7 @@ export class FUItem extends Item {
 	 * @return {Promise<chatMessage>}
 	 */
 	async rollSpell(hrZero) {
-		const { rollInfo, opportunity, description, summary, mpCost, target, duration, defense } = this.system;
+		const { rollInfo, opportunity, description, summary, cost, targeting, duration, defense } = this.system;
 		let defenseAbbr = !defense ? game.i18n.localize('FU.MagicDefenseAbbr') : defenseAbbr;
 		let checkDamage = undefined;
 		if (rollInfo?.damage?.hasDamage?.value) {
@@ -902,8 +918,8 @@ export class FUItem extends Item {
 			img: this.img,
 			id: this.id,
 			duration: duration.value,
-			target: target.value,
-			mpCost: mpCost.value,
+			target: targeting.rule,
+			mpCost: cost.amount,
 			defense: defenseAbbr,
 			opportunity: opportunity,
 			summary: summary.value,

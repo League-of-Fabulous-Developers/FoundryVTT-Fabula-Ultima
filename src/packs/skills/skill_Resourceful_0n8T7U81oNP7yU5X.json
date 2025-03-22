@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You recover <strong>【SL】</strong> Inventory Points after each <strong>travel roll</strong> (<strong>Core Rulebook</strong>, page <strong>106</strong>).</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[1 ip]</p><p>Skill Level <strong>2</strong> - @GAIN[2 ip]</p><p>Skill Level <strong>3</strong> - @GAIN[3 ip]</p><p>Skill Level <strong>4</strong> - @GAIN[4 ip]</p>",
+    "description": "<p>You recover <strong>【SL】</strong> Inventory Points after each <strong>travel roll</strong> (see <strong>Core Rulebook</strong>, page <strong>106</strong>).</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[$sl ip]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -24,7 +24,7 @@
       "min": 0
     },
     "class": {
-      "value": ""
+      "value": "Wayfarer"
     },
     "useWeapon": {
       "accuracy": {
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -118,7 +120,10 @@
       "max": 6
     },
     "defense": "def",
-    "fuid": "resourceful"
+    "fuid": "resourceful",
+    "cost": {
+      "resource": "ip"
+    }
   },
   "effects": [],
   "ownership": {
@@ -134,8 +139,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706513073568,
-    "modifiedTime": 1724180861255,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741992630495,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

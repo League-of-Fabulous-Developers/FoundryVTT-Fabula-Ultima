@@ -8,15 +8,15 @@
             {{/if}}
         </div>
         <div class="fu-tag">
-            {{#if spell.target}}
-                {{spell.target}}
-            {{else}}
-                {{localize 'FU.Target'}}
-            {{/if}}
+            {{spell.target}}
         </div>
         <div class="fu-tag">
             {{#if spell.mpCost}}
-                {{spell.mpCost}} {{localize 'FU.MindAbbr'}}
+                {{#if (eq spell.target 'multiple') }}
+                    {{spell.mpCost}} {{localize 'FU.MindAbbr'}} Per Target
+                {{else}}
+                    {{spell.mpCost}} {{localize 'FU.MindAbbr'}}
+                {{/if}}
             {{else}}
                 {{localize 'FU.MindPointCost'}}
             {{/if}}

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you spend one or more Fabula Points, you get an additional benefit — choose one option: you recover <strong>【SL × 5】</strong> Hit Points; <strong>or</strong> you recover <strong>【SL × 5】</strong> Mind Points; or you recover from a single status effect of your choice.</p><hr /><p>Skill Level <strong>1</strong> - @GAIN[5 hp] or @GAIN[5 mp]</p><p>Skill Level <strong>2</strong> - @GAIN[10 hp] or @GAIN[10 mp]</p><p>Skill Level <strong>3</strong> - @GAIN[15 hp] or @GAIN[15 mp]</p><p>Skill Level <strong>4</strong> - @GAIN[20 hp] or @GAIN[20 mp]</p>",
+    "description": "<p>When you spend one or more Fabula Points, you get an additional benefit — choose one option: you recover <strong>【SL × 5】</strong> Hit Points; <strong>or</strong> you recover <strong>【SL × 5】</strong> Mind Points; or you recover from a single status effect of your choice.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[5*$sl hp] <strong>or</strong> @GAIN[5*$sl mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -134,8 +136,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706502402161,
-    "modifiedTime": 1724180863470,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741977291919,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

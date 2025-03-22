@@ -28,14 +28,15 @@ function addRetargetEntry(html, options) {
 				const checkId = CheckConfiguration.inspect(message).getCheck().id;
 				let shouldDelete = false;
 				await ChecksV2.modifyCheck(checkId, (check, actor, item) => {
-					const targets = getTargeted();
+					/** @type Token[] */
+					const targets = getTargeted(true);
 					const hasTargets = targets.length > 0;
 					if (hasTargets) {
 						CheckConfiguration.configure(check).setTargets(
-							targets.map((actor) => ({
-								uuid: actor.uuid,
-								link: actor.link,
-								name: actor.name,
+							targets.map((token) => ({
+								uuid: token.actor.uuid,
+								link: token.actor.link,
+								name: token.name,
 							})),
 						);
 						shouldDelete = true;

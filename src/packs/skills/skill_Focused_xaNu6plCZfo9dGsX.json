@@ -55,7 +55,9 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -142,22 +144,24 @@
           "priority": null
         }
       ],
-      "description": "<ul><li><p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><table><tbody><tr><td><p><strong>SL1: 3</strong></p></td><td><p><strong>SL2: 6</strong></p></td><td><p><strong>SL3: 9</strong></p></td><td><p><strong>SL4: 12</strong></p></td><td data-colwidth=\"108\"><p><strong>SL5: 15</strong></p></td></tr></tbody></table></li></ul>",
+      "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUCR199"
         }
       },
       "tint": "#ffffff",
       "_stats": {
         "coreVersion": "12.331",
-        "systemId": null,
-        "systemVersion": null,
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1723766366812,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1741974807601,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -182,8 +186,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706487322210,
-    "modifiedTime": 1724180863479,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741974768837,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

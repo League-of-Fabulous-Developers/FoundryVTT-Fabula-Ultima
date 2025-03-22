@@ -1,0 +1,9 @@
+<div class="fu-tags">
+    {{#each tags}}
+        {{#if flip}}
+            <div class="fu-tag" data-tooltip="{{localize tooltip}}">{{value}}{{separator}} {{localize tag}}</div>
+        {{else}}
+            <div class="fu-tag" data-tooltip="{{localize tooltip}}">{{localize tag}}{{separator}} {{value}}</div>
+        {{/if}}
+    {{/each}}
+</div>

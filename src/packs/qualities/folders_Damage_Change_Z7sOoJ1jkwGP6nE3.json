@@ -1,0 +1,22 @@
+{
+  "name": "Damage Change",
+  "sorting": "a",
+  "folder": "SH8cHX3lJkZlLgj8",
+  "type": "Item",
+  "_id": "Z7sOoJ1jkwGP6nE3",
+  "description": "",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": null,
+    "modifiedTime": 1736274709037,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
+  },
+  "_key": "!folders!Z7sOoJ1jkwGP6nE3"
+}

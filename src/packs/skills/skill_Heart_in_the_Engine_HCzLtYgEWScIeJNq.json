@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend <strong>@LOSS[10 mp].</strong> If you do, choose one option: the next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage; <strong>or</strong>, the next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities); <strong>or</strong>, you recover from a status effect of your choice among <strong>slow</strong> and <strong>weak</strong>.</span></p>",
+    "description": "<p><span>At the start of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may spend 10 Mind Points<strong>. </strong>If you do, choose one option: the next time you deal damage during this turn, deal <strong>【SL × 2】</strong> extra damage; <strong>or</strong>, the next time you suffer damage before the start of your next turn, that damage is reduced by <strong>【SL × 2】</strong> (applied before damage Affinities); <strong>or</strong>, you recover from a status effect of your choice among <strong>slow</strong> and <strong>weak</strong>.</span></p>",
     "isFavored": {
       "value": false
     },
@@ -52,7 +52,11 @@
       "value": 0,
       "type": {
         "value": "physical"
-      }
+      },
+      "expression": "",
+      "extra": "",
+      "onRoll": "",
+      "onApply": ""
     },
     "impdamage": {
       "hasImpDamage": {
@@ -115,9 +119,111 @@
       "value": false
     },
     "defense": "def",
-    "fuid": "heart-in-the-engine"
+    "fuid": "heart-in-the-engine",
+    "cost": {
+      "amount": 10
+    }
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_heart_in_the_engine.png",
+      "origin": "Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Heart In The Engine - Offensive",
+      "_id": "vDQ9W1rj7jQ8qlMS",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "2*$sl",
+          "priority": null
+        }
+      ],
+      "description": "<p><span>The next time you deal damage this turn you deal<strong>【SL × 2】</strong>extra damage.</span></p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUTF159",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1739628878997,
+        "modifiedTime": 1741968403120,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!HCzLtYgEWScIeJNq.vDQ9W1rj7jQ8qlMS"
+    },
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/pilot/pilot_heart_in_the_engine.png",
+      "origin": "Compendium.projectfu.skills.Item.HCzLtYgEWScIeJNq",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Heart In The Engine - Defensive",
+      "_id": "rPpbi48lLhPU5hQo",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.all",
+          "mode": 2,
+          "value": "-2*$sl",
+          "priority": null
+        }
+      ],
+      "description": "<p><span>The next time you suffer damage this turn, that damage is reduced by <strong>【SL × 2】.</strong></span></p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUTF159",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1739629767056,
+        "modifiedTime": 1741968406284,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!HCzLtYgEWScIeJNq.rPpbi48lLhPU5hQo"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
@@ -131,8 +237,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711431286236,
-    "modifiedTime": 1724180861954,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1741968202344,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

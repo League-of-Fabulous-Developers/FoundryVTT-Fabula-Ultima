@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You protect the targets from attacks that would corrupt their body and spirit. Choose <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Until this spell ends, each target becomes immune to the chosen status effect.</p><hr /><p>@LOSS[5 mp] for <strong>one</strong> target.</p><p>@LOSS[10 mp] for <strong>two</strong> targets.</p><p>@LOSS[15 mp] for <strong>three</strong> targets.</p>",
+    "description": "<p>You protect the targets from attacks that would corrupt their body and spirit. Choose <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Until this spell ends, each target becomes immune to the chosen status effect.</p>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.330",
     "createdTime": 1706573024313,
-    "modifiedTime": 1724180864294,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1737916632313,
+    "lastModifiedBy": "esOkelwPNblkbxW3",
     "compendiumSource": null,
     "duplicateSource": null
   },

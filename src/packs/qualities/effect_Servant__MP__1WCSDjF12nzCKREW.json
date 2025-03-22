@@ -1,7 +1,7 @@
 {
   "name": "Servant (MP)",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "img": "systems/projectfu/styles/static/statuses/SpellPlus.webp",
   "system": {
     "fuid": "effect",
     "cost": {
@@ -12,7 +12,7 @@
     {
       "disabled": false,
       "name": "Servant (MP)",
-      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "img": "systems/projectfu/styles/static/statuses/SpellPlus.webp",
       "type": "base",
       "changes": [],
       "description": "<p>When a <strong>potion</strong> or <strong>magisphere</strong> created with your Inventory Points restores Mind Points, it restores an extra<strong> </strong>@GAIN[5 mp].</p>",
@@ -47,8 +47,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1728776137717,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1736222647769,
+        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
       },
       "_key": "!items.effects!1WCSDjF12nzCKREW.NvExbNQLvlaRtNWE"
     }
@@ -62,8 +62,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728751080050,
-    "modifiedTime": 1728751101752,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1736222642679,
+    "lastModifiedBy": "TV9jtuLKd5CvcqvO"
   },
   "ownership": {
     "default": 0,
