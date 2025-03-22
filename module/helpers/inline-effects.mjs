@@ -1,13 +1,9 @@
-import { statusEffects } from './statuses.mjs';
-import { FUActor } from '../documents/actors/actor.mjs';
-import { FUItem } from '../documents/items/item.mjs';
-import { Flags } from './flags.mjs';
-import { SYSTEM } from './config.mjs';
-import { FUActiveEffect } from '../documents/effects/active-effect.mjs';
+import { statusEffects } from '../documents/effects/statuses.mjs';
 import { Effects, toggleStatusEffect } from '../pipelines/effects.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
 import { InlineHelper } from './inline-helper.mjs';
+import { FUItem } from '../documents/items/item.mjs';
 
 const INLINE_EFFECT = 'InlineEffect';
 const INLINE_EFFECT_CLASS = 'inline-effect';
@@ -19,8 +15,10 @@ const INLINE_EFFECT_CLASS = 'inline-effect';
  * @property {GuidedInlineEffectConfig} guided
  */
 
+const configurationPropertyGroups = [InlineHelper.propertyPattern('event', 'e', '\\w+'), InlineHelper.propertyPattern('interval', 'i', '\\d'), InlineHelper.propertyPattern('tracking', 't', '\\w+')];
+
 const enricher = {
-	pattern: /@EFFECT\[([a-zA-Z0-9+/-]+={0,3})]/g,
+	pattern: InlineHelper.compose('EFFECT', '(?<id>[a-zA-Z0-9+/.-]*)', configurationPropertyGroups),
 	enricher: inlineEffectEnricher,
 };
 
@@ -37,6 +35,19 @@ function createEffectAnchor(effect) {
 	return anchor;
 }
 
+function createCompendiumEffectAnchor(effect, config, label) {
+	const anchor = document.createElement('a');
+	anchor.draggable = true;
+	anchor.dataset.effect = InlineHelper.toBase64(effect);
+	anchor.dataset.uuid = effect.uuid;
+	anchor.dataset.config = InlineHelper.toBase64(config);
+	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
+	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})`);
+	InlineHelper.appendImageToAnchor(anchor, effect.img);
+	anchor.append(label ? label : effect.name);
+	return anchor;
+}
+
 function createBrokenAnchor() {
 	const anchor = document.createElement('a');
 	anchor.classList.add('inline', 'broken');
@@ -47,10 +58,11 @@ function createBrokenAnchor() {
 	return anchor;
 }
 
-function createStatusAnchor(effectValue, status) {
+function createStatusAnchor(effectValue, status, config) {
 	const anchor = document.createElement('a');
 	anchor.draggable = true;
 	anchor.dataset.status = effectValue;
+	anchor.dataset.config = InlineHelper.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	const localizedName = game.i18n.localize(status.name);
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${localizedName})`);
@@ -63,52 +75,69 @@ function createStatusAnchor(effectValue, status) {
 }
 
 /**
- * @param text
+ * @param match
+ * @returns {InlineEffectConfiguration}
+ */
+function parseConfigData(match) {
+	let event = match.groups.event;
+	if (event) {
+		switch (event) {
+			case 'eot':
+				event = 'endOfTurn';
+				break;
+			case 'sot':
+				event = 'startOfTurn';
+				break;
+			case 'eor':
+				event = 'endOfRound';
+				break;
+		}
+	}
+	const interval = match.groups.interval;
+	const tracking = match.groups.tracking;
+	const label = match.groups.label;
+	return {
+		event: event,
+		interval: interval,
+		tracking: tracking,
+		name: label,
+	};
+}
+
+/**
+ * @param {String} match
  * @param options
  */
-function inlineEffectEnricher(text, options) {
-	/** @type string */
-	const effectValue = text[1];
+async function inlineEffectEnricher(match, options) {
+	/** @type String */
+	const id = match.groups.id;
+	const label = match.groups.label;
+	const config = parseConfigData(match);
 
-	if (effectValue in Effects.STATUS_EFFECTS || effectValue in Effects.BOONS_AND_BANES) {
-		const status = statusEffects.find((value) => value.id === effectValue);
+	if (id in Effects.STATUS_EFFECTS || id in Effects.BOONS_AND_BANES) {
+		const status = statusEffects.find((value) => value.id === id);
 		if (status) {
-			return createStatusAnchor(effectValue, status);
+			return createStatusAnchor(id, status, config);
 		}
 	} else {
-		const decodedEffect = InlineHelper.fromBase64(effectValue);
+		/** @type ActiveEffect **/
+		if (id.includes('.')) {
+			let instancedEffect = await fromUuid(id);
+			if (instancedEffect instanceof FUItem) {
+				const firstEffect = instancedEffect.effects.entries().next().value[1];
+				instancedEffect = firstEffect;
+			}
+			return createCompendiumEffectAnchor(instancedEffect, config, label);
+		}
+
+		// TODO: Deprecate someday
+		const decodedEffect = InlineHelper.fromBase64(id);
 		if (decodedEffect && decodedEffect.name && decodedEffect.changes) {
 			return createEffectAnchor(decodedEffect);
 		}
 	}
 
 	return createBrokenAnchor();
-}
-
-// TODO: Use the helper
-/**
- * @param {ClientDocument} document
- * @param {HTMLElement} element - The target HTML element associated with the event.
- * @returns {string|null}
- */
-function determineSource(document, element) {
-	if (document instanceof FUActor) {
-		const itemId = $(element).closest('[data-item-id]').data('itemId'); // Changed event.target to element
-		return itemId ? document.items.get(itemId).uuid : document.uuid;
-	} else if (document instanceof FUItem) {
-		return document.uuid;
-	} else if (document instanceof ChatMessage) {
-		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
-		const flagItem = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-		if (flagItem && speakerActor) {
-			const item = speakerActor.items.get(flagItem._id);
-			return item ? item.uuid : null;
-		}
-		if (speakerActor) {
-			return speakerActor.uuid;
-		}
-	}
-	return null;
 }
 
 /**
@@ -122,18 +151,19 @@ function activateListeners(document, html) {
 
 	html.find('a.inline.inline-effect[draggable]')
 		.on('click', async function (event) {
-			const source = determineSource(document, this);
+			const sourceInfo = InlineHelper.determineSource(document, this);
 			const effectData = InlineHelper.fromBase64(this.dataset.effect);
 			const status = this.dataset.status;
+			const config = InlineHelper.fromBase64(this.dataset.config);
 			const isCtrlClick = event.ctrlKey;
 
 			const targets = await targetHandler();
 			if (!targets.length) return;
 			targets.forEach((actor) => {
 				if (effectData) {
-					isCtrlClick ? Effects.onRemoveEffectFromActor(actor, source, effectData) : Effects.onApplyEffectToActor(actor, source, effectData);
+					isCtrlClick ? Effects.onRemoveEffectFromActor(actor, sourceInfo, effectData) : Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config);
 				} else if (status) {
-					isCtrlClick ? toggleStatusEffect(actor, status, source, { disable: true }) : !actor.statuses.has(status) && toggleStatusEffect(actor, status, source);
+					isCtrlClick ? toggleStatusEffect(actor, status, sourceInfo, { disable: true }) : !actor.statuses.has(status) && toggleStatusEffect(actor, status, sourceInfo, config);
 				}
 			});
 		})
@@ -143,11 +173,11 @@ function activateListeners(document, html) {
 			if (!(event.target instanceof HTMLElement) || !event.dataTransfer) {
 				return;
 			}
-			const source = determineSource(document, this);
-
+			const sourceInfo = InlineHelper.determineSource(document, this);
 			const data = {
 				type: INLINE_EFFECT,
-				source: source,
+				sourceInfo: sourceInfo,
+				config: InlineHelper.fromBase64(this.dataset.config),
 				effect: InlineHelper.fromBase64(this.dataset.effect),
 				status: this.dataset.status,
 			};
@@ -168,7 +198,8 @@ function activateListeners(document, html) {
 				effectData = InlineHelper.fromBase64(this.dataset.effect);
 			}
 			if (effectData) {
-				effectData.origin = determineSource(document, this);
+				const sourceInfo = InlineHelper.determineSource(document, this);
+				effectData.sourceInfo = sourceInfo;
 				const cls = getDocumentClass('ActiveEffect');
 				delete effectData.id;
 				cls.migrateDataSafe(effectData);
@@ -185,21 +216,14 @@ function activateListeners(document, html) {
 		});
 }
 
-function onDropActor(actor, sheet, { type, source, effect, status }) {
+function onDropActor(actor, sheet, { type, sourceInfo, config, effect, status }) {
 	if (type === INLINE_EFFECT) {
 		if (status) {
 			if (!actor.statuses.has(status)) {
-				toggleStatusEffect(actor, status, source);
+				toggleStatusEffect(actor, status, sourceInfo, config);
 			}
 		} else if (effect) {
-			ActiveEffect.create(
-				{
-					...effect,
-					origin: source,
-					flags: foundry.utils.mergeObject(effect.flags ?? {}, { [SYSTEM]: { [FUActiveEffect.TEMPORARY_FLAG]: true } }),
-				},
-				{ parent: actor },
-			);
+			Effects.onApplyEffectToActor(actor, effect, sourceInfo, config);
 		}
 		return false;
 	}
@@ -220,5 +244,7 @@ function initialize() {
 
 export const InlineEffects = {
 	showEffectConfiguration,
+	parseConfigData,
+	configurationPropertyGroups,
 	initialize,
 };

@@ -16,13 +16,14 @@ const INLINE_DAMAGE = 'InlineDamage';
  * @type {TextEditorEnricherConfig}
  */
 const inlineDamageEnricher = {
-	pattern: /@DMG\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]\B/g,
+	pattern: /@DMG\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]({(?<label>\w+)})?\B/g,
 	enricher: enricher,
 };
 
 function enricher(text, options) {
 	const amount = text[1];
 	const type = text[2].toLowerCase();
+	const label = text.groups.label;
 
 	if (type in FU.damageTypes) {
 		const anchor = document.createElement('a');
@@ -32,10 +33,16 @@ function enricher(text, options) {
 
 		// TOOLTIP
 		anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineDamage')} (${amount})`);
-		// AMOUNT
-		InlineHelper.appendAmountToAnchor(anchor, amount);
-		// TYPE
-		anchor.append(` ${game.i18n.localize(FU.damageTypes[type])}`);
+		if (label) {
+			anchor.append(label);
+			anchor.dataset.amount = amount;
+		} else {
+			// AMOUNT
+			InlineHelper.appendAmountToAnchor(anchor, amount);
+			// TYPE
+			anchor.append(` ${game.i18n.localize(FU.damageTypes[type])}`);
+		}
+
 		// ICON
 		const icon = document.createElement('i');
 		icon.className = FU.affIcon[type] ?? '';

@@ -112,4 +112,10 @@ export const FUHooks = {
 	 * @remarks Uses {@link StudyEvent}
 	 */
 	STUDY_EVENT: 'projectfu.events.study',
+	/**
+	 * @description Dispatched after an actor rests
+	 * @example callback(event)
+	 * @remarks Uses {@link RestEvent}
+	 */
+	REST_EVENT: 'projectfu.events.rest',
 };

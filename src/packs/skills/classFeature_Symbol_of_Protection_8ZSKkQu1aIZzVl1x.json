@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> <strong>gains Resistance</strong> to the chosen damage type.</p><hr><ul><li><p><strong>You: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target: </strong>@UUID[Compendium.projectfu.actor-effects.Item.3tMyw1mCjd7SfGTD]{Air Resistance} @UUID[Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj]{Bolt Resistance} @UUID[Compendium.projectfu.actor-effects.Item.fBbLvII5LUEqInQQ]{Dark Resistance} @UUID[Compendium.projectfu.actor-effects.Item.H3SJ1fej3GSyHdKG]{Earth Resistance} @UUID[Compendium.projectfu.actor-effects.Item.FAfKTXxluiqIVP5t]{Fire Resistance} @UUID[Compendium.projectfu.actor-effects.Item.SWdZeuJTEq1ig6S8]{Ice Resistance} @UUID[Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu]{Light Resistance} @UUID[Compendium.projectfu.actor-effects.Item.3xPA7x9S3fggYHkX]{Poison Resistance}</p></li></ul>"
+      "description": "<p>When you create this <strong>symbol</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, <strong>ice</strong>, <strong>light</strong>, or <strong>poison</strong>. The creature bearing this <strong>symbol</strong> <strong>gains Resistance</strong> to the chosen damage type.</p><hr><ul><li><p><strong>You: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target: </strong>@EFFECT[Compendium.projectfu.actor-effects.Item.3tMyw1mCjd7SfGTD]{Symbol of Protection: Air Resistance} @EFFECT[Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj]{Symbol of Protection: Bolt Resistance} @EFFECT[Compendium.projectfu.actor-effects.Item.fBbLvII5LUEqInQQ]{Symbol of Protection: Dark Resistance} @EFFECT[Compendium.projectfu.actor-effects.Item.H3SJ1fej3GSyHdKG]{Symbol of Protection: Earth Resistance} @EFFECT[Compendium.projectfu.actor-effects.Item.FAfKTXxluiqIVP5t]{Symbol of Protection: Fire Resistance} @EFFECT[Compendium.projectfu.actor-effects.Item.SWdZeuJTEq1ig6S8]{Symbol of Protection: Ice Resistance} @EFFECT[Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu]{Symbol of Protection: Light Resistance} @EFFECT[Compendium.projectfu.actor-effects.Item.3xPA7x9S3fggYHkX]{Symbol of Protection: Poison Resistance}</p></li></ul>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-protection"
@@ -74,10 +74,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710177845433,
-    "modifiedTime": 1737994364482,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1742583296540,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },

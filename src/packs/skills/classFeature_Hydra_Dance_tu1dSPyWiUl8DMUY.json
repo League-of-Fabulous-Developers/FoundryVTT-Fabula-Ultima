@@ -14,7 +14,7 @@
     "featureType": "projectfu.dance",
     "data": {
       "duration": "nextTurn",
-      "description": "<p>After you suffer damage, choose one option: you recover @GAIN[5 hp], <strong>or</strong> you recover @GAIN[5 mp].</p><hr><ul><li><p><strong>You:</strong> @LOSS[10 mp]</p></li></ul>"
+      "description": "<p>After you suffer damage, choose one option: you recover @GAIN[5 hp], <strong>or</strong> you recover @GAIN[5 mp].</p><hr><ul><li><p><strong>You:</strong> @LOSS[10 mp] @EFFECT[Compendium.projectfu.skills.Item.v7HpgVautZEWUbS7]{Effect: Hydra Dance}</p></li></ul>"
     },
     "source": "FUHF144",
     "fuid": "hydra-dance"
@@ -32,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710175574863,
-    "modifiedTime": 1740175229486,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1742579815382,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },

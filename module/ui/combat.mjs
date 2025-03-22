@@ -21,14 +21,10 @@ export const HOSTILE = 'hostile';
  * Combat and round events will include all combatants, whereas turn events are relegated to the single combatant.
  */
 export class CombatEvent {
-	constructor(type, round) {
+	constructor(type, round, combatants) {
 		this.type = type;
 		this.round = round;
-	}
-
-	forCombatants(combatants) {
 		this.combatants = combatants;
-		return this;
 	}
 
 	forCombatant(combatant) {
@@ -206,7 +202,7 @@ export class FUCombat extends Combat {
 		await this.setFirstTurn(firstTurnFaction);
 		await this.setCurrentTurn(firstTurnFaction);
 		console.debug(`Combat started for ${this.combatants.length} combatants`);
-		Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfCombat, this.round).forCombatants(this.combatants));
+		Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfCombat, this.round, this.combatants));
 		return super.startCombat();
 	}
 
@@ -217,7 +213,7 @@ export class FUCombat extends Combat {
 		const end = await super.endCombat();
 		if (end) {
 			console.debug(`Combat ended for ${this.combatants.length} combatants`);
-			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfCombat, this.round).forCombatants(this.combatants));
+			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfCombat, this.round, this.combatants));
 		}
 	}
 
@@ -276,7 +272,7 @@ export class FUCombat extends Combat {
 			await this._onStartRound();
 		}
 
-		console.debug(`_manageTurnEvents: Finished`);
+		//console.debug(`_manageTurnEvents: Finished`);
 	}
 
 	/**
@@ -295,7 +291,7 @@ export class FUCombat extends Combat {
 			this.current.tokenId = combatant?.tokenId || null;
 
 			console.debug(`Combat turn started for ${combatant.actor.uuid}`);
-			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfTurn, this.round).forCombatant(combatant));
+			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfTurn, this.round, this.combatants).forCombatant(combatant));
 
 			// FROM BASE
 			// Determine the turn order and the current turn
@@ -339,7 +335,7 @@ export class FUCombat extends Combat {
 			await this.setTurnsTaken(flag);
 
 			// Invoke event
-			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfTurn, this.round).forCombatant(combatant));
+			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfTurn, this.round, this.combatants).forCombatant(combatant));
 			this.setCombatant(null);
 
 			// Setup
@@ -381,11 +377,11 @@ export class FUCombat extends Combat {
 		// Whether the user is a GM
 		data.isGM = game.user.isGM;
 
-		console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
-		for (const combatant of this.combatants) {
-			const canStartTurn = data.currentTurn === combatant.faction;
-			console.debug(`- Combatant name: ${combatant.name}, id: ${combatant.id}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}, canStartTurn: ${canStartTurn}`);
-		}
+		//console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
+		// for (const combatant of this.combatants) {
+		// 	const canStartTurn = data.currentTurn === combatant.faction;
+		// 	console.debug(`- Combatant name: ${combatant.name}, id: ${combatant.id}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}, canStartTurn: ${canStartTurn}`);
+		// }
 	}
 
 	/**
@@ -564,7 +560,7 @@ export class FUCombat extends Combat {
 		SOCKET.executeForOthers(MESSAGES.RoundChanged);
 		// Invoke our custom event
 		console.debug(`Round ended for ${this.combatants.length} combatants`);
-		Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfRound, this.round).forCombatants(this.combatants));
+		Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfRound, this.round, this.combatants));
 		// Update the internals
 		return this.update(updateData, updateOptions);
 	}

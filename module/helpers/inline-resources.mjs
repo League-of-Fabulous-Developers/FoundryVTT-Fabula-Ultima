@@ -14,7 +14,7 @@ const classInlineLoss = 'inline-loss';
  * @type {TextEditorEnricherConfig}
  */
 const inlineRecoveryEnricher = {
-	pattern: /@(?:HEAL|GAIN)\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]/gi,
+	pattern: /@(?:HEAL|GAIN)\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]({(?<label>\w+)})?/gi,
 	enricher: recoveryEnricher,
 };
 
@@ -26,11 +26,11 @@ const inlineLossEnricher = {
 	enricher: lossEnricher,
 };
 
-function createReplacementElement(amount, type, elementClass, uncapped, tooltip) {
+function createReplacementElement(amount, type, elementClass, uncapped, tooltip, label) {
 	if (type in FU.resources) {
 		const anchor = document.createElement('a');
 		anchor.dataset.type = type;
-		anchor.setAttribute('data-tooltip', `${game.i18n.localize(tooltip)} (${amount})`);
+		anchor.setAttribute('data-tooltip', `${game.i18n.localize(tooltip)} (${amount} ${type})`);
 
 		// Used to enable over-healing
 		if (uncapped === true) {
@@ -39,14 +39,19 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip)
 		anchor.draggable = true;
 		anchor.classList.add('inline', elementClass);
 
-		const indicator = document.createElement('i');
-		indicator.classList.add('indicator');
-		anchor.append(indicator);
-
-		// AMOUNT
-		InlineHelper.appendAmountToAnchor(anchor, amount);
-		// TYPE
-		anchor.append(` ${game.i18n.localize(FU.resourcesAbbr[type])}`);
+		if (label) {
+			anchor.append(label);
+			anchor.dataset.amount = amount;
+		} else {
+			// INDICATOR
+			const indicator = document.createElement('i');
+			indicator.classList.add('indicator');
+			anchor.append(indicator);
+			// AMOUNT
+			InlineHelper.appendAmountToAnchor(anchor, amount);
+			// TYPE
+			anchor.append(` ${game.i18n.localize(FU.resourcesAbbr[type])}`);
+		}
 		// ICON
 		const icon = document.createElement('i');
 		icon.className = FU.resourceIcons[type];
@@ -69,13 +74,15 @@ function recoveryEnricher(text, options) {
 
 	const amount = text[1];
 	const type = text[2];
-	return createReplacementElement(amount, type.toLowerCase(), classInlineRecovery, uncapped, `FU.InlineRecovery`);
+	const label = text.groups.label;
+	return createReplacementElement(amount, type.toLowerCase(), classInlineRecovery, uncapped, `FU.InlineRecovery`, label);
 }
 
 function lossEnricher(text, options) {
 	const amount = text[1];
 	const type = text[2];
-	return createReplacementElement(amount, type.toLowerCase(), classInlineLoss, false, `FU.InlineLoss`);
+	const label = text.groups.label;
+	return createReplacementElement(amount, type.toLowerCase(), classInlineLoss, false, `FU.InlineLoss`, label);
 }
 
 /**
