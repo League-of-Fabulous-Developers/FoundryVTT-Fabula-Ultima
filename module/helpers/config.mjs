@@ -538,6 +538,7 @@ FU.effectDuration = {
 	endOfTurn: 'FU.EndOfTurn',
 	endOfRound: 'FU.EndOfRound',
 	endOfScene: 'FU.EndOfScene',
+	rest: 'FU.Rest',
 };
 
 /**

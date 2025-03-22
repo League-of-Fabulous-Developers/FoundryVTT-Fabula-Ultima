@@ -11,6 +11,7 @@ import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
  * @property {Boolean} isToken
  * @property {ActiveEffect[]} appliedEffects
  * @property {ActiveEffect[]} temporaryEffects
+ * @property {Map<String, ActiveEffect>} effects
  * @property {Boolean} inCombat
  * @property {String} id The canonical identifier for this Document.
  * @property {String} uuid A Universally Unique Identifier (uuid) for this Document instance.
@@ -435,13 +436,17 @@ export class FUActor extends Actor {
 
 	/**
 	 * @description Deletes all temporary effects on the actor
+	 * @property includeStatus Whether to also clear status effects
 	 */
-	clearTemporaryEffects() {
+	clearTemporaryEffects(includeStatus = true) {
 		// Collect effects to delete
 		const effectsToDelete = this.effects.filter((effect) => {
 			// If it's a status effect
 			const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
 			if (statusEffectId) {
+				if (!includeStatus && effect.system.duration.event === 'rest') {
+					return false;
+				}
 				const immunity = this.system.immunities[statusEffectId];
 				if (immunity) {
 					return immunity;

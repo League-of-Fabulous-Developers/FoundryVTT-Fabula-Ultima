@@ -54,6 +54,11 @@ export const statusEffects = [
 				value: 'downgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'rest',
+			},
+		},
 	},
 	{
 		id: 'dex-down',
@@ -95,6 +100,11 @@ export const statusEffects = [
 				value: 'downgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'rest',
+			},
+		},
 	},
 	{
 		id: 'flying',
@@ -244,6 +254,11 @@ export const statusEffects = [
 				value: 'downgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'rest',
+			},
+		},
 	},
 	{
 		id: 'sleep',
@@ -261,6 +276,11 @@ export const statusEffects = [
 				value: 'downgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'rest',
+			},
+		},
 	},
 	{
 		id: 'poisoned',
@@ -278,6 +298,11 @@ export const statusEffects = [
 				value: 'downgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'rest',
+			},
+		},
 	},
 	{
 		id: 'weak',
@@ -290,6 +315,11 @@ export const statusEffects = [
 				value: 'downgrade',
 			},
 		],
+		system: {
+			duration: {
+				event: 'rest',
+			},
+		},
 	},
 	{
 		id: 'wlp-down',

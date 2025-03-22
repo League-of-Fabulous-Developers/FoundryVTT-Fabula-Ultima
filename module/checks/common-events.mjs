@@ -315,6 +315,20 @@ function study(actor, targets) {
 }
 
 /**
+ * @description Dispatched when an actor rests
+ * @typedef RestEvent
+ * @property {FUActor} actor
+ */
+
+function rest(actor) {
+	/** @type RestEvent  **/
+	const event = {
+		actor: actor,
+	};
+	Hooks.call(FUHooks.REST_EVENT, event);
+}
+
+/**
  * @param {TargetData[]} targets
  * @returns {EventTarget[]}
  */
@@ -356,4 +370,5 @@ export const CommonEvents = Object.freeze({
 	skill,
 	item,
 	study,
+	rest,
 });

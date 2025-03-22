@@ -487,7 +487,7 @@ async function promptEffectRemoval(event) {
 
 	if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
 		event.actors.forEach((actor) => {
-			actor.clearTemporaryEffects();
+			actor.clearTemporaryEffects(false);
 		});
 		return;
 	}
@@ -577,6 +577,15 @@ async function onCombatEvent(event) {
 	}
 }
 
+/**
+ * @param {RestEvent} event
+ * @returns {Promise<void>}
+ */
+async function onRestEvent(event) {
+	// Remove statuses and other effects that last until rest
+	event.actor.clearTemporaryEffects(true);
+}
+
 const BOONS_AND_BANES = Object.freeze(
 	Object.fromEntries(['dex-up', 'ins-up', 'mig-up', 'wlp-up', 'dex-down', 'ins-down', 'mig-down', 'wlp-down', 'guard', 'cover', 'aura', 'barrier', 'flying', 'provoked'].map((value) => [value, FU.statusEffects[value]])),
 );
@@ -588,6 +597,7 @@ const STATUS_EFFECTS = Object.freeze({ ...FU.temporaryEffects });
  */
 function initialize() {
 	Hooks.on(FUHooks.COMBAT_EVENT, onCombatEvent);
+	Hooks.on(FUHooks.REST_EVENT, onRestEvent);
 	Hooks.on('renderChatMessage', onRenderChatMessage);
 }
 

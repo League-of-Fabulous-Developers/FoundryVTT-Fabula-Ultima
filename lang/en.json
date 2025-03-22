@@ -1301,7 +1301,7 @@
 		"AutomationManageEffects": "Manage Active Effects",
 		"AutomationManageEffectsHint": "Whether active effect durations and more are managed during combat",
 		"AutomationRemoveExpiredEffects": "Remove Expired Active Effects",
-		"AutomationRemoveExpiredEffectsHint": "Whether active effect durations and more are managed during combat",
+		"AutomationRemoveExpiredEffectsHint": "Whether active effect that have expired are automatically removed",
 		"AutomationEffectsReminder": "Active Effects Reminder",
 		"AutomationEffectsReminderHint": "Whether to post chat messages as effect durations decrease",
 		"Actor": "Actor",

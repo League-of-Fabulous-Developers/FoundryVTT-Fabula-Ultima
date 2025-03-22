@@ -10,6 +10,7 @@ import { FU, SYSTEM } from '../helpers/config.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { GroupCheck as GroupCheckV2 } from '../checks/group-check.mjs';
 import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { CommonEvents } from '../checks/common-events.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
@@ -1063,6 +1064,9 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Update the actor
 		await actor.update(updateData);
+
+		// Dispatch the event
+		CommonEvents.rest(actor);
 
 		// Rerender the actor's sheet if necessary
 		if (isRightClick || updateData['system.resources.ip.value']) {
