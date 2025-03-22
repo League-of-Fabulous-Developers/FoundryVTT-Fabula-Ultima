@@ -1,0 +1,39 @@
+import { GameWellspringManager } from './game-wellspring-manager.mjs';
+import { SYSTEM } from '../../../../helpers/config.mjs';
+import { FUHooks } from '../../../../hooks.mjs';
+
+const FLAG_INNER_WELLSPRING = 'innerWellspring';
+
+export class ActorWellspringManager {
+	#actor;
+
+	constructor(actor) {
+		this.#actor = actor;
+
+		Hooks.on(FUHooks.HOOK_WELLSPRING_CHANGED, () => this.#actor.sheet.render());
+		Hooks.on('canvasReady', () => this.#actor.sheet.render());
+	}
+
+	static onActorPrepared(actor) {
+		if (actor.type === 'character') {
+			actor.wellspringManager ??= new ActorWellspringManager(actor);
+		}
+	}
+
+	get activeWellsprings() {
+		let activeWellsprings = GameWellspringManager.currentSceneActiveWellsprings;
+		if (!activeWellsprings.isActive()) {
+			activeWellsprings = GameWellspringManager.activeSceneActiveWellsprings;
+		}
+		if (!activeWellsprings.isActive()) {
+			activeWellsprings = GameWellspringManager.globalActiveWellsprings;
+		}
+
+		const innerWellspring = this.#actor.getFlag(SYSTEM, FLAG_INNER_WELLSPRING);
+		if (innerWellspring) {
+			activeWellsprings[innerWellspring] = true;
+		}
+
+		return activeWellsprings;
+	}
+}

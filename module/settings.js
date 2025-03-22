@@ -1,6 +1,8 @@
 import { CombatHUD } from './ui/combat-hud.mjs';
 import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
 import { SYSTEM, FU } from './helpers/config.mjs';
+import { FUHooks } from './hooks.mjs';
+import { WellspringDataModel } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 
 export const SETTINGS = Object.freeze({
 	checksV2: 'checksV2',
@@ -54,6 +56,7 @@ export const SETTINGS = Object.freeze({
 	optionZeroPower: 'optionZeroPower',
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
 	useRevisedStudyRule: 'useRevisedStudyRule',
+	activeWellsprings: 'activeWellsprings',
 });
 
 export const registerSystemSettings = async function () {
@@ -606,6 +609,22 @@ export const registerSystemSettings = async function () {
 			always: game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeAlways'),
 			'only-studied': game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeOnlyStudied'),
 		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.activeWellsprings, {
+		name: game.i18n.localize('FU.ClassFeatureInvocationsWellspring'),
+		scope: 'world',
+		config: false,
+		requiresReload: false,
+		type: WellspringDataModel,
+		default: false,
+		onChange: (newValue) =>
+			Hooks.callAll(FUHooks.HOOK_WELLSPRING_CHANGED, [
+				{
+					scope: 'world',
+					wellsprings: newValue,
+				},
+			]),
 	});
 };
 

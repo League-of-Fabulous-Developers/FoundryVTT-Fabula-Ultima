@@ -73,6 +73,7 @@ import { InlineHelper } from './helpers/inline-helper.mjs';
 import { InlineAffinity } from './helpers/inline-affinity.mjs';
 import { Effects } from './pipelines/effects.mjs';
 import { InlineType } from './helpers/inline-type.mjs';
+import { InvokerIntegration } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -241,6 +242,8 @@ Hooks.once('init', async () => {
 	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
+	InvokerIntegration.initialize();
+
 	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
 
 	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);

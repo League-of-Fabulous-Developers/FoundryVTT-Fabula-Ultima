@@ -2,7 +2,7 @@ import { IngredientDataModel, tasteComparator, TASTES } from './ingredient-data-
 import { SYSTEM } from '../../../../helpers/config.mjs';
 import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
 
-const ALL_YOU_CAN_EAT_FLAG = 'AllYouCanEat';
+const FLAG_ALL_YOU_CAN_EAT = 'allYouCanEat';
 
 /**
  * @typedef Recipe
@@ -37,7 +37,7 @@ export class CookingApplication extends FormApplication {
 		if (cookbook.app) {
 			return cookbook.app;
 		}
-		const maxIngredients = cookbook.actor.getFlag(SYSTEM, ALL_YOU_CAN_EAT_FLAG) ? 4 : 3;
+		const maxIngredients = cookbook.actor.getFlag(SYSTEM, FLAG_ALL_YOU_CAN_EAT) ? 4 : 3;
 		super({ ingredients: Array(maxIngredients).fill('') });
 		this.#cookbook = cookbook;
 		cookbook.app = this;

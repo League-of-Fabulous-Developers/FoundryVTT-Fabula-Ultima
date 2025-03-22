@@ -50,9 +50,10 @@ export class IngredientDataModel extends ClassFeatureDataModel {
 		return 'FU.ClassFeatureIngredient';
 	}
 
-	static getAdditionalData(model) {
+	static async getAdditionalData(model) {
 		return {
 			tastes: TASTES,
+			enrichedDescription: await TextEditor.enrichHTML(model.description),
 		};
 	}
 

@@ -1,0 +1,26 @@
+.wellspring-preview {
+	flex-grow: 2;
+	display: flex;
+	gap: 0.5em;
+	align-items: center;
+
+	> * {
+		flex-basis: 1.5rem;
+		line-height: 1;
+		text-align: center;
+	}
+
+	.ra-droplets {
+		color: cornflowerblue;
+	}
+
+	.wellspring {
+		font-size: 1.5rem;
+		font-style: normal;
+		-webkit-text-stroke: calc(1.5rem / 50) black;
+
+		&.inactive {
+			filter: grayscale(100%);
+		}
+	}
+}

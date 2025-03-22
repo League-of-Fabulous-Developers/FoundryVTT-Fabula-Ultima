@@ -1,0 +1,102 @@
+<div class="invocations-sheet">
+    <nav class='desc invocations-tabs tabs flexrow' data-group='invocationsTabs'>
+        <a class='item tab-style' data-tab='description'>{{localize 'FU.Description'}}</a>
+        {{#each additionalData.wellsprings}}
+            <a class='item tab-style' data-tab='{{@key}}'>{{localize nameShort}}</a>
+        {{/each}}
+    </nav>
+    <div class="invocations-content">
+        <div class='tab' data-group='invocationsTabs' data-tab='description'>
+            <fieldset class="desc title-fieldset resource-content">
+                <legend class="resource-label-m">{{localize "FU.Description"}}</legend>
+                <div>
+                    <label class="resource-label-sm">
+                        <span class="resource-label-m">{{localize "FU.Rank"}}</span>
+                        <select name="system.data.level">
+                            {{selectOptions additionalData.levels selected=system.data.level localize=true}}
+                        </select>
+                    </label>
+                </div>
+                <div>
+                    {{editor enrichedHtml.description target='system.data.description' engine='prosemirror'
+                             button=true}}
+                </div>
+            </fieldset>
+        </div>
+        {{#each additionalData.wellsprings}}
+            {{#with (lookup @root.system.data @key)}}
+                <div class='tab' data-group='invocationsTabs' data-tab='{{@key}}'>
+                    <fieldset class="desc title-fieldset resource-content">
+                        <legend class="resource-label-m">{{localize ../name}}</legend>
+                        <fieldset class="desc title-fieldset resource-content">
+                            <legend class="resource-label-sm">{{localize "FU.ClassFeatureInvocationsBasic"}}</legend>
+                            <div>
+                                <label class="resource-label-sm">
+                                    <span class="resource-label-s">{{localize "FU.ClassFeatureInvocationsName"}}</span>
+                                    <input type="text" name="system.data.{{@key}}.basic.name" value="{{basic.name}}"/>
+                                </label>
+                            </div>
+                            <div class="invocation-description">
+                                {{editor (lookup (lookup (lookup @root.enrichedHtml @key) "basic") "description")
+                                         target=(concat "system.data." @key ".basic.description") engine='prosemirror'
+                                         button=true}}
+                            </div>
+                        </fieldset>
+                        {{#unless (eq @root.system.data.level "basic")}}
+                            <fieldset class="desc title-fieldset resource-content">
+                                <legend class="resource-label-sm">{{localize
+                                 "FU.ClassFeatureInvocationsAdvanced"}}</legend>
+                                <div>
+                                    <label class="resource-label-sm">
+                                        <span class="resource-label-s">{{localize "FU.ClassFeatureInvocationsName"}}</span>
+                                        <input type="text" name="system.data.{{@key}}.advanced.name"
+                                               value="{{advanced.name}}"/>
+                                    </label>
+                                </div>
+                                <div class="invocation-description">
+                                    {{editor (lookup (lookup (lookup @root.enrichedHtml @key) "advanced") "description")
+                                             target=(concat "system.data." @key ".advanced.description")
+                                             engine='prosemirror'
+                                             button=true}}
+                                </div>
+                            </fieldset>
+                            {{#unless (eq @root.system.data.level "advanced")}}
+                                <fieldset class="desc title-fieldset resource-content">
+                                    <legend class="resource-label-sm">{{localize
+                                     "FU.ClassFeatureInvocationsSuperior"}}</legend>
+                                    <div>
+                                        <label class="resource-label-sm">
+                                            <span class="resource-label-s">{{localize "FU.ClassFeatureInvocationsName"}}</span>
+                                            <input type="text" name="system.data.{{@key}}.superior1.name"
+                                                   value="{{superior1.name}}"/>
+                                        </label>
+                                    </div>
+                                    <div class="invocation-description">
+                                        {{editor (lookup (lookup (lookup @root.enrichedHtml @key) "superior1") "description")
+                                                 target=(concat "system.data." @key ".superior1.description")
+                                                 engine='prosemirror'
+                                                 button=true}}
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <label class="resource-label-sm">
+                                            <span class="resource-label-s">{{localize "FU.ClassFeatureInvocationsName"}}</span>
+                                            <input type="text" name="system.data.{{@key}}.superior2.name"
+                                                   value="{{superior2.name}}"/>
+                                        </label>
+                                    </div>
+                                    <div class="invocation-description">
+                                        {{editor (lookup (lookup (lookup @root.enrichedHtml @key) "superior2") "description")
+                                                 target=(concat "system.data." @key ".superior2.description")
+                                                 engine='prosemirror'
+                                                 button=true}}
+                                    </div>
+                                </fieldset>
+                            {{/unless}}
+                        {{/unless}}
+                    </fieldset>
+                </div>
+            {{/with}}
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<!-- override ClassFeatureDataModel.expandTemplate to supply your own template -->
+<div class="flexrow wellspring-preview">
+    {{#each additionalData.activeWellsprings as | active |}}
+        {{#with (lookup ../additionalData.wellsprings @key)}}
+            <i class="wellspring {{icon}} {{#unless active}}inactive{{/unless}}" data-tooltip="{{name}}"></i>
+        {{/with}}
+    {{/each}}
+</div>

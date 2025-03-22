@@ -1,0 +1,17 @@
+.invocation-message {
+	.invocation-icon {
+		display: inline-block;
+		border: 0;
+		filter: drop-shadow(2px 2px 4px #000000);
+		font-style: normal;
+		-webkit-text-stroke: 1px black;
+		font-size: 48px;
+		line-height: 1;
+		min-width: 48px;
+		text-align: center;
+
+		&.ra-droplets {
+			color: cornflowerblue;
+		}
+	}
+}

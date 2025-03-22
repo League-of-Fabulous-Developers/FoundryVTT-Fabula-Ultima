@@ -185,6 +185,15 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/gourmet/ingredient-preview.hbs',
 		'systems/projectfu/templates/feature/gourmet/ingredient-sheet.hbs',
 
+		'systems/projectfu/templates/feature/invoker/invocation-description-message.hbs',
+		'systems/projectfu/templates/feature/invoker/invocation-use-flavor.hbs',
+		'systems/projectfu/templates/feature/invoker/invocations-description.hbs',
+		'systems/projectfu/templates/feature/invoker/invocations-expand.hbs',
+		'systems/projectfu/templates/feature/invoker/invocations-preview.hbs',
+		'systems/projectfu/templates/feature/invoker/invocations-selection-application.hbs',
+		'systems/projectfu/templates/feature/invoker/invocations-sheet.hbs',
+		'systems/projectfu/templates/feature/invoker/wellspring-manager-application.hbs',
+
 		// Combat HUD Partials
 		'systems/projectfu/templates/ui/partials/combat-bar-hp.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-mp.hbs',

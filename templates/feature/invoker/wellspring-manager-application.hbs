@@ -1,0 +1,56 @@
+<div>
+    <fieldset class="desc title-fieldset resource-content wellsprings" data-context="global">
+        <legend class="resource-label-m">
+            <a data-action="clearWellsprings"
+               data-tooltip="{{localize "FU.ClassFeatureInvocationsWellspringManagerClearTooltip"}}">
+                {{localize "FU.ClassFeatureInvocationsWellspringManagerGlobal"}}
+            </a>
+        </legend>
+        <div class="flexrow">
+            {{#each global as |active|}}
+                {{#with (lookup @root.wellsprings @key)}}
+                    <a class="wellspring {{icon}} {{#unless active}}inactive{{/unless}}"
+                       data-tooltip="{{name}}" data-action="toggleWellspring"
+                       data-wellspring="{{@key}}">
+                    </a>
+                {{/with}}
+            {{/each}}
+        </div>
+    </fieldset>
+    <fieldset class="desc title-fieldset resource-content wellsprings" data-context="active">
+        <legend class="resource-label-m">
+            <a data-action="clearWellsprings"
+               data-tooltip="{{localize "FU.ClassFeatureInvocationsWellspringManagerClearTooltip"}}">
+                {{localize "FU.ClassFeatureInvocationsWellspringManagerActive"}}: {{active.scene}}
+            </a>
+        </legend>
+        <div class="flexrow">
+            {{#each active.wellsprings as |active|}}
+                {{#with (lookup @root.wellsprings @key)}}
+                    <a class="wellspring {{icon}} {{#unless active}}inactive{{/unless}}"
+                       data-tooltip="{{name}}" data-action="toggleWellspring"
+                       data-wellspring="{{@key}}">
+                    </a>
+                {{/with}}
+            {{/each}}
+        </div>
+    </fieldset>
+    <fieldset class="desc title-fieldset resource-content wellsprings" data-context="current">
+        <legend class="resource-label-m">
+            <a data-action="clearWellsprings"
+               data-tooltip="{{localize "FU.ClassFeatureInvocationsWellspringManagerClearTooltip"}}">
+                {{localize "FU.ClassFeatureInvocationsWellspringManagerCurrent"}}: {{current.scene}}
+            </a>
+        </legend>
+        <div class="flexrow">
+            {{#each current.wellsprings as |active|}}
+                {{#with (lookup @root.wellsprings @key)}}
+                    <a class="wellspring {{icon}} {{#unless active}}inactive{{/unless}}"
+                       data-tooltip="{{name}}" data-action="toggleWellspring"
+                       data-wellspring="{{@key}}">
+                    </a>
+                {{/with}}
+            {{/each}}
+        </div>
+    </fieldset>
+</div>
