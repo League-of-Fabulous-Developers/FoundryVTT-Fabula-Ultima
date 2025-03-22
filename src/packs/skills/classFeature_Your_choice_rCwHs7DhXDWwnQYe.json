@@ -1,0 +1,42 @@
+{
+  "folder": "7elKsNRPvQqRkFPl",
+  "name": "Your choice",
+  "type": "classFeature",
+  "img": "icons/consumables/food/bowl-salad-green.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.ingredient",
+    "data": {
+      "taste": "bitter",
+      "cost": 10,
+      "quantity": 1,
+      "description": ""
+    },
+    "source": "FUNF150",
+    "fuid": "your-choice"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.XK4dGDI3IFzl8UCn",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676964457,
+    "modifiedTime": 1742676964457,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "rCwHs7DhXDWwnQYe",
+  "sort": 0,
+  "_key": "!items!rCwHs7DhXDWwnQYe"
+}

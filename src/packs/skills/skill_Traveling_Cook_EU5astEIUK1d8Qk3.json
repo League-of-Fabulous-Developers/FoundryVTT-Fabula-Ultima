@@ -1,0 +1,88 @@
+{
+  "folder": "YUHjUEikuMRGOD9f",
+  "name": "Traveling Cook",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/travelling_cook.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span>After each <strong>travel roll</strong>, if you acquired the <strong>Cooking</strong> Skill, you gain </span><strong>【SL × 2】</strong><span><strong>ingredients.</strong></span></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Gourmet"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": 0,
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUNF149"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "fuid": "traveling-cook",
+    "cost": {
+      "resource": "mp",
+      "amount": 0
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.Mwaa7jaz1dv2G86Z",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676964457,
+    "modifiedTime": 1742676964457,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "EU5astEIUK1d8Qk3",
+  "sort": 0,
+  "_key": "!items!EU5astEIUK1d8Qk3"
+}

@@ -1,0 +1,102 @@
+{
+  "folder": "pQcHKAafyjKDqlpQ",
+  "name": "Garden",
+  "type": "miscAbility",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/graft.png",
+  "system": {
+    "fuid": "garden",
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "",
+    "isFavored": {
+      "value": true
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "ins"
+    },
+    "accuracy": 0,
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "hrZero": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": ""
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": true
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Growth Clock",
+      "current": 0,
+      "step": 1,
+      "max": 4
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUNF150"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "cost": {
+      "resource": "mp",
+      "amount": 0
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    },
+    "opportunity": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {
+    "projectfu-playtest": {
+      "growthClock": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.xqGuUcnPMlz0zfyB",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742677394073,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "5Zr3PwgJBehT516X",
+  "sort": 0,
+  "_key": "!items!5Zr3PwgJBehT516X"
+}

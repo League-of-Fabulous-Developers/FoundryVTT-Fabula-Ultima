@@ -1,0 +1,51 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Pilgrim Gazalia",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/lily-white.webp",
+  "system": {
+    "summary": {
+      "value": "Its flamboyant corolla is synonymous with abundance."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 2,
+      "effects": [
+        {
+          "start": 1,
+          "end": 2,
+          "effect": "<p>At the end of your turn, choose yourself <strong>or</strong> another Player Character you can see.<br>The chosen character regains @GAIN[2 ip].</p>"
+        },
+        {
+          "start": 3,
+          "end": 3,
+          "effect": "<p>At the end of your turn, choose yourself <strong>or</strong> another Player Character you can see.<br>The chosen character regains @GAIN[2 ip].</p>"
+        }
+      ]
+    },
+    "source": "FUNF144",
+    "fuid": "pilgrim-gazalia"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.1QLAto8fX2gqsp7A",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742676954080,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "tEfGUJajsPtcjkAA",
+  "sort": 0,
+  "_key": "!items!tEfGUJajsPtcjkAA"
+}

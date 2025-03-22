@@ -1,0 +1,90 @@
+{
+  "folder": "G1ibSw0lTdraduS7",
+  "name": "Chloromancy",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/chloromancy.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p><span>Each time you acquire this Skill, you discover </span><strong>a new type of magiseed</strong> (see <strong>Natural Fantasy Atlas</strong>, page <strong>139</strong>).</p><p><span>During a conflict, if there are <strong>no magiseeds</strong> in your </span><strong>garden</strong><span>, you may use an action and spend 20 Mind Points to <strong>plant a magiseed</strong> of a type you have discovered. The rules for the <strong>garden</strong> and for <strong>magiseeds growth</strong> can be found in the next pages.</span></p><hr /><ul><li><p>For <strong>magiseed</strong> breakdown and a list of Magiseeds, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX]{Magiseed Rules}</p></li><li><p>To <strong>automate</strong>, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.5Zr3PwgJBehT516X]{Garden}<br />Then open it up on the \"Attributes\" tab and mark it as you Growth Clock.<br />Now you can add magiseeds to your sheet, advance the Growth Clock, and post the corresponding effects to chat.</p></li></ul><p></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "class": {
+      "value": "Floralist"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": 0,
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUNF139"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "fuid": "chloromancy",
+    "cost": {
+      "amount": 20,
+      "resource": "mp"
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.Pm6x5aNGstD5tAoz",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742677579483,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "ZmzDl88kGMvrumoJ",
+  "sort": 0,
+  "_key": "!items!ZmzDl88kGMvrumoJ"
+}

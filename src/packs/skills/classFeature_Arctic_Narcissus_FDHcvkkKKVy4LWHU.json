@@ -1,0 +1,51 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Arctic Narcissus",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/dandelion-pod-blue.webp",
+  "system": {
+    "summary": {
+      "value": "It stubbornly survives in frozen territories."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 2,
+      "effects": [
+        {
+          "start": 0,
+          "end": 1,
+          "effect": "<p>You are Resistant to <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><p>@EFFECT[eyJuYW1lIjoiRWFydGggJiBJY2UgUmVzaXN0YW5jZSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmVhcnRoIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5pY2UiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9jb21tb2RpdGllcy9mbG93ZXJzL3N0cmF3YmVycnktdHJpby13aGl0ZS53ZWJwIn0=]</p>"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><p>@EFFECT[eyJuYW1lIjoiRWFydGggJiBJY2UgUmVzaXN0YW5jZSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmVhcnRoIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5pY2UiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9jb21tb2RpdGllcy9mbG93ZXJzL3N0cmF3YmVycnktdHJpby13aGl0ZS53ZWJwIn0=]</p>"
+        }
+      ]
+    },
+    "source": "FUNF141",
+    "fuid": "arctic-narcissus"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.2qkID06zNCAnFHlt",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742676954080,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "FDHcvkkKKVy4LWHU",
+  "sort": 0,
+  "_key": "!items!FDHcvkkKKVy4LWHU"
+}

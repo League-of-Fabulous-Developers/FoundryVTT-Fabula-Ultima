@@ -1,0 +1,22 @@
+{
+  "name": "Floralist",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "G1ibSw0lTdraduS7",
+  "sort": 2500000,
+  "color": "#b65165",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954060,
+    "modifiedTime": 1742676964523,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "description": "",
+  "_key": "!folders!G1ibSw0lTdraduS7"
+}

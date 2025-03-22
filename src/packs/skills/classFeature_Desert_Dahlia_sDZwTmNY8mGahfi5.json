@@ -1,0 +1,51 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Desert Dahlia",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/flower-grey-orange.webp",
+  "system": {
+    "summary": {
+      "value": "A tenacious plant, it doesn't fear the dryness of dunes."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 2,
+      "effects": [
+        {
+          "start": 0,
+          "end": 1,
+          "effect": "<p>You are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiQWlyICYgRmlyZSBSZXNpc3RhbmNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuYWlyIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5maXJlIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvY29tbW9kaXRpZXMvZmxvd2Vycy9saWx5LXdhdGVyLXdoaXRlLndlYnAifQ==]</strong> </p>"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiQWlyICYgRmlyZSBSZXNpc3RhbmNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuYWlyIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5maXJlIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvY29tbW9kaXRpZXMvZmxvd2Vycy9saWx5LXdhdGVyLXdoaXRlLndlYnAifQ==]</strong> </p><p></p>"
+        }
+      ]
+    },
+    "source": "FUNF141",
+    "fuid": "desert-dahlia"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.g453sfa54pv54uOa",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742676954080,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "sDZwTmNY8mGahfi5",
+  "sort": 0,
+  "_key": "!items!sDZwTmNY8mGahfi5"
+}

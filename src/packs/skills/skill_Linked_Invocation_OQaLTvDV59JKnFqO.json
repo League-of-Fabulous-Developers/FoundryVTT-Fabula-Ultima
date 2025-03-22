@@ -1,0 +1,90 @@
+{
+  "name": "Linked Invocation",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/invoker/linked_invocation.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you perform an <strong>invocation</strong>, you may spend up to <strong>【SL × 10】</strong>additional Mind Points. For every 10 Mind Points you spend this way, the invocation may target an additional creature you can see.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Invoker"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": 0,
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUNF155"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "fuid": "linked-invocation",
+    "cost": {
+      "amount": 10,
+      "resource": "mp"
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
+  },
+  "effects": [],
+  "folder": "OYJupsuCc49hZmiB",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.N4ixsQWp5mgDP1Dk",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676970366,
+    "modifiedTime": 1742676970366,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "OQaLTvDV59JKnFqO",
+  "sort": 0,
+  "_key": "!items!OQaLTvDV59JKnFqO"
+}

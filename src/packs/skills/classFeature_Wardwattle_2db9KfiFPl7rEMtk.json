@@ -1,0 +1,56 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Wardwattle",
+  "type": "classFeature",
+  "img": "icons/consumables/plants/thorned-dried-stem-red.webp",
+  "system": {
+    "summary": {
+      "value": "A tangle of robust branches, whose thorns spread powerful poison."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 3,
+      "effects": [
+        {
+          "start": 0,
+          "end": 1,
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage.</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiUGh5c2ljYWwgUmVzaXN0YW5jZSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLnBoeXNpY2FsIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvY29uc3VtYWJsZXMvcGxhbnRzL3Rob3JuZWQtc3RlbS12aW5lLWdyZWVuLndlYnAifQ==]</strong> </p>"
+        },
+        {
+          "start": 2,
+          "end": 2,
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiUGh5c2ljYWwgUmVzaXN0YW5jZSIsImljb24iOiJpY29ucy9jb25zdW1hYmxlcy9wbGFudHMvdGhvcm5lZC1zdGVtLXZpbmUtZ3JlZW4ud2VicCIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLnBoeXNpY2FsLmN1cnJlbnQiLCJtb2RlIjo1LCJ2YWx1ZSI6IjEifV0sImRpc2FibGVkIjpmYWxzZSwiZHVyYXRpb24iOnsic3RhcnRUaW1lIjoxNjMxMjk4NjE1OCwic2Vjb25kcyI6bnVsbCwiY29tYmF0IjpudWxsLCJyb3VuZHMiOm51bGwsInR1cm5zIjpudWxsLCJzdGFydFJvdW5kIjoxLCJzdGFydFR1cm4iOjB9LCJkZXNjcmlwdGlvbiI6IiIsIm9yaWdpbiI6bnVsbCwidGludCI6bnVsbCwidHJhbnNmZXIiOmZhbHNlLCJzdGF0dXNlcyI6W10sImZsYWdzIjp7InByb2plY3RmdSI6eyJDcmlzaXNJbnRlcmFjdGlvbiI6Im5vbmUifX19]</strong></p>"
+        },
+        {
+          "start": 3,
+          "end": 3,
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong>, and then deal an amount of <strong>poison </strong>damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiUGh5c2ljYWwgUmVzaXN0YW5jZSIsImljb24iOiJpY29ucy9jb25zdW1hYmxlcy9wbGFudHMvdGhvcm5lZC1zdGVtLXZpbmUtZ3JlZW4ud2VicCIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLnBoeXNpY2FsLmN1cnJlbnQiLCJtb2RlIjo1LCJ2YWx1ZSI6IjEifV0sImRpc2FibGVkIjpmYWxzZSwiZHVyYXRpb24iOnsic3RhcnRUaW1lIjoxNjMxMjk4NjE1OCwic2Vjb25kcyI6bnVsbCwiY29tYmF0IjpudWxsLCJyb3VuZHMiOm51bGwsInR1cm5zIjpudWxsLCJzdGFydFJvdW5kIjoxLCJzdGFydFR1cm4iOjB9LCJkZXNjcmlwdGlvbiI6IiIsIm9yaWdpbiI6bnVsbCwidGludCI6bnVsbCwidHJhbnNmZXIiOmZhbHNlLCJzdGF0dXNlcyI6W10sImZsYWdzIjp7InByb2plY3RmdSI6eyJDcmlzaXNJbnRlcmFjdGlvbiI6Im5vbmUifX19]</strong></p>"
+        }
+      ]
+    },
+    "source": "FUNF147",
+    "fuid": "wardwattle"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.FcYWXh9yYMcwozuw",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742676954080,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "2db9KfiFPl7rEMtk",
+  "sort": 0,
+  "_key": "!items!2db9KfiFPl7rEMtk"
+}

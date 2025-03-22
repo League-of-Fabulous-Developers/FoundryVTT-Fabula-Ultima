@@ -1,0 +1,88 @@
+{
+  "folder": "rHkm1Wc3k0JEVhdQ",
+  "name": "Winds of Trade",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/merchant/winds_of_trade.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>After you rest in an area where commerce is possible, you gain<strong>【SL + 1】Trade Points</strong>. You may never have more than<strong>【SL + 3】</strong>Trade Points; if you acquire this Skill during character creation, begin play with 2 Trade Points.</p><p>During a <strong>non-conflict scene</strong>, you may spend 2 Trade Points to choose one option: you create a <strong>material</strong> or <strong>rare item</strong> approved by the Game Master whose value in zenit is <strong>equal to or lower than【your level, multiplied by 30】</strong>; <strong>or</strong> your create an NPC that lives nearby and explain their occupation as well as how you met them, then the Game Master tells you what they require in exchange for their services.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Merchant"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": 0,
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "hasResource": {
+      "value": true
+    },
+    "rp": {
+      "name": "Trade Points",
+      "current": 2,
+      "step": 1,
+      "max": 2
+    },
+    "source": {
+      "value": "FUNF159"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "fuid": "winds-of-trade",
+    "cost": {
+      "resource": "mp",
+      "amount": 0
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.qRAlgOFGnPeODppk",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676975651,
+    "modifiedTime": 1742676975651,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "zXB7pBEv1JED1xkh",
+  "sort": 0,
+  "_key": "!items!zXB7pBEv1JED1xkh"
+}

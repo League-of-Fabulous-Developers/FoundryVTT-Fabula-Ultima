@@ -1,0 +1,125 @@
+{
+  "folder": null,
+  "name": "Ingredient Taste",
+  "img": "icons/consumables/food/plate-fish-grilled-brown.webp",
+  "description": "",
+  "results": [
+    {
+      "type": "pack",
+      "documentCollection": "projectfu.skills",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "text": "Bitter",
+      "documentId": "9uSPEQZ4fi6PDkV1",
+      "img": "icons/consumables/vegetable/root-ginger-brown.webp",
+      "_id": "pP2XEjuybb1VoGDB",
+      "flags": {},
+      "_key": "!tables.results!sKStLRxDOy1yZkuJ.pP2XEjuybb1VoGDB"
+    },
+    {
+      "type": "pack",
+      "documentCollection": "projectfu.skills",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "text": "Salty",
+      "documentId": "pClb5dXEgvo29U0C",
+      "img": "icons/consumables/food/salt-seasoning-spice-pink.webp",
+      "_id": "lpCAFOrFhDZYoyMH",
+      "flags": {},
+      "_key": "!tables.results!sKStLRxDOy1yZkuJ.lpCAFOrFhDZYoyMH"
+    },
+    {
+      "type": "pack",
+      "documentCollection": "projectfu.skills",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "text": "Sour",
+      "documentId": "oMpFTAPDl7SEG3v2",
+      "img": "icons/consumables/fruit/lemon-citrus-yellow.webp",
+      "_id": "So2fIZh9msPC0lFr",
+      "flags": {},
+      "_key": "!tables.results!sKStLRxDOy1yZkuJ.So2fIZh9msPC0lFr"
+    },
+    {
+      "type": "pack",
+      "documentCollection": "projectfu.skills",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "text": "Sweet",
+      "documentId": "ZLrC6QQvsJOh4F2h",
+      "img": "icons/consumables/fruit/nectarine-ripe-orange.webp",
+      "_id": "PYd9zb1DuGCoaiOr",
+      "flags": {},
+      "_key": "!tables.results!sKStLRxDOy1yZkuJ.PYd9zb1DuGCoaiOr"
+    },
+    {
+      "type": "pack",
+      "documentCollection": "projectfu.skills",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "text": "Umami",
+      "documentId": "DjSSat9WKMIziH5E",
+      "img": "icons/consumables/food/cheese-cube-orange.webp",
+      "_id": "dnKJmQVRsUHUD91P",
+      "flags": {},
+      "_key": "!tables.results!sKStLRxDOy1yZkuJ.dnKJmQVRsUHUD91P"
+    },
+    {
+      "type": "pack",
+      "documentCollection": "projectfu.skills",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "text": "Your choice",
+      "documentId": "rCwHs7DhXDWwnQYe",
+      "img": "icons/consumables/food/bowl-salad-green.webp",
+      "_id": "j6WlsKtj7SCXjZIW",
+      "flags": {},
+      "_key": "!tables.results!sKStLRxDOy1yZkuJ.j6WlsKtj7SCXjZIW"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742677029227,
+    "modifiedTime": 1742677279983,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "formula": "1d6",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "sKStLRxDOy1yZkuJ",
+  "sort": 0,
+  "_key": "!tables!sKStLRxDOy1yZkuJ"
+}

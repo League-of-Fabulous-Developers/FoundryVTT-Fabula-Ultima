@@ -1,0 +1,74 @@
+{
+  "folder": "G957A8IFiy9ML4w0",
+  "name": "Bend Magic",
+  "type": "heroic",
+  "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "React to enemy spells with your invocations."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Elementalist</strong>, <strong>Entropist</strong>, <strong>Invoker</strong>, and <strong>Symbolist</strong> (see <strong>High Fantasy</strong>, page <strong>146</strong>), and must have acquired the <strong>Invocation</strong> Skill</p></blockquote><p>After an enemy you can see hits or misses you with an offensive spell<strong> ( </strong>@ICON[offensive] <strong>)</strong>, if the Result of their Magic Check was an <strong>even number</strong>, you may immediately use the <strong>Invocation</strong> Skill for free (after the spell has been fully resolved) to perform an <strong>invocation</strong> you have access to against that enemy, without spending Mind Points. This invocation must not be a \"<strong>hex</strong>\", and it may target <strong>only</strong> that enemy (you cannot use the <strong>Linked Invocation</strong> Skill with it).</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF162"
+    },
+    "fuid": "bend-magic"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.HsdYyIcbdvcleXQP",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676906838,
+    "modifiedTime": 1742676906838,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "HsdYyIcbdvcleXQP",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "sort": 0,
+  "_key": "!items!HsdYyIcbdvcleXQP"
+}

@@ -1,0 +1,46 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Wrathful Carnation",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/lotus-pink.webp",
+  "system": {
+    "summary": {
+      "value": "Despite their beauty, its yellow flowers emit an irritatingly pungent smell."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 1,
+      "effects": [
+        {
+          "start": 0,
+          "end": 4,
+          "effect": "<p>When this <strong>magiseed</strong> leaves your <strong>garden</strong>, choose up to one enemy you can see.</p><p>Until the end of your next turn, when the chosen enemy performs an attack or casts an offensive spell (<strong>@ICON[offensive]</strong>), they must include you among the targets of that attack of spell (if able).</p><p>At the end of your turn, you may remove this <strong>magiseed</strong> from your <strong>garden</strong>; if you do, erase all sections of your Growth Clock.</p>"
+        }
+      ]
+    },
+    "source": "FUNF147",
+    "fuid": "wrathful-carnation"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.zU2ZJ9PaDAShVxsS",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742676954080,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "AZX3ebu84YpgQ9Hh",
+  "sort": 0,
+  "_key": "!items!AZX3ebu84YpgQ9Hh"
+}

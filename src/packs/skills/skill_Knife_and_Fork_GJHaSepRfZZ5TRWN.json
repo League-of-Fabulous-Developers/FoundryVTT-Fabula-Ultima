@@ -1,0 +1,88 @@
+{
+  "folder": "YUHjUEikuMRGOD9f",
+  "name": "Knife and Fork",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/knife_and_fork.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you perform the free attack granted by the <strong>Cooking</strong> Skill, if you combined <strong>no more than 2 ingredients</strong>, you may have the attack deal damage as normal. If you do, you treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 1,
+      "min": 0
+    },
+    "class": {
+      "value": "Gourmet"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": 0,
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUNF149"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "fuid": "knife-and-fork",
+    "cost": {
+      "resource": "mp",
+      "amount": 0
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.l6RUpkx8pVVWDIyl",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676964457,
+    "modifiedTime": 1742676964457,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "GJHaSepRfZZ5TRWN",
+  "sort": 0,
+  "_key": "!items!GJHaSepRfZZ5TRWN"
+}

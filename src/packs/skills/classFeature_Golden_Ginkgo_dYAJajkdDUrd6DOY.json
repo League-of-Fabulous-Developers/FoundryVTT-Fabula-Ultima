@@ -1,0 +1,51 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Golden Ginkgo",
+  "type": "classFeature",
+  "img": "icons/consumables/plants/tearthumb-dried-halberd-leaf-brown.webp",
+  "system": {
+    "summary": {
+      "value": "Its vibrantly colored leaves represent tenacity."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 2,
+      "effects": [
+        {
+          "start": 1,
+          "end": 1,
+          "effect": "<p>At the end of your turn, you and every ally you can see recover from <strong>dazed</strong>, <strong>enraged</strong>, and <strong>shaken</strong>.</p>"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "effect": "<p>At the end of your turn, you and every ally you can see recover an amount of Mind Points equal to<strong>【5 + your Skill Level in Chloromancy】</strong>.</p>"
+        }
+      ]
+    },
+    "source": "FUNF142",
+    "fuid": "golden-ginkgo"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.itDfRdC14cGTdFDX",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742676954080,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "dYAJajkdDUrd6DOY",
+  "sort": 0,
+  "_key": "!items!dYAJajkdDUrd6DOY"
+}

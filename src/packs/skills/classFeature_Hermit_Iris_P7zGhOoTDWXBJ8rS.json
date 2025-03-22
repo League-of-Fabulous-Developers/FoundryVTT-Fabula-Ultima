@@ -1,0 +1,51 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Hermit Iris",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/lotus-purple.webp",
+  "system": {
+    "summary": {
+      "value": "Its leaves carry whispers of ancient knowledge."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 2,
+      "effects": [
+        {
+          "start": 1,
+          "end": 1,
+          "effect": "<p>At the end of your turn, choose an enemy you can see. The Game Master reveals its <strong>Level</strong>, <strong>Rank</strong>, <strong>Species</strong>, <strong>maximum Hit Points</strong>, <strong>maximum Mind Points</strong>, <strong>Traits</strong>, <strong>Attributes</strong>, <strong>Defense</strong>, and <strong>Magic Defense</strong>.</p>"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "effect": "<p>At the end of your turn, choose an enemy you can see. The Game Master reveals its <strong>Level</strong>, <strong>Rank</strong>, <strong>Species</strong>, <strong>maximum Hit Points</strong>, <strong>maximum Mind Points</strong>, <strong>Traits</strong>, <strong>Attributes</strong>, <strong>Defense</strong>, <strong>Magic Defense</strong>, and <strong>Affinities</strong>.</p>"
+        }
+      ]
+    },
+    "source": "FUNF142",
+    "fuid": "hermit-iris"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.VBxhXKYKqIFvjTfT",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742676954080,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "P7zGhOoTDWXBJ8rS",
+  "sort": 0,
+  "_key": "!items!P7zGhOoTDWXBJ8rS"
+}

@@ -1,0 +1,103 @@
+{
+  "folder": "QBYIFerAPF87y1mV",
+  "name": "[Handout: Invoker Rules]",
+  "type": "miscAbility",
+  "img": "systems/projectfu/styles/static/compendium/classes/invoker/invocation.png",
+  "system": {
+    "subtype": {
+      "value": "other"
+    },
+    "summary": {
+      "value": ""
+    },
+    "description": "<h1>INVOCATIONS</h1><p><strong>@UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9]{Invoker Rules}</strong></p><h3>DETERMINING AVAILABLE WELLSPRINGS</h3><p>During each scene, your surroundings grant you <strong>two different wellsprings:</strong> the Game Master tells you what they are. Remember to describe how wellsprings manifest in the scene; they may be natural features, objects, or even creatures.</p><blockquote><p><em><strong>Example:</strong> during a battle taking place on a steam-powered airship amidst stormy clouds, any two of <strong>air, fire, lightning</strong> and <strong>water</strong> would make sense</em></p></blockquote><p></p><h3>PERFORMING AN INVOCATION</h3><p>When you perform an <strong>invocation</strong>, choose one option you have access to among those in the table below (provided the corresponding wellspring is available in the scene); then, apply its effects to <strong>one</strong> creature you can see.</p><p>Your Skill Level in the <strong>Invocation</strong> Skill determines which invocations you have access to: <strong>【SL 1】</strong> enables \"<strong>blast</strong>\" invocations, <strong>【SL 2】</strong> enables \"<strong>blast</strong>\" and \"<strong>hex</strong>\" invocations, and<strong>【SL 3】</strong> gives you access to all invocations.</p><blockquote><p><em><strong>Example: </strong>if <strong>air</strong> and <strong>earth</strong> wellsprings are available and your Skill Level is 2, you have access to <strong>Aero Blast</strong>, <strong>Aero Hex</strong>, <strong>Geo Blast</strong>, and <strong>Geo Hex</strong>.</em></p></blockquote><p>If an invocation deals damage, it will deal 5 extra damage if you are <strong>level 20 or higher</strong>, or 10 extra damage if you are <strong>level 40 or higher</strong>.</p><p>Similarly, if an invocation causes the target to recover Hit Points or lose Mind Points, the amount will increase by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher</strong>.</p><hr /><h5></h5><h5><strong>AIR WELLSPRINGS</strong></h5><table><tbody><tr><td><p><strong>Air wellspring</strong></p></td><td><p><strong>(damage type: air)</strong></p></td></tr><tr><td><p><strong>Aero Blast</strong></p></td><td><p><span class=\"fontstyle0\">You deal @DMG[20 air] damage to the target.</span></p></td></tr><tr><td><p><strong>Aero Hex</strong></p></td><td><p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal </span><span class=\"fontstyle2\"><strong>bolt</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p></td></tr><tr><td><p><strong>Breeze</strong></p></td><td><p>The target recovers @GAIN[30 hp].</p></td></tr><tr><td><p><strong>Twister</strong></p></td><td><p>The target suffers @DMG[10 air] and also suffers @EFFECT[dazed].</p></td></tr></tbody></table><hr /><h5>EARTH WELLSPRINGS</h5><table><tbody><tr><td><p><strong>Earth wellspring</strong></p></td><td><p><strong>(damage type: earth)</strong></p></td></tr><tr><td><p><strong>Geo Blast</strong></p></td><td><p>You deal @DMG[20 earth] damage to the target.</p></td></tr><tr><td><p><strong>Geo Hex</strong></p></td><td><p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>ice</strong> damage.</span></p></td></tr><tr><td><p><strong>Growth</strong></p></td><td><p>The target recovers @GAIN[30 hp].</p></td></tr><tr><td><p><strong>Quicksand</strong></p></td><td><p>The target suffers @DMG[10 earth] and also suffers @EFFECT[slow].</p></td></tr></tbody></table><hr /><h5>FIRE WELLSPRINGS</h5><table><tbody><tr><td><p><strong>Fire wellspring</strong></p></td><td><p><strong>(damage type: fire)</strong></p></td></tr><tr><td><p><strong>Pyro Blast</strong></p></td><td><p>You deal @DMG[20 fire] damage to the target.</p></td></tr><tr><td><p><strong>Pyro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>ice</strong> damage.</p></td></tr><tr><td><p><strong>Burst</strong></p></td><td><p>The target suffers @DMG[10 fire] and also suffers @EFFECT[shaken].</p></td></tr><tr><td><p><strong>Smoke</strong></p></td><td><p>The target loses @LOSS[20 mp] and also suffers @EFFECT[weak].</p></td></tr></tbody></table><hr /><h5>LIGHTNING WELLSPRINGS</h5><table><tbody><tr><td><p><strong>Lightning wellspring</strong></p></td><td><p><strong>(damage type: bolt)</strong></p></td></tr><tr><td><p><strong>Electro Blast</strong></p></td><td><p>You deal @DMG[20 bolt] damage to the target.</p></td></tr><tr><td><p><strong>Electro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal earth and fire damage.</p></td></tr><tr><td><p><strong>Static</strong></p></td><td><p>The target suffers @DMG[10 bolt] and also suffers @EFFECT[slow].</p></td></tr><tr><td><p><strong>Thunder</strong></p></td><td><p>The target loses @LOSS[20 mp] and also suffers @EFFECT[dazed].</p></td></tr></tbody></table><hr /><h5>WATER WELLSPRINGS</h5><table><tbody><tr><td><p><strong>Water wellspring</strong></p></td><td><p><strong>(damage type: ice)</strong></p></td></tr><tr><td><p><strong>Hydro Blast</strong></p></td><td><p>You deal @DMG[20 ice] damage to the target.</p></td></tr><tr><td><p><strong>Hydro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>bolt</strong> damage.</p></td></tr><tr><td><p><strong>Chill</strong></p></td><td><p>The target loses @LOSS[20 mp] and also suffers @EFFECT[shaken].</p></td></tr><tr><td><p><strong>Frostbite</strong></p></td><td><p>The target suffers @DMG[10 ice] and also suffers @EFFECT[weak].</p></td></tr></tbody></table><hr />",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false
+    },
+    "attributes": {
+      "primary": "dex",
+      "secondary": "dex"
+    },
+    "accuracy": 0,
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "isBehavior": {
+      "value": false
+    },
+    "weight": {
+      "value": 1
+    },
+    "hasClock": {
+      "value": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "progress": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUNF156"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "opportunity": "",
+    "fuid": "handout-invoker-rules",
+    "cost": {
+      "resource": "mp",
+      "amount": 0
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {
+    "projectfu-playtest": {
+      "growthClock": false
+    },
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.PRO62WE02c8Yy42R",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676970366,
+    "modifiedTime": 1742677844714,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "OI8hkX3ZusBYmBtu",
+  "sort": 0,
+  "_key": "!items!OI8hkX3ZusBYmBtu"
+}

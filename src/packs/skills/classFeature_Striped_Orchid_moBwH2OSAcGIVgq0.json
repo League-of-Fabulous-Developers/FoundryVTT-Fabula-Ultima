@@ -1,0 +1,56 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Striped Orchid",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/lily-water-white.webp",
+  "system": {
+    "summary": {
+      "value": "Each segment of this plant is covered in toxins."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 3,
+      "effects": [
+        {
+          "start": 1,
+          "end": 1,
+          "effect": "<p>At the end of your turn, you may choose an enemy you can see. If you do, that enemy suffers <strong>@EFFECT[weak]</strong>.</p>"
+        },
+        {
+          "start": 2,
+          "end": 2,
+          "effect": "<p>At the end of your turn, every enemy you can see suffers <strong>@EFFECT[weak]</strong>.</p>"
+        },
+        {
+          "start": 3,
+          "end": 3,
+          "effect": "<p>At the end of your turn, you deal an amount of <strong>poison</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】 </strong>to each enemy you can see who is suffering from <strong>@EFFECT[weak]</strong>.</p>"
+        }
+      ]
+    },
+    "source": "FUNF146",
+    "fuid": "striped-orchid"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.psUNfrHXEQFzP7Ns",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742676954080,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "moBwH2OSAcGIVgq0",
+  "sort": 0,
+  "_key": "!items!moBwH2OSAcGIVgq0"
+}

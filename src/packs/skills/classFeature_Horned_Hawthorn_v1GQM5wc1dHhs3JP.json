@@ -1,0 +1,51 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Horned Hawthorn",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/buds-black-red.webp",
+  "system": {
+    "summary": {
+      "value": "Favored by witches and surgeons alike for its purifying properties."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 2,
+      "effects": [
+        {
+          "start": 0,
+          "end": 1,
+          "effect": "<p>You are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiRGFyayAmIFBvaXNvbiBSZXNpc3RhbmNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuZGFyayIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9LHsia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMucG9pc29uIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvY29tbW9kaXRpZXMvZmxvd2Vycy9idWRzLXJlZC53ZWJwIn0=]</strong> </p>"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiRGFyayAmIFBvaXNvbiBSZXNpc3RhbmNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuZGFyayIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9LHsia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMucG9pc29uIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvY29tbW9kaXRpZXMvZmxvd2Vycy9idWRzLXJlZC53ZWJwIn0=]</strong> </p>"
+        }
+      ]
+    },
+    "source": "FUNF143",
+    "fuid": "horned-hawthorn"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.bVjaOoL1hEXdP5Nc",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742676954080,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "v1GQM5wc1dHhs3JP",
+  "sort": 0,
+  "_key": "!items!v1GQM5wc1dHhs3JP"
+}

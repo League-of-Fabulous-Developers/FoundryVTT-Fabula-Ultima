@@ -1,0 +1,88 @@
+{
+  "folder": "rHkm1Wc3k0JEVhdQ",
+  "name": "Real Treasure",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/merchant/real_treasure.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>Once per session, when you help an NPC or community <strong>defeat greed and corruption</strong>, <strong>improve their quality of life</strong>, or <strong>coexist with other creatures</strong>, if you have acquired the <strong>Winds of Trade</strong> Skill, you gain<strong>【SL + 1】</strong>Trade Points.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Merchant"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": 0,
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUNF159"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "fuid": "read-treasure",
+    "cost": {
+      "resource": "mp",
+      "amount": 0
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.2gZm3zFYKqLsbaPo",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676975651,
+    "modifiedTime": 1742676975651,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "lFYCdvybWS7x8e6L",
+  "sort": 0,
+  "_key": "!items!lFYCdvybWS7x8e6L"
+}

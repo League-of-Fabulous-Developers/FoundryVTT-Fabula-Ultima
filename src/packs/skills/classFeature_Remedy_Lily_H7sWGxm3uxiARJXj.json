@@ -1,0 +1,51 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Remedy Lily",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/lily-pink.webp",
+  "system": {
+    "summary": {
+      "value": "Its elegant flowers filter and purify spiritual energy."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 2,
+      "effects": [
+        {
+          "start": 1,
+          "end": 1,
+          "effect": "<p>At the end of your turn, you and every ally you can see recover from <strong>poisoned</strong>, <strong>slow</strong>, and <strong>weak</strong>.</p>"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "effect": "<p>At the end of your turn, you and every ally you can see recover an amount of Hit Points equal to<strong>【15 + your Skill Level in Chloromancy】</strong>.</p>"
+        }
+      ]
+    },
+    "source": "FUNF145",
+    "fuid": "remedy-lily"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.uG4pjgGNZB0NYbzC",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742676954080,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "H7sWGxm3uxiARJXj",
+  "sort": 0,
+  "_key": "!items!H7sWGxm3uxiARJXj"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Heroic Skills [NF]",
+  "type": "Item",
+  "color": "#276625",
+  "_id": "G957A8IFiy9ML4w0",
+  "description": "",
+  "folder": null,
+  "sorting": "a",
+  "sort": 100000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676906826,
+    "modifiedTime": 1742676916438,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_key": "!folders!G957A8IFiy9ML4w0"
+}

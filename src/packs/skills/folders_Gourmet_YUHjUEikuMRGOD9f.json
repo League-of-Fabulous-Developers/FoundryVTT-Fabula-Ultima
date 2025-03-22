@@ -1,0 +1,22 @@
+{
+  "name": "Gourmet",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "YUHjUEikuMRGOD9f",
+  "sort": 200000,
+  "color": "#6f9f5b",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": null,
+    "modifiedTime": 1742676964523,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "description": "",
+  "_key": "!folders!YUHjUEikuMRGOD9f"
+}

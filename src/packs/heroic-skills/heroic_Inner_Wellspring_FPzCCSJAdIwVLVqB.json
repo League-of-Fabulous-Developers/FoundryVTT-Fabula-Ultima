@@ -1,0 +1,350 @@
+{
+  "folder": "G957A8IFiy9ML4w0",
+  "name": "Inner Wellspring",
+  "type": "heroic",
+  "img": "icons/magic/fire/flame-burning-hand-white.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Carry an elemental wellspring of your choice within yourself."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Invoker</strong> Class</p></blockquote><p>When you acquire this Heroic Skill and whenever you <strong>rest</strong>, you may choose one <strong>wellspring: air, earth, fire, lightning,</strong> or <strong>water</strong>. If you do, you gain the following benefits until your next <strong>rest</strong>:</p><ul><li>You <strong>always</strong> treat the chosen <strong>wellspring</strong> as being available during each scene, in addition to whatever <strong>wellsprings</strong> are already available.</li><li>You may perform Rituals of the <strong>Elementalism</strong> discipline, but only if those Rituals manipulate the element of the chosen <strong>wellspring</strong>.</li><li>You gain Resistance to the damage type corresponding to the chosen <strong>wellspring</strong>.</li><li>When you deal damage, you may change its type to the one corresponding to the chosen <strong>wellspring</strong>. If you do, that damage ignores Resistances.</li></ul>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Invoker"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF166"
+    },
+    "fuid": "inner-wellspring"
+  },
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/affinities/air.svg",
+      "origin": "Item.FPzCCSJAdIwVLVqB",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Inner Wellspring: Air",
+      "_id": "MS98rL9pYSmuG6Lj",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "flags.projectfu.innerWellspring",
+          "mode": 5,
+          "value": "air",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.air",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!FPzCCSJAdIwVLVqB.MS98rL9pYSmuG6Lj"
+    },
+    {
+      "img": "systems/projectfu/styles/static/affinities/earth.svg",
+      "origin": "Item.FPzCCSJAdIwVLVqB",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Inner Wellspring: Earth",
+      "_id": "fPodQICdq9b12k5G",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "flags.projectfu.innerWellspring",
+          "mode": 5,
+          "value": "earth",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.earth",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!FPzCCSJAdIwVLVqB.fPodQICdq9b12k5G"
+    },
+    {
+      "img": "systems/projectfu/styles/static/affinities/fire.svg",
+      "origin": "Item.FPzCCSJAdIwVLVqB",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Inner Wellspring: Fire",
+      "_id": "h7gNDrXKU5JNRk50",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "flags.projectfu.innerWellspring",
+          "mode": 5,
+          "value": "fire",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.fire",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!FPzCCSJAdIwVLVqB.h7gNDrXKU5JNRk50"
+    },
+    {
+      "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+      "origin": "Item.FPzCCSJAdIwVLVqB",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Inner Wellspring: Lightning",
+      "_id": "lFBGeYXxYxwllyVQ",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "flags.projectfu.innerWellspring",
+          "mode": 5,
+          "value": "lightning",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.bolt",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!FPzCCSJAdIwVLVqB.lFBGeYXxYxwllyVQ"
+    },
+    {
+      "img": "systems/projectfu/styles/static/affinities/ice.svg",
+      "origin": "Item.FPzCCSJAdIwVLVqB",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Inner Wellspring: Water",
+      "_id": "lM1inNB3bsTIYbRb",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "flags.projectfu.innerWellspring",
+          "mode": 5,
+          "value": "water",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.ice",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!FPzCCSJAdIwVLVqB.lM1inNB3bsTIYbRb"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.FPzCCSJAdIwVLVqB",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676906838,
+    "modifiedTime": 1742676906838,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "FPzCCSJAdIwVLVqB",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "sort": 0,
+  "_key": "!items!FPzCCSJAdIwVLVqB"
+}

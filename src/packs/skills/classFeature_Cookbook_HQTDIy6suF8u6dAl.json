@@ -1,0 +1,165 @@
+{
+  "folder": "a2JKy0iCVRCN8bhS",
+  "name": "Cookbook",
+  "type": "classFeature",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.cookbook",
+    "data": {
+      "combinations": {
+        "bitter_salty": {
+          "effect": "",
+          "taste1": "bitter",
+          "taste2": "salty"
+        },
+        "bitter_bitter": {
+          "taste1": "bitter",
+          "taste2": "bitter",
+          "effect": ""
+        },
+        "bitter_sour": {
+          "taste1": "bitter",
+          "taste2": "sour",
+          "effect": ""
+        },
+        "bitter_sweet": {
+          "taste1": "bitter",
+          "taste2": "sweet",
+          "effect": ""
+        },
+        "bitter_umami": {
+          "taste1": "bitter",
+          "taste2": "umami",
+          "effect": ""
+        },
+        "salty_salty": {
+          "taste1": "salty",
+          "taste2": "salty",
+          "effect": ""
+        },
+        "salty_sour": {
+          "taste1": "salty",
+          "taste2": "sour",
+          "effect": ""
+        },
+        "salty_sweet": {
+          "taste1": "salty",
+          "taste2": "sweet",
+          "effect": ""
+        },
+        "salty_umami": {
+          "taste1": "salty",
+          "taste2": "umami",
+          "effect": ""
+        },
+        "sour_sour": {
+          "taste1": "sour",
+          "taste2": "sour",
+          "effect": ""
+        },
+        "sour_sweet": {
+          "taste1": "sour",
+          "taste2": "sweet",
+          "effect": ""
+        },
+        "sour_umami": {
+          "taste1": "sour",
+          "taste2": "umami",
+          "effect": ""
+        },
+        "sweet_sweet": {
+          "taste1": "sweet",
+          "taste2": "sweet",
+          "effect": ""
+        },
+        "sweet_umami": {
+          "taste1": "sweet",
+          "taste2": "umami",
+          "effect": ""
+        },
+        "umami_umami": {
+          "taste1": "umami",
+          "taste2": "umami",
+          "effect": ""
+        }
+      }
+    },
+    "source": "FUNF151",
+    "fuid": "cookbook"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.QUQhMl5YMbIf1Wdb",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "All You Can Eat",
+      "_id": "R5fwcKpJB6i70d64",
+      "changes": [
+        {
+          "key": "flags.projectfu.allYouCanEat",
+          "value": "true",
+          "mode": 2,
+          "priority": 30
+        }
+      ],
+      "description": "<p><span class=\"fontstyle0\">Once per scene when you use the </span><span class=\"fontstyle2\">Cooking </span><span class=\"fontstyle0\">Skill, you may combine </span><span class=\"fontstyle2\">four ingredients into a delicacy </span><span class=\"fontstyle0\">(thus ignoring the normal limit of three ingredients). Other than that, the delicacy follows the normal rules.</span> <br style=\"font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;orphans:2;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-size-adjust:auto;-webkit-text-stroke-width:0px\" /></p>",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUNF161",
+          "CrisisInteraction": "none"
+        }
+      },
+      "tint": "#ffffff",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "img": "icons/commodities/flowers/daisy-white-teal.webp",
+      "type": "base",
+      "system": {},
+      "sort": 0,
+      "_key": "!items.effects!HQTDIy6suF8u6dAl.R5fwcKpJB6i70d64"
+    }
+  ],
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.QUQhMl5YMbIf1Wdb",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676964457,
+    "modifiedTime": 1742676964457,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "HQTDIy6suF8u6dAl",
+  "sort": 0,
+  "_key": "!items!HQTDIy6suF8u6dAl"
+}

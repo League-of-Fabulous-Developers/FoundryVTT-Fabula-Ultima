@@ -1,0 +1,88 @@
+{
+  "folder": "rHkm1Wc3k0JEVhdQ",
+  "name": "I've Heard of It!",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/merchant/ive_heard_of_it.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you or an ally who is able to hear and understand you perform a Check to examine a creature, item, or location, you may spend 1 Trade Point to grant a bonus equal to<strong>【SL × 2】</strong>to the Result of that Check.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 3,
+      "min": 0
+    },
+    "class": {
+      "value": "Merchant"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": 0,
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUNF159"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "fuid": "ive-heard-of-it",
+    "cost": {
+      "resource": "mp",
+      "amount": 0
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.bDP47SDoLzbmoRxq",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676975651,
+    "modifiedTime": 1742676975651,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "GkFFLkshtNlg0vgV",
+  "sort": 0,
+  "_key": "!items!GkFFLkshtNlg0vgV"
+}

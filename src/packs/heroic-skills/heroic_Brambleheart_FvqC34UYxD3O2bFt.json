@@ -1,0 +1,130 @@
+{
+  "folder": "G957A8IFiy9ML4w0",
+  "name": "Brambleheart",
+  "type": "heroic",
+  "img": "icons/magic/nature/root-vine-entangled-hand.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Your brambles protect you and react to enemy attacks."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more classes among <strong>Darkblade</strong> and <strong>Floralist</strong>, and must have acquired the <strong>Chloromancy</strong> Skill</p></blockquote><p>You are Resistant to <strong>light</strong> damage and <strong>poison</strong> damage. </p><p>After you lose Hit Points, if you are in <strong>Crisis</strong> and a <strong>magiseed</strong> is present in your <strong>garden</strong>, you may fill <strong>1 section</strong> of your <strong>Growth Clock</strong>. </p><p>Additionally, when you use the <strong>Shadow Strike</strong> Skill, you may have your attack deal <strong>poison</strong> damage instead of <strong>dark</strong> damage (the damage type still cannot be changed). If you do, your <strong>Shadow Strike</strong> deals extra damage equal to <strong>【twice the number of filled sections in your Growth Clock】</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF162"
+    },
+    "fuid": "brambleheart"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.FvqC34UYxD3O2bFt",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Brambleheart: Resistance",
+      "_id": "ZxLj2AuUV9ocHtuC",
+      "changes": [
+        {
+          "key": "system.affinities.light",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        },
+        {
+          "key": "system.affinities.poison",
+          "mode": 0,
+          "value": "upgrade",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": ""
+        }
+      },
+      "tint": "#ffffff",
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "img": "icons/magic/nature/root-vine-entangled-hand.webp",
+      "type": "base",
+      "system": {},
+      "sort": 0,
+      "_key": "!items.effects!FvqC34UYxD3O2bFt.ZxLj2AuUV9ocHtuC"
+    }
+  ],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.FvqC34UYxD3O2bFt",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676906838,
+    "modifiedTime": 1742676906838,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "FvqC34UYxD3O2bFt",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "sort": 0,
+  "_key": "!items!FvqC34UYxD3O2bFt"
+}

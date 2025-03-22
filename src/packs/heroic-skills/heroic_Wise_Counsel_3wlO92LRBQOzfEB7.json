@@ -1,0 +1,74 @@
+{
+  "folder": "G957A8IFiy9ML4w0",
+  "name": "Wise Counsel",
+  "type": "heroic",
+  "img": "icons/sundries/scrolls/scroll-runed-brown-purple.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Your Support Checks grant extra beneﬁts to the leader."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <span class=\"fontstyle0\"><strong>Commander</strong> </span><span class=\"fontstyle2\">(see </span><span class=\"fontstyle0\"><strong>High Fantasy Atlas</strong></span><span class=\"fontstyle2\">, page </span><span class=\"fontstyle0\"><strong>140</strong></span><span class=\"fontstyle2\">), </span><strong>Loremaster</strong> and <strong>Orator</strong></p></blockquote><p>When you perform a <strong>Support Check</strong>, if the <strong>leader</strong> of the Group Check can hear and understand you, you may use <strong>【INS + INS】</strong>,<strong>【 INS + WLP】</strong>, or <strong>【WLP + WLP】 </strong>instead of the normal Attributes required by the <strong>Support Check</strong>. <br />Describe how you offer your advice! <br />Additionally, when you use the <strong>teamwork</strong> option (see <strong>Core Rulebook</strong>, page <strong>76</strong>) to support another Player Character's Check during their turn in a conflict scene,<span class=\"fontstyle0\"> you may spend @GAIN[10 mp]</span> you may choose <strong>up to two</strong> of the following benefits:</p><ul><li>That character recovers @GAIN[20 mp].</li><li>That character recovers from <strong>dazed</strong>, <strong>enraged</strong>, and <strong>shaken.</strong></li><li>At the end of that character's turn, choose one option: perform a <strong>free attack</strong> with a weapon you have equipped; <strong>or</strong> immediately perform the <strong>Spell</strong> action for free, casting a spell whose total MP cost is <strong>equal to or lower than 20.</strong></li><li>If that character succeeds on their Check and the Check allows them to fill or erase one or more sections of a Clock, they may fill or erase 1 additional section of it.</li></ul>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF169"
+    },
+    "fuid": "wise-counsel"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.3wlO92LRBQOzfEB7",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676906838,
+    "modifiedTime": 1742676906838,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "3wlO92LRBQOzfEB7",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "sort": 0,
+  "_key": "!items!3wlO92LRBQOzfEB7"
+}

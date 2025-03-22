@@ -1,0 +1,74 @@
+{
+  "folder": "G957A8IFiy9ML4w0",
+  "name": "Side by Side",
+  "type": "heroic",
+  "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Improve your synergy with your Faithful Companion."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class, and must have acquired the <strong>Faitfhul Companion</strong> Skill</p></blockquote><p>When your companion deals damage, they deal 5 extra damage.</p><p>When your companion performs a Check, you may spend 1 Fabula Point and <strong>invoke</strong> one of your companion's <strong>Traits</strong> in order to let them reroll one or both dice (as per the rules on page <strong>46</strong> of the <strong>Core Rulebook</strong>).</p><p>After you use the <strong>Faithful Companion</strong> Skill to have your companion perform an action during your turn, you may choose one option (after the companion's action has been resolved): you and your companion each recover @GAIN[10 mp]; <strong>or</strong> the first time you or your companion perform a Check before the end of your next turn, that Check gains a bonus equal to <strong>【your Skill Level in Faithful Companion】</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Wayfarer"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF167"
+    },
+    "fuid": "side-by-side"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.v2oHTRDdfnDEXURD",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676906838,
+    "modifiedTime": 1742676906838,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "v2oHTRDdfnDEXURD",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "sort": 0,
+  "_key": "!items!v2oHTRDdfnDEXURD"
+}

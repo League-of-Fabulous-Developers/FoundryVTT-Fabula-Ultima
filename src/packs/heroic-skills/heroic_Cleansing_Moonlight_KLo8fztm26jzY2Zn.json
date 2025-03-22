@@ -1,0 +1,74 @@
+{
+  "folder": "G957A8IFiy9ML4w0",
+  "name": "Cleansing Moonlight",
+  "type": "heroic",
+  "img": "icons/magic/light/hand-sparks-smoke-teal.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Your spells can remove status effects and spells from targets."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Entropist</strong> and <strong>Spiritist</strong></p></blockquote><p>When you hit one or more creatures with an offensive spell ( @ICON[offensive] ), if you have an <strong>arcane</strong> weapon equipped and the <strong>High Roll</strong> of your <strong>Magic Check</strong> is <strong>8 or higher</strong>, you may have each of those creatures no longer be affected by <strong>all</strong> spells with a duration of \"\"Scene\"\" that are currently affecting them.</p><p>When you cast a spell targeting one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may choose one status effect among <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, and <strong>weak</strong>: if you do, each target recovers from the chosen status effect.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF164"
+    },
+    "fuid": "cleansing-moonlight"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.KLo8fztm26jzY2Zn",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676906838,
+    "modifiedTime": 1742676906838,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "KLo8fztm26jzY2Zn",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "sort": 0,
+  "_key": "!items!KLo8fztm26jzY2Zn"
+}

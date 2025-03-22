@@ -1,0 +1,99 @@
+{
+  "name": "Invoker Rules",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Invoker Wellspring Rules",
+      "type": "text",
+      "_id": "6z1hYq9tYatm9qWk",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h3>DETERMINING AVAILABLE WELLSPRINGS</h3><p>During each scene, your surroundings grant you <strong>two different wellsprings:</strong> the Game Master tells you what they are. Remember to describe how wellsprings manifest in the scene; they may be natural features, objects, or even creatures.</p><blockquote><p><em><strong>Example:</strong> during a battle taking place on a steam-powered airship amidst stormy clouds, any two of <strong>air, fire, lightning</strong> and <strong>water</strong> would make sense</em></p></blockquote><p></p><h3>PERFORMING AN INVOCATION</h3><p>When you perform an <strong>invocation</strong>, choose one option you have access to among those in the table below (provided the corresponding wellspring is available in the scene); then, apply its effects to <strong>one</strong> creature you can see.</p><p>Your Skill Level in the <strong>Invocation</strong> Skill determines which invocations you have access to: <strong>【SL 1】</strong> enables \"<strong>blast</strong>\" invocations, <strong>【SL 2】</strong> enables \"<strong>blast</strong>\" and \"<strong>hex</strong>\" invocations, and<strong>【SL 3】</strong> gives you access to all invocations.</p><blockquote><p><em><strong>Example: </strong>if <strong>air</strong> and <strong>earth</strong> wellsprings are available and your Skill Level is 2, you have access to <strong>Aero Blast</strong>, <strong>Aero Hex</strong>, <strong>Geo Blast</strong>, and <strong>Geo Hex</strong>.</em></p></blockquote><p>If an invocation deals damage, it will deal 5 extra damage if you are <strong>level 20 or higher</strong>, or 10 extra damage if you are <strong>level 40 or higher</strong>.</p><p>Similarly, if an invocation causes the target to recover Hit Points or lose Mind Points, the amount will increase by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher</strong>.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!JHjzGHXO9qm8HVW9.6z1hYq9tYatm9qWk"
+    },
+    {
+      "sort": 200000,
+      "name": "Invoker Wellspring List",
+      "type": "text",
+      "_id": "fmIxsqGCOKYYIxap",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h5><strong>AIR WELLSPRINGS</strong></h5><table><tbody><tr><td data-colwidth=\"278\"><p><strong>Air wellspring</strong></p></td><td><p><strong>(damage type: air)</strong></p></td></tr><tr><td data-colwidth=\"278\"><p><strong>Aero Blast</strong></p></td><td><p><span class=\"fontstyle0\">You deal 20 <strong>air</strong> damage to the target.</span></p></td></tr><tr><td data-colwidth=\"278\"><p><strong>Aero Hex</strong></p></td><td><p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal </span><span class=\"fontstyle2\"><strong>bolt</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p></td></tr><tr><td data-colwidth=\"278\"><p><strong>Breeze</strong></p></td><td><p>The target recovers 30 Hit Points.</p></td></tr><tr><td data-colwidth=\"278\"><p><strong>Twister</strong></p></td><td><p>The target suffers 10 <strong>air</strong> damage and also suffers <strong>dazed</strong>.</p></td></tr></tbody></table><hr /><h5>EARTH WELLSPRINGS</h5><table><tbody><tr><td data-colwidth=\"278\"><p><strong>Earth wellspring</strong></p></td><td><p><strong>(damage type: earth)</strong></p></td></tr><tr><td data-colwidth=\"278\"><p><strong>Geo Blast</strong></p></td><td><p>You deal 20 <strong>earth</strong> damage to the target.</p></td></tr><tr><td data-colwidth=\"278\"><p><strong>Geo Hex</strong></p></td><td><p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>ice</strong> damage.</span></p></td></tr><tr><td data-colwidth=\"278\"><p><strong>Growth</strong></p></td><td><p>The target recovers 30 Hit Points.</p></td></tr><tr><td data-colwidth=\"278\"><p><strong>Quicksand</strong></p></td><td><p>The target suffers 10 <strong>earth</strong> damage and also suffers <strong>slow</strong></p></td></tr></tbody></table><hr /><h5>FIRE WELLSPRINGS</h5><table><tbody><tr><td><p><strong>Fire wellspring</strong></p></td><td><p><strong>(damage type: fire)</strong></p></td></tr><tr><td><p><strong>Pyro Blast</strong></p></td><td><p>You deal 20 <strong>fire</strong> damage to the target.</p></td></tr><tr><td><p><strong>Pyro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>ice</strong> damage.</p></td></tr><tr><td><p><strong>Burst</strong></p></td><td><p>The target suffers 10 <strong>fire</strong> damage and also suffers <strong>shaken</strong>.</p></td></tr><tr><td><p><strong>Smoke</strong></p></td><td><p>The target loses 20 Mind Points and also suffers <strong>weak</strong></p></td></tr></tbody></table><hr /><h5>LIGHTNING WELLSPRINGS</h5><table><tbody><tr><td><p><strong>Lightning wellspring</strong></p></td><td><p><strong>(damage type: bolt)</strong></p></td></tr><tr><td><p><strong>Electro Blast</strong></p></td><td><p>You deal 20 <strong>bolt</strong> damage to the target.</p></td></tr><tr><td><p><strong>Electro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>fire</strong> damage.</p></td></tr><tr><td><p><strong>Static</strong></p></td><td><p>The target suffers 10 <strong>bolt</strong> damage and also suffers <strong>slow</strong>.</p></td></tr><tr><td><p><strong>Thunder</strong></p></td><td><p>The target loses 20 Mind Points and also suffers <strong>dazed.</strong></p></td></tr></tbody></table><hr /><h5>WATER WELLSPRINGS</h5><table><tbody><tr><td><p><strong>Water wellspring</strong></p></td><td><p><strong>(damage type: ice)</strong></p></td></tr><tr><td><p><strong>Hydro Blast</strong></p></td><td><p>You deal 20 <strong>ice</strong> damage to the target.</p></td></tr><tr><td><p><strong>Hydro Hex</strong></p></td><td><p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>bolt</strong> damage.</p></td></tr><tr><td><p><strong>Chill</strong></p></td><td><p>The target loses 20 Mind Points and also suffers <strong>shaken</strong>.</p></td></tr><tr><td><p><strong>Frostbite</strong></p></td><td><p>The target suffers 10 ice damage and also suffers <strong>weak</strong>.</p></td></tr></tbody></table><hr />",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!JHjzGHXO9qm8HVW9.fmIxsqGCOKYYIxap"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742677066389,
+    "modifiedTime": 1742677068556,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "JHjzGHXO9qm8HVW9",
+  "sort": 300000,
+  "_key": "!journal!JHjzGHXO9qm8HVW9"
+}
