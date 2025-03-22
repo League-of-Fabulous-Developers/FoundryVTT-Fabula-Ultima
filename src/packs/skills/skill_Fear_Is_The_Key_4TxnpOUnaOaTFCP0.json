@@ -117,7 +117,7 @@
     },
     "fuid": "fear-is-the-key"
   },
-  "img": "icons/magic/death/skull-energy-light-purple.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/fear_is_key.png",
   "effects": [],
   "flags": {
     "core": {},
@@ -128,7 +128,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1684757022310,
-    "modifiedTime": 1741994514444,
+    "modifiedTime": 1742579062412,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

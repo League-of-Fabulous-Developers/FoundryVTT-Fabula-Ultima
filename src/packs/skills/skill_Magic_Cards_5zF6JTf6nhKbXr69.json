@@ -2,7 +2,7 @@
   "folder": "DSK88QwlFKfnapAU",
   "name": "Magic Cards",
   "type": "skill",
-  "img": "icons/sundries/gaming/playing-cards-black.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/magic_cards.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -133,7 +133,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707643024284,
-    "modifiedTime": 1741998693695,
+    "modifiedTime": 1742579013389,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

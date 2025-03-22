@@ -1,7 +1,7 @@
 {
   "name": "Ace of Cards",
   "type": "class",
-  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/ace-cards.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/ace_cards.png",
   "system": {
     "summary": {
       "value": "Don't look away!"
@@ -80,7 +80,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1685059788199,
-    "modifiedTime": 1742001639672,
+    "modifiedTime": 1742578287970,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

@@ -117,7 +117,7 @@
     },
     "fuid": "for-whom-the-bell-tolls"
   },
-  "img": "icons/magic/death/skull-flames-white-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/for_who_bells.png",
   "effects": [],
   "flags": {
     "core": {},
@@ -128,7 +128,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1684757022676,
-    "modifiedTime": 1741973763420,
+    "modifiedTime": 1742579054174,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

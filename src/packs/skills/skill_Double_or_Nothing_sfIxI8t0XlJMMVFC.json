@@ -2,7 +2,7 @@
   "folder": "DSK88QwlFKfnapAU",
   "name": "Double or Nothing",
   "type": "skill",
-  "img": "icons/sundries/gaming/dice-runed-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/double_or_nothing.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -134,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707643024284,
-    "modifiedTime": 1741992020051,
+    "modifiedTime": 1742578990031,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

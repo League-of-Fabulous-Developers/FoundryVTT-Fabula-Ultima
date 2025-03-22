@@ -117,7 +117,7 @@
     },
     "fuid": "children-of-the-grave"
   },
-  "img": "icons/magic/death/undead-skeleton-deformed-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/childrenave.png",
   "effects": [],
   "flags": {
     "core": {},
@@ -128,7 +128,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1684757022956,
-    "modifiedTime": 1741973380121,
+    "modifiedTime": 1742579078188,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

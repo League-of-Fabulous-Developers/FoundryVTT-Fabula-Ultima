@@ -117,7 +117,7 @@
     "defense": "def",
     "fuid": "beyond-the-realms-of-death"
   },
-  "img": "icons/magic/death/skull-trio-badge-purple.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/beyond_realms_death.png",
   "effects": [],
   "flags": {
     "core": {},
@@ -128,7 +128,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1684757023667,
-    "modifiedTime": 1741973430066,
+    "modifiedTime": 1742579040057,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

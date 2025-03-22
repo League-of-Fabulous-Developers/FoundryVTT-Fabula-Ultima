@@ -2,7 +2,7 @@
   "folder": "DSK88QwlFKfnapAU",
   "name": "Mulligan",
   "type": "skill",
-  "img": "icons/sundries/gaming/rune-card.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/mulligan.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -134,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707643024284,
-    "modifiedTime": 1741992108339,
+    "modifiedTime": 1742579021343,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

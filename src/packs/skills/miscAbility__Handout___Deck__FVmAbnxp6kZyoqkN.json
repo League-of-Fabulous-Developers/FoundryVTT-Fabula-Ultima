@@ -2,7 +2,7 @@
   "folder": "wZOSNGoeGDSeFxp6",
   "name": "[Handout:  Deck]",
   "type": "miscAbility",
-  "img": "icons/sundries/gaming/playing-cards.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/magic_cards.png",
   "system": {
     "subtype": {
       "value": "other"
@@ -147,7 +147,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707665720251,
-    "modifiedTime": 1741998646208,
+    "modifiedTime": 1742580063009,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

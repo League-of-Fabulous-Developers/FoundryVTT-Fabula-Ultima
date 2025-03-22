@@ -2,7 +2,7 @@
   "folder": "DSK88QwlFKfnapAU",
   "name": "High or Low",
   "type": "skill",
-  "img": "icons/sundries/gaming/playing-cards-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/high_or_low.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -134,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707643024284,
-    "modifiedTime": 1741992024090,
+    "modifiedTime": 1742579002222,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

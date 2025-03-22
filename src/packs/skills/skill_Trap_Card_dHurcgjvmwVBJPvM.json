@@ -2,7 +2,7 @@
   "folder": "DSK88QwlFKfnapAU",
   "name": "Trap Card",
   "type": "skill",
-  "img": "icons/sundries/gaming/playing-cards-grey.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/trap_card.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -134,7 +134,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707643024284,
-    "modifiedTime": 1741992114157,
+    "modifiedTime": 1742579029136,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

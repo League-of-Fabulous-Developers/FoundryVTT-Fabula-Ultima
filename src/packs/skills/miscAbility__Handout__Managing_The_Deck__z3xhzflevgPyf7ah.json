@@ -2,7 +2,7 @@
   "folder": "wZOSNGoeGDSeFxp6",
   "name": "[Handout: Managing The Deck]",
   "type": "miscAbility",
-  "img": "icons/sundries/gaming/playing-cards-black.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/ace-card/magic_cards.png",
   "system": {
     "subtype": {
       "value": "other"
@@ -147,7 +147,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707643359800,
-    "modifiedTime": 1741998649072,
+    "modifiedTime": 1742580071496,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
