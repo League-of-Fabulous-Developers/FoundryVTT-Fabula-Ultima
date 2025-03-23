@@ -14,7 +14,11 @@ const volumes = {
 	high: 'FU.ClassFeatureVerseVolumeHigh',
 };
 
-async function getDescription(model, useAttributes = false) {
+/**
+ * @param {VerseDataModel} model
+ * @returns {Promise<string>}
+ */
+async function getDescription(model) {
 	const key = model.key;
 	const tone = model.tone;
 
@@ -23,21 +27,20 @@ async function getDescription(model, useAttributes = false) {
 	}
 	let rollData;
 	if (!key) {
-		rollData = (await ToneDataModel.getAdditionalData(tone.data.system)).rollData;
+		rollData = (await ToneDataModel.getAdditionalData(tone.system.data)).rollData;
 	} else {
 		rollData = {};
 		const keyData = key.system.data;
 		rollData.key = {
 			type: game.i18n.localize(FU.damageTypes[keyData.type]),
 			status: `@EFFECT[${keyData.status}]`,
-			//status: game.i18n.localize(KeyDataModel.statuses[keyData.status]),
 			attribute: game.i18n.localize(FU.attributeAbbreviations[keyData.attribute]),
 			recovery: game.i18n.localize(KeyDataModel.recoveryOptions[keyData.recovery]),
 		};
 
-		const actor = model.parent.parent?.actor;
-		if (useAttributes && actor) {
-			rollData.attribute = Object.entries(actor?.system.attributes ?? {}).reduce(
+		const actor = model.actor;
+		if (actor) {
+			rollData.attribute = Object.entries(actor.system.attributes ?? {}).reduce(
 				(agg, [key, value]) => ({
 					...agg,
 					[key]: value.current,
@@ -49,7 +52,7 @@ async function getDescription(model, useAttributes = false) {
 		}
 	}
 
-	return TextEditor.enrichHTML(tone?.system.data.description, {
+	return TextEditor.enrichHTML(tone.system.data.description, {
 		rollData: rollData,
 	});
 }

@@ -1,6 +1,6 @@
 <form>
     <div class="flexrow gap-5 mb-5">
-        <section class="flex1 mb">
+        <section class="flex1">
             <fieldset class="desc title-fieldset resource-content">
                 <legend class="resource-label-m">
                     {{localize "FU.ClassFeatureVerseSingDialogLabelAlt"}}
@@ -9,7 +9,7 @@
                     <label>
                         <span class="resource-label-sm">{{localize "FU.ClassFeatureVerseChooseKey"}}</span><br>
                         <select class="resource-inputs select-dropdown-full grid-span-4" name="performance.key">
-                            {{selectOptions keys selected=performance.key valueAttr="id" labelAttr="name"}}
+                            {{selectOptions keys selected=performance.key labelAttr="name"}}
                         </select>
                     </label>
                 </div>
@@ -17,7 +17,7 @@
                     <label>
                         <span class="resource-label-sm">{{localize "FU.ClassFeatureVerseChooseTone"}}</span><br>
                         <select class="resource-inputs select-dropdown-full grid-span-4" name="performance.tone">
-                            {{selectOptions tones selected=performance.tone valueAttr="id" labelAttr="name"}}
+                            {{selectOptions tones selected=performance.tone labelAttr="name"}}
                         </select>
                     </label>
                 </div>
@@ -25,7 +25,7 @@
                     <label>
                         <span class="resource-label-sm">{{localize "FU.ClassFeatureVerseChooseVolume"}}</span><br>
                         <select class="resource-inputs select-dropdown-full grid-span-4" name="performance.volume">
-                            {{selectOptions volume selected=performance.volume valueAttr="id" labelAttr="name"}}
+                            {{selectOptions volumes selected=performance.volume}}
                         </select>
                     </label>
                 </div>
@@ -43,8 +43,5 @@
     <div class="flexrow gap-5">
         <button type="button" data-action="startPerforming" class="action-style  flex3"
             style="justify-content: center; border: none;">{{localize "FU.ClassFeatureVerseSingDialogLabel"}}</button>
-        {{!-- <button type="button" data-action="savePerformance" class="action-style  flex1"
-            style="justify-content: center; border: none;"><i class="fas fa-save"></i>{{localize
-            "FU.SettingsSave"}}</button> --}}
     </div>
 </form>

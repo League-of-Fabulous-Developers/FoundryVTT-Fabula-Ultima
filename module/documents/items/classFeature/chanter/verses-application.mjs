@@ -21,7 +21,7 @@ async function getDescription(model, useAttributes = false) {
 	}
 
 	// If there are any error messages, return them
-	if (content.trim()) {
+	if (content) {
 		return content.trim();
 	}
 
@@ -110,29 +110,27 @@ export class VersesApplication extends FormApplication {
 	}
 
 	/**
-	 * @returns {[]}
+	 * @returns {Record<string, KeyDataModel>}
 	 */
 	get keys() {
-		const _keys = this.#verse.actor.itemTypes.classFeature
+		return this.#verse.actor.itemTypes.classFeature
 			.filter((item) => item.system.data instanceof KeyDataModel)
 			.reduce((agg, item) => {
 				agg[item.id] = item;
 				return agg;
 			}, {});
-		return Object.values(_keys);
 	}
 
 	/**
-	 * @returns {[]}
+	 * @returns {Record<string, ToneDataModel>}
 	 */
 	get tones() {
-		const _tones = this.#verse.actor.itemTypes.classFeature
+		return this.#verse.actor.itemTypes.classFeature
 			.filter((item) => item.system.data instanceof ToneDataModel)
 			.reduce((agg, item) => {
 				agg[item.id] = item;
 				return agg;
 			}, {});
-		return Object.values(_tones);
 	}
 
 	get template() {
@@ -145,11 +143,11 @@ export class VersesApplication extends FormApplication {
 
 	async getData(options = {}) {
 		// Define volume options
-		const volume = [
-			{ id: 'low', name: game.i18n.localize('FU.ClassFeatureVerseVolumeLow') },
-			{ id: 'medium', name: game.i18n.localize('FU.ClassFeatureVerseVolumeMedium') },
-			{ id: 'high', name: game.i18n.localize('FU.ClassFeatureVerseVolumeHigh') },
-		];
+		const volumes = {
+			low: game.i18n.localize('FU.ClassFeatureVerseVolumeLow'),
+			medium: game.i18n.localize('FU.ClassFeatureVerseVolumeMedium'),
+			high: game.i18n.localize('FU.ClassFeatureVerseVolumeHigh'),
+		};
 
 		// Set defaults if missing
 		if (this.#verse.key == null || this.#verse.tone == null) {
@@ -172,7 +170,7 @@ export class VersesApplication extends FormApplication {
 		return {
 			keys: this.keys, // Convert object to array for dropdown
 			tones: this.tones, // Convert object to array for dropdown
-			volume,
+			volumes,
 			performance,
 			effects, // Include description effects
 		};
