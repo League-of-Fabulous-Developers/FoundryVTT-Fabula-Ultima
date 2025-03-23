@@ -17,12 +17,12 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiQm9sdCAmIExpZ2h0IFJlc2lzdGFuY2UiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5ib2x0IiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5saWdodCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL2NvbW1vZGl0aWVzL2Zsb3dlcnMvbGlseS1ncmV5LW9yYW5nZS53ZWJwIn0=]</strong> </p>"
+          "effect": "<p>You are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p><hr><ul><li><p><strong>You Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj]{Bolt Resistance} and @UUID[Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu]{Light Resistance}</p></li></ul>"
         },
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>You and your allies present on the scene are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiQm9sdCAmIExpZ2h0IFJlc2lzdGFuY2UiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5ib2x0IiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5saWdodCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL2NvbW1vZGl0aWVzL2Zsb3dlcnMvbGlseS1ncmV5LW9yYW5nZS53ZWJwIn0=]</strong> </p>"
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p><hr><ul><li><p><strong>Targets Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj]{Bolt Resistance} and @UUID[Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu]{Light Resistance}</p></li></ul>"
         }
       ]
     },
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742676954080,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1742748270121,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "ownership": {
     "default": 0,

@@ -17,12 +17,12 @@
         {
           "start": 1,
           "end": 2,
-          "effect": "<p>At the end of your turn, choose yourself <strong>or</strong> another Player Character you can see.<br>The chosen character regains @GAIN[2 ip].</p>"
+          "effect": "<p>At the end of your turn, choose yourself <strong>or</strong> another Player Character you can see. The chosen character regains 2 Inventory Point.</p><hr><ul><li><p><strong>Target Recover:</strong> @GAIN[2 ip]</p></li></ul>"
         },
         {
           "start": 3,
           "end": 3,
-          "effect": "<p>At the end of your turn, choose yourself <strong>or</strong> another Player Character you can see.<br>The chosen character regains @GAIN[2 ip].</p>"
+          "effect": "<p>At the end of your turn, you <strong>and</strong> every other Player Character you can see regain 1 Inventory Point.</p><hr><ul><li><p><strong>Targets Recover:</strong> @GAIN[1 ip]</p></li></ul>"
         }
       ]
     },
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742676954080,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1742765756913,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "ownership": {
     "default": 0,

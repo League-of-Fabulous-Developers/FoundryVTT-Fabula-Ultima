@@ -17,17 +17,17 @@
         {
           "start": 1,
           "end": 1,
-          "effect": "<p>At the end of your turn, you may choose an enemy you can see. If you do, that enemy suffers <strong>@EFFECT[shaken]</strong>.</p>"
+          "effect": "<p>At the end of your turn, you may choose an enemy you can see. If you do, that enemy suffers <strong>shaken.</strong></p><hr><ul><li><p><strong>Target Suffers:</strong> @EFFECT[shaken]</p></li></ul>"
         },
         {
           "start": 2,
           "end": 2,
-          "effect": "<p>At the end of your turn, every enemy you can see suffers <strong>@EFFECT[shaken]</strong>.</p>"
+          "effect": "<p>At the end of your turn, every enemy you can see suffers <strong>shaken</strong>.</p><hr><ul><li><p><strong>Targets Suffers:</strong> @EFFECT[shaken]</p></li></ul>"
         },
         {
           "start": 3,
           "end": 3,
-          "effect": "<p>At the end of your turn, you deal an amount of <strong>dark</strong> damage equal to<strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from @EFFECT[shaken].</p>"
+          "effect": "<p>At the end of your turn, you deal an amount of <strong>dark</strong> damage equal to<strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>shaken</strong>.</p><hr><ul><li><p><strong>Targets Loses:</strong> @DMG[15+&sl('chloromancy') dark]</p></li></ul>"
         }
       ]
     },
@@ -43,8 +43,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742676954080,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1742765340649,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "ownership": {
     "default": 0,

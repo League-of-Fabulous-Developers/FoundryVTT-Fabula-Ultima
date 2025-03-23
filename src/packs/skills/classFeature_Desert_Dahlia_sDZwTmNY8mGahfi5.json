@@ -17,12 +17,12 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiQWlyICYgRmlyZSBSZXNpc3RhbmNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuYWlyIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5maXJlIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvY29tbW9kaXRpZXMvZmxvd2Vycy9saWx5LXdhdGVyLXdoaXRlLndlYnAifQ==]</strong> </p>"
+          "effect": "<p>You are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><ul><li><p><strong>You Receive:  </strong>@AFFINITY[air resistance] and @AFFINITY[fire resistance]</p></li></ul>"
         },
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>You and your allies present on the scene are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><p><strong>@EFFECT[eyJuYW1lIjoiQWlyICYgRmlyZSBSZXNpc3RhbmNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuYWlyIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn0seyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5maXJlIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvY29tbW9kaXRpZXMvZmxvd2Vycy9saWx5LXdhdGVyLXdoaXRlLndlYnAifQ==]</strong> </p><p></p>"
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><ul><li><p><strong>Targets Receive: </strong>@AFFINITY[air resistance] and @AFFINITY[fire resistance]</p></li></ul>"
         }
       ]
     },
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742676954080,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1742765325511,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "ownership": {
     "default": 0,

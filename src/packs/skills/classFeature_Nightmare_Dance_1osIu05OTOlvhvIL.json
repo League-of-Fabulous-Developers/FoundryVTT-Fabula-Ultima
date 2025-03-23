@@ -14,7 +14,7 @@
     "featureType": "projectfu.dance",
     "data": {
       "duration": "instant",
-      "description": "<p>Choose another creature that is able to see you. If that creature is already <span>@EFFECT[shaken]</span>, they immediately suffer <span>@EFFECT[weak]</span>.</p><hr><ul><li><p><strong>You:</strong> @LOSS[10 mp]</p></li></ul>"
+      "description": "<p>Choose another creature that is able to see you. If that creature is already <span><strong>shaken</strong></span>, they immediately suffer <span><strong>weak</strong></span>.</p><hr><ul><li><p><strong>You Lose:</strong> @LOSS[10 mp]</p></li><li><p><strong>Target Suffers: </strong><span>@EFFECT[weak]</span></p></li></ul>"
     },
     "source": "FUHF145",
     "fuid": "nightmare-dance"
@@ -32,10 +32,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1710176303121,
-    "modifiedTime": 1740175467955,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1742745177925,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

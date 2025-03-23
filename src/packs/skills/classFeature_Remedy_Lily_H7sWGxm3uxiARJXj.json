@@ -22,7 +22,7 @@
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>At the end of your turn, you and every ally you can see recover an amount of Hit Points equal to<strong>【15 + your Skill Level in Chloromancy】</strong>.</p>"
+          "effect": "<p>At the end of your turn, you and every ally you can see recover an amount of Hit Points equal to<strong>【15 + your Skill Level in Chloromancy】</strong>.</p><hr><ul><li><p><strong>Targets Recover:</strong> @GAIN[15+&sl('chloromancy') hp]</p></li></ul>"
         }
       ]
     },
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742676954080,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1742747625120,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "ownership": {
     "default": 0,
