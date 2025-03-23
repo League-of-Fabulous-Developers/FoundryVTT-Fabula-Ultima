@@ -124,19 +124,19 @@
       "flags": {
         "projectfu": {
           "type": "default",
-          "source": "",
+          "source": "FUTF155",
           "CrisisInteraction": "none"
         }
       },
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1740172175749,
-        "modifiedTime": 1740774908907,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1742699693758,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_id": "v81MYXQ0Fkt9JjVa",
       "_key": "!items.effects!XlN2TtdK4Sn4ssQS.v81MYXQ0Fkt9JjVa"

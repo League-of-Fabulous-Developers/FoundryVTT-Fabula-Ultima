@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you acquire this Skill, you gain a <strong>personal vehicle</strong> with a <strong>frame</strong> of your choice and <strong>three different modules</strong> of your choice (see <strong>Techno Fantasy Atlas</strong>, page <strong>160</strong>).</p><p>Whenever you acquire this Skill again, you acquire <strong>two additional modules</strong> of your choice.</p><hr /><ul><li><p>For <strong>vehicle</strong> breakdown and a list of Vehicle Modules, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.JtN1YEB5uhn9JMUG]{Vehicle Rules}</p></li><li><p>To <strong>pilot</strong> a vehicle, add a vehicle frame to your character sheet and <strong>activate</strong> it. Navigate to the \"<strong>Stats</strong>\" tab and in the Vehicle section press the button next to vehicle frame name to <strong>embark.</strong></p></li></ul>",
+    "description": "<p>When you acquire this Skill, you gain a <strong>personal vehicle</strong> with a <strong>frame</strong> of your choice and <strong>three different modules</strong> of your choice (see <strong>Techno Fantasy Atlas</strong>, page <strong>160</strong>).</p><p>Whenever you acquire this Skill again, you acquire <strong>two additional modules</strong> of your choice.</p><hr /><ul><li><p>For <strong>vehicle</strong> breakdown and a list of Vehicle Modules, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.JtN1YEB5uhn9JMUG]{Vehicle Rules}</p></li><li><p>To <strong>pilot</strong> a vehicle, add a vehicle frame to your character sheet and <strong>activate</strong> it. <br />Navigate to the \"<strong>Stats</strong>\" tab and in the Vehicle section press the button next to vehicle frame name to <strong>embark.</strong></p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -133,7 +133,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711431286236,
-    "modifiedTime": 1742001320877,
+    "modifiedTime": 1742700179187,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

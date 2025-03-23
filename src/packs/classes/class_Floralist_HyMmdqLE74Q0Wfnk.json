@@ -1,7 +1,7 @@
 {
   "name": "Floralist",
   "type": "class",
-  "img": "modules/fabula-ultima-natural-fantasy/artwork/class/floralist.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/floralist.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -85,8 +85,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676857436,
-    "modifiedTime": 1742678101756,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1742697138711,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "HyMmdqLE74Q0Wfnk",
   "sort": 500000,

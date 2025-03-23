@@ -1,7 +1,7 @@
 {
   "name": "Gourmet",
   "type": "class",
-  "img": "modules/fabula-ultima-natural-fantasy/artwork/class/gourmet.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/gourmet.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -85,8 +85,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676859694,
-    "modifiedTime": 1742678215370,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1742697077594,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "bI02AG6lS99zB8a5",
   "sort": 0,

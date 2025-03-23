@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>The target suffers (<strong>choose one: dazed, shaken, slow, weak</strong>).</p><hr /><p>@EFFECT[dazed] @EFFECT[shaken] @EFFECT[slow] @EFFECT[weak]</p><p>@LOSS[5 mp]</p>",
+    "description": "<p>The target suffers (<strong>choose one: dazed, shaken, slow, weak</strong>).</p><hr /><ul><li><p><strong>Target Suffers:</strong> @EFFECT[dazed], @EFFECT[shaken], @EFFECT[slow], or @EFFECT[weak]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -127,8 +127,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1724180864880,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742701550122,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

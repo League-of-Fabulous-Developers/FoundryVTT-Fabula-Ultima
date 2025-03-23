@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum on your turn during a conflict (see next page), if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free. The spell you cast this way must have a <strong>total Mind Point cost of 【SL × 5】 or lower</strong> (you must still pay the spell's MP cost).</p>",
+    "description": "<p>After you willingly <strong>dismiss</strong> an Arcanum on your turn during a conflict (see <strong>Core Rulebook</strong>, page <strong>178</strong>), if that Arcanum had not been <strong>summoned</strong> during this same turn and you have an <strong>arcane</strong> weapon equipped, you may immediately perform the <strong>Spell</strong> action for free. The spell you cast this way must have a <strong>total Mind Point cost of 【SL × 5】 or lower</strong> (you must still pay the spell's MP cost).</p>",
     "isFavored": {
       "value": false
     },
@@ -136,7 +136,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706494627418,
-    "modifiedTime": 1741991885708,
+    "modifiedTime": 1742692180788,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

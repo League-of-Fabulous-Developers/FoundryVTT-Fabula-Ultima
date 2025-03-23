@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><ul><li><p><strong>Target:</strong> @EFFECT[aura]</p></li></ul>",
+    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><ul><li><p><strong>Targets Receive:</strong> @EFFECT[aura]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
       },
       "disabled": false,
       "name": "Aura",
-      "img": "icons/magic/defensive/barrier-shield-dome-deflect-blue.webp",
+      "img": "systems/projectfu/styles/static/statuses/Aura.webp",
       "_id": "8QJ7SwRKK96tzyUg",
       "type": "base",
       "system": {},
@@ -166,8 +166,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1733862598062,
-        "modifiedTime": 1733862657500,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO"
+        "modifiedTime": 1742703476200,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!jd9jMsj2PNq99M64.8QJ7SwRKK96tzyUg"
     }
@@ -183,10 +183,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706571961584,
-    "modifiedTime": 1737917726504,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1742703366791,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

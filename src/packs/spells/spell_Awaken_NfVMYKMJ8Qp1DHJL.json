@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You allow a creature to focus their vital energy into accomplishing what they previously could not. Choose one Attribute: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. Until this spell ends, the target treats the chosen Attribute as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p><hr /><ul><li><p><strong>Target:</strong> @EFFECT[dex-up] @EFFECT[ins-up] @EFFECT[mig-up] @EFFECT[wlp-up]</p></li></ul>",
+    "description": "<p>You allow a creature to focus their vital energy into accomplishing what they previously could not. Choose one Attribute: <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>. Until this spell ends, the target treats the chosen Attribute as if it were one die size higher (up to a maximum of <strong>d12</strong>).</p><hr /><ul><li><p><strong>Targets Receive:</strong> @EFFECT[dex-up], @EFFECT[ins-up], @EFFECT[mig-up], or @EFFECT[wlp-up]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706572044662,
-    "modifiedTime": 1737899843625,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1742703389238,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

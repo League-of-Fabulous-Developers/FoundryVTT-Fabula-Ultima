@@ -1,7 +1,7 @@
 {
   "name": "Invoker",
   "type": "class",
-  "img": "modules/fabula-ultima-natural-fantasy/artwork/class/invoker.png",
+  "img": "systems/projectfu/styles/static/compendium/classes/invoker/invoker.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -85,8 +85,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676862037,
-    "modifiedTime": 1742678336472,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1742697109870,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "3oIs9d1HnyKkJ424",
   "sort": 0,

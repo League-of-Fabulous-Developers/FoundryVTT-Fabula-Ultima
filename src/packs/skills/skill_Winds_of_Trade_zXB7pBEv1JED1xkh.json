@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you rest in an area where commerce is possible, you gain<strong>【SL + 1】Trade Points</strong>. You may never have more than<strong>【SL + 3】</strong>Trade Points; if you acquire this Skill during character creation, begin play with 2 Trade Points.</p><p>During a <strong>non-conflict scene</strong>, you may spend 2 Trade Points to choose one option: you create a <strong>material</strong> or <strong>rare item</strong> approved by the Game Master whose value in zenit is <strong>equal to or lower than【your level, multiplied by 30】</strong>; <strong>or</strong> your create an NPC that lives nearby and explain their occupation as well as how you met them, then the Game Master tells you what they require in exchange for their services.</p>",
+    "description": "<p>After you rest in an area where commerce is possible, you gain<strong>【SL + 1】Trade Points</strong>. You may never have more than<strong>【SL + 3】</strong>Trade Points; if you acquire this Skill during character creation, begin play with 2 Trade Points.</p><p>During a <strong>non-conflict scene</strong>, you may spend 2 Trade Points to choose one option: you create a <strong>material</strong> or <strong>rare item</strong> approved by the Game Master whose value in zenit is <strong>equal to or lower than 【your level, multiplied by 30】</strong>; <strong>or</strong> your create an NPC that lives nearby and explain their occupation as well as how you met them, then the Game Master tells you what they require in exchange for their services.</p>",
     "isFavored": {
       "value": false
     },
@@ -79,8 +79,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676975651,
-    "modifiedTime": 1742676975651,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1742699993935,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "zXB7pBEv1JED1xkh",
   "sort": 0,
