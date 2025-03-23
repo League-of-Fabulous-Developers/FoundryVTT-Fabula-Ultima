@@ -138,7 +138,7 @@ export class CombatHUD extends Application {
 	}
 
 	_getResourcePartial(resource) {
-		if (resource == 'none') return false;
+		if (resource === 'none') return false;
 
 		let theme = game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme).replace('fu-', '');
 		if (theme === 'default') theme = '';
@@ -245,8 +245,7 @@ export class CombatHUD extends Application {
 				actorData.shouldEffectsMarquee = actorData.effects.length > maxEffectsBeforeMarquee && effectsMarqueeDuration < 9000;
 				actorData.effectsMarqueeDuration = effectsMarqueeDuration;
 
-				const marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
-				actorData.marqueeDirection = marqueeDirection;
+                actorData.marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
 			}
 
 			let order = 0;
@@ -329,9 +328,6 @@ export class CombatHUD extends Application {
 		if (this.isFirefox) {
 			$(window.document).on('dragover', this._fireFoxDragWorkaround.bind(this));
 		}
-
-		this._dragOffsetX = -dragButton.width() * 1.5;
-		this._dragOffsetY = dragButton.height() / 2;
 
 		this._startCombatButton = html.find('.window-start');
 		this._startCombatButton.click(this._doStartCombat.bind(this));
@@ -449,7 +445,7 @@ export class CombatHUD extends Application {
 		});
 	}
 
-	_doHudDrop(event) {
+	_doHudDrop() {
 		const offset = this.element.offset();
 		const height = this.element.outerHeight();
 		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
@@ -495,7 +491,7 @@ export class CombatHUD extends Application {
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, this._backupOrdering ?? []);
 	}
 
-	_onCanvasDraw(canvas) {
+	_onCanvasDraw() {
 		setTimeout(() => {
 			if (game.combat && game.combat.isActive) {
 				CombatHUD.init();
@@ -573,10 +569,10 @@ export class CombatHUD extends Application {
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, ordering);
 
 		const factionList = this.element.find(faction);
-		const rows = $(faction).find('.combat-row');
-		rows.detach().sort((a, b) => a.dataset.order - b.dataset.order);
+		const rows = $(faction).find('.combat-row').detach();
+		const sortedRows = $(rows.toArray().sort((a, b) => a.dataset.order - b.dataset.order));
 
-		factionList.append(rows);
+		factionList.append(sortedRows);
 	}
 
 	_doMinimize() {
@@ -928,7 +924,7 @@ export class CombatHUD extends Application {
 		this.close();
 	}
 
-	_onStudyRoll(actor, journalEntry) {
+	_onStudyRoll() {
 		this._onUpdateHUD();
 	}
 
