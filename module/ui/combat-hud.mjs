@@ -200,8 +200,7 @@ export class CombatHUD extends Application {
 				token: combatant.token,
 				faction: combatant.faction,
 				effects: activeEffects,
-				// token._source should contain the most current version of the token's texture.
-				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? combatant.token._source.texture.src : combatant.actor.img,
+				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? await this._getCombatantThumbnail(combatant) : combatant.actor.img,
 				trackedResourcePart1: trackedResourcePart1,
 				trackedResourcePart2: trackedResourcePart2,
 				trackedResourcePart3: trackedResourcePart3,
@@ -801,19 +800,35 @@ export class CombatHUD extends Application {
 
 	_onUpdateToken(token, changes) {
 		// Is the updated token in the current combat?
-		if (!game.combat?.combatants.some((c) => c.token.uuid === token.uuid)) {
+        const combatant = game.combat?.combatants.find((c) => c.token.uuid === token.uuid);
+		if (!combatant) {
 			return;
 		}
 
-		// Are any of the changes relevant to the Combat HUD?
-		if (
-			foundry.utils.hasProperty(changes, 'name') ||
-			foundry.utils.hasProperty(changes, 'actorId') ||
-			foundry.utils.hasProperty(changes, 'disposition') ||
-			(game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && foundry.utils.hasProperty(changes, 'texture.src'))
-		) {
-			this._onUpdateHUD();
-		}
+        // Are any of the changes relevant to the Combat HUD?
+		if (game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && foundry.utils.hasProperty(changes, 'texture.src')) {
+
+            // Note: These properties are also used by the Combat Tracker
+            // But it doesn't attempt to regenerate them like this.
+            // Ultimately the token icon will be updated on the tracker the next time it refreshes.
+            combatant._thumb = null;
+            if(VideoHelper.hasVideoExtension(changes.texture.src)) {
+                combatant.img = null;
+                combatant._videoSrc = changes.texture.src;
+            } else {
+                combatant.img = changes.texture.src;
+                delete combatant._videoSrc;
+            }
+
+            this._onUpdateHUD();
+        }
+        else if (
+            foundry.utils.hasProperty(changes, 'name') ||
+            foundry.utils.hasProperty(changes, 'actorId') ||
+            foundry.utils.hasProperty(changes, 'disposition')
+        ) {
+            this._onUpdateHUD();
+        }
 	}
 
 	_onUpdateActor(actor, changes) {
@@ -1073,4 +1088,19 @@ export class CombatHUD extends Application {
 			},
 		};
 	}
+
+    /**
+     * Retrieve a source image for a combatant.
+     * Modified from CombatTracker._getCombatantThumbnail()
+     * @param {Combatant} combatant         The combatant queried for image.
+     * @returns {Promise<string>}           The source image attributed for this combatant.
+     * @protected
+     */
+    async _getCombatantThumbnail(combatant) {
+        if ( combatant._videoSrc && !combatant.img ) {
+            if ( combatant._thumb ) return combatant._thumb;
+            return combatant._thumb = await game.video.createThumbnail(combatant._videoSrc, {width: 200, height: 200});
+        }
+        return combatant.img ?? CONST.DEFAULT_TOKEN;
+    }
 }
