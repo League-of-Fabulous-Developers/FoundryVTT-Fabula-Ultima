@@ -1,5 +1,7 @@
 <div class="progress" style="--segments: {{data.max}};" data-segments="{{data.max}}"
-     data-tooltip="{{localize 'FU.Progress'}}">
+     data-tooltip="{{localize 'FU.Progress'}}"
+     {{#if dataPath}}data-data-path="{{dataPath}}"{{/if}}
+>
 
     <div class="foreground"></div>
 

@@ -603,13 +603,15 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Update Progress Increase
 		html.find('.progress input').click((ev) => {
 			const dataType = $(ev.currentTarget).closest('.progress').data('type');
-			this._onProgressUpdate(ev, dataType);
+			const dataPath = $(ev.currentTarget).closest('.progress').data('dataPath');
+			this._onProgressUpdate(ev, dataType, dataPath);
 		});
 
 		// Update Progress Reset
 		html.find('.progress input').contextmenu((ev) => {
 			const dataType = $(ev.currentTarget).closest('.progress').data('type');
-			this._onProgressReset(ev, dataType);
+			const dataPath = $(ev.currentTarget).closest('.progress').data('dataPath');
+			this._onProgressReset(ev, dataType, dataPath);
 		});
 
 		// Create an instance of EquipmentHandler
@@ -779,6 +781,22 @@ export class FUStandardActorSheet extends ActorSheet {
 		};
 
 		html.find('[data-action=toggleActiveArcanum][data-item-id]').on('click', updateArcanistArcanum.bind(this));
+
+		const toggleActiveGarden = (ev) => {
+			const itemId = ev.currentTarget.dataset.itemId;
+			const item = this.actor.items.get(itemId);
+
+			return this.actor.system.floralist.toggleActiveGarden(item);
+		};
+		html.find('[data-action=toggleActiveGarden][data-item-id]').on('click', toggleActiveGarden.bind(this));
+
+		const togglePlantedMagiseed = (ev) => {
+			const itemId = ev.currentTarget.dataset.itemId;
+			const item = this.actor.items.get(itemId);
+
+			return this.actor.system.floralist.togglePlantedMagiseed(item);
+		};
+		html.find('[data-action=togglePlantedMagiseed][data-item-id]').on('click', togglePlantedMagiseed.bind(this));
 
 		html.find('a[data-action=spendMetaCurrency]').on('click', () => this.actor.spendMetaCurrency());
 
@@ -1489,6 +1507,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			if (li.length) {
 				const itemId = li.find('[data-item-id]').data('item-id');
 				const item = this.actor.items.get(itemId);
+				const dataPath = ev.currentTarget.dataset.dataPath;
 
 				if (item) {
 					switch (dataType) {
@@ -1501,9 +1520,8 @@ export class FUStandardActorSheet extends ActorSheet {
 							break;
 
 						case 'clockCounter':
-							await this._updateClockProgress(item, increment, rightClick);
+							await this._updateClockProgress(item, increment, rightClick, dataPath);
 							break;
-
 						case 'optionalRPCounter':
 							await this._updateOptionalRPProgress(item, increment, rightClick);
 							break;
@@ -1550,22 +1568,33 @@ export class FUStandardActorSheet extends ActorSheet {
 		await item.update({ 'system.rp.current': newProgress });
 	}
 
-	async _updateClockProgress(item, increment, rightClick) {
-		const stepMultiplier = item.system.progress.step || 1;
-		const maxProgress = item.system.progress.max;
+	/**
+	 * @param {FUItem} item
+	 * @param {number} increment
+	 * @param {boolean} rightClick
+	 * @param {string} [dataPath]
+	 * @returns {Promise<void>}
+	 * @private
+	 */
+	async _updateClockProgress(item, increment, rightClick, dataPath = 'system.progress') {
+		/** @type ProgressDataModel */
+		const progress = foundry.utils.getProperty(item, dataPath);
+
+		const stepMultiplier = progress.step || 1;
+		const maxProgress = progress.max;
 		let newProgress;
 
 		if (rightClick) {
-			newProgress = item.system.progress.current + increment * stepMultiplier;
+			newProgress = progress.current + increment * stepMultiplier;
 		} else {
-			newProgress = item.system.progress.current + increment;
+			newProgress = progress.current + increment;
 		}
 
 		if (maxProgress !== 0) {
 			newProgress = Math.min(newProgress, maxProgress);
 		}
 
-		await item.update({ 'system.progress.current': newProgress });
+		await item.update({ [dataPath + '.current']: newProgress });
 	}
 
 	async _updateOptionalRPProgress(item, increment, rightClick) {
@@ -1649,9 +1678,11 @@ export class FUStandardActorSheet extends ActorSheet {
 	/**
 	 * Updates the progress clock value based on the clicked segment.
 	 * @param {Event} ev - The input change event.
+	 * @param {"feature"} [dataType]
+	 * @param {string} [dataPath]
 	 * @private
 	 */
-	_onProgressUpdate(ev, dataType) {
+	_onProgressUpdate(ev, dataType, dataPath) {
 		const input = ev.currentTarget;
 		const segment = input.value;
 
@@ -1662,7 +1693,9 @@ export class FUStandardActorSheet extends ActorSheet {
 			const itemId = li.data('itemId');
 			const item = this.actor.items.get(itemId);
 
-			if (dataType === 'feature') {
+			if (dataPath) {
+				item.update({ [dataPath + '.current']: segment });
+			} else if (dataType === 'feature') {
 				item.update({ 'system.data.progress.current': segment });
 			} else {
 				item.update({ 'system.progress.current': segment });

@@ -1,0 +1,10 @@
+<div class="flexrow item-full start">
+    <span class="description-effect">{{system.summary.value}}</span>
+    {{#if additionalData.isCharacter}}
+        <div class="flex0">
+            <a data-action="togglePlantedMagiseed" data-item-id="{{item.id}}">
+                <i class="mats-s mats-icon {{#if additionalData.active}}mats-fill{{/if}}" style="--mats-icon: '{{#if additionalData.active}}macro_off{{else}}local_florist{{/if}}'"></i>
+            </a>
+        </div>
+    {{/if}}
+</div>

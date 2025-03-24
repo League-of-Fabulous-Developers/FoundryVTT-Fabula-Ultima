@@ -18,14 +18,15 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 
 		switch (action) {
 			case 'effect': {
-				if (!actor?.system?.garden?.clock) {
+				let floralistData = actor?.system?.floralist;
+				if (!floralistData?.garden) {
 					sections.push({
 						partial: 'systems/projectfu/templates/feature/floralist/magiseed-chat-message.hbs',
 						data: { message: game.i18n.localize('FU.ClassFeatureMagiseedGrowthClockNoClockFound') },
 					});
 					break;
 				}
-				const filledSections = actor.system.garden.clock.system.progress.current;
+				const filledSections = floralistData.garden.system.data.clock.current;
 				let effect = null;
 				for (const value of item.system.data.effects) {
 					if (value.start <= filledSections && value.end >= filledSections) {
@@ -54,7 +55,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenAdded', {
 							item: item.name,
-							garden: actor?.system?.garden?.clock?.name ?? game.i18n.localize('FU.ClassFeatureMagiseedGarden'),
+							garden: foundry.utils.getProperty(actor, 'system.floralist.garden.system.data.gardenName') ?? game.i18n.localize('FU.ClassFeatureGarden'),
 						}),
 					},
 				});
@@ -66,7 +67,7 @@ const onRenderCheck = (sections, check, actor, item, additionalFlags) => {
 					data: {
 						message: game.i18n.format('FU.ClassFeatureMagiseedGardenRemoved', {
 							item: item.name,
-							garden: actor?.system?.garden?.clock?.name ?? game.i18n.localize('FU.ClassFeatureMagiseedGarden'),
+							garden: foundry.utils.getProperty(actor, 'system.floralist.garden.system.data.gardenName') ?? game.i18n.localize('FU.ClassFeatureGarden'),
 						}),
 					},
 				});
@@ -110,6 +111,10 @@ export class MagiseedDataModel extends RollableClassFeatureDataModel {
 		return 'systems/projectfu/templates/feature/floralist/magiseed-sheet.hbs';
 	}
 
+	static get previewTemplate() {
+		return 'systems/projectfu/templates/feature/floralist/magiseed-preview.hbs';
+	}
+
 	static get expandTemplate() {
 		return 'systems/projectfu/templates/feature/floralist/magiseed-description.hbs';
 	}
@@ -121,6 +126,8 @@ export class MagiseedDataModel extends RollableClassFeatureDataModel {
 	static async getAdditionalData(model) {
 		// Provide any additional data needed for the template rendering
 		return {
+			isCharacter: model.actor?.type === 'character',
+			active: model.actor?.system?.floralist?.planted === model.item,
 			effects: await Promise.all(model.effects.map((effect) => TextEditor.enrichHTML(effect.effect, { rollData: model.item?.rollData ?? {} }))),
 		};
 	}
@@ -169,19 +176,14 @@ export class MagiseedDataModel extends RollableClassFeatureDataModel {
 	}
 
 	static async roll(model, item, shiftClick) {
-		const garden = item.actor.system.garden;
-		if (garden) {
-			let effect = 'effect';
-			if (shiftClick) {
-				if (garden.planted === item) {
-					await garden.removeMagiseed();
-					effect = 'removed';
-				} else {
-					await garden.plantMagiseed(item);
-					effect = 'planted';
-				}
-			}
-			return ChecksV2.display(item.actor, item, (check) => (check.additionalData[magiseedActionKey] = effect));
-		}
+		return ChecksV2.display(item.actor, item, (check) => (check.additionalData[magiseedActionKey] = 'effect'));
+	}
+
+	postPlanted() {
+		return ChecksV2.display(this.actor, this.item, (check) => (check.additionalData[magiseedActionKey] = 'planted'));
+	}
+
+	postRemoved() {
+		return ChecksV2.display(this.actor, this.item, (check) => (check.additionalData[magiseedActionKey] = 'removed'));
 	}
 }

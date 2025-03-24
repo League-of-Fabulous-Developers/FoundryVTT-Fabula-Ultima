@@ -177,6 +177,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/feature/floralist/magiseed-chat-effect.hbs',
 		'systems/projectfu/templates/feature/floralist/magiseed-description.hbs',
 		'systems/projectfu/templates/feature/floralist/magiseed-sheet.hbs',
+		'systems/projectfu/templates/feature/floralist/magiseed-preview.hbs',
+		'systems/projectfu/templates/feature/floralist/garden-sheet.hbs',
+		'systems/projectfu/templates/feature/floralist/garden-preview.hbs',
 
 		'systems/projectfu/templates/feature/gourmet/cookbook-sheet.hbs',
 		'systems/projectfu/templates/feature/gourmet/cookbook-preview.hbs',
