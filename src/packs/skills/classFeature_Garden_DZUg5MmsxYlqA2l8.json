@@ -1,0 +1,43 @@
+{
+  "name": "Garden",
+  "type": "classFeature",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/graft.png",
+  "system": {
+    "fuid": "garden",
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.garden",
+    "data": {
+      "gardenName": "",
+      "clock": {
+        "name": "",
+        "current": 0
+      }
+    },
+    "source": ""
+  },
+  "effects": [],
+  "folder": "pQcHKAafyjKDqlpQ",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742850690670,
+    "modifiedTime": 1742850698169,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "DZUg5MmsxYlqA2l8",
+  "sort": 100000,
+  "_key": "!items!DZUg5MmsxYlqA2l8"
+}
