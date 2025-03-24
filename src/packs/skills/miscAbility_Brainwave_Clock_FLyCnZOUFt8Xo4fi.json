@@ -1,19 +1,20 @@
 {
-  "folder": "pQcHKAafyjKDqlpQ",
-  "name": "Garden",
+  "folder": "E9XrzgvAjI4iW0aE",
+  "name": "Brainwave Clock",
   "type": "miscAbility",
-  "img": "systems/projectfu/styles/static/compendium/classes/floralist/graft.png",
+  "_id": "FLyCnZOUFt8Xo4fi",
+  "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_psychic_gifts.png",
   "system": {
-    "fuid": "garden",
+    "fuid": "brainwave-clock",
     "subtype": {
       "value": "other"
     },
     "summary": {
       "value": ""
     },
-    "description": "",
+    "description": "<ul><li><p>For <strong>gift</strong> breakdown and a list of Psychic Gifts, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</p></li></ul>",
     "isFavored": {
-      "value": true
+      "value": false
     },
     "showTitleCard": {
       "value": false
@@ -49,7 +50,7 @@
       "value": false
     },
     "progress": {
-      "name": "Growth Clock",
+      "name": "Brainwave Clock",
       "current": 0,
       "step": 1,
       "max": 4
@@ -61,7 +62,7 @@
       "max": 6
     },
     "source": {
-      "value": "FUNF150"
+      "value": "FUTF152"
     },
     "hasRoll": {
       "value": false
@@ -77,26 +78,21 @@
     "opportunity": ""
   },
   "effects": [],
+  "sort": 0,
   "ownership": {
     "default": 0,
-    "aylHtMTxbnWEKFH9": 3
+    "uG2TkwmswfdRqaAv": 3
   },
-  "flags": {
-    "projectfu-playtest": {
-      "growthClock": true
-    }
-  },
+  "flags": {},
   "_stats": {
-    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.xqGuUcnPMlz0zfyB",
+    "compendiumSource": null,
     "duplicateSource": null,
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742676954080,
-    "modifiedTime": 1742677394073,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "createdTime": 1742791341009,
+    "modifiedTime": 1742791565688,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
-  "_id": "5Zr3PwgJBehT516X",
-  "sort": 0,
-  "_key": "!items!5Zr3PwgJBehT516X"
+  "_key": "!items!FLyCnZOUFt8Xo4fi"
 }

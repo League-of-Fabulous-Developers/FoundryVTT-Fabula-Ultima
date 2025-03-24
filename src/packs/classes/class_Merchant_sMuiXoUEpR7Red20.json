@@ -28,7 +28,7 @@
           "value": false
         },
         "ip": {
-          "value": false
+          "value": true
         }
       },
       "martials": {
@@ -85,7 +85,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676864441,
-    "modifiedTime": 1742699122053,
+    "modifiedTime": 1742772424495,
     "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "sMuiXoUEpR7Red20",

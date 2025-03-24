@@ -1,5 +1,5 @@
 {
-  "folder": "E9XrzgvAjI4iW0aE",
+  "folder": "8dgKmxfqK5xW6YxW",
   "name": "Atmokinesis",
   "type": "classFeature",
   "img": "icons/magic/lightning/bolt-strike-hand-gray.webp",
@@ -32,12 +32,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1724180862154,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742791481208,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "PN6y0O0YDvtzFDAy",
-  "sort": 400000,
+  "sort": 100000,
   "_key": "!items!PN6y0O0YDvtzFDAy"
 }

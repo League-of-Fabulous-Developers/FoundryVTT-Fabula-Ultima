@@ -1,5 +1,5 @@
 {
-  "folder": "E9XrzgvAjI4iW0aE",
+  "folder": "8dgKmxfqK5xW6YxW",
   "name": "Thermokinesis",
   "type": "classFeature",
   "img": "icons/magic/fire/orb-fireball-puzzle.webp",
@@ -32,12 +32,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1724180863240,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742791493359,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "rM8RIy8usVdVO0ro",
-  "sort": 0,
+  "sort": 103125,
   "_key": "!items!rM8RIy8usVdVO0ro"
 }

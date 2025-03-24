@@ -1,5 +1,5 @@
 {
-  "folder": "E9XrzgvAjI4iW0aE",
+  "folder": "8dgKmxfqK5xW6YxW",
   "name": "Life Transference",
   "type": "classFeature",
   "img": "icons/magic/life/heart-broken-red.webp",
@@ -32,12 +32,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1724180862162,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742792602951,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "PN8CkQbxXS6v01gk",
-  "sort": 200000,
+  "sort": 400000,
   "_key": "!items!PN8CkQbxXS6v01gk"
 }

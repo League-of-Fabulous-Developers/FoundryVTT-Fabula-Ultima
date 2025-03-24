@@ -3,7 +3,7 @@
   "pages": [
     {
       "sort": 100000,
-      "name": "Invoker Wellspring Rules",
+      "name": "INVOKER WELLSPRING RULES",
       "type": "text",
       "_id": "6z1hYq9tYatm9qWk",
       "title": {
@@ -33,14 +33,14 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1742783862984,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!journal.pages!JHjzGHXO9qm8HVW9.6z1hYq9tYatm9qWk"
     },
     {
       "sort": 200000,
-      "name": "Invoker Wellspring List",
+      "name": "INVOKER WELLSPRING LIST",
       "type": "text",
       "_id": "fmIxsqGCOKYYIxap",
       "title": {
@@ -71,10 +71,47 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1742783849680,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!journal.pages!JHjzGHXO9qm8HVW9.fmIxsqGCOKYYIxap"
+    },
+    {
+      "sort": 300000,
+      "name": "INVOKER VTT INSTRUCTIONS",
+      "type": "text",
+      "_id": "msH4dITSSkbnWnQd",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<ol><li><p>To <strong>automate</strong> class feature, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.OCPEJcHypOPXaDUM]{Invocations}</p></li><li><p>A full list of <strong>wellsprings</strong> and their <strong>invocations</strong> can be found here: @UUID[.fmIxsqGCOKYYIxap]{Invoker Wellspring List}</p></li><li><p><strong>Game Master</strong>: Create a scene and in the scene control tools, click \"<strong>Project FU</strong>\" (represented as a star icon). In the sub-menu click \"<strong>Active Wellspring</strong>\" which opens the dialog for selecting what wellsprings are available to the character.</p><ol><li><p>Global represents Wellsprings that are available no matter what scene you are in.</p></li><li><p>Active Scene represents Wellsprings that are available only to the active scene.</p></li><li><p>Current Scene represents Wellsprings that are assigned to a specific scene.</p></li></ol></li><li><p>Open the invocation sheet and navigate to \"<strong>Details</strong>\" tab</p></li><li><p>Change your rank based on how much SL invested into the <strong>Invocation</strong> Skill.</p></li><li><p>To <strong>perform an invocation</strong>, roll the Invocations feature and select an option in the dialog menu.</p></li></ol>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "uG2TkwmswfdRqaAv": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1742783831783,
+        "modifiedTime": 1742787235832,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!JHjzGHXO9qm8HVW9.msH4dITSSkbnWnQd"
     }
   ],
   "folder": null,

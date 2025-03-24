@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>Each time you acquire this Skill, you discover </span><strong>a new type of magiseed</strong> (see <strong>Natural Fantasy Atlas</strong>, page <strong>139</strong>).</p><p><span>During a conflict, if there are <strong>no magiseeds</strong> in your </span><strong>garden</strong><span>, you may use an action and spend 20 Mind Points to <strong>plant a magiseed</strong> of a type you have discovered. The rules for the <strong>garden</strong> and for <strong>magiseeds growth</strong> can be found in the next pages.</span></p><hr /><ul><li><p>For <strong>magiseed</strong> breakdown and a list of Magiseeds, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX]{Magiseed Rules}</p></li><li><p>To <strong>automate</strong>, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.5Zr3PwgJBehT516X]{Garden}<br />Then open it up on the \"Attributes\" tab and mark it as you Growth Clock.<br />Now you can add magiseeds to your sheet, advance the Growth Clock, and post the corresponding effects to chat.</p></li></ul><p></p>",
+    "description": "<p><span>Each time you acquire this Skill, you discover </span><strong>a new type of magiseed</strong> (see <strong>Natural Fantasy Atlas</strong>, page <strong>139</strong>).</p><p><span>During a conflict, if there are <strong>no magiseeds</strong> in your </span><strong>garden</strong><span>, you may use an action and spend 20 Mind Points to <strong>plant a magiseed</strong> of a type you have discovered.</span></p><hr /><ul><li><p>For <strong>magiseed</strong> breakdown and a list of Magiseeds, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX]{Magiseed Rules}</p></li></ul><ul><li><p>To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX.JournalEntryPage.8e8kglGnqyKy1Nju]{Magiseed VTT Instructions}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -81,7 +81,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742699375725,
+    "modifiedTime": 1742794256069,
     "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "ZmzDl88kGMvrumoJ",

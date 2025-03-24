@@ -1207,6 +1207,7 @@
 		"DisplayItem": "Item Details",
 		"SettingChecksV2": "Checks V2",
 		"SettingChecksV2Hint": "Activate the new (and hopefully improved) Check implementation. Be sure to report bugs you find.",
+		"Activate": "Activate",
 		"AccuracyCheckBaseAccuracy": "Base Accuracy",
 		"AccuracyCheckBonusGeneric": "Generic Accuracy Bonus",
 		"AccuracyCheckBonusMelee": "Melee Accuracy Bonus",
@@ -1297,14 +1298,6 @@
 		"DamagePipelineStepIncomingDamageIce": "Incoming Damage: Ice",
 		"DamagePipelineStepIncomingDamageLight": "Incoming Damage: Light",
 		"DamagePipelineStepIncomingDamagePoison": "Incoming Damage: Poison",
-		"FUID": {
-			"Long": "Fabula Ultima ID",
-			"Short": "FUID",
-			"Regenerate": "Regenerate FUID",
-			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
-			"ChangeWarning3": "Do you want to proceed?",
-			"ChangeWarning1": "Proceed with caution!"
-		},
 		"ClassFeatureMagiseed": "Magiseed",
 		"ClassFeatureMagiseedGarden": "Garden",
 		"ClassFeatureMagiseedEffectCount": "Number of effects",
@@ -1364,6 +1357,14 @@
 		"ClassFeatureInvocationsWellspringWaterName": "Water wellspring",
 		"ClassFeatureInvocationsWellspringWaterNameShort": "Water",
 		"ClassFeatureInvocationsWellspringWaterElement": "Hydro",
-		"ClassFeatureInvocationsSelectDialogTitle": "Choose Invocation"
+		"ClassFeatureInvocationsSelectDialogTitle": "Choose Invocation",
+		"FUID": {
+			"Long": "Fabula Ultima ID",
+			"Short": "FUID",
+			"Regenerate": "Regenerate FUID",
+			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
+			"ChangeWarning3": "Do you want to proceed?",
+			"ChangeWarning1": "Proceed with caution!"
+		}
 	}
 }

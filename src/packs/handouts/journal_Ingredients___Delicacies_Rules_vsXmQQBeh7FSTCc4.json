@@ -3,7 +3,7 @@
   "pages": [
     {
       "sort": 100000,
-      "name": "Ingredients & Delicacies Rules",
+      "name": "INGREDIENTS & DELICACIES RULES",
       "type": "text",
       "_id": "yqmY1OPlynrNFA5j",
       "title": {
@@ -34,14 +34,14 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1742741548664,
+        "modifiedTime": 1742778002709,
         "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!journal.pages!vsXmQQBeh7FSTCc4.yqmY1OPlynrNFA5j"
     },
     {
       "sort": 200000,
-      "name": "Delicacies Table",
+      "name": "DELICACIES TABLE",
       "type": "text",
       "_id": "tPPYrM43wrxTMmGj",
       "title": {
@@ -72,14 +72,14 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1742677186234,
-        "lastModifiedBy": "aylHtMTxbnWEKFH9"
+        "modifiedTime": 1742777537161,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!journal.pages!vsXmQQBeh7FSTCc4.tPPYrM43wrxTMmGj"
     },
     {
       "sort": 300000,
-      "name": "Ingredients Table",
+      "name": "INGREDIENTS TABLE",
       "type": "text",
       "_id": "WwyByda2k4pQ7orX",
       "title": {
@@ -89,7 +89,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<h5>INGREDIENT TASTE</h5><p>@UUID[Compendium.projectfu.rollable-tables.RollTable.sKStLRxDOy1yZkuJ]{Ingredient Taste}</p><table><tbody><tr><td><ol><li><p>Bitter</p></li></ol></td><td><ol start=\"2\"><li><p>Salty</p></li></ol></td><td><ol start=\"3\"><li><p>Sour</p></li></ol></td><td data-colwidth=\"95\"><ol start=\"4\"><li><p>Sweet</p></li></ol></td><td><ol start=\"5\"><li><p>Umami</p></li></ol></td><td><ol start=\"6\"><li><p>Your choice</p></li></ol></td></tr></tbody></table><p></p>",
+        "content": "<h5>INGREDIENT TASTE</h5><p>@UUID[Compendium.projectfu.rollable-tables.RollTable.sKStLRxDOy1yZkuJ]{Ingredient Taste}</p><table><tbody><tr><td><ol><li><p>@UUID[Compendium.projectfu.skills.Item.9uSPEQZ4fi6PDkV1]{Bitter}</p></li></ol></td><td><ol start=\"2\"><li><p>@UUID[Compendium.projectfu.skills.Item.pClb5dXEgvo29U0C]{Salty}</p></li></ol></td><td><ol start=\"3\"><li><p>@UUID[Compendium.projectfu.skills.Item.oMpFTAPDl7SEG3v2]{Sour}</p></li></ol></td><td data-colwidth=\"95\"><ol start=\"4\"><li><p>@UUID[Compendium.projectfu.skills.Item.ZLrC6QQvsJOh4F2h]{Sweet}</p></li></ol></td><td><ol start=\"5\"><li><p>@UUID[Compendium.projectfu.skills.Item.DjSSat9WKMIziH5E]{Umami}</p></li></ol></td><td><ol start=\"6\"><li><p>Your choice</p></li></ol></td></tr></tbody></table><p></p>",
         "markdown": ""
       },
       "video": {
@@ -110,10 +110,47 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1742677197988,
-        "lastModifiedBy": "aylHtMTxbnWEKFH9"
+        "modifiedTime": 1742777558024,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!journal.pages!vsXmQQBeh7FSTCc4.WwyByda2k4pQ7orX"
+    },
+    {
+      "sort": 400000,
+      "name": "COOKBOOK VTT INSTRUCTIONS",
+      "type": "text",
+      "_id": "fDzgptyBKkS5y2YY",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<ol><li><p>To <strong>automate</strong> class feature, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.HQTDIy6suF8u6dAl]{Cookbook}</p></li><li><p>Import the following rollable tables to your world: @UUID[Compendium.projectfu.rollable-tables.RollTable.sKStLRxDOy1yZkuJ]{Ingredient Taste} and @UUID[Compendium.projectfu.rollable-tables.RollTable.LeFYrfI8SzWK4GAa]{Delicacy Effect}</p></li><li><p>When buying <strong>Ingredients</strong>, a list of pre-made ingredients can be found here: @UUID[.WwyByda2k4pQ7orX]{Ingredients Table}</p></li><li><p>Let's say we want to combine <strong>Sour</strong> and <strong>Salty</strong>, open the cookbook sheet and navigate to \"<strong>Details</strong>\" tab</p></li><li><p>There are two rows, press \"<strong>Sour</strong>\" in first row then \"<strong>Salty</strong>\" in second row. which opens the description section specific to that combination.</p></li><li><p>Roll from the <strong>Delicacy Effect</strong> rollable table and copy and paste that effect into the description. (If that effect has already been rolled, reroll from rollable table.</p></li><li><p>To <strong>start cooking</strong>, roll the Cookbook feature and combine various ingredients in the dialog menu.</p></li></ol>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "uG2TkwmswfdRqaAv": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1742773223947,
+        "modifiedTime": 1742789199978,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!vsXmQQBeh7FSTCc4.fDzgptyBKkS5y2YY"
     }
   ],
   "folder": null,
