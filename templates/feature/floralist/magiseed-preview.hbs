@@ -1,7 +1,7 @@
 <div class="flexrow item-full start">
     <span class="description-effect">{{system.summary.value}}</span>
     {{#if additionalData.isCharacter}}
-        w
+        <div class="flex0" style="align-self: center;">
             <a class="item-control item-option" data-action="togglePlantedMagiseed" data-item-id="{{item.id}}" data-tooltip="{{ localize 'FU.Activate' }}" aria-describedby="tooltip">
                 <i class="button-style mats-s mats-icon {{#if additionalData.active}}mats-fill active{{/if}}" style="--mats-icon: '{{#if additionalData.active}}macro_off{{else}}local_florist{{/if}}'; font-size: 18px;"></i>
             </a>
