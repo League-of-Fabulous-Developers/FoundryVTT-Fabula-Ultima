@@ -39,7 +39,7 @@
                     <a class="decrement-button" data-type="clockCounter" data-item-id="{{ clock.id }}" data-data-path="system.data.clock">
                         <i class="fas fa-minus"></i>
                     </a>
-                    <h4 class="item-name resource-content">
+                    <h4 class="item-name rollable resource-content" data-item-id="{{clock.id}}" data-roll-type="item">
                         {{#unless clock.system.data.clock.name}}
                             <span class="resource-label-m">{{ localize "FU.ClassFeatureGardenClockDefaultName" }}</span>
                         {{else}}

@@ -12,26 +12,14 @@
                 {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
                     arr=item.progressArr
                     data=item.system.progress}}
-                <a class="inline-desc increment-button" data-type="clockCounter" data-item-id="{{ item._id }}"
+                <a class="increment-button" data-type="clockCounter" data-item-id="{{ item._id }}"
                     data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progress.step}})">
                     <i class="fas fa-plus"></i></a>
-                <a class="inline-desc decrement-button" data-type="clockCounter" data-item-id="{{ item._id }}"
+                <a class="decrement-button" data-type="clockCounter" data-item-id="{{ item._id }}"
                     data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})"> <i
                     class="fas fa-minus"></i></a>
-                <h4 class="item-name resource-content">
-                    <div class="items-list">
-                        <div class="item" data-item-id="{{item._id}}">
-                            <div class="flexrow">
-                                <div class="item-name rollable" data-roll-type="item">
-                                    <h4 class="click-item resource-content">
-                                        <span class="resource-text-m" style="display: flex; align-items: center; gap: 3px">
-                                        <span class="resource-label-m">{{ item.system.progress.name }}</span>
-                                        </span>
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <h4 class="item-name rollable resource-content" data-item-id="{{item._id}}" data-roll-type="item">
+                    <span class="resource-label-m">{{ item.system.progress.name }}</span>     
                 </h4>
             </div>
             <hr>
@@ -46,26 +34,14 @@
                 {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
                     arr=item.progressArr
                     data=item.system.data.progress}}
-                <a class="inline-desc increment-button" data-type="featureCounter" data-item-id="{{ item._id }}"
+                <a class="increment-button" data-type="featureCounter" data-item-id="{{ item._id }}"
                     data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.progress.step}})">
                     <i class="fas fa-plus"></i></a>
-                <a class="inline-desc decrement-button" data-type="featureCounter" data-item-id="{{ item._id }}"
+                <a class="decrement-button" data-type="featureCounter" data-item-id="{{ item._id }}"
                     data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})"> <i
                     class="fas fa-minus"></i></a>
-                <h4 class="item-name resource-content">
-                    <div class="items-list">
-                        <div class="item" data-item-id="{{item._id}}">
-                            <div class="flexrow">
-                                <div class="item-name rollable" data-roll-type="item">
-                                    <h4 class="click-item resource-content">
-                                        <span class="resource-text-m" style="display: flex; align-items: center; gap: 3px">
-                                        <span class="resource-label-m">{{ item.system.data.progress.name }}</span>
-                                        </span>
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <h4 class="item-name rollable resource-content" data-item-id="{{item._id}}" data-roll-type="item">
+                    <span class="resource-label-m">{{ item.system.data.progress.name }}</span>     
                 </h4>
             </div>
             <hr>
