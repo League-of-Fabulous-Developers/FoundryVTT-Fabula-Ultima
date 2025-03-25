@@ -34,12 +34,6 @@ function heroicMpBenefits(dataModel) {
  * @property {number} resources.mp.max
  * @property {number} resources.mp.value
  * @property {number} resources.mp.bonus
- * @property {string} resources.rp1.name
- * @property {number} resources.rp1.value
- * @property {string} resources.rp2.name
- * @property {number} resources.rp2.value
- * @property {string} resources.rp2.name
- * @property {number} resources.rp2.value
  * @property {number} resources.zenit.value
  * @property {number} resources.ip.min
  * @property {number} resources.ip.max
@@ -85,18 +79,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 				mp: new SchemaField({
 					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				rp1: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				rp2: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				rp3: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
 				zenit: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 				ip: new SchemaField({
