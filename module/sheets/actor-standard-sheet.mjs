@@ -219,7 +219,6 @@ export class FUStandardActorSheet extends ActorSheet {
 		const treasures = [];
 		const projects = [];
 		const rituals = [];
-		const zeroPowers = [];
 		const effects = [];
 
 		// Iterate through items, allocating to containers
@@ -251,8 +250,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			item.use = item.system.use?.value;
 			item.defect = item.system.isDefect?.value ? true : false;
 			item.defectMod = item.system.use?.value;
-			item.zeroTrigger = item.system.zeroTrigger?.value;
-			item.zeroEffect = item.system.zeroEffect?.value;
 			item.progressCurr = item.system.progress?.current;
 			item.progressStep = item.system.progress?.step;
 			item.progressMax = item.system.progress?.max;
@@ -298,8 +295,6 @@ export class FUStandardActorSheet extends ActorSheet {
 
 			item.enrichedHtml = {
 				description: await TextEditor.enrichHTML(item.system?.description ?? ''),
-				zeroTrigger: await TextEditor.enrichHTML(item.system?.zeroTrigger?.description ?? ''),
-				zeroEffect: await TextEditor.enrichHTML(item.system?.zeroEffect?.description ?? ''),
 			};
 
 			if (item.type === 'basic') {
@@ -371,8 +366,6 @@ export class FUStandardActorSheet extends ActorSheet {
 				projects.push(item);
 			} else if (item.type === 'ritual') {
 				rituals.push(item);
-			} else if (item.type === 'zeroPower') {
-				zeroPowers.push(item);
 			} else if (item.type === 'effect') {
 				effects.push(item);
 			}
@@ -395,7 +388,6 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.treasures = treasures;
 		context.projects = projects;
 		context.rituals = rituals;
-		context.zeroPowers = zeroPowers;
 		context.effects = effects;
 		context.classFeatures = {};
 		for (const item of this.actor.itemTypes.classFeature) {
@@ -1151,9 +1143,6 @@ export class FUStandardActorSheet extends ActorSheet {
 				if (isCharacter) {
 					const options = ['miscAbility', 'ritual'];
 
-					// Filter out old zeroPower item type (TODO: Delete later)
-					const dontShow = ['zeroPower'];
-
 					// Optional Features
 					const optionalFeatures = [];
 
@@ -1166,8 +1155,8 @@ export class FUStandardActorSheet extends ActorSheet {
 						});
 					}
 
-					// Filter out items based on options and dontShow
-					types = types.filter((item) => options.includes(item.type) && !dontShow.includes(item.type));
+					// Filter out items based on options
+					types = types.filter((item) => options.includes(item.type));
 
 					// Filter out 'quirk' and 'camping' optional feature types
 					const filteredOptionalFeatures = optionalFeatures.filter((feature) => !['projectfu.quirk', 'projectfu-playtest.camping'].includes(feature.subtype));
@@ -1183,8 +1172,8 @@ export class FUStandardActorSheet extends ActorSheet {
 				types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 
 				if (isCharacter) {
-					// Filter out old zeroPower item type (TODO: Delete later)
-					let dontShowCharacter = ['rule', 'behavior', 'basic', 'zeroPower']; // Default types to hide for characters
+					// Filter out item type
+					let dontShowCharacter = ['rule', 'behavior', 'basic']; // Default types to hide for characters
 					// Filter out default types to hide for characters
 					types = types.filter((item) => !dontShowCharacter.includes(item.type));
 
@@ -1213,7 +1202,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					// Push filtered optional features to types array
 					types.push(...filteredOptionalFeatures);
 				} else if (isNPC) {
-					let dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'zeroPower']; // Default types to hide for NPCs
+					let dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable']; // Default types to hide for NPCs
 					if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShowNPC.push('behavior');
 					// Filter out default types to hide for NPCs
 					types = types.filter((item) => !dontShowNPC.includes(item.type));
@@ -1222,8 +1211,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			case 'newClassFeatures': {
 				const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.features());
 				types = ['miscAbility', 'project'];
-				// Filter out old zeroPower item type (TODO: Delete later)
-				// if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) types.push('zeroPower');
+				// Filter out item type
 				types = types.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 				// Class Features
 				types.push(
@@ -1285,12 +1273,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			type: type,
 			[isV12OrLater ? 'system' : 'data']: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }), ...(subtype && { optionalType: subtype }) },
 		};
-
-		// Check if the type is 'zeroPower' and set clock to true
-		//  TODO: Remove later
-		if (type === 'zeroPower') {
-			clock = true;
-		}
 
 		try {
 			let item = await Item.create(itemData, { parent: this.actor });
