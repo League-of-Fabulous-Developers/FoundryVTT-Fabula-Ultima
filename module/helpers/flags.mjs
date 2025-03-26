@@ -9,6 +9,9 @@ export const Flags = Object.freeze({
 	CombatantId: 'CombatantId',
 	CurrentTurn: 'CurrentTurn',
 	FirstTurn: 'FirstTurn',
+	ActiveEffect: Object.freeze({
+		Source: 'Source',
+	}),
 	ChatMessage: Object.freeze({
 		CheckParams: 'CheckParams',
 		CheckV2: 'CheckV2',

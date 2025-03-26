@@ -14,9 +14,10 @@ import { FU } from '../helpers/config.mjs';
 
 /**
  * @description Contains contextual objects used for evaluating expressions
- * @property {FUActor} actor The source of the action
- * @property {FUItem} item
- * @property {FUActor[]} targets
+ * @property {FUActor} actor The actor the expression is evaluated on
+ * @property {FUItem} item  The item the expression is evaluated on
+ * @property {FUActor[]} targets The targets the expression is evaluated on
+ * @property {FUActor} source Optionally, can be used to execute evaluations on
  * @property {InlineSourceInfo} sourceInfo
  * @remarks Do not serialize this class, as it references full objects. Instead, store their uuids
  * and resolve them with the static constructor
@@ -33,11 +34,14 @@ export class ExpressionContext {
 	 * @description Resolves the context based on the target type
 	 * @param {FUActor|FUItem} target
 	 * @param {FUActor|FUItem} parent
+	 * @param {InlineSourceInfo} sourceInfo
 	 */
-	static resolveTarget(target, parent) {
+	static resolveTarget(target, parent, sourceInfo) {
 		let actor;
 		let item;
 
+		// 1. The effect is being applied onto an actor
+		// 2. The effect is being applied onto an item
 		if (target instanceof FUActor) {
 			actor = target;
 			if (parent instanceof FUItem) {
@@ -48,7 +52,11 @@ export class ExpressionContext {
 			actor = item.actor;
 		}
 
-		return new ExpressionContext(actor, item, []);
+		const context = new ExpressionContext(actor, item, [target]);
+		if (sourceInfo) {
+			context.sourceUuid = sourceInfo.itemUuid;
+		}
+		return context;
 	}
 
 	/**
@@ -93,6 +101,19 @@ export class ExpressionContext {
 	/**
 	 * @param {String} match
 	 */
+	assertSource(match) {
+		if (this.source == null) {
+			// Can be evaluated very early
+			if (ui.notifications) {
+				ui.notifications.warn('FU.ChatEvaluateAmountNoSource', { localize: true });
+			}
+			throw new Error(`No reference to a source provided while evaluating expression "${match}"`);
+		}
+	}
+
+	/**
+	 * @param {String} match
+	 */
 	assertSingleTarget(match) {
 		if (this.targets.length !== 1) {
 			ui.notifications.warn('FU.ChatApplyMaxTargetWarning', { localize: true });
@@ -130,10 +151,35 @@ export class ExpressionContext {
 	}
 
 	/**
+	 * @param {String} match
+	 * @param {Boolean} redirect
+	 * @returns {FUActor}
+	 */
+	resolveActorOrSource(match, redirect) {
+		if (redirect) {
+			this.assertSource(match);
+			const sourceItem = this.source;
+			return sourceItem.actor;
+		}
+		this.assertActor(match);
+		return this.actor;
+	}
+
+	/**
 	 * @returns {FUActor} The single target of the expression
 	 */
 	get target() {
 		return this.targets[0];
+	}
+
+	/**
+	 * @returns {FUItem}
+	 */
+	get source() {
+		if (!this._source && this.sourceUuid) {
+			this._source = fromUuidSync(this.sourceUuid);
+		}
+		return this._source;
 	}
 }
 
@@ -141,6 +187,7 @@ export class ExpressionContext {
 const referenceSymbol = '@';
 const actorLabel = `actor`;
 const itemLabel = `item`;
+const redirectSymbol = '~';
 
 /**
  * @param expression The raw text of the amount
@@ -323,18 +370,19 @@ function evaluateVariables(expression, context) {
  * @example &step(40,50,60)
  */
 function evaluateMacros(expression, context) {
-	const pattern = /&(?<name>[a-zA-Z]+)\((?<params>.*?)\)/gm;
+	const pattern = /~?&(?<name>[a-zA-Z]+)\((?<params>.*?)\)/gm;
 	function evaluateMacro(match, name, params) {
+		const redirect = match.startsWith(redirectSymbol);
 		const splitArgs = params.split(',').map((i) => i.trim());
 		switch (name) {
 			// Skill level
 			case `sl`: {
-				context.assertActor(match);
+				const actor = context.resolveActorOrSource(match, redirect !== undefined);
 				const skillId = splitArgs[0].match(/(\w+-*\s*)+/gm)[0];
-				const skill = context.actor.getSingleItemByFuid(skillId, 'skill');
+				const skill = actor.getSingleItemByFuid(skillId, 'skill');
 				if (!skill) {
 					ui.notifications.warn('FU.ChatEvaluateNoSkill', { localize: true });
-					throw new Error(`The actor ${context.actor.name} does not have a skill with the Fabula Ultima Id ${skillId}`);
+					throw new Error(`The actor ${actor.name} does not have a skill with the Fabula Ultima Id ${skillId}`);
 				}
 				return skill.system.level.value;
 			}

@@ -3,6 +3,7 @@ import { StudyRollHandler } from './study-roll.mjs';
 import { toggleStatusEffect } from '../pipelines/effects.mjs';
 import { SYSTEM } from './config.mjs';
 import { SETTINGS } from '../settings.js';
+import { InlineSourceInfo } from './inline-helper.mjs';
 
 export class ActionHandler {
 	constructor(actor) {
@@ -98,7 +99,7 @@ export class ActionHandler {
 
 	/**
 	 * Toggle the guard effect on the actor.
-	 * @param {Object} actor - The actor on which to toggle the guard effect.
+	 * @param {FUActor} actor - The actor on which to toggle the guard effect.
 	 */
 	async toggleGuardEffect(actor) {
 		if (!actor || !actor.effects) {
@@ -108,7 +109,7 @@ export class ActionHandler {
 		}
 
 		const GUARD_EFFECT_ID = 'guard';
-		const guardActive = await toggleStatusEffect(actor, GUARD_EFFECT_ID);
+		const guardActive = await toggleStatusEffect(actor, GUARD_EFFECT_ID, InlineSourceInfo.fromInstance(this));
 		if (!guardActive) {
 			// Delete existing guard effects
 			ui.notifications.info('Guard is deactivated.');

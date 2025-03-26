@@ -5,6 +5,8 @@ import { CharacterDataModel } from '../documents/actors/character/character-data
 import { NpcDataModel } from '../documents/actors/npc/npc-data-model.mjs';
 import { Effects } from '../pipelines/effects.mjs';
 
+// TODO: Remove, as its been replaced by `@TYPE[affinity...]`
+
 const INLINE_DATA_TYPE = 'InlineAffinity';
 const className = `inline-affinity`;
 
@@ -128,9 +130,8 @@ function createEffect(type, value) {
  */
 async function applyEffect(actor, sourceInfo, type, value) {
 	if (actor.system instanceof CharacterDataModel || actor.system instanceof NpcDataModel) {
-		const source = sourceInfo.resolve();
 		const effectData = createEffect(type, value);
-		Effects.onApplyEffectToActor(actor, source?.uuid, effectData).then((effect) => {
+		Effects.onApplyEffectToActor(actor, effectData, sourceInfo).then((effect) => {
 			console.info(`Created effect: ${effect.uuid} on actor uuid: ${actor.uuid}`);
 		});
 	} else {
