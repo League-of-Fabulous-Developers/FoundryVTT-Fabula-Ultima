@@ -1,0 +1,10 @@
+<div class="flexcol resource-content gap-2 mb-3">
+    <div>
+        <label class="resource-label-m">{{localize 'FU.Rank'}}:</label>
+        <span>{{localize (lookup additionalData.levels system.data.level)}}</span>
+    </div>
+    {{#if system.data.description}}
+        <label class="resource-label-m">{{localize 'FU.Description'}}</label>
+        <div class="description-effect">{{{additionalData.enrichedDescription}}}</div>
+    {{/if}}
+</div>

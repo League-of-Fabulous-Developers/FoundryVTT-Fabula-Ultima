@@ -6,29 +6,8 @@
 		"npc": {}
 	},
 	"Item": {
-		"types": [
-			"basic",
-			"weapon",
-			"shield",
-			"armor",
-			"accessory",
-			"consumable",
-			"treasure",
-			"class",
-			"classFeature",
-			"optionalFeature",
-			"skill",
-			"heroic",
-			"spell",
-			"miscAbility",
-			"rule",
-			"behavior",
-			"ritual",
-			"project",
-			"zeroPower",
-			"effect"
-		],
-		"htmlFields": ["description", "zeroTrigger.description", "zeroEffect.description"],
+		"types": ["basic", "weapon", "shield", "armor", "accessory", "consumable", "treasure", "class", "classFeature", "optionalFeature", "skill", "heroic", "spell", "miscAbility", "rule", "behavior", "ritual", "project", "effect"],
+		"htmlFields": ["description"],
 		"basic": {},
 		"weapon": {},
 		"shield": {},
@@ -47,7 +26,6 @@
 		"behavior": {},
 		"ritual": {},
 		"project": {},
-		"zeroPower": {},
 		"effect": {}
 	}
 }

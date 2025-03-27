@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>The target may immediately perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong>, if the target is an NPC).</p><hr /><p>@LOSS[20 mp]</p>",
+    "description": "<p>The target may immediately perform a <strong>free attack</strong> with a weapon they have equipped (or with a <strong>basic attack</strong>, if the target is an NPC).</p>",
     "isFavored": {
       "value": false
     },
@@ -127,8 +127,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1724180864887,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742702573471,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

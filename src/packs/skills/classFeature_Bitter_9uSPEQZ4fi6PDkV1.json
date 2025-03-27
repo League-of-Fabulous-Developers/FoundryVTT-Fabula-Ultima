@@ -1,0 +1,44 @@
+{
+  "name": "Bitter",
+  "type": "classFeature",
+  "img": "icons/consumables/vegetable/root-ginger-brown.webp",
+  "system": {
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.ingredient",
+    "data": {
+      "taste": "bitter",
+      "cost": 10,
+      "quantity": 1,
+      "description": ""
+    },
+    "source": "FUNF150",
+    "fuid": "bitter"
+  },
+  "effects": [],
+  "folder": "7elKsNRPvQqRkFPl",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.r9lhsnFsNtU4WjiY",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676964457,
+    "modifiedTime": 1742676964457,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "9uSPEQZ4fi6PDkV1",
+  "sort": 0,
+  "_key": "!items!9uSPEQZ4fi6PDkV1"
+}

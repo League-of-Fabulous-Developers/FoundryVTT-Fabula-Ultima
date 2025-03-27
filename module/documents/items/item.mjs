@@ -759,32 +759,6 @@ export class FUItem extends Item {
 		return tags ? `<div class="fu-tags">${tags}</div>` : '';
 	}
 
-	getZeroDataString() {
-		if (this.type !== 'zeroPower') {
-			return '';
-		}
-
-		const {
-			system: { zeroTrigger, zeroEffect, progress },
-		} = this;
-
-		// Prepare tags
-		const tags = [
-			`<div class="fu-tag">${zeroTrigger.value || 'Zero Trigger'}</div>`,
-			`<div class="fu-tag">${zeroEffect.value || 'Zero Effect'}</div>`,
-			`<div class="fu-tag">${game.i18n.localize('FU.Clock')}: ${progress.current} / ${progress.max}</div>`,
-		].join('');
-
-		// Prepare descriptions
-		const descriptions = [
-			zeroTrigger.description?.trim() ? `<div class="resource-label">${zeroTrigger.value || 'Zero Trigger'}</div><div>${zeroTrigger.description}</div>` : '',
-			zeroEffect.description?.trim() ? `<div class="resource-label">${zeroEffect.value || 'Zero Effect'}</div><div>${zeroEffect.description}</div>` : '',
-		].join('');
-
-		// Combine tags and descriptions
-		return tags || descriptions ? `<div class="fu-tags">${tags}</div><div class="chat-desc">${descriptions}</div>` : '';
-	}
-
 	/**
 	 * Handle clickable rolls.
 	 * @param {KeyboardModifiers} modifiers
@@ -871,13 +845,12 @@ export class FUItem extends Item {
 		const treasureString = item.getTreasureDataString();
 		const projectString = item.getProjectDataString();
 		const heroicString = item.getHeroicDataString();
-		const zeroString = item.getZeroDataString();
 		const qualityString = item.getQualityString();
 
 		const attackString = Array.isArray(attackData) ? attackData.join('<br /><br />') : attackData;
 
 		// Prepare the content by filtering and joining various parts.
-		let content = [qualityString, spellString, ritualString, consumableString, treasureString, projectString, heroicString, zeroString, resourceString, clockString, chatdesc, attackString].filter((part) => part).join('');
+		let content = [qualityString, spellString, ritualString, consumableString, treasureString, projectString, heroicString, resourceString, clockString, chatdesc, attackString].filter((part) => part).join('');
 		content = `<div data-item-id="${item.id}">${content}</div>`;
 		return { rolls, content };
 	}

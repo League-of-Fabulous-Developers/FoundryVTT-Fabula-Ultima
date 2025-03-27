@@ -1,5 +1,5 @@
 {
-  "folder": "E9XrzgvAjI4iW0aE",
+  "folder": "8dgKmxfqK5xW6YxW",
   "name": "Gravitokinesis",
   "type": "classFeature",
   "img": "icons/magic/earth/projectile-stone-landslide.webp",
@@ -32,12 +32,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1724180863302,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742791484857,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "sDiqo6su9LgYDQVh",
-  "sort": 600000,
+  "sort": 300000,
   "_key": "!items!sDiqo6su9LgYDQVh"
 }

@@ -1,0 +1,94 @@
+{
+  "name": "Merchant",
+  "type": "class",
+  "img": "systems/projectfu/styles/static/compendium/classes/merchant/merchant.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": "First of all, think: how will this help people in need?"
+    },
+    "description": "<h5>ALSO: Artisan, Collector, Pharmacist</h5><p><span>Even in worlds rife with great magic, wealth and money are very influential. Trade and commerce are one key aspect to the development of nations and kingdoms, and <strong>Merchants</strong> are quite aware of this power. It might seem strange for a Merchant to be treated on par with a hero: and yet, those who resist the temptation of greed and rely on commerce to foster exchanges of ideas and dialogue between distant people truly are fighting their very own revolution.</span></p><hr /><h5>MERCHANT FREE BENEFITS</h5><ul><li><span>Permanently increase your maximum Inventory Points by 2.</span></li></ul><h2>Merchant SKILLS</h2><p>@UUID[Compendium.projectfu.skills.Item.BW9vyaiaOF5OkIcG]{Expiration Date} <strong>(SL3)</strong></p><p><span>When a <strong>potion</strong> or <strong>delicacy</strong> </span>(see <strong>Natural Fantasy Atlas</strong>, page <strong>150</strong>)<span> you created that <strong>does not</strong> deal damage causes one or more creatures to recover Hit Points, you may instead have it deal <strong>poison</strong> damage equal to <strong>【half your level + (SL × 10)】 </strong>to each of those creatures. This damage type cannot change, and it is <strong>halved</strong> if you are dealing damage to <strong>two or more creatures</strong>.</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.GkFFLkshtNlg0vgV]{I've Heard of It!} <strong>(SL3)</strong></p><p><span>When you or an ally who is able to hear and understand you perform a Check to examine a creature, item, or location, you may spend 1 Trade Point to grant a bonus equal to <strong>【SL × 2】 </strong>to the Result of that Check.</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.cjo6RghyGPUwvo1N]{Private Stock} <strong>(SL3)</strong></p><p><span>When you or another Player Character spend <strong>【SL + 2】 </strong>or fewer Inventory Points, you may spend 1 Trade Point to ignore that cost.</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.lFYCdvybWS7x8e6L]{Real Treasure} <strong>(SL3)</strong></p><p><span>Once per session, when you help an NPC or community <strong>defeat greed and corruption</strong>, <strong>improve their quality of life</strong>, or <strong>coexist with other creatures</strong>, if you have acquired the <strong>Winds of Trade</strong> Skill, you gain <strong>【SL + 1】</strong>Trade Points.</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.zXB7pBEv1JED1xkh]{Winds of Trade} <strong>(SL3)</strong></p><p><span>After you rest in an area where commerce is possible, you gain <strong>【SL + 1】Trade Points</strong>.</span></p><p><span>You may never have more than <strong>【SL + 3】</strong>Trade Points; if you acquire this Skill during character creation, begin play with 2 Trade Points.</span></p><p><span>During a <strong>non-conflict scene</strong>, you may spend 2 Trade Points to choose one option: you create a <strong>material</strong> or <strong>rare item</strong> approved by the Game Master whose value in zenit is <strong>equal to or lower than 【your level, multiplied by 30】</strong>; <strong>or</strong> your create an NPC that lives nearby and explain their occupation as well as how you met them, then the Game Master tells you what they require in exchange for their services.</span></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": true
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": false
+        },
+        "shields": {
+          "value": false
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": false
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF158"
+    },
+    "fuid": "merchant"
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676864441,
+    "modifiedTime": 1742772424495,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "_id": "sMuiXoUEpR7Red20",
+  "sort": 0,
+  "_key": "!items!sMuiXoUEpR7Red20"
+}

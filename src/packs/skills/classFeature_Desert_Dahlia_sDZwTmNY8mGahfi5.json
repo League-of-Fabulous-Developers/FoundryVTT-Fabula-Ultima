@@ -1,0 +1,51 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Desert Dahlia",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/flower-grey-orange.webp",
+  "system": {
+    "summary": {
+      "value": "A tenacious plant, it doesn't fear the dryness of dunes."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 2,
+      "effects": [
+        {
+          "start": 0,
+          "end": 1,
+          "effect": "<p>You are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><ul><li><p><strong>You Receive:  </strong>@AFFINITY[air resistance] and @AFFINITY[fire resistance]</p></li></ul>"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><ul><li><p><strong>Targets Receive: </strong>@AFFINITY[air resistance] and @AFFINITY[fire resistance]</p></li></ul>"
+        }
+      ]
+    },
+    "source": "FUNF141",
+    "fuid": "desert-dahlia"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.g453sfa54pv54uOa",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742765325511,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "sDZwTmNY8mGahfi5",
+  "sort": 0,
+  "_key": "!items!sDZwTmNY8mGahfi5"
+}

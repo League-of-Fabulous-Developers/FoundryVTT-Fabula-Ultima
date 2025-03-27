@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>The target suffers <strong>【HR + 10】</strong> (<strong>choose type</strong>) damage.</p><hr /><p>@LOSS[5 mp]</p>",
+    "description": "<p>The target suffers <strong>【HR + 10】</strong> (<strong>choose type</strong>) damage.</p>",
     "isFavored": {
       "value": false
     },
@@ -127,8 +127,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1724180864840,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742701410447,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

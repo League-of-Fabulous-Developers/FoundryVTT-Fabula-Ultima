@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Until this spell ends, the target suffers 5 extra damage from all sources that deal <strong>(choose type)</strong> damage.</p><hr /><p>@LOSS[10 mp]</p>",
+    "description": "<p>Until this spell ends, the target suffers 5 extra damage from all sources that deal <strong>(choose type)</strong> damage.</p>",
     "isFavored": {
       "value": false
     },
@@ -127,8 +127,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1731165030728,
-    "lastModifiedBy": "eGFjUCXxDy8l2KwV",
+    "modifiedTime": 1742703877597,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -1,0 +1,38 @@
+<div class='resource-content desc garden-sheet'>
+    <div class="flexrow">
+        <fieldset class="title-fieldset desc resource-content">
+            <legend class="resource-label-full">
+                <label class="resource-label-m">{{localize 'FU.ClassFeatureGarden'}}</label>
+            </legend>
+            <div class="flexrow inputs">
+                <label class="resource-label-m">
+                    <span>{{localize 'FU.ClassFeatureGardenName'}}</span>
+                    <input type="text" name="system.data.gardenName" value="{{ system.data.gardenName }}"
+                           class="resource-inputs select-dropdown-l resource-text-m" />
+                </label>
+                <label class="resource-label-m">
+                    <span>{{localize 'FU.ClassFeatureGardenClockName'}}</span>
+                    <input type="text" name="system.data.clock.name" value="{{ system.data.clock.name }}"
+                           class="resource-inputs select-dropdown-l resource-text-m" />
+                </label>
+            </div>
+        </fieldset>
+        <fieldset class="title-fieldset desc resource-content">
+            <legend class="resource-label-full">
+                <label class="resource-label-m">{{localize 'FU.Clock'}}</label>
+            </legend>
+            <div class="flexrow align-center">
+                <div class="clock">
+                    {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs" arr=system.data.clock.progressArray data=system.data.clock}}
+                    <a class="increment-button" data-action="increment">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                    <a class="decrement-button" data-action="decrement">
+                        <i class="fas fa-minus"></i>
+                    </a>
+                    <h4 class="clock-name resource-content">{{#if system.data.clock.name}}{{ system.data.clock.name }}{{else}}{{localize "FU.ClassFeatureGardenClockDefaultName"}}{{/if}}</h4>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

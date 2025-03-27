@@ -1,0 +1,136 @@
+{
+  "name": "Magiseed Rules",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "MAGISEED RULES",
+      "type": "text",
+      "_id": "co09tbnpDvhQoCle",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h3>THE GARDEN</h3><p>When you plant a <strong>magiseed</strong>, it takes root in your <strong>garden</strong> until removed. Your <strong>garden </strong>is an <strong>abstract</strong> space whose appearance varies depending on your character’s look: it might be a pot on their back, a gap along their blade, or even the ground under their feet. Your <strong>garden</strong> can only contain <strong>one magiseed at a time</strong>, and any <strong>magiseeds</strong> in your <strong>garden</strong> are <strong>automatically removed</strong> at the end of each scene.</p><p></p><h3>THE GROWTH CLOCK</h3><p>When you acquire the <strong>Chloromancy</strong> Skill, you also receive a <strong>Growth Clock</strong> which is present <strong>only</strong> during conflict scenes and represents the cycle of life in your <strong>garden.</strong></p><ul><li><p>Your <strong>Growth Clock</strong> has <strong>4 sections</strong>, and it begins each scene <strong>empty</strong>.</p></li><li><p>At the end of your turn, if a <strong>magiseed</strong> is present in your <strong>garden, fill 1 section</strong> of your Growth Clock; <strong>then</strong>, if there is still a <strong>magiseed</strong> in your <strong>garden</strong> and that <strong>magiseed</strong> has an “at the end of your turn” effect (see below), apply that effect.</p></li><li><p>When you fill the <strong>fourth section</strong> of your Growth Clock, <strong>remove</strong> the <strong>magiseeds</strong> in your <strong>garden</strong>, then <strong>erase all sections</strong> of your Growth Clock.</p></li><li><p>Sections of your Growth Clock <strong>may not be filled nor erased</strong> in any way other than described above, through <strong>Brambleheart</strong> and <strong>Green Thumb</strong> (pages <strong>162</strong> and <strong>166</strong>), or through effects that <strong>explicitly affect Growth Clocks</strong>.</p></li></ul><h3>MAGISEED EFFECTS</h3><p><strong>Magiseeds</strong> can have passive effects, or have effects that trigger at the <strong>end</strong> of your turn, <strong>after</strong> your Growth Clock has increased.</p><ul><li><p>The effects of a <strong>magiseed</strong> apply only while it is present in your <strong>garden</strong>, and they vary depending on the current number of filled sections in your Growth Clock (⏱).</p></li><li><p>You only apply the effect corresponding to the <strong>exact number</strong> of currently filled sections in your <strong>Growth Clock</strong>, not any effect above or below it.</p></li><li><p>If a magiseed’s effect deals damage, it deals 5 extra damage if you are <strong>level 30 or higher</strong>. If a magiseed’s effect causes Hit Point and/or Mind Point loss and/or recovery, the amount increases by 10 if you are <strong>level 30 or higher</strong>.</p></li></ul><p></p><h3>MAGISEED LIST</h3><p>Below and in the next pages you will find a list of standard <strong>magiseeds</strong> that each Floralist can discover by investing levels into the <strong>Chloromancy</strong> Skill.</p><p>Your group can also collaboratively create new <strong>magiseeds</strong>, and the Game Master may opt to include them among <strong>rewards</strong>, obtained independently of your investment in <strong>Chloromancy</strong>. Each magiseed is worth approximately 1000 zenit; try your best to keep these new <strong>magiseeds</strong> on a similar power to those on the standard list.</p><p></p><h3>MAGISEED LIST</h3><p>@UUID[.Hohlh2a2C7nagtYB]{Magiseed List}</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1742777445211,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!16lV3Tse5aK9qipX.co09tbnpDvhQoCle"
+    },
+    {
+      "sort": 125000,
+      "name": "MAGISEED LIST",
+      "type": "text",
+      "_id": "Hohlh2a2C7nagtYB",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h3>MAGISEED LIST</h3><p>Below and in the next pages you will find a list of standard <strong>magiseeds</strong> that each Floralist can discover by investing levels into the <strong>Chloromancy</strong> Skill.</p><p>Your group can also collaboratively create new <strong>magiseeds</strong>, and the Game Master may opt to include them among <strong>rewards</strong>, obtained independently of your investment in <strong>Chloromancy</strong>. Each magiseed is worth approximately 1000 zenit; try your best to keep these new <strong>magiseeds</strong> on a similar power to those on the standard list.</p><p></p><h3>ARCTIC NARCISSUS</h3><p>It stubbornly survives in frozen territories.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\">⏱</p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1</strong></p></td><td><p>You are Resistant to <strong>earth</strong> and <strong>ice</strong> damage.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2-3</strong></p></td><td><p>You and your allies present on the scene are Resistant to <strong>earth</strong> and <strong>ice</strong> damage.</p></td></tr></tbody></table><p>.</p><h3>BLAZING CHRYSANTHEMUM</h3><p>Its thick petals resemble an erupting volcano.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\">⏱</p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1-3</strong></p></td><td><p>At the end of your turn, choose <strong>earth</strong> or <strong>fire</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p></td></tr></tbody></table><p>.</p><h3>DESERT DAHLIA</h3><p>A tenacious plant, it doesn’t fear the dryness of dunes.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\">⏱</p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1</strong></p></td><td><p>You are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2-3</strong></p></td><td><p>You and your allies present on the scene are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p></td></tr></tbody></table><p>.</p><h3>GOLDEN GINKGO</h3><p>Its vibrantly colored leaves represent tenacity.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\">⏱</p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1</strong></p></td><td><p>At the end of your turn, you and every ally you can see recover from <strong>dazed</strong>, <strong>enraged</strong>, and <strong>shaken</strong>.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2-3</strong></p></td><td><p>At the end of your turn, you and every ally you can see recover an amount of Mind Points equal to<strong>【5 + your Skill Level in Chloromancy】</strong>.</p></td></tr></tbody></table><p>.</p><h3>GRAVE ASPHODEL</h3><p>Solemn and elegant, it embodies death’s ineluctability.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\">⏱</p></td><td data-colwidth=\"510\"><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1</strong></p></td><td data-colwidth=\"510\"><p>At the end of your turn, you may choose an enemy you can see. If you do, that enemy suffers <strong>shaken</strong>.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2</strong></p></td><td data-colwidth=\"510\"><p>At the end of your turn, every enemy you can see suffers <strong>shaken</strong>.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>3</strong></p></td><td data-colwidth=\"510\"><p>At the end of your turn, you deal an amount of <strong>dark</strong> damage equal to<strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>shaken</strong>.</p></td></tr></tbody></table><p>.</p><h3>HERMIT IRIS</h3><p>Its leaves carry whispers of ancient knowledge.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\">⏱</p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1</strong></p></td><td><p>At the end of your turn, choose an enemy you can see. The Game Master reveals its <strong>Level</strong>, <strong>Rank</strong>, <strong>Species</strong>, <strong>maximum Hit Points</strong>, <strong>maximum Mind Points</strong>, <strong>Traits</strong>, <strong>Attributes</strong>, <strong>Defense</strong>, and <strong>Magic Defense</strong>.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2-3</strong></p></td><td><p>At the end of your turn, choose an enemy you can see. The Game Master reveals its <strong>Level</strong>, <strong>Rank</strong>, <strong>Species</strong>, <strong>maximum Hit Points</strong>, <strong>maximum Mind Points</strong>, <strong>Traits</strong>, <strong>Attributes</strong>, <strong>Defense</strong>, <strong>Magic Defense</strong>, and <strong>Affinities</strong>.</p></td></tr></tbody></table><p>.</p><h3>HOOKLEAF NIGHTSHADE</h3><p>Its purplish berries contain a deadly magical venom.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>0-1</strong></p></td><td><p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2-3</strong></p></td><td><p>All damage you deal becomes <strong>poison</strong>, its type cannot change, and it ignores Immunities and Resistances. Additionally, when you deal <strong>poison</strong> damage for the first time during your turn, you deal extra damage equal to <strong>【your Skill Level in Chloromancy】</strong> and each creature that lost Hit Points this way suffers <strong>poisoned</strong>.</p></td></tr></tbody></table><p>.</p><h3>HORNED HAWTHORN</h3><p>Favored by witches and surgeons alike for its purifying properties.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>0-1</strong></p></td><td><p>You are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2-3</strong></p></td><td><p>You and your allies present on the scene are Resistant to <strong>dark</strong> and <strong>poison </strong>damage.</p></td></tr></tbody></table><p>.</p><h3>LUNAR MAGNOLIA</h3><p>It blooms in the darkest hours of the night.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1-3</strong></p></td><td><p>At the end of your turn, choose <strong>ice</strong> or <strong>light</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p></td></tr></tbody></table><p>.</p><h3>OCEAN LOTUS</h3><p>A graceful symbol of serenity and wisdom.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>0-1</strong></p></td><td><p>You are immune to <strong>dazed</strong> and <strong>slow</strong>.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2</strong></p></td><td><p>You treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>3</strong></p></td><td><p>You and every ally you can see treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p></td></tr></tbody></table><p>.</p><h3>PILGRIM GAZALIA</h3><p>Its flamboyant corolla is synonymous with abundance.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1-2</strong></p></td><td><p>At the end of your turn, choose yourself <strong>or</strong> another Player Character you can see.<br />The chosen character regains 2 Inventory Point.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>3</strong></p></td><td><p>At the end of your turn, you <strong>and</strong> every other Player Character you can see regain 1 Inventory Point.</p></td></tr></tbody></table><p>.</p><h3>PRANCING DANDELION</h3><p>A symbol of energy and vivacity, it spreads seeds through stormy winds.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1-3</strong></p></td><td><p>At the end of your turn, choose <strong>air</strong> or <strong>bolt</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p></td></tr></tbody></table><p>.</p><h3>REGAL PROTEA</h3><p>A colorful and tenacious flower, favored by an ancient dynasty.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>0-1</strong></p></td><td><p>You are immune to <strong>shaken</strong> and <strong>weak.</strong></p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2</strong></p></td><td><p>You treat your <strong>Might</strong> and <strong>Willpower</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>3</strong></p></td><td><p>You and every ally you can see treat your <strong>Might</strong> and <strong>Willpower</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p></td></tr></tbody></table><p>.</p><h3>REMEDY LILY</h3><p>Its elegant flowers filter and purify spiritual energy.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1</strong></p></td><td><p>At the end of your turn, you and every ally you can see recover from <strong>poisoned</strong>, <strong>slow</strong>, and <strong>weak</strong>.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2-3</strong></p></td><td><p>At the end of your turn, you and every ally you can see recover an amount of Hit Points equal to<strong>【15 + your Skill Level in Chloromancy】</strong>.</p></td></tr></tbody></table><p>.</p><h3>SERRATED ROSE</h3><p>Its thorns form a tangle equally breathtaking and dangerous.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1</strong></p></td><td><p>At the end of your turn, you may choose an enemy you can see. If you do, that enemy suffers <strong>slow</strong>.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2</strong></p></td><td><p>At the end of your turn, every enemy you can see suffers <strong>slow</strong>.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>3</strong></p></td><td><p>At the end of your turn, you deal an amount of <strong>physical</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>slow</strong>.</p></td></tr></tbody></table><p>.</p><h3>SILVER STRELITZIA</h3><p>Its silvery blossoms are easily mistaken for jewels.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>0-1</strong></p></td><td><p>You are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2-3</strong></p></td><td><p>You and your allies present on the scene are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p></td></tr></tbody></table><p>.</p><h3>STAR PEONY</h3><p>It silently gazes into celestial depths.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1</strong></p></td><td><p>At the end of your turn, you may choose an enemy you can see. If you do, that enemy suffers <strong>dazed</strong>.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2</strong></p></td><td><p>At the end of your turn, every enemy you can see suffers <strong>dazed</strong>.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>3</strong></p></td><td><p>At the end of your turn, you deal an amount of <strong>light</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>dazed</strong>.</p></td></tr></tbody></table><p>.</p><h3>STRIPED ORCHID</h3><p>Each segment of this plant is covered in toxins.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1</strong></p></td><td><p>At the end of your turn, you may choose an enemy you can see. If you do, that enemy suffers <strong>weak</strong></p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2</strong></p></td><td><p>At the end of your turn, every enemy you can see suffers <strong>weak</strong></p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>3</strong></p></td><td><p>At the end of your turn, you deal an amount of <strong>poison</strong> damage equal to<strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>weak</strong>.</p></td></tr></tbody></table><p>.</p><h3><strong>WARDWATTLE</strong></h3><p>A tangle of robust branches, whose thorns spread powerful poison.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>0-1</strong></p></td><td><p>You are Resistant to <strong>physical</strong> damage.</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>2</strong></p></td><td><p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a melee attack, you deal an amount of <strong>physical</strong> damage to that creature equal to <strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>3</strong></p></td><td><p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a melee attack, you deal an amount of <strong>physical</strong> damage to that creature equal to <strong>【5 + your Skill Level in Chloromancy】</strong> , and then deal an amount of <strong>poison </strong>damage to that creature equal to <strong>【5 + your Skill Level in Chloromancy】</strong> (both these damage instances happen after that creature’s attack was resolved).</p></td></tr></tbody></table><p>.</p><h3>WRATHFUL CARNATION</h3><p>Despite their beauty, its yellow flowers emit an irritatingly pungent smell.</p><table><tbody><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>⏱</strong></p></td><td><h5>EFFECT</h5></td></tr><tr><td data-colwidth=\"46\"><p style=\"text-align:center\"><strong>1-4</strong></p></td><td><p>When this <strong>magiseed</strong> leaves your <strong>garden</strong>, choose up to one enemy you can see.</p><p>Until the end of your next turn, when the chosen enemy performs an attack or casts an offensive spell (@ICON[offensive]), they must include you among the targets of that attack of spell (if able).</p><p>At the end of your turn, you may remove this <strong>magiseed</strong> from your <strong>garden</strong>; if you do, erase all sections of your Growth Clock.</p></td></tr></tbody></table><p>.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1742777454818,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!16lV3Tse5aK9qipX.Hohlh2a2C7nagtYB"
+    },
+    {
+      "sort": 150000,
+      "name": "MAGISEED VTT INSTRUCTIONS",
+      "type": "text",
+      "_id": "8e8kglGnqyKy1Nju",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<ol><li><p>To enable the support features for <strong>Floralist</strong>, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.DZUg5MmsxYlqA2l8]{Garden}</p></li><li><p>In the \"<strong>Features</strong>\" tab of the character sheet, make sure that the <strong>Garden</strong> has a check mark.<br />This means it's your active <strong>Garden</strong> and can be used to track your <strong>Growth Clock</strong>.</p></li><li><p><strong>Magiseeds</strong> can be added or removed from your <strong>Garden</strong> by using the \"flower button\".</p></li><li><p>As long as a <strong>Magiseeds</strong> is in your <strong>Garden</strong> a new section will appear on the \"<strong>Stats</strong>\" tab of your character sheet, that allows easy access to your <strong>Growth Clock</strong> and the <strong>Magiseed</strong> currently in your <strong>Garden</strong>.</p></li><li><p>To display the corresponding effects in chat, <strong>roll</strong> the magiseed.</p></li><li><p>(Optional) The <strong>Garden</strong> item allows you to set custom names for both the section on the \"<strong>Stats</strong>\" tab, as well as the <strong>Growth Clock</strong>, to allow you to flavour your <strong>Garden</strong> however you see fit.</p></li></ol>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "uG2TkwmswfdRqaAv": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1742771571811,
+        "modifiedTime": 1742791632569,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!16lV3Tse5aK9qipX.8e8kglGnqyKy1Nju"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742677068529,
+    "modifiedTime": 1742677068556,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "16lV3Tse5aK9qipX",
+  "sort": 200000,
+  "_key": "!journal!16lV3Tse5aK9qipX"
+}

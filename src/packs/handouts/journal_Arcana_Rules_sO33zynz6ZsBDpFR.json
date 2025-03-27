@@ -76,6 +76,43 @@
         "duplicateSource": null
       },
       "_key": "!journal.pages!sO33zynz6ZsBDpFR.ldBTUg43es8ZUaMN"
+    },
+    {
+      "sort": 300000,
+      "name": "ARCANUM VTT INSTRUCTIONS",
+      "type": "text",
+      "_id": "MQShQEsSnZ9ch3bs",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<ol><li><p>To <strong>summon</strong> a Arcanum, add an arcanum to your character sheet and <strong>activate</strong> it.</p></li><li><p>The arcanum's merge active effects will now be transferred to the actor until <strong>dismissed</strong>.</p></li></ol>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "uG2TkwmswfdRqaAv": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1742792774381,
+        "modifiedTime": 1742793541102,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!sO33zynz6ZsBDpFR.MQShQEsSnZ9ch3bs"
     }
   ],
   "folder": null,

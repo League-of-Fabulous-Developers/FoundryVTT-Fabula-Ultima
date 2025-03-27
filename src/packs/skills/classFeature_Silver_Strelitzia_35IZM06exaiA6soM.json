@@ -1,0 +1,51 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Silver Strelitzia",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/bouquet-pink.webp",
+  "system": {
+    "summary": {
+      "value": "Its silver blossoms are easily mistaken for jewels."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 2,
+      "effects": [
+        {
+          "start": 0,
+          "end": 1,
+          "effect": "<p>You are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p><hr><ul><li><p><strong>You Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj]{Bolt Resistance} and @UUID[Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu]{Light Resistance}</p></li></ul>"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p><hr><ul><li><p><strong>Targets Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj]{Bolt Resistance} and @UUID[Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu]{Light Resistance}</p></li></ul>"
+        }
+      ]
+    },
+    "source": "FUNF146",
+    "fuid": "silver-strelitzia"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.Os1Iv9rUmFWt3lGl",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742748270121,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "35IZM06exaiA6soM",
+  "sort": 0,
+  "_key": "!items!35IZM06exaiA6soM"
+}

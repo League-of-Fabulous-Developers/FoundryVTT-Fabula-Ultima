@@ -104,6 +104,11 @@
 	word-wrap: normal;
 	white-space: nowrap;
 	direction: ltr;
+	vertical-align: middle;
+
+	&.mats-icon::before {
+		content: var(--mats-icon);
+	}
 }
 
 .mats-fill {

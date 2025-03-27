@@ -1,9 +1,9 @@
 <div class="flexrow item-full start">
     <span class="description-effect">{{system.summary.value}}</span>
     {{#if additionalData.vehicle}}
-        <div class="flex0">
-            <a data-action="toggleWeaponModule" data-item-id="{{item.id}}">
-                <i class="fas {{#if additionalData.active}}fa-circle-check{{else}}fa-circle fa-thin{{/if}}"></i>
+        <div class="flex0" style="align-self: center;">
+            <a class="item-control item-option" data-action="toggleWeaponModule" data-item-id="{{item.id}}" data-tooltip="{{ localize 'FU.Activate' }}" aria-describedby="tooltip">
+                <i class="fas {{#if additionalData.active}}fa-toggle-on active{{else}}fa-toggle-off{{/if}} button-style"></i>
             </a>
         </div>
     {{/if}}

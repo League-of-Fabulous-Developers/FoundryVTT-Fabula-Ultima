@@ -1,0 +1,56 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Regal Protea",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/iris-blue.webp",
+  "system": {
+    "summary": {
+      "value": "A colorful and tenacious flower, favored by an ancient dynasty."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 3,
+      "effects": [
+        {
+          "start": 0,
+          "end": 1,
+          "effect": "<p>You are immune to <strong>shaken</strong> and <strong>weak</strong>.</p><hr><ul><li><p><strong>You Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Shaken Immunity} and @UUID[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Weak Immunity}</p></li></ul>"
+        },
+        {
+          "start": 2,
+          "end": 2,
+          "effect": "<p>You treat your <strong>Might</strong> and <strong>Willpower</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><ul><li><p><strong>You Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.hX70STpGG5fgAAkp]{MIG Up} and @UUID[Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG]{WLP Up}</p></li></ul>"
+        },
+        {
+          "start": 3,
+          "end": 3,
+          "effect": "<p>You and every ally you can see treat your <strong>Might</strong> and <strong>Willpower</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><ul><li><p><strong>Targets Receives:</strong> @UUID[Compendium.projectfu.actor-effects.Item.hX70STpGG5fgAAkp]{MIG Up} and @UUID[Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG]{WLP Up}</p></li></ul>"
+        }
+      ]
+    },
+    "source": "FUNF145",
+    "fuid": "regal-protea"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.l0rQXCU5aCwVUHwW",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742747501346,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "HTPS1nuQ6AJ07kDx",
+  "sort": 0,
+  "_key": "!items!HTPS1nuQ6AJ07kDx"
+}

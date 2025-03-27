@@ -13,14 +13,12 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 
 export class ClassFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { StringField, SchemaField, BooleanField, NumberField } = foundry.data.fields;
+		const { StringField, SchemaField, BooleanField } = foundry.data.fields;
 		return {
 			fuid: new StringField(),
 			summary: new SchemaField({ value: new StringField() }),
 			source: new StringField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
-			cost: new SchemaField({ value: new NumberField({ intial: 0, min: 0, integer: true, nullable: true }) }),
-			quantity: new SchemaField({ value: new NumberField({ intial: 1, min: 0, integer: true, nullable: true }) }),
 			featureType: new StringField({
 				nullable: false,
 				initial: () => Object.keys(CONFIG.FU.classFeatureRegistry?.features() ?? {})[0],
@@ -83,5 +81,13 @@ export class ClassFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 		await this.update({ 'system.fuid': fuid });
 
 		return fuid;
+	}
+
+	get onActorDrop() {
+		let onActorDrop = this.data.onActorDrop;
+		if (onActorDrop) {
+			return onActorDrop.bind(this.data);
+		}
+		return undefined;
 	}
 }

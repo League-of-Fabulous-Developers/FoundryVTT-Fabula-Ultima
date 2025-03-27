@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You cause a creature to lose any semblance of temper and act brazenly. The target suffers @EFFECT[enraged] and cannot perform the <strong>Guard</strong> or <strong>Spell </strong>actions during their next turn.</p>",
+    "description": "<p>You cause a creature to lose any semblance of temper and act brazenly. The target suffers <strong>enraged</strong> and cannot perform the <strong>Guard</strong> or <strong>Spell </strong>actions during their next turn.</p><hr /><ul><li><p><strong>Target Suffers:</strong> @EFFECT[enraged]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706572370902,
-    "modifiedTime": 1737917208896,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1742703562337,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

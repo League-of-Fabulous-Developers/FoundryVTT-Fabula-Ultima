@@ -1,0 +1,11 @@
+<!-- override ClassFeatureDataModel.expandTemplate to supply your own template -->
+<div class="flexcol resource-content gap-2 mb-3">
+    {{#each system.data.effects}}
+    <label class="resource-label-m">
+        <span>{{localize 'FU.ClassFeatureMagiseedEffect'}}</span>
+        <span>{{#if (eq start end)}}{{start}}{{else}}{{start}} - {{end}}{{/if}}</span>
+        <i class="fa-regular fa-clock"></i>
+    </label>
+    <div class="description-effect">{{{lookup ../additionalData.effects @index}}}</div>
+    {{/each}}
+</div>

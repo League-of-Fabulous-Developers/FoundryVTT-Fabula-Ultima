@@ -265,6 +265,43 @@
         "duplicateSource": null
       },
       "_key": "!journal.pages!JtN1YEB5uhn9JMUG.6Bi4ff2JPBOV5HIO"
+    },
+    {
+      "sort": 800000,
+      "name": "PILOT VTT INSTRUCTIONS",
+      "type": "text",
+      "_id": "7R1h5R48OHr4m7hq",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<ol><li><p>To <strong>pilot</strong> a vehicle, add a vehicle frame to your character sheet and <strong>activate</strong> it.</p></li><li><p>Navigate to the \"<strong>Stats</strong>\" tab and in the Vehicle section press the button next to vehicle frame name to <strong>embark.</strong></p></li></ol>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "uG2TkwmswfdRqaAv": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1742778160799,
+        "modifiedTime": 1742793414811,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!JtN1YEB5uhn9JMUG.7R1h5R48OHr4m7hq"
     }
   ],
   "folder": null,

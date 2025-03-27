@@ -1,0 +1,94 @@
+{
+  "name": "Floralist",
+  "type": "class",
+  "img": "systems/projectfu/styles/static/compendium/classes/floralist/floralist.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": "There is no rose without thorns."
+    },
+    "description": "<h5>ALSO: Bloomblade, Herbalist, Gardener</h5><p>Spiritual energy flows strongly within plants, thanks to their direct connection to earth. Growing from this encounter are <strong>magiseeds</strong>, gifted with the unique ability to thrive on spiritual energy and blossom into a majestic yet ephemeral triumph of magic.<br /><strong>Floralists</strong> can identify and cultivate these strange seeds, which grant a large variety of benefits and can be combined with all sorts of disciplines, martial and magical.</p><hr /><h5>FLORALIST FREE BENEFITS</h5><ul><li>Permanently increase your maximum Hit Points <strong>or</strong> Mind Points by 5 (your choice).</li></ul><h2>FLORALIST SKILLS</h2><p>@UUID[Compendium.projectfu.skills.Item.eZxqfORDilZ4mYip]{Battle Gardening} <strong>(SL3)</strong></p><p><span>After you </span><strong>plant a magiseed</strong><span> through the </span><strong>Chloromancy</strong><span> Skill (not when using <strong>Graft</strong>), you may choose one option: you perform a <strong>free attack</strong> with an equipped weapon; <strong>or</strong> perform the <strong>Spell</strong> action for free, casting a spell with a <strong>total Mind Point cost equal to or lower than【5 + (SL × 5)】</strong>(you must still pay its MP cost). Treat the <strong>High Roll (HR)</strong> of your Accuracy Check or Magic Check as being equal to 0 when determining damage dealt by this attack or spell.</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.ZmzDl88kGMvrumoJ]{Chloromancy} <strong>(SL10)</strong></p><p><span>Each time you acquire this Skill, you discover </span><strong>a new type of magiseed</strong> (see <strong>Natural Fantasy Atlas</strong>, page <strong>139</strong>).</p><p><span>During a conflict, if there are <strong>no magiseeds</strong> in your </span><strong>garden</strong><span>, you may use an action and spend 20 Mind Points to <strong>plant a magiseed</strong> of a type you have discovered.</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.0IqVc3nbaYQWh5mm]{Graft}</p><p><span>As long as there is a <strong>magiseed</strong> in your <strong>garden</strong> and <strong>1 or more sections</strong> of your <strong>Growth Clock</strong> are <strong>filled</strong>, you may use an action to <strong>remove</strong> that <strong>magiseed</strong> from your <strong>garden</strong>: if you do, you immediately <strong>plant a different magiseed</strong> among those you have discovered (keep the current filled sections of your Growth Clock unchanged).</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.LldlV87wO5Tqnl4L]{Tree of Life} <strong>(SL5)</strong></p><p><span>When you <strong>remove</strong> a </span><strong>magiseed</strong><span> from your <strong>garden</strong>, you may choose one creature you can see: if that creature is in <strong>Crisis</strong>, they recover <strong>【5 + (SL × 5)】</strong> Hit Points.</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.ilAq8Q2OSE3oCVdi]{Verdant Sway}</p><p><span>You gain the ability to perform Rituals of the </span><strong>Ritualism</strong><span> discipline; <strong>additionally</strong>, you may use <strong>Ritualism</strong> to <strong>create, animate, and/or control vegetation, pollen, spores, and toxins</strong> (but you cannot create nor control <strong>plant</strong>-Species NPCs this way).</span></p><h2>MAGISEEDS</h2><ul><li><p>For <strong>magiseed</strong> breakdown and a list of Magiseeds, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX]{Magiseed Rules}</p></li></ul><ul><li><p>To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.16lV3Tse5aK9qipX.JournalEntryPage.8e8kglGnqyKy1Nju]{Magiseed VTT Instructions}</p></li></ul>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": false
+        },
+        "shields": {
+          "value": false
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": false
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF138"
+    },
+    "fuid": "floralist"
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676857436,
+    "modifiedTime": 1742794480218,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "_id": "HyMmdqLE74Q0Wfnk",
+  "sort": 500000,
+  "_key": "!items!HyMmdqLE74Q0Wfnk"
+}

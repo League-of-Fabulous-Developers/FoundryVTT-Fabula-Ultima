@@ -1,5 +1,5 @@
 {
-  "folder": "E9XrzgvAjI4iW0aE",
+  "folder": "8dgKmxfqK5xW6YxW",
   "name": "Reassuring Presence",
   "type": "classFeature",
   "img": "icons/skills/social/diplomacy-handshake-blue.webp",
@@ -32,12 +32,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1724180863170,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742791491912,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "ohueXD1PGP1TTRlq",
-  "sort": 0,
+  "sort": 106250,
   "_key": "!items!ohueXD1PGP1TTRlq"
 }

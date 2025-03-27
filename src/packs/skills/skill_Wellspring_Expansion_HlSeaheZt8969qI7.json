@@ -1,0 +1,90 @@
+{
+  "name": "Wellspring Expansion",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/invoker/wellspring_expansion.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>As long as you have a weapon belonging to the <strong>arcane</strong>, <strong>bow</strong>, <strong>brawling</strong>, <strong>flail</strong>, <strong>sword</strong>, or <strong>thrown</strong> Category equipped, your \"<strong>blast</strong>\" <strong>invocations</strong> deal<strong>【SL】</strong>extra damage, and the extra damage granted by your \"<strong>hex</strong>\" <strong>invocations</strong> is increased by<strong>【SL】</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 5,
+      "min": 0
+    },
+    "class": {
+      "value": "Invoker"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": 0,
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUNF155"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "fuid": "wellspring-expansion",
+    "cost": {
+      "resource": "mp",
+      "amount": 0
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
+  },
+  "effects": [],
+  "folder": "OYJupsuCc49hZmiB",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.4jvTChuT4ubm1lgD",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676970366,
+    "modifiedTime": 1742676970366,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "HlSeaheZt8969qI7",
+  "sort": 0,
+  "_key": "!items!HlSeaheZt8969qI7"
+}

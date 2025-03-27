@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this only applies to Open Checks).</p>",
+    "description": "<p>Permanently increase your maximum Mind Points by <strong>【SL × 3】</strong>.</p><p>When you perform an Open Check using <strong>【INS + INS】</strong>, you gain a bonus equal to <strong>【SL】</strong> on that Check (this only applies to Open Checks).</p><hr /><ul><li><p><strong>You Perform: </strong>@CHECK[ins ins ($sl)]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -186,7 +186,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706487322210,
-    "modifiedTime": 1741974768837,
+    "modifiedTime": 1742697463836,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

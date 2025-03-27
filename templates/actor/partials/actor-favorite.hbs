@@ -152,30 +152,6 @@
                                 {{/with}}
                             {{/with}}
                         {{/if}}
-
-                        {{#if item.system.zeroEffect}}
-                            {{#if item.system.zeroTrigger}}
-                                <div class="flexrow resource-content align-center">
-                                    <div class="flexcol">
-                                        <label class="resource-label-l">{{ item.zeroTrigger }}</label>
-                                        <span class="resource-text-m">
-                                            {{#if item.system.zeroTrigger.description}}
-                                                {{{item.enrichedHtml.zeroTrigger}}}
-                                            {{/if}}
-                                        </span>
-                                    </div>
-
-                                    <div class="flexcol">
-                                        <label class="resource-label-l">{{ item.zeroEffect }}</label>
-                                        <span class="resource-text-m">
-                                            {{#if item.system.zeroEffect.description}}
-                                                {{{item.enrichedHtml.zeroEffect}}}
-                                            {{/if}}
-                                        </span>
-                                    </div>
-                                </div>
-                            {{/if}}
-                        {{/if}}
                     </div>
                 </li>
             {{/if}}

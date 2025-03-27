@@ -30,7 +30,6 @@ import { ShieldDataModel } from './documents/items/shield/shield-data-model.mjs'
 import { SkillDataModel } from './documents/items/skill/skill-data-model.mjs';
 import { SpellDataModel } from './documents/items/spell/spell-data-model.mjs';
 import { TreasureDataModel } from './documents/items/treasure/treasure-data-model.mjs';
-import { ZeroPowerDataModel } from './documents/items/zeropower/zero-power-data-model.mjs';
 import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs';
 import { EffectDataModel } from './documents/items/effect/effect-data-model.mjs';
 import { onSocketLibReady } from './socket.mjs';
@@ -73,6 +72,7 @@ import { InlineHelper } from './helpers/inline-helper.mjs';
 import { InlineAffinity } from './helpers/inline-affinity.mjs';
 import { Effects } from './pipelines/effects.mjs';
 import { InlineType } from './helpers/inline-type.mjs';
+import { InvokerIntegration } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -188,7 +188,6 @@ Hooks.once('init', async () => {
 		spell: SpellDataModel,
 		treasure: TreasureDataModel,
 		weapon: WeaponDataModel,
-		zeroPower: ZeroPowerDataModel,
 		effect: EffectDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
@@ -241,6 +240,8 @@ Hooks.once('init', async () => {
 	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
+	InvokerIntegration.initialize();
+
 	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
 
 	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
@@ -509,6 +510,18 @@ Handlebars.registerHelper('formatResource', function (resourceValue, resourceMax
 		.join('');
 
 	return new Handlebars.SafeString(`<span>${resourceName}</span><span class="digit-row">${digitBoxes}</span>`);
+});
+
+Handlebars.registerHelper('math', function (left, operator, right) {
+	left = parseFloat(left);
+	right = parseFloat(right);
+	return {
+		'+': left + right,
+		'-': left - right,
+		'*': left * right,
+		'/': left / right,
+		'%': left % right,
+	}[operator];
 });
 
 /* -------------------------------------------- */

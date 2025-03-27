@@ -1,0 +1,74 @@
+{
+  "folder": "G957A8IFiy9ML4w0",
+  "name": "Cheer Up!",
+  "type": "heroic",
+  "img": "icons/skills/social/peace-luck-insult.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Improves My Trust in You."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong> (see <strong>High Fantasy</strong>, page <strong>136</strong>), Esper (see <strong>Techno Fantasy</strong>, page <strong>150</strong>) and <strong>Orator</strong>, and must have acquired the <strong>My Trust in You</strong> Skill</p></blockquote><p>When you use <strong>My Trust in You</strong> on another Player Character, that character chooses @EFFECT[dex-up], @EFFECT[ins-up], @EFFECT[mig-up], or @EFFECT[wlp-up]: they treat the chosen Attribute as being increased by one die size (up to a maximum of <strong>d12</strong>) until the end of the scene or until you use <strong>My Trust in You</strong> on them again.</p><p></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF163"
+    },
+    "fuid": "cheer-up"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.cSzzcGmQur0Zo6R5",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676906838,
+    "modifiedTime": 1742676906838,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "cSzzcGmQur0Zo6R5",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "sort": 0,
+  "_key": "!items!cSzzcGmQur0Zo6R5"
+}

@@ -1,5 +1,5 @@
 {
-  "folder": "E9XrzgvAjI4iW0aE",
+  "folder": "8dgKmxfqK5xW6YxW",
   "name": "Psychic Backlash",
   "type": "classFeature",
   "img": "icons/skills/wounds/injury-body-pain-gray.webp",
@@ -32,12 +32,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1724180862254,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742791488765,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "RikYwc1dD7YIEn3k",
-  "sort": 0,
+  "sort": 125000,
   "_key": "!items!RikYwc1dD7YIEn3k"
 }

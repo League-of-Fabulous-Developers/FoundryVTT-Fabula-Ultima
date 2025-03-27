@@ -1,0 +1,42 @@
+.garden-sheet {
+	.inputs {
+		gap: 0.5rem;
+		label {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 0.5rem;
+
+			> * {
+				align-content: center;
+			}
+		}
+	}
+
+	.clock {
+		display: grid;
+		grid-template-areas:
+			'plus clock name'
+			'minus clock name';
+		grid-template-columns: min-content min-content auto;
+		column-gap: 0.5rem;
+
+		.progress {
+			grid-area: clock;
+		}
+
+		.decrement-button {
+			grid-area: minus;
+			align-content: center;
+		}
+
+		.increment-button {
+			grid-area: plus;
+			align-content: center;
+		}
+
+		.clock-name {
+			grid-area: name;
+			justify-self: start;
+		}
+	}
+}

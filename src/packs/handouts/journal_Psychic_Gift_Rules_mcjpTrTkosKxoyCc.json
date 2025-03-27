@@ -117,6 +117,43 @@
       },
       "_id": "mHSFEwibzoMdNQmY",
       "_key": "!journal.pages!mcjpTrTkosKxoyCc.mHSFEwibzoMdNQmY"
+    },
+    {
+      "sort": 300000,
+      "name": "PSYCHIC GIFT VTT INSTRUCTIONS",
+      "type": "text",
+      "_id": "uafn9l51ROzc9q0w",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<ol><li><p>To <strong>automate</strong> class feature, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.FLyCnZOUFt8Xo4fi]{Brainwave Clock}</p></li><li><p><s>Open Brainwave Clock sheet, then navigate to \"</s><strong><s>Attributes</s></strong><s>\" tab and tick \"</s><strong><s>Is Brainwave Clock?</s></strong><s>\"</s></p></li><li><p>Now you can add psychic gifts to your sheet</p></li><li><p>After resolving one of your gifts, <strong>fill 1 section </strong>of your Brainwave Clock.</p></li><li><p>To display the corresponding effect in chat, <strong>roll</strong> the psychic gift.</p></li></ol>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "uG2TkwmswfdRqaAv": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1742791669758,
+        "modifiedTime": 1742792026254,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!mcjpTrTkosKxoyCc.uafn9l51ROzc9q0w"
     }
   ],
   "folder": null,

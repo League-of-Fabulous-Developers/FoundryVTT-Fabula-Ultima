@@ -219,7 +219,6 @@ export class FUStandardActorSheet extends ActorSheet {
 		const treasures = [];
 		const projects = [];
 		const rituals = [];
-		const zeroPowers = [];
 		const effects = [];
 
 		// Iterate through items, allocating to containers
@@ -251,8 +250,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			item.use = item.system.use?.value;
 			item.defect = item.system.isDefect?.value ? true : false;
 			item.defectMod = item.system.use?.value;
-			item.zeroTrigger = item.system.zeroTrigger?.value;
-			item.zeroEffect = item.system.zeroEffect?.value;
 			item.progressCurr = item.system.progress?.current;
 			item.progressStep = item.system.progress?.step;
 			item.progressMax = item.system.progress?.max;
@@ -298,8 +295,6 @@ export class FUStandardActorSheet extends ActorSheet {
 
 			item.enrichedHtml = {
 				description: await TextEditor.enrichHTML(item.system?.description ?? ''),
-				zeroTrigger: await TextEditor.enrichHTML(item.system?.zeroTrigger?.description ?? ''),
-				zeroEffect: await TextEditor.enrichHTML(item.system?.zeroEffect?.description ?? ''),
 			};
 
 			if (item.type === 'basic') {
@@ -371,8 +366,6 @@ export class FUStandardActorSheet extends ActorSheet {
 				projects.push(item);
 			} else if (item.type === 'ritual') {
 				rituals.push(item);
-			} else if (item.type === 'zeroPower') {
-				zeroPowers.push(item);
 			} else if (item.type === 'effect') {
 				effects.push(item);
 			}
@@ -395,7 +388,6 @@ export class FUStandardActorSheet extends ActorSheet {
 		context.treasures = treasures;
 		context.projects = projects;
 		context.rituals = rituals;
-		context.zeroPowers = zeroPowers;
 		context.effects = effects;
 		context.classFeatures = {};
 		for (const item of this.actor.itemTypes.classFeature) {
@@ -452,8 +444,14 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Proceed if the item is being dragged from the compendium/sidebar or other actors
 		const itemData = await this._getItemDataFromDropData(data);
-		const subtype = itemData.system.featureType || itemData.system.subtype?.value;
 
+		if (typeof itemData.system.onActorDrop === 'function') {
+			if (itemData.system.onActorDrop(this.actor) === false) {
+				return;
+			}
+		}
+
+		const subtype = itemData.system.subtype?.value;
 		// Determine the configuration based on item type
 		const config = this._findItemConfig(itemData.type, subtype);
 		if (config) {
@@ -491,8 +489,8 @@ export class FUStandardActorSheet extends ActorSheet {
 	_findItemConfig(type, subtype) {
 		const itemTypeConfigs = [
 			{
-				types: ['classFeature', 'treasure'],
-				subtypes: ['projectfu-playtest.ingredient', 'artifact', 'material', 'treasure'],
+				types: ['treasure'],
+				subtypes: ['artifact', 'material', 'treasure'],
 				update: async (itemData, item) => {
 					const incrementValue = itemData.system.quantity?.value || 1;
 					const newQuantity = (item.system.quantity.value || 0) + incrementValue;
@@ -597,13 +595,15 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Update Progress Increase
 		html.find('.progress input').click((ev) => {
 			const dataType = $(ev.currentTarget).closest('.progress').data('type');
-			this._onProgressUpdate(ev, dataType);
+			const dataPath = $(ev.currentTarget).closest('.progress').data('dataPath');
+			this._onProgressUpdate(ev, dataType, dataPath);
 		});
 
 		// Update Progress Reset
 		html.find('.progress input').contextmenu((ev) => {
 			const dataType = $(ev.currentTarget).closest('.progress').data('type');
-			this._onProgressReset(ev, dataType);
+			const dataPath = $(ev.currentTarget).closest('.progress').data('dataPath');
+			this._onProgressReset(ev, dataType, dataPath);
 		});
 
 		// Create an instance of EquipmentHandler
@@ -773,6 +773,22 @@ export class FUStandardActorSheet extends ActorSheet {
 		};
 
 		html.find('[data-action=toggleActiveArcanum][data-item-id]').on('click', updateArcanistArcanum.bind(this));
+
+		const toggleActiveGarden = (ev) => {
+			const itemId = ev.currentTarget.dataset.itemId;
+			const item = this.actor.items.get(itemId);
+
+			return this.actor.system.floralist.toggleActiveGarden(item);
+		};
+		html.find('[data-action=toggleActiveGarden][data-item-id]').on('click', toggleActiveGarden.bind(this));
+
+		const togglePlantedMagiseed = (ev) => {
+			const itemId = ev.currentTarget.dataset.itemId;
+			const item = this.actor.items.get(itemId);
+
+			return this.actor.system.floralist.togglePlantedMagiseed(item);
+		};
+		html.find('[data-action=togglePlantedMagiseed][data-item-id]').on('click', togglePlantedMagiseed.bind(this));
 
 		html.find('a[data-action=spendMetaCurrency]').on('click', () => this.actor.spendMetaCurrency());
 
@@ -1127,9 +1143,6 @@ export class FUStandardActorSheet extends ActorSheet {
 				if (isCharacter) {
 					const options = ['miscAbility', 'ritual'];
 
-					// Filter out old zeroPower item type (TODO: Delete later)
-					const dontShow = ['zeroPower'];
-
 					// Optional Features
 					const optionalFeatures = [];
 
@@ -1142,8 +1155,8 @@ export class FUStandardActorSheet extends ActorSheet {
 						});
 					}
 
-					// Filter out items based on options and dontShow
-					types = types.filter((item) => options.includes(item.type) && !dontShow.includes(item.type));
+					// Filter out items based on options
+					types = types.filter((item) => options.includes(item.type));
 
 					// Filter out 'quirk' and 'camping' optional feature types
 					const filteredOptionalFeatures = optionalFeatures.filter((feature) => !['projectfu.quirk', 'projectfu-playtest.camping'].includes(feature.subtype));
@@ -1159,8 +1172,8 @@ export class FUStandardActorSheet extends ActorSheet {
 				types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 
 				if (isCharacter) {
-					// Filter out old zeroPower item type (TODO: Delete later)
-					let dontShowCharacter = ['rule', 'behavior', 'basic', 'zeroPower']; // Default types to hide for characters
+					// Filter out item type
+					let dontShowCharacter = ['rule', 'behavior', 'basic']; // Default types to hide for characters
 					// Filter out default types to hide for characters
 					types = types.filter((item) => !dontShowCharacter.includes(item.type));
 
@@ -1189,7 +1202,7 @@ export class FUStandardActorSheet extends ActorSheet {
 					// Push filtered optional features to types array
 					types.push(...filteredOptionalFeatures);
 				} else if (isNPC) {
-					let dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable', 'zeroPower']; // Default types to hide for NPCs
+					let dontShowNPC = ['class', 'classFeature', 'optionalFeature', 'skill', 'heroic', 'project', 'ritual', 'consumable']; // Default types to hide for NPCs
 					if (!game.settings.get(SYSTEM, SETTINGS.optionBehaviorRoll)) dontShowNPC.push('behavior');
 					// Filter out default types to hide for NPCs
 					types = types.filter((item) => !dontShowNPC.includes(item.type));
@@ -1198,8 +1211,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			case 'newClassFeatures': {
 				const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.features());
 				types = ['miscAbility', 'project'];
-				// Filter out old zeroPower item type (TODO: Delete later)
-				// if (game.settings.get(SYSTEM, SETTINGS.optionZeroPower)) types.push('zeroPower');
+				// Filter out item type
 				types = types.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
 				// Class Features
 				types.push(
@@ -1261,12 +1273,6 @@ export class FUStandardActorSheet extends ActorSheet {
 			type: type,
 			[isV12OrLater ? 'system' : 'data']: { isFavored: true, ...(clock && { hasClock: true }), ...(subtype && { featureType: subtype }), ...(subtype && { optionalType: subtype }) },
 		};
-
-		// Check if the type is 'zeroPower' and set clock to true
-		//  TODO: Remove later
-		if (type === 'zeroPower') {
-			clock = true;
-		}
 
 		try {
 			let item = await Item.create(itemData, { parent: this.actor });
@@ -1483,6 +1489,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			if (li.length) {
 				const itemId = li.find('[data-item-id]').data('item-id');
 				const item = this.actor.items.get(itemId);
+				const dataPath = ev.currentTarget.dataset.dataPath;
 
 				if (item) {
 					switch (dataType) {
@@ -1495,9 +1502,8 @@ export class FUStandardActorSheet extends ActorSheet {
 							break;
 
 						case 'clockCounter':
-							await this._updateClockProgress(item, increment, rightClick);
+							await this._updateClockProgress(item, increment, rightClick, dataPath);
 							break;
-
 						case 'optionalRPCounter':
 							await this._updateOptionalRPProgress(item, increment, rightClick);
 							break;
@@ -1544,22 +1550,33 @@ export class FUStandardActorSheet extends ActorSheet {
 		await item.update({ 'system.rp.current': newProgress });
 	}
 
-	async _updateClockProgress(item, increment, rightClick) {
-		const stepMultiplier = item.system.progress.step || 1;
-		const maxProgress = item.system.progress.max;
+	/**
+	 * @param {FUItem} item
+	 * @param {number} increment
+	 * @param {boolean} rightClick
+	 * @param {string} [dataPath]
+	 * @returns {Promise<void>}
+	 * @private
+	 */
+	async _updateClockProgress(item, increment, rightClick, dataPath = 'system.progress') {
+		/** @type ProgressDataModel */
+		const progress = foundry.utils.getProperty(item, dataPath);
+
+		const stepMultiplier = progress.step || 1;
+		const maxProgress = progress.max;
 		let newProgress;
 
 		if (rightClick) {
-			newProgress = item.system.progress.current + increment * stepMultiplier;
+			newProgress = progress.current + increment * stepMultiplier;
 		} else {
-			newProgress = item.system.progress.current + increment;
+			newProgress = progress.current + increment;
 		}
 
 		if (maxProgress !== 0) {
 			newProgress = Math.min(newProgress, maxProgress);
 		}
 
-		await item.update({ 'system.progress.current': newProgress });
+		await item.update({ [dataPath + '.current']: newProgress });
 	}
 
 	async _updateOptionalRPProgress(item, increment, rightClick) {
@@ -1643,9 +1660,11 @@ export class FUStandardActorSheet extends ActorSheet {
 	/**
 	 * Updates the progress clock value based on the clicked segment.
 	 * @param {Event} ev - The input change event.
+	 * @param {"feature"} [dataType]
+	 * @param {string} [dataPath]
 	 * @private
 	 */
-	_onProgressUpdate(ev, dataType) {
+	_onProgressUpdate(ev, dataType, dataPath) {
 		const input = ev.currentTarget;
 		const segment = input.value;
 
@@ -1656,7 +1675,9 @@ export class FUStandardActorSheet extends ActorSheet {
 			const itemId = li.data('itemId');
 			const item = this.actor.items.get(itemId);
 
-			if (dataType === 'feature') {
+			if (dataPath) {
+				item.update({ [dataPath + '.current']: segment });
+			} else if (dataType === 'feature') {
 				item.update({ 'system.data.progress.current': segment });
 			} else {
 				item.update({ 'system.progress.current': segment });

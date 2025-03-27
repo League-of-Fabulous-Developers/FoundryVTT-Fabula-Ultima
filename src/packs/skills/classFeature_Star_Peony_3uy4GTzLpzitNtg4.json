@@ -1,0 +1,56 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Star Peony",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/clover-pink.webp",
+  "system": {
+    "summary": {
+      "value": "It silently gazes into celestial depths."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 3,
+      "effects": [
+        {
+          "start": 1,
+          "end": 1,
+          "effect": "<p>At the end of your turn, you may choose an enemy you can see. If you do, that enemy suffers <strong>dazed</strong>.</p><hr><ul><li><p><strong>Target Suffers:</strong> @EFFECT[dazed]</p></li></ul>"
+        },
+        {
+          "start": 2,
+          "end": 2,
+          "effect": "<p>At the end of your turn, every enemy you can see suffers <strong>dazed</strong>.</p><hr><ul><li><p><strong>Targets Suffers:</strong> @EFFECT[dazed]</p></li></ul>"
+        },
+        {
+          "start": 3,
+          "end": 3,
+          "effect": "<p>At the end of your turn, you deal an amount of <strong>light</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from @EFFECT[dazed].</p><hr><ul><li><p><strong>Targets Loses:</strong> @DMG[15+&sl('chloromancy') light]</p></li></ul>"
+        }
+      ]
+    },
+    "source": "FUNF146",
+    "fuid": "star-peony"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.nr58MSF7itK1aql0",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742747982058,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "3uy4GTzLpzitNtg4",
+  "sort": 0,
+  "_key": "!items!3uy4GTzLpzitNtg4"
+}

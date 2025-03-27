@@ -1,0 +1,22 @@
+.cooking-app {
+	fieldset {
+		margin-bottom: 0.5em;
+	}
+
+	.window-content > * {
+		margin: 0.5em;
+	}
+
+	.gap-05,
+	.invocations-selection-app .gap-05 {
+		gap: 0.5em;
+	}
+
+	.action-button {
+		border: unset;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	}
+}

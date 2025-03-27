@@ -1,0 +1,51 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Horned Hawthorn",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/buds-black-red.webp",
+  "system": {
+    "summary": {
+      "value": "Favored by witches and surgeons alike for its purifying properties."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 2,
+      "effects": [
+        {
+          "start": 0,
+          "end": 1,
+          "effect": "<p>You are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><ul><li><p><strong>You Receive:</strong> @AFFINITY[dark resistance] and @AFFINITY[poison resistance]</p></li></ul>"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>dark</strong> and <strong>poison</strong> damage.</p><hr><ul><li><p><strong>Targets Receive:</strong> @AFFINITY[dark resistance] and @AFFINITY[poison resistance]</p></li></ul>"
+        }
+      ]
+    },
+    "source": "FUNF143",
+    "fuid": "horned-hawthorn"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.bVjaOoL1hEXdP5Nc",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742765651606,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "v1GQM5wc1dHhs3JP",
+  "sort": 0,
+  "_key": "!items!v1GQM5wc1dHhs3JP"
+}

@@ -1,0 +1,94 @@
+{
+  "name": "Invoker",
+  "type": "class",
+  "img": "systems/projectfu/styles/static/compendium/classes/invoker/invoker.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": "Wish not for control, but understanding."
+    },
+    "description": "<h5>ALSO: Channeler, Five-Soul Master, Onmyōji</h5><p><span><strong>Invokers</strong> research the innate energy of souls and the way it spontaneously flows and manifests throughout their surroundings. Even if their art relies on calling upon the power of the elements, they adapt to the existing power sources rather than force an unnatural outcome and upset the flow of spirits. That said, Invokers remain formidable adventurers: they boast great flexibility and a unique affinity for elemental creatures.</span></p><hr /><h5>INVOKER FREE BENEFITS</h5><ul><li><span>Permanently increase your maximum Hit Points <strong>or</strong> Mind Points by 5 (your choice).</span></li></ul><h2>INVOKER SKILLS</h2><p>@UUID[Compendium.projectfu.skills.Item.YZkp0hXK29tfI0MI]{Elemental Harmony} <strong>(SL2)</strong></p><p><span>You may verbally communicate with creatures of the <strong>elemental</strong> Species.</span></p><p><span>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.G5SMsS4TC1glE2VS]{Invocation} <strong>(SL3)</strong></p><p><span>You may use an action and spend 5 Mind Points to perform an <strong>invocation</strong>, drawing energy from one of the <strong>wellsprings</strong> present on the scene </span>(see <strong>Natural Fantasy Atlas</strong>, page <strong>156</strong>)<span>. Your <strong>【SL】 </strong>in this Skill determines which invocations you have access to.</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.OQaLTvDV59JKnFqO]{Linked Invocation} <strong>(SL3)</strong></p><p><span>When you perform an <strong>invocation</strong>, you may spend up to <strong>【SL × 10】</strong>additional Mind Points. For every 10 Mind Points you spend this way, the invocation may target an additional creature you can see.</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.ouhN6A6jFZO10eST]{Ripples} <strong>(SL5)</strong></p><p><span>After an enemy you can see loses Hit Points due to damage dealt by one of your allies, if that damage was increased by one or more of your <strong>\"hex\" invocations</strong>, you may perform a <strong>free attack</strong> with a weapon you have equipped. This attack may only target that enemy, and receives a bonus equal to <strong>【SL】</strong> to its Accuracy Check; if it is successful, all its damage becomes of the same type dealt by your ally, and <strong>all \"hex\" invocations</strong> present on its target end immediately after the attack has been resolved. If two or more enemies trigger this Skill at the same time, you can perform a <strong>free attack</strong> against <strong>each</strong> of them, in whatever order you prefer.</span></p><hr /><p>@UUID[Compendium.projectfu.skills.Item.HlSeaheZt8969qI7]{Wellspring Expansion} <strong>(SL5)</strong></p><p><span>As long as you have a weapon belonging to the <strong>arcane</strong>, <strong>bow</strong>, <strong>brawling</strong>, <strong>flail</strong>, <strong>sword</strong>, or <strong>thrown</strong> Category equipped, your \"<strong>blast</strong>\" <strong>invocations</strong> deal <strong>【SL】 </strong>extra damage, and the extra damage granted by your \"<strong>hex</strong>\" <strong>invocations</strong> is increased by <strong>【SL】</strong>.</span></p><h2>INVOCATIONS</h2><ul><li><p>For <strong>invocation</strong> breakdown and a list of Invocations, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9]{Invoker Rules}</p></li><li><p>To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.JHjzGHXO9qm8HVW9.JournalEntryPage.msH4dITSSkbnWnQd]{Invoker VTT Instructions}</p></li></ul>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 10,
+      "min": 0
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      },
+      "martials": {
+        "melee": {
+          "value": false
+        },
+        "ranged": {
+          "value": false
+        },
+        "armor": {
+          "value": false
+        },
+        "shields": {
+          "value": false
+        }
+      },
+      "rituals": {
+        "arcanism": {
+          "value": false
+        },
+        "chimerism": {
+          "value": false
+        },
+        "elementalism": {
+          "value": false
+        },
+        "entropism": {
+          "value": false
+        },
+        "ritualism": {
+          "value": false
+        },
+        "spiritism": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF154"
+    },
+    "fuid": "invoker"
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676862037,
+    "modifiedTime": 1742794514006,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "_id": "3oIs9d1HnyKkJ424",
+  "sort": 0,
+  "_key": "!items!3oIs9d1HnyKkJ424"
+}

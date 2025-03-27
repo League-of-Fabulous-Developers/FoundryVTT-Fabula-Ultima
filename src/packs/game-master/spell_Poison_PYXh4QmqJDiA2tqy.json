@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each target hit by this spell suffers @EFFECT[poisoned].</p><hr /><p>@LOSS[10 mp] for <strong>one</strong> target.</p><p>@LOSS[20 mp] for <strong>two</strong> targets.</p><p>@LOSS[30 mp] for <strong>three</strong> targets.</p>",
+    "description": "<p>Each target hit by this spell suffers @EFFECT[poisoned].</p>",
     "isFavored": {
       "value": false
     },
@@ -127,8 +127,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1724180864833,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742704035787,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

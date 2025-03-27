@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong> (see <strong>Techno Fantasy Atlas</strong>, page <strong>152</strong>). The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p><hr /><ul><li><p>For <strong>gift</strong> breakdown and a list of Psychic Gifts, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</p></li></ul>",
+    "description": "<p>Each time you take this Skill, you gain a <strong>gift</strong> (see <strong>Techno Fantasy Atlas</strong>, page <strong>152</strong>).</p><p>The rules for gifts and for the <strong>Brainwave </strong>clock can be found in the next page.</p><hr /><ul><li><p>For <strong>gift</strong> breakdown and a list of Psychic Gifts, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc]{Psychic Gift Rules}</p></li></ul><ul><li><p>To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.mcjpTrTkosKxoyCc.JournalEntryPage.uafn9l51ROzc9q0w]{Psychic Gift VTT Instructions}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -133,7 +133,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711424945464,
-    "modifiedTime": 1742001433899,
+    "modifiedTime": 1742794236108,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

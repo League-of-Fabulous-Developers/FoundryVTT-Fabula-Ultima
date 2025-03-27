@@ -70,7 +70,7 @@ export class FUClassFeatureSheet extends ItemSheet {
 			});
 		} else {
 			formData = foundry.utils.expandObject(formData);
-			formData.system.data = this.item.system.data.constructor.processUpdateData(formData.system.data) ?? formData.system.data;
+			formData.system.data = this.item.system.data.constructor.processUpdateData(formData.system.data, this.item.system.data) ?? formData.system.data;
 		}
 
 		this.object.update(formData);

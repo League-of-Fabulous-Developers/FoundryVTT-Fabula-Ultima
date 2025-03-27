@@ -1,5 +1,5 @@
 {
-  "folder": "E9XrzgvAjI4iW0aE",
+  "folder": "8dgKmxfqK5xW6YxW",
   "name": "Clairvoyance",
   "type": "classFeature",
   "img": "icons/magic/holy/meditation-chi-focus-blue.webp",
@@ -32,12 +32,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1724180862278,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742791483380,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "SbBJH4ofSkOHZ7Mo",
-  "sort": 500000,
+  "sort": 200000,
   "_key": "!items!SbBJH4ofSkOHZ7Mo"
 }

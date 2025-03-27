@@ -1,0 +1,7 @@
+<div class="wellspring-preview">
+    {{#each additionalData.activeWellsprings as | active |}}
+        {{#with (lookup ../additionalData.wellsprings @key)}}
+            <i class="wellspring {{icon}} {{#unless active}}inactive{{/unless}}" data-tooltip="{{name}}"></i>
+        {{/with}}
+    {{/each}}
+</div>

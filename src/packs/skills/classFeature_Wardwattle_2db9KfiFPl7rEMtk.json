@@ -1,0 +1,56 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Wardwattle",
+  "type": "classFeature",
+  "img": "icons/consumables/plants/thorned-dried-stem-red.webp",
+  "system": {
+    "summary": {
+      "value": "A tangle of robust branches, whose thorns spread powerful poison."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 3,
+      "effects": [
+        {
+          "start": 0,
+          "end": 1,
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage.</p><hr><ul><li><p><strong>You Receive:</strong> @AFFINITY[physical resistance]</p></li></ul>"
+        },
+        {
+          "start": 2,
+          "end": 2,
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><ul><li><p><strong>You Receive:</strong> @AFFINITY[physical resistance]</p></li><li><p><strong>Target Loses: </strong>@DMG[5+&sl('chloromancy') physical]</p></li></ul>"
+        },
+        {
+          "start": 3,
+          "end": 3,
+          "effect": "<p>You are Resistant to <strong>physical</strong> damage. Additionally, after a creature <strong>hits</strong> you with a <strong>melee</strong> attack, you deal an amount of <strong>physical</strong> damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong>, and then deal an amount of <strong>poison </strong>damage to that creature equal to<strong>【5 + your Skill Level in Chloromancy】</strong> (after their attack was resolved).</p><hr><ul><li><p><strong>You Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.6yf1uUJP4vxmU3eW]{Physical Resistance}</p></li><li><p><strong>Target Loses: </strong>@DMG[5+&sl('chloromancy') physical] and @DMG[5+&sl('chloromancy') poison]</p></li></ul>"
+        }
+      ]
+    },
+    "source": "FUNF147",
+    "fuid": "wardwattle"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.FcYWXh9yYMcwozuw",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742766031491,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "2db9KfiFPl7rEMtk",
+  "sort": 0,
+  "_key": "!items!2db9KfiFPl7rEMtk"
+}

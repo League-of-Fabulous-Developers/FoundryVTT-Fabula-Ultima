@@ -1,0 +1,33 @@
+<div class="cookbook-sheet">
+    <fieldset class="title-fieldset desc resource-content">
+        <legend class="resource-label-full">
+            <label class="resource-label-m">{{localize "FU.ClassFeatureIngredient"}}</label>
+        </legend>
+        <div class="flexrow flex-group-center taste-container">
+            {{#each additionalData.tastes}}
+                <label class="taste">
+                    <input type="radio" name="taste1" value="{{@key}}" {{#if @first}}checked{{/if}}>
+                    <span class="pointer w-100">{{localize this}}</span>
+                </label>
+            {{/each}}
+        </div>
+        <div class="flexrow flex-group-center taste-container">
+            {{#each additionalData.tastes}}
+                <label class="taste">
+                    <input type="radio" name="taste2" value="{{@key}}" {{#if @first}}checked{{/if}}>
+                    <span class="pointer w-100">{{localize this}}</span>
+                </label>
+            {{/each}}
+        </div>
+    </fieldset>
+    {{#each system.data.combinations}}
+    <fieldset class="title-fieldset desc resource-content combination" data-taste1="{{taste1}}" data-taste2="{{taste2}}">
+        <legend class="resource-label-full">
+            <label class="resource-label-m">{{localize (lookup @root/additionalData.tastes taste1)}} + {{localize (lookup @root/additionalData.tastes taste2)}}</label>
+        </legend>
+        <div>
+            {{editor (lookup (lookup @root/enrichedHtml.combinations @key) 'effect') target=(concat 'system.data.combinations.' @key '.effect') engine='prosemirror' button=true}}
+        </div>
+    </fieldset>
+    {{/each}}
+</div>

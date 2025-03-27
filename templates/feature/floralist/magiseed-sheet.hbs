@@ -1,0 +1,50 @@
+{{log this}}
+<div class='resource-content desc'>
+    <div>
+        <fieldset class="title-fieldset desc resource-content">
+            <legend class="resource-label-full">
+                <label class="resource-label-m">{{localize 'FU.ClassFeatureMagiseed'}}</label>
+            </legend>
+            <div class="flexrow">
+                <label class="resource-label-m">
+                    {{localize 'FU.ClassFeatureMagiseedEffectCount'}}
+                    <input type="number" name="system.data.effectCount" value="{{ system.data.effectCount }}"
+                           class="resource-inputs select-dropdown-l resource-text-m" min="1" max="3" />
+                </label>
+            </div>
+        </fieldset>
+    </div>
+    <hr />
+    <nav class='magiseed-tabs tabs flexrow' data-group='magiseedTabs'>
+        {{#each system.data.effects}}
+            <a class='item tab-style' data-tab='effect{{@index}}'>
+                <span>{{localize 'FU.ClassFeatureMagiseedEffect'}}</span>
+                <span>{{#if (eq start end)}}{{start}}{{else}}{{start}} - {{end}}{{/if}}</span>
+                <i class="fa-regular fa-clock"></i>
+            </a>
+        {{/each}}
+    </nav>
+    <div class='magiseed-content'>
+        {{#each system.data.effects}}
+            <div class='tab' data-group='magiseedTabs' data-tab='effect{{@index}}'>
+                <fieldset class="title-fieldset desc resource-content">
+                    <div class="flexrow flex-group-center">
+                        <label class="resource-label-m">
+                            {{localize 'FU.ClassFeatureMagiseedEffectStart'}}
+                            <input type="number" name="system.data.effects.{{@index}}.start" value="{{ start }}"
+                                   class="resource-inputs select-dropdown-l resource-text-m" min="0" max="3" />
+                        </label>
+                        <label class="resource-label-m">
+                            {{localize 'FU.ClassFeatureMagiseedEffectEnd'}}
+                            <input type="number" name="system.data.effects.{{@index}}.end" value="{{ end }}"
+                                   class="resource-inputs select-dropdown-l resource-text-m" min="0" max="4" />
+                        </label>
+                    </div>
+                    <hr/>
+                    {{editor (lookup ../additionalData.effects @index)
+                             target=(concat 'system.data.effects.' @index '.effect') engine='prosemirror' button=true}}
+                </fieldset>
+            </div>
+        {{/each}}
+    </div>
+</div>

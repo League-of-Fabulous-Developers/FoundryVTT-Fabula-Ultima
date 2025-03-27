@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><ul><li><p><strong>Target:</strong> @EFFECT[barrier]</p></li></ul>",
+    "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><ul><li><p><strong>Targets Receive:</strong> @EFFECT[barrier]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -159,12 +159,12 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1733862708795,
-        "lastModifiedBy": "TV9jtuLKd5CvcqvO",
+        "modifiedTime": 1742703456649,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
-      "img": "icons/magic/defensive/barrier-shield-dome-pink.webp",
+      "img": "systems/projectfu/styles/static/statuses/Barrier.webp",
       "type": "base",
       "system": {},
       "origin": null,
@@ -183,10 +183,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706572145678,
-    "modifiedTime": 1737917808062,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1742703401391,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

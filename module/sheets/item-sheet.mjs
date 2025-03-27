@@ -101,8 +101,6 @@ export class FUItemSheet extends ItemSheet {
 		// Enriches description fields within the context object
 		context.enrichedHtml = {
 			description: await TextEditor.enrichHTML(context.system.description ?? ''),
-			zeroTrigger: await TextEditor.enrichHTML(context.system?.zeroTrigger?.description ?? ''),
-			zeroEffect: await TextEditor.enrichHTML(context.system?.zeroEffect?.description ?? ''),
 		};
 
 		context.FU = FU;

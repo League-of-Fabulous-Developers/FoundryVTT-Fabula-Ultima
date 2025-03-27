@@ -1,5 +1,5 @@
 {
-  "folder": "E9XrzgvAjI4iW0aE",
+  "folder": "8dgKmxfqK5xW6YxW",
   "name": "Photokinesis",
   "type": "classFeature",
   "img": "icons/magic/light/hand-sparks-smoke-green.webp",
@@ -32,12 +32,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1724180861928,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742791487456,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "Gl94a8Sykg9WZhPs",
-  "sort": 0,
+  "sort": 150000,
   "_key": "!items!Gl94a8Sykg9WZhPs"
 }

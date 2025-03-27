@@ -1,0 +1,209 @@
+{
+  "folder": null,
+  "name": "Delicacy Effect",
+  "img": "icons/consumables/food/bowl-stew-brown.webp",
+  "description": "<p>When you combine two tastes you <strong>never combined before</strong>, determine the <strong>effect</strong> of that combination by rolling a <strong>d12</strong>; most entries also require you to make a choice (such as a specific damage type or status effect). Once you're done, record the resulting effect on your @UUID[Compendium.projectfu.skills.Item.HQTDIy6suF8u6dAl]{Cookbook}: from this moment on, that <strong>combination</strong> of tastes will <strong>always</strong> produce that exact <strong>effect</strong> when you use it. Follow @UUID[Compendium.projectfu.handouts.JournalEntry.vsXmQQBeh7FSTCc4]{Ingredients &amp; Delicacies Rules} for more instructions.</p>",
+  "results": [
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_id": "4mUo3MCQ7XW757cT",
+      "text": "Each of this delicacy's targets recovers from the (choose one: dazed, enraged, poisoned, shaken, slow, weak) status effect.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.4mUo3MCQ7XW757cT"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_id": "IyMoJ2PruCzwJX0p",
+      "text": "Each of this delicacy's targets suffers the (choose one: dazed; shaken; slow; weak) status effect",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.IyMoJ2PruCzwJX0p"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_id": "OviSl6PLGoVU7D01",
+      "text": "Each of this delicacy's targets recovers @GAIN[40 hp]. This amount increases to @GAIN[50 hp] if you are level 30 or higher.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.OviSl6PLGoVU7D01"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_id": "cAYIGqzB1TlNzf4C",
+      "text": "Each of this delicacy's targets recovers @GAIN[40 mp]. This amount increases to @GAIN[50 mp] if you are level 30 or higher.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.cAYIGqzB1TlNzf4C"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_id": "0axlJjmbT0athFPg",
+      "text": "Each of this delicacy's targets suffers 20 (choose one: air; bolt; earth; fire; ice; poison) damage. This amount increases to 30 damage if you are level 30 or higher.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.0axlJjmbT0athFPg"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_id": "9WHO0tPajgyokXki",
+      "text": "Until the end of your next turn, every source that deals (choose one: air; bolt; earth; fire; ice; poison) damage deals 5 extra damage to each of this delicacy's targets",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.9WHO0tPajgyokXki"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_id": "2N05BK9tEKKwCE0k",
+      "text": "Each of this delicacy's targets cannot perform the Guard action during their next turn",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.2N05BK9tEKKwCE0k"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_id": "Itl9YI1ShtXBRQSF",
+      "text": "Each of this delicacy's targets cannot perform the Spell action during their next turn.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.Itl9YI1ShtXBRQSF"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_id": "Xqr55pvPfddFa7Pg",
+      "text": "Each of this delicacy's targets cannot perform the Skill action during their next turn.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.Xqr55pvPfddFa7Pg"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_id": "lm9lOKmihD1gtP53",
+      "text": "Each of this delicacy's targets gains Resistance to (choose one: air; bolt; earth; fire; ice; poison) damage until the end of your next turn.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.lm9lOKmihD1gtP53"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_id": "jC07L6JDGRjEXnDB",
+      "text": "Each of this delicacy's targets treats their (choose one: Dexterity; Insight; Might; Willpower) as if it were one die size higher (up to a maximum of d12) until the end of your next turn.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.jC07L6JDGRjEXnDB"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_id": "1p0nXtG8Pwv71jHw",
+      "text": "During the next turn of each of this delicacy's targets, all damage they deal becomes (choose one: air; bolt; earth; fire; ice; poison) and its type cannot change.",
+      "documentId": null,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_key": "!tables.results!LeFYrfI8SzWK4GAa.1p0nXtG8Pwv71jHw"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742677027237,
+    "modifiedTime": 1742741607610,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "formula": "1d12",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "LeFYrfI8SzWK4GAa",
+  "sort": 200000,
+  "_key": "!tables!LeFYrfI8SzWK4GAa"
+}

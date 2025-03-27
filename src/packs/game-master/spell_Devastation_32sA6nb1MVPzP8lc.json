@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Choose any number of creatures you can see: each of them suffers <strong>HR0 </strong>+ 30 <strong>(choose type) </strong>damage. You may only cast this spell <strong>once per turn</strong>. This spell should only be given to <strong>champion </strong>and <strong>elite </strong>creatures <strong>level 30 or higher</strong>, and said creatures can only cast this spell during their <strong>last turn in the round</strong>.</p><hr /><p>@LOSS[30 mp]</p>",
+    "description": "<p>Choose any number of creatures you can see: each of them suffers <strong>HR0 </strong>+ 30 <strong>(choose type) </strong>damage. You may only cast this spell <strong>once per turn</strong>. This spell should only be given to <strong>champion </strong>and <strong>elite </strong>creatures <strong>level 30 or higher</strong>, and said creatures can only cast this spell during their <strong>last turn in the round</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -75,7 +75,7 @@
       "value": "instantaneous"
     },
     "isOffensive": {
-      "value": true
+      "value": false
     },
     "hasRoll": {
       "value": true
@@ -124,8 +124,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1724180864817,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1742701724090,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

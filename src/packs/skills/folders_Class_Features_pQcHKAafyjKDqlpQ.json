@@ -1,0 +1,22 @@
+{
+  "name": "Class Features",
+  "sorting": "a",
+  "folder": "G1ibSw0lTdraduS7",
+  "type": "Item",
+  "_id": "pQcHKAafyjKDqlpQ",
+  "description": "",
+  "sort": 100000,
+  "color": "#723c44",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954060,
+    "modifiedTime": 1742676954060,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_key": "!folders!pQcHKAafyjKDqlpQ"
+}

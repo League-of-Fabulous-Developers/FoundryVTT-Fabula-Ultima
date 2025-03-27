@@ -21,4 +21,8 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 			checked: this.current === i + 1,
 		})).reverse();
 	}
+
+	get progressArray() {
+		return this.generateProgressArray();
+	}
 }

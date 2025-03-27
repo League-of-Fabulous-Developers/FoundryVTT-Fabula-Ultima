@@ -1,0 +1,88 @@
+{
+  "folder": "YUHjUEikuMRGOD9f",
+  "name": "Salt and Pepper",
+  "type": "skill",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/salt_pepper.png",
+  "system": {
+    "subtype": {},
+    "summary": {
+      "value": ""
+    },
+    "description": "<p>When you prepare a <strong>delicacy</strong>, you may spend 2 Inventory Points: if you do, change the <strong>taste</strong> of one ingredient to a different taste of your choice.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "level": {
+      "value": 1,
+      "max": 1,
+      "min": 0
+    },
+    "class": {
+      "value": "Gourmet"
+    },
+    "useWeapon": {
+      "accuracy": false,
+      "damage": false
+    },
+    "attributes": {
+      "primary": "ins",
+      "secondary": "mig"
+    },
+    "accuracy": 0,
+    "defense": "def",
+    "damage": {
+      "hasDamage": false,
+      "value": 0,
+      "type": "physical",
+      "onRoll": "",
+      "onApply": "",
+      "hrZero": false
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "source": {
+      "value": "FUNF149"
+    },
+    "hasRoll": {
+      "value": false
+    },
+    "fuid": "salt-and-pepper",
+    "cost": {
+      "amount": 2,
+      "resource": "ip"
+    },
+    "targeting": {
+      "rule": "special",
+      "max": 0
+    }
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.s9NctkgCOaVp5gGr",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676964457,
+    "modifiedTime": 1742676964457,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "y6f7BuTvmefliVVD",
+  "sort": 0,
+  "_key": "!items!y6f7BuTvmefliVVD"
+}

@@ -1,0 +1,51 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Arctic Narcissus",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/dandelion-pod-blue.webp",
+  "system": {
+    "summary": {
+      "value": "It stubbornly survives in frozen territories."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 2,
+      "effects": [
+        {
+          "start": 0,
+          "end": 1,
+          "effect": "<p>You are Resistant to <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><ul><li><p><strong>You Receive: </strong>@AFFINITY[earth resistance] and @AFFINITY[ice resistance]</p></li></ul>"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>earth</strong> and <strong>ice</strong> damage.</p><hr><ul><li><p><strong>Targets Receive: </strong>@AFFINITY[earth resistance] and @AFFINITY[ice resistance]</p></li></ul>"
+        }
+      ]
+    },
+    "source": "FUNF141",
+    "fuid": "arctic-narcissus"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.2qkID06zNCAnFHlt",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742763574027,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "FDHcvkkKKVy4LWHU",
+  "sort": 0,
+  "_key": "!items!FDHcvkkKKVy4LWHU"
+}

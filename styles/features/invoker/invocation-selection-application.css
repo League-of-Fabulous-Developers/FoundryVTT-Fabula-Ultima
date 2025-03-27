@@ -1,0 +1,13 @@
+.invocations-selection {
+	fieldset {
+		padding: 0.5em;
+
+		fieldset {
+			box-shadow: color-mix(in srgb, #2b4a42, transparent 50%) 2px 2px;
+		}
+	}
+
+	.fun {
+		display: inline-block;
+	}
+}

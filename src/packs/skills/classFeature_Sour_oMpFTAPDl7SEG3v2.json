@@ -1,0 +1,44 @@
+{
+  "name": "Sour",
+  "type": "classFeature",
+  "system": {
+    "featureType": "projectfu.ingredient",
+    "summary": {
+      "value": ""
+    },
+    "isFavored": {
+      "value": true
+    },
+    "data": {
+      "taste": "sour",
+      "cost": 10,
+      "quantity": 1,
+      "description": ""
+    },
+    "source": "FUNF150",
+    "fuid": "sour"
+  },
+  "img": "icons/consumables/fruit/lemon-citrus-yellow.webp",
+  "effects": [],
+  "folder": "7elKsNRPvQqRkFPl",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.SDkULCsMUlCuRYbC",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676964457,
+    "modifiedTime": 1742676964457,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "oMpFTAPDl7SEG3v2",
+  "sort": 0,
+  "_key": "!items!oMpFTAPDl7SEG3v2"
+}

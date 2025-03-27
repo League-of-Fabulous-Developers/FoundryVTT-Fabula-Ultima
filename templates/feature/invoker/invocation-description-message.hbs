@@ -1,0 +1,12 @@
+<div class="chat-desc">
+    <strong>{{localize "FU.Rank"}}:</strong> {{localize (lookup additionalData.levels system.data.level)}}
+</div>
+<div class='chat-desc'>
+    <details {{#unless collapseDescriptions}}open{{/unless}}>
+        <summary class="collapsible-description align-center">{{localize 'FU.Description'}}</summary>
+        {{#if system.summary.value}}
+            <blockquote class='summary quote'>{{system.summary.value}}</blockquote>
+        {{/if}}
+        {{{enrichedHtml.description}}}
+    </details>
+</div>

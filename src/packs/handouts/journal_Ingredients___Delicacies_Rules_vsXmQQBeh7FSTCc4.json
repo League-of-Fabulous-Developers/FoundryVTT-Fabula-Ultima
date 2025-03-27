@@ -1,0 +1,175 @@
+{
+  "name": "Ingredients & Delicacies Rules",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "INGREDIENTS & DELICACIES RULES",
+      "type": "text",
+      "_id": "yqmY1OPlynrNFA5j",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h2>INGREDIENTS &amp; DELICACIES</h2><blockquote><p>The Temple of Five Spices is rumored to hold the recipe for a dish that can summon the soul of the deceased</p></blockquote><p></p><h3>GAINING INGREDIENTS</h3><p>You will normally receive <strong>ingredients</strong> through the <strong>Cooking</strong> and <strong>Traveling Cook</strong> Skills; you might also receive them as <strong>rewards</strong> during play. When you obtain an <strong>ingredient</strong>, you’re never too sure what it will taste like — roll a <strong>d6</strong> to determine the <strong>ingredient’s taste</strong> using the table below, then describe its appearance and give it a name.</p><p>You may also purchase <strong>ingredients</strong> from stall, shops or merchants: the price is <strong>10 zenit</strong> for an <strong>ingredient</strong> with a random taste, <strong>or 20 zenit</strong> for an <strong>ingredient</strong> with a taste of your choice.</p><hr /><h5><strong>INGREDIENT TASTE</strong></h5><p>@UUID[Compendium.projectfu.rollable-tables.RollTable.sKStLRxDOy1yZkuJ]{Ingredient Taste}</p><table><tbody><tr><td><ol><li><p>Bitter</p></li></ol></td><td><ol start=\"2\"><li><p>Salty</p></li></ol></td><td><ol start=\"3\"><li><p>Sour</p></li></ol></td><td><ol start=\"4\"><li><p>Sweet</p></li></ol></td><td><ol start=\"5\"><li><p>Umami</p></li></ol></td><td><ol start=\"6\"><li><p>Your choice</p></li></ol></td></tr></tbody></table><p></p><h3>TASTES AND DELICACIES</h3><p>When you use the <strong>Cooking</strong> Skill, you combine two or three <strong>ingredients</strong> to generate a special <strong>delicacy</strong> with powerful effects that will be applied to its targets.</p><ul><li><p>Every <strong>different</strong> combination of <strong>two tastes</strong> (even if it's the same taste used twice!) will add an <strong>effect</strong> to the <strong>delicacy</strong>.</p></li><li><p>When you combine two tastes you <strong>never combined before</strong>, determine the <strong>effect</strong> of that combination by rolling a <strong>d12</strong> and consulting the chart on the next page; most entries also require you to make a choice (such as a specific damage type or status effect). Once you're done, record the resulting effect on your <strong>@UUID[Compendium.projectfu.skills.Item.HQTDIy6suF8u6dAl]{Cookbook}</strong>: from this moment on, that <strong>combination</strong> of tastes will <strong>always</strong> produce that exact <strong>effect</strong> when you use it.</p></li><li><p>No two combinations of tastes in your <strong>cookbook sheet</strong> can have <strong>identical effects</strong>. When you determine the effect of a new combination, you must make your <strong>choices</strong> in such a way that the resulting effect has no precedents (for instance, by selecting a different damage type or status effect); if you can't, <strong>reroll the d12</strong>.</p></li><li><p>When completed, your <strong>cookbook sheet</strong> will feature a total of <strong>15 effects</strong>, one for each possible pair of tastes.</p></li></ul><blockquote><p><em><strong>Example:</strong> you combine three ingredients, one of them <strong>salty</strong> and two of them <strong>bitter</strong>.</em></p><p><em>The resulting <strong>delicacy</strong> features two combinations (<strong>bitter</strong> + <strong>bitter</strong> and <strong>bitter</strong> + <strong>salty</strong>), which means it will have two different effects.</em></p><p><em>In the past, you combined <strong>bitter + bitter</strong> and rolled a <strong>4</strong>, which means the effect allows for MP recovery; on the other hand, you never combined <strong>bitter + salty</strong> before, so you need to determine this combination's effect by rolling dice.</em></p><p><em>You roll a <strong>1</strong>, and must choose a status effect for this effect; since you already chose recovery from <strong>weak</strong> for the <strong>sour + sweet</strong> combination in the past, you decide to opt for <strong>dazed</strong>. From now on, the <strong>bitter + salty</strong> combination will always allow you to heal the target from <strong>dazed</strong>.</em></p><p><em>Now that you've done this, you know that your <strong>delicacy</strong> allows every target to heal from the <strong>dazed</strong> status effect and also recover 40 Mind Points.</em></p></blockquote><p><strong>Delicacies</strong> created through the <strong>Cooking</strong> Skill have an immediate effect and are then destroyed; if you want to prepare foods with unique effects and use them later, you must instead use the rules for <strong>Projects</strong> (see <strong>Core Rulebook</strong>, page <strong>134</strong>).</p><hr /><h5>DELICACIES</h5><p>@UUID[Compendium.projectfu.rollable-tables.RollTable.LeFYrfI8SzWK4GAa]{Delicacy Effect}</p><table><tbody><tr><th data-colwidth=\"281\"><p>DELICACY</p></th><th><p>EFFECT</p></th></tr><tr><td data-colwidth=\"281\"><ol><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets recovers from the <strong>(choose one: dazed; enraged; poisoned; shaken; slow; weak)</strong> status effect.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"2\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets suffers the <strong>(choose one: dazed; shaken; slow; weak)</strong> status effect.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"3\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets recovers 40 Hit Points. This amount increases to 50 if you are <strong>level 30 or higher</strong>.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"4\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy</strong>'s targets recovers 40 Mind Points. This amount increases to 50 if you are <strong>level 30 or higher</strong>.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"5\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets suffers 20 <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> damage. This amount increases to 30 damage if you are <strong>level 30 or higher</strong>.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"6\"><li><p></p></li></ol></td><td><p>Until the end of your next turn, every source that deals <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> damage deals 5 extra damage to each of this <strong>delicacy's</strong> targets.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"7\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Guard</strong> action during their next turn.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"8\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Spell</strong> action during their next turn.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"9\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Skill</strong> action during their next turn.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"10\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets gains Resistance to <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> damage until the end of your next turn.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"11\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets treats their <strong>(choose one: Dexterity; Insight; Might; Willpower</strong>) as if it were one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"12\"><li><p></p></li></ol></td><td><p>During the next turn of each of this <strong>delicacy</strong>'s targets, all damage they deal becomes <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> and its type cannot change.</p></td></tr></tbody></table><p></p><h3>SPECIAL RULES OF EFFECTS</h3><p><strong>Delicacies</strong> and their effects follow a few unique rules.</p><ul><li><p>Each <strong>delicacy</strong> always features <strong>one, two, or three effects</strong>, depending on which <strong>taste </strong>combinations you used (the effects may also be <strong>four or six</strong> if you use the <strong>All You Can Eat</strong> Heroic Skill, on page <strong>161</strong>); you decide in which order to apply these effects, and may choose to <strong>forgo</strong> any number of them (this choice must be exactly the same for all targets of the <strong>delicacy</strong>).</p></li><li><p>Effects <strong>5 to 12</strong> can only be applied during conflict scenes.</p></li><li><p>A <strong>delicacy</strong> can only have <strong>one</strong> type <strong>5</strong> effect (which is to say, a damage-dealing effect); if a <strong>delicacy</strong> has two or more type <strong>5</strong> effects due to the <strong>taste</strong> combinations you used, you <strong>must</strong> choose one of them and forgo the others.</p></li><li><p>A <strong>delicacy</strong> can only have <strong>one</strong> type <strong>12</strong> effect (which is to say, a damage type-changing effect); if a <strong>delicacy</strong> has two or more type <strong>12</strong> effects due to the <strong>taste</strong> combinations you used, you <strong>must</strong> choose one of them and forgo the others.</p></li></ul><p>Other than that, all of a <strong>delicacy's</strong> effects are cumulative, and will be fully applied to each of its target.</p><blockquote><p><em><strong>Example:</strong> if you obtain a type <strong>2</strong> effect on <strong>sweet + umami</strong>, a type <strong>5</strong> effect on <strong>bitter + umami</strong>, and a type <strong>9</strong> effect on <strong>bitter + sweet</strong>, the <strong>delicacy</strong> created combining these tastes will be able to deal damage, inflict a status effect, and also prevent the use of spells for a brief period!</em></p></blockquote><p></p><h3>AND FINALLY, A BIT OF ADVICE!</h3><p>This Class is quite atypical: there is no real way to perfectly control the role your character will cover, because your abilities are procedurally generated over the course of the campaign. However, remember that <strong>you may prepare delicacies outside of conflict scenes</strong>: it will cost you some ingredients, true, but you will be able to \"scout\" the effects ahead of time and avoid trial and error during a critical situation. Other than that, pay attention to which effects best synergize with each other and with the rest of your group, and take advantage of the <strong>multi</strong> property to apply the same <strong>delicacy</strong> to two or more enemies!</p><p></p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1742778002709,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!vsXmQQBeh7FSTCc4.yqmY1OPlynrNFA5j"
+    },
+    {
+      "sort": 200000,
+      "name": "DELICACIES TABLE",
+      "type": "text",
+      "_id": "tPPYrM43wrxTMmGj",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h5>DELICACIES</h5><p>@UUID[Compendium.projectfu.rollable-tables.RollTable.LeFYrfI8SzWK4GAa]{Delicacy Effect}</p><table><tbody><tr><th data-colwidth=\"281\"><p>DELICACY</p></th><th><p>EFFECT</p></th></tr><tr><td data-colwidth=\"281\"><ol><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets recovers from the <strong>(choose one: dazed; enraged; poisoned; shaken; slow; weak)</strong> status effect.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"2\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets suffers the <strong>(choose one: dazed; shaken; slow; weak)</strong> status effect.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"3\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets recovers 40 Hit Points. This amount increases to 50 if you are <strong>level 30 or higher</strong>.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"4\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets recovers 40 Mind Points. This amount increases to 50 if you are <strong>level</strong> 30 or higher.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"5\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets suffers 20 <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> damage. This amount increases to 30 damage if you are <strong>level 30 or higher</strong>.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"6\"><li><p></p></li></ol></td><td><p>Until the end of your next turn, every source that deals <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> damage deals 5 extra damage to each of this <strong>delicacy's</strong> targets.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"7\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Guard</strong> action during their next turn.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"8\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Spell</strong> action during their next turn.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"9\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets cannot perform the <strong>Skill</strong> action during their next turn.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"10\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets gains Resistance to <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> damage until the end of your next turn.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"11\"><li><p></p></li></ol></td><td><p>Each of this <strong>delicacy's</strong> targets treats their <strong>(choose one: Dexterity; Insight; Might; Willpower</strong>) as if it were one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p></td></tr><tr><td data-colwidth=\"281\"><ol start=\"12\"><li><p></p></li></ol></td><td><p>During the next turn of each of this <strong>delicacy</strong>'s targets, all damage they deal becomes <strong>(choose one: air; bolt; earth; fire; ice; poison)</strong> and its type cannot change.</p></td></tr></tbody></table><p></p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1742777537161,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!vsXmQQBeh7FSTCc4.tPPYrM43wrxTMmGj"
+    },
+    {
+      "sort": 300000,
+      "name": "INGREDIENTS TABLE",
+      "type": "text",
+      "_id": "WwyByda2k4pQ7orX",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<h5>INGREDIENT TASTE</h5><p>@UUID[Compendium.projectfu.rollable-tables.RollTable.sKStLRxDOy1yZkuJ]{Ingredient Taste}</p><table><tbody><tr><td><ol><li><p>@UUID[Compendium.projectfu.skills.Item.9uSPEQZ4fi6PDkV1]{Bitter}</p></li></ol></td><td><ol start=\"2\"><li><p>@UUID[Compendium.projectfu.skills.Item.pClb5dXEgvo29U0C]{Salty}</p></li></ol></td><td><ol start=\"3\"><li><p>@UUID[Compendium.projectfu.skills.Item.oMpFTAPDl7SEG3v2]{Sour}</p></li></ol></td><td data-colwidth=\"95\"><ol start=\"4\"><li><p>@UUID[Compendium.projectfu.skills.Item.ZLrC6QQvsJOh4F2h]{Sweet}</p></li></ol></td><td><ol start=\"5\"><li><p>@UUID[Compendium.projectfu.skills.Item.DjSSat9WKMIziH5E]{Umami}</p></li></ol></td><td><ol start=\"6\"><li><p>Your choice</p></li></ol></td></tr></tbody></table><p></p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "YN7AhHIwAZeH33Tw": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": 1742777558024,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!vsXmQQBeh7FSTCc4.WwyByda2k4pQ7orX"
+    },
+    {
+      "sort": 400000,
+      "name": "COOKBOOK VTT INSTRUCTIONS",
+      "type": "text",
+      "_id": "fDzgptyBKkS5y2YY",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<ol><li><p>To <strong>automate</strong> class feature, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.HQTDIy6suF8u6dAl]{Cookbook}</p></li><li><p>Import the following rollable tables to your world: @UUID[Compendium.projectfu.rollable-tables.RollTable.sKStLRxDOy1yZkuJ]{Ingredient Taste} and @UUID[Compendium.projectfu.rollable-tables.RollTable.LeFYrfI8SzWK4GAa]{Delicacy Effect}</p></li><li><p>When buying <strong>Ingredients</strong>, a list of pre-made ingredients can be found here: @UUID[.WwyByda2k4pQ7orX]{Ingredients Table}</p></li><li><p>Let's say we want to combine <strong>Sour</strong> and <strong>Salty</strong>, open the cookbook sheet and navigate to \"<strong>Details</strong>\" tab</p></li><li><p>There are two rows, press \"<strong>Sour</strong>\" in first row then \"<strong>Salty</strong>\" in second row. which opens the description section specific to that combination.</p></li><li><p>Roll from the <strong>Delicacy Effect</strong> rollable table and copy and paste that effect into the description. (If that effect has already been rolled, reroll from rollable table.</p></li><li><p>To <strong>start cooking</strong>, roll the Cookbook feature and combine various ingredients in the dialog menu.</p></li></ol>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "uG2TkwmswfdRqaAv": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1742773223947,
+        "modifiedTime": 1742789199978,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!journal.pages!vsXmQQBeh7FSTCc4.fDzgptyBKkS5y2YY"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742677064031,
+    "modifiedTime": 1742677068556,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "vsXmQQBeh7FSTCc4",
+  "sort": 100000,
+  "_key": "!journal!vsXmQQBeh7FSTCc4"
+}

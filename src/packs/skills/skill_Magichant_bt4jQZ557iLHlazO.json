@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>On your turn during a conflict scene, you may use an action and spend a variable amount of MP to weave voice and music into a magical effect known as a <strong>verse</strong>.</p><p>You may only sing <strong>one verse</strong> per turn, even if you have access to multiple actions.</p><p>When you first acquire this Skill, you learn <strong>all three volumes</strong>, plus <strong>one key</strong> and <strong>one tone</strong>. Whenever you acquire this Skill again, you may learn <strong>one key</strong> or <strong>one tone</strong> (your choice).</p><hr /><ul><li><p>For <strong>verse</strong> breakdown and a list of Keys and Tones, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</p></li><li><p>To <strong>automate</strong>, add the following feature to your character sheet and click to <strong>perform</strong>: @UUID[Compendium.projectfu.skills.nu7QnUu7tmVv6zxU]{Verse}</p></li></ul>",
+    "description": "<p>On your turn during a conflict scene, you may use an action and spend a variable amount of MP to weave voice and music into a magical effect known as a <strong>verse</strong>.</p><p>You may only sing <strong>one verse</strong> per turn, even if you have access to multiple actions.</p><p>When you first acquire this Skill, you learn <strong>all three volumes</strong>, plus <strong>one key</strong> and <strong>one tone</strong>. Whenever you acquire this Skill again, you may learn <strong>one key</strong> or <strong>one tone</strong> (your choice).</p><hr /><ul><li><p>For <strong>verse</strong> breakdown and a list of Keys and Tones, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</p></li><li><p>To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ.JournalEntryPage.W6dLZ4wOhSMKKwsC]{Verses VTT Instructions}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -135,7 +135,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706550402521,
-    "modifiedTime": 1742000131840,
+    "modifiedTime": 1742794196613,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

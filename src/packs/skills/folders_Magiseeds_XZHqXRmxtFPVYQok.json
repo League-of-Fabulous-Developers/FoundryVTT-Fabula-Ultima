@@ -1,0 +1,22 @@
+{
+  "name": "Magiseeds",
+  "sorting": "a",
+  "folder": "pQcHKAafyjKDqlpQ",
+  "type": "Item",
+  "_id": "XZHqXRmxtFPVYQok",
+  "sort": 100000,
+  "color": "#342022",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954060,
+    "modifiedTime": 1742676954060,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "description": "",
+  "_key": "!folders!XZHqXRmxtFPVYQok"
+}

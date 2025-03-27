@@ -1,0 +1,76 @@
+{
+  "folder": "G957A8IFiy9ML4w0",
+  "name": "Auramancer's Refraction",
+  "type": "heroic",
+  "img": "icons/creatures/magical/spirit-fire-orange.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Improves Aura and Barrier, and punishes enemies who damage protected targets."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Arcanist</strong> and <strong>Spiritist</strong>, and must have learned the <strong>Aura</strong> spell and/or the <strong>Barrier</strong> spell</p></blockquote><p>Choose a damage type among <strong>air, bolt, earth, fire, ice,</strong> and <strong>light</strong>.<br />When an enemy you can see deals damage to one or more creatures who are affected by an <strong>Aura</strong> and/or <strong>Barrier</strong> spell you cast, the damage suffered by each of those creatures is reduced by an amount equal to <strong>【half your level in the Spiritist Class】</strong> <strong>or</strong> to <strong>【your level, divided by 10】</strong> (use whichever value is <strong>higher</strong>; this reduction is applied <strong>before </strong>damage Affinities). Then, you may deal an amount of damage of the chosen type equal to <strong>【half your level】 </strong>to that enemy. If you do, you cannot deal damage this way until the start of your next turn.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": "Arcanist"
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF162"
+    },
+    "fuid": "auramancers-refraction"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Item.IxfcFPxfZ8xDmJTO"
+    }
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.DVaiA90aHgq9gPYI",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676906838,
+    "modifiedTime": 1742676906838,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "DVaiA90aHgq9gPYI",
+  "sort": 0,
+  "_key": "!items!DVaiA90aHgq9gPYI"
+}

@@ -1,0 +1,46 @@
+{
+  "folder": "XZHqXRmxtFPVYQok",
+  "name": "Lunar Magnolia",
+  "type": "classFeature",
+  "img": "icons/commodities/flowers/strawberry-trio-white.webp",
+  "system": {
+    "summary": {
+      "value": "It blooms in the darkest hours of the night."
+    },
+    "isFavored": {
+      "value": false
+    },
+    "featureType": "projectfu.magiseed",
+    "data": {
+      "effectCount": 1,
+      "effects": [
+        {
+          "start": 1,
+          "end": 3,
+          "effect": "<p>At the end of your turn, choose <strong>ice</strong> or <strong>light</strong>. Until you use this effect again or this <strong>magiseed</strong> is no longer in your <strong>garden</strong>, all damage dealt by you and every ally present on the scene becomes the chosen type, its type cannot change, and it ignores Resistances.</p><hr><ul><li><p><strong>Targets Receive:</strong> @TYPE[damage all ice], or @TYPE[damage all light]</p></li></ul>"
+        }
+      ]
+    },
+    "source": "FUNF143",
+    "fuid": "lunar-magnolia"
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.nbNCLxKt4K0sMcMU",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676954080,
+    "modifiedTime": 1742765724269,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "_id": "ziF59qvGy9h8t3tQ",
+  "sort": 0,
+  "_key": "!items!ziF59qvGy9h8t3tQ"
+}

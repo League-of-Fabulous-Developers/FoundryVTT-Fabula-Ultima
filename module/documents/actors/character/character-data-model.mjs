@@ -11,6 +11,7 @@ import { EquipDataModel } from '../common/equip-data-model.mjs';
 import { PilotVehicleDataModel } from './pilot-vehicle-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { OverridesDataModel } from '../common/overrides-data-model.mjs';
+import { FloralistDataModel } from './floralist-data-model.mjs';
 
 const CLASS_HP_BENEFITS = 5;
 const CLASS_MP_BENEFITS = 5;
@@ -33,12 +34,6 @@ function heroicMpBenefits(dataModel) {
  * @property {number} resources.mp.max
  * @property {number} resources.mp.value
  * @property {number} resources.mp.bonus
- * @property {string} resources.rp1.name
- * @property {number} resources.rp1.value
- * @property {string} resources.rp2.name
- * @property {number} resources.rp2.value
- * @property {string} resources.rp2.name
- * @property {number} resources.rp2.value
  * @property {number} resources.zenit.value
  * @property {number} resources.ip.min
  * @property {number} resources.ip.max
@@ -60,6 +55,7 @@ function heroicMpBenefits(dataModel) {
  * @property {string} description
  * @property {CharacterSkillTracker} tlTracker
  * @property {OverridesDataModel} overrides Overrides for default behaviour
+ * @property {FloralistDataModel} floralist
  *
  */
 export class CharacterDataModel extends foundry.abstract.TypeDataModel {
@@ -83,18 +79,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 				mp: new SchemaField({
 					value: new NumberField({ initial: 10, min: 0, integer: true, nullable: false }),
 					bonus: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				rp1: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				rp2: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
-				}),
-				rp3: new SchemaField({
-					name: new StringField({ initial: '' }),
-					value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 				}),
 				zenit: new SchemaField({ value: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }) }),
 				ip: new SchemaField({
@@ -124,6 +108,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			vehicle: new EmbeddedDataField(PilotVehicleDataModel, {}),
 			overrides: new EmbeddedDataField(OverridesDataModel, {}),
+			floralist: new EmbeddedDataField(FloralistDataModel, {}),
 			description: new HTMLField(),
 		};
 	}

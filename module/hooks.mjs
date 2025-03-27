@@ -112,4 +112,9 @@ export const FUHooks = {
 	 * @remarks Uses {@link StudyEvent}
 	 */
 	STUDY_EVENT: 'projectfu.events.study',
+	/**
+	 * @description Dispatched whenever there is a change in active wellsprings.
+	 * @remarks Uses {@link WellspringDataModel}
+	 */
+	HOOK_WELLSPRING_CHANGED: 'projectfu.wellspringChanged',
 };

@@ -1,0 +1,43 @@
+.cooking-message {
+	.ingredients-list,
+	.cooking-message .effect-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25em;
+	}
+
+	.ingredients-list .flexrow {
+		flex-direction: row;
+	}
+
+	.ingredients-list img {
+		height: var(--font-size-20);
+		width: var(--font-size-20);
+		border-radius: 4px;
+		background-image: linear-gradient(to right, #2b4a42, #3d665a);
+		margin-right: 0.5em;
+	}
+
+	.effect-list fieldset {
+		border: 1px solid #2b4a42;
+		border-radius: 0.5em;
+		padding: 0.5em;
+		margin-bottom: 0.5em;
+		box-shadow: color-mix(in srgb, #2b4a42, transparent 50%) 2px 2px;
+	}
+
+	fieldset legend {
+		margin: 0 auto;
+		width: 60%;
+		border-radius: 8px;
+		background: #2b4a42;
+		color: #ffffff;
+		text-align: center;
+		padding: 0.125em 0.25em;
+	}
+
+	fieldset.ingredients-list > legend,
+	fieldset.effect-list > legend {
+		text-transform: uppercase;
+	}
+}

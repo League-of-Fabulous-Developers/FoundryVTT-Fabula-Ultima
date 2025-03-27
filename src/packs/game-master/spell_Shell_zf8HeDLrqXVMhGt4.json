@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Until this spell ends, you gain Resistance to <strong>physical</strong> damage.</p><hr /><p>@EFFECT[eyJuYW1lIjoiU2hlbGwiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5waHlzaWNhbCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9iYXJyaWVyLXNoaWVsZC1kb21lLXBpbmsud2VicCJ9]</p><p>@LOSS[10 mp]</p>",
+    "description": "<p>Until this spell ends, you gain Resistance to <strong>physical</strong> damage.</p><hr /><p>@EFFECT[eyJuYW1lIjoiU2hlbGwiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5waHlzaWNhbCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9iYXJyaWVyLXNoaWVsZC1kb21lLXBpbmsud2VicCJ9]</p>",
     "isFavored": {
       "value": false
     },
@@ -127,8 +127,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1731165015421,
-    "lastModifiedBy": "eGFjUCXxDy8l2KwV",
+    "modifiedTime": 1742703963704,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

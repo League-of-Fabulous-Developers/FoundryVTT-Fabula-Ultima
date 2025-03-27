@@ -1,0 +1,28 @@
+.wellspring-manager-app {
+	.ra-droplets {
+		color: cornflowerblue;
+		font-size: 1.75rem !important;
+	}
+
+	.window-content > * {
+		margin: 0.5em;
+	}
+
+	.wellsprings {
+		padding: 0.5em;
+
+		> .flexrow {
+			gap: 0.5em;
+		}
+	}
+
+	.wellspring {
+		font-size: 2rem;
+		-webkit-text-stroke: 1px black;
+		text-align: center;
+
+		&.inactive {
+			filter: grayscale(100%);
+		}
+	}
+}

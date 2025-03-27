@@ -1,0 +1,74 @@
+{
+  "folder": "G957A8IFiy9ML4w0",
+  "name": "Brave Bash",
+  "type": "heroic",
+  "img": "icons/equipment/shield/heater-steel-sword-yellow-black.webp",
+  "system": {
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Use Bone Crusher to challenge foes with a shield, then deal additional damage."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> (see <strong>High Fantasy</strong>, page <strong>140</strong>), <strong>Guardian</strong>, and <strong>Weaponmaster</strong></p></blockquote><p><span class=\"fontstyle0\">When you use the </span><span class=\"fontstyle2\"><strong>Bone Crusher</strong> </span><span class=\"fontstyle0\">Skill, if your attack targets </span><span class=\"fontstyle2\"><strong>only one creature</strong> </span><span class=\"fontstyle0\">and you have a </span><span class=\"fontstyle2\"><strong>shield</strong> </span><span class=\"fontstyle0\">equipped, you may </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">that creature until the end of your next turn. The </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">also ends if that creature is </span><span class=\"fontstyle2\">challenged </span><span class=\"fontstyle0\">by someone else, or if you </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">another creature.</span></p><p><span class=\"fontstyle0\">The creature you are </span><span class=\"fontstyle2\"><strong>challenging</strong> </span><span class=\"fontstyle0\">must include you among the targets of their attacks and offensive spells (   </span><span class=\"fontstyle3\">@ICON[offensive] </span><span class=\"fontstyle0\">), if able; additionally, once per turn (including other creatures' turns), when you deal damage to the creature you are </span><span class=\"fontstyle2\"><strong>challenging</strong> </span><span class=\"fontstyle0\">with a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">using a </span><span class=\"fontstyle2\"><strong>one-handed melee</strong> </span><span class=\"fontstyle0\">weapon or a </span><span class=\"fontstyle2\"><strong>custom weapon</strong> </span><span class=\"fontstyle0\">belonging to the </span><span class=\"fontstyle2\"><strong>dagger</strong> </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>sword</strong> </span><span class=\"fontstyle0\">Category, you may deal 5 extra damage to that creature.</span> <br style=\"font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;orphans:2;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-size-adjust:auto;-webkit-text-stroke-width:0px\" /></p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "name": "Name",
+      "current": 0,
+      "step": 1,
+      "max": 6
+    },
+    "requirement": {
+      "value": ""
+    },
+    "benefits": {
+      "resources": {
+        "hp": {
+          "value": false
+        },
+        "mp": {
+          "value": false
+        },
+        "ip": {
+          "value": false
+        }
+      }
+    },
+    "source": {
+      "value": "FUNF163"
+    },
+    "fuid": "brave-bash"
+  },
+  "effects": [],
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-heroic-skills.Item.eOGrMEqq2sBta0AN",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1742676906838,
+    "modifiedTime": 1742676906838,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_id": "eOGrMEqq2sBta0AN",
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "sort": 0,
+  "_key": "!items!eOGrMEqq2sBta0AN"
+}
