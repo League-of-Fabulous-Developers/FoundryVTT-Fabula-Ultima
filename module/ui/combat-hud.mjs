@@ -3,6 +3,7 @@ import { SETTINGS } from '../settings.js';
 import { SystemControls } from '../helpers/system-controls.mjs';
 import { SYSTEM, FU } from '../helpers/config.mjs';
 import { FUHooks } from '../hooks.mjs';
+import { FUCombat } from './combat.mjs';
 
 Hooks.once('setup', () => {
 	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
@@ -181,12 +182,11 @@ export class CombatHUD extends Application {
 			barCount++;
 		}
 
-		const NPCTurnsLeftMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode);
-
 		/** @type FUCombat **/
 		const combat = game.combat;
 		combat.populateData(data);
 
+		// TODO: Much of this data is also required by the Combat Tracker, but populated in an entirely different way!
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
 
@@ -670,11 +670,6 @@ export class CombatHUD extends Application {
 				studyJournal.sheet.render(true);
 			}
 		}
-	}
-
-	_isNPCStudied(token) {
-		const studyJournal = game.journal.getName(token.actor?.name);
-		return studyJournal ? true : false;
 	}
 
 	lerp(a, b, alpha) {

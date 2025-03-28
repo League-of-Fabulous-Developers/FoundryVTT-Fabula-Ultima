@@ -1,3 +1,5 @@
+import {FUCombat} from "./combat.mjs";
+
 /**
  * @class
  * @property {FUCombat} viewed The currently tracked combat encounter
@@ -104,6 +106,7 @@ export class FUCombatTracker extends CombatTracker {
 	 * @return {Object.<"friendly"|"neutral"|"hostile", {}[]>}
 	 */
 	async getFactions(turns, combat) {
+		// TODO: This information is also required by the combat hud, but populated in an entirely different way!
 		return turns.reduce(
 			(agg, combatantData) => {
 				const combatant = combat.combatants.get(combatantData.id);
