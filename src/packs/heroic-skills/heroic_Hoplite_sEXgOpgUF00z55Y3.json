@@ -9,7 +9,7 @@
     "summary": {
       "value": "Strenghten attacks when you fight with weapon and shield."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Commander </strong>and <strong>Guardian</strong>.</p></blockquote><p>As long as you have a <strong>weapon </strong>equipped in your <strong>main hand slot</strong> and a <strong>shield </strong>equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p><p>This Skill <strong>cannot </strong>be combined with <strong>custom weapons </strong>with the <strong>defence boost</strong> customization (<strong>High Fantasy</strong>, page <strong>106</strong>), <strong>nor </strong>with the <strong>Dual Shieldbearer</strong> Skill (<strong>Core Rulebook</strong>, page <strong>197</strong>).</p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Commander </strong>and <strong>Guardian</strong>.</p></blockquote><p>As long as you have a <strong>weapon </strong>equipped in your <strong>main hand slot</strong> and a <strong>shield </strong>equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p><p>This Skill <strong>cannot </strong>be combined with <strong>custom weapons </strong>with the <strong>defence boost</strong> customization (<strong>High Fantasy</strong>, page <strong>106</strong>), <strong>nor </strong>with the @UUID[Compendium.projectfu.skills.Item.aPQXTQegswRisA1R]{Dual Shieldbearer} Skill (<strong>Core Rulebook</strong>, page <strong>197</strong>).</p>",
     "isFavored": {
       "value": false
     },
@@ -131,22 +131,24 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>As long as you have a <strong>weapon </strong>equipped in your <strong>main hand slot</strong> and a <strong>shield </strong>equipped in your <strong>off-hand slot</strong>, your attacks with that weapon deal 5 extra damage and you gain a +1 bonus to Defense.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUHF157"
         }
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1743169723586,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -171,8 +173,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706684635660,
-    "modifiedTime": 1724180864082,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743170708568,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

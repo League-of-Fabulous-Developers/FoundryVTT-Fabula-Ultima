@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>After you pay the MP cost of an <strong>Arcanum</strong>, <strong>spell</strong>, or <strong>verse</strong> (High Fantasy, page 138), if you are driving this <strong>personal vehicle</strong> and have an <strong>arcane</strong> weapon equipped, you recover @GAIN[5 mp], or @GAIN[10 mp] if the cost was <strong>equal to or higher than 30 MP</strong>.</p>",
+      "description": "<p>After you pay the MP cost of an <strong>Arcanum</strong>, <strong>spell</strong>, or <strong>verse</strong> (see <strong>High Fantasy</strong>, page <strong>138</strong>), if you are driving this <strong>personal vehicle</strong> and have an <strong>arcane</strong> weapon equipped, you recover 5 Mind Points, or 10 Mind Points if the cost was <strong>equal to or higher than 30 MP</strong>.</p><hr><ul><li><p><strong>You Recover:</strong> @GAIN[5 mp], or @GAIN[10 mp]</p></li></ul>",
       "complex": false
     },
     "source": "FUTF169",
@@ -27,8 +27,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711477024972,
-    "modifiedTime": 1724180864691,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743171537935,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

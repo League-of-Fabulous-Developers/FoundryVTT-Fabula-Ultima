@@ -9,7 +9,7 @@
     "summary": {
       "value": "Perform three dances, then take a temporary break."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Dancer</strong> Class.</p></blockquote><p>At the start of your turn during a conflict, if you have <strong>nomartial armor </strong>equipped, you may spend 1 Fabula Point to immediately perform<strong> up to three different dances </strong>among those you know, in the order you prefer and without paying their MP cost. If you do, you <strong>cannot perform dances in any way</strong> until the end of your next turn.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Dancer</strong> Class.</p></blockquote><p>At the start of your turn during a conflict, if you have <strong>nomartial armor </strong>equipped, you may spend 1 Fabula Point to immediately perform<strong> up to three different dances </strong>among those you know, in the order you prefer and without paying their MP cost. If you do, you <strong>cannot perform dances in any way</strong> until the end of your next turn.</p><hr /><ul><li><p> <strong>You Lose:</strong> @LOSS[1 fp] </p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -111,8 +111,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706684713224,
-    "modifiedTime": 1724180863736,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743126372108,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

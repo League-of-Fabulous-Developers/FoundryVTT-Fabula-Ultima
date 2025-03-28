@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When the creature bearing this <strong>symbol </strong>needs to spend Inventory Points during a conflict, they may instead destroy this <strong>symbol </strong>to spend no Inventory Points.</p><hr><p>@LOSS[2 ip]</p>"
+      "description": "<p>When the creature bearing this <strong>symbol </strong>needs to spend Inventory Points during a conflict, they may instead destroy this <strong>symbol </strong>to spend no Inventory Points.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li></ul>"
     },
     "source": "FUHF149",
     "fuid": "symbol-of-creation"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177315373,
-    "modifiedTime": 1724180861454,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743113938818,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>You treat your <strong>Dexterity</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</p><p>When you succeed on a Check to advance or turn back a Clock, if that Check includes <strong>Dexterity</strong>, you may fill or erase 1 additional section of that Clock.</p><hr><p>@EFFECT[dex-up]</p>"
+      "description": "<p>You treat your <strong>Dexterity</strong> as if it were one die size higher (to a maximum of <strong>d12</strong>).</p><p>When you succeed on a Check to advance or turn back a Clock, if that Check includes <strong>Dexterity</strong>, you may fill or erase 1 additional section of that Clock.</p><hr><ul><li><p><strong>You Receive: </strong>@EFFECT[dex-up]</p></li></ul>"
     },
     "source": "FUTF157",
     "fuid": "tachytheria"
@@ -31,8 +31,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1724180862386,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743111452896,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

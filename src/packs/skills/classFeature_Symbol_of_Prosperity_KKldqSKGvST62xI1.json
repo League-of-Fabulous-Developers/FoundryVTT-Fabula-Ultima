@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When the creature bearing this <strong>symbol</strong> spends @LOSS[1 fp] to <strong>invoke a Trait or Bond</strong>, they also receive @GAIN[100 zenit].</p><hr><p>@LOSS[2 ip]</p>"
+      "description": "<p>When the creature bearing this <strong>symbol</strong> spends 1 Fabula Point to <strong>invoke a Trait or Bond</strong>, they also receive 100 zenit.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Spends:</strong> @LOSS[1 fp]</p></li><li><p><strong>Target Receive:</strong> @GAIN[100 zenit]</p></li></ul>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-prosperity"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177778190,
-    "modifiedTime": 1730914913554,
-    "lastModifiedBy": "B6evqtezy9ZsGZG3",
+    "modifiedTime": 1743114417182,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

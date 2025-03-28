@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Until this spell ends, you gain Resistance to <strong>physical</strong> damage.</p><hr /><p>@EFFECT[eyJuYW1lIjoiU2hlbGwiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5waHlzaWNhbCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9iYXJyaWVyLXNoaWVsZC1kb21lLXBpbmsud2VicCJ9]</p>",
+    "description": "<p>Until this spell ends, you gain Resistance to <strong>physical</strong> damage.</p><hr /><ul><li><p><strong>You Receive:</strong> @AFFINITY[physical resistance]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -127,7 +127,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1742703963704,
+    "modifiedTime": 1743172190211,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>After a creature aboard this <strong>personal vehicle</strong> is hit by a <strong>ranged</strong> attack, if you are driving this <strong>vehicle</strong>, you may spend @LOSS[1 ip]. If you do, the attacker suffers @DMG[10 physical] damage (after their attack has been resolved). This amount increases by 5 damage if you are <strong>level 20 or higher</strong>, or by 10 damage if you are <strong>level 40 or higher</strong>.</p>",
+      "description": "<p>After a creature aboard this <strong>personal vehicle</strong> is hit by a <strong>ranged</strong> attack, if you are driving this <strong>vehicle</strong>, you may spend 1 Inventory Point. If you do, the attacker suffers 10 <strong>physical</strong> damage (after their attack has been resolved). This amount increases by 5 damage if you are <strong>level 20 or higher</strong>, or by 10 damage if you are <strong>level 40 or higher</strong>.</p><hr><ul><li><p><strong>You Lose:</strong> @LOSS[1 ip]</p></li><li><p><strong>Target Suffers: </strong>@DMG[10 physical], @DMG[15 physical], or @DMG[20 physical]</p></li></ul>",
       "complex": false
     },
     "source": "FUTF168",
@@ -27,8 +27,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711477001797,
-    "modifiedTime": 1724180864798,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743171698428,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

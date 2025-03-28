@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>Checks performed to examine or locate the creature bearing this <strong>symbol</strong>, as well as Accuracy Checks and Magic Checks for attacks and offensive spells ( @ICON[offensive] ) that include the creature bearing this <strong>symbol</strong> among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p><hr><p>@LOSS[2 ip]</p>"
+      "description": "<p>Checks performed to examine or locate the creature bearing this <strong>symbol</strong>, as well as Accuracy Checks and Magic Checks for attacks and offensive spells ( @ICON[offensive] ) that include the creature bearing this <strong>symbol</strong> among their targets, gain a +2 bonus. If an attack or spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li></ul>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-truth"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710178159947,
-    "modifiedTime": 1724180861886,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743114736598,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

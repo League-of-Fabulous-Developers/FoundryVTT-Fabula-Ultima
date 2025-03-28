@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p><span class=\"fontstyle0\">When you deal damage with an attack or spell, you may have all that damage become <strong>air</strong>. While your <strong>unarmed strikes</strong> deal air damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers @EFFECT[slow].</span></p>"
+      "description": "<p><span class=\"fontstyle0\">When you deal damage with an attack or spell, you may have all that damage become <strong>air</strong>. While your <strong>unarmed strikes</strong> deal air damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>slow</strong>.</span></p><hr><ul><li><p><strong>You Receive: </strong>@WEAPON[air]</p></li><li><p><strong>Targets Suffers:</strong> @EFFECT[slow]</p></li></ul>"
     },
     "source": "FUTF157",
     "fuid": "pneumophora"
@@ -31,8 +31,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1724180861268,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743111651144,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

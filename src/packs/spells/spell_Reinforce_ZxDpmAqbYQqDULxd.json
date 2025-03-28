@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You protect the targets from attacks that would corrupt their body and spirit. Choose <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Until this spell ends, each target becomes immune to the chosen status effect.</p>",
+    "description": "<p>You protect the targets from attacks that would corrupt their body and spirit. Choose <strong>dazed</strong>, <strong>enraged</strong>, <strong>poisoned</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Until this spell ends, each target becomes immune to the chosen status effect.</p><hr /><ul><li><p><strong>Target Suffers:</strong> @UUID[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B]{Dazed Immunity}, @UUID[Compendium.projectfu.actor-effects.Item.u4z5KLTgwzfo9VZs]{Enraged Immunity}, @UUID[Compendium.projectfu.actor-effects.Item.Ujw6SLorSRl0zQ7q]{Poisoned Immunity}, @UUID[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Shaken Immunity},  @UUID[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp]{Slow Immunity}, or @UUID[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Weak Immunity}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706573024313,
-    "modifiedTime": 1737916632313,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1743165268413,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

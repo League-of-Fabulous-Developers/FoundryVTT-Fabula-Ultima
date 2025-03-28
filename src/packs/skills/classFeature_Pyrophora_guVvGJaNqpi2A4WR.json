@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>fire</strong>. While your <strong>unarmed strikes</strong> deal <strong>fire</strong> damage, any enemy who loses 20 or more Hit Points due to one of your <strong>unarmed strikes</strong> also suffers @EFFECT[dazed].</p>"
+      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>fire</strong>. While your <strong>unarmed strikes</strong> deal <strong>fire</strong> damage, any enemy who loses 20 or more Hit Points due to one of your <strong>unarmed strikes</strong> also suffers <strong>dazed</strong>.</p><hr><ul><li><p><strong>You Receive: </strong>@WEAPON[fire]</p></li><li><p><strong>Targets Suffers:</strong> @EFFECT[dazed]</p></li></ul>"
     },
     "source": "FUTF157",
     "fuid": "pyrophora"
@@ -31,8 +31,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1724180862852,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743111612413,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

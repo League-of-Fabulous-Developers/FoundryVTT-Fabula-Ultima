@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>Spells with a <strong>target</strong> of “Up to three creatures” cast by the creature bearing this <strong>symbol</strong> have a <strong>target</strong> of “Up to four creatures” instead. The creature still needs to spend additional Mind Points for a fourth target.</p><hr><p>@LOSS[2 ip]</p>"
+      "description": "<p>Spells with a <strong>target</strong> of “Up to three creatures” cast by the creature bearing this <strong>symbol</strong> have a <strong>target</strong> of “Up to four creatures” instead. The creature still needs to spend additional Mind Points for a fourth target.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li></ul>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-growth"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177680940,
-    "modifiedTime": 1724180861748,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743114335105,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

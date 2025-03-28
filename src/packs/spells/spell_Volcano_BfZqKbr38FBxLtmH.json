@@ -1,15 +1,15 @@
 {
-  "folder": "3BdwBwfSnD04VRAz",
-  "name": "Comet (Single Target)",
+  "folder": "NZHiCa0mU3DKOiVo",
+  "name": "Volcano",
   "type": "spell",
-  "_id": "O5lTyuUbb0jL9gBA",
-  "img": "icons/magic/earth/projectile-moonrock-asteroid.webp",
+  "_id": "BfZqKbr38FBxLtmH",
+  "img": "icons/magic/fire/explosion-mushroom-nuke-orange.webp",
   "system": {
     "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<h4>Required Heroic Skill: Comet</h4><p>You rip open a large portal to the Cosmos, calling down astral debris from the gaping void. Choose one option: one creature you can see suffers @DMG[60 untyped] damage; or you choose any number of creatures you can see, and each of them suffers @DMG[40 untyped] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>. Damage dealt by this spell has no type (thus being unaffected by damage Affinities).</p><hr /><ul><li><p><strong>Target Lose: </strong>@DMG[60+&amp;step(0,5,10) untyped]</p></li></ul>",
+    "description": "<h4>Required Heroic Skill: Volcano</h4><p>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: one creature you can see suffers @DMG[50 fire] damage; <strong>or</strong> you choose any number of creatures you can see, and each of them suffers @DMG[30 fire] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell <strong>ignores Resistances and Immunities</strong>.</p><hr /><ul><li><p><strong>Target Loses: </strong>@DMG[50+&amp;step(0,5,10) fire](single), or @DMG[30+&amp;step(0,5,10) fire](multi)</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -17,7 +17,7 @@
       "value": false
     },
     "class": {
-      "value": "Entropist"
+      "value": "Elementalist"
     },
     "useWeapon": {
       "accuracy": {
@@ -69,7 +69,7 @@
       "value": 1
     },
     "mpCost": {
-      "value": "50"
+      "value": "40"
     },
     "target": {
       "value": "One Creature"
@@ -81,7 +81,7 @@
       "value": false
     },
     "source": {
-      "value": "FUCR235"
+      "value": "FUCR241"
     },
     "rollInfo": {
       "useWeapon": {
@@ -102,11 +102,11 @@
       },
       "damage": {
         "hasDamage": {
-          "value": true
+          "value": false
         },
-        "value": 60,
+        "value": 50,
         "type": {
-          "value": "untyped"
+          "value": "fire"
         }
       }
     },
@@ -117,7 +117,7 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "comet-single-target"
+    "fuid": "volcano-single-target"
   },
   "effects": [],
   "sort": 0,
@@ -133,11 +133,11 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
-    "createdTime": 1710548744272,
-    "modifiedTime": 1742703211892,
+    "createdTime": 1710548265766,
+    "modifiedTime": 1743165310333,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
-  "_key": "!items!O5lTyuUbb0jL9gBA"
+  "_key": "!items!BfZqKbr38FBxLtmH"
 }

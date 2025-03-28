@@ -79,7 +79,7 @@
           "value": false
         },
         "ip": {
-          "value": true
+          "value": false
         }
       }
     },
@@ -108,7 +108,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "disabled": true,
+      "disabled": false,
       "name": "Heroic: Extra IP",
       "_id": "n53BCw7AN0raKFxE",
       "changes": [
@@ -124,17 +124,19 @@
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUCR235"
         }
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1743125674791,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -159,8 +161,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706584237881,
-    "modifiedTime": 1724180863840,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743125572667,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

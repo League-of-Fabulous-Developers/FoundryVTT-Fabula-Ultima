@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>You may breathe underwater and your eyes can see perfectly in dim light.</p><p>When you recover Hit Points, you recover an additional @GAIN[5 hp] and you may immediately recover from a single status effect of your choice.</p>"
+      "description": "<p>You may breathe underwater and your eyes can see perfectly in dim light.</p><p>When you recover Hit Points, you recover an 5 additional Hit Points and you may immediately recover from a single status effect of your choice.</p><hr><ul><li><p><strong>You Recover:</strong> @GAIN[5 hp]</p></li></ul>"
     },
     "source": "FUTF156",
     "fuid": "amphibia"
@@ -31,8 +31,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1724180862223,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743111803847,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

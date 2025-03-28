@@ -13,7 +13,7 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "After an enemy succeeds on an Opposed Check  against you or causes you to lose Hit Points",
-      "description": "<p>That enemy loses an amount of Mind Points equal to <strong>【5 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】</strong>. Then, choose one option: that enemy suffers @EFFECT[dazed]; or that enemy suffers @EFFECT[shaken].</p>"
+      "description": "<p>That enemy loses an amount of Mind Points equal to <strong>【5 + (the number of filled sections in your Brainwave Clock, multiplied by 5)】</strong>. Then, choose one option: that enemy suffers <strong>dazed</strong>; or that enemy suffers <strong>shaken</strong>.</p><hr><ul><li><p><strong>Target Suffers:</strong> @EFFECT[dazed], or @EFFECT[shaken]</p></li></ul>"
     },
     "source": "FUTF153",
     "fuid": "psychic-backlash"
@@ -32,7 +32,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1742791488765,
+    "modifiedTime": 1743112420413,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

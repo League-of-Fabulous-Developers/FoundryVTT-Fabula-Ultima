@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>As long as the creature bearing this <strong>symbol</strong> is in <strong>Crisis</strong>, any of that creature’s enemies who are able to see them must include them among the targets of their attacks and offensive spells ( @ICON[offensive] ), if possible.</p><hr><p>@LOSS[2 ip]</p>"
+      "description": "<p>As long as the creature bearing this <strong>symbol</strong> is in <strong>Crisis</strong>, any of that creature’s enemies who are able to see them must include them among the targets of their attacks and offensive spells ( @ICON[offensive] ), if possible.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li></ul>"
     },
     "source": "FUHF149",
     "fuid": "symbol-of-enmity"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177511545,
-    "modifiedTime": 1724180861349,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743114053777,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

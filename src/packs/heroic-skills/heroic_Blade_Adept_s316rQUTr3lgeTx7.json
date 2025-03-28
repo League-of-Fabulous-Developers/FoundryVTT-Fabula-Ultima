@@ -97,7 +97,63 @@
     },
     "fuid": "blade-adept"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "icons/skills/ranged/daggers-thrown-salvo-green.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.s316rQUTr3lgeTx7",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Blade Adept",
+      "_id": "bLqbrguWmvlCLC5J",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.derived.def.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.derived.mdef.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "<p>While you have one or more <strong>melee dagger</strong> weapons equipped, you gain a +1 bonus to Defense and Magic Defense, and you treat those weapons as also belonging to the <strong>brawling</strong> , <strong>sword</strong> , and <strong>thrown</strong> Categories for the purpose of Skills and effects.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUHF154",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743169217237,
+        "modifiedTime": 1743169285907,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!s316rQUTr3lgeTx7.bLqbrguWmvlCLC5J"
+    }
+  ],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
     "default": 0,

@@ -9,7 +9,7 @@
     "summary": {
       "value": "Your Skills cause HP loss."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p></blockquote><p>After you use <strong>Bishop's Edict</strong> or <strong>King's Castle</strong> Skills, if you are in <strong>Crisis</strong>, you may have every enemy creature present on the scene lose @LOSS[10 hp]. This amount increases to @LOSS[20 hp] if you are <strong>level 20 or higher</strong>, or @LOSS[30 hp] if you are<strong> level 40 or higher</strong>.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Commander </strong>Class.</p></blockquote><p>After you use @UUID[Compendium.projectfu.skills.Item.FGihIPfif7yWsBCp]{Bishop’s Edict} or @UUID[Compendium.projectfu.skills.Item.79xGJD8jn4zGzYpX]{King’s Castle} Skills, if you are in <strong>Crisis</strong>, you may have every enemy creature present on the scene lose 10 Hit Points. This amount increases to 20 Hit Points if you are <strong>level 20 or higher,</strong> or 30 Hit Points if you are <strong>level 40 or higher</strong>.</p><hr /><ul><li><p><strong>Targets Loses:</strong> @LOSS[10 hp], @LOSS[20 hp], or @LOSS[30 hp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -152,8 +152,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706684758296,
-    "modifiedTime": 1724180863808,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743170782795,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

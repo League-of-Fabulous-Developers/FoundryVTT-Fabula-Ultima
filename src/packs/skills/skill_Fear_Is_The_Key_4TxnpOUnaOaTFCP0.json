@@ -5,7 +5,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you cause one or more enemies to lose Hit Points, if you have acquired the <strong>Beyond the Realms of Death</strong> Skill and at least one of them is suffering from <strong>shaken</strong> and/or <strong>weak</strong>, you gain 1 Grave Point and recover <strong>【SL × 2】 </strong>Hit Points and Mind Points.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[2*$sl hp] <strong>and </strong>@GAIN[2*$sl mp]</p></li></ul>",
+    "description": "<p>After you cause one or more enemies to lose Hit Points, if you have acquired the <strong>Beyond the Realms of Death</strong> Skill and at least one of them is suffering from <strong>shaken</strong> and/or <strong>weak</strong>, you gain 1 Grave Point and recover <strong>【SL × 2】 </strong>Hit Points and Mind Points.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[2*$sl hp] and<strong> </strong>@GAIN[2*$sl mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -128,7 +128,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1684757022310,
-    "modifiedTime": 1742653164369,
+    "modifiedTime": 1743113229772,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

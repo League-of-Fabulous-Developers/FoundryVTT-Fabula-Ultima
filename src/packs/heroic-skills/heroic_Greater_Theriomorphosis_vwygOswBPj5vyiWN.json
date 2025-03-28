@@ -10,7 +10,7 @@
     "summary": {
       "value": "Act after Theriomorphosis."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the Mutant Class.</p></blockquote><p>When you use the <strong>Theriomorphosis</strong> Skill on your turn during a conflict, if this <strong>did not</strong> happen through the <strong>Genoclepsis</strong> Skill, you may manifest the effects of <strong>up to three therioforms</strong> from those you have learned (instead of two); then, you may immediately perform an additional action. This additional action <strong>cannot</strong> be used for the <strong>Theriomorphosis</strong> Skill.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the Mutant Class.</p></blockquote><p>When you use the @UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis} Skill on your turn during a conflict, if this <strong>did not</strong> happen through the <strong>Genoclepsis</strong> Skill, you may manifest the effects of <strong>up to three therioforms</strong> from those you have learned (instead of two); then, you may immediately perform an additional action. This additional action <strong>cannot</strong> be used for the <strong>Theriomorphosis</strong> Skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -107,8 +107,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711473807263,
-    "modifiedTime": 1724180864104,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743171071697,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

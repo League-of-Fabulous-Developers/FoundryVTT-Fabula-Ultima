@@ -10,7 +10,7 @@
     "summary": {
       "value": "Your brambles protect you and react to enemy attacks."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more classes among <strong>Darkblade</strong> and <strong>Floralist</strong>, and must have acquired the <strong>Chloromancy</strong> Skill</p></blockquote><p>You are Resistant to <strong>light</strong> damage and <strong>poison</strong> damage. </p><p>After you lose Hit Points, if you are in <strong>Crisis</strong> and a <strong>magiseed</strong> is present in your <strong>garden</strong>, you may fill <strong>1 section</strong> of your <strong>Growth Clock</strong>. </p><p>Additionally, when you use the <strong>Shadow Strike</strong> Skill, you may have your attack deal <strong>poison</strong> damage instead of <strong>dark</strong> damage (the damage type still cannot be changed). If you do, your <strong>Shadow Strike</strong> deals extra damage equal to <strong>【twice the number of filled sections in your Growth Clock】</strong>.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more classes among <strong>Darkblade</strong> and <strong>Floralist</strong>, and must have acquired the <strong>Chloromancy</strong> Skill</p></blockquote><p>You are Resistant to <strong>light</strong> damage and <strong>poison</strong> damage.</p><p>After you lose Hit Points, if you are in <strong>Crisis</strong> and a <strong>magiseed</strong> is present in your <strong>garden</strong>, you may fill <strong>1 section</strong> of your <strong>Growth Clock</strong>.</p><p>Additionally, when you use the @UUID[Actor.qTC4dhSA7lhR8vmz.Item.QlVAhGSiM6QLF9qB]{Shadow Strike} Skill, you may have your attack deal <strong>poison</strong> damage instead of <strong>dark</strong> damage (the damage type still cannot be changed). If you do, your <strong>Shadow Strike</strong> deals extra damage equal to <strong>【twice the number of filled sections in your Growth Clock】</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -79,14 +79,14 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You are Resistant to <strong>light</strong> damage and <strong>poison</strong> damage.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
         "projectfu": {
           "CrisisInteraction": "none",
           "type": "default",
-          "source": ""
+          "source": "FUNF162"
         }
       },
       "tint": "#ffffff",
@@ -97,8 +97,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1743167848584,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "img": "icons/magic/nature/root-vine-entangled-hand.webp",
       "type": "base",
@@ -117,8 +117,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1742676906838,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1743170978821,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "FvqC34UYxD3O2bFt",
   "ownership": {
