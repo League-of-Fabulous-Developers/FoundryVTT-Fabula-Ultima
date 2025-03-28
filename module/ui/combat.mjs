@@ -65,6 +65,8 @@ export class CombatEvent {
  * @property factions
  * @property currentTurn The faction whose turn it is
  * @property isGM
+ * @property icons
+ * @property showNpcTurns
  */
 
 /**
@@ -379,6 +381,12 @@ export class FUCombat extends Combat {
 		// Whether the user is a GM
 		data.isGM = game.user?.isGM;
 
+        data.icons = {
+            active: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsActive),
+            outOfTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsOutOfTurns),
+            hiddenTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsHiddenTurns),
+        };
+
 		//console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
 		// for (const combatant of this.combatants) {
 		// 	const canStartTurn = data.currentTurn === combatant.faction;
@@ -588,4 +596,24 @@ export class FUCombat extends Combat {
 	getActors() {
 		return Array.from(this.combatants.map((c) => c.actor));
 	}
+
+    /**
+     * @param combatant Combatant
+     * @returns boolean
+     */
+    static showTurnsFor(combatant) {
+        if(game.user?.isGM || combatant.actor.isOwner || combatant.actor.type === 'character') return true;
+        const showTurnsMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode);
+        if (showTurnsMode === 'never') {
+            return false
+        }
+        else if (showTurnsMode === 'only-studied') {
+            const studyJournal = game.journal.getName(combatant.actor.name);
+            if (showTurnsMode === 'only-studied' && !studyJournal) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
