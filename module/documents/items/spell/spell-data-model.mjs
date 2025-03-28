@@ -29,25 +29,28 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			value: item.system.rollInfo.accuracy.value,
 		});
 		check.additionalData.hasDamage = item.system.rollInfo.damage.hasDamage.value;
-		const configurer = MagicCheck.configure(check)
+		MagicCheck.configure(check)
 			.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
 			.addTraits(item.system.rollInfo.damage.type.value, Traits.Spell)
 			.setTargetedDefense('mdef')
 			.setDamageOverride(actor, 'spell')
 			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
-
-		const spellBonus = actor.system.bonuses.damage.spell;
-		if (spellBonus) {
-			configurer.addDamageBonus('FU.DamageBonusTypeSpell', spellBonus);
-		}
-		const damageTypeBonus = actor.system.bonuses.damage[item.system.rollInfo.damage.type.value];
-		if (damageTypeBonus) {
-			configurer.addDamageBonus(`FU.DamageBonus${item.system.rollInfo.damage.type.value.capitalize()}`, damageTypeBonus);
-		}
 	}
 };
 
 Hooks.on(CheckHooks.prepareCheck, prepareCheck);
+
+/** @type ProcessCheckHook */
+const processCheck = (check, actor, item) => {
+	if (check.type === 'magic' && item.system instanceof SpellDataModel) {
+		const spellBonus = actor.system.bonuses.damage.spell;
+		if (spellBonus) {
+			MagicCheck.configure(check).addDamageBonus('FU.DamageBonusTypeSpell', spellBonus);
+		}
+	}
+};
+
+Hooks.on(CheckHooks.processCheck, processCheck);
 
 /**
  * @param {CheckRenderData} data

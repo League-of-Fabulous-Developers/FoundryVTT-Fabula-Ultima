@@ -5,7 +5,7 @@ import { NpcDataModel } from '../../actors/npc/npc-data-model.mjs';
 
 /**
  * @param {FUActor} actor
- * @param {"mainHand", "offHand", "armor"} slot
+ * @param {"mainHand", "offHand", "phantom", "armor"} slot
  * @return {FUItem|null}
  */
 function getWeapon(actor, slot) {
@@ -25,20 +25,18 @@ function getWeapon(actor, slot) {
  * @return {Promise<FUItem|null|false>} chosen weapon or false for no equipped weapons or null for no selection
  */
 async function prompt(actor, includeWeaponModules = false) {
-	const equippedWeapons = [];
+	let equippedWeapons = [];
 
 	if (actor.system instanceof CharacterDataModel) {
-		if (includeWeaponModules && actor.system.vehicle.embarked) {
+		if (includeWeaponModules && actor.system.vehicle.embarked && actor.system.vehicle.weapons.length > 0) {
 			equippedWeapons.push(...actor.system.vehicle.weapons);
 		} else {
 			const mainHand = getWeapon(actor, 'mainHand');
 			const offHand = getWeapon(actor, 'offHand');
+			const phantomHand = getWeapon(actor, 'phantom');
 			const armor = getWeapon(actor, 'armor');
 
-			equippedWeapons.push(mainHand, armor);
-			if (offHand !== mainHand) {
-				equippedWeapons.push(offHand);
-			}
+			equippedWeapons.push(...new Set([mainHand, offHand, phantomHand, armor]));
 		}
 	}
 	if (actor.system instanceof NpcDataModel) {
@@ -47,16 +45,13 @@ async function prompt(actor, includeWeaponModules = false) {
 			const offHand = getWeapon(actor, 'offHand');
 			const armor = getWeapon(actor, 'armor');
 
-			equippedWeapons.push(mainHand, armor);
-			if (offHand !== mainHand) {
-				equippedWeapons.push(offHand);
-			}
+			equippedWeapons.push(...new Set([mainHand, offHand, armor]));
 		} else {
 			equippedWeapons.push(...actor.itemTypes.basic);
 		}
 	}
 
-	equippedWeapons.splice(0, equippedWeapons.length, ...equippedWeapons.filter((value) => value != null));
+	equippedWeapons = equippedWeapons.filter((value) => value != null);
 
 	if (!equippedWeapons.length) {
 		return false;

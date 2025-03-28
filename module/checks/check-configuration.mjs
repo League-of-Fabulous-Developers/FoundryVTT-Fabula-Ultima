@@ -9,6 +9,7 @@ const TARGETED_DEFENSE = 'targetedDefense';
 const DIFFICULTY = 'difficulty';
 const DAMAGE = 'damage';
 const TRAITS = 'traits';
+const WEAPON_TRAITS = 'weaponTraits';
 
 /**
  *
@@ -58,6 +59,13 @@ const initHrZero = (hrZero) => (check) => {
  * @property {Object} translation.damageIcon - The icon representation of damage types.
  * @property {Array} modifiers - Modifiers applied to the damage.
  *
+ */
+
+/**
+ * @typedef WeaponTraits
+ * @property {WeaponType} [weaponType]
+ * @property {WeaponCategory} [weaponCategory]
+ * @property {Handedness} handedness
  */
 
 /**
@@ -120,57 +128,14 @@ class CheckConfigurer {
 	}
 
 	/**
-	 * @param {FUItem} item
-	 * @param {FUActor} actor
+	 * @param {WeaponTraits} traits
 	 * @return {CheckConfigurer}
 	 */
-	addItemAccuracyBonuses(item, actor) {
-		return this.addModelAccuracyBonuses(item.system, actor);
-	}
-
-	/**
-	 * @description Add the common traits of a weapon
-	 * @param {WeaponDataModel} system
-	 */
-	addWeaponTraits(system) {
-		return this.addTraits(system.category.value, system.type.value, system.hands.value);
-	}
-
-	/**
-	 * @description Add the common traits of an NPC attack
-	 * @param {BasicItemDataModel} system
-	 */
-	addAttackTraits(system) {
-		return this.addTraits(system.type.value, system.damageType.value);
-	}
-
-	/**
-	 * @param {DataModel} model
-	 * @param {FUActor} actor
-	 * @return {CheckConfigurer}
-	 */
-	addModelAccuracyBonuses(model, actor) {
-		// Weapon Category
-		const category = model.category?.value;
-		if (category && actor.system.bonuses.accuracy[category]) {
-			this.#check.modifiers.push({
-				label: `FU.AccuracyCheckBonus${category.capitalize()}`,
-				value: actor.system.bonuses.accuracy[category],
-			});
-		}
-		// Attack Type
-		const attackType = model.type?.value;
-		if (attackType === 'melee' && actor.system.bonuses.accuracy.accuracyMelee) {
-			this.#check.modifiers.push({
-				label: 'FU.AccuracyCheckBonusMelee',
-				value: actor.system.bonuses.accuracy.accuracyMelee,
-			});
-		} else if (attackType === 'ranged' && actor.system.bonuses.accuracy.accuracyRanged) {
-			this.#check.modifiers.push({
-				label: 'FU.AccuracyCheckBonusRanged',
-				value: actor.system.bonuses.accuracy.accuracyRanged,
-			});
-		}
+	setWeaponTraits(traits) {
+		this.#check.additionalData[WEAPON_TRAITS] = {
+			weaponType: traits.weaponType,
+			weaponCategory: traits.weaponCategory,
+		};
 		return this;
 	}
 
@@ -178,53 +143,13 @@ class CheckConfigurer {
 	 * @description A modifier to the check (accuracy)
 	 * @param {String} label
 	 * @param {Number} value
+	 * @return {CheckConfigurer}
 	 */
 	addModifier(label, value) {
 		this.#check.modifiers.push({
 			label: label,
 			value: value,
 		});
-	}
-
-	/**
-	 * @param {FUActor} actor
-	 * @param {FUItem} item
-	 * @return {CheckConfigurer}
-	 */
-	addItemDamageBonuses(item, actor) {
-		return this.addModelDamageBonuses(item.system, actor);
-	}
-
-	/**
-	 * @param {DataModel} model
-	 * @param {FUActor} actor
-	 * @return {CheckConfigurer}
-	 */
-	addModelDamageBonuses(model, actor) {
-		// All Damage
-		const globalBonus = actor.system.bonuses.damage.all;
-		if (globalBonus) {
-			this.addDamageBonus(`FU.DamageBonusAll`, globalBonus);
-		}
-		// Damage Type
-		if (model.damageType) {
-			const damageTypeBonus = actor.system.bonuses.damage[model.damageType.value];
-			if (damageTypeBonus) {
-				this.addDamageBonus(`FU.DamageBonus${model.damageType.value.capitalize()}`, damageTypeBonus);
-			}
-		}
-		// Attack Type
-		const attackTypeBonus = actor.system.bonuses.damage[model.type.value] ?? 0;
-		if (attackTypeBonus) {
-			this.addDamageBonus(`FU.DamageBonusType${model.type.value.capitalize()}`, attackTypeBonus);
-		}
-		// Weapon Category
-		if (model.category) {
-			const weaponCategoryBonus = actor.system.bonuses.damage[model.category.value] ?? 0;
-			if (weaponCategoryBonus) {
-				this.addDamageBonus(`FU.DamageBonusCategory${model.category.value.capitalize()}`, weaponCategoryBonus);
-			}
-		}
 		return this;
 	}
 
@@ -451,6 +376,13 @@ class CheckInspector {
 	 */
 	getTraits() {
 		return this.#check.additionalData[TRAITS] ?? [];
+	}
+
+	/**
+	 * @return WeaponTraits
+	 */
+	getWeaponTraits() {
+		return this.#check.additionalData[WEAPON_TRAITS] ?? {};
 	}
 
 	/**

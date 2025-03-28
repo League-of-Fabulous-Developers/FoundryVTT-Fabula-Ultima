@@ -35,18 +35,14 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			});
 		}
 
-		const configurer = AccuracyCheck.configure(check).setDamage(module.damage.type, module.damage.bonus).addModelAccuracyBonuses(module, actor).setTargetedDefense(module.accuracy.defense).setDamageOverride(actor, 'attack');
-
-		const category = module.category;
-
-		const attackTypeBonus = actor.system.bonuses.damage[module.type] ?? 0;
-		if (attackTypeBonus) {
-			configurer.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
-		}
-		const weaponCategoryBonus = actor.system.bonuses.damage[category] ?? 0;
-		if (weaponCategoryBonus) {
-			configurer.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
-		}
+		const configurer = AccuracyCheck.configure(check);
+		configurer.setDamage(module.damage.type, module.damage.bonus);
+		configurer.setWeaponTraits({
+			weaponType: module.type,
+			weaponCategory: module.category,
+		});
+		configurer.setTargetedDefense(module.accuracy.defense);
+		configurer.setDamageOverride(actor, 'attack');
 	}
 };
 

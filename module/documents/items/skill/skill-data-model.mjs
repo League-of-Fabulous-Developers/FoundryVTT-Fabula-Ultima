@@ -42,17 +42,21 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 				},
 				order: CHECK_DETAILS,
 			}));
+			const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
 			CommonSections.tags(
 				sections,
 				[
 					{
-						tag: `FU.${weapon.system.category.value.capitalize()}`,
+						tag: `FU.${weaponTraits.weaponCategory?.capitalize()}`,
+						show: weaponTraits.weaponCategory,
 					},
 					{
-						tag: weapon.system.hands.value === 'one-handed' ? 'FU.OneHanded' : 'FU.TwoHanded',
+						tag: weaponTraits.handedness === 'one-handed' ? 'FU.OneHanded' : 'FU.TwoHanded',
+						show: !!weaponTraits.handedness,
 					},
 					{
-						tag: `FU.${weapon.system.type.value.capitalize()}`,
+						tag: `FU.${weaponTraits.weaponType?.capitalize()}`,
+						show: weaponTraits.weaponType,
 					},
 				],
 				CHECK_DETAILS,
@@ -252,17 +256,14 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 			const inspect = CheckConfiguration.inspect(weaponCheck);
 			const configure = CheckConfiguration.configure(check);
 
-			configure.addTraits(Traits.Skill, item.system.damage.type).addWeaponTraits(weapon.system);
+			configure.addTraits(Traits.Skill);
+			configure.setWeaponTraits(inspect.getWeaponTraits());
 
 			if (this.accuracy) {
 				check.modifiers.push({
 					label: 'FU.CheckBonus',
 					value: this.accuracy,
 				});
-			}
-
-			if (this.useWeapon.accuracy) {
-				check.modifiers.push(...weaponCheck.modifiers.filter(({ label }) => label !== 'FU.AccuracyCheckBonusGeneric'));
 			}
 
 			if (this.damage.hasDamage) {
