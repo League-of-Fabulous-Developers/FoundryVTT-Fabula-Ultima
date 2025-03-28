@@ -289,15 +289,15 @@ export class FUCombat extends Combat {
 			return;
 		}
 
-        if (!this.currentRoundTurnsLeft.includes(combatant)) {
-            console.error(`No turns left for ${combatant.id}`);
-            return;
-        }
+		if (!this.currentRoundTurnsLeft.includes(combatant)) {
+			console.error(`No turns left for ${combatant.id}`);
+			return;
+		}
 
-        if (!this.currentRoundTurnsLeft.includes(combatant)) {
-            console.error(`No turns left for ${combatant.id}`);
-            return;
-        }
+		if (!this.currentRoundTurnsLeft.includes(combatant)) {
+			console.error(`No turns left for ${combatant.id}`);
+			return;
+		}
 
         if (!this.currentRoundTurnsLeft.includes(combatant)) {
             console.error(`No turns left for ${combatant.id}`);
@@ -327,12 +327,12 @@ export class FUCombat extends Combat {
 			this.notifyCombatTurnChange();
 			SOCKET.executeForOthers(MESSAGES.TurnChanged);
 		} else {
-            if(combatant.actor.isOwner) {
-                console.debug(`Executing message ${MESSAGES.RequestStartTurn} as GM`);
-                await SOCKET.executeAsGM(MESSAGES.RequestStartTurn, this.id, combatant.id);
-            } else {
-                // TODO: Inform user?
-            }
+			if(combatant.actor.isOwner) {
+				console.debug(`Executing message ${MESSAGES.RequestStartTurn} as GM`);
+				await SOCKET.executeAsGM(MESSAGES.RequestStartTurn, this.id, combatant.id);
+			} else {
+				// TODO: Inform user?
+			}
 		}
 
 		await this._onStartTurn(combatant);
@@ -366,12 +366,12 @@ export class FUCombat extends Combat {
 			await this.nextTurn();
 			this.notifyCombatTurnChange();
 		} else {
-            if (combatant.actor.isOwner) {
-                console.debug(`Executing message ${MESSAGES.RequestEndTurn} as GM`);
-                await SOCKET.executeAsGM(MESSAGES.RequestEndTurn, this.id, combatant.id);
-            } else {
-                // TODO: Inform user?
-            }
+			if (combatant.actor.isOwner) {
+				console.debug(`Executing message ${MESSAGES.RequestEndTurn} as GM`);
+				await SOCKET.executeAsGM(MESSAGES.RequestEndTurn, this.id, combatant.id);
+			} else {
+				// TODO: Inform user?
+			}
 		}
 	}
 
@@ -404,11 +404,11 @@ export class FUCombat extends Combat {
 		// Whether the user is a GM
 		data.isGM = game.user?.isGM;
 
-        data.icons = {
-            active: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsActive),
-            outOfTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsOutOfTurns),
-            hiddenTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsHiddenTurns),
-        };
+		data.icons = {
+			active: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsActive),
+			outOfTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsOutOfTurns),
+			hiddenTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsHiddenTurns),
+		};
 
 		//console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
 		// for (const combatant of this.combatants) {
@@ -620,23 +620,22 @@ export class FUCombat extends Combat {
 		return Array.from(this.combatants.map((c) => c.actor));
 	}
 
-    /**
-     * @param combatant Combatant
-     * @returns boolean
-     */
-    static showTurnsFor(combatant) {
-        if(game.user?.isGM || combatant.actor.isOwner || combatant.actor.type === 'character') return true;
-        const showTurnsMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode);
-        if (showTurnsMode === 'never') {
-            return false
-        }
-        else if (showTurnsMode === 'only-studied') {
-            const studyJournal = game.journal.getName(combatant.actor.name);
-            if (showTurnsMode === 'only-studied' && !studyJournal) {
-                return false;
-            }
-        }
-
-        return true;
-    }
+	/**
+	 * @param combatant Combatant
+	 * @returns boolean
+	 */
+	static showTurnsFor(combatant) {
+		if(game.user?.isGM || combatant.actor.isOwner || combatant.actor.type === 'character') return true;
+		const showTurnsMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode);
+		if (showTurnsMode === 'never') {
+			return false
+		}
+		else if (showTurnsMode === 'only-studied') {
+			const studyJournal = game.journal.getName(combatant.actor.name);
+			if (showTurnsMode === 'only-studied' && !studyJournal) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

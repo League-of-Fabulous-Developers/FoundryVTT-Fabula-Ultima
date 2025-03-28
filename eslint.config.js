@@ -47,7 +47,7 @@ const foundryvtt = {
 			SearchFilter: 'readonly',
 			SettingsConfig: 'readonly',
 			TextEditor: 'readonly',
-            VideoHelper: 'readonly',
+			VideoHelper: 'readonly',
 			canvas: 'readonly',
 			foundry: 'readonly',
 			fromUuid: 'readonly',
