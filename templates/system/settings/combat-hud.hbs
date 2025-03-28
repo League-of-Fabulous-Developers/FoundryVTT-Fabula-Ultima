@@ -1,4 +1,4 @@
-<form autocomplete="off" onsubmit="event.preventDefault();">
+<form class="settings-form" autocomplete="off" onsubmit="event.preventDefault();">
     <p class="instructions">{{localize "FU.ExperimentalCombatHudInstuction"}}</p>
     {{!-- experimentalCombatHud --}}
     <div class="form-group">
@@ -165,6 +165,27 @@
             </select>
         </div>
         <p class="notes">{{localize "FU.CombatHudShowNPCTurnsLeftModeHint"}}</p>
+    </div>
+    <div class="form-group">
+        <label for="optionCombatHudIconsActive">{{localize "FU.CombatHudIconsActive"}}</label>
+        <div class="form-fields">
+            <input type="text" class="mats-icon-picker" name="optionCombatHudIconsActive" id="optionCombatHudIconsActive" value="{{optionCombatHudIconsActive}}">
+            <i class="mats-o mats-fill">{{optionCombatHudIconsActive}}</i>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="optionCombatHudIconsOutOfTurns">{{localize "FU.CombatHudIconsOutOfTurns"}}</label>
+        <div class="form-fields">
+            <input type="text" class="mats-icon-picker" name="optionCombatHudIconsOutOfTurns" id="optionCombatHudIconsOutOfTurns" value="{{optionCombatHudIconsOutOfTurns}}">
+            <i class="mats-o mats-fill">{{optionCombatHudIconsOutOfTurns}}</i>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="optionCombatHudIconsHiddenTurns">{{localize "FU.CombatHudIconsHiddenTurns"}}</label>
+        <div class="form-fields">
+            <input type="text" class="mats-icon-picker" name="optionCombatHudIconsHiddenTurns" id="optionCombatHudIconsHiddenTurns" value="{{optionCombatHudIconsHiddenTurns}}">
+            <i class="mats-o mats-fill">{{optionCombatHudIconsHiddenTurns}}</i>
+        </div>
     </div>
     {{/if}}
     <div class="form-group buttons">
