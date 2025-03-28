@@ -22,6 +22,8 @@ export class FUCombatTracker extends CombatTracker {
 		const data = await super.getData(options);
 		/** @type FUCombat **/
 		const combat = data.combat;
+		data.icons = this.icons;
+
 		if (combat) {
 			combat.populateData(data);
 			// We add more data to the turns objects
@@ -110,6 +112,10 @@ export class FUCombatTracker extends CombatTracker {
 				// The tracker rendering needs this! Do not remove!
 				combatantData.faction = combatant.faction;
 				combatantData.isOwner = combatant.isOwner;
+
+				if (!FUCombat.showTurnsFor(combatant)) {
+					combatantData.hideTurns = true;
+				}
 				if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
 					agg.friendly.push(combatantData);
 				} else {
