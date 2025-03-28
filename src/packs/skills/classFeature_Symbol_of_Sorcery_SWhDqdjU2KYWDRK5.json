@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>The total Mind Point cost of spells that target the creature bearing this <strong>symbol</strong> is reduced by 5 MP (to a minimum total cost of 5 MP). If a spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p><hr><p>@LOSS[2 ip]</p>"
+      "description": "<p>The total Mind Point cost of spells that target the creature bearing this <strong>symbol</strong> is reduced by 5 MP (to a minimum total cost of 5 MP). If a spell targets multiple creatures bearing this <strong>symbol</strong>, the effect will be <strong>cumulative</strong>.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li></ul>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-sorcery"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710178115409,
-    "modifiedTime": 1724180862271,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743114701773,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

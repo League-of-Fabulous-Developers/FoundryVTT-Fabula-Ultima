@@ -73,7 +73,7 @@
     "benefits": {
       "resources": {
         "hp": {
-          "value": true
+          "value": false
         },
         "mp": {
           "value": false
@@ -108,14 +108,14 @@
         "startRound": null,
         "startTurn": null
       },
-      "disabled": true,
+      "disabled": false,
       "name": "Heroic: Extra HP",
       "_id": "877Y0R8vB2gyNx0x",
       "changes": [
         {
           "key": "system.resources.hp.bonus",
           "mode": 2,
-          "value": "10",
+          "value": "&step(10,10,20)",
           "priority": null
         }
       ],
@@ -124,17 +124,19 @@
       "statuses": [],
       "flags": {
         "projectfu": {
-          "CrisisInteraction": "none"
+          "CrisisInteraction": "none",
+          "type": "default",
+          "source": "FUCR235"
         }
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1743125666259,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -159,8 +161,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706584138219,
-    "modifiedTime": 1724180864031,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743125564479,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

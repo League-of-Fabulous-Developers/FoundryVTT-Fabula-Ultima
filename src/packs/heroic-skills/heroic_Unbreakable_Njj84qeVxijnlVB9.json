@@ -9,7 +9,7 @@
     "summary": {
       "value": "Survive a fatal hit once per scene."
     },
-    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Guardian</strong> Class.</span></p></blockquote><p><span>Once per scene when you are about to be reduced to 0 Hit Points, you may instead choose to withstand the pain and be reduced to exactly <strong>@GAIN[1 hp]</strong>.</span></p>",
+    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Guardian</strong> Class.</span></p></blockquote><p><span>Once per scene when you are about to be reduced to 0 Hit Points, you may instead choose to withstand the pain and be reduced to exactly 1 Hit Point.</span></p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[1 hp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -111,8 +111,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706586949165,
-    "modifiedTime": 1724180863821,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743170458649,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

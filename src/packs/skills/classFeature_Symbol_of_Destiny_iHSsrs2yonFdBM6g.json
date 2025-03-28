@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>After the creature bearing this <strong>symbol </strong>makes a Check, if you are able to see them, you may spend @LOSS[1 fp] to force that creature to reroll both dice. You may only do so once per Check, and only if the Result was not a <strong>critical success</strong> or <strong>fumble</strong>.</p><hr><p>@LOSS[2 ip]</p>"
+      "description": "<p>After the creature bearing this <strong>symbol </strong>makes a Check, if you are able to see them, you may spend 1 Fabula Point to force that creature to reroll both dice. You may only do so once per Check, and only if the Result was not a <strong>critical success</strong> or <strong>fumble</strong>.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip] and @LOSS[1 fp]</p></li></ul>"
     },
     "source": "FUHF149",
     "fuid": "symbol-of-destiny"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177406622,
-    "modifiedTime": 1730726334277,
-    "lastModifiedBy": "B6evqtezy9ZsGZG3",
+    "modifiedTime": 1743114017087,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

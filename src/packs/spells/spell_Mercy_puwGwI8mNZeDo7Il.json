@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You strengthen the heart of a creature against suffering and despair. Until this spell ends, if the target would be reduced to 0 Hit Points, they are instead left standing with exactly 1 Hit Point. Once that happens, this spell ends.</p>",
+    "description": "<p>You strengthen the heart of a creature against suffering and despair. Until this spell ends, if the target would be reduced to 0 Hit Points, they are instead left standing with exactly 1 Hit Point. Once that happens, this spell ends.</p><hr /><ul><li><p><strong>Target Recovers:</strong> @GAIN[1 hp] </p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706572901522,
-    "modifiedTime": 1737916578611,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1743165044862,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

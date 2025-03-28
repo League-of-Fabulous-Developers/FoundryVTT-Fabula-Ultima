@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>Each time you enable this module on your <strong>personal vehicle</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong> or <strong>ice</strong>. Creatures aboard this <strong>personal vehicle</strong> are treated as being Resistant to the chosen damage type until this module remains enabled.</p><hr><p>@EFFECT[eyJuYW1lIjoiQWlyIFJlc2lzdGFuY2UiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5haXIiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi10ZWFsLXB1cnBsZS53ZWJwIn0=] @EFFECT[eyJuYW1lIjoiQm9sdCBSZXNpc3RhbmNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuYm9sdCIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9zaGllbGQtYmFycmllci1mbGFtaW5nLXBlbnRhZ29uLWJsdWUteWVsbG93LndlYnAifQ==] @EFFECT[eyJuYW1lIjoiRWFydGggUmVzaXN0YW5jZSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5hZmZpbml0aWVzLmVhcnRoIiwibW9kZSI6MCwidmFsdWUiOiJ1cGdyYWRlIn1dLCJpY29uIjoiaWNvbnMvbWFnaWMvZGVmZW5zaXZlL3NoaWVsZC1iYXJyaWVyLWZsYW1pbmctcGVudGFnb24tb3JhbmdlLndlYnAifQ==] @EFFECT[eyJuYW1lIjoiRmlyZSBSZXNpc3RhbmNlIiwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmFmZmluaXRpZXMuZmlyZSIsIm1vZGUiOjAsInZhbHVlIjoidXBncmFkZSJ9XSwiaWNvbiI6Imljb25zL21hZ2ljL2RlZmVuc2l2ZS9zaGllbGQtYmFycmllci1mbGFtaW5nLXBlbnRhZ29uLXJlZC53ZWJwIn0=] @EFFECT[eyJuYW1lIjoiSWNlIFJlc2lzdGFuY2UiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYWZmaW5pdGllcy5pY2UiLCJtb2RlIjowLCJ2YWx1ZSI6InVwZ3JhZGUifV0sImljb24iOiJpY29ucy9tYWdpYy9kZWZlbnNpdmUvc2hpZWxkLWJhcnJpZXItZmxhbWluZy1wZW50YWdvbi1ibHVlLndlYnAifQ==]</p>",
+      "description": "<p>Each time you enable this module on your <strong>personal vehicle</strong>, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong> or <strong>ice</strong>. Creatures aboard this <strong>personal vehicle</strong> are treated as being Resistant to the chosen damage type until this module remains enabled.</p><hr><ul><li><p><strong>Targets Receive:</strong> @AFFINITY[air resistance], @AFFINITY[bolt resistance], @AFFINITY[earth resistance], @AFFINITY[fire resistance], or @AFFINITY[ice resistance]</p></li></ul>",
       "complex": false
     },
     "source": "FUTF168",
@@ -27,8 +27,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711476985915,
-    "modifiedTime": 1724180864773,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743171942600,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

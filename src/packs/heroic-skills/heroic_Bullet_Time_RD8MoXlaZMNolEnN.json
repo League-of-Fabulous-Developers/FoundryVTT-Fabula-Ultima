@@ -98,7 +98,63 @@
     },
     "fuid": "bullet-time"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "icons/skills/ranged/projectile-spiral-gray.webp",
+      "origin": "Compendium.projectfu.heroic-skills.Item.RD8MoXlaZMNolEnN",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Bullet Time",
+      "_id": "oeo4K8RBL4Xwo6xH",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.all",
+          "mode": 2,
+          "value": "-&sl('dodge')",
+          "priority": null
+        },
+        {
+          "key": "system.derived.init.value",
+          "mode": 2,
+          "value": "&sl('dodge')+&sl('stolen-time')",
+          "priority": null
+        }
+      ],
+      "description": "<p>You gain a bonus to your Initiative modiﬁer equal to <strong>【your Skill Level in Dodge + your Skill Level in Stolen Time】</strong>.</p><p>As long as you have no <strong>shield</strong> and no <strong>martial armor</strong> equipped, all damage you suffer is reduced by an amount equal to <strong>【your SL in Dodge】 </strong>(applied <strong>before</strong> damage Afﬁnities) and you deal extra damage equal to <strong>【your SL in Stolen Time】</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUTF172",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743135978096,
+        "modifiedTime": 1743136893210,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!RD8MoXlaZMNolEnN.oeo4K8RBL4Xwo6xH"
+    }
+  ],
   "flags": {
     "core": {}
   },

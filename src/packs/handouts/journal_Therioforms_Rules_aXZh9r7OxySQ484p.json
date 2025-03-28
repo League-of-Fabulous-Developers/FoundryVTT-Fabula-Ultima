@@ -13,7 +13,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>Therioforms are mutations that grant powerful abilities; the way they manifest on your character is completely up to you - <strong>Pterotheria</strong>, for instance, might turn you into a person-sized bat or simply give you feathered wings.</p><ul><li><p>Once you use the <strong>Theriomorphosis</strong> Skill, the chosen <strong>therioforms</strong> last until the end of the scene. They also end if you die or fall unconscious, perform the Guard action, or use the <strong>Theriomorphosis</strong> Skill again (this includes using it through <strong>Genoclepsis</strong>).</p></li><li><p>You may end the effects of your <strong>Theriomorphosis</strong> at any time, but during a conflict you can only do so on your turn, <strong>before or after</strong> an action.</p></li><li><p>When a scene ends, if you are under the effects of <strong>Theriomorphosis</strong>, you may spend <strong>@LOSS[10 mp]</strong> to extend your <strong>current therioforms</strong> to the next scene you will be in.</p></li></ul>"
+        "content": "<p>Therioforms are mutations that grant powerful abilities; the way they manifest on your character is completely up to you - <strong>Pterotheria</strong>, for instance, might turn you into a person-sized bat or simply give you feathered wings.</p><ul><li><p>Once you use the @UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]{Theriomorphosis} Skill, the chosen <strong>therioforms</strong> last until the end of the scene. They also end if you die or fall unconscious, perform the Guard action, or use the <strong>Theriomorphosis</strong> Skill again (this includes using it through @UUID[Compendium.projectfu.skills.Item.mWqx8pto9gbbwMoG]{Genoclepsis}).</p></li><li><p>You may end the effects of your <strong>Theriomorphosis</strong> at any time, but during a conflict you can only do so on your turn, <strong>before or after</strong> an action.</p></li><li><p>When a scene ends, if you are under the effects of <strong>Theriomorphosis</strong>, you may spend @LOSS[10 mp] to extend your <strong>current therioforms</strong> to the next scene you will be in.</p></li></ul>"
       },
       "video": {
         "controls": true,
@@ -29,10 +29,10 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "createdTime": 1711758036829,
-        "modifiedTime": 1719225259713,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+        "modifiedTime": 1743175159040,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },

@@ -10,7 +10,7 @@
     "summary": {
       "value": "Erase your Brainwave Clock and deal damage."
     },
-    "description": "<blockquote><p>Requirements: you must have mastered the <strong>Esper</strong> Class.</p></blockquote><p>While your <strong>Brainwave Clock</strong> is <strong>full</strong>, you may use an action to erase all of its sections. If you do, you may choose one option: you deal @DMG[20 physical] damage to every enemy that is present on the scene; <strong>or</strong> you deal @DMG[30 physical] damage to a single enemy you can see. This amount increases by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher.</strong></p>",
+    "description": "<blockquote><p>Requirements: you must have mastered the <strong>Esper</strong> Class.</p></blockquote><p>While your <strong>Brainwave Clock</strong> is <strong>full</strong>, you may use an action to erase all of its sections. If you do, you may choose one option: you deal @DMG[20 physical] damage to every enemy that is present on the scene; <strong>or</strong> you deal @DMG[30 physical] damage to a single enemy you can see. This amount increases by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher.</strong></p><hr /><ul><li><p><strong>Target Loses:</strong> @DMG[&amp;step(20,30,40) physical](multi), or @DMG[&amp;step(30,40,50) physical](single)</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -107,8 +107,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711473807263,
-    "modifiedTime": 1724180863974,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743164711454,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

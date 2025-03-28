@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When a creature in <strong>Crisis</strong> hits the creature bearing this <strong>symbol</strong> with an attack or offensive spell ( @ICON[offensive] ), the creature in <strong>Crisis</strong> recovers @GAIN[5 hp] and @GAIN[5 mp].</p><hr><p>@LOSS[2 ip]</p>"
+      "description": "<p>When a creature in <strong>Crisis</strong> hits the creature bearing this <strong>symbol</strong> with an attack or offensive spell ( @ICON[offensive] ), the creature in Crisis recovers 5 Hit Points and 5 Mind Points.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Recovers:</strong> @GAIN[5 hp] and @GAIN[5 mp]</p></li></ul>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-revenge"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177999155,
-    "modifiedTime": 1724180862379,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743114673556,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

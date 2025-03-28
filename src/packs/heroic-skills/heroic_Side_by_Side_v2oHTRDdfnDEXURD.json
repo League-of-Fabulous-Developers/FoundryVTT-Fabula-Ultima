@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improve your synergy with your Faithful Companion."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class, and must have acquired the <strong>Faitfhul Companion</strong> Skill</p></blockquote><p>When your companion deals damage, they deal 5 extra damage.</p><p>When your companion performs a Check, you may spend 1 Fabula Point and <strong>invoke</strong> one of your companion's <strong>Traits</strong> in order to let them reroll one or both dice (as per the rules on page <strong>46</strong> of the <strong>Core Rulebook</strong>).</p><p>After you use the <strong>Faithful Companion</strong> Skill to have your companion perform an action during your turn, you may choose one option (after the companion's action has been resolved): you and your companion each recover @GAIN[10 mp]; <strong>or</strong> the first time you or your companion perform a Check before the end of your next turn, that Check gains a bonus equal to <strong>【your Skill Level in Faithful Companion】</strong>.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Wayfarer</strong> Class, and must have acquired the <strong>Faitfhul Companion</strong> Skill</p></blockquote><p>When your companion deals damage, they deal 5 extra damage.</p><p>When your companion performs a Check, you may spend 1 Fabula Point and <strong>invoke</strong> one of your companion's <strong>Traits</strong> in order to let them reroll one or both dice (as per the rules on page <strong>46</strong> of the <strong>Core Rulebook</strong>).</p><p>After you use the @UUID[Compendium.projectfu.skills.Item.L34pOGhdH0ZwV4Bt]{Faithful Companion} Skill to have your companion perform an action during your turn, you may choose one option (after the companion's action has been resolved): you and your companion each recover 10 Mind Points; <strong>or</strong> the first time you or your companion perform a Check before the end of your next turn, that Check gains a bonus equal to <strong>【your Skill Level in Faithful Companion】</strong>.</p><hr /><ul><li><p><strong>You Lose:</strong> @LOSS[1 fp]</p></li><li><p><strong>Targets Recovers:</strong> @GAIN[10 mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -61,8 +61,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1742676906838,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1743170872671,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "v2oHTRDdfnDEXURD",
   "ownership": {

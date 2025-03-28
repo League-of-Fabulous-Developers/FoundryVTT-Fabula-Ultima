@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Until this spell ends, each target gains a +1 bonus to Accuracy Checks</p><hr /><p>@EFFECT[eyJuYW1lIjoiV2FyIENyeSIsImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5ib251c2VzLmFjY3VyYWN5LmFjY3VyYWN5Q2hlY2siLCJtb2RlIjoyLCJ2YWx1ZSI6MX1dLCJpY29uIjoiaWNvbnMvc2tpbGxzL3dvdW5kcy9pbmp1cnktZmFjZS1pbXBhY3Qtb3JhbmdlLndlYnAifQ==]</p>",
+    "description": "<p>Until this spell ends, each target gains a +1 bonus to Accuracy Checks</p><hr /><ul><li><p><strong>Targets Receive: </strong>@UUID[Compendium.projectfu.actor-effects.Item.62RZnGQvUWIEyeJ7]{Accuracy Check Up}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -127,7 +127,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1742703894017,
+    "modifiedTime": 1743172261235,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

@@ -76,7 +76,7 @@
           "value": false
         },
         "mp": {
-          "value": true
+          "value": false
         },
         "ip": {
           "value": false
@@ -108,29 +108,35 @@
         "startRound": null,
         "startTurn": null
       },
-      "disabled": true,
+      "disabled": false,
       "name": "Heroic: Extra MP",
       "_id": "ppw04iGfH1dGa3jv",
       "changes": [
         {
           "key": "system.resources.mp.bonus",
           "mode": 0,
-          "value": "10",
+          "value": "&step(10,10,20)",
           "priority": null
         }
       ],
       "description": "",
       "transfer": true,
       "statuses": [],
-      "flags": {},
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUCR236",
+          "CrisisInteraction": "none"
+        }
+      },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1743125656608,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -155,8 +161,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706584261327,
-    "modifiedTime": 1724180863881,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743125619068,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -13,7 +13,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<h3>USING A GIFT</h3><p><strong>Gifts</strong> can only be used when speciﬁc <strong>events</strong> take place. When this happens, you may spend an amount of Mind Points equal to <strong>【the number of ﬁlled sections in your Brainwave Clock, multiplied by 5】</strong> minimum 5 Mind Points) in order to apply the effects of that gift to the event.</p><ul><li><p>You may only use a <strong>single gift</strong> per event.</p></li><li><p>If a gift causes <strong>HP or MP recovery</strong>, or if it causes <strong>MP loss</strong>, the amounts increase by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher</strong>.</p></li></ul><h3>THE BRAINWAVE CLOCK</h3><p>When you first acquire the <strong>Psychic Gifts</strong> Skill, <span class=\"fontstyle0\">start </span>a <strong>Brainwave Clock</strong>.</p><ul><li><p>Your Brainwave Clock has <strong>4 sections</strong>, and it begins each scene <strong>empty</strong>.</p></li><li><p>After you resolve one of your <strong>gifts</strong>, <strong>fill 1 section</strong> of your Brainwave Clock (you do so <strong>after</strong> the effects of the <strong>gift</strong> have been calculated and applied).</p></li><li><p>Your Brainwave Clock determines your <strong>gifts' cost in Mind Points</strong>, as well as their <strong>effectiveness</strong> (see above). You can still use your <strong>gifts</strong> when the Clock is full.</p></li><li><p>Sections of your Brainwave Clock <strong>may not be filled</strong> in any way other than described above, and they <strong>may only be erased</strong> <span class=\"fontstyle0\">through the </span><span class=\"fontstyle2\"><strong>Brainwave Discharge</strong> </span><span class=\"fontstyle0\">Heroic Skill (see page </span><span class=\"fontstyle2\"><strong>171</strong></span><span class=\"fontstyle0\">) or through effects that </span><span class=\"fontstyle2\"><strong>expressly</strong> </span><span class=\"fontstyle0\">influence Brainwave Clocks.</span></p></li></ul>",
+        "content": "<h3>USING A GIFT</h3><p><strong>Gifts</strong> can only be used when speciﬁc <strong>events</strong> take place. When this happens, you may spend an amount of Mind Points equal to <strong>【the number of ﬁlled sections in your Brainwave Clock, multiplied by 5】</strong> minimum 5 Mind Points) in order to apply the effects of that gift to the event.</p><ul><li><p>You may only use a <strong>single gift</strong> per event.</p></li><li><p>If a gift causes <strong>HP or MP recovery</strong>, or if it causes <strong>MP loss</strong>, the amounts increase by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher</strong>.</p></li></ul><h3>THE BRAINWAVE CLOCK</h3><p>When you first acquire the @UUID[Compendium.projectfu.skills.Item.uiXJvj0qK0pVfnwY]{Psychic Gifts} Skill, <span class=\"fontstyle0\">start </span>a <strong>Brainwave Clock</strong>.</p><ul><li><p>Your Brainwave Clock has <strong>4 sections</strong>, and it begins each scene <strong>empty</strong>.</p></li><li><p>After you resolve one of your <strong>gifts</strong>, <strong>fill 1 section</strong> of your Brainwave Clock (you do so <strong>after</strong> the effects of the <strong>gift</strong> have been calculated and applied).</p></li><li><p>Your Brainwave Clock determines your <strong>gifts' cost in Mind Points</strong>, as well as their <strong>effectiveness</strong> (see above). You can still use your <strong>gifts</strong> when the Clock is full.</p></li><li><p>Sections of your Brainwave Clock <strong>may not be filled</strong> in any way other than described above, and they <strong>may only be erased</strong> <span class=\"fontstyle0\">through the </span><span class=\"fontstyle2\">@UUID[Compendium.projectfu.heroic-skills.Item.iZIhU35ZCZ1zrbfL]{Brainwave Discharge} </span><span class=\"fontstyle0\">Heroic Skill (see page </span><span class=\"fontstyle2\"><strong>171</strong></span><span class=\"fontstyle0\">) or through effects that </span><span class=\"fontstyle2\"><strong>expressly</strong> </span><span class=\"fontstyle0\">influence Brainwave Clocks.</span></p></li></ul>",
         "markdown": ""
       },
       "video": {
@@ -30,10 +30,10 @@
       "_stats": {
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "createdTime": 1711757942464,
-        "modifiedTime": 1719225382816,
-        "lastModifiedBy": "BwRsFvMHAq9vUtEO",
+        "modifiedTime": 1743173723125,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -78,47 +78,6 @@
       "_key": "!journal.pages!mcjpTrTkosKxoyCc.lVGLqvkCVFBXhqau"
     },
     {
-      "sort": 100000,
-      "name": "PSYCHIC GIFT RULES",
-      "type": "text",
-      "title": {
-        "show": true,
-        "level": 1
-      },
-      "image": {},
-      "text": {
-        "format": 1,
-        "content": "<h3>USING A GIFT</h3><p><strong>Gifts</strong> can only be used when speciﬁc <strong>events</strong> take place. When this happens, you may spend an amount of Mind Points equal to <strong>【the number of ﬁlled sections in your Brainwave Clock, multiplied by 5】</strong> minimum 5 Mind Points) in order to apply the effects of that gift to the event.</p><ul><li><p>You may only use a <strong>single gift</strong> per event.</p></li><li><p>If a gift causes <strong>HP or MP recovery</strong>, or if it causes <strong>MP loss</strong>, the amounts increase by 10 if you are <strong>level 20 or higher</strong>, or by 20 if you are <strong>level 40 or higher</strong>.</p></li></ul><h3>THE BRAINWAVE CLOCK</h3><p>When you first acquire the <strong>Psychic Gifts</strong> Skill, <span class=\"fontstyle0\">start </span>a <strong>Brainwave Clock</strong>.</p><ul><li><p>Your Brainwave Clock has <strong>4 sections</strong>, and it begins each scene <strong>empty</strong>.</p></li><li><p>After you resolve one of your <strong>gifts</strong>, <strong>fill 1 section</strong> of your Brainwave Clock (you do so <strong>after</strong> the effects of the <strong>gift</strong> have been calculated and applied).</p></li><li><p>Your Brainwave Clock determines your <strong>gifts' cost in Mind Points</strong>, as well as their <strong>effectiveness</strong> (see above). You can still use your <strong>gifts</strong> when the Clock is full.</p></li><li><p>Sections of your Brainwave Clock <strong>may not be filled</strong> in any way other than described above, and they <strong>may only be erased</strong> <span class=\"fontstyle0\">through the </span><span class=\"fontstyle2\"><strong>Brainwave Discharge</strong> </span><span class=\"fontstyle0\">Heroic Skill (see page </span><span class=\"fontstyle2\"><strong>171</strong></span><span class=\"fontstyle0\">) or through effects that </span><span class=\"fontstyle2\"><strong>expressly</strong> </span><span class=\"fontstyle0\">influence Brainwave Clocks.</span></p></li></ul>",
-        "markdown": ""
-      },
-      "video": {
-        "controls": true,
-        "volume": 0.5
-      },
-      "src": null,
-      "system": {},
-      "ownership": {
-        "default": -1,
-        "YN7AhHIwAZeH33Tw": 3,
-        "GJ92IIuRRh2w5uWU": 3
-      },
-      "flags": {
-        "core": {}
-      },
-      "_stats": {
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "coreVersion": "12.330",
-        "createdTime": 1711757942464,
-        "modifiedTime": 1720908028831,
-        "lastModifiedBy": "GJ92IIuRRh2w5uWU",
-        "compendiumSource": null,
-        "duplicateSource": null
-      },
-      "_id": "mHSFEwibzoMdNQmY",
-      "_key": "!journal.pages!mcjpTrTkosKxoyCc.mHSFEwibzoMdNQmY"
-    },
-    {
       "sort": 300000,
       "name": "PSYCHIC GIFT VTT INSTRUCTIONS",
       "type": "text",
@@ -131,7 +90,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<ol><li><p>To <strong>automate</strong> class feature, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.FLyCnZOUFt8Xo4fi]{Brainwave Clock}</p></li><li><p><s>Open Brainwave Clock sheet, then navigate to \"</s><strong><s>Attributes</s></strong><s>\" tab and tick \"</s><strong><s>Is Brainwave Clock?</s></strong><s>\"</s></p></li><li><p>Now you can add psychic gifts to your sheet</p></li><li><p>After resolving one of your gifts, <strong>fill 1 section </strong>of your Brainwave Clock.</p></li><li><p>To display the corresponding effect in chat, <strong>roll</strong> the psychic gift.</p></li></ol>"
+        "content": "<ol><li><p>To <strong>automate</strong> class feature, add the following item to your character sheet: @UUID[Compendium.projectfu.skills.Item.FLyCnZOUFt8Xo4fi]{Brainwave Clock}</p></li><li><p>Now you can add psychic gifts to your sheet</p></li><li><p>After resolving one of your gifts, <strong>fill 1 section </strong>of your Brainwave Clock.</p></li><li><p>To display the corresponding effect in chat, <strong>roll</strong> the psychic gift.</p></li></ol>"
       },
       "video": {
         "controls": true,
@@ -150,7 +109,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742791669758,
-        "modifiedTime": 1742792026254,
+        "modifiedTime": 1743173665778,
         "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!journal.pages!mcjpTrTkosKxoyCc.uafn9l51ROzc9q0w"

@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When the creature bearing this <strong>symbol </strong>recovers Hit Points and/or Mind Points during conflicts, instead they only recover <strong>half </strong>the normal amount of Hit Points and/or Mind Points, respectively.</p><hr><p>@LOSS[2 ip]</p>"
+      "description": "<p>When the creature bearing this <strong>symbol </strong>recovers Hit Points and/or Mind Points during conflicts, instead they only recover <strong>half </strong>the normal amount of Hit Points and/or Mind Points, respectively.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li></ul>"
     },
     "source": "FUHF149",
     "fuid": "symbol-of-despair"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177366191,
-    "modifiedTime": 1724180862303,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743113948945,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

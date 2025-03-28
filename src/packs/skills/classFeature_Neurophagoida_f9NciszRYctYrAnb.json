@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>When you use the <strong>Biophagy</strong> Skill, you also recover an amount of Mind Points equal to <strong>【4 + (your Skill Level in Theriomorphosis)】</strong>.</p>"
+      "description": "<p>When you use the <strong>Biophagy</strong> Skill, you also recover an amount of Mind Points equal to <strong>【4 + (your Skill Level in Theriomorphosis)】</strong>.</p><hr><ul><li><p><strong>You Recover:</strong> @GAIN[4+&sl('theriomorphosis') mp]</p></li></ul>"
     },
     "source": "FUTF156",
     "fuid": "neurophagoida"
@@ -31,8 +31,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1724180862789,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743112064892,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

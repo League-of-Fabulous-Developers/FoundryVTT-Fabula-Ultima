@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improve High Speed with bows, spears, and thrown weapons, and deny free attacks."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Rogue</strong>, <strong>Sharpshooter</strong>, and <strong>Weaponmaster</strong>, and must have acquired the <strong>High Speed</strong> Skill</p></blockquote><p>When you use the <strong>High Speed</strong> Skill to perform a <strong>free attack</strong> with a weapon belonging to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, the attack deals extra damage equal to<strong>【your Skill Level in the High Speed Skill, multiplied by 5】</strong>. Additionally, when you attack one or more creatures with a weapon that belongs to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, those creatures cannot perform <strong>free attacks</strong> until the end of the current turn.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Rogue</strong>, <strong>Sharpshooter</strong>, and <strong>Weaponmaster</strong>, and must have acquired the <strong>High Speed</strong> Skill</p></blockquote><p>When you use the @UUID[Compendium.projectfu.skills.Item.tiu0D74YNxirN6Tr]{High Speed} Skill to perform a <strong>free attack</strong> with a weapon belonging to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, the attack deals extra damage equal to <strong>【your Skill Level in the High Speed Skill, multiplied by 5】</strong>. Additionally, when you attack one or more creatures with a weapon that belongs to the <strong>bow</strong>, <strong>spear</strong>, or <strong>thrown</strong> Category, those creatures cannot perform <strong>free attacks</strong> until the end of the current turn.</p>",
     "isFavored": {
       "value": false
     },
@@ -61,8 +61,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1742676906838,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1743170858778,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "1jiLF3jy7eEinL1k",
   "ownership": {

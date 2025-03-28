@@ -97,7 +97,290 @@
     },
     "fuid": "status-immunity"
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Dazed Immunity",
+      "img": "systems/projectfu/styles/static/statuses/Dazed.webp",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.immunities.dazed.base",
+          "value": "true",
+          "mode": 5,
+          "priority": 60
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": "Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743124188945,
+        "modifiedTime": 1743124188945,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_id": "YRGjUvOPdnz184Ci",
+      "_key": "!items.effects!aFS46NM5EYoywktL.YRGjUvOPdnz184Ci"
+    },
+    {
+      "name": "Enraged Immunity",
+      "img": "systems/projectfu/styles/static/statuses/Enraged.webp",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.immunities.enraged.base",
+          "value": "true",
+          "mode": 5,
+          "priority": 60
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": "Compendium.projectfu.actor-effects.Item.u4z5KLTgwzfo9VZs",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743124191618,
+        "modifiedTime": 1743124191618,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_id": "h6HH9q8HGNvsDM5m",
+      "_key": "!items.effects!aFS46NM5EYoywktL.h6HH9q8HGNvsDM5m"
+    },
+    {
+      "name": "Poisoned Immunity",
+      "img": "systems/projectfu/styles/static/statuses/Poisoned.webp",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.immunities.poisoned.base",
+          "value": "true",
+          "mode": 5,
+          "priority": 60
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": "Compendium.projectfu.actor-effects.Item.Ujw6SLorSRl0zQ7q",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743124193376,
+        "modifiedTime": 1743124193376,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_id": "u7iKFqmDec3FwaFN",
+      "_key": "!items.effects!aFS46NM5EYoywktL.u7iKFqmDec3FwaFN"
+    },
+    {
+      "name": "Shaken Immunity",
+      "img": "systems/projectfu/styles/static/statuses/Shaken.webp",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.immunities.shaken.base",
+          "value": "true",
+          "mode": 5,
+          "priority": 60
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": "Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743124195358,
+        "modifiedTime": 1743124195358,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_id": "lxV8fAopDYfWSndK",
+      "_key": "!items.effects!aFS46NM5EYoywktL.lxV8fAopDYfWSndK"
+    },
+    {
+      "name": "Slow Immunity",
+      "img": "systems/projectfu/styles/static/statuses/Slow.webp",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.immunities.slow.base",
+          "value": "true",
+          "mode": 5,
+          "priority": 60
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": "Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743124197373,
+        "modifiedTime": 1743124197373,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_id": "m3uIzxOUvRFWbPwG",
+      "_key": "!items.effects!aFS46NM5EYoywktL.m3uIzxOUvRFWbPwG"
+    },
+    {
+      "name": "Weak Immunity",
+      "img": "systems/projectfu/styles/static/statuses/Weak.webp",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.immunities.weak.base",
+          "value": "true",
+          "mode": 5,
+          "priority": 60
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": "Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743124199919,
+        "modifiedTime": 1743124199919,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_id": "uWGrcgM1XbnxmvFP",
+      "_key": "!items.effects!aFS46NM5EYoywktL.uWGrcgM1XbnxmvFP"
+    }
+  ],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
     "default": 0,

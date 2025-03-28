@@ -9,7 +9,7 @@
     "summary": {
       "value": "Ignore the MP cost of Follow My Lead when you are in Crisis."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Dancer </strong>Class, and must have acquired the <strong>Follow My Lead</strong> Skill.</p></blockquote><p>While you are in <strong>Crisis</strong>, you ignore the MP cost for your <strong>Follow My Lead</strong> Skill.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Dancer </strong>Class, and must have acquired the <strong>Follow My Lead</strong> Skill.</p></blockquote><p>While you are in <strong>Crisis</strong>, you ignore the MP cost for your @UUID[Compendium.projectfu.skills.Item.3mqtdzwMU62J1ogW]{Follow My Lead} Skill.</p>",
     "isFavored": {
       "value": false
     },
@@ -152,8 +152,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706684669665,
-    "modifiedTime": 1724180863955,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743170725171,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

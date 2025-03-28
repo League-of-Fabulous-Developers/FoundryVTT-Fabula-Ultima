@@ -9,7 +9,7 @@
     "summary": {
       "value": "Sacrifice HP for massive damage."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Darkblade </strong>Class.</p></blockquote><p>When you hit a creature with an attack, if that attack <strong>only </strong>targeted that creature and you have a <strong>Bond </strong>towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p><p>You may use this Skill only on your turn during a conflict, and <strong>only once per turn</strong>.</p><hr /><p>@DMG[10 untyped] @DMG[20 untyped] @DMG[30 untyped]</p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Darkblade </strong>Class.</p></blockquote><p>When you hit a creature with an attack, if that attack <strong>only </strong>targeted that creature and you have a <strong>Bond </strong>towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p><p>You may use this Skill only on your turn during a conflict, and <strong>only once per turn</strong>.</p><hr /><ul><li><p><strong>Target Loses:</strong> @DMG[10 untyped], @DMG[20 untyped], or @DMG[30 untyped]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -111,8 +111,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706584345254,
-    "modifiedTime": 1724180863710,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743124801916,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
