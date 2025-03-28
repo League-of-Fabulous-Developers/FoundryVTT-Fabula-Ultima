@@ -244,7 +244,7 @@ export class CombatHUD extends Application {
 				actorData.shouldEffectsMarquee = actorData.effects.length > maxEffectsBeforeMarquee && effectsMarqueeDuration < 9000;
 				actorData.effectsMarqueeDuration = effectsMarqueeDuration;
 
-                actorData.marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
+				actorData.marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
 			}
 
 			let order = 0;
@@ -266,9 +266,9 @@ export class CombatHUD extends Application {
 
 			actorData.order = order;
 
-            if (!FUCombat.showTurnsFor(combatant)) {
-                actorData.hideTurns = true;
-            }
+			if (!FUCombat.showTurnsFor(combatant)) {
+				actorData.hideTurns = true;
+			}
 
 			if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
 				data.characters.push(actorData);
@@ -798,35 +798,35 @@ export class CombatHUD extends Application {
 
 	_onUpdateToken(token, changes) {
 		// Is the updated token in the current combat?
-        const combatant = game.combat?.combatants.find((c) => c.token.uuid === token.uuid);
+		const combatant = game.combat?.combatants.find((c) => c.token.uuid === token.uuid);
 		if (!combatant) {
 			return;
 		}
 
-        // Are any of the changes relevant to the Combat HUD?
+		// Are any of the changes relevant to the Combat HUD?
 		if (game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && foundry.utils.hasProperty(changes, 'texture.src')) {
 
-            // Note: These properties are also used by the Combat Tracker
-            // But it doesn't attempt to regenerate them like this.
-            // Ultimately the token icon will be updated on the tracker the next time it refreshes.
-            combatant._thumb = null;
-            if(VideoHelper.hasVideoExtension(changes.texture.src)) {
-                combatant.img = null;
-                combatant._videoSrc = changes.texture.src;
-            } else {
-                combatant.img = changes.texture.src;
-                delete combatant._videoSrc;
-            }
+			// Note: These properties are also used by the Combat Tracker
+			// But it doesn't attempt to regenerate them like this.
+			// Ultimately the token icon will be updated on the tracker the next time it refreshes.
+			combatant._thumb = null;
+			if(VideoHelper.hasVideoExtension(changes.texture.src)) {
+				combatant.img = null;
+				combatant._videoSrc = changes.texture.src;
+			} else {
+				combatant.img = changes.texture.src;
+				delete combatant._videoSrc;
+			}
 
-            this._onUpdateHUD();
-        }
-        else if (
-            foundry.utils.hasProperty(changes, 'name') ||
-            foundry.utils.hasProperty(changes, 'actorId') ||
-            foundry.utils.hasProperty(changes, 'disposition')
-        ) {
-            this._onUpdateHUD();
-        }
+			this._onUpdateHUD();
+		}
+		else if (
+			foundry.utils.hasProperty(changes, 'name') ||
+			foundry.utils.hasProperty(changes, 'actorId') ||
+			foundry.utils.hasProperty(changes, 'disposition')
+		) {
+			this._onUpdateHUD();
+		}
 	}
 
 	_onUpdateActor(actor, changes) {
@@ -1087,18 +1087,18 @@ export class CombatHUD extends Application {
 		};
 	}
 
-    /**
-     * Retrieve a source image for a combatant.
-     * Modified from CombatTracker._getCombatantThumbnail()
-     * @param {Combatant} combatant         The combatant queried for image.
-     * @returns {Promise<string>}           The source image attributed for this combatant.
-     * @protected
-     */
-    async _getCombatantThumbnail(combatant) {
-        if ( combatant._videoSrc && !combatant.img ) {
-            if ( combatant._thumb ) return combatant._thumb;
-            return combatant._thumb = await game.video.createThumbnail(combatant._videoSrc, {width: 200, height: 200});
-        }
-        return combatant.img ?? CONST.DEFAULT_TOKEN;
-    }
+	/**
+	 * Retrieve a source image for a combatant.
+	 * Modified from CombatTracker._getCombatantThumbnail()
+	 * @param {Combatant} combatant         The combatant queried for image.
+	 * @returns {Promise<string>}           The source image attributed for this combatant.
+	 * @protected
+	 */
+	async _getCombatantThumbnail(combatant) {
+		if ( combatant._videoSrc && !combatant.img ) {
+			if ( combatant._thumb ) return combatant._thumb;
+			return combatant._thumb = await game.video.createThumbnail(combatant._videoSrc, {width: 200, height: 200});
+		}
+		return combatant.img ?? CONST.DEFAULT_TOKEN;
+	}
 }
