@@ -1,5 +1,4 @@
 import { SYSTEM } from './helpers/config.mjs';
-import { CombatHUD } from './ui/combat-hud.mjs';
 
 export const MESSAGES = Object.freeze({
 	ShowBanner: 'use',
@@ -58,12 +57,4 @@ async function requestEndTurn(combatId, combatantId) {
 			await combat.endTurn(combatant);
 		}
 	}
-}
-
-export async function onTurnChanged() {
-	CombatHUD.turnChanged();
-}
-
-export async function onRoundChanged() {
-	CombatHUD.roundChanged();
 }
