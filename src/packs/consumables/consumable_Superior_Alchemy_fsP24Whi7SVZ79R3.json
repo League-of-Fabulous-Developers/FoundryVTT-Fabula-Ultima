@@ -1,5 +1,5 @@
 {
-  "folder": "fzwKXW1w0wvmyDbk",
+  "folder": "mkcYQVBrbQGU0jj4",
   "name": "Superior Alchemy",
   "type": "consumable",
   "_id": "fsP24Whi7SVZ79R3",
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p>For <strong>@LOSS[5 ip]</strong> roll <strong>four d20s</strong> and assign one to <strong>target</strong> and one to <strong>effect</strong>.</p>",
+    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p>For 5 Inventory Points, roll <strong>four d20s</strong> and assign one to <strong>target</strong> and one to <strong>effect</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -27,7 +27,7 @@
     "fuid": "superior-alchemy"
   },
   "effects": [],
-  "sort": 168750,
+  "sort": 300000,
   "ownership": {
     "default": 0,
     "hYECXwi6O8UUBuN4": 3,
@@ -41,8 +41,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707098245589,
-    "modifiedTime": 1724180864609,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743184533483,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

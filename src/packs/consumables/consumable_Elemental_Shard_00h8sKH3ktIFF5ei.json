@@ -9,7 +9,7 @@
     "summary": {
       "value": "One creature suffers 10 damage of a type of your choice (10 Air, 10 Bolt, 10 Earth, 10 Fire, or 10 Ice)."
     },
-    "description": "<p>For @LOSS[2 ip], one creature suffers 10 damage of a type of your choice ( @DMG[10 air], @DMG[10 bolt], @DMG[10 earth], @DMG[10 fire], or @DMG[10 ice] ).</p>",
+    "description": "<p>For 3 Inventory Points, one creature suffers 10 damage of a type of your choice (<strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>).</p><hr /><ul><li><p><strong>Target Suffers:</strong> @DMG[10 air], @DMG[10 bolt], @DMG[10 earth], @DMG[10 fire], or @DMG[10 ice]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -39,8 +39,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706516143319,
-    "modifiedTime": 1724180864570,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743184860797,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

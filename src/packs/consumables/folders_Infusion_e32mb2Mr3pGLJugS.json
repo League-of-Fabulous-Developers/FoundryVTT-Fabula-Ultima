@@ -1,0 +1,22 @@
+{
+  "name": "Infusion",
+  "sorting": "a",
+  "folder": "fzwKXW1w0wvmyDbk",
+  "type": "Item",
+  "_id": "e32mb2Mr3pGLJugS",
+  "description": "",
+  "sort": 200000,
+  "color": "#a16608",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1743184544625,
+    "modifiedTime": 1743184554607,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "_key": "!folders!e32mb2Mr3pGLJugS"
+}

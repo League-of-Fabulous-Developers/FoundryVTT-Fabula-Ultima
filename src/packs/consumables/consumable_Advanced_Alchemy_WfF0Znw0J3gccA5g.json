@@ -1,5 +1,5 @@
 {
-  "folder": "fzwKXW1w0wvmyDbk",
+  "folder": "mkcYQVBrbQGU0jj4",
   "name": "Advanced Alchemy",
   "type": "consumable",
   "_id": "WfF0Znw0J3gccA5g",
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Advanced Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p>For <strong>@LOSS[4 ip]</strong> roll <strong>three d20s</strong> and assign one to <strong>target </strong>and one to <strong>effect</strong>.</p>",
+    "description": "<h5>Required: Advanced Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p>For 4 Inventory Points, roll <strong>three d20s</strong> and assign one to <strong>target </strong>and one to <strong>effect</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -27,7 +27,7 @@
     "fuid": "advanced-alchemy"
   },
   "effects": [],
-  "sort": 100000,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "hYECXwi6O8UUBuN4": 3,
@@ -41,8 +41,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707098208405,
-    "modifiedTime": 1724180864604,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743184367709,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

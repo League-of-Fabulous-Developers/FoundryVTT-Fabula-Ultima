@@ -9,7 +9,7 @@
     "summary": {
       "value": "One creature recovers from a single status effect."
     },
-    "description": "<p>For @LOSS[2 ip] one creature recovers from a single status effect.</p>",
+    "description": "<p>For 2 Inventory Points, one creature recovers from a single status effect.</p>",
     "isFavored": {
       "value": false
     },
@@ -39,8 +39,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706516094485,
-    "modifiedTime": 1724180864623,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743184751846,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

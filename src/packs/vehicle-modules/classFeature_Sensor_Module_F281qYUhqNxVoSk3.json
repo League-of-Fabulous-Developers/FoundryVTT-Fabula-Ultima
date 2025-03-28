@@ -18,7 +18,57 @@
     "source": "FUTF169",
     "fuid": "sensor-module"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "icons/commodities/tech/sensor-brown.webp",
+      "origin": "Compendium.projectfu.vehicle-modules.Item.F281qYUhqNxVoSk3",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Sensor Module",
+      "_id": "OyRDYwvhLfJt7eCu",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.openCheck",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to Open Checks made to examine nearby creatures, items, and locations.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUTF169",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743183194146,
+        "modifiedTime": 1743183284768,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!F281qYUhqNxVoSk3.OyRDYwvhLfJt7eCu"
+    }
+  ],
   "flags": {
     "core": {}
   },

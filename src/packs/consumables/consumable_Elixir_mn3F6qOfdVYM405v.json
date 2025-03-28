@@ -9,7 +9,7 @@
     "summary": {
       "value": "One creature recovers 50 MP."
     },
-    "description": "<p>For @LOSS[3 ip] one creature recovers @HEAL[50 mp].</p>",
+    "description": "<p>For 3 Inventory Points, one creature recovers @HEAL[50 mp].</p>",
     "isFavored": {
       "value": false
     },
@@ -39,8 +39,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706515894820,
-    "modifiedTime": 1724180864625,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743184743457,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

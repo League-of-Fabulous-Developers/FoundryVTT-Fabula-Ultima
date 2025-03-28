@@ -9,7 +9,7 @@
     "summary": {
       "value": "This allows the entire group to rest in the wilderness and at sea."
     },
-    "description": "<p>For @LOSS[4 ip], this allows the entire group to <strong>rest</strong> in the wilderness and at sea.</p>",
+    "description": "<p>For 4 Inventory Points, this allows the entire group to <strong>rest</strong> in the wilderness and at sea.</p>",
     "isFavored": {
       "value": false
     },
@@ -39,8 +39,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706516284047,
-    "modifiedTime": 1724180864594,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743184879784,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
