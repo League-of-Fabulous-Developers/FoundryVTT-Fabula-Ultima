@@ -12,13 +12,69 @@
     },
     "featureType": "projectfu.supportModule",
     "data": {
-      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells ( @ICON[offensive] ) you cast.</p><hr><ul><li><p><strong>You Receive:</strong> @EFFECT[eyJuYW1lIjoiQWNjdXJhY3kvTWFnaWMgVXAiLCJjaGFuZ2VzIjpbeyJrZXkiOiJzeXN0ZW0uYm9udXNlcy5hY2N1cmFjeS5hY2N1cmFjeUNoZWNrIiwibW9kZSI6MiwidmFsdWUiOjJ9LHsia2V5Ijoic3lzdGVtLmJvbnVzZXMuYWNjdXJhY3kubWFnaWNDaGVjayIsIm1vZGUiOjIsInZhbHVlIjoyfV0sImljb24iOiJpY29ucy9jb21tb2RpdGllcy90ZWNoL21ldGFsLWJsdWUud2VicCJ9]</p></li></ul>",
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells ( @ICON[offensive] ) you cast.</p>",
       "complex": false
     },
     "source": "FUTF168",
     "fuid": "advanced-targeting-module"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "icons/commodities/tech/metal-blue.webp",
+      "origin": "Compendium.projectfu.vehicle-modules.Item.9YM4VR2e6Y4MgmJ2",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Advanced Targeting Module",
+      "_id": "tBO2RxyIGFzJOStU",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.accuracyCheck",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.magicCheck",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to your Accuracy Checks and to Magic Checks for offensive spells ( @ICON[offensive] ) you cast.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUTF168",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743183056735,
+        "modifiedTime": 1743183094497,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!9YM4VR2e6Y4MgmJ2.tBO2RxyIGFzJOStU"
+    }
+  ],
   "flags": {
     "core": {}
   },
@@ -27,7 +83,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711476994639,
-    "modifiedTime": 1743171985820,
+    "modifiedTime": 1743183100883,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

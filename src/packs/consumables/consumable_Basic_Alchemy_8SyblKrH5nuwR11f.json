@@ -1,5 +1,5 @@
 {
-  "folder": "fzwKXW1w0wvmyDbk",
+  "folder": "mkcYQVBrbQGU0jj4",
   "name": "Basic Alchemy",
   "type": "consumable",
   "_id": "8SyblKrH5nuwR11f",
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Basic Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p>For <strong>@LOSS[3 ip]</strong> roll <strong>two d20s</strong> and assign one to <strong>target </strong>and one to <strong>effect</strong>.</p>",
+    "description": "<h5>Required: Basic Benefits in @UUID[Compendium.projectfu.skills.Item.SsR6UJXT65Q1qNO2]{Gadget - Alchemy}</h5><p>For 3 Inventory Points, roll <strong>two d20s</strong> and assign one to <strong>target </strong>and one to <strong>effect</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -27,7 +27,7 @@
     "fuid": "basic-alchemy"
   },
   "effects": [],
-  "sort": 200000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "hYECXwi6O8UUBuN4": 3,
@@ -41,8 +41,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707098055601,
-    "modifiedTime": 1724180864577,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743184390529,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

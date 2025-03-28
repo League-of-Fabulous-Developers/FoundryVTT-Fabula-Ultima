@@ -18,7 +18,57 @@
     "source": "FUTF169",
     "fuid": "power-module"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "icons/commodities/tech/transmission.webp",
+      "origin": "Compendium.projectfu.vehicle-modules.Item.qzvVPIVFgZ9jtOYT",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Power Module",
+      "_id": "OJS0b7OweaYLU0gT",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.opposedCheck",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "description": "<p>While driving this <strong>personal vehicle</strong>, you gain a +2 bonus to all Opposed Checks that rely on <strong>brute force</strong> or <strong>physical resistance</strong>.</p>",
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "FUTF169",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743183600297,
+        "modifiedTime": 1743183641554,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!qzvVPIVFgZ9jtOYT.OJS0b7OweaYLU0gT"
+    }
+  ],
   "flags": {
     "core": {}
   },

@@ -1,5 +1,5 @@
 {
-  "folder": "fzwKXW1w0wvmyDbk",
+  "folder": "1lhSFLpWKuTcHMtr",
   "name": "Magisphere (Superior)",
   "type": "consumable",
   "_id": "7dUU12f8IHa2tESo",
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</h5><p>For <strong>@LOSS[2 ip]</strong>, create and use one of your magisphere prototypes, replicating the effects of a spell.</p>",
+    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.EmwWSYlFjlUSGPLL]{Gadget- Magitech}</h5><p>For 2 Inventory Points, create and use one of your magisphere prototypes, replicating the effects of a spell.</p>",
     "isFavored": {
       "value": false
     },
@@ -27,7 +27,7 @@
     "fuid": "magisphere-superior"
   },
   "effects": [],
-  "sort": 275000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "hYECXwi6O8UUBuN4": 3,
@@ -41,8 +41,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707097313067,
-    "modifiedTime": 1724180864574,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743184688811,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

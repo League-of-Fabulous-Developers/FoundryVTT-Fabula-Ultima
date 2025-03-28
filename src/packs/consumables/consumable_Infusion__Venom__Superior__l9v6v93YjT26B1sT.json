@@ -1,5 +1,5 @@
 {
-  "folder": "fzwKXW1w0wvmyDbk",
+  "folder": "e32mb2Mr3pGLJugS",
   "name": "Infusion: Venom (Superior)",
   "type": "consumable",
   "_id": "l9v6v93YjT26B1sT",
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p>For <strong>@LOSS[2 ip]</strong> the attack deals 5 extra damage, its damage becomes <strong>poison</strong>, and each creature hit by the attack suffers <strong>poisoned</strong>.</p>",
+    "description": "<h5>Required: Superior Benefits in @UUID[Compendium.projectfu.skills.Item.1tfYFkiXLuTOUmre]{Gadget - Infusion}</h5><p>For 2 Inventory Points, the attack deals 5 extra damage, its damage becomes <strong>poison</strong>, and each creature hit by the attack suffers <strong>poisoned</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -27,7 +27,7 @@
     "fuid": "infusion-venom-superior"
   },
   "effects": [],
-  "sort": 175000,
+  "sort": 400000,
   "ownership": {
     "default": 0,
     "hYECXwi6O8UUBuN4": 3,
@@ -41,8 +41,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707097217470,
-    "modifiedTime": 1724180864620,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743184627288,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },
