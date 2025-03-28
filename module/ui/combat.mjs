@@ -293,6 +293,11 @@ export class FUCombat extends Combat {
 			return;
 		}
 
+        if (!this.currentRoundTurnsLeft.includes(combatant)) {
+            console.error(`No turns left for ${combatant.id}`);
+            return;
+        }
+
 		if (game.user?.isGM) {
 			this.setCombatant(combatant);
 			this.current.combatantId = combatant?.id || null;
@@ -316,8 +321,12 @@ export class FUCombat extends Combat {
 			this.notifyCombatTurnChange();
 			SOCKET.executeForOthers(MESSAGES.TurnChanged);
 		} else {
-			console.debug(`Executing message ${MESSAGES.TurnStarted} as GM`);
-			await SOCKET.executeAsGM(MESSAGES.TurnStarted, this.id, combatant.id);
+            if(combatant.actor.isOwner) {
+                console.debug(`Executing message ${MESSAGES.RequestStartTurn} as GM`);
+                await SOCKET.executeAsGM(MESSAGES.RequestStartTurn, this.id, combatant.id);
+            } else {
+                // TODO: Inform user?
+            }
 		}
 
 		await this._onStartTurn(combatant);
@@ -351,8 +360,12 @@ export class FUCombat extends Combat {
 			await this.nextTurn();
 			this.notifyCombatTurnChange();
 		} else {
-			console.debug(`Executing message ${MESSAGES.TurnEnded} as GM`);
-			await SOCKET.executeAsGM(MESSAGES.TurnEnded, this.id, combatant.id);
+            if (combatant.actor.isOwner) {
+                console.debug(`Executing message ${MESSAGES.RequestEndTurn} as GM`);
+                await SOCKET.executeAsGM(MESSAGES.RequestEndTurn, this.id, combatant.id);
+            } else {
+                // TODO: Inform user?
+            }
 		}
 	}
 

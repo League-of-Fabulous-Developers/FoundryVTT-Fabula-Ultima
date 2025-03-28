@@ -266,11 +266,9 @@ export class CombatHUD extends Application {
 
 			actorData.order = order;
 
-			if (NPCTurnsLeftMode === 'never') {
-				actorData.totalTurns = 1;
-			} else if (NPCTurnsLeftMode === 'only-studied' && !this._isNPCStudied(combatant.token)) {
-				actorData.totalTurns = 1;
-			}
+            if (!FUCombat.showTurnsFor(combatant)) {
+                actorData.hideTurns = true;
+            }
 
 			if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
 				data.characters.push(actorData);
