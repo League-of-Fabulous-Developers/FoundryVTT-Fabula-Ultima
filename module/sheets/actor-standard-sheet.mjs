@@ -1674,8 +1674,8 @@ export class FUStandardActorSheet extends ActorSheet {
 	/**
 	 * Updates the progress clock value based on the clicked segment.
 	 * @param {Event} ev - The input change event.
-	 * @param {"feature"} [dataType]
-	 * @param {string} [dataPath]
+	 * @param {"feature"} [dataType] is the item a feature
+	 * @param {string} [dataPath] path to clock data
 	 * @private
 	 */
 	_onProgressUpdate(ev, dataType, dataPath) {
@@ -1704,9 +1704,11 @@ export class FUStandardActorSheet extends ActorSheet {
 	/**
 	 * Resets the progress clock.
 	 * @param {Event} ev - The input change event.
+	 * @param {"feature"} [dataType] is the item a feature
+	 * @param {string} [dataPath] path to clock data
 	 * @private
 	 */
-	_onProgressReset(ev, dataType) {
+	_onProgressReset(ev, dataType, dataPath) {
 		const input = ev.currentTarget;
 		const li = $(input).closest('.item');
 
@@ -1715,7 +1717,9 @@ export class FUStandardActorSheet extends ActorSheet {
 			const itemId = li.data('itemId');
 			const item = this.actor.items.get(itemId);
 
-			if (dataType === 'feature') {
+			if (dataPath) {
+				item.update({ [dataPath + '.current']: 0 });
+			} else if (dataType === 'feature') {
 				item.update({ 'system.data.progress.current': 0 });
 			} else {
 				item.update({ 'system.progress.current': 0 });

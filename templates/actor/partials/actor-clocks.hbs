@@ -33,7 +33,8 @@
             <div class="item growth-clock" data-item-id="{{ item._id }}" style="grid-column-gap: 2px;">
                 {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
                     arr=item.progressArr
-                    data=item.system.data.progress}}
+                    data=item.system.data.progress
+                    dataPath="system.data.progress"}}
                 <a class="increment-button" data-type="featureCounter" data-item-id="{{ item._id }}"
                     data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.progress.step}})">
                     <i class="fas fa-plus"></i></a>
