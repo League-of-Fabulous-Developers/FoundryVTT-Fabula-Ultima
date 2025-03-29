@@ -31,11 +31,11 @@
       "secondary": "mig"
     },
     "accuracy": 0,
-    "defense": "def",
+    "defense": "",
     "damage": {
       "hasDamage": true,
-      "value": 1,
-      "type": "physical",
+      "value": 0,
+      "type": "",
       "onRoll": "",
       "onApply": "",
       "hrZero": false
@@ -65,7 +65,57 @@
       "max": 0
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/invoker/ripples.png",
+      "origin": "Compendium.projectfu.skills.Item.ouhN6A6jFZO10eST",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Ripples: Accuracy Bonus",
+      "_id": "eR5LGpPiwDuXsC7S",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.accuracy",
+          "mode": 2,
+          "value": "@system.level.value",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {
+        "projectfu": {
+          "type": "default",
+          "source": "",
+          "CrisisInteraction": "none"
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743273538771,
+        "modifiedTime": 1743273634874,
+        "lastModifiedBy": "aylHtMTxbnWEKFH9"
+      },
+      "_key": "!items.effects!ouhN6A6jFZO10eST.eR5LGpPiwDuXsC7S"
+    }
+  ],
   "folder": "OYJupsuCc49hZmiB",
   "ownership": {
     "default": 0,
@@ -81,7 +131,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1742676970366,
+    "modifiedTime": 1743273520524,
     "lastModifiedBy": "aylHtMTxbnWEKFH9"
   },
   "_id": "ouhN6A6jFZO10eST",
