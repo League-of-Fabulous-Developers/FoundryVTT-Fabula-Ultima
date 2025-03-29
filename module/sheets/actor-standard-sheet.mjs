@@ -1099,7 +1099,14 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Grab any data associated with this control.
 		const data = foundry.utils.duplicate(header.dataset);
 		// Initialize a default name.
-		const localizedKey = CONFIG.FU.itemTypes[type] || `TYPES.Item.${type}`;
+		let localizedKey;
+		if (type === 'classFeature') {
+			localizedKey = FU.classFeatureRegistry.byKey(data.featureType)?.translation ?? CONFIG.FU.itemTypes[type];
+		} else if (type === 'optionalFeature') {
+			localizedKey = FU.optionalFeatureRegistry.byKey(data.optionalType)?.translation ?? CONFIG.FU.itemTypes[type];
+		} else {
+			localizedKey = CONFIG.FU.itemTypes[type] || `TYPES.Item.${type}`;
+		}
 		const name = game.i18n.localize(localizedKey);
 		// Prepare the item object.
 		const itemData = {
@@ -1264,8 +1271,15 @@ export class FUStandardActorSheet extends ActorSheet {
 	}
 
 	async _createItem(type, clock, subtype) {
-		const localizedKey = CONFIG.FU.itemTypes[type] || `TYPES.Item.${type}`;
-		const name = game.i18n.localize(localizedKey) || `${subtype ? subtype.split('.')[1].capitalize() : type.capitalize()}`;
+		let localizedKey;
+		if (type === 'classFeature') {
+			localizedKey = FU.classFeatureRegistry.byKey(subtype)?.translation ?? CONFIG.FU.itemTypes[type];
+		} else if (type === 'optionalFeature') {
+			localizedKey = FU.optionalFeatureRegistry.byKey(subtype)?.translation ?? CONFIG.FU.itemTypes[type];
+		} else {
+			localizedKey = CONFIG.FU.itemTypes[type] || `TYPES.Item.${type}`;
+		}
+		const name = game.i18n.localize(localizedKey);
 
 		const isV12OrLater = foundry.utils.isNewerVersion(game.version, '12.0.0');
 		const itemData = {
