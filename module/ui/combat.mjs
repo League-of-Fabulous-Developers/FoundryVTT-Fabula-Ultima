@@ -283,16 +283,6 @@ export class FUCombat extends Combat {
 			return;
 		}
 
-		if (!this.currentRoundTurnsLeft.includes(combatant)) {
-			console.error(`No turns left for ${combatant.id}`);
-			return;
-		}
-
-        if (!this.currentRoundTurnsLeft.includes(combatant)) {
-            console.error(`No turns left for ${combatant.id}`);
-            return;
-        }
-
 		if (game.user?.isGM) {
 			await this.setCombatant(combatant);
 			this.current.combatantId = combatant?.id || null;
@@ -341,7 +331,7 @@ export class FUCombat extends Combat {
 			await this.setTurnsTaken(flag);
 
 			// Invoke event
-			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfTurn, this.round).forCombatant(combatant));
+			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfTurn, this.round, this.combatants).forCombatant(combatant));
 			await this.setCombatant(null);
 
 			// Setup
