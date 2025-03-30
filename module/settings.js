@@ -34,6 +34,9 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudShowNPCTurnsLeftMode: 'optionCombatHudShowNPCTurnsLeftMode',
 	optionCombatHudShowOrderNumbers: 'optionCombatHudShowOrderNumbers',
 	optionCombatHudTheme: 'optionCombatHudTheme',
+	optionCombatHudTurnIconsActive: 'optionCombatHudTurnIconsActive',
+	optionCombatHudTurnIconsOutOfTurns: 'optionCombatHudTurnIconsOutOfTurns',
+	optionCombatHudTurnIconsTurnsLeftHidden: 'optionCombatHudTurnIconsTurnsLeftHidden',
 	optionCombatHudTrackedResource1: 'optionCombatHudTrackedResource1',
 	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
@@ -601,6 +604,49 @@ export const registerSystemSettings = async function () {
 		default: 'none',
 	});
 
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive, {
+		name: game.i18n.localize('FU.CombatHudTurnIconsActive'),
+		hint: game.i18n.localize('FU.CombatHudTurnIconsActiveHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'play_circle',
+		onChange: () => {
+			ui.combat.render(true);
+			CombatHUD.update();
+		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns, {
+		name: game.i18n.localize('FU.CombatHudTurnIconsOutOfTurns'),
+		hint: game.i18n.localize('FU.CombatHudTurnIconsOutOfTurnsHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'check_circle',
+		onChange: () => {
+			if (game.combat?.isActive) {
+				ui.combat.render(true);
+				CombatHUD.update();
+			}
+		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden, {
+		name: game.i18n.localize('FU.CombatHudTurnIconsTurnsLeftHidden'),
+		hint: game.i18n.localize('FU.CombatHudTurnIconsTurnsLeftHiddenHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'help',
+		onChange: () => {
+			if (game.combat?.isActive) {
+				ui.combat.render(true);
+				CombatHUD.update();
+			}
+		},
+	});
+
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode, {
 		name: game.i18n.localize('FU.CombatHudShowNPCTurnsLeftMode'),
 		hint: game.i18n.localize('FU.CombatHudShowNPCTurnsLeftModeHint'),
@@ -740,11 +786,25 @@ class BehaviorRollsConfig extends FormApplication {
 class CombatHudSettings extends FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
+			classes: ['projectfu'],
 			template: 'systems/projectfu/templates/system/settings/combat-hud.hbs',
+			id: 'combat-hud-settings',
+			width: 600
 		});
 	}
 
+	activateListeners(html) {
+		html.find('.mats-icon-picker').on('change', (event) => {
+			event.preventDefault();
+			const picker = $(event.target);
+			$(picker).find('+ .mats-o').text($(picker).val());
+		});
+		return super.activateListeners(html);
+	}
+
 	getData() {
+		const materialSymbolsLabel = game.i18n.localize('FU.CombatHudTurnIconsGoogleMaterialSymbolsLabel');
+		const materialSymbolsLink = `<a href="https://fonts.google.com/icons" target="_blank">${materialSymbolsLabel}</a>`
 		return {
 			experimentalCombatHud: game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud),
 			optionCombatHudOpacity: game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity),
@@ -766,6 +826,9 @@ class CombatHudSettings extends FormApplication {
 			optionCombatHudTrackedResource2: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2),
 			optionCombatHudTrackedResource3: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3),
 			optionCombatHudTrackedResource4: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource4),
+			optionCombatHudTurnIconsActive: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive),
+			optionCombatHudTurnIconsOutOfTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns),
+			optionCombatHudTurnIconsTurnsLeftHidden: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden),
 			trackedResources: FU.combatHudResources,
 			optionCombatHudTheme: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme),
 			optionCombatHudThemeOptions: FU.combatHudThemes,
@@ -775,6 +838,7 @@ class CombatHudSettings extends FormApplication {
 				always: 'FU.CombatHudShowNPCTurnsLeftModeAlways',
 				'only-studied': 'FU.CombatHudShowNPCTurnsLeftModeOnlyStudied',
 			},
+			combatHudTurnIconsHint: new Handlebars.SafeString(game.i18n.format('FU.CombatHudTurnIconsHint', {materialSymbolsLink: materialSymbolsLink})),
 		};
 	}
 
@@ -796,6 +860,9 @@ class CombatHudSettings extends FormApplication {
 				optionCombatHudTrackedResource2,
 				optionCombatHudTrackedResource3,
 				optionCombatHudTrackedResource4,
+				optionCombatHudTurnIconsActive,
+				optionCombatHudTurnIconsOutOfTurns,
+				optionCombatHudTurnIconsTurnsLeftHidden,
 				optionCombatHudTheme,
 				optionCombatHudShowNPCTurnsLeftMode,
 			} = foundry.utils.expandObject(formData);
@@ -817,6 +884,9 @@ class CombatHudSettings extends FormApplication {
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource4, optionCombatHudTrackedResource4);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTheme, optionCombatHudTheme);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode, optionCombatHudShowNPCTurnsLeftMode);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive, optionCombatHudTurnIconsActive);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns, optionCombatHudTurnIconsOutOfTurns);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden, optionCombatHudTurnIconsTurnsLeftHidden);
 		} else {
 			const {
 				experimentalCombatHud,

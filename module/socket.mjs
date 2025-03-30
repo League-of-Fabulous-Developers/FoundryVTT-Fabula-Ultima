@@ -1,12 +1,9 @@
 import { SYSTEM } from './helpers/config.mjs';
-import { CombatHUD } from './ui/combat-hud.mjs';
 
 export const MESSAGES = Object.freeze({
 	ShowBanner: 'use',
-	TurnStarted: 'startTurn',
-	TurnEnded: 'endTurn',
-	TurnChanged: 'turnChanged',
-	RoundChanged: 'roundChanged',
+	RequestStartTurn: 'requestStartTurn',
+	RequestEndTurn: 'requestEndTurn',
 });
 
 export let SOCKET;
@@ -16,10 +13,8 @@ export function onSocketLibReady() {
 	SOCKET = socketlib.registerSystem(SYSTEM);
 
 	SOCKET.register(MESSAGES.ShowBanner, showBanner);
-	SOCKET.register(MESSAGES.TurnStarted, OnTurnStarted);
-	SOCKET.register(MESSAGES.TurnEnded, OnTurnEnded);
-	SOCKET.register(MESSAGES.TurnChanged, onTurnChanged);
-	SOCKET.register(MESSAGES.RoundChanged, onRoundChanged);
+	SOCKET.register(MESSAGES.RequestStartTurn, requestStartTurn);
+	SOCKET.register(MESSAGES.RequestEndTurn, requestEndTurn);
 }
 
 function showBanner(text) {
@@ -38,7 +33,7 @@ function showBanner(text) {
  * @param {string} combatId
  * @param {string} combatantId
  */
-async function OnTurnStarted(combatId, combatantId) {
+async function requestStartTurn(combatId, combatantId) {
 	/** @type FUCombat **/
 	const combat = game.combats.get(combatId);
 	if (combat) {
@@ -53,7 +48,7 @@ async function OnTurnStarted(combatId, combatantId) {
  * @param {string} combatId
  * @param {string} combatantId
  */
-async function OnTurnEnded(combatId, combatantId) {
+async function requestEndTurn(combatId, combatantId) {
 	/** @type FUCombat **/
 	const combat = game.combats.get(combatId);
 	if (combat) {
@@ -62,12 +57,4 @@ async function OnTurnEnded(combatId, combatantId) {
 			await combat.endTurn(combatant);
 		}
 	}
-}
-
-export async function onTurnChanged() {
-	CombatHUD.turnChanged();
-}
-
-export async function onRoundChanged() {
-	CombatHUD.roundChanged();
 }

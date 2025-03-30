@@ -4,25 +4,37 @@
     {{! If a combatant has already started a turn }}
         {{#if @root.turnStarted}}
             {{#if (eq @root.combatant.id this.id)}}
-                <a class="combatant-control take-turn" role="button" data-action="end-turn">
-                    <i class="mats-o mats-fill">check_circle</i>
+                <a class="combatant-control take-turn active-combatant" role="button" data-action="end-turn"{{#unless this.isOwner }} disabled{{/unless}}>
+                    <i class="mats-o mats-fill">{{@root.icons.active}}</i>
                 </a>
             {{else}}
-                <a class="combatant-control" style="opacity: 0.5">
-                    <i class="mats-o mats-fill">counter_{{lookup @root.turnsLeft this.id}}</i>
-                </a>
+                {{! If this is an NPC whose turns shouldn't be shown to the player user. }}
+                {{#if this.hideTurns}}
+                    <a class="combatant-control active-combatant" role="button" disabled>
+                        <i class="mats-o mats-fill">{{@root.icons.hiddenTurns}}</i>
+                    </a>
+                {{else}}
+                    <a class="combatant-control" disabled>
+                        <i class="mats-o{{#if (eq @root.currentTurn this.faction)}} mats-fill{{/if}}">counter_{{lookup @root.turnsLeft this.id}}</i>
+                    </a>
+                {{/if}}
             {{/if}}
         {{! If a combatant can start a turn }}
         {{else}}
-            {{! If the combatant's faction CAN take a turn}}
-            {{#if (eq @root.currentTurn this.faction)}}
-                <a class="combatant-control take-turn" role="button" data-action="start-turn">
-                    <i class="mats-o mats-fill">counter_{{lookup @root.turnsLeft this.id}}</i>
+            {{! If this is an NPC whose turns shouldn't be shown to the player user. }}
+            {{#if this.hideTurns}}
+                <a class="combatant-control" role="button" disabled>
+                    <i class="mats-o mats-fill">{{@root.icons.hiddenTurns}}</i>
                 </a>
-            {{! If the turn is taken out of order due to some mechanic }}
             {{else}}
-                {{#if this.isOwner}}
-                    <a class="combatant-control take-turn out-of-turn" data-action="take-turn-out-of-turn">
+                {{! If the combatant's faction CAN take a turn}}
+                {{#if (eq @root.currentTurn this.faction)}}
+                    <a class="combatant-control take-turn" role="button" data-action="start-turn"{{#unless this.isOwner }} disabled{{/unless}}>
+                        <i class="mats-o mats-fill">counter_{{lookup @root.turnsLeft this.id}}</i>
+                    </a>
+                {{! If the turn is taken out of order due to some mechanic }}
+                {{else}}
+                    <a class="combatant-control take-turn out-of-turn" data-action="take-turn-out-of-turn"{{#unless this.isOwner }} disabled{{/unless}}>
                         <i class="mats-o">counter_{{lookup @root.turnsLeft this.id}}</i>
                     </a>
                 {{/if}}
@@ -30,8 +42,8 @@
         {{/if}}
     {{! If the combatant has NO turns left }}
     {{else}}
-        <a class="combatant-control" style="opacity: 0.5">
-            <i class="mats-o mats-fill">pending</i>
+        <a class="combatant-control" disabled>
+            <i class="mats-o{{#if (eq @root.currentTurn this.faction)}} mats-fill{{/if}}">{{@root.icons.outOfTurns}}</i>
         </a>
     {{/if}}
 {{/if}}

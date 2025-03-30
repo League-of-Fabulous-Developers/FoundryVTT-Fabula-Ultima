@@ -1,3 +1,5 @@
+import {FUCombat} from "./combat.mjs";
+
 /**
  * @class
  * @property {FUCombat} viewed The currently tracked combat encounter
@@ -22,6 +24,8 @@ export class FUCombatTracker extends CombatTracker {
 		const data = await super.getData(options);
 		/** @type FUCombat **/
 		const combat = data.combat;
+		data.icons = this.icons;
+
 		if (combat) {
 			combat.populateData(data);
 			// We add more data to the turns objects
@@ -102,12 +106,19 @@ export class FUCombatTracker extends CombatTracker {
 	 * @return {Object.<"friendly"|"neutral"|"hostile", {}[]>}
 	 */
 	async getFactions(turns, combat) {
+		// TODO: This information is also required by the combat hud, but populated in an entirely different way!
 		return turns.reduce(
 			(agg, combatantData) => {
 				const combatant = combat.combatants.get(combatantData.id);
+				// Skip combatants that can't be found or don't have a token.
+				if (!combatant?.token) return agg;
 				// The tracker rendering needs this! Do not remove!
 				combatantData.faction = combatant.faction;
 				combatantData.isOwner = combatant.isOwner;
+
+				if (!FUCombat.showTurnsFor(combatant)) {
+					combatantData.hideTurns = true;
+				}
 				if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
 					agg.friendly.push(combatantData);
 				} else {
