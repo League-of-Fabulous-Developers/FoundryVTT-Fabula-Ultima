@@ -159,7 +159,12 @@ export class ExpressionContext {
 		if (redirect) {
 			this.assertSource(match);
 			const sourceItem = this.source;
-			return sourceItem.actor;
+			const sourceActor = sourceItem.actor;
+			if (!sourceActor) {
+				ui.notifications.warn('FU.ChatEvaluateNoSourceActor', { localize: true });
+				throw new Error(`The source item needs to be owned by an actor in order to evaluate the expression"`);
+			}
+			return sourceActor;
 		}
 		this.assertActor(match);
 		return this.actor;
@@ -185,7 +190,6 @@ export class ExpressionContext {
 
 // DSL supported by the inline amount expression
 const referenceSymbol = '@';
-const actorLabel = `actor`;
 const itemLabel = `item`;
 const redirectSymbol = '~';
 
@@ -268,34 +272,6 @@ async function evaluateAsync(expression, context) {
 
 	console.debug(`Evaluated expression ${expression} = ${substitutedExpression} = ${result}`);
 	return result;
-}
-
-/**
- * @description Evaluates functions within the expression using the available context
- * @param {String}  expression
- * @param {ExpressionContext} context
- * @returns {String}
- */
-function evaluateReferencedFunctions(expression, context) {
-	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
-
-	function evaluate(match, label, path, p3, args, groups) {
-		if (match.includes(actorLabel)) {
-			context.assertActor(match);
-			let splitArgs = args.split(',');
-
-			const functionPath = `system.${path}`;
-			const resolvedFunction = getFunctionFromPath(context.actor, functionPath);
-			if (resolvedFunction === undefined) {
-				throw new Error(`No function in path "${functionPath}" of object ${context.actor}`);
-			}
-			const result = resolvedFunction.apply(context.actor.system, splitArgs);
-			console.info(`Resolved function ${functionPath}: ${result}`);
-			return result;
-		}
-	}
-
-	return expression.replace(pattern, evaluate);
 }
 
 /**
@@ -437,6 +413,55 @@ function countStatusEffects(actor) {
 	return relevantStatusEffects.filter((status) => actor.statuses.has(status)).length;
 }
 
+// Used for referencing
+const sourceLabel = 'source';
+const actorLabel = `actor`;
+const targetLabel = 'target';
+
+function resolveActorFromLabel(match, label, context) {
+	let actor;
+	switch (label) {
+		case actorLabel:
+		case sourceLabel:
+			context.assertActor(match);
+			actor = context.actor;
+			break;
+
+		case targetLabel:
+			context.assertSingleTarget(match);
+			actor = context.targets[0];
+			break;
+	}
+	return actor;
+}
+
+/**
+ * @description Evaluates functions within the expression using the available context
+ * @param {String}  expression
+ * @param {ExpressionContext} context
+ * @returns {String}
+ */
+function evaluateReferencedFunctions(expression, context) {
+	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
+
+	function evaluate(match, label, path, p3, args, groups) {
+		const actor = resolveActorFromLabel(match, label, context);
+		if (actor) {
+			let splitArgs = args.split(',');
+			const functionPath = `system.${path}`;
+			const resolvedFunction = getFunctionFromPath(actor, functionPath);
+			if (resolvedFunction === undefined) {
+				throw new Error(`No function in path "${functionPath}" of object ${actor}`);
+			}
+			const result = resolvedFunction.apply(actor.system, splitArgs);
+			console.info(`Resolved function ${functionPath}: ${result}`);
+			return result;
+		}
+	}
+
+	return expression.replace(pattern, evaluate);
+}
+
 /**
  * Evaluates properties within the expression using the available context
  * @param {String}  expression
@@ -445,30 +470,34 @@ function countStatusEffects(actor) {
  * @example @system.value.thingie
  */
 function evaluateReferencedProperties(expression, context) {
-	const pattern = /(?<variable>@([a-zA-Z]+\.?)+)/gm;
+	const pattern = /@(?<label>[a-zA-Z]+?)\.([a-zA-Z]+\.?)+/gm;
 	function evaluate(match, label, path, pN, offset, string, groups) {
 		// TODO: Refactor
 		let root = null;
 		let propertyPath = '';
 
+		// Check item
 		if (match.includes(itemLabel)) {
 			context.assertItem(match);
 			root = context.item;
-			propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system.');
-		} else if (match.includes(actorLabel)) {
-			context.assertActor(match);
-			root = context.actor;
-			propertyPath = match.replace(`${referenceSymbol}${actorLabel}.`, 'system.');
+			propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system');
 		}
-		// Don't evaluate the built-in expressions
+		// Check actors
 		else {
-			return match;
+			const actor = resolveActorFromLabel(match, label, context);
+			if (actor) {
+				root = actor;
+				propertyPath = match.replace(`${referenceSymbol}${label}`, 'system');
+			}
 		}
 
 		// Evaluate the property value
 		const propertyValue = getPropertyValueByPath(root, propertyPath);
 		if (propertyValue === undefined) {
 			throw new Error(`Unexpected variable "${propertyPath}" in object ${root}`);
+		}
+		if (propertyValue instanceof Object) {
+			throw new Error(`Unexpected object returned from "${propertyPath}". It needs to be an integer!`);
 		}
 		return propertyValue;
 	}

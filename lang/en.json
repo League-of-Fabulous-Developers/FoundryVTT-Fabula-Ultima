@@ -897,6 +897,7 @@
 		"ChatEvaluateAmountNoActor": "No reference to an actor provided",
 		"ChatEvaluateAmountNoSource": "No reference to a source provided",
 		"ChatEvaluateAmountNoItem": "No reference to an item provided",
+		"ChatEvaluateNoSourceActor": "The given item must be added to an actor in order to evaluate",
 		"ChatEvaluateNoSkill": "The referenced skill was not found in the actor",
 		"ChatManageEffects": "Affected by the following effects:",
 		"ChatPingTarget": "Ping the targeted actor",
