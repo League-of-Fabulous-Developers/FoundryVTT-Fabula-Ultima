@@ -16,7 +16,7 @@ const INLINE_DAMAGE = 'InlineDamage';
  * @type {TextEditorEnricherConfig}
  */
 const inlineDamageEnricher = {
-	pattern: /@DMG\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]({(?<label>\w+)})?\B/g,
+	pattern: InlineHelper.compose('DMG', '\\s*(?<amount>\\(?.*?\\)*?)\\s(?<type>\\w+?)'),
 	enricher: enricher,
 };
 
