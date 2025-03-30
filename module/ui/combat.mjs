@@ -388,9 +388,9 @@ export class FUCombat extends Combat {
 		data.isGM = game.user?.isGM;
 
 		data.icons = {
-			active: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsActive),
-			outOfTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsOutOfTurns),
-			hiddenTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudIconsHiddenTurns),
+			active: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive),
+			outOfTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns),
+			hiddenTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden),
 		};
 
 		//console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
