@@ -1,4 +1,4 @@
-import { IngredientDataModel, tasteComparator, TASTES } from './ingredient-data-model.mjs';
+import { getTasteAliasFlag, IngredientDataModel, tasteComparator, TASTES } from './ingredient-data-model.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
 import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
 
@@ -69,17 +69,24 @@ export class CookingApplication extends FormApplication {
 			}
 		}
 
+		const tastesWithAliases = { ...TASTES };
+		if (this.#cookbook.actor) {
+			for (const taste of Object.keys(tastesWithAliases)) {
+				tastesWithAliases[taste] = this.#cookbook.actor.getFlag(SYSTEM, getTasteAliasFlag(taste)) || TASTES[taste];
+			}
+		}
+
 		const effects = await Promise.all(
 			combinations
 				.map(([taste1, taste2]) => this.#cookbook.getCombination(taste1, taste2))
 				.map(async (value) => ({
 					taste1: {
 						value: value.taste1,
-						label: TASTES[value.taste1],
+						label: tastesWithAliases[value.taste1],
 					},
 					taste2: {
 						value: value.taste2,
-						label: TASTES[value.taste2],
+						label: tastesWithAliases[value.taste2],
 					},
 					effect: await TextEditor.enrichHTML(value.effect),
 				})),
@@ -91,7 +98,7 @@ export class CookingApplication extends FormApplication {
 				.filter(([id, item]) => value === id || (item.system.data.quantity ?? 0) - (usedIngredients[id] ?? 0) > 0)
 				.map(([id, item]) => ({
 					value: id,
-					label: `${item.name} (${game.i18n.localize(TASTES[item.system.data.taste])})`,
+					label: `${item.name} (${game.i18n.localize(tastesWithAliases[item.system.data.taste])})`,
 				})),
 		);
 
