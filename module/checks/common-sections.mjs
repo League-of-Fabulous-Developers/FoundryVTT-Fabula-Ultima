@@ -30,6 +30,27 @@ const description = (sections, description, summary, order, open = true) => {
 };
 
 /**
+ * A description section with customizable title and without summary.
+ * @param {CheckRenderData} sections
+ * @param {string} title
+ * @param {string} description
+ * @param {number} [order]
+ * @param {Boolean} open Defaults to true
+ */
+const collapsibleDescription = (sections, title, description, order, open = true) => {
+	sections.push(async () => ({
+		partial: 'systems/projectfu/templates/chat/partials/chat-collapsible-description.hbs',
+		data: {
+			title,
+			//The open attribute needs to be present without a value to be considered true.
+			open: open ? 'open' : '',
+			description: await TextEditor.enrichHTML(description),
+		},
+		order,
+	}));
+};
+
+/**
  * @param {CheckRenderData} sections
  * @param {ProgressDataModel} clock
  * @param {number} [order]
@@ -272,8 +293,9 @@ const spendResource = (sections, actor, item, targets, flags, expense = undefine
 	}
 };
 
-export const CommonSections = Object.freeze({
+export const CommonSections = {
 	description,
+	collapsibleDescription,
 	clock,
 	tags,
 	quality,
@@ -282,4 +304,4 @@ export const CommonSections = Object.freeze({
 	opportunity,
 	targeted,
 	spendResource,
-});
+};

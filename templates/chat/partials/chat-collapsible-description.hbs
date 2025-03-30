@@ -1,0 +1,8 @@
+<div>
+    <div class='chat-desc'>
+        <details {{#unless (getGameSetting 'optionChatMessageCollapseDescription')}}{{open}}{{/unless}}>
+            <summary class="collapsible-description align-center">{{title}}</summary>
+            {{{description}}}
+        </details>
+    </div>
+</div>
