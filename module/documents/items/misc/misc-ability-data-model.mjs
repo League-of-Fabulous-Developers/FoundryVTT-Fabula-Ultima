@@ -26,7 +26,9 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 			}
 		}
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
-		CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
+		if (item.system.hasClock.value) {
+			CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
+		}
 		if (weapon) {
 			sections.push(() => ({
 				partial: 'systems/projectfu/templates/chat/partials/chat-ability-weapon.hbs',
@@ -64,7 +66,9 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 		}
 
 		CommonSections.description(sections, ability.system.description, ability.system.summary.value, CHECK_DETAILS, true);
-		CommonSections.clock(sections, ability.system.progress, CHECK_DETAILS);
+		if (ability.system.hasClock.value) {
+			CommonSections.clock(sections, ability.system.progress, CHECK_DETAILS);
+		}
 	}
 });
 
