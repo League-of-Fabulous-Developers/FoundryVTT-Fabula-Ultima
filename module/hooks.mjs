@@ -117,4 +117,10 @@ export const FUHooks = {
 	 * @remarks Uses {@link WellspringDataModel}
 	 */
 	HOOK_WELLSPRING_CHANGED: 'projectfu.wellspringChanged',
+	/**
+	 * @description Dispatched after an actor rests
+	 * @example callback(event)
+	 * @remarks Uses {@link RestEvent}
+	 */
+	REST_EVENT: 'projectfu.events.rest',
 };

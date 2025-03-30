@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>Choose one option: you gain Resistance to <strong>bolt</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>bolt</strong>.</p><hr><ul><li><p><strong>You Lose:</strong> @LOSS[10 mp]</p></li><li><p><strong>You Receive: </strong>@AFFINITY[bolt resistance], or @TYPE[damage all bolt]</p></li></ul>",
+      "description": "<p>Choose one option: you gain Resistance to <strong>bolt</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>bolt</strong>.</p><hr><ul><li><p><strong>You:</strong> @LOSS[10 mp] @TYPE[affinity bolt resistance e:sot i:1 t:source]{Golem Dance: Resistance} @TYPE[damage all bolt e:sot i:1 t:source]{Golem Dance: Damage}</p></li></ul>",
       "duration": "nextTurn"
     },
     "source": "FUHF144",
@@ -34,8 +34,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710175451986,
-    "modifiedTime": 1742745523979,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1742501448736,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },

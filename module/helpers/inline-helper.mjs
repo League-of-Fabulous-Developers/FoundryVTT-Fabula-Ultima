@@ -85,6 +85,16 @@ export class InlineSourceInfo {
 		return null;
 	}
 
+	/**
+	 * @returns {String} The uuid of the item, or the actor
+	 */
+	get uuid() {
+		if (this.itemUuid) {
+			return this.itemUuid;
+		}
+		return this.actorUuid;
+	}
+
 	static none = Object.freeze(new InlineSourceInfo('Unknown'));
 }
 
@@ -204,12 +214,53 @@ function registerEnricher(enricher, activateListeners, onDropActor) {
 	Hooks.on('dropActorSheetData', onDropActor);
 }
 
+function appendImageToAnchor(anchor, path) {
+	const img = document.createElement('img');
+	img.src = path;
+	img.width = 16;
+	img.height = 16;
+	img.style.marginLeft = img.style.marginRight = '4px';
+	anchor.append(img);
+}
+
+/**
+ * @param {String} name The name of the command
+ * @param {String} required
+ * @param {String[]|null} optional
+ * @returns {RegExp}
+ * @remarks Expects regex subpatterns to be already escaped
+ */
+function compose(name, required, optional = undefined) {
+	const joinedOptional = optional ? optional.join('') : '';
+	const pattern = `@${name}\\[${required}${joinedOptional}\\]${labelPattern}`;
+	return new RegExp(pattern, 'g');
+}
+
+/**
+ * @type {string} The pattern used for optional labeling
+ */
+const labelPattern = '(\\{(?<label>.*?)\\})?';
+
+/**
+ * @param {String} identifier The name of the regex group
+ * @param key The key of the property
+ * @param value The value of the property
+ * @returns {String}
+ */
+function propertyPattern(identifier, key, value) {
+	return `(\\s+${key}:(?<${identifier}>${value}))?`;
+}
+
 export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
+	appendImageToAnchor,
 	appendVariableToAnchor,
 	toBase64,
 	fromBase64,
 	capitalize,
 	registerEnricher,
+	compose,
+	labelPattern,
+	propertyPattern,
 };

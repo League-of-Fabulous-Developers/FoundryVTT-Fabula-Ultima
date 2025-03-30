@@ -135,7 +135,11 @@ class CheckConfigurer {
 		this.#check.additionalData[WEAPON_TRAITS] = {
 			weaponType: traits.weaponType,
 			weaponCategory: traits.weaponCategory,
+			handedness: traits.handedness,
 		};
+		// Also add them to the flattened traits array
+		const flatTraits = Object.values(traits);
+		this.addTraits(...flatTraits);
 		return this;
 	}
 

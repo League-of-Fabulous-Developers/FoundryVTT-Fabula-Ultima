@@ -27,7 +27,11 @@
       "name": "Earth Weakness",
       "_id": "zOVD1WzW4Dn6JbeX",
       "type": "base",
-      "system": {},
+      "system": {
+        "duration": {
+          "event": "endOfScene"
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.earth",
@@ -51,12 +55,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737993851533,
-        "modifiedTime": 1737993883119,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1742761840249,
+        "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
       "_key": "!items.effects!YpXM5ClzMzIcwCgd.zOVD1WzW4Dn6JbeX"
     }

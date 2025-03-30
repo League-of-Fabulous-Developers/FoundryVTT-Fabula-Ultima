@@ -129,8 +129,8 @@ async function applyTraitsToWeapon(actor, sourceInfo, traits) {
 		traits.forEach((trait) => {
 			if (trait in FU.damageTypes) {
 				const effectData = createAlterDamageTypeEffect(weapon, trait);
-				Effects.onApplyEffectToActor(weapon, source?.uuid, effectData).then((effect) => {
-					console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}, id: ${weapon.id}`);
+				Effects.onApplyEffectToActor(weapon, effectData, sourceInfo).then((effect) => {
+					console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}`);
 				});
 			}
 		});
