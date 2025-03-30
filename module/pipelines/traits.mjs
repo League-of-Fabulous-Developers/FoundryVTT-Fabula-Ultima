@@ -3,9 +3,9 @@
 /**
  * @description A non-comprehensive list of traits supported by the pipelines.
  */
-export const Traits = {
+export const Traits = Object.freeze({
 	IgnoreResistance: 'ignore-resistance',
 	IgnoreImmunity: 'ignore-immunity',
 	Skill: 'skill',
 	Spell: 'spell',
-};
+});

@@ -2,9 +2,12 @@ import { onManageActiveEffect, prepareActiveEffectCategories } from '../pipeline
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { FU } from '../helpers/config.mjs';
 import { InlineHelper } from '../helpers/inline-helper.mjs';
+import * as CONFIG from '../helpers/config.mjs';
+import { Traits } from '../pipelines/traits.mjs';
 
 /**
- * Extend the basic ItemSheet with some very simple modifications
+ * @description Extend the basic ItemSheet with some very simple modifications
+ * @property {FUItem} item
  * @extends {ItemSheet}
  */
 export class FUItemSheet extends ItemSheet {
@@ -94,6 +97,11 @@ export class FUItemSheet extends ItemSheet {
 		context.defenses = CONFIG.FU.defenses;
 		context.resAbbr = CONFIG.FU.resourcesAbbr;
 		context.targetingRules = CONFIG.FU.targetingRules;
+		context.traits = Object.keys(Traits);
+		context.traitOptions = context.traits.map((key) => ({
+			label: key,
+			value: key,
+		}));
 
 		// Add the actor object to context for easier access
 		context.actor = actorData;
@@ -187,6 +195,22 @@ export class FUItemSheet extends ItemSheet {
 		dropZone.on('dragenter', this._onDragEnter.bind(this));
 		dropZone.on('dragleave', this._onDragLeave.bind(this));
 		dropZone.on('drop', this._onDropReset.bind(this));
+
+		// Render traits
+		//const traits = html.find('#traits');
+		//traits.tags = this.item.system.traits;
+		const traitsSelector = html.find('#traits-selector');
+		traitsSelector.on('change', (event) => {
+			const selectedIndex = traitsSelector.val();
+			const selectedValue = Object.keys(Traits)[selectedIndex];
+			const currentTraits = this.item.system.traits;
+			if (selectedValue && !currentTraits.includes(selectedValue)) {
+				console.debug(`Adding trait '${selectedValue}' to ${this.item.name}`);
+				const updatedTraits = currentTraits.push(selectedValue);
+				this.item.update({ ['system.traits']: updatedTraits });
+			}
+			traitsSelector.val('');
+		});
 	}
 
 	/* -------------------------------------------- */

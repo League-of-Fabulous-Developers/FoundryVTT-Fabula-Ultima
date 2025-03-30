@@ -123,7 +123,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  */
 export class SpellDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, StringField, HTMLField, SetField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
 			fuid: new StringField(),
 			subtype: new SchemaField({ value: new StringField() }),
@@ -154,6 +154,7 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 			hasRoll: new SchemaField({ value: new BooleanField() }),
 			cost: new EmbeddedDataField(ActionCostDataModel, {}),
 			targeting: new EmbeddedDataField(TargetingDataModel, {}),
+			traits: new SetField(new StringField()),
 		};
 	}
 
