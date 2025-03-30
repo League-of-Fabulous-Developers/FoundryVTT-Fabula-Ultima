@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B]{Dazed Immunity}, @UUID[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Shaken Immunity}, @UUID[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp]{Slow Immunity}, or @UUID[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Weak Immunity}</p></li></ul><p></p>"
+      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B]{Dazed Immunity}, @EFFECT[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Shaken Immunity}, @EFFECT[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp]{Slow Immunity}, or @EFFECT[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Weak Immunity}</p></li></ul><p></p>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-flux"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177560234,
-    "modifiedTime": 1743114128553,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1743344669862,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },

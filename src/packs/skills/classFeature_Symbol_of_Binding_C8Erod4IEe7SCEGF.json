@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>The <strong>current </strong>Attribute die sizes of the creature bearing this <strong>symbol </strong>can <strong>never </strong>be <strong>higher </strong>than that creature’s corresponding <strong>base </strong>Attribute die sizes (this does <strong>not</strong> end any spells or effects, but it will negate their influence over the creature’s Attributes).</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Suffers:</strong> @UUID[Compendium.projectfu.actor-effects.Item.UwPbW3l5dOc5TawO]{DEX Base Cap}, @UUID[Compendium.projectfu.actor-effects.Item.3BnJm5HkDhJfm1U1]{INS Base Cap}, @UUID[Compendium.projectfu.actor-effects.Item.muWeWDQSvZDY0IcI]{MIG Base Cap}, or @UUID[Compendium.projectfu.actor-effects.Item.BOVKFGdnuk8xq5EX]{WLP Base Cap}</p></li></ul>"
+      "description": "<p>The <strong>current </strong>Attribute die sizes of the creature bearing this <strong>symbol </strong>can <strong>never </strong>be <strong>higher </strong>than that creature’s corresponding <strong>base </strong>Attribute die sizes (this does <strong>not</strong> end any spells or effects, but it will negate their influence over the creature’s Attributes).</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.UwPbW3l5dOc5TawO]{DEX Base Cap}, @EFFECT[Compendium.projectfu.actor-effects.Item.3BnJm5HkDhJfm1U1]{INS Base Cap}, @EFFECT[Compendium.projectfu.actor-effects.Item.muWeWDQSvZDY0IcI]{MIG Base Cap}, or @EFFECT[Compendium.projectfu.actor-effects.Item.BOVKFGdnuk8xq5EX]{WLP Base Cap}</p></li></ul>"
     },
     "source": "FUHF149",
     "fuid": "symbol-of-binding"
@@ -83,8 +83,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177274883,
-    "modifiedTime": 1743113919397,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1743344613383,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },

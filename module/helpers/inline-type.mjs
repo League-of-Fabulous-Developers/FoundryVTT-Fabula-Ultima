@@ -14,7 +14,7 @@ const className = `inline-type`;
 const supportedTypes = {
 	// (all|attack|skill|spell), (fire|ice|...), (priority|normal)?
 	damage: [],
-	// (fire|...), (resistance|...)
+	// (fire|...), (resistance|vulnerability|normal...)
 	affinity: [],
 };
 
