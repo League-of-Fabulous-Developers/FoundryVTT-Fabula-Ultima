@@ -111,7 +111,7 @@ function activateListeners(document, html) {
 				}
 			}
 		})
-		.on('dragstart', function (event) {
+		.on('dragstart', async function (event) {
 			/** @type DragEvent */
 			event = event.originalEvent;
 			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
@@ -119,6 +119,7 @@ function activateListeners(document, html) {
 			}
 
 			const sourceInfo = InlineHelper.determineSource(document, this);
+
 			const data = {
 				type: this.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
 				sourceInfo: sourceInfo,
@@ -142,6 +143,8 @@ async function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInf
 		applyRecovery(sourceInfo, [actor], recoveryType, amount, uncapped);
 		return false;
 	} else if (type === INLINE_LOSS && !Number.isNaN(amount)) {
+		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
+		amount = await Expressions.evaluateAsync(amount, context);
 		applyLoss(sourceInfo, [actor], recoveryType, amount);
 		return false;
 	}

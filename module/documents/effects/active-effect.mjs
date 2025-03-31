@@ -74,33 +74,15 @@ export class FUActiveEffect extends ActiveEffect {
 	/**
 	 * @private
 	 * @override
+	 * @remarks Unlike `_onCreate`, is managed by the GM.
 	 */
 	async _preCreate(data, options, user) {
-		this.updateSource({ name: game.i18n.localize(data.name) });
-		return super._preCreate(data, options, user);
-	}
-
-	/**
-	 * @private
-	 * @override
-	 */
-	async _onCreate(data, options, userId) {
-		await super._onCreate(data, options, userId);
-		// No duration
-		switch (this.system.duration.event) {
-			// Update the effect duration interval back to maximum
-			case 'startOfTurn':
-			case 'endOfTurn':
-			case 'endOfRound':
-				{
-					const updateData = {
-						[`system.duration.remaining`]: this.system.duration.interval,
-					};
-					this.update(updateData);
-				}
-				break;
-		}
+		this.updateSource({
+			name: game.i18n.localize(data.name),
+			[`system.duration.remaining`]: this.system.duration.interval,
+		});
 		console.debug(`Created active effect ${this.name} with origin: ${this.origin}, source: ${this.source ? this.source.name : ''}`);
+		return super._preCreate(data, options, user);
 	}
 
 	/**
