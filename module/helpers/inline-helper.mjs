@@ -109,26 +109,28 @@ function determineSource(document, element) {
 	let itemUuid = null;
 	let actorUuid = null;
 
-	// Happens when clicked from the actor window
+	// ACTOR SHEET
 	if (document instanceof FUActor) {
 		actorUuid = document.uuid;
 		console.debug(`Determining source document as Actor ${actorUuid}`);
 		const itemId = $(element).closest('[data-item-id]').data('itemId');
 		if (itemId) {
 			let item = document.items.get(itemId);
-			itemUuid = itemId;
+			itemUuid = item.uuid;
 			name = item.name;
 		} else {
 			name = document.name;
 		}
-	} else if (document instanceof FUItem) {
+	} // ITEM SHEET
+	else if (document instanceof FUItem) {
 		name = document.name;
 		itemUuid = document.uuid;
 		if (document.isEmbedded) {
 			actorUuid = document.parent.uuid;
 		}
 		console.debug(`Determining source document as Item ${itemUuid}`);
-	} else if (document instanceof ChatMessage) {
+	} // CHAT MESSAGE
+	else if (document instanceof ChatMessage) {
 		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
 		if (speakerActor) {
 			actorUuid = speakerActor.uuid;
