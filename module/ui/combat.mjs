@@ -300,7 +300,7 @@ export class FUCombat extends Combat {
 			this.setupTurns();
 			this.notifyCombatTurnChange();
 		} else {
-			if(combatant.actor.isOwner) {
+			if (combatant.actor.isOwner) {
 				console.debug(`Executing message ${MESSAGES.RequestStartTurn} as GM`);
 				await SOCKET.executeAsGM(MESSAGES.RequestStartTurn, this.id, combatant.id);
 			} else {
@@ -411,9 +411,7 @@ export class FUCombat extends Combat {
 	determineNextTurn() {
 		if (!this.started) return undefined;
 
-		const lastCombatant = this.currentRoundTurnsTaken
-			.map(id => this.combatants.get(id))
-			.findLast(c => c?.faction)
+		const lastCombatant = this.currentRoundTurnsTaken.map((id) => this.combatants.get(id)).findLast((c) => c?.faction);
 
 		if (lastCombatant) {
 			const lastTurn = lastCombatant.faction;
@@ -427,8 +425,7 @@ export class FUCombat extends Combat {
 
 			const factionsWithTurnsLeft = turnsNotTaken.map((combatant) => combatant.faction);
 			return factionsWithTurnsLeft.includes(nextTurn) ? nextTurn : lastTurn;
-		}
-		else return this.getFirstTurn();
+		} else return this.getFirstTurn();
 	}
 
 	/**
@@ -491,11 +488,10 @@ export class FUCombat extends Combat {
 	 * @override
 	 */
 	async previousTurn() {
-		if(this.combatant) {
+		if (this.combatant) {
 			await this.setCombatant(null);
 			return this;
-		}
-		else {
+		} else {
 			const turnsTaken = this.getTurnsTaken();
 
 			if (turnsTaken[this.round]) {
@@ -521,17 +517,17 @@ export class FUCombat extends Combat {
 		flag[this.round - 1]?.pop();
 		await this.setTurnsTaken(flag);
 
-		let turn = ( this.round === 0 ) ? 0 : Math.max(this.totalTurns - 1, 0);
-		if ( this.turn === null ) turn = null;
+		let turn = this.round === 0 ? 0 : Math.max(this.totalTurns - 1, 0);
+		if (this.turn === null) turn = null;
 		let round = Math.max(this.round - 1, 0);
-		if ( round === 0 ) turn = null;
+		if (round === 0) turn = null;
 		let advanceTime = -1 * (this.turn || 0) * CONFIG.time.turnTime;
-		if ( round > 0 ) advanceTime -= CONFIG.time.roundTime;
+		if (round > 0) advanceTime -= CONFIG.time.roundTime;
 
 		// Update the document, passing data through a hook first
-		const updateData = {round, turn};
-		const updateOptions = {direction: -1, worldTime: {delta: advanceTime}};
-		Hooks.callAll("combatRound", this, updateData, updateOptions);
+		const updateData = { round, turn };
+		const updateOptions = { direction: -1, worldTime: { delta: advanceTime } };
+		Hooks.callAll('combatRound', this, updateData, updateOptions);
 
 		await this.setCurrentTurn(this.determineNextTurn());
 
@@ -620,12 +616,11 @@ export class FUCombat extends Combat {
 	 * @returns boolean
 	 */
 	static showTurnsFor(combatant) {
-		if(game.user?.isGM || combatant.actor.isOwner || combatant.actor.type === 'character') return true;
+		if (game.user?.isGM || combatant.actor.isOwner || combatant.actor.type === 'character') return true;
 		const showTurnsMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode);
 		if (showTurnsMode === 'never') {
-			return false
-		}
-		else if (showTurnsMode === 'only-studied') {
+			return false;
+		} else if (showTurnsMode === 'only-studied') {
 			const studyJournal = game.journal.getName(combatant.actor.name);
 			if (showTurnsMode === 'only-studied' && !studyJournal) {
 				return false;

@@ -789,7 +789,7 @@ class CombatHudSettings extends FormApplication {
 			classes: ['projectfu'],
 			template: 'systems/projectfu/templates/system/settings/combat-hud.hbs',
 			id: 'combat-hud-settings',
-			width: 600
+			width: 600,
 		});
 	}
 
@@ -804,7 +804,7 @@ class CombatHudSettings extends FormApplication {
 
 	getData() {
 		const materialSymbolsLabel = game.i18n.localize('FU.CombatHudTurnIconsGoogleMaterialSymbolsLabel');
-		const materialSymbolsLink = `<a href="https://fonts.google.com/icons" target="_blank">${materialSymbolsLabel}</a>`
+		const materialSymbolsLink = `<a href="https://fonts.google.com/icons" target="_blank">${materialSymbolsLabel}</a>`;
 		return {
 			experimentalCombatHud: game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud),
 			optionCombatHudOpacity: game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity),
@@ -838,7 +838,7 @@ class CombatHudSettings extends FormApplication {
 				always: 'FU.CombatHudShowNPCTurnsLeftModeAlways',
 				'only-studied': 'FU.CombatHudShowNPCTurnsLeftModeOnlyStudied',
 			},
-			combatHudTurnIconsHint: new Handlebars.SafeString(game.i18n.format('FU.CombatHudTurnIconsHint', {materialSymbolsLink: materialSymbolsLink})),
+			combatHudTurnIconsHint: new Handlebars.SafeString(game.i18n.format('FU.CombatHudTurnIconsHint', { materialSymbolsLink: materialSymbolsLink })),
 		};
 	}
 

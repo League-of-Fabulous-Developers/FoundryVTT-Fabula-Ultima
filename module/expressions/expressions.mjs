@@ -353,7 +353,7 @@ function evaluateMacros(expression, context) {
 		switch (name) {
 			// Skill level
 			case `sl`: {
-				const actor = context.resolveActorOrSource(match, redirect !== undefined);
+				const actor = context.resolveActorOrSource(match, redirect);
 				const skillId = splitArgs[0].match(/(\w+-*\s*)+/gm)[0];
 				const skill = actor.getSingleItemByFuid(skillId, 'skill');
 				if (!skill) {

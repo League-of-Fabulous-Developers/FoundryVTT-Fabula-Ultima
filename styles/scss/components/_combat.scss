@@ -12,7 +12,7 @@
 }
 
 .combatant-control[disabled] {
-    opacity: 0.55;
+	opacity: 0.55;
 }
 
 #combat-tracker {
@@ -213,9 +213,9 @@
 				bottom: 0;
 			}
 
-            .combatant-control[disabled]:hover {
-                text-shadow: 1px 1px 1px $color-black;
-            }
+			.combatant-control[disabled]:hover {
+				text-shadow: 1px 1px 1px $color-black;
+			}
 
 			img {
 				flex: 0 0 var(--combat-info-image-size);

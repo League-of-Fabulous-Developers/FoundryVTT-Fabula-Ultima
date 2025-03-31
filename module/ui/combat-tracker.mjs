@@ -1,4 +1,4 @@
-import {FUCombat} from "./combat.mjs";
+import { FUCombat } from './combat.mjs';
 
 /**
  * @class

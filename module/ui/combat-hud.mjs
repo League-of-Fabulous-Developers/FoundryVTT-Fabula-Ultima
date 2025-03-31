@@ -800,12 +800,11 @@ export class CombatHUD extends Application {
 
 		// Are any of the changes relevant to the Combat HUD?
 		if (game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && foundry.utils.hasProperty(changes, 'texture.src')) {
-
 			// Note: These properties are also used by the Combat Tracker
 			// But it doesn't attempt to regenerate them like this.
 			// Ultimately the token icon will be updated on the tracker the next time it refreshes.
 			combatant._thumb = null;
-			if(VideoHelper.hasVideoExtension(changes.texture.src)) {
+			if (VideoHelper.hasVideoExtension(changes.texture.src)) {
 				combatant.img = null;
 				combatant._videoSrc = changes.texture.src;
 			} else {
@@ -814,12 +813,7 @@ export class CombatHUD extends Application {
 			}
 
 			this._onUpdateHUD();
-		}
-		else if (
-			foundry.utils.hasProperty(changes, 'name') ||
-			foundry.utils.hasProperty(changes, 'actorId') ||
-			foundry.utils.hasProperty(changes, 'disposition')
-		) {
+		} else if (foundry.utils.hasProperty(changes, 'name') || foundry.utils.hasProperty(changes, 'actorId') || foundry.utils.hasProperty(changes, 'disposition')) {
 			this._onUpdateHUD();
 		}
 	}
@@ -1090,9 +1084,9 @@ export class CombatHUD extends Application {
 	 * @protected
 	 */
 	async _getCombatantThumbnail(combatant) {
-		if ( combatant._videoSrc && !combatant.img ) {
-			if ( combatant._thumb ) return combatant._thumb;
-			return combatant._thumb = await game.video.createThumbnail(combatant._videoSrc, {width: 200, height: 200});
+		if (combatant._videoSrc && !combatant.img) {
+			if (combatant._thumb) return combatant._thumb;
+			return (combatant._thumb = await game.video.createThumbnail(combatant._videoSrc, { width: 200, height: 200 }));
 		}
 		return combatant.img ?? CONST.DEFAULT_TOKEN;
 	}
