@@ -11,7 +11,6 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { Traits } from '../../../pipelines/traits.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 
 /**
@@ -31,7 +30,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		check.additionalData.hasDamage = item.system.rollInfo.damage.hasDamage.value;
 		MagicCheck.configure(check)
 			.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
-			.addTraits(item.system.rollInfo.damage.type.value, Traits.Spell)
+			.addTraits(item.system.rollInfo.damage.type.value, 'spell')
 			.setTargetedDefense('mdef')
 			.setDamageOverride(actor, 'spell')
 			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
@@ -62,6 +61,7 @@ Hooks.on(CheckHooks.processCheck, processCheck);
  */
 function onRenderCheck(data, result, actor, item, flags) {
 	if (item && item.system instanceof SpellDataModel) {
+		// TODO: Replace with CommonSections.tags
 		data.push(async () => ({
 			order: CHECK_DETAILS,
 			partial: 'systems/projectfu/templates/chat/partials/chat-spell-details.hbs',
@@ -76,6 +76,7 @@ function onRenderCheck(data, result, actor, item, flags) {
 			},
 		}));
 
+		CommonSections.traits(data, item.system.traits, CHECK_DETAILS);
 		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
 		const targets = CheckConfiguration.inspect(result).getTargetsOrDefault();

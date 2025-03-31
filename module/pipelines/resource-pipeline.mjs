@@ -98,6 +98,7 @@ async function processRecovery(request) {
 	const flavor = game.i18n.localize(recoveryFlavor[request.resourceType]);
 
 	const updates = [];
+	console.debug(`Applying recovery from request with traits: ${[...request.traits].join(', ')}`);
 	for (const actor of request.targets) {
 		const recoveryBonus = actor.system.bonuses.incomingRecovery[request.resourceType] || 0;
 		const amountRecovered = Math.max(0, Math.floor(request.amount + recoveryBonus));
@@ -163,6 +164,7 @@ async function processLoss(request) {
 	const flavor = game.i18n.localize(lossFlavor[request.resourceType]);
 
 	const updates = [];
+	console.debug(`Applying loss from request with traits: ${[...request.traits].join(', ')}`);
 	for (const actor of request.targets) {
 		if (request.isMetaCurrency) {
 			const currentValue = foundry.utils.getProperty(actor.system, request.attributePath) || 0;

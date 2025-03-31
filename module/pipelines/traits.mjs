@@ -1,11 +1,12 @@
 // TODO: Decide whether to define in config.mjs. Though it's probably fine if they are all in english
 
 /**
- * @description A non-comprehensive list of traits supported by the pipelines.
+ * @description A non-comprehensive list of traits supported by the damage, resource, and effects pipelines.
+ * @remarks These are generally used by items and inline actions.
  */
 export const Traits = Object.freeze({
+	// TODO: Use localized values?
 	IgnoreResistance: 'ignore-resistance',
 	IgnoreImmunity: 'ignore-immunity',
-	Skill: 'skill',
-	Spell: 'spell',
+	AbsorbHalf: 'absorb-half',
 });

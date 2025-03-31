@@ -353,6 +353,7 @@ async function process(request) {
 	Hooks.call(FUHooks.DAMAGE_APPLY_BEFORE, beforeApplyHookData);
 	request.baseDamageInfo = beforeApplyHookData.baseDamageInfo;
 	request.extraDamageInfo = beforeApplyHookData.extraDamageInfo;
+	console.debug(`Applying damage from request with traits: ${[...request.traits].join(', ')}`);
 
 	const updates = [];
 	for (const actor of request.targets) {

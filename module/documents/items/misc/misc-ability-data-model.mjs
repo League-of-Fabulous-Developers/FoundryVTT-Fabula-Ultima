@@ -13,7 +13,6 @@ import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
-import { Traits } from '../../../pipelines/traits.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (item?.system instanceof MiscAbilityDataModel) {
@@ -218,7 +217,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 
 			const inspect = CheckConfiguration.inspect(weaponCheck);
 			const configure = CheckConfiguration.configure(check);
-			configure.addTraits(Traits.Skill);
+			configure.addTraits('skill');
 
 			if (this.accuracy) {
 				check.modifiers.push({

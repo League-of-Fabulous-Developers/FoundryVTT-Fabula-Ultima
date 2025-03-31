@@ -14,7 +14,6 @@ import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-
 import { DamageDataModelV2 } from '../common/damage-data-model-v2.mjs';
 import { SkillMigrations } from './skill-migrations.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
-import { Traits } from '../../../pipelines/traits.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 
 const weaponUsedBySkill = 'weaponUsedBySkill';
@@ -257,7 +256,7 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 			const inspect = CheckConfiguration.inspect(weaponCheck);
 			const configure = CheckConfiguration.configure(check);
 
-			configure.addTraits(Traits.Skill);
+			configure.addTraits('skill');
 			configure.setWeaponTraits(inspect.getWeaponTraits());
 
 			if (this.accuracy) {
