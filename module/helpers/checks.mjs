@@ -837,7 +837,7 @@ export async function promptCheck(actor, title, action) {
 				hasRenderCheckHookRegistered = true;
 			}
 
-			return ChecksV2.attributeCheck(actor, { primary: check.attr1, secondary: check.attr2 }, CheckConfiguration.initDifficulty(check.difficulty));
+			return ChecksV2.attributeCheck(actor, { primary: check.attr1, secondary: check.attr2 }, this.parent, CheckConfiguration.initDifficulty(check.difficulty));
 		}
 		const speaker = ChatMessage.implementation.getSpeaker({ actor });
 

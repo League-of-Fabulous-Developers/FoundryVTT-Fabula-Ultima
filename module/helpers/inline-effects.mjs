@@ -66,10 +66,8 @@ function createStatusAnchor(effectValue, status, config) {
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	const localizedName = game.i18n.localize(status.name);
 	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${localizedName})`);
-	const icon = document.createElement('i');
-	const statusClass = `fu-${effectValue}`;
-	icon.classList.add('fue', statusClass);
-	anchor.append(icon);
+
+	InlineHelper.appendImageToAnchor(anchor, status.img);
 	anchor.append(localizedName);
 	return anchor;
 }

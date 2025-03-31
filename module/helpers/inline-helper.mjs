@@ -219,7 +219,7 @@ function appendImageToAnchor(anchor, path) {
 	img.src = path;
 	img.width = 16;
 	img.height = 16;
-	img.style.marginLeft = img.style.marginRight = '4px';
+	img.style.marginLeft = img.style.marginRight = '2px';
 	anchor.append(img);
 }
 

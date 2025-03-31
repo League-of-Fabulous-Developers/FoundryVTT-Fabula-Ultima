@@ -127,13 +127,13 @@ function activateListeners(document, html) {
 
 		let targets = await targetHandler();
 		if (targets.length > 0) {
+			const sourceInfo = InlineHelper.determineSource(document, this);
 			for (const actor of targets) {
-				ChecksV2.attributeCheck(actor, attributes, async (check) => {
+				ChecksV2.attributeCheck(actor, attributes, sourceInfo.resolveItem(), async (check) => {
 					let config = CheckConfiguration.configure(check);
 					let modifier = 0;
 
 					if (this.dataset.modifier !== undefined) {
-						const sourceInfo = InlineHelper.determineSource(document, this);
 						const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
 						modifier = await Expressions.evaluateAsync(this.dataset.modifier, context);
 					}

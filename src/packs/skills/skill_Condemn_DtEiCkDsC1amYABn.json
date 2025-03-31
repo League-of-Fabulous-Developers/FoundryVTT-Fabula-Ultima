@@ -108,7 +108,7 @@
       }
     },
     "hasRoll": {
-      "value": true
+      "value": false
     },
     "hasResource": {
       "value": false
@@ -139,8 +139,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706504101200,
-    "modifiedTime": 1741973222863,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1743442913476,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },

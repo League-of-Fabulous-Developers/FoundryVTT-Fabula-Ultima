@@ -184,6 +184,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 						primary: this.attributes.primary,
 						secondary: this.attributes.secondary,
 					},
+					this.parent,
 					this.#initializeAttributeCheck(),
 				);
 			}

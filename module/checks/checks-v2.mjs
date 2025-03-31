@@ -45,9 +45,10 @@ const accuracyCheck = async (actor, item, configCallback) => {
  *
  * @param {FUActor} actor
  * @param {CheckAttributes} attributes
+ * @param {FUItem} item
  * @param {CheckCallback} [configCallback]
  */
-const attributeCheck = async (actor, attributes, configCallback) => {
+const attributeCheck = async (actor, attributes, item, configCallback) => {
 	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'attribute',
@@ -55,7 +56,7 @@ const attributeCheck = async (actor, attributes, configCallback) => {
 		secondary: attributes.secondary,
 	};
 
-	return performCheck(check, actor, undefined, configCallback);
+	return performCheck(check, actor, item, configCallback);
 };
 
 /**
