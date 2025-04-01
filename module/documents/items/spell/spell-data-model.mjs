@@ -12,6 +12,7 @@ import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
+import { Flags } from '../../../helpers/flags.mjs';
 
 /**
  * @param {CheckV2} check
@@ -21,8 +22,25 @@ import { CommonEvents } from '../../../checks/common-events.mjs';
  */
 const prepareCheck = (check, actor, item, registerCallback) => {
 	if (check.type === 'magic' && item.system instanceof SpellDataModel) {
-		check.primary = item.system.rollInfo.attributes.primary.value;
-		check.secondary = item.system.rollInfo.attributes.secondary.value;
+		let attributeOverride = false;
+		if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
+			// TODO: Replace with ChooseWeaponDialog once this has been refactored like `SkillDataModel`
+			const equippedWeapons = actor.items.filter((singleItem) => singleItem.type === 'weapon' || (singleItem.type === 'basic' && singleItem.system.isEquipped?.value));
+			if (equippedWeapons.length > 0) {
+				const weapon = equippedWeapons[0];
+				if (weapon) {
+					check.primary = weapon.system.attributes.primary.value;
+					check.secondary = weapon.system.attributes.secondary.value;
+					attributeOverride = true;
+				}
+			}
+		}
+
+		if (!attributeOverride) {
+			check.primary = item.system.rollInfo.attributes.primary.value;
+			check.secondary = item.system.rollInfo.attributes.secondary.value;
+		}
+
 		check.modifiers.push({
 			label: 'FU.MagicCheckBaseAccuracy',
 			value: item.system.rollInfo.accuracy.value,
