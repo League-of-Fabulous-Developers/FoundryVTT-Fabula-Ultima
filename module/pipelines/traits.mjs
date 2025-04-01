@@ -6,7 +6,9 @@
  */
 export const Traits = Object.freeze({
 	// TODO: Use localized values?
-	IgnoreResistance: 'ignore-resistance',
-	IgnoreImmunity: 'ignore-immunity',
+	IgnoreResistances: 'ignore-resistance',
+	IgnoreImmunities: 'ignore-immunity',
 	AbsorbHalf: 'absorb-half',
+	MentalDamage: 'mental-damage',
+	Merciful: 'merciful',
 });
