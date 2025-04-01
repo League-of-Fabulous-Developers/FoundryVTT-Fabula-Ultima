@@ -32,6 +32,7 @@ let onRenderAccuracyCheck = (sections, check, actor, item, flags) => {
 			}
 		}
 		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
+		CommonSections.traits(sections, item.system.traits, CHECK_DETAILS);
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		if (weapon) {
 			sections.push(() => ({
@@ -77,6 +78,7 @@ let onRenderAttributeCheck = (sections, check, actor, item) => {
 		const skill = fromUuidSync(check.additionalData[skillForAttributeCheck]);
 		CommonSections.itemFlavor(sections, skill);
 		CommonSections.tags(sections, getTags(skill), CHECK_DETAILS);
+		CommonSections.traits(sections, item.system.traits, CHECK_DETAILS);
 		if (skill.system.hasResource.value) {
 			CommonSections.resource(sections, skill.system.rp, CHECK_DETAILS);
 		}
@@ -91,6 +93,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderAttributeCheck);
 const onRenderDisplay = (sections, check, actor, item, flags) => {
 	if (check.type === 'display' && item.system instanceof SkillDataModel) {
 		CommonSections.tags(sections, getTags(item), CHECK_DETAILS);
+		CommonSections.traits(sections, item.system.traits, CHECK_DETAILS);
 		if (item.system.hasResource.value) {
 			CommonSections.resource(sections, item.system.rp, CHECK_DETAILS);
 		}
@@ -133,6 +136,7 @@ function getTags(skill) {
  * @property {boolean} hasRoll.value
  * @property {ActionCostDataModel} cost
  * @property {TargetingDataModel} targeting
+ * @property {Set<String>} traits
  */
 export class SkillDataModel extends foundry.abstract.TypeDataModel {
 	static {
@@ -152,7 +156,7 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
 		return {
 			fuid: new StringField(),
 			subtype: new SchemaField({ value: new StringField() }),
@@ -182,6 +186,7 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 			hasRoll: new SchemaField({ value: new BooleanField() }),
 			cost: new EmbeddedDataField(ActionCostDataModel, {}),
 			targeting: new EmbeddedDataField(TargetingDataModel, {}),
+			traits: new SetField(new StringField()),
 		};
 	}
 
@@ -257,6 +262,7 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 			const configure = CheckConfiguration.configure(check);
 
 			configure.addTraits('skill');
+			configure.addTraitsFromItemModel(this.traits);
 			configure.setWeaponTraits(inspect.getWeaponTraits());
 
 			if (this.accuracy) {

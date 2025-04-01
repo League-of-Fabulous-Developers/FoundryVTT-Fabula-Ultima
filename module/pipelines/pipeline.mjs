@@ -7,7 +7,6 @@
 
 import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { Traits } from './traits.mjs';
 
 /**
  * @property {InlineSourceInfo} sourceInfo
@@ -22,9 +21,6 @@ export class PipelineRequest {
 		this.targets = targets;
 		this.traits = new Set();
 		this.item = sourceInfo.resolveItem();
-		if (this.item && this.item.system.traits) {
-			this.item.system.traits.forEach((t) => this.traits.add(Traits[t]));
-		}
 	}
 }
 

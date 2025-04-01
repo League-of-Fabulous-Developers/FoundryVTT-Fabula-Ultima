@@ -49,6 +49,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 		MagicCheck.configure(check)
 			.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
 			.addTraits(item.system.rollInfo.damage.type.value, 'spell')
+			.addTraitsFromItemModel(item.system.traits)
 			.setTargetedDefense('mdef')
 			.setDamageOverride(actor, 'spell')
 			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
@@ -139,6 +140,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {boolean} hasRoll.value
  * @property {ActionCostDataModel} cost
  * @property {TargetingDataModel} targeting
+ * @property {Set<String>} traits
  */
 export class SpellDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {

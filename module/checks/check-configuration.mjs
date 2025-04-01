@@ -3,6 +3,7 @@ import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
@@ -124,6 +125,16 @@ class CheckConfigurer {
 			this.#check.additionalData[TRAITS] = [];
 		}
 		traits.forEach((t) => this.#check.additionalData[TRAITS].push(t.toLowerCase()));
+		return this;
+	}
+
+	/**
+	 * @param {Set<String>} traits
+	 * @returns {CheckConfigurer}
+	 * @remarks In the item's data model they are serialized in title case
+	 */
+	addTraitsFromItemModel(traits) {
+		this.addTraits(...Array.from(traits, StringUtils.titleToKebab));
 		return this;
 	}
 

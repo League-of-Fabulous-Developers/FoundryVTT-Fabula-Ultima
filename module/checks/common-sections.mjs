@@ -101,7 +101,7 @@ const tags = (sections, tags = [], order) => {
  */
 const traits = (sections, traits = [], order) => {
 	const tags = [...traits].map((trait) => ({
-		tag: trait,
+		tag: `FU.${trait}`,
 		separator: '',
 		value: '',
 		show: true,
