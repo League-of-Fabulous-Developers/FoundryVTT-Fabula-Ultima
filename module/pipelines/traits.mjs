@@ -10,5 +10,5 @@ export const Traits = Object.freeze({
 	IgnoreImmunities: 'ignore-immunity',
 	AbsorbHalf: 'absorb-half',
 	MentalDamage: 'mental-damage',
-	Merciful: 'merciful',
+	NonLethal: 'non-lethal',
 });

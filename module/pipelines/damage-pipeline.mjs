@@ -334,6 +334,15 @@ function calculateResult(context) {
 		context.recordStep(key, `*${value}`, result);
 	}
 
+	if (context.traits.has(Traits.NonLethal)) {
+		const difference = context.actor.system.resources.hp.value - result;
+		if (difference < 0) {
+			const reduction = Math.abs(difference) + 1; // Leave at 1 HP
+			result -= reduction;
+			context.recordStep(Traits.NonLethal, `-${reduction}`, result);
+		}
+	}
+
 	context.result = Math.floor(result);
 	Hooks.call(FUHooks.DAMAGE_PIPELINE_POST_CALCULATE, context);
 	return true;
