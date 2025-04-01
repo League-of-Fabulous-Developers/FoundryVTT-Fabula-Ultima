@@ -427,7 +427,7 @@ async function process(request) {
 		);
 
 		// Handle post-damage traits
-		if (request.traits.has(Traits.AbsorbHalf)) {
+		if (request.traits.has(Traits.AbsorbHalf) && context.result > 0) {
 			await absorbDamage(resource, context.result * 0.5, context.sourceInfo);
 		}
 	}

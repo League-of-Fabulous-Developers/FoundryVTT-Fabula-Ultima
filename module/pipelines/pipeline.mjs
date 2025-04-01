@@ -22,6 +22,10 @@ export class PipelineRequest {
 		this.traits = new Set();
 		this.item = sourceInfo.resolveItem();
 	}
+
+	addTraits(...traits) {
+		traits.forEach((t) => this.traits.add(t));
+	}
 }
 
 /**
