@@ -4,6 +4,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { Traits } from '../pipelines/traits.mjs';
 
 const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
@@ -460,12 +461,15 @@ class CheckInspector {
 
 	/**
 	 * @returns {TemplateDamageData}
-	 * @remarks Used for templating
+	 * @remarks Used for templating.
 	 */
 	getDamageData() {
 		const _check = this.getCheck();
 		const damage = this.getDamage();
 		const hrZero = this.getHrZero();
+		const traits = this.getTraits();
+		const isBase = traits.includes(Traits.Base);
+
 		let damageData = null;
 		if (damage) {
 			damageData = {
@@ -479,13 +483,13 @@ class CheckInspector {
 					total: damage.total,
 					type: damage.type,
 					extra: damage.extra,
-					traits: this.getTraits(),
+					traits: traits,
 				},
 				translation: {
 					damageTypes: FU.damageTypes,
 					damageIcon: FU.affIcon,
 				},
-				modifiers: damage.modifiers,
+				modifiers: isBase ? [damage.modifiers.slice(0, 1)] : damage.modifiers,
 			};
 		}
 

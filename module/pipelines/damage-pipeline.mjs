@@ -385,25 +385,36 @@ async function process(request) {
 		context.result = applyTargetHookData.total;
 
 		// Damage application
-		const damageTaken = -context.result;
+		let damageTaken = context.result;
+		const difference = context.actor.system.resources.hp.value - damageTaken;
+		if (difference < 0) {
+			damageTaken -= Math.abs(difference);
+		}
+
+		// TODO: Print message to chat
+		if (damageTaken === 0) {
+			ui.notifications.warn(`The actor ${actor.name} has already been defeated`);
+			continue;
+		}
+
 		let resource = 'hp';
 		if (request.traits.has(Traits.MentalDamage)) {
 			resource = 'mp';
 		}
-		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, damageTaken, true));
-		actor.showFloatyText(`${damageTaken} ${resource.toUpperCase()}`, `red`);
+		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true));
+		actor.showFloatyText(`${-damageTaken} ${resource.toUpperCase()}`, `red`);
 
 		// Dispatch event
-		CommonEvents.damage(request.damageType, context.result, context.traits, actor, context.sourceActor);
+		CommonEvents.damage(request.damageType, damageTaken, context.traits, actor, context.sourceActor);
 
 		// Chat message
 		const affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
-			damage: context.result,
+			damage: damageTaken,
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
 			affinityIcon: FU.affIcon[context.damageType],
 		});
 
-		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, context.result);
+		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageTaken);
 		Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
 
 		updates.push(
@@ -415,7 +426,7 @@ async function process(request) {
 					message: context.affinityMessage,
 					actor: actor.name,
 					uuid: actor.uuid,
-					damage: context.result,
+					damage: damageTaken,
 					type: affinityString,
 					from: request.sourceInfo.name,
 					resource: resource.toUpperCase(),
@@ -427,8 +438,8 @@ async function process(request) {
 		);
 
 		// Handle post-damage traits
-		if (request.traits.has(Traits.AbsorbHalf) && context.result > 0) {
-			await absorbDamage(resource, context.result * 0.5, context.sourceInfo);
+		if (request.traits.has(Traits.AbsorbHalf) && damageTaken > 0) {
+			await absorbDamage(resource, damageTaken * 0.5, context.sourceInfo);
 		}
 	}
 	return Promise.all(updates);
