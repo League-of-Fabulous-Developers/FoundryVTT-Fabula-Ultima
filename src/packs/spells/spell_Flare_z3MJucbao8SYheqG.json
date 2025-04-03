@@ -119,7 +119,10 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "flare"
+    "fuid": "flare",
+    "traits": [
+      "IgnoreResistances"
+    ]
   },
   "effects": [],
   "ownership": {
@@ -133,10 +136,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706564602981,
-    "modifiedTime": 1737919044398,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1743704376681,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },
