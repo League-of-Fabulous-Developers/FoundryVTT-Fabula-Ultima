@@ -75,6 +75,7 @@ import { InlineType } from './helpers/inline-type.mjs';
 import { InvokerIntegration } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 import { FUActiveEffectModel } from './documents/effects/active-effect-model.mjs';
 import { onRenderActiveEffectConfig } from './documents/effects/active-effect-config.mjs';
+import { InlineClocks } from './helpers/inline-clocks.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -285,6 +286,7 @@ Hooks.once('init', async () => {
 
 	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
 	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
+	InlineHelper.registerEnricher(InlineClocks.enricher, InlineClocks.activateListeners, InlineClocks.onDropActor);
 
 	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 

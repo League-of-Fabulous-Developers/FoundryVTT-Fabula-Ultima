@@ -362,6 +362,13 @@ function evaluateMacros(expression, context) {
 				}
 				return skill.system.level.value;
 			}
+			// Clock section
+			case 'cs': {
+				context.assertActor();
+				const id = splitArgs[0];
+				const clock = context.actor.getClockByFuid(id);
+				return clock.current;
+			}
 			// Scale from 5-19, 20-39, 40+
 			case 'step':
 				return stepByLevel(context, splitArgs[0], splitArgs[1], splitArgs[2]);

@@ -25,4 +25,20 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	get progressArray() {
 		return this.generateProgressArray();
 	}
+
+	async getContent() {
+		// Generate and reverse the progress array
+		const progressArr = this.generateProgressArray();
+		// Determine clock display status
+		const clockDisplay = await renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
+			arr: progressArr,
+			data: this,
+		});
+		// Create HTML content
+		const content = `
+		<div style="display: grid;">
+            ${clockDisplay}
+        </div>`;
+		return content;
+	}
 }

@@ -465,9 +465,35 @@ export class FUActor extends Actor {
 	 * Fetch an item that matches a given FUID and optionally an item type
 	 * @param {string} fuid - The FUID of the item(s) which you want to retrieve
 	 * @param {string} [type] - Optionally, a type name to restrict the search
-	 * @returns {Object|undefined} - The matching item, or undefined if none was found.
+	 * @returns {FUItem|undefined} - The matching item, or undefined if none was found.
 	 */
 	getSingleItemByFuid(fuid, type) {
 		return this.getItemsByFuid(fuid, type)[0];
+	}
+
+	/**
+	 * @description Returns the clock under the given fuid
+	 * @param {String} fuid
+	 * @returns {ProgressDataModel}
+	 */
+	getClockByFuid(fuid) {
+		const item = this.getSingleItemByFuid(fuid);
+		if (!item) {
+			return null;
+		}
+		return item.getClock();
+	}
+
+	/**
+	 * @desc
+	 * @param {String} fuid
+	 * @param {Number} value
+	 */
+	async updateClockByFuid(fuid, value) {
+		const item = this.getSingleItemByFuid(fuid);
+		if (!item) {
+			return null;
+		}
+		return item.updateClock(value);
 	}
 }
