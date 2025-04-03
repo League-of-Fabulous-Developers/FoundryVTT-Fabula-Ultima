@@ -10,6 +10,7 @@ import { Flags } from '../helpers/flags.mjs';
 
 /**
  * @property {InlineSourceInfo} sourceInfo
+ * @property {FUItem} item The item that triggered the pipeline
  * @property {FUActor[]} targets
  * @property {Set<String>} traits
  * @property {Event | null} event
@@ -19,6 +20,11 @@ export class PipelineRequest {
 		this.sourceInfo = sourceInfo;
 		this.targets = targets;
 		this.traits = new Set();
+		this.item = sourceInfo.resolveItem();
+	}
+
+	addTraits(...traits) {
+		traits.forEach((t) => this.traits.add(t));
 	}
 }
 
@@ -32,11 +38,15 @@ export class PipelineRequest {
  * @property {?} result The result output
  */
 export class PipelineContext {
+	/**
+	 * @param {PipelineRequest} request
+	 * @param {FUActor} actor
+	 */
 	constructor(request, actor) {
 		Object.assign(this, request);
 		this.actor = actor;
 		this.sourceActor = request.sourceInfo.resolveActor();
-		this.item = request.sourceInfo.resolveItem();
+		this.item = request.item;
 	}
 }
 

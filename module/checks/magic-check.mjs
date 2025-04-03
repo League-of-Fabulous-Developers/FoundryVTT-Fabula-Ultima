@@ -85,6 +85,7 @@ const onProcessCheck = (check, actor, item) => {
  * @param {CheckResultV2} checkResult
  * @param {CheckInspector} inspector
  * @param {CheckRenderData} data
+ * @param {FUActor} actor
  */
 function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
 	const accuracyData = inspector.getAccuracyData();

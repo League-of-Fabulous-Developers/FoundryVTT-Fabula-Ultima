@@ -229,12 +229,13 @@ function appendImageToAnchor(anchor, path) {
  * @param {String} name The name of the command
  * @param {String} required
  * @param {String[]|null} optional
- * @returns {RegExp}
- * @remarks Expects regex subpatterns to be already escaped
+ * @returns {RegExp} A regex to be used within an enricher
+ * @remarks Expects regex sub-patterns to be already escaped
+ * @remarks Automatically adds support for the following groups: `label` (String), `traits` (String[]).
  */
 function compose(name, required, optional = undefined) {
 	const joinedOptional = optional ? optional.join('') : '';
-	const pattern = `@${name}\\[${required}${joinedOptional}\\]${labelPattern}`;
+	const pattern = `@${name}\\[${required}${joinedOptional}${traitsPattern}\\]${labelPattern}`;
 	return new RegExp(pattern, 'g');
 }
 
@@ -242,6 +243,11 @@ function compose(name, required, optional = undefined) {
  * @type {string} The pattern used for optional labeling
  */
 const labelPattern = '(\\{(?<label>.*?)\\})?';
+
+/**
+ * @type {string} The pattern used for optional traits
+ */
+const traitsPattern = '(\\|(?<traits>[a-zA-Z-,]+)\\|)?';
 
 /**
  * @param {String} identifier The name of the regex group
@@ -263,6 +269,5 @@ export const InlineHelper = {
 	capitalize,
 	registerEnricher,
 	compose,
-	labelPattern,
 	propertyPattern,
 };

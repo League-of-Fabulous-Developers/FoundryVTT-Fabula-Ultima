@@ -24,11 +24,13 @@ function enricher(text, options) {
 	const amount = text[1];
 	const type = text[2].toLowerCase();
 	const label = text.groups.label;
+	const traits = text.groups.traits;
 
 	if (type in FU.damageTypes) {
 		const anchor = document.createElement('a');
 		anchor.classList.add('inline', 'inline-damage');
 		anchor.dataset.type = type;
+		anchor.dataset.traits = traits;
 		anchor.draggable = true;
 
 		// TOOLTIP
@@ -62,6 +64,7 @@ function activateListeners(document, html) {
 		document = document.document;
 	}
 
+	// TODO: Refactor to not have to repeat self across click and drag events
 	html.find('a.inline.inline-damage[draggable]')
 		.on('click', async function () {
 			let targets = await targetHandler();
@@ -73,6 +76,9 @@ function activateListeners(document, html) {
 
 				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
 				const request = new DamageRequest(sourceInfo, targets, baseDamageInfo);
+				if (this.dataset.traits) {
+					request.addTraits(...this.dataset.traits.split(','));
+				}
 				await DamagePipeline.process(request);
 			}
 		})
@@ -89,6 +95,7 @@ function activateListeners(document, html) {
 				_sourceInfo: sourceInfo,
 				damageType: this.dataset.type,
 				amount: this.dataset.amount,
+				traits: this.dataset.traits,
 			};
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
@@ -96,7 +103,7 @@ function activateListeners(document, html) {
 }
 
 // TODO: Implement
-async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo, ignore }) {
+async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo, traits, ignore }) {
 	if (type === INLINE_DAMAGE) {
 		// Need to rebuild the class after it was deserialized
 		const sourceInfo = InlineSourceInfo.fromObject(_sourceInfo);
@@ -105,6 +112,10 @@ async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo
 		const baseDamageInfo = { type: damageType, total: _amount, modifierTotal: 0 };
 
 		const request = new DamageRequest(sourceInfo, [actor], baseDamageInfo);
+		if (traits) {
+			request.addTraits(...traits.split(','));
+		}
+
 		DamagePipeline.process(request);
 		return false;
 	}

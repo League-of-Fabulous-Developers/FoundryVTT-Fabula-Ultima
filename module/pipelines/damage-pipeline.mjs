@@ -212,7 +212,7 @@ function resolveAffinity(context) {
 		}
 	}
 	if (affinity === FU.affValue.resistance) {
-		if (context.extraDamageInfo.ignoreResistance || context.traits.has(Traits.IgnoreResistance)) {
+		if (context.extraDamageInfo.ignoreResistance || context.traits.has(Traits.IgnoreResistances)) {
 			affinity = FU.affValue.none;
 			affinityMessage = 'FU.ChatApplyDamageResistantIgnored';
 		} else {
@@ -220,7 +220,7 @@ function resolveAffinity(context) {
 		}
 	}
 	if (affinity === FU.affValue.immunity) {
-		if (context.extraDamageInfo.ignoreImmunities || context.traits.has(Traits.IgnoreImmunity)) {
+		if (context.extraDamageInfo.ignoreImmunities || context.traits.has(Traits.IgnoreImmunities)) {
 			affinity = FU.affValue.none;
 			affinityMessage = `FU.ChatApplyDamageImmuneIgnored`;
 		} else {
@@ -334,6 +334,15 @@ function calculateResult(context) {
 		context.recordStep(key, `*${value}`, result);
 	}
 
+	if (context.traits.has(Traits.NonLethal)) {
+		const difference = context.actor.system.resources.hp.value - result;
+		if (difference < 0) {
+			const reduction = Math.abs(difference) + 1; // Leave at 1 HP
+			result -= reduction;
+			context.recordStep(Traits.NonLethal, `-${reduction}`, result);
+		}
+	}
+
 	context.result = Math.floor(result);
 	Hooks.call(FUHooks.DAMAGE_PIPELINE_POST_CALCULATE, context);
 	return true;
@@ -353,6 +362,7 @@ async function process(request) {
 	Hooks.call(FUHooks.DAMAGE_APPLY_BEFORE, beforeApplyHookData);
 	request.baseDamageInfo = beforeApplyHookData.baseDamageInfo;
 	request.extraDamageInfo = beforeApplyHookData.extraDamageInfo;
+	console.debug(`Applying damage from request with traits: ${[...request.traits].join(', ')}`);
 
 	const updates = [];
 	for (const actor of request.targets) {
@@ -375,21 +385,36 @@ async function process(request) {
 		context.result = applyTargetHookData.total;
 
 		// Damage application
-		const damageTaken = -context.result;
-		updates.push(actor.modifyTokenAttribute('resources.hp', damageTaken, true));
-		actor.showFloatyText(`${damageTaken} HP`, `red`);
+		let damageTaken = context.result;
+		const difference = context.actor.system.resources.hp.value - damageTaken;
+		if (difference < 0) {
+			damageTaken -= Math.abs(difference);
+		}
+
+		// TODO: Print message to chat
+		if (damageTaken === 0) {
+			ui.notifications.warn(`The actor ${actor.name} has already been defeated`);
+			continue;
+		}
+
+		let resource = 'hp';
+		if (request.traits.has(Traits.MentalDamage)) {
+			resource = 'mp';
+		}
+		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true));
+		actor.showFloatyText(`${-damageTaken} ${resource.toUpperCase()}`, `red`);
 
 		// Dispatch event
-		CommonEvents.damage(request.damageType, context.result, context.traits, actor, context.sourceActor);
+		CommonEvents.damage(request.damageType, damageTaken, context.traits, actor, context.sourceActor);
 
 		// Chat message
 		const affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
-			damage: context.result,
+			damage: damageTaken,
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
 			affinityIcon: FU.affIcon[context.damageType],
 		});
 
-		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, context.result);
+		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageTaken);
 		Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
 
 		updates.push(
@@ -401,15 +426,21 @@ async function process(request) {
 					message: context.affinityMessage,
 					actor: actor.name,
 					uuid: actor.uuid,
-					damage: context.result,
+					damage: damageTaken,
 					type: affinityString,
 					from: request.sourceInfo.name,
+					resource: resource.toUpperCase(),
 					sourceActorUuid: request.sourceInfo.actorUuid,
 					sourceItemUuid: request.sourceInfo.itemUuid,
 					breakdown: context.breakdown,
 				}),
 			}),
 		);
+
+		// Handle post-damage traits
+		if (request.traits.has(Traits.AbsorbHalf) && damageTaken > 0) {
+			await absorbDamage(resource, damageTaken * 0.5, context.sourceInfo);
+		}
 	}
 	return Promise.all(updates);
 }
@@ -531,12 +562,24 @@ async function handleDamageApplication(event, targets, sourceInfo, baseDamageInf
 	request.event = event;
 	traits.forEach((t) => request.traits.add(t));
 	if (event.shiftKey) {
-		request.traits.add(Traits.IgnoreResistance);
+		request.traits.add(Traits.IgnoreResistances);
 		if (event.ctrlKey || event.metaKey) {
-			request.traits.add(Traits.IgnoreImmunity);
+			request.traits.add(Traits.IgnoreImmunities);
 		}
 	}
 	await DamagePipeline.process(request);
+}
+
+/**
+ * @param {String} resource
+ * @param {Number} amount
+ * @param {InlineSourceInfo} sourceInfo
+ * @returns {Promise<void>}
+ */
+async function absorbDamage(resource, amount, sourceInfo) {
+	const targets = await getSelected();
+	const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
+	await ResourcePipeline.processRecovery(request);
 }
 
 /**
@@ -545,19 +588,17 @@ async function handleDamageApplication(event, targets, sourceInfo, baseDamageInf
 function initialize() {
 	Hooks.on('renderChatMessage', onRenderChatMessage);
 
-	const absorbDamage = async (message, resource) => {
+	const onAbsorbDamage = async (message, resource) => {
 		const amount = message.getFlag(SYSTEM, Flags.ChatMessage.Damage) * 0.5;
 		const sourceInfo = message.getFlag(SYSTEM, Flags.ChatMessage.Source);
-		const targets = await getSelected();
-		const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
-		ResourcePipeline.processRecovery(request);
+		absorbDamage(resource, amount, sourceInfo);
 	};
 
 	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbMindPoints`, FU.resourceIcons.mp, (message) => {
-		absorbDamage(message, 'mp');
+		onAbsorbDamage(message, 'mp');
 	});
 	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbHitPoints`, FU.resourceIcons.hp, (message) => {
-		absorbDamage(message, 'hp');
+		onAbsorbDamage(message, 'hp');
 	});
 }
 

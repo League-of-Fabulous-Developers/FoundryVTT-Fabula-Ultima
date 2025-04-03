@@ -96,6 +96,29 @@ const tags = (sections, tags = [], order) => {
 
 /**
  * @param {CheckRenderData} sections
+ * @param {Set<String>} traits
+ * @param {number} [order]
+ */
+const traits = (sections, traits = [], order) => {
+	const tags = [...traits].map((trait) => ({
+		tag: `FU.${trait}`,
+		separator: '',
+		value: '',
+		show: true,
+	}));
+	if (tags.length > 0) {
+		sections.push(async () => ({
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
+			data: {
+				tags: tags,
+			},
+			order: order,
+		}));
+	}
+};
+
+/**
+ * @param {CheckRenderData} sections
  * @param {string} quality
  * @param {number} [order]
  */
@@ -298,6 +321,7 @@ export const CommonSections = {
 	collapsibleDescription,
 	clock,
 	tags,
+	traits,
 	quality,
 	resource,
 	itemFlavor,

@@ -122,7 +122,63 @@
     "defense": "def",
     "fuid": "spellblade"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/elementalist/elementalist_spellblade.png",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Spellblade",
+      "_id": "DhBhEANF8jRMaBo4",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [
+        {
+          "key": "flags.projectfu.weaponMagicCheck",
+          "mode": 5,
+          "value": "true",
+          "priority": null
+        }
+      ],
+      "description": "<p>Your <strong>Magic Check</strong> for spells will use the <em>chosen weapon'</em>s <strong>Accuracy Check</strong> formula.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743535722306,
+        "modifiedTime": 1743537376516,
+        "lastModifiedBy": "JXPd932s9DHQRD0w"
+      },
+      "_key": "!items.effects!v6rTedHMjbLuLdN3.DhBhEANF8jRMaBo4"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,

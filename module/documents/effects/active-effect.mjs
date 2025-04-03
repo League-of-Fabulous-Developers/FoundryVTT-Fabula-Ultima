@@ -202,7 +202,7 @@ export class FUActiveEffect extends ActiveEffect {
 				const context = ExpressionContext.resolveTarget(target, this.parent, this.source);
 				const value = Expressions.evaluate(expression, context);
 				change.value = String(value ?? 0);
-				console.debug(`Assigning ${change.key} ${change.mode}: ${change.value}`);
+				console.debug(`Assigning ${change.key} (MODE ${change.mode}): ${change.value}`);
 			} catch (e) {
 				console.error(e);
 				ui.notifications?.error(
