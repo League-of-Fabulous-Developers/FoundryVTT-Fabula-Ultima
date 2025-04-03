@@ -198,6 +198,12 @@ function resolveAffinity(context) {
 	let affinity = FU.affValue.none;
 	let affinityMessage = 'FU.ChatApplyDamageNormal';
 
+	// Special case (break early)
+	if (context.traits.has(Traits.MindPointLoss)) {
+		context.affinityMessage = 'FU.ChatResourceLoss';
+		context.affinity = affinity;
+		return true;
+	}
 	if (context.overrides?.affinity) {
 		affinity = context.overrides.affinity;
 	} else if (context.damageType in context.actor.system.affinities) {
@@ -398,7 +404,7 @@ async function process(request) {
 		}
 
 		let resource = 'hp';
-		if (request.traits.has(Traits.MentalDamage)) {
+		if (request.traits.has(Traits.MindPointLoss)) {
 			resource = 'mp';
 		}
 		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true));
@@ -426,7 +432,9 @@ async function process(request) {
 					message: context.affinityMessage,
 					actor: actor.name,
 					uuid: actor.uuid,
+					// TODO: Replace damage with amount in the localizations
 					damage: damageTaken,
+					amount: damageTaken,
 					type: affinityString,
 					from: request.sourceInfo.name,
 					resource: resource.toUpperCase(),
@@ -439,7 +447,7 @@ async function process(request) {
 
 		// Handle post-damage traits
 		if (request.traits.has(Traits.AbsorbHalf) && damageTaken > 0) {
-			await absorbDamage(resource, damageTaken * 0.5, context.sourceInfo);
+			await absorbDamage(resource, damageTaken * 0.5, context.sourceInfo, [context.sourceActor]);
 		}
 	}
 	return Promise.all(updates);
@@ -576,8 +584,7 @@ async function handleDamageApplication(event, targets, sourceInfo, baseDamageInf
  * @param {InlineSourceInfo} sourceInfo
  * @returns {Promise<void>}
  */
-async function absorbDamage(resource, amount, sourceInfo) {
-	const targets = await getSelected();
+async function absorbDamage(resource, amount, sourceInfo, targets) {
 	const request = new ResourceRequest(sourceInfo, targets, resource, amount, false);
 	await ResourcePipeline.processRecovery(request);
 }
@@ -589,9 +596,10 @@ function initialize() {
 	Hooks.on('renderChatMessage', onRenderChatMessage);
 
 	const onAbsorbDamage = async (message, resource) => {
+		const targets = await getSelected();
 		const amount = message.getFlag(SYSTEM, Flags.ChatMessage.Damage) * 0.5;
 		const sourceInfo = message.getFlag(SYSTEM, Flags.ChatMessage.Source);
-		absorbDamage(resource, amount, sourceInfo);
+		absorbDamage(resource, amount, sourceInfo, targets);
 	};
 
 	ChatMessageHelper.registerContextMenuItem(Flags.ChatMessage.Damage, `FU.ChatAbsorbMindPoints`, FU.resourceIcons.mp, (message) => {

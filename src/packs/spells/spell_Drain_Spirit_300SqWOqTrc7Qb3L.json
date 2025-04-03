@@ -122,7 +122,7 @@
     "fuid": "drain-spirit",
     "traits": [
       "AbsorbHalf",
-      "MentalDamage",
+      "MindPointLoss",
       "Base"
     ]
   },
@@ -140,7 +140,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706571054952,
-    "modifiedTime": 1743618693436,
+    "modifiedTime": 1743708536248,
     "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
