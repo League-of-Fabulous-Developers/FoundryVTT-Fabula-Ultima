@@ -52,13 +52,33 @@ function activateListeners(document, html) {
 			const id = this.dataset.id;
 			const step = Number(this.dataset.step);
 			await actor.updateClockByFuid(id, step);
-			// TOOD: Render updated clock to chat message?
 			const clock = actor.getClockByFuid(id);
-			const content = await clock.getContent();
-			ChatMessage.create({
-				content: content,
-			});
+			const item = sourceInfo.resolveItem();
+			await render(clock, step, actor, item);
 		}
+	});
+}
+
+/**
+ * @param {ProgressDataModel} progress
+ * @param {Number} step
+ * @param {FUActor} actor
+ * @param {FUItem} item
+ * @returns {Promise<string>}
+ */
+async function render(progress, step, actor, item) {
+	// Generate and reverse the progress array
+	const progressArr = progress.generateProgressArray();
+	ChatMessage.create({
+		speaker: ChatMessage.getSpeaker({ actor }),
+		content: await renderTemplate('systems/projectfu/templates/chat/chat-advance-clock.hbs', {
+			message: step > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock',
+			step: step,
+			clock: progress.parent.parent.name,
+			source: item.name,
+			data: progress,
+			arr: progressArr,
+		}),
 	});
 }
 
