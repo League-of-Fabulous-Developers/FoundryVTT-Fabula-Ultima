@@ -40,7 +40,7 @@
         "stack": 1
       },
       "changes": [],
-      "description": "",
+      "description": "<p>When the source of this effect causes you to <strong>recover hit points </strong>and/or <strong>mind points</strong>, you also recover additional HP and/or MP, respectively:</p><ul><li><p><strong>You Recover: </strong>@GAIN[2*(~&amp;sl('cognitive-focus')) hp] <strong>and/or</strong> @GAIN[2*~&amp;sl('cognitive-focus')) mp]</p></li></ul><p></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -54,7 +54,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742583758873,
-        "modifiedTime": 1742583801527,
+        "modifiedTime": 1743877700596,
         "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
       "_key": "!items.effects!GqxqSdf1UMKkJH1U.oV7VJZXAqDj5CyZC"

@@ -1,18 +1,17 @@
 {
   "folder": "n7e5v4COOboqOpnr",
-  "name": "Effect: Atmokinesis (Bolt)",
+  "name": "Effect: Thermokinesis (Ice)",
   "type": "effect",
-  "_id": "4oUORbf2Bzwl6sjD",
-  "img": "icons/magic/lightning/bolt-strike-hand-gray.webp",
+  "img": "icons/magic/fire/orb-fireball-puzzle.webp",
   "system": {
-    "fuid": "effect-atmokinesis-bolt",
+    "fuid": "effect-thermokinesis-ice",
     "cost": {
       "value": 0
     }
   },
   "effects": [
     {
-      "img": "icons/magic/lightning/bolt-strike-hand-gray.webp",
+      "img": "icons/magic/fire/orb-fireball-puzzle.webp",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -23,8 +22,8 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Atmokinesis (Bolt)",
-      "_id": "dROM6eTY0mgTnrdo",
+      "name": "Thermokinesis (Ice)",
+      "_id": "eDtBQ3oXUw4wGmcF",
       "type": "base",
       "system": {
         "type": "default",
@@ -43,7 +42,7 @@
         {
           "key": "system.overrides.damageType.all.priority",
           "mode": 5,
-          "value": "bolt",
+          "value": "ice",
           "priority": null
         },
         {
@@ -66,14 +65,13 @@
         "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743785564737,
-        "modifiedTime": 1743876668317,
+        "createdTime": null,
+        "modifiedTime": 1743877061758,
         "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
-      "_key": "!items.effects!4oUORbf2Bzwl6sjD.dROM6eTY0mgTnrdo"
+      "_key": "!items.effects!ECmYpql8h2JfWAff.eDtBQ3oXUw4wGmcF"
     }
   ],
-  "sort": 0,
   "ownership": {
     "default": 0,
     "JXPd932s9DHQRD0w": 3
@@ -85,9 +83,11 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1743785558817,
-    "modifiedTime": 1743785810953,
+    "createdTime": 1743877043315,
+    "modifiedTime": 1743877053236,
     "lastModifiedBy": "JXPd932s9DHQRD0w"
   },
-  "_key": "!items!4oUORbf2Bzwl6sjD"
+  "_id": "ECmYpql8h2JfWAff",
+  "sort": 0,
+  "_key": "!items!ECmYpql8h2JfWAff"
 }

@@ -1,20 +1,20 @@
 {
   "folder": "n7e5v4COOboqOpnr",
-  "name": "Effect: Atmokinesis (Bolt)",
+  "name": "Cognitive Focus (Check Bonus)",
   "type": "effect",
-  "_id": "4oUORbf2Bzwl6sjD",
-  "img": "icons/magic/lightning/bolt-strike-hand-gray.webp",
+  "_id": "TnDgm6eYgHSKNkDT",
+  "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_cognitive_focus.png",
   "system": {
-    "fuid": "effect-atmokinesis-bolt",
+    "fuid": "cognitive-focus-check-bonus",
     "cost": {
       "value": 0
     }
   },
   "effects": [
     {
-      "img": "icons/magic/lightning/bolt-strike-hand-gray.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_cognitive_focus.png",
       "duration": {
-        "rounds": 1,
+        "rounds": null,
         "startTime": null,
         "seconds": null,
         "combat": null,
@@ -23,8 +23,8 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Atmokinesis (Bolt)",
-      "_id": "dROM6eTY0mgTnrdo",
+      "name": "Cognitive Focus (Check Bonus)",
+      "_id": "XMLHPxzVBIgKJTiT",
       "type": "base",
       "system": {
         "type": "default",
@@ -32,7 +32,7 @@
           "crisisInteraction": "none"
         },
         "duration": {
-          "event": "endOfTurn",
+          "event": "startOfTurn",
           "interval": 1,
           "tracking": "self",
           "remaining": 1
@@ -41,19 +41,19 @@
       },
       "changes": [
         {
-          "key": "system.overrides.damageType.all.priority",
-          "mode": 5,
-          "value": "bolt",
+          "key": "system.bonuses.accuracy.accuracyCheck",
+          "mode": 2,
+          "value": "&sl('cognitive-focus')",
           "priority": null
         },
         {
-          "key": "system.bonuses.damage.all",
+          "key": "system.bonuses.accuracy.magicCheck",
           "mode": 2,
-          "value": "2+&cs('brainwave-clock')",
+          "value": "&sl('cognitive-focus')",
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You gain a bonus equal to <strong>【SL】</strong> to Checks you perform to examine your <strong>focus</strong>, as well as to your Accuracy Checks and Magic Checks for attacks and offensive spells ( <span>@ICON[offensive] </span>) that include your <strong>focus</strong> among the targets.</p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -66,11 +66,11 @@
         "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1743785564737,
-        "modifiedTime": 1743876668317,
+        "createdTime": 1743877788036,
+        "modifiedTime": 1743878078300,
         "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
-      "_key": "!items.effects!4oUORbf2Bzwl6sjD.dROM6eTY0mgTnrdo"
+      "_key": "!items.effects!TnDgm6eYgHSKNkDT.XMLHPxzVBIgKJTiT"
     }
   ],
   "sort": 0,
@@ -85,9 +85,9 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1743785558817,
-    "modifiedTime": 1743785810953,
+    "createdTime": 1743877784465,
+    "modifiedTime": 1743877826064,
     "lastModifiedBy": "JXPd932s9DHQRD0w"
   },
-  "_key": "!items!4oUORbf2Bzwl6sjD"
+  "_key": "!items!TnDgm6eYgHSKNkDT"
 }
