@@ -5,7 +5,7 @@ import { StringUtils } from './string-utils.mjs';
  * @type {TextEditorEnricherConfig}
  */
 const inlineCheckEnricher = {
-	pattern: InlineHelper.compose('CLOCK', '\\s*(?<id>[a-zA-Z-,]+)\\s+(?<step>[0-9-]+?)'),
+	pattern: InlineHelper.compose('CLOCK', '\\s*(?<id>[a-zA-Z-,]+)\\s+(?<command>[a-zA-Z]+?)\\s*(?<value>[0-9-]+?)?'),
 	enricher: checkEnricher,
 };
 
@@ -16,22 +16,23 @@ const inlineCheckEnricher = {
  */
 function checkEnricher(match, options) {
 	const id = match.groups.id;
-	const step = match.groups.step;
+	const command = match.groups.command;
+	const value = match.groups.value;
 
-	if (id && step) {
+	if (id && (value || command)) {
 		const label = match.groups.label;
 		const anchor = document.createElement('a');
 		anchor.dataset.id = id;
-		anchor.dataset.step = step;
 		anchor.classList.add('inline', 'inline-clock');
+		anchor.dataset.command = command;
+		anchor.dataset.value = value;
 
 		if (label) {
 			anchor.append(label);
 			anchor.dataset.label = label;
 		} else {
-			anchor.append(`${StringUtils.kebabToPascal(id)} ${step}`);
+			anchor.append(`${StringUtils.kebabToPascal(id)} ${value}`);
 		}
-
 		return anchor;
 	}
 }
@@ -50,11 +51,24 @@ function activateListeners(document, html) {
 		const actor = sourceInfo.resolveActor();
 		if (actor) {
 			const id = this.dataset.id;
-			const step = Number(this.dataset.step);
-			await actor.updateClockByFuid(id, step);
-			const clock = actor.getClockByFuid(id);
-			const item = sourceInfo.resolveItem();
-			await render(clock, step, actor, item);
+			const command = this.dataset.command;
+
+			switch (command) {
+				case 'update': {
+					const step = Number(this.dataset.value);
+					const item = sourceInfo.resolveItem();
+					await actor.updateClockByFuid(id, step);
+					const clock = actor.getSingleItemByFuid(id).getClock();
+					await renderStep(clock, step, actor, item);
+					break;
+				}
+
+				case 'reset': {
+					const clock = actor.getSingleItemByFuid(id).getClock();
+					await actor.updateClockByFuid(id, -clock.current);
+					break;
+				}
+			}
 		}
 	});
 }
@@ -66,7 +80,7 @@ function activateListeners(document, html) {
  * @param {FUItem} item
  * @returns {Promise<string>}
  */
-async function render(progress, step, actor, item) {
+async function renderStep(progress, step, actor, item) {
 	// Generate and reverse the progress array
 	const progressArr = progress.generateProgressArray();
 	ChatMessage.create({

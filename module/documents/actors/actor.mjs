@@ -472,19 +472,6 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @description Returns the clock under the given fuid
-	 * @param {String} fuid
-	 * @returns {ProgressDataModel}
-	 */
-	getClockByFuid(fuid) {
-		const item = this.getSingleItemByFuid(fuid);
-		if (!item) {
-			return null;
-		}
-		return item.getClock();
-	}
-
-	/**
 	 * @desc
 	 * @param {String} fuid
 	 * @param {Number} value

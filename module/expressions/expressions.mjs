@@ -374,7 +374,7 @@ function evaluateMacros(expression, context) {
 			case 'cs': {
 				context.assertActor();
 				const id = parseIdentifier(splitArgs[0]);
-				const clock = context.actor.getClockByFuid(id);
+				const clock = context.actor.getSingleItemByFuid(id).getClock();
 				return clock.current;
 			}
 			// Scale from 5-19, 20-39, 40+
