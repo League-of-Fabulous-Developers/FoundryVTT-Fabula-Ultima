@@ -1381,6 +1381,8 @@
 		},
 		"AbsorbHalf": "Absorb Half",
 		"MentalDamage": "Mental Damage",
-		"NonLethal": "Non Lethal"
+		"NonLethal": "Non Lethal",
+		"ChatIncrementClock": "<strong>{clock}</strong> was increased by <strong>{step}</strong> due to <strong>{source}</strong>.",
+		"ChatDecrementClock": "<strong>{clock}</strong> was decreased by <strong>{step}</strong> due to <strong>{source}</strong>."
 	}
 }

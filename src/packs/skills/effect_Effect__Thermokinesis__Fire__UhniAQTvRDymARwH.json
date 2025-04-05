@@ -1,18 +1,17 @@
 {
   "folder": "n7e5v4COOboqOpnr",
-  "name": "Effect: Cognitive Focus",
+  "name": "Effect: Thermokinesis (Fire)",
   "type": "effect",
-  "_id": "GqxqSdf1UMKkJH1U",
-  "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_cognitive_focus.png",
+  "img": "icons/magic/fire/orb-fireball-puzzle.webp",
   "system": {
-    "fuid": "effect-cognitive-focus",
+    "fuid": "effect-thermokinesis-fire",
     "cost": {
       "value": 0
     }
   },
   "effects": [
     {
-      "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_cognitive_focus.png",
+      "img": "icons/magic/fire/orb-fireball-puzzle.webp",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -23,8 +22,8 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Cognitive Focus",
-      "_id": "oV7VJZXAqDj5CyZC",
+      "name": "Thermokinesis (Fire)",
+      "_id": "eDtBQ3oXUw4wGmcF",
       "type": "base",
       "system": {
         "type": "default",
@@ -32,15 +31,28 @@
           "crisisInteraction": "none"
         },
         "duration": {
-          "event": "startOfTurn",
+          "event": "endOfTurn",
           "interval": 1,
-          "tracking": "source",
-          "remaining": 0
+          "tracking": "self",
+          "remaining": 1
         },
         "stack": 1
       },
-      "changes": [],
-      "description": "<p>When the source of this effect causes you to <strong>recover hit points </strong>and/or <strong>mind points</strong>, you also recover additional HP and/or MP, respectively:</p><ul><li><p><strong>You Recover: </strong>@GAIN[2*(~&amp;sl('cognitive-focus')) hp] <strong>and/or</strong> @GAIN[2*~&amp;sl('cognitive-focus')) mp]</p></li></ul><p></p>",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.priority",
+          "mode": 5,
+          "value": "fire",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "2+&cs('brainwave-clock')",
+          "priority": null
+        }
+      ],
+      "description": "",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -53,14 +65,13 @@
         "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1742583758873,
-        "modifiedTime": 1743877700596,
-        "lastModifiedBy": "JXPd932s9DHQRD0w"
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       },
-      "_key": "!items.effects!GqxqSdf1UMKkJH1U.oV7VJZXAqDj5CyZC"
+      "_key": "!items.effects!UhniAQTvRDymARwH.eDtBQ3oXUw4wGmcF"
     }
   ],
-  "sort": 0,
   "ownership": {
     "default": 0,
     "JXPd932s9DHQRD0w": 3
@@ -72,9 +83,11 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742583755959,
-    "modifiedTime": 1742583792799,
+    "createdTime": 1743877033787,
+    "modifiedTime": 1743877046483,
     "lastModifiedBy": "JXPd932s9DHQRD0w"
   },
-  "_key": "!items!GqxqSdf1UMKkJH1U"
+  "_id": "UhniAQTvRDymARwH",
+  "sort": 0,
+  "_key": "!items!UhniAQTvRDymARwH"
 }

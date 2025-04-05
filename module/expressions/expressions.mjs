@@ -339,6 +339,14 @@ function evaluateVariables(expression, context) {
 }
 
 /**
+ * @param {String} arg
+ * @returns {String}
+ */
+function parseIdentifier(arg) {
+	return arg.match(/(\w+-*\s*)+/gm)[0];
+}
+
+/**
  * @description Custom functions provided by the expression engine
  * @param {String} expression
  * @param {ExpressionContext} context
@@ -354,13 +362,20 @@ function evaluateMacros(expression, context) {
 			// Skill level
 			case `sl`: {
 				const actor = context.resolveActorOrSource(match, redirect);
-				const skillId = splitArgs[0].match(/(\w+-*\s*)+/gm)[0];
+				const skillId = parseIdentifier(splitArgs[0]);
 				const skill = actor.getSingleItemByFuid(skillId, 'skill');
 				if (!skill) {
 					ui.notifications.warn('FU.ChatEvaluateNoSkill', { localize: true });
 					throw new Error(`The actor ${actor.name} does not have a skill with the Fabula Ultima Id ${skillId}`);
 				}
 				return skill.system.level.value;
+			}
+			// Clock section
+			case 'cs': {
+				context.assertActor();
+				const id = parseIdentifier(splitArgs[0]);
+				const clock = context.actor.getSingleItemByFuid(id).getClock();
+				return clock.current;
 			}
 			// Scale from 5-19, 20-39, 40+
 			case 'step':

@@ -1,18 +1,18 @@
 {
   "folder": "n7e5v4COOboqOpnr",
-  "name": "Effect: Cognitive Focus",
+  "name": "Effect: Atmokinesis (Bolt)",
   "type": "effect",
-  "_id": "GqxqSdf1UMKkJH1U",
-  "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_cognitive_focus.png",
+  "_id": "4oUORbf2Bzwl6sjD",
+  "img": "icons/magic/lightning/bolt-strike-hand-gray.webp",
   "system": {
-    "fuid": "effect-cognitive-focus",
+    "fuid": "effect-atmokinesis-bolt",
     "cost": {
       "value": 0
     }
   },
   "effects": [
     {
-      "img": "systems/projectfu/styles/static/compendium/classes/esper/esper_cognitive_focus.png",
+      "img": "icons/magic/lightning/bolt-strike-hand-gray.webp",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -23,8 +23,8 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Cognitive Focus",
-      "_id": "oV7VJZXAqDj5CyZC",
+      "name": "Atmokinesis (Bolt)",
+      "_id": "dROM6eTY0mgTnrdo",
       "type": "base",
       "system": {
         "type": "default",
@@ -32,15 +32,28 @@
           "crisisInteraction": "none"
         },
         "duration": {
-          "event": "startOfTurn",
+          "event": "endOfTurn",
           "interval": 1,
-          "tracking": "source",
-          "remaining": 0
+          "tracking": "self",
+          "remaining": 1
         },
         "stack": 1
       },
-      "changes": [],
-      "description": "<p>When the source of this effect causes you to <strong>recover hit points </strong>and/or <strong>mind points</strong>, you also recover additional HP and/or MP, respectively:</p><ul><li><p><strong>You Recover: </strong>@GAIN[2*(~&amp;sl('cognitive-focus')) hp] <strong>and/or</strong> @GAIN[2*~&amp;sl('cognitive-focus')) mp]</p></li></ul><p></p>",
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.priority",
+          "mode": 5,
+          "value": "bolt",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "2+&cs('brainwave-clock')",
+          "priority": null
+        }
+      ],
+      "description": "",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -53,11 +66,11 @@
         "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": 1742583758873,
-        "modifiedTime": 1743877700596,
+        "createdTime": 1743785564737,
+        "modifiedTime": 1743876668317,
         "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
-      "_key": "!items.effects!GqxqSdf1UMKkJH1U.oV7VJZXAqDj5CyZC"
+      "_key": "!items.effects!4oUORbf2Bzwl6sjD.dROM6eTY0mgTnrdo"
     }
   ],
   "sort": 0,
@@ -72,9 +85,9 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1742583755959,
-    "modifiedTime": 1742583792799,
+    "createdTime": 1743785558817,
+    "modifiedTime": 1743785810953,
     "lastModifiedBy": "JXPd932s9DHQRD0w"
   },
-  "_key": "!items!GqxqSdf1UMKkJH1U"
+  "_key": "!items!4oUORbf2Bzwl6sjD"
 }

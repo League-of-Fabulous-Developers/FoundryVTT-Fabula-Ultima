@@ -1,8 +1,8 @@
 /**
- * @property {string} name
- * @property {number} current
- * @property {number} step
- * @property {number} max
+ * @property {string} name A label
+ * @property {number} current The current value
+ * @property {number} step The step size (a multiplier for each increment/decrement)
+ * @property {number} max The maximum value
  */
 export class ProgressDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {

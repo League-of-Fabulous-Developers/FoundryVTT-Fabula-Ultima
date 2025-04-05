@@ -141,11 +141,13 @@ function determineSource(document, element) {
 			itemUuid = check.itemUuid;
 		} else {
 			let item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-			if (item instanceof FUItem) {
+			// No need to check 'instanceof FUItem;
+			if (item) {
 				name = item.name;
 				itemUuid = item.uuid;
 			}
 		}
+
 		console.debug(`Determining source document as ChatMessage ${name}`);
 	}
 	return new InlineSourceInfo(name, actorUuid, itemUuid);

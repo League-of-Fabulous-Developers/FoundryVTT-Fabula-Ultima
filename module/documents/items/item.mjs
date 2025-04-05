@@ -8,6 +8,7 @@ import { SETTINGS } from '../../settings.js';
 import { ChecksV2 } from '../../checks/checks-v2.mjs';
 import { slugify } from '../../util.mjs';
 import { FUHooks } from '../../hooks.mjs';
+import { MathHelper } from '../../helpers/math-helper.mjs';
 
 const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(0).toUpperCase() + string.slice(1) : string);
 
@@ -657,6 +658,28 @@ export class FUItem extends Item {
         </div>
     	`;
 		return content;
+	}
+
+	/**
+	 * @returns {ProgressDataModel}
+	 */
+	getClock() {
+		if (!this.system.hasClock.value) {
+			return null;
+		}
+		return this.system.progress;
+	}
+
+	/**
+	 * @param {Number} increment
+	 */
+	async updateClock(increment) {
+		if (this.system.hasClock.value) {
+			/** @type ProgressDataModel **/
+			const clock = this.system.progress;
+			const current = MathHelper.clamp(clock.current + increment * clock.step, 0, clock.max);
+			await this.update({ 'system.progress.current': current });
+		}
 	}
 
 	// Helper function to generate progress array
