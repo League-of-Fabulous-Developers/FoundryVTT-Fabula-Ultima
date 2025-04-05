@@ -23,7 +23,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Effect: Atmokinesis (Bolt)",
+      "name": "Atmokinesis (Bolt)",
       "_id": "dROM6eTY0mgTnrdo",
       "type": "base",
       "system": {
@@ -67,7 +67,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743785564737,
-        "modifiedTime": 1743786171048,
+        "modifiedTime": 1743843110063,
         "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
       "_key": "!items.effects!4oUORbf2Bzwl6sjD.dROM6eTY0mgTnrdo"

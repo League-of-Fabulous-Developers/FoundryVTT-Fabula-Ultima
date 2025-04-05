@@ -22,7 +22,7 @@ const enricher = {
 	enricher: inlineEffectEnricher,
 };
 
-function createEffectAnchor(effect) {
+function createEffectAnchor(effect, label) {
 	const anchor = document.createElement('a');
 	anchor.draggable = true;
 	anchor.dataset.effect = InlineHelper.toBase64(effect);
@@ -31,7 +31,7 @@ function createEffectAnchor(effect) {
 	const icon = document.createElement('i');
 	icon.classList.add('fue', 'fu-effect-placeholder');
 	anchor.append(icon);
-	anchor.append(effect.name);
+	anchor.append(label ? label : effect.name);
 	return anchor;
 }
 
@@ -131,7 +131,7 @@ async function inlineEffectEnricher(match, options) {
 		// TODO: Deprecate someday
 		const decodedEffect = InlineHelper.fromBase64(id);
 		if (decodedEffect && decodedEffect.name && decodedEffect.changes) {
-			return createEffectAnchor(decodedEffect);
+			return createEffectAnchor(decodedEffect, label);
 		}
 	}
 

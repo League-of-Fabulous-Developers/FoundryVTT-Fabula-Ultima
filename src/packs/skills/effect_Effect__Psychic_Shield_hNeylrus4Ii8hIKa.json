@@ -1,17 +1,18 @@
 {
   "folder": "n7e5v4COOboqOpnr",
-  "name": "Effect: Atmokinesis (Air)",
+  "name": "Effect: Psychic Shield",
   "type": "effect",
-  "img": "icons/magic/lightning/bolt-strike-hand-gray.webp",
+  "_id": "hNeylrus4Ii8hIKa",
+  "img": "icons/equipment/shield/heater-steel-gray.webp",
   "system": {
-    "fuid": "effect-atmokinesis-air",
+    "fuid": "effect-psychic-shield",
     "cost": {
       "value": 0
     }
   },
   "effects": [
     {
-      "img": "icons/magic/lightning/bolt-strike-hand-gray.webp",
+      "img": "icons/equipment/shield/heater-steel-gray.webp",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -22,8 +23,8 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Atmokinesis (Air)",
-      "_id": "dROM6eTY0mgTnrdo",
+      "name": "Psychic Shield",
+      "_id": "Xrd3uuRrv6x4lRnR",
       "type": "base",
       "system": {
         "type": "default",
@@ -31,7 +32,7 @@
           "crisisInteraction": "none"
         },
         "duration": {
-          "event": "endOfTurn",
+          "event": "startOfTurn",
           "interval": 1,
           "tracking": "self",
           "remaining": 1
@@ -40,15 +41,15 @@
       },
       "changes": [
         {
-          "key": "system.overrides.damageType.all.normal",
-          "mode": 5,
-          "value": "air",
+          "key": "system.derived.mdef.value",
+          "mode": 4,
+          "value": "$wlp+(&cs('brainwave-clock)*2)",
           "priority": null
         },
         {
-          "key": "system.bonuses.damage.all",
-          "mode": 2,
-          "value": "2+&cs('brainwave-clock')",
+          "key": "system.derived.def.value",
+          "mode": 4,
+          "value": "$wlp+(&cs('brainwave-clock)*2)",
           "priority": null
         }
       ],
@@ -65,13 +66,14 @@
         "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1743843122241,
+        "createdTime": 1743843067862,
+        "modifiedTime": 1743843349414,
         "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
-      "_key": "!items.effects!XoviVmGtz9kyst0s.dROM6eTY0mgTnrdo"
+      "_key": "!items.effects!hNeylrus4Ii8hIKa.Xrd3uuRrv6x4lRnR"
     }
   ],
+  "sort": 0,
   "ownership": {
     "default": 0,
     "JXPd932s9DHQRD0w": 3
@@ -83,11 +85,9 @@
     "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "createdTime": 1743786394776,
-    "modifiedTime": 1743786394776,
+    "createdTime": 1743843044584,
+    "modifiedTime": 1743843065269,
     "lastModifiedBy": "JXPd932s9DHQRD0w"
   },
-  "_id": "XoviVmGtz9kyst0s",
-  "sort": 0,
-  "_key": "!items!XoviVmGtz9kyst0s"
+  "_key": "!items!hNeylrus4Ii8hIKa"
 }

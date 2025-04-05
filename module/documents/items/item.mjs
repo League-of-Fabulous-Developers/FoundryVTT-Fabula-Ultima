@@ -671,13 +671,13 @@ export class FUItem extends Item {
 	}
 
 	/**
-	 * @param {Number} value
+	 * @param {Number} increment
 	 */
-	async updateClock(value) {
+	async updateClock(increment) {
 		if (this.system.hasClock.value) {
 			/** @type ProgressDataModel **/
 			const clock = this.system.progress;
-			const current = MathHelper.clamp(clock.current + value, 0, clock.max);
+			const current = MathHelper.clamp(clock.current + increment * clock.step, 0, clock.max);
 			await this.update({ 'system.progress.current': current });
 		}
 	}
