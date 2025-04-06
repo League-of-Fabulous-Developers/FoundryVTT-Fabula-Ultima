@@ -74,7 +74,7 @@ Hooks.on('preUpdateActor', async (document, changed) => {
  */
 export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, BooleanField, HTMLField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, NumberField, StringField, BooleanField, HTMLField, EmbeddedDataField, ForeignDocumentField, DocumentUUIDField } = foundry.data.fields;
 		return {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
@@ -108,8 +108,8 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 				value: new StringField({ initial: 'custom', choices: Object.keys(FU.role) }),
 			}),
 			companion: new SchemaField({
-				playerLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
-				skillLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
+				referencePlayer: new ForeignDocumentField(Actor, { nullable: true }),
+				referenceSkill: new DocumentUUIDField({ nullable: true, fieldType: 'Item' }),
 			}),
 			useEquipment: new SchemaField({ value: new BooleanField({ initial: false }) }),
 			study: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 3, integer: true, nullable: false }) }),
@@ -165,9 +165,13 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			configurable: true,
 			enumerable: true,
 			get() {
-				if (data.rank.value === 'companion') {
-					// Companion calculation
-					return Math.floor(data.attributes.mig.base * data.companion.skillLevel) + Math.floor(data.companion.playerLevel / 2 + data.resources.hp.bonus);
+				if (data.rank.value === 'companion' && data.companion.referencePlayer) {
+					const refActor = data.companion.referencePlayer;
+					const refSkill = data.companion.referenceSkill ? fromUuidSync(data.companion.referenceSkill) : null;
+					const skillLevel = refSkill?.system?.level?.value ?? 0;
+					const maxHP = Math.floor(skillLevel * data.attributes.mig.base + (refActor?.system?.resources?.hp?.max ? refActor.system.resources.hp.max / 2 : 0) + (data.resources.hp.bonus ?? 0));
+
+					return maxHP;
 				}
 				// Default calculation
 				const hpMultiplier = data.rank.replacedSoldiers;

@@ -30,6 +30,17 @@
 	"styles": ["styles/css/projectfu.css", "styles/projectfu.css"],
 	"packs": [
 		{
+			"label": "NPCs",
+			"type": "Actor",
+			"name": "npcs",
+			"path": "packs/npcs",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
 			"label": "Classes",
 			"type": "Item",
 			"name": "classes",
@@ -189,7 +200,7 @@
 			"name": "Bestiary",
 			"sorting": "a",
 			"color": "#532853",
-			"packs": []
+			"packs": ["npcs"]
 		},
 		{
 			"name": "Character Creation",

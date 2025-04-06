@@ -183,6 +183,9 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		if (actor.type === 'npc') {
 			const eliteOrChampBonus = actor.system.rank.value === 'soldier' ? 0 : actor.system.rank.replacedSoldiers;
 			initCalculation = function () {
+				if (actor.system.rank.value === 'companion') {
+					return 0;
+				}
 				return initMod + initBonus + (actor.system.attributes.dex.base + actor.system.attributes.ins.base) / 2 + eliteOrChampBonus;
 			};
 		}

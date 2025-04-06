@@ -155,6 +155,30 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		context.FU = FU;
 
+		// Prepare NPC Companion Data
+		if (actorData.type === 'npc' && actorData.system.rank.value === 'companion') {
+			// Populate the dropdown with owned actors
+			context.ownedActors = game.actors.filter((a) => a.type === 'character' && a.testUserPermission(game.user, 'OWNER'));
+
+			// Check if a referencePlayer is selected
+			const referencePlayer = context.system.companion.referencePlayer;
+			context.referencePlayerLevel = referencePlayer ? referencePlayer.system.level.value : 0;
+
+			if (referencePlayer) {
+				// Filter skills associated with the referencePlayer
+				context.availableSkills = referencePlayer.items.filter((item) => item.type === 'skill');
+
+				// Retrieve the selected referenceSkill by UUID
+				context.selectedReferenceSkill = context.system.companion.referenceSkill ? context.availableSkills.find((skill) => skill.uuid === context.system.companion.referenceSkill) : null;
+				context.selectedReferenceSkillLevel = context.selectedReferenceSkill ? context.selectedReferenceSkill.system.level.value || 0 : 0;
+			} else {
+				// No referencePlayer selected, clear skills and selected skill
+				context.availableSkills = [];
+				context.selectedReferenceSkill = null;
+				context.selectedReferenceSkillLevel = 0;
+			}
+		}
+
 		return context;
 	}
 

@@ -35,15 +35,13 @@
                    data-tooltip="{{localize 'FU.PlayerLevel'}}">{{ localize 'FU.LevelAbbr'
             }}</label>
             <span class="resource-inputs">
-                <input type="number" id="companionPlayerLevel" name="system.companion.playerLevel"
-                       value="{{ system.companion.playerLevel }}" style="color:inherit; height: 1.5em; border: none;" />
+                <label class="resource-inputs" for="system.companion.playerLevel" data-tooltip="{{localize 'FU.PlayerLevel'}}" style="color:inherit; height: 1.5em; border: none;">{{referencePlayerLevel}}</label>
             </span>
             <label class="resource-inputs" for="system.companion.skillLevel"
                    data-tooltip="{{localize 'FU.SkillLevel'}}">{{ localize
              'FU.SkillLevelAbbr' }}</label>
             <span class="resource-inputs">
-                <input type="number" id="companionSkillLevel" name="system.companion.skillLevel"
-                       value="{{ system.companion.skillLevel }}" style="color:inherit; height: 1.5em; border: none;" />
+                <label class="resource-inputs" for="ystem.companion.skillLevel" data-tooltip="{{localize 'FU.SkillLevel'}}" style="color:inherit; height: 1.5em; border: none;">{{selectedReferenceSkillLevel}}</label>
             </span>
         </span>
             {{else}}
