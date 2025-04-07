@@ -15,6 +15,14 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		};
 	}
 
+	get isMinimum() {
+		return this.current === 0;
+	}
+
+	get isMaximum() {
+		return this.current === this.max;
+	}
+
 	generateProgressArray() {
 		return Array.from({ length: this.max }, (_, i) => ({
 			id: i + 1,

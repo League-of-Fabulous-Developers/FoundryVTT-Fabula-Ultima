@@ -472,15 +472,16 @@ export class FUActor extends Actor {
 	}
 
 	/**
-	 * @desc
+	 * @description Searches through current items for one with the given fuid, then updates its progress.
 	 * @param {String} fuid
 	 * @param {Number} value
+	 * @returns {ProgressDataModel} The updated progress data
 	 */
-	async updateClockByFuid(fuid, value) {
+	async updateProgressByFuid(fuid, value) {
 		const item = this.getSingleItemByFuid(fuid);
 		if (!item) {
 			return null;
 		}
-		return item.updateClock(value);
+		return item.updateProgress(value);
 	}
 }
