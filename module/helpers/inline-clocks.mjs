@@ -1,11 +1,13 @@
 import { InlineHelper } from './inline-helper.mjs';
 import { StringUtils } from './string-utils.mjs';
+import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
+import { targetHandler } from './target-handler.mjs';
 
 /**
  * @type {TextEditorEnricherConfig}
  */
 const inlineCheckEnricher = {
-	pattern: InlineHelper.compose('CLOCK', '\\s*(?<id>[a-zA-Z-,]+)\\s+(?<command>[a-zA-Z]+?)\\s*(?<value>[0-9-]+?)?'),
+	pattern: InlineHelper.compose('(CLOCK|PROGRESS)', '\\s*(?<id>[a-zA-Z-,]+)\\s+(?<command>[a-zA-Z]+?)(\\s+(?<value>.*?))?'),
 	enricher: checkEnricher,
 };
 
@@ -31,7 +33,7 @@ function checkEnricher(match, options) {
 			anchor.append(label);
 			anchor.dataset.label = label;
 		} else {
-			anchor.append(`${StringUtils.kebabToPascal(id)} ${value}`);
+			anchor.append(`${StringUtils.kebabToPascal(id)}`);
 		}
 		return anchor;
 	}
@@ -55,17 +57,33 @@ function activateListeners(document, html) {
 
 			switch (command) {
 				case 'update': {
-					const step = Number(this.dataset.value);
+					// Evaluate the given value
+					const targets = await targetHandler();
+					const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
+					const value = await Expressions.evaluateAsync(this.dataset.value, context);
+
+					// TODO: Display notifications?
+					// Validate progress won't go below min or max
+					let progress = await actor.getSingleItemByFuid(id).getProgress();
+					if (progress.isMaximum && value > 0) {
+						ui.notifications.info('FU.ChatProgressAtMaximum', { localize: true });
+						return;
+					}
+					if (progress.isMinimum && value < 0) {
+						ui.notifications.info('FU.ChatProgressAtMinimum', { localize: true });
+						return;
+					}
+
+					const step = Number(value);
 					const item = sourceInfo.resolveItem();
-					await actor.updateClockByFuid(id, step);
-					const clock = actor.getSingleItemByFuid(id).getClock();
-					await renderStep(clock, step, actor, item);
+					progress = await actor.updateProgressByFuid(id, step);
+					await renderStep(progress, step, actor, item);
 					break;
 				}
 
 				case 'reset': {
-					const clock = actor.getSingleItemByFuid(id).getClock();
-					await actor.updateClockByFuid(id, -clock.current);
+					const clock = actor.getSingleItemByFuid(id).getProgress();
+					await actor.updateProgressByFuid(id, -clock.current);
 					break;
 				}
 			}
@@ -88,7 +106,7 @@ async function renderStep(progress, step, actor, item) {
 		content: await renderTemplate('systems/projectfu/templates/chat/chat-advance-clock.hbs', {
 			message: step > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock',
 			step: step,
-			clock: progress.parent.parent.name,
+			clock: progress.name ?? progress.parent.parent.name,
 			source: item.name,
 			data: progress,
 			arr: progressArr,

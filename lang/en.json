@@ -1376,6 +1376,8 @@
 		"NonLethal": "Non Lethal",
 		"ChatIncrementClock": "<strong>{clock}</strong> was increased by <strong>{step}</strong> due to <strong>{source}</strong>.",
 		"ChatDecrementClock": "<strong>{clock}</strong> was decreased by <strong>{step}</strong> due to <strong>{source}</strong>.",
+		"ChatProgressAtMaximum": "The given progress track is already at its maximum value!",
+		"ChatProgressAtMinimum": "The given progress track is already at its minimum value!",
 		"Reference": "Reference",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
