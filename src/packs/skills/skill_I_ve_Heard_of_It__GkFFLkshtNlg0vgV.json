@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you or an ally who is able to hear and understand you perform a Check to examine a creature, item, or location, you may spend 1 Trade Point to grant a bonus equal to<strong>【SL × 2】</strong>to the Result of that Check.</p>",
+    "description": "<p>When you or an ally who is able to hear and understand you perform a Check to examine a creature, item, or location, you may spend 1 Trade Point to grant a bonus equal to<strong>【SL × 2】</strong>to the Result of that Check.</p><hr /><ul><li><p><strong>You</strong>: @PROGRESS[winds-of-trade update -1]{I've Heard Of It!}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -79,8 +79,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676975651,
-    "modifiedTime": 1742676975651,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1744047886241,
+    "lastModifiedBy": "JXPd932s9DHQRD0w"
   },
   "_id": "GkFFLkshtNlg0vgV",
   "sort": 0,
