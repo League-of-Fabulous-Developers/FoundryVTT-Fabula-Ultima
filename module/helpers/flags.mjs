@@ -22,6 +22,7 @@ export const Flags = Object.freeze({
 		SupportCheck: 'Supporter',
 		GroupCheckSupporters: 'GroupCheckSupporters',
 		Item: 'Item',
+		Effect: 'Effect',
 		Damage: 'Damage',
 		Source: 'Source',
 		ResourceGain: 'ResourceGain',

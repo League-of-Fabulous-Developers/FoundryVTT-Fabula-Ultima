@@ -4,6 +4,10 @@ import { Effects, prepareActiveEffectCategories, toggleStatusEffect } from '../.
 import { SYSTEM } from '../../helpers/config.mjs';
 import { Flags } from '../../helpers/flags.mjs';
 import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
+import { FUActiveEffectModel } from '../effects/active-effect-model.mjs';
+import { SkillDataModel } from '../items/skill/skill-data-model.mjs';
+import { MathHelper } from '../../helpers/math-helper.mjs';
+import { MiscAbilityDataModel } from '../items/misc/misc-ability-data-model.mjs';
 
 /**
  * @typedef Actor
@@ -11,7 +15,8 @@ import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
  * @property {Boolean} isToken
  * @property {ActiveEffect[]} appliedEffects
  * @property {ActiveEffect[]} temporaryEffects
- * @property {Map<String, ActiveEffect>} effects
+ * @property {Map<String, FUActiveEffect>} effects <Uuid, *>
+ * @property {Map<String, FUItem>} items <Uuid, *>
  * @property {Boolean} inCombat
  * @property {String} id The canonical identifier for this Document.
  * @property {String} uuid A Universally Unique Identifier (uuid) for this Document instance.
@@ -437,8 +442,9 @@ export class FUActor extends Actor {
 	/**
 	 * @description Deletes all temporary effects on the actor
 	 * @property includeStatus Whether to also clear status effects
+	 * @property includeWithoutDuration Include effects without a duration
 	 */
-	clearTemporaryEffects(includeStatus = true) {
+	clearTemporaryEffects(includeStatus = true, includeWithoutDuration = true) {
 		// Collect effects to delete
 		const effectsToDelete = this.effects.filter((effect) => {
 			// If it's a status effect
@@ -451,6 +457,9 @@ export class FUActor extends Actor {
 				if (immunity) {
 					return immunity;
 				}
+			}
+			if (!effect.hasDuration && !includeWithoutDuration) {
+				return false;
 			}
 			return effect.isTemporary && Effects.canBeRemoved(effect);
 		});
@@ -472,16 +481,65 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @description Resolves a progress tracker with the given id among
+	 * the actor's items and effects.
+	 * @param {String} id
+	 * @returns {ProgressDataModel}
+	 */
+	resolveProgress(id) {
+		// Search items
+		const items = this.items.values();
+		for (const item of items) {
+			const progress = item.getProgress();
+			// Match the fuid on the item or on the progress track
+			if (progress) {
+				if (id === item.system.fuid || id === progress.id) {
+					return progress;
+				}
+			}
+		}
+		// Search active effects: match the id on the progress track
+		for (const effect of this.effects.values()) {
+			if (effect.system.rules.progress.enabled) {
+				const progress = effect.system.rules.progress;
+				if (progress.id === id) {
+					return progress;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * @description Searches through current items for one with the given fuid, then updates its progress.
-	 * @param {String} fuid
-	 * @param {Number} value
+	 * @param {String} id
+	 * @param {Number} increment
 	 * @returns {ProgressDataModel} The updated progress data
 	 */
-	async updateProgressByFuid(fuid, value) {
-		const item = this.getSingleItemByFuid(fuid);
-		if (!item) {
+	async updateProgress(id, increment) {
+		const progress = this.resolveProgress(id);
+		if (!progress) {
 			return null;
 		}
-		return item.updateProgress(value);
+
+		const current = MathHelper.clamp(progress.current + increment * progress.step, 0, progress.max);
+
+		// Skill
+		if (progress.parent instanceof SkillDataModel) {
+			await progress.parent.parent.update({ 'system.rp.current': current });
+		}
+		// MiscAbility
+		else if (progress.parent instanceof MiscAbilityDataModel) {
+			const schemaName = progress.schema.name;
+			await progress.parent.parent.update({ [`system.${schemaName}.current`]: current });
+		}
+		// ActiveEffect
+		else if (progress.parent.parent instanceof FUActiveEffectModel) {
+			await progress.parent.parent.update({ [`system.rules.progress.current`]: current });
+		}
+
+		// Update this instance for tracking, though it is not the same as the one that just got replaced in the model
+		progress.current = current;
+		return progress;
 	}
 }

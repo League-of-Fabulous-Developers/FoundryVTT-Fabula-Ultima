@@ -1,0 +1,16 @@
+<div class="chat-effect-message">
+	<header class="title-desc chat-header flexrow">
+		<img class="item-img" src="{{ effect.img }}" data-tooltip="{{ effect.name }}" style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
+		<h2>{{effect.name}}</h2>t
+	</header>
+	{{#if description}}
+		<div class="chat-desc">
+			{{{description}}}
+		</div>
+	{{/if}}
+	{{#if effect.system.rules.progress.enabled}}
+		<div style="display: grid; margin-top: 4px;">
+			{{> "systems/projectfu/templates/chat/partials/chat-clock-details.hbs" data=effect.system.rules.progress arr=effect.system.rules.progress.progressArray}}
+		</div>
+	{{/if}}
+</div>

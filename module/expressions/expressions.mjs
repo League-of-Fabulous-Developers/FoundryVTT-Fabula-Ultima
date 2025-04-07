@@ -16,6 +16,7 @@ import { FU } from '../helpers/config.mjs';
  * @description Contains contextual objects used for evaluating expressions
  * @property {FUActor} actor The actor the expression is evaluated on
  * @property {FUItem} item  The item the expression is evaluated on
+ * @property {FUActiveEffect} effect  The effect the expression is evaluated on
  * @property {FUActor[]} targets The targets the expression is evaluated on
  * @property {FUActor} source Optionally, can be used to execute evaluations on
  * @property {InlineSourceInfo} sourceInfo
@@ -79,6 +80,31 @@ export class ExpressionContext {
 	}
 
 	/**
+	 * @param {InlineSourceInfo} sourceInfo
+	 * @param {FUActor[]} targets
+	 * @returns {ExpressionContext}
+	 */
+	static fromSourceInfo(sourceInfo, targets) {
+		let actor = undefined;
+		if (sourceInfo.actorUuid !== undefined) {
+			actor = fromUuidSync(sourceInfo.actorUuid);
+		}
+
+		let item = undefined;
+		if (sourceInfo.itemUuid !== undefined) {
+			item = fromUuidSync(sourceInfo.itemUuid);
+		}
+
+		const context = new ExpressionContext(actor, item, targets);
+
+		if (sourceInfo.effectUuid !== undefined) {
+			context.effect = fromUuidSync(sourceInfo.effectUuid);
+		}
+
+		return context;
+	}
+
+	/**
 	 * @property {FUActor} actor The source of the action
 	 * @property {FUItem} item
 	 * @param {FUActor[]} targets
@@ -138,6 +164,16 @@ export class ExpressionContext {
 		if (this.item == null) {
 			ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
 			throw new Error(`No reference to an item provided while evaluating expression "${match}"`);
+		}
+	}
+
+	/**
+	 * @param {String} match
+	 */
+	assertEffect(match) {
+		if (this.effect == null) {
+			ui.notifications.warn('FU.ChatEvaluateNoEffect', { localize: true });
+			throw new Error(`No reference to an effect provided while evaluating expression "${match}"`);
 		}
 	}
 
@@ -338,6 +374,11 @@ function evaluateVariables(expression, context) {
 				context.assertActorOrTargets(match);
 				return getAttributeSize(context.resolveActorOrHighestLevelTarget(), symbol);
 			}
+			// Progress (From
+			case 'pg': {
+				context.assertEffect(match);
+				return context.effect.system.rules.progress.current;
+			}
 			// Target status count
 			case 'tsc': {
 				context.assertActor(match);
@@ -388,10 +429,15 @@ function evaluateMacros(expression, context) {
 				return skill.system.level.value;
 			}
 			// Clock section
+			case 'pg':
 			case 'cs': {
 				context.assertActor();
 				const id = parseIdentifier(splitArgs[0]);
-				const clock = context.actor.getSingleItemByFuid(id).getProgress();
+				const clock = context.actor.resolveProgress(id);
+				if (!clock) {
+					ui.notifications.warn(`${game.i18n.localize('FU.ChatEvaluateNoProgress')}: '${id}'`, { localize: true });
+					throw new Error(`The progress track with id ${id} was not found`);
+				}
 				return clock.current;
 			}
 			// Scale from 5-19, 20-39, 40+

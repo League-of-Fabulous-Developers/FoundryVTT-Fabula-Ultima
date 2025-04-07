@@ -898,6 +898,7 @@
 		"ChatEvaluateAmountNoActor": "No reference to an actor provided",
 		"ChatEvaluateAmountNoSource": "No reference to a source provided",
 		"ChatEvaluateAmountNoItem": "No reference to an item provided",
+		"ChatEvaluateNoEffect": "No reference to an effect provided",
 		"ChatEvaluateNoSourceActor": "The given item must be added to an actor in order to evaluate",
 		"ChatEvaluateNoSkill": "The referenced skill was not found in the actor",
 		"ChatEvaluateNoProgress": "The referenced progress track with the given id was not found in the actor",
@@ -1385,6 +1386,7 @@
 		"ChatProgressAtMinimum": "The given progress track is already at its minimum value!",
 		"Reference": "Reference",
 		"All": "All",
+		"Identifier": "Identifier",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",

@@ -38,15 +38,16 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip,
 		}
 		anchor.draggable = true;
 		anchor.classList.add('inline', elementClass);
+		anchor.dataset.label = label;
 
+		// INDICATOR
+		const indicator = document.createElement('i');
+		indicator.classList.add('indicator');
+		anchor.append(indicator);
 		if (label) {
 			anchor.append(label);
 			anchor.dataset.amount = amount;
 		} else {
-			// INDICATOR
-			const indicator = document.createElement('i');
-			indicator.classList.add('indicator');
-			anchor.append(indicator);
 			// AMOUNT
 			InlineHelper.appendAmountToAnchor(anchor, amount);
 			// TYPE
@@ -99,9 +100,10 @@ function activateListeners(document, html) {
 			let targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
+				sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
 				const type = this.dataset.type;
 				const uncapped = this.dataset.uncapped === 'true';
-				const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
+				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);
 
 				if (this.classList.contains(classInlineRecovery)) {
@@ -119,6 +121,7 @@ function activateListeners(document, html) {
 			}
 
 			const sourceInfo = InlineHelper.determineSource(document, this);
+			sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
 
 			const data = {
 				type: this.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
@@ -138,12 +141,12 @@ async function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInf
 	}
 
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
-		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
+		const context = ExpressionContext.fromSourceInfo(sourceInfo, [actor]);
 		amount = await Expressions.evaluateAsync(amount, context);
 		applyRecovery(sourceInfo, [actor], recoveryType, amount, uncapped);
 		return false;
 	} else if (type === INLINE_LOSS && !Number.isNaN(amount)) {
-		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
+		const context = ExpressionContext.fromSourceInfo(sourceInfo, [actor]);
 		amount = await Expressions.evaluateAsync(amount, context);
 		applyLoss(sourceInfo, [actor], recoveryType, amount);
 		return false;

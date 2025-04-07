@@ -31,6 +31,7 @@ function enricher(text, options) {
 		anchor.classList.add('inline', 'inline-damage');
 		anchor.dataset.type = type;
 		anchor.dataset.traits = traits;
+		anchor.dataset.label = label;
 		anchor.draggable = true;
 
 		// TOOLTIP
@@ -70,8 +71,9 @@ function activateListeners(document, html) {
 			let targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
+				sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
 				const type = this.dataset.type;
-				const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
+				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);
 
 				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
@@ -90,6 +92,7 @@ function activateListeners(document, html) {
 			}
 
 			const sourceInfo = InlineHelper.determineSource(document, this);
+			sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
 			const data = {
 				type: INLINE_DAMAGE,
 				_sourceInfo: sourceInfo,
@@ -107,7 +110,7 @@ async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo
 	if (type === INLINE_DAMAGE) {
 		// Need to rebuild the class after it was deserialized
 		const sourceInfo = InlineSourceInfo.fromObject(_sourceInfo);
-		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
+		const context = ExpressionContext.sourceInfo(sourceInfo, [actor]);
 		const _amount = await Expressions.evaluateAsync(amount, context);
 		const baseDamageInfo = { type: damageType, total: _amount, modifierTotal: 0 };
 
