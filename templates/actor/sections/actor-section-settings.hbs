@@ -238,40 +238,40 @@
                     </div>
                     <p class="notes">{{localize 'FU.UseEquipmentHint'}}</p>
                 </div>
-                {{#if (eq actor.system.rank.value "companion")}}
+                {{#if (or (eq actor.system.rank.value "companion") (eq actor.system.rank.value "custom"))}}
                 <div class="form-group">
                     <span class="resource-label-m">
                         <i class="fa-solid fa-user-group"></i>
-                        <label for="companion-reference">{{localize 'FU.Player'}}</label>
+                        <label for="refActor">{{localize 'FU.Player'}}</label>
                     </span>
                     <div class="form-fields resource-content">
-                        <select name="system.companion.referencePlayer" id="companion-reference" class="resource-inputs">
+                        <select name="system.references.actor" id="refActor" class="resource-inputs">
                         <option value="">—</option>
                         {{#each ownedActors as |owned|}}
-                            <option value="{{owned.id}}" {{#if (eq ../system.companion.referencePlayer.id owned.id)}}selected{{/if}}>
+                            <option value="{{owned.id}}" {{#if (eq ../system.references.actor.id owned.id)}}selected{{/if}}>
                             {{owned.name}}
                             </option>
                         {{/each}}
                         </select>
                     </div>
-                    <p class="notes">({{localize 'FU.Companion'}}) {{localize 'FU.PlayerLevel'}}</p>
+                    <p class="notes">({{localize 'FU.Reference'}}) {{localize 'FU.PlayerLevel'}}</p>
                 </div>
                 <div class="form-group">
                     <span class="resource-label-m">
                         <i class="fa-solid fa-cogs"></i>
-                        <label for="companion-skill">{{localize 'FU.Skill'}}</label>
+                        <label for="refSkill">{{localize 'FU.Skill'}}</label>
                     </span>
                     <div class="form-fields resource-content">
-                        <select name="system.companion.referenceSkill" id="companion-skill" class="resource-inputs">
+                        <select name="system.references.skill" id="refSkill" class="resource-inputs">
                             <option value="">—</option>
                             {{#each availableSkills as |skill|}}
-                                <option value="{{skill.uuid}}" {{#if (eq ../system.companion.referenceSkill skill.uuid)}}selected{{/if}}>
+                                <option value="{{skill.uuid}}" {{#if (eq ../system.references.skill skill.uuid)}}selected{{/if}}>
                                     {{skill.name}}
                                 </option>
                             {{/each}}
                         </select>
                     </div>
-                    <p class="notes">({{localize 'FU.Companion'}}) {{localize 'FU.SkillLevel'}}</p>
+                    <p class="notes">({{localize 'FU.Reference'}}) {{localize 'FU.SkillLevel'}}</p>
                 </div>
                 {{/if}}
             {{/if}}

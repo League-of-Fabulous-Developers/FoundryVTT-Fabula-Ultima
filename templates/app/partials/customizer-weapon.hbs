@@ -1,24 +1,25 @@
 <form>
     <div style="font-weight: bold;">
         <div class="desc mb-3">
-            <div id="base-item" class="inline-desc">{{{baseItemDetails}}}</div>
+            <div id="base-item" class="">{{{baseItemDetails}}}</div>
             <div style="text-align: center;"><i class="fas fa-caret-down"></i></div>
-            <div id="current-item" class="inline-desc">{{{currentItemDetails}}}</div>
+            <div id="current-item" class="">{{{currentItemDetails}}}</div>
         </div>
 
-        <div class="desc grid grid-2col gap-5 mb-5"><div class="inline-desc grid grid-2col gap-5 mb-5">
-            <div class="form-group">
-                <label>{{localize 'FU.Primary'}}</label>
-                <select id="primary" name="primary">{{{primaryOptions}}}</select>
+        <div class="desc grid grid-2col gap-5 mb-5">
+            <div class="grid grid-2col gap-5">
+                <div class="form-group">
+                    <label>{{localize 'FU.Primary'}}</label>
+                    <select id="primary" name="primary">{{{primaryOptions}}}</select>
+                </div>
+
+                <div class="form-group">
+                    <label>{{localize 'FU.Secondary'}}</label>
+                    <select id="secondary" name="secondary">{{{secondaryOptions}}}</select>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>{{localize 'FU.Secondary'}}</label>
-                <select id="secondary" name="secondary">{{{secondaryOptions}}}</select>
-            </div>
-        </div>
-
-        <div class="inline-desc grid grid-2col gap-5 mb-5">
+        <div class="grid grid-2col gap-5 mb-5">
             <div class="row-one">
                 <div class="form-group">
                     <label>{{localize 'FU.Weapon'}}</label>

@@ -1371,6 +1371,12 @@
 		"CombatHudTurnIconsOutOfTurnsHint": "Icon displayed for a combatant that has no turns remaining.",
 		"CombatHudTurnIconsTurnsLeftHidden": "Turns Left Hidden",
 		"CombatHudTurnIconsTurnsLeftHiddenHint": "Icon displayed for NPC combatants when their remaining turns are not shown. See also: \"NPC Turns Left Mode\".",
+		"AbsorbHalf": "Absorb Half",
+		"MentalDamage": "Mental Damage",
+		"NonLethal": "Non Lethal",
+		"ChatIncrementClock": "<strong>{clock}</strong> was increased by <strong>{step}</strong> due to <strong>{source}</strong>.",
+		"ChatDecrementClock": "<strong>{clock}</strong> was decreased by <strong>{step}</strong> due to <strong>{source}</strong>.",
+		"Reference": "Reference",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",
@@ -1378,11 +1384,6 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		},
-		"AbsorbHalf": "Absorb Half",
-		"MentalDamage": "Mental Damage",
-		"NonLethal": "Non Lethal",
-		"ChatIncrementClock": "<strong>{clock}</strong> was increased by <strong>{step}</strong> due to <strong>{source}</strong>.",
-		"ChatDecrementClock": "<strong>{clock}</strong> was decreased by <strong>{step}</strong> due to <strong>{source}</strong>."
+		}
 	}
 }

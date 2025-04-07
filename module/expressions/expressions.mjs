@@ -485,24 +485,48 @@ function evaluateReferencedFunctions(expression, context) {
  * @example @system.value.thingie
  */
 function evaluateReferencedProperties(expression, context) {
-	const pattern = /@(?<label>[a-zA-Z]+?)\.([a-zA-Z]+\.?)+/gm;
+	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)*)/gm;
 	function evaluate(match, label, path, pN, offset, string, groups) {
 		// TODO: Refactor
 		let root = null;
-		let propertyPath = '';
+		let propertyPath = `system.${path}`;
+		const actorName = context.actor?.name ?? 'unknown';
 
-		// Check item
-		if (match.includes(itemLabel)) {
-			context.assertItem(match);
-			root = context.item;
-			propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system');
-		}
-		// Check actors
-		else {
-			const actor = resolveActorFromLabel(match, label, context);
-			if (actor) {
-				root = actor;
-				propertyPath = match.replace(`${referenceSymbol}${label}`, 'system');
+		switch (label) {
+			// Check referenceActor
+			case 'refActor': {
+				const ref = context.actor?.system?.references?.actor;
+				root = game.actors.get(ref?.id ?? ref);
+				if (!root) {
+					console.warn(`Missing or invalid refActor on ${actorName}`);
+					return 0;
+				}
+				break;
+			}
+			// Check referenceSkill
+			case 'refSkill': {
+				const uuid = context.actor?.system?.references?.skill;
+				root = uuid && fromUuidSync(uuid);
+				if (!root) {
+					console.warn(`Missing or invalid refSkill on ${actorName}`);
+					return 0;
+				}
+				break;
+			}
+			// Check item
+			case 'item': {
+				context.assertItem(match);
+				root = context.item;
+				propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system');
+				break;
+			}
+			// Check actors
+			default: {
+				const actor = resolveActorFromLabel(match, label, context);
+				if (actor) {
+					root = actor;
+					propertyPath = match.replace(`${referenceSymbol}${label}`, 'system');
+				}
 			}
 		}
 
@@ -514,6 +538,7 @@ function evaluateReferencedProperties(expression, context) {
 		if (propertyValue instanceof Object) {
 			throw new Error(`Unexpected object returned from "${propertyPath}". It needs to be an integer!`);
 		}
+		console.info(`Resolved property @${label}.${path}: ${propertyValue}`);
 		return propertyValue;
 	}
 

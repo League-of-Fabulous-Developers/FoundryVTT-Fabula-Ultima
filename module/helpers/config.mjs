@@ -595,6 +595,7 @@ FU.rank = {
 	elite: 'FU.Elite',
 	champion: 'FU.Champion',
 	companion: 'FU.Companion',
+	custom: 'FU.Custom',
 };
 
 /**
