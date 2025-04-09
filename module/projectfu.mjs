@@ -7,7 +7,7 @@ import { FUItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
-import { registerSystemSettings, SETTINGS } from './settings.js';
+import { registerSystemSettings } from './settings.js';
 import { addRollContextMenuEntries, createCheckMessage, promptCheck, promptOpenCheck, rollCheck } from './helpers/checks.mjs';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
@@ -204,16 +204,15 @@ Hooks.once('init', async () => {
 	// Register system settings
 	registerSystemSettings();
 
-	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker)) {
-		console.log(`${SYSTEM} | Initializing experimental combat tracker`);
-		CONFIG.Combat.documentClass = FUCombat;
-		CONFIG.Combatant.documentClass = FUCombatant;
-		CONFIG.Combat.initiative = {
-			formula: '1',
-			decimals: 0,
-		};
-		CONFIG.ui.combat = FUCombatTracker;
-	}
+	// Set combat tracker
+	console.log(`${SYSTEM} | Initializing combat tracker`);
+	CONFIG.Combat.documentClass = FUCombat;
+	CONFIG.Combatant.documentClass = FUCombatant;
+	CONFIG.Combat.initiative = {
+		formula: '1',
+		decimals: 0,
+	};
+	CONFIG.ui.combat = FUCombatTracker;
 
 	// Register status effects
 	CONFIG.ActiveEffect.legacyTransferral = false;

@@ -6,7 +6,6 @@ import { WellspringDataModel } from './documents/items/classFeature/invoker/invo
 
 export const SETTINGS = Object.freeze({
 	experimentalCombatHud: 'experimentalCombatHud',
-	experimentalCombatTracker: 'experimentalCombatTracker',
 	metaCurrencyAutomaticallyDistributeExp: 'metaCurrencyAutomaticallyDistributeExp',
 	metaCurrencyAutomation: 'metaCurrencyAutomation',
 	metaCurrencyBaseExperience: 'metaCurrencyBaseExperience',
@@ -191,16 +190,6 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: false,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.experimentalCombatTracker, {
-		name: game.i18n.localize('FU.ExperimentalCombatTracker'),
-		hint: game.i18n.localize('FU.ExperimentalCombatTrackerHint'),
-		scope: 'world',
-		config: true,
-		type: Boolean,
-		default: true,
-		requiresReload: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {
@@ -902,18 +891,6 @@ class CombatHudSettings extends FormApplication {
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration, optionCombatHudEffectsMarqueeDuration);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, optionCombatHudEffectsMarqueeMode);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, optionCombatHudShowOrderNumbers);
-		}
-
-		const isCustomTrackerActive = game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker);
-		if (!isCustomTrackerActive && formData.experimentalCombatHud) {
-			const enableTracker = await Dialog.confirm({
-				title: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerTitle'),
-				content: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerContent'),
-			});
-
-			if (enableTracker) {
-				game.settings.set(SYSTEM, SETTINGS.experimentalCombatTracker, true);
-			}
 		}
 
 		await SettingsConfig.reloadConfirm({ world: game.user.isGM });
