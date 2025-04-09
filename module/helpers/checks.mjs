@@ -828,7 +828,7 @@ export async function promptCheck(actor, title, action) {
 			}
 		});
 
-		return ChecksV2.attributeCheck(actor, { primary: check.attr1, secondary: check.attr2 }, this.parent, CheckConfiguration.initDifficulty(check.difficulty));
+		return ChecksV2.attributeCheck(actor, { primary: check.attr1, secondary: check.attr2 }, null, CheckConfiguration.initDifficulty(check.difficulty));
 	} catch (e) {
 		console.log(e);
 		return { rollResult: 0, message: null };
@@ -838,6 +838,7 @@ export async function promptCheck(actor, title, action) {
 /**
  * @param {FUActor} actor
  * @param {string} title
+ * @param {string} action
  * @returns {Promise<ChatMessage|Object>}
  */
 export async function promptOpenCheck(actor, title, action) {
