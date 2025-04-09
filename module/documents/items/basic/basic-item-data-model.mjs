@@ -1,7 +1,6 @@
 import { FU } from '../../../helpers/config.mjs';
 import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
@@ -21,7 +20,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			label: 'FU.AccuracyCheckBaseAccuracy',
 			value: item.system.accuracy.value,
 		});
-		AccuracyCheck.configure(check)
+		CheckConfiguration.configure(check)
 			.setDamage(item.system.damageType.value, item.system.damage.value)
 			.setTargetedDefense(item.system.defense)
 			.setWeaponTraits({

@@ -1,10 +1,10 @@
+import { SYSTEM, FU } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
-import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { CheckHooks } from './check-hooks.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { Traits } from '../pipelines/traits.mjs';
+import { CheckHooks } from './check-hooks.mjs';
 
 const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';

@@ -4,6 +4,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { AttributeCheck } from './attribute-check.mjs';
 import { CheckPush } from './check-push.mjs';
 import { CheckReroll } from './check-reroll.mjs';
+import { CheckConfiguration } from './check-configuration.mjs';
 import { AccuracyCheck } from './accuracy-check.mjs';
 import { MagicCheck } from './magic-check.mjs';
 import { SpecialResults } from './special-results.mjs';
@@ -13,7 +14,6 @@ import { OpposedCheck } from './opposed-check.mjs';
 import { CheckRetarget } from './check-retarget.mjs';
 import { GroupCheck } from './group-check.mjs';
 import { SupportCheck } from './support-check.mjs';
-import { CheckConfiguration } from './check-configuration.mjs';
 
 /**
  * @typedef CheckAttributes

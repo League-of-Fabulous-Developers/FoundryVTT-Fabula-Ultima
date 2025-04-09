@@ -1,5 +1,4 @@
-import { FU, SYSTEM } from './config.mjs';
-import { SETTINGS } from '../settings.js';
+import { FU } from './config.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
@@ -142,17 +141,8 @@ export class ItemCustomizer extends FormApplication {
 		const isWeapon = ['weapon', 'basic'].includes(selectedItem.type);
 		if (isWeapon) await modifiedWeapon.update({ 'system.type.value': typeValue });
 
-		try {
-			if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
-				this.setupCheckHooks(formData, modifiedWeapon, selectedItem);
-				return await ChecksV2.accuracyCheck(this.actor, modifiedWeapon, CheckConfiguration.initHrZero(hrZeroBool));
-			} else {
-				ui.notifications.warn(`Enable "Checks V2" Game Setting`);
-			}
-		} finally {
-			if (isWeapon) await modifiedWeapon.update({ 'system.type.value': selectedItem.system.type.value });
-		}
-		this.render(true);
+		this.setupCheckHooks(formData, modifiedWeapon, selectedItem);
+		return await ChecksV2.accuracyCheck(this.actor, modifiedWeapon, CheckConfiguration.initHrZero(hrZeroBool));
 	}
 
 	setupCheckHooks(formData, modifiedWeapon, selectedItem) {

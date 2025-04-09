@@ -1,6 +1,6 @@
+import { SYSTEM } from '../helpers/config.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
-import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
@@ -174,6 +174,4 @@ const initialize = () => {
 
 export const AccuracyCheck = Object.freeze({
 	initialize,
-	configure: CheckConfiguration.configure,
-	inspect: CheckConfiguration.inspect,
 });

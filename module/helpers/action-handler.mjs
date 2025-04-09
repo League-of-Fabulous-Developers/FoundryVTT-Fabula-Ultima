@@ -1,8 +1,5 @@
 import { createChatMessage, promptCheck, promptOpenCheck } from './checks.mjs';
-import { StudyRollHandler } from './study-roll.mjs';
 import { toggleStatusEffect } from '../pipelines/effects.mjs';
-import { SYSTEM } from './config.mjs';
-import { SETTINGS } from '../settings.js';
 import { InlineSourceInfo } from './inline-helper.mjs';
 
 export class ActionHandler {
@@ -61,13 +58,7 @@ export class ActionHandler {
 	 */
 	async handleStudyAction() {
 		const action = 'study';
-		if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
-			promptOpenCheck(this.actor, 'FU.StudyRoll', action);
-		} else {
-			const { rollResult } = await promptOpenCheck(this.actor, 'FU.StudyRoll', action);
-			const studyRollHandler = new StudyRollHandler(this.actor, rollResult);
-			await studyRollHandler.handleStudyRoll();
-		}
+		promptOpenCheck(this.actor, 'FU.StudyRoll', action);
 	}
 
 	/**

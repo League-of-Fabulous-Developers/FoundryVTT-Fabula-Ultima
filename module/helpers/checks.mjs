@@ -146,7 +146,6 @@ import { StudyRollHandler } from './study-roll.mjs';
  */
 
 import { FU, SYSTEM } from './config.mjs';
-import { SETTINGS } from '../settings.js';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { Flags } from './flags.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
@@ -790,7 +789,6 @@ export async function promptCheck(actor, title, action) {
 	const recentChecks = JSON.parse(sessionStorage.getItem(KEY_RECENT_CHECKS) || '{}');
 	let check = recentChecks[actor.uuid] || (recentChecks[actor.uuid] = {});
 	try {
-		const attributes = actor.system.attributes;
 		if (action === 'study') {
 			check.primary = 'ins';
 			check.secondardy = 'ins';
@@ -807,63 +805,30 @@ export async function promptCheck(actor, title, action) {
 
 		sessionStorage.setItem(KEY_RECENT_CHECKS, JSON.stringify(recentChecks));
 
-		if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
-			if (check.modifier) {
-				// Beware of shadowing!
-				Hooks.once(CheckHooks.prepareCheck, (_check) =>
-					_check.modifiers.push({
-						value: check.modifier,
-						label: 'FU.CheckSituationalModifier',
-					}),
+		if (check.modifier) {
+			// Beware of shadowing!
+			Hooks.once(CheckHooks.prepareCheck, (_check) =>
+				_check.modifiers.push({
+					value: check.modifier,
+					label: 'FU.CheckSituationalModifier',
+				}),
+			);
+		}
+
+		// Right after rendering, enrich
+		Hooks.once('projectfu.renderCheck', (sections, check, actor, item) => {
+			const description = game.i18n.localize(FU.actionRule[action]);
+			if (description) {
+				sections.push(
+					TextEditor.enrichHTML(`<div class="chat-desc"><p>${description}</p></div>`).then((v) => ({
+						content: v,
+						order: -1050,
+					})),
 				);
 			}
+		});
 
-			let hasRenderCheckHookRegistered = false;
-
-			// Register the renderCheck hook
-			if (!hasRenderCheckHookRegistered) {
-				Hooks.once('projectfu.renderCheck', (sections, check, actor, item) => {
-					const description = game.i18n.localize(FU.actionRule[action]);
-					if (description) {
-						sections.push(
-							TextEditor.enrichHTML(`<div class="chat-desc"><p>${description}</p></div>`).then((v) => ({
-								content: v,
-								order: -1050,
-							})),
-						);
-					}
-				});
-
-				hasRenderCheckHookRegistered = true;
-			}
-
-			return ChecksV2.attributeCheck(actor, { primary: check.attr1, secondary: check.attr2 }, this.parent, CheckConfiguration.initDifficulty(check.difficulty));
-		}
-		const speaker = ChatMessage.implementation.getSpeaker({ actor });
-
-		/**
-		 * @type CheckParameters
-		 */
-		let params = {
-			check: {
-				attr1: {
-					attribute: check.attr1,
-					dice: attributes[check.attr1].current,
-				},
-				attr2: {
-					attribute: check.attr2,
-					dice: attributes[check.attr2].current,
-				},
-				modifier: check.modifier,
-				title: title || 'FU.RollCheck',
-			},
-			difficulty: check.difficulty,
-			speaker: speaker,
-		};
-		const rolledCheck = await rollCheck(params);
-
-		const rollResult = rolledCheck.result.total;
-		return { rollResult, message: await createCheckMessage(rolledCheck) };
+		return ChecksV2.attributeCheck(actor, { primary: check.attr1, secondary: check.attr2 }, this.parent, CheckConfiguration.initDifficulty(check.difficulty));
 	} catch (e) {
 		console.log(e);
 		return { rollResult: 0, message: null };
@@ -931,81 +896,47 @@ export async function promptOpenCheck(actor, title, action) {
 		recentActorChecks.modifier = modifier;
 		sessionStorage.setItem(KEY_RECENT_CHECKS, JSON.stringify(recentChecks));
 
-		if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
-			if (modifier) {
-				Hooks.once(CheckHooks.prepareCheck, (check) =>
-					check.modifiers.push({
-						value: modifier,
-						label: 'FU.CheckSituationalModifier',
-					}),
+		if (modifier) {
+			Hooks.once(CheckHooks.prepareCheck, (check) =>
+				check.modifiers.push({
+					value: modifier,
+					label: 'FU.CheckSituationalModifier',
+				}),
+			);
+		}
+
+		// Handle the result of the check
+		const handleResults = async (checkResult) => {
+			if (action === 'study') {
+				try {
+					const studyRollHandler = new StudyRollHandler(actor, checkResult.result);
+					await studyRollHandler.handleStudyRoll();
+					const targets = CheckConfiguration.inspect(checkResult).getTargetsOrDefault();
+					CommonEvents.study(actor, targets);
+					return { rollResult: checkResult.result, message: null };
+				} catch (error) {
+					console.error('Error processing study roll:', error);
+					return { rollResult: 0, message: null };
+				}
+			}
+			return { rollResult: checkResult.result, message: null };
+		};
+
+		// Register the result handler
+		Hooks.once('projectfu.processCheck', handleResults);
+		Hooks.once('projectfu.renderCheck', (sections, check, actor, item) => {
+			const description = game.i18n.localize(FU.actionRule[action]);
+			if (description) {
+				sections.push(
+					TextEditor.enrichHTML(`<div class="chat-desc"><p>${description}</p></div>`).then((v) => ({
+						content: v,
+						order: -1050,
+					})),
 				);
 			}
+		});
 
-			// Handle the result of the check
-			const handleResults = async (checkResult) => {
-				if (action === 'study') {
-					try {
-						const studyRollHandler = new StudyRollHandler(actor, checkResult.result);
-						await studyRollHandler.handleStudyRoll();
-						const targets = CheckConfiguration.inspect(checkResult).getTargetsOrDefault();
-						CommonEvents.study(actor, targets);
-						return { rollResult: checkResult.result, message: null };
-					} catch (error) {
-						console.error('Error processing study roll:', error);
-						return { rollResult: 0, message: null };
-					}
-				}
-				return { rollResult: checkResult.result, message: null };
-			};
-
-			// Register the result handler
-			Hooks.once('projectfu.processCheck', handleResults);
-
-			let hasRenderCheckHookRegistered = false;
-
-			// Register the renderCheck hook
-			if (!hasRenderCheckHookRegistered) {
-				Hooks.once('projectfu.renderCheck', (sections, check, actor, item) => {
-					const description = game.i18n.localize(FU.actionRule[action]);
-					if (description) {
-						sections.push(
-							TextEditor.enrichHTML(`<div class="chat-desc"><p>${description}</p></div>`).then((v) => ({
-								content: v,
-								order: -1050,
-							})),
-						);
-					}
-				});
-
-				hasRenderCheckHookRegistered = true;
-			}
-
-			return ChecksV2.openCheck(actor, { primary: attr1, secondary: attr2 });
-		}
-		const speaker = ChatMessage.implementation.getSpeaker({ actor });
-
-		/**
-		 * @type CheckParameters
-		 */
-		let params = {
-			check: {
-				attr1: {
-					attribute: attr1,
-					dice: attributes[attr1].current,
-				},
-				attr2: {
-					attribute: attr2,
-					dice: attributes[attr2].current,
-				},
-				modifier: modifier + bonus,
-				title: title || 'FU.DialogCheckOpenCheck',
-			},
-			speaker: speaker,
-		};
-		const rolledCheck = await rollCheck(params);
-
-		const rollResult = rolledCheck.result.total;
-		return { rollResult, message: await createCheckMessage(rolledCheck) };
+		return ChecksV2.openCheck(actor, { primary: attr1, secondary: attr2 });
 	} catch (e) {
 		console.log(e);
 		return { rollResult: 0, message: null };
