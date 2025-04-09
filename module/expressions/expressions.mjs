@@ -124,6 +124,16 @@ export class ExpressionContext {
 	/**
 	 * @param {String} match
 	 */
+	assertActorOrTargets(match) {
+		if (this.targets.length === 0 && this.actor == null) {
+			ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
+			throw new Error(`No reference to an actor provided while evaluating expression "${match}"`);
+		}
+	}
+
+	/**
+	 * @param {String} match
+	 */
 	assertItem(match) {
 		if (this.item == null) {
 			ui.notifications.warn('FU.ChatEvaluateAmountNoItem', { localize: true });
@@ -139,10 +149,12 @@ export class ExpressionContext {
 		if (this.actor) {
 			return this.actor;
 		} else {
-			if (this.targets.length > 0) {
+			if (this.targets.length > 1) {
 				return this.targets.reduce((prev, current) => {
 					return prev.system.level.value > current.system.level.value ? prev : current;
 				});
+			} else if (this.targets.length === 1) {
+				return this.targets[0];
 			}
 		}
 
@@ -309,9 +321,10 @@ function evaluateVariables(expression, context) {
 			case 'massive':
 				return ImprovisedEffect.calculateAmountFromContext(symbol, context);
 			// Character level
-			case 'cl':
-				context.assertActor(match);
-				return context.actor.system.level.value;
+			case 'cl': {
+				context.assertActorOrTargets(match);
+				return context.resolveActorOrHighestLevelTarget().system.level.value;
+			}
 			// Item level / skill level
 			case 'il':
 			case 'sl':
@@ -322,8 +335,8 @@ function evaluateVariables(expression, context) {
 			case 'dex':
 			case 'wlp':
 			case 'ins': {
-				context.assertActor(match);
-				return getAttributeSize(context.actor, symbol);
+				context.assertActorOrTargets(match);
+				return getAttributeSize(context.resolveActorOrHighestLevelTarget(), symbol);
 			}
 			// Target status count
 			case 'tsc': {
