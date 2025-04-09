@@ -3,7 +3,6 @@ import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/chec
 import { ItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
 import { EquipmentHandler } from '../helpers/equipment-handler.mjs';
-import { GroupCheck } from '../helpers/group-check.mjs';
 import { StudyRollHandler } from '../helpers/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
@@ -1805,9 +1804,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 
 			if (dataset.rollType === 'roll-init') {
-				if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
-					return ChecksV2.groupCheck(this.actor, GroupCheckV2.initInitiativeCheck);
-				}
+				return ChecksV2.groupCheck(this.actor, GroupCheckV2.initInitiativeCheck);
 			}
 
 			if (dataset.rollType === 'open-check') {
@@ -1815,11 +1812,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			}
 
 			if (dataset.rollType === 'group-check') {
-				if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
-					return ChecksV2.groupCheck(this.actor, isShift ? GroupCheckV2.initInitiativeCheck : GroupCheckV2.initGroupCheck);
-				} else {
-					return GroupCheck.promptCheck(this.actor, isShift);
-				}
+				return ChecksV2.groupCheck(this.actor, isShift ? GroupCheckV2.initInitiativeCheck : GroupCheckV2.initGroupCheck);
 			}
 		}
 

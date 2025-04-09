@@ -1,11 +1,10 @@
-import { CombatHUD } from './ui/combat-hud.mjs';
-import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
 import { SYSTEM, FU } from './helpers/config.mjs';
+import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
+import { CombatHUD } from './ui/combat-hud.mjs';
 import { FUHooks } from './hooks.mjs';
 import { WellspringDataModel } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 
 export const SETTINGS = Object.freeze({
-	checksV2: 'checksV2',
 	experimentalCombatHud: 'experimentalCombatHud',
 	experimentalCombatTracker: 'experimentalCombatTracker',
 	metaCurrencyAutomaticallyDistributeExp: 'metaCurrencyAutomaticallyDistributeExp',
@@ -570,14 +569,6 @@ export const registerSystemSettings = async function () {
 		name: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsName'),
 		hint: game.i18n.localize('FU.ClassFeatureTherioformOptionShowAssociatedTherioformsHint'),
 		scope: 'client',
-		config: true,
-		type: Boolean,
-		default: true,
-	});
-
-	game.settings.register(SYSTEM, SETTINGS.checksV2, {
-		name: game.i18n.localize('FU.SettingChecksV2'),
-		hint: game.i18n.localize('FU.SettingChecksV2Hint'),
 		config: true,
 		type: Boolean,
 		default: true,
