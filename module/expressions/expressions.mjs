@@ -530,7 +530,7 @@ function evaluateReferencedProperties(expression, context) {
 			case 'item': {
 				context.assertItem(match);
 				root = context.item;
-				propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system');
+				propertyPath = match.replace(`${referenceSymbol}${itemLabel}`, 'system');
 				break;
 			}
 			// Check actors
