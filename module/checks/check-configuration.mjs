@@ -150,7 +150,7 @@ class CheckConfigurer {
 			handedness: traits.handedness,
 		};
 		// Also add them to the flattened traits array
-		const flatTraits = Object.values(traits);
+		const flatTraits = Object.values(traits).filter((t) => !!t);
 		this.addTraits(...flatTraits);
 		return this;
 	}
