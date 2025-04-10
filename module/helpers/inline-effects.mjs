@@ -89,6 +89,12 @@ function parseConfigData(match) {
 			case 'eor':
 				event = 'endOfRound';
 				break;
+			case 'eos':
+				event = 'endOfScene';
+				break;
+			case 'rest':
+				event = 'rest';
+				break;
 		}
 	}
 	const interval = match.groups.interval;
