@@ -9,7 +9,7 @@
     "summary": {
       "value": "Persuade enemies to retreat."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Orator</strong> Class.</p></blockquote><p>During a conflict scene, you may use an action and choose a <strong>soldier</strong>-rank creature that can hear and understand you (the Game Master must tell you who is a valid target). If that creature is <strong>shaken</strong> or in <strong>Crisis</strong>, you may spend an amount of Mind Points equal to <strong>【20 + half that creature's level】</strong> to have them peacefully leave the conflict.</p><p>Describe how you convince them to desist.</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Orator</strong> Class.</p></blockquote><p>During a conflict scene, you may use an action and choose a <strong>soldier</strong>-rank creature that can hear and understand you (the Game Master must tell you who is a valid target). If that creature is <strong>shaken</strong> or in <strong>Crisis</strong>, you may spend an amount of Mind Points equal to <strong>【20 + half that creature's level】</strong> to have them peacefully leave the conflict.</p><p>Describe how you convince them to desist.</p><hr /><ul><li><p><strong>You Lose:</strong> @LOSS[20+(@target.level.value/2) mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -111,8 +111,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706584078929,
-    "modifiedTime": 1724180864040,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1743595047141,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

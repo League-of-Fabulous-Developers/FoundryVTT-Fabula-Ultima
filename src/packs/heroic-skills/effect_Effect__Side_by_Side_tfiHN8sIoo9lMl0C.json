@@ -1,0 +1,87 @@
+{
+  "folder": "5kSHxgDcJ4VNObCO",
+  "name": "Effect: Side by Side",
+  "type": "effect",
+  "_id": "tfiHN8sIoo9lMl0C",
+  "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+  "system": {
+    "fuid": "side-by-side",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Side by Side",
+      "_id": "nJHoE47tFyNEOMiP",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>When your companion deals damage, they deal 5 extra damage.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744251100445,
+        "modifiedTime": 1744251193578,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!tfiHN8sIoo9lMl0C.nJHoE47tFyNEOMiP"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "uG2TkwmswfdRqaAv": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744251088055,
+    "modifiedTime": 1744251188248,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "_key": "!items!tfiHN8sIoo9lMl0C"
+}

@@ -128,6 +128,12 @@
           "mode": 2,
           "value": "&sl('dodge')+&sl('stolen-time')",
           "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "&sl('stolen-time')",
+          "priority": null
         }
       ],
       "description": "<p>You gain a bonus to your Initiative modiﬁer equal to <strong>【your Skill Level in Dodge + your Skill Level in Stolen Time】</strong>.</p><p>As long as you have no <strong>shield</strong> and no <strong>martial armor</strong> equipped, all damage you suffer is reduced by an amount equal to <strong>【your SL in Dodge】 </strong>(applied <strong>before</strong> damage Afﬁnities) and you deal extra damage equal to <strong>【your SL in Stolen Time】</strong>.</p>",
@@ -149,7 +155,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743135978096,
-        "modifiedTime": 1743136893210,
+        "modifiedTime": 1743954104997,
         "lastModifiedBy": "uG2TkwmswfdRqaAv"
       },
       "_key": "!items.effects!RD8MoXlaZMNolEnN.oeo4K8RBL4Xwo6xH"

@@ -121,7 +121,7 @@
     },
     "fuid": "elemental-weapon",
     "targeting": {
-      "rule": "self"
+      "rule": "single"
     }
   },
   "effects": [],
@@ -138,7 +138,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706564486966,
-    "modifiedTime": 1742702840956,
+    "modifiedTime": 1743595668823,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

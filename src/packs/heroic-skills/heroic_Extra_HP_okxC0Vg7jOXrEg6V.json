@@ -9,7 +9,7 @@
     "summary": {
       "value": "Increase your maximum Hit Points."
     },
-    "description": "<p>Permanently increase your maximum Hit Points by 10.</p><p>The amount of additional HP increases to 20 if you are level 40 or higher.</p>",
+    "description": "<p>Permanently increase your maximum Hit Points by 10.</p><p>The amount of additional HP increases to 20 if you are <strong>level 40 or higher</strong>.</p>",
     "isFavored": {
       "value": false
     },
@@ -109,7 +109,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Heroic: Extra HP",
+      "name": "Extra HP",
       "_id": "877Y0R8vB2gyNx0x",
       "changes": [
         {
@@ -119,7 +119,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>Permanently increase your maximum Hit Points by 10. The amount of additional HP increases to 20 if you are <strong>level 40 or higher</strong>.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -135,7 +135,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1743125666259,
+        "modifiedTime": 1743595512494,
         "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
@@ -161,7 +161,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706584138219,
-    "modifiedTime": 1743125564479,
+    "modifiedTime": 1743595506748,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

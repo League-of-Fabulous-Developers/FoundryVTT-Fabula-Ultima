@@ -10,7 +10,7 @@
     "summary": {
       "value": "Shadow Strike reduces MP and causes action loss with swords."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Darkblade</strong> and <strong>Esper</strong>.</p></blockquote><p>When you hit one or more creatures with an attack from your @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill using a weapon that belongs to the <strong>sword</strong> Category, each of those creatures loses an amount of Mind Points equal to <strong>【the number you rolled on your Might die for Shadow Strike】</strong>. Then, if <strong>【the number you rolled on your Might die for Shadow Strike】 was 8 or higher</strong>, you may choose one creature hit by the attack: if that creature is your <strong>focus</strong> or you have a <strong>Bond</strong> towards them, that creature will perform one fewer action during their next turn (to a minimum of zero actions).</p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered one or more Classes among <strong>Darkblade</strong> and <strong>Esper</strong>.</p></blockquote><p>When you hit one or more creatures with an attack from your @UUID[Compendium.projectfu.skills.Item.W5hE9L8x7AsJI7a1]{Shadow Strike} Skill using a weapon that belongs to the <strong>sword</strong> Category, each of those creatures loses an amount of Mind Points equal to <strong>【the number you rolled on your Might die for Shadow Strike】</strong>. Then, if <strong>【the number you rolled on your Might die for Shadow Strike】 was 8 or higher</strong>, you may choose one creature hit by the attack: if that creature is your <strong>focus</strong> or you have a <strong>Bond</strong> towards them, that creature will perform one fewer action during their next turn (to a minimum of zero actions).</p><hr /><p> @LOSS[(^backlash(mig,hp)+$sl) mp] </p>",
     "isFavored": {
       "value": false
     },
@@ -107,7 +107,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711473807263,
-    "modifiedTime": 1743182559902,
+    "modifiedTime": 1744083157021,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

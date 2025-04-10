@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improves My Trust in You."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong> (see <strong>High Fantasy</strong>, page <strong>136</strong>), Esper (see <strong>Techno Fantasy</strong>, page <strong>150</strong>) and <strong>Orator</strong>, and must have acquired the <strong>My Trust in You</strong> Skill</p></blockquote><p>When you use @UUID[Compendium.projectfu.skills.Item.lK9onKSiMuQEe3zd]{My Trust in You} on another Player Character, that character chooses <strong>Dexterity, Insight, Might, </strong>or<strong> Willpower</strong>: they treat the chosen Attribute as being increased by one die size (up to a maximum of <strong>d12</strong>) until the end of the scene or until you use <strong>My Trust in You</strong> on them again.</p><hr /><ul><li><p><strong>Ally Receives:</strong> @EFFECT[dex-up], @EFFECT[ins-up], @EFFECT[mig-up], or @EFFECT[wlp-up]</p></li></ul>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chanter</strong> (see <strong>High Fantasy</strong>, page <strong>136</strong>), Esper (see <strong>Techno Fantasy</strong>, page <strong>150</strong>) and <strong>Orator</strong>, and must have acquired the <strong>My Trust in You</strong> Skill</p></blockquote><p>When you use @UUID[Compendium.projectfu.skills.Item.lK9onKSiMuQEe3zd]{My Trust in You} on another Player Character, that character chooses <strong>Dexterity, Insight, Might, </strong>or<strong> Willpower</strong>: they treat the chosen Attribute as being increased by one die size (up to a maximum of <strong>d12</strong>) until the end of the scene or until you use <strong>My Trust in You</strong> on them again.</p><hr /><ul><li><p><strong>Ally Receives:</strong> @EFFECT[dex-up e:eos i:1 t:source], @EFFECT[ins-up e:eos i:1 t:source], @EFFECT[mig-up e:eos i:1 t:source], or @EFFECT[wlp-up e:eos i:1 t:source]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -61,7 +61,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1743170954042,
+    "modifiedTime": 1744244902055,
     "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "cSzzcGmQur0Zo6R5",

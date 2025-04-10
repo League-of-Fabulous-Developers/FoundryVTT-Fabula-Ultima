@@ -115,22 +115,22 @@
         {
           "key": "system.bonuses.damage.spell",
           "mode": 2,
-          "value": "5",
+          "value": "&step(5,5,10)",
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>When you cast a spell that deals damage to one or more creatures, that spell deals 5 extra damage to each creature. The amount of extra damage increases to 10 if you are<strong> level 40 or higher</strong> . </p>",
       "transfer": true,
       "statuses": [],
       "flags": {},
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1743602423717,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null
       },

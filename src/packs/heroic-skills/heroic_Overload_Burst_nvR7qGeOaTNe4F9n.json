@@ -10,7 +10,7 @@
     "summary": {
       "value": "Perform an additional action, then leave the vehicle."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Pilot</strong> Class, and must have acquired the <strong>Compression Tech</strong> Skill.</p></blockquote><p>Choose a damage type among <strong>bolt</strong>, <strong>dark</strong>, <strong>fire</strong>, <strong>ice</strong>, and <strong>light</strong>.</p><p>When you are reduced to 0 Hit Points for the first time during a scene, if you are driving your <strong>personal vehicle</strong>, you may choose to be reduced to exactly 1 Hit Point instead. If you do, you and any passengers <strong>leave</strong> your <strong>personal vehicle</strong>, which <strong>disappears</strong> from the game world. Then, you may deal an amount of damage equal to your <strong>Crisis</strong> score to a single creature you can see. This damage is of the type you have chosen from the list above. If your <strong>personal vehicle</strong> disappears from the game world this way, the next use of your <strong>Compression Tech</strong> Skill will have an additional cost of 1 Fabula Point.</p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Pilot</strong> Class, and must have acquired the <strong>Compression Tech</strong> Skill.</p></blockquote><p>Choose a damage type among <strong>bolt</strong>, <strong>dark</strong>, <strong>fire</strong>, <strong>ice</strong>, and <strong>light</strong>.</p><p>When you are reduced to 0 Hit Points for the first time during a scene, if you are driving your <strong>personal vehicle</strong>, you may choose to be reduced to exactly 1 Hit Point instead. If you do, you and any passengers <strong>leave</strong> your <strong>personal vehicle</strong>, which <strong>disappears</strong> from the game world. Then, you may deal an amount of damage equal to your <strong>Crisis</strong> score to a single creature you can see. This damage is of the type you have chosen from the list above. If your <strong>personal vehicle</strong> disappears from the game world this way, the next use of your @UUID[Compendium.projectfu.skills.Item.kMQH13lhWY4Mlbh8]{Compression Tech} Skill will have an additional cost of 1 Fabula Point.</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[1 hp]</p></li><li><p><strong>Target Loses:</strong> @DMG[@source.resources.hp.max/2 bolt]{Crisis HP}, @DMG[@source.resources.hp.max/2 dark]{Crisis HP}, @DMG[@source.resources.hp.max/2 fire]{Crisis HP}, @DMG[@source.resources.hp.max/2 ice]{Crisis HP}, or @DMG[@source.resources.hp.max/2 light]{Crisis HP}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -107,8 +107,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711473807263,
-    "modifiedTime": 1724180864022,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1744237637057,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -10,7 +10,7 @@
     "summary": {
       "value": "Take a little nap during a conﬂict to regain your energies."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Guardian</strong>, <strong>Merchant</strong>, and <strong>Wayfarer</strong></p></blockquote><p>On your turn during a conflict, you may use an action to recover an amount of Hit Points and Mind Points equal to<strong>【20 + half your level】 </strong>and also recover from all status effects. If you do, your turn ends <strong>immediately</strong>, you lose the ability to <strong>hear and see</strong>, and your <strong>Defense and Magic Defense</strong> scores become <strong>equal to 5</strong> and cannot be modified in any way (but you may still use the @UUID[Compendium.projectfu.skills.Item.Z4WIA15aR4uLL5ES]{Protect} Skill from the <strong>Guardian</strong> Class, if you have acquired it!).</p><p>These penalties last until the start of your next turn, until after you <strong>lose Hit Points</strong>, or until after you <strong>are hit by an attack or offensive spell</strong> ( @ICON[offensive] ).</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[20+($cl/2) hp] and @GAIN[20+($cl/2) mp]</p></li></ul>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Guardian</strong>, <strong>Merchant</strong>, and <strong>Wayfarer</strong></p></blockquote><p>On your turn during a conflict, you may use an action to recover an amount of Hit Points and Mind Points equal to<strong>【20 + half your level】 </strong>and also recover from all status effects. If you do, your turn ends <strong>immediately</strong>, you lose the ability to <strong>hear and see</strong>, and your <strong>Defense and Magic Defense</strong> scores become <strong>equal to 5</strong> and cannot be modified in any way (but you may still use the @UUID[Compendium.projectfu.skills.Item.Z4WIA15aR4uLL5ES]{Protect} Skill from the <strong>Guardian</strong> Class, if you have acquired it!).</p><p>These penalties last until the start of your next turn, until after you <strong>lose Hit Points</strong>, or until after you <strong>are hit by an attack or offensive spell</strong> ( @ICON[offensive] ).</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[20+($cl/2) hp] and @GAIN[20+($cl/2) mp]</p></li><li><p><strong>You Suffer:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.dweyiPp3Ujt9sE43]{Effect: Power Nap}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -50,63 +50,7 @@
     },
     "fuid": "power-nap"
   },
-  "effects": [
-    {
-      "img": "icons/magic/control/sleep-bubble-purple.webp",
-      "origin": "Compendium.projectfu.heroic-skills.Item.rlOIe9a68fkv8KS3",
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
-      "name": "Power Nap",
-      "_id": "Q6neRmPPp6H0SzZ3",
-      "type": "base",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.derived.def.value",
-          "mode": 3,
-          "value": "5",
-          "priority": null
-        },
-        {
-          "key": "system.derived.mdef.value",
-          "mode": 3,
-          "value": "5",
-          "priority": null
-        }
-      ],
-      "description": "<p>On your turn during a conflict, you may use an action to recover an amount of Hit Points and Mind Points equal to<strong>【20 + half your level】 </strong>and also recover from all status effects. If you do, your turn ends <strong>immediately</strong>, you lose the ability to <strong>hear and see</strong>, and your <strong>Defense and Magic Defense</strong> scores become <strong>equal to 5</strong> and cannot be modified in any way (but you may still use the <strong>Protect</strong> Skill from the <strong>Guardian</strong> Class, if you have acquired it!).</p><p>These penalties last until the start of your next turn, until after you <strong>lose Hit Points</strong>, or until after you <strong>are hit by an attack or offensive spell</strong> ( @ICON[offensive] ).</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUNF166",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "12.331",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1743168170271,
-        "modifiedTime": 1743168330227,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv"
-      },
-      "_key": "!items.effects!rlOIe9a68fkv8KS3.Q6neRmPPp6H0SzZ3"
-    }
-  ],
+  "effects": [],
   "flags": {
     "core": {}
   },
@@ -117,7 +61,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1743170822567,
+    "modifiedTime": 1744250856904,
     "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "rlOIe9a68fkv8KS3",

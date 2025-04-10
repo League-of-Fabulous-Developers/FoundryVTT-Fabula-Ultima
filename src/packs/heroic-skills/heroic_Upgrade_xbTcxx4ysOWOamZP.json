@@ -97,7 +97,56 @@
     },
     "fuid": "upgrade"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "icons/magic/symbols/cog-orange-red.webp",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Upgrade",
+      "_id": "xUkfHhI7tTunL9DP",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "rest",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743635372211,
+        "modifiedTime": 1743635406019,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!xbTcxx4ysOWOamZP.xUkfHhI7tTunL9DP"
+    }
+  ],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
     "default": 0,
