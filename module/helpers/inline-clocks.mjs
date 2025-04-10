@@ -62,9 +62,15 @@ function activateListeners(document, html) {
 					const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
 					const value = await Expressions.evaluateAsync(this.dataset.value, context);
 
-					// TODO: Display notifications?
+					const progressItem = await actor.getSingleItemByFuid(id);
+					if (!progressItem) {
+						const missingItemErrorMessage = game.i18n.localize('FU.ChatMissingItemWithId');
+						ui.notifications.error(`${missingItemErrorMessage}: '${id}'`, { localize: true });
+						return;
+					}
+
 					// Validate progress won't go below min or max
-					let progress = await actor.getSingleItemByFuid(id).getProgress();
+					let progress = progressItem.getProgress();
 					if (progress.isMaximum && value > 0) {
 						ui.notifications.info('FU.ChatProgressAtMaximum', { localize: true });
 						return;
