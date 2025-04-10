@@ -12,7 +12,7 @@ const className = `inline-type`;
 // TODO: Use a nicer data structure
 // The comments show the order of `args` property for each type
 const supportedTypes = {
-	// (all|attack|skill|spell), (fire|ice|...), (priority|normal)?
+	// (all|attack|skill|spell), (all|fire|ice|...), (priority|normal)?
 	damage: [],
 	// (fire|...), (resistance|vulnerability|normal...)
 	affinity: [],
@@ -22,7 +22,7 @@ const supportedTypes = {
  * @type {TextEditorEnricherConfig}
  */
 const editorEnricher = {
-	pattern: InlineHelper.compose('TYPE', `\\s*(?<type>\\w+)(?<args>(\\s+\\w+)+)s*`, InlineEffects.configurationPropertyGroups),
+	pattern: InlineHelper.compose('TYPE', `\\s*(?<type>\\w+)(?<args>(\\s+(.*?))+)s*`, InlineEffects.configurationPropertyGroups),
 	enricher: (match, options) => {
 		const type = match.groups.type.toLowerCase();
 		const args = match.groups.args.trimStart();
@@ -60,8 +60,8 @@ const editorEnricher = {
 				return anchor;
 			} else if (type === 'affinity') {
 				const split = args.split(' ');
-				const damageType = split[0];
-				if (!(damageType in FU.damageTypes)) {
+				const damageTypes = parseDamageTypes(split[0]);
+				if (damageTypes.length === 0) {
 					return null;
 				}
 				const affinityType = split[1];
@@ -69,18 +69,18 @@ const editorEnricher = {
 					return null;
 				}
 				// TOOLTIP
-				anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineAffinity')} (${damageType})`);
+				anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineAffinity')} (${damageTypes})`);
 				// LABEL
 				if (label) {
 					anchor.append(label);
 				} else {
-					const localizedType = game.i18n.localize(FU.damageTypes[damageType]);
-					const localizedValue = game.i18n.localize(FU.affType[FU.affValue[affinityType]]);
-					anchor.append(`${localizedType} ${localizedValue}`);
+					const localizedAffinity = game.i18n.localize(FU.affType[FU.affValue[affinityType]]);
+					const localizedTypes = split[0] === 'all' ? game.i18n.localize('FU.All') : damageTypes.map((t) => game.i18n.localize(FU.damageTypes[t])).join(' ');
+					anchor.append(`${localizedAffinity} (${localizedTypes})`);
 				}
 				// ICON
 				const icon = document.createElement('i');
-				icon.className = FU.affIcon[damageType] ?? '';
+				icon.className = damageTypes.length > 1 ? FU.allIcon.diamond : FU.affIcon[damageTypes[0]];
 				anchor.append(icon);
 				return anchor;
 			}
@@ -141,6 +141,22 @@ async function onDropActor(actor, sheet, { dataType, sourceInfo, type, args, con
 	}
 }
 
+// AFFINITY
+const elementRegex = /(?<type>\w+)/g;
+
+/**
+ * @param {String} parse
+ * @returns {String[]}
+ */
+function parseDamageTypes(parse) {
+	if (parse === 'all') {
+		return Object.keys(FU.affIcon);
+	}
+	return [...parse.matchAll(elementRegex)].map((e) => {
+		return e.groups.type;
+	});
+}
+
 /**
  * @param {String} type
  * @param {String[]} args
@@ -151,8 +167,10 @@ function createEffect(type, args) {
 	let attributeValue;
 	let name;
 	let img;
+	let changes = [];
 
 	switch (type) {
+		// damage (all|attack|skill|spell), (all|fire|ice|...), (priority|normal)?
 		case 'damage':
 			{
 				const scope = args[0];
@@ -167,21 +185,49 @@ function createEffect(type, args) {
 				const localizedType = game.i18n.localize(FU.damageTypes[element]);
 				name = `${localizedType} ${game.i18n.localize('FU.Damage')} [${game.i18n.localize(scope)}]`;
 				img = `systems/projectfu/styles/static/affinities/${element}.svg`;
+				changes = [
+					{
+						key: attributeKey,
+						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+						value: attributeValue,
+					},
+				];
 			}
 			break;
 
+		// affinity (all|fire|...), (resistance|vulnerability|normal...)
 		case 'affinity':
 			{
-				const element = args[0];
+				const includeAll = args[0] === 'all';
+				const damageTypes = parseDamageTypes(args[0]);
 				const affinity = args[1];
+				let localizedTypes = [];
+				if (includeAll) {
+					localizedTypes.push(game.i18n.localize('FU.All'));
+				}
 
-				attributeKey = `system.affinities.${element}.current`;
-				const localizedElement = game.i18n.localize(FU.damageTypes[element]);
 				attributeValue = FU.affValue[affinity];
 				const localizedAffinity = game.i18n.localize(FU.affType[attributeValue]);
 
-				name = `${localizedElement} ${localizedAffinity}`;
-				img = `systems/projectfu/styles/static/affinities/${element}.svg`;
+				for (const type of damageTypes) {
+					attributeKey = `system.affinities.${type}.current`;
+					const localizedType = game.i18n.localize(FU.damageTypes[type]);
+					if (!includeAll) {
+						localizedTypes.push(localizedType);
+					}
+					changes.push({
+						key: attributeKey,
+						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+						value: attributeValue,
+					});
+				}
+
+				name = `${localizedAffinity} (${localizedTypes.join(' ')})`;
+				if (damageTypes.length > 1) {
+					img = `systems/projectfu/styles/static/icons/fus-martial.svg`;
+				} else {
+					img = `systems/projectfu/styles/static/affinities/${damageTypes[0]}.svg`;
+				}
 			}
 			break;
 	}
@@ -190,15 +236,7 @@ function createEffect(type, args) {
 		name: name,
 		img: img,
 		transfer: false,
-		changes: attributeKey
-			? [
-					{
-						key: attributeKey,
-						mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-						value: attributeValue,
-					},
-				]
-			: [],
+		changes: changes,
 	};
 }
 
