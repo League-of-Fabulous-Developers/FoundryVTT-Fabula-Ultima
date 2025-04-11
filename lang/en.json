@@ -1380,6 +1380,7 @@
 		"ChatProgressAtMinimum": "The given progress track is already at its minimum value!",
 		"ChatMissingItemWithId": "No item was found in the actor with the given id",
 		"Reference": "Reference",
+		"All": "All",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",
