@@ -17,7 +17,7 @@
     },
     "level": {
       "value": 1,
-      "max": 10,
+      "max": 5,
       "min": 0
     },
     "class": {
@@ -75,7 +75,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
-    "modifiedTime": 1744073831558,
+    "modifiedTime": 1744383063548,
     "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "ownership": {

@@ -46,7 +46,7 @@
         "salty_sour": {
           "taste1": "salty",
           "taste2": "sour",
-          "effect": "<p>T</p>"
+          "effect": ""
         },
         "salty_sweet": {
           "taste1": "salty",
@@ -186,7 +186,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
-    "modifiedTime": 1742777104086,
+    "modifiedTime": 1744383261568,
     "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "HQTDIy6suF8u6dAl",
