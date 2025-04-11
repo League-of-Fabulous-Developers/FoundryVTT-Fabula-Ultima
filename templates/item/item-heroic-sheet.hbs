@@ -69,16 +69,6 @@
                                     <input type="text" name="system.requirement.value" value="{{ system.requirement.value }}"
                                         class="resource-inputs select-dropdown-full grid-span-4" />
                                 </div>
-                                <div class="flex-group-center resource-content flexrow">
-                                    <label class="resource-label-m">{{localize 'FU.Benefits'}}</label>
-                                    {{#each system.benefits.resources as |benefit key|}}
-                                    <label class="checkbox">
-                                        <span class="resource-label-sm">{{localize (translate key)}}</span>
-                                        <input type="checkbox" name="system.benefits.resources.{{ key }}.value" {{ checked
-                                            benefit.value }} />
-                                    </label>
-                                    {{/each}}
-                                </div>
                             </div>
                         </fieldset>
 
