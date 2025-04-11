@@ -391,6 +391,10 @@ export class FUStandardActorSheet extends ActorSheet {
 			} else if (item.type === 'project') {
 				projects.push(item);
 			} else if (item.type === 'ritual') {
+				const itemObj = context.actor.items.get(item._id);
+				item.mpCost = itemObj.system.mpCost?.value;
+				item.dLevel = itemObj.system.dLevel?.value;
+				item.clock = itemObj.system.clock?.value;
 				rituals.push(item);
 			} else if (item.type === 'effect') {
 				effects.push(item);
