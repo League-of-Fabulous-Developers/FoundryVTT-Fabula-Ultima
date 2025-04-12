@@ -2,7 +2,7 @@ import { FU } from '../../../helpers/config.mjs';
 import { NpcMigrations } from './npc-migrations.mjs';
 import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
 import { AttributesDataModel } from '../common/attributes-data-model.mjs';
-import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
+import { BonusesDataModel, MultipliersDataModel } from '../common/bonuses-data-model.mjs';
 import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
 import { EquipDataModel } from '../common/equip-data-model.mjs';
@@ -94,6 +94,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
 			equipped: new EmbeddedDataField(EquipDataModel, {}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
+			multipliers: new EmbeddedDataField(MultipliersDataModel, {}),
 			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			traits: new SchemaField({ value: new StringField({ initial: '' }) }),
 			species: new SchemaField({ value: new StringField({ initial: 'beast', choices: Object.keys(FU.species) }) }),

@@ -1,7 +1,7 @@
 import { CharacterMigrations } from './character-migrations.mjs';
 import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
 import { AttributesDataModel } from '../common/attributes-data-model.mjs';
-import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
+import { BonusesDataModel, MultipliersDataModel } from '../common/bonuses-data-model.mjs';
 import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { BondDataModel } from '../common/bond-data-model.mjs';
 import { CharacterSkillTracker } from './character-skill-tracker.mjs';
@@ -50,7 +50,8 @@ function heroicMpBenefits(dataModel) {
  * @property {AffinitiesDataModel} affinities
  * @property {AttributesDataModel} attributes
  * @property {DerivedValuesDataModel} derived
- * @property {BonusesDataModel} bonuses
+ * @property {BonusesDataModel} bonuses Flat amounts
+ * @property {BonusesDataModel} multipliers Multiplies the base amount
  * @property {PilotVehicleDataModel} vehicle
  * @property {string} description
  * @property {CharacterSkillTracker} tlTracker
@@ -105,6 +106,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
 			equipped: new EmbeddedDataField(EquipDataModel, {}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
+			multipliers: new EmbeddedDataField(MultipliersDataModel, {}),
 			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			vehicle: new EmbeddedDataField(PilotVehicleDataModel, {}),
 			overrides: new EmbeddedDataField(OverridesDataModel, {}),
