@@ -128,7 +128,12 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 			rank = await Dialog.prompt({
 				title: game.i18n.localize('FU.ClassFeatureAlchemyDialogRankTitle'),
 				label: game.i18n.localize('FU.ClassFeatureAlchemyDialogRankLabel'),
-				content: `<select name="rank">${ranks.map((value) => `<option value="${value}">${game.i18n.localize(alchemyFlavors[value])}</option>`)}</select>`,
+				content: `
+				<div class="desc">
+					<label><strong>${game.i18n.localize('FU.Rank')}</strong></label>:
+					<select name="rank">${ranks.map((value) => `<option value="${value}">${game.i18n.localize(alchemyFlavors[value])}</option>`)}</select>
+				</div>
+				`,
 				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 				rejectClose: false,
 				callback: (html) => html.find('select[name=rank]').val(),

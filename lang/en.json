@@ -899,6 +899,8 @@
 		"ChatEvaluateAmountNoItem": "No reference to an item provided",
 		"ChatEvaluateNoSourceActor": "The given item must be added to an actor in order to evaluate",
 		"ChatEvaluateNoSkill": "The referenced skill was not found in the actor",
+		"ChatEvaluateNoProgress": "The referenced progress track with the given id was not found in the actor",
+		"ChatMissingItemWithId": "No item was found in the actor with the given id",
 		"ChatManageEffects": "Affected by the following effects:",
 		"ChatPingTarget": "Ping the targeted actor",
 		"TotalAvailableSkills": "Total Available Skills",
@@ -1378,7 +1380,6 @@
 		"ChatDecrementClock": "<strong>{clock}</strong> was decreased by <strong>{step}</strong> due to <strong>{source}</strong>.",
 		"ChatProgressAtMaximum": "The given progress track is already at its maximum value!",
 		"ChatProgressAtMinimum": "The given progress track is already at its minimum value!",
-		"ChatMissingItemWithId": "No item was found in the actor with the given id",
 		"Reference": "Reference",
 		"All": "All",
 		"FUID": {
