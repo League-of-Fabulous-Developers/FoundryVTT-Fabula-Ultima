@@ -96,12 +96,15 @@ function createUpdateForRecovery(actor, attributePath, amountRecovered) {
  */
 async function processRecovery(request) {
 	const flavor = game.i18n.localize(recoveryFlavor[request.resourceType]);
+	const outgoingRecoveryBonus = request.sourceActor.system.bonuses.outgoingRecovery[request.resourceType] || 0;
+	const outgoingRecoveryMultiplier = request.sourceActor.system.multipliers.outgoingRecovery[request.resourceType] || 1;
 
 	const updates = [];
 	console.debug(`Applying recovery from request with traits: ${[...request.traits].join(', ')}`);
 	for (const actor of request.targets) {
-		const recoveryBonus = actor.system.bonuses.incomingRecovery[request.resourceType] || 0;
-		const amountRecovered = Math.max(0, Math.floor(request.amount + recoveryBonus));
+		const incomingRecoveryBonus = actor.system.bonuses.incomingRecovery[request.resourceType] || 0;
+		const incomingRecoveryMultiplier = actor.system.multipliers.incomingRecovery[request.resourceType] || 1;
+		const amountRecovered = Math.max(0, Math.floor((request.amount + incomingRecoveryBonus + outgoingRecoveryBonus) * (incomingRecoveryMultiplier * outgoingRecoveryMultiplier)));
 		const attr = foundry.utils.getProperty(actor.system, request.attributeKey);
 		const uncappedRecoveryValue = amountRecovered + attr.value;
 		const updates = [];
@@ -160,12 +163,15 @@ const lossFlavor = {
  * @return {Promise<Awaited<unknown>[]>}
  */
 async function processLoss(request) {
-	const amountLost = -Math.floor(request.amount);
 	const flavor = game.i18n.localize(lossFlavor[request.resourceType]);
 
 	const updates = [];
 	console.debug(`Applying loss from request with traits: ${[...request.traits].join(', ')}`);
 	for (const actor of request.targets) {
+		const incomingLossMultiplier = actor.system.multipliers.incomingLoss[request.resourceType] || 1;
+		const incomingLossBonus = actor.system.bonuses.incomingLoss[request.resourceType] || 0;
+		const amountLost = -Math.max(0, Math.floor((request.amount + incomingLossBonus) * incomingLossMultiplier));
+
 		if (request.isMetaCurrency) {
 			const currentValue = foundry.utils.getProperty(actor.system, request.attributePath) || 0;
 			const newValue = currentValue + amountLost;
