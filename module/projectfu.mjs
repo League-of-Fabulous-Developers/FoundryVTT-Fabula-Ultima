@@ -678,15 +678,20 @@ Hooks.once('socketlib.ready', onSocketLibReady);
 
 // Register the "Doubles" SFX trigger for DiceSoNice
 Hooks.once('diceSoNiceReady', (dice3d) => {
-	dice3d.addSFXTrigger("doubles", "Doubles", Array.from({length: 20}, (v,i) => (i+1).toString()));
+	dice3d.addSFXTrigger(
+		'doubles',
+		'Doubles',
+		Array.from({ length: 20 }, (v, i) => (i + 1).toString()),
+	);
 
-	Hooks.on("diceSoNiceRollStart", (_messageId, context) => {
+	Hooks.on('diceSoNiceRollStart', (_messageId, context) => {
+		/* eslint-disable no-undef */
 		dice = context.roll.dice;
 		if (dice.reduce((agg, curr) => agg + curr.number, 0) === 2) {
 			const dieValue = dice[0].results[0].result;
 			if (dieValue === (dice[0].results[1] ?? dice[1].results[0]).result) {
 				for (const d of dice) {
-					d.options.sfx = {id: "doubles", result: dieValue};
+					d.options.sfx = { id: 'doubles', result: dieValue };
 				}
 			}
 		}
