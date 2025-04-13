@@ -1,0 +1,80 @@
+{
+  "folder": "l4GzpixRQaRbzHKh",
+  "name": "Effect: Peacock Dance",
+  "type": "effect",
+  "_id": "9b6mngsWCfB7TLa7",
+  "img": "icons/commodities/materials/feather-colored-blue.webp",
+  "system": {
+    "fuid": "peacock-dance",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "icons/commodities/materials/feather-colored-blue.webp",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Peacock Dance",
+      "_id": "3OKMqmXgMxSVzoXI",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [],
+      "description": "<p>Choose another creature that is able to see you. The next time that creature performs an attack or casts an offensive spell ( <span>@ICON[offensive] </span>) during this scene, that attack or spell must include you among its targets if possible.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744467622828,
+        "modifiedTime": 1744467711716,
+        "lastModifiedBy": "WNNELbIcUepK9pGq"
+      },
+      "_key": "!items.effects!9b6mngsWCfB7TLa7.3OKMqmXgMxSVzoXI"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "WNNELbIcUepK9pGq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744467614088,
+    "modifiedTime": 1744467735418,
+    "lastModifiedBy": "WNNELbIcUepK9pGq"
+  },
+  "_key": "!items!9b6mngsWCfB7TLa7"
+}

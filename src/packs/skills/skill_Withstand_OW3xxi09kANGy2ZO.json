@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><ul><li><p><strong>One Emotion: </strong>@GAIN[1*$sl hp]</p></li><li><p><strong>Two Emotions: </strong>@GAIN[2*$sl hp]</p></li><li><p><strong>Three Emotions: </strong>@GAIN[3*$sl hp]</p></li><li><p><strong>You Receive: </strong>@EFFECT[mig-up e:eot i:2] <strong>or</strong> @EFFECT[wlp-up e:eot i:2]</p></li></ul>",
+    "description": "<p>When you perform the <strong>Guard</strong> action, if you choose <strong>not</strong> to provide cover to another creature, you recover Hit Points equal to <strong>【SL, multiplied by the highest strength among your Bonds】</strong> and choose <strong>Might</strong> or <strong>Willpower</strong>: you treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the end of your next turn.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[1*$sl hp]{SL × One Emotion HP},<strong> </strong>@GAIN[2*$sl hp]{SL × Two Emotions HP}, or @GAIN[3*$sl hp]{SL × Three Emotions HP}</p></li><li><p><strong>You Receive: </strong>@EFFECT[mig-up e:eot i:2], or @EFFECT[wlp-up e:eot i:2]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -136,8 +136,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706502423483,
-    "modifiedTime": 1742497475158,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1744518027585,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

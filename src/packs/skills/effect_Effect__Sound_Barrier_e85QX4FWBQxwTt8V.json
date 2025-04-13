@@ -1,0 +1,87 @@
+{
+  "folder": "W4fiI5cqJwfMJtiD",
+  "name": "Effect: Sound Barrier",
+  "type": "effect",
+  "_id": "e85QX4FWBQxwTt8V",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_sound_barrier.png",
+  "system": {
+    "fuid": "effect-sound-barrier",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_sound_barrier.png",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Sound Barrier",
+      "_id": "x7pVRBkWCUAvhThO",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.physical",
+          "mode": 2,
+          "value": "-&sl(\"sound-barrier\")",
+          "priority": null
+        }
+      ],
+      "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744458722447,
+        "modifiedTime": 1744458770784,
+        "lastModifiedBy": "WNNELbIcUepK9pGq"
+      },
+      "_key": "!items.effects!e85QX4FWBQxwTt8V.x7pVRBkWCUAvhThO"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "WNNELbIcUepK9pGq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744458713844,
+    "modifiedTime": 1744458799700,
+    "lastModifiedBy": "WNNELbIcUepK9pGq"
+  },
+  "_key": "!items!e85QX4FWBQxwTt8V"
+}

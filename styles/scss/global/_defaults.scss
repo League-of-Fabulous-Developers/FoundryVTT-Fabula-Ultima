@@ -21,24 +21,8 @@ p {
 	margin: 0;
 }
 
-// Reset form elements
-input,
-button,
-textarea,
-select {
-	margin: 0;
-	padding: 0;
-}
-
-table {
-	td {
-		padding-left: 2px;
-	}
-}
-
 .sheet {
 	nav.sheet-tabs {
-		justify-content: center;
 		align-self: stretch;
 		flex: 0;
 		margin: 0;

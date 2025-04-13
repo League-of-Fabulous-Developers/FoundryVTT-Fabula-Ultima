@@ -7,7 +7,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You may verbally communicate with creatures of the <strong>elemental</strong> Species.</p><p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p><hr /><ul><li><p><strong>Target Restores:</strong> @GAIN[$sl*5 hp] </p></li></ul>",
+    "description": "<p>You may verbally communicate with creatures of the <strong>elemental</strong> Species.</p><p>When you restore a creature's Hit Points with an <strong>invocation</strong> or spell, if an <strong>elemental</strong> is present on the scene, the restored amount is increased by <strong>【SL × 5】</strong>.</p><hr /><ul><li><p><strong>Target Restores:</strong> @GAIN[$sl*5 hp]{SL × 5 HP}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -81,8 +81,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1742676970366,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1744519419811,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "_id": "YZkp0hXK29tfI0MI",
   "sort": 0,

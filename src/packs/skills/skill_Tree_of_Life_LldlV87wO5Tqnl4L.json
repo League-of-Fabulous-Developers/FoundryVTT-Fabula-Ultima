@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p><span>When you <strong>remove</strong> a </span><strong>magiseed</strong><span> from your <strong>garden</strong>, you may choose one creature you can see: if that creature is in <strong>Crisis</strong>, they recover <strong>【5 + (SL × 5)】</strong> Hit Points.</span></p><hr /><ul><li><p><strong>You Recover:</strong>  @GAIN[5+(5*$sl) hp] </p></li></ul>",
+    "description": "<p><span>When you <strong>remove</strong> a </span><strong>magiseed</strong><span> from your <strong>garden</strong>, you may choose one creature you can see: if that creature is in <strong>Crisis</strong>, they recover <strong>【5 + (SL × 5)】</strong> Hit Points.</span></p><hr /><ul><li><p><strong>Target Recovers:</strong> @GAIN[5+(5*$sl) hp]{5 + (SL × 5) HP}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -81,8 +81,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742676954080,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1744508326853,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "_id": "LldlV87wO5Tqnl4L",
   "sort": 0,

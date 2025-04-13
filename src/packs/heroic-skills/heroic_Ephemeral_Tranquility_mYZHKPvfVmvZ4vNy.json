@@ -10,7 +10,7 @@
     "summary": {
       "value": "Improves Hallucination and Torpor, and cleanses status effects to cause HP loss."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Dancer</strong> (see <strong>High Fantasy</strong>, page <strong>142</strong>), <strong>Esper</strong> (see <strong>Techno Fantasy</strong>, page <strong>150</strong>), <strong>Rogue</strong>, <strong>Spiritist</strong>, and <strong>Symbolist</strong> (see <strong>High Fantasy</strong>, page <strong>146</strong>)</p></blockquote><p>When you cast the @UUID[Compendium.projectfu.spells.Item.JTyMViMTOUrc7bms]{Hallucination} or @UUID[Compendium.projectfu.spells.Item.9ENpDMvIOH9FJAka]{Torpor} spells (see <strong>Core Rulebook</strong>, page <strong>208</strong>), you may apply <strong>both</strong> status effects to each target hit by the spell. During a conflict, you may use an action and spend up to 20 Mind Points. For every 10 Mind Points spent this way, you may choose a different enemy you can see who is suffering from <strong>two or more status effects</strong>. Every enemy chosen this way recovers from all status effects and loses an amount of Hit Points equal to <strong>【half your level + (the number of status effects that enemy recovered from this way, multiplied by 10)】</strong>. Then, you recover 20 Mind Points for each of those enemies that entered <strong>Crisis</strong> or was reduced to 0 Hit Points by this effect.</p><hr /><ul><li><p><strong>You Lose:</strong> @LOSS[10 mp], or @LOSS[20 mp]</p></li><li><p><strong>Target Loses:</strong> @LOSS[(@source.level.value/2)+($tsc*10) hp]</p></li><li><p><strong>You Recover:</strong> @GAIN[20 mp]</p></li></ul>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Dancer</strong> (see <strong>High Fantasy</strong>, page <strong>142</strong>), <strong>Esper</strong> (see <strong>Techno Fantasy</strong>, page <strong>150</strong>), <strong>Rogue</strong>, <strong>Spiritist</strong>, and <strong>Symbolist</strong> (see <strong>High Fantasy</strong>, page <strong>146</strong>)</p></blockquote><p>When you cast the @UUID[Compendium.projectfu.spells.Item.JTyMViMTOUrc7bms]{Hallucination} or @UUID[Compendium.projectfu.spells.Item.9ENpDMvIOH9FJAka]{Torpor} spells (see <strong>Core Rulebook</strong>, page <strong>208</strong>), you may apply <strong>both</strong> status effects to each target hit by the spell. During a conflict, you may use an action and spend up to 20 Mind Points. For every 10 Mind Points spent this way, you may choose a different enemy you can see who is suffering from <strong>two or more status effects</strong>. Every enemy chosen this way recovers from all status effects and loses an amount of Hit Points equal to <strong>【half your level + (the number of status effects that enemy recovered from this way, multiplied by 10)】</strong>. Then, you recover 20 Mind Points for each of those enemies that entered <strong>Crisis</strong> or was reduced to 0 Hit Points by this effect.</p><hr /><ul><li><p><strong>You Spend:</strong> @LOSS[10 mp], or @LOSS[20 mp]</p></li><li><p><strong>Target Loses:</strong> @LOSS[(@source.level.value/2)+($tsc*10) hp]</p></li><li><p><strong>You Recover:</strong> @GAIN[20 mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -61,8 +61,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1744248338785,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+    "modifiedTime": 1744507317224,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "_id": "mYZHKPvfVmvZ4vNy",
   "ownership": {

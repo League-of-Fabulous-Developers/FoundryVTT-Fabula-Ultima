@@ -143,7 +143,7 @@
           "priority": null
         }
       ],
-      "description": "<ul><li><p>Permanently increase your maximum Hit Points by <strong>【SL × 3】</strong>.</p><table><tbody><tr><td><p><strong>SL1: 3</strong></p></td><td><p><strong>SL2: 6</strong></p></td><td><p><strong>SL3: 9</strong></p></td><td><p><strong>SL4: 12</strong></p></td><td data-colwidth=\"108\"><p><strong>SL5: 15</strong></p></td></tr></tbody></table></li></ul>",
+      "description": "<p>Permanently increase your maximum Hit Points by <strong>【SL × 3】</strong>.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -157,8 +157,8 @@
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": 1723766450814,
-        "lastModifiedBy": "dobQfkKFj2NK96cc",
+        "modifiedTime": 1744519197543,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn",
         "compendiumSource": null,
         "duplicateSource": null
       },

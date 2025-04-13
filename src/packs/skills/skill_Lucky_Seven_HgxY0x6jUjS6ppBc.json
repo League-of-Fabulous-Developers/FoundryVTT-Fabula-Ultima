@@ -111,13 +111,13 @@
       "value": false
     },
     "hasResource": {
-      "value": false
+      "value": true
     },
     "rp": {
-      "name": "Name",
-      "current": 0,
+      "name": "Lucky Number",
+      "current": 7,
       "step": 1,
-      "max": 6
+      "max": 12
     },
     "defense": "def",
     "fuid": "lucky-seven"
@@ -136,8 +136,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706486624955,
-    "modifiedTime": 1741984989597,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744486348218,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

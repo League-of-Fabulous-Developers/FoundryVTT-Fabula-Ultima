@@ -17,12 +17,12 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><ul><li><p><strong>You Receive:  </strong>@AFFINITY[air resistance] and @AFFINITY[fire resistance]</p></li></ul>"
+          "effect": "<p>You are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><ul><li><p><strong>You Receive: </strong>@TYPE[affinity air,fire resistance e:eot i:2 t:source]</p></li></ul>"
         },
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>You and your allies present on the scene are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><ul><li><p><strong>Targets Receive: </strong>@AFFINITY[air resistance] and @AFFINITY[fire resistance]</p></li></ul>"
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>air</strong> and <strong>fire</strong> damage.</p><hr><ul><li><p><strong>Targets Receive: </strong>@TYPE[affinity air,fire resistance e:eot i:2 t:source]</p></li></ul>"
         }
       ]
     },
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742765325511,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+    "modifiedTime": 1744510934498,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "ownership": {
     "default": 0,

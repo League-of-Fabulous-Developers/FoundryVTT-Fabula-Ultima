@@ -10,7 +10,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you affect one or more enemies with a <strong>verse</strong>, if you have an <strong>arcane</strong> weapon equipped, you may choose one option: until the start of your next turn, your allies deal <strong>【SL】</strong> extra damage to those enemies; <strong>or</strong> until the start of your next turn, you recover <strong>【SL】</strong> Mind Points every time one of those enemies suffers damage (if the same source deals damage to two or more of those enemies at the same time, you recover <strong>【SL】</strong> MP for each damaged enemy).</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[$sl mp]</p></li><li><p><strong>Target</strong>: @EFFECT[Compendium.projectfu.skills.KgYNKoG8RE2NvCiV]{Effect: Resonance Damage}</p></li></ul>",
+    "description": "<p>After you affect one or more enemies with a <strong>verse</strong>, if you have an <strong>arcane</strong> weapon equipped, you may choose one option: until the start of your next turn, your allies deal <strong>【SL】</strong> extra damage to those enemies; <strong>or</strong> until the start of your next turn, you recover <strong>【SL】</strong> Mind Points every time one of those enemies suffers damage (if the same source deals damage to two or more of those enemies at the same time, you recover <strong>【SL】</strong> MP for each damaged enemy).</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[$sl mp]{Recover SL MP}</p></li><li><p><strong>Target</strong>: @EFFECT[Compendium.projectfu.skills.KgYNKoG8RE2NvCiV]{Effect: Resonance Damage}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706551588442,
-    "modifiedTime": 1743344415136,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1744457869580,
+    "lastModifiedBy": "WNNELbIcUepK9pGq",
     "compendiumSource": null,
     "duplicateSource": null
   },

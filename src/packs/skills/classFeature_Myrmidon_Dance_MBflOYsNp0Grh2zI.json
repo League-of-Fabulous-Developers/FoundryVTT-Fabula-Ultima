@@ -14,7 +14,7 @@
     "featureType": "projectfu.dance",
     "data": {
       "duration": "nextTurn",
-      "description": "<p>Choose one option: you gain Resistance to <strong>earth</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>earth</strong>.</p><hr><ul><li><p><strong>You:</strong> @LOSS[10 mp] @TYPE[affinity earth resistance e:sot i:1 t:source]{Myrmidon Dance: Resistance} @TYPE[damage all earth e:sot i:1 t:source]{Myrmidon Dance: Damage}</p></li></ul>"
+      "description": "<p>Choose one option: you gain Resistance to <strong>earth</strong> damage; <strong>or</strong> all damage dealt by your attacks and spells becomes <strong>earth</strong>.</p><hr><ul><li><p><strong>You Spend:</strong> @LOSS[10 mp]</p></li><li><p><strong>You Receive:</strong> @TYPE[affinity earth resistance e:sot i:1 t:source]{Myrmidon Dance: Resistance}, or@TYPE[damage all earth e:sot i:1 t:source]{Myrmidon Dance: Damage}</p></li></ul>"
     },
     "source": "FUHF145",
     "fuid": "myrmidon-dance"
@@ -34,8 +34,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710176248265,
-    "modifiedTime": 1742579928586,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1744507474951,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

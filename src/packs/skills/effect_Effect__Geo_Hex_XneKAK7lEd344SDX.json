@@ -1,0 +1,93 @@
+{
+  "folder": "MIfFDYnI6CPOLrSB",
+  "name": "Effect: Geo Hex",
+  "type": "effect",
+  "_id": "XneKAK7lEd344SDX",
+  "img": "systems/projectfu/styles/static/affinities/earth.svg",
+  "system": {
+    "fuid": "effect-geo-hex",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/affinities/earth.svg",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Geo Hex",
+      "_id": "IjnnrDf8H64BMoQv",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.air",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.incomingDamage.ice",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal </span><span class=\"fontstyle2\"><strong>air</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>ice</strong> </span><span class=\"fontstyle0\">damage.</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744520510950,
+        "modifiedTime": 1744520570264,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+      },
+      "_key": "!items.effects!XneKAK7lEd344SDX.IjnnrDf8H64BMoQv"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LokWlpJRX2uVxtGn": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744519846630,
+    "modifiedTime": 1744520018345,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+  },
+  "_key": "!items!XneKAK7lEd344SDX"
+}

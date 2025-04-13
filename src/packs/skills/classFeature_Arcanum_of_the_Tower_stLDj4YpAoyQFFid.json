@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.arcanum",
     "data": {
-      "merge": "<ul><li><p>When you summon this Arcanum, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this Arcanum is dismissed, each of your allies present on the scene has Resistance to the chosen damage type (you <strong>do not</strong> gain this Resistance).</p></li></ul><hr><p>@AFFINITY[air resistance] @AFFINITY[bolt resistance] @AFFINITY[dark resistance] @AFFINITY[earth resistance] @AFFINITY[fire resistance] @AFFINITY[ice resistance]</p><p></p>",
+      "merge": "<ul><li><p>When you summon this Arcanum, choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>dark</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this Arcanum is dismissed, each of your allies present on the scene has Resistance to the chosen damage type (you <strong>do not</strong> gain this Resistance).</p></li></ul><hr><p>@TYPE[affinity air resistance] @TYPE[affinity bolt resistance] @TYPE[affinity dark resistance] @TYPE[affinity earth resistance] @TYPE[affinity fire resistance] @TYPE[affinity ice resistance]</p>",
       "dismiss": "<ul><li><p><strong>Judgment.</strong> Choose any number of creatures you can see: each of them suffers @DMG[30 light] damage. This damage ignores Resistances.</p></li></ul>",
       "domains": "judgment, protection, sacrifice"
     },
@@ -72,8 +72,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710464096011,
-    "modifiedTime": 1742766425709,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744457317481,
+    "lastModifiedBy": "WNNELbIcUepK9pGq",
     "compendiumSource": null,
     "duplicateSource": null
   },

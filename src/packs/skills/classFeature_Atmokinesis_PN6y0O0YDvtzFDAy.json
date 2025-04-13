@@ -13,7 +13,7 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "When you deal damage",
-      "description": "<p>That damage becomes <strong>air</strong> or <strong>bolt</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】</strong>.</p><hr><ul><li><p><strong>Cost: </strong>@LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}</p></li><li><p><strong>Effect:</strong> @EFFECT[Compendium.projectfu.skills.4oUORbf2Bzwl6sjD]{Effect: Atmokinesis (Bolt)} @EFFECT[Compendium.projectfu.skills.Item.XoviVmGtz9kyst0s]{Effect: Atmokinesis (Air)}</p></li><li><p><strong>Resolution: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p><p></p></li></ul>"
+      "description": "<p>That damage becomes <strong>air</strong> or <strong>bolt</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】</strong>.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}</p></li><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.4oUORbf2Bzwl6sjD]{Effect: Atmokinesis (Bolt)}, or @EFFECT[Compendium.projectfu.skills.Item.XoviVmGtz9kyst0s]{Effect: Atmokinesis (Air)}</p></li><li><p><strong>Resolution: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p><p></p></li></ul>"
     },
     "source": "FUTF152",
     "fuid": "atmokinesis"
@@ -32,8 +32,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1743843935236,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1744507682985,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

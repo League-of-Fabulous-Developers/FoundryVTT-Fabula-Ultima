@@ -117,7 +117,8 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "volcano-single-target"
+    "fuid": "volcano-single-target",
+    "traits": []
   },
   "effects": [],
   "sort": 0,
@@ -134,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710548265766,
-    "modifiedTime": 1743640451996,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744484730445,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

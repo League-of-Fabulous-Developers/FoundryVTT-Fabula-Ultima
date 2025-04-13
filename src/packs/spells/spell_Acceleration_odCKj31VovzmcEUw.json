@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You bend the fabric of time. Until this spell ends, the target gains the ability to perform a single additional action during each of their turns. Once the target has performed a total of two additional actions granted by this spell, this spell ends.</p><ul><li><p><strong>Target</strong>: @EFFECT[Compendium.projectfu.spells.O8ZlgIEzCodMsadz]{Effect: Acceleration}</p></li></ul>",
+    "description": "<p>You bend the fabric of time. Until this spell ends, the target gains the ability to perform a single additional action during each of their turns. Once the target has performed a total of two additional actions granted by this spell, this spell ends.</p><hr /><ul><li><p><strong>Target Receives</strong>: @EFFECT[Compendium.projectfu.spells.O8ZlgIEzCodMsadz]{Effect: Acceleration}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706567990806,
-    "modifiedTime": 1742672745543,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1744504210316,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },
