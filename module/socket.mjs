@@ -1,9 +1,11 @@
 import { SYSTEM } from './helpers/config.mjs';
+import { InventoryPipeline } from './pipelines/inventory-pipeline.mjs';
 
 export const MESSAGES = Object.freeze({
 	ShowBanner: 'use',
 	RequestStartTurn: 'requestStartTurn',
 	RequestEndTurn: 'requestEndTurn',
+	RequestTrade: 'requestTrade',
 });
 
 export let SOCKET;
@@ -15,6 +17,7 @@ export function onSocketLibReady() {
 	SOCKET.register(MESSAGES.ShowBanner, showBanner);
 	SOCKET.register(MESSAGES.RequestStartTurn, requestStartTurn);
 	SOCKET.register(MESSAGES.RequestEndTurn, requestEndTurn);
+	SOCKET.register(MESSAGES.RequestTrade, InventoryPipeline.requestTrade);
 }
 
 function showBanner(text) {

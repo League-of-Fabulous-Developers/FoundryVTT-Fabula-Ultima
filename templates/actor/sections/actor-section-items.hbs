@@ -151,64 +151,10 @@
     </ol>
 
     <!-- Consumable Section -->
-    <ol class="items-list">
-        <li class="item flexrow items-header">
-            <div class="item-name">{{localize "FU.Consumables"}}</div>
-            <div class="item-full start">{{localize "FU.Effect"}}</div>
-            <div class="item-xs">{{localize "FU.InventoryCost"}}</div>
-            <div class="item-m end">
-                <a class="item-control item-create" data-tooltip="{{localize 'FU.ConsumableCreate'}}"
-                   data-type="consumable"><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
-            </div>
-        </li>
-        {{#each consumables as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
-                <div class="flexrow">
-                    {{!-- Item Name--}}
-                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                    <div class="item-full start"><span class="description-effect">{{ item.quality }}</span></div>
-                    <div class="item-xs">{{ item.system.ipCost.value }}</div>
-                    {{!-- Item Control--}}
-                    {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-                </div>
-                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
-                    {{#if item.enrichedHtml.description}}
-                        {{{item.enrichedHtml.description}}}
-                    {{/if}}
-                </div>
-            </li>
-        {{/each}}
-    </ol>
+	{{> "systems/projectfu/templates/actor/sections/actor-section-items-consumable.hbs"}}
 
     <!-- Treasure Section -->
-    <ol class="items-list">
-        <li class="item flexrow items-header">
-            <div class="item-name">{{localize "FU.Treasures"}}</div>
-            <div class="item-full start">{{localize "FU.Effect"}}</div>
-            <div class="item-xs">{{localize "FU.Quantity"}}</div>
-            <div class="item-m end">
-                <a class="item-control item-create" data-tooltip="{{localize 'FU.TreasureCreate'}}"
-                   data-type="treasure"><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
-            </div>
-        </li>
-        {{#each treasures as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
-                <div class="flexrow">
-                    {{!-- Item Name--}}
-                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                    <div class="item-full start"><span class="description-effect">{{ item.quality }}</span></div>
-                    <div class="item-xs">{{ item.system.quantity.value }}</div>
-                    {{!-- Item Control--}}
-                    {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-                </div>
-                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
-                    {{#if item.enrichedHtml.description}}
-                        {{{item.enrichedHtml.description}}}
-                    {{/if}}
-                </div>
-            </li>
-        {{/each}}
-    </ol>
+	{{> "systems/projectfu/templates/actor/sections/actor-section-items-treasure.hbs"}}
 
     <!-- Basic Item Section only shown if the actor has basic items -->
     {{#if basics.length}}

@@ -1,0 +1,34 @@
+<ol class="items-list">
+	<li class="item flexrow items-header">
+		<div class="item-name">{{localize "FU.Treasures"}}</div>
+		<div class="item-full start">{{localize "FU.Effect"}}</div>
+		<div class="item-xs">{{localize "FU.Quantity"}}</div>
+		<div class="item-xs">{{localize "FU.Cost"}}</div>
+		<div class="item-m end">
+			<a class="item-control item-create" data-tooltip="{{localize 'FU.TreasureCreate'}}"
+			   data-type="treasure"><i class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
+		</div>
+	</li>
+	{{#each treasures
+	as |item id|}}
+		<li class="item" data-item-id="{{ item._id }}">
+			<div class="flexrow">
+				{{!-- Item Name--}}
+				{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+				{{!-- Effect --}}
+				<div class="item-full start"><span class="description-effect">{{ item.quality }}</span></div>
+				{{!-- Quantity --}}
+				<div class="item-xs">{{ item.system.quantity.value }}</div>
+				{{!-- Cost --}}
+				<div class="item-xs">{{ item.system.cost.value }}</div>
+				{{!-- Item Control--}}
+				{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+			</div>
+			<div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
+				{{#if item.enrichedHtml.description}}
+					{{{item.enrichedHtml.description}}}
+				{{/if}}
+			</div>
+		</li>
+	{{/each}}
+</ol>

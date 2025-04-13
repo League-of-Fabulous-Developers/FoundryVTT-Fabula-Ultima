@@ -55,7 +55,7 @@ import { MathHelper } from '../helpers/math-helper.mjs';
 function createTemporaryEffect(owner, effectType, name) {
 	const system = {
 		duration: {
-			event: 'endOfScene',
+			event: effectType === 'passive' ? 'none' : 'endOfScene',
 		},
 	};
 	return owner.createEmbeddedDocuments('ActiveEffect', [
@@ -210,7 +210,7 @@ export async function handleCopyInlineEffect(effect) {
 }
 
 export function isActiveEffectForStatusEffectId(effect, statusEffectId) {
-	return effect.statuses.size === 1 && effect.statuses.has(statusEffectId);
+	return effect.statuses.has(statusEffectId);
 }
 
 /**
@@ -431,14 +431,16 @@ async function manageEffectDuration(event) {
 					return false;
 				}
 
-				// If it's not tracking this actor
-				if (duration.tracking === 'self') {
-					if (actor.uuid !== event.actor.uuid) {
-						return false;
-					}
-				} else if (duration.tracking === 'source') {
-					if (effect.source.actorUuid !== event.actor.uuid) {
-						return false;
+				// If the event is based on a specific actor
+				if (event.hasActor) {
+					if (duration.tracking === 'self') {
+						if (actor.uuid !== event.actor.uuid) {
+							return false;
+						}
+					} else if (duration.tracking === 'source') {
+						if (effect.source.actorUuid !== event.actor.uuid) {
+							return false;
+						}
 					}
 				}
 
@@ -652,6 +654,7 @@ export const Effects = Object.freeze({
 	onRemoveEffectFromActor,
 	onApplyEffectToActor,
 	canBeRemoved,
+	toggleStatusEffect,
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,

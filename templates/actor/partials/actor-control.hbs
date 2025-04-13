@@ -1,35 +1,34 @@
 <div class="item-sm end">
-    {{!-- remove after fixing contextmenu --}}
-    {{!-- {{#if (eq @root.actor.type "npc")}}
-        {{#if (eq (getGameSetting 'optionBehaviorRoll') true)}}
-            <a class="item-control item-behavior" data-item-id="{{item._id}}"
-               data-tooltip="{{#if item.system.isBehavior.value}}{{localize 'FU.BehaviorRemove'}}{{else}}{{localize
-                'FU.BehaviorAdd'}}{{/if}}"
-               aria-describedby="tooltip">
-                <i class="{{#if item.system.isBehavior.value}}fas active{{else}}far{{/if}} fa-address-book button-style"></i>
-            </a>
-        {{/if}}
-    {{/if}} --}}
 
-    <a class="item-control item-favored" data-item-id="{{item._id}}"
-       data-tooltip="{{#if item.system.isFavored.value}}{{ localize 'FU.FavoriteRemove' }}{{else}}{{ localize
-        'FU.Favorite' }}{{/if}}" aria-describedby="tooltip">
-        <i class="{{#if item.system.isFavored.value}}fas active{{else}}far{{/if}} fa-star button-style"></i>
-    </a>
-    {{#if (eq item._id unarmed._id)}}
+	<!-- Favorite -->
+	{{#if @root.actor.isCharacterType}}
+		<a class="item-control item-favored" data-item-id="{{item._id}}"
+		   data-tooltip="{{#if item.system.isFavored.value}}{{ localize 'FU.FavoriteRemove' }}{{else}}{{ localize
+			'FU.Favorite' }}{{/if}}" aria-describedby="tooltip">
+			<i class="{{#if item.system.isFavored.value}}fas active{{else}}far{{/if}} fa-star button-style"></i>
+		</a>
 
-    {{else}}
-        <a class="item-control item-edit" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
-            <i class="fas fa-edit button-style"></i>
-        </a>
-        {{!-- <a class="item-control item-duplicate" data-tooltip="{{ localize 'FU.Duplicate' }}" aria-describedby="tooltip">
-            <i class="fas fa-copy"></i>
-        </a>
-        <a class="item-control item-delete" data-tooltip="{{ localize 'FU.Delete' }}" aria-describedby="tooltip">
-            <i class="fas fa-trash"></i>
-        </a> --}}
-        <a class="item-control item-option" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Settings' }}" aria-describedby="tooltip">
-            <i class="fas fa-bars button-style"></i>
-        </a>
-    {{/if}}
+	{{else}}
+		{{#if @root.actor.system.merchant}}
+			{{#if item.system.cost}}
+				<a class="item-control item-sell" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Sell' }}" aria-describedby="tooltip">
+					<i class="fa fa-balance-scale button-style"></i>
+				</a>
+			{{/if}}
+		{{else}}
+			<a class="item-control item-loot" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Loot' }}" aria-describedby="tooltip">
+				<i class="fa fa-hand button-style"></i>
+			</a>
+		{{/if}}
+	{{/if}}
+
+	<!-- Hide if it's the default unarmed attack -->
+    {{#unless (eq item._id unarmed._id)}}
+		<a class="item-control item-edit" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
+			<i class="fas fa-edit button-style"></i>
+		</a>
+		<a class="item-control item-option" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Settings' }}" aria-describedby="tooltip">
+			<i class="fas fa-bars button-style"></i>
+		</a>
+    {{/unless}}
 </div>

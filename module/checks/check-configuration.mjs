@@ -190,6 +190,18 @@ class CheckConfigurer {
 	}
 
 	/**
+	 * @param {string} label
+	 * @param {number} path
+	 * @return CheckConfigurer
+	 */
+	addDamageBonusIfDefined(label, value) {
+		if (value) {
+			return this.addDamageBonus(label, value);
+		}
+		return this;
+	}
+
+	/**
 	 * @param {String} extra
 	 * @return {CheckConfigurer}
 	 */

@@ -43,6 +43,13 @@ export class CombatEvent {
 	get actors() {
 		return Array.from(this.combatants.map((c) => c.actor));
 	}
+
+	/**
+	 * @returns {boolean} True if this combat event has an actor
+	 */
+	get hasActor() {
+		return !!this.combatant;
+	}
 }
 
 /**

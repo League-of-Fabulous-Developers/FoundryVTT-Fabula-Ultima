@@ -13,6 +13,7 @@ import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { Traits } from './traits.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
+import { TokenUtils } from '../helpers/token-utils.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -408,7 +409,7 @@ async function process(request) {
 			resource = 'mp';
 		}
 		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true));
-		actor.showFloatyText(`${-damageTaken} ${resource.toUpperCase()}`, `red`);
+		TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, `red`);
 
 		// Dispatch event
 		CommonEvents.damage(request.damageType, damageTaken, context.traits, actor, context.sourceActor);
@@ -545,7 +546,7 @@ function onRenderChatMessage(message, jQuery) {
 		const updates = [];
 		const amountRecovered = dataset.amount;
 		updates.push(actor.modifyTokenAttribute('resources.hp', amountRecovered, true));
-		actor.showFloatyText(`${amountRecovered} HP`, `lightgreen`);
+		TokenUtils.showFloatyText(actor, `${amountRecovered} HP`, `lightgreen`);
 		return Promise.all(updates);
 	});
 

@@ -337,11 +337,12 @@
 /* Item Description Styles */
 .tab.desc.active {
 	margin-bottom: 5px;
-	height: 50%;
 	overflow-y: auto;
-	max-height: 28em;
 	min-height: 16em;
 	padding: 0.5em;
+	// TODO: Verify it doesn't cause unintended issues
+	//max-height: 28em;
+	//height: 50%;
 }
 
 /* General Editor Styles */
@@ -429,4 +430,223 @@
 	border-radius: 3px;
 	font-family: $font-primary;
 	font-size: 1rem;
+}
+
+// Party Sheet
+.party {
+	display: flex;
+	height: 100%;
+	color: $color-primary;
+
+	.editor-menu {
+		background: $color-ternary;
+	}
+
+	// Menu, Content Views
+	.menu {
+		width: 125px;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		justify-content: space-evenly;
+		border-top: none;
+		border-bottom: none;
+
+		.button {
+			font-size: x-large;
+			padding: 0.75rem;
+			text-align: left;
+			cursor: pointer;
+		}
+	}
+
+	.content {
+		flex-grow: 1;
+		padding: 2rem;
+		overflow-y: auto;
+	}
+
+	// Partial Styles
+	.portrait {
+		background-image: linear-gradient(to right, $color-secondary, $color-ternary);
+		background-clip: content-box;
+		border: 1px solid #aeb8a8;
+		border-radius: 10px 0 0 10px;
+	}
+
+	.name-container {
+		background: linear-gradient($color-charname-gradient);
+		border-color: #c1b7c7;
+		border-width: 4px;
+		margin: 8px;
+
+		h2 {
+			height: 50px;
+			padding-left: 8px;
+			border-bottom: 0;
+
+			/* Character Name Input */
+			input {
+				color: $color-primary;
+				border: 0;
+				background-color: transparent;
+				text-shadow: 2px 2px 1px black;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+
+	// Tabs
+	.tab {
+		flex: 1;
+		height: 100%;
+	}
+
+	.inventory {
+		flex-grow: 1;
+	}
+
+	.manage {
+	}
+
+	.settings {
+		height: 100%;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	}
+
+	.overview {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		max-width: 100%;
+		gap: 1.5rem;
+		padding: 0 0.5rem;
+
+		.border {
+			border: 2px solid #c9a76f;
+		}
+
+		.character {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+			.plate {
+				background: linear-gradient(to bottom, #1d2b3a, #2e3d4f);
+
+				color: var(--pfu-color-app-control-content);
+
+				border-radius: 1rem;
+				padding: 1rem;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+				width: 200px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				transition: transform 0.3s ease;
+			}
+
+			.plate:hover {
+				transform: translateY(-4px);
+			}
+
+			.plate .damage {
+				background: linear-gradient(to bottom, #6a3b3b, #2e1f1f);
+			}
+
+			.plate .support {
+				background: linear-gradient(to bottom, #3d5c3d, #1c2a1c);
+			}
+
+			.plate .tank {
+				background: linear-gradient(to bottom, #3a4c66, #1a1f2a);
+			}
+
+			.plate .any {
+				background: linear-gradient(to bottom, #d1c38a, #9a8544);
+			}
+
+			.plate img {
+				width: 160px;
+				height: 200px;
+				object-fit: cover;
+				border-radius: 8px;
+				border: 2px solid #666;
+				margin-bottom: 0.75rem;
+			}
+
+			.classes {
+				min-height: 24px;
+				margin-bottom: 8px;
+			}
+
+			.classes img {
+				width: 24px;
+				height: 24px;
+				object-fit: cover;
+				margin: 0;
+				border: none;
+			}
+
+			.bar {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				margin: 0;
+				width: 100%;
+			}
+
+			.bar .text {
+				min-width: 3rem;
+			}
+
+			.bar .track {
+				flex-grow: 1;
+				height: 0.6rem;
+				background: #222;
+				border-radius: 0.3rem;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.bar .fill {
+				height: 100%;
+				width: 70%;
+				background: linear-gradient(to top, #e04c4c, #f36b6b);
+			}
+
+			.bar.hp .fill {
+				background: linear-gradient(to right, #e04c4c, #f36b6b);
+			}
+			.bar.mp .fill {
+				background: linear-gradient(to right, #5090ff, #6aaaff);
+			}
+			.bar.ip .fill {
+				background: linear-gradient(to right, #d1b347, #e6c75c);
+			}
+
+			.name {
+				font-size: 2rem;
+				font-weight: 600;
+				text-align: center;
+			}
+
+			.identity {
+				font-size: 1.2rem;
+				margin-bottom: 0.5rem;
+			}
+
+			.resources {
+				margin-top: 0.5rem;
+				display: flex;
+				gap: 0.5rem;
+			}
+		}
+	}
 }

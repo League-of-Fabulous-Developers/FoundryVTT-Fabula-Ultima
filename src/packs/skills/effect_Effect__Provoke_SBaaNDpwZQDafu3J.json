@@ -37,16 +37,34 @@
           "tracking": "self",
           "remaining": 0
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
       },
-      "changes": [],
-      "description": "<p>You are compelled to focus your attention on the character who provoked you.</p>",
+      "changes": [
+        {
+          "key": "system.attributes.ins",
+          "mode": 0,
+          "value": "downgrade",
+          "priority": null
+        },
+        {
+          "key": "system.attributes.dex",
+          "mode": 0,
+          "value": "downgrade",
+          "priority": null
+        }
+      ],
+      "description": "<p>You are compelled to focus your attention on the character who provoked you.</p><p><em>For automation purposes, add </em>@EFFECT[Compendium.projectfu.conditions-effects.vuJGp3kTdnZeEqQO]<em> separately.</em></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [
-        "provoked",
-        "enraged"
+        "provoked"
       ],
       "sort": 0,
       "flags": {},
@@ -57,7 +75,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742491472722,
-        "modifiedTime": 1742582179804,
+        "modifiedTime": 1744999458996,
         "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
       "_key": "!items.effects!SBaaNDpwZQDafu3J.X0ncNBybozMcN7Z2"

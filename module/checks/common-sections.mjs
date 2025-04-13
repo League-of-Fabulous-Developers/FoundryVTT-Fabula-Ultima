@@ -6,6 +6,7 @@ import { FU } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { ConsumableDataModel } from '../documents/items/consumable/consumable-data-model.mjs';
+import { TokenUtils } from '../helpers/token-utils.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -266,7 +267,7 @@ const targeted = (sections, actor, item, targets, flags, accuracyData = undefine
 async function showFloatyText(targetData, localizedText) {
 	const actor = await fromUuid(targetData.uuid);
 	if (actor instanceof FUActor) {
-		actor.showFloatyText(game.i18n.localize(localizedText));
+		TokenUtils.showFloatyText(actor, game.i18n.localize(localizedText));
 	}
 }
 

@@ -10,10 +10,13 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/sections/actor-section-features.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-spells.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-items.hbs',
+		'systems/projectfu/templates/actor/sections/actor-section-items-treasure.hbs',
+		'systems/projectfu/templates/actor/sections/actor-section-items-consumable.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-combat.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-notes.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-behavior.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-settings.hbs',
+		'systems/projectfu/templates/actor/sections/actor-section-inventory.hbs',
 
 		// Actor Component partials.
 		'systems/projectfu/templates/actor/partials/actor-charname.hbs',
@@ -83,6 +86,10 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
 		'systems/projectfu/templates/chat/chat-group-check-initiated.hbs',
 		'systems/projectfu/templates/chat/chat-active-effect.hbs',
+		'systems/projectfu/templates/chat/chat-trade-item.hbs',
+		'systems/projectfu/templates/chat/chat-distribute-zenit.hbs',
+		'systems/projectfu/templates/chat/chat-item-acquired.hbs',
+		'systems/projectfu/templates/chat/chat-recharge-ip.hbs',
 
 		// Chat Message Partials
 		'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',
