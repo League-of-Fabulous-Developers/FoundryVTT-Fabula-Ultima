@@ -1,4 +1,6 @@
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
+import { SYSTEM } from './config.mjs';
+import { Flags } from './flags.mjs';
 
 function addFabulaPointDisplay(app, html, data) {
 	const userId = game.userId;
@@ -37,7 +39,7 @@ function addFabulaPointDisplay(app, html, data) {
 					})
 					.on('contextmenu', function (event) {
 						event.preventDefault();
-						character.gainMetaCurrency();
+						gainMetaCurrency(character);
 					});
 			});
 		}
@@ -60,11 +62,11 @@ function addFabulaPointDisplay(app, html, data) {
 						.append(`<a class="flex0" data-user-id="${charId}" data-action="spendFabula"><span class="mats-o font-size-20" ${fabulaPoints >= 10 ? `data-tooltip="${tooltip}"` : ''}>${icon}</span></a>`)
 						.on('click', `a[data-user-id="${charId}"][data-action="spendFabula"]`, function (event) {
 							event.preventDefault();
-							user.character.spendMetaCurrency();
+							spendMetaCurrency(user.character);
 						})
 						.on('contextmenu', `a[data-user-id="${charId}"][data-action="spendFabula"]`, function (event) {
 							event.preventDefault();
-							user.character.gainMetaCurrency();
+							gainMetaCurrency(user.character);
 						});
 				}
 			});
@@ -75,6 +77,75 @@ function addFabulaPointDisplay(app, html, data) {
 	renderUneditableFabulaPoints();
 	renderSpendableFabulaPoints();
 	renderGMFabulaPoints();
+}
+
+/**
+ * @param {FUActor} actor
+ * @param {Boolean} force
+ * @return {Promise<boolean>}
+ */
+async function spendMetaCurrency(actor, force = false) {
+	let metaCurrency;
+	if (actor.type === 'character') {
+		metaCurrency = game.i18n.localize('FU.Fabula');
+	}
+	if (actor.type === 'npc' && actor.system.villain.value) {
+		metaCurrency = game.i18n.localize('FU.Ultima');
+	}
+	if (metaCurrency && actor.system.resources.fp.value > 0) {
+		const confirmed =
+			force ||
+			(await Dialog.confirm({
+				title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }),
+				content: game.i18n.format('FU.UseMetaCurrencyDialogMessage', { type: metaCurrency }),
+				options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
+				rejectClose: false,
+			}));
+		if (confirmed && actor.system.resources.fp.value > 0) {
+			/** @type ChatMessageData */
+			const data = {
+				speaker: ChatMessage.implementation.getSpeaker({ actor: actor }),
+				flavor: game.i18n.format('FU.UseMetaCurrencyChatFlavor', { type: metaCurrency }),
+				content: game.i18n.format('FU.UseMetaCurrencyChatMessage', { actor: actor.name, type: metaCurrency }),
+				flags: {
+					[SYSTEM]: {
+						[Flags.ChatMessage.UseMetaCurrency]: true,
+					},
+				},
+			};
+			ChatMessage.create(data);
+			await actor.update({
+				'system.resources.fp.value': actor.system.resources.fp.value - 1,
+			});
+			return true;
+		}
+	} else {
+		ui.notifications.info(game.i18n.format('FU.UseMetaCurrencyNotificationInsufficientPoints', { actor: actor.name, type: metaCurrency }));
+		return false;
+	}
+}
+
+async function gainMetaCurrency(actor) {
+	let metaCurrency;
+	if (actor.type === 'character') {
+		metaCurrency = game.i18n.localize('FU.Fabula');
+	}
+	if (actor.type === 'npc' && actor.system.villain.value) {
+		metaCurrency = game.i18n.localize('FU.Ultima');
+	}
+	if (metaCurrency) {
+		await actor.update({
+			'system.resources.fp.value': actor.system.resources.fp.value + 1,
+		});
+		/** @type ChatMessageData */
+		const chatData = {
+			user: game.user.id,
+			speaker: ChatMessage.getSpeaker({ actor: actor.name }),
+			flavor: game.i18n.format('FU.GainMetaCurrencyChatFlavor', { type: metaCurrency }),
+			content: game.i18n.format('FU.GainMetaCurrencyChatMessage', { actor: actor.name, type: metaCurrency }),
+		};
+		ChatMessage.create(chatData);
+	}
 }
 
 function rerenderPlayerList(actor) {

@@ -3,6 +3,7 @@ import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTr
 import { CombatHUD } from './ui/combat-hud.mjs';
 import { FUHooks } from './hooks.mjs';
 import { WellspringDataModel } from './documents/items/classFeature/invoker/invoker-integration.mjs';
+import { FUPartySheetHelper } from './sheets/party-sheet.mjs';
 
 export const SETTINGS = Object.freeze({
 	experimentalCombatHud: 'experimentalCombatHud',
@@ -62,8 +63,14 @@ export const SETTINGS = Object.freeze({
 	optionAutomationManageEffects: 'optionAutomationManageEffects',
 	optionAutomationRemoveExpiredEffects: 'optionAutomationRemoveExpiredEffects',
 	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
+	// Party
+	activeParty: 'optionActiveParty',
 });
 
+/**
+ * @description Uses {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#registerMenu}
+ * @returns {Promise<void>}
+ */
 export const registerSystemSettings = async function () {
 	game.settings.registerMenu(SYSTEM, 'myChatMessageOptions', {
 		name: game.i18n.localize('FU.ChatMessageOptions'),
@@ -190,6 +197,35 @@ export const registerSystemSettings = async function () {
 		config: false,
 		type: Boolean,
 		default: false,
+	});
+
+	// Party
+	game.settings.register(SYSTEM, SETTINGS.activeParty, {
+		name: game.i18n.localize('FU.ActiveParty'),
+		hint: game.i18n.localize('FU.ActivePartyHint'),
+		icon: 'fas fa fa-users',
+		config: true,
+		scope: 'world',
+		type: new foundry.data.fields.ForeignDocumentField(Actor, {
+			nullable: true,
+			blank: true,
+		}),
+		restricted: true,
+	});
+
+	game.keybindings.register(SYSTEM, 'openPartySheet', {
+		name: game.i18n.localize('FU.ActivePartySheetOpen'),
+		editable: [
+			{
+				key: 'KeyP', // 'P' key
+			},
+		],
+		onDown: () => {
+			FUPartySheetHelper.openActive();
+			return true;
+		},
+		restricted: false, // Set to true if only GMs should use it
+		precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {

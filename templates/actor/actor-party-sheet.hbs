@@ -1,0 +1,123 @@
+<form class="{{cssClass}} {{actor.type}} projectfu-actor-sheet h-100" autocomplete="off" spellcheck="false">
+
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs menu" data-group="primary">
+		<a class="button" data-tab="overview">Overview</a>
+		<a class="button" data-tab="inventory">Inventory</a>
+<!--		<a class="button" data-tab="manage">Manage</a>-->
+		<a class="button" data-tab="settings">Settings</a>
+	</nav>
+
+	{{!-- Sheet Body --}}
+	<div class="sheet-body content">
+
+		{{!-- Overview --}}
+		<div class="tab" data-tab="overview">
+			<section class="party overview">
+
+				{{#unless characterCount}}
+					<div class="label" style="align-self: center; text-align: center; font-size: x-large; flex-grow: 1">
+						{{localize 'FU.PartySheetEmpty'}}
+					</div>
+				{{/unless}}
+
+				{{#each characters}}
+				{{!-- Character Card  --}}
+					<div class="character">
+						<div class="plate border character-option" data-uuid="{{this.actor.uuid}}">
+								<div class="classes">
+									{{#each this.classes}}
+										<img class="item" src="{{ this.img }}" data-tooltip="{{ this.name }}" />
+									{{/each}}
+								</div>
+
+								<a data-action="revealActor" data-actor="{{this.actor.uuid}}">
+									<img class="portrait {{role}}" src="{{ this.actor.img }}" data-tooltip="{{ this.name }}" />
+								</a>
+
+								<div class="name">{{ this.name }}</div>
+								<div class="identity">LV{{this.level }} {{this.identity }}</div>
+
+								{{#each this.resources}}
+									<div class="bar {{this.name}}">
+										<span class="text">{{this.label}} </span>
+										<div class="track">
+											<div class="fill" style="width: {{this.percentage}}%;"></div>
+										</div>
+										<span class="text">{{this.current}} / {{this.max}}</span>
+									</div>
+								{{/each}}
+
+								<div class="resources">
+									<i class="fuk fu-zenit icon-aff"></i>
+									{{this.zenit}}
+
+									<i class="fuk fu-fp icon-aff"></i>
+									{{this.fp}}
+								</div>
+						</div>
+					</div>
+				{{/each}}
+			</section>
+		</div>
+
+		{{!-- Inventory --}}
+		<div class="tab desc inventory border" data-tab="inventory">
+			{{> "systems/projectfu/templates/actor/sections/actor-section-inventory.hbs" actor=actor}}
+		</div>
+
+		{{!-- Manage --}}
+		<div class="tab" data-tab="manage">
+		</div>
+
+		{{!-- Settings --}}
+		<div class="tab" data-tab="settings">
+
+			<!-- Header  -->
+			<header class="sheet-header desc">
+				<div class="combine-header w-100">
+					<img class="profile-img flexcol" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"
+						 style="height: 52px; width: auto; object-fit: contain;" />
+					<div style="flex-grow:1;">
+						<div class="charname-container flexrow grid-span-4" style="width: 100%;">
+							<h2 class="charname" style="flex: 3;">
+								<input name="name" type="text" value="{{actor.name}}" placeholder="Name" />
+							</h2>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<!-- Settings -->
+			<main class="grid-span-4">
+				<fieldset class="section-container title-fieldset desc resource-content">
+					<legend class="resource-label-m" aria-describedby="tooltip">
+						<a class="resource-inputs resource-label-m">
+							{{localize 'Settings'}}
+						</a>
+					</legend>
+
+					<div>
+						<button class="set-active-button"><i class="fas fa-pen-to-square icon"></i>Set Active</button>
+					</div>
+
+
+				</fieldset>
+			</main>
+
+			<!-- Notes -->
+			<main class="grid-span-4">
+				<fieldset class="section-container title-fieldset desc resource-content">
+					<legend class="resource-label-m" aria-describedby="tooltip">
+						<a class="resource-inputs resource-label-m">
+							{{localize 'FU.Notes'}}
+						</a>
+					</legend>
+					<div style="max-height: 400px; overflow-y: scroll;">
+						{{formInput system.schema.fields.notes value=system.notes localize=true button=false editable=true}}
+					</div>
+				</fieldset>
+			</main>
+		</div>
+	</div>
+</form>

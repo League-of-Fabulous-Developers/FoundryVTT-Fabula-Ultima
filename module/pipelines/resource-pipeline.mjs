@@ -4,6 +4,7 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
+import { TokenUtils } from '../helpers/token-utils.mjs';
 
 /**
  * @property {Number} amount
@@ -127,7 +128,7 @@ async function processRecovery(request) {
 
 		CommonEvents.gain(actor, request.resourceType, amountRecovered);
 
-		actor.showFloatyText(`${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
+		TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
 		updates.push(
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker({ actor }),
@@ -186,7 +187,7 @@ async function processLoss(request) {
 		// Dispatch event
 		CommonEvents.loss(actor, request.resourceType, amountLost);
 
-		actor.showFloatyText(`${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
+		TokenUtils.showFloatyText(actor, `${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
 		updates.push(
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker({ actor }),
@@ -266,7 +267,7 @@ function onRenderChatMessage(message, jQuery) {
 		const attributeKey = dataset.key;
 		const updates = [];
 		updates.push(actor.modifyTokenAttribute(attributeKey, amount, true));
-		actor.showFloatyText(`${amount} ${dataset.resource.toUpperCase()}`, `lightgreen`);
+		TokenUtils.showFloatyText(actor, `${amount} ${dataset.resource.toUpperCase()}`, `lightgreen`);
 		return Promise.all(updates);
 	});
 
@@ -276,7 +277,7 @@ function onRenderChatMessage(message, jQuery) {
 		const attributeKey = dataset.key;
 		const updates = [];
 		updates.push(actor.modifyTokenAttribute(attributeKey, -amount, true));
-		actor.showFloatyText(`${amount} ${FU.resourcesAbbr[dataset.resource]}`, `red`);
+		TokenUtils.showFloatyText(actor, `${amount} ${FU.resourcesAbbr[dataset.resource]}`, `red`);
 		return Promise.all(updates);
 	});
 }
