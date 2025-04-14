@@ -65,10 +65,11 @@ Major thanks to the following contributors:
 
 - [zarick1342](https://github.com/zarick1342/) - This system is a fork of their [Fabula Ultima Boilerplate System](https://github.com/zarick1342/fabula-ultima-system)
 - [serpuss](https://github.com/serpuss) - Various upgrades and CSS design improvements.
-- [spyrella](https://github.com/spyrella) - For ongoing updates to the system and maintainence of the project.
+- [spyrella](https://github.com/spyrella) - For ongoing updates to the system and maintenance of the project.
 - [Savantford](https://github.com/Savantford) - For providing and allowing us to utilize their clock code.
 - [xeqi](https://github.com/xeqi) - Various fixes to the codebase (bonds, status effects, etc) + their fultimator importer module.
 - [Shourn](https://github.com/Shourn) - Refactoring of code infrastructure, the establishment of the system data model, and implementing new features.
+- [Azurelol](https://github.com/Azurelol) - For implementation of various features like inline commands/expressions, overhauling combat an active effects system.
 - [Wigginns](https://github.com/Wigginns) - Various improvements (collapsible descriptions) & fixes.
 - [KzMz](https://github.com/KzMz) - Combat HUD.
 - Joline / Liquitty - For providing custom background art for the sheet/chat card.
@@ -86,7 +87,7 @@ The following assets/code were used from the following projects:
 
 - **Pixeltier** - All pixel item art referenced in the system compendium are purchased from [Pixeltier](https://itch.io/s/39748/pixeltiers-complete-asset-bundle).
 - **Javier Aumente (Tarot)** (**Email:** <jaauvel@gmail.com>) - All classes/skills/heroic pixel art in the system compendium were provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.
-- **Replacement Art** - iron-knuckle.png icon from **RubenE** (**Social:** @/only_ruben_draw) & magic-tent.png icon from **drak273** with explicit permission to use for ProjectFU project.
+- **Replacement Art** - previous iron-knuckle.png icon from **RubenE** (**Social:** @/only_ruben_draw), current iron-knuckle.png from **Mildew** & magic-tent.png icon from **drak273** with explicit permission to use for ProjectFU project.
 - **Status Effect Icons**: [styles\static\icons] - default status effect icons from [@\_t3nshi](https://twitter.com/_t3nshi). Explicit permission granted by t3nshi for the use of the Status Effect Icons exclusively in Fabula Ultima games. These icons are not authorized for use in other media without obtaining additional permission from t3nshi.
 - **game-icons**: [game-icons.net](https://game-icons.net), various icons were used from here, licensed under the [CC-BY-3.0 license](https://creativecommons.org/licenses/by/3.0/).
 - **fultimator**: [fultimator](https://github.com/codeclysm/fultimator) by codeclysm, specifically project/ritual/sp counter code, licensed under the [MIT License](https://github.com/codeclysm/fultimator/blob/main/LICENSE.md)

@@ -25,11 +25,12 @@ Before submitting a bug report, ensure the following:
 
 ## Tooling and Setup
 
-Project FU is based on the [Boilerplate Template](https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD01-Getting-started), using plain JavaScript and [Gulp](https://gulpjs.com/) for build tasks. Future plans include incorporating new frameworks such as [Tailwind](https://tailwindcss.com/)/[PostCSS](https://postcss.org/), migrating to [Vite](https://vitejs.dev/) as the default bundler.
+Project FU is based on the [Boilerplate Template](https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD01-Getting-started), using plain JavaScript and [Gulp](https://gulpjs.com/) for build tasks.
+Visit [here](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/wiki/Development-Environment) for setting up an development environment for the system.
 
 ### Branches
 
-- **main:** Mainline branch for v11 releases and above.
+- **main:** Mainline branch for v12 releases and above.
 - **dev:** Primary development branch.
 
 When opening a PR, ensure it goes into the dev branch.
@@ -63,6 +64,14 @@ npm run build
 ```
 
 Enable the _Hot-Reload Package Files_ option in your Foundry application configuration for an improved developer experience.
+
+### Localization
+
+When making changes to the localization google sheet, please run the following:
+
+```bash
+npm run localize
+```
 
 ## Code Contributions
 
