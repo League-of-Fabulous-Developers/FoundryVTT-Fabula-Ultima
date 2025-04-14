@@ -344,6 +344,10 @@ function evaluateVariables(expression, context) {
 				context.assertSingleTarget(match);
 				return countStatusEffects(context.target);
 			}
+			// Bond Count
+			case 'bc': {
+				return countBonds(context.actor);
+			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
 		}
@@ -439,6 +443,15 @@ async function evaluateMacrosAsync(expression, context) {
 function countStatusEffects(actor) {
 	const relevantStatusEffects = Object.keys(FU.temporaryEffects);
 	return relevantStatusEffects.filter((status) => actor.statuses.has(status)).length;
+}
+
+/**
+ * @param {FUActor} actor
+ * @return {Number}
+ */
+function countBonds(actor) {
+	if (!actor || !Array.isArray(actor.system?.bonds)) return 0;
+	return actor.system.bonds.length;
 }
 
 // Used for referencing
