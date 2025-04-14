@@ -285,7 +285,7 @@ Hooks.once('init', async () => {
 
 	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
 	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
-	InlineHelper.registerEnricher(InlineClocks.enricher, InlineClocks.activateListeners, InlineClocks.onDropActor);
+	InlineHelper.registerEnricher(InlineClocks.enricher, InlineClocks.activateListeners);
 
 	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 

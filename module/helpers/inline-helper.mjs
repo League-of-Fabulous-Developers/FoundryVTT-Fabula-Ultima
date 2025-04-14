@@ -209,13 +209,15 @@ function capitalize(word) {
 	return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }
 
-function registerEnricher(enricher, activateListeners, onDropActor) {
+function registerEnricher(enricher, activateListeners, onDropActor = undefined) {
 	CONFIG.TextEditor.enrichers.push(enricher);
 	Hooks.on('renderChatMessage', activateListeners);
 	Hooks.on('renderApplication', activateListeners);
 	Hooks.on('renderActorSheet', activateListeners);
 	Hooks.on('renderItemSheet', activateListeners);
-	Hooks.on('dropActorSheetData', onDropActor);
+	if (onDropActor) {
+		Hooks.on('dropActorSheetData', onDropActor);
+	}
 }
 
 function appendImageToAnchor(anchor, path) {
