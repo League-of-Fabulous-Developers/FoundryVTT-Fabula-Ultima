@@ -115,7 +115,10 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "life-theft"
+    "fuid": "life-theft",
+    "traits": [
+      "AbsorbHalf"
+    ]
   },
   "effects": [],
   "flags": {
@@ -127,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1742702463294,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744755515071,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

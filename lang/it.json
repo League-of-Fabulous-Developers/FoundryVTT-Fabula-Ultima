@@ -1370,7 +1370,7 @@
 		"CombatHudTurnIcons": "Combat HUD Turn Icons",
 		"CombatHudTurnIconsHint": "The following settings let you customize the turn icons used by the Combat HUD. You can use any valid icon name from Google's {materialSymbolsLink} icons. Before saving changes, please be sure the preview for each icon is correct.",
 		"CombatHudTurnIconsGoogleMaterialSymbolsLabel": "Material Symbols",
-		"CombatHudTurnIconsActive": "Active Combatant",
+		"CombatHudTurnIconsActive": "Material Symbols",
 		"CombatHudTurnIconsActiveHint": "Icon displayed for a combatant currently taking a turn.",
 		"CombatHudTurnIconsOutOfTurns": "Out of Turns",
 		"CombatHudTurnIconsOutOfTurnsHint": "Icon displayed for a combatant that has no turns remaining.",

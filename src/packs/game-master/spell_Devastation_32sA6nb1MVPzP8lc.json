@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Choose any number of creatures you can see: each of them suffers <strong>HR0 </strong>+ 30 <strong>(choose type) </strong>damage. You may only cast this spell <strong>once per turn</strong>. This spell should only be given to <strong>champion </strong>and <strong>elite </strong>creatures <strong>level 30 or higher</strong>, and said creatures can only cast this spell during their <strong>last turn in the round</strong>.</p>",
+    "description": "<p>Choose any number of creatures you can see: each of them suffers 30 <strong>(choose type) </strong>damage. You may only cast this spell <strong>once per turn</strong>.</p><p>This spell should only be given to <strong>champion</strong> and <strong>elite</strong> creatures <strong>level 30 or higher</strong>, and said creatures can only cast this spell during their <strong>last turn in the round</strong>.</p><hr /><ul><li><p><strong>Targets Suffer:</strong> @DMG[30 untyped]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -78,7 +78,7 @@
       "value": false
     },
     "hasRoll": {
-      "value": true
+      "value": false
     },
     "rollInfo": {
       "attributes": {
@@ -94,7 +94,7 @@
       },
       "damage": {
         "hasDamage": {
-          "value": true
+          "value": false
         },
         "type": {
           "value": "untyped"
@@ -124,8 +124,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1742701724090,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744756691598,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },
