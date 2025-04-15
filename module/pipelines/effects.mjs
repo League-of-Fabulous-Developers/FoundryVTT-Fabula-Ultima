@@ -267,6 +267,33 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
 }
 
 /**
+ * Disable a status effect on an Actor, if it's currently active.
+ * @param {FUActor} actor - The actor from which to remove the status effect.
+ * @param {string} statusEffectId - The effect ID from CONFIG.statusEffects.
+ * @returns {Promise<boolean>} - Whether the effect was removed.
+ */
+export async function disableStatusEffect(actor, statusEffectId) {
+	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
+	if (existing.length > 0) {
+		await Promise.all(
+			existing.map((e) => {
+				CommonEvents.status(actor, statusEffectId, false);
+				// ChatMessage.create({
+				// 	content: game.i18n.format('FU.EffectRemoveMessage', {
+				// 		effect: e.name,
+				// 		actor: actor.name,
+				// 	}),
+				// 	speaker: ChatMessage.getSpeaker({ actor }),
+				// });
+				return e.delete();
+			}),
+		);
+		return true;
+	}
+	return false;
+}
+
+/**
  * @param {FUActor|FUItem} actor
  * @param {ActiveEffectData} effect
  * @param {InlineSourceInfo} sourceInfo
@@ -301,6 +328,13 @@ function onRemoveEffectFromActor(actor, source, effect) {
 
 	if (existingEffect) {
 		console.log(`Removing effect: ${existingEffect.name}`);
+		// ChatMessage.create({
+		// 	content: game.i18n.format('FU.EffectRemoveMessage', {
+		// 		effect: existingEffect.name,
+		// 		actor: actor.name,
+		// 	}),
+		// 	speaker: ChatMessage.getSpeaker({ actor }),
+		// });
 		existingEffect.delete();
 	} else {
 		console.log('No matching effect found to remove.');

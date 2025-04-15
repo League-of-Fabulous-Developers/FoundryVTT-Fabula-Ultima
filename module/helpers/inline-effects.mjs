@@ -1,5 +1,5 @@
 import { statusEffects } from '../documents/effects/statuses.mjs';
-import { Effects, toggleStatusEffect } from '../pipelines/effects.mjs';
+import { Effects, toggleStatusEffect, disableStatusEffect } from '../pipelines/effects.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
 import { InlineHelper } from './inline-helper.mjs';
@@ -27,7 +27,7 @@ function createEffectAnchor(effect, label) {
 	anchor.draggable = true;
 	anchor.dataset.effect = InlineHelper.toBase64(effect);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
-	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})`);
+	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
 	const icon = document.createElement('i');
 	icon.classList.add('fue', 'fu-effect-placeholder');
 	anchor.append(icon);
@@ -42,7 +42,7 @@ function createCompendiumEffectAnchor(effect, config, label) {
 	anchor.dataset.uuid = effect.uuid;
 	anchor.dataset.config = InlineHelper.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
-	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})`);
+	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${effect.name})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
 	InlineHelper.appendImageToAnchor(anchor, effect.img);
 	anchor.append(label ? label : effect.name);
 	return anchor;
@@ -65,7 +65,7 @@ function createStatusAnchor(effectValue, status, config) {
 	anchor.dataset.config = InlineHelper.toBase64(config);
 	anchor.classList.add('inline', INLINE_EFFECT_CLASS, 'disable-how-to');
 	const localizedName = game.i18n.localize(status.name);
-	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${localizedName})`);
+	anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.ChatApplySelected')} (${localizedName})<br>${game.i18n.localize('FU.ChatDisableSelected')}`);
 
 	InlineHelper.appendImageToAnchor(anchor, status.img);
 	anchor.append(localizedName);
@@ -167,7 +167,7 @@ function activateListeners(document, html) {
 				if (effectData) {
 					isCtrlClick ? Effects.onRemoveEffectFromActor(actor, sourceInfo, effectData) : Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config);
 				} else if (status) {
-					isCtrlClick ? toggleStatusEffect(actor, status, sourceInfo, { disable: true }) : !actor.statuses.has(status) && toggleStatusEffect(actor, status, sourceInfo, config);
+					isCtrlClick ? disableStatusEffect(actor, status) : !actor.statuses.has(status) && toggleStatusEffect(actor, status, sourceInfo, config);
 				}
 			});
 		})
