@@ -9,7 +9,7 @@
     "summary": {
       "value": "Gain benefits for consecutive attacks with brawling weapons."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Fury </strong>and <strong>Weaponmaster</strong>.</p></blockquote><p>When you perform a <strong>melee </strong>attack using a weapon that belongs to the <strong>brawling </strong>Category,<strong> if you have no martial armor and no shields equipped</strong>, you gain <strong>1 Bravery Point</strong>.</p><p>Your <strong>melee </strong>attacks using weapons that belong to the <strong>brawling </strong>Category deal extra damage equal to your current <strong>Bravery Points</strong>.</p><p>At the end of each scene, <strong>or </strong>if you have <strong>5 or more Bravery Points</strong> at the end of your turn, you <strong>must </strong>spend all your accumulated <strong>Bravery Points</strong> and recover 10 Hit Points and Mind Points.</p><hr /><ul><li><p><strong>You Gain:</strong> @PROGRESS[rising-tide update 1]{Advance Bravery Point}</p></li><li><p><strong>You Reset:</strong> @PROGRESS[rising-tide reset]{Reset Bravery Point}</p></li><li><p><strong>You Recover:</strong> @GAIN[10 hp] and/or @GAIN[10 mp]</p></li></ul>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Fury </strong>and <strong>Weaponmaster</strong>.</p></blockquote><p>When you perform a <strong>melee </strong>attack using a weapon that belongs to the <strong>brawling </strong>Category,<strong> if you have no martial armor and no shields equipped</strong>, you gain <strong>1 Bravery Point</strong>.</p><p>Your <strong>melee </strong>attacks using weapons that belong to the <strong>brawling </strong>Category deal extra damage equal to your current <strong>Bravery Points</strong>.</p><p>At the end of each scene, <strong>or </strong>if you have <strong>5 or more Bravery Points</strong> at the end of your turn, you <strong>must </strong>spend all your accumulated <strong>Bravery Points</strong> and recover 10 Hit Points and Mind Points.</p><hr /><ul><li><p><strong>Resource:</strong> @PROGRESS[rising-tide update 1]{Advance Bravery Point}, or @PROGRESS[rising-tide reset]{Reset Bravery Point}</p></li><li><p><strong>You Recover:</strong> @GAIN[10 hp] and/or @GAIN[10 mp]</p></li></ul>",
     "isFavored": {
       "value": true
     },
@@ -161,8 +161,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706684696121,
-    "modifiedTime": 1744236348841,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744640695476,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

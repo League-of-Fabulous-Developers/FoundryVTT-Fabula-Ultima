@@ -1,5 +1,5 @@
 {
-  "folder": "6hLDMWrdgLLCVK8G",
+  "folder": "5QBQvcD8cm6ReC2o",
   "name": "Arpaktida",
   "type": "classFeature",
   "img": "icons/creatures/eyes/humanoid-single-red-brown.webp",
@@ -31,12 +31,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1743111819855,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744557531087,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "hm5LaJoCgBZo398G",
-  "sort": 0,
+  "sort": 200000,
   "_key": "!items!hm5LaJoCgBZo398G"
 }

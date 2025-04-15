@@ -17,17 +17,17 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are immune to <strong>dazed</strong> and <strong>slow</strong>.</p><hr><ul><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B e:eot i:2 t:source]{Dazed Immunity} and @EFFECT[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp e:eot i:2 t:source]{Slow Immunity}</p></li></ul>"
+          "effect": "<p>You are immune to <strong>dazed</strong> and <strong>slow</strong>.</p><hr><ul><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B e:eot i:2 t:source]{Dazed Immunity}, and @EFFECT[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp e:eot i:2 t:source]{Slow Immunity}</p></li></ul>"
         },
         {
           "start": 2,
           "end": 2,
-          "effect": "<p>You treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><ul><li><p><strong>You Receive: </strong>@EFFECT[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw e:eot i:1 t:source]{DEX Up} and @EFFECT[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw e:eot i:1 t:source]{INS Up}</p></li></ul>"
+          "effect": "<p>You treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><ul><li><p><strong>You Receive: </strong>@EFFECT[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw e:eot i:1 t:source]{DEX Up}, and @EFFECT[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw e:eot i:1 t:source]{INS Up}</p></li></ul>"
         },
         {
           "start": 3,
           "end": 3,
-          "effect": "<p>You and every ally you can see treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><ul><li><p><strong>Targets Receives:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw e:eot i:1 t:source]{DEX Up} and @EFFECT[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw e:eot i:1 t:source]{INS Up}</p></li></ul>"
+          "effect": "<p>You and every ally you can see treat your <strong>Dexterity</strong> and <strong>Insight</strong> as being one die size higher (up to a maximum of <strong>d12</strong>).</p><hr><ul><li><p><strong>Targets Receives:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw e:eot i:1 t:source]{DEX Up}, and @EFFECT[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw e:eot i:1 t:source]{INS Up}</p></li></ul>"
         }
       ]
     },
@@ -43,7 +43,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1744512262293,
+    "modifiedTime": 1744664929590,
     "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "ownership": {

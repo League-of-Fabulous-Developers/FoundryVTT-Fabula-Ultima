@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you lose Hit Points due to damage, if that damage had a type <strong>other than physical</strong>, you may spend 10 HP to gain Resistance to that damage type until you use this Skill again. You cannot use this Skill if doing so would reduce you to 0 HP.</p>",
+    "description": "<p>After you lose Hit Points due to damage, if that damage had a type <strong>other than physical</strong>, you may spend 10 HP to gain Resistance to that damage type until you use this Skill again. You cannot use this Skill if doing so would reduce you to 0 HP.</p><hr /><ul><li><p><strong>You Receive:</strong> @TYPE[affinity air resistance], @TYPE[affinity bolt resistance], @TYPE[affinity dark resistance], @TYPE[affinity earth resistance], @TYPE[affinity fire resistance], @TYPE[affinity ice resistance], @TYPE[affinity light resistance], @TYPE[affinity poison resistance]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -130,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711429218464,
-    "modifiedTime": 1741974351518,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744556882044,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

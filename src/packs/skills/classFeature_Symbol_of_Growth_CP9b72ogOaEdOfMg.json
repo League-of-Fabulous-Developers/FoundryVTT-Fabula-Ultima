@@ -13,55 +13,12 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>Spells with a <strong>target</strong> of “Up to three creatures” cast by the creature bearing this <strong>symbol</strong> have a <strong>target</strong> of “Up to four creatures” instead. The creature still needs to spend additional Mind Points for a fourth target.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li></ul>"
+      "description": "<p>Spells with a <strong>target</strong> of “Up to three creatures” cast by the creature bearing this <strong>symbol</strong> have a <strong>target</strong> of “Up to four creatures” instead. The creature still needs to spend additional Mind Points for a fourth target.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.YtgyBRBBi9tBoJ4H]{Effect: Symbol of Growth}</p></li></ul>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-growth"
   },
-  "effects": [
-    {
-      "origin": "Compendium.projectfu.skills.Item.CP9b72ogOaEdOfMg",
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
-      "name": "Symbol of Growth",
-      "img": "icons/magic/control/buff-flight-wings-runes-purple.webp",
-      "_id": "QJYYNKQ17X24kYM6",
-      "type": "base",
-      "system": {},
-      "changes": [],
-      "description": "<p>Spells with a <strong>target</strong> of “Up to three creatures” cast by the creature bearing this <strong>symbol</strong> have a <strong>target</strong> of “Up to four creatures” instead. The creature still needs to spend additional Mind Points for a fourth target.</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUHF150",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "12.331",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1730915804058,
-        "modifiedTime": 1730915854598,
-        "lastModifiedBy": "B6evqtezy9ZsGZG3"
-      },
-      "_key": "!items.effects!CP9b72ogOaEdOfMg.QJYYNKQ17X24kYM6"
-    }
-  ],
+  "effects": [],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -76,8 +33,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177680940,
-    "modifiedTime": 1743114335105,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744744271717,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

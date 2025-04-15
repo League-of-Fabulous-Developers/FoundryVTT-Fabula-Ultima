@@ -1,0 +1,22 @@
+{
+  "name": "Therioforms",
+  "sorting": "a",
+  "folder": "6hLDMWrdgLLCVK8G",
+  "type": "Item",
+  "_id": "5QBQvcD8cm6ReC2o",
+  "description": "",
+  "sort": 0,
+  "color": "#30212c",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!5QBQvcD8cm6ReC2o"
+}

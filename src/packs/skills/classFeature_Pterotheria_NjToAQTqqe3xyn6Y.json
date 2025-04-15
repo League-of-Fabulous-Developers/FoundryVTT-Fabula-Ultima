@@ -1,5 +1,5 @@
 {
-  "folder": "6hLDMWrdgLLCVK8G",
+  "folder": "5QBQvcD8cm6ReC2o",
   "name": "Pterotheria",
   "type": "classFeature",
   "img": "icons/creatures/abilities/wing-batlike-white-blue.webp",
@@ -17,7 +17,58 @@
     "source": "FUTF157",
     "fuid": "pterotheria"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/statuses/Flying.webp",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Flying",
+      "_id": "QzF7RZb3rqHnybmZ",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [
+        "flying"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744594087935,
+        "modifiedTime": 1744594136202,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+      },
+      "_key": "!items.effects!NjToAQTqqe3xyn6Y.QzF7RZb3rqHnybmZ"
+    }
+  ],
   "ownership": {
     "default": 0,
     "YN7AhHIwAZeH33Tw": 3,
@@ -31,12 +82,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1724180862086,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1744594141283,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "NjToAQTqqe3xyn6Y",
-  "sort": 0,
+  "sort": 100782,
   "_key": "!items!NjToAQTqqe3xyn6Y"
 }

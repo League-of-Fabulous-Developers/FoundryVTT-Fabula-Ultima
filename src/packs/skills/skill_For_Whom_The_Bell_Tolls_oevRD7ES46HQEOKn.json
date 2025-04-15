@@ -5,7 +5,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you <strong>deal damage to a creature with a spell</strong>, if that spell <strong>only deals damage to that creature</strong>, you may spend 1 Grave Point. If you do, choose one option: if that creature is suffering from one or more status effects, the spell deals extra damage equal to <strong>【(SL × 2) + the number of status effects on that creature】</strong>; or if that creature is suffering from no status effects, they suffer <strong>shaken</strong>.</p><hr /><ul><li><p><strong>Target Suffers:</strong> @EFFECT[shaken] </p></li></ul>",
+    "description": "<p>When you <strong>deal damage to a creature with a spell</strong>, if that spell <strong>only deals damage to that creature</strong>, you may spend 1 Grave Point. If you do, choose one option: if that creature is suffering from one or more status effects, the spell deals extra damage equal to <strong>【(SL × 2) + the number of status effects on that creature】</strong>; or if that creature is suffering from no status effects, they suffer <strong>shaken</strong>.</p><hr /><ul><li><p><strong>Resource:</strong> @PROGRESS[beyond-the-realms-of-death update -1]{Spend 1 Grave Point}</p></li><li><p><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.Jc1KEmU0iN7Ul8dZ]{Effect: For Whom The Bell Tolls}, or @EFFECT[shaken]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -128,8 +128,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1684757022676,
-    "modifiedTime": 1743113217863,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744653880653,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

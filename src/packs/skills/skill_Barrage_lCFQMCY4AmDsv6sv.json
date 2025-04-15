@@ -126,7 +126,7 @@
     },
     "targeting": {
       "rule": "special",
-      "max": 3
+      "max": 2
     }
   },
   "effects": [],
@@ -143,8 +143,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706506734196,
-    "modifiedTime": 1741971220194,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744660339140,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

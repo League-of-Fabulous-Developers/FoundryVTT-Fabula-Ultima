@@ -124,8 +124,9 @@
   },
   "effects": [
     {
+      "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer_emergency_item.png",
       "duration": {
-        "rounds": 1,
+        "rounds": null,
         "startTime": null,
         "seconds": null,
         "combat": null,
@@ -135,35 +136,40 @@
       },
       "disabled": false,
       "name": "Emergency Item",
-      "_id": "cKoUgtOZUzdt6KZk",
+      "_id": "1AGfKi86P13ZNwMs",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "active"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
       "changes": [],
       "description": "<p><span class=\"fontstyle0\">Once per conflict scene, if you are in </span><span class=\"fontstyle2\"><strong>Crisis</strong></span><span class=\"fontstyle0\">, you may perform an additional action on your turn. This action </span><span class=\"fontstyle2\"><strong>must </strong></span><span class=\"fontstyle0\">be the </span><span class=\"fontstyle2\"><strong>Inventory </strong></span><span class=\"fontstyle0\">action.</span> </p>",
+      "origin": null,
+      "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
-      "flags": {
-        "projectfu": {
-          "CrisisInteraction": "active",
-          "type": "default",
-          "source": "FUCR211"
-        }
-      },
-      "tint": "#ffffff",
+      "sort": 0,
+      "flags": {},
       "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
         "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1741948119312,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
-        "compendiumSource": null,
-        "duplicateSource": null
+        "createdTime": 1744748570567,
+        "modifiedTime": 1744748614369,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn"
       },
-      "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/tinkerer_emergency_item.png",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!2MoV74xWJnF5Ru8u.cKoUgtOZUzdt6KZk"
+      "_key": "!items.effects!2MoV74xWJnF5Ru8u.1AGfKi86P13ZNwMs"
     }
   ],
   "ownership": {

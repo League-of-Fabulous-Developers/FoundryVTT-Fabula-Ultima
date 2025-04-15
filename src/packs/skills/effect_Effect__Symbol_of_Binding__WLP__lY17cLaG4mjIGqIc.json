@@ -1,0 +1,87 @@
+{
+  "name": "Effect: Symbol of Binding (WLP)",
+  "type": "effect",
+  "img": "icons/magic/symbols/rune-sigil-green.webp",
+  "system": {
+    "fuid": "effect-symbol-of-binding-wlp",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "icons/magic/symbols/rune-sigil-green.webp",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Symbol of Binding (WLP)",
+      "_id": "TsULTAOsbp0aRzWi",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [
+        {
+          "key": "system.attributes.wlp.current",
+          "mode": 3,
+          "value": "@system.attributes.wlp.base",
+          "priority": null
+        }
+      ],
+      "description": "<p>The <strong>current </strong>Attribute die sizes of the creature bearing this <strong>symbol </strong>can <strong>never </strong>be <strong>higher </strong>than that creature’s corresponding <strong>base </strong>Attribute die sizes (this does <strong>not</strong> end any spells or effects, but it will negate their influence over the creature’s Attributes).</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!lY17cLaG4mjIGqIc.TsULTAOsbp0aRzWi"
+    }
+  ],
+  "folder": "XW8tPjIw2b07tMQv",
+  "ownership": {
+    "default": 0,
+    "LokWlpJRX2uVxtGn": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744735295750,
+    "modifiedTime": 1744735295750,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+  },
+  "_id": "lY17cLaG4mjIGqIc",
+  "sort": 0,
+  "_key": "!items!lY17cLaG4mjIGqIc"
+}

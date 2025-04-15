@@ -1,5 +1,5 @@
 {
-  "folder": "6hLDMWrdgLLCVK8G",
+  "folder": "5QBQvcD8cm6ReC2o",
   "name": "Placophora",
   "type": "classFeature",
   "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
@@ -35,11 +35,11 @@
         {
           "key": "system.derived.def.value",
           "mode": 5,
-          "value": "13 + (0 / 2)",
+          "value": "floor(13+&sl('theriomorphosis')/2)",
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>You may treat your Defense score as being equal to <strong>【13 + (half your Skill Level in Theriomorphosis)】</strong>(you may still use your normal scores if better).</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -49,12 +49,12 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
+        "modifiedTime": 1744590629659,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn",
         "compendiumSource": null,
         "duplicateSource": null
       },
@@ -79,12 +79,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1743111718492,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744557535864,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "aAmIBca4b150uuAH",
-  "sort": 0,
+  "sort": 106250,
   "_key": "!items!aAmIBca4b150uuAH"
 }

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><ul><li><p><strong>Targets Receive:</strong> @EFFECT[barrier]</p></li></ul>",
+    "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><ul><li><p><strong>Targets Receive:</strong> @EFFECT[barrier e:eos i:1 t:self]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -121,57 +121,7 @@
     },
     "fuid": "barrier"
   },
-  "effects": [
-    {
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
-      "name": "Barrier",
-      "_id": "AibGlX3CB1jYxtGU",
-      "changes": [
-        {
-          "key": "system.derived.def.value",
-          "mode": 4,
-          "value": "12",
-          "priority": null
-        }
-      ],
-      "description": "<p>You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p>",
-      "transfer": true,
-      "statuses": [],
-      "flags": {
-        "projectfu": {
-          "CrisisInteraction": "none",
-          "type": "default",
-          "source": "FUCR208"
-        }
-      },
-      "tint": "#ffffff",
-      "_stats": {
-        "coreVersion": "12.331",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": 1742703456649,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv",
-        "compendiumSource": null,
-        "duplicateSource": null
-      },
-      "img": "systems/projectfu/styles/static/statuses/Barrier.webp",
-      "type": "base",
-      "system": {},
-      "origin": null,
-      "sort": 0,
-      "_key": "!items.effects!pGDJPfT1bc2vErY9.AibGlX3CB1jYxtGU"
-    }
-  ],
+  "effects": [],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -185,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706572145678,
-    "modifiedTime": 1742703401391,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744722071175,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

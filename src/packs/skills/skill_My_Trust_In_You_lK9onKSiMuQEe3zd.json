@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After another Player Character who is able to hear you performs a Check, you may spend 1 Fabula Point and invoke one of their <strong>Traits</strong> or <strong>Bonds</strong> in order to let them reroll dice or improve the Result of the Check (following the normal rules). Then, if you have a <strong>Bond</strong> towards that character, they recover <strong>【SL × 10】</strong> Mind Points.</p><hr /><ul><li><p><strong>Target Recovers: </strong>@GAIN[10*$sl mp]</p></li></ul>",
+    "description": "<p>After another Player Character who is able to hear you performs a Check, you may spend 1 Fabula Point and invoke one of their <strong>Traits</strong> or <strong>Bonds</strong> in order to let them reroll dice or improve the Result of the Check (following the normal rules). Then, if you have a <strong>Bond</strong> towards that character, they recover <strong>【SL × 10】</strong> Mind Points.</p><hr /><ul><li><p><strong>Target Recovers: </strong>@GAIN[10*$sl mp]{SL × 10 MP}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -143,8 +143,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706504129588,
-    "modifiedTime": 1743113311059,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744655448300,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

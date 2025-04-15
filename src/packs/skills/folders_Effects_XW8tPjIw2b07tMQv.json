@@ -6,7 +6,7 @@
   "_id": "XW8tPjIw2b07tMQv",
   "description": "",
   "sort": 0,
-  "color": null,
+  "color": "#1c505b",
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -15,8 +15,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": null,
-    "modifiedTime": null,
-    "lastModifiedBy": null
+    "modifiedTime": 1744721397369,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "_key": "!folders!XW8tPjIw2b07tMQv"
 }

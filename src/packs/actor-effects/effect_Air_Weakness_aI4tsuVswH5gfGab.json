@@ -29,7 +29,7 @@
       "type": "base",
       "system": {
         "duration": {
-          "event": "endOfScene"
+          "event": "none"
         }
       },
       "changes": [
@@ -59,8 +59,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737993656695,
-        "modifiedTime": 1742761819389,
-        "lastModifiedBy": "JXPd932s9DHQRD0w"
+        "modifiedTime": 1744747366261,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn"
       },
       "_key": "!items.effects!aI4tsuVswH5gfGab.BBDEPNCinRNIJDKm"
     }

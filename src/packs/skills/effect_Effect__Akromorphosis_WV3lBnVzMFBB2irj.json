@@ -1,5 +1,5 @@
 {
-  "folder": "6hLDMWrdgLLCVK8G",
+  "folder": "ZUCXTaaKDqwXAZy0",
   "name": "Effect: Akromorphosis",
   "type": "effect",
   "_id": "WV3lBnVzMFBB2irj",
@@ -67,7 +67,7 @@
       "_key": "!items.effects!WV3lBnVzMFBB2irj.LxZDU3Qgsf5a6Vfh"
     }
   ],
-  "sort": 0,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "esOkelwPNblkbxW3": 3
@@ -76,12 +76,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1740171578030,
-    "modifiedTime": 1740171601657,
-    "lastModifiedBy": "esOkelwPNblkbxW3"
+    "modifiedTime": 1744557393361,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "_key": "!items!WV3lBnVzMFBB2irj"
 }

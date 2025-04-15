@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When the creature bearing this <strong>symbol</strong> suffers damage, if you are able to see them, you may destroy this <strong>symbol</strong>: if you do, you suffer the same amount of damage instead of that creature.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li></ul>"
+      "description": "<p>When the creature bearing this <strong>symbol</strong> suffers damage, if you are able to see them, you may destroy this <strong>symbol</strong>: if you do, you suffer the same amount of damage instead of that creature.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.O8wUtXymIN3rrFNz]{Effect: Symbol of Sacrifice}</p></li></ul>"
     },
     "source": "FUHF151",
     "fuid": "symbol-of-sacrifice"
@@ -76,8 +76,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710178066071,
-    "modifiedTime": 1743114687503,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744746143137,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

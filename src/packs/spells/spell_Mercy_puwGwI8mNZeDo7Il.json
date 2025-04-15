@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You strengthen the heart of a creature against suffering and despair. Until this spell ends, if the target would be reduced to 0 Hit Points, they are instead left standing with exactly 1 Hit Point. Once that happens, this spell ends.</p><hr /><ul><li><p><strong>Target Recovers:</strong> @GAIN[1 hp] </p></li></ul>",
+    "description": "<p>You strengthen the heart of a creature against suffering and despair. Until this spell ends, if the target would be reduced to 0 Hit Points, they are instead left standing with exactly 1 Hit Point. Once that happens, this spell ends.</p><hr /><ul><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.spells.Item.87su2PuI6rSMblmN]{Effect: Mercy}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706572901522,
-    "modifiedTime": 1743165044862,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744722638208,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -27,10 +27,8 @@
       "value": "Symbolist"
     },
     "useWeapon": {
-      "accuracy": false,
-      "damage": {
-        "value": false
-      },
+      "accuracy": true,
+      "damage": true,
       "hrZero": {
         "value": false
       }
@@ -47,13 +45,9 @@
       "value": 0
     },
     "damage": {
-      "hasDamage": {
-        "value": false
-      },
+      "hasDamage": false,
       "value": 0,
-      "type": {
-        "value": "physical"
-      },
+      "type": "",
       "onRoll": "",
       "onApply": ""
     },
@@ -106,7 +100,7 @@
       }
     },
     "hasRoll": {
-      "value": false
+      "value": true
     },
     "hasResource": {
       "value": false
@@ -138,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706563320133,
-    "modifiedTime": 1742001457802,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744723270364,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

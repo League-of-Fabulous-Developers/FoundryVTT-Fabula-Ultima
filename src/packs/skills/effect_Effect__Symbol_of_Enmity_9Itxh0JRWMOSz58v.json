@@ -1,0 +1,80 @@
+{
+  "folder": "XW8tPjIw2b07tMQv",
+  "name": "Effect: Symbol of Enmity",
+  "type": "effect",
+  "_id": "9Itxh0JRWMOSz58v",
+  "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
+  "system": {
+    "fuid": "effect",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Symbol of Enmity",
+      "_id": "2WewSSAYYbjV3Shf",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "active"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [],
+      "description": "<p>As long as the creature bearing this <strong>symbol</strong> is in <strong>Crisis</strong>, any of that creature’s enemies who are able to see them must include them among the targets of their attacks and offensive spells ( @ICON[offensive] ), if possible.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744738855196,
+        "modifiedTime": 1744738874537,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+      },
+      "_key": "!items.effects!9Itxh0JRWMOSz58v.2WewSSAYYbjV3Shf"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LokWlpJRX2uVxtGn": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744738844671,
+    "modifiedTime": 1744738865985,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+  },
+  "_key": "!items!9Itxh0JRWMOSz58v"
+}

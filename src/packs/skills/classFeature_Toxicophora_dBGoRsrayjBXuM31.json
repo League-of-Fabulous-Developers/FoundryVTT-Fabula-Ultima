@@ -1,5 +1,5 @@
 {
-  "folder": "6hLDMWrdgLLCVK8G",
+  "folder": "5QBQvcD8cm6ReC2o",
   "name": "Toxicophora",
   "type": "classFeature",
   "img": "icons/creatures/invertebrates/spider-skull-green.webp",
@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>poison</strong>. While your <strong>unarmed strikes</strong> deal poison damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>poisoned</strong>.</p><hr><ul><li><p><strong>You Receive: </strong>@WEAPON[poison]</p></li><li><p><strong>Targets Suffers:</strong> @EFFECT[poisoned]</p></li></ul>"
+      "description": "<p>When you deal damage with an attack or spell, you may have all that damage become <strong>poison</strong>. While your <strong>unarmed strikes</strong> deal poison damage, any enemy who <strong>loses 20 or more Hit Points</strong> due to one of your <strong>unarmed strikes</strong> also suffers <strong>poisoned</strong>.</p><hr><ul><li><p><strong>You Receive:</strong> @TYPE[damage all poison]</p></li><li><p><strong>Targets Suffers:</strong> @EFFECT[poisoned]</p></li></ul>"
     },
     "source": "FUTF157",
     "fuid": "toxicophora"
@@ -31,12 +31,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1743111576757,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744595005226,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "dBGoRsrayjBXuM31",
-  "sort": 0,
+  "sort": 100098,
   "_key": "!items!dBGoRsrayjBXuM31"
 }

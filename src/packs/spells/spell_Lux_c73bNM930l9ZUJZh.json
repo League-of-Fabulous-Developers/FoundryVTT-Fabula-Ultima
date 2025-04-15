@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You focus your inner energy into a barrage of blinding soul rays. Each target hit by this spell suffers <strong>【HR + 15】</strong> <strong>light</strong> damage.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers <strong>@EFFECT[dazed]</strong>.</p>",
+    "description": "<p>You focus your inner energy into a barrage of blinding soul rays. Each target hit by this spell suffers <strong>【HR + 15】</strong> <strong>light</strong> damage.</p><p><strong>Opportunity:</strong> Each target hit by this spell suffers @EFFECT[dazed].</p>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706572797059,
-    "modifiedTime": 1737917896494,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1744722361504,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

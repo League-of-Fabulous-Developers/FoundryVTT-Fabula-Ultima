@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you deal damage to one or more NPCs, you learn their <strong>Species</strong> and the GM chooses <strong>【SL】 therioforms</strong> appropriate to those NPCs (see <strong>Techno Fantasy Atlas</strong>, page <strong>156</strong>): if you have acquired the <strong>Theriomorphosis</strong> Skill, you may immediately pay its HP cost and use it to manifest those <strong>therioforms</strong> (even if they are not among those you have learned).</p><hr /><ul><li><p><span style=\"font-family:'PT Sans Narrow', sans-serif\">For </span><strong>therioform</strong> breakdown and a list of <strong>Therioforms</strong>, refer to:<strong> </strong>@UUID[Compendium.projectfu.handouts.JournalEntry.aXZh9r7OxySQ484p]{Therioforms Rules}</p></li><li><p><strong>Theriomorphosis Skill: </strong>@UUID[Compendium.projectfu.skills.Item.pmwdU2AGU0JtrWw8]</p></li></ul>",
+    "description": "<p>When you deal damage to one or more NPCs, you learn their <strong>Species</strong> and the GM chooses <strong>【SL】 therioforms</strong> appropriate to those NPCs (see <strong>Techno Fantasy Atlas</strong>, page <strong>156</strong>): if you have acquired the <strong>Theriomorphosis</strong> Skill, you may immediately pay its HP cost and use it to manifest those <strong>therioforms</strong> (even if they are not among those you have learned).</p><hr /><ul><li><p><span style=\"font-family:'PT Sans Narrow', sans-serif\">For </span><strong>therioform</strong> breakdown and a list of <strong>Therioforms</strong>, refer to:<strong> </strong>@UUID[Compendium.projectfu.handouts.JournalEntry.aXZh9r7OxySQ484p]{Therioforms Rules}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -126,8 +126,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711429218464,
-    "modifiedTime": 1742699446639,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744557303391,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

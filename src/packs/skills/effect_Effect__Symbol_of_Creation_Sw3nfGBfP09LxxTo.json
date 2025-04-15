@@ -1,0 +1,80 @@
+{
+  "folder": "XW8tPjIw2b07tMQv",
+  "name": "Effect: Symbol of Creation",
+  "type": "effect",
+  "_id": "Sw3nfGBfP09LxxTo",
+  "img": "icons/magic/symbols/cog-glowing-green.webp",
+  "system": {
+    "fuid": "effect-symbol-of-creation",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "icons/magic/symbols/cog-glowing-green.webp",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Symbol of Creation",
+      "_id": "mOJVQSoqbnYoW10q",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [],
+      "description": "<p>When the creature bearing this <strong>symbol </strong>needs to spend Inventory Points during a conflict, they may instead destroy this <strong>symbol </strong>to spend no Inventory Points.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744735904759,
+        "modifiedTime": 1744736767663,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+      },
+      "_key": "!items.effects!Sw3nfGBfP09LxxTo.mOJVQSoqbnYoW10q"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LokWlpJRX2uVxtGn": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744735873259,
+    "modifiedTime": 1744735899222,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+  },
+  "_key": "!items!Sw3nfGBfP09LxxTo"
+}
