@@ -9,12 +9,14 @@ import { Expressions } from '../expressions/expressions.mjs';
  * @property {String} name
  * @property {String} itemUuid
  * @property {String} actorUuid
+ * @property {String} effectUuid
  */
 export class InlineSourceInfo {
-	constructor(name, actorUuid, itemUuid) {
+	constructor(name, actorUuid, itemUuid, effectUuid) {
 		this.name = name;
 		this.actorUuid = actorUuid;
 		this.itemUuid = itemUuid;
+		this.effectUuid = effectUuid;
 	}
 
 	/**
@@ -73,6 +75,16 @@ export class InlineSourceInfo {
 	}
 
 	/**
+	 * @returns {FUActiveEffect|null}
+	 */
+	resolveEffect() {
+		if (this.effectUuid) {
+			return fromUuidSync(this.effectUuid);
+		}
+		return null;
+	}
+
+	/**
 	 * @returns {FUActor|FUItem}
 	 */
 	resolve() {
@@ -95,6 +107,20 @@ export class InlineSourceInfo {
 		return this.actorUuid;
 	}
 
+	/**
+	 * @returns {Boolean}
+	 */
+	get hasEffect() {
+		return !!this.effectUuid;
+	}
+
+	/**
+	 * @returns {Boolean}
+	 */
+	get hasItem() {
+		return !!this.itemUuid;
+	}
+
 	static none = Object.freeze(new InlineSourceInfo('Unknown'));
 }
 
@@ -108,6 +134,7 @@ function determineSource(document, element) {
 	let name = game.i18n.localize('FU.UnknownDamageSource');
 	let itemUuid = null;
 	let actorUuid = null;
+	let effectUuid = null;
 
 	// ACTOR SHEET
 	if (document instanceof FUActor) {
@@ -121,6 +148,13 @@ function determineSource(document, element) {
 		} else {
 			name = document.name;
 		}
+		const effectId = $(element).closest('[data-effect-id]').data('effectId');
+		if (effectId) {
+			const effect = document.effects.get(effectId);
+			if (effect) {
+				effectUuid = effect.uuid;
+			}
+		}
 	} // ITEM SHEET
 	else if (document instanceof FUItem) {
 		name = document.name;
@@ -129,7 +163,8 @@ function determineSource(document, element) {
 			actorUuid = document.parent.uuid;
 		}
 		console.debug(`Determining source document as Item ${itemUuid}`);
-	} // CHAT MESSAGE
+	}
+	// CHAT MESSAGE
 	else if (document instanceof ChatMessage) {
 		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
 		if (speakerActor) {
@@ -140,17 +175,22 @@ function determineSource(document, element) {
 		if (check) {
 			itemUuid = check.itemUuid;
 		} else {
-			let item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
 			// No need to check 'instanceof FUItem;
+			const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
 			if (item) {
 				name = item.name;
 				itemUuid = item.uuid;
+			}
+			// Could come from an effect
+			const effect = document.getFlag(SYSTEM, Flags.ChatMessage.Effect);
+			if (effect) {
+				effectUuid = effect;
 			}
 		}
 
 		console.debug(`Determining source document as ChatMessage ${name}`);
 	}
-	return new InlineSourceInfo(name, actorUuid, itemUuid);
+	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid);
 }
 
 /**

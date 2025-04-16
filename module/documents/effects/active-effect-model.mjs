@@ -1,4 +1,5 @@
 import { FU } from '../../helpers/config.mjs';
+import { ProgressDataModel } from '../items/common/progress-data-model.mjs';
 
 /**
  * @description THe active effect model for this system
@@ -8,7 +9,8 @@ import { FU } from '../../helpers/config.mjs';
  * @property {Number} duration.interval The number of occurrences between events
  * @property {Number} duration.remaining The number of intervals left.
  * @property {String} tracking Whom is the duration tracked on
- * @property {Number} stack Optional. Used for counting the number of stacks of an effect.
+ * @property {Object} rules Contains optional rules for this effect.
+ * @property {ProgressDataModel} rules.progress It can be used for tracking a clock, a resource, a counter, etc.
  * @remarks The remaining property is initialized, and must be updated.
  */
 export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
@@ -23,7 +25,9 @@ export class FUActiveEffectModel extends foundry.abstract.TypeDataModel {
 				tracking: new StringField({ initial: 'self', choices: Object.keys(FU.effectTracking) }),
 				remaining: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
 			}),
-			stack: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
+			rules: new SchemaField({
+				progress: new EmbeddedDataField(ProgressDataModel, { required: false }),
+			}),
 		};
 	}
 

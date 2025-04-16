@@ -57,20 +57,20 @@ function activateListeners(document, html) {
 
 			switch (command) {
 				case 'update': {
-					// Evaluate the given value
-					const targets = await targetHandler();
-					const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
-					const value = await Expressions.evaluateAsync(this.dataset.value, context);
-
-					const progressItem = await actor.getSingleItemByFuid(id);
-					if (!progressItem) {
+					// Resolve the progress data from the actor
+					let progress = await actor.resolveProgress(id);
+					if (!progress) {
 						const missingItemErrorMessage = game.i18n.localize('FU.ChatMissingItemWithId');
 						ui.notifications.error(`${missingItemErrorMessage}: '${id}'`, { localize: true });
 						return;
 					}
 
+					// Evaluate the given value
+					const targets = await targetHandler();
+					const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
+					const value = await Expressions.evaluateAsync(this.dataset.value, context);
+
 					// Validate progress won't go below min or max
-					let progress = progressItem.getProgress();
 					if (progress.isMaximum && value > 0) {
 						ui.notifications.info('FU.ChatProgressAtMaximum', { localize: true });
 						return;
@@ -80,16 +80,22 @@ function activateListeners(document, html) {
 						return;
 					}
 
+					// Now update
 					const step = Number(value);
-					const item = sourceInfo.resolveItem();
-					progress = await actor.updateProgressByFuid(id, step);
-					await renderStep(progress, step, actor, item);
+					let source;
+					if (sourceInfo.hasItem) {
+						source = sourceInfo.resolveItem();
+					} else if (sourceInfo.hasEffect) {
+						source = sourceInfo.resolveEffect();
+					}
+					progress = await actor.updateProgress(id, step);
+					await renderStep(progress, step, actor, source);
 					break;
 				}
 
 				case 'reset': {
-					const clock = actor.getSingleItemByFuid(id).getProgress();
-					await actor.updateProgressByFuid(id, -clock.current);
+					const clock = actor.resolveProgress(id);
+					await actor.updateProgress(id, -clock.current);
 					break;
 				}
 			}
@@ -101,10 +107,10 @@ function activateListeners(document, html) {
  * @param {ProgressDataModel} progress
  * @param {Number} step
  * @param {FUActor} actor
- * @param {FUItem} item
+ * @param {Object} source
  * @returns {Promise<string>}
  */
-async function renderStep(progress, step, actor, item) {
+async function renderStep(progress, step, actor, source) {
 	// Generate and reverse the progress array
 	const progressArr = progress.generateProgressArray();
 	ChatMessage.create({
@@ -113,7 +119,7 @@ async function renderStep(progress, step, actor, item) {
 			message: step > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock',
 			step: step,
 			clock: progress.name ?? progress.parent.parent.name,
-			source: item.name,
+			source: source.name,
 			data: progress,
 			arr: progressArr,
 		}),

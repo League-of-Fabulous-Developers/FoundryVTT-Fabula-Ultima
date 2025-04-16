@@ -134,7 +134,7 @@ function activateListeners(document, html) {
 					let modifier = 0;
 
 					if (this.dataset.modifier !== undefined) {
-						const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
+						const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 						modifier = await Expressions.evaluateAsync(this.dataset.modifier, context);
 					}
 

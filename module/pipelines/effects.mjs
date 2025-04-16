@@ -8,6 +8,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { SETTINGS } from '../settings.js';
+import { MathHelper } from '../helpers/math-helper.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -49,13 +50,20 @@ import { SETTINGS } from '../settings.js';
  * @param {String} effectType
  * @param {String} name
  * @returns {*}
+ * @remarks Effects created this way will by default be removed at the end of the scene
  */
 function createTemporaryEffect(owner, effectType, name) {
+	const system = {
+		duration: {
+			event: 'endOfScene',
+		},
+	};
 	return owner.createEmbeddedDocuments('ActiveEffect', [
 		{
 			label: name ?? game.i18n.localize('FU.NewEffect'),
 			img: 'icons/svg/aura.svg',
 			source: owner.uuid,
+			system: system,
 			'duration.rounds': effectType === 'temporary' ? 1 : undefined,
 			disabled: effectType === 'inactive',
 		},
@@ -69,7 +77,7 @@ function createTemporaryEffect(owner, effectType, name) {
  */
 export async function onManageActiveEffect(event, owner) {
 	event.preventDefault();
-	const anchor = event.currentTarget;
+	const anchor = event.target.dataset.action ? event.target : event.currentTarget;
 	const listItem = anchor.closest('li');
 
 	/**
@@ -95,7 +103,8 @@ export async function onManageActiveEffect(event, owner) {
 		case 'delete': {
 			const _effect = resolveEffect();
 			if (canBeRemoved(_effect)) {
-				return resolveEffect().delete();
+				sendToChatEffectRemoved(_effect, owner);
+				return _effect.delete();
 			}
 			break;
 		}
@@ -109,6 +118,20 @@ export async function onManageActiveEffect(event, owner) {
 		}
 		case 'roll': {
 			return await renderEffect(resolveEffect(), owner);
+		}
+
+		case 'incrementProgress': {
+			const effect = resolveEffect();
+			const progress = effect.system.rules.progress;
+			const current = MathHelper.clamp(progress.current + progress.step, 0, progress.max);
+			return effect.update({ 'system.rules.progress.current': current });
+		}
+
+		case 'decrementProgress': {
+			const effect = resolveEffect();
+			const progress = effect.system.rules.progress;
+			const current = MathHelper.clamp(progress.current - progress.step, 0, progress.max);
+			return effect.update({ 'system.rules.progress.current': current });
 		}
 	}
 }
@@ -200,25 +223,7 @@ async function renderEffect(effect, owner) {
 		ui.notifications.error('Effect not found.');
 		return;
 	}
-
-	const formattedEffect = formatEffect(effect);
-	const description = effect.description ? effect.description : game.i18n.localize('FU.NoItem');
-
-	const messageContent = `
-		<div class="chat-effect-message">
-			<header class="title-desc chat-header flexrow"><h2>${effect.name}</h2></header>
-			<div class="chat-desc">
-				${description}
-				${formattedEffect ? `<div><hr>${formattedEffect}</div>` : ''}
-			</div>
-		</div>
-	`;
-
-	// TODO: More information?
-	await ChatMessage.create({
-		content: messageContent,
-		speaker: ChatMessage.getSpeaker({ actor: owner }),
-	});
+	await effect.sendToChat();
 }
 
 /**
@@ -244,6 +249,7 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
 		await Promise.all(
 			existing.map((e) => {
 				CommonEvents.status(actor, statusEffectId, false);
+				sendToChatEffectRemoved(e, actor);
 				return e.delete();
 			}),
 		);
@@ -278,19 +284,24 @@ export async function disableStatusEffect(actor, statusEffectId) {
 		await Promise.all(
 			existing.map((e) => {
 				CommonEvents.status(actor, statusEffectId, false);
-				// ChatMessage.create({
-				// 	content: game.i18n.format('FU.EffectRemoveMessage', {
-				// 		effect: e.name,
-				// 		actor: actor.name,
-				// 	}),
-				// 	speaker: ChatMessage.getSpeaker({ actor }),
-				// });
+				sendToChatEffectRemoved(e, actor);
 				return e.delete();
 			}),
 		);
 		return true;
 	}
 	return false;
+}
+
+function sendToChatEffectRemoved(effect, actor) {
+	console.log(`Removing effect: ${effect.name}`);
+	ChatMessage.create({
+		content: game.i18n.format('FU.EffectRemoveMessage', {
+			effect: effect.name,
+			actor: actor.name,
+		}),
+		speaker: ChatMessage.getSpeaker({ actor }),
+	});
 }
 
 /**
@@ -315,6 +326,11 @@ async function onApplyEffectToActor(actor, effect, sourceInfo, config = undefine
 	}
 }
 
+/**
+ * @param {FUActor} actor
+ * @param source
+ * @param {FUActiveEffect} effect
+ */
 function onRemoveEffectFromActor(actor, source, effect) {
 	if (!actor) return;
 
@@ -327,14 +343,7 @@ function onRemoveEffectFromActor(actor, source, effect) {
 	);
 
 	if (existingEffect) {
-		console.log(`Removing effect: ${existingEffect.name}`);
-		// ChatMessage.create({
-		// 	content: game.i18n.format('FU.EffectRemoveMessage', {
-		// 		effect: existingEffect.name,
-		// 		actor: actor.name,
-		// 	}),
-		// 	speaker: ChatMessage.getSpeaker({ actor }),
-		// });
+		sendToChatEffectRemoved(effect, actor);
 		existingEffect.delete();
 	} else {
 		console.log('No matching effect found to remove.');
@@ -521,7 +530,7 @@ async function promptEffectRemoval(event) {
 
 	if (game.settings.get(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects)) {
 		event.actors.forEach((actor) => {
-			actor.clearTemporaryEffects(false);
+			actor.clearTemporaryEffects(false, false);
 		});
 		return;
 	}
@@ -617,7 +626,7 @@ async function onCombatEvent(event) {
  */
 async function onRestEvent(event) {
 	// Remove statuses and other effects that last until rest
-	event.actor.clearTemporaryEffects(true);
+	event.actor.clearTemporaryEffects(true, false);
 }
 
 const BOONS_AND_BANES = Object.freeze(

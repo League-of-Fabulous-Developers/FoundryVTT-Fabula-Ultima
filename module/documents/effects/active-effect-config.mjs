@@ -25,11 +25,17 @@ export async function onRenderActiveEffectConfig(sheet, html, context) {
 	// Find the navigation element
 	let nav = html.find('nav.sheet-tabs.tabs');
 	if (nav.length) {
-		// Create the new navigation entry
+		const targetTab = nav.find('a[data-tab="effects"]');
+
+		// Predicates
 		const predicateLabel = game.i18n.localize('FU.Predicate');
-		let predicateTab = `<a class="item" data-tab="predicate"><i class="fas fa-book"></i>${predicateLabel}</a>`;
-		let targetTab = nav.find('a[data-tab="effects"]');
+		const predicateTab = `<a class="item" data-tab="predicate"><i class="fas fa-book"></i>${predicateLabel}</a>`;
 		targetTab.before(predicateTab);
+
+		// Rules
+		const rulesLabel = game.i18n.localize('FU.Rule');
+		const rulesTab = `<a class="item" data-tab="rules"><i class="fas fa-book"></i>${rulesLabel}</a>`;
+		targetTab.before(rulesTab);
 	}
 
 	// Duration Tab (Replace)
@@ -37,9 +43,15 @@ export async function onRenderActiveEffectConfig(sheet, html, context) {
 	durationTab.empty();
 	const durationTemplate = await renderTemplate(`systems/projectfu/templates/effects/active-effect-duration.hbs`, data);
 	durationTab.append(durationTemplate);
+
 	// Predicate Tab (Add)
 	const predicateTemplate = await renderTemplate(`systems/projectfu/templates/effects/active-effect-predicate.hbs`, data);
 	durationTab.before(predicateTemplate);
+
+	// Rules Tab (Add)
+	const effectsTab = html.find('.tab[data-tab=effects]');
+	const rulesTemplate = await renderTemplate(`systems/projectfu/templates/effects/active-effect-rules.hbs`, data);
+	effectsTab.before(rulesTemplate);
 
 	sheet.setPosition({ ...sheet.position, height: 'auto' });
 }

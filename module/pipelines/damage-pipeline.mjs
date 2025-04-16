@@ -399,7 +399,7 @@ async function process(request) {
 
 		// TODO: Print message to chat
 		if (damageTaken === 0) {
-			ui.notifications.warn(`The actor ${actor.name} has already been defeated`);
+			ui.notifications.warn(`The damage to ${actor.name} was reduced to 0`);
 			continue;
 		}
 

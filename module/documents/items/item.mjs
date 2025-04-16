@@ -2,9 +2,6 @@ import { SOCKET } from '../../socket.mjs';
 import { ChecksV2 } from '../../checks/checks-v2.mjs';
 import { slugify } from '../../util.mjs';
 import { FUHooks } from '../../hooks.mjs';
-import { MathHelper } from '../../helpers/math-helper.mjs';
-import { MiscAbilityDataModel } from './misc/misc-ability-data-model.mjs';
-import { SkillDataModel } from './skill/skill-data-model.mjs';
 
 const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(0).toUpperCase() + string.slice(1) : string);
 
@@ -21,6 +18,8 @@ const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(
  * @property {Actor} actor
  * @property {String} uuid
  * @property {String} name
+ * @property {Map<String, Object>} effects
+ * @property {Object} FUActor
  */
 
 /**
@@ -279,40 +278,17 @@ export class FUItem extends Item {
 	 * @remarks Returns clocks before resources
 	 */
 	getProgress() {
+		// Search for legacy clock data among the data models
 		if (this.system.hasClock && this.system.hasClock.value) {
 			return this.system.progress;
 		}
 		if (this.system.hasResource && this.system.hasResource.value) {
 			return this.system.rp;
 		}
-		return null;
-	}
-
-	// TODO: Parametrize what to update: clock/rp
-	/**
-	 * @param {Number} increment
-	 * @param {"clock"|"resource"} type
-	 * @returns {ProgressDataModel} The updated progress data
-	 */
-	async updateProgress(increment, type = undefined) {
-		// Update clock
-		if (this.system instanceof MiscAbilityDataModel) {
-			if (this.system.hasClock.value) {
-				/** @type ProgressDataModel **/
-				const progress = this.system.progress;
-				const current = MathHelper.clamp(progress.current + increment * progress.step, 0, progress.max);
-				await this.update({ 'system.progress.current': current });
-				return this.system.progress;
-			}
-		}
-		// Update RP
-		else if (this.system instanceof SkillDataModel) {
-			if (this.system.hasResource.value) {
-				/** @type ProgressDataModel **/
-				const progress = this.system.rp;
-				const current = MathHelper.clamp(progress.current + increment * progress.step, 0, progress.max);
-				await this.update({ 'system.rp.current': current });
-				return this.system.rp;
+		// Search among active effects in the item
+		for (const effect of this.effects.values()) {
+			if (effect.system.rules.progress.enabled) {
+				return effect.system.rules.progress;
 			}
 		}
 		return null;

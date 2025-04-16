@@ -3,6 +3,7 @@ import { FUItem } from '../items/item.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
 import { Flags } from '../../helpers/flags.mjs';
+import { Pipeline } from '../../pipelines/pipeline.mjs';
 
 const TEMPORARY = 'Temporary';
 
@@ -99,6 +100,13 @@ export class FUActiveEffect extends ActiveEffect {
 	 */
 	get source() {
 		return this.getFlag(Flags.Scope, Flags.ActiveEffect.Source);
+	}
+
+	/**
+	 * @returns {boolean} True if the effect has a duration that is managed
+	 */
+	get hasDuration() {
+		return this.system.duration.event !== 'none';
 	}
 
 	/**
@@ -226,6 +234,30 @@ export class FUActiveEffect extends ActiveEffect {
 		this._addDataFieldMigration(source, `flags.${SYSTEM}.${this.EFFECT_TYPE}`, 'system.type');
 		this._addDataFieldMigration(source, `flags.${SYSTEM}.${this.CRISIS_INTERACTION}`, 'system.predicate.crisisInteraction');
 		return super.migrateData(source);
+	}
+
+	/**
+	 * @description Emits a chat message with this effect
+	 * @returns {Promise<void>}
+	 */
+	async sendToChat() {
+		// It's okay for it to be empty
+		const description = this.description; // ? this.description : game.i18n.localize('FU.NoItem');
+		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Effect, this.uuid);
+
+		if (this.parent instanceof FUItem) {
+			Pipeline.setFlag(flags, Flags.ChatMessage.Item, this.parent.uuid);
+		}
+
+		// TODO: More information?
+		await ChatMessage.create({
+			speaker: ChatMessage.getSpeaker({ actor: this.parent }),
+			flags: flags,
+			content: await renderTemplate('systems/projectfu/templates/chat/chat-active-effect.hbs', {
+				effect: this,
+				description: description,
+			}),
+		});
 	}
 }
 

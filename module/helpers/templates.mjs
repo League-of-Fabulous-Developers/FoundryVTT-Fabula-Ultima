@@ -61,10 +61,12 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Common partials
 		'systems/projectfu/templates/common/active-effects.hbs',
+
 		// Effects
 		'systems/projectfu/templates/effects/active-effect-details.hbs',
 		'systems/projectfu/templates/effects/active-effect-duration.hbs',
 		'systems/projectfu/templates/effects/active-effect-predicate.hbs',
+		'systems/projectfu/templates/effects/active-effect-rules.hbs',
 
 		// Dialogs
 		'systems/projectfu/templates/dialog/dialog-check.hbs',
@@ -80,6 +82,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
 		'systems/projectfu/templates/chat/chat-group-check-initiated.hbs',
+		'systems/projectfu/templates/chat/chat-active-effect.hbs',
 
 		// Chat Message Partials
 		'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',
