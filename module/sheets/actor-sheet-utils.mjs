@@ -25,6 +25,7 @@ async function prepareData(context, sheet) {
 	context.system = sheet.actor.system;
 	context.flags = sheet.actor.flags;
 	context.itemCount = context.actor.items.size;
+	context.isGM = game.user.isGM;
 
 	// Add support for formInput,formGroup
 	// https://foundryvtt.wiki/en/development/api/helpers#forminput-and-formgroup

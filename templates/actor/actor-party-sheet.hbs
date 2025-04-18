@@ -4,8 +4,10 @@
 	<nav class="sheet-tabs tabs menu" data-group="primary">
 		<a class="button" data-tab="overview">Overview</a>
 		<a class="button" data-tab="inventory">Inventory</a>
-<!--		<a class="button" data-tab="manage">Manage</a>-->
-		<a class="button" data-tab="settings">Settings</a>
+		{{#if isGM}}
+			<a class="button" data-tab="settings">Settings</a>
+		{{/if}}
+
 	</nav>
 
 	{{!-- Sheet Body --}}

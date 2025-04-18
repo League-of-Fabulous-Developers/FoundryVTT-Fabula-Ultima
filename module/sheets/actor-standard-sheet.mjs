@@ -383,7 +383,8 @@ export class FUStandardActorSheet extends ActorSheet {
 		// Event listener for setting hp to crisis
 		async function hpCrisis(actor) {
 			const maxHP = actor.system.resources.hp.max;
-			const crisisHP = Math.ceil(maxHP / 2);
+			// It's supposed to round down. EG: 51 -> 25, not 26.
+			const crisisHP = Math.floor(maxHP / 2);
 
 			const updateData = {
 				'system.resources.hp.value': crisisHP,
