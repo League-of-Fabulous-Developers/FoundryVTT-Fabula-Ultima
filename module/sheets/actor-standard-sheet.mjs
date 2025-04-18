@@ -645,8 +645,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	}
 
 	/**
-	 * Handle resting actions for the actor, restoring health and possibly other resources.
-	 *
+	 * @description Handle resting actions for the actor, restoring health and possibly other resources.
 	 * @param {Actor} actor - The actor performing the rest action.
 	 * @param {boolean} isRightClick - Indicates if the rest action is triggered by a right-click.
 	 * @returns {Promise<void>} A promise that resolves when the rest action is complete.

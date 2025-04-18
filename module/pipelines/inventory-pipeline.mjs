@@ -6,6 +6,8 @@ import { MESSAGES, SOCKET } from '../socket.mjs';
 
 const sellAction = 'inventorySell';
 const lootAction = 'inventoryLoot';
+const rechargeAction = 'inventoryRecharge';
+const costPerIP = 10;
 
 /**
  * @param {FUActor} actor
@@ -81,22 +83,21 @@ async function distributeZenit(actor, targets) {
 	const targetString = targets.map((t) => t.name).join(', ');
 	const share = zenit / targets.length;
 
-	// TODO: Localize
 	new Dialog({
 		title: 'Distribute Zenit',
-		content: `
-<p>Would you like to evenly distribute ${zenit} zenit from ${actor.name}?</p>
-<br/>
-<p>${targetString} will each receive ${share} zenit.</p>
-`,
+		content: game.i18n.format('FU.ChatInventoryDistributeZenit', {
+			zenit: zenit,
+			targets: targetString,
+			currency: game.i18n.localize('FU.Zenit'),
+		}),
 		buttons: [
 			{
 				label: 'Confirm',
 				callback: async () => {
-					await updateZenit(actor, -zenit);
+					await updateResources(actor, -zenit);
 
 					for (const target of targets) {
-						await updateZenit(target, share);
+						await updateResources(target, share);
 					}
 
 					ChatMessage.create({
@@ -119,12 +120,94 @@ async function distributeZenit(actor, targets) {
 	}).render(true);
 }
 
-async function updateZenit(actor, increment) {
-	const current = actor.system.resources.zenit.value;
-	const newValue = Math.max(0, current + increment);
-	actor.update({
-		'system.resources.zenit.value': newValue,
+async function updateResources(actor, zenitIncrement, ipIncrement) {
+	let updates = {};
+
+	if (zenitIncrement) {
+		const current = actor.system.resources.zenit.value;
+		const newValue = Math.max(0, current + zenitIncrement);
+		updates['system.resources.zenit.value'] = newValue;
+	}
+
+	if (ipIncrement) {
+		const current = actor.system.resources.ip.value;
+		const max = actor.system.resources.ip?.max;
+		const newValue = Math.max(0, Math.min(current + ipIncrement, max));
+		updates['system.resources.ip.value'] = newValue;
+	}
+
+	actor.update(updates);
+}
+
+/**
+ * @param {FUActor} actor
+ * @returns {Promise<void>}
+ */
+async function requestRecharge(actor) {
+	ChatMessage.create({
+		speaker: ChatMessage.getSpeaker({ actor }),
+		flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
+		content: await renderTemplate('systems/projectfu/templates/chat/chat-recharge-ip.hbs', {
+			actorName: actor.name,
+			actorId: actor.uuid,
+		}),
 	});
+}
+
+// TODO: In order to use actor we will need another socket-go-round
+/**
+ * @param {FUActor} actor
+ * @returns {Promise<void>}
+ */
+async function rechargeIP(actor) {
+	const targets = await getPrioritizedUserSelected();
+	if (targets.length !== 1) {
+		return false;
+	}
+	const target = targets[0];
+	const ipData = target.system.resources.ip;
+	const missingIP = ipData.max - ipData.value;
+	if (missingIP === 0) {
+		return false;
+	}
+
+	const cost = missingIP * costPerIP;
+	if (!validateFunds(target, cost)) {
+		return false;
+	}
+
+	console.debug(`Recharging the IP of ${target.name}`);
+	new Dialog({
+		title: game.i18n.localize('FU.InventoryRechargeIP'),
+		content: game.i18n.format('FU.ChatInventoryRechargePrompt', {
+			cost: cost,
+			ip: missingIP,
+			currency: game.i18n.localize('FU.Zenit'),
+		}),
+		buttons: [
+			{
+				label: 'Confirm',
+				callback: async () => {
+					//await updateZenit(actor, cost);
+					await updateResources(target, -cost, missingIP);
+
+					ChatMessage.create({
+						speaker: ChatMessage.getSpeaker({ target }),
+						flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
+						content: game.i18n.format('FU.ChatInventoryRechargeCompleted', {
+							target: target.name,
+							ip: missingIP,
+							currency: game.i18n.localize('FU.Zenit'),
+						}),
+					});
+				},
+			},
+			{
+				label: 'Cancel',
+				callback: () => {},
+			},
+		],
+	}).render(true);
 }
 
 /**
@@ -165,8 +248,21 @@ async function requestTrade(actorId, itemId, targetId, sale) {
 	return handleTrade(actor, item, target, sale);
 }
 
-/**
+function validateFunds(target, cost) {
+	const targetZenit = target.system.resources.zenit.value;
+	if (targetZenit < cost) {
+		ChatMessage.create({
+			content: game.i18n.format('FU.ChatInventoryTransactionFailed', {
+				actor: target.name,
+				currency: game.i18n.localize('FU.Zenit'),
+			}),
+		});
+		return false;
+	}
+	return true;
+}
 
+/**
  * @param {FUActor} actor
  * @param {FUItem} item
  * @param {FUActor} target
@@ -186,23 +282,14 @@ async function handleTrade(actor, item, target, sale) {
 	let cost = 0;
 	if (sale) {
 		console.debug(`${target.name} is buying ${item.name} from ${actor.name}`);
-		// Check target has enough
-		const targetZenit = target.system.resources.zenit.value;
 		cost = item.system.cost.value;
-		if (targetZenit < cost) {
-			ChatMessage.create({
-				content: game.i18n.format('FU.ChatInventoryPurchaseFailed', {
-					actor: target.name,
-					item: item.name,
-					currency: game.i18n.localize('FU.Zenit'),
-				}),
-			});
+		if (!validateFunds(target, cost)) {
 			return false;
 		}
 		// Remove zenit from buyer
-		await updateZenit(target, -cost);
+		await updateResources(target, -cost);
 		// Add zenit to seller
-		await updateZenit(actor, cost);
+		await updateResources(actor, cost);
 	} else {
 		console.debug(`${target.name} is looting ${item.name} from ${actor.name}`);
 	}
@@ -253,6 +340,11 @@ async function onRenderChatMessage(message, jQuery) {
 		const item = dataset.item;
 		return dispatchTradeRequest(actor, item, false);
 	});
+
+	Pipeline.handleClick(message, jQuery, rechargeAction, async (dataset) => {
+		const actor = fromUuidSync(dataset.actor);
+		return rechargeIP(actor);
+	});
 }
 
 /**
@@ -267,4 +359,5 @@ export const InventoryPipeline = {
 	tradeItem,
 	requestTrade,
 	distributeZenit,
+	requestRecharge,
 };

@@ -704,6 +704,9 @@ function activateInventoryListeners(html, sheet) {
 	html.on('click', '.zenit-distribute', async (ev) => {
 		return InventoryPipeline.distributeZenit(sheet.actor);
 	});
+	html.on('click', '.recharge-ip', async (ev) => {
+		return InventoryPipeline.requestRecharge(sheet.actor);
+	});
 }
 
 /**

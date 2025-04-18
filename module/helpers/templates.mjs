@@ -89,6 +89,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/chat-trade-item.hbs',
 		'systems/projectfu/templates/chat/chat-distribute-zenit.hbs',
 		'systems/projectfu/templates/chat/chat-item-acquired.hbs',
+		'systems/projectfu/templates/chat/chat-recharge-ip.hbs',
 
 		// Chat Message Partials
 		'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',
