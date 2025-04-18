@@ -69,6 +69,7 @@ const onProcessCheck = (check, actor, item) => {
 						damage.modifiers.push({ label: `FU.DamageBonus${damage.type.capitalize()}`, value: damageTypeBonus });
 					}
 
+					// Calcluate the total damage
 					damage.modifierTotal = damage.modifiers.reduce((agg, curr) => agg + curr.value, 0);
 					if (CheckConfiguration.inspect(check).getHrZero()) {
 						damage.total = damage.modifierTotal;
