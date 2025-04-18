@@ -50,25 +50,28 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		}
 
 		if (vehicle && vehicle.weaponsActive) {
+			// Vehicle Weapon Modules override Hand Slots
 			vehicle.weapons
 				.filter((weapon) => weapon.system.data.isShield)
 				.forEach((shieldModule) => {
 					equipmentDef += shieldModule.system.data.shield.defense;
 					equipmentMdef += shieldModule.system.data.shield.magicDefense;
 				});
-		} else if (equippedItems.mainHand) {
-			const mainHandItem = actor.items.get(equippedItems.mainHand);
-			if (mainHandItem && mainHandItem.type === 'shield') {
-				equipmentDef += mainHandItem.system.def.value;
-				equipmentMdef += mainHandItem.system.mdef.value;
+		} else {
+			// Hand Slots
+			if (equippedItems.mainHand) {
+				const mainHandItem = actor.items.get(equippedItems.mainHand);
+				if (mainHandItem && mainHandItem.type === 'shield') {
+					equipmentDef += mainHandItem.system.def.value;
+					equipmentMdef += mainHandItem.system.mdef.value;
+				}
 			}
-		}
-
-		if (equippedItems.offHand) {
-			const offHandItem = actor.items.get(equippedItems.offHand);
-			if (offHandItem && offHandItem.type === 'shield') {
-				equipmentDef += offHandItem.system.def.value;
-				equipmentMdef += offHandItem.system.mdef.value;
+			if (equippedItems.offHand) {
+				const offHandItem = actor.items.get(equippedItems.offHand);
+				if (offHandItem && offHandItem.type === 'shield') {
+					equipmentDef += offHandItem.system.def.value;
+					equipmentMdef += offHandItem.system.mdef.value;
+				}
 			}
 		}
 
@@ -157,22 +160,26 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 			}
 		}
 
-		if (equippedItems.mainHand) {
-			const shield = actor.items.get(equippedItems.mainHand);
-			if (shield) {
-				initMod += shield.system.init.value;
+		if (!actor.system.vehicle?.weaponsActive) {
+			if (equippedItems.mainHand) {
+				const shield = actor.items.get(equippedItems.mainHand);
+				if (shield) {
+					initMod += shield.system.init.value;
+				}
+			}
+			if (equippedItems.offHand) {
+				const shield = actor.items.get(equippedItems.offHand);
+				if (shield) {
+					initMod += shield.system.init.value;
+				}
 			}
 		}
-		if (equippedItems.offHand) {
-			const shield = actor.items.get(equippedItems.offHand);
-			if (shield) {
-				initMod += shield.system.init.value;
-			}
-		}
-		if (equippedItems.armor) {
-			const armor = actor.items.get(equippedItems.armor);
-			if (armor) {
-				initMod += armor.system.init.value;
+		if (!actor.system.vehicle?.armorActive) {
+			if (equippedItems.armor) {
+				const armor = actor.items.get(equippedItems.armor);
+				if (armor) {
+					initMod += armor.system.init.value;
+				}
 			}
 		}
 
