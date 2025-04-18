@@ -210,7 +210,7 @@ export async function handleCopyInlineEffect(effect) {
 }
 
 export function isActiveEffectForStatusEffectId(effect, statusEffectId) {
-	return effect.statuses.size === 1 && effect.statuses.has(statusEffectId);
+	return effect.statuses.has(statusEffectId);
 }
 
 /**
@@ -652,6 +652,7 @@ export const Effects = Object.freeze({
 	onRemoveEffectFromActor,
 	onApplyEffectToActor,
 	canBeRemoved,
+	toggleStatusEffect,
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,

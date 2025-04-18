@@ -1,4 +1,4 @@
-import { isActiveEffectForStatusEffectId, onManageActiveEffect, toggleStatusEffect } from '../pipelines/effects.mjs';
+import { Effects, isActiveEffectForStatusEffectId, onManageActiveEffect } from '../pipelines/effects.mjs';
 import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/checks.mjs';
 import { ItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
@@ -371,7 +371,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.find('.status-effect-toggle').click((ev) => {
 			ev.preventDefault();
 			const a = ev.currentTarget;
-			toggleStatusEffect(this.actor, a.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
+			Effects.toggleStatusEffect(this.actor, a.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
 		});
 
 		// Rollable abilities.

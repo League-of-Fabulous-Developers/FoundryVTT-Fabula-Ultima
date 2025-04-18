@@ -1,6 +1,6 @@
 import { FUItem } from '../items/item.mjs';
 import { FUHooks } from '../../hooks.mjs';
-import { Effects, prepareActiveEffectCategories, toggleStatusEffect } from '../../pipelines/effects.mjs';
+import { Effects, prepareActiveEffectCategories } from '../../pipelines/effects.mjs';
 import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
 import { FUActiveEffectModel } from '../effects/active-effect-model.mjs';
 import { SkillDataModel } from '../items/skill/skill-data-model.mjs';
@@ -200,7 +200,7 @@ export class FUActor extends Actor {
 							token: this.resolveToken(),
 						},
 					);
-					await toggleStatusEffect(this, 'crisis', InlineSourceInfo.fromInstance(this));
+					await Effects.toggleStatusEffect(this, 'crisis', InlineSourceInfo.fromInstance(this));
 				}
 
 				// Handle KO status
@@ -215,7 +215,7 @@ export class FUActor extends Actor {
 							token: this.resolveToken(),
 						},
 					);
-					await toggleStatusEffect(this, 'ko', InlineSourceInfo.fromInstance(this));
+					await Effects.toggleStatusEffect(this, 'ko', InlineSourceInfo.fromInstance(this));
 				}
 			}
 		}
