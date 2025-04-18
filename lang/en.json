@@ -1390,7 +1390,7 @@
 		"All": "All",
 		"Party": "Party",
 		"Notes": "Notes",
-		"PartySheetEmpty": "You must drag-n-drop the characters from the Actors onto here. Remember to set it as the active party.",
+		"PartySheetEmpty": "You must drag-n-drop the characters from the Actors onto here. Remember to set it as the active party in the settings. Also, there is a keybinding for the sheet (by default P).",
 		"ActiveParty": "Active Party",
 		"ActivePartyHint": "Set the active party",
 		"ActivePartyNotAssigned": "No party has been assigned in the system settings.",
