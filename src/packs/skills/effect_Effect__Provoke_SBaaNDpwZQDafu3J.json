@@ -59,12 +59,11 @@
           "priority": null
         }
       ],
-      "description": "<p>You are compelled to focus your attention on the character who provoked you. You are also considered <strong>enraged</strong>. </p><p><em>For automation purposes, you do not need to add the enraged condition on top of this one.</em></p>",
+      "description": "<p>You are compelled to focus your attention on the character who provoked you.</p><p><em>For automation purposes, add </em>@EFFECT[Compendium.projectfu.conditions-effects.vuJGp3kTdnZeEqQO]<em> separately.</em></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
       "statuses": [
-        "enraged",
         "provoked"
       ],
       "sort": 0,
@@ -76,7 +75,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742491472722,
-        "modifiedTime": 1744989830178,
+        "modifiedTime": 1744999458996,
         "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
       "_key": "!items.effects!SBaaNDpwZQDafu3J.X0ncNBybozMcN7Z2"
