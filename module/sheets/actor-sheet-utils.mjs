@@ -692,7 +692,7 @@ function _onMiddleClickEditItem(ev) {
  * @param {ActorSheet} sheet
  */
 function activateInventoryListeners(html, sheet) {
-	html.find('span[data-action="clearInventory"]').click((ev) => {
+	html.find('a[data-action="clearInventory"]').click((ev) => {
 		ev.preventDefault();
 		console.debug(`Clearing all items from actor ${sheet.actor}`);
 		sheet.actor.clearEmbeddedItems();

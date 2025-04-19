@@ -2,12 +2,11 @@
 
 	{{!-- Sheet Tab Navigation --}}
 	<nav class="sheet-tabs tabs menu" data-group="primary">
-		<a class="button" data-tab="overview">Overview</a>
-		<a class="button" data-tab="inventory">Inventory</a>
+		<a class="button" data-tab="overview"><i class="icon ra ra-double-team"></i>Overview</a>
+		<a class="button" data-tab="inventory"><i class="icon ra ra-hand"></i>Inventory</a>
 		{{#if isGM}}
-			<a class="button" data-tab="settings">Settings</a>
+			<a class="button" data-tab="settings"><i class="icon ra ra-wrench"></i>Settings</a>
 		{{/if}}
-
 	</nav>
 
 	{{!-- Sheet Body --}}
@@ -74,52 +73,7 @@
 
 		{{!-- Settings --}}
 		<div class="tab" data-tab="settings">
-
-			<!-- Header  -->
-			<header class="sheet-header desc">
-				<div class="combine-header w-100">
-					<img class="profile-img flexcol" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"
-						 style="height: 52px; width: auto; object-fit: contain;" />
-					<div style="flex-grow:1;">
-						<div class="charname-container flexrow grid-span-4" style="width: 100%;">
-							<h2 class="charname" style="flex: 3;">
-								<input name="name" type="text" value="{{actor.name}}" placeholder="Name" />
-							</h2>
-						</div>
-					</div>
-				</div>
-			</header>
-
-			<!-- Settings -->
-			<main class="grid-span-4">
-				<fieldset class="section-container title-fieldset desc resource-content">
-					<legend class="resource-label-m" aria-describedby="tooltip">
-						<a class="resource-inputs resource-label-m">
-							{{localize 'Settings'}}
-						</a>
-					</legend>
-
-					<div>
-						<button class="set-active-button"><i class="fas fa-pen-to-square icon"></i>Set Active</button>
-					</div>
-
-
-				</fieldset>
-			</main>
-
-			<!-- Notes -->
-			<main class="grid-span-4">
-				<fieldset class="section-container title-fieldset desc resource-content">
-					<legend class="resource-label-m" aria-describedby="tooltip">
-						<a class="resource-inputs resource-label-m">
-							{{localize 'FU.Notes'}}
-						</a>
-					</legend>
-					<div style="max-height: 400px; overflow-y: scroll;">
-						{{formInput system.schema.fields.notes value=system.notes localize=true button=false editable=true}}
-					</div>
-				</fieldset>
-			</main>
+			{{> "systems/projectfu/templates/actor/sections/actor-party-section-settings.hbs" actor=actor}}
 		</div>
 	</div>
 </form>

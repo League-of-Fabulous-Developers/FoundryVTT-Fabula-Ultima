@@ -1,10 +1,9 @@
 <section>
 	<header class="items-main-header">
-
 		<!-- Zenit -->
 		<span class="item-sm end">
-			<span class="item tab button-style zenit-style" style="width: 200px;" data-tooltip="{{getGameSetting 'optionRenameCurrency'}}">
-				<i class="fuk fu-zenit icon-aff"></i>
+			<span class="item tab button-style zenit-style" style="width: 150px; height:20px;" data-tooltip="{{getGameSetting 'optionRenameCurrency'}}">
+				<i class="fuk fu-zenit"></i>
 				<input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}" data-dtype="Number" />
 			</span>
 			<a class="item-control zenit-distribute" data-tooltip="{{ localize 'FU.InventoryDistributeZenit' }}" aria-describedby="tooltip">
@@ -18,9 +17,11 @@
 		</span>
 
 		<!-- Clear Items-->
-		<span class="effects-clear items-main total-level w-25" data-action="clearInventory"
-			  data-tooltip="{{localize 'FU.ClearInventory'}}">
-			<a>{{localize 'FU.Clear'}} {{itemCount}} <i class="fas fa-eraser"></i></a>
+		<span class="items-main inventory-header total-level w-25" >
+			<a data-action="clearInventory" data-tooltip="{{localize 'FU.ClearItems'}}">
+				<i class="icon fa fa-trash"></i>
+			</a>
+			<b>{{itemCount}}</b>
 		</span>
 	</header>
 
