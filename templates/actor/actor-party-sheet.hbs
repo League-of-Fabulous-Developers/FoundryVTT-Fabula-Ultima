@@ -28,6 +28,9 @@
 				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="revealMetaCurrency" tooltip="FU.AppMetaCurrencyTrackerTitle" icon="fa-solid fa-chart-line"}}
 				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="refreshSheet" tooltip="FU.Refresh" icon="fa fa-refresh"}}
 
+				{{#each actionHooks}}
+					{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="callHook" tooltip=this.name icon=this.icon option=this.hook}}
+				{{/each}}
 			</fieldset>
 		</div>
 	</div>

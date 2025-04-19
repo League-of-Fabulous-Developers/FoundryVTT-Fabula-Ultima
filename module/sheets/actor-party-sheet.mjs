@@ -14,6 +14,7 @@ export const FUPartySheetHelper = Object.freeze({
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
  * @property {FUActor} actor
  * @property {PartyDataModel} actor.system
+ * @property {PartySheetActionHook[]} actionHooks
  * @extends {ActorSheet}
  */
 export class FUPartySheet extends ActorSheet {
@@ -47,6 +48,7 @@ export class FUPartySheet extends ActorSheet {
 	async getData() {
 		// Enrich or transform data here
 		const context = super.getData();
+		context.actionHooks = FUPartySheet.prepareActionHooks();
 		await ActorSheetUtils.prepareData(context, this);
 		context.characters = this.party.characterData;
 		context.characterCount = this.party.characters.size;
@@ -90,6 +92,11 @@ export class FUPartySheet extends ActorSheet {
 		// Refresh Sheet
 		html.find('[data-action=refreshSheet]').on('click', (ev) => {
 			this.render(true);
+		});
+		// Custom Hook
+		html.find('[data-action=callHook]').on('click', (ev) => {
+			const hook = ev.currentTarget.dataset.option;
+			Hooks.call(hook);
 		});
 	}
 
@@ -159,7 +166,36 @@ export class FUPartySheet extends ActorSheet {
 			fixed: true,
 		});
 	}
+
+	/**
+	 * @returns {PartySheetActionHook[]}
+	 */
+	static prepareActionHooks() {
+		/** @type PartySheetActionHook[] **/
+		let hooks = [];
+
+		// Built-in support
+		if (game.modules.get('lookfar')?.active) {
+			console.debug('Automatically registering Lookfar Module');
+			hooks.push({
+				name: 'Travel Check',
+				icon: 'fa-solid fa-person-hiking',
+				hook: 'lookfarShowTravelCheckDialog',
+			});
+		}
+
+		// Callback here...
+
+		return hooks;
+	}
 }
+
+/**
+ * @typedef PartySheetActionHook
+ * @property {String} name The name to display
+ * @property {String} icon A supported font icon
+ * @property {String} hook The name of the hook to invoke
+ */
 
 // Set up sidebar menu option
 Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
