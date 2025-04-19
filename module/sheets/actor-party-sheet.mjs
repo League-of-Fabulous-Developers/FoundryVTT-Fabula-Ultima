@@ -3,29 +3,7 @@ import { SystemControls } from '../helpers/system-controls.mjs';
 import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
-
-/**
- * @returns {Promise<PartyDataModel>}
- */
-async function getActiveModel() {
-	const activePartyUuid = game.settings.get(SYSTEM, SETTINGS.activeParty);
-	if (activePartyUuid) {
-		const party = fromUuidSync(`Actor.${activePartyUuid}`);
-		if (party && party.type === 'party') {
-			return party.system;
-		}
-	}
-	return null;
-}
-
-async function openActive() {
-	const party = await getActiveModel();
-	if (party) {
-		party.parent.sheet.render(true);
-	} else {
-		ui.notifications.warn('FU.ActivePartyNotAssigned', { localize: true });
-	}
-}
+import { MetaCurrencyTrackerApplication } from '../ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
 
 export const FUPartySheetHelper = Object.freeze({
 	openActive,
@@ -44,7 +22,7 @@ export class FUPartySheet extends ActorSheet {
 		return foundry.utils.mergeObject(defaultOptions, {
 			classes: ['projectfu', 'sheet', 'actor', 'party', 'backgroundstyle'],
 			template: 'systems/projectfu/templates/actor/actor-party-sheet.hbs',
-			width: 900,
+			width: 920,
 			height: 1000,
 			tabs: [
 				{
@@ -93,9 +71,25 @@ export class FUPartySheet extends ActorSheet {
 			actor.sheet.render(true);
 		});
 		this.setupCharacterContextMenu(html);
+		// Set party as active
 		html.find('.set-active-button').click(() => {
 			console.debug(`Setting ${this.actor.name} as the active party`);
 			game.settings.set(Flags.Scope, SETTINGS.activeParty, this.actor._id);
+		});
+		// Reveal meta currency tracker
+		html.find('[data-action=revealMetaCurrency]').on('click', (ev) => {
+			MetaCurrencyTrackerApplication.renderApp();
+		});
+		// Rest whole party
+		html.find('[data-action=restParty]').on('click', async (ev) => {
+			for (const actor of this.party.characterActors) {
+				await actor.sheet.onRest(actor);
+				this.render(true);
+			}
+		});
+		// Refresh Sheet
+		html.find('[data-action=refreshSheet]').on('click', (ev) => {
+			this.render(true);
 		});
 	}
 
@@ -179,3 +173,26 @@ Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
 		},
 	});
 });
+
+/**
+ * @returns {Promise<PartyDataModel>}
+ */
+async function getActiveModel() {
+	const activePartyUuid = game.settings.get(SYSTEM, SETTINGS.activeParty);
+	if (activePartyUuid) {
+		const party = fromUuidSync(`Actor.${activePartyUuid}`);
+		if (party && party.type === 'party') {
+			return party.system;
+		}
+	}
+	return null;
+}
+
+async function openActive() {
+	const party = await getActiveModel();
+	if (party) {
+		party.parent.sheet.render(true);
+	} else {
+		ui.notifications.warn('FU.ActivePartyNotAssigned', { localize: true });
+	}
+}

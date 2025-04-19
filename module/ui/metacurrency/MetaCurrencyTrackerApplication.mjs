@@ -180,4 +180,6 @@ export class MetaCurrencyTrackerApplication extends FormApplication {
 		this.object.activityOverride[actorId] = currentOverride ?? user.active ? 0 : 1;
 		this.render();
 	}
+
+	static renderApp = () => (app ??= new MetaCurrencyTrackerApplication()).render(true);
 }

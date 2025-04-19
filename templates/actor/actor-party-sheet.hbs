@@ -1,17 +1,40 @@
 <form class="{{cssClass}} {{actor.type}} projectfu-actor-sheet h-100" autocomplete="off" spellcheck="false">
 
 	{{!-- Sheet Tab Navigation --}}
-	<nav class="sheet-tabs tabs menu" data-group="primary">
-		<a class="button" data-tab="overview"><i class="icon ra ra-double-team"></i>Overview</a>
-		<a class="button" data-tab="inventory"><i class="icon ra ra-hand"></i>Inventory</a>
-		{{#if isGM}}
-			<a class="button" data-tab="settings"><i class="icon ra ra-wrench"></i>Settings</a>
-		{{/if}}
-	</nav>
+	<div class="side">
+		<nav class="sheet-tabs tabs menu" data-group="primary">
+			<a class="button" data-tab="overview"><i class="icon ra ra-double-team"></i>Overview</a>
+			<a class="button" data-tab="inventory"><i class="icon ra ra-hand"></i>Inventory</a>
+			{{#if isGM}}
+				<a class="button" data-tab="settings"><i class="icon ra ra-wrench"></i>Settings</a>
+			{{/if}}
+		</nav>
+
+		<div>
+			<fieldset class="section-container title-fieldset desc resource-content">
+				<legend class="resource-label-m" aria-describedby="tooltip">
+					<a class="resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}" style="width: fit-content;">
+						<i class="fas fa-plus icon"></i>{{localize 'FU.Clocks'}}
+					</a>
+				</legend>
+			</fieldset>
+
+			<fieldset class="section-container title-fieldset desc resource-content">
+				<legend class="resource-label-m">
+					{{localize 'FU.Actions'}}
+				</legend>
+
+				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="restParty" tooltip="FU.Rest" icon="fas fa-bed" }}
+				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="revealMetaCurrency" tooltip="FU.AppMetaCurrencyTrackerTitle" icon="fa-solid fa-chart-line"}}
+				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="refreshSheet" tooltip="FU.Refresh" icon="fa fa-refresh"}}
+
+			</fieldset>
+		</div>
+	</div>
+
 
 	{{!-- Sheet Body --}}
 	<div class="sheet-body content">
-
 		{{!-- Overview --}}
 		<div class="tab" data-tab="overview">
 			<section class="party overview">

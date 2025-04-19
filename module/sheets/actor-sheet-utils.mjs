@@ -897,7 +897,7 @@ async function _onItemCreateDialog(ev, sheet) {
 
 	const buttons = types.map((item) => ({
 		label: item.label ?? (item.subtype ? item.subtype.split('.')[1] : item.type),
-		callback: () => _createItem(item.type, clock, item.subtype),
+		callback: () => _createItem(item.type, clock, item.subtype, sheet),
 	}));
 
 	new Dialog({

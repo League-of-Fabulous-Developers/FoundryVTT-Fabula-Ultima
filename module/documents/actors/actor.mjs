@@ -41,6 +41,7 @@ import { MiscAbilityDataModel } from '../items/misc/misc-ability-data-model.mjs'
  * @property {CharacterDataModel | NpcDataModel | PartyDataModel | SheetDataModel} system
  * @property {EffectCategories} effectCategories
  * @property {Boolean} isCharacterType
+ * @property {FUStandardActorSheet | FUPartySheet} sheet
  * @remarks {@link https://foundryvtt.com/api/classes/client.Actor.html}
  * @inheritDoc
  */

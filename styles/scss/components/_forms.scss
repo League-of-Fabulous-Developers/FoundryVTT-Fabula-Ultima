@@ -442,10 +442,19 @@
 		background: $color-ternary;
 	}
 
-	// Menu, Content Views
+	// SIDE
+	.side {
+		width: 160px;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+	}
+
+	.footer {
+	}
+
 	.menu {
 		display: flex;
-		width: 160px;
 		padding: 1rem;
 		flex-direction: column;
 		gap: 1rem;
@@ -475,6 +484,7 @@
 		}
 	}
 
+	// MAIN
 	.content {
 		flex-grow: 1;
 		padding: 2rem;

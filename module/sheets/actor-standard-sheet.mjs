@@ -644,6 +644,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		await this.onRest(this.actor, isRightClick);
 	}
 
+	// TODO: Move out of here
 	/**
 	 * @description Handle resting actions for the actor, restoring health and possibly other resources.
 	 * @param {Actor} actor - The actor performing the rest action.
