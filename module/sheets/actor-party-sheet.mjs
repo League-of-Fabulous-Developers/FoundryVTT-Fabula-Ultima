@@ -98,6 +98,10 @@ export class FUPartySheet extends ActorSheet {
 			const hook = ev.currentTarget.dataset.option;
 			Hooks.call(hook);
 		});
+		// Add a progress track
+		html.find('[data-action=addTrack]').on('click', (ev) => {
+			this.promptAddTrack();
+		});
 	}
 
 	/** @override */
@@ -145,6 +149,31 @@ export class FUPartySheet extends ActorSheet {
 		console.debug(`${actor.name} was added to the party ${this.actor.name}`);
 	}
 
+	/**
+	 * @description Adds a new progress track
+	 */
+	promptAddTrack() {
+		console.debug('Adding a progress track');
+		new Dialog({
+			title: 'Progress Track',
+			content: 'This feature is currently a work in progress.',
+			buttons: [
+				{
+					label: 'How dare you trick me?',
+					callback: async () => {},
+				},
+				{
+					label: 'Sob',
+					callback: () => {},
+				},
+			],
+		}).render(true);
+	}
+
+	/**
+	 * @description Sets up a context menu for characters in the overview
+	 * @param html
+	 */
 	setupCharacterContextMenu(html) {
 		// Initialize the context menu options
 		const contextMenuOptions = [

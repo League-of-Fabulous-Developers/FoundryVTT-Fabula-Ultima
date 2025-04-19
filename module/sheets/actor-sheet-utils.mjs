@@ -552,7 +552,10 @@ function activateDefaultListeners(html, sheet) {
 			name: game.i18n.localize('FU.StashItem'),
 			icon: '<i class="fa fa-paper-plane"></i>',
 			callback: (jq) => onSendItemToPartyStash(jq, sheet),
-			condition: (jq) => !!jq.data('itemId'),
+			condition: (jq) => {
+				const item = sheet.actor.items.get(jq.data('itemId'));
+				return item.canStash;
+			},
 		});
 	}
 	html.on('click', '.item-option', (jq) => {
@@ -967,32 +970,24 @@ async function _createItem(type, clock, subtype, sheet) {
  * @returns {Promise<Boolean>}
  */
 async function handleInventoryItemDrop(actor, data, onNewItem) {
+	/** @type FUItem **/
 	const item = await Item.implementation.fromDropData(data);
-	switch (item.type) {
-		case 'weapon':
-		case 'armor':
-		case 'shield':
-		case 'treasure':
-		case 'material':
-		case 'artifact':
-		case 'accessory':
-		case 'consumable': {
-			const existingItem = actor.items.find((i) => i.name === item.name && i.type === item.type);
-			let incremented = false;
-			if (existingItem) {
-				const subtype = item.system.subtype?.value;
-				const config = findItemConfig(item.type, subtype);
-				if (config) {
-					await config.update(item, existingItem);
-					console.debug(`${item.name} was appended onto ${actor.name}`);
-					incremented = true;
-				}
+	if (item.canStash) {
+		const existingItem = actor.items.find((i) => i.name === item.name && i.type === item.type);
+		let incremented = false;
+		if (existingItem) {
+			const subtype = item.system.subtype?.value;
+			const config = findItemConfig(item.type, subtype);
+			if (config) {
+				await config.update(item, existingItem);
+				console.debug(`${item.name} was appended onto ${actor.name}`);
+				incremented = true;
 			}
-			if (!incremented) {
-				await onNewItem;
-			}
-			return true;
 		}
+		if (!incremented) {
+			await onNewItem;
+		}
+		return true;
 	}
 	return false;
 }

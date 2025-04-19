@@ -27,19 +27,22 @@
  */
 
 import { FU } from '../../../helpers/config.mjs';
+import { ProgressDataModel } from '../../items/common/progress-data-model.mjs';
 
 /**
  * @description Represents a party of characters, as well as their management
  * @property {Set<String>} characters
  * @property {FUActor} parent
  * @property {Number} resources.zenit.value
+ * @property {ProgressDataModel[]} tracks
  */
 export class PartyDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { HTMLField, StringField, SetField, DocumentUUIDField, NumberField, SchemaField } = foundry.data.fields;
+		const { HTMLField, StringField, SetField, DocumentUUIDField, NumberField, SchemaField, ArrayField, EmbeddedDataField } = foundry.data.fields;
 		return {
 			// TODO: Probably won't be used
 			description: new HTMLField(),
+			tracks: new ArrayField(new EmbeddedDataField(ProgressDataModel, {})),
 			notes: new HTMLField(),
 			groupType: new StringField(),
 			characters: new SetField(new DocumentUUIDField({ nullable: true, fieldType: 'Actor' })),

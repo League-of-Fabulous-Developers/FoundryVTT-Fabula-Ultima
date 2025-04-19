@@ -86,6 +86,23 @@ export class FUItem extends Item {
 		return null;
 	}
 
+	// TODO: Yes this is janky, but still performant okay?
+	get canStash() {
+		switch (this.type) {
+			case 'weapon':
+			case 'armor':
+			case 'shield':
+			case 'treasure':
+			case 'material':
+			case 'artifact':
+			case 'accessory':
+			case 'consumable': {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * Handle clickable rolls.
 	 * @param {KeyboardModifiers} modifiers

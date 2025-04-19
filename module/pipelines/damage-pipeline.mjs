@@ -447,8 +447,12 @@ async function process(request) {
 		);
 
 		// Handle post-damage traits
-		if (request.traits.has(Traits.AbsorbHalf) && damageTaken > 0) {
-			await absorbDamage(resource, damageTaken * 0.5, context.sourceInfo, [context.sourceActor]);
+		if (damageTaken > 0) {
+			if (request.traits.has(Traits.Absorb)) {
+				await absorbDamage(resource, damageTaken, context.sourceInfo, [context.sourceActor]);
+			} else if (request.traits.has(Traits.AbsorbHalf)) {
+				await absorbDamage(resource, damageTaken * 0.5, context.sourceInfo, [context.sourceActor]);
+			}
 		}
 	}
 	return Promise.all(updates);
@@ -545,8 +549,9 @@ function onRenderChatMessage(message, jQuery) {
 		const actor = fromUuidSync(uuid);
 		const updates = [];
 		const amountRecovered = dataset.amount;
-		updates.push(actor.modifyTokenAttribute('resources.hp', amountRecovered, true));
-		TokenUtils.showFloatyText(actor, `${amountRecovered} HP`, `lightgreen`);
+		const resource = dataset.resource.toLowerCase();
+		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountRecovered, true));
+		TokenUtils.showFloatyText(actor, `${amountRecovered} ${resource}`, `lightgreen`);
 		return Promise.all(updates);
 	});
 

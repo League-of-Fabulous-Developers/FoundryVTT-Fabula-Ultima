@@ -14,9 +14,15 @@
 			<fieldset class="section-container title-fieldset desc resource-content">
 				<legend class="resource-label-m" aria-describedby="tooltip">
 					<a class="resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}" style="width: fit-content;">
-						<i class="fas fa-plus icon"></i>{{localize 'FU.Clocks'}}
+						<a data-action="addTrack">
+							<i class="fas fa-plus icon"></i>{{localize 'FU.Clocks'}}
+						</a>
 					</a>
 				</legend>
+
+				{{#each system.tracks }}
+				{{/each}}
+
 			</fieldset>
 
 			<fieldset class="section-container title-fieldset desc resource-content">

@@ -1402,6 +1402,7 @@
 		"ClearItems": "Clear Items",
 		"StashItem": "Stash Item",
 		"Refresh": "Refresh",
+		"Base": "Base",
 		"ChatInventorySellMessage": "<strong>{actor}</strong> is selling <strong>{item}</strong> for <strong>{cost} {currency}</strong>.",
 		"ChatInventoryLootMessage": "<strong>{item}</strong> can be acquired from <strong>{actor}</strong>.",
 		"ChatInventoryRechargeMessage": "<strong>{actor}</strong> is offering to recharge your inventory points... at a price.",
@@ -1417,6 +1418,7 @@
 		"ChatItemPurchased": "<strong>{target}</strong> has purchased <strong>{item}</strong> from <strong>{actor}</strong> for <strong>{cost} {currency}</strong>.",
 		"ChatInventoryTransactionFailed": "<strong>{actor}</strong> does not have enough {currency} to make that transaction.",
 		"ChatInventoryItemMissing": "The item is no longer available.",
+		"ChatRecoveryNotNeeded": "<strong>{actor}</strong> already has full {resource}.",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",
