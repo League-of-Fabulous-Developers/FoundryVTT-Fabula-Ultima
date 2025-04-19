@@ -1,38 +1,39 @@
-<section class="tab" data-tab="rules">
+<section class="tab projectfu" data-tab="rules">
 	{{!-- Progress --}}
 	<div class="form-group">
-			<div class="flexrow flex-wrap gap-2">
+			<div class="flexrow flex-group-center">
 				<!-- Toggle -->
-				<div class="flexrow flex-group-left">
-					<span>{{localize 'FU.Progress'}}</span>
+				<label class="icon-toggle" title="{{localize 'FU.Progress'}}?">
 					<input type="checkbox" name="system.rules.progress.enabled" {{ checked system.rules.progress.enabled }} />
-				</div>
+					<i class="toggle-icon fa fa-clock"></i>
+				</label>
+
 				<!-- Identifier -->
-				<div class="flexrow flex-group-center">
+				<div>
 					<label class="resource-label-m">{{localize 'FU.Identifier'}}</label>
 					<input type="text" name="system.rules.progress.id" value="{{ system.rules.progress.id }}" data-dtype="String"
 						   placeholder="{{localize 'FU.Identifier'}}" class="resource-label-m resource-inputs select-dropdown-l" />
 				</div>
 					<!-- Name -->
-					<div class="flexrow flex-group-center">
+					<div>
 						<label class="resource-label-m">{{localize 'FU.Name'}}</label>
 						<input type="text" name="system.rules.progress.name" value="{{ system.rules.progress.name }}" data-dtype="String"
 									 placeholder="{{localize 'FU.Name'}}" class="resource-label-m resource-inputs select-dropdown-l" />
 					</div>
 				<!-- Current -->
-				<div class="flexrow flex-group-center">
+				<div>
 					<label class="resource-label-m">{{localize 'FU.Current'}}</label>
 					<input type="number" name="system.rules.progress.current" value="{{ system.rules.progress.current }}"
 						   class="resource-inputs select-dropdown-m" />
 				</div>
 				<!-- Step -->
-				<div class="flexrow flex-group-center">
+				<div>
 					<label class="resource-label-m">{{localize 'FU.Step'}}</label>
 					<input type="number" name="system.rules.progress.step" value="{{ system.rules.progress.step }}"
 						   class="resource-inputs select-dropdown-m" />
 				</div>
 				<!-- Maximum -->
-				<div class="flexrow flex-group-center">
+				<div>
 					<label class="resource-label-m">{{localize 'FU.Max'}}</label>
 					<input type="number" name="system.rules.progress.max" value="{{ system.rules.progress.max }}"
 						   class="resource-inputs select-dropdown-m" />

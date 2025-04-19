@@ -35,6 +35,7 @@ export const FUPartySheetHelper = Object.freeze({
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
  * @property {FUActor} actor
+ * @property {PartyDataModel} actor.system
  * @extends {ActorSheet}
  */
 export class FUPartySheet extends ActorSheet {
@@ -44,7 +45,7 @@ export class FUPartySheet extends ActorSheet {
 			classes: ['projectfu', 'sheet', 'actor', 'party', 'backgroundstyle'],
 			template: 'systems/projectfu/templates/actor/actor-party-sheet.hbs',
 			width: 900,
-			height: 950,
+			height: 1000,
 			tabs: [
 				{
 					navSelector: '.sheet-tabs',
