@@ -31,6 +31,7 @@ import { FU } from '../../../helpers/config.mjs';
 /**
  * @description Represents a party of characters, as well as their management
  * @property {Set<String>} characters
+ * @property {FUActor} parent
  * @property {Number} resources.zenit.value
  */
 export class PartyDataModel extends foundry.abstract.TypeDataModel {

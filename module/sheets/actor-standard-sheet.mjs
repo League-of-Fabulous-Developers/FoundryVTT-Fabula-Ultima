@@ -12,6 +12,7 @@ import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { CollectionUtils } from '../helpers/collection-utils.mjs';
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
+import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -337,6 +338,12 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.on('click', '.use-equipment', this._onUseEquipment.bind(this)); // Toggle use equipment setting for npcs
 		html.on('click', '.item-favored', this._onItemFavorite.bind(this)); // Add item to favorites
 		html.on('click', '.item-behavior', (ev) => this._onItemBehavior($(ev.currentTarget))); // Add item to behavior roll
+		html.on('click', '.item-stash', async (ev) => {
+			const li = $(ev.currentTarget).parents('.item');
+			const itemId = li.data('itemId');
+			const item = this.actor.items.get(itemId);
+			return InventoryPipeline.requestTrade(this.actor.uuid, item.uuid, false);
+		});
 		html.on('click contextmenu', '.increment-button', (ev) => this._onIncrementButtonClick(ev)); // Increment value
 		html.on('click contextmenu', '.decrement-button', (ev) => this._onDecrementButtonClick(ev)); // Decrement value
 		html.on('click', '.is-levelup', (ev) => this._onLevelUp(ev)); // Handle level up

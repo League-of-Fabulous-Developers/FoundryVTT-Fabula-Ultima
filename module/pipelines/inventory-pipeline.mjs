@@ -215,10 +215,11 @@ async function rechargeIP(actor) {
 /**
  * @param {String} actorId
  * @param {String} itemId
- * @param {Boolean }sale
+ * @param {Boolean} sale
+ * @param {String} targetId
  * @returns {Promise<boolean|undefined>}
  */
-async function dispatchTradeRequest(actorId, itemId, sale) {
+async function requestTrade(actorId, itemId, sale, targetId = undefined) {
 	// Verify the item is still there
 	const item = fromUuidSync(itemId);
 	if (!item) {
@@ -226,51 +227,39 @@ async function dispatchTradeRequest(actorId, itemId, sale) {
 		return;
 	}
 
-	// Select one target
-	const targets = await getPrioritizedUserSelected();
-	if (targets.length !== 1) {
-		return false;
+	// If no target is specified
+	if (!targetId) {
+		const targets = await getPrioritizedUserSelected();
+		if (targets.length !== 1) {
+			return false;
+		}
+		const target = targets[0];
+		targetId = target.uuid;
 	}
-	const target = targets[0];
-	const targetId = target.uuid;
 
 	// Now execute directly on GM or request as user
 	if (game.user?.isGM) {
-		return requestTrade(actorId, itemId, targetId, sale);
+		return handleTrade(actorId, itemId, sale, targetId);
 	} else {
-		await SOCKET.executeAsGM(MESSAGES.RequestTrade, actorId, itemId, targetId, sale);
+		await SOCKET.executeAsGM(MESSAGES.RequestTrade, actorId, itemId, sale, targetId);
 		return false;
 	}
 }
 
-async function requestTrade(actorId, itemId, targetId, sale) {
+async function handleTrade(actorId, itemId, sale, targetId) {
 	const actor = fromUuidSync(actorId);
 	const item = fromUuidSync(itemId);
 	const target = fromUuidSync(targetId);
-	return handleTrade(actor, item, target, sale);
-}
-
-function validateFunds(target, cost) {
-	const targetZenit = target.system.resources.zenit.value;
-	if (targetZenit < cost) {
-		ChatMessage.create({
-			content: game.i18n.format('FU.ChatInventoryTransactionFailed', {
-				actor: target.name,
-				currency: game.i18n.localize('FU.Zenit'),
-			}),
-		});
-		return false;
-	}
-	return true;
+	return onHandleTrade(actor, item, sale, target);
 }
 
 /**
  * @param {FUActor} actor
  * @param {FUItem} item
- * @param {FUActor} target
  * @param {Boolean} sale
+ * @param {FUActor} target
  */
-async function handleTrade(actor, item, target, sale) {
+async function onHandleTrade(actor, item, sale, target) {
 	// Don't execute on self
 	if (actor.uuid === target.uuid) {
 		return false;
@@ -322,6 +311,20 @@ async function handleTrade(actor, item, target, sale) {
 	return true;
 }
 
+function validateFunds(target, cost) {
+	const targetZenit = target.system.resources.zenit.value;
+	if (targetZenit < cost) {
+		ChatMessage.create({
+			content: game.i18n.format('FU.ChatInventoryTransactionFailed', {
+				actor: target.name,
+				currency: game.i18n.localize('FU.Zenit'),
+			}),
+		});
+		return false;
+	}
+	return true;
+}
+
 /**
  * @param {Document} message
  * @param {jQuery} jQuery
@@ -334,13 +337,13 @@ async function onRenderChatMessage(message, jQuery) {
 	Pipeline.handleClick(message, jQuery, sellAction, async (dataset) => {
 		const actor = dataset.actor;
 		const item = dataset.item;
-		return dispatchTradeRequest(actor, item, true);
+		return requestTrade(actor, item, true);
 	});
 
 	Pipeline.handleClick(message, jQuery, lootAction, async (dataset) => {
 		const actor = dataset.actor;
 		const item = dataset.item;
-		return dispatchTradeRequest(actor, item, false);
+		return requestTrade(actor, item, false);
 	});
 
 	Pipeline.handleClick(message, jQuery, rechargeAction, async (dataset) => {

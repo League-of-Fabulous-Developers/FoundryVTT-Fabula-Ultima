@@ -1,6 +1,7 @@
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
+import { FUPartySheetHelper } from './actor-party-sheet.mjs';
 
 const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
 const SKILL_TYPES = ['skill'];
@@ -546,6 +547,14 @@ function activateDefaultListeners(html, sheet) {
 			condition: (jq) => !!jq.data('itemId'),
 		},
 	];
+	if (sheet.actor.isCharacterType) {
+		contextMenuOptions.push({
+			name: game.i18n.localize('FU.StashItem'),
+			icon: '<i class="fa fa-paper-plane"></i>',
+			callback: (jq) => onSendItemToPartyStash(jq, sheet),
+			condition: (jq) => !!jq.data('itemId'),
+		});
+	}
 	html.on('click', '.item-option', (jq) => {
 		const itemId = jq.currentTarget.dataset.itemId;
 
@@ -617,6 +626,14 @@ function activateDefaultListeners(html, sheet) {
 
 function _saveExpandedState(sheet) {
 	sheet.actor.update({ 'system._expanded': Array.from(sheet._expanded) });
+}
+
+async function onSendItemToPartyStash(jq, sheet) {
+	const item = sheet.actor.items.get(jq.data('itemId'));
+	const party = await FUPartySheetHelper.getActiveModel();
+	if (party) {
+		return InventoryPipeline.requestTrade(sheet.actor.uuid, item.uuid, false, party.parent.uuid);
+	}
 }
 
 /**

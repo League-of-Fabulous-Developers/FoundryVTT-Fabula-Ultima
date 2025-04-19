@@ -1400,6 +1400,7 @@
 		"Loot": "Loot",
 		"Merchant": "Merchant",
 		"ClearItems": "Clear Items",
+		"StashItem": "Stash Item",
 		"ChatInventorySellMessage": "<strong>{actor}</strong> is selling <strong>{item}</strong> for <strong>{cost} {currency}</strong>.",
 		"ChatInventoryLootMessage": "<strong>{item}</strong> can be acquired from <strong>{actor}</strong>.",
 		"ChatInventoryRechargeMessage": "<strong>{actor}</strong> is offering to recharge your inventory points... at a price.",
