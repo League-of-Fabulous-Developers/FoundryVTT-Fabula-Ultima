@@ -81,6 +81,7 @@ import { FUPartySheet } from './sheets/actor-party-sheet.mjs';
 import { StashDataModel } from './documents/actors/stash/stash-data-model.mjs';
 import { FUStashSheet } from './sheets/actor-stash-sheet.mjs';
 import { InventoryPipeline } from './pipelines/inventory-pipeline.mjs';
+import { registerKeyBindings } from './keybindings.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -205,6 +206,7 @@ Hooks.once('init', async () => {
 
 	// Register system settings
 	registerSystemSettings();
+	registerKeyBindings();
 
 	// Set combat tracker
 	console.log(`${SYSTEM} | Initializing combat tracker`);

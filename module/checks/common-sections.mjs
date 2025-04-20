@@ -61,7 +61,7 @@ const clock = (sections, clock, order) => {
 		partial: 'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
 		data: {
 			data: clock,
-			arr: clock.generateProgressArray(),
+			arr: clock.progressArray,
 		},
 		order: order,
 	}));

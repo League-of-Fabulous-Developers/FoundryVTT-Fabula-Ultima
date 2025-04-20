@@ -28,14 +28,43 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 		return this.current === this.max;
 	}
 
-	generateProgressArray() {
-		return Array.from({ length: this.max }, (_, i) => ({
+	get progressArray() {
+		return ProgressDataModel.generateProgressArray(this);
+	}
+
+	/**
+	 * @param name
+	 * @returns {ProgressDataModel}
+	 */
+	static construct(name) {
+		return new this({
+			name: name,
+		});
+	}
+
+	/**
+	 * @param {ProgressDataModel} track
+	 * @returns {{id, checked: boolean}[]}
+	 */
+	static generateProgressArray(track) {
+		return Array.from({ length: track.max }, (_, i) => ({
 			id: i + 1,
-			checked: this.current === i + 1,
+			checked: track.current === i + 1,
 		})).reverse();
 	}
 
-	get progressArray() {
-		return this.generateProgressArray();
+	/**
+	 * @param {FUActor} actor
+	 * @param {ProgressDataModel} track
+	 * @returns {Promise<void>}
+	 */
+	static async sendToChat(actor, track) {
+		await ChatMessage.create({
+			speaker: ChatMessage.getSpeaker({ actor: actor }),
+			content: await renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
+				arr: track.progressArray,
+				data: track,
+			}),
+		});
 	}
 }

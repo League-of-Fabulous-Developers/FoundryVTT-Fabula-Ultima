@@ -1062,7 +1062,6 @@ export class FUStandardActorSheet extends ActorSheet {
 	_onProgressUpdate(ev, dataType, dataPath) {
 		const input = ev.currentTarget;
 		const segment = input.value;
-
 		const li = $(input).closest('.item');
 
 		if (li.length) {

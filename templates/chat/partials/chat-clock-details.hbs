@@ -6,7 +6,6 @@
             {{#each arr as |obj key|}}
             <input disabled="" class="pie slice{{obj.id}}" type="radio" value="{{obj.id}}" style="--index: {{obj.id}}"
                 {{checked obj.checked}} />
-
             <div class="divider" style="--index: {{obj.id}}"></div>
             {{/each}}
         </div>

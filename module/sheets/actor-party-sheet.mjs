@@ -4,11 +4,8 @@ import { SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { MetaCurrencyTrackerApplication } from '../ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
-
-export const FUPartySheetHelper = Object.freeze({
-	openActive,
-	getActiveModel,
-});
+import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
+import { MathHelper } from '../helpers/math-helper.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -98,9 +95,23 @@ export class FUPartySheet extends ActorSheet {
 			const hook = ev.currentTarget.dataset.option;
 			Hooks.call(hook);
 		});
-		// Add a progress track
+
+		// Progress Tracks
 		html.find('[data-action=addTrack]').on('click', (ev) => {
-			this.promptAddTrack();
+			this.promptAddProgressTrack();
+		});
+		html.find('[data-action=removeTrack]').on('click', (ev) => {
+			const name = ev.currentTarget.dataset.name;
+			this.removeProgressTrack(name);
+		});
+		html.find('[data-action=incrementProgress]').on('click', (ev) => {
+			const name = ev.currentTarget.dataset.name;
+			const increment = ev.currentTarget.dataset.increment;
+			this.updateProgressTrack(name, Number.parseInt(increment));
+		});
+		html.find('[data-action=revealTrack]').on('click', (ev) => {
+			const name = ev.currentTarget.dataset.name;
+			this.revealProgressTrack(name);
 		});
 	}
 
@@ -152,22 +163,82 @@ export class FUPartySheet extends ActorSheet {
 	/**
 	 * @description Adds a new progress track
 	 */
-	promptAddTrack() {
+	promptAddProgressTrack() {
 		console.debug('Adding a progress track');
 		new Dialog({
 			title: 'Progress Track',
-			content: 'This feature is currently a work in progress.',
+			content: `<form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name"/>
+      </div>
+    </form>`,
 			buttons: [
 				{
-					label: 'How dare you trick me?',
-					callback: async () => {},
+					label: 'Confirm',
+					callback: async (html) => {
+						const name = html.find('[name="name"]').val();
+						console.log('Creating progress track with name: ', name);
+
+						let tracks = foundry.utils.duplicate(this.actor.system.tracks);
+						const existing = tracks.find((t) => t.name === name);
+						// TODO: Localize
+						if (existing) {
+							ui.notifications.error('A progress track already exists with that given name.', { localize: true });
+							return;
+						}
+
+						const newTrack = ProgressDataModel.construct(name);
+						tracks.push(newTrack);
+						this.actor.update({ ['system.tracks']: tracks });
+					},
 				},
 				{
-					label: 'Sob',
+					label: 'Cancel',
 					callback: () => {},
 				},
 			],
 		}).render(true);
+	}
+
+	/**
+	 * @description  increment button click events for progress tracks
+	 * @param {String} name The name of the progress track
+	 * @param {Number} increment
+	 */
+	updateProgressTrack(name, increment) {
+		const tracks = foundry.utils.duplicate(this.actor.system.tracks);
+		const track = tracks.find((t) => t.name === name);
+		if (track) {
+			track.current = MathHelper.clamp(track.current + increment * track.step, 0, track.max);
+			this.actor.update({ ['system.tracks']: tracks });
+		} else {
+			ui.notifications.error(`Failed to update progress track`);
+		}
+	}
+
+	/**
+	 * @param {String} name
+	 */
+	removeProgressTrack(name) {
+		/** @type ProgressDataModel[] **/
+		let tracks = foundry.utils.duplicate(this.actor.system.tracks);
+		const track = tracks.find((t) => t.name === name);
+		if (track) {
+			tracks = tracks.filter((t) => t.name !== name);
+			this.actor.update({ ['system.tracks']: tracks });
+		}
+	}
+
+	/**
+	 * @param {String} name
+	 */
+	revealProgressTrack(name) {
+		const tracks = this.actor.system.tracks;
+		const track = tracks.find((t) => t.name === name);
+		if (track) {
+			ProgressDataModel.sendToChat(this.actor, track);
+		}
 	}
 
 	/**
@@ -217,6 +288,34 @@ export class FUPartySheet extends ActorSheet {
 
 		return hooks;
 	}
+
+	static async toggleActive() {
+		const party = await FUPartySheet.getActiveModel();
+		if (party) {
+			const sheet = party.parent.sheet;
+			if (sheet.rendered) {
+				sheet.close();
+			} else {
+				sheet.render(true);
+			}
+		} else {
+			ui.notifications.warn('FU.ActivePartyNotAssigned', { localize: true });
+		}
+	}
+
+	/**
+	 * @returns {Promise<PartyDataModel>}
+	 */
+	static async getActiveModel() {
+		const activePartyUuid = game.settings.get(SYSTEM, SETTINGS.activeParty);
+		if (activePartyUuid) {
+			const party = fromUuidSync(`Actor.${activePartyUuid}`);
+			if (party && party.type === 'party') {
+				return party.system;
+			}
+		}
+		return null;
+	}
 }
 
 /**
@@ -234,30 +333,7 @@ Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
 		icon: 'fa-solid fa fa-users',
 		button: true,
 		onClick: () => {
-			FUPartySheetHelper.openActive();
+			return FUPartySheet.toggleActive();
 		},
 	});
 });
-
-/**
- * @returns {Promise<PartyDataModel>}
- */
-async function getActiveModel() {
-	const activePartyUuid = game.settings.get(SYSTEM, SETTINGS.activeParty);
-	if (activePartyUuid) {
-		const party = fromUuidSync(`Actor.${activePartyUuid}`);
-		if (party && party.type === 'party') {
-			return party.system;
-		}
-	}
-	return null;
-}
-
-async function openActive() {
-	const party = await getActiveModel();
-	if (party) {
-		party.parent.sheet.render(true);
-	} else {
-		ui.notifications.warn('FU.ActivePartyNotAssigned', { localize: true });
-	}
-}
