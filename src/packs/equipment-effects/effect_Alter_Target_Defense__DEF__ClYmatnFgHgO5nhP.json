@@ -3,7 +3,7 @@
   "name": "Alter Target Defense (DEF)",
   "type": "effect",
   "_id": "ClYmatnFgHgO5nhP",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
   "system": {
     "fuid": "alter-target-defense-def",
     "cost": {
@@ -24,7 +24,7 @@
       },
       "disabled": false,
       "name": "Alter Target Defense (DEF)",
-      "img": "icons/svg/aura.svg",
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
       "_id": "CYu3xXo2gXLvJ90v",
       "type": "base",
       "system": {},
@@ -53,8 +53,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1728758317799,
-        "modifiedTime": 1728759104289,
-        "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+        "modifiedTime": 1744751636542,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn"
       },
       "_key": "!items.effects!ClYmatnFgHgO5nhP.CYu3xXo2gXLvJ90v"
     }
@@ -72,8 +72,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1728758084500,
-    "modifiedTime": 1728758812724,
-    "lastModifiedBy": "7kOzP8RBVJhI8wKx"
+    "modifiedTime": 1744751631327,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "_key": "!items!ClYmatnFgHgO5nhP"
 }

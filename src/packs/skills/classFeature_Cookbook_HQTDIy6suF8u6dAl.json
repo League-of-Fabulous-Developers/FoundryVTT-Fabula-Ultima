@@ -46,7 +46,7 @@
         "salty_sour": {
           "taste1": "salty",
           "taste2": "sour",
-          "effect": "<p>T</p>"
+          "effect": ""
         },
         "salty_sweet": {
           "taste1": "salty",
@@ -95,53 +95,83 @@
   },
   "effects": [
     {
-      "origin": "Compendium.fabula-ultima-natural-fantasy.natural-fantasy-skills.Item.QUQhMl5YMbIf1Wdb",
+      "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
       "duration": {
+        "rounds": null,
         "startTime": null,
         "seconds": null,
         "combat": null,
-        "rounds": null,
         "turns": null,
         "startRound": null,
         "startTurn": null
       },
       "disabled": true,
-      "name": "All You Can Eat",
-      "_id": "R5fwcKpJB6i70d64",
+      "name": "Taste Aliases",
+      "_id": "k9WbWvZnDJe5GesN",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 0
+        },
+        "stack": 1
+      },
       "changes": [
         {
-          "key": "flags.projectfu.allYouCanEat",
-          "value": "true",
-          "mode": 2,
-          "priority": 30
+          "key": "flags.projectfu.tasteAliases.bitter",
+          "mode": 5,
+          "value": "",
+          "priority": null
+        },
+        {
+          "key": "flags.projectfu.tasteAliases.salty",
+          "mode": 5,
+          "value": "",
+          "priority": null
+        },
+        {
+          "key": "flags.projectfu.tasteAliases.sour",
+          "mode": 5,
+          "value": "",
+          "priority": null
+        },
+        {
+          "key": "flags.projectfu.tasteAliases.sweet",
+          "mode": 5,
+          "value": "",
+          "priority": null
+        },
+        {
+          "key": "flags.projectfu.tasteAliases.umami",
+          "mode": 5,
+          "value": "",
+          "priority": null
         }
       ],
-      "description": "<p><span class=\"fontstyle0\">Once per scene when you use the </span><span class=\"fontstyle2\">Cooking </span><span class=\"fontstyle0\">Skill, you may combine </span><span class=\"fontstyle2\">four ingredients into a delicacy </span><span class=\"fontstyle0\">(thus ignoring the normal limit of three ingredients). Other than that, the delicacy follows the normal rules.</span> <br style=\"font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;orphans:2;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-size-adjust:auto;-webkit-text-stroke-width:0px\" /></p>",
+      "description": "<p>Adjust the values to change how the tastes are displayed.</p>",
+      "origin": null,
+      "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUNF161",
-          "CrisisInteraction": "none"
-        }
-      },
-      "tint": "#ffffff",
+      "sort": 0,
+      "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "createdTime": 1743352342231,
+        "modifiedTime": 1743352573826,
+        "lastModifiedBy": "aylHtMTxbnWEKFH9"
       },
-      "img": "icons/commodities/flowers/daisy-white-teal.webp",
-      "type": "base",
-      "system": {},
-      "sort": 0,
-      "_key": "!items.effects!HQTDIy6suF8u6dAl.R5fwcKpJB6i70d64"
+      "_key": "!items.effects!HQTDIy6suF8u6dAl.k9WbWvZnDJe5GesN"
     }
   ],
   "ownership": {
@@ -156,7 +186,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
-    "modifiedTime": 1742777104086,
+    "modifiedTime": 1744383261568,
     "lastModifiedBy": "uG2TkwmswfdRqaAv"
   },
   "_id": "HQTDIy6suF8u6dAl",

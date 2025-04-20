@@ -10,10 +10,14 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/sections/actor-section-features.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-spells.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-items.hbs',
+		'systems/projectfu/templates/actor/sections/actor-section-items-treasure.hbs',
+		'systems/projectfu/templates/actor/sections/actor-section-items-consumable.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-combat.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-notes.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-behavior.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-settings.hbs',
+		'systems/projectfu/templates/actor/sections/actor-section-inventory.hbs',
+		'systems/projectfu/templates/actor/sections/actor-party-section-settings.hbs',
 
 		// Actor Component partials.
 		'systems/projectfu/templates/actor/partials/actor-charname.hbs',
@@ -57,9 +61,16 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/item/partials/item-progress-header.hbs',
 		'systems/projectfu/templates/item/partials/item-behavior-field.hbs',
 		'systems/projectfu/templates/item/partials/item-regenerate-fuid.hbs',
+		'systems/projectfu/templates/item/partials/item-traits.hbs',
 
 		// Common partials
 		'systems/projectfu/templates/common/active-effects.hbs',
+
+		// Effects
+		'systems/projectfu/templates/effects/active-effect-details.hbs',
+		'systems/projectfu/templates/effects/active-effect-duration.hbs',
+		'systems/projectfu/templates/effects/active-effect-predicate.hbs',
+		'systems/projectfu/templates/effects/active-effect-rules.hbs',
 
 		// Dialogs
 		'systems/projectfu/templates/dialog/dialog-check.hbs',
@@ -75,6 +86,11 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/chat-check-flavor-check.hbs',
 		'systems/projectfu/templates/chat/chat-check-flavor-item.hbs',
 		'systems/projectfu/templates/chat/chat-group-check-initiated.hbs',
+		'systems/projectfu/templates/chat/chat-active-effect.hbs',
+		'systems/projectfu/templates/chat/chat-trade-item.hbs',
+		'systems/projectfu/templates/chat/chat-distribute-zenit.hbs',
+		'systems/projectfu/templates/chat/chat-item-acquired.hbs',
+		'systems/projectfu/templates/chat/chat-recharge-ip.hbs',
 
 		// Chat Message Partials
 		'systems/projectfu/templates/chat/partials/chat-accuracy-check.hbs',
@@ -102,6 +118,8 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/chat/partials/chat-resource-details.hbs',
 		'systems/projectfu/templates/chat/partials/chat-targets.hbs',
 		'systems/projectfu/templates/chat/partials/chat-common-sections.hbs',
+		'systems/projectfu/templates/chat/partials/chat-collapsible-description.hbs',
+		'systems/projectfu/templates/chat/chat-advance-clock.hbs',
 
 		// UI Components
 		'systems/projectfu/templates/ui/combat-tracker.hbs',
@@ -213,5 +231,8 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/ui/partials/combat-bar-exp-mother.hbs',
 		'systems/projectfu/templates/ui/partials/combat-bar-zeropower-mother.hbs',
 		'systems/projectfu/templates/ui/partials/combat-hud-turn.hbs',
+
+		// Common
+		'systems/projectfu/templates/common/resource-button-large.hbs',
 	]);
 };

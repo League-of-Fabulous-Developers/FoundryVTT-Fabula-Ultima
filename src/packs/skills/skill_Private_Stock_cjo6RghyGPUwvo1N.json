@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you or another Player Character spend<strong>【SL + 2】</strong>or fewer Inventory Points, you may spend 1 Trade Point to ignore that cost.</p>",
+    "description": "<p>When you or another Player Character spend <strong>【SL + 2】</strong>or fewer Inventory Points, you may spend 1 Trade Point to ignore that cost.</p><hr /><ul><li><p><strong>Resource:</strong> @PROGRESS[winds-of-trade update -1]{Spend 1 Trade Point}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -79,8 +79,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676975651,
-    "modifiedTime": 1742676975651,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1744524897956,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "_id": "cjo6RghyGPUwvo1N",
   "sort": 0,

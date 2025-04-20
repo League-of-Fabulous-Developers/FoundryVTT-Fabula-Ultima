@@ -1,0 +1,93 @@
+{
+  "folder": "n7e5v4COOboqOpnr",
+  "name": "Effect: Atmokinesis (Bolt)",
+  "type": "effect",
+  "_id": "4oUORbf2Bzwl6sjD",
+  "img": "icons/magic/lightning/bolt-strike-hand-gray.webp",
+  "system": {
+    "fuid": "effect-atmokinesis-bolt",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "icons/magic/lightning/bolt-strike-hand-gray.webp",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Atmokinesis (Bolt)",
+      "_id": "dROM6eTY0mgTnrdo",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [
+        {
+          "key": "system.overrides.damageType.all.priority",
+          "mode": 5,
+          "value": "bolt",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.all",
+          "mode": 2,
+          "value": "2+&cs('brainwave-clock')",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743785564737,
+        "modifiedTime": 1743876668317,
+        "lastModifiedBy": "JXPd932s9DHQRD0w"
+      },
+      "_key": "!items.effects!4oUORbf2Bzwl6sjD.dROM6eTY0mgTnrdo"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "JXPd932s9DHQRD0w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1743785558817,
+    "modifiedTime": 1743785810953,
+    "lastModifiedBy": "JXPd932s9DHQRD0w"
+  },
+  "_key": "!items!4oUORbf2Bzwl6sjD"
+}

@@ -10,7 +10,7 @@
     "summary": {
       "value": "Extend some of your psychic gifts to your allies."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Esper</strong> Class.</p></blockquote><p>Your gifts with event \"When you <strong>deal damage</strong>\" can also be used \"When an ally who is able to hear you <strong>deals damage</strong>\".</p><p>Your <strong>psychic shield gift</strong>, if you have acquired it, has its <strong>effect</strong> changed to \"You and every ally who is able to hear you may treat your Defense and Magic Defense scores as being equal to <strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】 </strong>against that Check (you may still use your normal scores if better).\"</p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Esper</strong> Class.</p></blockquote><p>Your gifts with event \"When you <strong>deal damage</strong>\" can also be used \"When an ally who is able to hear you <strong>deals damage</strong>\".</p><p>Your @UUID[Compendium.projectfu.skills.Item.aqgXqI567dkudwMN]<strong> gift</strong>, if you have acquired it, has its <strong>effect</strong> changed to \"You and every ally who is able to hear you may treat your Defense and Magic Defense scores as being equal to <strong>【your current Willpower die size + (the number of filled sections in your Brainwave Clock, multiplied by 2)】 </strong>against that Check (you may still use your normal scores if better).\"</p>",
     "isFavored": {
       "value": false
     },
@@ -107,8 +107,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711473807263,
-    "modifiedTime": 1724180863685,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1744237821742,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

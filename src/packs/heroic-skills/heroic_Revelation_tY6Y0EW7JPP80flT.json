@@ -9,7 +9,7 @@
     "summary": {
       "value": "Bind a previously unknown Arcanum, and improve dismiss effects."
     },
-    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Arcanist</strong> Class.</span></p></blockquote><p><span>You make contact with an unknown Arcanum and bind it to your soul. This Arcanum must be something you design together with the rest of the group; as long as you live, no one else in your world will be able to bind that Arcanum.</span></p><p><span>Once per scene while you are <strong>merged</strong> with an Arcanum, you may use an action and spend 2 Fabula Points to <strong>trigger</strong> that Arcanum's <strong>dismiss</strong> effect (if any) without dismissing them. Doing so does not trigger the @UUID[Compendium.projectfu.skills.Item.hEj8s21iAOPhDtJN]{Arcane Circle} Skill (<strong>Core Rulebook</strong>, page <strong>177</strong>).</span></p><hr /><ul><li><p><strong>You Lose:</strong> @LOSS[2 fp]</p></li></ul>",
+    "description": "<blockquote><p><span>Requirements: you must have mastered the <strong>Arcanist</strong> Class.</span></p></blockquote><p><span>You make contact with an unknown Arcanum and bind it to your soul. This Arcanum must be something you design together with the rest of the group; as long as you live, no one else in your world will be able to bind that Arcanum.</span></p><p><span>Once per scene while you are <strong>merged</strong> with an Arcanum, you may use an action and spend 2 Fabula Points to <strong>trigger</strong> that Arcanum's <strong>dismiss</strong> effect (if any) without dismissing them. Doing so does not trigger the @UUID[Compendium.projectfu.skills.Item.hEj8s21iAOPhDtJN]{Arcane Circle} Skill (<strong>Core Rulebook</strong>, page <strong>177</strong>).</span></p><hr /><ul><li><p><strong>You Spend:</strong> @LOSS[2 fp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -111,8 +111,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706586656617,
-    "modifiedTime": 1743124286341,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744507364229,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

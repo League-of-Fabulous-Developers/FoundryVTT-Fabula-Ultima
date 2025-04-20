@@ -21,14 +21,10 @@ export const HOSTILE = 'hostile';
  * Combat and round events will include all combatants, whereas turn events are relegated to the single combatant.
  */
 export class CombatEvent {
-	constructor(type, round) {
+	constructor(type, round, combatants) {
 		this.type = type;
 		this.round = round;
-	}
-
-	forCombatants(combatants) {
 		this.combatants = combatants;
-		return this;
 	}
 
 	forCombatant(combatant) {
@@ -46,6 +42,13 @@ export class CombatEvent {
 
 	get actors() {
 		return Array.from(this.combatants.map((c) => c.actor));
+	}
+
+	/**
+	 * @returns {boolean} True if this combat event has an actor
+	 */
+	get hasActor() {
+		return !!this.combatant;
 	}
 }
 
@@ -65,8 +68,12 @@ export class CombatEvent {
  * @property {Combatant} combatant
  * @property {Boolean} hasCombatStarted
  * @property turnsLeft
+ * @property totalTurns
  * @property factions
  * @property currentTurn The faction whose turn it is
+ * @property isGM
+ * @property icons
+ * @property showNpcTurns
  */
 
 /**
@@ -110,8 +117,8 @@ export class FUCombat extends Combat {
 		return id != null ? this.combatants.get(id) : null;
 	}
 
-	setCombatant(combatant) {
-		this.setFlag(SYSTEM, Flags.CombatantId, combatant != null ? combatant.id : null);
+	async setCombatant(combatant) {
+		return this.setFlag(SYSTEM, Flags.CombatantId, combatant != null ? combatant.id : null);
 	}
 
 	/**
@@ -143,21 +150,9 @@ export class FUCombat extends Combat {
 	 * @param {Object<number,string[]>} flag
 	 */
 	async setTurnsTaken(flag) {
+		// TODO: This approach of setting one flag at a time is not optimal.
+		// Database transactions aside, each update triggers a refresh of the combat tracker
 		return this.setFlag(SYSTEM, Flags.CombatantsTurnTaken, flag);
-	}
-
-	/**
-	 * @param {Object<number,string[]>} flag
-	 */
-	async setTurnStarted(flag) {
-		return this.setFlag(SYSTEM, Flags.CombatantsTurnStarted, flag);
-	}
-
-	/**
-	 * @return {Object<number, string[]>}
-	 */
-	getTurnsStarted() {
-		return this.getFlag(SYSTEM, Flags.CombatantsTurnStarted) ?? {};
 	}
 
 	/**
@@ -206,7 +201,7 @@ export class FUCombat extends Combat {
 		await this.setFirstTurn(firstTurnFaction);
 		await this.setCurrentTurn(firstTurnFaction);
 		console.debug(`Combat started for ${this.combatants.length} combatants`);
-		Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfCombat, this.round).forCombatants(this.combatants));
+		Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfCombat, this.round, this.combatants));
 		return super.startCombat();
 	}
 
@@ -217,8 +212,9 @@ export class FUCombat extends Combat {
 		const end = await super.endCombat();
 		if (end) {
 			console.debug(`Combat ended for ${this.combatants.length} combatants`);
-			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfCombat, this.round).forCombatants(this.combatants));
+			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfCombat, this.round, this.combatants));
 		}
+		return end;
 	}
 
 	/**
@@ -276,7 +272,7 @@ export class FUCombat extends Combat {
 			await this._onStartRound();
 		}
 
-		console.debug(`_manageTurnEvents: Finished`);
+		//console.debug(`_manageTurnEvents: Finished`);
 	}
 
 	/**
@@ -289,13 +285,18 @@ export class FUCombat extends Combat {
 			return;
 		}
 
+		if (!this.currentRoundTurnsLeft.includes(combatant)) {
+			console.error(`No turns left for ${combatant.id}`);
+			return;
+		}
+
 		if (game.user?.isGM) {
-			this.setCombatant(combatant);
+			await this.setCombatant(combatant);
 			this.current.combatantId = combatant?.id || null;
 			this.current.tokenId = combatant?.tokenId || null;
 
 			console.debug(`Combat turn started for ${combatant.actor.uuid}`);
-			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfTurn, this.round).forCombatant(combatant));
+			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.startOfTurn, this.round, this.combatants).forCombatant(combatant));
 
 			// FROM BASE
 			// Determine the turn order and the current turn
@@ -304,16 +305,14 @@ export class FUCombat extends Combat {
 			this.current = this._getCurrentState(combatant);
 			// Notify
 			this.setupTurns();
-			// Set flags
-			const flag = this.getTurnsStarted();
-			flag[this.round] ??= [];
-			flag[this.round].push(combatant.id);
-			await this.setTurnStarted(flag);
 			this.notifyCombatTurnChange();
-			SOCKET.executeForOthers(MESSAGES.TurnChanged);
 		} else {
-			console.debug(`Executing message ${MESSAGES.TurnStarted} as GM`);
-			await SOCKET.executeAsGM(MESSAGES.TurnStarted, this.id, combatant.id);
+			if (combatant.actor.isOwner) {
+				console.debug(`Executing message ${MESSAGES.RequestStartTurn} as GM`);
+				await SOCKET.executeAsGM(MESSAGES.RequestStartTurn, this.id, combatant.id);
+			} else {
+				// TODO: Inform user?
+			}
 		}
 
 		await this._onStartTurn(combatant);
@@ -339,16 +338,20 @@ export class FUCombat extends Combat {
 			await this.setTurnsTaken(flag);
 
 			// Invoke event
-			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfTurn, this.round).forCombatant(combatant));
-			this.setCombatant(null);
+			Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfTurn, this.round, this.combatants).forCombatant(combatant));
+			await this.setCombatant(null);
 
 			// Setup
 			this.setupTurns();
 			await this.nextTurn();
 			this.notifyCombatTurnChange();
 		} else {
-			console.debug(`Executing message ${MESSAGES.TurnEnded} as GM`);
-			await SOCKET.executeAsGM(MESSAGES.TurnEnded, this.id, combatant.id);
+			if (combatant.actor.isOwner) {
+				console.debug(`Executing message ${MESSAGES.RequestEndTurn} as GM`);
+				await SOCKET.executeAsGM(MESSAGES.RequestEndTurn, this.id, combatant.id);
+			} else {
+				// TODO: Inform user?
+			}
 		}
 	}
 
@@ -379,13 +382,19 @@ export class FUCombat extends Combat {
 		// The current combatant, if any
 		data.combatant = this.combatant;
 		// Whether the user is a GM
-		data.isGM = game.user.isGM;
+		data.isGM = game.user?.isGM;
 
-		console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
-		for (const combatant of this.combatants) {
-			const canStartTurn = data.currentTurn === combatant.faction;
-			console.debug(`- Combatant name: ${combatant.name}, id: ${combatant.id}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}, canStartTurn: ${canStartTurn}`);
-		}
+		data.icons = {
+			active: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive),
+			outOfTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns),
+			hiddenTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden),
+		};
+
+		//console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
+		// for (const combatant of this.combatants) {
+		// 	const canStartTurn = data.currentTurn === combatant.faction;
+		// 	console.debug(`- Combatant name: ${combatant.name}, id: ${combatant.id}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}, canStartTurn: ${canStartTurn}`);
+		// }
 	}
 
 	/**
@@ -404,16 +413,15 @@ export class FUCombat extends Combat {
 	}
 
 	/**
-	 * @returns {string|"friendly"|"hostile"|undefined|"hostile"|"friendly"} The faction that has the next turn
+	 * @returns {"friendly"|"hostile"|undefined} The faction that has the next turn
 	 */
 	determineNextTurn() {
-		if (!this.started) {
-			return undefined;
-		}
+		if (!this.started) return undefined;
 
-		const turnsTaken = this.currentRoundTurnsTaken;
-		if (turnsTaken.length) {
-			const lastTurn = this.combatants.get(turnsTaken.at(-1)).faction;
+		const lastCombatant = this.currentRoundTurnsTaken.map((id) => this.combatants.get(id)).findLast((c) => c?.faction);
+
+		if (lastCombatant) {
+			const lastTurn = lastCombatant.faction;
 			const nextTurn = lastTurn === HOSTILE ? FRIENDLY : HOSTILE;
 			let turnsNotTaken = this.currentRoundTurnsLeft;
 
@@ -424,9 +432,7 @@ export class FUCombat extends Combat {
 
 			const factionsWithTurnsLeft = turnsNotTaken.map((combatant) => combatant.faction);
 			return factionsWithTurnsLeft.includes(nextTurn) ? nextTurn : lastTurn;
-		} else {
-			return this.getFirstTurn();
-		}
+		} else return this.getFirstTurn();
 	}
 
 	/**
@@ -442,7 +448,7 @@ export class FUCombat extends Combat {
 	}
 
 	/**
-	 * @return {"hostile" | "friendly"} The faction whose turn it is
+	 * @return {"hostile" | "friendly" | undefined} The faction whose turn it is
 	 */
 	getCurrentTurn() {
 		return this.getFlag(SYSTEM, Flags.CurrentTurn);
@@ -466,6 +472,14 @@ export class FUCombat extends Combat {
 		super._onCreateDescendantDocuments(parent, collection, documents, data, options, userId);
 	}
 
+	/** @inheritDoc */
+	_onUpdate(changed, options, userId) {
+		super._onUpdate(changed, options, userId);
+		if (game.combat?.id === this.id && ui.combatHud) {
+			ui.combatHud._onUpdateHUD();
+		}
+	}
+
 	/**
 	 * @description The Array of combatants sorted into initiative order, breaking ties alphabetically by name.
 	 * @override
@@ -481,16 +495,21 @@ export class FUCombat extends Combat {
 	 * @override
 	 */
 	async previousTurn() {
-		const turnsTaken = this.getTurnsTaken();
+		if (this.combatant) {
+			await this.setCombatant(null);
+			return this;
+		} else {
+			const turnsTaken = this.getTurnsTaken();
 
-		if (turnsTaken[this.round]) {
-			turnsTaken[this.round].pop();
-			await this.setTurnsTaken(turnsTaken);
+			if (turnsTaken[this.round]) {
+				turnsTaken[this.round].pop();
+				await this.setTurnsTaken(turnsTaken);
+			}
+
+			await super.previousTurn();
+			await this.setCurrentTurn(this.determineNextTurn());
+			return this;
 		}
-
-		await super.previousTurn();
-		await this.setCurrentTurn(this.determineNextTurn());
-		return this;
 	}
 
 	/**
@@ -505,13 +524,21 @@ export class FUCombat extends Combat {
 		flag[this.round - 1]?.pop();
 		await this.setTurnsTaken(flag);
 
-		await this.setCurrentTurn(this.determineNextTurn());
-		await super.previousRound();
+		let turn = this.round === 0 ? 0 : Math.max(this.totalTurns - 1, 0);
+		if (this.turn === null) turn = null;
+		let round = Math.max(this.round - 1, 0);
+		if (round === 0) turn = null;
+		let advanceTime = -1 * (this.turn || 0) * CONFIG.time.turnTime;
+		if (round > 0) advanceTime -= CONFIG.time.roundTime;
 
-		if (!this.started) {
-			await this.setCurrentTurn(undefined);
-		}
-		return this;
+		// Update the document, passing data through a hook first
+		const updateData = { round, turn };
+		const updateOptions = { direction: -1, worldTime: { delta: advanceTime } };
+		Hooks.callAll('combatRound', this, updateData, updateOptions);
+
+		await this.setCurrentTurn(this.determineNextTurn());
+
+		return this.update(updateData, updateOptions);
 	}
 
 	/**
@@ -542,7 +569,6 @@ export class FUCombat extends Combat {
 		const updateOptions = { advanceTime: CONFIG.time.turnTime, direction: 1 };
 		Hooks.callAll('combatTurn', this, updateData, updateOptions);
 
-		SOCKET.executeForOthers(MESSAGES.TurnChanged);
 		return this.update(updateData, updateOptions);
 	}
 
@@ -561,10 +587,9 @@ export class FUCombat extends Combat {
 		const updateData = { round: nextRound, turn };
 		const updateOptions = { advanceTime, direction: 1 };
 		Hooks.callAll(`combatRound`, this, updateData, updateOptions);
-		SOCKET.executeForOthers(MESSAGES.RoundChanged);
 		// Invoke our custom event
 		console.debug(`Round ended for ${this.combatants.length} combatants`);
-		Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfRound, this.round).forCombatants(this.combatants));
+		Hooks.callAll(FUHooks.COMBAT_EVENT, new CombatEvent(FU.combatEvent.endOfRound, this.round, this.combatants));
 		// Update the internals
 		return this.update(updateData, updateOptions);
 	}
@@ -581,6 +606,8 @@ export class FUCombat extends Combat {
 	 * @param {"hostile" | "friendly"} flag
 	 */
 	async setFirstTurn(flag) {
+		// TODO: This approach of setting one flag at a time is not optimal.
+		// Database transactions aside, each update triggers a refresh of the combat tracker
 		return this.setFlag(SYSTEM, Flags.FirstTurn, flag);
 	}
 
@@ -589,5 +616,23 @@ export class FUCombat extends Combat {
 	 */
 	getActors() {
 		return Array.from(this.combatants.map((c) => c.actor));
+	}
+
+	/**
+	 * @param combatant Combatant
+	 * @returns boolean
+	 */
+	static showTurnsFor(combatant) {
+		if (game.user?.isGM || combatant.actor.isOwner || combatant.actor.type === 'character') return true;
+		const showTurnsMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode);
+		if (showTurnsMode === 'never') {
+			return false;
+		} else if (showTurnsMode === 'only-studied') {
+			const studyJournal = game.journal.getName(combatant.actor.name);
+			if (showTurnsMode === 'only-studied' && !studyJournal) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

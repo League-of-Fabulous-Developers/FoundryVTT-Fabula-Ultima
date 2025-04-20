@@ -10,7 +10,7 @@
     "summary": {
       "value": "Gain beneﬁts when you cast spells on a personal vehicle"
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Pilot</strong> Class.</p></blockquote><p>After you cast the <strong>first</strong> spell of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option (after the spell has been resolved): choose one enabled module and <strong>disable</strong> it, then choose one disabled module and <strong>enable</strong> it; <strong>or</strong> the next spell you cast before the end of this scene that deals damage deals 5 extra damage; <strong>or</strong> the next spell you cast before the end of this scene that restores Hit Points to one or more creatures restores 10 additional Hit Points to each of those creatures.</p>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Pilot</strong> Class.</p></blockquote><p>After you cast the <strong>first</strong> spell of your turn during a conflict, if you are driving your <strong>personal vehicle</strong>, you may choose one option (after the spell has been resolved): choose one enabled module and <strong>disable</strong> it, then choose one disabled module and <strong>enable</strong> it; <strong>or</strong> the next spell you cast before the end of this scene that deals damage deals 5 extra damage; <strong>or</strong> the next spell you cast before the end of this scene that restores Hit Points to one or more creatures restores 10 additional Hit Points to each of those creatures.</p><hr /><ul><li><p><strong>Spell Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.hQ4zcpGgtwoEOgbR e:eos i:1 t:self]{Spell Damage Up}, or @GAIN[10 hp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -107,8 +107,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711473807263,
-    "modifiedTime": 1724180864009,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1744239659108,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -1,5 +1,5 @@
 {
-  "folder": "6hLDMWrdgLLCVK8G",
+  "folder": "5QBQvcD8cm6ReC2o",
   "name": "Polypoda",
   "type": "classFeature",
   "img": "icons/creatures/tentacles/tentacles-suctioncups-pink.webp",
@@ -31,12 +31,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1724180862796,
-    "lastModifiedBy": "dobQfkKFj2NK96cc",
+    "modifiedTime": 1744557538297,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "fHHT9SZwPRXiEA0U",
-  "sort": 0,
+  "sort": 101563,
   "_key": "!items!fHHT9SZwPRXiEA0U"
 }

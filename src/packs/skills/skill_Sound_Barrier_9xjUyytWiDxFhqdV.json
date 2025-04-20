@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p>",
+    "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p><hr /><ul><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.Item.e85QX4FWBQxwTt8V]{Effect: Sound Barrier}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -139,7 +139,11 @@
       "name": "Sound Barrier",
       "_id": "wjcCWPhCefwBODlT",
       "type": "base",
-      "system": {},
+      "system": {
+        "duration": {
+          "event": "startOfTurn"
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.physical",
@@ -167,8 +171,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1739537111533,
-        "modifiedTime": 1741991822903,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+        "modifiedTime": 1744458771970,
+        "lastModifiedBy": "WNNELbIcUepK9pGq"
       },
       "_key": "!items.effects!9xjUyytWiDxFhqdV.wjcCWPhCefwBODlT"
     }
@@ -185,8 +189,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706551847928,
-    "modifiedTime": 1741991796994,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744458819594,
+    "lastModifiedBy": "WNNELbIcUepK9pGq",
     "compendiumSource": null,
     "duplicateSource": null
   },

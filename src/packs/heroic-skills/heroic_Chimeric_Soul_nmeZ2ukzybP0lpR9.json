@@ -10,7 +10,7 @@
     "summary": {
       "value": "Casting Chimerist spells grant beneﬁts based on the Species."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong> and <strong>Mutant</strong> (see <strong>Techno Fantasy</strong>, page <strong>154</strong>), and must have acquired the <strong>Spell Mimic</strong> Skill</p></blockquote><p>When you cast one of your Chimerist spells, you gain a benefit based on the <strong>Species</strong> of the creature you originally learned that spell from. Choose one option: you gain Resistance to both damage types associated with that Species; <strong>or</strong> when you deal damage of a type associated with that Species, you deal 5 extra damage. The chosen benefit lasts until the end of the scene, or until you cast a Chimerist spell again.</p><p>The damage types associated to each Species are <strong>air</strong> and <strong>ice</strong> (<strong>beast</strong>), <strong>earth</strong> and <strong>poison</strong> (<strong>construct</strong>), <strong>fire</strong> and <strong>ice</strong> (<strong>demon</strong>), <strong>air</strong> and <strong>bolt</strong> (<strong>elemental</strong>), <strong>bolt</strong> and <strong>fire</strong> (<strong>monster</strong>), <strong>earth</strong> and <strong>light</strong> (<strong>plant</strong>), <strong>dark</strong> and <strong>poison</strong> (<strong>undead</strong>).</p>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong> and <strong>Mutant</strong> (see <strong>Techno Fantasy</strong>, page <strong>154</strong>), and must have acquired the <strong>Spell Mimic</strong> Skill</p></blockquote><p>When you cast one of your Chimerist spells, you gain a benefit based on the <strong>Species</strong> of the creature you originally learned that spell from. Choose one option: you gain Resistance to both damage types associated with that Species; <strong>or</strong> when you deal damage of a type associated with that Species, you deal 5 extra damage. The chosen benefit lasts until the end of the scene, or until you cast a Chimerist spell again.</p><p>The damage types associated to each Species are <strong>air</strong> and <strong>ice</strong> (<strong>beast</strong>), <strong>earth</strong> and <strong>poison</strong> (<strong>construct</strong>), <strong>fire</strong> and <strong>ice</strong> (<strong>demon</strong>), <strong>air</strong> and <strong>bolt</strong> (<strong>elemental</strong>), <strong>bolt</strong> and <strong>fire</strong> (<strong>monster</strong>), <strong>earth</strong> and <strong>light</strong> (<strong>plant</strong>), <strong>dark</strong> and <strong>poison</strong> (<strong>undead</strong>).</p><hr /><ul><li><p><strong>Resistances:</strong> @TYPE[affinity air,ice resistance e:eos i:1 t:source]{Effect: Beast Resistance}, @TYPE[affinity earth,poison resistance e:eos i:1 t:source]{Effect: Construct Resistance}, @TYPE[affinity fire,ice resistance e:eos i:1 t:source]{Effect: Demon Resistance}, @TYPE[affinity air,bolt resistance e:eos i:1 t:source]{Effect: Elemental Resistance}, @TYPE[affinity bolt,fire resistance e:eos i:1 t:source]{Effect: Monster Resistance}, @TYPE[affinity earth,light resistance e:eos i:1 t:source]{Effect: Plant Resistance}, or @TYPE[affinity dark,poison resistance e:eos i:1 t:source]{Effect: Undead Resistance}</p></li><li><p><strong>Extra Damage:</strong> (TBA)</p></li></ul><p></p>",
     "isFavored": {
       "value": false
     },
@@ -61,8 +61,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1742676906838,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1744429258605,
+    "lastModifiedBy": "WNNELbIcUepK9pGq"
   },
   "_id": "nmeZ2ukzybP0lpR9",
   "ownership": {

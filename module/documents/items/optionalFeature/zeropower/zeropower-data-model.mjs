@@ -1,10 +1,27 @@
-import { RollableOptionalFeatureDataModel } from '../optional-feature-data-model.mjs';
+import { OptionalFeatureDataModel } from '../optional-feature-data-model.mjs';
 import { ProgressDataModel } from '../../common/progress-data-model.mjs';
-import { SYSTEM } from '../../../../helpers/config.mjs';
-import { Flags } from '../../../../helpers/flags.mjs';
+import { OptionalFeatureTypeDataModel } from '../optional-feature-type-data-model.mjs';
+import { CommonSections } from '../../../../checks/common-sections.mjs';
+import { CheckHooks } from '../../../../checks/check-hooks.mjs';
+
+/** @type RenderCheckHook */
+const onRenderCheck = (sections, check, actor, item) => {
+	if (item?.system instanceof OptionalFeatureTypeDataModel && item.system.data instanceof ZeroPowerDataModel) {
+		console.log(sections);
+		/** @type ZeroPowerDataModel */
+		const zeroPower = item.system.data;
+		if (zeroPower.hasClock.value) {
+			CommonSections.clock(sections, zeroPower.progress, -1);
+		}
+		CommonSections.collapsibleDescription(sections, zeroPower.zeroTrigger.value ?? game.i18n.localize('FU.LimitTrigger'), zeroPower.zeroTrigger.description);
+		CommonSections.collapsibleDescription(sections, zeroPower.zeroEffect.value ?? game.i18n.localize('FU.LimitEffect'), zeroPower.zeroEffect.description);
+	}
+};
+
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 
 /**
- * @extends RollableOptionalFeatureDataModel
+ * @extends OptionalFeatureDataModel
  * @property {string} subtype.value
  * @property {string} summary.value
  * @property {string} description
@@ -18,7 +35,7 @@ import { Flags } from '../../../../helpers/flags.mjs';
  * @property {string} zeroEffect.description
  * @property {string} source.value
  */
-export class ZeroPowerDataModel extends RollableOptionalFeatureDataModel {
+export class ZeroPowerDataModel extends OptionalFeatureDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, EmbeddedDataField, BooleanField } = foundry.data.fields;
 		return {
@@ -60,11 +77,15 @@ export class ZeroPowerDataModel extends RollableOptionalFeatureDataModel {
 		};
 	}
 
+	/**
+	 * @param {ZeroPowerDataModel} model
+	 * @returns {Promise<string>}
+	 */
 	static async getClockDataString(model) {
 		const { progress, hasClock } = model;
 
 		// Generate and reverse the progress array
-		const progressArr = this.generateProgressArray(progress);
+		const progressArr = progress.progressArray;
 
 		// Determine clock display status
 		const clockDisplay =
@@ -76,43 +97,10 @@ export class ZeroPowerDataModel extends RollableOptionalFeatureDataModel {
 				: '';
 
 		// Create HTML content
-		const content = `
+		return `
 		<div style="display: grid;">
 			${clockDisplay}
 		</div>
 		`;
-		return content;
-	}
-
-	static generateProgressArray(progress) {
-		return Array.from({ length: progress.max }, (_, i) => ({
-			id: i + 1,
-			checked: parseInt(progress.current) === i + 1,
-		})).reverse();
-	}
-
-	static async roll(model, item) {
-		const actor = model.parent.parent.actor;
-		if (!actor) {
-			return;
-		}
-		const clockDataString = await this.getClockDataString(model);
-		const data = {
-			zeroTriggerTitle: model.zeroTrigger.value,
-			zeroEffectTitle: model.zeroEffect.value,
-			enrichedZeroTrigger: await TextEditor.enrichHTML(model.zeroTrigger.description),
-			enrichedZeroEffect: await TextEditor.enrichHTML(model.zeroEffect.description),
-			clockDataString,
-		};
-
-		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
-		const chatMessage = {
-			speaker,
-			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
-			content: await renderTemplate('systems/projectfu/templates/optional/zeropower/feature-zeroPower-chat-message.hbs', data),
-			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
-		};
-
-		ChatMessage.create(chatMessage);
 	}
 }

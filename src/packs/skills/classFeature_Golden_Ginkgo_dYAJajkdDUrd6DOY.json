@@ -22,7 +22,7 @@
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>At the end of your turn, you and every ally you can see recover an amount of Mind Points equal to<strong>【5 + your Skill Level in Chloromancy】</strong>.</p><hr><ul><li><p><strong>Targets Recover:</strong> @GAIN[5+&sl('chloromancy') mp]</p></li></ul>"
+          "effect": "<p>At the end of your turn, you and every ally you can see recover an amount of Mind Points equal to<strong>【5 + your Skill Level in Chloromancy】</strong>.</p><hr><ul><li><p><strong>Targets Recover:</strong> @GAIN[5+&sl('chloromancy') mp]{5 + (SL in Chloromancy)}</p></li></ul>"
         }
       ]
     },
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742746423620,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+    "modifiedTime": 1745171700579,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "ownership": {
     "default": 0,

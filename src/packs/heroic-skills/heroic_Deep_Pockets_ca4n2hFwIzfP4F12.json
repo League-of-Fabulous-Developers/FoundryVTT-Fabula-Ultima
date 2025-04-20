@@ -97,7 +97,56 @@
     },
     "fuid": "deep-pockets"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "icons/magic/symbols/cog-orange-red.webp",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Deep Pockets",
+      "_id": "oTyC4L5Zx1PNordJ",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [],
+      "description": "<p>When you spend Inventory Points, you spend 1 less Inventory Point (minimum 1).</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744384152979,
+        "modifiedTime": 1744426180379,
+        "lastModifiedBy": "WNNELbIcUepK9pGq"
+      },
+      "_key": "!items.effects!ca4n2hFwIzfP4F12.oTyC4L5Zx1PNordJ"
+    }
+  ],
   "folder": "z63bpKominWoy7Nw",
   "ownership": {
     "default": 0,

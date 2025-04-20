@@ -1,0 +1,80 @@
+{
+  "folder": "qNRGZXmchYjR0e4z",
+  "name": "Effect: Mirror",
+  "type": "effect",
+  "_id": "cyA5qMihPTXCsCyD",
+  "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
+  "system": {
+    "fuid": "effect-mirror",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Mirror",
+      "_id": "5AM5DRlt9st1DfDo",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "endOfScene",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [],
+      "description": "<p>You twist the laws of magic. Until this spell ends, if an offensive ( @ICON[offensive] ) spell is cast on the target, the creature who cast that offensive spell will be targeted in their stead (any other targets of the offensive spell will be targeted as normal). Once that happens, this spell ends.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744504147205,
+        "modifiedTime": 1744504186548,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+      },
+      "_key": "!items.effects!cyA5qMihPTXCsCyD.5AM5DRlt9st1DfDo"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LokWlpJRX2uVxtGn": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744504140119,
+    "modifiedTime": 1744504160975,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+  },
+  "_key": "!items!cyA5qMihPTXCsCyD"
+}

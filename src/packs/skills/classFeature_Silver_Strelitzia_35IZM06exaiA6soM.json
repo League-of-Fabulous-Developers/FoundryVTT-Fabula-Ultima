@@ -17,12 +17,12 @@
         {
           "start": 0,
           "end": 1,
-          "effect": "<p>You are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p><hr><ul><li><p><strong>You Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj]{Bolt Resistance} and @UUID[Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu]{Light Resistance}</p></li></ul>"
+          "effect": "<p>You are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p><hr><ul><li><p><strong>You Receive:</strong> @TYPE[affinity bolt,light resistance e:eot i:2 t:source]</p></li></ul>"
         },
         {
           "start": 2,
           "end": 3,
-          "effect": "<p>You and your allies present on the scene are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p><hr><ul><li><p><strong>Targets Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.QrEztsujMpK33cpj]{Bolt Resistance} and @UUID[Compendium.projectfu.actor-effects.Item.Xab6AwcRhoxVhygu]{Light Resistance}</p></li></ul>"
+          "effect": "<p>You and your allies present on the scene are Resistant to <strong>bolt</strong> and <strong>light</strong> damage.</p><hr><ul><li><p><strong>Targets Receive:</strong> @TYPE[affinity bolt,light resistance e:eot i:2 t:source]</p></li></ul>"
         }
       ]
     },
@@ -38,8 +38,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742748270121,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+    "modifiedTime": 1744515411224,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "ownership": {
     "default": 0,

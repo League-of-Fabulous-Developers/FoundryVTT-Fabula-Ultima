@@ -107,7 +107,7 @@
           "value": true
         },
         "type": {
-          "value": "physical"
+          "value": "untyped"
         },
         "value": 15
       }
@@ -119,7 +119,12 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "drain-spirit"
+    "fuid": "drain-spirit",
+    "traits": [
+      "AbsorbHalf",
+      "MindPointLoss",
+      "Base"
+    ]
   },
   "effects": [],
   "ownership": {
@@ -133,10 +138,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706571054952,
-    "modifiedTime": 1737918096140,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1743708536248,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },

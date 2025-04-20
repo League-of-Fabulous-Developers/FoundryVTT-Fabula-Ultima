@@ -4,6 +4,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { AttributeCheck } from './attribute-check.mjs';
 import { CheckPush } from './check-push.mjs';
 import { CheckReroll } from './check-reroll.mjs';
+import { CheckConfiguration } from './check-configuration.mjs';
 import { AccuracyCheck } from './accuracy-check.mjs';
 import { MagicCheck } from './magic-check.mjs';
 import { SpecialResults } from './special-results.mjs';
@@ -13,7 +14,6 @@ import { OpposedCheck } from './opposed-check.mjs';
 import { CheckRetarget } from './check-retarget.mjs';
 import { GroupCheck } from './group-check.mjs';
 import { SupportCheck } from './support-check.mjs';
-import { CheckConfiguration } from './check-configuration.mjs';
 
 /**
  * @typedef CheckAttributes
@@ -45,9 +45,10 @@ const accuracyCheck = async (actor, item, configCallback) => {
  *
  * @param {FUActor} actor
  * @param {CheckAttributes} attributes
+ * @param {FUItem} item
  * @param {CheckCallback} [configCallback]
  */
-const attributeCheck = async (actor, attributes, configCallback) => {
+const attributeCheck = async (actor, attributes, item, configCallback) => {
 	/** @type Partial<CheckV2> */
 	const check = {
 		type: 'attribute',
@@ -55,7 +56,7 @@ const attributeCheck = async (actor, attributes, configCallback) => {
 		secondary: attributes.secondary,
 	};
 
-	return performCheck(check, actor, undefined, configCallback);
+	return performCheck(check, actor, item, configCallback);
 };
 
 /**

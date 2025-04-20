@@ -27,7 +27,11 @@
       "name": "Dark Weakness",
       "_id": "ojEksWbplWQ9QFt3",
       "type": "base",
-      "system": {},
+      "system": {
+        "duration": {
+          "event": "none"
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.dark",
@@ -51,12 +55,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737993785822,
-        "modifiedTime": 1737993817707,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1744747350535,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn"
       },
       "_key": "!items.effects!zFQpa3KcSAmBCWdE.ojEksWbplWQ9QFt3"
     }

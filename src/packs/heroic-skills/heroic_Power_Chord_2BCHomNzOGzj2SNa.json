@@ -9,7 +9,7 @@
     "summary": {
       "value": "Improve allies’ critical success chance with songs."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Chanter </strong>Class.</p></blockquote><p>When you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high</strong> volume, you may may double the <strong>verse</strong>’s cost in Mind Points, <strong>or</strong> spend 1 Fabula Point. If you do, you and every ally that is able to hear you gain the following benefit until the start of your next turn: your Accuracy Checks trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p><hr /><ul><li><p><strong>You Lose:</strong> @LOSS[1 fp]</p></li></ul>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Chanter </strong>Class.</p></blockquote><p>When you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high</strong> volume, you may may double the <strong>verse</strong>’s cost in Mind Points, <strong>or</strong> spend 1 Fabula Point. If you do, you and every ally that is able to hear you gain the following benefit until the start of your next turn: your Accuracy Checks trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p><hr /><ul><li><p><strong>You Spend:</strong> @LOSS[1 fp]</p></li><li><p><strong>Targets Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.BMx3YxxDpgUahmgI]{Effect: Power Chord}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -97,7 +97,56 @@
     },
     "fuid": "power-chord"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "icons/tools/instruments/harp-yellow-teal.webp",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Power Chord",
+      "_id": "TYD1cjlpKC05ENDg",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 2,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [],
+      "description": "<p>When you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high</strong> volume, you may may double the <strong>verse</strong>’s cost in Mind Points, <strong>or</strong> spend 1 Fabula Point. If you do, you and every ally that is able to hear you gain the following benefit until the start of your next turn: your Accuracy Checks trigger a <strong>critical success</strong> when both dice show the same number (as long as the Check is not a <strong>fumble</strong>).</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743650753990,
+        "modifiedTime": 1743650807442,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!2BCHomNzOGzj2SNa.TYD1cjlpKC05ENDg"
+    }
+  ],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
     "default": 0,
@@ -111,7 +160,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706684677557,
-    "modifiedTime": 1743169774837,
+    "modifiedTime": 1744077649388,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

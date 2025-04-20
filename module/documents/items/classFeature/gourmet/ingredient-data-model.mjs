@@ -1,9 +1,36 @@
+import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { SYSTEM } from '../../../../helpers/config.mjs';
+import { CheckHooks } from '../../../../checks/check-hooks.mjs';
+import { CommonSections } from '../../../../checks/common-sections.mjs';
+
+/** @type RenderCheckHook */
+const onRenderCheck = (sections, check, actor, item, additionalFlags, targets) => {
+	if (check.type === 'display' && item?.system?.data instanceof IngredientDataModel) {
+		CommonSections.tags(
+			sections,
+			[
+				{
+					tag: 'FU.ClassFeatureIngredientTaste',
+					separator: ':',
+					value: game.i18n.localize(actor?.getFlag(SYSTEM, getTasteAliasFlag(item.system.data.taste)) || TASTES[item.system.data.taste]),
+				},
+				{
+					tag: 'FU.Quantity',
+					separator: ':',
+					value: item.system.data.quantity,
+				},
+			],
+			-1,
+		);
+	}
+};
+
+Hooks.on(CheckHooks.renderCheck, onRenderCheck);
+
 /**
  * @typedef Taste
  * @type {"bitter","salty","sour","sweet","umami"}
  */
-import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
-
 export const TASTES = Object.freeze({
 	bitter: 'FU.ClassFeatureIngredientTasteBitter',
 	salty: 'FU.ClassFeatureIngredientTasteSalty',
@@ -21,6 +48,12 @@ const TASTE_ARRAY = Object.keys(TASTES);
 export function tasteComparator(taste1, taste2) {
 	return TASTE_ARRAY.indexOf(taste1) - TASTE_ARRAY.indexOf(taste2);
 }
+
+/**
+ * @param {Taste} taste
+ * @returns {`tasteAliases.${Taste}`}
+ */
+export const getTasteAliasFlag = (taste) => `tasteAliases.${taste}`;
 
 /**
  * @property {Taste} taste
@@ -51,8 +84,14 @@ export class IngredientDataModel extends ClassFeatureDataModel {
 	}
 
 	static async getAdditionalData(model) {
+		let tastes = { ...TASTES };
+		if (model.actor) {
+			for (const taste of Object.keys(tastes)) {
+				tastes[taste] = model.actor.getFlag(SYSTEM, getTasteAliasFlag(taste)) || TASTES[taste];
+			}
+		}
 		return {
-			tastes: TASTES,
+			tastes: tastes,
 			enrichedDescription: await TextEditor.enrichHTML(model.description),
 		};
 	}

@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr /><ul><li><p><strong>Targets Receive:</strong> @EFFECT[aura]</p></li></ul>",
+    "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p><hr><ul><li><p><strong>Targets Receive:</strong> @EFFECT[aura e:eos i:1 t:self]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -121,57 +121,7 @@
     },
     "fuid": "aura"
   },
-  "effects": [
-    {
-      "origin": "Compendium.projectfu.spells.Item.jd9jMsj2PNq99M64",
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": false,
-      "name": "Aura",
-      "img": "systems/projectfu/styles/static/statuses/Aura.webp",
-      "_id": "8QJ7SwRKK96tzyUg",
-      "type": "base",
-      "system": {},
-      "changes": [
-        {
-          "key": "system.derived.mdef.value",
-          "mode": 4,
-          "value": "12",
-          "priority": null
-        }
-      ],
-      "description": "<p>You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUCR208",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "12.331",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1733862598062,
-        "modifiedTime": 1742703476200,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv"
-      },
-      "_key": "!items.effects!jd9jMsj2PNq99M64.8QJ7SwRKK96tzyUg"
-    }
-  ],
+  "effects": [],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -185,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706571961584,
-    "modifiedTime": 1742703366791,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1745162952155,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

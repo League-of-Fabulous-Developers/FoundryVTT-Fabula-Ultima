@@ -234,3 +234,33 @@
 		transform: translateY(1px);
 	}
 }
+
+.icon-toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+}
+
+.icon-toggle input {
+	display: none;
+}
+
+.icon-toggle .toggle-icon {
+	font-size: 1.5rem;
+	opacity: 0.3;
+	color: #666;
+	transition:
+		opacity 0.2s ease,
+		color 0.2s ease,
+		filter 0.2s ease;
+}
+
+/* Checked state styling */
+.icon-toggle input:checked + .toggle-icon {
+	opacity: 1;
+	color: $color-secondary;
+	filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.6));
+}

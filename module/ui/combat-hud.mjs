@@ -3,6 +3,7 @@ import { SETTINGS } from '../settings.js';
 import { SystemControls } from '../helpers/system-controls.mjs';
 import { SYSTEM, FU } from '../helpers/config.mjs';
 import { FUHooks } from '../hooks.mjs';
+import { FUCombat } from './combat.mjs';
 
 Hooks.once('setup', () => {
 	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
@@ -138,7 +139,7 @@ export class CombatHUD extends Application {
 	}
 
 	_getResourcePartial(resource) {
-		if (resource == 'none') return false;
+		if (resource === 'none') return false;
 
 		let theme = game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme).replace('fu-', '');
 		if (theme === 'default') theme = '';
@@ -181,12 +182,11 @@ export class CombatHUD extends Application {
 			barCount++;
 		}
 
-		const NPCTurnsLeftMode = game.settings.get(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode);
-
 		/** @type FUCombat **/
 		const combat = game.combat;
 		combat.populateData(data);
 
+		// TODO: Much of this data is also required by the Combat Tracker, but populated in an entirely different way!
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
 
@@ -200,8 +200,7 @@ export class CombatHUD extends Application {
 				token: combatant.token,
 				faction: combatant.faction,
 				effects: activeEffects,
-				// token._source should contain the most current version of the token's texture.
-				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? combatant.token._source.texture.src : combatant.actor.img,
+				img: game.settings.get(SYSTEM, SETTINGS.optionCombatHudPortrait) === 'token' ? await this._getCombatantThumbnail(combatant) : combatant.actor.img,
 				trackedResourcePart1: trackedResourcePart1,
 				trackedResourcePart2: trackedResourcePart2,
 				trackedResourcePart3: trackedResourcePart3,
@@ -245,8 +244,7 @@ export class CombatHUD extends Application {
 				actorData.shouldEffectsMarquee = actorData.effects.length > maxEffectsBeforeMarquee && effectsMarqueeDuration < 9000;
 				actorData.effectsMarqueeDuration = effectsMarqueeDuration;
 
-				const marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
-				actorData.marqueeDirection = marqueeDirection;
+				actorData.marqueeDirection = game.settings.get(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode);
 			}
 
 			let order = 0;
@@ -268,10 +266,8 @@ export class CombatHUD extends Application {
 
 			actorData.order = order;
 
-			if (NPCTurnsLeftMode === 'never') {
-				actorData.totalTurns = 1;
-			} else if (NPCTurnsLeftMode === 'only-studied' && !this._isNPCStudied(combatant.token)) {
-				actorData.totalTurns = 1;
+			if (!FUCombat.showTurnsFor(combatant)) {
+				actorData.hideTurns = true;
 			}
 
 			if (combatant.token.disposition === foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY) {
@@ -329,9 +325,6 @@ export class CombatHUD extends Application {
 		if (this.isFirefox) {
 			$(window.document).on('dragover', this._fireFoxDragWorkaround.bind(this));
 		}
-
-		this._dragOffsetX = -dragButton.width() * 1.5;
-		this._dragOffsetY = dragButton.height() / 2;
 
 		this._startCombatButton = html.find('.window-start');
 		this._startCombatButton.click(this._doStartCombat.bind(this));
@@ -449,7 +442,7 @@ export class CombatHUD extends Application {
 		});
 	}
 
-	_doHudDrop(event) {
+	_doHudDrop() {
 		const offset = this.element.offset();
 		const height = this.element.outerHeight();
 		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
@@ -495,7 +488,7 @@ export class CombatHUD extends Application {
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, this._backupOrdering ?? []);
 	}
 
-	_onCanvasDraw(canvas) {
+	_onCanvasDraw() {
 		setTimeout(() => {
 			if (game.combat && game.combat.isActive) {
 				CombatHUD.init();
@@ -573,10 +566,10 @@ export class CombatHUD extends Application {
 		game.settings.set(SYSTEM, SETTINGS.optionCombatHudActorOrdering, ordering);
 
 		const factionList = this.element.find(faction);
-		const rows = $(faction).find('.combat-row');
-		rows.detach().sort((a, b) => a.dataset.order - b.dataset.order);
+		const rows = $(faction).find('.combat-row').detach();
+		const sortedRows = $(rows.toArray().sort((a, b) => a.dataset.order - b.dataset.order));
 
-		factionList.append(rows);
+		factionList.append(sortedRows);
 	}
 
 	_doMinimize() {
@@ -677,11 +670,6 @@ export class CombatHUD extends Application {
 				studyJournal.sheet.render(true);
 			}
 		}
-	}
-
-	_isNPCStudied(token) {
-		const studyJournal = game.journal.getName(token.actor?.name);
-		return studyJournal ? true : false;
 	}
 
 	lerp(a, b, alpha) {
@@ -805,17 +793,27 @@ export class CombatHUD extends Application {
 
 	_onUpdateToken(token, changes) {
 		// Is the updated token in the current combat?
-		if (!game.combat?.combatants.some((c) => c.token.uuid === token.uuid)) {
+		const combatant = game.combat?.combatants.find((c) => c.token.uuid === token.uuid);
+		if (!combatant) {
 			return;
 		}
 
 		// Are any of the changes relevant to the Combat HUD?
-		if (
-			foundry.utils.hasProperty(changes, 'name') ||
-			foundry.utils.hasProperty(changes, 'actorId') ||
-			foundry.utils.hasProperty(changes, 'disposition') ||
-			(game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && foundry.utils.hasProperty(changes, 'texture.src'))
-		) {
+		if (game.settings.get(SYSTEM, 'optionCombatHudPortrait') === 'token' && foundry.utils.hasProperty(changes, 'texture.src')) {
+			// Note: These properties are also used by the Combat Tracker
+			// But it doesn't attempt to regenerate them like this.
+			// Ultimately the token icon will be updated on the tracker the next time it refreshes.
+			combatant._thumb = null;
+			if (VideoHelper.hasVideoExtension(changes.texture.src)) {
+				combatant.img = null;
+				combatant._videoSrc = changes.texture.src;
+			} else {
+				combatant.img = changes.texture.src;
+				delete combatant._videoSrc;
+			}
+
+			this._onUpdateHUD();
+		} else if (foundry.utils.hasProperty(changes, 'name') || foundry.utils.hasProperty(changes, 'actorId') || foundry.utils.hasProperty(changes, 'disposition')) {
 			this._onUpdateHUD();
 		}
 	}
@@ -928,7 +926,7 @@ export class CombatHUD extends Application {
 		this.close();
 	}
 
-	_onStudyRoll(actor, journalEntry) {
+	_onStudyRoll() {
 		this._onUpdateHUD();
 	}
 
@@ -1076,5 +1074,20 @@ export class CombatHUD extends Application {
 				CombatHUD.reset();
 			},
 		};
+	}
+
+	/**
+	 * Retrieve a source image for a combatant.
+	 * Modified from CombatTracker._getCombatantThumbnail()
+	 * @param {Combatant} combatant         The combatant queried for image.
+	 * @returns {Promise<string>}           The source image attributed for this combatant.
+	 * @protected
+	 */
+	async _getCombatantThumbnail(combatant) {
+		if (combatant._videoSrc && !combatant.img) {
+			if (combatant._thumb) return combatant._thumb;
+			return (combatant._thumb = await game.video.createThumbnail(combatant._videoSrc, { width: 200, height: 200 }));
+		}
+		return combatant.img ?? CONST.DEFAULT_TOKEN;
 	}
 }

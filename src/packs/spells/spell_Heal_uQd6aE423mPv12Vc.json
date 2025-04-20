@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You invigorate your companions, soothing their pain and healing their fatigue. Each target recovers 40 HP<span>. This amount increases to </span>50 HP <span>if you are <strong>level 20 or higher</strong>, or to </span>60 HP <span>if you are <strong>level 40 or higher</strong>.</span></p><hr /><ul><li><p><strong>Targets Recovers:</strong> @GAIN[&amp;step(40,50,60) hp]</p></li></ul>",
+    "description": "<p>You invigorate your companions, soothing their pain and healing their fatigue. Each target recovers 40 HP<span>. This amount increases to </span>50 HP <span>if you are <strong>level 20 or higher</strong>, or to </span>60 HP <span>if you are <strong>level 40 or higher</strong>.</span></p><hr /><ul><li><p><strong>Targets Recovers:</strong> @GAIN[&amp;step(40,50,60) hp]{40|50|60 HP}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706572719338,
-    "modifiedTime": 1742703597257,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744722266659,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

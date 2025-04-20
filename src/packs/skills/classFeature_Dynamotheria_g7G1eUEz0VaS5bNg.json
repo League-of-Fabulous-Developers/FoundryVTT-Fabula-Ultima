@@ -1,5 +1,5 @@
 {
-  "folder": "6hLDMWrdgLLCVK8G",
+  "folder": "5QBQvcD8cm6ReC2o",
   "name": "Dynamotheria",
   "type": "classFeature",
   "img": "icons/creatures/mammals/ox-bull-horned-glowing-orange.webp",
@@ -31,12 +31,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1743111842758,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744557532359,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "g7G1eUEz0VaS5bNg",
-  "sort": 0,
+  "sort": 150000,
   "_key": "!items!g7G1eUEz0VaS5bNg"
 }

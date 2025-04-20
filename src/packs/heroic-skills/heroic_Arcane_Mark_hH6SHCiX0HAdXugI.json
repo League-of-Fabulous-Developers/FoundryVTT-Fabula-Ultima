@@ -97,7 +97,63 @@
     },
     "fuid": "arcane-mark"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "icons/magic/symbols/runes-carved-stone-red.webp",
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Arcane Mark",
+      "_id": "6pGjQG1mO1FILmQ4",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.arcane",
+          "mode": 2,
+          "value": "5",
+          "priority": null
+        }
+      ],
+      "description": "<p>When you hit one or more creatures with an attack using a weapon that belongs to the <strong>arcane </strong>Category, the attack deals 5 extra damage and you may choose one of those creatures. If the next offensive spell ( @ICON[offensive] ) you cast during this scene <strong>only </strong>targets the chosen creature, its Magic Check will trigger a <strong>critical success</strong> if both dice show the same number (and the Check is not a <strong>fumble</strong>) </p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743640772686,
+        "modifiedTime": 1743640827687,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!hH6SHCiX0HAdXugI.6pGjQG1mO1FILmQ4"
+    }
+  ],
   "folder": "gaT6Lef2xP8TZKnF",
   "ownership": {
     "default": 0,

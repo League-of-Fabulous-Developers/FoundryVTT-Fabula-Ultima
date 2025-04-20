@@ -1,7 +1,8 @@
-import { TASTES } from './ingredient-data-model.mjs';
+import { getTasteAliasFlag, TASTES } from './ingredient-data-model.mjs';
 import { CookingApplication } from './cooking-application.mjs';
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
+import { SYSTEM } from '../../../../helpers/config.mjs';
 
 /**
  * @type RenderCheckHook
@@ -51,8 +52,14 @@ export class CookbookDataModel extends RollableClassFeatureDataModel {
 	}
 
 	static getAdditionalData(model) {
+		let tastes = { ...TASTES };
+		if (model.actor) {
+			for (const taste of Object.keys(tastes)) {
+				tastes[taste] = model.actor.getFlag(SYSTEM, getTasteAliasFlag(taste)) || TASTES[taste];
+			}
+		}
 		return {
-			tastes: TASTES,
+			tastes: tastes,
 			recipes: Object.values(model.combinations).filter((combination) => combination.effect).length,
 		};
 	}

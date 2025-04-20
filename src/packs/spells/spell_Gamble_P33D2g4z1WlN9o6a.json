@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You summon a vortex of chaotic energy. Roll your current <strong>Willpower </strong>die once for every 10 Mind Points spent while casting this spell, then keep the <strong>single</strong> die you prefer: the number on that die determines the effects of this spell.</p><table style=\"width:94.1085%;height:85px\" border=\"1\"><colgroup><col style=\"width:8.41584%\"></col><col style=\"width:91.5842%\"></col></colgroup><tbody><tr style=\"height:17px\"><td style=\"text-align:center;height:17px\"><strong>1</strong></td><td style=\"height:17px\"><span class=\"fontstyle0\"> You lose half of your current Hit Points and half of your current Mind Points.</span>  <strong>You Lose: </strong>@LOSS[(@actor.resources.hp.value/2) hp] and @LOSS[(@actor.resources.mp.value/2) mp]</td></tr><tr style=\"height:17px\"><td style=\"text-align:center;height:17px\"><strong>2-3</strong></td><td style=\"height:17px\"> <span class=\"fontstyle0\">Each creature present on the scene, including yourself, suffers </span><span class=\"fontstyle2\">@EFFECT[poisoned]</span><span class=\"fontstyle0\">.</span> </td></tr><tr style=\"height:17px\"><td style=\"text-align:center;height:17px\"><strong>4-6</strong></td><td style=\"height:17px\"> <span class=\"fontstyle0\">Each creature present on the scene, including yourself, suffers </span><span class=\"fontstyle2\">@EFFECT[slow]</span><span class=\"fontstyle0\">.</span> </td></tr><tr style=\"height:17px\"><td style=\"text-align:center;height:17px\"><strong>7-8</strong></td><td style=\"height:17px\"> <span class=\"fontstyle0\">Choose up to three creatures you can see: each of them recovers @GAIN[50 hp] and also recovers from all status effects.</span> </td></tr><tr style=\"height:17px\"><td style=\"text-align:center;height:17px\"><strong>9+</strong></td><td style=\"height:17px\"><p> <span class=\"fontstyle0\">Choose any number of creatures you can see: each of them suffers 30 damage. The<br />damage type is determined randomly by rolling a </span><span class=\"fontstyle2\"><strong>d6</strong></span><span class=\"fontstyle0\">:</span></p><p style=\"text-align:center\"><span class=\"fontstyle0\"><strong>1. </strong></span><span class=\"fontstyle2\">@DMG[30 air] </span><span class=\"fontstyle0\"><strong>2. </strong></span><span class=\"fontstyle2\">@DMG[30 bolt]<strong> </strong></span><span class=\"fontstyle0\"><strong>3. </strong></span><span class=\"fontstyle2\">@DMG[30 dark]</span></p><p style=\"text-align:center\"><span class=\"fontstyle0\"><strong>4. </strong></span><span class=\"fontstyle2\">@DMG[30 earth] </span><span class=\"fontstyle0\"><strong>5. </strong></span><span class=\"fontstyle2\">@DMG[30 fire]<strong> </strong></span><span class=\"fontstyle0\"><strong>6. </strong></span><span class=\"fontstyle2\">@DMG[30 poison]</span></p></td></tr></tbody></table>",
+    "description": "<p>You summon a vortex of chaotic energy. Roll your current <strong>Willpower </strong>die once for every 10 Mind Points spent while casting this spell, then keep the <strong>single</strong> die you prefer: the number on that die determines the effects of this spell.</p><p>@Embed[Compendium.projectfu.rollable-tables.RollTable.ZAY11CArn1cYCyqP inline rollable]</p>",
     "isFavored": {
       "value": false
     },
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706571324381,
-    "modifiedTime": 1743166939408,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744503014519,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

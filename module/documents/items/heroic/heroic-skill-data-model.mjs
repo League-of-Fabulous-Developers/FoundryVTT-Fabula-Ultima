@@ -42,9 +42,6 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {boolean} showTitleCard.value
  * @property {string} class.value
  * @property {string} requirement.value
- * @property {boolean} benefits.resources.hp.value
- * @property {boolean} benefits.resources.mp.value
- * @property {boolean} benefits.resources.ip.value
  * @property {string} source.value
  */
 export class HeroicSkillDataModel extends foundry.abstract.TypeDataModel {
@@ -65,6 +62,9 @@ export class HeroicSkillDataModel extends foundry.abstract.TypeDataModel {
 		deprecationNotice(this, 'impdamage.value');
 		deprecationNotice(this, 'impdamage.impType.value');
 		deprecationNotice(this, 'impdamage.type.value');
+		deprecationNotice(this, 'benefits.resources.hp.value');
+		deprecationNotice(this, 'benefits.resources.mp.value');
+		deprecationNotice(this, 'benefits.resources.ip.value');
 	}
 
 	static defineSchema() {
@@ -80,13 +80,6 @@ export class HeroicSkillDataModel extends foundry.abstract.TypeDataModel {
 			hasResource: new SchemaField({ value: new BooleanField() }),
 			rp: new EmbeddedDataField(ProgressDataModel, {}),
 			requirement: new SchemaField({ value: new StringField() }),
-			benefits: new SchemaField({
-				resources: new SchemaField({
-					hp: new SchemaField({ value: new BooleanField() }),
-					mp: new SchemaField({ value: new BooleanField() }),
-					ip: new SchemaField({ value: new BooleanField() }),
-				}),
-			}),
 			source: new SchemaField({
 				value: new StringField(),
 			}),

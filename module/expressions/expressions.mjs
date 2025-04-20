@@ -14,9 +14,11 @@ import { FU } from '../helpers/config.mjs';
 
 /**
  * @description Contains contextual objects used for evaluating expressions
- * @property {FUActor} actor The source of the action
- * @property {FUItem} item
- * @property {FUActor[]} targets
+ * @property {FUActor} actor The actor the expression is evaluated on
+ * @property {FUItem} item  The item the expression is evaluated on
+ * @property {FUActiveEffect} effect  The effect the expression is evaluated on
+ * @property {FUActor[]} targets The targets the expression is evaluated on
+ * @property {FUActor} source Optionally, can be used to execute evaluations on
  * @property {InlineSourceInfo} sourceInfo
  * @remarks Do not serialize this class, as it references full objects. Instead, store their uuids
  * and resolve them with the static constructor
@@ -33,11 +35,14 @@ export class ExpressionContext {
 	 * @description Resolves the context based on the target type
 	 * @param {FUActor|FUItem} target
 	 * @param {FUActor|FUItem} parent
+	 * @param {InlineSourceInfo} sourceInfo
 	 */
-	static resolveTarget(target, parent) {
+	static resolveTarget(target, parent, sourceInfo) {
 		let actor;
 		let item;
 
+		// 1. The effect is being applied onto an actor
+		// 2. The effect is being applied onto an item
 		if (target instanceof FUActor) {
 			actor = target;
 			if (parent instanceof FUItem) {
@@ -48,7 +53,11 @@ export class ExpressionContext {
 			actor = item.actor;
 		}
 
-		return new ExpressionContext(actor, item, []);
+		const context = new ExpressionContext(actor, item, [target]);
+		if (sourceInfo) {
+			context.sourceUuid = sourceInfo.itemUuid;
+		}
+		return context;
 	}
 
 	/**
@@ -68,6 +77,31 @@ export class ExpressionContext {
 			item = fromUuidSync(itemUuid);
 		}
 		return new ExpressionContext(actor, item, targets);
+	}
+
+	/**
+	 * @param {InlineSourceInfo} sourceInfo
+	 * @param {FUActor[]} targets
+	 * @returns {ExpressionContext}
+	 */
+	static fromSourceInfo(sourceInfo, targets) {
+		let actor = undefined;
+		if (sourceInfo.actorUuid !== undefined) {
+			actor = fromUuidSync(sourceInfo.actorUuid);
+		}
+
+		let item = undefined;
+		if (sourceInfo.itemUuid !== undefined) {
+			item = fromUuidSync(sourceInfo.itemUuid);
+		}
+
+		const context = new ExpressionContext(actor, item, targets);
+
+		if (sourceInfo.effectUuid !== undefined) {
+			context.effect = fromUuidSync(sourceInfo.effectUuid);
+		}
+
+		return context;
 	}
 
 	/**
@@ -93,10 +127,33 @@ export class ExpressionContext {
 	/**
 	 * @param {String} match
 	 */
+	assertSource(match) {
+		if (this.source == null) {
+			// Can be evaluated very early
+			if (ui.notifications) {
+				ui.notifications.warn('FU.ChatEvaluateAmountNoSource', { localize: true });
+			}
+			throw new Error(`No reference to a source provided while evaluating expression "${match}"`);
+		}
+	}
+
+	/**
+	 * @param {String} match
+	 */
 	assertSingleTarget(match) {
 		if (this.targets.length !== 1) {
 			ui.notifications.warn('FU.ChatApplyMaxTargetWarning', { localize: true });
 			throw new Error(`Requires a single target for "${match}"`);
+		}
+	}
+
+	/**
+	 * @param {String} match
+	 */
+	assertActorOrTargets(match) {
+		if (this.targets.length === 0 && this.actor == null) {
+			ui.notifications.warn('FU.ChatEvaluateAmountNoActor', { localize: true });
+			throw new Error(`No reference to an actor provided while evaluating expression "${match}"`);
 		}
 	}
 
@@ -111,6 +168,16 @@ export class ExpressionContext {
 	}
 
 	/**
+	 * @param {String} match
+	 */
+	assertEffect(match) {
+		if (this.effect == null) {
+			ui.notifications.warn('FU.ChatEvaluateNoEffect', { localize: true });
+			throw new Error(`No reference to an effect provided while evaluating expression "${match}"`);
+		}
+	}
+
+	/**
 	 * @description Resolves the actor or the target with the highest level
 	 * @returns {FUActor}
 	 */
@@ -118,10 +185,12 @@ export class ExpressionContext {
 		if (this.actor) {
 			return this.actor;
 		} else {
-			if (this.targets.length > 0) {
+			if (this.targets.length > 1) {
 				return this.targets.reduce((prev, current) => {
 					return prev.system.level.value > current.system.level.value ? prev : current;
 				});
+			} else if (this.targets.length === 1) {
+				return this.targets[0];
 			}
 		}
 
@@ -130,17 +199,47 @@ export class ExpressionContext {
 	}
 
 	/**
+	 * @param {String} match
+	 * @param {Boolean} redirect
+	 * @returns {FUActor}
+	 */
+	resolveActorOrSource(match, redirect) {
+		if (redirect) {
+			this.assertSource(match);
+			const sourceItem = this.source;
+			const sourceActor = sourceItem.actor;
+			if (!sourceActor) {
+				ui.notifications.warn('FU.ChatEvaluateNoSourceActor', { localize: true });
+				throw new Error(`The source item needs to be owned by an actor in order to evaluate the expression"`);
+			}
+			return sourceActor;
+		}
+		this.assertActor(match);
+		return this.actor;
+	}
+
+	/**
 	 * @returns {FUActor} The single target of the expression
 	 */
 	get target() {
 		return this.targets[0];
 	}
+
+	/**
+	 * @returns {FUItem}
+	 */
+	get source() {
+		if (!this._source && this.sourceUuid) {
+			this._source = fromUuidSync(this.sourceUuid);
+		}
+		return this._source;
+	}
 }
 
 // DSL supported by the inline amount expression
 const referenceSymbol = '@';
-const actorLabel = `actor`;
 const itemLabel = `item`;
+const redirectSymbol = '~';
 
 /**
  * @param expression The raw text of the amount
@@ -224,34 +323,6 @@ async function evaluateAsync(expression, context) {
 }
 
 /**
- * @description Evaluates functions within the expression using the available context
- * @param {String}  expression
- * @param {ExpressionContext} context
- * @returns {String}
- */
-function evaluateReferencedFunctions(expression, context) {
-	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
-
-	function evaluate(match, label, path, p3, args, groups) {
-		if (match.includes(actorLabel)) {
-			context.assertActor(match);
-			let splitArgs = args.split(',');
-
-			const functionPath = `system.${path}`;
-			const resolvedFunction = getFunctionFromPath(context.actor, functionPath);
-			if (resolvedFunction === undefined) {
-				throw new Error(`No function in path "${functionPath}" of object ${context.actor}`);
-			}
-			const result = resolvedFunction.apply(context.actor.system, splitArgs);
-			console.info(`Resolved function ${functionPath}: ${result}`);
-			return result;
-		}
-	}
-
-	return expression.replace(pattern, evaluate);
-}
-
-/**
  * @description Evaluates improvised effects
  * @param {String} expression
  * @param {ExpressionContext} context
@@ -286,9 +357,10 @@ function evaluateVariables(expression, context) {
 			case 'massive':
 				return ImprovisedEffect.calculateAmountFromContext(symbol, context);
 			// Character level
-			case 'cl':
-				context.assertActor(match);
-				return context.actor.system.level.value;
+			case 'cl': {
+				context.assertActorOrTargets(match);
+				return context.resolveActorOrHighestLevelTarget().system.level.value;
+			}
 			// Item level / skill level
 			case 'il':
 			case 'sl':
@@ -299,8 +371,13 @@ function evaluateVariables(expression, context) {
 			case 'dex':
 			case 'wlp':
 			case 'ins': {
-				context.assertActor(match);
-				return getAttributeSize(context.actor, symbol);
+				context.assertActorOrTargets(match);
+				return getAttributeSize(context.resolveActorOrHighestLevelTarget(), symbol);
+			}
+			// Progress (From
+			case 'pg': {
+				context.assertEffect(match);
+				return context.effect.system.rules.progress.current;
 			}
 			// Target status count
 			case 'tsc': {
@@ -308,11 +385,23 @@ function evaluateVariables(expression, context) {
 				context.assertSingleTarget(match);
 				return countStatusEffects(context.target);
 			}
+			// Bond Count
+			case 'bc': {
+				return countBonds(context.actor);
+			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
 		}
 	}
 	return expression.replace(pattern, evaluate);
+}
+
+/**
+ * @param {String} arg
+ * @returns {String}
+ */
+function parseIdentifier(arg) {
+	return arg.match(/(\w+-*\s*)+/gm)[0];
 }
 
 /**
@@ -323,20 +412,33 @@ function evaluateVariables(expression, context) {
  * @example &step(40,50,60)
  */
 function evaluateMacros(expression, context) {
-	const pattern = /&(?<name>[a-zA-Z]+)\((?<params>.*?)\)/gm;
+	const pattern = /~?&(?<name>[a-zA-Z]+)\((?<params>.*?)\)/gm;
 	function evaluateMacro(match, name, params) {
+		const redirect = match.startsWith(redirectSymbol);
 		const splitArgs = params.split(',').map((i) => i.trim());
 		switch (name) {
 			// Skill level
 			case `sl`: {
-				context.assertActor(match);
-				const skillId = splitArgs[0].match(/(\w+-*\s*)+/gm)[0];
-				const skill = context.actor.getSingleItemByFuid(skillId, 'skill');
+				const actor = context.resolveActorOrSource(match, redirect);
+				const skillId = parseIdentifier(splitArgs[0]);
+				const skill = actor.getSingleItemByFuid(skillId, 'skill');
 				if (!skill) {
 					ui.notifications.warn('FU.ChatEvaluateNoSkill', { localize: true });
-					throw new Error(`The actor ${context.actor.name} does not have a skill with the Fabula Ultima Id ${skillId}`);
+					throw new Error(`The actor ${actor.name} does not have a skill with the Fabula Ultima Id ${skillId}`);
 				}
 				return skill.system.level.value;
+			}
+			// Clock section
+			case 'pg':
+			case 'cs': {
+				context.assertActor();
+				const id = parseIdentifier(splitArgs[0]);
+				const clock = context.actor.resolveProgress(id);
+				if (!clock) {
+					ui.notifications.warn(`${game.i18n.localize('FU.ChatEvaluateNoProgress')}: '${id}'`, { localize: true });
+					throw new Error(`The progress track with id ${id} was not found`);
+				}
+				return clock.current;
 			}
 			// Scale from 5-19, 20-39, 40+
 			case 'step':
@@ -390,6 +492,64 @@ function countStatusEffects(actor) {
 }
 
 /**
+ * @param {FUActor} actor
+ * @return {Number}
+ */
+function countBonds(actor) {
+	if (!actor || !Array.isArray(actor.system?.bonds)) return 0;
+	return actor.system.bonds.length;
+}
+
+// Used for referencing
+const sourceLabel = 'source';
+const actorLabel = `actor`;
+const targetLabel = 'target';
+
+function resolveActorFromLabel(match, label, context) {
+	let actor;
+	switch (label) {
+		case actorLabel:
+		case sourceLabel:
+			context.assertActor(match);
+			actor = context.actor;
+			break;
+
+		case targetLabel:
+			context.assertSingleTarget(match);
+			actor = context.targets[0];
+			break;
+	}
+	return actor;
+}
+
+/**
+ * @description Evaluates functions within the expression using the available context
+ * @param {String}  expression
+ * @param {ExpressionContext} context
+ * @returns {String}
+ */
+function evaluateReferencedFunctions(expression, context) {
+	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)+)\((?<args>.*?)\)/gm;
+
+	function evaluate(match, label, path, p3, args, groups) {
+		const actor = resolveActorFromLabel(match, label, context);
+		if (actor) {
+			let splitArgs = args.split(',');
+			const functionPath = `system.${path}`;
+			const resolvedFunction = getFunctionFromPath(actor, functionPath);
+			if (resolvedFunction === undefined) {
+				throw new Error(`No function in path "${functionPath}" of object ${actor}`);
+			}
+			const result = resolvedFunction.apply(actor.system, splitArgs);
+			console.info(`Resolved function ${functionPath}: ${result}`);
+			return result;
+		}
+	}
+
+	return expression.replace(pattern, evaluate);
+}
+
+/**
  * Evaluates properties within the expression using the available context
  * @param {String}  expression
  * @param {ExpressionContext} context
@@ -397,24 +557,49 @@ function countStatusEffects(actor) {
  * @example @system.value.thingie
  */
 function evaluateReferencedProperties(expression, context) {
-	const pattern = /(?<variable>@([a-zA-Z]+\.?)+)/gm;
+	const pattern = /@(?<label>[a-zA-Z]+)\.(?<path>(\w+\.?)*)/gm;
 	function evaluate(match, label, path, pN, offset, string, groups) {
 		// TODO: Refactor
 		let root = null;
-		let propertyPath = '';
+		let propertyPath = `system.${path}`;
+		const actorName = context.actor?.name ?? 'unknown';
 
-		if (match.includes(itemLabel)) {
-			context.assertItem(match);
-			root = context.item;
-			propertyPath = match.replace(`${referenceSymbol}${itemLabel}.`, 'system.');
-		} else if (match.includes(actorLabel)) {
-			context.assertActor(match);
-			root = context.actor;
-			propertyPath = match.replace(`${referenceSymbol}${actorLabel}.`, 'system.');
-		}
-		// Don't evaluate the built-in expressions
-		else {
-			return match;
+		switch (label) {
+			// Check referenceActor
+			case 'refActor': {
+				const ref = context.actor?.system?.references?.actor;
+				root = game.actors.get(ref?.id ?? ref);
+				if (!root) {
+					console.warn(`Missing or invalid refActor on ${actorName}`);
+					return 0;
+				}
+				break;
+			}
+			// Check referenceSkill
+			case 'refSkill': {
+				const uuid = context.actor?.system?.references?.skill;
+				root = uuid && fromUuidSync(uuid);
+				if (!root) {
+					console.warn(`Missing or invalid refSkill on ${actorName}`);
+					return 0;
+				}
+				break;
+			}
+			// Check item
+			case 'item': {
+				context.assertItem(match);
+				root = context.item;
+				propertyPath = match.replace(`${referenceSymbol}${itemLabel}`, 'system');
+				break;
+			}
+			// Check actors
+			default: {
+				const actor = resolveActorFromLabel(match, label, context);
+				if (actor) {
+					root = actor;
+					propertyPath = match.replace(`${referenceSymbol}${label}`, 'system');
+				}
+			}
 		}
 
 		// Evaluate the property value
@@ -422,6 +607,10 @@ function evaluateReferencedProperties(expression, context) {
 		if (propertyValue === undefined) {
 			throw new Error(`Unexpected variable "${propertyPath}" in object ${root}`);
 		}
+		if (propertyValue instanceof Object) {
+			throw new Error(`Unexpected object returned from "${propertyPath}". It needs to be an integer!`);
+		}
+		console.info(`Resolved property @${label}.${path}: ${propertyValue}`);
 		return propertyValue;
 	}
 

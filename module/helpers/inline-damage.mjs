@@ -16,26 +16,36 @@ const INLINE_DAMAGE = 'InlineDamage';
  * @type {TextEditorEnricherConfig}
  */
 const inlineDamageEnricher = {
-	pattern: /@DMG\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]\B/g,
+	pattern: InlineHelper.compose('DMG', '\\s*(?<amount>\\(?.*?\\)*?)\\s(?<type>\\w+?)'),
 	enricher: enricher,
 };
 
 function enricher(text, options) {
 	const amount = text[1];
 	const type = text[2].toLowerCase();
+	const label = text.groups.label;
+	const traits = text.groups.traits;
 
 	if (type in FU.damageTypes) {
 		const anchor = document.createElement('a');
 		anchor.classList.add('inline', 'inline-damage');
 		anchor.dataset.type = type;
+		anchor.dataset.traits = traits;
+		anchor.dataset.label = label;
 		anchor.draggable = true;
 
 		// TOOLTIP
 		anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineDamage')} (${amount})`);
-		// AMOUNT
-		InlineHelper.appendAmountToAnchor(anchor, amount);
-		// TYPE
-		anchor.append(` ${game.i18n.localize(FU.damageTypes[type])}`);
+		if (label) {
+			anchor.append(label);
+			anchor.dataset.amount = amount;
+		} else {
+			// AMOUNT
+			InlineHelper.appendAmountToAnchor(anchor, amount);
+			// TYPE
+			anchor.append(` ${game.i18n.localize(FU.damageTypes[type])}`);
+		}
+
 		// ICON
 		const icon = document.createElement('i');
 		icon.className = FU.affIcon[type] ?? '';
@@ -55,17 +65,22 @@ function activateListeners(document, html) {
 		document = document.document;
 	}
 
+	// TODO: Refactor to not have to repeat self across click and drag events
 	html.find('a.inline.inline-damage[draggable]')
 		.on('click', async function () {
 			let targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
+				sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
 				const type = this.dataset.type;
-				const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
+				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);
 
 				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
 				const request = new DamageRequest(sourceInfo, targets, baseDamageInfo);
+				if (this.dataset.traits) {
+					request.addTraits(...this.dataset.traits.split(','));
+				}
 				await DamagePipeline.process(request);
 			}
 		})
@@ -77,11 +92,13 @@ function activateListeners(document, html) {
 			}
 
 			const sourceInfo = InlineHelper.determineSource(document, this);
+			sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
 			const data = {
 				type: INLINE_DAMAGE,
 				_sourceInfo: sourceInfo,
 				damageType: this.dataset.type,
 				amount: this.dataset.amount,
+				traits: this.dataset.traits,
 			};
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
@@ -89,15 +106,19 @@ function activateListeners(document, html) {
 }
 
 // TODO: Implement
-async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo, ignore }) {
+async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo, traits, ignore }) {
 	if (type === INLINE_DAMAGE) {
 		// Need to rebuild the class after it was deserialized
 		const sourceInfo = InlineSourceInfo.fromObject(_sourceInfo);
-		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
+		const context = ExpressionContext.sourceInfo(sourceInfo, [actor]);
 		const _amount = await Expressions.evaluateAsync(amount, context);
 		const baseDamageInfo = { type: damageType, total: _amount, modifierTotal: 0 };
 
 		const request = new DamageRequest(sourceInfo, [actor], baseDamageInfo);
+		if (traits) {
+			request.addTraits(...traits.split(','));
+		}
+
 		DamagePipeline.process(request);
 		return false;
 	}

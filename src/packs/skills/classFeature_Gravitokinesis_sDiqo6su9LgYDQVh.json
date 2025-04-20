@@ -13,7 +13,7 @@
     "featureType": "projectfu.psychicGift",
     "data": {
       "trigger": "When you deal damage",
-      "description": "<p>That damage becomes <strong>earth</strong> or <strong>physical</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】</strong>. If the source deals damage to one or more <strong>flying</strong> creatures, they are forced to land immediately.</p>"
+      "description": "<p>That damage becomes <strong>earth</strong> or <strong>physical</strong>, and its source deals extra damage equal to <strong>【2 + the number of filled sections in your Brainwave Clock】</strong>. If the source deals damage to one or more <strong>flying</strong> creatures, they are forced to land immediately.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[max(5, (&cs('brainwave-clock')*5)) mp]{Psychic Gift}</p></li><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.skills.ERaYpwNiAzMVQvTA]{Effect: Gravitokinesis (Earth)}, or @EFFECT[Compendium.projectfu.skills.04uK8eZaGc9mtIZO]{Effect: Gravitokinesis (Physical)}</p></li><li><p><strong>Progress: </strong>@CLOCK[brainwave-clock update 1]{Advance Brainwave Clock}</p></li></ul>"
     },
     "source": "FUTF153",
     "fuid": "gravitokinesis"
@@ -32,8 +32,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711423314741,
-    "modifiedTime": 1742791484857,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744507714407,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

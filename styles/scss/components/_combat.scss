@@ -11,6 +11,10 @@
 	}
 }
 
+.combatant-control[disabled] {
+	opacity: 0.55;
+}
+
 #combat-tracker {
 	--color-disposition-friendly: #33bc4e;
 	--color-disposition-hostile: #e72124;
@@ -207,6 +211,10 @@
 				position: absolute;
 				right: 0;
 				bottom: 0;
+			}
+
+			.combatant-control[disabled]:hover {
+				text-shadow: 1px 1px 1px $color-black;
 			}
 
 			img {

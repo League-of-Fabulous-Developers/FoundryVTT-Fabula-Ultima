@@ -24,8 +24,8 @@
       "value": "Gourmet"
     },
     "useWeapon": {
-      "accuracy": false,
-      "damage": false
+      "accuracy": true,
+      "damage": true
     },
     "attributes": {
       "primary": "ins",
@@ -34,12 +34,12 @@
     "accuracy": 0,
     "defense": "def",
     "damage": {
-      "hasDamage": false,
+      "hasDamage": true,
       "value": 0,
       "type": "physical",
       "onRoll": "",
       "onApply": "",
-      "hrZero": false
+      "hrZero": true
     },
     "hasResource": {
       "value": false
@@ -54,7 +54,7 @@
       "value": "FUNF149"
     },
     "hasRoll": {
-      "value": false
+      "value": true
     },
     "fuid": "knife-and-fork",
     "cost": {
@@ -75,8 +75,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676964457,
-    "modifiedTime": 1742676964457,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1744518341995,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "ownership": {
     "default": 0,

@@ -13,55 +13,12 @@
     },
     "featureType": "projectfu.symbol",
     "data": {
-      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B]{Dazed Immunity}, @UUID[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Shaken Immunity}, @UUID[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp]{Slow Immunity}, or @UUID[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Weak Immunity}</p></li></ul><p></p>"
+      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr><ul><li><p><strong>You Spend: </strong>@LOSS[2 ip]</p></li><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B]{Effect: Symbol of Flux (Dazed Immunity)}, @EFFECT[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Effect: Symbol of Flux (Shaken Immunity)}, @EFFECT[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp]{Effect: Symbol of Flux (Slow Immunity)}, or @EFFECT[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Effect: Symbol of Flux (Weak Immunity)}</p></li></ul><p></p>"
     },
     "source": "FUHF150",
     "fuid": "symbol-of-flux"
   },
-  "effects": [
-    {
-      "origin": "Compendium.projectfu.skills.Item.Ux5c14Qc2z8CM45R",
-      "duration": {
-        "rounds": 1,
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "disabled": true,
-      "name": "Symbol of Flux",
-      "img": "icons/magic/symbols/triangle-glowing-green.webp",
-      "_id": "X4izTxnMPUHNJ6ee",
-      "type": "base",
-      "system": {},
-      "changes": [],
-      "description": "<p>When you create this symbol, choose a status effect: <strong>dazed</strong>, <strong>shaken</strong>, <strong>slow</strong>, or <strong>weak</strong>. Then, choose one option: the creature bearing this symbol gains immunity to the chosen status effect; <strong>or</strong> the creature bearing this symbol loses immunity to the chosen status effect and cannot gain it.</p><hr /><p>@UUID[Compendium.projectfu.actor-effects.Item.Ki4ReDF50Qs3Ec4B]{Dazed Immunity} @UUID[Compendium.projectfu.actor-effects.Item.zSg3jNvLG1FtqOAz]{Shaken Immunity} @UUID[Compendium.projectfu.actor-effects.Item.QWbVVZRRKhxwjQAp]{Slow Immunity} @UUID[Compendium.projectfu.actor-effects.Item.azrYbcObDaVQ5GBG]{Weak Immunity}</p>",
-      "tint": "#ffffff",
-      "transfer": true,
-      "statuses": [],
-      "sort": 0,
-      "flags": {
-        "projectfu": {
-          "type": "default",
-          "source": "FUHF150",
-          "CrisisInteraction": "none"
-        }
-      },
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "coreVersion": "12.331",
-        "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
-        "createdTime": 1730916003137,
-        "modifiedTime": 1741950499812,
-        "lastModifiedBy": "uG2TkwmswfdRqaAv"
-      },
-      "_key": "!items.effects!Ux5c14Qc2z8CM45R.X4izTxnMPUHNJ6ee"
-    }
-  ],
+  "effects": [],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -76,8 +33,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710177560234,
-    "modifiedTime": 1743114128553,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744740866760,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

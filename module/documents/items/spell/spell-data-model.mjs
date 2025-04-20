@@ -11,8 +11,8 @@ import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { Traits } from '../../../pipelines/traits.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
+import { Flags } from '../../../helpers/flags.mjs';
 
 /**
  * @param {CheckV2} check
@@ -22,28 +22,42 @@ import { CommonEvents } from '../../../checks/common-events.mjs';
  */
 const prepareCheck = (check, actor, item, registerCallback) => {
 	if (check.type === 'magic' && item.system instanceof SpellDataModel) {
-		check.primary = item.system.rollInfo.attributes.primary.value;
-		check.secondary = item.system.rollInfo.attributes.secondary.value;
+		let attributeOverride = false;
+		if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
+			// TODO: Replace with ChooseWeaponDialog once this has been refactored like `SkillDataModel`
+			const equippedWeapons = actor.items.filter((singleItem) => singleItem.type === 'weapon' || (singleItem.type === 'basic' && singleItem.system.isEquipped?.value));
+			if (equippedWeapons.length > 0) {
+				const weapon = equippedWeapons[0];
+				if (weapon) {
+					check.primary = weapon.system.attributes.primary.value;
+					check.secondary = weapon.system.attributes.secondary.value;
+					attributeOverride = true;
+				}
+			}
+		}
+
+		if (!attributeOverride) {
+			check.primary = item.system.rollInfo.attributes.primary.value;
+			check.secondary = item.system.rollInfo.attributes.secondary.value;
+		}
+
 		check.modifiers.push({
 			label: 'FU.MagicCheckBaseAccuracy',
 			value: item.system.rollInfo.accuracy.value,
 		});
+
 		check.additionalData.hasDamage = item.system.rollInfo.damage.hasDamage.value;
-		const configurer = MagicCheck.configure(check)
+
+		// Add typical bonuses
+		const inspector = MagicCheck.configure(check);
+		inspector
 			.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
-			.addTraits(item.system.rollInfo.damage.type.value, Traits.Spell)
+			.addTraits(item.system.rollInfo.damage.type.value, 'spell')
+			.addTraitsFromItemModel(item.system.traits)
 			.setTargetedDefense('mdef')
 			.setDamageOverride(actor, 'spell')
+			.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
 			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
-
-		const spellBonus = actor.system.bonuses.damage.spell;
-		if (spellBonus) {
-			configurer.addDamageBonus('FU.DamageBonusTypeSpell', spellBonus);
-		}
-		const damageTypeBonus = actor.system.bonuses.damage[item.system.rollInfo.damage.type.value];
-		if (damageTypeBonus) {
-			configurer.addDamageBonus(`FU.DamageBonus${item.system.rollInfo.damage.type.value.capitalize()}`, damageTypeBonus);
-		}
 	}
 };
 
@@ -59,6 +73,7 @@ Hooks.on(CheckHooks.prepareCheck, prepareCheck);
  */
 function onRenderCheck(data, result, actor, item, flags) {
 	if (item && item.system instanceof SpellDataModel) {
+		// TODO: Replace with CommonSections.tags
 		data.push(async () => ({
 			order: CHECK_DETAILS,
 			partial: 'systems/projectfu/templates/chat/partials/chat-spell-details.hbs',
@@ -73,6 +88,7 @@ function onRenderCheck(data, result, actor, item, flags) {
 			},
 		}));
 
+		CommonSections.traits(data, item.system.traits, CHECK_DETAILS);
 		CommonSections.description(data, item.system.description, item.system.summary.value, CHECK_DETAILS);
 
 		const targets = CheckConfiguration.inspect(result).getTargetsOrDefault();
@@ -117,10 +133,11 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {boolean} hasRoll.value
  * @property {ActionCostDataModel} cost
  * @property {TargetingDataModel} targeting
+ * @property {Set<String>} traits
  */
 export class SpellDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, StringField, HTMLField, SetField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
 			fuid: new StringField(),
 			subtype: new SchemaField({ value: new StringField() }),
@@ -151,6 +168,7 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 			hasRoll: new SchemaField({ value: new BooleanField() }),
 			cost: new EmbeddedDataField(ActionCostDataModel, {}),
 			targeting: new EmbeddedDataField(TargetingDataModel, {}),
+			traits: new SetField(new StringField()),
 		};
 	}
 

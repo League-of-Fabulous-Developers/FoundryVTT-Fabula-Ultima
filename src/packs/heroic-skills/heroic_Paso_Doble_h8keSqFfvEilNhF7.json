@@ -99,8 +99,9 @@
   },
   "effects": [
     {
+      "img": "icons/magic/control/control-influence-crown-yellow.webp",
       "duration": {
-        "rounds": 1,
+        "rounds": null,
         "startTime": null,
         "seconds": null,
         "combat": null,
@@ -110,33 +111,40 @@
       },
       "disabled": false,
       "name": "Paso Doble",
-      "_id": "P4N97na5vkpFiDXp",
+      "_id": "MweUOFKxGRLnhA52",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "active"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
       "changes": [],
       "description": "<p><span style=\"font-family:'PT Sans Narrow', sans-serif\">While you are in <strong style=\"box-sizing:border-box;user-select:text\">Crisis</strong>, you ignore the MP cost for your <strong style=\"box-sizing:border-box;user-select:text\">Follow My Lead</strong> Skill. </span></p>",
+      "origin": null,
+      "tint": "#ffffff",
       "transfer": true,
       "statuses": [],
-      "flags": {
-        "projectfu": {
-          "CrisisInteraction": "active"
-        }
-      },
-      "tint": "#ffffff",
-      "_stats": {
-        "coreVersion": "12.330",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
-        "compendiumSource": null,
-        "duplicateSource": null
-      },
-      "img": "icons/magic/control/control-influence-crown-yellow.webp",
-      "type": "base",
-      "system": {},
-      "origin": null,
       "sort": 0,
-      "_key": "!items.effects!h8keSqFfvEilNhF7.P4N97na5vkpFiDXp"
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1743650504464,
+        "modifiedTime": 1743650605687,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!h8keSqFfvEilNhF7.MweUOFKxGRLnhA52"
     }
   ],
   "folder": "gaT6Lef2xP8TZKnF",

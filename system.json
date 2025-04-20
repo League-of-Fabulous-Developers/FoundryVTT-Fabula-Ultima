@@ -4,9 +4,9 @@
 	"description": "An Unofficial Fabula Ultima system for FoundryVTT!",
 	"version": "#{VERSION}#",
 	"compatibility": {
-		"minimum": "11",
+		"minimum": "12",
 		"verified": "12",
-		"maximum": "12"
+		"maximum": "13"
 	},
 	"authors": [
 		{
@@ -23,12 +23,27 @@
 		{
 			"name": "Shourn",
 			"url": "https://github.com/Shourn"
+		},
+		{
+			"name": "Azurelol",
+			"url": "https://github.com/Azurelol"
 		}
 	],
 	"scripts": [],
 	"esmodules": ["module/projectfu.mjs"],
 	"styles": ["styles/css/projectfu.css", "styles/projectfu.css"],
 	"packs": [
+		{
+			"label": "NPCs",
+			"type": "Actor",
+			"name": "npcs",
+			"path": "packs/npcs",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
 		{
 			"label": "Classes",
 			"type": "Item",
@@ -189,7 +204,7 @@
 			"name": "Bestiary",
 			"sorting": "a",
 			"color": "#532853",
-			"packs": []
+			"packs": ["npcs"]
 		},
 		{
 			"name": "Character Creation",
@@ -283,6 +298,84 @@
 			}
 		]
 	},
+	"documentTypes": {
+		"Actor": {
+			"character": {
+				"htmlFields": ["biography.value", "biography.gm"]
+			},
+			"npc": {
+				"htmlFields": ["biography.value", "biography.gm"]
+			},
+			"party": {
+				"htmlFields": ["biography.value", "biography.gm"]
+			},
+			"stash": {
+				"htmlFields": ["biography.value", "biography.gm"]
+			}
+		},
+		"ChatMessage": {
+			"abilityUse": {}
+		},
+		"Item": {
+			"basic": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"weapon": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"shield": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"armor": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"accessory": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"consumable": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"treasure": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"class": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"classFeature": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"optionalFeature": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"skill": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"heroic": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"spell": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"miscAbility": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"rule": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"behavior": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"ritual": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"project": {
+				"htmlFields": ["description.value", "description.gm"]
+			},
+			"effect": {
+				"htmlFields": ["description.value", "description.gm"]
+			}
+		}
+	},
 	"flags": {
 		"hotReload": {
 			"extensions": ["css", "hbs", "json"],
@@ -292,6 +385,10 @@
 	"socket": true,
 	"gridDistance": 5,
 	"gridUnits": "ft",
+	"grid": {
+		"distance": 5,
+		"units": "ft"
+	},
 	"primaryTokenAttribute": "resources.hp",
 	"secondaryTokenAttribute": "resources.mp",
 	"license": "LICENSE.txt",

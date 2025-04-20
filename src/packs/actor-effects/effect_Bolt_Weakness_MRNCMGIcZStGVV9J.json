@@ -27,7 +27,11 @@
       "name": "Bolt Weakness",
       "_id": "8d7eCqdpQlJhgkbn",
       "type": "base",
-      "system": {},
+      "system": {
+        "duration": {
+          "event": "none"
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.bolt",
@@ -51,12 +55,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.331",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737993735607,
-        "modifiedTime": 1737994133518,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1744747355371,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn"
       },
       "_key": "!items.effects!MRNCMGIcZStGVV9J.8d7eCqdpQlJhgkbn"
     }

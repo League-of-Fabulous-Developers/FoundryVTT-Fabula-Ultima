@@ -1,0 +1,104 @@
+{
+  "name": "Gamble",
+  "_id": "ZAY11CArn1cYCyqP",
+  "img": "icons/commodities/currency/coin-embossed-skull-gold.webp",
+  "description": "<p>You summon a vortex of chaotic energy. Roll your current <strong>Willpower </strong>die once for every 10 Mind Points spent while casting this spell, then keep the <strong>single</strong> die you prefer: the number on that die determines the effects of this spell.</p>",
+  "results": [
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_id": "N9DlB2tFVZr3lukP",
+      "text": "You lose half of your current Hit Points (@LOSS[(@actor.resources.hp.value/2)) and half of your current Mind Points (@LOSS[(@actor.resources.mp.value/2) mp]).",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {},
+      "_key": "!tables.results!ZAY11CArn1cYCyqP.N9DlB2tFVZr3lukP"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        3
+      ],
+      "drawn": false,
+      "_id": "e9YqKqK6Zqx1Yzbe",
+      "text": "Each creature present on the scene, including yourself, suffers @EFFECT[poisoned].",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {},
+      "_key": "!tables.results!ZAY11CArn1cYCyqP.e9YqKqK6Zqx1Yzbe"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        6
+      ],
+      "drawn": false,
+      "_id": "uFSguxOQY76PTLlI",
+      "text": "Each creature present on the scene, including yourself, suffers @EFFECT[slow].",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {},
+      "_key": "!tables.results!ZAY11CArn1cYCyqP.uFSguxOQY76PTLlI"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        8
+      ],
+      "drawn": false,
+      "_id": "72pWYcIw5nhgsypJ",
+      "text": "Choose up to three creatures you can see: each of them recovers @GAIN[50 hp] and also recovers from all status effects.",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {},
+      "_key": "!tables.results!ZAY11CArn1cYCyqP.72pWYcIw5nhgsypJ"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        12
+      ],
+      "drawn": false,
+      "_id": "QHlIKuE5p0OeG6ts",
+      "text": "Choose any number of creatures you can see: each of them suffers 30 damage. The damage type is determined randomly by rolling a d6: 1. @DMG[30 air] 2. @DMG[30 bolt] 3. @DMG[30 dark] 4. @DMG[30 earth] 5. @DMG[30 fire] 6. @DMG[30 poison]",
+      "img": "icons/svg/d20-black.svg",
+      "documentId": null,
+      "flags": {},
+      "_key": "!tables.results!ZAY11CArn1cYCyqP.QHlIKuE5p0OeG6ts"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LokWlpJRX2uVxtGn": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744494259294,
+    "modifiedTime": 1744495375150,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+  },
+  "formula": "1d10",
+  "_key": "!tables!ZAY11CArn1cYCyqP"
+}

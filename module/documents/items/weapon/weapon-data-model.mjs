@@ -2,7 +2,6 @@ import { FU } from '../../../helpers/config.mjs';
 import { WeaponMigrations } from './weapon-migrations.mjs';
 import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { AccuracyCheck } from '../../../checks/accuracy-check.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
@@ -26,13 +25,15 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			});
 		}
 
-		AccuracyCheck.configure(check)
+		CheckConfiguration.configure(check)
 			.setDamage(item.system.damageType.value, item.system.damage.value)
-			.addItemAccuracyBonuses(item, actor)
-			.addWeaponTraits(item.system)
+			.setWeaponTraits({
+				weaponType: item.system.type.value,
+				weaponCategory: item.system.category.value,
+				handedness: item.system.hands.value,
+			})
 			.addTraits(item.system.damageType.value)
 			.setTargetedDefense(item.system.defense)
-			.addItemDamageBonuses(item, actor)
 			.setDamageOverride(actor, 'attack')
 			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
 	}

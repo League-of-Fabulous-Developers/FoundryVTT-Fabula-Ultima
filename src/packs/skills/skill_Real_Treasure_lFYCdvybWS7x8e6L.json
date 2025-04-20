@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>Once per session, when you help an NPC or community <strong>defeat greed and corruption</strong>, <strong>improve their quality of life</strong>, or <strong>coexist with other creatures</strong>, if you have acquired the <strong>Winds of Trade</strong> Skill, you gain<strong>【SL + 1】</strong>Trade Points.</p>",
+    "description": "<p>Once per session, when you help an NPC or community <strong>defeat greed and corruption</strong>, <strong>improve their quality of life</strong>, or <strong>coexist with other creatures</strong>, if you have acquired the <strong>Winds of Trade</strong> Skill, you gain <strong>【SL + 1】</strong>Trade Points.</p><hr /><ul><li><p><strong>Resource</strong>: @PROGRESS[winds-of-trade update 1+$sl]{Gain SL + 1 Trade Points}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -79,8 +79,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676975651,
-    "modifiedTime": 1742676975651,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1744595709869,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "_id": "lFYCdvybWS7x8e6L",
   "sort": 0,

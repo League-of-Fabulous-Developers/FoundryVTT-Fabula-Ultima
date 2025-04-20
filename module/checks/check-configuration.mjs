@@ -1,14 +1,17 @@
+import { SYSTEM, FU } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
-import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { CheckHooks } from './check-hooks.mjs';
 import { CharacterDataModel } from '../documents/actors/character/character-data-model.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
+import { Traits } from '../pipelines/traits.mjs';
+import { CheckHooks } from './check-hooks.mjs';
 
 const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
 const DIFFICULTY = 'difficulty';
 const DAMAGE = 'damage';
 const TRAITS = 'traits';
+const WEAPON_TRAITS = 'weaponTraits';
 
 /**
  *
@@ -58,6 +61,13 @@ const initHrZero = (hrZero) => (check) => {
  * @property {Object} translation.damageIcon - The icon representation of damage types.
  * @property {Array} modifiers - Modifiers applied to the damage.
  *
+ */
+
+/**
+ * @typedef WeaponTraits
+ * @property {WeaponType} [weaponType]
+ * @property {WeaponCategory} [weaponCategory]
+ * @property {Handedness} handedness
  */
 
 /**
@@ -120,57 +130,28 @@ class CheckConfigurer {
 	}
 
 	/**
-	 * @param {FUItem} item
-	 * @param {FUActor} actor
+	 * @param {Set<String>} traits
+	 * @returns {CheckConfigurer}
+	 * @remarks In the item's data model they are serialized in title case
+	 */
+	addTraitsFromItemModel(traits) {
+		this.addTraits(...Array.from(traits, StringUtils.titleToKebab));
+		return this;
+	}
+
+	/**
+	 * @param {WeaponTraits} traits
 	 * @return {CheckConfigurer}
 	 */
-	addItemAccuracyBonuses(item, actor) {
-		return this.addModelAccuracyBonuses(item.system, actor);
-	}
-
-	/**
-	 * @description Add the common traits of a weapon
-	 * @param {WeaponDataModel} system
-	 */
-	addWeaponTraits(system) {
-		return this.addTraits(system.category.value, system.type.value, system.hands.value);
-	}
-
-	/**
-	 * @description Add the common traits of an NPC attack
-	 * @param {BasicItemDataModel} system
-	 */
-	addAttackTraits(system) {
-		return this.addTraits(system.type.value, system.damageType.value);
-	}
-
-	/**
-	 * @param {DataModel} model
-	 * @param {FUActor} actor
-	 * @return {CheckConfigurer}
-	 */
-	addModelAccuracyBonuses(model, actor) {
-		// Weapon Category
-		const category = model.category?.value;
-		if (category && actor.system.bonuses.accuracy[category]) {
-			this.#check.modifiers.push({
-				label: `FU.AccuracyCheckBonus${category.capitalize()}`,
-				value: actor.system.bonuses.accuracy[category],
-			});
-		}
-		// Attack Type
-		const attackType = model.type?.value;
-		if (attackType === 'melee' && actor.system.bonuses.accuracy.accuracyMelee) {
-			this.#check.modifiers.push({
-				label: 'FU.AccuracyCheckBonusMelee',
-				value: actor.system.bonuses.accuracy.accuracyMelee,
-			});
-		} else if (attackType === 'ranged' && actor.system.bonuses.accuracy.accuracyRanged) {
-			this.#check.modifiers.push({
-				label: 'FU.AccuracyCheckBonusRanged',
-				value: actor.system.bonuses.accuracy.accuracyRanged,
-			});
-		}
+	setWeaponTraits(traits) {
+		this.#check.additionalData[WEAPON_TRAITS] = {
+			weaponType: traits.weaponType,
+			weaponCategory: traits.weaponCategory,
+			handedness: traits.handedness,
+		};
+		// Also add them to the flattened traits array
+		const flatTraits = Object.values(traits).filter((t) => !!t);
+		this.addTraits(...flatTraits);
 		return this;
 	}
 
@@ -178,53 +159,13 @@ class CheckConfigurer {
 	 * @description A modifier to the check (accuracy)
 	 * @param {String} label
 	 * @param {Number} value
+	 * @return {CheckConfigurer}
 	 */
 	addModifier(label, value) {
 		this.#check.modifiers.push({
 			label: label,
 			value: value,
 		});
-	}
-
-	/**
-	 * @param {FUActor} actor
-	 * @param {FUItem} item
-	 * @return {CheckConfigurer}
-	 */
-	addItemDamageBonuses(item, actor) {
-		return this.addModelDamageBonuses(item.system, actor);
-	}
-
-	/**
-	 * @param {DataModel} model
-	 * @param {FUActor} actor
-	 * @return {CheckConfigurer}
-	 */
-	addModelDamageBonuses(model, actor) {
-		// All Damage
-		const globalBonus = actor.system.bonuses.damage.all;
-		if (globalBonus) {
-			this.addDamageBonus(`FU.DamageBonusAll`, globalBonus);
-		}
-		// Damage Type
-		if (model.damageType) {
-			const damageTypeBonus = actor.system.bonuses.damage[model.damageType.value];
-			if (damageTypeBonus) {
-				this.addDamageBonus(`FU.DamageBonus${model.damageType.value.capitalize()}`, damageTypeBonus);
-			}
-		}
-		// Attack Type
-		const attackTypeBonus = actor.system.bonuses.damage[model.type.value] ?? 0;
-		if (attackTypeBonus) {
-			this.addDamageBonus(`FU.DamageBonusType${model.type.value.capitalize()}`, attackTypeBonus);
-		}
-		// Weapon Category
-		if (model.category) {
-			const weaponCategoryBonus = actor.system.bonuses.damage[model.category.value] ?? 0;
-			if (weaponCategoryBonus) {
-				this.addDamageBonus(`FU.DamageBonusCategory${model.category.value.capitalize()}`, weaponCategoryBonus);
-			}
-		}
 		return this;
 	}
 
@@ -245,6 +186,18 @@ class CheckConfigurer {
 	 */
 	addDamageBonus(label, value) {
 		this.#check.additionalData[DAMAGE]?.modifiers.push({ label, value });
+		return this;
+	}
+
+	/**
+	 * @param {string} label
+	 * @param {number} path
+	 * @return CheckConfigurer
+	 */
+	addDamageBonusIfDefined(label, value) {
+		if (value) {
+			return this.addDamageBonus(label, value);
+		}
 		return this;
 	}
 
@@ -454,6 +407,21 @@ class CheckInspector {
 	}
 
 	/**
+	 * @param trait
+	 * @returns {Boolean}
+	 */
+	hasTrait(trait) {
+		return this.getTraits().includes(trait);
+	}
+
+	/**
+	 * @return WeaponTraits
+	 */
+	getWeaponTraits() {
+		return this.#check.additionalData[WEAPON_TRAITS] ?? {};
+	}
+
+	/**
 	 * @return {TargetData[]}
 	 */
 	getTargets() {
@@ -513,12 +481,15 @@ class CheckInspector {
 
 	/**
 	 * @returns {TemplateDamageData}
-	 * @remarks Used for templating
+	 * @remarks Used for templating.
 	 */
 	getDamageData() {
 		const _check = this.getCheck();
+		const traits = this.getTraits();
+		const isBase = traits.includes(Traits.Base);
 		const damage = this.getDamage();
 		const hrZero = this.getHrZero();
+
 		let damageData = null;
 		if (damage) {
 			damageData = {
@@ -532,13 +503,13 @@ class CheckInspector {
 					total: damage.total,
 					type: damage.type,
 					extra: damage.extra,
-					traits: this.getTraits(),
+					traits: traits,
 				},
 				translation: {
 					damageTypes: FU.damageTypes,
 					damageIcon: FU.affIcon,
 				},
-				modifiers: damage.modifiers,
+				modifiers: isBase ? [damage.modifiers.slice(0, 1)] : damage.modifiers,
 			};
 		}
 

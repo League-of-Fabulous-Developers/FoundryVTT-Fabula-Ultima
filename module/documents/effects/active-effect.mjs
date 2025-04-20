@@ -2,77 +2,10 @@ import { FUActor } from '../actors/actor.mjs';
 import { FUItem } from '../items/item.mjs';
 import { SYSTEM } from '../../helpers/config.mjs';
 import { ExpressionContext, Expressions } from '../../expressions/expressions.mjs';
+import { Flags } from '../../helpers/flags.mjs';
+import { Pipeline } from '../../pipelines/pipeline.mjs';
 
-const CRISIS_INTERACTION = 'CrisisInteraction';
-const EFFECT_TYPE = 'type';
-const PAGE_REFERENCE = 'source';
 const TEMPORARY = 'Temporary';
-
-const crisisInteractions = {
-	none: 'FU.EffectCrisisInteractionNone',
-	active: 'FU.EffectCrisisInteractionActive',
-	inactive: 'FU.EffectCrisisInteractionInactive',
-};
-
-const effectType = {
-	default: 'FU.Effect',
-	quality: 'FU.Quality',
-	customization: 'FU.Customization',
-};
-
-function onRenderActiveEffectConfig(sheet, html) {
-	const flag = sheet.document.getFlag(SYSTEM, CRISIS_INTERACTION);
-	const sourceFlag = sheet.document.getFlag(SYSTEM, PAGE_REFERENCE) || '';
-	const effectTypeFlag = sheet.document.getFlag(SYSTEM, EFFECT_TYPE) || 'default'; // Default to 'effect'
-
-	// Effect Type select field
-	html.find('.tab[data-tab=details] .form-group:nth-child(3)').after(`
-		<div class="form-group">
-			<label>${game.i18n.localize('FU.EffectType')}</label>
-			<select name="flags.${SYSTEM}.${EFFECT_TYPE}" ${sheet.isEditable ? '' : 'disabled'}>
-				${Object.entries(effectType).map(
-					([key, value]) =>
-						`<option value="${key}" ${key === effectTypeFlag ? 'selected' : ''}>
-				  ${game.i18n.localize(value)}</option>`,
-				)}
-			</select>
-		</div>
-	`);
-
-	// Source input field
-	html.find('.tab[data-tab=details] .form-group:nth-child(4)').after(`
-		<div class="form-group">
-			<label>${game.i18n.localize('FU.EffectSource')}</label>
-			<input type="text" name="flags.${SYSTEM}.${PAGE_REFERENCE}" value="${sourceFlag}" ${sheet.isEditable ? '' : 'disabled'}>
-		</div>
-	`);
-
-	html.find('.tab[data-tab=details] .form-group:nth-child(5)').after(`
-	<div class="form-group">
-        <label>${game.i18n.localize('FU.EffectCrisisInteraction')}</label>
-        <select name="flags.${SYSTEM}.${CRISIS_INTERACTION}" ${sheet.isEditable ? '' : 'disabled'}>
-          ${Object.entries(crisisInteractions).map(([key, value]) => `<option value="${key}" ${key === flag ? 'selected' : ''}>${game.i18n.localize(value)}</option>`)}
-        </select>
-    </div>
-	`);
-
-	sheet.setPosition({ ...sheet.position, height: 'auto' });
-}
-Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
-
-/**
- * @param {FUActor} actor
- * @param {EffectChangeData} change
- * @param current
- */
-function onApplyActiveEffect(actor, change, current) {
-	if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, change.value) && current[change.value] instanceof Function) {
-		console.debug(`applying ${change.value} to ${change.key}`);
-		current[change.value]();
-		return false;
-	}
-}
-Hooks.on('applyActiveEffect', onApplyActiveEffect);
 
 const PRIORITY_CHANGES = [
 	'system.resources.hp.bonus',
@@ -107,6 +40,7 @@ const PRIORITY_CHANGES = [
  * @property {String} id Canonical name
  * @property {String} uuid
  * @property {String} name
+ * @property {EffectDurationData} duration
  * @property {EffectChangeData[]} changes - The array of EffectChangeData objects which the ActiveEffect applies
  * @remarks https://foundryvtt.com/api/classes/client.ActiveEffect.html
  * @property {Function<Promise<Document>>} delete Delete this Document, removing it from the database.
@@ -116,7 +50,21 @@ const PRIORITY_CHANGES = [
  */
 
 /**
+ * @typedef {EffectDurationData} ActiveEffectDuration
+ * @property {string} type            The duration type, either "seconds", "turns", or "none"
+ * @property {number|null} duration   The total effect duration, in seconds of world time or as a decimal
+ *                                    number with the format {rounds}.{turns}
+ * @property {number|null} remaining  The remaining effect duration, in seconds of world time or as a decimal
+ *                                    number with the format {rounds}.{turns}
+ * @property {string} label           A formatted string label that represents the remaining duration
+ * @property {number} [_worldTime]    An internal flag used determine when to recompute seconds-based duration
+ * @property {number} [_combatTime]   An internal flag used determine when to recompute turns-based duration
+ */
+
+/**
  * @extends ActiveEffect
+ * @property {FUActiveEffectModel} system
+ * @property {InlineSourceInfo} source
  * @inheritDoc
  * */
 export class FUActiveEffect extends ActiveEffect {
@@ -124,14 +72,63 @@ export class FUActiveEffect extends ActiveEffect {
 		return TEMPORARY;
 	}
 
+	/**
+	 * @private
+	 * @override
+	 * @remarks Unlike `_onCreate`, is managed by the GM.
+	 */
 	async _preCreate(data, options, user) {
-		this.updateSource({ name: game.i18n.localize(data.name) });
+		this.updateSource({
+			name: game.i18n.localize(data.name),
+			[`system.duration.remaining`]: this.system.duration.interval,
+		});
+		console.debug(`Created active effect ${this.name} with origin: ${this.origin}, source: ${this.source ? this.source.name : ''}`);
 		return super._preCreate(data, options, user);
 	}
 
+	/**
+	 * @override
+	 * @returns {Promise<void>}
+	 */
+	async delete() {
+		console.debug(`Deleting active effect ${this.name}`);
+		super.delete();
+	}
+
+	/**
+	 * @returns {InlineSourceInfo} If present, information about the actor/item that was the source of this effect
+	 */
+	get source() {
+		return this.getFlag(Flags.Scope, Flags.ActiveEffect.Source);
+	}
+
+	/**
+	 * @returns {boolean} True if the effect has a duration that is managed
+	 */
+	get hasDuration() {
+		return this.system.duration.event !== 'none';
+	}
+
+	/**
+	 * @returns {String}
+	 * @remarks Used by the templates
+	 */
+	get sourceName() {
+		if (this.source) {
+			return this.source.name;
+		}
+		return this.parent.name;
+	}
+
+	/**
+	 * @description Automatically deactivate effects with expired durations
+	 * @override
+	 * @returns {Boolean}
+	 */
 	get isSuppressed() {
+		// TODO: Refactor, handle other predicates
 		if (this.target instanceof FUActor) {
-			const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
+			const flag = this.system.predicate.crisisInteraction;
 			if (flag && flag !== 'none') {
 				if (this.target.effects.find((e) => e.statuses.has('crisis')) != null) {
 					return flag === 'inactive';
@@ -141,7 +138,7 @@ export class FUActiveEffect extends ActiveEffect {
 			}
 		}
 		if (this.target instanceof FUItem && this.target.parent instanceof FUActor) {
-			const flag = this.getFlag(SYSTEM, CRISIS_INTERACTION);
+			const flag = this.system.predicate.crisisInteraction;
 			if (flag && flag !== 'none') {
 				if (this.target.parent.effects.find((e) => e.statuses.has('crisis')) != null) {
 					return flag === 'inactive';
@@ -153,14 +150,40 @@ export class FUActiveEffect extends ActiveEffect {
 		return false;
 	}
 
+	/**
+	 * @description Check if the effect's subtype has special handling, otherwise fallback to normal `duration` and `statuses` check
+	 * @override
+	 */
 	get isTemporary() {
-		// TODO: Handle differently or?
-		// if (this.statuses.has('crisis')) {
-		// 	return false;
-		// }
-		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY);
+		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY) || this.system.duration.event !== 'none';
 	}
 
+	/**
+	 * @description Compute derived data related to active effect duration.
+	 * @returns {{
+	 *   type: string,
+	 *   duration: number|null,
+	 *   remaining: number|null,
+	 *   label: string,
+	 *   [_worldTime]: number,
+	 *   [_combatTime]: number}
+	 * }
+	 * @private
+	 * @override
+	 */
+	_prepareDuration() {
+		// We handle this through the event system
+		return {
+			type: 'none',
+			duration: null,
+			remaining: null,
+			label: game.i18n.localize('None'),
+		};
+	}
+
+	/**
+	 * @override
+	 */
 	prepareBaseData() {
 		super.prepareBaseData();
 		for (let change of this.changes) {
@@ -184,10 +207,10 @@ export class FUActiveEffect extends ActiveEffect {
 				// First, evaluate using built-in support
 				const expression = Roll.replaceFormulaData(change.value, this.parent);
 				// Second, evaluate with our custom expressions
-				const context = ExpressionContext.resolveTarget(target, this.parent);
+				const context = ExpressionContext.resolveTarget(target, this.parent, this.source);
 				const value = Expressions.evaluate(expression, context);
 				change.value = String(value ?? 0);
-				console.debug(`Assigning ${change.key} = ${change.value}`);
+				console.debug(`Assigning ${change.key} (MODE ${change.mode}): ${change.value}`);
 			} catch (e) {
 				console.error(e);
 				ui.notifications?.error(
@@ -203,4 +226,51 @@ export class FUActiveEffect extends ActiveEffect {
 
 		return super.apply(target, change);
 	}
+
+	// TODO: Remove once everyone's migrated
+	static CRISIS_INTERACTION = 'CrisisInteraction';
+	static EFFECT_TYPE = 'type';
+	static migrateData(source) {
+		this._addDataFieldMigration(source, `flags.${SYSTEM}.${this.EFFECT_TYPE}`, 'system.type');
+		this._addDataFieldMigration(source, `flags.${SYSTEM}.${this.CRISIS_INTERACTION}`, 'system.predicate.crisisInteraction');
+		return super.migrateData(source);
+	}
+
+	/**
+	 * @description Emits a chat message with this effect
+	 * @returns {Promise<void>}
+	 */
+	async sendToChat() {
+		// It's okay for it to be empty
+		const description = this.description; // ? this.description : game.i18n.localize('FU.NoItem');
+		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Effect, this.uuid);
+
+		if (this.parent instanceof FUItem) {
+			Pipeline.setFlag(flags, Flags.ChatMessage.Item, this.parent.uuid);
+		}
+
+		// TODO: More information?
+		await ChatMessage.create({
+			speaker: ChatMessage.getSpeaker({ actor: this.parent }),
+			flags: flags,
+			content: await renderTemplate('systems/projectfu/templates/chat/chat-active-effect.hbs', {
+				effect: this,
+				description: description,
+			}),
+		});
+	}
 }
+
+/**
+ * @param {FUActor} actor
+ * @param {EffectChangeData} change
+ * @param current
+ */
+function onApplyActiveEffect(actor, change, current) {
+	if (change.key.startsWith('system.') && current instanceof foundry.abstract.DataModel && Object.hasOwn(current, change.value) && current[change.value] instanceof Function) {
+		console.debug(`Applying change ${change.value} to ${change.key}`);
+		current[change.value]();
+		return false;
+	}
+}
+Hooks.on('applyActiveEffect', onApplyActiveEffect);

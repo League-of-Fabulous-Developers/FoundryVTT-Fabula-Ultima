@@ -2,13 +2,17 @@ import { AccuracyBonusesDataModel } from './accuracy-bonuses-data-model.mjs';
 import { DamageBonusesDataModel } from './damage-bonuses-data-model.mjs';
 
 /**
+ * @typedef ResourceSchema
+ * @property {Number} hp
+ * @property {Number} mp
+ * @property {Number} ip
+ */
+
+/**
  * @property {number} bondStrength
- * @property {number} incomingRecovery.hp
- * @property {number} incomingRecovery.mp
- * @property {number} incomingRecovery.ip
- * @property {number} outgoingRecovery.hp
- * @property {number} outgoingRecovery.mp
- * @property {number} outgoingRecovery.ip
+ * @property {ResourceSchema} incomingRecovery
+ * @property {ResourceSchema} incomingLoss
+ * @property {ResourceSchema} outgoingRecovery
  * @property {AccuracyBonusesDataModel} accuracy
  * @property {DamageBonusesDataModel} incomingDamage
  * @property {DamageBonusesDataModel} damage
@@ -24,6 +28,11 @@ export class BonusesDataModel extends foundry.abstract.DataModel {
 				mp: new NumberField({ initial: 0, integer: true }),
 				ip: new NumberField({ initial: 0, integer: true }),
 			}),
+			incomingLoss: new SchemaField({
+				hp: new NumberField({ initial: 0, integer: true }),
+				mp: new NumberField({ initial: 0, integer: true }),
+				ip: new NumberField({ initial: 0, integer: true }),
+			}),
 			outgoingRecovery: new SchemaField({
 				hp: new NumberField({ initial: 0, integer: true }),
 				mp: new NumberField({ initial: 0, integer: true }),
@@ -33,6 +42,34 @@ export class BonusesDataModel extends foundry.abstract.DataModel {
 			incomingDamage: new EmbeddedDataField(DamageBonusesDataModel, {}),
 			damage: new EmbeddedDataField(DamageBonusesDataModel, {}),
 			turns: new NumberField({ initial: 0, min: 0, integer: true, nullable: false }),
+		};
+	}
+}
+
+/**
+ * @property {ResourceSchema} incomingRecovery
+ * @property {ResourceSchema} incomingLoss
+ * @property {ResourceSchema} outgoingRecovery
+ */
+export class MultipliersDataModel extends foundry.abstract.DataModel {
+	static defineSchema() {
+		const { NumberField, SchemaField } = foundry.data.fields;
+		return {
+			incomingRecovery: new SchemaField({
+				hp: new NumberField({ initial: 0, integer: true }),
+				mp: new NumberField({ initial: 0, integer: true }),
+				ip: new NumberField({ initial: 0, integer: true }),
+			}),
+			incomingLoss: new SchemaField({
+				hp: new NumberField({ initial: 0, integer: true }),
+				mp: new NumberField({ initial: 0, integer: true }),
+				ip: new NumberField({ initial: 0, integer: true }),
+			}),
+			outgoingRecovery: new SchemaField({
+				hp: new NumberField({ initial: 0, integer: true }),
+				mp: new NumberField({ initial: 0, integer: true }),
+				ip: new NumberField({ initial: 0, integer: true }),
+			}),
 		};
 	}
 }

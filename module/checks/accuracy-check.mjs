@@ -1,6 +1,6 @@
+import { SYSTEM } from '../helpers/config.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CHECK_ROLL } from './default-section-order.mjs';
-import { SYSTEM } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
@@ -16,6 +16,35 @@ function handleGenericBonus(actor, modifiers) {
 }
 
 /**
+ * @type CheckCallback
+ */
+const handleWeaponTraitAccuracyBonuses = (check, actor, item) => {
+	const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
+
+	// Weapon Category
+	if (weaponTraits.weaponCategory && actor.system.bonuses.accuracy[weaponTraits.weaponCategory]) {
+		check.modifiers.push({
+			label: `FU.AccuracyCheckBonus${weaponTraits.weaponCategory.capitalize()}`,
+			value: actor.system.bonuses.accuracy[weaponTraits.weaponCategory],
+		});
+	}
+
+	// Attack Type
+	const attackType = weaponTraits.weaponType;
+	if (attackType === 'melee' && actor.system.bonuses.accuracy.accuracyMelee) {
+		check.modifiers.push({
+			label: 'FU.AccuracyCheckBonusMelee',
+			value: actor.system.bonuses.accuracy.accuracyMelee,
+		});
+	} else if (attackType === 'ranged' && actor.system.bonuses.accuracy.accuracyRanged) {
+		check.modifiers.push({
+			label: 'FU.AccuracyCheckBonusRanged',
+			value: actor.system.bonuses.accuracy.accuracyRanged,
+		});
+	}
+};
+
+/**
  * @param {CheckV2} check
  * @param {FUActor} actor
  * @param {FUItem} [item]
@@ -25,6 +54,7 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
 	const { type, modifiers } = check;
 	if (type === 'accuracy') {
 		handleGenericBonus(actor, modifiers);
+		registerCallback(handleWeaponTraitAccuracyBonuses, Number.MAX_VALUE);
 	}
 };
 
@@ -64,6 +94,34 @@ const onProcessCheck = (check, actor, item) => {
 		});
 		configurer.modifyDamage((damage) => {
 			if (damage) {
+				const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();
+
+				// All Damage
+				const globalBonus = actor.system.bonuses.damage.all;
+				if (globalBonus) {
+					damage.modifiers.push({ label: `FU.DamageBonusAll`, value: globalBonus });
+				}
+				// Attack Type
+				if (weaponTraits.weaponType) {
+					const attackTypeBonus = actor.system.bonuses.damage[weaponTraits.weaponType] ?? 0;
+					if (attackTypeBonus) {
+						damage.modifiers.push({ label: `FU.DamageBonusType${weaponTraits.weaponType.capitalize()}`, value: attackTypeBonus });
+					}
+				}
+				// Weapon Category
+				if (weaponTraits.weaponCategory) {
+					const weaponCategoryBonus = actor.system.bonuses.damage[weaponTraits.weaponCategory] ?? 0;
+					if (weaponCategoryBonus) {
+						damage.modifiers.push({ label: `FU.DamageBonusCategory${weaponTraits.weaponCategory.capitalize()}`, value: weaponCategoryBonus });
+					}
+				}
+
+				// Damage Type
+				const damageTypeBonus = actor.system.bonuses.damage[damage.type];
+				if (damageTypeBonus) {
+					damage.modifiers.push({ label: `FU.DamageBonus${damage.type.capitalize()}`, value: damageTypeBonus });
+				}
+
 				damage.modifierTotal = damage.modifiers.reduce((agg, curr) => agg + curr.value, 0);
 				if (CheckConfiguration.inspect(check).getHrZero()) {
 					damage.total = damage.modifierTotal;
@@ -116,6 +174,4 @@ const initialize = () => {
 
 export const AccuracyCheck = Object.freeze({
 	initialize,
-	configure: CheckConfiguration.configure,
-	inspect: CheckConfiguration.inspect,
 });

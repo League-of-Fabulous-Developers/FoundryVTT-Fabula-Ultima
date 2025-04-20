@@ -5,6 +5,7 @@ import { CheckConfiguration } from './check-configuration.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
+import { Traits } from '../pipelines/traits.mjs';
 
 /**
  * @param {CheckV2} check
@@ -63,8 +64,20 @@ const onProcessCheck = (check, actor, item) => {
 			)
 			.modifyDamage((damage) => {
 				if (damage) {
+					// Damage Type
+					const damageTypeBonus = actor.system.bonuses.damage[damage.type];
+					if (damageTypeBonus) {
+						damage.modifiers.push({ label: `FU.DamageBonus${damage.type.capitalize()}`, value: damageTypeBonus });
+					}
+
+					// TODO: Refactor this and others all the way to the end
+					// Calculate the total damage
+					const inspector = CheckConfiguration.inspect(check);
+					if (inspector.hasTrait(Traits.Base)) {
+						damage.modifiers = damage.modifiers.slice(0, 1);
+					}
 					damage.modifierTotal = damage.modifiers.reduce((agg, curr) => agg + curr.value, 0);
-					if (CheckConfiguration.inspect(check).getHrZero()) {
+					if (inspector.getHrZero()) {
 						damage.total = damage.modifierTotal;
 					} else {
 						damage.total = Math.max(primary.result, secondary.result) + damage.modifierTotal;
@@ -79,6 +92,7 @@ const onProcessCheck = (check, actor, item) => {
  * @param {CheckResultV2} checkResult
  * @param {CheckInspector} inspector
  * @param {CheckRenderData} data
+ * @param {FUActor} actor
  */
 function renderCombatMagicCheck(checkResult, inspector, data, actor, item, flags) {
 	const accuracyData = inspector.getAccuracyData();

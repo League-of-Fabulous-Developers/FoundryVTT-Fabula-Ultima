@@ -3,13 +3,13 @@
   "name": "Volcano",
   "type": "spell",
   "_id": "BfZqKbr38FBxLtmH",
-  "img": "icons/magic/fire/explosion-mushroom-nuke-orange.webp",
+  "img": "icons/environment/wilderness/cave-entrance-vulcano.webp",
   "system": {
     "subtype": {},
     "summary": {
       "value": ""
     },
-    "description": "<h4>Required Heroic Skill: Volcano</h4><p>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: one creature you can see suffers @DMG[50 fire] damage; <strong>or</strong> you choose any number of creatures you can see, and each of them suffers @DMG[30 fire] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell <strong>ignores Resistances and Immunities</strong>.</p><hr /><ul><li><p><strong>Target Loses: </strong>@DMG[50+&amp;step(0,5,10) fire](single), or @DMG[30+&amp;step(0,5,10) fire](multi)</p></li></ul>",
+    "description": "<h4>Required Heroic Skill: Volcano</h4><p>You channel the fury of the planet into a powerful wave of fire and magma. Choose one option: one creature you can see suffers @DMG[50 fire] damage; <strong>or</strong> you choose any number of creatures you can see, and each of them suffers @DMG[30 fire] damage. These amounts increase by 5 if you are <strong>level 20 or higher</strong>, or by 10 if you are <strong>level 40 or higher</strong>.</p><p>Damage dealt by this spell <strong>ignores Resistances and Immunities</strong>.</p><hr /><ul><li><p><strong>Target Loses:</strong> @DMG[50+&amp;step(0,5,10) fire]{50|55|60 fire (single)}, or @DMG[30+&amp;step(0,5,10) fire]{30|35|40 fire (multi)}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -117,7 +117,8 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "volcano-single-target"
+    "fuid": "volcano-single-target",
+    "traits": []
   },
   "effects": [],
   "sort": 0,
@@ -134,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710548265766,
-    "modifiedTime": 1743165310333,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744722212630,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

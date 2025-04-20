@@ -1,8 +1,11 @@
 import { FUItem } from '../items/item.mjs';
 import { FUHooks } from '../../hooks.mjs';
-import { Effects, prepareActiveEffectCategories, toggleStatusEffect } from '../../pipelines/effects.mjs';
-import { SYSTEM } from '../../helpers/config.mjs';
-import { Flags } from '../../helpers/flags.mjs';
+import { Effects, prepareActiveEffectCategories } from '../../pipelines/effects.mjs';
+import { InlineSourceInfo } from '../../helpers/inline-helper.mjs';
+import { FUActiveEffectModel } from '../effects/active-effect-model.mjs';
+import { SkillDataModel } from '../items/skill/skill-data-model.mjs';
+import { MathHelper } from '../../helpers/math-helper.mjs';
+import { MiscAbilityDataModel } from '../items/misc/misc-ability-data-model.mjs';
 
 /**
  * @typedef Actor
@@ -10,7 +13,10 @@ import { Flags } from '../../helpers/flags.mjs';
  * @property {Boolean} isToken
  * @property {ActiveEffect[]} appliedEffects
  * @property {ActiveEffect[]} temporaryEffects
+ * @property {Map<String, FUActiveEffect>} effects <Uuid, *>
+ * @property {Map<String, FUItem>} items <Uuid, *>
  * @property {Boolean} inCombat
+ * @property {Boolean} isOwner True if the user has ownership of the actor.
  * @property {String} id The canonical identifier for this Document.
  * @property {String} uuid A Universally Unique Identifier (uuid) for this Document instance.
  * @property {Function<Boolean, Boolean,[Token]>} getActiveTokens Retrieve an Array of active tokens which represent this Actor in the current
@@ -32,31 +38,34 @@ import { Flags } from '../../helpers/flags.mjs';
  * @class
  * @description Extend the base Actor document by defining a custom roll data structure
  * @extends {Actor}
- * @property {CharacterDataModel | NpcDataModel} system
+ * @property {CharacterDataModel | NpcDataModel | PartyDataModel | SheetDataModel} system
  * @property {EffectCategories} effectCategories
+ * @property {Boolean} isCharacterType
+ * @property {FUStandardActorSheet | FUPartySheet} sheet
  * @remarks {@link https://foundryvtt.com/api/classes/client.Actor.html}
  * @inheritDoc
  */
 export class FUActor extends Actor {
-	/** @override */
+	/**
+	 * @override
+	 * @remarks Prepare data for the actor. Calling the super version of this executes
+	 * the following in order:
+	 *  -Data reset (to clear active effects),
+	 * - prepareBaseData(),
+	 * - prepareEmbeddedDocuments() (including active effects),
+	 * - prepareDerivedData().
+	 */
 	prepareData() {
-		// Prepare data for the actor. Calling the super version of this executes
-		// the following, in order: data reset (to clear active effects),
-		// prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
-		// prepareDerivedData().
 		super.prepareData();
 		Hooks.callAll(FUHooks.DATA_PREPARED_ACTOR, this);
 	}
 
 	async getData(options = {}) {
 		const data = await super.getData(options);
-
 		// Add the spTracker data to the actor's data
 		data.spTracker = this.spTracker;
-
 		//Add the tlTracker data to the actor's data
 		data.tlTracker = this.tlTracker;
-
 		return data;
 	}
 
@@ -97,45 +106,25 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @returns {Boolean}
+	 */
+	get isCharacterType() {
+		return this.type === 'character' || this.type === 'npc';
+	}
+
+	/**
 	 * Override getRollData() that's supplied to rolls.
 	 */
 	getRollData() {
 		const data = super.getRollData();
-
-		// Prepare character roll data.
-		this._getCharacterRollData(data);
-		this._getNpcRollData(data);
-
 		return data;
 	}
 
 	/**
-	 * Prepare character roll data.
+	 * @override
 	 */
-	_getCharacterRollData() {
-		// Copy the ability scores to the top level, so that rolls can use
-		// formulas like `@str.mod + 4`.
-		// if (data.abilities) {
-		//   for (let [k, v] of Object.entries(data.abilities)) {
-		//     data[k] = foundry.utils.deepClone(v);
-		//   }
-		// }
-		// Add level for easier access, or fall back to 0.
-		// if (data.attributes.level) {
-		//   data.lvl = data.attributes.level.value ?? 0;
-		// }
-	}
-
-	/**
-	 * Prepare NPC roll data.
-	 */
-	_getNpcRollData() {
-		// Process additional NPC data here.
-	}
-
 	async _preCreate(createData, options, user) {
 		await super._preCreate(createData, options, user);
-
 		if (this.type === 'character') {
 			this.updateSource({
 				prototypeToken: {
@@ -146,10 +135,12 @@ export class FUActor extends Actor {
 		}
 	}
 
+	/**
+	 * @override
+	 */
 	async _onCreate(createData, options, userId) {
 		await super._onCreate(createData, options, userId);
-
-		if (this.type === 'character' || this.type === 'npc') {
+		if (this.isCharacterType) {
 			// Load the compendium
 			const pack = game.packs.get('projectfu.basic-equipment');
 			const content = await pack.getDocuments();
@@ -169,18 +160,22 @@ export class FUActor extends Actor {
 		}
 	}
 
+	/**
+	 * @override
+	 */
 	async _preUpdate(changed, options, user) {
-		const changedHP = changed.system?.resources?.hp;
-		const currentHP = this.system.resources.hp;
+		if (this.isCharacterType) {
+			const changedHP = changed.system?.resources?.hp;
+			const currentHP = this.system.resources.hp;
 
-		if (typeof changedHP?.value === 'number' && currentHP) {
-			const hpChange = changedHP.value - currentHP.value;
-			const levelChanged = !!changed.system && 'level' in changed.system;
-			if (hpChange !== 0 && !levelChanged) {
-				options.damageTaken = hpChange * -1;
+			if (typeof changedHP?.value === 'number' && currentHP) {
+				const hpChange = changedHP.value - currentHP.value;
+				const levelChanged = !!changed.system && 'level' in changed.system;
+				if (hpChange !== 0 && !levelChanged) {
+					options.damageTaken = hpChange * -1;
+				}
 			}
 		}
-
 		await super._preUpdate(changed, options, user);
 	}
 
@@ -190,78 +185,42 @@ export class FUActor extends Actor {
 	 * @override
 	 */
 	async _onUpdate(changed, options, userId) {
-		const { hp } = this.system?.resources || {};
+		if (this.isCharacterType) {
+			const { hp } = this.system?.resources || {};
 
-		if (hp && userId === game.userId) {
-			const crisisThreshold = Math.floor(hp.max / 2);
-			const shouldBeInCrisis = hp.value <= crisisThreshold;
-			const isInCrisis = this.statuses.has('crisis');
-			if (shouldBeInCrisis !== isInCrisis) {
-				Hooks.call(
-					FUHooks.CRISIS_EVENT,
-					/** @type CrisisEvent **/
-					{
-						actor: this,
-						token: this.resolveToken(),
-					},
-				);
-				await toggleStatusEffect(this, 'crisis');
-			}
+			if (hp && userId === game.userId) {
+				const crisisThreshold = Math.floor(hp.max / 2);
+				const shouldBeInCrisis = hp.value <= crisisThreshold;
+				const isInCrisis = this.statuses.has('crisis');
+				if (shouldBeInCrisis !== isInCrisis) {
+					Hooks.call(
+						FUHooks.CRISIS_EVENT,
+						/** @type CrisisEvent **/
+						{
+							actor: this,
+							token: this.resolveToken(),
+						},
+					);
+					await Effects.toggleStatusEffect(this, 'crisis', InlineSourceInfo.fromInstance(this));
+				}
 
-			// Handle KO status
-			const shouldBeKO = hp.value === 0; // KO when HP is 0
-			const isKO = this.statuses.has('ko');
-			if (shouldBeKO !== isKO) {
-				Hooks.call(
-					FUHooks.DEFEAT_EVENT,
-					/** @type DefeatEvent **/
-					{
-						actor: this,
-						token: this.resolveToken(),
-					},
-				);
-				await toggleStatusEffect(this, 'ko');
+				// Handle KO status
+				const shouldBeKO = hp.value === 0; // KO when HP is 0
+				const isKO = this.statuses.has('ko');
+				if (shouldBeKO !== isKO) {
+					Hooks.call(
+						FUHooks.DEFEAT_EVENT,
+						/** @type DefeatEvent **/
+						{
+							actor: this,
+							token: this.resolveToken(),
+						},
+					);
+					await Effects.toggleStatusEffect(this, 'ko', InlineSourceInfo.fromInstance(this));
+				}
 			}
 		}
 		super._onUpdate(changed, options, userId);
-	}
-
-	async showFloatyText(input, fill) {
-		if (!canvas.scene) {
-			return;
-		}
-
-		const [token] = this.getActiveTokens();
-
-		if (token && typeof input === 'number') {
-			const gridSize = canvas.scene.grid.size;
-			const scrollingTextArgs = [
-				{ x: token.x + gridSize / 2, y: token.y + gridSize - 20 },
-				Math.abs(input),
-				{
-					fill: fill ?? (input < 0 ? 'lightgreen' : 'white'),
-					fontSize: 32,
-					stroke: 0x000000,
-					strokeThickness: 4,
-				},
-			];
-			await token._animation;
-			await canvas.interface?.createScrollingText(...scrollingTextArgs);
-		} else {
-			const gridSize = canvas.scene.grid.size;
-			const scrollingTextArgs = [
-				{ x: token.x + gridSize / 2, y: token.y + gridSize - 20 },
-				input,
-				{
-					fill: fill ?? 'white',
-					fontSize: 32,
-					stroke: 0x000000,
-					strokeThickness: 4,
-				},
-			];
-			await token._animation;
-			await canvas.interface?.createScrollingText(...scrollingTextArgs);
-		}
 	}
 
 	*allApplicableEffects() {
@@ -300,10 +259,12 @@ export class FUActor extends Actor {
 	get temporaryEffects() {
 		const effects = super.temporaryEffects;
 		for (const item of this.items) {
-			if (item.system.transferEffects instanceof Function ? item.system.transferEffects() : true) {
-				for (const effect of item.effects) {
-					if (effect.isTemporary && effect.target === item) {
-						effects.push(effect);
+			if (this.isCharacterType) {
+				if (item.system.transferEffects instanceof Function ? item.system.transferEffects() : true) {
+					for (const effect of item.effects) {
+						if (effect.isTemporary && effect.target === item) {
+							effects.push(effect);
+						}
 					}
 				}
 			}
@@ -328,75 +289,6 @@ export class FUActor extends Actor {
 			this.system.prepareEmbeddedData();
 		}
 		return super.applyActiveEffects();
-	}
-
-	async gainMetaCurrency() {
-		let metaCurrency;
-		if (this.type === 'character') {
-			metaCurrency = game.i18n.localize('FU.Fabula');
-		}
-		if (this.type === 'npc' && this.system.villain.value) {
-			metaCurrency = game.i18n.localize('FU.Ultima');
-		}
-
-		if (metaCurrency) {
-			await this.update({
-				'system.resources.fp.value': this.system.resources.fp.value + 1,
-			});
-			/** @type ChatMessageData */
-			const chatData = {
-				user: game.user.id,
-				speaker: ChatMessage.getSpeaker({ actor: this.name }),
-				flavor: game.i18n.format('FU.GainMetaCurrencyChatFlavor', { type: metaCurrency }),
-				content: game.i18n.format('FU.GainMetaCurrencyChatMessage', { actor: this.name, type: metaCurrency }),
-			};
-			ChatMessage.create(chatData);
-		}
-	}
-
-	/**
-	 * @param force
-	 * @return {Promise<boolean>}
-	 */
-	async spendMetaCurrency(force = false) {
-		let metaCurrency;
-		if (this.type === 'character') {
-			metaCurrency = game.i18n.localize('FU.Fabula');
-		}
-		if (this.type === 'npc' && this.system.villain.value) {
-			metaCurrency = game.i18n.localize('FU.Ultima');
-		}
-		if (metaCurrency && this.system.resources.fp.value > 0) {
-			const confirmed =
-				force ||
-				(await Dialog.confirm({
-					title: game.i18n.format('FU.UseMetaCurrencyDialogTitle', { type: metaCurrency }),
-					content: game.i18n.format('FU.UseMetaCurrencyDialogMessage', { type: metaCurrency }),
-					options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
-					rejectClose: false,
-				}));
-			if (confirmed && this.system.resources.fp.value > 0) {
-				/** @type ChatMessageData */
-				const data = {
-					speaker: ChatMessage.implementation.getSpeaker({ actor: this }),
-					flavor: game.i18n.format('FU.UseMetaCurrencyChatFlavor', { type: metaCurrency }),
-					content: game.i18n.format('FU.UseMetaCurrencyChatMessage', { actor: this.name, type: metaCurrency }),
-					flags: {
-						[SYSTEM]: {
-							[Flags.ChatMessage.UseMetaCurrency]: true,
-						},
-					},
-				};
-				ChatMessage.create(data);
-				await this.update({
-					'system.resources.fp.value': this.system.resources.fp.value - 1,
-				});
-				return true;
-			}
-		} else {
-			ui.notifications.info(game.i18n.format('FU.UseMetaCurrencyNotificationInsufficientPoints', { actor: this.name, type: metaCurrency }));
-			return false;
-		}
 	}
 
 	/**
@@ -434,17 +326,25 @@ export class FUActor extends Actor {
 
 	/**
 	 * @description Deletes all temporary effects on the actor
+	 * @property includeStatus Whether to also clear status effects
+	 * @property includeWithoutDuration Include effects without a duration
 	 */
-	clearTemporaryEffects() {
+	clearTemporaryEffects(includeStatus = true, includeWithoutDuration = true) {
 		// Collect effects to delete
 		const effectsToDelete = this.effects.filter((effect) => {
 			// If it's a status effect
 			const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
 			if (statusEffectId) {
+				if (!includeStatus && effect.system.duration.event === 'rest') {
+					return false;
+				}
 				const immunity = this.system.immunities[statusEffectId];
 				if (immunity) {
 					return immunity;
 				}
+			}
+			if (!effect.hasDuration && !includeWithoutDuration) {
+				return false;
 			}
 			return effect.isTemporary && Effects.canBeRemoved(effect);
 		});
@@ -456,12 +356,86 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @description Clears all embedded items from the actor
+	 * @remarks Use at your own risk!
+	 */
+	clearEmbeddedItems() {
+		this.deleteEmbeddedDocuments(
+			'Item',
+			this.items.map((i) => i.id),
+		);
+	}
+
+	/**
 	 * Fetch an item that matches a given FUID and optionally an item type
 	 * @param {string} fuid - The FUID of the item(s) which you want to retrieve
 	 * @param {string} [type] - Optionally, a type name to restrict the search
-	 * @returns {Object|undefined} - The matching item, or undefined if none was found.
+	 * @returns {FUItem|undefined} - The matching item, or undefined if none was found.
 	 */
 	getSingleItemByFuid(fuid, type) {
 		return this.getItemsByFuid(fuid, type)[0];
+	}
+
+	/**
+	 * @description Resolves a progress tracker with the given id among
+	 * the actor's items and effects.
+	 * @param {String} id
+	 * @returns {ProgressDataModel}
+	 */
+	resolveProgress(id) {
+		// Search items
+		const items = this.items.values();
+		for (const item of items) {
+			const progress = item.getProgress();
+			// Match the fuid on the item or on the progress track
+			if (progress) {
+				if (id === item.system.fuid || id === progress.id) {
+					return progress;
+				}
+			}
+		}
+		// Search active effects: match the id on the progress track
+		for (const effect of this.effects.values()) {
+			if (effect.system.rules.progress.enabled) {
+				const progress = effect.system.rules.progress;
+				if (progress.id === id) {
+					return progress;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @description Searches through current items for one with the given fuid, then updates its progress.
+	 * @param {String} id
+	 * @param {Number} increment
+	 * @returns {ProgressDataModel} The updated progress data
+	 */
+	async updateProgress(id, increment) {
+		const progress = this.resolveProgress(id);
+		if (!progress) {
+			return null;
+		}
+
+		const current = MathHelper.clamp(progress.current + increment * progress.step, 0, progress.max);
+
+		// Skill
+		if (progress.parent instanceof SkillDataModel) {
+			await progress.parent.parent.update({ 'system.rp.current': current });
+		}
+		// MiscAbility
+		else if (progress.parent instanceof MiscAbilityDataModel) {
+			const schemaName = progress.schema.name;
+			await progress.parent.parent.update({ [`system.${schemaName}.current`]: current });
+		}
+		// ActiveEffect
+		else if (progress.parent.parent instanceof FUActiveEffectModel) {
+			await progress.parent.parent.update({ [`system.rules.progress.current`]: current });
+		}
+
+		// Update this instance for tracking, though it is not the same as the one that just got replaced in the model
+		progress.current = current;
+		return progress;
 	}
 }

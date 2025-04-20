@@ -10,7 +10,7 @@
     "summary": {
       "value": "Your potions are strengthened by repeated use."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Tinkerer</strong> Class, and must have acquired the <strong>advanced Alchemy</strong> benefit from the <strong>Gadget</strong> Skill.</p></blockquote><p>When you create a <strong>potion</strong>, you gain <strong>1 Nebulization Point</strong>, or <strong>2 Nebulization Points </strong>if that potion was created via the <strong>Alchemy</strong> benefit of the <strong>Gadget</strong> Skill.</p><p>Potions and elemental shards you create deal extra damage equal to <strong>twice</strong> your current Nebulization Points.</p><p>Potions you create that restore Hit Points and/or Mind Points restore additional HP and/or MP equal to <strong>【your current Nebulization Points, multiplied by 5】</strong>.</p><p>You may never have more than <strong>5 Nebulization Points</strong>, and you lose all of them at the end of each scene.</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[@item.rp.current*5 hp] and/or @GAIN[item.rp.current*5 mp]</p></li></ul>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Tinkerer</strong> Class, and must have acquired the <strong>advanced Alchemy</strong> benefit from the <strong>Gadget</strong> Skill.</p></blockquote><p>When you create a <strong>potion</strong>, you gain <strong>1 Nebulization Point</strong>, or <strong>2 Nebulization Points </strong>if that potion was created via the <strong>Alchemy</strong> benefit of the <strong>Gadget</strong> Skill.</p><p>Potions and elemental shards you create deal extra damage equal to <strong>twice</strong> your current Nebulization Points.</p><p>Potions you create that restore Hit Points and/or Mind Points restore additional HP and/or MP equal to <strong>【your current Nebulization Points, multiplied by 5】</strong>.</p><p>You may never have more than <strong>5 Nebulization Points</strong>, and you lose all of them at the end of each scene.</p><hr /><ul><li><p><strong>Resource:</strong> @PROGRESS[rising-tide update 1]{Advance 1 Nebulization Point}, @PROGRESS[rising-tide update 2]{Advance 2 Nebulization Points}, or @PROGRESS[rising-tide reset]{Reset Nebulization Point}</p></li><li><p><strong>You Recover:</strong> @GAIN[@item.rp.current*5 hp] and/or @GAIN[@item.rp.current*5 mp]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -107,8 +107,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711473807263,
-    "modifiedTime": 1743167408769,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744640652485,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

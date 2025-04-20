@@ -9,6 +9,7 @@ $fus-martial: url('/systems/projectfu/styles/static/icons/fus-martial.svg');
 $ful-offensive: url('/systems/projectfu/styles/static/icons/ful-offensive.svg');
 $ful-martial: url('/systems/projectfu/styles/static/icons/ful-martial.svg');
 $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
+$fu-fp: url('/systems/projectfu/styles/static/compendium/ui/fp.png');
 
 $fu-shaken: url('/systems/projectfu/styles/static/statuses/Shaken.webp');
 $fu-dazed: url('/systems/projectfu/styles/static/statuses/Dazed.webp');
@@ -31,6 +32,12 @@ $fu-mig-up: url('/systems/projectfu/styles/static/statuses/MigUp.webp');
 $fu-mig-down: url('/systems/projectfu/styles/static/statuses/MigDown.webp');
 $fu-wlp-up: url('/systems/projectfu/styles/static/statuses/WlpUp.webp');
 $fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
+
+$fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
+
+.fu-fp {
+	background-image: $fu-fp;
+}
 
 .fu-shaken {
 	background-image: $fu-shaken;

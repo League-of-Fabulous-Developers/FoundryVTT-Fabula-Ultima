@@ -9,7 +9,7 @@
     "summary": {
       "value": "Disappear after an attack."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Rogue</strong> Class.</p></blockquote><p><span>When you hit one or more creatures with an attack, you may spend 1 Fabula Point. If you do, each of those creatures will be unable to perform any action that requires them to be able to see you until the start of your next turn.</span></p><hr /><ul><li><p><strong>You Lose:</strong> @LOSS[1 fp]</p></li></ul>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Rogue</strong> Class.</p></blockquote><p><span>When you hit one or more creatures with an attack, you may spend 1 Fabula Point. If you do, each of those creatures will be unable to perform any action that requires them to be able to see you until the start of your next turn.</span></p><hr /><ul><li><p><strong>You Spend:</strong> @LOSS[1 fp]</p></li><li><p><strong>You Receive:</strong> @EFFECT[Compendium.projectfu.heroic-skills.Item.4suciB7e8kbt17Zh]{Effect: Vanish}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -111,7 +111,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706587099416,
-    "modifiedTime": 1743123961149,
+    "modifiedTime": 1744073311850,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

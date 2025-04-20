@@ -1,0 +1,87 @@
+{
+  "folder": "JBP4GRCp1cF4e2C4",
+  "name": "Effect: For Whom The Bell Tolls",
+  "type": "effect",
+  "_id": "Jc1KEmU0iN7Ul8dZ",
+  "img": "systems/projectfu/styles/static/compendium/classes/necromancer/for_whom_the_bell_tolls.png",
+  "system": {
+    "fuid": "effect-for-whom-the-bell-tolls",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/necromancer/for_whom_the_bell_tolls.png",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: For Whom The Bell Tolls",
+      "_id": "RCtie3pzKMTEmDkR",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.spell",
+          "mode": 2,
+          "value": "~&sl(\"for-whom-the-bell-tolls\")+$tsc",
+          "priority": null
+        }
+      ],
+      "description": "<p>When you <strong>deal damage to a creature with a spell</strong>, if that spell <strong>only deals damage to that creature</strong>, you may spend 1 Grave Point. If you do, choose one option: if that creature is suffering from one or more status effects, the spell deals extra damage equal to <strong>【(SL × 2) + the number of status effects on that creature】.</strong></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744596303090,
+        "modifiedTime": 1744596768033,
+        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+      },
+      "_key": "!items.effects!Jc1KEmU0iN7Ul8dZ.RCtie3pzKMTEmDkR"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LokWlpJRX2uVxtGn": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744596291509,
+    "modifiedTime": 1744596299103,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+  },
+  "_key": "!items!Jc1KEmU0iN7Ul8dZ"
+}

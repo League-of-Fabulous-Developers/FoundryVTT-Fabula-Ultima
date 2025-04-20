@@ -13,7 +13,7 @@
     },
     "featureType": "projectfu.dance",
     "data": {
-      "description": "<p>You immediately recover from a single status effect of your choice.</p><hr><ul><li><p><strong>You Lose:</strong> @LOSS[10 mp]</p></li></ul>",
+      "description": "<p>You immediately recover from a single status effect of your choice.</p><hr><ul><li><p><strong>You Spend:</strong> @LOSS[10 mp]</p></li></ul>",
       "duration": "instant"
     },
     "source": "FUHF144",
@@ -34,8 +34,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710175902626,
-    "modifiedTime": 1742745233498,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744507468176,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

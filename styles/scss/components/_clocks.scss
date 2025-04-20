@@ -115,6 +115,7 @@
 	background-color: $color-secondary;
 }
 
+.clock-m,
 .growth-clock {
 	display: grid;
 	grid-template-areas: 'clock name name' 'clock minus plus';

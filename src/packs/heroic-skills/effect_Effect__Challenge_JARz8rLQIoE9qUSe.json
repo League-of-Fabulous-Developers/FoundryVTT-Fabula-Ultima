@@ -1,0 +1,80 @@
+{
+  "folder": "5kSHxgDcJ4VNObCO",
+  "name": "Effect: Challenge",
+  "type": "effect",
+  "_id": "JARz8rLQIoE9qUSe",
+  "img": "icons/equipment/shield/heater-steel-sword-yellow-black.webp",
+  "system": {
+    "fuid": "effect-challenge",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "icons/equipment/shield/heater-steel-sword-yellow-black.webp",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Challenge",
+      "_id": "sAD08O1qJwmZotpo",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "endOfTurn",
+          "interval": 2,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [],
+      "description": "<p><span class=\"fontstyle0\">When you use the </span><span class=\"fontstyle2\">@UUID[Compendium.projectfu.skills.Item.7jWycVYFgZ1BMxch]{Bone Crusher} </span><span class=\"fontstyle0\">Skill, if your attack targets </span><span class=\"fontstyle2\"><strong>only one creature</strong> </span><span class=\"fontstyle0\">and you have a </span><span class=\"fontstyle2\"><strong>shield</strong> </span><span class=\"fontstyle0\">equipped, you may </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">that creature until the end of your next turn. The </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">also ends if that creature is </span><span class=\"fontstyle2\">challenged </span><span class=\"fontstyle0\">by someone else, or if you </span><span class=\"fontstyle2\"><strong>challenge</strong> </span><span class=\"fontstyle0\">another creature.</span></p><p><span class=\"fontstyle0\">The creature you are </span><span class=\"fontstyle2\"><strong>challenging</strong> </span><span class=\"fontstyle0\">must include you among the targets of their attacks and offensive spells ( </span><span class=\"fontstyle3\">@ICON[offensive] </span><span class=\"fontstyle0\">), if able; additionally, once per turn (including other creatures' turns), when you deal damage to the creature you are </span><span class=\"fontstyle2\"><strong>challenging</strong> </span><span class=\"fontstyle0\">with a </span><span class=\"fontstyle2\"><strong>free attack</strong> </span><span class=\"fontstyle0\">using a </span><span class=\"fontstyle2\"><strong>one-handed melee</strong> </span><span class=\"fontstyle0\">weapon or a </span><span class=\"fontstyle2\"><strong>custom weapon</strong> </span><span class=\"fontstyle0\">belonging to the </span><span class=\"fontstyle2\"><strong>dagger</strong> </span><span class=\"fontstyle0\">or </span><span class=\"fontstyle2\"><strong>sword</strong> </span><span class=\"fontstyle0\">Category, you may deal 5 extra damage to that creature.</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744244125709,
+        "modifiedTime": 1744244273165,
+        "lastModifiedBy": "uG2TkwmswfdRqaAv"
+      },
+      "_key": "!items.effects!JARz8rLQIoE9qUSe.sAD08O1qJwmZotpo"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "uG2TkwmswfdRqaAv": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744244108165,
+    "modifiedTime": 1744244116038,
+    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+  },
+  "_key": "!items!JARz8rLQIoE9qUSe"
+}

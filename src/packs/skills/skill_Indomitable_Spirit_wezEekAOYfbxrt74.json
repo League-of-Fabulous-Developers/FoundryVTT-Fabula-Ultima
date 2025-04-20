@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you spend one or more Fabula Points, you get an additional benefit — choose one option: you recover <strong>【SL × 5】</strong> Hit Points; <strong>or</strong> you recover <strong>【SL × 5】</strong> Mind Points; or you recover from a single status effect of your choice.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[5*$sl hp] <strong>or</strong> @GAIN[5*$sl mp]</p></li></ul>",
+    "description": "<p>When you spend one or more Fabula Points, you get an additional benefit — choose one option: you recover <strong>【SL × 5】</strong> Hit Points; <strong>or</strong> you recover <strong>【SL × 5】</strong> Mind Points; or you recover from a single status effect of your choice.</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[5*$sl hp]{SL × 5 HP}, or @GAIN[5*$sl mp]{SL × 5 MP}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -136,8 +136,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706502402161,
-    "modifiedTime": 1741977291919,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744517688604,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

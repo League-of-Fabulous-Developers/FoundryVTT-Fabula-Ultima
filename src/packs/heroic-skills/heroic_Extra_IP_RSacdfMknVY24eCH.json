@@ -109,7 +109,7 @@
         "startTurn": null
       },
       "disabled": false,
-      "name": "Heroic: Extra IP",
+      "name": "Extra IP",
       "_id": "n53BCw7AN0raKFxE",
       "changes": [
         {
@@ -119,7 +119,7 @@
           "priority": null
         }
       ],
-      "description": "",
+      "description": "<p>Permanently increase your maximum Inventory Points by 4.</p>",
       "transfer": true,
       "statuses": [],
       "flags": {
@@ -135,7 +135,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1743125674791,
+        "modifiedTime": 1743595395234,
         "lastModifiedBy": "uG2TkwmswfdRqaAv",
         "compendiumSource": null,
         "duplicateSource": null

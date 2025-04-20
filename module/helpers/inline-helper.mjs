@@ -9,12 +9,14 @@ import { Expressions } from '../expressions/expressions.mjs';
  * @property {String} name
  * @property {String} itemUuid
  * @property {String} actorUuid
+ * @property {String} effectUuid
  */
 export class InlineSourceInfo {
-	constructor(name, actorUuid, itemUuid) {
+	constructor(name, actorUuid, itemUuid, effectUuid) {
 		this.name = name;
 		this.actorUuid = actorUuid;
 		this.itemUuid = itemUuid;
+		this.effectUuid = effectUuid;
 	}
 
 	/**
@@ -73,6 +75,16 @@ export class InlineSourceInfo {
 	}
 
 	/**
+	 * @returns {FUActiveEffect|null}
+	 */
+	resolveEffect() {
+		if (this.effectUuid) {
+			return fromUuidSync(this.effectUuid);
+		}
+		return null;
+	}
+
+	/**
 	 * @returns {FUActor|FUItem}
 	 */
 	resolve() {
@@ -83,6 +95,30 @@ export class InlineSourceInfo {
 			return fromUuidSync(this.itemUuid);
 		}
 		return null;
+	}
+
+	/**
+	 * @returns {String} The uuid of the item, or the actor
+	 */
+	get uuid() {
+		if (this.itemUuid) {
+			return this.itemUuid;
+		}
+		return this.actorUuid;
+	}
+
+	/**
+	 * @returns {Boolean}
+	 */
+	get hasEffect() {
+		return !!this.effectUuid;
+	}
+
+	/**
+	 * @returns {Boolean}
+	 */
+	get hasItem() {
+		return !!this.itemUuid;
 	}
 
 	static none = Object.freeze(new InlineSourceInfo('Unknown'));
@@ -98,27 +134,38 @@ function determineSource(document, element) {
 	let name = game.i18n.localize('FU.UnknownDamageSource');
 	let itemUuid = null;
 	let actorUuid = null;
+	let effectUuid = null;
 
-	// Happens when clicked from the actor window
+	// ACTOR SHEET
 	if (document instanceof FUActor) {
 		actorUuid = document.uuid;
 		console.debug(`Determining source document as Actor ${actorUuid}`);
 		const itemId = $(element).closest('[data-item-id]').data('itemId');
 		if (itemId) {
 			let item = document.items.get(itemId);
-			itemUuid = itemId;
+			itemUuid = item.uuid;
 			name = item.name;
 		} else {
 			name = document.name;
 		}
-	} else if (document instanceof FUItem) {
+		const effectId = $(element).closest('[data-effect-id]').data('effectId');
+		if (effectId) {
+			const effect = document.effects.get(effectId);
+			if (effect) {
+				effectUuid = effect.uuid;
+			}
+		}
+	} // ITEM SHEET
+	else if (document instanceof FUItem) {
 		name = document.name;
 		itemUuid = document.uuid;
 		if (document.isEmbedded) {
 			actorUuid = document.parent.uuid;
 		}
 		console.debug(`Determining source document as Item ${itemUuid}`);
-	} else if (document instanceof ChatMessage) {
+	}
+	// CHAT MESSAGE
+	else if (document instanceof ChatMessage) {
 		const speakerActor = ChatMessage.getSpeakerActor(document.speaker);
 		if (speakerActor) {
 			actorUuid = speakerActor.uuid;
@@ -128,15 +175,22 @@ function determineSource(document, element) {
 		if (check) {
 			itemUuid = check.itemUuid;
 		} else {
-			let item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
-			if (item instanceof FUItem) {
+			// No need to check 'instanceof FUItem;
+			const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
+			if (item) {
 				name = item.name;
 				itemUuid = item.uuid;
 			}
+			// Could come from an effect
+			const effect = document.getFlag(SYSTEM, Flags.ChatMessage.Effect);
+			if (effect) {
+				effectUuid = effect;
+			}
 		}
+
 		console.debug(`Determining source document as ChatMessage ${name}`);
 	}
-	return new InlineSourceInfo(name, actorUuid, itemUuid);
+	return new InlineSourceInfo(name, actorUuid, itemUuid, effectUuid);
 }
 
 /**
@@ -195,21 +249,69 @@ function capitalize(word) {
 	return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }
 
-function registerEnricher(enricher, activateListeners, onDropActor) {
+function registerEnricher(enricher, activateListeners, onDropActor = undefined) {
 	CONFIG.TextEditor.enrichers.push(enricher);
 	Hooks.on('renderChatMessage', activateListeners);
 	Hooks.on('renderApplication', activateListeners);
 	Hooks.on('renderActorSheet', activateListeners);
 	Hooks.on('renderItemSheet', activateListeners);
-	Hooks.on('dropActorSheetData', onDropActor);
+	if (onDropActor) {
+		Hooks.on('dropActorSheetData', onDropActor);
+	}
+}
+
+function appendImageToAnchor(anchor, path) {
+	const img = document.createElement('img');
+	img.src = path;
+	img.width = 16;
+	img.height = 16;
+	img.style.marginLeft = img.style.marginRight = '2px';
+	anchor.append(img);
+}
+
+/**
+ * @param {String} name The name of the command
+ * @param {String} required
+ * @param {String[]|null} optional
+ * @returns {RegExp} A regex to be used within an enricher
+ * @remarks Expects regex sub-patterns to be already escaped
+ * @remarks Automatically adds support for the following groups: `label` (String), `traits` (String[]).
+ */
+function compose(name, required, optional = undefined) {
+	const joinedOptional = optional ? optional.join('') : '';
+	const pattern = `@${name}\\[${required}${joinedOptional}${traitsPattern}\\]${labelPattern}`;
+	return new RegExp(pattern, 'g');
+}
+
+/**
+ * @type {string} The pattern used for optional labeling
+ */
+const labelPattern = '(\\{(?<label>.*?)\\})?';
+
+/**
+ * @type {string} The pattern used for optional traits
+ */
+const traitsPattern = '(\\|(?<traits>[a-zA-Z-,]+)\\|)?';
+
+/**
+ * @param {String} identifier The name of the regex group
+ * @param key The key of the property
+ * @param value The value of the property
+ * @returns {String}
+ */
+function propertyPattern(identifier, key, value) {
+	return `(\\s+${key}:(?<${identifier}>${value}))?`;
 }
 
 export const InlineHelper = {
 	determineSource,
 	appendAmountToAnchor,
+	appendImageToAnchor,
 	appendVariableToAnchor,
 	toBase64,
 	fromBase64,
 	capitalize,
 	registerEnricher,
+	compose,
+	propertyPattern,
 };

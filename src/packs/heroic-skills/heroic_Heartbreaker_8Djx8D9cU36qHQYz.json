@@ -9,7 +9,7 @@
     "summary": {
       "value": "Sacrifice HP for massive damage."
     },
-    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Darkblade </strong>Class.</p></blockquote><p>When you hit a creature with an attack, if that attack <strong>only </strong>targeted that creature and you have a <strong>Bond </strong>towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p><p>You may use this Skill only on your turn during a conflict, and <strong>only once per turn</strong>.</p><hr /><ul><li><p><strong>Target Loses:</strong> @DMG[10 untyped], @DMG[20 untyped], or @DMG[30 untyped]</p></li></ul>",
+    "description": "<blockquote><p><strong>Requirements: </strong>you must have mastered the <strong>Darkblade </strong>Class.</p></blockquote><p>When you hit a creature with an attack, if that attack <strong>only </strong>targeted that creature and you have a <strong>Bond </strong>towards them, you may choose to spend half of your current Hit Points, rounded down. If you do, the attack deals extra damage equal to <strong>【10 multiplied by the strength of your Bond towards the target】</strong>.</p><p>You may use this Skill only on your turn during a conflict, and <strong>only once per turn</strong>.</p><hr /><ul><li><p><strong>You Lose:</strong> @LOSS[@source.level.value/2 hp]</p></li><li><p><strong>Target Loses:</strong> @DMG[10 untyped]{1 Bond: 10 Untyped}, @DMG[20 untyped]{2 Bond: 20 Untyped}, or @DMG[30 untyped]{3 Bond: 30 Untyped}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -111,7 +111,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706584345254,
-    "modifiedTime": 1743124801916,
+    "modifiedTime": 1744231589708,
     "lastModifiedBy": "uG2TkwmswfdRqaAv",
     "compendiumSource": null,
     "duplicateSource": null

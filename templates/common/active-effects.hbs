@@ -30,7 +30,7 @@
                     <li class="effect {{#if (and effect.isSuppressed (not effect.disabled))}}suppressed{{/if}}"
                         data-effect-id="{{ effect.id }}" data-type="effect">
                         <div class="flexrow">
-                            {{!-- Item Name--}}
+                            {{!-- Name--}}
                             <div class="item-name">
                                 <div class="item-name"
                                     {{~#if (and effect.isSuppressed (not effect.disabled))~}}
@@ -52,8 +52,11 @@
                                 </span>
                                     </h4>
                                 </div>
+                                {{!-- Source --}}
                                 <div class="item-lg">{{ effect.sourceName }}</div>
-                                <div class="item-lg">{{ effect.duration.name }}</div>
+                                {{!-- Duration--}}
+                                <div class="item-lg">{{effect.system.eventLabel}}</div>
+                                {{!-- Controls--}}
                                 <div class="item-m end flexrow">
                                     <a class="effect-control" data-action="toggle"
                                        title="{{localize 'FU.EffectToggle'}}">
@@ -71,6 +74,17 @@
                                        title="{{localize 'FU.EffectDelete'}}">
                                         <i class="fas fa-trash"></i>
                                     </a>
+									{{#if effect.system.rules.progress.enabled }}
+										<div class="effect-control buttons-inc">
+											<a class="decrement-button" style="color:unset" data-action="decrementProgress">-</a>
+											<span data-resource="progress">{{ effect.system.rules.progress.current }}</span>
+											{{#if (gt effect.system.rules.progress.max 0)}}
+												<span>/</span>
+												<span>{{ effect.system.rules.progress.max }}</span>
+											{{/if}}
+											<a class="increment-button" style="color:unset" data-action="incrementProgress">+</a>
+										</div>
+									{{/if}}
                                 </div>
                             </div>
                         </div>

@@ -14,7 +14,7 @@ const classInlineLoss = 'inline-loss';
  * @type {TextEditorEnricherConfig}
  */
 const inlineRecoveryEnricher = {
-	pattern: /@(?:HEAL|GAIN)\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]/gi,
+	pattern: InlineHelper.compose('(?:HEAL|GAIN)', '\\s*(?<amount>\\(?.*?\\)*?)\\s(?<type>\\w+?)'),
 	enricher: recoveryEnricher,
 };
 
@@ -22,15 +22,15 @@ const inlineRecoveryEnricher = {
  * @type {TextEditorEnricherConfig}
  */
 const inlineLossEnricher = {
-	pattern: /@LOSS\[\s*(?<amount>\(?.*?\)*?)\s(?<type>\w+?)]/gi,
+	pattern: InlineHelper.compose('LOSS', '\\s*(?<amount>\\(?.*?\\)*?)\\s(?<type>\\w+?)'),
 	enricher: lossEnricher,
 };
 
-function createReplacementElement(amount, type, elementClass, uncapped, tooltip) {
+function createReplacementElement(amount, type, elementClass, uncapped, tooltip, label) {
 	if (type in FU.resources) {
 		const anchor = document.createElement('a');
 		anchor.dataset.type = type;
-		anchor.setAttribute('data-tooltip', `${game.i18n.localize(tooltip)} (${amount})`);
+		anchor.setAttribute('data-tooltip', `${game.i18n.localize(tooltip)} (${amount} ${type})`);
 
 		// Used to enable over-healing
 		if (uncapped === true) {
@@ -38,15 +38,21 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip)
 		}
 		anchor.draggable = true;
 		anchor.classList.add('inline', elementClass);
+		anchor.dataset.label = label;
 
+		// INDICATOR
 		const indicator = document.createElement('i');
 		indicator.classList.add('indicator');
 		anchor.append(indicator);
-
-		// AMOUNT
-		InlineHelper.appendAmountToAnchor(anchor, amount);
-		// TYPE
-		anchor.append(` ${game.i18n.localize(FU.resourcesAbbr[type])}`);
+		if (label) {
+			anchor.append(label);
+			anchor.dataset.amount = amount;
+		} else {
+			// AMOUNT
+			InlineHelper.appendAmountToAnchor(anchor, amount);
+			// TYPE
+			anchor.append(` ${game.i18n.localize(FU.resourcesAbbr[type])}`);
+		}
 		// ICON
 		const icon = document.createElement('i');
 		icon.className = FU.resourceIcons[type];
@@ -69,13 +75,15 @@ function recoveryEnricher(text, options) {
 
 	const amount = text[1];
 	const type = text[2];
-	return createReplacementElement(amount, type.toLowerCase(), classInlineRecovery, uncapped, `FU.InlineRecovery`);
+	const label = text.groups.label;
+	return createReplacementElement(amount, type.toLowerCase(), classInlineRecovery, uncapped, `FU.InlineRecovery`, label);
 }
 
 function lossEnricher(text, options) {
 	const amount = text[1];
 	const type = text[2];
-	return createReplacementElement(amount, type.toLowerCase(), classInlineLoss, false, `FU.InlineLoss`);
+	const label = text.groups.label;
+	return createReplacementElement(amount, type.toLowerCase(), classInlineLoss, false, `FU.InlineLoss`, label);
 }
 
 /**
@@ -92,9 +100,10 @@ function activateListeners(document, html) {
 			let targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
+				sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
 				const type = this.dataset.type;
 				const uncapped = this.dataset.uncapped === 'true';
-				const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, targets);
+				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);
 
 				if (this.classList.contains(classInlineRecovery)) {
@@ -104,7 +113,7 @@ function activateListeners(document, html) {
 				}
 			}
 		})
-		.on('dragstart', function (event) {
+		.on('dragstart', async function (event) {
 			/** @type DragEvent */
 			event = event.originalEvent;
 			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
@@ -112,6 +121,8 @@ function activateListeners(document, html) {
 			}
 
 			const sourceInfo = InlineHelper.determineSource(document, this);
+			sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
+
 			const data = {
 				type: this.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
 				sourceInfo: sourceInfo,
@@ -130,11 +141,13 @@ async function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInf
 	}
 
 	if (type === INLINE_RECOVERY && !Number.isNaN(amount)) {
-		const context = ExpressionContext.fromUuid(sourceInfo.actorUuid, sourceInfo.itemUuid, [actor]);
+		const context = ExpressionContext.fromSourceInfo(sourceInfo, [actor]);
 		amount = await Expressions.evaluateAsync(amount, context);
 		applyRecovery(sourceInfo, [actor], recoveryType, amount, uncapped);
 		return false;
 	} else if (type === INLINE_LOSS && !Number.isNaN(amount)) {
+		const context = ExpressionContext.fromSourceInfo(sourceInfo, [actor]);
+		amount = await Expressions.evaluateAsync(amount, context);
 		applyLoss(sourceInfo, [actor], recoveryType, amount);
 		return false;
 	}

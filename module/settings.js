@@ -1,13 +1,11 @@
-import { CombatHUD } from './ui/combat-hud.mjs';
-import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
 import { SYSTEM, FU } from './helpers/config.mjs';
+import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
+import { CombatHUD } from './ui/combat-hud.mjs';
 import { FUHooks } from './hooks.mjs';
 import { WellspringDataModel } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 
 export const SETTINGS = Object.freeze({
-	checksV2: 'checksV2',
 	experimentalCombatHud: 'experimentalCombatHud',
-	experimentalCombatTracker: 'experimentalCombatTracker',
 	metaCurrencyAutomaticallyDistributeExp: 'metaCurrencyAutomaticallyDistributeExp',
 	metaCurrencyAutomation: 'metaCurrencyAutomation',
 	metaCurrencyBaseExperience: 'metaCurrencyBaseExperience',
@@ -34,6 +32,9 @@ export const SETTINGS = Object.freeze({
 	optionCombatHudShowNPCTurnsLeftMode: 'optionCombatHudShowNPCTurnsLeftMode',
 	optionCombatHudShowOrderNumbers: 'optionCombatHudShowOrderNumbers',
 	optionCombatHudTheme: 'optionCombatHudTheme',
+	optionCombatHudTurnIconsActive: 'optionCombatHudTurnIconsActive',
+	optionCombatHudTurnIconsOutOfTurns: 'optionCombatHudTurnIconsOutOfTurns',
+	optionCombatHudTurnIconsTurnsLeftHidden: 'optionCombatHudTurnIconsTurnsLeftHidden',
 	optionCombatHudTrackedResource1: 'optionCombatHudTrackedResource1',
 	optionCombatHudTrackedResource2: 'optionCombatHudTrackedResource2',
 	optionCombatHudTrackedResource3: 'optionCombatHudTrackedResource3',
@@ -57,8 +58,18 @@ export const SETTINGS = Object.freeze({
 	showAssociatedTherioforms: 'showAssociatedTherioforms',
 	useRevisedStudyRule: 'useRevisedStudyRule',
 	activeWellsprings: 'activeWellsprings',
+	// Automation
+	optionAutomationManageEffects: 'optionAutomationManageEffects',
+	optionAutomationRemoveExpiredEffects: 'optionAutomationRemoveExpiredEffects',
+	optionAutomationEffectsReminder: 'optionAutomationEffectsReminder',
+	// Party
+	activeParty: 'optionActiveParty',
 });
 
+/**
+ * @description Uses {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#registerMenu}
+ * @returns {Promise<void>}
+ */
 export const registerSystemSettings = async function () {
 	game.settings.registerMenu(SYSTEM, 'myChatMessageOptions', {
 		name: game.i18n.localize('FU.ChatMessageOptions'),
@@ -187,14 +198,18 @@ export const registerSystemSettings = async function () {
 		default: false,
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.experimentalCombatTracker, {
-		name: game.i18n.localize('FU.ExperimentalCombatTracker'),
-		hint: game.i18n.localize('FU.ExperimentalCombatTrackerHint'),
-		scope: 'world',
+	// Party
+	game.settings.register(SYSTEM, SETTINGS.activeParty, {
+		name: game.i18n.localize('FU.ActiveParty'),
+		hint: game.i18n.localize('FU.ActivePartyHint'),
+		icon: 'fas fa fa-users',
 		config: true,
-		type: Boolean,
-		default: true,
-		requiresReload: true,
+		scope: 'world',
+		type: new foundry.data.fields.ForeignDocumentField(Actor, {
+			nullable: true,
+			blank: true,
+		}),
+		restricted: true,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {
@@ -568,14 +583,6 @@ export const registerSystemSettings = async function () {
 		default: true,
 	});
 
-	game.settings.register(SYSTEM, SETTINGS.checksV2, {
-		name: game.i18n.localize('FU.SettingChecksV2'),
-		hint: game.i18n.localize('FU.SettingChecksV2Hint'),
-		config: true,
-		type: Boolean,
-		default: true,
-	});
-
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTheme, {
 		name: game.i18n.localize('FU.CombatHudTheme'),
 		hint: game.i18n.localize('FU.CombatHudThemeHint'),
@@ -595,6 +602,49 @@ export const registerSystemSettings = async function () {
 		type: String,
 		choices: FU.combatHudResources,
 		default: 'none',
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive, {
+		name: game.i18n.localize('FU.CombatHudTurnIconsActive'),
+		hint: game.i18n.localize('FU.CombatHudTurnIconsActiveHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'play_circle',
+		onChange: () => {
+			ui.combat.render(true);
+			CombatHUD.update();
+		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns, {
+		name: game.i18n.localize('FU.CombatHudTurnIconsOutOfTurns'),
+		hint: game.i18n.localize('FU.CombatHudTurnIconsOutOfTurnsHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'check_circle',
+		onChange: () => {
+			if (game.combat?.isActive) {
+				ui.combat.render(true);
+				CombatHUD.update();
+			}
+		},
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden, {
+		name: game.i18n.localize('FU.CombatHudTurnIconsTurnsLeftHidden'),
+		hint: game.i18n.localize('FU.CombatHudTurnIconsTurnsLeftHiddenHint'),
+		scope: 'world',
+		config: false,
+		type: String,
+		default: 'help',
+		onChange: () => {
+			if (game.combat?.isActive) {
+				ui.combat.render(true);
+				CombatHUD.update();
+			}
+		},
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode, {
@@ -625,6 +675,33 @@ export const registerSystemSettings = async function () {
 					wellsprings: newValue,
 				},
 			]),
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAutomationManageEffects, {
+		name: game.i18n.localize('FU.AutomationManageEffects'),
+		hint: game.i18n.localize('FU.AutomationManageEffectsHint'),
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAutomationEffectsReminder, {
+		name: game.i18n.localize('FU.AutomationEffectsReminder'),
+		hint: game.i18n.localize('FU.AutomationEffectsReminderHint'),
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: true,
+	});
+
+	game.settings.register(SYSTEM, SETTINGS.optionAutomationRemoveExpiredEffects, {
+		name: game.i18n.localize('FU.AutomationRemoveExpiredEffects'),
+		hint: game.i18n.localize('FU.AutomationRemoveExpiredEffectsHint'),
+		scope: 'world',
+		config: true,
+		type: Boolean,
+		default: false,
 	});
 };
 
@@ -709,11 +786,25 @@ class BehaviorRollsConfig extends FormApplication {
 class CombatHudSettings extends FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
+			classes: ['projectfu'],
 			template: 'systems/projectfu/templates/system/settings/combat-hud.hbs',
+			id: 'combat-hud-settings',
+			width: 600,
 		});
 	}
 
+	activateListeners(html) {
+		html.find('.mats-icon-picker').on('change', (event) => {
+			event.preventDefault();
+			const picker = $(event.target);
+			$(picker).find('+ .mats-o').text($(picker).val());
+		});
+		return super.activateListeners(html);
+	}
+
 	getData() {
+		const materialSymbolsLabel = game.i18n.localize('FU.CombatHudTurnIconsGoogleMaterialSymbolsLabel');
+		const materialSymbolsLink = `<a href="https://fonts.google.com/icons" target="_blank">${materialSymbolsLabel}</a>`;
 		return {
 			experimentalCombatHud: game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud),
 			optionCombatHudOpacity: game.settings.get(SYSTEM, SETTINGS.optionCombatHudOpacity),
@@ -735,6 +826,9 @@ class CombatHudSettings extends FormApplication {
 			optionCombatHudTrackedResource2: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource2),
 			optionCombatHudTrackedResource3: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource3),
 			optionCombatHudTrackedResource4: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTrackedResource4),
+			optionCombatHudTurnIconsActive: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive),
+			optionCombatHudTurnIconsOutOfTurns: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns),
+			optionCombatHudTurnIconsTurnsLeftHidden: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden),
 			trackedResources: FU.combatHudResources,
 			optionCombatHudTheme: game.settings.get(SYSTEM, SETTINGS.optionCombatHudTheme),
 			optionCombatHudThemeOptions: FU.combatHudThemes,
@@ -744,6 +838,7 @@ class CombatHudSettings extends FormApplication {
 				always: 'FU.CombatHudShowNPCTurnsLeftModeAlways',
 				'only-studied': 'FU.CombatHudShowNPCTurnsLeftModeOnlyStudied',
 			},
+			combatHudTurnIconsHint: new Handlebars.SafeString(game.i18n.format('FU.CombatHudTurnIconsHint', { materialSymbolsLink: materialSymbolsLink })),
 		};
 	}
 
@@ -765,6 +860,9 @@ class CombatHudSettings extends FormApplication {
 				optionCombatHudTrackedResource2,
 				optionCombatHudTrackedResource3,
 				optionCombatHudTrackedResource4,
+				optionCombatHudTurnIconsActive,
+				optionCombatHudTurnIconsOutOfTurns,
+				optionCombatHudTurnIconsTurnsLeftHidden,
 				optionCombatHudTheme,
 				optionCombatHudShowNPCTurnsLeftMode,
 			} = foundry.utils.expandObject(formData);
@@ -786,6 +884,9 @@ class CombatHudSettings extends FormApplication {
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTrackedResource4, optionCombatHudTrackedResource4);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTheme, optionCombatHudTheme);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowNPCTurnsLeftMode, optionCombatHudShowNPCTurnsLeftMode);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsActive, optionCombatHudTurnIconsActive);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsOutOfTurns, optionCombatHudTurnIconsOutOfTurns);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudTurnIconsTurnsLeftHidden, optionCombatHudTurnIconsTurnsLeftHidden);
 		} else {
 			const {
 				experimentalCombatHud,
@@ -810,18 +911,6 @@ class CombatHudSettings extends FormApplication {
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeDuration, optionCombatHudEffectsMarqueeDuration);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudEffectsMarqueeMode, optionCombatHudEffectsMarqueeMode);
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, optionCombatHudShowOrderNumbers);
-		}
-
-		const isCustomTrackerActive = game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker);
-		if (!isCustomTrackerActive && formData.experimentalCombatHud) {
-			const enableTracker = await Dialog.confirm({
-				title: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerTitle'),
-				content: game.i18n.localize('FU.ExperimentalCombatHudWarningNoCombatTrackerContent'),
-			});
-
-			if (enableTracker) {
-				game.settings.set(SYSTEM, SETTINGS.experimentalCombatTracker, true);
-			}
 		}
 
 		await SettingsConfig.reloadConfirm({ world: game.user.isGM });

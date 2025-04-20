@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may have each of those allies recover an amount of Hit Points equal to <strong>【SL, multiplied by the number of Bonds you have】</strong>.</p><p>This healing is separate from any healing caused by the effects of the spell.</p><hr /><table><tbody><tr><td><p>Additional HP regained...</p></td><td><p><strong>Skill Level 1</strong></p></td><td><p><strong>Skill Level 2</strong></p></td></tr><tr><td><p><strong>One Bond</strong></p></td><td><p><strong>@GAIN[1 hp]</strong></p></td><td><p><strong>@GAIN[2 hp]</strong></p></td></tr><tr><td><p><strong>Two Bonds</strong></p></td><td><p><strong>@GAIN[2 hp]</strong></p></td><td><p><strong>@GAIN[4 hp]</strong></p></td></tr><tr><td><p><strong>Three Bonds</strong></p></td><td><p><strong>@GAIN[3 hp]</strong></p></td><td><p><strong>@GAIN[6 hp]</strong></p></td></tr><tr><td><p><strong>Four Bonds</strong></p></td><td><p><strong>@GAIN[4 hp]</strong></p></td><td><p><strong>@GAIN[8 hp]</strong></p></td></tr><tr><td><p><strong>Five Bonds</strong></p></td><td><p><strong>@GAIN[5 hp]</strong></p></td><td><p><strong>@GAIN[10 hp]</strong></p></td></tr><tr><td><p><strong>Six Bonds</strong></p></td><td><p><strong>@GAIN[6 hp]</strong></p></td><td><p><strong>@GAIN[12 hp]</strong></p></td></tr></tbody></table>",
+    "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may have each of those allies recover an amount of Hit Points equal to <strong>【SL, multiplied by the number of Bonds you have】</strong>.</p><p>This healing is separate from any healing caused by the effects of the spell.</p><hr /><ul><li><p><strong>Targets Recovers:</strong> @GAIN[$sl*$bc hp]{SL × Total Bonds HP}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -137,8 +137,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706507903931,
-    "modifiedTime": 1741950932250,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744721584407,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

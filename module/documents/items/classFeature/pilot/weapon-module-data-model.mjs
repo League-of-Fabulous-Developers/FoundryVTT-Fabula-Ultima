@@ -1,10 +1,7 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FU, SYSTEM } from '../../../../helpers/config.mjs';
-import { Flags } from '../../../../helpers/flags.mjs';
-import { createCheckMessage, rollCheck } from '../../../../helpers/checks.mjs';
 import { SETTINGS } from '../../../../settings.js';
 import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
-import { AccuracyCheck } from '../../../../checks/accuracy-check.mjs';
 import { CheckConfiguration } from '../../../../checks/check-configuration.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
@@ -35,18 +32,14 @@ const prepareCheck = (check, actor, item, registerCallback) => {
 			});
 		}
 
-		const configurer = AccuracyCheck.configure(check).setDamage(module.damage.type, module.damage.bonus).addModelAccuracyBonuses(module, actor).setTargetedDefense(module.accuracy.defense).setDamageOverride(actor, 'attack');
-
-		const category = module.category;
-
-		const attackTypeBonus = actor.system.bonuses.damage[module.type] ?? 0;
-		if (attackTypeBonus) {
-			configurer.addDamageBonus(`FU.DamageBonusType${item.system.type.value.capitalize()}`, attackTypeBonus);
-		}
-		const weaponCategoryBonus = actor.system.bonuses.damage[category] ?? 0;
-		if (weaponCategoryBonus) {
-			configurer.addDamageBonus(`FU.DamageBonusCategory${item.system.category.value.capitalize()}`, weaponCategoryBonus);
-		}
+		const configurer = CheckConfiguration.configure(check);
+		configurer.setDamage(module.damage.type, module.damage.bonus);
+		configurer.setWeaponTraits({
+			weaponType: module.type,
+			weaponCategory: module.category,
+		});
+		configurer.setTargetedDefense(module.accuracy.defense);
+		configurer.setDamageOverride(actor, 'attack');
 	}
 };
 
@@ -159,11 +152,7 @@ export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
 	 * @override
 	 */
 	static roll(model, item, hrZero) {
-		if (game.settings.get(SYSTEM, SETTINGS.checksV2)) {
-			WeaponModuleDataModel.#rollChecksV2(model, item, hrZero);
-		} else {
-			WeaponModuleDataModel.#rollCheckLegacy(model, item, hrZero);
-		}
+		WeaponModuleDataModel.#rollChecksV2(model, item, hrZero);
 	}
 
 	static #rollChecksV2(model, item, hrZero) {
@@ -172,60 +161,6 @@ export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
 		} else {
 			ChecksV2.accuracyCheck(item.actor, item, CheckConfiguration.initHrZero(hrZero));
 		}
-	}
-
-	static async #rollCheckLegacy(model, item, hrZero) {
-		if (model.isShield) {
-			return;
-		}
-
-		const actor = item.actor;
-		if (!actor) {
-			return;
-		}
-
-		const { accuracyCheck: globalAccuracyBonus = 0, [model.category]: categoryAccuracyBonus = 0 } = actor.system.bonuses.accuracy;
-
-		const checkData = {
-			attr1: {
-				attribute: model.accuracy.attr1,
-				dice: actor.system.attributes[model.accuracy.attr1].current,
-			},
-			attr2: {
-				attribute: model.accuracy.attr2,
-				dice: actor.system.attributes[model.accuracy.attr2].current,
-			},
-			modifier: model.accuracy.modifier,
-			bonus: globalAccuracyBonus + categoryAccuracyBonus,
-		};
-
-		const checkWeapon = {
-			_type: 'weapon',
-			name: item.name,
-			img: item.img,
-			id: item.id,
-			category: model.category,
-			hands: 'one-handed',
-			quality: model.quality,
-			type: model.type,
-			defense: 'def',
-			summary: item.system.summary.value,
-			description: await TextEditor.enrichHTML(model.description),
-		};
-
-		const { [model.type]: typeDamageBonus = 0, [model.category]: categoryDamageBonus = 0 } = actor.system.bonuses.damage;
-
-		const checkDamage = {
-			type: model.damage.type,
-			bonus: model.damage.bonus + typeDamageBonus + categoryDamageBonus,
-			hrZero,
-		};
-
-		return rollCheck({
-			check: checkData,
-			details: checkWeapon,
-			damage: checkDamage,
-		}).then((value) => createCheckMessage(value, { [SYSTEM]: { [Flags.ChatMessage.Item]: item } }));
 	}
 
 	get isShield() {

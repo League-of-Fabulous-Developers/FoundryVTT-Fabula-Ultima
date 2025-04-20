@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You weave magical energy and protect the targets from the fury of the elements. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, each target gains Resistance against the chosen damage type.</p><hr /><ul><li><p><strong>Targets Receive: </strong>@UUID[Compendium.projectfu.actor-effects.3tMyw1mCjd7SfGTD]{Air Resistance}, @UUID[Compendium.projectfu.actor-effects.QrEztsujMpK33cpj]{Bolt Resistance}, @UUID[Compendium.projectfu.actor-effects.H3SJ1fej3GSyHdKG]{Earth Resistance}, @UUID[Compendium.projectfu.actor-effects.FAfKTXxluiqIVP5t]{Fire Resistance},  or @UUID[Compendium.projectfu.actor-effects.SWdZeuJTEq1ig6S8]{Ice Resistance}</p></li></ul>",
+    "description": "<p>You weave magical energy and protect the targets from the fury of the elements. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, each target gains Resistance against the chosen damage type.</p><hr /><ul><li><p><strong>Targets Receive: </strong>@TYPE[affinity air resistance e:eos i:1 t:source], @TYPE[affinity bolt resistance e:eos i:1 t:source], @TYPE[affinity earth resistance e:eos i:1 t:source], @TYPE[affinity fire resistance e:eos i:1 t:source], or @TYPE[affinity ice resistance e:eos i:1 t:source]</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -121,7 +121,56 @@
     },
     "fuid": "elemental-shroud"
   },
-  "effects": [],
+  "effects": [
+    {
+      "img": "icons/svg/aura.svg",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "New Effect",
+      "_id": "UoVOjGfeHuyAekG1",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744471813169,
+        "modifiedTime": 1744471813169,
+        "lastModifiedBy": "WNNELbIcUepK9pGq"
+      },
+      "_key": "!items.effects!jyakaYH34Wp0AlVZ.UoVOjGfeHuyAekG1"
+    }
+  ],
   "ownership": {
     "default": 2,
     "hYECXwi6O8UUBuN4": 3,
@@ -149,8 +198,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706564403943,
-    "modifiedTime": 1742702766136,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1744476523007,
+    "lastModifiedBy": "WNNELbIcUepK9pGq",
     "compendiumSource": null,
     "duplicateSource": null
   },

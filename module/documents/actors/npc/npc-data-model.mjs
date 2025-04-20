@@ -2,7 +2,7 @@ import { FU } from '../../../helpers/config.mjs';
 import { NpcMigrations } from './npc-migrations.mjs';
 import { AffinitiesDataModel } from '../common/affinities-data-model.mjs';
 import { AttributesDataModel } from '../common/attributes-data-model.mjs';
-import { BonusesDataModel } from '../common/bonuses-data-model.mjs';
+import { BonusesDataModel, MultipliersDataModel } from '../common/bonuses-data-model.mjs';
 import { ImmunitiesDataModel } from '../common/immunities-data-model.mjs';
 import { NpcSkillTracker } from './npc-skill-tracker.mjs';
 import { EquipDataModel } from '../common/equip-data-model.mjs';
@@ -61,7 +61,7 @@ Hooks.on('preUpdateActor', async (document, changed) => {
  * @property {"", "minor", "major", "supreme"} villain.value
  * @property {number} phases.value
  * @property {string} multipart.value
- * @property {"soldier", "elite", "champion", "companion"} rank.value
+ * @property {"soldier", "elite", "champion", "companion", "custom"} rank.value
  * @property {RoleType} role.value
  * @property {number} rank.replacedSoldiers
  * @property {number} companion.playerLevel
@@ -74,7 +74,7 @@ Hooks.on('preUpdateActor', async (document, changed) => {
  */
 export class NpcDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		const { SchemaField, NumberField, StringField, BooleanField, HTMLField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, NumberField, StringField, BooleanField, HTMLField, EmbeddedDataField, ForeignDocumentField, DocumentUUIDField } = foundry.data.fields;
 		return {
 			level: new SchemaField({ value: new NumberField({ initial: 5, min: 5, max: 60, integer: true, nullable: false }) }),
 			resources: new SchemaField({
@@ -94,6 +94,7 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			derived: new EmbeddedDataField(DerivedValuesDataModel, {}),
 			equipped: new EmbeddedDataField(EquipDataModel, {}),
 			bonuses: new EmbeddedDataField(BonusesDataModel, {}),
+			multipliers: new EmbeddedDataField(MultipliersDataModel, {}),
 			immunities: new EmbeddedDataField(ImmunitiesDataModel, {}),
 			traits: new SchemaField({ value: new StringField({ initial: '' }) }),
 			species: new SchemaField({ value: new StringField({ initial: 'beast', choices: Object.keys(FU.species) }) }),
@@ -107,9 +108,9 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			role: new SchemaField({
 				value: new StringField({ initial: 'custom', choices: Object.keys(FU.role) }),
 			}),
-			companion: new SchemaField({
-				playerLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
-				skillLevel: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }),
+			references: new SchemaField({
+				actor: new ForeignDocumentField(Actor, { nullable: true }),
+				skill: new DocumentUUIDField({ nullable: true, fieldType: 'Item' }),
 			}),
 			useEquipment: new SchemaField({ value: new BooleanField({ initial: false }) }),
 			study: new SchemaField({ value: new NumberField({ initial: 0, min: 0, max: 3, integer: true, nullable: false }) }),
@@ -145,6 +146,9 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 		if (this.rank.value === 'elite') {
 			this.rank.replacedSoldiers = 2;
 		}
+		if (this.rank.value === 'custom') {
+			this.rank.replacedSoldiers = 0;
+		}
 	}
 
 	prepareDerivedData() {
@@ -166,8 +170,15 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			enumerable: true,
 			get() {
 				if (data.rank.value === 'companion') {
-					// Companion calculation
-					return Math.floor(data.attributes.mig.base * data.companion.skillLevel) + Math.floor(data.companion.playerLevel / 2 + data.resources.hp.bonus);
+					const refActor = data.references.actor;
+					const refSkill = data.references.skill ? fromUuidSync(data.references.skill) : null;
+					const skillLevel = refSkill?.system?.level?.value ?? 0;
+					const maxHP = Math.floor(skillLevel * data.attributes.mig.base + (refActor?.system?.level.value ? refActor.system.level.value / 2 : 0) + (data.resources.hp.bonus ?? 0));
+					return maxHP;
+				}
+				if (data.rank.value === 'custom') {
+					const maxHP = Math.floor(data.resources.hp.bonus);
+					return maxHP;
 				}
 				// Default calculation
 				const hpMultiplier = data.rank.replacedSoldiers;
@@ -185,6 +196,10 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 			enumerable: true,
 			get() {
 				const mpMultiplier = data.rank.value === 'champion' ? 2 : 1;
+				if (data.rank.value === 'custom') {
+					const maxMP = Math.floor(data.resources.mp.bonus);
+					return maxMP;
+				}
 				return (data.attributes.wlp.base * 5 + data.level.value + data.resources.mp.bonus) * mpMultiplier;
 			},
 			set(newValue) {

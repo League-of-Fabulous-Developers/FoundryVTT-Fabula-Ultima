@@ -6,6 +6,7 @@ import { FU } from '../helpers/config.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { ConsumableDataModel } from '../documents/items/consumable/consumable-data-model.mjs';
+import { TokenUtils } from '../helpers/token-utils.mjs';
 
 /**
  * @param {CheckRenderData} sections
@@ -30,6 +31,27 @@ const description = (sections, description, summary, order, open = true) => {
 };
 
 /**
+ * A description section with customizable title and without summary.
+ * @param {CheckRenderData} sections
+ * @param {string} title
+ * @param {string} description
+ * @param {number} [order]
+ * @param {Boolean} open Defaults to true
+ */
+const collapsibleDescription = (sections, title, description, order, open = true) => {
+	sections.push(async () => ({
+		partial: 'systems/projectfu/templates/chat/partials/chat-collapsible-description.hbs',
+		data: {
+			title,
+			//The open attribute needs to be present without a value to be considered true.
+			open: open ? 'open' : '',
+			description: await TextEditor.enrichHTML(description),
+		},
+		order,
+	}));
+};
+
+/**
  * @param {CheckRenderData} sections
  * @param {ProgressDataModel} clock
  * @param {number} [order]
@@ -39,7 +61,7 @@ const clock = (sections, clock, order) => {
 		partial: 'systems/projectfu/templates/chat/partials/chat-clock-details.hbs',
 		data: {
 			data: clock,
-			arr: clock.generateProgressArray(),
+			arr: clock.progressArray,
 		},
 		order: order,
 	}));
@@ -62,6 +84,29 @@ const clock = (sections, clock, order) => {
  */
 const tags = (sections, tags = [], order) => {
 	tags = tags.filter((tag) => !('show' in tag) || tag.show);
+	if (tags.length > 0) {
+		sections.push(async () => ({
+			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
+			data: {
+				tags: tags,
+			},
+			order: order,
+		}));
+	}
+};
+
+/**
+ * @param {CheckRenderData} sections
+ * @param {Set<String>} traits
+ * @param {number} [order]
+ */
+const traits = (sections, traits = [], order) => {
+	const tags = [...traits].map((trait) => ({
+		tag: `FU.${trait}`,
+		separator: '',
+		value: '',
+		show: true,
+	}));
 	if (tags.length > 0) {
 		sections.push(async () => ({
 			partial: 'systems/projectfu/templates/chat/partials/chat-item-tags.hbs',
@@ -222,7 +267,7 @@ const targeted = (sections, actor, item, targets, flags, accuracyData = undefine
 async function showFloatyText(targetData, localizedText) {
 	const actor = await fromUuid(targetData.uuid);
 	if (actor instanceof FUActor) {
-		actor.showFloatyText(game.i18n.localize(localizedText));
+		TokenUtils.showFloatyText(actor, game.i18n.localize(localizedText));
 	}
 }
 
@@ -272,14 +317,16 @@ const spendResource = (sections, actor, item, targets, flags, expense = undefine
 	}
 };
 
-export const CommonSections = Object.freeze({
+export const CommonSections = {
 	description,
+	collapsibleDescription,
 	clock,
 	tags,
+	traits,
 	quality,
 	resource,
 	itemFlavor,
 	opportunity,
 	targeted,
 	spendResource,
-});
+};

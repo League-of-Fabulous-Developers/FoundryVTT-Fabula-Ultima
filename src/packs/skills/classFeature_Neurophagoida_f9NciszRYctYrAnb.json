@@ -1,5 +1,5 @@
 {
-  "folder": "6hLDMWrdgLLCVK8G",
+  "folder": "5QBQvcD8cm6ReC2o",
   "name": "Neurophagoida",
   "type": "classFeature",
   "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
@@ -12,7 +12,7 @@
     },
     "featureType": "projectfu.therioform",
     "data": {
-      "description": "<p>When you use the <strong>Biophagy</strong> Skill, you also recover an amount of Mind Points equal to <strong>【4 + (your Skill Level in Theriomorphosis)】</strong>.</p><hr><ul><li><p><strong>You Recover:</strong> @GAIN[4+&sl('theriomorphosis') mp]</p></li></ul>"
+      "description": "<p>When you use the @UUID[Compendium.projectfu.skills.Item.kpg23Fs85uniba2A]{Biophagy} Skill, you also recover an amount of Mind Points equal to <strong>【4 + (your Skill Level in Theriomorphosis)】</strong>.</p><hr><ul><li><p><strong>You Recover:</strong> @GAIN[4+&sl('theriomorphosis') mp]{4 + (SL in Theriomorphosis) MP}</p></li></ul>"
     },
     "source": "FUTF156",
     "fuid": "neurophagoida"
@@ -31,12 +31,12 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711428338643,
-    "modifiedTime": 1743112064892,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1745170447051,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },
   "_id": "f9NciszRYctYrAnb",
-  "sort": 0,
+  "sort": 112500,
   "_key": "!items!f9NciszRYctYrAnb"
 }

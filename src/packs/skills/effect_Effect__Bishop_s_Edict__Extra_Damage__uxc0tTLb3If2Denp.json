@@ -1,0 +1,87 @@
+{
+  "folder": "VIkMulwyAc8dw5pH",
+  "name": "Effect: Bishop's Edict (Extra Damage)",
+  "type": "effect",
+  "_id": "uxc0tTLb3If2Denp",
+  "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_bishops_edict.png",
+  "system": {
+    "fuid": "effect-bishops-edict",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/compendium/classes/commander/commander_bishops_edict.png",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Effect: Bishop's Edict (Extra Damage)",
+      "_id": "JzMDbxLQ1uT85e7C",
+      "type": "base",
+      "system": {
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "source",
+          "remaining": 1
+        },
+        "stack": 1
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.incomingDamage.all",
+          "mode": 2,
+          "value": "~&sl(\"bishops-edict\")*3",
+          "priority": null
+        }
+      ],
+      "description": "<p>All sources of damage deal <strong>【SL × 3】</strong> extra damage. The chosen effect lasts until the start of your next turn.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1744460652448,
+        "modifiedTime": 1744462940053,
+        "lastModifiedBy": "WNNELbIcUepK9pGq"
+      },
+      "_key": "!items.effects!uxc0tTLb3If2Denp.JzMDbxLQ1uT85e7C"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "WNNELbIcUepK9pGq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1744460630626,
+    "modifiedTime": 1744462201488,
+    "lastModifiedBy": "WNNELbIcUepK9pGq"
+  },
+  "_key": "!items!uxc0tTLb3If2Denp"
+}

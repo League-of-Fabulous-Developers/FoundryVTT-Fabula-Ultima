@@ -1,3 +1,9 @@
+/**
+ * @param {Number} value
+ * @param {Number} min
+ * @param {Number} max
+ * @returns {number}
+ */
 function clamp(value, min, max) {
 	return Math.max(min, Math.min(value, max));
 }

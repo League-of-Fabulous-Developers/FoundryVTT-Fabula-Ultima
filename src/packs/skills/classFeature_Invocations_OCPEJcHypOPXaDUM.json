@@ -21,7 +21,7 @@
         },
         "advanced": {
           "name": "Aero Hex",
-          "description": "<p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal </span><span class=\"fontstyle2\"><strong>bolt</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p><p> @EFFECT[eyJuYW1lIjoiQWVybyBIZXgiLCJpbWciOiJzeXN0ZW1zL3Byb2plY3RmdS9zdHlsZXMvc3RhdGljL2FmZmluaXRpZXMvYWlyLnN2ZyIsInR5cGUiOiJiYXNlIiwic3lzdGVtIjp7fSwiY2hhbmdlcyI6W3sia2V5Ijoic3lzdGVtLmJvbnVzZXMuaW5jb21pbmdEYW1hZ2UuYm9sdCIsIm1vZGUiOjIsInZhbHVlIjoiNSIsInByaW9yaXR5IjpudWxsfSx7ImtleSI6InN5c3RlbS5ib251c2VzLmluY29taW5nRGFtYWdlLmZpcmUiLCJtb2RlIjoyLCJ2YWx1ZSI6IjUiLCJwcmlvcml0eSI6bnVsbH1dLCJkaXNhYmxlZCI6ZmFsc2UsImR1cmF0aW9uIjp7InN0YXJ0VGltZSI6MCwic2Vjb25kcyI6bnVsbCwiY29tYmF0IjpudWxsLCJyb3VuZHMiOm51bGwsInR1cm5zIjpudWxsLCJzdGFydFJvdW5kIjpudWxsLCJzdGFydFR1cm4iOm51bGx9LCJkZXNjcmlwdGlvbiI6IiIsIm9yaWdpbiI6bnVsbCwidGludCI6IiNmZmZmZmYiLCJ0cmFuc2ZlciI6ZmFsc2UsInN0YXR1c2VzIjpbXSwic29ydCI6MCwiZmxhZ3MiOnsicHJvamVjdGZ1Ijp7InR5cGUiOiJkZWZhdWx0Iiwic291cmNlIjoiIiwiQ3Jpc2lzSW50ZXJhY3Rpb24iOiJub25lIn19LCJfc3RhdHMiOnsiY29yZVZlcnNpb24iOiIxMi4zMzEiLCJzeXN0ZW1JZCI6InByb2plY3RmdSIsInN5c3RlbVZlcnNpb24iOiIje1ZFUlNJT059IyIsImNyZWF0ZWRUaW1lIjpudWxsLCJtb2RpZmllZFRpbWUiOm51bGwsImxhc3RNb2RpZmllZEJ5IjpudWxsLCJjb21wZW5kaXVtU291cmNlIjpudWxsLCJkdXBsaWNhdGVTb3VyY2UiOm51bGx9fQ==] </p>"
+          "description": "<p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal </span><span class=\"fontstyle2\"><strong>bolt</strong> </span><span class=\"fontstyle0\">and </span><span class=\"fontstyle2\"><strong>fire</strong> </span><span class=\"fontstyle0\">damage.</span></p><p><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.gLmFM7sGvsT3YEEQ]{Effect: Aero Hex}</span></p>"
         },
         "superior1": {
           "name": "Breeze",
@@ -39,7 +39,7 @@
         },
         "advanced": {
           "name": "Geo Hex",
-          "description": "<p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>ice</strong> damage.</span></p><p> @EFFECT[eyJuYW1lIjoiR2VvIEhleCIsImltZyI6InN5c3RlbXMvcHJvamVjdGZ1L3N0eWxlcy9zdGF0aWMvYWZmaW5pdGllcy9lYXJ0aC5zdmciLCJ0eXBlIjoiYmFzZSIsInN5c3RlbSI6e30sImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5ib251c2VzLmluY29taW5nRGFtYWdlLmFpciIsIm1vZGUiOjIsInZhbHVlIjoiNSIsInByaW9yaXR5IjpudWxsfSx7ImtleSI6InN5c3RlbS5ib251c2VzLmluY29taW5nRGFtYWdlLmljZSIsIm1vZGUiOjIsInZhbHVlIjoiNSIsInByaW9yaXR5IjpudWxsfV0sImRpc2FibGVkIjpmYWxzZSwiZHVyYXRpb24iOnsic3RhcnRUaW1lIjowLCJzZWNvbmRzIjpudWxsLCJjb21iYXQiOm51bGwsInJvdW5kcyI6bnVsbCwidHVybnMiOm51bGwsInN0YXJ0Um91bmQiOm51bGwsInN0YXJ0VHVybiI6bnVsbH0sImRlc2NyaXB0aW9uIjoiIiwib3JpZ2luIjpudWxsLCJ0aW50IjoiI2ZmZmZmZiIsInRyYW5zZmVyIjpmYWxzZSwic3RhdHVzZXMiOltdLCJzb3J0IjowLCJmbGFncyI6eyJwcm9qZWN0ZnUiOnsidHlwZSI6ImRlZmF1bHQiLCJzb3VyY2UiOiIiLCJDcmlzaXNJbnRlcmFjdGlvbiI6Im5vbmUifX0sIl9zdGF0cyI6eyJjb3JlVmVyc2lvbiI6IjEyLjMzMSIsInN5c3RlbUlkIjoicHJvamVjdGZ1Iiwic3lzdGVtVmVyc2lvbiI6IiN7VkVSU0lPTn0jIiwiY3JlYXRlZFRpbWUiOm51bGwsIm1vZGlmaWVkVGltZSI6bnVsbCwibGFzdE1vZGlmaWVkQnkiOm51bGwsImNvbXBlbmRpdW1Tb3VyY2UiOm51bGwsImR1cGxpY2F0ZVNvdXJjZSI6bnVsbH19] </p>"
+          "description": "<p><span class=\"fontstyle0\">Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>ice</strong> damage.</span></p><p><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.XneKAK7lEd344SDX]{Effect: Geo Hex}</span></p>"
         },
         "superior1": {
           "name": "Growth",
@@ -57,7 +57,7 @@
         },
         "advanced": {
           "name": "Pyro Hex",
-          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>ice</strong> damage.</p><p>@EFFECT[eyJuYW1lIjoiUHlybyBIZXgiLCJpbWciOiJzeXN0ZW1zL3Byb2plY3RmdS9zdHlsZXMvc3RhdGljL2FmZmluaXRpZXMvZmlyZS5zdmciLCJ0eXBlIjoiYmFzZSIsInN5c3RlbSI6e30sImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5ib251c2VzLmluY29taW5nRGFtYWdlLmVhcnRoIiwibW9kZSI6MiwidmFsdWUiOiI1IiwicHJpb3JpdHkiOm51bGx9LHsia2V5Ijoic3lzdGVtLmJvbnVzZXMuaW5jb21pbmdEYW1hZ2UuaWNlIiwibW9kZSI6MiwidmFsdWUiOiI1IiwicHJpb3JpdHkiOm51bGx9XSwiZGlzYWJsZWQiOmZhbHNlLCJkdXJhdGlvbiI6eyJzdGFydFRpbWUiOjAsInNlY29uZHMiOm51bGwsImNvbWJhdCI6bnVsbCwicm91bmRzIjpudWxsLCJ0dXJucyI6bnVsbCwic3RhcnRSb3VuZCI6bnVsbCwic3RhcnRUdXJuIjpudWxsfSwiZGVzY3JpcHRpb24iOiIiLCJvcmlnaW4iOm51bGwsInRpbnQiOiIjZmZmZmZmIiwidHJhbnNmZXIiOmZhbHNlLCJzdGF0dXNlcyI6W10sInNvcnQiOjAsImZsYWdzIjp7InByb2plY3RmdSI6eyJ0eXBlIjoiZGVmYXVsdCIsInNvdXJjZSI6IiIsIkNyaXNpc0ludGVyYWN0aW9uIjoibm9uZSJ9fSwiX3N0YXRzIjp7ImNvcmVWZXJzaW9uIjoiMTIuMzMxIiwic3lzdGVtSWQiOiJwcm9qZWN0ZnUiLCJzeXN0ZW1WZXJzaW9uIjoiI3tWRVJTSU9OfSMiLCJjcmVhdGVkVGltZSI6bnVsbCwibW9kaWZpZWRUaW1lIjpudWxsLCJsYXN0TW9kaWZpZWRCeSI6bnVsbCwiY29tcGVuZGl1bVNvdXJjZSI6bnVsbCwiZHVwbGljYXRlU291cmNlIjpudWxsfX0=] </p>"
+          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>ice</strong> damage.</p><p><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.P35wmm9xOT0bnImB]{Effect: Pyro Hex}</span></p>"
         },
         "superior1": {
           "name": "Burst",
@@ -75,7 +75,7 @@
         },
         "advanced": {
           "name": "Electro Hex",
-          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>fire</strong> damage.</p><p> @EFFECT[eyJuYW1lIjoiRWxlY3RybyBIZXgiLCJpbWciOiJzeXN0ZW1zL3Byb2plY3RmdS9zdHlsZXMvc3RhdGljL2FmZmluaXRpZXMvYm9sdC5zdmciLCJ0eXBlIjoiYmFzZSIsInN5c3RlbSI6e30sImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5ib251c2VzLmluY29taW5nRGFtYWdlLmVhcnRoIiwibW9kZSI6MiwidmFsdWUiOiI1IiwicHJpb3JpdHkiOm51bGx9LHsia2V5Ijoic3lzdGVtLmJvbnVzZXMuaW5jb21pbmdEYW1hZ2UuZmlyZSIsIm1vZGUiOjIsInZhbHVlIjoiNSIsInByaW9yaXR5IjpudWxsfV0sImRpc2FibGVkIjpmYWxzZSwiZHVyYXRpb24iOnsic3RhcnRUaW1lIjowLCJzZWNvbmRzIjpudWxsLCJjb21iYXQiOm51bGwsInJvdW5kcyI6bnVsbCwidHVybnMiOm51bGwsInN0YXJ0Um91bmQiOm51bGwsInN0YXJ0VHVybiI6bnVsbH0sImRlc2NyaXB0aW9uIjoiIiwib3JpZ2luIjpudWxsLCJ0aW50IjoiI2ZmZmZmZiIsInRyYW5zZmVyIjpmYWxzZSwic3RhdHVzZXMiOltdLCJzb3J0IjowLCJmbGFncyI6eyJwcm9qZWN0ZnUiOnsidHlwZSI6ImRlZmF1bHQiLCJzb3VyY2UiOiIiLCJDcmlzaXNJbnRlcmFjdGlvbiI6Im5vbmUifX0sIl9zdGF0cyI6eyJjb3JlVmVyc2lvbiI6IjEyLjMzMSIsInN5c3RlbUlkIjoicHJvamVjdGZ1Iiwic3lzdGVtVmVyc2lvbiI6IiN7VkVSU0lPTn0jIiwiY3JlYXRlZFRpbWUiOm51bGwsIm1vZGlmaWVkVGltZSI6bnVsbCwibGFzdE1vZGlmaWVkQnkiOm51bGwsImNvbXBlbmRpdW1Tb3VyY2UiOm51bGwsImR1cGxpY2F0ZVNvdXJjZSI6bnVsbH19] </p>"
+          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>earth</strong> and <strong>fire</strong> damage.</p><p><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.Aotszm4Q25ys3Mbv]{Effect: Electro Hex}</span></p>"
         },
         "superior1": {
           "name": "Static",
@@ -93,7 +93,7 @@
         },
         "advanced": {
           "name": "Hydro Hex",
-          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>bolt</strong> damage.</p><p>@EFFECT[eyJuYW1lIjoiSHlkcm8gSGV4IiwiaW1nIjoic3lzdGVtcy9wcm9qZWN0ZnUvc3R5bGVzL3N0YXRpYy9hZmZpbml0aWVzL2ljZS5zdmciLCJ0eXBlIjoiYmFzZSIsInN5c3RlbSI6e30sImNoYW5nZXMiOlt7ImtleSI6InN5c3RlbS5ib251c2VzLmluY29taW5nRGFtYWdlLmFpciIsIm1vZGUiOjIsInZhbHVlIjoiNSIsInByaW9yaXR5IjpudWxsfSx7ImtleSI6InN5c3RlbS5ib251c2VzLmluY29taW5nRGFtYWdlLmJvbHQiLCJtb2RlIjoyLCJ2YWx1ZSI6IjUiLCJwcmlvcml0eSI6bnVsbH1dLCJkaXNhYmxlZCI6ZmFsc2UsImR1cmF0aW9uIjp7InN0YXJ0VGltZSI6MCwic2Vjb25kcyI6bnVsbCwiY29tYmF0IjpudWxsLCJyb3VuZHMiOm51bGwsInR1cm5zIjpudWxsLCJzdGFydFJvdW5kIjpudWxsLCJzdGFydFR1cm4iOm51bGx9LCJkZXNjcmlwdGlvbiI6IiIsIm9yaWdpbiI6bnVsbCwidGludCI6IiNmZmZmZmYiLCJ0cmFuc2ZlciI6ZmFsc2UsInN0YXR1c2VzIjpbXSwic29ydCI6MCwiZmxhZ3MiOnsicHJvamVjdGZ1Ijp7InR5cGUiOiJkZWZhdWx0Iiwic291cmNlIjoiIiwiQ3Jpc2lzSW50ZXJhY3Rpb24iOiJub25lIn19LCJfc3RhdHMiOnsiY29yZVZlcnNpb24iOiIxMi4zMzEiLCJzeXN0ZW1JZCI6InByb2plY3RmdSIsInN5c3RlbVZlcnNpb24iOiIje1ZFUlNJT059IyIsImNyZWF0ZWRUaW1lIjpudWxsLCJtb2RpZmllZFRpbWUiOm51bGwsImxhc3RNb2RpZmllZEJ5IjpudWxsLCJjb21wZW5kaXVtU291cmNlIjpudWxsLCJkdXBsaWNhdGVTb3VyY2UiOm51bGx9fQ==] </p>"
+          "description": "<p>Until the start of your next turn, the target suffers 5 extra damage from all sources that deal <strong>air</strong> and <strong>bolt</strong> damage.</p><p><span class=\"fontstyle0\"><strong>Target Suffers:</strong> @EFFECT[Compendium.projectfu.skills.Item.XpYrgDtYILIGS7Sf]{Effect: Hydro Hex}</span></p>"
         },
         "superior1": {
           "name": "Chill",
@@ -123,8 +123,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676970366,
-    "modifiedTime": 1742677877272,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1744520931449,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "_id": "OCPEJcHypOPXaDUM",
   "sort": 0,

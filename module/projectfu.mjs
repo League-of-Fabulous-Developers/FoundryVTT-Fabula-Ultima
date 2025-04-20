@@ -7,7 +7,7 @@ import { FUItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
-import { registerSystemSettings, SETTINGS } from './settings.js';
+import { registerSystemSettings } from './settings.js';
 import { addRollContextMenuEntries, createCheckMessage, promptCheck, promptOpenCheck, rollCheck } from './helpers/checks.mjs';
 import { FUCombatTracker } from './ui/combat-tracker.mjs';
 import { FUCombat } from './ui/combat.mjs';
@@ -33,7 +33,7 @@ import { TreasureDataModel } from './documents/items/treasure/treasure-data-mode
 import { WeaponDataModel } from './documents/items/weapon/weapon-data-model.mjs';
 import { EffectDataModel } from './documents/items/effect/effect-data-model.mjs';
 import { onSocketLibReady } from './socket.mjs';
-import { statusEffects } from './helpers/statuses.mjs';
+import { statusEffects } from './documents/effects/statuses.mjs';
 
 import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-feature-type-data-model.mjs';
 import { FUClassFeatureSheet } from './documents/items/classFeature/class-feature-sheet.mjs';
@@ -73,6 +73,15 @@ import { InlineAffinity } from './helpers/inline-affinity.mjs';
 import { Effects } from './pipelines/effects.mjs';
 import { InlineType } from './helpers/inline-type.mjs';
 import { InvokerIntegration } from './documents/items/classFeature/invoker/invoker-integration.mjs';
+import { FUActiveEffectModel } from './documents/effects/active-effect-model.mjs';
+import { onRenderActiveEffectConfig } from './documents/effects/active-effect-config.mjs';
+import { InlineClocks } from './helpers/inline-clocks.mjs';
+import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
+import { FUPartySheet } from './sheets/actor-party-sheet.mjs';
+import { StashDataModel } from './documents/actors/stash/stash-data-model.mjs';
+import { FUStashSheet } from './sheets/actor-stash-sheet.mjs';
+import { InventoryPipeline } from './pipelines/inventory-pipeline.mjs';
+import { registerKeyBindings } from './keybindings.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -157,6 +166,8 @@ Hooks.once('init', async () => {
 	CONFIG.Actor.dataModels = {
 		character: CharacterDataModel,
 		npc: NpcDataModel,
+		party: PartyDataModel,
+		stash: StashDataModel,
 	};
 	CONFIG.Actor.trackableAttributes = {
 		character: {
@@ -191,20 +202,21 @@ Hooks.once('init', async () => {
 		effect: EffectDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
+	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
 
 	// Register system settings
 	registerSystemSettings();
+	registerKeyBindings();
 
-	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatTracker)) {
-		console.log(`${SYSTEM} | Initializing experimental combat tracker`);
-		CONFIG.Combat.documentClass = FUCombat;
-		CONFIG.Combatant.documentClass = FUCombatant;
-		CONFIG.Combat.initiative = {
-			formula: '1',
-			decimals: 0,
-		};
-		CONFIG.ui.combat = FUCombatTracker;
-	}
+	// Set combat tracker
+	console.log(`${SYSTEM} | Initializing combat tracker`);
+	CONFIG.Combat.documentClass = FUCombat;
+	CONFIG.Combatant.documentClass = FUCombatant;
+	CONFIG.Combat.initiative = {
+		formula: '1',
+		decimals: 0,
+	};
+	CONFIG.ui.combat = FUCombatTracker;
 
 	// Register status effects
 	CONFIG.ActiveEffect.legacyTransferral = false;
@@ -214,8 +226,19 @@ Hooks.once('init', async () => {
 	// Register sheet application classes
 	Actors.unregisterSheet('core', ActorSheet);
 	Actors.registerSheet('projectfu', FUStandardActorSheet, {
+		types: ['character', 'npc'],
 		makeDefault: true,
 		label: 'Standard Actor Sheet',
+	});
+	Actors.registerSheet('projectfu', FUPartySheet, {
+		types: ['party'],
+		makeDefault: true,
+		label: 'Standard Party Sheet',
+	});
+	Actors.registerSheet('projectfu', FUStashSheet, {
+		types: ['stash'],
+		makeDefault: true,
+		label: 'Standard Stash Sheet',
 	});
 	Items.unregisterSheet('core', ItemSheet);
 	Items.registerSheet('projectfu', FUItemSheet, {
@@ -236,6 +259,7 @@ Hooks.once('init', async () => {
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	DamagePipeline.initialize();
 	Effects.initialize();
+	InventoryPipeline.initialize();
 	Hooks.on(`renderChatMessage`, ResourcePipeline.onRenderChatMessage);
 	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 
@@ -273,8 +297,11 @@ Hooks.once('init', async () => {
 	Hooks.on('renderItemSheet', InlineWeapon.activateListeners);
 	Hooks.on('dropActorSheetData', InlineWeapon.onDropActor);
 
+	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
+
 	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
 	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
+	InlineHelper.registerEnricher(InlineClocks.enricher, InlineClocks.activateListeners);
 
 	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 
@@ -664,6 +691,28 @@ Hooks.once('socketlib.ready', onSocketLibReady);
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
+
+// Register the "Doubles" SFX trigger for DiceSoNice
+Hooks.once('diceSoNiceReady', (dice3d) => {
+	dice3d.addSFXTrigger(
+		'doubles',
+		'Doubles',
+		Array.from({ length: 20 }, (v, i) => (i + 1).toString()),
+	);
+
+	Hooks.on('diceSoNiceRollStart', (_messageId, context) => {
+		/* eslint-disable no-undef */
+		dice = context.roll.dice;
+		if (dice.reduce((agg, curr) => agg + curr.number, 0) === 2) {
+			const dieValue = dice[0].results[0].result;
+			if (dieValue === (dice[0].results[1] ?? dice[1].results[0]).result) {
+				for (const d of dice) {
+					d.options.sfx = { id: 'doubles', result: dieValue };
+				}
+			}
+		}
+	});
+});
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
