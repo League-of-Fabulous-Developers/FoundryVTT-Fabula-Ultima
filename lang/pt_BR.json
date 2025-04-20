@@ -1,7 +1,9 @@
 {
 	"ACTOR": {
 		"TypeCharacter": "Personagem",
-		"TypeNpc": "PNJ"
+		"TypeNpc": "PNJ",
+		"TypeParty": "Grupo",
+		"TypeStash": "Reserva"
 	},
 	"ITEM": {
 		"TypeBasic": "Básico",
@@ -28,7 +30,9 @@
 	"TYPES": {
 		"Actor": {
 			"character": "Personagem",
-			"npc": "PNJ"
+			"npc": "PNJ",
+			"party": "Grupo",
+			"stash": "Reserva"
 		},
 		"Item": {
 			"basic": "Básico",
@@ -112,6 +116,8 @@
 		"Reason": "Motivo:",
 		"Exp": "Experiência",
 		"ExpAbbr": "EXP",
+		"ExpMax": "Experiência máxima necessária",
+		"ExpMaxHint": "Define a quantidade máxima de EXP necessária para subir de nível (o padrão é 10).",
 		"Level": "Nível",
 		"LevelAbbr": "NV",
 		"LevelUp": "SUBIU DE NÍVEL!",
@@ -852,7 +858,7 @@
 		"ClassFeature": "Característica de Classe",
 		"ClassFeatures": "Características de Classe",
 		"ClassFeatureDetails": "Detalhes",
-		"RollIconToolTip": "{name}<br>[Shift + Clique] HR0<br>[Ctrl + Clique] Personalizador de Item",
+		"RollIconToolTip": "{name}<br>[Shift + Clique] RA0<br>[Ctrl + Clique] Personalizador de Item",
 		"ItemCustomizer": "Personalizador de Item",
 		"WeaponType": "Tipo de arma",
 		"DefenseType": "Tipo de Defesa",
@@ -898,6 +904,7 @@
 		"ChatEvaluateAmountNoActor": "Nenhuma referência a um personagem fornecida",
 		"ChatEvaluateAmountNoSource": "Nenhuma referência a uma fonte fornecida",
 		"ChatEvaluateAmountNoItem": "Nenhuma referência a um item fornecida",
+		"ChatEvaluateNoEffect": "Nenhuma referência a um efeito fornecida",
 		"ChatEvaluateNoSourceActor": "O item fornecido deve ser adicionado a um personagem para ser avaliado.",
 		"ChatEvaluateNoSkill": "A habilidade referenciada não foi encontrada no personagem",
 		"ChatEvaluateNoProgress": "A trilha de progresso referenciada com o ID fornecido não foi encontrada no personagem",
@@ -1385,6 +1392,37 @@
 		"ChatProgressAtMinimum": "A trilha de progresso fornecida já está no seu valor mínimo!",
 		"Reference": "Referência",
 		"All": "Tudo",
+		"Party": "Grupo",
+		"Notes": "Anotações",
+		"PartySheetEmpty": "Você deve arrastar e soltar os personagens dos Atores para cá. Lembre-se de defini-lo como o grupo ativo nas configurações. Além disso, há uma tecla de atalho para a ficha (por padrão, P).",
+		"ActiveParty": "Grupo Ativo",
+		"ActivePartyHint": "Definir o grupo ativo",
+		"ActivePartyNotAssigned": "Nenhum grupo foi atribuído nas configurações do sistema.",
+		"ActivePartySheetOpen": "Abrir Ficha do Grupo",
+		"Identifier": "Identificador",
+		"Sell": "Vender",
+		"Loot": "Saque",
+		"Merchant": "Mercador",
+		"ClearItems": "Apagar Itens",
+		"StashItem": "Guardar Item",
+		"Refresh": "Atualizar",
+		"Base": "Base",
+		"ChatInventorySellMessage": "<strong>{actor}</strong> está vendendo <strong>{item}</strong> por <strong>{cost} {currency}</strong>.",
+		"ChatInventoryLootMessage": "<strong>{item}</strong> pode ser adquirido de <strong>{actor}</strong>.",
+		"ChatInventoryRechargeMessage": "<strong>{actor}</strong> está oferecendo uma recarga para seus pontos de inventário... por um preço.",
+		"ChatInventoryRechargePrompt": "Gostaria de recarregar <strong>{ip}</strong> pontos de inventário por <strong>{cost} {currency}</strong>?",
+		"ChatInventoryRechargeCompleted": "<strong>{target}</strong> recarregou <strong>{ip} pontos de inventário</strong>.",
+		"ChatInventoryDistributeZenit": "Gostaria de distribuir uniformemente <strong>{zenit} {currency}</strong> de <strong>{actor}</strong>? <strong>{targets}</strong> receberão <strong>{share} {currency}</strong> cada.",
+		"ChatInventoryBuy": "Comprar Item",
+		"ChatInventoryLoot": "Saquear Item",
+		"InventoryDistributeZenit": "Distribuir {currency}",
+		"InventoryRechargeIP": "Recarregar IP",
+		"ChatDistributeZenit": "<strong>{zenit} {currency}</strong> foi distribuído para <strong>{targets}</strong>.",
+		"ChatItemLooted": "<strong>{target}</strong> adquiriu <strong>{item}</strong> de <strong>{actor}</strong>.",
+		"ChatItemPurchased": "<strong>{target}</strong> comprou <strong>{item}</strong> de <strong>{actor}</strong> por <strong>{cost} {currency}</strong>.",
+		"ChatInventoryTransactionFailed": "<strong>{actor}</strong> não tem {currency} suficiente para realizar essa transação.",
+		"ChatInventoryItemMissing": "O item não está mais disponível.",
+		"ChatRecoveryNotNeeded": "<strong>{actor}</strong> já tem {resource} completo.",
 		"FUID": {
 			"Long": "ID Fabula Ultima",
 			"Short": "FUID",

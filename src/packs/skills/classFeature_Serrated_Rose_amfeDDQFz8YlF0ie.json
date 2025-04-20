@@ -27,7 +27,7 @@
         {
           "start": 3,
           "end": 3,
-          "effect": "<p>At the end of your turn, you deal an amount of <strong>physical</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>slow</strong>.</p><hr><ul><li><p><strong>Targets Loses:</strong> @DMG[15+&sl('chloromancy') physical]</p></li></ul>"
+          "effect": "<p>At the end of your turn, you deal an amount of <strong>physical</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>slow</strong>.</p><hr><ul><li><p><strong>Targets Loses:</strong> @DMG[15+&sl('chloromancy') physical]{15 + (SL in Chloromancy)}</p></li></ul>"
         }
       ]
     },
@@ -43,8 +43,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742747879029,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+    "modifiedTime": 1745172467861,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "ownership": {
     "default": 0,

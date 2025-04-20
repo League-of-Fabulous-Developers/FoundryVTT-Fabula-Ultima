@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>The target suffers <strong>HR + 15</strong> (<strong>choose type</strong>) damage. Then, you recover an amount of Hit Points equal to half the Hit Point loss they suffered.</p>",
+    "description": "<p>The target suffers <strong>HR + 15 (choose type)</strong> damage. Then, you recover an amount of Hit Points equal to half the Hit Point loss they suffered.</p>",
     "isFavored": {
       "value": false
     },
@@ -130,7 +130,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1744755515071,
+    "modifiedTime": 1745176000413,
     "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null

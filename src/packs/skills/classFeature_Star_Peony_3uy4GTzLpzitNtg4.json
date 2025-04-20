@@ -27,7 +27,7 @@
         {
           "start": 3,
           "end": 3,
-          "effect": "<p>At the end of your turn, you deal an amount of <strong>light</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>dazed</strong>.</p><hr><ul><li><p><strong>Targets Loses:</strong> @DMG[15+&sl('chloromancy') light]</p></li></ul>"
+          "effect": "<p>At the end of your turn, you deal an amount of <strong>light</strong> damage equal to <strong>【15 + your Skill Level in Chloromancy】</strong> to each enemy you can see who is suffering from <strong>dazed</strong>.</p><hr><ul><li><p><strong>Targets Loses:</strong> @DMG[15+&sl('chloromancy') light]{15 + (SL in Chloromancy)}</p></li></ul>"
         }
       ]
     },
@@ -43,7 +43,7 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676954080,
-    "modifiedTime": 1744515519017,
+    "modifiedTime": 1745172449788,
     "lastModifiedBy": "LokWlpJRX2uVxtGn"
   },
   "ownership": {

@@ -1,7 +1,9 @@
 {
 	"ACTOR": {
 		"TypeCharacter": "Character",
-		"TypeNpc": "NPC"
+		"TypeNpc": "NPC",
+		"TypeParty": "Party",
+		"TypeStash": "Stash"
 	},
 	"ITEM": {
 		"TypeBasic": "Basic",
@@ -114,6 +116,8 @@
 		"Reason": "Reason:",
 		"Exp": "Experience",
 		"ExpAbbr": "XP",
+		"ExpMax": "Maximum Experience Needed",
+		"ExpMaxHint": "Sets the maximum amount of EXP required to level up (default is 10).",
 		"Level": "Level",
 		"LevelAbbr": "LV",
 		"LevelUp": "LEVEL UP!",
@@ -881,7 +885,7 @@
 		"ChatApplyDamageTooltip": "Click to apply damage to selected tokens.<br>[Ctrl + Click] to Open Damage Customizer<br>[Shift + Click] to ignore Resistances.<br>[Ctrl + Shift] + Click to ignore Resistances and Immunities.",
 		"ChatApplyDamageNoActorsSelected": "No actors selected. Unable to apply damage.",
 		"ChatApplyDamageVulnerable": "<strong>{actor}</strong> was <strong>vulnerable</strong> to <strong>{type}</strong> and lost <strong>{damage} {resource}</strong> from <strong>{from}</strong>",
-		"ChatApplyDamageNormal": "<strong>{actor}</strong> was dealt <strong>{type}</strong> and lost <strong>{damage} {resource}</strong> from <strong>{from}</strong>",
+		"ChatApplyDamageNormal": "<strong>{actor}</strong> was dealt <strong>{type}</strong> damage and lost <strong>{damage} {resource}</strong> from <strong>{from}</strong>",
 		"ChatApplyDamageResistant": "<strong>{actor}</strong> was <strong>resistant</strong> to <strong>{type}</strong> and lost <strong>{damage} {resource}</strong> from <strong>{from}</strong>",
 		"ChatApplyDamageResistantIgnored": "<strong>{actor}</strong> took <strong>{damage} {type}</strong> damage from <strong>{from} (Resistance ignored)</strong>",
 		"ChatApplyDamageImmune": "<strong>{actor}</strong> was <strong>immune</strong> to <strong>{type}</strong> and took <strong>{damage}</strong> damage from <strong>{from}</strong>",
@@ -1411,7 +1415,7 @@
 		"ChatInventoryDistributeZenit": "Would you like to evenly distribute <strong>{zenit} {currency}</strong> from <strong>{actor}</strong>? <strong>{targets}</strong> will each receive <strong>{share} {currency}</strong>.",
 		"ChatInventoryBuy": "Purchase Item",
 		"ChatInventoryLoot": "Loot Item",
-		"InventoryDistributeZenit": "Distribute Zenit",
+		"InventoryDistributeZenit": "Distribute {currency}",
 		"InventoryRechargeIP": "Recharge IP",
 		"ChatDistributeZenit": "<strong>{zenit} {currency}</strong> was distributed to <strong>{targets}</strong>.",
 		"ChatItemLooted": "<strong>{target}</strong> has acquired <strong>{item}</strong> from <strong>{actor}</strong>.",
