@@ -112,7 +112,7 @@ function activateListeners(document, html) {
  */
 async function renderStep(progress, step, actor, source) {
 	// Generate and reverse the progress array
-	const progressArr = progress.generateProgressArray();
+	const progressArr = progress.progressArray;
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
 		content: await renderTemplate('systems/projectfu/templates/chat/chat-advance-clock.hbs', {

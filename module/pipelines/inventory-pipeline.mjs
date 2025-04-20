@@ -1,7 +1,7 @@
 import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from './pipeline.mjs';
 import { getPrioritizedUserSelected } from '../helpers/target-handler.mjs';
-import { FUPartySheetHelper } from '../sheets/actor-party-sheet.mjs';
+import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { MESSAGES, SOCKET } from '../socket.mjs';
 
 const sellAction = 'inventorySell';
@@ -68,7 +68,7 @@ async function distributeZenit(actor, targets) {
 	}
 	if (!targets) {
 		// Resolve using the party characters
-		const party = await FUPartySheetHelper.getActiveModel();
+		const party = await FUPartySheet.getActiveModel();
 		if (party) {
 			targets = party.characterActors;
 		}

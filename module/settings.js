@@ -3,7 +3,6 @@ import { MetaCurrencyTrackerApplication } from './ui/metacurrency/MetaCurrencyTr
 import { CombatHUD } from './ui/combat-hud.mjs';
 import { FUHooks } from './hooks.mjs';
 import { WellspringDataModel } from './documents/items/classFeature/invoker/invoker-integration.mjs';
-import { FUPartySheetHelper } from './sheets/actor-party-sheet.mjs';
 
 export const SETTINGS = Object.freeze({
 	experimentalCombatHud: 'experimentalCombatHud',
@@ -211,21 +210,6 @@ export const registerSystemSettings = async function () {
 			blank: true,
 		}),
 		restricted: true,
-	});
-
-	game.keybindings.register(SYSTEM, 'openPartySheet', {
-		name: game.i18n.localize('FU.ActivePartySheetOpen'),
-		editable: [
-			{
-				key: 'KeyP', // 'P' key
-			},
-		],
-		onDown: () => {
-			FUPartySheetHelper.openActive();
-			return true;
-		},
-		restricted: false, // Set to true if only GMs should use it
-		precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
 	});
 
 	game.settings.register(SYSTEM, SETTINGS.optionCombatMouseDown, {

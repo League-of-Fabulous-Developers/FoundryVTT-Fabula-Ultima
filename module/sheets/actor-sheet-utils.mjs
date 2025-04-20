@@ -1,7 +1,7 @@
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
-import { FUPartySheetHelper } from './actor-party-sheet.mjs';
+import { FUPartySheet } from './actor-party-sheet.mjs';
 
 const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
 const SKILL_TYPES = ['skill'];
@@ -633,7 +633,7 @@ function _saveExpandedState(sheet) {
 
 async function onSendItemToPartyStash(jq, sheet) {
 	const item = sheet.actor.items.get(jq.data('itemId'));
-	const party = await FUPartySheetHelper.getActiveModel();
+	const party = await FUPartySheet.getActiveModel();
 	if (party) {
 		return InventoryPipeline.requestTrade(sheet.actor.uuid, item.uuid, false, party.parent.uuid);
 	}
