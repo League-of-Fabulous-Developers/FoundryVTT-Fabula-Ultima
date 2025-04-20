@@ -171,6 +171,9 @@ export class FUPartySheet extends ActorSheet {
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" id="name" name="name"/>
+        
+        <label for="max"">Maximum</label>
+		<input type="number" name="max" value="6"/>
       </div>
     </form>`,
 			buttons: [
@@ -178,6 +181,11 @@ export class FUPartySheet extends ActorSheet {
 					label: 'Confirm',
 					callback: async (html) => {
 						const name = html.find('[name="name"]').val();
+
+						if (!name) {
+							return;
+						}
+						const max = html.find('[name="max"]').val();
 						console.log('Creating progress track with name: ', name);
 
 						let tracks = foundry.utils.duplicate(this.actor.system.tracks);
@@ -188,7 +196,7 @@ export class FUPartySheet extends ActorSheet {
 							return;
 						}
 
-						const newTrack = ProgressDataModel.construct(name);
+						const newTrack = ProgressDataModel.construct(name, max);
 						tracks.push(newTrack);
 						this.actor.update({ ['system.tracks']: tracks });
 					},

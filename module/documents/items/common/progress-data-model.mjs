@@ -33,12 +33,14 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
-	 * @param name
+	 * @param {String} name
+	 * @param {Number} max
 	 * @returns {ProgressDataModel}
 	 */
-	static construct(name) {
+	static construct(name, max) {
 		return new this({
 			name: name,
+			max: max,
 		});
 	}
 
