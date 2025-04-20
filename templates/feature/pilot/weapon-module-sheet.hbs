@@ -8,15 +8,15 @@
         <div class="flexrow flex-group-center">
             <label class="resource-label-m">
                 {{localize 'FU.ClassFeatureWeaponModuleWeaponType'}}
-                <select name="system.data.type" class="resource-inputs select-dropdown-m resource-text-m">
-                    {{selectOptions additionalData.weaponTypes selected=system.data.type localize=true}}
+                <select name="system.data.type.value" class="resource-inputs select-dropdown-m resource-text-m">
+                    {{selectOptions additionalData.weaponTypes selected=system.data.type.value localize=true}}
                 </select>
             </label>
             <label class="resource-label-m">
                 {{localize 'FU.ClassFeatureWeaponModuleWeaponCategory'}}
-                <select name="system.data.category" class="resource-inputs select-dropdown-m resource-text-m" {{#if
+                <select name="system.data.category.value" class="resource-inputs select-dropdown-m resource-text-m" {{#if
                  system.data.isShield}}disabled{{/if}}>
-                    {{selectOptions additionalData.weaponCategories selected=system.data.category localize=true}}
+                    {{selectOptions additionalData.weaponCategories selected=system.data.category.value localize=true}}
                 </select>
             </label>
             <label class="resource-label-m">
@@ -142,7 +142,7 @@
         <div class="flexrow">
             <div class="resource-content flexcol flex-group-center flexgrow-4">
                 <label class="resource-label-m flexlarge">{{localize 'FU.Quality'}}</label>
-                <input type="text" name="system.data.quality" value="{{system.data.quality}}"
+                <input type="text" name="system.data.quality.value" value="{{system.data.quality.value}}"
                        class="resource-inputs select-dropdown-full resource-text-m">
             </div>
 

@@ -67,10 +67,10 @@ function onRenderCheck(data, result, actor, item) {
 			partial: 'systems/projectfu/templates/chat/partials/chat-weapon-details.hbs',
 			data: {
 				weapon: {
-					category: weaponModule.category,
+					category: weaponModule.category.value,
 					hands: 'one-handed',
-					type: weaponModule.type,
-					quality: weaponModule.quality,
+					type: weaponModule.type.value,
+					quality: weaponModule.quality.value,
 					summary: item.system.summary.value,
 					description: await TextEditor.enrichHTML(item.system.description),
 				},
@@ -115,17 +115,17 @@ export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
 				type: new StringField({ initial: 'physical', choices: Object.keys(CONFIG.FU.damageTypes) }),
 				bonus: new NumberField({ initial: 0 }),
 			}),
-			type: new SchemaField({ 
-                value: new StringField({ initial: 'melee', choices: Object.keys(weaponModuleTypes) }) 
-            }),
+			type: new SchemaField({
+				value: new StringField({ initial: 'melee', choices: Object.keys(weaponModuleTypes) }),
+			}),
 			category: new SchemaField({
-                value: new StringField({
-    				initial: 'arcane',
-    				choices: Object.keys(CONFIG.FU.weaponCategoriesWithoutCustom),
-    			})
-            }),
+				value: new StringField({
+					initial: 'arcane',
+					choices: Object.keys(CONFIG.FU.weaponCategoriesWithoutCustom),
+				}),
+			}),
 			complex: new BooleanField(),
-			quality: new StringField(),
+			quality: new SchemaField({ value: new StringField() }),
 			shield: new SchemaField({
 				defense: new NumberField({ initial: 2 }),
 				magicDefense: new NumberField({ initial: 2 }),
@@ -208,10 +208,10 @@ export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
 			name: item.name,
 			img: item.img,
 			id: item.id,
-			category: model.category,
+			category: model.category.value,
 			hands: 'one-handed',
-			quality: model.quality,
-			type: model.type,
+			quality: model.quality.value,
+			type: model.type.value,
 			defense: 'def',
 			summary: item.system.summary.value,
 			description: await TextEditor.enrichHTML(model.description),
@@ -233,7 +233,7 @@ export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
 	}
 
 	get isShield() {
-		return this.type === 'shield';
+		return this.type.value === 'shield';
 	}
 
 	/**
