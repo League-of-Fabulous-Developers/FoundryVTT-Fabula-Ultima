@@ -190,6 +190,18 @@ class CheckConfigurer {
 	}
 
 	/**
+	 * @param {string} label
+	 * @param {number} path
+	 * @return CheckConfigurer
+	 */
+	addDamageBonusIfDefined(label, value) {
+		if (value) {
+			return this.addDamageBonus(label, value);
+		}
+		return this;
+	}
+
+	/**
 	 * @param {String} extra
 	 * @return {CheckConfigurer}
 	 */
@@ -395,6 +407,14 @@ class CheckInspector {
 	}
 
 	/**
+	 * @param trait
+	 * @returns {Boolean}
+	 */
+	hasTrait(trait) {
+		return this.getTraits().includes(trait);
+	}
+
+	/**
 	 * @return WeaponTraits
 	 */
 	getWeaponTraits() {
@@ -465,10 +485,10 @@ class CheckInspector {
 	 */
 	getDamageData() {
 		const _check = this.getCheck();
-		const damage = this.getDamage();
-		const hrZero = this.getHrZero();
 		const traits = this.getTraits();
 		const isBase = traits.includes(Traits.Base);
+		const damage = this.getDamage();
+		const hrZero = this.getHrZero();
 
 		let damageData = null;
 		if (damage) {

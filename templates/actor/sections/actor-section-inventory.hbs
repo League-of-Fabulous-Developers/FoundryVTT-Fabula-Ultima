@@ -1,0 +1,66 @@
+<section>
+	<header class="items-main-header">
+		<!-- Zenit -->
+		<span class="item-sm end">
+			<span class="item tab button-style zenit-style" style="width: 150px; height:20px;" data-tooltip="{{getGameSetting 'optionRenameCurrency'}}">
+				<i class="fuk fu-zenit"></i>
+				<input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}" data-dtype="Number" />
+			</span>
+			<a class="item-control zenit-distribute" data-tooltip="{{ localize 'FU.InventoryDistributeZenit' }}" aria-describedby="tooltip">
+				<img class="fua" src="systems/projectfu/styles/static/compendium/classes/merchant/real_treasure.png" />
+			</a>
+			{{#if system.merchant}}
+				<a class="item-control recharge-ip" data-tooltip="{{ localize 'FU.InventoryRechargeIP' }}" aria-describedby="tooltip">
+					<img class="fua" src="systems/projectfu/styles/static/compendium/classes/merchant/winds_of_trade.png" />
+				</a>
+			{{/if}}
+		</span>
+
+		<!-- Clear Items-->
+		<span class="items-main inventory-header total-level w-25" >
+			<a data-action="clearInventory" data-tooltip="{{localize 'FU.ClearItems'}}">
+				<i class="icon fa fa-trash"></i>
+			</a>
+			<b>{{itemCount}}</b>
+		</span>
+	</header>
+
+	{{!-- Equipment  --}}
+	<ol class="items-list">
+		<li class="item flexrow items-header">
+			{{!-- Name --}}
+			<div class="item-name">{{localize "FU.Equipment"}}</div>
+			{{!-- Cost --}}
+			<div class="item-xs">{{localize "FU.Cost"}}</div>
+			{{!-- Control --}}
+			<div class="item-sm end">
+				<a class="item-control item-create" data-tooltip="{{localize 'FU.WeaponCreate'}}" data-type="weapon"><i
+				 class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
+			</div>
+		</li>
+		{{#each equipment as |item id|}}
+			<li class="item" data-item-id="{{ item._id }}">
+				<div class="flexrow">
+					{{!-- Item Name--}}
+					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+					{{!-- Item Cost --}}
+					<div class="item-xs">{{ item.system.cost.value }}</div>
+					{{!-- Item Control--}}
+					{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" actor=actor item=item}}
+				</div>
+				<span class="item-quality">{{ item.quality }}</span>
+				<div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
+					{{#if item.enrichedHtml.description}}
+						{{{item.enrichedHtml.description}}}
+					{{/if}}
+				</div>
+			</li>
+		{{/each}}
+	</ol>
+
+	{{!-- Treasure partial --}}
+	{{> "systems/projectfu/templates/actor/sections/actor-section-items-treasure.hbs"}}
+
+	<!-- Consumable Section -->
+	{{> "systems/projectfu/templates/actor/sections/actor-section-items-consumable.hbs"}}
+</section>

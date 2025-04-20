@@ -9,6 +9,7 @@ export const Traits = Object.freeze({
 	IgnoreResistances: 'ignore-resistances',
 	IgnoreImmunities: 'ignore-immunities',
 	AbsorbHalf: 'absorb-half',
+	Absorb: 'absorb',
 	MindPointLoss: 'mind-point-loss',
 	NonLethal: 'non-lethal',
 	Base: 'base',

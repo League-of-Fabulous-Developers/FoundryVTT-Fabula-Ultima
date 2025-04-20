@@ -1,5 +1,5 @@
 import { statusEffects } from '../documents/effects/statuses.mjs';
-import { Effects, toggleStatusEffect, disableStatusEffect } from '../pipelines/effects.mjs';
+import { Effects, disableStatusEffect } from '../pipelines/effects.mjs';
 import { targetHandler } from './target-handler.mjs';
 import { InlineEffectConfiguration } from './inline-effect-configuration.mjs';
 import { InlineHelper } from './inline-helper.mjs';
@@ -167,7 +167,7 @@ function activateListeners(document, html) {
 				if (effectData) {
 					isCtrlClick ? Effects.onRemoveEffectFromActor(actor, sourceInfo, effectData) : Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config);
 				} else if (status) {
-					isCtrlClick ? disableStatusEffect(actor, status) : !actor.statuses.has(status) && toggleStatusEffect(actor, status, sourceInfo, config);
+					isCtrlClick ? disableStatusEffect(actor, status) : !actor.statuses.has(status) && Effects.toggleStatusEffect(actor, status, sourceInfo, config);
 				}
 			});
 		})
@@ -224,7 +224,7 @@ function onDropActor(actor, sheet, { type, sourceInfo, config, effect, status })
 	if (type === INLINE_EFFECT) {
 		if (status) {
 			if (!actor.statuses.has(status)) {
-				toggleStatusEffect(actor, status, sourceInfo, config);
+				Effects.toggleStatusEffect(actor, status, sourceInfo, config);
 			}
 		} else if (effect) {
 			Effects.onApplyEffectToActor(actor, effect, sourceInfo, config);

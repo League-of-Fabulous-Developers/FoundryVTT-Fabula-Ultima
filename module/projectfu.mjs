@@ -76,6 +76,11 @@ import { InvokerIntegration } from './documents/items/classFeature/invoker/invok
 import { FUActiveEffectModel } from './documents/effects/active-effect-model.mjs';
 import { onRenderActiveEffectConfig } from './documents/effects/active-effect-config.mjs';
 import { InlineClocks } from './helpers/inline-clocks.mjs';
+import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
+import { FUPartySheet } from './sheets/actor-party-sheet.mjs';
+import { StashDataModel } from './documents/actors/stash/stash-data-model.mjs';
+import { FUStashSheet } from './sheets/actor-stash-sheet.mjs';
+import { InventoryPipeline } from './pipelines/inventory-pipeline.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -160,6 +165,8 @@ Hooks.once('init', async () => {
 	CONFIG.Actor.dataModels = {
 		character: CharacterDataModel,
 		npc: NpcDataModel,
+		party: PartyDataModel,
+		stash: StashDataModel,
 	};
 	CONFIG.Actor.trackableAttributes = {
 		character: {
@@ -195,11 +202,6 @@ Hooks.once('init', async () => {
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
 	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
-	// DocumentSheetConfig.unregisterSheet(ActiveEffect, 'core', ActiveEffectConfig);
-	// DocumentSheetConfig.registerSheet(ActiveEffect, SYSTEM, FUActiveEffectConfig, {
-	// 	makeDefault: true,
-	// 	label: 'Active Effect Sheet',
-	// });
 
 	// Register system settings
 	registerSystemSettings();
@@ -222,8 +224,19 @@ Hooks.once('init', async () => {
 	// Register sheet application classes
 	Actors.unregisterSheet('core', ActorSheet);
 	Actors.registerSheet('projectfu', FUStandardActorSheet, {
+		types: ['character', 'npc'],
 		makeDefault: true,
 		label: 'Standard Actor Sheet',
+	});
+	Actors.registerSheet('projectfu', FUPartySheet, {
+		types: ['party'],
+		makeDefault: true,
+		label: 'Standard Party Sheet',
+	});
+	Actors.registerSheet('projectfu', FUStashSheet, {
+		types: ['stash'],
+		makeDefault: true,
+		label: 'Standard Stash Sheet',
 	});
 	Items.unregisterSheet('core', ItemSheet);
 	Items.registerSheet('projectfu', FUItemSheet, {
@@ -244,6 +257,7 @@ Hooks.once('init', async () => {
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	DamagePipeline.initialize();
 	Effects.initialize();
+	InventoryPipeline.initialize();
 	Hooks.on(`renderChatMessage`, ResourcePipeline.onRenderChatMessage);
 	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 

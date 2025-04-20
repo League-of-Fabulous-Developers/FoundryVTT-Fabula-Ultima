@@ -1,0 +1,20 @@
+{{{localize message actor=actorName item=itemName cost=cost currency=currency }}}
+
+{{#if itemDescription}}
+	<summary class="chat-desc">
+		<header class="title-desc chat-header flexrow" style="margin-bottom: 0.5rem;">
+			<img src="{{itemImg}}" class="item-img">
+			<h2 style="flex-grow:8">{{itemName}}</h2>
+		</header>
+		{{{itemDescription}}}
+	</summary>
+{{/if}}
+
+
+<div class="fu-tags flexrow gap-5">
+	<a data-action="{{action}}" data-actor={{actorId}} data-item="{{itemId}}">
+		<span class='fu-tag button flex-group-center gap-5' style="width: 100%;white-space: nowrap;">
+			{{localize actionLabel}}<i class="icon fa fa-university "></i>
+		</span>
+	</a>
+</div>

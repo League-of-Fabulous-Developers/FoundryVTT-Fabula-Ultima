@@ -107,7 +107,7 @@ async function handleClick(message, jQuery, actionName, onClick) {
  * @param {ChatMessage} message
  * @param {jQuery} jQuery
  * @param {String} actionName The name of the data-action in the html, e.g: `a[data-action=...]`
- * @param {Function<Object, Promise>} action
+ * @param {Function<Object, Promise} action
  * @returns {Promise<*>}
  */
 async function handleClickRevert(message, jQuery, actionName, action) {
@@ -119,10 +119,14 @@ async function handleClickRevert(message, jQuery, actionName, action) {
 		} else {
 			revert.click(async (event) => {
 				event.preventDefault();
-				await action(revert.data());
-				const revertedActions = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction) ?? [];
-				revertedActions.push(actionName);
-				message.setFlag(SYSTEM, Flags.ChatMessage.RevertedAction, revertedActions);
+				try {
+					await action(revert.data());
+					const revertedActions = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction) ?? [];
+					revertedActions.push(actionName);
+					message.setFlag(SYSTEM, Flags.ChatMessage.RevertedAction, revertedActions);
+				} catch (ex) {
+					console.debug(ex);
+				}
 			});
 		}
 	}

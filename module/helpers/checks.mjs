@@ -152,6 +152,7 @@ import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
+import { TokenUtils } from './token-utils.mjs';
 
 /**
  *
@@ -246,7 +247,7 @@ function handleTargets(check) {
 	async function showFloatyText(target) {
 		const actor = await fromUuid(target.uuid);
 		if (actor instanceof FUActor) {
-			actor.showFloatyText(game.i18n.localize(target.result === 'hit' ? 'FU.Hit' : 'FU.Miss'));
+			TokenUtils.showFloatyText(actor, game.i18n.localize(target.result === 'hit' ? 'FU.Hit' : 'FU.Miss'));
 		}
 	}
 

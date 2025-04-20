@@ -4,6 +4,7 @@ import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { Flags } from '../helpers/flags.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
+import { TokenUtils } from '../helpers/token-utils.mjs';
 
 /**
  * @property {Number} amount
@@ -37,8 +38,15 @@ export class ResourceRequest extends PipelineRequest {
 	/**
 	 * @returns {string} The full path to the accessor for resource in an actor's data model
 	 */
-	get attributePath() {
+	get attributeValuePath() {
 		return `resources.${this.resourceType}.value`;
+	}
+
+	/**
+	 * @returns {string} The full path to the accessor for resource in an actor's data model
+	 */
+	get attributePath() {
+		return `resources.${this.resourceType}`;
 	}
 
 	get resourceLabel() {
@@ -90,6 +98,11 @@ function createUpdateForRecovery(actor, attributePath, amountRecovered) {
 	return actor.update(updateData);
 }
 
+function calculateMissingResource(actor, resourcePath) {
+	const resource = foundry.utils.getProperty(actor.system, resourcePath);
+	return resource.max - resource.value;
+}
+
 /**
  * @param {ResourceRequest} request
  * @return {Promise<Awaited<unknown>[]>}
@@ -104,13 +117,13 @@ async function processRecovery(request) {
 	for (const actor of request.targets) {
 		const incomingRecoveryBonus = actor.system.bonuses.incomingRecovery[request.resourceType] || 0;
 		const incomingRecoveryMultiplier = actor.system.multipliers.incomingRecovery[request.resourceType] || 1;
-		const amountRecovered = Math.max(0, Math.floor((request.amount + incomingRecoveryBonus + outgoingRecoveryBonus) * (incomingRecoveryMultiplier * outgoingRecoveryMultiplier)));
+		let amountRecovered = Math.max(0, Math.floor((request.amount + incomingRecoveryBonus + outgoingRecoveryBonus) * (incomingRecoveryMultiplier * outgoingRecoveryMultiplier)));
 		const attr = foundry.utils.getProperty(actor.system, request.attributeKey);
 		const uncappedRecoveryValue = amountRecovered + attr.value;
 		const updates = [];
 
 		if (request.isMetaCurrency) {
-			updates.push(createUpdateForRecovery(actor, request.attributePath, amountRecovered));
+			updates.push(createUpdateForRecovery(actor, request.attributeValuePath, amountRecovered));
 		} else {
 			// Overheal recovery (uncapped)
 			if (request.uncapped === true && uncappedRecoveryValue > (attr.max || 0)) {
@@ -121,13 +134,27 @@ async function processRecovery(request) {
 			}
 			// Normal recovery
 			else {
+				// Lower amount recovered by how much the target is missing
+				amountRecovered = Math.min(amountRecovered, calculateMissingResource(actor, request.attributePath));
+				// No recovery possible
+				if (amountRecovered === 0) {
+					ChatMessage.create({
+						speaker: ChatMessage.getSpeaker({ actor }),
+						flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true),
+						content: game.i18n.format('FU.ChatRecoveryNotNeeded', {
+							actor: actor.name,
+							resource: request.resourceType.toUpperCase(),
+						}),
+					});
+					continue;
+				}
 				updates.push(actor.modifyTokenAttribute(request.attributeKey, amountRecovered, true));
 			}
 		}
 
 		CommonEvents.gain(actor, request.resourceType, amountRecovered);
 
-		actor.showFloatyText(`${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
+		TokenUtils.showFloatyText(actor, `${amountRecovered} ${request.resourceType.toUpperCase()}`, `lightgreen`);
 		updates.push(
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker({ actor }),
@@ -173,11 +200,11 @@ async function processLoss(request) {
 		const amountLost = -Math.max(0, Math.floor((request.amount + incomingLossBonus) * incomingLossMultiplier));
 
 		if (request.isMetaCurrency) {
-			const currentValue = foundry.utils.getProperty(actor.system, request.attributePath) || 0;
+			const currentValue = foundry.utils.getProperty(actor.system, request.attributeValuePath) || 0;
 			const newValue = currentValue + amountLost;
 			// Update the actor's resource directly
 			const updateData = {};
-			updateData[`system.${request.attributePath}`] = newValue;
+			updateData[`system.${request.attributeValuePath}`] = newValue;
 			updates.push(actor.update(updateData));
 		} else {
 			updates.push(actor.modifyTokenAttribute(request.attributeKey, amountLost, true));
@@ -186,7 +213,7 @@ async function processLoss(request) {
 		// Dispatch event
 		CommonEvents.loss(actor, request.resourceType, amountLost);
 
-		actor.showFloatyText(`${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
+		TokenUtils.showFloatyText(actor, `${amountLost} ${request.resourceType.toUpperCase()}`, `lightyellow`);
 		updates.push(
 			ChatMessage.create({
 				speaker: ChatMessage.getSpeaker({ actor }),
@@ -266,7 +293,7 @@ function onRenderChatMessage(message, jQuery) {
 		const attributeKey = dataset.key;
 		const updates = [];
 		updates.push(actor.modifyTokenAttribute(attributeKey, amount, true));
-		actor.showFloatyText(`${amount} ${dataset.resource.toUpperCase()}`, `lightgreen`);
+		TokenUtils.showFloatyText(actor, `${amount} ${dataset.resource.toUpperCase()}`, `lightgreen`);
 		return Promise.all(updates);
 	});
 
@@ -276,7 +303,7 @@ function onRenderChatMessage(message, jQuery) {
 		const attributeKey = dataset.key;
 		const updates = [];
 		updates.push(actor.modifyTokenAttribute(attributeKey, -amount, true));
-		actor.showFloatyText(`${amount} ${FU.resourcesAbbr[dataset.resource]}`, `red`);
+		TokenUtils.showFloatyText(actor, `${amount} ${dataset.resource.toUpperCase()}`, `red`);
 		return Promise.all(updates);
 	});
 }

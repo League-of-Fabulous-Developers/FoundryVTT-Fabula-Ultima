@@ -20,6 +20,9 @@ export async function targetHandler() {
 	return targets || [];
 }
 
+/**
+ * @returns {Promise<FUActor[]>}
+ */
 export async function getPrioritizedUserSelected() {
 	const targets = canvas.tokens.controlled.map((token) => token.document.actor).filter((actor) => actor);
 

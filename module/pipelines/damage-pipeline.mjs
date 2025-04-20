@@ -13,6 +13,7 @@ import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { Traits } from './traits.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
+import { TokenUtils } from '../helpers/token-utils.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -408,7 +409,7 @@ async function process(request) {
 			resource = 'mp';
 		}
 		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true));
-		actor.showFloatyText(`${-damageTaken} ${resource.toUpperCase()}`, `red`);
+		TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, `red`);
 
 		// Dispatch event
 		CommonEvents.damage(request.damageType, damageTaken, context.traits, actor, context.sourceActor);
@@ -446,8 +447,12 @@ async function process(request) {
 		);
 
 		// Handle post-damage traits
-		if (request.traits.has(Traits.AbsorbHalf) && damageTaken > 0) {
-			await absorbDamage(resource, damageTaken * 0.5, context.sourceInfo, [context.sourceActor]);
+		if (damageTaken > 0) {
+			if (request.traits.has(Traits.Absorb)) {
+				await absorbDamage(resource, damageTaken, context.sourceInfo, [context.sourceActor]);
+			} else if (request.traits.has(Traits.AbsorbHalf)) {
+				await absorbDamage(resource, damageTaken * 0.5, context.sourceInfo, [context.sourceActor]);
+			}
 		}
 	}
 	return Promise.all(updates);
@@ -544,8 +549,9 @@ function onRenderChatMessage(message, jQuery) {
 		const actor = fromUuidSync(uuid);
 		const updates = [];
 		const amountRecovered = dataset.amount;
-		updates.push(actor.modifyTokenAttribute('resources.hp', amountRecovered, true));
-		actor.showFloatyText(`${amountRecovered} HP`, `lightgreen`);
+		const resource = dataset.resource.toLowerCase();
+		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountRecovered, true));
+		TokenUtils.showFloatyText(actor, `${amountRecovered} ${resource}`, `lightgreen`);
 		return Promise.all(updates);
 	});
 
