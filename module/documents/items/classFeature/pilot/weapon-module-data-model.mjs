@@ -115,11 +115,15 @@ export class WeaponModuleDataModel extends RollableClassFeatureDataModel {
 				type: new StringField({ initial: 'physical', choices: Object.keys(CONFIG.FU.damageTypes) }),
 				bonus: new NumberField({ initial: 0 }),
 			}),
-			type: new StringField({ initial: 'melee', choices: Object.keys(weaponModuleTypes) }),
-			category: new StringField({
-				initial: 'arcane',
-				choices: Object.keys(CONFIG.FU.weaponCategoriesWithoutCustom),
-			}),
+			type: new SchemaField({ 
+                value: new StringField({ initial: 'melee', choices: Object.keys(weaponModuleTypes) }) 
+            }),
+			category: new SchemaField({
+                value: new StringField({
+    				initial: 'arcane',
+    				choices: Object.keys(CONFIG.FU.weaponCategoriesWithoutCustom),
+    			})
+            }),
 			complex: new BooleanField(),
 			quality: new StringField(),
 			shield: new SchemaField({
