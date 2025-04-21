@@ -275,22 +275,23 @@ function onApplyActiveEffect(actor, change, current) {
 }
 Hooks.on('applyActiveEffect', onApplyActiveEffect);
 
-// Prevent active effects from being created on non-character types
-Hooks.on('preCreateActiveEffect', (effect) => {
-	const parent = effect.parent;
-	if (!parent.isCharacterType) {
+function isValidParent(parent) {
+	if (parent instanceof FUActor && !parent.isCharacterType) {
 		ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
 		return false;
 	}
 	return true;
+}
+
+// Prevent active effects from being created on non-character types
+Hooks.on('preCreateActiveEffect', (effect) => {
+	const parent = effect.parent;
+	return isValidParent(parent);
 });
 Hooks.on('preCreateItem', (item) => {
 	if (item.type === 'effect') {
 		const parent = item.parent;
-		if (!parent.isCharacterType) {
-			ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
-			return false;
-		}
+		return isValidParent(parent);
 	}
 	return true;
 });
