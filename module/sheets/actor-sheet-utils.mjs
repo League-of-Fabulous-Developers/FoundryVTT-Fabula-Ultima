@@ -1026,4 +1026,9 @@ export const ActorSheetUtils = Object.freeze({
 	activateInventoryListeners,
 	activateStashListeners,
 	handleInventoryItemDrop,
+	// Used by modules
+	getWeaponDisplayData,
+	getSkillDisplayData,
+	getSpellDisplayData,
+	getItemDisplayData,
 });
