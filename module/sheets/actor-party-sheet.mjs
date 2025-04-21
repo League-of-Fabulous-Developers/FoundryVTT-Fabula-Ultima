@@ -118,6 +118,7 @@ export class FUPartySheet extends ActorSheet {
 	/** @override */
 	async _onDrop(ev) {
 		ev.preventDefault();
+
 		// Retrieve drag data using TextEditor
 		const data = TextEditor.getDragEventData(ev);
 		if (data && data.type) {
@@ -139,8 +140,6 @@ export class FUPartySheet extends ActorSheet {
 			}
 		}
 
-		// TODO: Reject invalid items
-		ui.notifications.warn('FU.SheetInvalidItem', { localize: true });
 		return false;
 	}
 

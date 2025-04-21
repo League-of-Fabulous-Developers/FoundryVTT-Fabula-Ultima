@@ -60,8 +60,6 @@ export class FUStashSheet extends ActorSheet {
 				}
 			}
 		}
-		// TODO: Reject invalid items
-		ui.notifications.warn('FU.SheetInvalidItem', { localize: true });
 		return false;
 	}
 }
