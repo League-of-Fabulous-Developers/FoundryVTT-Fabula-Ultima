@@ -212,7 +212,7 @@ export class FUActiveEffect extends ActiveEffect {
 				// First, evaluate using built-in support
 				const expression = Roll.replaceFormulaData(change.value, this.parent);
 				// Second, evaluate with our custom expressions
-				const context = ExpressionContext.resolveTarget(target, this.parent, this.source);
+				const context = this.resolveExpressionContext(target);
 				const value = Expressions.evaluate(expression, context);
 				change.value = String(value ?? 0);
 				console.debug(`Assigning ${change.key} (MODE ${change.mode}): ${change.value}`);
@@ -230,6 +230,35 @@ export class FUActiveEffect extends ActiveEffect {
 		}
 
 		return super.apply(target, change);
+	}
+
+	/**
+	 * @description Resolves the context based on the target type
+	 * @param {FUActor|FUItem} target
+	 * @returns {ExpressionContext}
+	 */
+	resolveExpressionContext(target) {
+		let actor;
+		let item;
+
+		// 1. The effect is being applied onto an actor
+		// 2. The effect is being applied onto an item
+		if (target instanceof FUActor) {
+			actor = target;
+			if (this.parent instanceof FUItem) {
+				item = this.parent;
+			}
+		} else if (target instanceof FUItem) {
+			item = target;
+			actor = item.actor;
+		}
+
+		const context = new ExpressionContext(actor, item, [target]);
+		context.effect = this;
+		if (this.source) {
+			context.setSourceUuid(this.source.itemUuid);
+		}
+		return context;
 	}
 
 	// TODO: Remove once everyone's migrated

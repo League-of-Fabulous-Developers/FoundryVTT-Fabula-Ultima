@@ -1,7 +1,5 @@
 import { ImprovisedEffect } from '../helpers/improvised-effect.mjs';
 import { MathHelper } from '../helpers/math-helper.mjs';
-import { FUActor } from '../documents/actors/actor.mjs';
-import { FUItem } from '../documents/items/item.mjs';
 import { Targeting } from '../helpers/targeting.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
@@ -24,59 +22,14 @@ import { FU } from '../helpers/config.mjs';
  * and resolve them with the static constructor
  */
 export class ExpressionContext {
+	/** @type {String} **/
+	#sourceUuid;
+
 	constructor(actor, item, targets) {
 		this.actor = actor;
 		this.item = item;
 		this.targets = targets;
 		this.sourceInfo = InlineSourceInfo.fromInstance(this.actor, this.item);
-	}
-
-	/**
-	 * @description Resolves the context based on the target type
-	 * @param {FUActor|FUItem} target
-	 * @param {FUActor|FUItem} parent
-	 * @param {InlineSourceInfo} sourceInfo
-	 */
-	static resolveTarget(target, parent, sourceInfo) {
-		let actor;
-		let item;
-
-		// 1. The effect is being applied onto an actor
-		// 2. The effect is being applied onto an item
-		if (target instanceof FUActor) {
-			actor = target;
-			if (parent instanceof FUItem) {
-				item = parent;
-			}
-		} else if (target instanceof FUItem) {
-			item = target;
-			actor = item.actor;
-		}
-
-		const context = new ExpressionContext(actor, item, [target]);
-		if (sourceInfo) {
-			context.sourceUuid = sourceInfo.itemUuid;
-		}
-		return context;
-	}
-
-	/**
-	 * @param {String} actorUuid
-	 * @param {String} itemUuid
-	 * @param {FUActor[]} targets
-	 * @returns {ExpressionContext}
-	 */
-	static fromUuid(actorUuid, itemUuid, targets) {
-		let actor = undefined;
-		if (actorUuid !== undefined) {
-			actor = fromUuidSync(actorUuid);
-		}
-
-		let item = undefined;
-		if (itemUuid !== undefined) {
-			item = fromUuidSync(itemUuid);
-		}
-		return new ExpressionContext(actor, item, targets);
 	}
 
 	/**
@@ -102,6 +55,10 @@ export class ExpressionContext {
 		}
 
 		return context;
+	}
+
+	setSourceUuid(sourceId) {
+		this.#sourceUuid = sourceId;
 	}
 
 	/**
@@ -229,8 +186,8 @@ export class ExpressionContext {
 	 * @returns {FUItem}
 	 */
 	get source() {
-		if (!this._source && this.sourceUuid) {
-			this._source = fromUuidSync(this.sourceUuid);
+		if (!this._source && this.#sourceUuid) {
+			this._source = fromUuidSync(this.#sourceUuid);
 		}
 		return this._source;
 	}
@@ -350,7 +307,6 @@ function evaluateVariables(expression, context) {
 	function evaluate(match, symbol) {
 		switch (symbol) {
 			// TODO: CHARACTER highest strength among bonds
-			// TODO: CHARACTER number of bonds
 			// Improvised effects
 			case 'minor':
 			case 'heavy':
