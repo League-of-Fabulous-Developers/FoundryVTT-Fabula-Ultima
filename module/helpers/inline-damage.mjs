@@ -31,7 +31,9 @@ function enricher(text, options) {
 		anchor.classList.add('inline', 'inline-damage');
 		anchor.dataset.type = type;
 		anchor.dataset.traits = traits;
-		anchor.dataset.label = label;
+		if (label) {
+			anchor.dataset.label = label;
+		}
 		anchor.draggable = true;
 
 		// TOOLTIP
