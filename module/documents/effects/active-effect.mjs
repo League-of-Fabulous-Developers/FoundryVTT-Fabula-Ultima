@@ -78,11 +78,16 @@ export class FUActiveEffect extends ActiveEffect {
 	 * @remarks Unlike `_onCreate`, is managed by the GM.
 	 */
 	async _preCreate(data, options, user) {
-		this.updateSource({
+		console.debug(`Created active effect ${this.name} on ${this.parent.name ?? 'unknown'} with origin: ${this.origin}, source: ${this.source ? this.source.name : ''}`);
+		const changes = {
 			name: game.i18n.localize(data.name),
 			[`system.duration.remaining`]: this.system.duration.interval,
-		});
-		console.debug(`Created active effect ${this.name} with origin: ${this.origin}, source: ${this.source ? this.source.name : ''}`);
+		};
+		// TODO: Verify this is okay
+		if (this.parent instanceof Item) {
+			changes.img = this.parent.img;
+		}
+		this.updateSource(changes);
 		return super._preCreate(data, options, user);
 	}
 
