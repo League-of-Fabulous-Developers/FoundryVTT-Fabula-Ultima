@@ -240,6 +240,7 @@ export class FUActor extends Actor {
 
 	/**
 	 * @return {Generator<ActiveEffect, void, void>}
+	 * @remarks Includes effects from items
 	 */
 	*allEffects() {
 		for (const effect of this.effects) {
@@ -284,6 +285,9 @@ export class FUActor extends Actor {
 		return prepareActiveEffectCategories(effects);
 	}
 
+	/**
+	 * @override
+	 */
 	applyActiveEffects() {
 		if (this.system.prepareEmbeddedData instanceof Function) {
 			this.system.prepareEmbeddedData();
@@ -331,16 +335,20 @@ export class FUActor extends Actor {
 	 */
 	clearTemporaryEffects(includeStatus = true, includeWithoutDuration = true) {
 		// Collect effects to delete
-		const effectsToDelete = this.effects.filter((effect) => {
+		const effectsToDelete = this.temporaryEffects.filter((effect) => {
 			// If it's a status effect
 			const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
 			if (statusEffectId) {
 				if (!includeStatus && effect.system.duration.event === 'rest') {
 					return false;
 				}
-				const immunity = this.system.immunities[statusEffectId];
-				if (immunity) {
-					return immunity;
+				if (this.isCharacterType) {
+					{
+						const immunity = this.system.immunities[statusEffectId];
+						if (immunity) {
+							return immunity;
+						}
+					}
 				}
 			}
 			if (!effect.hasDuration && !includeWithoutDuration) {

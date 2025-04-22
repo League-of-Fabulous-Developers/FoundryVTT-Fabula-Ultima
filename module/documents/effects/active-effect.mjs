@@ -72,6 +72,8 @@ export class FUActiveEffect extends ActiveEffect {
 		return TEMPORARY;
 	}
 
+	static defaultImg = 'icons/svg/aura.svg';
+
 	/**
 	 * @private
 	 * @override
@@ -85,7 +87,10 @@ export class FUActiveEffect extends ActiveEffect {
 		};
 		// TODO: Verify this is okay
 		if (this.parent instanceof Item) {
-			changes.img = this.parent.img;
+			// If no img is set, then apply the parent's
+			if (this.img === FUActiveEffect.defaultImg) {
+				changes.img = this.parent.img;
+			}
 		}
 		this.updateSource(changes);
 		return super._preCreate(data, options, user);
@@ -160,7 +165,7 @@ export class FUActiveEffect extends ActiveEffect {
 	 * @override
 	 */
 	get isTemporary() {
-		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY) || this.system.duration.event !== 'none';
+		return (super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY)) && this.system.duration.event !== 'none';
 	}
 
 	/**
