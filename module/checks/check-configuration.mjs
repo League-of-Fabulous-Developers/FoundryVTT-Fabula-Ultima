@@ -5,6 +5,7 @@ import { CharacterDataModel } from '../documents/actors/character/character-data
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { Traits } from '../pipelines/traits.mjs';
 import { CheckHooks } from './check-hooks.mjs';
+import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 
 const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
@@ -521,9 +522,6 @@ class CheckInspector {
  * @param {CheckResultV2} check
  */
 const registerMetaCurrencyExpenditure = (check) => {
-	// if (!game.settings.get(SYSTEM, Flags.ChatMessage.UseMetaCurrency)) {
-	// 	return;
-	// }
 	if (!game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomation)) {
 		return;
 	}
@@ -538,7 +536,7 @@ const registerMetaCurrencyExpenditure = (check) => {
 			delete check.additionalData.triggerMetaCurrencyExpenditure;
 			Hooks.off(CheckHooks.renderCheck, hookId);
 			sections.push(async () => {
-				const success = await actor.spendMetaCurrency(true);
+				const success = await PlayerListEnhancements.spendMetaCurrency(actor, true);
 				if (!success) {
 					throw new Error('not enough meta currency');
 				}

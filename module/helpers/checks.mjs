@@ -153,6 +153,7 @@ import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from './token-utils.mjs';
+import { PlayerListEnhancements } from './player-list-enhancements.mjs';
 
 /**
  *
@@ -347,7 +348,7 @@ async function handleReroll(check) {
  * @returns {Promise<CheckParameters|false>}
  */
 export async function rerollCheck(params, reroll) {
-	if (!(await ChatMessage.getSpeakerActor(params.speaker)?.spendMetaCurrency(true))) {
+	if (!(await PlayerListEnhancements.spendMetaCurrency(ChatMessage.getSpeakerActor(params.speaker), true))) {
 		return false;
 	}
 
@@ -560,7 +561,7 @@ async function handlePush(check) {
  * @returns {Promise<CheckParameters|false>}
  */
 async function pushCheck(params, push) {
-	if (!(await ChatMessage.getSpeakerActor(params.speaker)?.spendMetaCurrency(true))) {
+	if (!(await PlayerListEnhancements.spendMetaCurrency(ChatMessage.getSpeakerActor(params.speaker), true))) {
 		return false;
 	}
 

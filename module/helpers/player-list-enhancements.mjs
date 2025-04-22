@@ -5,7 +5,7 @@ import { Flags } from './flags.mjs';
 function addFabulaPointDisplay(app, html, data) {
 	const userId = game.userId;
 	const isGM = game.user.isGM;
-	const character = game.user.character;
+	const actor = game.user.character;
 
 	// Function to render uneditable fabula points for players (excluding current user)
 	function renderUneditableFabulaPoints() {
@@ -24,8 +24,8 @@ function addFabulaPointDisplay(app, html, data) {
 
 	// Function to render spendable fabula points for the current user
 	function renderSpendableFabulaPoints() {
-		if (character && character.system instanceof CharacterDataModel && !isGM) {
-			const fabulaPoints = character.system.resources.fp.value;
+		if (actor && actor.system instanceof CharacterDataModel && !isGM) {
+			const fabulaPoints = actor.system.resources.fp.value;
 			const icon = fabulaPoints < 10 ? `counter_${fabulaPoints}` : 'add_circle';
 			const tooltip = fabulaPoints >= 10 ? game.i18n.localize('FU.FabulaPoints') + ': ' + fabulaPoints : '';
 
@@ -35,11 +35,11 @@ function addFabulaPointDisplay(app, html, data) {
 					.find(`a[data-user-id="${userId}"][data-action="spendFabula"]`)
 					.on('click', function (event) {
 						event.preventDefault();
-						character.spendMetaCurrency();
+						return spendMetaCurrency(actor);
 					})
 					.on('contextmenu', function (event) {
 						event.preventDefault();
-						gainMetaCurrency(character);
+						return gainMetaCurrency(actor);
 					});
 			});
 		}
@@ -60,13 +60,13 @@ function addFabulaPointDisplay(app, html, data) {
 
 					$(this)
 						.append(`<a class="flex0" data-user-id="${charId}" data-action="spendFabula"><span class="mats-o font-size-20" ${fabulaPoints >= 10 ? `data-tooltip="${tooltip}"` : ''}>${icon}</span></a>`)
-						.on('click', `a[data-user-id="${charId}"][data-action="spendFabula"]`, function (event) {
+						.on('click', `a[data-user-id="${charId}"][data-action="spendFabula"]`, async function (event) {
 							event.preventDefault();
-							spendMetaCurrency(user.character);
+							return spendMetaCurrency(user.character);
 						})
-						.on('contextmenu', `a[data-user-id="${charId}"][data-action="spendFabula"]`, function (event) {
+						.on('contextmenu', `a[data-user-id="${charId}"][data-action="spendFabula"]`, async function (event) {
 							event.preventDefault();
-							gainMetaCurrency(user.character);
+							return gainMetaCurrency(user.character);
 						});
 				}
 			});
@@ -85,6 +85,9 @@ function addFabulaPointDisplay(app, html, data) {
  * @return {Promise<boolean>}
  */
 async function spendMetaCurrency(actor, force = false) {
+	if (!actor) {
+		return false;
+	}
 	let metaCurrency;
 	if (actor.type === 'character') {
 		metaCurrency = game.i18n.localize('FU.Fabula');
@@ -125,6 +128,10 @@ async function spendMetaCurrency(actor, force = false) {
 	}
 }
 
+/**
+ * @param {FUActor} actor
+ * @return {Promise}
+ */
 async function gainMetaCurrency(actor) {
 	let metaCurrency;
 	if (actor.type === 'character') {
@@ -159,4 +166,6 @@ export const PlayerListEnhancements = Object.freeze({
 		Hooks.on('renderPlayerList', addFabulaPointDisplay);
 		Hooks.on('updateActor', rerenderPlayerList);
 	},
+	spendMetaCurrency,
+	gainMetaCurrency,
 });
