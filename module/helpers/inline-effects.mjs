@@ -18,6 +18,7 @@ const INLINE_EFFECT_CLASS = 'inline-effect';
 const configurationPropertyGroups = [InlineHelper.propertyPattern('event', 'e', '\\w+'), InlineHelper.propertyPattern('interval', 'i', '\\d'), InlineHelper.propertyPattern('tracking', 't', '\\w+')];
 
 const enricher = {
+	// ID|UUID|Base64String
 	pattern: InlineHelper.compose('EFFECT', '(?<id>[a-zA-Z0-9+/.-]+={0,3})', configurationPropertyGroups),
 	enricher: inlineEffectEnricher,
 };

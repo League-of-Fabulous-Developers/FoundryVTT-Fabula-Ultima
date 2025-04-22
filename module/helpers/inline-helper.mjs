@@ -178,7 +178,10 @@ function determineSource(document, element) {
 			// No need to check 'instanceof FUItem;
 			const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
 			if (item) {
-				name = item.name;
+				// It's possible the dispatcher didn't encode this information
+				if (item.name) {
+					name = item.name;
+				}
 				itemUuid = item.uuid;
 			}
 			// Could come from an effect

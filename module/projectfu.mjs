@@ -609,11 +609,24 @@ Hooks.once('ready', async function () {
 				console.error('FUID generation failed for Item:', itemData.name, 'using slugify.');
 			}
 		}
+		if (itemData.type === 'effect') {
+			const parent = itemData.parent;
+			if (parent instanceof FUActor && !parent.isCharacterType) {
+				ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+				return false;
+			}
+		}
 	});
 
 	Hooks.on('preCreateActiveEffect', (effect, options, userId) => {
 		const actor = effect.parent;
 		if (!actor || !actor.system || !actor.system.immunities) return true;
+
+		// Prevent creation on non-character actor types
+		if (!actor.isCharacterType) {
+			ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+			return false;
+		}
 
 		// Check if the effect is a status effect
 		const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;

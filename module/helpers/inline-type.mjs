@@ -22,7 +22,7 @@ const supportedTypes = {
  * @type {TextEditorEnricherConfig}
  */
 const editorEnricher = {
-	pattern: InlineHelper.compose('TYPE', `\\s*(?<type>\\w+)(?<args>(\\s+(.*?))+)s*`, InlineEffects.configurationPropertyGroups),
+	pattern: InlineHelper.compose('TYPE', `(?<type>\\w+)(?<args>(\\s+([a-zA-Z0]+))+)s*`, InlineEffects.configurationPropertyGroups),
 	enricher: (match, options) => {
 		const type = match.groups.type.toLowerCase();
 		const args = match.groups.args.trimStart();
@@ -162,7 +162,7 @@ function parseDamageTypes(parse) {
  * @param {String[]} args
  * @returns {ActiveEffectData}
  */
-function createEffect(type, args) {
+function composeEffectData(type, args) {
 	let attributeKey;
 	let attributeValue;
 	let name;
@@ -251,7 +251,7 @@ function createEffect(type, args) {
 async function applyEffect(actor, sourceInfo, type, args, config) {
 	if (actor.system instanceof CharacterDataModel || actor.system instanceof NpcDataModel) {
 		//const source = sourceInfo.resolve();
-		const effectData = createEffect(type, args.split(' '));
+		const effectData = composeEffectData(type, args.split(' '));
 		Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config).then((effect) => {
 			console.info(`Created effect: ${effect.uuid} on actor uuid: ${actor.uuid}`);
 		});
