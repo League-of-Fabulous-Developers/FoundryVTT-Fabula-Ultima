@@ -537,7 +537,7 @@ function activateDefaultListeners(html, sheet) {
 		{
 			name: game.i18n.localize('FU.Duplicate'),
 			icon: '<i class="fas fa-clone"></i>',
-			callback: (jq) => _onItemDuplicate.bind(jq, sheet),
+			callback: (jq) => _onItemDuplicate(jq, sheet),
 			condition: (jq) => !!jq.data('itemId'),
 		},
 		{
@@ -572,7 +572,7 @@ function activateDefaultListeners(html, sheet) {
 				contextMenuOptions.push({
 					name: game.i18n.localize('FU.Behavior'),
 					icon: `<i class="${behaviorClass} fa-address-book"></i>`,
-					callback: _onItemBehavior.bind(jq, sheet),
+					callback: (jq) => _onItemBehavior(jq, sheet),
 					condition: (jq) => !!jq.data('itemId'),
 				});
 			}

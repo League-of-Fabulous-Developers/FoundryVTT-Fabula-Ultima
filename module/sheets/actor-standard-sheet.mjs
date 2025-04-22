@@ -13,6 +13,7 @@ import { CommonEvents } from '../checks/common-events.mjs';
 import { CollectionUtils } from '../helpers/collection-utils.mjs';
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
+import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -509,9 +510,7 @@ export class FUStandardActorSheet extends ActorSheet {
 			return this.actor.system.floralist.togglePlantedMagiseed(item);
 		};
 		html.find('[data-action=togglePlantedMagiseed][data-item-id]').on('click', togglePlantedMagiseed.bind(this));
-
-		html.find('a[data-action=spendMetaCurrency]').on('click', () => this.actor.spendMetaCurrency());
-
+		html.find('a[data-action=spendMetaCurrency]').on('click', () => PlayerListEnhancements.spendMetaCurrency(this.actor));
 		html.find('span[data-action="clearTempEffects"]').click(this._onClearTempEffects.bind(this));
 
 		// Dropzone event listeners
