@@ -2,7 +2,7 @@
   "name": "Infusion: Advanced",
   "type": "consumable",
   "_id": "EinStehJUI9KA3ng",
-  "img": "icons/skills/ranged/arrows-flying-salvo-yellow.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/infusion-advanced.png",
   "system": {
     "subtype": {
       "value": "potion"
@@ -41,8 +41,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707096656806,
-    "modifiedTime": 1743184622816,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1745361989786,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

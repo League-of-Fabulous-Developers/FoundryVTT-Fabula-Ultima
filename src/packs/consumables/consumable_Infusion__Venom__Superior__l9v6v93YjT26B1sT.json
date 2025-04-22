@@ -3,7 +3,7 @@
   "name": "Infusion: Venom (Superior)",
   "type": "consumable",
   "_id": "l9v6v93YjT26B1sT",
-  "img": "icons/skills/melee/blade-tip-energy-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/infusion-superior.png",
   "system": {
     "subtype": {
       "value": "potion"
@@ -41,8 +41,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707097217470,
-    "modifiedTime": 1743184627288,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1745361823749,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -2,7 +2,7 @@
   "name": "Infusion: Vampire (Superior)",
   "type": "consumable",
   "_id": "IRrmsG0dovKFMRR5",
-  "img": "icons/skills/melee/strike-sword-blood-red.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/infusion-superior.png",
   "system": {
     "subtype": {
       "value": "potion"
@@ -41,8 +41,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707096643714,
-    "modifiedTime": 1743184626193,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1745362610724,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

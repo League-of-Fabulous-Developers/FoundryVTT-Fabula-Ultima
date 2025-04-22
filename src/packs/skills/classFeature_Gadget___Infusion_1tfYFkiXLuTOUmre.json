@@ -76,7 +76,7 @@
     "source": "FUCR214",
     "fuid": "gadget-infusion"
   },
-  "img": "icons/weapons/ammunition/arrow-broadhead-bent-teal.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/infusion-basic.png",
   "effects": [],
   "folder": "deLkolgURtb8RMPr",
   "flags": {
@@ -87,8 +87,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710468163039,
-    "modifiedTime": 1743175471085,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1745361189581,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

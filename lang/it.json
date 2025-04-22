@@ -1423,6 +1423,7 @@
 		"ChatInventoryTransactionFailed": "<strong>{actor}</strong> non ha abbastanza {currency} per completare questa transazione.",
 		"ChatInventoryItemMissing": "L'oggetto non è più disponibile.",
 		"ChatRecoveryNotNeeded": "<strong>{actor}</strong> ha già {resource} al completo.",
+		"ActorSheetEffectNotSupported": "This type of actor sheet does not support active effects.",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",
