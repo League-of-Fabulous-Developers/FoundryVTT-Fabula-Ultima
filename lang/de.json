@@ -513,7 +513,7 @@
 		"Dagger": "Dolch",
 		"Brawling": "Raufen",
 		"Sword": "Schwert",
-		"Custom": "Spezialwaffe",
+		"Custom": "Benutzerdefiniert",
 		"Melee": "Nahkampfwaffe",
 		"Ranged": "Fernkampfwaffe",
 		"DamageNone": "Typlos",
@@ -1423,6 +1423,7 @@
 		"ChatInventoryTransactionFailed": "<strong>{actor}</strong> hat nicht genug {currency, um die Transaktion durchzuführen.",
 		"ChatInventoryItemMissing": "Der Gegenstand ist nicht länger erhältlich.",
 		"ChatRecoveryNotNeeded": "<strong>{actor}</strong> hat bereits volle {resource}.",
+		"ActorSheetEffectNotSupported": "This type of actor sheet does not support active effects.",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",

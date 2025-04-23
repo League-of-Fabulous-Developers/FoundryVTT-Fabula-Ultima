@@ -2,10 +2,12 @@ import { FU } from './config.mjs';
 
 /**
  * @param {number} level The level of the character
- * @returns The character tier (0,1,2)
+ * @returns {0|1|2|3} The character tier (0,1,2,3)
  */
 function getCharacterTier(level) {
-	if (level >= 40) {
+	if (level >= 60) {
+		return 3;
+	} else if (level >= 40) {
 		return 2;
 	} else if (level >= 20) {
 		return 1;

@@ -31,7 +31,7 @@ import { ProgressDataModel } from '../../items/common/progress-data-model.mjs';
 
 /**
  * @description Represents a party of characters, as well as their management
- * @property {Set<String>} characters
+ * @property {Set<String>} characters The uuids of the actors in the party
  * @property {FUActor} parent
  * @property {Number} resources.zenit.value
  * @property {ProgressDataModel[]} tracks
@@ -86,9 +86,29 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 
 	/**
 	 * @return {FUActor[]}
+	 * @remarks This validates actors removed outside
 	 */
 	get characterActors() {
-		return [...this.characters].map((c) => fromUuidSync(c));
+		const characters = this.characters;
+		let deletedActorIds = [];
+
+		/** @type {FUActor[]} **/
+		let actors = [...characters].map((id) => {
+			const actor = fromUuidSync(id);
+			if (!actor) {
+				deletedActorIds.push(id);
+			}
+			return actor;
+		});
+
+		// If any actors were deleted, we must remove them from ehre as well
+		if (deletedActorIds.length > 0) {
+			deletedActorIds.forEach((id) => characters.delete(id));
+			this.parent.update({ ['system.characters']: characters });
+			actors = actors.filter(Boolean);
+		}
+
+		return actors;
 	}
 
 	/**
@@ -138,6 +158,10 @@ function getResourceData(actor, resource) {
 	};
 }
 
+/**
+ * @typedef {"tank", "damage", "support", "any"} PartyCharacterRole
+ */
+
 const supportClasses = new Set(['merchant', 'loremaster', 'orator', 'spiritist', 'tinkerer', 'support', 'chanter', 'dancer']);
 const damageClasses = new Set(['elementalist', 'sharpshooter', 'rogue', 'invoker']);
 const tankClasses = new Set(['guardian', 'fury']);
@@ -145,6 +169,7 @@ const tankClasses = new Set(['guardian', 'fury']);
 /**
  * @param {FUActor} actor
  * @param {PartyCharacterClass[]} classes
+ * @returns {PartyCharacterRole}
  * @remarks This is a crucial procedure.
  */
 function deduceCharacterRole(actor, classes) {

@@ -31,8 +31,8 @@
 		"Actor": {
 			"character": "Personnage",
 			"npc": "PNJ",
-			"party": "Party",
-			"stash": "Stash"
+			"party": "Groupe",
+			"stash": "Réserve"
 		},
 		"Item": {
 			"basic": "Basique",
@@ -1423,6 +1423,7 @@
 		"ChatInventoryTransactionFailed": "<strong>{actor}</strong> n'a pas assez de {currency} pour effectuer cette transaction.",
 		"ChatInventoryItemMissing": "L'objet n'est plus disponible.",
 		"ChatRecoveryNotNeeded": "<strong>{actor}</strong> a déjà toutes ses {resource}.",
+		"ActorSheetEffectNotSupported": "This type of actor sheet does not support active effects.",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",

@@ -78,6 +78,9 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		let defCalculation;
 		let mdefCalculation;
 
+		const ignoredRanks = new Set(['custom']);
+		const includeAttribute = !(actor.type === 'npc' && ignoredRanks.has(actor.system.rank.value));
+
 		// Find the equipped armor
 		/** @type FUItem */
 		const armor = actor.items.get(equippedItems.armor);
@@ -96,11 +99,14 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 					return equipmentMdef + data.mdef.bonus;
 				};
 			} else {
+				const attrDef = includeAttribute ? attributes[armorData.defense.attribute]?.current ?? 0 : 0;
+				const attrMdef = includeAttribute ? attributes[armorData.magicDefense.attribute]?.current ?? 0 : 0;
+
 				defCalculation = function () {
-					return (attributes[armorData.defense.attribute]?.current ?? 0) + equipmentDef + data.def.bonus;
+					return attrDef + equipmentDef + data.def.bonus;
 				};
 				mdefCalculation = function () {
-					return (attributes[armorData.magicDefense.attribute]?.current ?? 0) + equipmentMdef + data.mdef.bonus;
+					return attrMdef + equipmentMdef + data.mdef.bonus;
 				};
 			}
 		} else if (armor) {
@@ -109,18 +115,24 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 			equipmentDef += armorData.def.value;
 			equipmentMdef += armorData.mdef.value;
 
+			const attrDef = includeAttribute ? attributes[armorData.attributes.primary.value]?.current ?? 0 : 0;
+			const attrMdef = includeAttribute ? attributes[armorData.attributes.secondary.value]?.current ?? 0 : 0;
+
 			defCalculation = function () {
-				return (attributes[armorData.attributes.primary.value]?.current ?? 0) + equipmentDef + data.def.bonus;
+				return attrDef + equipmentDef + data.def.bonus;
 			};
 			mdefCalculation = function () {
-				return (attributes[armorData.attributes.secondary.value]?.current ?? 0) + equipmentMdef + data.mdef.bonus;
+				return attrMdef + equipmentMdef + data.mdef.bonus;
 			};
 		} else {
+			const attrDex = includeAttribute ? attributes.dex.current : 0;
+			const attrIns = includeAttribute ? attributes.ins.current : 0;
+
 			defCalculation = function () {
-				return attributes.dex.current + equipmentDef + data.def.bonus;
+				return attrDex + equipmentDef + data.def.bonus;
 			};
 			mdefCalculation = function () {
-				return attributes.ins.current + equipmentMdef + data.mdef.bonus;
+				return attrIns + equipmentMdef + data.mdef.bonus;
 			};
 		}
 
@@ -190,7 +202,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		if (actor.type === 'npc') {
 			const eliteOrChampBonus = actor.system.rank.value === 'soldier' ? 0 : actor.system.rank.replacedSoldiers;
 			initCalculation = function () {
-				if (actor.system.rank.value === 'companion') {
+				if (actor.system.rank.value === 'companion' || actor.system.rank.value === 'custom') {
 					return 0;
 				}
 				return initMod + initBonus + (actor.system.attributes.dex.base + actor.system.attributes.ins.base) / 2 + eliteOrChampBonus;

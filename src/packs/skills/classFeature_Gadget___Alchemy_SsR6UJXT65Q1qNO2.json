@@ -1,7 +1,7 @@
 {
   "name": "Gadget - Alchemy",
   "type": "classFeature",
-  "img": "icons/consumables/potions/potion-flash-open-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/alchemy.png",
   "system": {
     "summary": {
       "value": ""
@@ -57,7 +57,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710031190668,
-    "modifiedTime": 1745168268718,
+    "modifiedTime": 1745361174591,
     "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null

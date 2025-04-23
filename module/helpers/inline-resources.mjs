@@ -38,7 +38,6 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip,
 		}
 		anchor.draggable = true;
 		anchor.classList.add('inline', elementClass);
-		anchor.dataset.label = label;
 
 		// INDICATOR
 		const indicator = document.createElement('i');
@@ -46,6 +45,7 @@ function createReplacementElement(amount, type, elementClass, uncapped, tooltip,
 		anchor.append(indicator);
 		if (label) {
 			anchor.append(label);
+			anchor.dataset.label = label;
 			anchor.dataset.amount = amount;
 		} else {
 			// AMOUNT

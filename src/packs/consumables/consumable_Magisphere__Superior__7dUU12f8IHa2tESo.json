@@ -3,7 +3,7 @@
   "name": "Magisphere (Superior)",
   "type": "consumable",
   "_id": "7dUU12f8IHa2tESo",
-  "img": "icons/commodities/gems/pearl-storm.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/magitech.png",
   "system": {
     "subtype": {
       "value": "potion"
@@ -41,8 +41,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1707097313067,
-    "modifiedTime": 1743184688811,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1745361294822,
+    "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null
   },

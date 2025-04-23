@@ -3,7 +3,7 @@
   "name": "Gadget- Magitech",
   "type": "classFeature",
   "_id": "EmwWSYlFjlUSGPLL",
-  "img": "icons/magic/symbols/cog-shield-white-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/magitech.png",
   "system": {
     "summary": {
       "value": ""
@@ -35,7 +35,7 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1711288389957,
-    "modifiedTime": 1744501051343,
+    "modifiedTime": 1745361196503,
     "lastModifiedBy": "LokWlpJRX2uVxtGn",
     "compendiumSource": null,
     "duplicateSource": null

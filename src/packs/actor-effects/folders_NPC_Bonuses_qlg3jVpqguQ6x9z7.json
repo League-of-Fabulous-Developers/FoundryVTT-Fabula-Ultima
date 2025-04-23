@@ -1,0 +1,22 @@
+{
+  "name": "NPC Bonuses",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "qlg3jVpqguQ6x9z7",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1745421623836,
+    "modifiedTime": 1745421623836,
+    "lastModifiedBy": "4BP57v2riKcaALIW"
+  },
+  "_key": "!folders!qlg3jVpqguQ6x9z7"
+}

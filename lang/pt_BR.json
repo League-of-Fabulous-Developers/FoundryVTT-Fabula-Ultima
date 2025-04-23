@@ -1401,7 +1401,7 @@
 		"ActivePartySheetOpen": "Abrir Ficha do Grupo",
 		"Identifier": "Identificador",
 		"Sell": "Vender",
-		"Loot": "Saque",
+		"Loot": "Saquear",
 		"Merchant": "Mercador",
 		"ClearItems": "Apagar Itens",
 		"StashItem": "Guardar Item",
@@ -1423,6 +1423,7 @@
 		"ChatInventoryTransactionFailed": "<strong>{actor}</strong> não tem {currency} suficiente para realizar essa transação.",
 		"ChatInventoryItemMissing": "O item não está mais disponível.",
 		"ChatRecoveryNotNeeded": "<strong>{actor}</strong> já tem {resource} completo.",
+		"ActorSheetEffectNotSupported": "This type of actor sheet does not support active effects.",
 		"FUID": {
 			"Long": "ID Fabula Ultima",
 			"Short": "FUID",

@@ -1,0 +1,498 @@
+{
+  "folder": "qlg3jVpqguQ6x9z7",
+  "name": "Custom NPC",
+  "type": "effect",
+  "_id": "gJLXjO1eEGbwZagp",
+  "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+  "system": {
+    "fuid": "custom-npc",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "progress": {
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false,
+            "id": "",
+            "name": ""
+          }
+        }
+      },
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Initiative",
+      "_id": "rz2zKJDhh7Hx9B35",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.derived.init.value",
+          "mode": 2,
+          "value": "floor((@actor.attributes.dex.base + @actor.attributes.ins.base)/2)",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.projectfu.actor-effects.Item.gJLXjO1eEGbwZagp.ActiveEffect.bX83GKcbtvPeNqvG",
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1745422652949,
+        "modifiedTime": 1745422987517,
+        "lastModifiedBy": "4BP57v2riKcaALIW"
+      },
+      "_key": "!items.effects!gJLXjO1eEGbwZagp.rz2zKJDhh7Hx9B35"
+    },
+    {
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "progress": {
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false,
+            "id": "",
+            "name": ""
+          }
+        }
+      },
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Maximum HP",
+      "_id": "4gEFtsHgI2hQPIa0",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.resources.hp.max",
+          "mode": 2,
+          "value": "($cl*2)+(5*$mig)",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1745422673829,
+        "modifiedTime": 1745423190320,
+        "lastModifiedBy": "4BP57v2riKcaALIW"
+      },
+      "_key": "!items.effects!gJLXjO1eEGbwZagp.4gEFtsHgI2hQPIa0"
+    },
+    {
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "progress": {
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false,
+            "id": "",
+            "name": ""
+          }
+        }
+      },
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Maximum MP",
+      "_id": "dVFOtfXGeEdQ6DVc",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.resources.mp.max",
+          "mode": 2,
+          "value": "($cl)+(5*$wlp)",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1745422997255,
+        "modifiedTime": 1745423234351,
+        "lastModifiedBy": "4BP57v2riKcaALIW"
+      },
+      "_key": "!items.effects!gJLXjO1eEGbwZagp.dVFOtfXGeEdQ6DVc"
+    },
+    {
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "progress": {
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false,
+            "id": "",
+            "name": ""
+          }
+        }
+      },
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Defense",
+      "_id": "OrmoJcptYWdsMnsb",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.derived.def.value",
+          "mode": 2,
+          "value": "@system.attributes.dex.current",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1745423263622,
+        "modifiedTime": 1745423378469,
+        "lastModifiedBy": "4BP57v2riKcaALIW"
+      },
+      "_key": "!items.effects!gJLXjO1eEGbwZagp.OrmoJcptYWdsMnsb"
+    },
+    {
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "progress": {
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false,
+            "name": "",
+            "id": ""
+          }
+        }
+      },
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Magic Defense",
+      "_id": "4jQLg6EumQ1xivgQ",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.derived.mdef.value",
+          "mode": 2,
+          "value": "@system.attributes.ins.current",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.projectfu.actor-effects.Item.gJLXjO1eEGbwZagp.ActiveEffect.OrmoJcptYWdsMnsb",
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1745423473064,
+        "modifiedTime": 1745423502694,
+        "lastModifiedBy": "4BP57v2riKcaALIW"
+      },
+      "_key": "!items.effects!gJLXjO1eEGbwZagp.4jQLg6EumQ1xivgQ"
+    },
+    {
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "progress": {
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false,
+            "id": "",
+            "name": ""
+          }
+        }
+      },
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Check Bonuses",
+      "_id": "awGa5v8uXAmkVDgZ",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.accuracy.accuracyCheck",
+          "mode": 2,
+          "value": "floor($cl/10)",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.accuracy.magicCheck",
+          "mode": 2,
+          "value": "floor($cl/10)floor($cl/10)",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1745423543333,
+        "modifiedTime": 1745423565026,
+        "lastModifiedBy": "4BP57v2riKcaALIW"
+      },
+      "_key": "!items.effects!gJLXjO1eEGbwZagp.awGa5v8uXAmkVDgZ"
+    },
+    {
+      "img": "systems/projectfu/styles/static/statuses/Blank.webp",
+      "system": {
+        "duration": {
+          "event": "none",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "progress": {
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false,
+            "id": "",
+            "name": ""
+          }
+        }
+      },
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Damage Bonuses",
+      "_id": "wRElOGOUVUWHaQMF",
+      "type": "base",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.melee",
+          "mode": 2,
+          "value": "&step(0,5,10,15)",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.ranged",
+          "mode": 2,
+          "value": "&step(0,5,10,15)",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.spell",
+          "mode": 2,
+          "value": "&step(0,5,10,15)",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1745423569712,
+        "modifiedTime": 1745423698798,
+        "lastModifiedBy": "4BP57v2riKcaALIW"
+      },
+      "_key": "!items.effects!gJLXjO1eEGbwZagp.wRElOGOUVUWHaQMF"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "4BP57v2riKcaALIW": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1745422132322,
+    "modifiedTime": 1745422260547,
+    "lastModifiedBy": "4BP57v2riKcaALIW"
+  },
+  "_key": "!items!gJLXjO1eEGbwZagp"
+}
