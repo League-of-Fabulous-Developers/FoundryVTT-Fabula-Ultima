@@ -213,6 +213,35 @@ async function rechargeIP(actor) {
 }
 
 /**
+ * @param {String} sourceActorId
+ * @param {String} targetActorId
+ * @param {Number} zenit
+ * @returns {Promise}
+ */
+async function requestZenitTransfer(sourceActorId, targetActorId, zenit) {
+	// Now execute directly on GM or request as user
+	if (game.user?.isGM) {
+		/** @type FUActor **/
+		const sourceActor = fromUuidSync(sourceActorId);
+
+		if (validateFunds(sourceActor, zenit)) {
+			/** @type FUActor **/
+			const targetActor = fromUuidSync(targetActorId);
+
+			await updateResources(sourceActor, -zenit);
+			await updateResources(targetActor, zenit);
+		}
+	} else {
+		await SOCKET.executeAsGM(MESSAGES.RequestTrade, sourceActorId, targetActorId, zenit);
+		return;
+	}
+}
+
+async function promptPartyZenitTransfer(actor, mode) {
+	console.debug(`Prompt party zenit ${mode} for actor: ${actor.name}`);
+}
+
+/**
  * @param {String} actorId
  * @param {String} itemId
  * @param {Boolean} sale
@@ -361,8 +390,10 @@ function initialize() {
 
 export const InventoryPipeline = {
 	initialize,
-	tradeItem,
 	requestTrade,
+	tradeItem,
+	requestZenitTransfer,
+	promptPartyZenitTransfer,
 	distributeZenit,
 	requestRecharge,
 };

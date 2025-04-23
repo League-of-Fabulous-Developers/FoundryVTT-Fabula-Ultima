@@ -720,7 +720,7 @@ function activateInventoryListeners(html, sheet) {
 	html.on('click', '.item-create', (ev) => _onItemCreate(ev, sheet));
 	html.on('click', '.item-create-dialog', (ev) => _onItemCreateDialog(ev, sheet));
 	html.on('click', '.item-sell', (ev) => onTradeItem($(ev.currentTarget), sheet, true));
-	html.on('click', '.item-loot', (ev) => onTradeItem($(ev.currentTarget), sheet, false));
+	html.on('click', '.item-share', (ev) => onTradeItem($(ev.currentTarget), sheet, false));
 	html.on('click', '.zenit-distribute', async (ev) => {
 		return InventoryPipeline.distributeZenit(sheet.actor);
 	});

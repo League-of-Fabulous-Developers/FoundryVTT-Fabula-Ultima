@@ -6,13 +6,15 @@
 				<i class="fuk fu-zenit"></i>
 				<input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}" data-dtype="Number" />
 			</span>
-			<a class="item-control zenit-distribute" data-tooltip="{{ localize 'FU.InventoryDistributeZenit' currency=(getGameSetting 'optionRenameCurrency')}}" aria-describedby="tooltip">
-				<img class="fua" src="systems/projectfu/styles/static/compendium/classes/merchant/real_treasure.png" />
-			</a>
-			{{#if system.merchant}}
-				<a class="item-control recharge-ip" data-tooltip="{{ localize 'FU.InventoryRechargeIP' }}" aria-describedby="tooltip">
-					<img class="fua" src="systems/projectfu/styles/static/compendium/classes/merchant/winds_of_trade.png" />
+			{{#if isOwner}}
+				<a class="item-control zenit-distribute" data-tooltip="{{ localize 'FU.InventoryDistributeZenit' currency=(getGameSetting 'optionRenameCurrency')}}" aria-describedby="tooltip">
+					<img class="fua" src="systems/projectfu/styles/static/compendium/classes/merchant/real_treasure.png" />
 				</a>
+				{{#if system.merchant}}
+					<a class="item-control recharge-ip" data-tooltip="{{ localize 'FU.InventoryRechargeIP' }}" aria-describedby="tooltip">
+						<img class="fua" src="systems/projectfu/styles/static/compendium/classes/merchant/winds_of_trade.png" />
+					</a>
+				{{/if}}
 			{{/if}}
 		</span>
 
