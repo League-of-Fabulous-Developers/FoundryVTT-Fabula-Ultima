@@ -64,12 +64,20 @@ export class FUPartySheet extends ActorSheet {
 		ActorSheetUtils.activateDefaultListeners(html, this);
 		ActorSheetUtils.activateInventoryListeners(html, this);
 		ActorSheetUtils.activateStashListeners(html, this);
+
+		// Left click on character
 		html.find('[data-action=revealActor]').on('click', (ev) => {
 			const uuid = ev.currentTarget.dataset.actor;
 			const actor = fromUuidSync(uuid);
-			actor.sheet.render(true);
+			if (actor) {
+				actor.sheet.render(true);
+			} else {
+				this.removeCharacterById(uuid);
+			}
 		});
+		// Right click on character
 		this.setupCharacterContextMenu(html);
+
 		// Set party as active
 		html.find('.set-active-button').click(() => {
 			console.debug(`Setting ${this.actor.name} as the active party`);
@@ -260,10 +268,7 @@ export class FUPartySheet extends ActorSheet {
 				icon: '<i class="fas fa-trash"></i>',
 				callback: (jq) => {
 					const id = jq.data('uuid');
-					const characters = this.party.characters;
-					characters.delete(id);
-					this.actor.update({ ['system.characters']: characters });
-					console.debug(`${id} was removed from the party ${this.actor.name}`);
+					this.removeCharacterById(id);
 				},
 			},
 		];
@@ -272,6 +277,13 @@ export class FUPartySheet extends ActorSheet {
 		new ContextMenu(html, '.character-option', contextMenuOptions, {
 			fixed: true,
 		});
+	}
+
+	removeCharacterById(id) {
+		const characters = this.party.characters;
+		characters.delete(id);
+		this.actor.update({ ['system.characters']: characters });
+		console.debug(`${id} was removed from the party ${this.actor.name}`);
 	}
 
 	/**
