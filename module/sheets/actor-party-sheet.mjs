@@ -335,6 +335,20 @@ export class FUPartySheet extends ActorSheet {
 		}
 		return null;
 	}
+
+	/**
+	 * @returns {Promise<FUActor>}
+	 */
+	static async getActive() {
+		const activePartyUuid = game.settings.get(SYSTEM, SETTINGS.activeParty);
+		if (activePartyUuid) {
+			const party = fromUuidSync(`Actor.${activePartyUuid}`);
+			if (party && party.type === 'party') {
+				return party;
+			}
+		}
+		return null;
+	}
 }
 
 /**

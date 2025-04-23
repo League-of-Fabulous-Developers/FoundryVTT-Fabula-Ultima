@@ -215,30 +215,86 @@ async function rechargeIP(actor) {
 /**
  * @param {String} sourceActorId
  * @param {String} targetActorId
- * @param {Number} zenit
+ * @param {Number} amount
  * @returns {Promise}
  */
-async function requestZenitTransfer(sourceActorId, targetActorId, zenit) {
+async function requestZenitTransfer(sourceActorId, targetActorId, amount) {
 	// Now execute directly on GM or request as user
 	if (game.user?.isGM) {
 		/** @type FUActor **/
 		const sourceActor = fromUuidSync(sourceActorId);
 
-		if (validateFunds(sourceActor, zenit)) {
+		if (validateFunds(sourceActor, amount)) {
 			/** @type FUActor **/
 			const targetActor = fromUuidSync(targetActorId);
 
-			await updateResources(sourceActor, -zenit);
-			await updateResources(targetActor, zenit);
+			await updateResources(sourceActor, -amount);
+			await updateResources(targetActor, amount);
 		}
 	} else {
-		await SOCKET.executeAsGM(MESSAGES.RequestTrade, sourceActorId, targetActorId, zenit);
+		await SOCKET.executeAsGM(MESSAGES.RequestTrade, sourceActorId, targetActorId, amount);
 		return;
 	}
 }
 
+/**
+ * @param {FUActor} actor
+ * @param {'deposit'|'withdraw'} mode
+ * @returns {Promise<void>}
+ */
 async function promptPartyZenitTransfer(actor, mode) {
 	console.debug(`Prompt party zenit ${mode} for actor: ${actor.name}`);
+	let label;
+	switch (mode) {
+		case 'deposit':
+			label = 'FU.InventoryDepositZenit';
+			break;
+		case 'withdraw':
+			label = 'FU.InventoryWithdrawZenit';
+			break;
+	}
+
+	new Dialog({
+		title: game.i18n.localize(label),
+		content: `<form>
+      <div class="form-group">        
+        <label for="amount"">Amount</label>
+		<input type="number" name="amount" value="0"/>
+      </div>
+    </form>`,
+		buttons: [
+			{
+				label: 'Confirm',
+				callback: async (html) => {
+					const amountStr = html.find('[name="amount"]').val();
+					if (!amountStr) {
+						return;
+					}
+
+					const amount = Number(amountStr);
+					const party = await FUPartySheet.getActive();
+					if (party) {
+						let source, target;
+						switch (mode) {
+							case 'deposit':
+								source = actor;
+								target = party;
+								break;
+							case 'withdraw':
+								source = party;
+								target = actor;
+								break;
+						}
+						await requestZenitTransfer(source.uuid, target.uuid, amount);
+					}
+				},
+			},
+			{
+				label: 'Cancel',
+				callback: () => {},
+			},
+		],
+	}).render(true);
 }
 
 /**

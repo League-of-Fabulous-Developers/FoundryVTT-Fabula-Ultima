@@ -6,7 +6,7 @@
 				<i class="fuk fu-zenit"></i>
 				<input type="text" name="system.resources.zenit.value" value="{{ system.resources.zenit.value }}" data-dtype="Number" />
 			</span>
-			{{#if isOwner}}
+			{{#if actor.isOwner}}
 				<a class="item-control zenit-distribute" data-tooltip="{{ localize 'FU.InventoryDistributeZenit' currency=(getGameSetting 'optionRenameCurrency')}}" aria-describedby="tooltip">
 					<img class="fua" src="systems/projectfu/styles/static/compendium/classes/merchant/real_treasure.png" />
 				</a>
