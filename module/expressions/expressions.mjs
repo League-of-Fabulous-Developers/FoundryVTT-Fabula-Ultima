@@ -398,7 +398,7 @@ function evaluateMacros(expression, context) {
 			}
 			// Scale from 5-19, 20-39, 40+
 			case 'step':
-				return stepByLevel(context, splitArgs[0], splitArgs[1], splitArgs[2]);
+				return stepByLevel(context, splitArgs[0], splitArgs[1], splitArgs[2], splitArgs[3]);
 			default:
 				throw new Error(`Unsupported macro ${name}`);
 		}
@@ -592,13 +592,14 @@ async function backlash(actor, key, resource, sourceInfo) {
 }
 
 /**
- * @description Given 3 amounts, picks the one for this characters' level
+ * @description Given 3 increments (and optionally, a 4th), picks the one for this characters' level
  * @param {ExpressionContext} context
  * @param {Number} first
  * @param {Number} second
  * @param {Number} third
+ * @param {Number|undefined} fourth
  */
-function stepByLevel(context, first, second, third) {
+function stepByLevel(context, first, second, third, fourth) {
 	const actor = context.resolveActorOrHighestLevelTarget();
 	const tier = ImprovisedEffect.getCharacterTier(actor.system.level.value);
 	switch (tier) {
@@ -608,6 +609,8 @@ function stepByLevel(context, first, second, third) {
 			return second;
 		case 2:
 			return third;
+		case 3:
+			return fourth ?? third;
 	}
 	return null;
 }
