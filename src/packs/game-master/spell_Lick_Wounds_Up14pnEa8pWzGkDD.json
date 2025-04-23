@@ -6,7 +6,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You recover 20 Hit Points. This amount increases to 30 Hit Points if you are <strong>level 20 or higher</strong>, to 40 Hit Points if you are <strong>level 40 or higher</strong>, or to 50 Hit Points if you are <strong>level 60</strong> or higher.</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[&amp;step(20,30,40) hp]{20|30|40 HP}</p></li><li><p><strong>You Recovery (60+):</strong> @GAIN[50 hp]</p></li></ul>",
+    "description": "<p>You recover 20 Hit Points. This amount increases to 30 Hit Points if you are <strong>level 20 or higher</strong>, to 40 Hit Points if you are <strong>level 40 or higher</strong>, or to 50 Hit Points if you are <strong>level 60</strong> or higher.</p><hr><ul><li><p><strong>You Recover:</strong> @GAIN[&step(20,30,40,50) hp]{20|30|40|50 HP}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -130,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1744755453841,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1745428761030,
+    "lastModifiedBy": "4BP57v2riKcaALIW",
     "compendiumSource": null,
     "duplicateSource": null
   },
