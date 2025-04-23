@@ -1,7 +1,7 @@
 {
   "folder": null,
   "name": "Delicacy Effect",
-  "img": "icons/consumables/food/bowl-stew-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
   "description": "<p>When you combine two tastes you <strong>never combined before</strong>, determine the <strong>effect</strong> of that combination by rolling a <strong>d12</strong>; most entries also require you to make a choice (such as a specific damage type or status effect). Once you're done, record the resulting effect on your @UUID[Compendium.projectfu.skills.Item.HQTDIy6suF8u6dAl]{Cookbook}: from this moment on, that <strong>combination</strong> of tastes will <strong>always</strong> produce that exact <strong>effect</strong> when you use it. Follow @UUID[Compendium.projectfu.handouts.JournalEntry.vsXmQQBeh7FSTCc4]{Ingredients &amp; Delicacies Rules} for more instructions.</p>",
   "results": [
     {
@@ -195,8 +195,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742677027237,
-    "modifiedTime": 1743173005159,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+    "modifiedTime": 1745431368277,
+    "lastModifiedBy": "4BP57v2riKcaALIW"
   },
   "formula": "1d12",
   "ownership": {

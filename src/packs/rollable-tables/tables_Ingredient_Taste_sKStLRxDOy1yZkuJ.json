@@ -1,7 +1,7 @@
 {
   "folder": null,
   "name": "Ingredient Taste",
-  "img": "icons/consumables/food/plate-fish-grilled-brown.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/gourmet/cooking.png",
   "description": "<p>Roll a <strong>d6</strong> to determine the <strong>ingredient’s taste</strong> using the table below, then describe its appearance and give it a name.</p>",
   "results": [
     {
@@ -111,8 +111,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742677029227,
-    "modifiedTime": 1742741439032,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+    "modifiedTime": 1745431389871,
+    "lastModifiedBy": "4BP57v2riKcaALIW"
   },
   "formula": "1d6",
   "ownership": {
