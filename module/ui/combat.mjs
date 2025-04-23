@@ -614,7 +614,7 @@ export class FUCombat extends Combat {
 	/**
 	 * @returns {FUActor[]}
 	 */
-	getActors() {
+	get actors() {
 		return Array.from(this.combatants.map((c) => c.actor));
 	}
 
@@ -634,5 +634,13 @@ export class FUCombat extends Combat {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @returns True if the actor is present in the combat
+	 */
+	hasActor(actor) {
+		return this.actors.includes(actor);
 	}
 }

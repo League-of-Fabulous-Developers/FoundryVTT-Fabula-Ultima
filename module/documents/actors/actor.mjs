@@ -136,6 +136,23 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @param {Object} options Additional options which modify the deletion request
+	 * @param {BaseUser} user The User requesting the document deletion
+	 * @returns {Promise<Boolean|void>} A return value of false indicates the deletion operation should be cancelled.
+	 * @private
+	 */
+	async _preDelete(options, user) {
+		// Do not allow deleting characters in active combat encounters
+		if ((this, this.isCharacterType && game.combat)) {
+			if (game.combat.hasActor(this)) {
+				ui.notifications.error(`You cannot delete an actor that is part of an active combat.`);
+				return false;
+			}
+		}
+		return super._preDelete(options, user);
+	}
+
+	/**
 	 * @override
 	 */
 	async _onCreate(createData, options, userId) {

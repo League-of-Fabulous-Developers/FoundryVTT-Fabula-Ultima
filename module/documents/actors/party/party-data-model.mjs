@@ -158,6 +158,10 @@ function getResourceData(actor, resource) {
 	};
 }
 
+/**
+ * @typedef {"tank", "damage", "support", "any"} PartyCharacterRole
+ */
+
 const supportClasses = new Set(['merchant', 'loremaster', 'orator', 'spiritist', 'tinkerer', 'support', 'chanter', 'dancer']);
 const damageClasses = new Set(['elementalist', 'sharpshooter', 'rogue', 'invoker']);
 const tankClasses = new Set(['guardian', 'fury']);
@@ -165,6 +169,7 @@ const tankClasses = new Set(['guardian', 'fury']);
 /**
  * @param {FUActor} actor
  * @param {PartyCharacterClass[]} classes
+ * @returns {PartyCharacterRole}
  * @remarks This is a crucial procedure.
  */
 function deduceCharacterRole(actor, classes) {
