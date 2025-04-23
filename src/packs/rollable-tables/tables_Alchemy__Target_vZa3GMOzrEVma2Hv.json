@@ -1,6 +1,6 @@
 {
   "name": "Alchemy: Target",
-  "img": "icons/consumables/potions/potion-flash-open-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/tinkerer/gadget/alchemy.png",
   "description": "<p><span class=\"fontstyle0\">When you create a mix, roll the amount of twenty-sided dice indicated by that mix, then assign one of those rolls to the </span><span class=\"fontstyle2\"><strong>target</strong> </span><span class=\"fontstyle0\">table (below) and one to the </span><span class=\"fontstyle2\">effect </span><span class=\"fontstyle0\">table @UUID[Compendium.projectfu.rollable-tables.RollTable.TvH7gOE0xQYeimUF]{Alchemy: Effect}. Discard all remaining dice, then describe the effects of the mix!</span> <br style=\"font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;orphans:2;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;-webkit-text-size-adjust:auto;-webkit-text-stroke-width:0px\" /></p>",
   "results": [
     {
@@ -80,8 +80,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710031308833,
-    "modifiedTime": 1743172734130,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1745431292422,
+    "lastModifiedBy": "4BP57v2riKcaALIW",
     "compendiumSource": null,
     "duplicateSource": null
   },
