@@ -7,6 +7,7 @@
  * @property {Number} fp
  * @property {Number} zenit
  * @property {String} role
+ * @property {String} statusClass Optional class to be added
  */
 
 /**
@@ -140,6 +141,10 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 			const hp = getResourceData(actor, 'hp');
 			const mp = getResourceData(actor, 'mp');
 			const ip = getResourceData(actor, 'ip');
+			let statusClass = undefined;
+			if (actor.system.resources.exp.value >= 10) {
+				statusClass = 'level-up';
+			}
 
 			return {
 				actor: actor,
@@ -151,6 +156,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 				fp: actor.system.resources.fp.value,
 				zenit: actor.system.resources.zenit.value,
 				role: deduceCharacterRole(actor, classes),
+				statusClass: statusClass,
 			};
 		});
 	}

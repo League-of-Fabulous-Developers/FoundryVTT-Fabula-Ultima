@@ -108,7 +108,7 @@
 				{{#each characters}}
 				{{!-- Character Card  --}}
 					<div class="character">
-						<div class="plate border character-option" data-uuid="{{this.actor.uuid}}">
+						<div class="plate border character-option {{this.statusClass}}" data-uuid="{{this.actor.uuid}}">
 								<div class="classes">
 									{{#each this.classes}}
 										<img class="item" src="{{ this.img }}" data-tooltip="{{ this.name }}" />
