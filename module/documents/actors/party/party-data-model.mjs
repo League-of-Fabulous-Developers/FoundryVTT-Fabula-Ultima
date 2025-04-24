@@ -26,8 +26,18 @@
  * @property {Number} percentage
  */
 
-import { FU } from '../../../helpers/config.mjs';
+/**
+ * @typedef PartyExperienceData
+ * @property {Number} base The base amount of experience per session
+ * @property {Number} fp The amount of fabula points spent
+ * @property {Number} up The amount of ultima points spent
+ * @property {Number} fxp The xp to award based on the number of fabula points divided by number of characters
+ * @property {Number} total Total amount of XP to award per character
+ */
+
+import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { ProgressDataModel } from '../../items/common/progress-data-model.mjs';
+import { SETTINGS } from '../../../settings.js';
 
 /**
  * @description Represents a party of characters, as well as their management
@@ -143,6 +153,62 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 				role: deduceCharacterRole(actor, classes),
 			};
 		});
+	}
+
+	/**
+	 * @returns {PartyExperienceData}
+	 */
+	calculateExperience() {
+		const activeCharacters = this.characters;
+		const spentFabulaPoints = game.settings.get(SYSTEM, SETTINGS.metaCurrencyFabula);
+		const spentUltimaPoints = game.settings.get(SYSTEM, SETTINGS.metaCurrencyUltima);
+
+		const baseExperience = game.settings.get(SYSTEM, SETTINGS.metaCurrencyBaseExperience);
+		const fabulaExperience = Math.floor(spentFabulaPoints / Math.max(1, activeCharacters.size));
+		const totalXp = baseExperience + spentUltimaPoints + fabulaExperience;
+
+		return {
+			base: baseExperience,
+			fp: spentFabulaPoints,
+			up: spentUltimaPoints,
+			fxp: fabulaExperience,
+			total: totalXp,
+		};
+	}
+
+	async distributeExperience() {
+		const activeCharacters = this.characterActors;
+		const xp = this.calculateExperience();
+		const automaticallyDistributeExp = game.settings.get(SYSTEM, SETTINGS.metaCurrencyAutomaticallyDistributeExp);
+		const data = {
+			baseExp: xp.base,
+			ultimaExp: xp.up,
+			spentFabula: xp.fp,
+			fabulaExp: xp.fxp,
+			totalExp: xp.total,
+			activeCharacters: activeCharacters,
+			characterSectionTitle: automaticallyDistributeExp ? 'FU.ChatExpAwardExpAwardedTo' : 'FU.ChatExpAwardActiveCharacters',
+		};
+
+		/** @type ChatMessageData */
+		const messageData = {
+			flavor: game.i18n.localize('FU.ChatExpAwardFlavor'),
+			content: await renderTemplate('systems/projectfu/templates/chat/chat-exp-award.hbs', data),
+		};
+
+		ChatMessage.create(messageData);
+
+		if (automaticallyDistributeExp) {
+			Actor.updateDocuments(
+				activeCharacters.map((character) => ({
+					_id: character.id,
+					'system.resources.exp.value': character.system.resources.exp.value + xp.total,
+				})),
+			);
+		}
+		const newFabulaValue = game.settings.get(SYSTEM, SETTINGS.metaCurrencyKeepExcessFabula) ? xp.fp % Math.max(1, activeCharacters.length) : 0;
+		game.settings.set(SYSTEM, SETTINGS.metaCurrencyFabula, newFabulaValue);
+		game.settings.set(SYSTEM, SETTINGS.metaCurrencyUltima, 0);
 	}
 }
 
