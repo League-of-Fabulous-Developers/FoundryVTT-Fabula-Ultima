@@ -2,6 +2,7 @@ import { FU, SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { FUPartySheet } from './actor-party-sheet.mjs';
+import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
 
 const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
 const SKILL_TYPES = ['skill'];
@@ -721,6 +722,7 @@ function activateInventoryListeners(html, sheet) {
 	html.on('click', '.item-create-dialog', (ev) => _onItemCreateDialog(ev, sheet));
 	html.on('click', '.item-sell', (ev) => onTradeItem($(ev.currentTarget), sheet, true));
 	html.on('click', '.item-share', (ev) => onTradeItem($(ev.currentTarget), sheet, false));
+	html.on('click', '.item-loot', (ev) => onLootItem($(ev.currentTarget), sheet, false));
 	html.on('click', '.zenit-distribute', async (ev) => {
 		return InventoryPipeline.distributeZenit(sheet.actor);
 	});
@@ -731,6 +733,26 @@ function activateInventoryListeners(html, sheet) {
 
 /**
  * Handles the selling of items
+ * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * @param {ActorSheet} sheet
+ * @param {Boolean} sell
+ */
+function onLootItem(jq, sheet, sell) {
+	const dataItemId = jq.data('itemId');
+	const sourceActor = sheet.actor;
+	const item = sourceActor.items.get(dataItemId);
+	if (!item) {
+		return;
+	}
+	const targetActor = getPrioritizedUserTargeted();
+	if (!targetActor) {
+		return;
+	}
+	InventoryPipeline.requestTrade(sourceActor.uuid, item.uuid, false, targetActor.uuid);
+}
+
+/**
+ * @description Handles looting item directly from a sheet
  * @param {jQuery} jq - The element that the ContextMenu was attached to
  * @param {ActorSheet} sheet
  * @param {Boolean} sell
