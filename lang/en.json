@@ -1423,6 +1423,7 @@
 		"ChatDistributeZenit": "<strong>{zenit} {currency}</strong> was distributed to <strong>{targets}</strong>.",
 		"ChatItemLooted": "<strong>{target}</strong> has acquired <strong>{item}</strong> from <strong>{actor}</strong>.",
 		"ChatItemPurchased": "<strong>{target}</strong> has purchased <strong>{item}</strong> from <strong>{actor}</strong> for <strong>{cost} {currency}</strong>.",
+		"ChatZenitTransfer": "<strong>{source}</strong> has transferred <strong>{amount} {currency}</strong> to <strong>{target}</strong>.",
 		"ChatInventoryTransactionFailed": "<strong>{actor}</strong> does not have enough {currency} to make that transaction.",
 		"ChatInventoryItemMissing": "The item is no longer available.",
 		"ChatRecoveryNotNeeded": "<strong>{actor}</strong> already has full {resource}.",

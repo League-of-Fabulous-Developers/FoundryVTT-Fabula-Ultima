@@ -230,10 +230,18 @@ async function requestZenitTransfer(sourceActorId, targetActorId, amount) {
 
 			await updateResources(sourceActor, -amount);
 			await updateResources(targetActor, amount);
+
+			ChatMessage.create({
+				content: game.i18n.format('FU.ChatZenitTransfer', {
+					source: sourceActor.name,
+					target: targetActor.name,
+					amount: amount,
+					currency: game.i18n.localize('FU.Zenit'),
+				}),
+			});
 		}
 	} else {
-		await SOCKET.executeAsGM(MESSAGES.RequestTrade, sourceActorId, targetActorId, amount);
-		return;
+		await SOCKET.executeAsGM(MESSAGES.RequestZenitTransfer, sourceActorId, targetActorId, amount);
 	}
 }
 
