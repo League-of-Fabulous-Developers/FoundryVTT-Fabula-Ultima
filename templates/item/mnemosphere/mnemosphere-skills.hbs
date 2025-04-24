@@ -1,0 +1,114 @@
+<main class="skills tab" data-tab="skills" data-group="main">
+	<section>
+		<header>
+			<label>{{localize "FU.Skills"}}</label>
+			<span> {{ totalSkillLevels }} / {{ item.system.level }} </span>
+		</header>
+		<ul class="skills-table">
+			<li class="skills-table-header">
+				<div>{{localize 'FU.Name'}}</div>
+				<div>{{localize 'FU.SkillLevel'}}</div>
+				<div>
+					<a data-action="add" data-type="skill" aria-describedby="tooltip"
+					   data-tooltip="{{localize 'FU.SkillCreate'}}">
+						<i class="fas fa-plus icon"></i>
+						{{localize 'FU.Add'}}
+					</a>
+				</div>
+			</li>
+			{{#each item.system.skills as |item|}}
+				<li class="skills-table-row" data-item-id="{{ item.id }}" data-uuid="{{ item.uuid }}">
+					<a data-action="roll" data-tooltip="{{localize 'FU.RollIconToolTip' name=item.name}}"><img class="item-icon" src="{{item.img}}" alt="Item icon"></a>
+					<span data-action="expand">{{item.name}}</span>
+					<div>
+						{{#if item.system.hasResource.value}}
+							<div class="item-m flexcol flex-group-center resource-content">
+								<label class="item-quality resource-text-sm"
+									   style="flex-grow: 2;">{{ item.system.rp.name }}</label>
+								<div class="resource-text-m buttons-inc" style="padding: 0 4px;">
+									<a class="decrement-button" data-type="resourceCounter"
+									   data-item-id="{{ item._id }}">-</a>
+									<span data-resource="item.rp">{{ item.system.rp.current }}</span>
+									{{#if (gt item.system.rp.max 0)}}
+										<span>/</span>
+										<span>{{ item.system.rp.max }}</span>
+									{{/if}}
+
+									<a class="increment-button" data-type="resourceCounter"
+									   data-item-id="{{ item._id }}">+</a>
+								</div>
+							</div>
+						{{/if}}
+						<div class="skillLevel item-lg sl-stars">
+							{{#each item.system.skillLevelArray as |level|}}
+								<a data-action="changeSkillLevel" data-value="{{level.id}}"
+								   class="star-radio-container">
+									<i
+									 class="star-label {{#if level.checked}}fus-sl-star{{else}}ful-sl-star{{/if}}"></i>
+								</a>
+							{{/each}}
+						</div>
+					</div>
+					<span class="item-actions">
+                        <a data-action="favorite" data-tooltip="{{#if item.system.isFavored.value}}{{ localize
+						 'FU.FavoriteRemove' }}{{else}}{{ localize 'FU.Favorite' }}{{/if}}" aria-describedby="tooltip">
+                            <i class="{{#if item.system.isFavored.value}}fas{{else}}far{{/if}} fa-star"></i>
+                        </a>
+                        <a data-action="edit" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a data-action="delete" data-tooltip="{{ localize 'FU.Settings' }}" aria-describedby="tooltip">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </span>
+					<div class="description {{#unless (lookup @root.expandedIds item.id)}}hidden{{/unless}}">
+						{{{lookup @root.enrichedHtml.description item.id}}}
+					</div>
+				</li>
+			{{/each}}
+		</ul>
+	</section>
+	{{#if (or item.system.heroics.length mastered)}}
+		<section>
+			<header>
+				<label>{{localize "FU.Heroic"}}</label>
+				<span> {{ item.system.heroics.length }} / {{#if mastered }}1{{else}}0{{/if}} </span>
+			</header>
+			<ul class="heroics-table">
+				<li class="heroics-table-header">
+					<div>{{localize 'FU.Name'}}</div>
+					<div>
+						<a data-action="add" data-type="heroic" aria-describedby="tooltip"
+						   data-tooltip="{{localize 'FU.SkillCreate'}}">
+							<i class="fas fa-plus icon"></i>
+							{{localize 'FU.Add'}}
+						</a>
+					</div>
+				</li>
+				{{#each item.system.heroics as |item|}}
+					<li class="heroics-table-row" data-item-id="{{ item.id }}">
+						<a data-action="roll" data-tooltip="{{localize 'FU.RollIconToolTip' name=item.name}}"><img class="item-icon" src="{{item.img}}" alt="Item icon"></a>
+						<span data-action="expand">{{item.name}}</span>
+						<div>
+							<a data-action="favorite" data-tooltip="{{#if item.system.isFavored.value}}{{ localize
+							 'FU.FavoriteRemove' }}{{else}}{{ localize 'FU.Favorite' }}{{/if}}"
+							   aria-describedby="tooltip">
+								<i class="{{#if item.system.isFavored.value}}fas{{else}}far{{/if}} fa-star"></i>
+							</a>
+							<a data-action="edit" data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
+								<i class="fas fa-edit button-style"></i>
+							</a>
+							<a data-action="delete" data-tooltip="{{ localize 'FU.Settings' }}"
+							   aria-describedby="tooltip">
+								<i class="fas fa-trash"></i>
+							</a>
+						</div>
+						<div class="description {{#unless (lookup @root.expandedIds item.id)}}hidden{{/unless}}">
+							{{{lookup @root.enrichedHtml.description item.id}}}
+						</div>
+					</li>
+				{{/each}}
+			</ul>
+		</section>
+	{{/if}}
+</main>

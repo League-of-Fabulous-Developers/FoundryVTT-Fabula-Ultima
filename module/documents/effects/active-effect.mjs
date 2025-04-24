@@ -137,6 +137,9 @@ export class FUActiveEffect extends ActiveEffect {
 	 */
 	get isSuppressed() {
 		// TODO: Refactor, handle other predicates
+		if (this.system.predicate.suppressed === true) {
+			return true;
+		}
 		if (this.target instanceof FUActor) {
 			const flag = this.system.predicate.crisisInteraction;
 			if (flag && flag !== 'none') {

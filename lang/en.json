@@ -54,7 +54,9 @@
 			"zeroPower": "Zero Power",
 			"classFeature": "Class Feature",
 			"optionalFeature": "Optional Feature",
-			"effect": "Effect"
+			"effect": "Effect",
+			"mnemosphere": "Mnemosphere",
+			"hoplosphere": "Hoplosphere"
 		}
 	},
 	"FU": {
@@ -1431,6 +1433,20 @@
 			"ChangeWarning2": "Changing an Item's Fabula Ultima ID might break references to the Item! Proceed with caution and only if you are sure.",
 			"ChangeWarning3": "Do you want to proceed?",
 			"ChangeWarning1": "Proceed with caution!"
-		}
+		},
+		"ItemDeeplyNested": "This item belongs to <strong>{parent}</strong> ({type}).",
+		"Technospheres": "Technospheres",
+		"TechnospheresMnemospheres": "Mnemospheres",
+		"TechnospheresHoplospheres": "Hoplospheres",
+		"TechnospheresHoplospheresCoagulationLevel": "Coagulation Level",
+		"TechnospheresHoplospheresRequiresTwoSlots": "Requires two Slots",
+		"TechnospheresHoplospheresSocketableWeaponOnly": "Only socketable in Weapons",
+		"TechnospheresSocketsArmor": "Armor Slots",
+		"TechnospheresSocketsWeapon": "Weapon Slots",
+		"TechnospheresSocketsSlotsAlpha": "Slots α",
+		"TechnospheresSocketsSlotsBeta": "Slots β",
+		"TechnospheresSocketsSlotsGamma": "Slots γ",
+		"TechnospheresSocketsSlotsDelta": "Slots δ",
+		"Tabs": "Tabs"
 	}
 }

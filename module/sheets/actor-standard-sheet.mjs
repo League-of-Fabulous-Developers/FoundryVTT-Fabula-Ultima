@@ -68,6 +68,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		const actorData = this.actor;
 
 		// Model agnostic
+		context.items = [...this.actor.allItems()];
 		await ActorSheetUtils.prepareData(context, this);
 
 		// For characters/npcs
@@ -518,16 +519,25 @@ export class FUStandardActorSheet extends ActorSheet {
 		dropZone.on('dragenter', this._onDragEnter.bind(this));
 		dropZone.on('dragleave', this._onDragLeave.bind(this));
 		dropZone.on('drop', this._onDropReset.bind(this));
+
+		this.actor.items
+			.filter((item) => item.system.renderInlay)
+			.forEach(async (item) => {
+				const htmlElement = await item.system.renderInlay();
+				html.find(`.item[data-item-id=${item.id}] .inlay`).append(htmlElement);
+			});
 	}
 
 	// Handle adding item to favorite
 	async _onItemFavorite(ev) {
 		const li = $(ev.currentTarget).parents('.item');
 		const itemId = li.data('itemId');
-		const item = this.actor.items.get(itemId);
+		let item = this.actor.items.get(itemId);
+		if (!item) {
+			item = fromUuidSync(li.data('uuid'));
+		}
 		const isFavoredBool = item.system.isFavored.value;
-		item.update();
-		this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
+		item.update({ 'system.isFavored.value': !isFavoredBool });
 	}
 
 	// Handle middle-click to open active effect dialog
@@ -1128,7 +1138,10 @@ export class FUStandardActorSheet extends ActorSheet {
 		if (dataset.rollType) {
 			if (dataset.rollType === 'item') {
 				const itemId = element.closest('.item').dataset.itemId;
-				const item = this.actor.items.get(itemId);
+				let item = this.actor.items.get(itemId);
+				if (!item && element.closest('.item').dataset.uuid) {
+					item = await fromUuid(element.closest('.item').dataset.uuid);
+				}
 				if (item) {
 					if (isCtrl) {
 						return new ItemCustomizer(this.actor, item).render(true);

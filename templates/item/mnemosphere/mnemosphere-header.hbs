@@ -1,0 +1,41 @@
+<header class="sheet-header">
+    <img src="{{ item.img }}" data-action="editImage" data-edit="img" title="{{ item.name }}" class="document-image" />
+    <h1 class="document-name">
+        <input name="name" type="text" value="{{ item.name }}" placeholder="Name"
+               data-tooltip="{{ item.name }}" />
+    </h1>
+    <div class="document-info">
+        <span class="label">
+            <i class="fas fa-chart-simple"></i>
+            {{localize 'FU.ItemType'}}
+        </span>
+        <input type="text" disabled value="{{localize (translate item.type)}}">
+
+        <span class="label">{{localize 'FU.Source'}} </span>
+        <input type="text" name="system.source" value="{{ item.system.source }}" />
+    </div>
+
+    <div class="document-summary">
+        <div>
+            <label>
+                <i class="fas fa-chart-simple"></i>
+                {{localize 'FU.Level'}}
+            </label>
+            <blockquote>
+                <input type="number" name="system.level" value="{{item.system.level}}" min="1"
+                       max="{{item.system.maxLevel}}">
+                <span class="label">/</span>
+                <span class="label">{{item.system.maxLevel}}</span>
+            </blockquote>
+        </div>
+        <div>
+            <label>
+                <i class="fas fa-star"></i>
+                {{localize 'FU.Class'}}
+            </label>
+            <blockquote>
+                <input type="text" name="system.class" value="{{ item.system.class }}" />
+            </blockquote>
+        </div>
+    </div>
+</header>

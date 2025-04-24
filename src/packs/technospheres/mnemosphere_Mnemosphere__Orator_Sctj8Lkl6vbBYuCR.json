@@ -1,0 +1,421 @@
+{
+  "folder": "ghKKGdGJfB1dO8GY",
+  "name": "Mnemosphere: Orator",
+  "type": "mnemosphere",
+  "_id": "Sctj8Lkl6vbBYuCR",
+  "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_mnemosphere.png",
+  "system": {
+    "isFavored": {
+      "value": false
+    },
+    "level": 1,
+    "maxLevel": 5,
+    "items": [
+      {
+        "name": "Condemn",
+        "type": "skill",
+        "_id": "55MieaHjwr8dO7xb",
+        "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_condemn.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>You may use an action and spend 5 MP to perform an Opposed <strong>【INS + WLP】</strong> Check against a creature that can hear and understand you — describe your accusations! If you succeed, the target loses <strong>【SL × 10】</strong> Mind Points and suffers <strong>dazed</strong> or <strong>shaken</strong> (your choice).</p><p>You gain a bonus equal to <strong>【SL】</strong> to your <strong>【INS + WLP】</strong> Checks for this Skill.</p><hr /><ul><li><p><strong>You Perform: </strong>@CHECK[ins wlp ($sl)]</p></li><li><p><strong>Target Loses</strong>: @LOSS[$sl*10 mp]</p></li><li><p><strong>Target Suffers:</strong> @EFFECT[dazed] <strong>or</strong> @EFFECT[shaken]</p></li></ul>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 4,
+            "min": 0
+          },
+          "class": {
+            "value": "Orator"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "ins",
+            "secondary": "wlp"
+          },
+          "accuracy": 1,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUCR201"
+          },
+          "hasRoll": {
+            "value": true
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "condemn",
+          "cost": {
+            "amount": 5,
+            "resource": "mp"
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        }
+      },
+      {
+        "name": "Encourage",
+        "type": "skill",
+        "_id": "aZUOMh92at2P7axW",
+        "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_encourage.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>During a conflict, you may use an action and spend 5 MP to choose <strong>another creature</strong> that can hear and understand you. That creature recovers <strong>【SL × 5】</strong> Hit Points and chooses <strong>Dexterity</strong>, <strong>Insight</strong>, <strong>Might</strong>, or <strong>Willpower</strong>; they treat the chosen Attribute as being one die size higher (up to a maximum of <strong>d12</strong>) until the start of your next turn.</p><hr /><ul><li><p><strong>Target Recovers: </strong>@GAIN[5*$sl hp]</p></li><li><p><strong>Target Receives:</strong> @EFFECT[dex-up e:sot i:1 t:source], @EFFECT[ins-up e:sot i:1 t:source], @EFFECT[mig-up e:sot i:1 t:source], @EFFECT[wlp-up e:sot i:1 t:source]</p></li></ul>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 6,
+            "min": 0
+          },
+          "class": {
+            "value": "Orator"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUCR201"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "encourage",
+          "cost": {
+            "amount": 5,
+            "resource": "mp"
+          },
+          "targeting": {
+            "rule": "single",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        }
+      },
+      {
+        "name": "My Trust In You",
+        "type": "skill",
+        "_id": "m6BkDtGUIKNLRUdB",
+        "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_my_trust_in_you.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>After another Player Character who is able to hear you performs a Check, you may spend 1 Fabula Point and invoke one of their <strong>Traits</strong> or <strong>Bonds</strong> in order to let them reroll dice or improve the Result of the Check (following the normal rules). Then, if you have a <strong>Bond</strong> towards that character, they recover <strong>【SL × 10】</strong> Mind Points.</p><hr /><ul><li><p><strong>Target Recovers: </strong>@GAIN[10*$sl mp]</p></li></ul>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 2,
+            "min": 0
+          },
+          "class": {
+            "value": "Orator"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUCR201"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "my-trust-in-you",
+          "cost": {
+            "resource": "fp",
+            "amount": 1
+          },
+          "targeting": {
+            "rule": "single",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        }
+      },
+      {
+        "name": "Persuasive",
+        "type": "skill",
+        "_id": "dXqAZHXyR1vu15tt",
+        "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_persuasive.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When you successfully perform a Check to fill or erase sections of a Clock, if your approach relied on <strong>charm</strong>, <strong>diplomacy</strong>, <strong>deception</strong>, or <strong>intimidation</strong>, you may spend up to <strong>【SL × 20】</strong> Mind Points. If you do, fill or erase an additional section of that Clock for every 20 Mind Points you spend this way.</p>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 2,
+            "min": 0
+          },
+          "class": {
+            "value": "Orator"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUCR201"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "persuasive",
+          "cost": {
+            "amount": 20,
+            "resource": "mp"
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        }
+      },
+      {
+        "name": "Unexpected Ally",
+        "type": "skill",
+        "_id": "tqIn9KGFYIjEc1Tu",
+        "img": "systems/projectfu/styles/static/compendium/classes/orator/orator_unexpected_ally.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>You may use an action and spend 1 Fabula Point to choose a <strong>non-hostile</strong> creature able to hear and understand you. If you do, that creature becomes helpful towards you so long as you are kind and respectful to them and your requests are reasonable.</p>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Orator"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUCR201"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "unexpected-ally",
+          "cost": {
+            "resource": "fp",
+            "amount": 1
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        }
+      }
+    ],
+    "source": "",
+    "class": "Orator"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1745491348230,
+    "modifiedTime": 1745491348230,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_key": "!items!Sctj8Lkl6vbBYuCR"
+}

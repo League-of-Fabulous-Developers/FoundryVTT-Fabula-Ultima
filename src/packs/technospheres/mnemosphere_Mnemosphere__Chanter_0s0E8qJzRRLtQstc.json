@@ -1,0 +1,472 @@
+{
+  "folder": "ghKKGdGJfB1dO8GY",
+  "name": "Mnemosphere: Chanter",
+  "type": "mnemosphere",
+  "_id": "0s0E8qJzRRLtQstc",
+  "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_mnemosphere.png",
+  "system": {
+    "isFavored": {
+      "value": false
+    },
+    "level": 1,
+    "maxLevel": 5,
+    "items": [
+      {
+        "name": "Magichant",
+        "type": "skill",
+        "_id": "tRzrD22VFnXuFvhu",
+        "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_magichant.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>On your turn during a conflict scene, you may use an action and spend a variable amount of MP to weave voice and music into a magical effect known as a <strong>verse</strong>.</p><p>You may only sing <strong>one verse</strong> per turn, even if you have access to multiple actions.</p><p>When you first acquire this Skill, you learn <strong>all three volumes</strong>, plus <strong>one key</strong> and <strong>one tone</strong>. Whenever you acquire this Skill again, you may learn <strong>one key</strong> or <strong>one tone</strong> (your choice).</p><hr /><ul><li><p>For <strong>verse</strong> breakdown and a list of Keys and Tones, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ]{Verses Rules}</p></li><li><p>To <strong>automate</strong>, VTT Instructions can be found here: @UUID[Compendium.projectfu.handouts.JournalEntry.q4PpsRwoiMTRKUeJ.JournalEntryPage.W6dLZ4wOhSMKKwsC]{Verses VTT Instructions}</p></li></ul>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 10,
+            "min": 0
+          },
+          "class": {
+            "value": "Chanter"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUHF137"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "defense": "def",
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "fuid": "magichant",
+          "cost": {
+            "resource": "mp",
+            "amount": 0
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {}
+      },
+      {
+        "name": "Resonance",
+        "type": "skill",
+        "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_resonance.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>After you affect one or more enemies with a <strong>verse</strong>, if you have an <strong>arcane</strong> weapon equipped, you may choose one option: until the start of your next turn, your allies deal <strong>【SL】</strong> extra damage to those enemies; <strong>or</strong> until the start of your next turn, you recover <strong>【SL】</strong> Mind Points every time one of those enemies suffers damage (if the same source deals damage to two or more of those enemies at the same time, you recover <strong>【SL】</strong> MP for each damaged enemy).</p><hr /><ul><li><p><strong>You Recover: </strong>@GAIN[$sl mp]</p></li><li><p><strong>Target</strong>: @EFFECT[Compendium.projectfu.skills.KgYNKoG8RE2NvCiV]{Effect: Resonance Damage}</p></li></ul>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 3,
+            "min": 0
+          },
+          "class": {
+            "value": "Chanter"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUHF137"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "resonance",
+          "cost": {
+            "resource": "mp",
+            "amount": 0
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        },
+        "_id": "UVVGU0ucDOVG2SpZ"
+      },
+      {
+        "name": "Siren's Song",
+        "type": "skill",
+        "_id": "2w806kxG7vmURW1n",
+        "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_sirens_song.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>You gain the ability to perform Rituals of the <strong>Ritualism</strong> discipline; <strong>additionally</strong>, you may use <strong>Ritualism</strong> to create <strong>hearing-based illusions</strong>.</p>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Chanter"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUHF137"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "defense": "def",
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "fuid": "sirens-song",
+          "cost": {
+            "resource": "mp",
+            "amount": 0
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {}
+      },
+      {
+        "name": "Sound Barrier",
+        "type": "skill",
+        "_id": "wqzItTdF3C4wcZM7",
+        "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_sound_barrier.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 5,
+            "min": 0
+          },
+          "class": {
+            "value": "Chanter"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUHF137"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "defense": "def",
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "fuid": "sound-barrier",
+          "cost": {
+            "resource": "mp",
+            "amount": 0
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [
+          {
+            "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_sound_barrier.png",
+            "origin": "Compendium.projectfu.skills.Item.9xjUyytWiDxFhqdV",
+            "duration": {
+              "rounds": null,
+              "startTime": null,
+              "seconds": null,
+              "combat": null,
+              "turns": null,
+              "startRound": null,
+              "startTurn": null
+            },
+            "disabled": true,
+            "name": "Sound Barrier",
+            "_id": "wjcCWPhCefwBODlT",
+            "type": "base",
+            "system": {
+              "type": "default",
+              "predicate": {
+                "crisisInteraction": "none",
+                "suppressed": false
+              },
+              "duration": {
+                "event": "none",
+                "interval": 1,
+                "tracking": "self",
+                "remaining": 0
+              },
+              "rules": {
+                "progress": {
+                  "current": 0,
+                  "step": 1,
+                  "max": 6,
+                  "enabled": false
+                }
+              }
+            },
+            "changes": [
+              {
+                "key": "system.bonuses.incomingDamage.physical",
+                "mode": 2,
+                "value": "-&sl(\"sound-barrier\")",
+                "priority": null
+              }
+            ],
+            "description": "<p>After you sing a <strong>verse</strong> with <strong>medium</strong> or <strong>high volume</strong>, all <strong>physical</strong> damage you suffer until the start of your next turn is reduced by <strong>【SL】</strong> (applied <strong>before</strong> Affinities).</p>",
+            "tint": "#ffffff",
+            "transfer": true,
+            "statuses": [],
+            "sort": 0,
+            "flags": {
+              "projectfu": {
+                "type": "default",
+                "source": "FUHF137",
+                "CrisisInteraction": "none"
+              }
+            }
+          }
+        ],
+        "flags": {}
+      },
+      {
+        "name": "Vibrato",
+        "type": "skill",
+        "_id": "Gcgxn4GDcCjljTtr",
+        "img": "systems/projectfu/styles/static/compendium/classes/chanter/chanter_vibrato.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>After you sing a <strong>verse</strong> with <strong>low</strong> or <strong>medium volume</strong>, you may perform a <strong>free attack</strong> with a weapon you have equipped; treat your <strong>High Roll (HR)</strong> as 0 when calculating damage dealt by this attack.</p>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Chanter"
+          },
+          "useWeapon": {
+            "accuracy": true,
+            "damage": true
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": true,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": true
+          },
+          "source": {
+            "value": "FUHF137"
+          },
+          "hasRoll": {
+            "value": true
+          },
+          "hasResource": {
+            "value": false
+          },
+          "defense": "def",
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "fuid": "vibrato",
+          "cost": {
+            "resource": "mp",
+            "amount": 0
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {}
+      }
+    ],
+    "source": "",
+    "class": "Chanter"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Item.0s0E8qJzRRLtQstc",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1745491348230,
+    "modifiedTime": 1745491348230,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_key": "!items!0s0E8qJzRRLtQstc"
+}

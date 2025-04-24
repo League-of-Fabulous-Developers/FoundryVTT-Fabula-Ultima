@@ -12,6 +12,7 @@ import { PilotVehicleDataModel } from './pilot-vehicle-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { OverridesDataModel } from '../common/overrides-data-model.mjs';
 import { FloralistDataModel } from './floralist-data-model.mjs';
+import { TechnosphereSocketsDataModel } from '../common/technosphere-sockets-data-model.mjs';
 
 const CLASS_HP_BENEFITS = 5;
 const CLASS_MP_BENEFITS = 5;
@@ -57,6 +58,7 @@ function heroicMpBenefits(dataModel) {
  * @property {CharacterSkillTracker} tlTracker
  * @property {OverridesDataModel} overrides Overrides for default behaviour
  * @property {FloralistDataModel} floralist
+ * @property {TechnosphereSocketsDataModel} technospheres
  *
  */
 export class CharacterDataModel extends foundry.abstract.TypeDataModel {
@@ -112,6 +114,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 			overrides: new EmbeddedDataField(OverridesDataModel, {}),
 			floralist: new EmbeddedDataField(FloralistDataModel, {}),
 			description: new HTMLField(),
+			technospheres: new EmbeddedDataField(TechnosphereSocketsDataModel, {}),
 		};
 	}
 
@@ -131,11 +134,13 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 	prepareBaseData() {
 		this.resources.hp.attribute = 'mig';
 		this.resources.mp.attribute = 'wlp';
+
+		this.vehicle.prepareData();
+		this.technospheres.prepareData();
 	}
 
 	prepareEmbeddedData() {
 		this.#prepareBasicResources();
-		this.vehicle.prepareData();
 		this.derived.prepareData();
 	}
 

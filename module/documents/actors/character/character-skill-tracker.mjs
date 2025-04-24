@@ -27,12 +27,12 @@ export class CharacterSkillTracker {
 
 	get totalHeroic() {
 		return {
-			value: this.#data.actor.itemTypes.heroic.filter((item) => item.system.subtype.value === 'skill').length,
+			value: this.#data.actor.itemTypes.heroic.filter((item) => item.parent === this.#data.actor).filter((item) => item.system.subtype.value === 'skill').length,
 			max: this.#data.actor.itemTypes.class.filter((item) => item.system.level.value >= 10).length,
 		};
 	}
 
 	#calculateSkillLevel(items) {
-		return items.reduce((sum, item) => sum + item.system.level.value, 0);
+		return items.filter((item) => item.parent === this.#data.actor).reduce((sum, item) => sum + item.system.level.value, 0);
 	}
 }

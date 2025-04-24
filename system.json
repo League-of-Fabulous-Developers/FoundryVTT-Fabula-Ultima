@@ -197,6 +197,17 @@
 				"PLAYER": "OBSERVER",
 				"ASSISTANT": "OWNER"
 			}
+		},
+		{
+			"label": "Technospheres",
+			"type": "Item",
+			"name": "technospheres",
+			"path": "packs/technospheres",
+			"system": "projectfu",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
 		}
 	],
 	"packFolders": [
@@ -222,7 +233,7 @@
 			"name": "Equipment",
 			"sorting": "a",
 			"color": "#005390",
-			"packs": ["basic-equipment", "consumables", "vehicle-modules"]
+			"packs": ["basic-equipment", "consumables", "vehicle-modules", "technospheres"]
 		},
 		{
 			"name": "GM Tools",
@@ -373,18 +384,22 @@
 			},
 			"effect": {
 				"htmlFields": ["description.value", "description.gm"]
+			},
+			"hoplosphere": {
+				"htmlFields": ["description"]
+			},
+			"mnemosphere": {
+				"htmlFields": ["description"]
 			}
 		}
 	},
 	"flags": {
 		"hotReload": {
 			"extensions": ["css", "hbs", "json"],
-			"paths": ["css", "lang", "templates"]
+			"paths": ["styles", "lang", "templates"]
 		}
 	},
 	"socket": true,
-	"gridDistance": 5,
-	"gridUnits": "ft",
 	"grid": {
 		"distance": 5,
 		"units": "ft"

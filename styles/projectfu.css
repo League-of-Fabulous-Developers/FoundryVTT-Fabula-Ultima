@@ -1,3 +1,7 @@
+@import 'style-variables.css';
+
 @import 'features/floralist/index.css';
 @import 'features/gourmet/index.css';
 @import 'features/invoker/index.css';
+@import 'sheets/mnemosphere-sheet.css';
+@import 'sheets/hoplosphere-sheet.css';

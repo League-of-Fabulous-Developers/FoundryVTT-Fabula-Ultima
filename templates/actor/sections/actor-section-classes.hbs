@@ -6,7 +6,7 @@
 		</span>
         <span class="items-main total-level grid grid-2col">
 			{{!-- <i class="fas fa-question-circle"></i> --}}
-			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalClass.value }} / {{
+            <span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalClass.value }} / {{
             tlTracker.totalClass.max }} </span>
 		</span>
     </header>
@@ -20,7 +20,7 @@
             </div>
         </li>
         {{#each classes as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -51,7 +51,7 @@
 		</span>
         <span class="items-main total-level grid grid-2col">
 			{{!-- <i class="fas fa-question-circle"></i> --}}
-			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalSkill.value }} / {{
+            <span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalSkill.value }} / {{
             tlTracker.totalSkill.max }} </span>
 		</span>
     </header>
@@ -68,7 +68,7 @@
             </div>
         </li>
         {{#each skills as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow" style="height: fit-content; align-items: flex-start;">
                     <div class="flexcol">
                         {{!-- Item Name--}}
@@ -80,7 +80,8 @@
                     {{!-- Resource Points --}}
                     {{#if item.system.hasResource.value}}
                         <div class="item-m flexcol flex-group-center resource-content">
-                            <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{ item.system.rp.name }}</label>
+                            <label class="item-quality resource-text-sm"
+                                   style="flex-grow: 2;">{{ item.system.rp.name }}</label>
                             <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
                                 <a class="decrement-button" data-type="resourceCounter"
                                    data-item-id="{{ item._id }}">-</a>
@@ -128,7 +129,7 @@
 		</span>
         <span class="items-main total-level grid grid-2col">
 			{{!-- <i class="fas fa-question-circle"></i> --}}
-			<span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalHeroic.value }} / {{
+            <span class="total-class-levels grid-span-2 flex-between"> {{ tlTracker.totalHeroic.value }} / {{
             tlTracker.totalHeroic.max }} </span>
 		</span>
     </header>
@@ -145,14 +146,15 @@
             </div>
         </li>
         {{#each heroics as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
                     {{!-- Resource Points --}}
                     {{#if item.system.hasResource.value}}
                         <div class="item-m flexcol flex-group-center resource-content">
-                            <label class="item-quality resource-text-sm" style="flex-grow: 2;">{{ item.system.rp.name }}</label>
+                            <label class="item-quality resource-text-sm"
+                                   style="flex-grow: 2;">{{ item.system.rp.name }}</label>
                             <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
                                 <a class="decrement-button" data-type="resourceCounter"
                                    data-item-id="{{ item._id }}">-</a>
@@ -182,4 +184,120 @@
             </li>
         {{/each}}
     </ol>
+
+	{{!--
+    {{#if actor.system.technospheres.socketedMnemospheres.length}}
+        <!-- Mnemosphere Section-->
+        <header class="items-main-header">
+            <div class="items-main">
+                <label class="items-label">{{localize "FU.Mnemospheres"}}</label>
+            </div>
+        </header>
+        <ol class="items-list">
+            <li class="item flexrow items-header">
+                <div class="item-name">{{localize 'FU.Name'}}</div>
+                <div class="item-m">{{localize 'FU.Class'}}</div>
+                <div class="item-m">{{localize 'FU.Level'}}</div>
+                <div class="item-sm end">&nbsp;</div>
+            </li>
+            {{#each actor.system.technospheres.socketedMnemospheres as |item id|}}
+                <li class="item" data-item-id="{{ item.id }}">
+                    <div class="flexrow">
+
+                        {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                        <div class="item-m">
+                            <span>{{item.system.class}}</span>
+                        </div>
+                        <div class="item-m">
+                            <span>{{item.system.level}}</span>
+                            <span>/</span>
+                            <span>{{item.system.maxLevel}}</span>
+                        </div>
+                        <div class="item-sm end">
+                            <a class="item-control item-edit" data-item-id="{{item._id}}"
+                               data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
+                                <i class="fas fa-edit button-style"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="individual-description align-left">
+                        <div>{{localize 'FU.Skills'}}</div>
+                        {{#each item.system.activeSkills as |item|}}
+                            <div class="item flexrow" style="height: fit-content; align-items: flex-start;"
+                                 data-item-id="{{ item.id }}" data-uuid="{{ item.uuid }}">
+                                <div class="flexcol">
+                                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                                </div>
+                                {{#if item.system.hasResource.value}}
+                                    <div class="item-m flexcol flex-group-center resource-content">
+                                        <label class="item-quality resource-text-sm"
+                                               style="flex-grow: 2;">{{ item.system.rp.name }}</label>
+                                        <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
+                                            <a class="decrement-button" data-type="resourceCounter"
+                                               data-item-id="{{ item._id }}">-</a>
+                                            <span data-resource="item.rp">{{ item.system.rp.current }}</span>
+                                            {{#if (gt item.system.rp.max 0)}}
+                                                <span>/</span>
+                                                <span>{{ item.system.rp.max }}</span>
+                                            {{/if}}
+                                            <a class="increment-button" data-type="resourceCounter"
+                                               data-item-id="{{ item._id }}">+</a>
+                                        </div>
+                                    </div>
+                                {{/if}}
+                                <div class="skillLevel item-lg sl-stars" style="padding: 0 1em;">
+                                    {{#times item.system.level.max}}
+                                        <div class="star-label {{#if
+                                         (lt @index item.system.level.value)}}fus-sl-star{{else}}ful-sl-star{{/if}}" style="width: 20px; height: 20px;"></div>
+                                    {{/times}}
+                                </div>
+                                <div class="item-sm end">
+                                    <a class="item-control item-edit" data-item-id="{{item._id}}"
+                                       data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
+                                        <i class="fas fa-edit button-style"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        {{/each}}
+                        {{#if item.system.heroics.length}}
+                            <div>{{localize 'FU.Skills'}}</div>
+                            {{#each item.system.heroics as |item|}}
+                                <div class="item flexrow" style="height: fit-content; align-items: flex-start;"
+                                     data-item-id="{{ item.id }}" data-uuid="{{ item.uuid }}">
+                                    <div class="flexcol">
+                                        {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+                                    </div>
+                                    {{#if item.system.hasResource.value}}
+                                        <div class="item-m flexcol flex-group-center resource-content">
+                                            <label class="item-quality resource-text-sm"
+                                                   style="flex-grow: 2;">{{ item.system.rp.name }}</label>
+                                            <div class="resource-text-m buttons-inc" style="padding: 0 4px;">
+                                                <a class="decrement-button" data-type="resourceCounter"
+                                                   data-item-id="{{ item._id }}">-</a>
+                                                <span data-resource="item.rp">{{ item.system.rp.current }}</span>
+                                                {{#if (gt item.system.rp.max 0)}}
+                                                    <span>/</span>
+                                                    <span>{{ item.system.rp.max }}</span>
+                                                {{/if}}
+
+                                                <a class="increment-button" data-type="resourceCounter"
+                                                   data-item-id="{{ item._id }}">+</a>
+                                            </div>
+                                        </div>
+                                    {{/if}}
+                                    <div class="item-sm end">
+                                        <a class="item-control item-edit" data-item-id="{{item._id}}"
+                                           data-tooltip="{{ localize 'FU.Edit' }}" aria-describedby="tooltip">
+                                            <i class="fas fa-edit button-style"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        {{/if}}
+                    </div>
+                </li>
+            {{/each}}
+        </ol>
+    {{/if}}
+--}}
 </section>

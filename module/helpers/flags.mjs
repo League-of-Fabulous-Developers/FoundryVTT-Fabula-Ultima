@@ -12,6 +12,7 @@ export const Flags = Object.freeze({
 	FirstTurn: 'FirstTurn',
 	ActiveEffect: Object.freeze({
 		Source: 'Source',
+		Suppressed: 'Suppressed',
 	}),
 	ChatMessage: Object.freeze({
 		CheckParams: 'CheckParams',

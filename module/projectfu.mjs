@@ -82,6 +82,10 @@ import { StashDataModel } from './documents/actors/stash/stash-data-model.mjs';
 import { FUStashSheet } from './sheets/actor-stash-sheet.mjs';
 import { InventoryPipeline } from './pipelines/inventory-pipeline.mjs';
 import { registerKeyBindings } from './keybindings.mjs';
+import { MnemosphereDataModel } from './documents/items/mnemosphere/mnemosphere-data-model.mjs';
+import { MnemosphereSheet } from './documents/items/mnemosphere/mnemosphere-sheet.mjs';
+import { HoplosphereDataModel } from './documents/items/hoplosphere/hoplosphere-data-model.mjs';
+import { HoplosphereSheet } from './documents/items/hoplosphere/hoplosphere-sheet.mjs';
 
 globalThis.projectfu = {
 	ClassFeatureDataModel,
@@ -200,6 +204,8 @@ Hooks.once('init', async () => {
 		treasure: TreasureDataModel,
 		weapon: WeaponDataModel,
 		effect: EffectDataModel,
+		mnemosphere: MnemosphereDataModel,
+		hoplosphere: HoplosphereDataModel,
 	};
 	CONFIG.ActiveEffect.documentClass = FUActiveEffect;
 	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
@@ -254,6 +260,16 @@ Hooks.once('init', async () => {
 		types: ['optionalFeature'],
 		makeDefault: true,
 		label: 'Optional Feature Sheet',
+	});
+	Items.registerSheet(SYSTEM, MnemosphereSheet, {
+		types: ['mnemosphere'],
+		makeDefault: true,
+		label: 'Mnemosphere Sheet',
+	});
+	Items.registerSheet(SYSTEM, HoplosphereSheet, {
+		types: ['hoplosphere'],
+		makeDefault: true,
+		label: 'Hoplosphere Sheet',
 	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
@@ -549,6 +565,17 @@ Handlebars.registerHelper('math', function (left, operator, right) {
 		'/': left / right,
 		'%': left % right,
 	}[operator];
+});
+
+Handlebars.registerHelper('times', function (n, block) {
+	let accum = '';
+	for (let i = 0; i < n; ++i) {
+		block.data.index = i;
+		block.data.first = i === 0;
+		block.data.last = i === n - 1;
+		accum += block.fn(this);
+	}
+	return accum;
 });
 
 /* -------------------------------------------- */

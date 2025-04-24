@@ -2,6 +2,8 @@ import { FU, SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { FUPartySheet } from './actor-party-sheet.mjs';
+import { FUItem } from '../documents/items/item.mjs';
+import { PseudoItem } from '../documents/pseudo/pseudo-item.mjs';
 
 const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
 const SKILL_TYPES = ['skill'];
@@ -64,7 +66,10 @@ async function prepareItems(context) {
 	const effects = [];
 
 	// Iterate through items, allocating to containers
-	for (let item of context.items) {
+	for (const originalItem of context.items) {
+		const item = originalItem.toObject(false);
+		item.uuid = originalItem.uuid;
+		item.deeplyEmbedded = originalItem.parent !== context.actor;
 		item.img = item.img || CONST.DEFAULT_TOKEN;
 
 		if (item.system.quality?.value) {
@@ -119,15 +124,7 @@ async function prepareItems(context) {
 			item.rpArr = rpArr.reverse();
 		}
 		if (SKILL_TYPES.includes(item.type)) {
-			const skillArr = [];
-			const level = item.system.level || { value: 0, max: 8 };
-			for (let i = 0; i < level.max; i++) {
-				skillArr.push({
-					id: i + 1,
-					checked: parseInt(level.value) === i + 1,
-				});
-			}
-			item.skillArr = skillArr;
+			item.skillArr = originalItem.system.skillLevelArray;
 		}
 		if (WEARABLE_TYPES.includes(item.type)) {
 			item.def = item.isMartial && item.type === 'armor' ? item.system.def.value : `+${item.system.def.value}`;
@@ -140,8 +137,7 @@ async function prepareItems(context) {
 		};
 
 		if (item.type === 'basic') {
-			const itemObj = context.actor.items.get(item._id);
-			const weapData = getWeaponDisplayData(context.actor, itemObj);
+			const weapData = originalItem.system.getWeaponDisplayData();
 			item.quality = weapData.qualityString;
 			item.detail = weapData.detailString;
 			item.attackString = weapData.attackString;
@@ -149,8 +145,7 @@ async function prepareItems(context) {
 			basics.push(item);
 		} else if (item.type === 'weapon') {
 			item.unarmedStrike = context.actor.getSingleItemByFuid('unarmed-strike');
-			const itemObj = context.actor.items.get(item._id);
-			const weapData = getWeaponDisplayData(context.actor, itemObj);
+			const weapData = originalItem.system.getWeaponDisplayData();
 			item.quality = weapData.qualityString;
 			item.detail = weapData.detailString;
 			item.attackString = weapData.attackString;
@@ -159,8 +154,7 @@ async function prepareItems(context) {
 		} else if (item.type === 'armor') {
 			armor.push(item);
 		} else if (item.type === 'shield') {
-			const itemObj = context.actor.items.get(item._id);
-			const weapData = getWeaponDisplayData(context.actor, itemObj);
+			const weapData = originalItem.system.getWeaponDisplayData();
 			item.quality = weapData.qualityString;
 			item.detail = weapData.detailString;
 			item.attackString = weapData.attackString;
@@ -171,23 +165,20 @@ async function prepareItems(context) {
 		} else if (item.type === 'class') {
 			classes.push(item);
 		} else if (item.type === 'skill') {
-			const itemObj = context.actor.items.get(item._id);
-			const skillData = getSkillDisplayData(itemObj);
+			const skillData = originalItem.system.getSkillDisplayData();
 			item.quality = skillData.qualityString;
 			skills.push(item);
 		} else if (item.type === 'heroic') {
 			heroics.push(item);
 		} else if (item.type === 'spell') {
-			const itemObj = context.actor.items.get(item._id);
-			const spellData = getSpellDisplayData(context.actor, itemObj);
+			const spellData = originalItem.system.getSpellDisplayData();
 			item.quality = spellData.qualityString;
 			item.detail = spellData.detailString;
 			item.attackString = spellData.attackString;
 			item.damageString = spellData.damageString;
 			spells.push(item);
 		} else if (item.type === 'miscAbility') {
-			const itemObj = context.actor.items.get(item._id);
-			const skillData = getSkillDisplayData(itemObj);
+			const skillData = originalItem.system.getSkillDisplayData();
 			item.quality = skillData.qualityString;
 			abilities.push(item);
 		} else if (item.type === 'rule') {
@@ -195,13 +186,11 @@ async function prepareItems(context) {
 		} else if (item.type === 'behavior') {
 			behaviors.push(item);
 		} else if (item.type === 'consumable') {
-			const itemObj = context.actor.items.get(item._id);
-			const itemData = getItemDisplayData(itemObj);
+			const itemData = originalItem.system.getItemDisplayData();
 			item.quality = itemData.qualityString;
 			consumables.push(item);
 		} else if (item.type === 'treasure') {
-			const itemObj = context.actor.items.get(item._id);
-			const itemData = getItemDisplayData(itemObj);
+			const itemData = originalItem.system.getItemDisplayData();
 			item.quality = itemData.qualityString;
 			treasures.push(item);
 		} else if (item.type === 'project') {
@@ -308,223 +297,12 @@ function findItemConfig(type, subtype) {
 }
 
 /**
- * @description  the display data for a weapon item.
- * @property {FUActor} actor
- * @property {FUItem} item
- * @returns {object|boolean} An object containing weapon display information, or false if item is not a weapon.
- */
-function getWeaponDisplayData(actor, item) {
-	const isWeapon = item.type === 'weapon';
-	const isBasic = item.type === 'basic';
-	// Check if this item is not a weapon or not a weapon/shield with dual
-	if (!isBasic && !isWeapon) {
-		return false;
-	}
-
-	function translate(string) {
-		const allTranslations = Object.assign({}, CONFIG.FU.handedness, CONFIG.FU.weaponCategories, CONFIG.FU.weaponTypes, CONFIG.FU.attributeAbbreviations, CONFIG.FU.damageTypes);
-		if (string?.includes('.') && CONFIG.FU.defenses[string.split('.')[0]]) {
-			const [category, subkey] = string.split('.');
-			return game.i18n.localize(CONFIG.FU.defenses[category]?.[subkey] ?? string);
-		}
-
-		return game.i18n.localize(allTranslations?.[string] ?? string);
-	}
-
-	const hrZeroText = item.system.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
-	const qualText = item.system.quality?.value || '';
-	let qualityString = '';
-	let detailString = '';
-
-	const primaryAttribute = item.system.attributes?.primary?.value;
-	const secondaryAttribute = item.system.attributes?.secondary?.value;
-
-	const attackAttributes = [translate(primaryAttribute || '').toUpperCase(), translate(secondaryAttribute || '').toUpperCase()].join(' + ');
-
-	const accuracyValue = item.system.accuracy?.value ?? 0;
-
-	let accuracyGlobalValue = 0;
-	let damageGlobalValue = 0;
-
-	if (actor.isCharacterType) {
-		accuracyGlobalValue = actor.system.bonuses.accuracy?.accuracyCheck ?? 0;
-		const weaponType = item.system.type?.value;
-		if (weaponType === 'melee') {
-			damageGlobalValue = actor.system.bonuses.damage?.melee ?? 0;
-		} else if (weaponType === 'ranged') {
-			damageGlobalValue = actor.system.bonuses.damage?.ranged ?? 0;
-		}
-	}
-
-	const accuracyTotal = accuracyValue + accuracyGlobalValue;
-
-	const defenseString = item.system?.defense ? translate(`${item.system.defense}.abbr`) : '';
-	const damageValue = item.system.damage?.value ?? 0;
-	const damageTotal = damageValue + damageGlobalValue;
-
-	const attackString = `【${attackAttributes}】${accuracyTotal > 0 ? ` +${accuracyTotal}` : ''}`;
-
-	const damageTypeValue = translate(item.system.damageType?.value || '');
-
-	const damageString = `【${hrZeroText} ${damageTotal}】 ${damageTypeValue}`;
-
-	if (isWeapon) {
-		detailString = [attackString, damageString].filter(Boolean).join('⬥');
-		qualityString = [translate(item.system.category?.value), translate(item.system.hands?.value), translate(item.system.type?.value), defenseString, qualText].filter(Boolean).join(' ⬥ ');
-	} else if (isBasic) {
-		detailString = [attackString, damageString].filter(Boolean).join('⬥');
-		qualityString = [translate(item.system.type?.value), defenseString, qualText].filter(Boolean).join(' ⬥ ');
-	}
-
-	return {
-		attackString,
-		damageString,
-		detailString: `${detailString}`,
-		qualityString: `${qualityString}`,
-	};
-}
-
-/**
- * Get the display data for an item.
- * @returns {object|boolean} An object containing item display information, or false if this is not an item.
- * @property {string} qualityString - The item's summary.
- */
-function getItemDisplayData(item) {
-	const relevantTypes = ['consumable', 'treasure', 'rule'];
-	if (!relevantTypes.includes(item.type)) {
-		return false;
-	}
-
-	// Retrieve and process the item's summary
-	const summary = item.system.summary.value?.trim() || '';
-	let qualityString = game.i18n.localize('FU.SummaryNone');
-
-	// Parse the summary if it exists and is not empty
-	if (summary) {
-		const parser = new DOMParser();
-		const doc = parser.parseFromString(summary, 'text/html');
-		qualityString = doc.body.textContent || game.i18n.localize('FU.SummaryNone');
-	}
-
-	return {
-		qualityString,
-	};
-}
-
-/**
- * @description  the display data for an item.
- * @param {FUItem} item
- * @returns {object|boolean} An object containing skill display information, or false if this is not a skill.
- */
-function getSkillDisplayData(item) {
-	// Check if this item is not a skill
-	if (item.type !== 'skill' && item.type !== 'miscAbility') {
-		return false;
-	}
-
-	function translate(string) {
-		const allTranslations = Object.assign({}, CONFIG.FU.attributeAbbreviations, CONFIG.FU.damageTypes);
-
-		return game.i18n.localize(allTranslations?.[string] ?? string);
-	}
-
-	// Get the equipped item IDs from the actor's system
-	const equipped = item.actor.system.equipped || {};
-	const mainHandId = equipped.mainHand;
-
-	// Find the main hand weapon by its ID
-	let weaponMain = mainHandId ? item.actor.items.get(mainHandId) : null;
-
-	const hasRoll = item.system.hasRoll?.value;
-	const hasDamage = item.system.rollInfo?.damage?.hasDamage.value;
-	const usesWeapons = item.system.rollInfo?.useWeapon?.accuracy.value;
-	const usesWeaponsDamage = item.system.rollInfo?.useWeapon?.damage.value;
-	const hrZeroText = item.system.rollInfo?.useWeapon?.hrZero.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
-
-	let attackWeaponAttributes, attackAttributes;
-	if (usesWeapons && weaponMain) {
-		attackWeaponAttributes = [translate(weaponMain?.system?.attributes?.primary.value).toUpperCase(), translate(weaponMain?.system?.attributes?.secondary.value).toUpperCase()].join(' + ');
-	} else {
-		attackWeaponAttributes = '';
-	}
-
-	if (hasRoll) {
-		attackAttributes = [translate(item.system?.rollInfo?.attributes?.primary.value).toUpperCase(), translate(item.system?.rollInfo?.attributes?.secondary.value).toUpperCase()].join(' + ');
-	}
-
-	const weaponString = usesWeapons ? (weaponMain ? weaponMain?.name : game.i18n.localize('FU.AbilityNoWeaponEquipped')) : '';
-
-	let attackString = '';
-	if (hasRoll || usesWeapons) {
-		attackString = usesWeapons
-			? `【${attackWeaponAttributes}】${weaponMain ? (weaponMain?.system?.accuracy?.value > 0 ? ` + ${weaponMain?.system?.accuracy?.value}` : '') : ''}`
-			: `【${attackAttributes}】${item.system?.rollInfo?.accuracy?.value > 0 ? ` + ${item.system?.rollInfo?.accuracy?.value}` : ''}`;
-	}
-
-	let damageString = '';
-	if (hasDamage || usesWeaponsDamage) {
-		damageString = usesWeapons
-			? `【${hrZeroText} ${weaponMain ? `${weaponMain?.system?.damage.value}】 ${translate(weaponMain?.system?.damageType.value)}` : ''}`
-			: `【${hrZeroText} ${item.system?.rollInfo?.damage?.value > 0 ? ` ${item.system?.rollInfo?.damage?.value}` : '0'} 】${translate(item.system?.rollInfo?.damage.type.value)}`;
-	}
-
-	const qualityString = [capitalizeFirst(item.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬥ ');
-
-	const starCurrent = item.system?.level?.value;
-	const starMax = item.system?.level?.max;
-
-	return {
-		qualityString: `${qualityString}`,
-		starCurrent: `${starCurrent}`,
-		starMax: `${starMax}`,
-	};
-}
-
-/**
- * @typedef SpellDisplayData
- * @property {string} attackString - The spell's attack description.
- * @property {string} damageString - The spell's damage description.
- * @property {string} detailString - The combined attack and damage descriptions.
- * @property {string} qualityString - The spell's quality description.
- **/
-
-/**
- * @description Retrieves the display data for a spell item. *
- * @returns {SpellDisplayData|boolean} An object containing spell display information, or false if this is not a spell.
- */
-function getSpellDisplayData(actor, item) {
-	if (item.type !== 'spell') {
-		return false;
-	}
-
-	// Define constants and variables
-	const hrZeroText = item.system.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
-
-	const attackAttributes = [item.system.rollInfo?.attributes?.primary.value.toUpperCase(), item.system.rollInfo?.attributes?.secondary.value.toUpperCase()].join(' + ');
-
-	const attackString = item.system.hasRoll.value ? `【${attackAttributes}${item.system.rollInfo.accuracy.value > 0 ? ` +${item.system.rollInfo.accuracy.value}` : ''}】` : '';
-
-	const damageString = item.system.rollInfo.damage.hasDamage.value ? `【${hrZeroText} ${item.system.rollInfo.damage.value}】 ${item.system.rollInfo.damage.type.value}` : '';
-
-	const qualText = item.system.quality?.value || '';
-	const detailString = [attackString, damageString].filter(Boolean).join('⬥');
-	const qualityString = [capitalizeFirst(item.system.cost.amount), capitalizeFirst(item.system.targeting.rule), capitalizeFirst(item.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
-
-	return {
-		attackString,
-		damageString,
-		detailString,
-		qualityString,
-	};
-}
-
-/**
  * @param html
  * @param {ActorSheet} sheet
  */
 function activateDefaultListeners(html, sheet) {
 	html.on('click', '.item-edit', (ev) => _onItemEdit($(ev.currentTarget), sheet));
-	html.on('mouseup', '.item', (ev) => _onMiddleClickEditItem(ev)); // Middle-click to edit item
+	html.on('mouseup', '.item', (ev) => _onMiddleClickEditItem(ev, sheet)); // Middle-click to edit item
 
 	// Initialize the context menu options
 	const contextMenuOptions = [
@@ -579,7 +357,7 @@ function activateDefaultListeners(html, sheet) {
 		}
 	});
 	// eslint-disable-next-line no-undef
-	new ContextMenu(html, '.item-option', contextMenuOptions, {
+	new ContextMenu(html, ':not(.deeply-nested) .item-option', contextMenuOptions, {
 		eventName: 'click',
 		onOpen: (menu) => {
 			setTimeout(() => menu.querySelector('nav#context-menu')?.classList.add('item-options'), 1);
@@ -612,11 +390,35 @@ function activateDefaultListeners(html, sheet) {
 	if (sheet.actor.isOwner) {
 		let handler = (ev) => sheet._onDragStart(ev);
 		html.find('li.item').each((i, li) => {
-			if (li.classList.contains('inventory-header')) return;
+			if (['inventory-header', 'items-header', 'not-draggable'].some((clazz) => li.classList.contains(clazz))) return;
+			const item = fromUuidSync(li.dataset.uuid);
+			if (item && item.parent !== sheet.actor) return;
 			li.setAttribute('draggable', true);
 			li.addEventListener('dragstart', handler, false);
 		});
 	}
+
+	html.find('li.item, li.effect').each((idx, li) => {
+		const item = fromUuidSync(li.dataset.uuid);
+		if (item && item.parent !== sheet.actor) {
+			let parentItem = item.parent;
+			while (!(parentItem instanceof FUItem || parentItem instanceof PseudoItem)) {
+				parentItem = parentItem.parent;
+			}
+			li.classList.add('deeply-nested');
+			li.dataset.tooltip = game.i18n.format('FU.ItemDeeplyNested', { parent: parentItem.name, type: game.i18n.localize(CONFIG.Item.typeLabels[parentItem.type] ?? parentItem.type) });
+			const contextMenuAnchor = li.querySelector('.item-option');
+			if (contextMenuAnchor) {
+				console.log(contextMenuAnchor);
+				contextMenuAnchor.classList.add('disabled');
+			}
+			const deleteEffectAnchor = li.querySelector('.effect-control[data-action="delete"]');
+			if (deleteEffectAnchor) {
+				deleteEffectAnchor.classList.add('disabled');
+				deleteEffectAnchor.querySelector('.fas')?.classList?.replace('fas', 'far');
+			}
+		}
+	});
 
 	// Automatically expand elements that are in the _expanded state
 	sheet._expanded.forEach((itemId) => {
@@ -646,7 +448,10 @@ async function onSendItemToPartyStash(jq, sheet) {
  */
 function _onItemEdit(jq, sheet) {
 	const dataItemId = jq.data('itemId');
-	const item = sheet.actor.items.get(dataItemId);
+	let item = sheet.actor.items.get(dataItemId);
+	if (!item) {
+		item = fromUuidSync(jq.closest('[data-uuid]').data('uuid'));
+	}
 	if (item) item.sheet.render(true);
 }
 
@@ -700,10 +505,10 @@ async function _onItemDuplicate(jq, sheet) {
 }
 
 // Handle middle-click editing of an item sheet
-function _onMiddleClickEditItem(ev) {
+function _onMiddleClickEditItem(ev, sheet) {
 	if (ev.button === 1 && !$(ev.target).hasClass('item-edit')) {
 		ev.preventDefault();
-		_onItemEdit($(ev.currentTarget));
+		_onItemEdit($(ev.currentTarget), sheet);
 	}
 }
 
@@ -1013,8 +818,6 @@ async function activateStashListeners(html, sheet) {
 	});
 }
 
-const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(0).toUpperCase() + string.slice(1) : string);
-
 /**
  * @description Provides utility functions for rendering the actor sheet
  * @type {Readonly<{prepareItems: ((function(Object): Promise<void>)|*)}>}
@@ -1026,9 +829,4 @@ export const ActorSheetUtils = Object.freeze({
 	activateInventoryListeners,
 	activateStashListeners,
 	handleInventoryItemDrop,
-	// Used by modules
-	getWeaponDisplayData,
-	getSkillDisplayData,
-	getSpellDisplayData,
-	getItemDisplayData,
 });

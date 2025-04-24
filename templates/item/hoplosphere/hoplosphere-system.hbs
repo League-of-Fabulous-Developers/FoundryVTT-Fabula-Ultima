@@ -1,0 +1,23 @@
+<aside class="system" {{#unless editable}}style="display: none"{{/unless}}>
+	{{#if editable}}
+		<fieldset>
+			<legend>[PH] System Controls</legend>
+			<div class="fields">
+				<h4>
+					<label>
+						{{localize 'FU.FUID.Long'}}
+						<input name="system.fuid" value="{{system.fuid}}" />
+					</label>
+					<a data-action="regenerateFUID"><i class="fas fa-arrows-rotate"></i></a>
+				</h4>
+
+				<p>
+					<strong>[PH] Be aware that changing this value has consequences for how the system handles
+						Hoplospheres.</strong><br />
+					[PH] Coagulation levels, and thus active coagulation effects, are determined by counting socketed
+					Hoplospheres with the same FUID.
+				</p>
+			</div>
+		</fieldset>
+	{{/if}}
+</aside>

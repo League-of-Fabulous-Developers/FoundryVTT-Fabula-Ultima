@@ -1,0 +1,90 @@
+<div class="desc">
+	<section>
+		<div class="sockets resource-content flexrow flex-group-center" style="padding: 0.5em; gap: 2em;">
+			<label class="resource-label-m">
+				<i class="ra ra-helmet"></i>
+				{{localize "FU.TechnospheresSocketsArmor"}}
+				<select name="system.technospheres.armor.slots" class="resource-inputs select-dropdown select-dropdown-full" style="display: block">
+					{{selectOptions @root.FU.technospheres.armorSlots selected=system.technospheres.armor.slots
+									localize=true}}
+				</select>
+			</label>
+			<label class="resource-label-m">
+				<i class="ra ra-sword"></i>
+				{{localize "FU.TechnospheresSocketsWeapon"}}
+				<select name="system.technospheres.weapon.slots" class="resource-inputs select-dropdown select-dropdown-full" style="display: block">
+					{{selectOptions @root.FU.technospheres.weaponSlots selected=system.technospheres.weapon.slots
+									localize=true}}
+				</select>
+			</label>
+		</div>
+	</section>
+	<section>
+		<header class="items-main-header">
+		<span class="items-main" style="width: unset">
+			<label class="items-label">{{localize "FU.TechnospheresMnemospheres"}}</label>
+		</span>
+			<span class="items-main total-level grid grid-2col" style="width: unset">
+			<span style="padding-left: 0.5em">
+				<i class="ra ra-sword"></i>
+				{{actor.system.technospheres.weapon.socketedMnemospheres}}
+				/ {{actor.system.technospheres.weapon.mnemosphereSlots}}
+			</span>
+			<span style="padding-left: 0.5em">
+				<i class="ra ra-helmet"></i>
+				{{actor.system.technospheres.armor.socketedMnemospheres}}
+				/ {{actor.system.technospheres.armor.mnemosphereSlots}}
+			</span>
+		</span>
+		</header>
+		<!-- Mnemospheres Section -->
+		<ol class="items-list">
+			<li class="item flexrow items-header">
+				<div class="item-name">{{localize "FU.TechnospheresMnemospheres"}}</div>
+			</li>
+			{{#each actor.itemTypes.mnemosphere as |item id|}}
+				<li class="item" data-item-id="{{ item._id }}">
+					<div class="flexrow">
+						{{!-- Item Name--}}
+						{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+						<div class="inlay"></div>
+						{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+					</div>
+				</li>
+			{{/each}}
+		</ol>
+	</section>
+	<section>
+		<header class="items-main-header">
+		<span class="items-main" style="width: unset">
+			<label class="items-label">{{localize "FU.TechnospheresHoplospheres"}}</label>
+		</span>
+			<span class="items-main total-level grid grid-2col" style="width: unset">
+			<span style="padding-left: 0.5em">
+				<i class="ra ra-sword"></i>
+				{{actor.system.technospheres.weapon.socketedTotal}} / {{actor.system.technospheres.weapon.totalSlots}}
+			</span>
+			<span style="padding-left: 0.5em">
+				<i class="ra ra-helmet"></i>
+				{{actor.system.technospheres.armor.socketedTotal}} / {{actor.system.technospheres.armor.totalSlots}}
+			</span>
+		</span>
+		</header>
+		<!-- Hoplospheres Section -->
+		<ol class="items-list">
+			<li class="item flexrow items-header">
+				<div class="item-name">{{localize "FU.TechnospheresHoplospheres"}}</div>
+			</li>
+			{{#each actor.itemTypes.hoplosphere as |item id|}}
+				<li class="item" data-item-id="{{ item._id }}">
+					<div class="flexrow">
+						{{!-- Item Name--}}
+						{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
+						<div class="inlay"></div>
+						{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
+					</div>
+				</li>
+			{{/each}}
+		</ol>
+	</section>
+</div>

@@ -132,4 +132,5 @@ async function renderStep(progress, step, actor, source) {
 export const InlineClocks = {
 	enricher: inlineCheckEnricher,
 	activateListeners,
+	onDropActor: () => true,
 };

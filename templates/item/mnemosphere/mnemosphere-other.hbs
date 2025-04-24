@@ -1,0 +1,43 @@
+<main class="other tab" data-tab="other" data-group="main">
+	{{#each otherCategories as | category |}}
+		{{#with @root}}
+			{{#if (lookup item.system category.key)}}
+				<section>
+					<header>
+						{{localize category.label}}
+					</header>
+					<ol class="item-table">
+						<li class="item-table-header">
+							<div>{{localize 'FU.Name'}}</div>
+						</li>
+						{{#each (lookup item.system category.key) as |item|}}
+							<li class="item-table-row" data-item-id="{{ item.id }}">
+								<a data-action="roll" data-tooltip="{{localize 'FU.RollIconToolTip' name=item.name}}"><img class="item-icon" src="{{item.img}}" alt="Item icon"></a>
+								<span data-action="expand">{{item.name}}</span>
+								<div>
+									<a data-action="favorite"
+									   data-tooltip="{{#if item.system.isFavored.value}}{{ localize
+										'FU.FavoriteRemove' }}{{else}}{{ localize 'FU.Favorite' }}{{/if}}"
+									   aria-describedby="tooltip">
+										<i class="{{#if item.system.isFavored.value}}fas{{else}}far{{/if}} fa-star"></i>
+									</a>
+									<a data-action="edit" data-tooltip="{{ localize 'FU.Edit' }}"
+									   aria-describedby="tooltip">
+										<i class="fas fa-edit button-style"></i>
+									</a>
+									<a data-action="delete" data-tooltip="{{ localize 'FU.Settings' }}"
+									   aria-describedby="tooltip">
+										<i class="fas fa-trash"></i>
+									</a>
+								</div>
+								<div class="description {{#unless (lookup @root.expandedIds item.id)}}hidden{{/unless}}">
+									{{{lookup @root.enrichedHtml.description item.id}}}
+								</div>
+							</li>
+						{{/each}}
+					</ol>
+				</section>
+			{{/if}}
+		{{/with}}
+	{{/each}}
+</main>

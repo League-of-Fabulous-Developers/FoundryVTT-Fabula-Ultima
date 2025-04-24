@@ -16,6 +16,9 @@
                 <a class="item rollable tab button-style" data-tab="features">{{localize 'FU.Features'}}</a>
                 <a class="item rollable tab button-style" data-tab="spells">{{localize 'FU.Spells'}}</a>
                 <a class="item rollable tab button-style" data-tab="items">{{localize 'FU.Items'}}</a>
+                {{#if true}}
+                    <a class="item rollable tab button-style" data-tab="technospheres">{{localize 'FU.Technospheres'}}</a>
+                {{/if}}
                 <a class="item rollable tab button-style" data-tab="notes" data-tooltip="{{localize 'FU.BiographyInfo'}}">
                     <i class="fas fa-file-pen"></i>
                 </a>
@@ -131,6 +134,10 @@
                 {{!-- Owned Items Tab --}}
                 <div class="tab items" data-group="primary" data-tab="items">
                     {{>"systems/projectfu/templates/actor/sections/actor-section-items.hbs" actor=actor}}
+                </div>
+                {{!-- Technospheres Tab --}}
+                <div class="tab items" data-group="primary" data-tab="technospheres">
+                    {{>"systems/projectfu/templates/actor/sections/actor-section-technospheres.hbs"}}
                 </div>
                 {{!-- Owned Notes Tab --}}
                 <div class="tab notes" data-group="primary" data-tab="notes">

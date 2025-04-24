@@ -1,0 +1,421 @@
+{
+  "folder": "ghKKGdGJfB1dO8GY",
+  "name": "Mnemosphere: Spiritist",
+  "type": "mnemosphere",
+  "_id": "pjn2t5eeCW3MsoMD",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_mnemosphere.png",
+  "system": {
+    "isFavored": {
+      "value": false
+    },
+    "level": 1,
+    "maxLevel": 5,
+    "items": [
+      {
+        "name": "Healing Power",
+        "type": "skill",
+        "_id": "4nEa92nkpe0318cx",
+        "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_healing_power.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane </strong>weapon equipped, you may have each of those allies recover an amount of Hit Points equal to <strong>【SL, multiplied by the number of Bonds you have】</strong>.</p><p>This healing is separate from any healing caused by the effects of the spell.</p><hr /><table><tbody><tr><td><p>Additional HP regained...</p></td><td><p><strong>Skill Level 1</strong></p></td><td><p><strong>Skill Level 2</strong></p></td></tr><tr><td><p><strong>One Bond</strong></p></td><td><p><strong>@GAIN[1 hp]</strong></p></td><td><p><strong>@GAIN[2 hp]</strong></p></td></tr><tr><td><p><strong>Two Bonds</strong></p></td><td><p><strong>@GAIN[2 hp]</strong></p></td><td><p><strong>@GAIN[4 hp]</strong></p></td></tr><tr><td><p><strong>Three Bonds</strong></p></td><td><p><strong>@GAIN[3 hp]</strong></p></td><td><p><strong>@GAIN[6 hp]</strong></p></td></tr><tr><td><p><strong>Four Bonds</strong></p></td><td><p><strong>@GAIN[4 hp]</strong></p></td><td><p><strong>@GAIN[8 hp]</strong></p></td></tr><tr><td><p><strong>Five Bonds</strong></p></td><td><p><strong>@GAIN[5 hp]</strong></p></td><td><p><strong>@GAIN[10 hp]</strong></p></td></tr><tr><td><p><strong>Six Bonds</strong></p></td><td><p><strong>@GAIN[6 hp]</strong></p></td><td><p><strong>@GAIN[12 hp]</strong></p></td></tr></tbody></table>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 2,
+            "min": 0
+          },
+          "class": {
+            "value": "Spiritist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUCR207"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "healing-power",
+          "cost": {
+            "resource": "mp",
+            "amount": 0
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        }
+      },
+      {
+        "name": "Ritual Spiritism",
+        "type": "skill",
+        "_id": "Dgv9r8lBSt226NrY",
+        "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_ritual_spiritism.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>You may perform Rituals whose effects fall within the <strong>Spiritism</strong> discipline.</p><p>Spiritism Rituals use <strong>【INS + WLP】</strong> for the Magic Check.</p>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Spiritist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUCR207"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "ritual-spiritism",
+          "cost": {
+            "resource": "mp",
+            "amount": 0
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        }
+      },
+      {
+        "name": "Spiritual Magic",
+        "type": "skill",
+        "_id": "WA0iOlG6wH10rUh4",
+        "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_spiritual_magic.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>Each time you acquire this Skill, learn one Spiritist spell (see <strong>Core Rulebook</strong>, page <strong>208</strong>).</p><p>Offensive ( @ICON[offensive] ) Spiritist spells use <strong>【INS + WLP】 </strong>for the Magic Check.</p><hr /><ul><li><p>For <strong>spell</strong> breakdown and a list of Spiritist Spells, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.L65ajg6cmHEk3zAP]{Spiritist Rules}</p></li></ul>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 10,
+            "min": 0
+          },
+          "class": {
+            "value": "Spiritist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUCR207"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "spiritual-magic",
+          "cost": {
+            "resource": "mp",
+            "amount": 0
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        }
+      },
+      {
+        "name": "Support Magic",
+        "type": "skill",
+        "_id": "Gf8W6F5VNrMiYVro",
+        "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_support_magic.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When you cast a spell that targets one or more allies, if you have an <strong>arcane</strong> weapon equipped, you may choose one of those allies you have a <strong>Bond</strong> towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the <strong>strength</strong> of your Bond towards them.</p>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Spiritist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUCR207"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "support-magic",
+          "cost": {
+            "resource": "mp",
+            "amount": 0
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        }
+      },
+      {
+        "name": "Vismagus",
+        "type": "skill",
+        "_id": "XcyWebrPGLrcW8a7",
+        "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spiritist_vismagus.png",
+        "system": {
+          "subtype": {
+            "value": ""
+          },
+          "summary": {
+            "value": ""
+          },
+          "description": "<p>When you cast a spell, if you don't have enough Mind Points to pay for its total cost, you may choose to spend <strong>twice as many</strong> Hit Points instead. You cannot use this Skill if doing so would reduce you to 0 Hit Points. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).</p>",
+          "isFavored": {
+            "value": false
+          },
+          "showTitleCard": {
+            "value": false
+          },
+          "level": {
+            "value": 0,
+            "max": 1,
+            "min": 0
+          },
+          "class": {
+            "value": "Spiritist"
+          },
+          "useWeapon": {
+            "accuracy": false,
+            "damage": false
+          },
+          "attributes": {
+            "primary": "dex",
+            "secondary": "dex"
+          },
+          "accuracy": 0,
+          "damage": {
+            "hasDamage": false,
+            "value": 0,
+            "type": "physical",
+            "onRoll": "",
+            "onApply": "",
+            "hrZero": false
+          },
+          "source": {
+            "value": "FUCR207"
+          },
+          "hasRoll": {
+            "value": false
+          },
+          "hasResource": {
+            "value": false
+          },
+          "rp": {
+            "name": "Name",
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false
+          },
+          "defense": "def",
+          "fuid": "vismagus",
+          "cost": {
+            "resource": "mp",
+            "amount": 0
+          },
+          "targeting": {
+            "rule": "special",
+            "max": 0
+          },
+          "traits": []
+        },
+        "effects": [],
+        "flags": {
+          "core": {}
+        }
+      }
+    ],
+    "source": "",
+    "class": "Spiritist"
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "aylHtMTxbnWEKFH9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1745491348230,
+    "modifiedTime": 1745491348230,
+    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+  },
+  "_key": "!items!pjn2t5eeCW3MsoMD"
+}

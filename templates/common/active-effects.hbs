@@ -28,7 +28,7 @@
             <ol class="item-list">
                 {{#each section.effects as |effect|}}
                     <li class="effect {{#if (and effect.isSuppressed (not effect.disabled))}}suppressed{{/if}}"
-                        data-effect-id="{{ effect.id }}" data-type="effect">
+                        data-effect-id="{{ effect.id }}" data-uuid="{{ effect.uuid }}" data-type="effect">
                         <div class="flexrow">
                             {{!-- Name--}}
                             <div class="item-name">

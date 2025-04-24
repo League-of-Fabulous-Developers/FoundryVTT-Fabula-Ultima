@@ -12,6 +12,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/sections/actor-section-items.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-items-treasure.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-items-consumable.hbs',
+		'systems/projectfu/templates/actor/sections/actor-section-technospheres.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-combat.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-notes.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-behavior.hbs',

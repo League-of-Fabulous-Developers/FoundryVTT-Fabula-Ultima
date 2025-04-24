@@ -189,4 +189,35 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 			return ChecksV2.display(this.parent.actor, this.parent);
 		}
 	}
+
+	/**
+	 * Retrieves the display data for a spell item.
+	 *
+	 * @returns {object|boolean} An object containing spell display information, or false if this is not a spell.
+	 * @property {string} attackString - The spell's attack description.
+	 * @property {string} damageString - The spell's damage description.
+	 * @property {string} detailString - The combined attack and damage descriptions.
+	 * @property {string} qualityString - The spell's quality description.
+	 */
+	getSpellDisplayData() {
+		// Define constants and variables
+		const hrZeroText = this.rollInfo?.useWeapon?.hrZero?.value ? `${game.i18n.localize('FU.HRZero')} +` : `${game.i18n.localize('FU.HighRollAbbr')} +`;
+
+		const attackAttributes = [this.rollInfo?.attributes?.primary.value.toUpperCase(), this.rollInfo?.attributes?.secondary.value.toUpperCase()].join(' + ');
+
+		const attackString = this.hasRoll.value ? `【${attackAttributes}${this.rollInfo.accuracy.value > 0 ? ` +${this.rollInfo.accuracy.value}` : ''}】` : '';
+
+		const damageString = this.rollInfo.damage.hasDamage.value ? `【${hrZeroText} ${this.rollInfo.damage.value}】 ${this.rollInfo.damage.type.value}` : '';
+
+		const qualText = this.quality?.value || '';
+		const detailString = [attackString, damageString].filter(Boolean).join('⬥');
+		const qualityString = [this.cost.amount, this.targeting.rule.capitalize(), this.duration.value.capitalize(), qualText].filter(Boolean).join(' ⬥ ');
+
+		return {
+			attackString,
+			damageString,
+			detailString,
+			qualityString,
+		};
+	}
 }

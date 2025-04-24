@@ -1,0 +1,51 @@
+<main class="main">
+    <fieldset>
+        <legend>[PH] General</legend>
+        <div class="fields">
+            <label>
+                [PH] Socketable in
+                <select name="system.socketable">
+                    {{selectOptions socketableOptions selected=system.socketable localize=true}}
+                </select>
+            </label>
+            <label>
+                [PH] Slots required
+                <select name="system.requiredSlots">
+                    {{selectOptions requiredSlotsOptions selected=system.requiredSlots localize=true}}
+                </select>
+            </label>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>[PH] Effect</legend>
+        <div class="fields">
+            <button class="button" type="button" data-action="editEffect" data-effect="weapon">
+                [PH] Edit weapon effect
+            </button>
+            {{#if (eq system.socketable 'all')}}
+                <button class="button" type="button" data-action="editEffect" data-effect="armor">
+                    [PH] Edit armor effect
+                </button>
+            {{/if}}
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>[PH] Coagulation Effects <a data-action="addCoagulation"><i class="fas fa-plus"></i></a></legend>
+        {{#each system.coagulationEffects}}
+            <div class="flexrow">
+                <label>
+                    [PH] Required coagulation level
+                    <input type="number" name="system.coagulationEffects.{{@index}}.coagulationLevel"
+                           value="{{coagulationLevel}}">
+                </label>
+                <input type="hidden" name="system.coagulationEffects.{{@index}}.effect" value="{{effect.id}}">
+                <button type="button" data-action="editEffect" data-effect="coagulation" data-index="{{@index}}">
+                    [PH] Edit coagulation effect
+                </button>
+                <button type="button" data-action="removeCoagulation" data-index="{{@index}}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        {{/each}}
+    </fieldset>
+</main>

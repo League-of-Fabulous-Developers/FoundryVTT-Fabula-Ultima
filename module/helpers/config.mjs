@@ -646,3 +646,17 @@ FU.damageOverrideScope = {
 	spell: 'FU.Spell',
 	skill: 'FU.Skill',
 };
+
+FU.technospheres = {
+	armorSlots: {
+		alpha: 'FU.TechnospheresSocketsSlotsAlpha',
+		beta: 'FU.TechnospheresSocketsSlotsBeta',
+		gamma: 'FU.TechnospheresSocketsSlotsGamma',
+	},
+	weaponSlots: {
+		alpha: 'FU.TechnospheresSocketsSlotsAlpha',
+		beta: 'FU.TechnospheresSocketsSlotsBeta',
+		gamma: 'FU.TechnospheresSocketsSlotsGamma',
+		delta: 'FU.TechnospheresSocketsSlotsDelta',
+	},
+};

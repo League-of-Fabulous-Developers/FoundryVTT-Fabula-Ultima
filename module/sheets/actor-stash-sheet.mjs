@@ -28,6 +28,7 @@ export class FUStashSheet extends ActorSheet {
 	async getData() {
 		// Enrich or transform data here
 		const context = super.getData();
+		context.items = [...this.actor.allItems()];
 		await ActorSheetUtils.prepareData(context, this);
 		return context;
 	}

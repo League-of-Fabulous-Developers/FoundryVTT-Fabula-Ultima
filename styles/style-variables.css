@@ -1,0 +1,39 @@
+.system-projectfu {
+	/* Colors */
+	--pfu-color-primary: #ebf7af;
+	--pfu-color-secondary: #2b4a42;
+	--pfu-color-tertiary: #3d665a;
+	--pfu-color-quaternary: #cccbbb;
+	--pfu-color-primary-inverted: #000000;
+	--pfu-color-secondary-inverted: #412a3a;
+
+	/* Backgrounds */
+	--pfu-background-primary: url(../static/ui/HojitasDouble_highres.png), linear-gradient(270deg, rgba(17, 41, 41, 0.9) 0%, rgba(38, 88, 83, 0.9) 100%), linear-gradient(to right, #f5f5dc, #c9c7b8);
+	--pfu-background-secondary: url(../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+
+	/* Font Families */
+	--pfu-font-family-title: 'CreditValleybold', serif;
+	--pfu-font-family-primary: 'PT Sans Narrow', sans-serif;
+	--pfu-font-family-secondary: 'Yanone Kaffeesatz', sans-serif;
+	--pfu-font-family-quote: 'EB Garamond', sans-serif;
+
+	/* Font Sizes */
+	--pfu-fontsize-h1: var(--font-h1-size);
+	--pfu-fontsize-h2: var(--font-h2-size);
+	--pfu-fontsize-h3: var(--font-h3-size);
+	--pfu-fontsize-h4: var(--font-h4-size);
+	--pfu-fontsize-h5: var(--font-h5-size);
+	--pfu-fontsize-h6: var(--font-h6-size);
+	--pfu-fontsize-text: var(--font-size-16);
+	--pfu-fontsize-text-large: var(--font-size-18);
+	--pfu-fontsize-text-small: var(--font-size-14);
+
+	/* Spacing */
+	--pfu-spacing-0: 0;
+	--pfu-spacing-1: 0.25rem;
+	--pfu-spacing-2: 0.5rem;
+	--pfu-spacing-3: 1rem;
+	--pfu-spacing-4: 1.5rem;
+	--pfu-spacing-5: 2rem;
+	--pfu-spacing-6: 4rem;
+}

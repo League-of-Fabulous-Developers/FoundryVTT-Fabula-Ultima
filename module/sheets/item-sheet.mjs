@@ -57,7 +57,7 @@ export class FUItemSheet extends ItemSheet {
 		const context = super.getData();
 
 		// Use a safe clone of the actor data for further operations.
-		const actor = this.object?.parent ?? null;
+		const actor = this.object?.actor ?? null;
 		const actorData = actor ? actor.toObject(false) : null;
 
 		// Use a safe clone of the item data for further operations.
@@ -399,7 +399,7 @@ export class FUItemSheet extends ItemSheet {
 	_getSubmitData(updateData = {}) {
 		const data = super._getSubmitData(updateData);
 		// Prevent submitting overridden values
-		const overrides = foundry.utils.flattenObject(this.item.overrides);
+		const overrides = foundry.utils.flattenObject(this.item.overrides ?? {});
 		for (let k of Object.keys(overrides)) {
 			delete data[k];
 		}

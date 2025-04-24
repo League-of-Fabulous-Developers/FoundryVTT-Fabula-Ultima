@@ -11,7 +11,7 @@
             </div>
         </li>
         {{#each basics as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -44,7 +44,7 @@
             </div>
         </li>
         {{#each skills as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow" style="height: fit-content; align-items: flex-start;">
                     <div class="flexcol">
                         {{!-- Item Name--}}
@@ -110,7 +110,7 @@
             </div>
         </li>
         {{#each spells as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -143,7 +143,7 @@
             </div>
         </li>
         {{#each abilities as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow" style="height: fit-content; align-items: flex-start;">
                     <div class="flexcol">
                         {{!-- Item Name--}}
@@ -217,7 +217,7 @@
         </li>
         {{#each rules as |item id|}}
 
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
@@ -261,7 +261,7 @@
             </div>
         </li>
         {{#each treasures as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
+            <li class="item" data-item-id="{{ item._id }}" data-uuid="{{ item.uuid }}">
                 <div class="flexrow">
                     {{!-- Item Name--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
