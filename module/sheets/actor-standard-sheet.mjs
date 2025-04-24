@@ -339,11 +339,11 @@ export class FUStandardActorSheet extends ActorSheet {
 		html.on('click', '.use-equipment', this._onUseEquipment.bind(this)); // Toggle use equipment setting for npcs
 		html.on('click', '.item-favored', this._onItemFavorite.bind(this)); // Add item to favorites
 		html.on('click', '.item-behavior', (ev) => this._onItemBehavior($(ev.currentTarget))); // Add item to behavior roll
-		html.on('click', '.item-stash', async (ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const itemId = li.data('itemId');
-			const item = this.actor.items.get(itemId);
-			return InventoryPipeline.requestTrade(this.actor.uuid, item.uuid, false);
+		html.on('click', '.zenit-deposit', async (ev) => {
+			return InventoryPipeline.promptPartyZenitTransfer(this.actor, 'deposit');
+		});
+		html.on('click', '.zenit-withdraw', async (ev) => {
+			return InventoryPipeline.promptPartyZenitTransfer(this.actor, 'withdraw');
 		});
 		html.on('click contextmenu', '.increment-button', (ev) => this._onIncrementButtonClick(ev)); // Increment value
 		html.on('click contextmenu', '.decrement-button', (ev) => this._onDecrementButtonClick(ev)); // Decrement value

@@ -6,6 +6,7 @@ export const MESSAGES = Object.freeze({
 	RequestStartTurn: 'requestStartTurn',
 	RequestEndTurn: 'requestEndTurn',
 	RequestTrade: 'requestTrade',
+	RequestZenitTransfer: 'requestZenitTransfer',
 });
 
 export let SOCKET;
@@ -18,6 +19,7 @@ export function onSocketLibReady() {
 	SOCKET.register(MESSAGES.RequestStartTurn, requestStartTurn);
 	SOCKET.register(MESSAGES.RequestEndTurn, requestEndTurn);
 	SOCKET.register(MESSAGES.RequestTrade, InventoryPipeline.requestTrade);
+	SOCKET.register(MESSAGES.RequestZenitTransfer, InventoryPipeline.requestZenitTransfer);
 }
 
 function showBanner(text) {
