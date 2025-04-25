@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>When you summon an Arcanum, you immediately recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[&amp;sl(\"arcane-regeneration\")*5 hp]{SL × 5 HP}</p></li></ul>",
+    "description": "<p>When you summon an Arcanum, you immediately recover <strong>【SL × 5】</strong> Hit Points.</p><hr /><ul><li><p><strong>You Recover:</strong> @GAIN[&amp;sl(\"arcane-regeneration\")*5 mp]{SL × 5 HP}</p></li></ul>",
     "isFavored": {
       "value": false
     },
