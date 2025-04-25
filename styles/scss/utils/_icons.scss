@@ -344,3 +344,27 @@ img:not([src]) {
 	width: 24px;
 	height: 24px;
 }
+
+.effect-icon-wrapper {
+	display: inline-block;
+	position: relative;
+}
+
+.effect-icon-image {
+	object-fit: cover;
+	border-radius: 5px; /* Match Foundry's token styling */
+}
+
+.effect-icon-label {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: $color-shadow;
+	color: white;
+	font-size: 0.8rem;
+	pointer-events: none;
+
+	border-radius: 999px;
+	padding: 1px 5px;
+	transform: translate(30%, 30%); /* push outwards */
+}

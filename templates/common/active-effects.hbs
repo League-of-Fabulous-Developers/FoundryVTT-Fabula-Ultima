@@ -41,15 +41,12 @@
                                          {{~localize "FU.EffectCrisisInteractionInactiveTooltip"~}}
                                      {{~/if}}"
                                     {{~/if}}>
-                                    <div class="item-image">
-                                        <div class="effect-roll rollable" data-action="roll">
-                                            <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}" />
-                                        </div>
-                                    </div>
-                                    <h4 class="click-item resource-content">
-								<span class="resource-text-m gap-3" style="display: flex; align-items: center;">
+									{{!-- Image--}}
+									{{> "systems/projectfu/templates/effects/active-effect-image.hbs" effect=effect}}
+									<h4 class="click-item resource-content">
+										<span class="resource-text-m gap-3" style="display: flex; align-items: center;">
                                     {{ effect.name }}
-                                </span>
+										</span>
                                     </h4>
                                 </div>
                                 {{!-- Source --}}

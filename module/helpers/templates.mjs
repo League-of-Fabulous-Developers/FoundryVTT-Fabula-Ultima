@@ -71,6 +71,7 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/effects/active-effect-duration.hbs',
 		'systems/projectfu/templates/effects/active-effect-predicate.hbs',
 		'systems/projectfu/templates/effects/active-effect-rules.hbs',
+		'systems/projectfu/templates/effects/active-effect-image.hbs',
 
 		// Dialogs
 		'systems/projectfu/templates/dialog/dialog-check.hbs',
