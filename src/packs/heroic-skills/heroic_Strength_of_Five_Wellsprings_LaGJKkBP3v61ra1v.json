@@ -10,7 +10,7 @@
     "summary": {
       "value": "Invocations improve Attributes."
     },
-    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Invoker</strong> Class</p></blockquote><p>After you perform an <strong>invocation</strong> during a conflict, you <strong>and</strong> up to one ally you can see increase one of your Attributes' die sizes by one (up to a maximum of <strong>d12</strong>). This increase lasts until the end of the scene or until you use this Skill again, and the Attribute is based on the <strong>wellspring</strong> you invoked: <strong>air (Insight)</strong>, <strong>earth (one Attribute of your choice)</strong>, <strong>fire (Dexterity)</strong>, <strong>lightning (Might)</strong>, or <strong>water (Willpower)</strong>.</p><hr /><ul><li><p><strong>Target Receive:</strong> @UUID[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw]{INS Up (Air)}, @UUID[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw]{DEX Up (Fire)}, @UUID[Compendium.projectfu.actor-effects.Item.hX70STpGG5fgAAkp]{MIG Up (Lightning)}, or @UUID[Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG]{WLP Up (Water)}</p></li></ul>",
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Invoker</strong> Class</p></blockquote><p>After you perform an <strong>invocation</strong> during a conflict, you <strong>and</strong> up to one ally you can see increase one of your Attributes' die sizes by one (up to a maximum of <strong>d12</strong>). This increase lasts until the end of the scene or until you use this Skill again, and the Attribute is based on the <strong>wellspring</strong> you invoked: <strong>air (Insight)</strong>, <strong>earth (one Attribute of your choice)</strong>, <strong>fire (Dexterity)</strong>, <strong>lightning (Might)</strong>, or <strong>water (Willpower)</strong>.</p><hr><ul><li><p><strong>Target Receive:</strong> @EFFECT[Compendium.projectfu.actor-effects.Item.4G5iaieFDwGiIVrw e:eos i:1 t:source]{INS Up (Air)}, @EFFECT[Compendium.projectfu.actor-effects.Item.vv2cqUDHaCJLmEYw e:eos i:1 t:source]{DEX Up (Fire)}, @EFFECT[Compendium.projectfu.actor-effects.Item.hX70STpGG5fgAAkp e:eos i:1 t:source]{MIG Up (Lightning)}, or @EFFECT[Compendium.projectfu.actor-effects.Item.nXxz7GyqeIGtQpMG e:eos i:1 t:source]{WLP Up (Water)}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -61,8 +61,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742676906838,
-    "modifiedTime": 1744253150916,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv"
+    "modifiedTime": 1745610592900,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi"
   },
   "_id": "LaGJKkBP3v61ra1v",
   "ownership": {
