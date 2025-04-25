@@ -16,7 +16,7 @@
       "type": "base",
       "changes": [
         {
-          "key": "system.bonuses.damage.monster",
+          "key": "system.bonuses.damage.humanoid",
           "mode": 2,
           "value": "5",
           "priority": null
@@ -36,7 +36,14 @@
         }
       },
       "_id": "rLLaCWGQ98VUd8lU",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -52,10 +59,10 @@
         "duplicateSource": null,
         "coreVersion": "12.331",
         "systemId": "projectfu",
-        "systemVersion": "#{VERSION}#",
+        "systemVersion": "3.0.2",
         "createdTime": null,
-        "modifiedTime": 1744565830803,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+        "modifiedTime": 1745602610864,
+        "lastModifiedBy": "2sIzoqmFNykqXyPi"
       },
       "_key": "!items.effects!5WWWPUNHTceiEXzW.rLLaCWGQ98VUd8lU"
     },

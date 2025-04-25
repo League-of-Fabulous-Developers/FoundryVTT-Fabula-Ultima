@@ -15,7 +15,7 @@
       "min": 0
     },
     "class": {
-      "value": "Necromancers"
+      "value": "Necromancer"
     },
     "useWeapon": {
       "accuracy": {
@@ -125,11 +125,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "#{VERSION}#",
+    "systemVersion": "3.0.2",
     "coreVersion": "12.331",
     "createdTime": 1684757022956,
-    "modifiedTime": 1742653157859,
-    "lastModifiedBy": "uG2TkwmswfdRqaAv",
+    "modifiedTime": 1745602043240,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi",
     "compendiumSource": null,
     "duplicateSource": null
   },
