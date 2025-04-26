@@ -176,6 +176,13 @@ FU.speciesRule = {
 	custom: 'FU.CustomRule',
 };
 
+FU.studyResult = {
+	none: 'FU.None',
+	basic: 'FU.Basic',
+	complete: 'FU.Complete',
+	detailed: 'FU.Detailed',
+};
+
 FU.itemTypes = {
 	basic: 'TYPES.Item.basic',
 	weapon: 'TYPES.Item.weapon',

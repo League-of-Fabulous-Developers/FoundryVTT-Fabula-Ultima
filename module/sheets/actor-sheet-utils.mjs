@@ -589,25 +589,7 @@ function activateDefaultListeners(html, sheet) {
 	});
 
 	// Toggle Expandable Item Description
-	html.find('.click-item').click((ev) => {
-		const el = $(ev.currentTarget);
-		const parentEl = el.closest('li');
-		const itemId = parentEl.data('itemId');
-		const desc = parentEl.find('.individual-description');
-
-		if (sheet._expanded.has(itemId)) {
-			desc.slideUp(200, () => desc.css('display', 'none'));
-			sheet._expanded.delete(itemId);
-		} else {
-			desc.slideDown(200, () => {
-				desc.css('display', 'block');
-				desc.css('height', 'auto');
-			});
-			sheet._expanded.add(itemId);
-		}
-
-		_saveExpandedState(sheet);
-	});
+	activateExpandedItemListener(html, sheet._expanded, () => _saveExpandedState(sheet));
 
 	// Drag events
 	if (sheet.actor.isOwner) {
@@ -624,6 +606,30 @@ function activateDefaultListeners(html, sheet) {
 		const desc = html.find(`li[data-item-id="${itemId}"] .individual-description`);
 		if (desc.length) {
 			desc.removeClass('hidden').css({ display: 'block', height: 'auto' });
+		}
+	});
+}
+
+function activateExpandedItemListener(html, expanded, onExpand) {
+	html.find('.click-item').click((ev) => {
+		const el = $(ev.currentTarget);
+		const parentEl = el.closest('li');
+		const itemId = parentEl.data('itemId');
+		const desc = parentEl.find('.individual-description');
+
+		if (expanded.has(itemId)) {
+			desc.slideUp(200, () => desc.css('display', 'none'));
+			expanded.delete(itemId);
+		} else {
+			desc.slideDown(200, () => {
+				desc.css('display', 'block');
+				desc.css('height', 'auto');
+			});
+			expanded.add(itemId);
+		}
+
+		if (onExpand) {
+			onExpand();
 		}
 	});
 }
@@ -1043,11 +1049,13 @@ const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(
  */
 export const ActorSheetUtils = Object.freeze({
 	prepareData,
+	prepareItems,
 	findItemConfig,
 	activateDefaultListeners,
 	activateInventoryListeners,
 	activateStashListeners,
 	handleInventoryItemDrop,
+	activateExpandedItemListener,
 	// Used by modules
 	getWeaponDisplayData,
 	getSkillDisplayData,

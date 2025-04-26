@@ -1,11 +1,13 @@
 import { FU } from './config.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { getTargeted } from './target-handler.mjs';
+import { CommonEvents } from '../checks/common-events.mjs';
 
 export class StudyRollHandler {
-	constructor(actor, studyValue, targets) {
+	constructor(actor, checkResult, targets) {
 		this.actor = actor;
-		this.studyValue = studyValue;
+		this.checkResult = checkResult;
+		this.studyValue = checkResult.result;
 		this.targets = targets || [];
 	}
 
@@ -26,9 +28,7 @@ export class StudyRollHandler {
 			}
 		}
 
-		for (const actor of targets) {
-			await this.handleStudyRollCallback(actor);
-		}
+		CommonEvents.study(this.actor, targets, this.checkResult);
 	}
 
 	/**
@@ -164,26 +164,55 @@ export class StudyRollHandler {
 		}
 	}
 
-	async handleStudyRollCallback(actor) {
+	static resolveDifficulty(studyValue) {
+		const result = StudyRollHandler.resolveStudyResult(studyValue);
+		switch (result) {
+			case 'detailed':
+				return 'Hard';
+			case 'complete':
+				return 'Normal';
+			case 'basic':
+				return 'Basic';
+		}
+		return 'Failed';
+	}
+
+	static getMaxValue() {
+		const useRevisedStudyRule = game.settings.get('projectfu', 'useRevisedStudyRule');
+		return useRevisedStudyRule ? 13 : 16;
+	}
+
+	/**
+	 * @param {Number} studyValue
+	 * @returns {"none"|"basic"|"complete"|"detailed"}
+	 */
+	static resolveStudyResult(studyValue) {
 		const coreRule = [10, 13, 16];
 		const revisedRule = [7, 10, 13];
 		const useRevisedStudyRule = game.settings.get('projectfu', 'useRevisedStudyRule');
 		const difficultyThresholds = useRevisedStudyRule ? revisedRule : coreRule;
-		const optionStudySavePath = game.settings.get('projectfu', 'optionStudySavePath');
-		const update = game.i18n.localize(`FU.StudyJournalUpdate`);
-		const update2 = game.i18n.localize(`FU.StudyJournalUpdate2`);
-		let difficulty;
+
+		let result;
+		if (studyValue >= difficultyThresholds[0] && studyValue < difficultyThresholds[1]) result = 'basic';
+		else if (studyValue >= difficultyThresholds[1] && studyValue < difficultyThresholds[2]) result = 'complete';
+		else if (studyValue >= difficultyThresholds[2]) result = 'detailed';
+		else result = 'none';
+		return result;
+	}
+
+	// TODO: Fold into npc-profile
+	/**
+	 * @param actor
+	 * @param difficulty
+	 * @returns {Promise<JournalEntryClass>}
+	 */
+	async createJournal(actor, difficulty) {
 		let replacement = false;
 		const existingJournal = game.journal.getName(actor.name);
 		if (existingJournal) {
 			replacement = true;
 			existingJournal.delete();
 		}
-
-		if (this.studyValue >= difficultyThresholds[0] && this.studyValue < difficultyThresholds[1]) difficulty = 'Basic';
-		else if (this.studyValue >= difficultyThresholds[1] && this.studyValue < difficultyThresholds[2]) difficulty = 'Normal';
-		else if (this.studyValue >= difficultyThresholds[2]) difficulty = 'Hard';
-		else difficulty = 'Failed';
 
 		const headerStyle = `background: linear-gradient(to right, #532853, #bfb8c4);border-color: #c1b7c7;display: flex;align-items: center;padding: 2px;border-right: groove #ffffff 3px;padding-left: 16px;padding-right: 16px;`;
 		const headerText = `font-family: Yanone Kaffeesatz;font-weight: bold;font-size: 1.5rem;font-variant: small-caps;color: #ffffff;text-shadow: 2px 1px 1px black;`;
@@ -467,6 +496,7 @@ export class StudyRollHandler {
             </div>`;
 		};
 
+		const optionStudySavePath = game.settings.get('projectfu', 'optionStudySavePath');
 		const folderName = optionStudySavePath;
 		const folder = folderName ? game.folders.find((f) => f.name === folderName && f.type === 'JournalEntry') || (await Folder.create({ name: folderName, type: 'JournalEntry', parent: null })) : null;
 		const folderId = folder?.id || null;
@@ -518,7 +548,8 @@ export class StudyRollHandler {
 		};
 
 		await journalEntry.createEmbeddedDocuments('JournalEntryPage', [pageData]);
-
+		const update = game.i18n.localize(`FU.StudyJournalUpdate`);
+		const update2 = game.i18n.localize(`FU.StudyJournalUpdate2`);
 		const entryLink = `@JournalEntry[${journalEntry.id}]{${journalEntry.name}}`;
 		let msg = (replacement ? update : update2) + `${entryLink}.`;
 
@@ -529,6 +560,12 @@ export class StudyRollHandler {
 			content: msg,
 		});
 
+		return journalEntry;
+	}
+
+	async handleStudyRollCallback(actor) {
+		const difficulty = StudyRollHandler.resolveDifficulty(this.studyValue);
+		const journalEntry = await this.createJournal(actor, difficulty);
 		Hooks.callAll(FUHooks.ROLL_STUDY, actor, journalEntry);
 	}
 }

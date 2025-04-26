@@ -35,7 +35,14 @@ $fu-mig-down: url('/systems/projectfu/styles/static/statuses/MigDown.webp');
 $fu-wlp-up: url('/systems/projectfu/styles/static/statuses/WlpUp.webp');
 $fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
 
-$fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
+$fu-beast: url('/systems/projectfu/styles/static/icons/beast.svg');
+$fu-construct: url('/systems/projectfu/styles/static/icons/construct.svg');
+$fu-demon: url('/systems/projectfu/styles/static/icons/demon.svg');
+$fu-elemental: url('/systems/projectfu/styles/static/icons/elemental.svg');
+$fu-humanoid: url('/systems/projectfu/styles/static/icons/humanoid.svg');
+$fu-monster: url('/systems/projectfu/styles/static/icons/monster.svg');
+$fu-plant: url('/systems/projectfu/styles/static/icons/plant.svg');
+$fu-undead: url('/systems/projectfu/styles/static/icons/undead.svg');
 
 .fu-fp {
 	background-image: $fu-fp;
@@ -143,6 +150,38 @@ $fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
 
 .ful-martial {
 	background-image: $ful-martial;
+}
+
+.fu-beast {
+	background-image: $fu-beast;
+}
+
+.fu-demon {
+	background-image: $fu-demon;
+}
+
+.fu-construct {
+	background-image: $fu-construct;
+}
+
+.fu-elemental {
+	background-image: $fu-elemental;
+}
+
+.fu-humanoid {
+	background-image: $fu-humanoid;
+}
+
+.fu-monster {
+	background-image: $fu-monster;
+}
+
+.fu-plant {
+	background-image: $fu-plant;
+}
+
+.fu-undead {
+	background-image: $fu-undead;
 }
 
 .fu-effect-placeholder {

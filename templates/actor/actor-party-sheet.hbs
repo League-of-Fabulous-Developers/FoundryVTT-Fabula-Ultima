@@ -1,12 +1,13 @@
-<form class="{{cssClass}} {{actor.type}} projectfu-actor-sheet h-100" autocomplete="off" spellcheck="false">
+<form class="{{cssClass}} blur {{actor.type}} projectfu-actor-sheet h-100" autocomplete="off" spellcheck="false">
 
 	{{!-- Sheet Tab Navigation --}}
 	<div class="side sidebar flex-group-center">
 		<nav class="sheet-tabs tabs menu" data-group="primary">
-			<a class="button" data-tab="overview"><i class="icon ra ra-double-team"></i>Overview</a>
-			<a class="button" data-tab="inventory"><i class="icon ra ra-hand"></i>Inventory</a>
+			<a class="button button-style" data-tab="overview"><i class="icon ra ra-double-team"></i>Overview</a>
+			<a class="button button-style" data-tab="inventory"><i class="icon ra ra-hand"></i>Inventory</a>
+			<a class="button button-style" data-tab="adversaries"><i class="icon ra ra-monster-skull "></i>{{localize 'FU.Adversaries'}}</a>
 			{{#if isGM}}
-				<a class="button" data-tab="settings"><i class="icon ra ra-wrench"></i>Settings</a>
+				<a class="button button-style" data-tab="settings"><i class="icon ra ra-wrench"></i>Settings</a>
 			{{/if}}
 		</nav>
 
@@ -100,7 +101,7 @@
 			<section class="party overview">
 
 				{{#unless characterCount}}
-					<div class="label" style="align-self: center; text-align: center; font-size: x-large; flex-grow: 1">
+					<div class="label centered-message">
 						{{localize 'FU.PartySheetEmpty'}}
 					</div>
 				{{/unless}}
@@ -108,14 +109,14 @@
 				{{#each characters}}
 				{{!-- Character Card  --}}
 					<div class="character">
-						<div class="plate border character-option {{this.statusClass}}" data-uuid="{{this.actor.uuid}}">
+						<div class="plate character-option {{this.statusClass}}" data-uuid="{{this.actor.uuid}}" data-type="character">
 								<div class="classes">
 									{{#each this.classes}}
 										<img class="item" src="{{ this.img }}" data-tooltip="{{ this.name }}" />
 									{{/each}}
 								</div>
 
-								<a data-action="revealActor" data-actor="{{this.actor.uuid}}">
+								<a data-action="revealActor" data-actor="{{this.actor.uuid}}" data-type="character">
 									<img class="portrait {{role}}" src="{{ this.actor.img }}" data-tooltip="{{ this.name }}" />
 								</a>
 
@@ -145,8 +146,50 @@
 			</section>
 		</div>
 
+		{{!-- Adversaries  --}}
+		<div class="tab" data-tab="adversaries">
+			<section class="adversaries">
+				{{#unless (gt adversaries.length 0)}}
+					<div class="label centered-message">
+						{{localize 'FU.AdversariesEmpty'}}
+					</div>
+				{{/unless}}
+
+					{{#each adversaries}}
+						<div class="section-container entry character-option" data-uuid="{{this.uuid}}" data-type="npc">
+							<div class="portrait">
+								<a data-action="revealNpc" data-actor="{{this.uuid}}">
+									<img src="{{ this.img }}" data-tooltip="{{ this.name }}" />
+								</a>
+							</div>
+							<div class="data">
+								<header>
+									<div class="name">
+										{{name}}
+									</div>
+									<div class="blurb">
+										<div class="tag {{_rank}}">
+											{{localize this.species }} {{localize this.rank}}
+										</div>
+									</div>
+									<div class="study">
+										{{#if this.isRevealed }}
+											<i data-tooltip="FU.Revealed" class="ra ra-light-bulb"></i>
+										{{/if}}
+										{{#if (gt this.study 0)}}
+											<span data-tooltip="{{this.study}}">{{this.studyPercent}}%</span>
+										{{/if}}
+									</div>
+								</a>
+								</header>
+							</div>
+						</div>
+					{{/each}}
+			</section>
+		</div>
+
 		{{!-- Inventory --}}
-		<div class="tab desc inventory border" data-tab="inventory">
+		<div class="tab desc inventory" data-tab="inventory">
 			{{> "systems/projectfu/templates/actor/sections/actor-section-inventory.hbs" actor=actor}}
 		</div>
 

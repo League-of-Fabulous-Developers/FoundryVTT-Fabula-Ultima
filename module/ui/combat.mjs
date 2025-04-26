@@ -391,10 +391,9 @@ export class FUCombat extends Combat {
 		};
 
 		//console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
-		// for (const combatant of this.combatants) {
-		// 	const canStartTurn = data.currentTurn === combatant.faction;
-		// 	console.debug(`- Combatant name: ${combatant.name}, id: ${combatant.id}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}, canStartTurn: ${canStartTurn}`);
-		// }
+		for (const combatant of this.combatants) {
+			console.debug(`- Combatant name: ${combatant.name}, id: ${combatant.id}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}, canStartTurn:}`);
+		}
 	}
 
 	/**

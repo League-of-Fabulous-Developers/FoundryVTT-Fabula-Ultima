@@ -1,0 +1,104 @@
+<div class="npc-profile sheet-body">
+
+	<div class="top">
+		<!-- Left content here -->
+		<div class="left-column">
+			<a data-action="revealActor">
+				<img class="avatar" src="{{ img }}"/>
+			</a>
+		</div>
+		<!-- Right content here -->
+		<div class="right-column">
+			<span class="label name">{{name}}</span>
+			{{#unless revealStats}}
+			<fieldset class="section-container title-fieldset desc resource-content">
+					<span class="label centered-message" style="color: unset;">
+						{{localize 'FU.AdversaryNotStudied'}}
+					</span>
+			</fieldset>
+			{{/unless}}
+			{{#if revealStats}}
+				<fieldset class="section-container title-fieldset desc resource-content">
+					<legend class="resource-label-m">
+						{{localize 'FU.Stats'}}
+					</legend>
+
+					{{#if basic}}
+					<div class="resource-label-l grid grid-7col flex-group-center" style="padding: 5px;">
+						<label>
+							{{localize 'FU.LevelAbbr'}} {{level}}
+						</label>
+						<span class="diamond-symbol" style="color: #532853;">⬥</span>
+						<label data-tooltip="{{localize localizedSpecies}}">
+							<i class="fua fu-{{species}}"></i>
+						</label>
+						<span class="diamond-symbol" style="color: #532853;">⬥</span>
+						<label data-tooltip="{{localize 'FU.HealthPoints'}}">
+							{{hp}} <i class="fas fa-heart"></i>
+						</label>
+						<span class="diamond-symbol" style="color: #532853;">⬥</span>
+						<label data-tooltip="{{localize 'FU.MindPoints'}}">
+							{{mp}} <i class="fas fa-hat-wizard"></i>
+						</label>
+					</div>
+					{{/if}}
+
+					{{#if complete}}
+						{{>"systems/projectfu/templates/actor/partials/actor-attributes-readonly.hbs"}}
+						{{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs"}}
+						{{#if system.traits.value}}
+							<li class="flexrow flex-group-center desc-header resource-content" style="margin: 8px;">
+								<label class="resource-label-l">Traits</label>
+								<input class="traitdesc flex3" type="text" name="system.traits.value" value="{{system.traits.value}}" placeholder="Traits" data-dtype="String" readonly>
+							</li>
+						{{/if}}
+					{{else}}
+						{{#if revealed.traits}}
+							<li class="flexrow flex-group-center desc-header resource-content" style="margin: 8px;">
+								<label class="resource-label-l">Traits</label>
+								<input class="traitdesc flex3" type="text" name="revealed.traits" value="{{revealed.traits}}" placeholder="Traits" data-dtype="String" readonly>
+							</li>
+						{{/if}}
+					{{/if}}
+				</fieldset>
+			{{/if}}
+		</div>
+	</div>
+
+	<!-- Bottom content here -->
+	{{#if revealAffinities}}
+	<div class="bottom-row">
+		<fieldset class="section-container title-fieldset desc resource-content">
+			<legend class="resource-label-m">
+				{{localize 'FU.Affinities'}}
+			</legend>
+
+			<div class="affinities resource-content flex-group-center grid grid-9col" style="display: flex; justify-content: space-between; padding: 0 8px;">
+				{{#each affinities}}
+					<div class="affinities resource-content flex-group-center grid grid-9col" style="display: flex; justify-content: space-between; padding: 0 8px;">
+						<div class="affinity resource-content flex-group-center" style="opacity: {{this.opacity}}; display: flex; justify-content: space-between; margin: 2px; gap: 5px; line-height: 1;">
+							<i class="{{this.iconClass}}"></i>
+							<label class="resource-label-xl" style="cursor: pointer;" data-tooltip="{{this.fullName}}: {{localize this.acronymValue}}">
+								{{localize this.acronymValue}}
+							</label>
+						</div>
+					</div>
+				{{/each}}
+			</div>
+		</fieldset>
+
+		{{#if detailed}}
+			<fieldset class="section-container title-fieldset desc resource-content">
+				<legend class="resource-label-m">
+					{{localize 'FU.Actions'}}
+				</legend>
+
+				<section class="desc">
+					{{> "systems/projectfu/templates/actor/sections/actor-attack-list.hbs" disableControls='true'}}
+					{{> "systems/projectfu/templates/actor/sections/actor-spell-list.hbs" disableControls='true'}}
+				</section>
+			</fieldset>
+		{{/if}}
+	</div>
+	{{/if}}
+</div>

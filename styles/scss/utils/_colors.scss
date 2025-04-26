@@ -158,6 +158,22 @@ $border-untyped: #a8a8a8;
 // Party
 $party-menu-button: linear-gradient(to right, #1d2b3a, $color-background);
 $character-plate: linear-gradient(to bottom, #1d2b3a, #2e3d4f);
+$adversary-plate: linear-gradient(to bottom, #6a3986, #1e0f2a);
+
+// Ranks
+$rank-soldier: #8a7300;
+$rank-elite: #b34700;
+$rank-champion: #801e1f;
+
+// Species
+$species-beast: #3e2900;
+$species-demon: #ff4444;
+$species-construct: #cccccc;
+$species-elemental: #1ec8e7;
+$species-humanoid: #444444;
+$species-monster: #6e0f9c;
+$species-plant: #228b22;
+$species-undead: #bbbbbb;
 
 :root {
 	--color-shadow-primary: #{$color-box-shadow};

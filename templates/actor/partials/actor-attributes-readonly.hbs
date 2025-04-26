@@ -1,0 +1,48 @@
+<div class="header-fields flex-group-center grid grid-2col" style="margin: 8px;">
+	<div class="grid grid-4col" style="align-self: baseline;">
+		{{!-- NIG --}}
+		<div class="resource-content flex-group-center">
+			<label class="resource-label-l">
+				<i class="ra ra-all-for-one  icon"></i>
+				{{localize 'FU.AttributeMigAbbr'}}
+			</label>
+			<div class="resource-content flex-center">
+				<input class="resource-inputs" name="system.attributes.mig.base"
+					   value="{{ system.attributes.mig.base }}" data-dtype="Number" disabled />
+			</div>
+		</div>
+		{{!-- DEX --}}
+		<div class="resource-content flex-group-center">
+			<label class="resource-label-l">
+				<i class="ra ra-focused-lightning icon"></i>
+				{{localize 'FU.AttributeDexAbbr'}}
+			</label>
+			<div class="resource-content flex-center">
+				<input class="resource-inputs" name="system.attributes.dex.base"
+					   value="{{ system.attributes.dex.base }}" data-dtype="Number" disabled />
+			</div>
+		</div>
+		{{!-- INS --}}
+		<div class="resource-content flex-group-center">
+			<label class="resource-label-l">
+				<i class="ra ra-aware icon"></i>
+				{{localize 'FU.AttributeInsAbbr'}}
+			</label>
+			<div class="resource-content flex-center">
+				<input class="resource-inputs" name="system.attributes.ins.base"
+					   value="{{ system.attributes.ins.base }}" data-dtype="Number" disabled />
+			</div>
+		</div>
+		{{!-- WLP --}}
+		<div class="resource-content flex-group-center">
+			<label class="resource-label-l">
+				<i class="ra ra-aura icon"></i>
+				{{localize 'FU.AttributeWlpAbbr'}}
+			</label>
+			<div class="resource-content flex-center">
+				<input class="resource-inputs" name="system.attributes.wlp.base"
+					   value="{{ system.attributes.wlp.base }}" data-dtype="Number" disabled />
+			</div>
+		</div>
+	</div>
+</div>

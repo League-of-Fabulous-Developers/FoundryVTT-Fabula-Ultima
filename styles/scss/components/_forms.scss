@@ -432,14 +432,33 @@
 	font-size: 1rem;
 }
 
+.blur {
+	background-color: rgba(20, 30, 40, 0.6); /* a semi-transparent dark */
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	border-radius: 12px; /* optional: smooth rounded corners */
+	border: 1px solid rgba(255, 255, 255, 0.1); /* optional: subtle border */
+}
+
+.tag {
+	align-items: center;
+	color: var(--pfu-color-app-control-content);
+	background: var(--pfu-color-app-control-fill);
+	border-radius: 2px;
+	box-shadow: inset 0 0 0 1px rgba(black, 0.5);
+	display: inline-flex;
+	font-weight: 500;
+	padding: 0 0.5em;
+}
+
 // Party Sheet
 .party {
 	display: flex;
-	height: 100%;
 	color: $color-primary;
 
 	.editor-menu {
-		background: $color-ternary;
+		color: var(--pfu-color-app-control-content) !important;
+		background: var(--pfu-color-app-control-fill);
 	}
 
 	// SIDE
@@ -492,7 +511,7 @@
 		}
 
 		.button:hover {
-			transform: scale(1.03);
+			transform: scale(1.03), translateY(-4px);
 			background: linear-gradient(to bottom, $color-ternary, $color-secondary);
 		}
 	}
@@ -539,9 +558,6 @@
 		flex-grow: 1;
 	}
 
-	.manage {
-	}
-
 	.settings {
 		height: 100%;
 		flex-direction: column;
@@ -550,6 +566,135 @@
 		text-align: center;
 	}
 
+	// ADVERSARIES TAB
+	.adversaries {
+		display: flex;
+		flex-direction: column;
+		max-width: 100%;
+
+		.soldier {
+			background: $rank-soldier;
+		}
+
+		.elite {
+			background: $rank-elite;
+		}
+
+		.champion {
+			background: $rank-champion;
+		}
+
+		.soldier,
+		.elite,
+		.champion {
+			box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+		}
+
+		.entry {
+			display: flex;
+			flex-direction: row;
+			font-family: var(--sans-serif);
+			padding: 0.5rem 1rem;
+			position: relative;
+			height: 80px;
+
+			&:not(:last-child):after {
+				content: '';
+				background-color: rgba(68, 55, 48, 0.1);
+				width: 100%;
+				height: 1px;
+				position: absolute;
+				bottom: 0;
+			}
+
+			.portrait {
+				margin-right: 8px;
+				position: relative;
+				background: var(--pfu-color-app-image-fill);
+			}
+
+			.portrait img {
+				width: 80px;
+				height: 60px;
+				object-fit: cover;
+				border: none;
+			}
+
+			> .data {
+				width: 100%;
+				color: var(--pfu-color-app-section-content-secondary);
+
+				header {
+					display: grid;
+					grid:
+						'name study' 1fr
+						'blurb study' min-content
+						/ auto max-content;
+					margin-bottom: 0.25rem;
+					padding-left: 0.5rem;
+
+					.name {
+						grid-area: name;
+						align-items: center;
+						display: flex;
+
+						font-family: $font-title;
+						font-size: xx-large;
+						font-weight: 700;
+
+						i {
+							font-size: 0.8em;
+							margin-left: 0.125rem;
+						}
+					}
+				}
+
+				.blurb {
+					font: $font-secondary;
+					align-items: center;
+					color: var(--alt-dark);
+					display: flex;
+					font-size: large;
+					font-variant: all-small-caps;
+					gap: 0.25rem;
+					grid-area: blurb;
+					position: relative;
+
+					hr.vr {
+						border: 1px solid var(--color-border);
+						height: 0.5rem;
+						position: relative;
+						top: 1px;
+					}
+				}
+
+				.study {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 0.5rem;
+					grid-area: study;
+
+					> * {
+						width: 1.5rem;
+						height: 1.5rem;
+					}
+
+					.empty {
+						border: 2px dashed rgba(0, 0, 0, 0.5);
+						border-radius: 50%;
+					}
+
+					img {
+						border: none;
+						display: block; /* Make sure image doesn't behave like text */
+					}
+				}
+			}
+		}
+	}
+
+	// CHARACTERS TAB
 	.overview {
 		display: flex;
 		flex-direction: row;
@@ -558,33 +703,58 @@
 		gap: 1.5rem;
 		padding: 0.5rem;
 
-		.border {
+		.plate {
+			color: var(--pfu-color-app-control-content);
+
+			padding: 1rem;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
 			border: 2px solid #c9a76f;
 			border-radius: 1rem;
+
+			display: flex;
+			height: 100%;
+			flex-direction: column;
+			align-items: center;
+			transition: transform 0.3s ease;
+
+			.name {
+				font-size: 2rem;
+				text-align: center;
+
+				color: var(--pfu-color-app-control-content);
+				text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+				font-weight: bold;
+			}
+
+			.identity {
+				margin-bottom: 0.35rem;
+				font-weight: normal;
+				font-size: 1.1rem;
+				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+				text-align: center;
+			}
+		}
+
+		.plate img {
+			width: 160px;
+			height: 200px;
+			object-fit: cover;
+
+			margin-bottom: 0.75rem;
+		}
+
+		.plate:hover {
+			transform: translateY(-4px);
 		}
 
 		.character {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
+			width: 200px;
+			background: $character-plate;
 
-			.plate {
-				background: $character-plate;
-
-				color: var(--pfu-color-app-control-content);
-
-				padding: 1rem;
-				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-
-				width: 200px;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				transition: transform 0.3s ease;
-			}
-
-			.plate:hover {
-				transform: translateY(-4px);
+			.plate img {
+				border-radius: 8px;
+				border: 2px solid #666;
 			}
 
 			.plate .damage {
@@ -601,15 +771,6 @@
 
 			.plate .any {
 				background: linear-gradient(to bottom, #d1c38a, #9a8544);
-			}
-
-			.plate img {
-				width: 160px;
-				height: 200px;
-				object-fit: cover;
-				border-radius: 8px;
-				border: 2px solid #666;
-				margin-bottom: 0.75rem;
 			}
 
 			.classes {
@@ -662,23 +823,6 @@
 				background: linear-gradient(to right, #d1b347, #e6c75c);
 			}
 
-			.name {
-				font-size: 2rem;
-				text-align: center;
-
-				color: #f29e33eb;
-				text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-				font-weight: bold;
-			}
-
-			.identity {
-				margin-bottom: 0.35rem;
-				font-weight: normal;
-				font-size: 1.1rem;
-				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-				text-align: center;
-			}
-
 			.resources {
 				margin-top: 0.5rem;
 				display: flex;
@@ -708,4 +852,71 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
+}
+
+.centered-message {
+	align-self: center;
+	text-align: center;
+	font-size: x-large;
+	flex-grow: 1;
+	color: var(--pfu-color-app-control-content);
+}
+
+// NPC Profile
+.npc-profile {
+	color: $color-primary;
+
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	.top {
+		display: flex;
+		flex: 1;
+	}
+
+	.left-column,
+	.right-column {
+		flex: 1;
+		padding: 10px;
+		text-align: center;
+		justify-content: center;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.hp {
+		color: $color-hp;
+	}
+
+	.mp {
+		color: $color-mp;
+	}
+
+	.bottom-row {
+		padding: 10px;
+		margin-top: 5px;
+	}
+
+	.name {
+		font-size: xx-large;
+		font-weight: bold;
+		text-align: center;
+		color: var(--pfu-color-app-control-content);
+	}
+
+	.avatar {
+		width: auto;
+		height: 300px;
+		object-fit: contain;
+		background: $adversary-plate;
+		border: 2px solid #c9a76f;
+		border-radius: 1rem;
+	}
+
+	.attrBox {
+		background-color: rgb(239, 236, 245);
+		border-right: 1px solid rgb(255, 255, 255);
+	}
 }

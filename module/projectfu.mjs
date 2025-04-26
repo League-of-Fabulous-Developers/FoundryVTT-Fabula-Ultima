@@ -551,6 +551,12 @@ Handlebars.registerHelper('math', function (left, operator, right) {
 	}[operator];
 });
 
+Handlebars.registerHelper('includes', function (array, value) {
+	return Array.isArray(array) && array.includes(value);
+});
+
+Handlebars.registerHelper('get', (map, key) => map?.[key]);
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
