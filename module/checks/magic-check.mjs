@@ -64,6 +64,12 @@ const onProcessCheck = (check, actor, item) => {
 			)
 			.modifyDamage((damage) => {
 				if (damage) {
+					// All Damage
+					const globalBonus = actor.system.bonuses.damage.all;
+					if (globalBonus) {
+						damage.modifiers.push({ label: `FU.DamageBonusAll`, value: globalBonus });
+					}
+
 					// Damage Type
 					const damageTypeBonus = actor.system.bonuses.damage[damage.type];
 					if (damageTypeBonus) {
