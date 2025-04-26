@@ -8,10 +8,16 @@
 			<i class="{{#if item.system.isFavored.value}}fas active{{else}}far{{/if}} fa-star button-style"></i>
 		</a>
 	{{else}}
-		{{#if @root.actor.system.merchant}}
-			{{#if item.system.cost}}
-				<a class="item-control item-sell" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Sell' }}" aria-describedby="tooltip">
-					<i class="fa fa-balance-scale button-style"></i>
+		{{#if @root.actor.isOwner}}
+			{{#if @root.actor.system.merchant}}
+				{{#if item.system.cost}}
+					<a class="item-control item-sell" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Sell' }}" aria-describedby="tooltip">
+						<i class="fa fa-balance-scale button-style"></i>
+					</a>
+				{{/if}}
+			{{else}}
+				<a class="item-control item-share" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Share' }}" aria-describedby="tooltip">
+					<i class="fa fa-share button-style"></i>
 				</a>
 			{{/if}}
 		{{else}}

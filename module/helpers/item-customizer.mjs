@@ -8,6 +8,15 @@ const ITEM_TYPE_CONFIG = {
 	weapon: { template: 'systems/projectfu/templates/app/partials/customizer-weapon.hbs' },
 	basic: { template: 'systems/projectfu/templates/app/partials/customizer-weapon.hbs' },
 	spell: { template: 'systems/projectfu/templates/app/partials/customizer-spell.hbs' },
+	classFeature: {
+		usesSubtype: true,
+		subtypeKey: 'featureType',
+	},
+};
+
+// Configuration for item subtypes and their templates
+const ITEM_SUBTYPE_CONFIG = {
+	'projectfu.weaponModule': { template: 'systems/projectfu/templates/app/partials/customizer-weapon-module.hbs' },
 };
 
 export class ItemCustomizer extends FormApplication {
@@ -16,13 +25,33 @@ export class ItemCustomizer extends FormApplication {
 		this.actor = actor;
 		this.item = item || this.findItemByType(actor, itemType);
 		this.itemTypeConfig = ITEM_TYPE_CONFIG[this.item?.type] || {};
-		this.options.template = this.itemTypeConfig.template || 'systems/projectfu/templates/app/item-customizer.hbs';
+		this.options.template = this.resolveTemplate(this.item) || 'systems/projectfu/templates/app/item-customizer.hbs';
 		this.baseItemDetails = this.item ? this.getItemDetails(this.item) : null;
 		this.currentItemDetails = this.baseItemDetails;
 	}
 
-	findItemByType(actor, itemType) {
-		return itemType ? actor.items.find((i) => i.type === itemType) : null;
+	// Template resolution based on item type and optional subtype
+	resolveTemplate(item) {
+		const typeConfig = ITEM_TYPE_CONFIG[item?.type];
+		if (!typeConfig) return null;
+
+		if (typeConfig.usesSubtype) {
+			const subtypeValue = item?.system?.[typeConfig.subtypeKey];
+			return ITEM_SUBTYPE_CONFIG[subtypeValue]?.template || null;
+		}
+
+		return typeConfig.template || null;
+	}
+
+	// Find item by type, and optionally by a specific subtype
+	findItemByType(actor, itemType, subtypeKey = null, subtypeValue = null) {
+		if (!itemType) return null;
+
+		return actor.items.find((item) => {
+			const typeMatch = item.type === itemType;
+			const subtypeMatch = subtypeKey && subtypeValue ? item.system?.[subtypeKey] === subtypeValue : true;
+			return typeMatch && subtypeMatch;
+		});
 	}
 
 	static get defaultOptions() {
@@ -36,11 +65,14 @@ export class ItemCustomizer extends FormApplication {
 	}
 
 	getData() {
+		const subtypeKey = this.itemTypeConfig.subtypeKey || null;
+		const subtypeValue = subtypeKey ? this.item?.system?.[subtypeKey] : null;
 		return {
 			actor: this.actor,
 			item: this.item,
 			itemOptions: this.generateItemOptions(this.actor, this.item?._id, ['weapon', 'basic']),
 			spellOptions: this.generateItemOptions(this.actor, this.item?._id, ['spell']),
+			classFeatureOptions: this.generateItemOptions(this.actor, this.item?._id, ['classFeature'], subtypeKey, subtypeValue),
 			damageTypeOptions: this.generateSelectOptions(FU.damageTypes),
 			weaponTypeOptions: this.generateSelectOptions(FU.weaponTypes),
 			defenseTypeOptions: this.generateSelectOptions(FU.defenses, true),
@@ -64,8 +96,30 @@ export class ItemCustomizer extends FormApplication {
 		html.find('.clone-button').click(() => this._onClone(html));
 		html.find('.temp-roll-button').click(() => this._onTempRoll(html));
 		html.find('.cancel-button').click(() => this.close());
+
+		// Reset buttons by item type
 		html.find('.reset-weapon-button').click(() => this.resetItemDetails(html, 'weapon'));
 		html.find('.reset-spell-button').click(() => this.resetItemDetails(html, 'spell'));
+		html.find('.reset-weapon-module-button').click(() => this.resetItemDetails(html, 'classFeature', 'projectfu.weaponModule'));
+
+		const selectedItem = this.item;
+		const type = selectedItem?.type;
+		const subtype = selectedItem?.system?.featureType;
+
+		switch (type) {
+			case 'spell':
+				this.resetSpellDetails(html);
+				break;
+			case 'weapon':
+			case 'basic':
+				this.resetWeaponDetails(html);
+				break;
+			case 'classFeature':
+				if (subtype === 'projectfu.weaponModule') {
+					this.resetWeaponModuleDetails(html);
+				}
+				break;
+		}
 	}
 
 	async _updateObject(event, formData) {
@@ -77,7 +131,9 @@ export class ItemCustomizer extends FormApplication {
 		if (!selectedItem) return;
 
 		const itemType = selectedItem.type;
-		await this.updateItem(selectedItem, formData, itemType, hrZeroBool);
+		const subtype = selectedItem.system?.featureType ?? null;
+
+		await this.updateItem(selectedItem, formData, itemType, hrZeroBool, selectedItem.name, subtype);
 
 		ui.notifications.info(`${selectedItem.name} modified for ${this.actor.name}`);
 		this.close();
@@ -85,12 +141,16 @@ export class ItemCustomizer extends FormApplication {
 
 	async _onClone(html) {
 		const { selectedItem, hrZeroBool, ...formData } = this.extractFormValues(html);
+		if (!selectedItem) return;
+
 		const newItemData = foundry.utils.deepClone(selectedItem);
 		const newItemName = `${newItemData.name} (Modified)`;
 		const newItem = await Item.create(newItemData, { parent: this.actor });
 
 		const itemType = selectedItem.type;
-		await this.updateItem(newItem, formData, itemType, hrZeroBool, newItemName);
+		const subtype = selectedItem.system?.featureType ?? null;
+
+		await this.updateItem(newItem, formData, itemType, hrZeroBool, newItemName, subtype);
 
 		ui.notifications.info(`${newItem.name} cloned and added to ${this.actor.name}`);
 		this.close();
@@ -98,6 +158,8 @@ export class ItemCustomizer extends FormApplication {
 
 	async updateItem(item, formData, itemType, hrZeroBool, name = item.name) {
 		console.log(`Updating item: ${name}, Type: ${itemType}`);
+
+		const isWeaponModule = itemType === 'classFeature' && item.system?.featureType === 'projectfu.weaponModule';
 
 		const updateConfig = {
 			spell: {
@@ -122,11 +184,25 @@ export class ItemCustomizer extends FormApplication {
 					'system.rollInfo.useWeapon.hrZero.value': hrZeroBool,
 				},
 			},
+			classFeature: isWeaponModule
+				? {
+						fields: {
+							'system.data.accuracy.attr1': formData.primary,
+							'system.data.accuracy.attr2': formData.secondary,
+							'system.data.accuracy.modifier': (item.system.data.accuracy?.modifier || 0) + formData.accuracyMod,
+							'system.data.damage.bonus': (item.system.data.damage?.bonus || 0) + formData.damageMod,
+							'system.data.damage.type': formData.damageType,
+							'system.data.type': formData.weaponType,
+							'system.data.accuracy.defense': formData.defenseType,
+						},
+					}
+				: {},
 		};
 
 		const updateData = updateConfig[itemType]?.fields || {};
 
 		if (Object.keys(updateData).length === 0) {
+			console.warn(`No update config for item type: ${itemType}, subtype: ${item.system?.featureType}`);
 			return;
 		}
 
@@ -135,17 +211,20 @@ export class ItemCustomizer extends FormApplication {
 
 	async _onTempRoll(html) {
 		const { selectedItem, hrZeroBool, ...formData } = this.extractFormValues(html);
-		const modifiedWeapon = foundry.utils.deepClone(selectedItem);
+		const modifiedItem = foundry.utils.deepClone(selectedItem);
 		const typeValue = formData.weaponType;
 
 		const isWeapon = ['weapon', 'basic'].includes(selectedItem.type);
-		if (isWeapon) await modifiedWeapon.update({ 'system.type.value': typeValue });
+		const isWeaponModule = selectedItem.type === 'classFeature' && selectedItem.system?.featureType === 'projectfu.weaponModule';
 
-		this.setupCheckHooks(formData, modifiedWeapon, selectedItem);
-		return await ChecksV2.accuracyCheck(this.actor, modifiedWeapon, CheckConfiguration.initHrZero(hrZeroBool));
+		if (isWeapon) await modifiedItem.update({ 'system.type.value': typeValue });
+		if (isWeaponModule) await modifiedItem.update({ 'system.data.type': typeValue });
+
+		this.setupCheckHooks(formData, modifiedItem, selectedItem);
+		return await ChecksV2.accuracyCheck(this.actor, modifiedItem, CheckConfiguration.initHrZero(hrZeroBool));
 	}
 
-	setupCheckHooks(formData, modifiedWeapon, selectedItem) {
+	setupCheckHooks(formData, modifiedItem, selectedItem) {
 		Hooks.once(CheckHooks.prepareCheck, (check) => {
 			Object.assign(check, {
 				primary: formData.primary,
@@ -169,6 +248,13 @@ export class ItemCustomizer extends FormApplication {
 				case 'spell':
 					itemValue = selectedItem.system.rollInfo.damage.value;
 					break;
+				case 'classFeature':
+					if (selectedItem.system?.featureType === 'projectfu.weaponModule') {
+						itemValue = selectedItem.system.data.damage.bonus;
+						break;
+					}
+					console.warn(`Unsupported classFeature subtype: ${selectedItem.system?.featureType}`);
+					return;
 				default:
 					console.warn(`Unsupported item type: ${selectedItem.type}`);
 					return;
@@ -216,7 +302,7 @@ export class ItemCustomizer extends FormApplication {
 		html.find('#current-item').html(this.currentItemDetails);
 	}
 
-	resetItemDetails(html, type) {
+	resetItemDetails(html, type, subtype = null) {
 		switch (type) {
 			case 'spell':
 				this.resetSpellDetails(html);
@@ -224,6 +310,13 @@ export class ItemCustomizer extends FormApplication {
 			case 'weapon':
 			case 'basic':
 				this.resetWeaponDetails(html);
+				break;
+			case 'classFeature':
+				if (subtype === 'projectfu.weaponModule') {
+					this.resetWeaponModuleDetails(html);
+				} else {
+					console.warn(`Unsupported classFeature subtype: ${subtype}`);
+				}
 				break;
 			default:
 				console.warn(`Unsupported item type: ${type}`);
@@ -264,6 +357,24 @@ export class ItemCustomizer extends FormApplication {
 		this.updateItemDetails(html);
 	}
 
+	resetWeaponModuleDetails(html) {
+		const selectedItem = this.actor.items.get(html.find('#item-selector').val()) || this.actor.items.get(this.item._id);
+		if (!selectedItem) return;
+
+		// Reset form fields to the base weapon module's values
+		html.find('#primary').val(selectedItem.system.data.accuracy.attr1);
+		html.find('#secondary').val(selectedItem.system.data.accuracy.attr2);
+		html.find('#damage-type').val(selectedItem.system.data.damage.type);
+		html.find('#weapon-type').val(selectedItem.system.data.type);
+		html.find('#defense-type').val(selectedItem.system.data.accuracy.defense);
+		html.find('#accuracy-mod').val(0);
+		html.find('#damage-mod').val(0);
+		html.find('#hrzero').prop('checked', false);
+
+		// Update internal state
+		this.updateItemDetails(html);
+	}
+
 	getFormValues(html) {
 		return [
 			html.find('#damage-type').val(),
@@ -283,10 +394,17 @@ export class ItemCustomizer extends FormApplication {
 			.join('');
 	}
 
-	generateItemOptions(actor, initialWeaponId, itemTypes) {
+	generateItemOptions(actor, selectedItemId, itemTypes = [], subtypeKey = null, subtypeValue = null) {
 		return actor.items
-			.filter((item) => itemTypes.includes(item.type)) // Filter based on provided item types
-			.map((item) => `<option value="${item.id}" ${item.id === initialWeaponId ? 'selected' : ''}>${item.name}</option>`)
+			.filter((item) => {
+				const isTypeMatch = itemTypes.includes(item.type);
+				const isSubtypeMatch = subtypeKey && subtypeValue ? item.system?.[subtypeKey] === subtypeValue : true;
+				return isTypeMatch && isSubtypeMatch;
+			})
+			.map((item) => {
+				const isSelected = item.id === selectedItemId ? 'selected' : '';
+				return `<option value="${item.id}" ${isSelected}>${item.name}</option>`;
+			})
 			.join('');
 	}
 
@@ -296,6 +414,15 @@ export class ItemCustomizer extends FormApplication {
 
 	// This function generates the item details based on type
 	getItemDetails(item = this.item, damageType, weaponType, defenseType, accuracyMod = 0, damageMod = 0, hrZeroBool = false, primary, secondary) {
+		const typeConfig = ITEM_TYPE_CONFIG[item?.type];
+		if (!typeConfig) {
+			throw new Error(`Unsupported item type: ${item.type}`);
+		}
+		if (typeConfig.usesSubtype) {
+			const subtypeValue = item?.system?.[typeConfig.subtypeKey];
+			return this.handleItemWithSubtype(item, damageType, weaponType, defenseType, accuracyMod, damageMod, hrZeroBool, primary, secondary, subtypeValue);
+		}
+
 		switch (item.type) {
 			case 'spell':
 				return this.getSpellDetails(item, damageType, accuracyMod, damageMod, hrZeroBool, primary, secondary);
@@ -305,6 +432,49 @@ export class ItemCustomizer extends FormApplication {
 			default:
 				throw new Error(`Unsupported item type: ${item.type}`);
 		}
+	}
+
+	// Handle items with subtype (like classFeature)
+	handleItemWithSubtype(item, damageType, weaponType, defenseType, accuracyMod, damageMod, hrZeroBool, primary, secondary, subtypeValue) {
+		switch (item.type) {
+			case 'classFeature':
+				if (subtypeValue === 'projectfu.weaponModule') {
+					return this.getWeaponModuleDetails(item, damageType, weaponType, defenseType, accuracyMod, damageMod, hrZeroBool, primary, secondary);
+				}
+		}
+		throw new Error(`Unsupported item type or subtype: ${item.type}, ${subtypeValue}`);
+	}
+
+	// This function generates the weapon module details, that displays base and current
+	getWeaponModuleDetails(item, damageType, weaponType, defenseType, accuracyMod = 0, damageMod = 0, hrZeroBool = false, primary, secondary) {
+		const die1 = primary || item.system.data.accuracy.attr1;
+		const die2 = secondary || item.system.data.accuracy.attr2;
+		const accMod = item.system.data.accuracy.modifier + accuracyMod;
+		const dmgMod = item.system.data.damage.bonus + damageMod;
+		const dmgType = this.capFirstLetter(damageType || item.system.data.damage.type);
+		const weapType = this.capFirstLetter(weaponType || item.system.data.type);
+		const defType = this.capFirstLetter(defenseType || item.system.data.accuracy.defense);
+		const hrZeroLabel = hrZeroBool ? `HR0` : `HR`;
+
+		return `
+		<div class="flexcol dialog-name">
+			<div class="flexrow">
+				<div class="dialog-image">
+					<img src="${item.img}" data-tooltip="${item.name}" />
+				</div>
+				<label class="resource-content resource-label">
+					${item.name}
+					<strong>【${(die1 + ' + ' + die2).toUpperCase()}】 +${accMod}</strong>
+					<strong> ⬥ </strong>
+					<strong>【${hrZeroLabel} + ${dmgMod}】</strong> ${dmgType}
+				</label>
+			</div>
+			<div>
+				<strong>${weapType}</strong>
+				<strong>${game.i18n.localize('FU.Versus')}</strong>
+				<strong>${defType}</strong>
+			</div>
+		</div>`;
 	}
 
 	// This function generates the weapon details, that displays base and current

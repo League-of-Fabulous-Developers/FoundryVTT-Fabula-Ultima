@@ -10,6 +10,8 @@ $ful-offensive: url('/systems/projectfu/styles/static/icons/ful-offensive.svg');
 $ful-martial: url('/systems/projectfu/styles/static/icons/ful-martial.svg');
 $fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
 $fu-fp: url('/systems/projectfu/styles/static/compendium/ui/fp.png');
+$fu-up: url('/systems/projectfu/styles/static/compendium/ui/up.png');
+$fu-xp: url('/systems/projectfu/styles/static/compendium/ui/xp.png');
 
 $fu-shaken: url('/systems/projectfu/styles/static/statuses/Shaken.webp');
 $fu-dazed: url('/systems/projectfu/styles/static/statuses/Dazed.webp');
@@ -37,6 +39,14 @@ $fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
 
 .fu-fp {
 	background-image: $fu-fp;
+}
+
+.fu-up {
+	background-image: $fu-up;
+}
+
+.fu-xp {
+	background-image: $fu-xp;
 }
 
 .fu-shaken {
@@ -333,4 +343,28 @@ img:not([src]) {
 .image-icon-s {
 	width: 24px;
 	height: 24px;
+}
+
+.effect-icon-wrapper {
+	display: inline-block;
+	position: relative;
+}
+
+.effect-icon-image {
+	object-fit: cover;
+	border-radius: 5px; /* Match Foundry's token styling */
+}
+
+.effect-icon-label {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: $color-shadow;
+	color: white;
+	font-size: 0.8rem;
+	pointer-events: none;
+
+	border-radius: 999px;
+	padding: 1px 5px;
+	transform: translate(30%, 30%); /* push outwards */
 }

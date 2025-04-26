@@ -379,8 +379,10 @@ function evaluateMacros(expression, context) {
 				const skillId = parseIdentifier(splitArgs[0]);
 				const skill = actor.getSingleItemByFuid(skillId, 'skill');
 				if (!skill) {
-					ui.notifications.warn('FU.ChatEvaluateNoSkill', { localize: true });
-					throw new Error(`The actor ${actor.name} does not have a skill with the Fabula Ultima Id ${skillId}`);
+					// TODO: Evaluate whether this restriction should not be relaxed
+					return 0;
+					// ui.notifications.warn('FU.ChatEvaluateNoSkill', { localize: true });
+					// throw new Error(`The actor ${actor.name} does not have a skill with the Fabula Ultima Id ${skillId}`);
 				}
 				return skill.system.level.value;
 			}

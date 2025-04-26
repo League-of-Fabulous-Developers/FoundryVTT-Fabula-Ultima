@@ -1,7 +1,8 @@
 <div class="chat-effect-message">
 	<header class="title-desc chat-header flexrow">
-		<img class="item-img" src="{{ effect.img }}" data-tooltip="{{ effect.name }}" style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
-		<h2>{{effect.name}}</h2>t
+		{{!-- Image--}}
+		{{> "systems/projectfu/templates/effects/active-effect-image.hbs" effect=effect}}
+		<h2 style="flex-grow: 8;">{{effect.name}}</h2>
 	</header>
 	{{#if description}}
 		<div class="chat-desc">

@@ -49,6 +49,13 @@ export class FUPartySheet extends ActorSheet {
 		await ActorSheetUtils.prepareData(context, this);
 		context.characters = this.party.characterData;
 		context.characterCount = this.party.characters.size;
+		const experience = this.party.calculateExperience();
+		context.stats = {
+			fp: experience.fp,
+			up: experience.up,
+			xp: experience.total,
+			zenit: this.party.resources.zenit.value,
+		};
 		// TODO: Set expanded data
 		return context;
 	}
@@ -331,6 +338,20 @@ export class FUPartySheet extends ActorSheet {
 			const party = fromUuidSync(`Actor.${activePartyUuid}`);
 			if (party && party.type === 'party') {
 				return party.system;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @returns {Promise<FUActor>}
+	 */
+	static async getActive() {
+		const activePartyUuid = game.settings.get(SYSTEM, SETTINGS.activeParty);
+		if (activePartyUuid) {
+			const party = fromUuidSync(`Actor.${activePartyUuid}`);
+			if (party && party.type === 'party') {
+				return party;
 			}
 		}
 		return null;

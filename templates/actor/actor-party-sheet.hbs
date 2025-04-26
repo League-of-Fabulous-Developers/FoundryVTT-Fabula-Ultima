@@ -10,7 +10,9 @@
 			{{/if}}
 		</nav>
 
-		<div>
+
+		<div style="width: 100%;">
+			<!-- CLOCKS -->
 			<fieldset class="section-container title-fieldset desc resource-content">
 				<legend class="resource-label-m" aria-describedby="tooltip">
 					<a class="resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}" style="width: fit-content;">
@@ -43,7 +45,7 @@
 							<a data-action="removeTrack" data-name="{{this.name}}">
 								<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fas fa-trash }"></i></span>
 							</a>
-							<a data-action="revealTrack" data-name="{{this.name}}"><span class="resource-label-m">{{ this.name }}</span></a>
+							<a data-action="revealTrack" data-name="{{this.name}}" data-tooltip="{{this.name}}"><span class="resource-label-m">{{ this.name }}</span></a>
 						</h4>
 
 					</div>
@@ -52,18 +54,40 @@
 
 			</fieldset>
 
+			<!-- ACTIONS -->
 			<fieldset class="section-container title-fieldset desc resource-content">
 				<legend class="resource-label-m">
 					{{localize 'FU.Actions'}}
 				</legend>
 
-				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="restParty" tooltip="FU.Rest" icon="fas fa-bed" }}
-				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="revealMetaCurrency" tooltip="FU.AppMetaCurrencyTrackerTitle" icon="fa-solid fa-chart-line"}}
 				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="refreshSheet" tooltip="FU.Refresh" icon="fa fa-refresh"}}
+				{{#if isGM}}
+					{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="restParty" tooltip="FU.Rest" icon="fas fa-bed" }}
+				{{/if}}
+				{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="revealMetaCurrency" tooltip="FU.AppMetaCurrencyTrackerTitle" icon="fa-solid fa-chart-line"}}
 
 				{{#each actionHooks}}
 					{{> "systems/projectfu/templates/common/resource-button-large.hbs" action="callHook" tooltip=this.name icon=this.icon option=this.hook}}
 				{{/each}}
+			</fieldset>
+
+			<!-- STATS -->
+			<fieldset class="section-container title-fieldset desc resource-content">
+				<legend class="resource-label-m">
+					{{localize 'FU.Stats'}}
+				</legend>
+				<div class="resources">
+					<i class="fuk fu-zenit icon-aff" data-tooltip="{{localize 'FU.Zenit'}}"></i>
+					{{stats.zenit}}
+					<i class="fuk fu-xp icon-aff" data-tooltip="{{localize 'FU.ChatExpAwardEarnedExp'}}"></i>
+					{{stats.xp}}
+				</div>
+				<div class="resources">
+					<i class="fuk fu-fp icon-aff" data-tooltip="{{localize 'FU.ChatExpAwardSpentFabula'}}"></i>
+					{{stats.fp}}
+					<i class="fuk fu-up icon-aff" data-tooltip="{{localize 'FU.ChatExpAwardUltimaExp'}}"></i>
+					{{stats.up}}
+				</div>
 			</fieldset>
 		</div>
 	</div>
@@ -84,7 +108,7 @@
 				{{#each characters}}
 				{{!-- Character Card  --}}
 					<div class="character">
-						<div class="plate border character-option" data-uuid="{{this.actor.uuid}}">
+						<div class="plate border character-option {{this.statusClass}}" data-uuid="{{this.actor.uuid}}">
 								<div class="classes">
 									{{#each this.classes}}
 										<img class="item" src="{{ this.img }}" data-tooltip="{{ this.name }}" />

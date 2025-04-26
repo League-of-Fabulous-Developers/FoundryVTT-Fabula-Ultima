@@ -8,7 +8,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You gain a <strong>deck</strong>, a <strong>hand</strong>, and a <strong>discard pile</strong>.</p><p>During a conflict, you may use an action and spend up to <strong>【10 + (SL × 5)】</strong> Mind Points (minimum 10). If you do, <strong>resolve 1 card</strong> from your <strong>hand</strong> for every 5 MP spent this way (to a maximum of 5 cards; these cards form a <strong>set</strong>). After you resolve the effect of the <strong>set</strong> (if any), <strong>discard</strong> these cards and draw that many cards from your <strong>deck</strong>.</p><hr /><ul><li><p>For <strong>deck</strong> breakdown and a list of Effects, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.hs3GyWJls59GhaNz]{Deck Rules}</p></li><li><p><strong>You Lose: </strong>@LOSS[10+(&amp;sl(\"magic-cards\")*5) mp]</p></li></ul>",
+    "description": "<p>You gain a <strong>deck</strong>, a <strong>hand</strong>, and a <strong>discard pile</strong>.</p><p>During a conflict, you may use an action and spend up to <strong>【10 + (SL × 5)】</strong> Mind Points (minimum 10). If you do, <strong>resolve 1 card</strong> from your <strong>hand</strong> for every 5 MP spent this way (to a maximum of 5 cards; these cards form a <strong>set</strong>). After you resolve the effect of the <strong>set</strong> (if any), <strong>discard</strong> these cards and draw that many cards from your <strong>deck</strong>.</p><hr><ul><li><p>For <strong>deck</strong> breakdown and a list of Effects, refer to: @UUID[Compendium.projectfu.handouts.JournalEntry.hs3GyWJls59GhaNz]{Deck Rules}</p></li><li><p><strong>You Lose: </strong>@LOSS[10+(&sl(\"magic-cards\")*5) mp]{10 + (SL × 5) MP}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -130,11 +130,11 @@
   },
   "_stats": {
     "systemId": "projectfu",
-    "systemVersion": "#{VERSION}#",
+    "systemVersion": "3.0.2",
     "coreVersion": "12.331",
     "createdTime": 1707643024284,
-    "modifiedTime": 1744429741867,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1745602169980,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi",
     "compendiumSource": null,
     "duplicateSource": null
   },

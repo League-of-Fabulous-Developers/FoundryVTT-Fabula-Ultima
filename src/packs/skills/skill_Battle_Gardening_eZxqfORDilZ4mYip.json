@@ -34,9 +34,9 @@
     "accuracy": 0,
     "defense": "def",
     "damage": {
-      "hasDamage": false,
+      "hasDamage": true,
       "value": 0,
-      "type": "physical",
+      "type": "",
       "onRoll": "",
       "onApply": "",
       "hrZero": true
@@ -77,10 +77,10 @@
     "duplicateSource": null,
     "coreVersion": "12.331",
     "systemId": "projectfu",
-    "systemVersion": "#{VERSION}#",
+    "systemVersion": "3.0.2",
     "createdTime": 1742676954080,
-    "modifiedTime": 1742676954080,
-    "lastModifiedBy": "aylHtMTxbnWEKFH9"
+    "modifiedTime": 1745602079638,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi"
   },
   "_id": "eZxqfORDilZ4mYip",
   "sort": 0,

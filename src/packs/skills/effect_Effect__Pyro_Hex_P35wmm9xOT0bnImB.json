@@ -37,19 +37,25 @@
           "tracking": "source",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
       },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.earth",
           "mode": 2,
-          "value": "5",
+          "value": "5+(~&sl('wellspring-expansion'))",
           "priority": null
         },
         {
           "key": "system.bonuses.incomingDamage.ice",
           "mode": 2,
-          "value": "5",
+          "value": "5+(~&sl('wellspring-expansion'))",
           "priority": null
         }
       ],
@@ -67,8 +73,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744520656188,
-        "modifiedTime": 1744520724926,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+        "modifiedTime": 1745609568483,
+        "lastModifiedBy": "2sIzoqmFNykqXyPi"
       },
       "_key": "!items.effects!P35wmm9xOT0bnImB.xE4dhE7CPlw1en32"
     }
