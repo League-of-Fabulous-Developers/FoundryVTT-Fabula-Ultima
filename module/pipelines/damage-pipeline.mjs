@@ -244,6 +244,15 @@ function resolveAffinity(context) {
 
 	context.affinityMessage = affinityMessage;
 	context.affinity = affinity;
+
+	if (context.actor.type === 'npc') {
+		CommonEvents.reveal(context.actor, {
+			affinities: {
+				[context.damageType]: true,
+			},
+		});
+	}
+
 	return true;
 }
 

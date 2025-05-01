@@ -296,12 +296,14 @@ function item(actor, item) {
 /**
  * @description Dispatched when an actor performs a study check
  * @typedef StudyEvent
- * @property {FUActor} actor
+ * @property {FUActor} actor The actor who performed the study action
  * @property {Token} token
  * @property {EventTarget[]} targets
+ * @property {Number} result
+ * @property {Boolean} critical
  */
 
-function study(actor, targets) {
+function study(actor, targets, checkResult) {
 	const targetData = Targeting.serializeTargetData(targets);
 	const eventTargets = getEventTargets(targetData);
 
@@ -310,13 +312,15 @@ function study(actor, targets) {
 		actor: actor,
 		token: actor.resolveToken(),
 		targets: eventTargets,
+		result: checkResult.result,
+		critical: checkResult.critical,
 	};
 	Hooks.call(FUHooks.STUDY_EVENT, event);
 }
 
 /**
- * @description Dispatched when an actor rests
  * @typedef RestEvent
+ * @description Dispatched when an actor rests
  * @property {FUActor} actor
  */
 
@@ -326,6 +330,27 @@ function rest(actor) {
 		actor: actor,
 	};
 	Hooks.call(FUHooks.REST_EVENT, event);
+}
+
+/**
+ * @typedef RevealEvent
+ * @description Dispatched when information about an actor is revealed
+ * @property {FUActor} actor
+ * @property {NpcProfileRevealData} revealed
+ */
+
+/**
+ *
+ * @param {FUActor} actor
+ * @param {NpcProfileRevealData} revealed
+ */
+function reveal(actor, revealed) {
+	/** @type RevealEvent  **/
+	const event = {
+		actor: actor,
+		revealed: revealed,
+	};
+	Hooks.call(FUHooks.REVEAL_EVENT, event);
 }
 
 /**
@@ -371,4 +396,5 @@ export const CommonEvents = Object.freeze({
 	item,
 	study,
 	rest,
+	reveal,
 });

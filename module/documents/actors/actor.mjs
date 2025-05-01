@@ -326,6 +326,17 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @returns {String}
+	 */
+	resolveUuid() {
+		let uuid = this.uuid;
+		if (this.token && this.token.baseActor) {
+			uuid = this.token.baseActor.uuid;
+		}
+		return uuid;
+	}
+
+	/**
 	 * Returns an array of items that match a given FUID and optionally an item type
 	 * @param {string} fuid - The FUID of the item(s) which you want to retrieve
 	 * @param {string} [type] - Optionally, a type name to restrict the search

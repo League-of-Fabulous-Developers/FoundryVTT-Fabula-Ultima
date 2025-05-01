@@ -1,0 +1,37 @@
+<form class="">
+
+	<fieldset>
+		<legend>General</legend>
+		<div class="form-group">
+			<label for="study">Study Result</label>
+			<input type="range" name="study" value="{{existing.study}}" min="0" max="{{maxStudyValue}}" step="1"
+				   oninput="document.getElementById('study-value').textContent = this.value">
+			<span style="text-align: center;" id="study-value">{{existing.study}}</span>
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>{{localize 'FU.Affinities'}}</legend>
+		{{#each affinities}}
+			<label>
+				<input type="checkbox"
+					   name="affinities.{{this}}" {{#if (lookup ../existing.revealed.affinities this)}}checked{{/if}} />
+				{{this}} ({{localize (get ../affinityMap this)}})
+			</label><br>
+		{{/each}}
+	</fieldset>
+
+	{{#if traits}}
+		<fieldset>
+			<legend>{{localize 'FU.Traits'}}</legend>
+			{{#each traits}}
+				<label>
+					<input type="checkbox"
+						   name="traits.{{this}}"
+						   {{#if (includes ../existing.revealed.traits this)}}checked{{/if}} />
+					{{this}}
+				</label>
+			{{/each}}
+		</fieldset>
+	{{/if}}
+</form>

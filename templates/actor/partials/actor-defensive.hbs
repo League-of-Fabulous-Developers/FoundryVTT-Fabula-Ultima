@@ -1,50 +1,7 @@
 {{#if (or (eq actor.type "character")(eq system.study.value 0)(eq system.study.value 2) (eq
  system.study.value 3))}}
     <div class=" grid grid-3col" style="height: 100%;">
-        <div class="header-fields flex-group-center grid grid-2col">
-            <div class="grid grid-3col" style="align-self: baseline;">
-                {{!-- DEF --}}
-                <div class="resource-content flex-group-center">
-                    <label class="resource-label-l"> <i class="fas fa-shield icon"></i>{{localize
-                    'FU.DefenseAbbr'}}
-                    </label>
-                    <div class="resource-content flex-center">
-                        <input class="resource-inputs" id="def-input" name="system.derived.def.value"
-                            value="{{ system.derived.def.value }}" data-dtype="Number"
-                            data-tooltip="{{localize 'FU.Defense'}}<br>Current: {{
-                            system.derived.def.value
-                            }}<br>Bonus: {{ system.derived.def.bonus }}" aria-describedby="tooltip" disabled />
-                    </div>
-                </div>
-
-                {{!-- MDEF --}}
-                <div class="resource-content flex-group-center">
-                    <label class="resource-label-l"> <i class="fas fa-shield-halved icon"></i>{{localize
-                    'FU.MagicDefenseAbbr'}} </label>
-                    <div class="resource-content flex-center">
-                        <input class="resource-inputs" id="mdef-input" name="system.derived.mdef.value"
-                            value="{{ system.derived.mdef.value }}" data-dtype="Number"
-                            data-tooltip="{{localize 'FU.MagicDefense'}}<br>Current: {{
-                            system.derived.mdef.value
-                            }}<br>Bonus: {{ system.derived.mdef.bonus }}" aria-describedby="tooltip" disabled />
-                    </div>
-                </div>
-
-                {{!-- Initiative --}}
-                <div class="resource-content flex-group-center">
-                    <label class="rollable resource-label-l" data-roll-type="roll-init"> <i
-                    class="fas fa-clock icon"></i>{{localize 'FU.InitiativeAbbr'}} </label>
-                    <div class="resource-content flex-center">
-                        <input class="resource-inputs" id="init-input" name="system.derived.init.value"
-                            value="{{ system.derived.init.value }}" data-dtype="Number"
-                            data-tooltip="{{localize 'FU.Initiative'}}<br>Current: {{
-                            system.derived.init.value
-                            }}<br>Bonus: {{ system.derived.init.bonus }}" aria-describedby="tooltip" disabled />
-                    </div>
-                </div>
-            </div>
-        </div>
-
+		{{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs"}}
         <!-- FU Points -->
         <div class="header-end flex-group-center resource-content" style="align-self: baseline;">
             <a class="rollable" data-action="spendMetaCurrency">
