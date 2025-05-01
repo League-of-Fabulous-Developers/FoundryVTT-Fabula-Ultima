@@ -104,6 +104,7 @@ arcanum-of-the-sky (fantasy-rpg, recolor of gem_*)
 
 --------------------------------------------------
 [projectfu\styles\static\compendium\classes\*]
+[projectfu\styles\static\compendium\technospheres\*]
 
 A majority of the pixel art, unless specified otherwise, found in the following folders are provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.
 Javier Aumente (Tarot) (Contact Email: <jaauvel@gmail.com>)
