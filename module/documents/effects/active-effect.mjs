@@ -200,6 +200,32 @@ export class FUActiveEffect extends ActiveEffect {
 		}
 	}
 
+	// TODO: REMOVE ONCE UPGRADED TO V13, WHERE THIS WAS FIXED
+	/**
+	 * Apply an ActiveEffect that uses an UPGRADE, or DOWNGRADE application mode.
+	 * Changes which UPGRADE or DOWNGRADE must be numeric to allow for comparison.
+	 * @param {Actor} actor                   The Actor to whom this effect should be applied
+	 * @param {EffectChangeData} change       The change data being applied
+	 * @param {*} current                     The current value being modified
+	 * @param {*} delta                       The parsed value of the change object
+	 * @param {object} changes                An object which accumulates changes to be applied
+	 * @override
+	 */
+	_applyUpgrade(actor, change, current, delta, changes) {
+		let update;
+		const ct = foundry.utils.getType(current);
+		switch (ct) {
+			case 'boolean':
+			case 'number':
+				if (change.mode === CONST.ACTIVE_EFFECT_MODES.UPGRADE && delta > current) update = delta;
+				else if (change.mode === CONST.ACTIVE_EFFECT_MODES.DOWNGRADE && delta < current) update = delta;
+				break;
+		}
+		if (update !== current && update !== undefined) {
+			changes[change.key] = update;
+		}
+	}
+
 	/**
 	 * @param {FUActor|FUItem} target
 	 * @param {EffectChangeData} change

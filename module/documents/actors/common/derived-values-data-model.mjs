@@ -109,7 +109,9 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 					return attrMdef + equipmentMdef + data.mdef.bonus;
 				};
 			}
-		} else if (armor) {
+		}
+		// CHARACTER ARMOR (ARMOR STAT)
+		else if (armor) {
 			const armorData = armor.system;
 
 			equipmentDef += armorData.def.value;
@@ -119,20 +121,22 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 			const attrMdef = includeAttribute ? attributes[armorData.attributes.secondary.value]?.current ?? 0 : 0;
 
 			defCalculation = function () {
-				return attrDef + equipmentDef + data.def.bonus;
+				return Number(attrDef + equipmentDef + data.def.bonus);
 			};
 			mdefCalculation = function () {
-				return attrMdef + equipmentMdef + data.mdef.bonus;
+				return Number(attrMdef + equipmentMdef + data.mdef.bonus);
 			};
-		} else {
+		}
+		// UNARMORED CHARACTER (DEX+INS)
+		else {
 			const attrDex = includeAttribute ? attributes.dex.current : 0;
 			const attrIns = includeAttribute ? attributes.ins.current : 0;
 
 			defCalculation = function () {
-				return attrDex + equipmentDef + data.def.bonus;
+				return Number(attrDex + equipmentDef + data.def.bonus);
 			};
 			mdefCalculation = function () {
-				return attrIns + equipmentMdef + data.mdef.bonus;
+				return Number(attrIns + equipmentMdef + data.mdef.bonus);
 			};
 		}
 
