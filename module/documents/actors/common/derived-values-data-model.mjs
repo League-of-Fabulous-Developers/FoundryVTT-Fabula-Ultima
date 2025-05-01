@@ -110,32 +110,29 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				};
 			}
 		}
+		// NOTE: We can't cache the attributes since they can be modified by effects
 		// CHARACTER ARMOR (ARMOR STAT)
 		else if (armor) {
 			const armorData = armor.system;
-
-			equipmentDef += armorData.def.value;
-			equipmentMdef += armorData.mdef.value;
-
-			const attrDef = includeAttribute ? attributes[armorData.attributes.primary.value]?.current ?? 0 : 0;
-			const attrMdef = includeAttribute ? attributes[armorData.attributes.secondary.value]?.current ?? 0 : 0;
-
 			defCalculation = function () {
+				equipmentDef += armorData.def.value;
+				const attrDef = includeAttribute ? attributes[armorData.attributes.primary.value]?.current ?? 0 : 0;
 				return Number(attrDef + equipmentDef + data.def.bonus);
 			};
 			mdefCalculation = function () {
+				equipmentMdef += armorData.mdef.value;
+				const attrMdef = includeAttribute ? attributes[armorData.attributes.secondary.value]?.current ?? 0 : 0;
 				return Number(attrMdef + equipmentMdef + data.mdef.bonus);
 			};
 		}
 		// UNARMORED CHARACTER (DEX+INS)
 		else {
-			const attrDex = includeAttribute ? attributes.dex.current : 0;
-			const attrIns = includeAttribute ? attributes.ins.current : 0;
-
 			defCalculation = function () {
+				const attrDex = includeAttribute ? attributes.dex.current : 0;
 				return Number(attrDex + equipmentDef + data.def.bonus);
 			};
 			mdefCalculation = function () {
+				const attrIns = includeAttribute ? attributes.ins.current : 0;
 				return Number(attrIns + equipmentMdef + data.mdef.bonus);
 			};
 		}

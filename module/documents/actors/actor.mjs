@@ -301,6 +301,9 @@ export class FUActor extends Actor {
 		return prepareActiveEffectCategories(effects);
 	}
 
+	/**
+	 * @override
+	 */
 	applyActiveEffects() {
 		if (this.system.prepareEmbeddedData instanceof Function) {
 			this.system.prepareEmbeddedData();
