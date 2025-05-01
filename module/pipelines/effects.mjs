@@ -295,13 +295,16 @@ export async function disableStatusEffect(actor, statusEffectId) {
 
 function sendToChatEffectRemoved(effect, actor) {
 	console.log(`Removing effect: ${effect.name}`);
-	ChatMessage.create({
-		content: game.i18n.format('FU.EffectRemoveMessage', {
-			effect: effect.name,
-			actor: actor.name,
-		}),
-		speaker: ChatMessage.getSpeaker({ actor }),
-	});
+	// TODO: Implement alongside message window
+	if (game.combat) {
+		ChatMessage.create({
+			content: game.i18n.format('FU.EffectRemoveMessage', {
+				effect: effect.name,
+				actor: actor.name,
+			}),
+			speaker: ChatMessage.getSpeaker({ actor }),
+		});
+	}
 }
 
 /**
