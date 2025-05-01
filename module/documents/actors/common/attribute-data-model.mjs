@@ -8,6 +8,10 @@ function isEven(number) {
 	return number % 2 === 0;
 }
 
+// TODO: Provide support for NeoHuman
+const minimumValue = 6;
+const maximumValue = 12;
+
 /**
  * @property {number} base
  * @property {number} current
@@ -17,7 +21,7 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
 		const { NumberField } = foundry.data.fields;
 		return {
-			base: new NumberField({ initial: 8, min: 6, max: 12, integer: true, nullable: false, validate: isEven }),
+			base: new NumberField({ initial: 8, min: minimumValue, max: maximumValue, integer: true, nullable: false, validate: isEven }),
 		};
 	}
 
@@ -38,13 +42,19 @@ export class AttributeDataModel extends foundry.abstract.DataModel {
 
 		Object.defineProperty(this, 'upgrade', {
 			value: () => {
-				this.base += 2;
+				const newBase = this.base + 2;
+				if (newBase <= maximumValue) {
+					this.base = newBase;
+				}
 			},
 		});
 
 		Object.defineProperty(this, 'downgrade', {
 			value: () => {
-				this.base -= 2;
+				const newBase = this.base - 2;
+				if (newBase >= minimumValue) {
+					this.base = newBase;
+				}
 			},
 		});
 	}
