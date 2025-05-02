@@ -346,6 +346,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 			return {
 				actor: actor,
 				name: actor.name,
+				img: parentActor ? parentActor.img : '',
 				level: actor.system.level.value,
 				identity: identity,
 				resources: [hp, mp],

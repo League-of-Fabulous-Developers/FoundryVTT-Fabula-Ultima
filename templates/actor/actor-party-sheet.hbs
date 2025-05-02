@@ -145,6 +145,11 @@
 				{{#each companions}}
 				{{!-- Companion Card --}}
 					<div class="plate companion character-option" data-uuid="{{this.actor.uuid}}" data-type="companion">
+
+						<div class="classes">
+							<img class="item" src="{{ this.img }}" data-tooltip="{{ this.name }}" />
+						</div>
+
 						<a data-action="revealActor" data-actor="{{this.actor.uuid}}" data-type="companion">
 							<img class="portrait damage" src="{{ this.actor.img }}" data-tooltip="{{ this.name }}" />
 						</a>
