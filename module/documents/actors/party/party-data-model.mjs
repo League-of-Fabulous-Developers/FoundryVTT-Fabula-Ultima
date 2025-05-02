@@ -202,12 +202,16 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 			if (actor.system.resources.exp.value >= 10) {
 				statusClass = 'level-up';
 			}
+			let identity = actor.system.resources.identity.name;
+			if (!identity) {
+				identity = StringUtils.localize('FU.Adventurer');
+			}
 
 			return {
 				actor: actor,
 				name: actor.name,
 				level: actor.system.level.value,
-				identity: actor.system.resources.identity.name,
+				identity: identity,
 				classes: classes,
 				resources: [hp, mp, ip],
 				fp: actor.system.resources.fp.value,
@@ -418,6 +422,7 @@ function getResourceData(actor, resource) {
 		name: resource,
 		label: game.i18n.localize(name),
 		current: data.value,
+		icon: FU.resourceIcons[resource],
 		max: data.max,
 		percentage: (data.value / data.max) * 100,
 	};
