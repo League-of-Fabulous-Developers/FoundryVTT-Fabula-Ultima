@@ -12,6 +12,12 @@
  */
 
 /**
+ * @typedef PartyCompanionData
+ * @property {FUActor} actor
+ * @property {String} name
+ */
+
+/**
  * @typedef PartyCharacterClass
  * @property {String} name
  * @property {String} fuid
@@ -41,10 +47,12 @@ import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { ProgressDataModel } from '../../items/common/progress-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { StudyRollHandler } from '../../../helpers/study-roll.mjs';
+import { StringUtils } from '../../../helpers/string-utils.mjs';
 
 /**
  * @description Represents a party of characters, as well as their management
  * @property {Set<String>} characters The uuids of the actors in the party
+ * @property {Set<String>} companions The uuids of companions in the party
  * @property {Array<NpcProfileData>} adversaries The uuids of hostile NPC the party has encountered
  * @property {FUActor} parent
  * @property {Number} resources.zenit.value
@@ -60,6 +68,7 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 			notes: new HTMLField(),
 			groupType: new StringField(),
 			characters: new SetField(new DocumentUUIDField({ nullable: true, fieldType: 'Actor' })),
+			companions: new SetField(new DocumentUUIDField({ nullable: true, fieldType: 'Actor' })),
 			adversaries: new ArrayField(
 				new SchemaField({
 					uuid: new DocumentUUIDField({ type: 'Actor' }),
@@ -113,11 +122,19 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 	 * @return {Promise<FUActor[]>}
 	 */
 	async getCharacterActors() {
-		const characters = this.characters;
+		return this.getActors('characters');
+	}
+
+	/**
+	 * @param {String} propertyPath
+	 * @returns {Promise<FUActor[]>}
+	 */
+	async getActors(propertyPath) {
+		const actorIds = this[propertyPath];
 		let deletedActorIds = [];
 
 		let actors = [];
-		for (const id of [...characters]) {
+		for (const id of [...actorIds]) {
 			const actor = await fromUuid(id);
 			if (!actor) {
 				deletedActorIds.push(id);
@@ -127,12 +144,28 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 
 		// If any actors were deleted, we must remove them from here as well
 		if (deletedActorIds.length > 0) {
-			deletedActorIds.forEach((id) => characters.delete(id));
-			this.parent.update({ [`system.characters`]: characters });
+			deletedActorIds.forEach((id) => actorIds.delete(id));
+			this.parent.update({ [`system.${propertyPath}`]: actorIds });
 			actors = actors.filter(Boolean);
 		}
 
 		return actors;
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @returns {Promise<void>}
+	 */
+	async addCharacter(actor) {
+		if (actor.type !== 'character') {
+			console.warn(`${actor.name} is not a player character!`);
+			return;
+		}
+
+		const characters = this.characters;
+		characters.add(actor.uuid);
+		await this.parent.update({ ['system.characters']: characters });
+		console.debug(`${actor.name} was added to the party`);
 	}
 
 	/**
@@ -269,6 +302,55 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 		}
 
 		return result;
+	}
+
+	/**
+	 * @param {FUActor} actor
+	 * @returns {Promise<void>}
+	 */
+	async addCompanion(actor) {
+		const companions = this.companions;
+		companions.add(actor.uuid);
+		await this.parent.update({ ['system.companions']: companions });
+		console.debug(`${actor.name} was added to the party`);
+	}
+
+	/**
+	 * @param {String} id
+	 * @returns {Promise<void>}
+	 */
+	removeCompanion(id) {
+		const companions = this.companions;
+		companions.delete(id);
+		this.parent.update({ [`system.companions`]: companions });
+		console.debug(`${id} was removed from the party sheet`);
+	}
+
+	/**
+	 * @returns {PartyCompanionData[]}
+	 */
+	async getCompanionData() {
+		const actors = await this.getActors('companions');
+		return actors.map((actor) => {
+			const hp = getResourceData(actor, 'hp');
+			const mp = getResourceData(actor, 'mp');
+			let identity;
+			const parentActor = actor.system.references.actor;
+			if (parentActor) {
+				identity = StringUtils.localize('FU.PartyCompanionIdentity', {
+					actor: parentActor.name,
+				});
+			} else {
+				identity = StringUtils.localize('FU.Companion');
+			}
+			return {
+				actor: actor,
+				name: actor.name,
+				level: actor.system.level.value,
+				identity: identity,
+				resources: [hp, mp],
+			};
+		});
 	}
 
 	/**

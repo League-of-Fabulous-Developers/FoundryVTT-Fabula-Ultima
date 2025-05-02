@@ -1,3 +1,7 @@
+/**
+ * @param {String} str
+ * @returns {string}
+ */
 function kebabToPascal(str) {
 	return str
 		.split('-')
@@ -5,6 +9,10 @@ function kebabToPascal(str) {
 		.join('');
 }
 
+/**
+ * @param {String} str
+ * @returns {string}
+ */
 function titleToKebab(str) {
 	return str
 		.replace(/([a-z])([A-Z])/g, '$1-$2')
@@ -12,7 +20,20 @@ function titleToKebab(str) {
 		.toLowerCase();
 }
 
+/**
+ * @param {String} key
+ * @param {Object} data
+ * @returns {String}
+ */
+function localize(key, data = undefined) {
+	if (data) {
+		return game.i18n.format(key, data);
+	}
+	return game.i18n.localize(key);
+}
+
 export const StringUtils = Object.freeze({
 	kebabToPascal,
 	titleToKebab,
+	localize,
 });
