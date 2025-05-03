@@ -244,6 +244,10 @@ async function renderEffect(effect, owner) {
  * @returns {Promise<boolean>} Whether the ActiveEffect is now on or off
  */
 export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = undefined, config = undefined) {
+	if (!actor.isCharacterType) {
+		ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+		return false;
+	}
 	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
 	if (existing.length > 0) {
 		await Promise.all(
@@ -279,6 +283,10 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
  * @returns {Promise<boolean>} - Whether the effect was removed.
  */
 export async function disableStatusEffect(actor, statusEffectId) {
+	if (!actor.isCharacterType) {
+		ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+		return false;
+	}
 	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
 	if (existing.length > 0) {
 		await Promise.all(
@@ -316,6 +324,10 @@ function sendToChatEffectRemoved(effect, actor) {
  */
 async function onApplyEffectToActor(actor, effect, sourceInfo, config = undefined) {
 	if (actor) {
+		if (!actor.isCharacterType) {
+			ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+			return;
+		}
 		const flags = createEffectFlags(effect, sourceInfo);
 		const instance = await ActiveEffect.create(
 			{
