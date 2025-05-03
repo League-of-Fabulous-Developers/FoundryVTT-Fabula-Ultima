@@ -266,11 +266,17 @@ class CheckConfigurer {
 		return this.setTargets(
 			[...game.user.targets]
 				.filter((token) => !!token.actor)
-				.map((token) => ({
-					name: token.name,
-					uuid: token.actor.uuid,
-					link: token.actor.link,
-				})),
+				.map((token) => {
+					if (!token.actor.isCharacterType) {
+						ui.notifications.error('FU.DialogInvalidTarget', { localize: true });
+						throw Error('Only character types can be targeted');
+					}
+					return {
+						name: token.name,
+						uuid: token.actor.uuid,
+						link: token.actor.link,
+					};
+				}),
 		);
 	}
 
