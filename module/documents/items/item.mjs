@@ -2,6 +2,7 @@ import { SOCKET } from '../../socket.mjs';
 import { ChecksV2 } from '../../checks/checks-v2.mjs';
 import { slugify } from '../../util.mjs';
 import { FUHooks } from '../../hooks.mjs';
+import { FUActor } from '../actors/actor.mjs';
 
 /**
  * @typedef KeyboardModifiers
@@ -200,3 +201,37 @@ export class FUItem extends Item {
 		return false;
 	}
 }
+
+Hooks.on('preCreateItem', (item, options, userId) => {
+	// If the parent is an actor
+	if (item.parent instanceof FUActor) {
+		/** @type {FUActor} **/
+		const actor = item.parent;
+		// If the actor is NOT character type
+		if (!actor.isCharacterType) {
+			// Do not support effect creation on non-characters
+			if (item.type === 'effect') {
+				ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+				return false;
+			}
+			// Only support white-listed item types
+			if (!item.canStash) {
+				ui.notifications.error(`FU.ActorSheetItemNotSupported`, { localize: true });
+				return false;
+			}
+		}
+	}
+
+	// If no FUID has been generated
+	if (!item.system.fuid && item.name) {
+		// Generate FUID using the slugify utility
+		const fuid = game.projectfu.util.slugify(item.name);
+
+		// Check if slugify returned a valid FUID
+		if (fuid) {
+			item.updateSource({ 'system.fuid': fuid });
+		} else {
+			console.error('FUID generation failed for Item:', item.name, 'using slugify.');
+		}
+	}
+});

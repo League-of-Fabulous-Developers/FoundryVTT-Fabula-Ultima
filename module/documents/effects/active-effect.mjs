@@ -334,3 +334,38 @@ function onApplyActiveEffect(actor, change, current) {
 	}
 }
 Hooks.on('applyActiveEffect', onApplyActiveEffect);
+
+Hooks.on('preCreateActiveEffect', (effect, options, userId) => {
+	const actor = effect.parent;
+	if (!actor || !actor.system || !actor.system.immunities) return true;
+
+	// Prevent creation on non-character actor types
+	if (!actor.isCharacterType) {
+		ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+		return false;
+	}
+
+	// Check if the effect is a status effect
+	const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
+
+	// Check for immunity using statusEffectId
+	if (statusEffectId) {
+		const immunityData = actor.system.immunities[statusEffectId];
+
+		// If immune, block effect creation
+		if (immunityData?.base) {
+			const message = game.i18n.format('FU.ImmunityDescription', {
+				status: statusEffectId,
+			});
+
+			ChatMessage.create({
+				content: message,
+				speaker: ChatMessage.getSpeaker({ actor: actor }),
+			});
+
+			return false; // Prevent the effect from being created
+		}
+	}
+
+	return true; // Allow the effect to be created
+});
