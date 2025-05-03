@@ -1395,6 +1395,7 @@
 		"Party": "Party",
 		"Notes": "Notes",
 		"PartySheetEmpty": "You must drag-n-drop the characters from the Actors tab onto here. Remember to set it as the active party in the settings. Also, there is a keybinding for the sheet (by default P).",
+		"PartyCompanionIdentity": "<strong>{actor}'s</strong> Companion",
 		"Adversaries": "Adversaries",
 		"AdversariesEmpty": "You must drag-n-drop the NPCs from the Actors tab or compendiums onto here.",
 		"AdversaryNotStudied": "This adversary has not yet been studied",

@@ -137,6 +137,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 			};
 		}
 
+		// Define 'value' properties
 		Object.defineProperty(this.def, 'value', {
 			configurable: true,
 			enumerable: true,

@@ -53,7 +53,8 @@ export class FUPartySheet extends ActorSheet {
 		context.actionHooks = FUPartySheet.prepareActionHooks();
 		await ActorSheetUtils.prepareData(context, this);
 		context.characters = await this.party.getCharacterData();
-		context.characterCount = this.party.characters.size;
+		context.companions = await this.party.getCompanionData();
+		context.characterCount = this.party.characters.size + this.party.companions.size;
 		context.adversaries = await this.party.getAdversaryData();
 		const experience = this.party.calculateExperience();
 		context.stats = {
@@ -91,6 +92,9 @@ export class FUPartySheet extends ActorSheet {
 						break;
 					case 'npc':
 						this.party.removeAdversary(uuid);
+						break;
+					case 'companion':
+						this.party.removeCompanion(uuid);
 						break;
 				}
 			}
@@ -184,32 +188,19 @@ export class FUPartySheet extends ActorSheet {
 					const actor = await Actor.implementation.fromDropData(data);
 					console.debug(`${actor.name} was dropped onto party sheet`);
 					if (actor.type === 'character') {
-						await this.addCharacter(actor);
+						await this.party.addCharacter(actor);
 					} else if (actor.type === 'npc') {
-						await this.party.addOrUpdateAdversary(actor, 0);
+						if (actor.system.rank.value === 'companion') {
+							await this.party.addCompanion(actor);
+						} else {
+							await this.party.addOrUpdateAdversary(actor, 0);
+						}
 					}
 					return true;
 				}
 			}
 		}
-
 		return false;
-	}
-
-	/**
-	 * @param {FUActor} actor
-	 * @returns {Promise<void>}
-	 */
-	async addCharacter(actor) {
-		if (actor.type !== 'character') {
-			console.warn(`${actor.name} is not a player character!`);
-			return;
-		}
-
-		const characters = this.party.characters;
-		characters.add(actor.uuid);
-		await this.actor.update({ ['system.characters']: characters });
-		console.debug(`${actor.name} was added to the party`);
 	}
 
 	/**
@@ -320,6 +311,9 @@ export class FUPartySheet extends ActorSheet {
 							break;
 						case 'npc':
 							this.party.removeAdversary(id);
+							break;
+						case 'companion':
+							this.party.removeCompanion(id);
 							break;
 					}
 				},
