@@ -1432,6 +1432,7 @@
 		"ChatInventoryItemMissing": "The item is no longer available.",
 		"ChatRecoveryNotNeeded": "<strong>{actor}</strong> already has full {resource}.",
 		"ActorSheetEffectNotSupported": "This type of actor sheet does not support active effects.",
+		"ActorSheetItemNotSupported": "This type of actor sheet does not support the given item type",
 		"ChatStudyEvent": "<strong>{actor}</strong> has learned <b>{result}</b> information about <strong>{target}</strong>.",
 		"Affinities": "Affinities",
 		"Complete": "Complete",
