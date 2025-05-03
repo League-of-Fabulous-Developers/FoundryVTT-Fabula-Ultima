@@ -3,6 +3,7 @@ import { Pipeline } from './pipeline.mjs';
 import { getPrioritizedUserSelected } from '../helpers/target-handler.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 import { MESSAGES, SOCKET } from '../socket.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 const sellAction = 'inventorySell';
 const lootAction = 'inventoryLoot';
@@ -58,6 +59,13 @@ async function tradeItem(actor, item, sale) {
 }
 
 /**
+ * @returns {String}
+ */
+function getCurrencyString() {
+	return game.i18n.localize('FU.Zenit');
+}
+
+/**
  * @param {FUActor} actor
  * @param {FUActor[]} targets
  * @returns {Promise<void>}
@@ -79,15 +87,30 @@ async function distributeZenit(actor, targets) {
 	if (zenit <= 0) {
 		return;
 	}
-	console.debug(`Distributing ${zenit} zenit from ${actor.name} to ${targets.length} characters`);
-	const targetString = targets.map((t) => t.name).join(', ');
-	const share = Math.round(zenit / targets.length);
 
+	// If not enough currency
+	const characterCount = targets.length;
+	if (zenit < characterCount) {
+		ui.notifications.error(StringUtils.localize('FU.DialogInventoryDistributeNotEnough', { currency: getCurrencyString() }));
+		return;
+	}
+
+	// Start with one unit
+	const base = 1;
+	let remaining = zenit - characterCount;
+	// Distribute remaining evenly
+	const bonus = Math.floor(remaining / characterCount);
+	const share = base + bonus;
+	const remainder = remaining % characterCount;
+	const distributed = zenit - remainder;
+
+	console.debug(`Distributing ${zenit} zenit from ${actor.name} to ${characterCount} characters`);
+	const targetString = targets.map((t) => t.name).join(', ');
 	new Dialog({
 		title: 'Distribute Zenit',
 		content: game.i18n.format('FU.ChatInventoryDistributeZenit', {
 			actor: actor.name,
-			zenit: zenit,
+			zenit: distributed,
 			share: share,
 			targets: targetString,
 			currency: game.i18n.localize('FU.Zenit'),
@@ -96,7 +119,7 @@ async function distributeZenit(actor, targets) {
 			{
 				label: 'Confirm',
 				callback: async () => {
-					await updateResources(actor, -zenit);
+					await updateResources(actor, -distributed);
 
 					for (const target of targets) {
 						await updateResources(target, share);
@@ -108,8 +131,8 @@ async function distributeZenit(actor, targets) {
 						content: await renderTemplate('systems/projectfu/templates/chat/chat-distribute-zenit.hbs', {
 							message: 'FU.ChatDistributeZenit',
 							targets: targetString,
-							zenit: zenit,
-							currency: game.i18n.localize('FU.Zenit'),
+							zenit: distributed,
+							currency: getCurrencyString(),
 						}),
 					});
 				},

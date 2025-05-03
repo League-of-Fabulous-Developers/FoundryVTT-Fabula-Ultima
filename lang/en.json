@@ -1423,6 +1423,7 @@
 		"ChatInventoryBuy": "Purchase Item",
 		"ChatInventoryLoot": "Loot Item",
 		"InventoryDistributeZenit": "Distribute {currency}",
+		"DialogInventoryDistributeNotEnough": "There's not enough {currency} to distribute",
 		"InventoryRechargeIP": "Recharge IP",
 		"ChatDistributeZenit": "<strong>{zenit} {currency}</strong> was distributed to <strong>{targets}</strong>.",
 		"ChatItemLooted": "<strong>{target}</strong> has acquired <strong>{item}</strong> from <strong>{actor}</strong>.",
