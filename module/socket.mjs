@@ -1,5 +1,6 @@
 import { SYSTEM } from './helpers/config.mjs';
 import { InventoryPipeline } from './pipelines/inventory-pipeline.mjs';
+import { StudyRollHandler } from './pipelines/study-roll.mjs';
 
 export const MESSAGES = Object.freeze({
 	ShowBanner: 'use',
@@ -7,6 +8,7 @@ export const MESSAGES = Object.freeze({
 	RequestEndTurn: 'requestEndTurn',
 	RequestTrade: 'requestTrade',
 	RequestZenitTransfer: 'requestZenitTransfer',
+	StudyEvent: 'studyEvent',
 });
 
 export let SOCKET;
@@ -20,6 +22,7 @@ export function onSocketLibReady() {
 	SOCKET.register(MESSAGES.RequestEndTurn, requestEndTurn);
 	SOCKET.register(MESSAGES.RequestTrade, InventoryPipeline.requestTrade);
 	SOCKET.register(MESSAGES.RequestZenitTransfer, InventoryPipeline.requestZenitTransfer);
+	SOCKET.register(MESSAGES.StudyEvent, StudyRollHandler.onStudyEvent);
 }
 
 function showBanner(text) {

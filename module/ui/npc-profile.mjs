@@ -1,4 +1,4 @@
-import { StudyRollHandler } from '../helpers/study-roll.mjs';
+import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { FU } from '../helpers/config.mjs';
 import { ActorSheetUtils } from '../sheets/actor-sheet-utils.mjs';
 

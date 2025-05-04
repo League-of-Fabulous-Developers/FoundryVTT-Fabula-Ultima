@@ -8,7 +8,7 @@ import { ProgressDataModel } from '../documents/items/common/progress-data-model
 import { MathHelper } from '../helpers/math-helper.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { NpcProfileWindow } from '../ui/npc-profile.mjs';
-import { StudyRollHandler } from '../helpers/study-roll.mjs';
+import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { ObjectUtils } from '../helpers/object-utils.mjs';
 
