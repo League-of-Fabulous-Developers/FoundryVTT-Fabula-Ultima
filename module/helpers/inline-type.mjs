@@ -91,31 +91,33 @@ const editorEnricher = {
 };
 
 /**
- * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {ChatMessage} document
+ * @param {HTMLElement} html
  */
 function activateListeners(document, html) {
 	if (document instanceof DocumentSheet) {
 		document = document.document;
 	}
 
-	html.find(`a.inline.inline-type[draggable]`)
-		.on('click', async function () {
-			let targets = await targetHandler();
+	const typeLinks = html.querySelectorAll('a.inline.inline-type[draggable]');
+	for (const el of typeLinks) {
+		// Click handler
+		el.addEventListener('click', async function () {
+			const targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
 				const args = this.dataset.args;
 				const config = InlineHelper.fromBase64(this.dataset.config);
 
-				targets.forEach(async (target) => {
+				for (const target of targets) {
 					await applyEffect(target, sourceInfo, type, args, config);
-				});
+				}
 			}
-		})
-		.on('dragstart', function (event) {
-			/** @type DragEvent */
-			event = event.originalEvent;
+		});
+
+		// Drag handler
+		el.addEventListener('dragstart', function (event) {
 			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
 				return;
 			}
@@ -131,6 +133,7 @@ function activateListeners(document, html) {
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		});
+	}
 }
 
 async function onDropActor(actor, sheet, { dataType, sourceInfo, type, args, config, ignore }) {

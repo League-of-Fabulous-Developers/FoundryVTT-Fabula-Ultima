@@ -40,18 +40,21 @@ function checkEnricher(match, options) {
 }
 
 /**
- * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {ChatMessage} document
+ * @param {HTMLElement} html
  */
 function activateListeners(document, html) {
 	if (document instanceof DocumentSheet) {
 		document = document.document;
 	}
 
-	html.find('a.inline.inline-clock').on('click', async function (event) {
-		const sourceInfo = InlineHelper.determineSource(document, this);
-		const actor = sourceInfo.resolveActor();
-		if (actor) {
+	const clockLinks = html.querySelectorAll('a.inline.inline-clock');
+	for (const el of clockLinks) {
+		el.addEventListener('click', async function (event) {
+			const sourceInfo = InlineHelper.determineSource(document, this);
+			const actor = sourceInfo.resolveActor();
+			if (!actor) return;
+
 			const id = this.dataset.id;
 			const command = this.dataset.command;
 
@@ -65,12 +68,12 @@ function activateListeners(document, html) {
 						return;
 					}
 
-					// Evaluate the given value
+					// Evaluate the value
 					const targets = await targetHandler();
 					const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 					const value = await Expressions.evaluateAsync(this.dataset.value, context);
 
-					// Validate progress won't go below min or max
+					// Validate min/max
 					if (progress.isMaximum && value > 0) {
 						ui.notifications.info('FU.ChatProgressAtMaximum', { localize: true });
 						return;
@@ -80,7 +83,7 @@ function activateListeners(document, html) {
 						return;
 					}
 
-					// Now update
+					// Apply update
 					const step = Number(value);
 					let source;
 					if (sourceInfo.hasItem) {
@@ -99,8 +102,8 @@ function activateListeners(document, html) {
 					break;
 				}
 			}
-		}
-	});
+		});
+	}
 }
 
 /**

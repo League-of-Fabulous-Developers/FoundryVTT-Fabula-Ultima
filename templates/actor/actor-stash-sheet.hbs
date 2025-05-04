@@ -1,9 +1,12 @@
-<form class="{{cssClass}} {{actor.type}} projectfu-actor-sheet h-100" autocomplete="off" spellcheck="false">
-
+<div>
 	<header class="sheet-header desc">
-		<div class="combine-header w-100">
-			<img class="profile-img flexcol" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"
-				 style="height: 52px; width: auto; object-fit: contain;" />
+		<div class="combine-header w-100 img-name">
+			<a>
+				<img class="profile-img flexcol" src="{{document.img}}"
+					 data-action="editImage"
+					 data-edit="img" title="{{actor.name}}"
+					 style="height: 52px; width: auto; object-fit: contain;" />
+			</a>
 			<div style="display: flex; align-items: center; justify-content: center; gap:0.5rem;">
 				<div class="charname-container flexrow grid-span-4">
 					<h2 class="charname" style="flex: 3;">
@@ -25,4 +28,4 @@
 			{{> "systems/projectfu/templates/actor/sections/actor-section-inventory.hbs" actor=actor}}
 		</div>
 	</div>
-</form>
+</div>

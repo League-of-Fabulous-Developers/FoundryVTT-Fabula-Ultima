@@ -52,17 +52,20 @@ const editorEnricher = {
 };
 
 /**
- * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {ChatMessage} document
+ * @param {HTMLElement} html
  */
 function activateListeners(document, html) {
 	if (document instanceof DocumentSheet) {
 		document = document.document;
 	}
 
-	html.find(`a.inline.inline-weapon[draggable]`)
-		.on('click', async function () {
-			let targets = await targetHandler();
+	// Ensure html is a native HTMLElement
+	const root = html instanceof HTMLElement ? html : html[0];
+
+	root.querySelectorAll('a.inline.inline-weapon[draggable]')?.forEach((el) => {
+		el.addEventListener('click', async () => {
+			const targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				const choices = this.dataset.choices.split(' ');
@@ -71,13 +74,9 @@ function activateListeners(document, html) {
 					await applyEffectToWeapon(target, sourceInfo, choices, config);
 				});
 			}
-		})
-		.on('dragstart', function (event) {
-			/** @type DragEvent */
-			event = event.originalEvent;
-			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
-				return;
-			}
+		});
+		el.addEventListener('dragstart', (event) => {
+			if (!(el instanceof HTMLElement) || !event.dataTransfer) return;
 
 			const data = {
 				type: INLINE_WEAPON,
@@ -85,9 +84,11 @@ function activateListeners(document, html) {
 				config: InlineHelper.fromBase64(this.dataset.config),
 				traits: this.dataset.choices,
 			};
+
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		});
+	});
 }
 
 async function onDropActor(actor, sheet, { type, sourceInfo, choices, config, ignore }) {

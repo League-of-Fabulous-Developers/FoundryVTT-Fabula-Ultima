@@ -475,7 +475,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 function reapplyClickListeners() {
 	Hooks.on('renderChatLog', (app, html) => {
 		// Reapply event listeners for each chat message
-		html.on('click', function (event) {
+		html.querySelector('.some-class')?.addEventListener('click', function (event) {
 			const itemId = event.target.dataset.itemId;
 			if (event.target.dataset.itemId) {
 				const messageId = $(event.target).parents('[data-message-id]').data('messageId');

@@ -176,7 +176,7 @@ Hooks.once('ready', () => {
 			{
 				field: `flags.${SYSTEM}.${Flags.ChatMessage.GroupCheck}.status`,
 				negate: true,
-				operator: SearchFilter.OPERATORS.CONTAINS,
+				operator: foundry.applications.ux.SearchFilter.OPERATORS.CONTAINS,
 				value: ['canceled', 'completed'],
 			},
 		],

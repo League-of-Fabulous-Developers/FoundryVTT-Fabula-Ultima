@@ -44,7 +44,7 @@ const onReadyResumeGroupChecks = () => {
 			{
 				field: `flags.${SYSTEM}.${Flags.ChatMessage.GroupCheckV2}.status`,
 				negate: true,
-				operator: SearchFilter.OPERATORS.CONTAINS,
+				operator: foundry.applications.ux.SearchFilter.OPERATORS.CONTAINS,
 				value: ['canceled', 'completed'],
 			},
 		],
