@@ -16,6 +16,9 @@ export class BondDataModel extends foundry.abstract.DataModel {
 		};
 	}
 
+	/**
+	 * @returns {Number}
+	 */
 	get strength() {
 		const emotions = [this.admInf, this.loyMis, this.affHat].filter(Boolean).length;
 		if (emotions) {

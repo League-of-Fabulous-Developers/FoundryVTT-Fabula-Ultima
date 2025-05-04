@@ -345,6 +345,10 @@ function evaluateVariables(expression, context) {
 			case 'bc': {
 				return countBonds(context.actor);
 			}
+			// Maximum bond strength
+			case 'mbs': {
+				return maximumBondStrength(context.actor);
+			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
 		}
@@ -456,6 +460,15 @@ function countStatusEffects(actor) {
 function countBonds(actor) {
 	if (!actor || !Array.isArray(actor.system?.bonds)) return 0;
 	return actor.system.bonds.length;
+}
+
+/**
+ * @param {FUActor} actor
+ * @return {Number}
+ */
+function maximumBondStrength(actor) {
+	if (!actor || !Array.isArray(actor.system?.bonds)) return 0;
+	return Math.max(...actor.system.bonds.map((b) => b.strength));
 }
 
 // Used for referencing
