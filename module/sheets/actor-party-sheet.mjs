@@ -297,6 +297,11 @@ export class FUPartySheet extends ActorSheet {
 	 * @param html
 	 */
 	setupCharacterContextMenu(html) {
+		// Don't provide this context menu to players
+		if (!game.user.isGM) {
+			return;
+		}
+
 		// Initialize the context menu options
 		let contextMenuOptions = [
 			{
