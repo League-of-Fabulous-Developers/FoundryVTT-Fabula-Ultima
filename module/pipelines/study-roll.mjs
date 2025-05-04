@@ -5,6 +5,12 @@ import { CommonEvents } from '../checks/common-events.mjs';
 import { MESSAGES, SOCKET } from '../socket.mjs';
 
 export class StudyRollHandler {
+	/**
+	 * @type {Number}
+	 * @private
+	 */
+	studyValueOverride;
+
 	constructor(actor, checkResult, targets) {
 		this.actor = actor;
 		this.checkResult = checkResult;
@@ -12,6 +18,10 @@ export class StudyRollHandler {
 	}
 
 	get studyValue() {
+		// If there's an override
+		if (this.studyValueOverride) {
+			return this.studyValueOverride;
+		}
 		return this.checkResult.result;
 	}
 
@@ -185,7 +195,7 @@ export class StudyRollHandler {
 	async _handleDialogSubmit(html) {
 		const studyValue = parseInt(html.find('#study-input').val(), 10);
 		if (!isNaN(studyValue)) {
-			this.studyValue = studyValue;
+			this.studyValueOverride = studyValue;
 			await this.handleStudyTarget();
 		} else {
 			ui.notifications.error('Invalid study value entered.');
