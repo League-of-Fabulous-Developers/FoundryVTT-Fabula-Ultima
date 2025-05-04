@@ -80,11 +80,11 @@ async function handleSupportCheck(groupCheck) {
 
 /**
  * @param {ChatLog} chatLog
- * @param {jQuery} jQuery
+ * @param {Document} html
  */
-function attachSupportCheckListener(chatLog, jQuery) {
+function attachSupportCheckListener(chatLog, html) {
 	// Reapply event listeners for each chat message
-	jQuery.on('click', async function (event) {
+	html.querySelector('.some-class')?.addEventListener('click', async function (event) {
 		const groupCheckId = event.target.dataset.support;
 		if (groupCheckId) {
 			const messageId = $(event.target).parents('[data-message-id]').data('messageId');
