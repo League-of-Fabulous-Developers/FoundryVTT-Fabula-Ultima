@@ -1439,6 +1439,7 @@
 		"Complete": "Complete",
 		"Detailed": "Detailed",
 		"Inspect": "Inspect",
+		"Unknown": "Unknown",
 		"DialogInvalidTarget": "Only character-type actors can be targeted",
 		"FUID": {
 			"Long": "Fabula Ultima ID",

@@ -194,7 +194,11 @@
 									</div>
 									<div class="blurb">
 										<div class="tag {{_rank}}">
+										{{#if (eq this.studyResult 'none')}}
+											{{localize 'FU.Unknown'}} {{localize this.rank}}
+										{{else}}
 											{{localize this.species }} {{localize this.rank}}
+										{{/if}}
 										</div>
 									</div>
 									<div class="study">
