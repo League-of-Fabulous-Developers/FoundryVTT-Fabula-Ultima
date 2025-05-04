@@ -349,6 +349,14 @@ function evaluateVariables(expression, context) {
 			case 'mbs': {
 				return maximumBondStrength(context.actor);
 			}
+			// Number of classes
+			case 'cc': {
+				return countClasses(context.actor);
+			}
+			// Number of mastered classes
+			case 'mcc': {
+				return countMasteredClasses(context.actor);
+			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
 		}
@@ -469,6 +477,22 @@ function countBonds(actor) {
 function maximumBondStrength(actor) {
 	if (!actor || !Array.isArray(actor.system?.bonds)) return 0;
 	return Math.max(...actor.system.bonds.map((b) => b.strength));
+}
+
+/**
+ * @param {FUActor} actor
+ * @returns {Number}
+ */
+function countClasses(actor) {
+	return actor.getItemsByType('class')?.length ?? 0;
+}
+
+/**
+ * @param {FUActor} actor
+ * @returns {Number}
+ */
+function countMasteredClasses(actor) {
+	return actor.getItemsByType('class').filter((c) => c.system.mastered)?.length ?? 0;
 }
 
 // Used for referencing

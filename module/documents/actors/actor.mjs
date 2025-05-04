@@ -357,6 +357,14 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @param {FU.itemTypes} type
+	 * @returns {FUItem[]}
+	 */
+	getItemsByType(type) {
+		return this.items.filter((i) => i.type === type);
+	}
+
+	/**
 	 * @description Deletes all temporary effects on the actor
 	 * @property includeStatus Whether to also clear status effects
 	 * @property includeWithoutDuration Include effects without a duration
