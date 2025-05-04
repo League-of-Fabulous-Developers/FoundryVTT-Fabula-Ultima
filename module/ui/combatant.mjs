@@ -25,7 +25,7 @@ Hooks.on('preCreateCombatant', function (document, data, options, userId) {
  * @extends Combatant
  * @inheritDoc
  */
-export class FUCombatant extends Combatant {
+export class FUCombatant extends foundry.documents.Combatant {
 	/**
 	 * @return {"friendly" | "hostile"}
 	 */

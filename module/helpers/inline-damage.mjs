@@ -59,22 +59,23 @@ function enricher(text, options) {
 }
 
 /**
- * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {ChatMessage} document
+ * @param {HTMLElement} html
  */
 function activateListeners(document, html) {
 	if (document instanceof DocumentSheet) {
 		document = document.document;
 	}
 
-	// TODO: Refactor to not have to repeat self across click and drag events
-	html.find('a.inline.inline-damage[draggable]')
-		.on('click', async function () {
+	// Select all inline damage links that are draggable
+	const elements = html.querySelectorAll('a.inline.inline-damage[draggable]');
+
+	for (const el of elements) {
+		// Handle click
+		el.addEventListener('click', async function () {
 			let targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
-				// TODO: Verify
-				//sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
 				const type = this.dataset.type;
 				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);
@@ -86,13 +87,11 @@ function activateListeners(document, html) {
 				}
 				await DamagePipeline.process(request);
 			}
-		})
-		.on('dragstart', function (event) {
-			/** @type DragEvent */
-			event = event.originalEvent;
-			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
-				return;
-			}
+		});
+
+		// Handle dragstart
+		el.addEventListener('dragstart', function (event) {
+			if (!(this instanceof HTMLElement) || !event.dataTransfer) return;
 
 			const sourceInfo = InlineHelper.determineSource(document, this);
 			sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
@@ -106,6 +105,7 @@ function activateListeners(document, html) {
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		});
+	}
 }
 
 // TODO: Implement

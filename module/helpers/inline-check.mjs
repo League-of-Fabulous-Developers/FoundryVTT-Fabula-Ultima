@@ -106,36 +106,38 @@ function appendDifficulty(level, anchor, show) {
 }
 
 /**
- * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {ChatMessage} document
+ * @param {HTMLElement | jQuery} html
  */
 function activateListeners(document, html) {
 	if (document instanceof DocumentSheet) {
 		document = document.document;
 	}
 
-	html.find('a.inline.inline-check').on('click', async function (event) {
-		const first = this.dataset.first;
-		const second = this.dataset.second;
-		let difficulty = this.dataset.difficulty;
-		const prompt = event.shiftKey;
+	const root = html instanceof HTMLElement ? html : html[0];
 
-		let attributes = {
-			primary: first,
-			secondary: second,
-		};
+	root.querySelectorAll('a.inline.inline-check')?.forEach((el) => {
+		el.addEventListener('click', async (event) => {
+			const first = el.dataset.first;
+			const second = el.dataset.second;
+			let difficulty = el.dataset.difficulty;
+			const prompt = event.shiftKey;
 
-		let targets = await targetHandler();
-		if (targets.length > 0) {
-			const sourceInfo = InlineHelper.determineSource(document, this);
+			const attributes = { primary: first, secondary: second };
+			const targets = await targetHandler();
+
+			if (targets.length === 0) return;
+
+			const sourceInfo = InlineHelper.determineSource(document, el);
+
 			for (const actor of targets) {
-				ChecksV2.attributeCheck(actor, attributes, sourceInfo.resolveItem(), async (check) => {
+				await ChecksV2.attributeCheck(actor, attributes, sourceInfo.resolveItem(), async (check) => {
 					let config = CheckConfiguration.configure(check);
 					let modifier = 0;
 
-					if (this.dataset.modifier !== undefined) {
+					if (el.dataset.modifier !== undefined) {
 						const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-						modifier = await Expressions.evaluateAsync(this.dataset.modifier, context);
+						modifier = await Expressions.evaluateAsync(el.dataset.modifier, context);
 					}
 
 					if (prompt) {
@@ -144,12 +146,11 @@ function activateListeners(document, html) {
 							{
 								primary: check.primary,
 								secondary: check.secondary,
-								modifier: modifier,
-								difficulty: difficulty,
+								modifier,
+								difficulty,
 							},
 							null,
 						);
-
 						config.setAttributes(promptResult.primary, promptResult.secondary);
 						modifier = promptResult.modifier;
 						difficulty = promptResult.difficulty;
@@ -164,7 +165,7 @@ function activateListeners(document, html) {
 					}
 				});
 			}
-		}
+		});
 	});
 }
 
