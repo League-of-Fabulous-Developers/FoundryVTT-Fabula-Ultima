@@ -61,7 +61,7 @@ import { ChecksV2 } from './checks/checks-v2.mjs';
 import { CheckConfiguration } from './checks/check-configuration.mjs';
 import { slugify } from './util.mjs';
 import { ActionHandler } from './helpers/action-handler.mjs';
-import { StudyRollHandler } from './helpers/study-roll.mjs';
+import { StudyRollHandler } from './pipelines/study-roll.mjs';
 import { ItemCustomizer } from './helpers/item-customizer.mjs';
 import { FUHooks } from './hooks.mjs';
 import { DamagePipeline } from './pipelines/damage-pipeline.mjs';

@@ -1,5 +1,5 @@
 import { getTargeted } from './target-handler.mjs';
-import { StudyRollHandler } from './study-roll.mjs';
+import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 
 /**
  * @typedef {"dex","ins","mig","wpl"} Attribute

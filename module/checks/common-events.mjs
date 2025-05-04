@@ -303,6 +303,11 @@ function item(actor, item) {
  * @property {Boolean} critical
  */
 
+/**
+ * @param {FUActor }actor
+ * @param {FUActor[]} targets
+ * @param {Number} checkResult
+ */
 function study(actor, targets, checkResult) {
 	const targetData = Targeting.serializeTargetData(targets);
 	const eventTargets = getEventTargets(targetData);

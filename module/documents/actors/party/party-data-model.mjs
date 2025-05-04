@@ -46,7 +46,7 @@
 import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { ProgressDataModel } from '../../items/common/progress-data-model.mjs';
 import { SETTINGS } from '../../../settings.js';
-import { StudyRollHandler } from '../../../helpers/study-roll.mjs';
+import { StudyRollHandler } from '../../../pipelines/study-roll.mjs';
 import { StringUtils } from '../../../helpers/string-utils.mjs';
 
 /**

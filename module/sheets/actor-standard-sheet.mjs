@@ -3,7 +3,7 @@ import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/chec
 import { ItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
 import { EquipmentHandler } from '../helpers/equipment-handler.mjs';
-import { StudyRollHandler } from '../helpers/study-roll.mjs';
+import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
