@@ -93,7 +93,7 @@ export class CombatEvent {
  * @property {Collection<FUCombatant>} combatants
  * @extends Combat
  */
-export class FUCombat extends Combat {
+export class FUCombat extends foundry.documents.Combat {
 	/**
 	 * @override
 	 */

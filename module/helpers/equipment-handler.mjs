@@ -11,8 +11,11 @@ export class EquipmentHandler {
 	 * @returns {void}
 	 */
 	async handleItemClick(ev, clickType) {
-		const li = $(ev.currentTarget).closest('.item');
-		const itemId = li.data('itemId');
+		const li = ev.target.closest('.item');
+
+		if (!li) return;
+
+		const itemId = li.dataset.itemId;
 		const item = this.actor.items.get(itemId);
 
 		if (!item) return;
@@ -20,7 +23,7 @@ export class EquipmentHandler {
 		const unarmedStrike = this.actor.getSingleItemByFuid('unarmed-strike');
 		const monkeyGrip = this.actor.getSingleItemByFuid('monkey-grip');
 		const dualShield = this.actor.getSingleItemByFuid('dual-shieldbearer');
-		const equippedData = foundry.utils.deepClone(this.actor.system.equipped);
+		const equippedData = this.actor.system.equipped.toObject();
 
 		const itemType = item.type;
 		const itemHand = item.system.hands?.value;
@@ -41,11 +44,10 @@ export class EquipmentHandler {
 			await this.handleOtherItems(itemId, equippedData, twoHandedWeaponEquipped, clickType, slot);
 		}
 
-		// Check for empty slots and equip unarmed strike if necessary
 		this.autoEquipUnarmedStrike(unarmedStrike, equippedData);
-
 		await this.actor.update({ 'system.equipped': equippedData });
-		this.updateItemIcon(li, item, equippedData[slot]);
+		const anchor = ev.target.closest('a.item-control.item-equip');
+		this.updateItemIcon(anchor, item, this.actor.system.equipped);
 
 		if (clickType === 'right') ev.preventDefault();
 	}
@@ -76,7 +78,8 @@ export class EquipmentHandler {
 			if (equippedData.offHand === itemId) equippedData.offHand = null;
 		}
 		await this.actor.update({ 'system.equipped': equippedData });
-		this.updateItemIcon(li, item, equippedData.phantom);
+
+		this.updateItemIcon(li, item, equippedData);
 	}
 
 	// Handle equipping and unequipping two-handed weapons
@@ -148,16 +151,19 @@ export class EquipmentHandler {
 	}
 
 	// Update the icon in the UI for the item, based on its equipped state
-	updateItemIcon(li, item, equippedItemId) {
-		const icon = li.find('.item-icon');
-		const isEquipped = equippedItemId === item.id;
-		icon.removeClass('fa-circle fa-toolbox ra-sword ra-relic-blade ra-shield ra-helmet fas fa-leaf');
-
-		if (isEquipped) {
-			icon.addClass(this.getIconClassForEquippedItem(item));
-		} else {
-			icon.addClass('fa-circle');
+	/**
+	 * @param {HTMLElement} anchor
+	 * @param {FUItem} item
+	 * @param {EquipDataModel} equippedItems
+	 */
+	updateItemIcon(anchor, item, equippedItems) {
+		const icon = anchor.querySelector('i');
+		if (!icon) {
+			console.error(`Failed to find item icon after clicking on it`);
+			return;
 		}
+		icon.className = '';
+		icon.className = equippedItems.getClass(item);
 	}
 
 	// Determine the appropriate icon class for an equipped item based on its type and properties

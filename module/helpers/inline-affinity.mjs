@@ -43,30 +43,32 @@ const editorEnricher = {
 };
 
 /**
- * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {ChatMessage} document
+ * @param {HTMLElement} html
  */
 function activateListeners(document, html) {
 	if (document instanceof DocumentSheet) {
 		document = document.document;
 	}
 
-	html.find(`a.inline.inline-affinity[draggable]`)
-		.on('click', async function () {
-			let targets = await targetHandler();
+	const affinityLinks = html.querySelectorAll('a.inline.inline-affinity[draggable]');
+	for (const el of affinityLinks) {
+		// Click handler
+		el.addEventListener('click', async function () {
+			const targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				const type = this.dataset.type;
 				const value = this.dataset.value;
 
-				targets.forEach(async (target) => {
+				for (const target of targets) {
 					await applyEffect(target, sourceInfo, type, value);
-				});
+				}
 			}
-		})
-		.on('dragstart', function (event) {
-			/** @type DragEvent */
-			event = event.originalEvent;
+		});
+
+		// Drag handler
+		el.addEventListener('dragstart', function (event) {
 			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
 				return;
 			}
@@ -81,6 +83,7 @@ function activateListeners(document, html) {
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		});
+	}
 }
 
 async function onDropActor(actor, sheet, { type, sourceInfo, affinity, value, ignore }) {

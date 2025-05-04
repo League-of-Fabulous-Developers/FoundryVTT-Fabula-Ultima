@@ -3,7 +3,7 @@ import { onManageActiveEffect, prepareActiveEffectCategories } from '../../../pi
 import { FU } from '../../../helpers/config.mjs';
 import { InlineHelper } from '../../../helpers/inline-helper.mjs';
 
-export class FUClassFeatureSheet extends ItemSheet {
+export class FUClassFeatureSheet extends foundry.appv1.sheets.ItemSheet {
 	// Initialize drag counter
 	dragCounter = 0;
 

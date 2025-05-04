@@ -10,7 +10,7 @@ import { Traits } from '../pipelines/traits.mjs';
  * @property {FUItem} item
  * @extends {ItemSheet}
  */
-export class FUItemSheet extends ItemSheet {
+export class FUItemSheet extends foundry.appv1.sheets.ItemSheet {
 	// Initialize drag counter
 	dragCounter = 0;
 
