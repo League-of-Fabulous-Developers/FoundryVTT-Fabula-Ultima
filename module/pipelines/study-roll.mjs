@@ -8,8 +8,11 @@ export class StudyRollHandler {
 	constructor(actor, checkResult, targets) {
 		this.actor = actor;
 		this.checkResult = checkResult;
-		this.studyValue = checkResult.result;
 		this.targets = targets || [];
+	}
+
+	get studyValue() {
+		return this.checkResult.result;
 	}
 
 	/**
