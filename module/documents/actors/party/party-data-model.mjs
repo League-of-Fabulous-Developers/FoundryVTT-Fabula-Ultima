@@ -207,9 +207,12 @@ export class PartyDataModel extends foundry.abstract.TypeDataModel {
 				identity = StringUtils.localize('FU.Adventurer');
 			}
 
+			// Truncate the name
+			const name = actor.name.split(' ')[0];
+
 			return {
 				actor: actor,
-				name: actor.name,
+				name: name,
 				level: actor.system.level.value,
 				identity: identity,
 				classes: classes,

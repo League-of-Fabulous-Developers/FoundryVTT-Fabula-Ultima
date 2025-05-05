@@ -749,6 +749,8 @@
 				text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75); /* shadow for depth */
 				letter-spacing: 0.5px; /* optional: adds subtle polish */
 				color: color-mix(in srgb, currentColor 70%, $color-secondary); /* depends on desired hue */
+				overflow: hidden;
+				text-overflow: ellipsis;
 			}
 
 			.identity {
