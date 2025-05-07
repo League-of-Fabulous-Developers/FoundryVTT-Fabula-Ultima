@@ -32,116 +32,11 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 	 * @param {FUActor} actor
 	 */
 	#prepareDefenses(actor) {
-		/** @type AttributesDataModel */
-		const attributes = actor.system.attributes;
-		const data = this;
-		const equippedItems = actor.system.equipped;
-		const vehicle = actor.system.vehicle;
-
-		let equipmentDef = 0;
-		let equipmentMdef = 0;
-
-		if (equippedItems.accessory) {
-			const accessory = actor.items.get(equippedItems.accessory);
-			if (accessory) {
-				equipmentDef += accessory.system.def.value;
-				equipmentMdef += accessory.system.mdef.value;
-			}
-		}
-
-		if (vehicle && vehicle.weaponsActive) {
-			// Vehicle Weapon Modules override Hand Slots
-			vehicle.weapons
-				.filter((weapon) => weapon.system.data.isShield)
-				.forEach((shieldModule) => {
-					equipmentDef += shieldModule.system.data.shield.defense;
-					equipmentMdef += shieldModule.system.data.shield.magicDefense;
-				});
-		} else {
-			// Hand Slots
-			if (equippedItems.mainHand) {
-				const mainHandItem = actor.items.get(equippedItems.mainHand);
-				if (mainHandItem && mainHandItem.type === 'shield') {
-					equipmentDef += mainHandItem.system.def.value;
-					equipmentMdef += mainHandItem.system.mdef.value;
-				}
-			}
-			if (equippedItems.offHand) {
-				const offHandItem = actor.items.get(equippedItems.offHand);
-				if (offHandItem && offHandItem.type === 'shield') {
-					equipmentDef += offHandItem.system.def.value;
-					equipmentMdef += offHandItem.system.mdef.value;
-				}
-			}
-		}
-
-		let defCalculation;
-		let mdefCalculation;
-
-		const ignoredRanks = new Set(['custom']);
-		const includeAttribute = !(actor.type === 'npc' && ignoredRanks.has(actor.system.rank.value));
-
-		// Find the equipped armor
-		/** @type FUItem */
-		const armor = actor.items.get(equippedItems.armor);
-		if (vehicle && vehicle.armorActive) {
-			/** @type ArmorModuleDataModel */
-			const armorData = vehicle.armor.system.data;
-
-			equipmentDef += armorData.defense.modifier;
-			equipmentMdef += armorData.magicDefense.modifier;
-
-			if (armorData.martial) {
-				defCalculation = function () {
-					return equipmentDef + data.def.bonus;
-				};
-				mdefCalculation = function () {
-					return equipmentMdef + data.mdef.bonus;
-				};
-			} else {
-				const attrDef = includeAttribute ? attributes[armorData.defense.attribute]?.current ?? 0 : 0;
-				const attrMdef = includeAttribute ? attributes[armorData.magicDefense.attribute]?.current ?? 0 : 0;
-
-				defCalculation = function () {
-					return attrDef + equipmentDef + data.def.bonus;
-				};
-				mdefCalculation = function () {
-					return attrMdef + equipmentMdef + data.mdef.bonus;
-				};
-			}
-		}
-		// NOTE: We can't cache the attributes since they can be modified by effects
-		// CHARACTER ARMOR (ARMOR STAT)
-		else if (armor) {
-			const armorData = armor.system;
-			defCalculation = function () {
-				equipmentDef += armorData.def.value;
-				const attrDef = includeAttribute ? attributes[armorData.attributes.primary.value]?.current ?? 0 : 0;
-				return Number(attrDef + equipmentDef + data.def.bonus);
-			};
-			mdefCalculation = function () {
-				equipmentMdef += armorData.mdef.value;
-				const attrMdef = includeAttribute ? attributes[armorData.attributes.secondary.value]?.current ?? 0 : 0;
-				return Number(attrMdef + equipmentMdef + data.mdef.bonus);
-			};
-		}
-		// UNARMORED CHARACTER (DEX+INS)
-		else {
-			defCalculation = function () {
-				const attrDex = includeAttribute ? attributes.dex.current : 0;
-				return Number(attrDex + equipmentDef + data.def.bonus);
-			};
-			mdefCalculation = function () {
-				const attrIns = includeAttribute ? attributes.ins.current : 0;
-				return Number(attrIns + equipmentMdef + data.mdef.bonus);
-			};
-		}
-
 		// Define 'value' properties
 		Object.defineProperty(this.def, 'value', {
 			configurable: true,
 			enumerable: true,
-			get: defCalculation,
+			get: () => DerivedValuesDataModel.calculateDefense(actor, this),
 			set(newValue) {
 				delete this.value;
 				this.value = newValue;
@@ -151,12 +46,91 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 		Object.defineProperty(this.mdef, 'value', {
 			configurable: true,
 			enumerable: true,
-			get: mdefCalculation,
+			get: () => DerivedValuesDataModel.calculateMagicDefense(actor, this),
 			set(newValue) {
 				delete this.value;
 				this.value = newValue;
 			},
 		});
+	}
+
+	/**
+	 * @param {'def'|'mdef'} type
+	 * @param {Actor} actor
+	 * @param {Object} data
+	 * @returns {number}
+	 */
+	static calculateDefenseType(type, actor, data) {
+		const attributes = actor.system.attributes;
+		const equippedItems = actor.system.equipped;
+		const vehicle = actor.system.vehicle;
+
+		const isMagic = type === 'mdef';
+		let total = 0;
+
+		const getValue = (item, path) => path.split('.').reduce((o, p) => o?.[p], item?.system) ?? 0;
+
+		// Accessory
+		if (equippedItems.accessory) {
+			const accessory = actor.items.get(equippedItems.accessory);
+			total += getValue(accessory, isMagic ? 'mdef.value' : 'def.value');
+		}
+
+		// Vehicle Weapon Modules
+		if (vehicle && vehicle.weaponsActive) {
+			vehicle.weapons
+				.filter((w) => w.system.data.isShield)
+				.forEach((shield) => {
+					const path = isMagic ? 'data.shield.magicDefense' : 'data.shield.defense';
+					total += getValue(shield.system, path);
+				});
+		} else {
+			// Hand slots
+			['mainHand', 'offHand'].forEach((slot) => {
+				const itemId = equippedItems[slot];
+				const item = actor.items.get(itemId);
+				if (item?.type === 'shield') {
+					total += getValue(item, isMagic ? 'mdef.value' : 'def.value');
+				}
+			});
+		}
+
+		// Determine if attribute should be included
+		const ignoredRanks = new Set(['custom']);
+		const includeAttr = !(actor.type === 'npc' && ignoredRanks.has(actor.system.rank.value));
+
+		const armor = actor.items.get(equippedItems.armor);
+
+		if (vehicle && vehicle.armorActive) {
+			const armorData = vehicle.armor.system.data;
+			total += isMagic ? armorData.magicDefense.modifier : armorData.defense.modifier;
+
+			if (armorData.martial) {
+				return Number(total + data[type].bonus);
+			} else {
+				const attrKey = isMagic ? armorData.magicDefense.attribute : armorData.defense.attribute;
+				const attrVal = includeAttr ? attributes[attrKey]?.current ?? 0 : 0;
+				return Number(attrVal + total + data[type].bonus);
+			}
+		} else if (armor) {
+			const armorData = armor.system;
+			total += isMagic ? armorData.mdef.value : armorData.def.value;
+			const attrKey = isMagic ? armorData.attributes.secondary.value : armorData.attributes.primary.value;
+			const attrVal = includeAttr ? attributes[attrKey]?.current ?? 0 : 0;
+			return Number(attrVal + total + data[type].bonus);
+		} else {
+			const fallbackAttr = isMagic ? attributes.ins.current : attributes.dex.current;
+			const attrVal = includeAttr ? fallbackAttr : 0;
+			return Number(attrVal + total + data[type].bonus);
+		}
+	}
+
+	static calculateDefense(actor, data) {
+		return this.calculateDefenseType('def', actor, data);
+	}
+
+	static calculateMagicDefense(actor, data) {
+		return this.calculateDefenseType('mdef', actor, data);
 	}
 
 	/**

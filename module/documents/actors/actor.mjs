@@ -306,10 +306,12 @@ export class FUActor extends Actor {
 	 * @override
 	 */
 	applyActiveEffects() {
+		const appliedBase = super.applyActiveEffects();
+		// If it's a character type
 		if (this.system.prepareEmbeddedData instanceof Function) {
 			this.system.prepareEmbeddedData();
 		}
-		return super.applyActiveEffects();
+		return appliedBase;
 	}
 
 	/**

@@ -562,6 +562,7 @@
 		bottom: 10px;
 		gap: 8px;
 		display: flex;
+		justify-content: center;
 
 		left: 50%; /* Move the row's left edge to center of parent */
 		transform: translateX(-50%); /* Pull it back by half its own width to center */
