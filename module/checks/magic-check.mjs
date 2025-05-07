@@ -45,7 +45,7 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
  * @param {FUItem} [item]
  */
 const onProcessCheck = (check, actor, item) => {
-	const { type, result, critical, fumble, primary, secondary } = check;
+	const { type, result, critical, fumble } = check;
 	if (type === 'magic') {
 		CheckConfiguration.configure(check)
 			.modifyTargets((targets) =>
@@ -81,12 +81,6 @@ const onProcessCheck = (check, actor, item) => {
 					const inspector = CheckConfiguration.inspect(check);
 					if (inspector.hasTrait(Traits.Base)) {
 						damage.modifiers = damage.modifiers.slice(0, 1);
-					}
-					damage.modifierTotal = damage.modifiers.reduce((agg, curr) => agg + curr.value, 0);
-					if (inspector.getHrZero()) {
-						damage.total = damage.modifierTotal;
-					} else {
-						damage.total = Math.max(primary.result, secondary.result) + damage.modifierTotal;
 					}
 				}
 				return damage;
