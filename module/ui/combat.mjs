@@ -642,4 +642,26 @@ export class FUCombat extends Combat {
 	hasActor(actor) {
 		return this.actors.includes(actor);
 	}
+
+	/**
+	 * @param {String} uuid
+	 * @returns True if the actor is present in the combat
+	 */
+	hasInstancedActor(uuid) {
+		return this.actors.find((a) => a.resolveUuid() === uuid);
+	}
+
+	/**
+	 * @returns {Boolean}
+	 */
+	static get hasActiveEncounter() {
+		return !!game.combat;
+	}
+
+	/**
+	 * @returns {FUCombat}
+	 */
+	static get activeEncounter() {
+		return game.combat;
+	}
 }

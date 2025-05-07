@@ -181,7 +181,7 @@
 				{{/unless}}
 
 					{{#each adversaries}}
-						<div class="section-container entry character-option" data-uuid="{{this.uuid}}" data-type="npc">
+						<div class="section-container entry character-option {{#if this.active}}active{{/if}}" data-uuid="{{this.uuid}}" data-type="npc">
 							<div class="portrait">
 								<a data-action="revealNpc" data-actor="{{this.uuid}}">
 									<img src="{{ this.img }}" data-tooltip="{{ this.name }}" />

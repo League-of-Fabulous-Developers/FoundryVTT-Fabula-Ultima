@@ -632,6 +632,10 @@
 				bottom: 0;
 			}
 
+			&.active {
+				border: 2px solid $color-shadow !important;
+			}
+
 			.portrait {
 				margin-right: 8px;
 				position: relative;

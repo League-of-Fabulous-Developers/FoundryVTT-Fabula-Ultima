@@ -11,6 +11,7 @@ import { NpcProfileWindow } from '../ui/npc-profile.mjs';
 import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { ObjectUtils } from '../helpers/object-utils.mjs';
+import { FUCombat } from '../ui/combat.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -55,7 +56,8 @@ export class FUPartySheet extends ActorSheet {
 		context.characters = await this.party.getCharacterData();
 		context.companions = await this.party.getCompanionData();
 		context.characterCount = this.party.characters.size + this.party.companions.size;
-		context.adversaries = await this.party.getAdversaryData();
+		const adversaries = await this.party.getAdversaryData();
+		context.adversaries = FUPartySheet.sortAdversaryData(adversaries);
 		const experience = this.party.calculateExperience();
 		context.stats = {
 			fp: experience.fp,
@@ -64,6 +66,28 @@ export class FUPartySheet extends ActorSheet {
 			zenit: this.party.resources.zenit.value,
 		};
 		return context;
+	}
+
+	/**
+	 * @param {NpcProfileData[]} data
+	 * @returns {NpcProfileData[]}
+	 */
+	static sortAdversaryData(data) {
+		// In
+		let result = data.reverse();
+		if (FUCombat.hasActiveEncounter) {
+			const combat = FUCombat.activeEncounter;
+			result = result.sort((a, b) => {
+				const aInSet = combat.hasInstancedActor(a.uuid);
+				a.active = aInSet;
+				const bInSet = combat.hasInstancedActor(b.uuid);
+				b.active = bInSet;
+				if (aInSet && !bInSet) return -1;
+				if (!aInSet && bInSet) return 1;
+				return 0;
+			});
+		}
+		return result;
 	}
 
 	/** @override */
