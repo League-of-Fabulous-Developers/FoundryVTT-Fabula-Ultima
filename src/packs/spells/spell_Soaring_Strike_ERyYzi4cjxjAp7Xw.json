@@ -3,7 +3,7 @@
   "name": "Soaring Strike",
   "type": "spell",
   "_id": "ERyYzi4cjxjAp7Xw",
-  "img": "icons/magic/control/debuff-energy-hold-levitate-teal-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/soaring_strike.png",
   "system": {
     "subtype": {
       "value": ""
@@ -138,8 +138,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706566647080,
-    "modifiedTime": 1744481834287,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1746640967003,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },

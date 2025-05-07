@@ -3,7 +3,7 @@
   "name": "Flare",
   "type": "spell",
   "_id": "z3MJucbao8SYheqG",
-  "img": "icons/magic/fire/blast-jet-stream-splash.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/flare.png",
   "system": {
     "subtype": {
       "value": ""
@@ -138,8 +138,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706564602981,
-    "modifiedTime": 1743704376681,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1746640905449,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },

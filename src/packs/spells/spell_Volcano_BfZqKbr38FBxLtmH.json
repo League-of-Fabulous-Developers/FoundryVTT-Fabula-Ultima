@@ -3,7 +3,7 @@
   "name": "Volcano",
   "type": "spell",
   "_id": "BfZqKbr38FBxLtmH",
-  "img": "icons/environment/wilderness/cave-entrance-vulcano.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/volcano.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710548265766,
-    "modifiedTime": 1744722212630,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1746641043637,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -3,7 +3,7 @@
   "name": "Glacies",
   "type": "spell",
   "_id": "rJzSHOASX2ZXOx2u",
-  "img": "icons/magic/water/projectiles-ice-faceted-teal.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/glacies.png",
   "system": {
     "subtype": {
       "value": ""
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706565263509,
-    "modifiedTime": 1737919070248,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1746640918518,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },

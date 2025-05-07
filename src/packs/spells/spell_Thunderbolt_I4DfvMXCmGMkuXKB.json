@@ -3,7 +3,7 @@
   "name": "Thunderbolt",
   "type": "spell",
   "_id": "I4DfvMXCmGMkuXKB",
-  "img": "icons/magic/lightning/bolt-strike-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/thunderbolt.png",
   "system": {
     "subtype": {
       "value": ""
@@ -138,8 +138,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706567202542,
-    "modifiedTime": 1743704455613,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1746641021638,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },
