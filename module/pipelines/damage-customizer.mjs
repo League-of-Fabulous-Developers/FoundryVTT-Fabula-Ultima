@@ -29,7 +29,7 @@ import { getTargeted } from '../helpers/target-handler.mjs';
 /**
  * Displays a dialog to customize damage.
  *
- * @param {BaseDamageInfo} damage - The damage object containing type and total.
+ * @param {DamageData} damage - The damage object containing type and total.
  * @param {FUActor[]} targets - The specified targets.
  * @param {DamageCustomizerCallback} callback - The function to call when the user confirms.
  * @param {() => void} onCancel - The function to call when the user cancels.

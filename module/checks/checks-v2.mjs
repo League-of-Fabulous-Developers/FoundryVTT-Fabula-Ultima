@@ -167,7 +167,8 @@ const modifyCheck = async (checkId, callback) => {
 		}
 		if (callbackResult) {
 			const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = (typeof callbackResult === 'object' && callbackResult) ?? {};
-			const result = await processResult(check, roll, actor, item);
+			// Do not invoke the hook when modifying a check
+			const result = await processResult(check, roll, actor, item, false);
 			return renderCheck(result, actor, item, message.flags);
 		}
 	} else {
@@ -314,9 +315,10 @@ const extractDieResults = (term, actor) => {
  * @param {Roll} roll
  * @param {FUActor} actor
  * @param {FUItem} item
+ * @param {Boolean} callHook
  * @return {Promise<Readonly<CheckResultV2>>}
  */
-const processResult = async (check, roll, actor, item) => {
+const processResult = async (check, roll, actor, item, callHook = true) => {
 	if (!roll._evaluated) {
 		await roll.roll();
 	}
@@ -353,7 +355,9 @@ const processResult = async (check, roll, actor, item) => {
 		additionalData: check.additionalData,
 	});
 
-	Hooks.callAll(CheckHooks.processCheck, result, actor, item);
+	if (callHook) {
+		Hooks.callAll(CheckHooks.processCheck, result, actor, item);
+	}
 
 	return result;
 };
