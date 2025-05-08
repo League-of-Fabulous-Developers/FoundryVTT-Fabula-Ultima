@@ -791,6 +791,10 @@
 			gap: 0.5rem;
 			margin: 0;
 			width: 100%;
+			position: static;
+			height: auto;
+			background-color: transparent;
+			animation: none;
 		}
 
 		.bar .text {
