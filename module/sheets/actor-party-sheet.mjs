@@ -12,6 +12,9 @@ import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { ObjectUtils } from '../helpers/object-utils.mjs';
 import { FUCombat } from '../ui/combat.mjs';
+import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -141,11 +144,11 @@ export class FUPartySheet extends ActorSheet {
 		});
 		// Rest whole party
 		html.find('[data-action=restParty]').on('click', async (ev) => {
-			const actors = await this.party.getCharacterActors();
-			for (const actor of actors) {
-				await actor.sheet.onRest(actor);
-				this.render(true);
-			}
+			await this.restParty();
+		});
+		// Reward resources
+		html.find('[data-action=rewardResource]').on('click', async (ev) => {
+			this.promptAwardResources();
 		});
 		// Refresh Sheet
 		html.find('[data-action=refreshSheet]').on('click', (ev) => {
@@ -174,19 +177,6 @@ export class FUPartySheet extends ActorSheet {
 			const name = ev.currentTarget.dataset.name;
 			this.revealProgressTrack(name);
 		});
-	}
-
-	/**
-	 * @param uuid
-	 * @returns {Promise<void>}
-	 */
-	async revealNpc(uuid) {
-		const data = await this.party.getAdversary(uuid);
-		if (data) {
-			new NpcProfileWindow(data, {
-				title: data.name,
-			}).render(true);
-		}
 	}
 
 	/**
@@ -225,6 +215,107 @@ export class FUPartySheet extends ActorSheet {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * @returns {Promise<void>}
+	 */
+	async restParty() {
+		const actors = await this.party.getCharacterActors();
+		for (const actor of actors) {
+			await actor.sheet.onRest(actor);
+			this.render(true);
+		}
+	}
+
+	/**
+	 * @param uuid
+	 * @returns {Promise<void>}
+	 */
+	async revealNpc(uuid) {
+		const data = await this.party.getAdversary(uuid);
+		if (data) {
+			new NpcProfileWindow(data, {
+				title: data.name,
+			}).render(true);
+		}
+	}
+
+	/**
+	 * Prompts the GM to award resources to the party
+	 */
+	async promptAwardResources() {
+		const characters = await this.party.getCharacterActors();
+		const defaultSource = StringUtils.localize('USER.RoleGamemaster');
+
+		// TODO: Use HBS
+		const content = `
+  <form>
+    <div class="form-group">
+      <label for="resource">Resource</label>
+      <select name="resource" id="resource">
+        <option value="fp">FP</option>
+        <option value="ip">IP</option>
+        <option value="zenit">Zenit</option>
+        <option value="hp">HP</option>
+        <option value="mp">MP</option>
+      </select>
+    </div>
+        
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" name="amount" id="amount" value="1"/>
+    </div>
+    
+    <div class="form-group">
+      <label for="resource-source">Source</label>
+        <input type="text" name="source" id="resource-source" value="${defaultSource}" />
+     </div>
+
+    <div class="form-group">
+      <label>Characters</label>
+      <div class="character-list">
+        ${characters
+			.map(
+				(c) => `
+          <label>
+            <input type="checkbox" name="recipients" value="${c.uuid}" checked> ${c.name}
+          </label>
+        `,
+			)
+			.join('<br>')}
+      </div>
+    </div>
+  </form>`;
+
+		new Dialog({
+			title: StringUtils.localize('FU.AwardResources'),
+			content,
+			buttons: {
+				confirm: {
+					label: 'Confirm',
+					callback: async (html) => {
+						const resource = html.find('[name="resource"]').val();
+						const source = html.find('[name="source"]').val();
+						const amount = Number(html.find('[name="amount"]').val());
+						const selectedIds = [...html[0].querySelectorAll('input[name="recipients"]:checked')].map((input) => input.value);
+						console.log('Giving', resource, 'to:', selectedIds);
+						const selectedActors = characters.filter((c) => selectedIds.includes(c.uuid));
+						const request = new ResourceRequest(new InlineSourceInfo(source), selectedActors, resource, amount);
+						if (amount > 0) {
+							await ResourcePipeline.processRecovery(request);
+						} else {
+							await ResourcePipeline.processLoss(request);
+						}
+						return this.render(true);
+					},
+				},
+				cancel: {
+					label: 'Cancel',
+				},
+			},
+			default: 'confirm',
+		}).render(true);
 	}
 
 	/**
@@ -380,9 +471,7 @@ export class FUPartySheet extends ActorSheet {
 				hook: 'lookfarShowTravelCheckDialog',
 			});
 		}
-
-		// Callback here...
-
+		// TODO: Callback here...
 		return hooks;
 	}
 
