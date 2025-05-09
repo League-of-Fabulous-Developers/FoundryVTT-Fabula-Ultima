@@ -57,7 +57,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 	/**
 	 * @param {'def'|'mdef'} type
 	 * @param {Actor} actor
-	 * @param {Object} data
+	 * @param {DerivedValuesDataModel} data
 	 * @returns {number}
 	 */
 	static calculateDefenseType(type, actor, data) {

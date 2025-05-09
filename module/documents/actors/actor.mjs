@@ -241,6 +241,15 @@ export class FUActor extends Actor {
 		super._onUpdate(changed, options, userId);
 	}
 
+	/**
+	 * Get all ActiveEffects that may apply to this Actor.
+	 * If CONFIG.ActiveEffect.legacyTransferral is true, this is equivalent to actor.effects.contents.
+	 * If CONFIG.ActiveEffect.legacyTransferral is false, this will also return all the transferred ActiveEffects on any
+	 * of the Actor's owned Items.
+	 * @yields {ActiveEffect}
+	 * @returns {Generator<ActiveEffect, void, void>}
+	 * @override
+	 */
 	*allApplicableEffects() {
 		for (const effect of super.allApplicableEffects()) {
 			const item = effect.parent;
@@ -303,15 +312,16 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @description Apply any transformations to the Actor data which are caused by ActiveEffects.
 	 * @override
 	 */
 	applyActiveEffects() {
-		const appliedBase = super.applyActiveEffects();
-		// If it's a character type
-		if (this.system.prepareEmbeddedData instanceof Function) {
+		// Evaluate all AEs on self
+		super.applyActiveEffects();
+		// For character types, add new properties
+		if (this.isCharacterType) {
 			this.system.prepareEmbeddedData();
 		}
-		return appliedBase;
 	}
 
 	/**
