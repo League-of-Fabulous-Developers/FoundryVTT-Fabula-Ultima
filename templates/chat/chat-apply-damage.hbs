@@ -12,6 +12,12 @@
         <a data-action="toggleBreakdown" data-tooltip="{{localize 'FU.ChatToggleDamageBreakdown'}}">
             <span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fa fa-info-circle"></i></span>
         </a>
+
+		{{#if inspect}}
+			<a data-action="inspectActor" data-uuid="{{rootUuid}}" data-tooltip="{{localize 'FU.Inspect'}}">
+				<span class='fu-tag button flex-group-center' style="font-size: 1rem;"><i class="icon fa fa-search"></i></span>
+			</a>
+		{{/if}}
     </div>
 
 </section>
