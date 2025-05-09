@@ -10,8 +10,11 @@ async function showFloatyText(actor, input, fill) {
 	}
 
 	const [token] = actor.getActiveTokens();
+	if (!token) {
+		return;
+	}
 
-	if (token && typeof input === 'number') {
+	if (typeof input === 'number') {
 		const gridSize = canvas.scene.grid.size;
 		const scrollingTextArgs = [
 			{ x: token.x + gridSize / 2, y: token.y + gridSize - 20 },

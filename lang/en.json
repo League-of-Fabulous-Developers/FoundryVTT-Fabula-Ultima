@@ -1441,6 +1441,7 @@
 		"Inspect": "Inspect",
 		"Unknown": "Unknown",
 		"DialogInvalidTarget": "Only character-type actors can be targeted",
+		"AwardResources": "Award Resources",
 		"FUID": {
 			"Long": "Fabula Ultima ID",
 			"Short": "FUID",
