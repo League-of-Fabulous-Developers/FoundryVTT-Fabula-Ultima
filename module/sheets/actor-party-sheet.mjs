@@ -238,6 +238,8 @@ export class FUPartySheet extends ActorSheet {
 			new NpcProfileWindow(data, {
 				title: data.name,
 			}).render(true);
+		} else {
+			ui.notifications.warn(`Did not find an NPC profile for ${uuid}`);
 		}
 	}
 

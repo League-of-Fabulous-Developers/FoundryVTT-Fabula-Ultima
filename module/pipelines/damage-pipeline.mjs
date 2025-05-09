@@ -14,6 +14,7 @@ import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
 import { Traits } from './traits.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
+import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -429,6 +430,7 @@ async function process(request) {
 
 		let flags = Pipeline.initializedFlags(Flags.ChatMessage.Damage, damageTaken);
 		Pipeline.setFlag(flags, Flags.ChatMessage.Source, context.sourceInfo);
+		const rootUuid = actor.resolveUuid();
 
 		updates.push(
 			ChatMessage.create({
@@ -439,6 +441,8 @@ async function process(request) {
 					message: context.affinityMessage,
 					actor: actor.name,
 					uuid: actor.uuid,
+					rootUuid: rootUuid,
+					inspect: actor.type === 'npc',
 					// TODO: Replace damage with amount in the localizations
 					damage: damageTaken,
 					amount: damageTaken,
@@ -549,6 +553,11 @@ function onRenderChatMessage(message, jQuery) {
 				},
 			);
 		}
+	});
+
+	Pipeline.handleClick(message, jQuery, 'inspectActor', async (dataset) => {
+		const uuid = dataset.uuid;
+		return FUPartySheet.inspectAdversary(uuid);
 	});
 
 	Pipeline.handleClickRevert(message, jQuery, 'revertDamage', async (dataset) => {
