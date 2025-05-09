@@ -2404,50 +2404,50 @@
 
 @font-face {
   font-family: "Yanone Kaffeesatz";
-  src: url("/systems/projectfu/styles/fonts/yanone-kafffeesatz/YanoneKaffeesatz-VariableFont_wght.ttf") format("truetype");
+  src: url("../fonts/yanone-kafffeesatz/YanoneKaffeesatz-VariableFont_wght.ttf") format("truetype");
   font-optical-sizing: auto;
   font-weight: 200 700;
   font-style: normal;
 }
 @font-face {
   font-family: "Fabula Ultima icons";
-  src: url("/systems/projectfu/styles/fonts/fabula-ultima/FabulaUltimaIcons-Regular.otf") format("opentype");
+  src: url("../fonts/fabula-ultima/FabulaUltimaIcons-Regular.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "CreditValley";
-  src: url("/systems/projectfu/styles/fonts/credit-valley/CreditValley.ttf") format("truetype");
+  src: url("../fonts/credit-valley/CreditValley.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "CreditValleybold";
-  src: url("/systems/projectfu/styles/fonts/credit-valley/CreditValleybold.ttf") format("truetype");
+  src: url("../fonts/credit-valley/CreditValleybold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "trigger-bold";
-  src: url("/systems/projectfu/styles/fonts/trigger-bold/trigger-bold.ttf") format("truetype");
+  src: url("../fonts/trigger-bold/trigger-bold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Evilz";
-  src: url("/systems/projectfu/styles/fonts/evil-font/Evilz.ttf") format("truetype");
+  src: url("../fonts/evil-font/Evilz.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "FnT_BasicShapes1";
-  src: url("/systems/projectfu/styles/fonts/fnt-bs/FNT_BS.ttf") format("truetype");
+  src: url("../fonts/fnt-bs/FNT_BS.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "old retro labels tfb";
-  src: url("/systems/projectfu/styles/fonts/old-retro-labels-tfb/old_retro_labels_tfb.ttf") format("truetype");
+  src: url("../fonts/old-retro-labels-tfb/old_retro_labels_tfb.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -2459,17 +2459,17 @@
 @font-face {
   font-family: "Material Symbols Outlined";
   font-style: normal;
-  src: url("/systems/projectfu/styles/fonts/material-symbols/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2") format("woff");
+  src: url("../fonts/material-symbols/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2") format("woff");
 }
 @font-face {
   font-family: "Material Symbols Rounded";
   font-style: normal;
-  src: url("/systems/projectfu/styles/fonts/material-symbols/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].woff2") format("woff");
+  src: url("../fonts/material-symbols/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].woff2") format("woff");
 }
 @font-face {
   font-family: "Material Symbols Sharp";
   font-style: normal;
-  src: url("/systems/projectfu/styles/fonts/material-symbols/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].woff2") format("woff");
+  src: url("../fonts/material-symbols/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].woff2") format("woff");
 }
 .mats-o {
   font-family: "Material Symbols Outlined";
@@ -3254,8 +3254,8 @@
 
 .chat-message,
 .chat-message.whisper {
-  background: url("/systems/projectfu/styles/static/ui/Bkg_highres.png"), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
-  background: url("/systems/projectfu/styles/static/ui/Bkg_highres.png"), linear-gradient(to right, #f5f5dc, #c9c7b8);
+  background: url("../static/ui/Bkg_highres.png"), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
+  background: url("../static/ui/Bkg_highres.png"), linear-gradient(to right, #f5f5dc, #c9c7b8);
   background-blend-mode: multiply !important;
   background-repeat: repeat-y;
   background-position: right top;
@@ -3309,8 +3309,8 @@
 }
 
 .chat-message.whisper {
-  background: url("/systems/projectfu/styles/static/ui/Bkg_highres.png"), -webkit-gradient(linear, left top, right top, from(#ffffff), to(#bebebe));
-  background: url("/systems/projectfu/styles/static/ui/Bkg_highres.png"), linear-gradient(to right, #ffffff, #bebebe);
+  background: url("../static/ui/Bkg_highres.png"), -webkit-gradient(linear, left top, right top, from(#ffffff), to(#bebebe));
+  background: url("../static/ui/Bkg_highres.png"), linear-gradient(to right, #ffffff, #bebebe);
   background-blend-mode: multiply !important;
   background-repeat: repeat-y;
   background-position: right top;
@@ -3318,8 +3318,8 @@
 }
 
 .chat-message.blind {
-  background: url("/systems/projectfu/styles/static/ui/Bkg_highres.png"), -webkit-gradient(linear, left top, right top, from(#f6e4f7), to(#eaceeb));
-  background: url("/systems/projectfu/styles/static/ui/Bkg_highres.png"), linear-gradient(to right, #f6e4f7, #eaceeb);
+  background: url("../static/ui/Bkg_highres.png"), -webkit-gradient(linear, left top, right top, from(#f6e4f7), to(#eaceeb));
+  background: url("../static/ui/Bkg_highres.png"), linear-gradient(to right, #f6e4f7, #eaceeb);
   background-blend-mode: multiply !important;
   background-repeat: repeat-y;
   background-position: right top;
@@ -5133,143 +5133,143 @@ table caption {
 }
 
 .fu-fp {
-  background-image: url("/systems/projectfu/styles/static/compendium/ui/fp.png");
+  background-image: url("../static/compendium/ui/fp.png");
 }
 
 .fu-up {
-  background-image: url("/systems/projectfu/styles/static/compendium/ui/up.png");
+  background-image: url("../static/compendium/ui/up.png");
 }
 
 .fu-xp {
-  background-image: url("/systems/projectfu/styles/static/compendium/ui/xp.png");
+  background-image: url("../static/compendium/ui/xp.png");
 }
 
 .fu-shaken {
-  background-image: url("/systems/projectfu/styles/static/statuses/Shaken.webp");
+  background-image: url("../static/statuses/Shaken.webp");
 }
 
 .fu-dazed {
-  background-image: url("/systems/projectfu/styles/static/statuses/Dazed.webp");
+  background-image: url("../static/statuses/Dazed.webp");
 }
 
 .fu-weak {
-  background-image: url("/systems/projectfu/styles/static/statuses/Weak.webp");
+  background-image: url("../static/statuses/Weak.webp");
 }
 
 .fu-slow {
-  background-image: url("/systems/projectfu/styles/static/statuses/Slow.webp");
+  background-image: url("../static/statuses/Slow.webp");
 }
 
 .fu-enraged {
-  background-image: url("/systems/projectfu/styles/static/statuses/Enraged.webp");
+  background-image: url("../static/statuses/Enraged.webp");
 }
 
 .fu-poisoned {
-  background-image: url("/systems/projectfu/styles/static/statuses/Poisoned.webp");
+  background-image: url("../static/statuses/Poisoned.webp");
 }
 
 .fu-guard {
-  background-image: url("/systems/projectfu/styles/static/statuses/Guard.webp");
+  background-image: url("../static/statuses/Guard.webp");
 }
 
 .fu-flying {
-  background-image: url("/systems/projectfu/styles/static/statuses/Flying.webp");
+  background-image: url("../static/statuses/Flying.webp");
 }
 
 .fu-cover {
-  background-image: url("/systems/projectfu/styles/static/statuses/Cover.webp");
+  background-image: url("../static/statuses/Cover.webp");
 }
 
 .fu-aura {
-  background-image: url("/systems/projectfu/styles/static/statuses/Aura.webp");
+  background-image: url("../static/statuses/Aura.webp");
 }
 
 .fu-barrier {
-  background-image: url("/systems/projectfu/styles/static/statuses/Barrier.webp");
+  background-image: url("../static/statuses/Barrier.webp");
 }
 
 .fu-wlp-up {
-  background-image: url("/systems/projectfu/styles/static/statuses/WlpUp.webp");
+  background-image: url("../static/statuses/WlpUp.webp");
 }
 
 .fu-wlp-down {
-  background-image: url("/systems/projectfu/styles/static/statuses/WlpDown.webp");
+  background-image: url("../static/statuses/WlpDown.webp");
 }
 
 .fu-dex-up {
-  background-image: url("/systems/projectfu/styles/static/statuses/DexUp.webp");
+  background-image: url("../static/statuses/DexUp.webp");
 }
 
 .fu-dex-down {
-  background-image: url("/systems/projectfu/styles/static/statuses/DexDown.webp");
+  background-image: url("../static/statuses/DexDown.webp");
 }
 
 .fu-mig-up {
-  background-image: url("/systems/projectfu/styles/static/statuses/MigUp.webp");
+  background-image: url("../static/statuses/MigUp.webp");
 }
 
 .fu-mig-down {
-  background-image: url("/systems/projectfu/styles/static/statuses/MigDown.webp");
+  background-image: url("../static/statuses/MigDown.webp");
 }
 
 .fu-ins-up {
-  background-image: url("/systems/projectfu/styles/static/statuses/InsUp.webp");
+  background-image: url("../static/statuses/InsUp.webp");
 }
 
 .fu-ins-down {
-  background-image: url("/systems/projectfu/styles/static/statuses/InsDown.webp");
+  background-image: url("../static/statuses/InsDown.webp");
 }
 
 .fu-zenit {
-  background-image: url("/systems/projectfu/styles/static/compendium/ui/coins_5.png");
+  background-image: url("../static/compendium/ui/coins_5.png");
 }
 
 .fus-offensive {
-  background-image: url("/systems/projectfu/styles/static/icons/fus-offensive.svg");
+  background-image: url("../static/icons/fus-offensive.svg");
 }
 
 .ful-offensive {
-  background-image: url("/systems/projectfu/styles/static/icons/ful-offensive.svg");
+  background-image: url("../static/icons/ful-offensive.svg");
 }
 
 .fus-martial {
-  background-image: url("/systems/projectfu/styles/static/icons/fus-martial.svg");
+  background-image: url("../static/icons/fus-martial.svg");
 }
 
 .ful-martial {
-  background-image: url("/systems/projectfu/styles/static/icons/ful-martial.svg");
+  background-image: url("../static/icons/ful-martial.svg");
 }
 
 .fu-beast {
-  background-image: url("/systems/projectfu/styles/static/icons/beast.svg");
+  background-image: url("../static/icons/beast.svg");
 }
 
 .fu-demon {
-  background-image: url("/systems/projectfu/styles/static/icons/demon.svg");
+  background-image: url("../static/icons/demon.svg");
 }
 
 .fu-construct {
-  background-image: url("/systems/projectfu/styles/static/icons/construct.svg");
+  background-image: url("../static/icons/construct.svg");
 }
 
 .fu-elemental {
-  background-image: url("/systems/projectfu/styles/static/icons/elemental.svg");
+  background-image: url("../static/icons/elemental.svg");
 }
 
 .fu-humanoid {
-  background-image: url("/systems/projectfu/styles/static/icons/humanoid.svg");
+  background-image: url("../static/icons/humanoid.svg");
 }
 
 .fu-monster {
-  background-image: url("/systems/projectfu/styles/static/icons/monster.svg");
+  background-image: url("../static/icons/monster.svg");
 }
 
 .fu-plant {
-  background-image: url("/systems/projectfu/styles/static/icons/plant.svg");
+  background-image: url("../static/icons/plant.svg");
 }
 
 .fu-undead {
-  background-image: url("/systems/projectfu/styles/static/icons/undead.svg");
+  background-image: url("../static/icons/undead.svg");
 }
 
 .fu-effect-placeholder {
@@ -5277,7 +5277,7 @@ table caption {
 }
 
 .fu-weapon-enchant {
-  background-image: url("/systems/projectfu/styles/static/icons/fus-weapon-enchant.svg");
+  background-image: url("../static/icons/fus-weapon-enchant.svg");
 }
 
 /* Icon in inline element */
@@ -5334,23 +5334,23 @@ table caption {
 }
 
 .ful-sl-star {
-  background-image: url("/systems/projectfu/styles/static/icons/ful-sl-star.svg");
+  background-image: url("../static/icons/ful-sl-star.svg");
 }
 
 .fus-sl-star {
-  background-image: url("/systems/projectfu/styles/static/icons/fus-sl-star.svg");
+  background-image: url("../static/icons/fus-sl-star.svg");
 }
 
 .fus-star {
-  background-image: url("/systems/projectfu/styles/static/icons/fus-star.svg");
+  background-image: url("../static/icons/fus-star.svg");
 }
 
 .fus-star2 {
-  background-image: url("/systems/projectfu/styles/static/icons/fus-star2.svg");
+  background-image: url("../static/icons/fus-star2.svg");
 }
 
 .fus-star2-border {
-  background-image: url("/systems/projectfu/styles/static/icons/fus-star2-border.svg");
+  background-image: url("../static/icons/fus-star2-border.svg");
 }
 
 .ra-1x {
@@ -5872,13 +5872,13 @@ input[type=checkbox] {
   background: rgba(43, 74, 66, 0.95);
 }
 .app.backgroundstyle .window-content {
-  background: url("/systems/projectfu/styles/static/ui/HojitasDouble_highres.png"), -webkit-gradient(linear, right top, left top, from(rgba(17, 41, 41, 0.9)), to(rgba(38, 88, 83, 0.9))), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
-  background: url("/systems/projectfu/styles/static/ui/HojitasDouble_highres.png"), linear-gradient(270deg, rgba(17, 41, 41, 0.9) 0%, rgba(38, 88, 83, 0.9) 100%), linear-gradient(to right, #f5f5dc, #c9c7b8);
+  background: url("../static/ui/HojitasDouble_highres.png"), -webkit-gradient(linear, right top, left top, from(rgba(17, 41, 41, 0.9)), to(rgba(38, 88, 83, 0.9))), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
+  background: url("../static/ui/HojitasDouble_highres.png"), linear-gradient(270deg, rgba(17, 41, 41, 0.9) 0%, rgba(38, 88, 83, 0.9) 100%), linear-gradient(to right, #f5f5dc, #c9c7b8);
   background-size: 100% auto;
 }
 .app.backgroundstyle .window-content .section-container, .app.backgroundstyle .window-content .desc, .app.backgroundstyle .window-content .resource-content.level-field {
-  background: url(/systems/projectfu/styles/static/ui/Bkg_highres.png), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
-  background: url(/systems/projectfu/styles/static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+  background: url(../static/ui/Bkg_highres.png), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
+  background: url(../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
   background-blend-mode: multiply;
   background-repeat: repeat-y;
   background-position: right top;
@@ -6856,8 +6856,8 @@ a.inline-roll i {
   font-variant: small-caps;
 }
 .projectfu.unique-dialog .dialog-content .desc {
-  background: url(/systems/projectfu/styles/static/ui/Bkg_highres.png), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
-  background: url(/systems/projectfu/styles/static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+  background: url(../static/ui/Bkg_highres.png), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
+  background: url(../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
   background-blend-mode: multiply;
   background-repeat: repeat-y;
   background-position: right top;
@@ -6873,8 +6873,8 @@ a.inline-roll i {
   padding: 5px;
 }
 .projectfu.unique-dialog .dialog-content fieldset {
-  background: url(/systems/projectfu/styles/static/ui/Bkg_highres.png), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
-  background: url(/systems/projectfu/styles/static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+  background: url(../static/ui/Bkg_highres.png), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
+  background: url(../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
   background-blend-mode: multiply;
   background-repeat: repeat-y;
   background-position: right top;
@@ -9005,8 +9005,8 @@ a.inline-roll i {
   border: 1px solid rgba(44, 74, 66, 0.3294117647);
   width: 100%;
   justify-content: center;
-  background: url(/systems/projectfu/styles/static/ui/Bkg_highres.png), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
-  background: url(/systems/projectfu/styles/static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
+  background: url(../static/ui/Bkg_highres.png), -webkit-gradient(linear, left top, right top, from(#f5f5dc), to(#c9c7b8));
+  background: url(../static/ui/Bkg_highres.png), linear-gradient(to right, #f5f5dc, #c9c7b8);
   background-blend-mode: multiply;
   background-repeat: repeat-y;
   background-position: right top;
@@ -9527,7 +9527,7 @@ a.inline-roll i {
   --combat-info-image-size: calc(8.5em - var(--combat-info-content-padding) * 2);
   --combat-info-image-size-npcs: calc(7em - var(--combat-info-content-padding) * 2);
   --combat-info-image-size-compact: calc(2em - var(--combat-info-content-padding) * 2);
-  --combat-info-pc-background: url("/systems/projectfu/styles/static/ui/combat-hud/pc_bg.svg");
+  --combat-info-pc-background: url("../static/ui/combat-hud/pc_bg.svg");
   --combat-info-clip-path: polygon(50% 100%, 100% 50%, 100% 0%, 0% 0%, 0% 50%);
   --combat-image-size: var(--combat-info-image-size);
   --combat-bars-width-three: auto;
@@ -9541,7 +9541,7 @@ a.inline-roll i {
   --combat-ip-label-color: #ffdfbb;
   --combat-xp-label-color: #ffd166;
   --combat-zeropower-label-color: #f0ccff;
-  --combat-bars-background: url("/systems/projectfu/styles/static/ui/combat-hud/bar_bg.svg");
+  --combat-bars-background: url("../static/ui/combat-hud/bar_bg.svg");
   --combat-effects-background: rgba(25, 25, 25, 0.6);
   max-height: 355px;
 }
