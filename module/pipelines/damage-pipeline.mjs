@@ -476,11 +476,15 @@ function getSourceInfoFromChatMessage(message) {
 }
 
 // TODO: Move elsewhere
-/**
+/**tt
  * @param {Document} message
  * @param {jQuery} jQuery
  */
 function onRenderChatMessage(message, jQuery) {
+	if (!message.getFlag(SYSTEM, Flags.ChatMessage.Damage)) {
+		return;
+	}
+
 	let disabled = false;
 
 	/** @type DamageData **/

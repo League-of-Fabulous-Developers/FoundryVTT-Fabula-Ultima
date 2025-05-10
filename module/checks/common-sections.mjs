@@ -205,6 +205,7 @@ const targeted = (sections, actor, item, targets, flags, accuracyData = undefine
 			let selectedActions = [];
 
 			if (accuracyData && damageData) {
+				Pipeline.toggleFlag(flags, Flags.ChatMessage.Damage);
 				actions.push(
 					new TargetAction('applyDamage', 'fa-heart-crack', 'FU.ChatApplyDamageTooltip', {
 						accuracy: accuracyData,
