@@ -398,12 +398,18 @@ function evaluateMacros(expression, context) {
 				}
 				return skill.system.level.value;
 			}
-			// Clock section
+			// Attribute size
+			case 'ats': {
+				const actor = context.resolveActorOrSource(match, redirect);
+				const attribute = parseIdentifier(splitArgs[0]);
+				return getAttributeSize(actor, attribute);
+			}
+			// Progress track
 			case 'pg':
 			case 'cs': {
-				context.assertActor();
+				const actor = context.resolveActorOrSource(match, redirect);
 				const id = parseIdentifier(splitArgs[0]);
-				const clock = context.actor.resolveProgress(id);
+				const clock = actor.resolveProgress(id);
 				if (!clock) {
 					ui.notifications.warn(`${game.i18n.localize('FU.ChatEvaluateNoProgress')}: '${id}'`, { localize: true });
 					throw new Error(`The progress track with id ${id} was not found`);

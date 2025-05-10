@@ -37,19 +37,25 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
       },
       "changes": [
         {
           "key": "system.derived.mdef.value",
           "mode": 4,
-          "value": "$wlp+(&cs('brainwave-clock)*2)",
+          "value": "~&ats('wlp')+(~&cs('brainwave-clock)*2)",
           "priority": null
         },
         {
           "key": "system.derived.def.value",
           "mode": 4,
-          "value": "$wlp+(&cs('brainwave-clock)*2)",
+          "value": "~&ats('wlp')+(~&cs('brainwave-clock)*2)",
           "priority": null
         }
       ],
@@ -67,7 +73,7 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1743843067862,
-        "modifiedTime": 1743843349414,
+        "modifiedTime": 1746873248749,
         "lastModifiedBy": "JXPd932s9DHQRD0w"
       },
       "_key": "!items.effects!hNeylrus4Ii8hIKa.Xrd3uuRrv6x4lRnR"
