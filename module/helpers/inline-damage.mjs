@@ -73,7 +73,8 @@ function activateListeners(document, html) {
 			let targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
-				sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
+				// TODO: Verify
+				//sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
 				const type = this.dataset.type;
 				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);

@@ -626,6 +626,10 @@ async function onRevealEvent(event) {
 	if (party) {
 		console.info(`Revealing information on ${event.actor.name}: ${JSON.stringify(event.revealed)}`);
 		const adversary = await party.getAdversary(event.actor.resolveUuid());
+		// Not added if it was outside of combat, for example
+		if (!adversary) {
+			return;
+		}
 		if (!adversary.revealed) {
 			adversary.revealed = {};
 		}
