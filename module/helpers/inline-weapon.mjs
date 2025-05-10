@@ -41,40 +41,42 @@ const editorEnricher = {
 };
 
 /**
- * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {ChatMessage} document
+ * @param {HTMLElement} html
  */
 function activateListeners(document, html) {
 	if (document instanceof DocumentSheet) {
 		document = document.document;
 	}
 
-	html.find(`a.inline.inline-weapon[draggable]`)
-		.on('click', async function () {
-			let targets = await targetHandler();
+	// Ensure html is a native HTMLElement
+	const root = html instanceof HTMLElement ? html : html[0];
+
+	root.querySelectorAll('a.inline.inline-weapon[draggable]')?.forEach((el) => {
+		el.addEventListener('click', async () => {
+			const targets = await targetHandler();
 			if (targets.length > 0) {
-				const sourceInfo = InlineHelper.determineSource(document, this);
-				const traits = this.dataset.traits.split(' ');
-				targets.forEach(async (target) => {
+				const sourceInfo = InlineHelper.determineSource(document, el);
+				const traits = el.dataset.traits?.split(' ') ?? [];
+				for (const target of targets) {
 					await applyTraitsToWeapon(target, sourceInfo, traits);
-				});
+				}
 			}
-		})
-		.on('dragstart', function (event) {
-			/** @type DragEvent */
-			event = event.originalEvent;
-			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
-				return;
-			}
+		});
+
+		el.addEventListener('dragstart', (event) => {
+			if (!(el instanceof HTMLElement) || !event.dataTransfer) return;
 
 			const data = {
 				type: INLINE_WEAPON,
-				sourceInfo: InlineHelper.determineSource(document, this),
-				traits: this.dataset.traits,
+				sourceInfo: InlineHelper.determineSource(document, el),
+				traits: el.dataset.traits,
 			};
+
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		});
+	});
 }
 
 async function onDropActor(actor, sheet, { type, sourceInfo, traits, ignore }) {

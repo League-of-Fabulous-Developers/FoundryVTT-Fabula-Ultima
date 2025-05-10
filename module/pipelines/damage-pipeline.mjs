@@ -479,7 +479,7 @@ function getSourceInfoFromChatMessage(message) {
  * @param {ChatMessage} message
  * @param {HTMLElement} html
  */
-function renderChatMessageHTML(message, html) {
+function onRenderChatMessage(message, html) {
 	let disabled = false;
 
 	/** @type DamageData **/
@@ -616,7 +616,7 @@ async function absorbDamage(resource, amount, sourceInfo, targets) {
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
-	Hooks.on('renderChatMessageHTML', renderChatMessageHTML);
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 
 	const onAbsorbDamage = async (message, resource) => {
 		const targets = await getSelected();

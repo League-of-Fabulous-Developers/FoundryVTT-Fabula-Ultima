@@ -255,12 +255,17 @@ function capitalize(word) {
 	return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }
 
+/**
+ * @param {TextEditorEnricherConfig} enricher
+ * @param {*} activateListeners
+ * @param onDropActor
+ */
 function registerEnricher(enricher, activateListeners, onDropActor = undefined) {
 	CONFIG.TextEditor.enrichers.push(enricher);
-	Hooks.on('renderChatMessage', activateListeners);
+	Hooks.on('renderChatMessageHTML', activateListeners);
 	Hooks.on('renderApplication', activateListeners);
-	Hooks.on('renderActorSheet', activateListeners);
-	Hooks.on('renderItemSheet', activateListeners);
+	Hooks.on('renderActorSheetV2', activateListeners);
+	Hooks.on('renderItemSheetV2', activateListeners);
 	if (onDropActor) {
 		Hooks.on('dropActorSheetData', onDropActor);
 	}

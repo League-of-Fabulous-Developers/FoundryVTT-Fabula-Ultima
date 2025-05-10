@@ -269,7 +269,7 @@ function calculateExpense(item, targets) {
  * @param {Document} message
  * @param {HTMLElement} html
  */
-function renderChatMessageHTML(message, html) {
+function onRenderChatMessage(message, html) {
 	if (!message.getFlag(SYSTEM, Flags.ChatMessage.ResourceLoss) && !message.getFlag(SYSTEM, Flags.ChatMessage.ResourceGain)) {
 		return;
 	}
@@ -312,7 +312,7 @@ function renderChatMessageHTML(message, html) {
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
-	Hooks.on('renderChatMessageHTML', renderChatMessageHTML);
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 }
 
 export const ResourcePipeline = {

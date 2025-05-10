@@ -270,13 +270,6 @@ Hooks.once('init', async () => {
 
 	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
 
-	CONFIG.TextEditor.enrichers.push(InlineDamage.enricher);
-	Hooks.on('renderChatMessage', InlineDamage.activateListeners);
-	Hooks.on('renderApplication', InlineDamage.activateListeners);
-	Hooks.on('renderActorSheet', InlineDamage.activateListeners);
-	Hooks.on('renderItemSheet', InlineDamage.activateListeners);
-	Hooks.on('dropActorSheetData', InlineDamage.onDropActor);
-
 	CONFIG.TextEditor.enrichers.push(...InlineResources.enrichers);
 	Hooks.on('renderChatMessage', InlineResources.activateListeners);
 	Hooks.on('renderApplication', InlineResources.activateListeners);
@@ -284,21 +277,11 @@ Hooks.once('init', async () => {
 	Hooks.on('renderItemSheet', InlineResources.activateListeners);
 	Hooks.on('dropActorSheetData', InlineResources.onDropActor);
 
-	CONFIG.TextEditor.enrichers.push(InlineChecks.enricher);
-	Hooks.on('renderChatMessage', InlineChecks.activateListeners);
-	Hooks.on('renderApplication', InlineChecks.activateListeners);
-	Hooks.on('renderActorSheet', InlineChecks.activateListeners);
-	Hooks.on('renderItemSheet', InlineChecks.activateListeners);
-
-	CONFIG.TextEditor.enrichers.push(InlineWeapon.enricher);
-	Hooks.on('renderChatMessage', InlineWeapon.activateListeners);
-	Hooks.on('renderApplication', InlineWeapon.activateListeners);
-	Hooks.on('renderActorSheet', InlineWeapon.activateListeners);
-	Hooks.on('renderItemSheet', InlineWeapon.activateListeners);
-	Hooks.on('dropActorSheetData', InlineWeapon.onDropActor);
-
 	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
+	InlineHelper.registerEnricher(InlineDamage.enricher, InlineDamage.activateListeners, InlineDamage.onDropActor);
+	InlineHelper.registerEnricher(InlineChecks.enricher, InlineChecks.activateListeners);
+	InlineHelper.registerEnricher(InlineWeapon.enricher, InlineWeapon.activateListeners, InlineWeapon.onDropActor);
 	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
 	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
 	InlineHelper.registerEnricher(InlineClocks.enricher, InlineClocks.activateListeners);
