@@ -212,7 +212,7 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 		ev.preventDefault();
 
 		// Retrieve drag data using TextEditor
-		const data = TextEditor.getDragEventData(ev);
+		const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(ev);
 		if (!data || data.type !== 'Item') return await super._onDrop(ev);
 
 		// Check if the item is embedded within an actor (reordering within the sheet) and uses default behavior

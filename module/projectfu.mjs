@@ -224,33 +224,33 @@ Hooks.once('init', async () => {
 	CONFIG.specialStatusEffects.DEFEATED = 'ko';
 
 	// Register sheet application classes
-	Actors.unregisterSheet('core', ActorSheet);
-	Actors.registerSheet('projectfu', FUStandardActorSheet, {
+	foundry.documents.collections.Actors.unregisterSheet('core', ActorSheet);
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUStandardActorSheet, {
 		types: ['character', 'npc'],
 		makeDefault: true,
 		label: 'Standard Actor Sheet',
 	});
-	Actors.registerSheet('projectfu', FUPartySheet, {
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUPartySheet, {
 		types: ['party'],
 		makeDefault: true,
 		label: 'Standard Party Sheet',
 	});
-	Actors.registerSheet('projectfu', FUStashSheet, {
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUStashSheet, {
 		types: ['stash'],
 		makeDefault: true,
 		label: 'Standard Stash Sheet',
 	});
-	Items.unregisterSheet('core', ItemSheet);
-	Items.registerSheet('projectfu', FUItemSheet, {
+	foundry.documents.collections.Items.unregisterSheet('core', ItemSheet);
+	foundry.documents.collections.Items.registerSheet('projectfu', FUItemSheet, {
 		makeDefault: true,
 		label: 'Standard Item Sheet',
 	});
-	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
+	foundry.documents.collections.Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],
 		makeDefault: true,
 		label: 'Class Feature Sheet',
 	});
-	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
+	foundry.documents.collections.Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
 		types: ['optionalFeature'],
 		makeDefault: true,
 		label: 'Optional Feature Sheet',

@@ -2,7 +2,7 @@ import { OptionalFeatureDataModel } from './optional-feature-data-model.mjs';
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../../../pipelines/effects.mjs';
 import { InlineHelper } from '../../../helpers/inline-helper.mjs';
 
-export class FUOptionalFeatureSheet extends ItemSheet {
+export class FUOptionalFeatureSheet extends foundry.appv1.sheets.ItemSheet {
 	// Initialize drag counter
 	dragCounter = 0;
 

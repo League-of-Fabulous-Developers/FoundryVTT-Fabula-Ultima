@@ -175,7 +175,7 @@ const SUPPORTED_CHANGE_TYPES = {
 	},
 };
 
-class TempActiveEffectConfig extends ActiveEffectConfig {
+class TempActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
 	async _updateObject(event, formData) {
 		this.object.updateSource(formData);
 		return this.render();

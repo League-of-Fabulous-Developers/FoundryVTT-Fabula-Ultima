@@ -137,7 +137,7 @@ async function prepareItems(context) {
 		}
 
 		item.enrichedHtml = {
-			description: await TextEditor.enrichHTML(item.system?.description ?? ''),
+			description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system?.description ?? ''),
 		};
 
 		if (item.type === 'basic') {
@@ -532,30 +532,31 @@ function activateDefaultListeners(html, sheet) {
 		{
 			name: game.i18n.localize('FU.Edit'),
 			icon: '<i class="fas fa-edit"></i>',
-			callback: (jq) => _onItemEdit(jq, sheet),
-			condition: (jq) => !!jq.data('itemId'),
+			callback: (html) => _onItemEdit(html, sheet),
+			condition: (html) => !!html.dataset.itemId,
 		},
 		{
 			name: game.i18n.localize('FU.Duplicate'),
 			icon: '<i class="fas fa-clone"></i>',
-			callback: (jq) => _onItemDuplicate(jq, sheet),
-			condition: (jq) => !!jq.data('itemId'),
+			callback: (html) => _onItemDuplicate(html, sheet),
+			condition: (html) => !!html.dataset.itemId,
 		},
 		{
 			name: game.i18n.localize('FU.Delete'),
 			icon: '<i class="fas fa-trash"></i>',
-			callback: (jq) => _onItemDelete(jq, sheet),
-			condition: (jq) => !!jq.data('itemId'),
+			callback: (html) => _onItemDelete(html, sheet),
+			condition: (html) => !!html.dataset.itemId,
 		},
 	];
+
 	if (sheet.actor.isCharacterType) {
 		contextMenuOptions.push({
 			name: game.i18n.localize('FU.StashItem'),
 			icon: '<i class="fa fa-paper-plane"></i>',
-			callback: (jq) => onSendItemToPartyStash(jq, sheet),
-			condition: (jq) => {
-				const item = sheet.actor.items.get(jq.data('itemId'));
-				return item.canStash;
+			callback: (html) => onSendItemToPartyStash(html, sheet),
+			condition: (html) => {
+				const item = sheet.actor.items.get(html.dataset.itemId);
+				return item?.canStash;
 			},
 		});
 	}
@@ -573,8 +574,8 @@ function activateDefaultListeners(html, sheet) {
 				contextMenuOptions.push({
 					name: game.i18n.localize('FU.Behavior'),
 					icon: `<i class="${behaviorClass} fa-address-book"></i>`,
-					callback: (jq) => _onItemBehavior(jq, sheet),
-					condition: (jq) => !!jq.data('itemId'),
+					callback: (html) => _onItemBehavior(html, sheet),
+					condition: (html) => !!html.dataset.itemid,
 				});
 			}
 		}
@@ -648,36 +649,38 @@ async function onSendItemToPartyStash(jq, sheet) {
 
 /**
  * Handles the editing of an item.
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * @param {HTMLElement} element - The element the ContextMenu was attached to
  * @param {ActorSheet} sheet
  */
-function _onItemEdit(jq, sheet) {
-	const dataItemId = jq.data('itemId');
-	const item = sheet.actor.items.get(dataItemId);
+function _onItemEdit(element, sheet) {
+	const itemId = element.dataset.itemId;
+	const item = sheet.actor.items.get(itemId);
 	if (item) item.sheet.render(true);
 }
 
 /**
  * Toggles the behavior state of the specified item.
- * @param {jQuery} jq - The element that the ContextMenu was attached to.
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
  * @param {ActorSheet} sheet
- * @returns {Promise<void>} - A promise that resolves when the item's behavior state has been updated.
+ * @returns {Promise<void>}
  */
-async function _onItemBehavior(jq, sheet) {
-	const itemId = jq.data('itemId');
+async function _onItemBehavior(element, sheet) {
+	const itemId = element.dataset.itemId;
 	const item = sheet.actor.items.get(itemId);
 	const isBehaviorBool = item.system.isBehavior.value;
-	sheet.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
+	await sheet.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
 }
 
 /**
  * Deletes the specified item after confirming with the user.
- * @param {jQuery} jq - The element that the ContextMenu was attached to.
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
  * @param {ActorSheet} sheet
- * @returns {Promise<void>} - A promise that resolves when the item has been deleted.
+ * @returns {Promise<void>}
  */
-async function _onItemDelete(jq, sheet) {
-	const item = sheet.actor.items.get(jq.data('itemId'));
+async function _onItemDelete(element, sheet) {
+	const itemId = element.dataset.itemId;
+	const item = sheet.actor.items.get(itemId);
+
 	if (
 		await Dialog.confirm({
 			title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
@@ -686,18 +689,19 @@ async function _onItemDelete(jq, sheet) {
 		})
 	) {
 		await item.delete();
-		jq.slideUp(200, () => sheet.render(false));
+		sheet.render(false); // Removed `jq.slideUp` since it's jQuery-specific
 	}
 }
 
 /**
  * Duplicates the specified item and adds it to the actor's item list.
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
  * @param {ActorSheet} sheet
- * @returns {Promise<void>} - A promise that resolves when the item has been duplicated.
+ * @returns {Promise<void>}
  */
-async function _onItemDuplicate(jq, sheet) {
-	const item = sheet.actor.items.get(jq.data('itemId'));
+async function _onItemDuplicate(element, sheet) {
+	const itemId = element.dataset.itemId;
+	const item = sheet.actor.items.get(itemId);
 	if (item) {
 		const dupData = foundry.utils.duplicate(item);
 		dupData.name += ` (${game.i18n.localize('FU.Copy')})`;
@@ -715,7 +719,7 @@ function _onMiddleClickEditItem(ev) {
 }
 
 /**
- * @param html
+ * @param  html
  * @param {ActorSheet} sheet
  */
 function activateInventoryListeners(html, sheet) {
