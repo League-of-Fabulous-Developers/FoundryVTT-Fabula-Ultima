@@ -316,15 +316,15 @@ function sendToChatEffectRemoved(effect, actor) {
 }
 
 /**
- * @param {FUActor|FUItem} actor
+ * @param {FUActor|FUItem} target
  * @param {ActiveEffectData} effect
  * @param {InlineSourceInfo} sourceInfo
  * @param {InlineEffectConfiguration} config
  * @returns {FUActiveEffect}
  */
-async function onApplyEffectToActor(actor, effect, sourceInfo, config = undefined) {
-	if (actor) {
-		if (!actor.isCharacterType) {
+async function onApplyEffect(target, effect, sourceInfo, config = undefined) {
+	if (target) {
+		if (target instanceof FUActor && !target.isCharacterType) {
 			ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
 			return;
 		}
@@ -334,7 +334,7 @@ async function onApplyEffectToActor(actor, effect, sourceInfo, config = undefine
 				...effect,
 				flags: flags,
 			},
-			{ parent: actor },
+			{ parent: target },
 		);
 		await applyConfiguration(instance, config);
 		return instance;
@@ -667,7 +667,8 @@ function initialize() {
 export const Effects = Object.freeze({
 	initialize,
 	onRemoveEffectFromActor,
-	onApplyEffectToActor,
+	onApplyEffect,
+	onApplyEffectToActor: onApplyEffect,
 	canBeRemoved,
 	toggleStatusEffect,
 	BOONS_AND_BANES,

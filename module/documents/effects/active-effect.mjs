@@ -72,6 +72,8 @@ export class FUActiveEffect extends ActiveEffect {
 		return TEMPORARY;
 	}
 
+	static #defaultImage = 'icons/svg/aura.svg';
+
 	/**
 	 * @private
 	 * @override
@@ -84,7 +86,7 @@ export class FUActiveEffect extends ActiveEffect {
 			[`system.duration.remaining`]: this.system.duration.interval,
 		};
 		// TODO: Verify this is okay
-		if (this.parent instanceof Item) {
+		if (this.parent instanceof Item && this.img === FUActiveEffect.#defaultImage) {
 			changes.img = this.parent.img;
 		}
 		this.updateSource(changes);
