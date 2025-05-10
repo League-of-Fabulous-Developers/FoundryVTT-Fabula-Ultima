@@ -8,7 +8,7 @@ import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
  * @property {Function<Combatant, Boolean, void>} hoverCombatant
  * @remarks {@link https://foundryvtt.com/api/classes/client.CombatTracker.html}
  */
-export class FUCombatTracker extends CombatTracker {
+export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			template: 'systems/projectfu/templates/ui/combat-tracker.hbs',

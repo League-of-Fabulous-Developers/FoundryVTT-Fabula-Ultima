@@ -4,7 +4,7 @@ import { ActorSheetUtils } from './actor-sheet-utils.mjs';
  * @property {FUActor} actor
  * @extends {ActorSheet}
  */
-export class FUStashSheet extends ActorSheet {
+export class FUStashSheet extends foundry.appv1.sheets.ActorSheet {
 	static get defaultOptions() {
 		const defaultOptions = super.defaultOptions;
 		return foundry.utils.mergeObject(defaultOptions, {

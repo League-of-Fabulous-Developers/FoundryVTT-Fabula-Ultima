@@ -146,7 +146,7 @@ async function inlineEffectEnricher(match, options) {
 }
 
 /**
- * @param {ClientDocument} document
+ * @param {ChatMessage} document
  * @param {jQuery} html
  */
 function activateListeners(document, html) {

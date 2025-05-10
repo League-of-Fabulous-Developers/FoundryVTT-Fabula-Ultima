@@ -224,33 +224,33 @@ Hooks.once('init', async () => {
 	CONFIG.specialStatusEffects.DEFEATED = 'ko';
 
 	// Register sheet application classes
-	Actors.unregisterSheet('core', ActorSheet);
-	Actors.registerSheet('projectfu', FUStandardActorSheet, {
+	foundry.documents.collections.Actors.unregisterSheet('core', ActorSheet);
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUStandardActorSheet, {
 		types: ['character', 'npc'],
 		makeDefault: true,
 		label: 'Standard Actor Sheet',
 	});
-	Actors.registerSheet('projectfu', FUPartySheet, {
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUPartySheet, {
 		types: ['party'],
 		makeDefault: true,
 		label: 'Standard Party Sheet',
 	});
-	Actors.registerSheet('projectfu', FUStashSheet, {
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUStashSheet, {
 		types: ['stash'],
 		makeDefault: true,
 		label: 'Standard Stash Sheet',
 	});
-	Items.unregisterSheet('core', ItemSheet);
-	Items.registerSheet('projectfu', FUItemSheet, {
+	foundry.documents.collections.Items.unregisterSheet('core', ItemSheet);
+	foundry.documents.collections.Items.registerSheet('projectfu', FUItemSheet, {
 		makeDefault: true,
 		label: 'Standard Item Sheet',
 	});
-	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
+	foundry.documents.collections.Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],
 		makeDefault: true,
 		label: 'Class Feature Sheet',
 	});
-	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
+	foundry.documents.collections.Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
 		types: ['optionalFeature'],
 		makeDefault: true,
 		label: 'Optional Feature Sheet',
@@ -258,9 +258,9 @@ Hooks.once('init', async () => {
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	DamagePipeline.initialize();
+	ResourcePipeline.initialize();
 	Effects.initialize();
 	InventoryPipeline.initialize();
-	Hooks.on(`renderChatMessage`, ResourcePipeline.onRenderChatMessage);
 	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
@@ -270,13 +270,6 @@ Hooks.once('init', async () => {
 
 	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
 
-	CONFIG.TextEditor.enrichers.push(InlineDamage.enricher);
-	Hooks.on('renderChatMessage', InlineDamage.activateListeners);
-	Hooks.on('renderApplication', InlineDamage.activateListeners);
-	Hooks.on('renderActorSheet', InlineDamage.activateListeners);
-	Hooks.on('renderItemSheet', InlineDamage.activateListeners);
-	Hooks.on('dropActorSheetData', InlineDamage.onDropActor);
-
 	CONFIG.TextEditor.enrichers.push(...InlineResources.enrichers);
 	Hooks.on('renderChatMessage', InlineResources.activateListeners);
 	Hooks.on('renderApplication', InlineResources.activateListeners);
@@ -284,21 +277,11 @@ Hooks.once('init', async () => {
 	Hooks.on('renderItemSheet', InlineResources.activateListeners);
 	Hooks.on('dropActorSheetData', InlineResources.onDropActor);
 
-	CONFIG.TextEditor.enrichers.push(InlineChecks.enricher);
-	Hooks.on('renderChatMessage', InlineChecks.activateListeners);
-	Hooks.on('renderApplication', InlineChecks.activateListeners);
-	Hooks.on('renderActorSheet', InlineChecks.activateListeners);
-	Hooks.on('renderItemSheet', InlineChecks.activateListeners);
-
-	CONFIG.TextEditor.enrichers.push(InlineWeapon.enricher);
-	Hooks.on('renderChatMessage', InlineWeapon.activateListeners);
-	Hooks.on('renderApplication', InlineWeapon.activateListeners);
-	Hooks.on('renderActorSheet', InlineWeapon.activateListeners);
-	Hooks.on('renderItemSheet', InlineWeapon.activateListeners);
-	Hooks.on('dropActorSheetData', InlineWeapon.onDropActor);
-
 	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
+	InlineHelper.registerEnricher(InlineDamage.enricher, InlineDamage.activateListeners, InlineDamage.onDropActor);
+	InlineHelper.registerEnricher(InlineChecks.enricher, InlineChecks.activateListeners);
+	InlineHelper.registerEnricher(InlineWeapon.enricher, InlineWeapon.activateListeners, InlineWeapon.onDropActor);
 	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
 	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
 	InlineHelper.registerEnricher(InlineClocks.enricher, InlineClocks.activateListeners);

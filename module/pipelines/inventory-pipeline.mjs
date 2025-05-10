@@ -443,26 +443,26 @@ function validateFunds(target, cost) {
 
 /**
  * @param {Document} message
- * @param {jQuery} jQuery
+ * @param {HTMLElement} html
  */
-async function onRenderChatMessage(message, jQuery) {
+async function onRenderChatMessage(message, html) {
 	if (!message.getFlag(Flags.Scope, Flags.ChatMessage.Inventory) && !message.getFlag(Flags.Scope, Flags.ChatMessage.ResourceGain)) {
 		return;
 	}
 
-	Pipeline.handleClick(message, jQuery, sellAction, async (dataset) => {
+	Pipeline.handleClick(message, html, sellAction, async (dataset) => {
 		const actor = dataset.actor;
 		const item = dataset.item;
 		return requestTrade(actor, item, true);
 	});
 
-	Pipeline.handleClick(message, jQuery, lootAction, async (dataset) => {
+	Pipeline.handleClick(message, html, lootAction, async (dataset) => {
 		const actor = dataset.actor;
 		const item = dataset.item;
 		return requestTrade(actor, item, false);
 	});
 
-	Pipeline.handleClick(message, jQuery, rechargeAction, async (dataset) => {
+	Pipeline.handleClick(message, html, rechargeAction, async (dataset) => {
 		const actor = fromUuidSync(dataset.actor);
 		return rechargeIP(actor);
 	});
@@ -472,7 +472,7 @@ async function onRenderChatMessage(message, jQuery) {
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
-	Hooks.on('renderChatMessage', onRenderChatMessage);
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 }
 
 export const InventoryPipeline = {
