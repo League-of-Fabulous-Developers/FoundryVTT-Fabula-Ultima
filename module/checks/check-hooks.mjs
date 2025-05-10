@@ -62,6 +62,7 @@ const prepareCheck = (check, actor, item, registerCallback) => {};
  * @property {CheckId} id a unique identifier for this check
  * @property {string} actorUuid
  * @property {string} itemUuid
+ * @property {string} itemName
  * @property {Roll | Object} roll the Roll instance or serialized form of the primary check
  * @property {(Roll | Object)[]} additionalRolls any secondary rolls, either as Roll instances or serialized
  * @property {Attribute} primary.attribute the first attribute

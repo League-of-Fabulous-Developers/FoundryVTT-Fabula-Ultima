@@ -335,6 +335,7 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
 		id: check.id,
 		actorUuid: actor.uuid,
 		itemUuid: item?.uuid,
+		itemName: item?.name,
 		roll: roll.toJSON(),
 		additionalRolls: [],
 		primary: Object.freeze({
@@ -518,6 +519,7 @@ const display = async (actor, item, initialConfigCallback = undefined) => {
 		id: foundry.utils.randomID(),
 		actorUuid: actor.uuid,
 		itemUuid: item?.uuid,
+		itemName: item?.name,
 		roll: null,
 		additionalRolls: [],
 		primary: null,

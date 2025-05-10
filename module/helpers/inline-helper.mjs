@@ -174,6 +174,9 @@ function determineSource(document, element) {
 		const check = document.getFlag(SYSTEM, Flags.ChatMessage.CheckV2);
 		if (check) {
 			itemUuid = check.itemUuid;
+			if (check.itemName) {
+				name = check.itemName;
+			}
 		} else {
 			// No need to check 'instanceof FUItem;
 			const item = document.getFlag(SYSTEM, Flags.ChatMessage.Item);
