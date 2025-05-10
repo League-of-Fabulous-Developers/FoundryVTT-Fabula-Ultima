@@ -258,9 +258,9 @@ Hooks.once('init', async () => {
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	DamagePipeline.initialize();
+	ResourcePipeline.initialize();
 	Effects.initialize();
 	InventoryPipeline.initialize();
-	Hooks.on(`renderChatMessage`, ResourcePipeline.onRenderChatMessage);
 	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);

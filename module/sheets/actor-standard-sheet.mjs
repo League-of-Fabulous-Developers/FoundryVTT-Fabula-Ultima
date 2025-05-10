@@ -321,6 +321,9 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 	/* -------------------------------------------- */
 
 	/** @override */
+	/**
+	 * @param {HTMLElement} html
+	 */
 	activateListeners(html) {
 		super.activateListeners(html);
 		ActorSheetUtils.activateDefaultListeners(html, this);
@@ -338,7 +341,7 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 		ActorSheetUtils.activateInventoryListeners(html, this);
 		html.on('click', '.use-equipment', this._onUseEquipment.bind(this)); // Toggle use equipment setting for npcs
 		html.on('click', '.item-favored', this._onItemFavorite.bind(this)); // Add item to favorites
-		html.on('click', '.item-behavior', (ev) => this._onItemBehavior($(ev.currentTarget))); // Add item to behavior roll
+		//html.on('click', '.item-behavior', (ev) => this._onItemBehavior($(ev.currentTarget))); // Add item to behavior roll
 		html.on('click', '.zenit-deposit', async (ev) => {
 			return InventoryPipeline.promptPartyZenitTransfer(this.actor, 'deposit');
 		});

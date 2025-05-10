@@ -88,47 +88,48 @@ function getSingleTarget(event) {
 
 /**
  * @param {ChatMessage} message
- * @param {jQuery} jQuery
- * @param {String} actionName The name of the data-action in the html, e.g: `a[data-action=...]`
- * @param {Function<Object, Promise>} onClick
- * @returns {Promise<*>}
+ * @param {HTMLElement} html
+ * @param {String} actionName - The name of the data-action, e.g: "roll"
+ * @param {(data: Object) => Promise<void>} onClick
  */
-async function handleClick(message, jQuery, actionName, onClick) {
-	const dataAction = jQuery.find(`a[data-action=${actionName}]`);
+async function handleClick(message, html, actionName, onClick) {
+	const dataAction = html.querySelector(`a[data-action="${actionName}"]`);
 	if (dataAction) {
-		dataAction.click(async (event) => {
+		dataAction.addEventListener('click', async (event) => {
 			event.preventDefault();
-			await onClick(dataAction.data());
+			await onClick({ ...dataAction.dataset });
 		});
 	}
 }
 
 /**
  * @param {ChatMessage} message
- * @param {jQuery} jQuery
- * @param {String} actionName The name of the data-action in the html, e.g: `a[data-action=...]`
- * @param {Function<Object, Promise} action
- * @returns {Promise<*>}
+ * @param {HTMLElement} html
+ * @param {String} actionName
+ * @param {(data: Object) => Promise<void>} action
  */
-async function handleClickRevert(message, jQuery, actionName, action) {
-	const revert = jQuery.find(`a[data-action=${actionName}]`);
-	if (revert) {
-		if (message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction)?.includes(actionName)) {
-			jQuery.find('.message-content').addClass('strikethrough');
-			revert.addClass('action-disabled');
-		} else {
-			revert.click(async (event) => {
-				event.preventDefault();
-				try {
-					await action(revert.data());
-					const revertedActions = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction) ?? [];
-					revertedActions.push(actionName);
-					message.setFlag(SYSTEM, Flags.ChatMessage.RevertedAction, revertedActions);
-				} catch (ex) {
-					console.debug(ex);
-				}
-			});
-		}
+async function handleClickRevert(message, html, actionName, action) {
+	const revert = html.querySelector(`a[data-action="${actionName}"]`);
+	if (!revert) return;
+
+	const messageContent = html.querySelector('.message-content');
+	const reverted = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction)?.includes(actionName);
+
+	if (reverted) {
+		messageContent?.classList.add('strikethrough');
+		revert.classList.add('action-disabled');
+	} else {
+		revert.addEventListener('click', async (event) => {
+			event.preventDefault();
+			try {
+				await action({ ...revert.dataset });
+				const revertedActions = message.getFlag(SYSTEM, Flags.ChatMessage.RevertedAction) ?? [];
+				revertedActions.push(actionName);
+				await message.setFlag(SYSTEM, Flags.ChatMessage.RevertedAction, revertedActions);
+			} catch (ex) {
+				console.debug(ex);
+			}
+		});
 	}
 }
 
