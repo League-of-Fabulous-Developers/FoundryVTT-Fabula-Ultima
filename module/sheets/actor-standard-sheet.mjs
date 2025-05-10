@@ -21,7 +21,7 @@ const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex
  * @description Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class FUStandardActorSheet extends ActorSheet {
+export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 	constructor(...args) {
 		super(...args);
 

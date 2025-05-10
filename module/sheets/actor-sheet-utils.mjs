@@ -520,7 +520,7 @@ function getSpellDisplayData(actor, item) {
 }
 
 /**
- * @param html
+ * @param {HTMLElement} html
  * @param {ActorSheet} sheet
  */
 function activateDefaultListeners(html, sheet) {
@@ -579,8 +579,8 @@ function activateDefaultListeners(html, sheet) {
 			}
 		}
 	});
-	// eslint-disable-next-line no-undef
-	new ContextMenu(html, '.item-option', contextMenuOptions, {
+
+	new foundry.applications.ux.ContextMenu.implementation(html, '.item-option', contextMenuOptions, {
 		eventName: 'click',
 		onOpen: (menu) => {
 			setTimeout(() => menu.querySelector('nav#context-menu')?.classList.add('item-options'), 1);

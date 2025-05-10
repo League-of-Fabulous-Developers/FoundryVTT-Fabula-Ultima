@@ -33,4 +33,4 @@ export const SystemControls = Object.freeze({
 	HOOK_GET_SYSTEM_TOOLS: `${SYSTEM}.getSystemControlTools`,
 });
 
-class SystemControlsLayer extends InteractionLayer {}
+class SystemControlsLayer extends foundry.canvas.layers.InteractionLayer {}
