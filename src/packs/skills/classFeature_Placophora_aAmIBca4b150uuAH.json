@@ -34,7 +34,7 @@
       "changes": [
         {
           "key": "system.derived.def.value",
-          "mode": 5,
+          "mode": 4,
           "value": "floor(13+&sl('theriomorphosis')/2)",
           "priority": null
         }
@@ -49,18 +49,25 @@
       },
       "tint": "#ffffff",
       "_stats": {
-        "coreVersion": "12.331",
-        "systemId": null,
-        "systemVersion": null,
+        "coreVersion": "12.343",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
         "createdTime": null,
-        "modifiedTime": 1744590629659,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn",
+        "modifiedTime": 1747072288712,
+        "lastModifiedBy": "aXKDYFrGlbJKqLXI",
         "compendiumSource": null,
         "duplicateSource": null
       },
       "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "origin": null,
       "sort": 0,
       "_key": "!items.effects!aAmIBca4b150uuAH.ZDcnVoPzAVT9GcRO"
