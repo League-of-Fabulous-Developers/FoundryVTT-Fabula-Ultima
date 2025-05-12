@@ -206,6 +206,15 @@ async function prepareItems(context) {
 			item.quality = itemData.qualityString;
 			treasures.push(item);
 		} else if (item.type === 'project') {
+			const itemObj = context.actor.items.get(item._id);
+			item.cost = itemObj.system.cost?.value;
+			item.discount = itemObj.system.discount?.value;
+			item.progressMax = itemObj.system.progress?.max;
+			item.progressPerDay = itemObj.system.progressPerDay?.value;
+			item.days = itemObj.system.days?.value;
+			item.progressCurr = itemObj.system.progress?.current;
+			item.progressStep = itemObj.system.progress?.step;
+			projects.push(item);
 			projects.push(item);
 		} else if (item.type === 'ritual') {
 			const itemObj = context.actor.items.get(item._id);
