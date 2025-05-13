@@ -3,7 +3,7 @@
   "name": "Drain Vigor",
   "type": "spell",
   "_id": "HCknXFHu7q0bJ2Cg",
-  "img": "icons/magic/death/hand-undead-skeleton-fire-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/drain_vigor.png",
   "system": {
     "subtype": {
       "value": ""
@@ -136,10 +136,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "createdTime": 1706571214060,
-    "modifiedTime": 1743618739354,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1747173727774,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
     "compendiumSource": null,
     "duplicateSource": null
   },

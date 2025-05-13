@@ -3,7 +3,7 @@
   "name": "Gamble",
   "type": "spell",
   "_id": "P33D2g4z1WlN9o6a",
-  "img": "icons/commodities/currency/coin-embossed-skull-gold.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/gamble.png",
   "system": {
     "subtype": {
       "value": ""
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "createdTime": 1706571324381,
-    "modifiedTime": 1744503014519,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1747173732894,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
     "compendiumSource": null,
     "duplicateSource": null
   },

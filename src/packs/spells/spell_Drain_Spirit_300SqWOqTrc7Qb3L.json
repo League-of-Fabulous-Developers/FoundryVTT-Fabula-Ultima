@@ -3,7 +3,7 @@
   "name": "Drain Spirit",
   "type": "spell",
   "_id": "300SqWOqTrc7Qb3L",
-  "img": "icons/magic/death/hand-undead-skeleton-fire-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/drain_spirit.png",
   "system": {
     "subtype": {
       "value": ""
@@ -138,10 +138,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "createdTime": 1706571054952,
-    "modifiedTime": 1743708536248,
-    "lastModifiedBy": "JXPd932s9DHQRD0w",
+    "modifiedTime": 1747173721441,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -2,7 +2,7 @@
   "folder": "3BdwBwfSnD04VRAz",
   "name": "Comet",
   "type": "spell",
-  "img": "icons/magic/earth/projectile-moonrock-asteroid.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/comet.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -128,10 +128,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "createdTime": 1710548744272,
-    "modifiedTime": 1744487875945,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1747173267212,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
     "compendiumSource": null,
     "duplicateSource": null
   },

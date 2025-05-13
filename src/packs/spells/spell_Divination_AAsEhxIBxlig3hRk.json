@@ -3,7 +3,7 @@
   "name": "Divination",
   "type": "spell",
   "_id": "AAsEhxIBxlig3hRk",
-  "img": "icons/magic/perception/orb-crystal-ball-scrying.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/divination.png",
   "system": {
     "subtype": {
       "value": ""
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You glimpse briefly into the future. Until this spell ends, after a creature you can see performs a Check, if it was not a <strong>fumble</strong> nor a <strong>critical success</strong>, you may force that creature to reroll both dice. Once you have forced <strong>two</strong> rerolls this way, this spell ends.</p><hr /><ul><li><p><strong>Target Receive</strong>: @EFFECT[Compendium.projectfu.spells.Item.7Lt7jZqWTtyWXzYR]{Effect: Divination}</p></li></ul>",
+    "description": "<p>You glimpse briefly into the future. Until this spell ends, after a creature you can see performs a Check, if it was not a <strong>fumble</strong> nor a <strong>critical success</strong>, you may force that creature to reroll both dice. Once you have forced <strong>two</strong> rerolls this way, this spell ends.</p><hr><ul><li><p><strong>Target Receive</strong>: @EFFECT[Compendium.projectfu.spells.Item.7Lt7jZqWTtyWXzYR]{Effect: Divination}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "createdTime": 1706570972318,
-    "modifiedTime": 1744504034693,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1747173701654,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
     "compendiumSource": null,
     "duplicateSource": null
   },

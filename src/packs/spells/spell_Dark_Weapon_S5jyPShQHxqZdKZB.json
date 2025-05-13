@@ -3,7 +3,7 @@
   "name": "Dark Weapon",
   "type": "spell",
   "_id": "S5jyPShQHxqZdKZB",
-  "img": "icons/weapons/swords/sword-flanged-lightning.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/dark_weapon.png",
   "system": {
     "subtype": {
       "value": ""
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "createdTime": 1706568328188,
-    "modifiedTime": 1745162951802,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1747173284669,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
     "compendiumSource": null,
     "duplicateSource": null
   },

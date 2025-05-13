@@ -3,7 +3,7 @@
   "name": "Effect: Acceleration",
   "type": "effect",
   "_id": "O8ZlgIEzCodMsadz",
-  "img": "icons/magic/time/arrows-circling-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_acceleration.png",
   "system": {
     "fuid": "effect-acceleration",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "icons/magic/time/arrows-circling-pink.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_acceleration.png",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -37,7 +37,13 @@
           "tracking": "self",
           "remaining": 0
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
       },
       "changes": [],
       "description": "<p>You gain the ability to perform a <strong>single</strong> additional action during each of your turns. Once you have performed a total of <strong>two</strong> additional actions, this effect ends.</p>",
@@ -50,12 +56,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1742672629257,
-        "modifiedTime": 1744487165382,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+        "modifiedTime": 1747177090591,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!O8ZlgIEzCodMsadz.d125R8pbNjfmRku0"
     }
@@ -69,12 +75,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1742672623861,
-    "modifiedTime": 1742672723949,
-    "lastModifiedBy": "JXPd932s9DHQRD0w"
+    "modifiedTime": 1747177084321,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_key": "!items!O8ZlgIEzCodMsadz"
 }

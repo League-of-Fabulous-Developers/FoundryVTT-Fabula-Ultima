@@ -3,7 +3,7 @@
   "name": "Anomaly",
   "type": "spell",
   "_id": "ztNmooCW5dwZqwPx",
-  "img": "icons/magic/unholy/hand-fire-skeleton-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/anomaly.png",
   "system": {
     "subtype": {
       "value": ""
@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You alter the very nature of your target. Until this spell ends, if the target would suffer damage of a type they Absorb or are Immune to, they are instead treated as if they were Vulnerable to that damage type. Once that happens, this spell ends.</p><hr /><ul><li><p><strong>Target Suffers</strong>: @EFFECT[Compendium.projectfu.spells.Item.rOzrw717cgCgjTZ7]{Effect: Anomaly}</p></li></ul>",
+    "description": "<p>You alter the very nature of your target. Until this spell ends, if the target would suffer damage of a type they Absorb or are Immune to, they are instead treated as if they were Vulnerable to that damage type. Once that happens, this spell ends.</p><hr><ul><li><p><strong>Target Suffers</strong>: @EFFECT[Compendium.projectfu.spells.Item.rOzrw717cgCgjTZ7]{Effect: Anomaly}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "createdTime": 1706568237548,
-    "modifiedTime": 1744504710487,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1747173127943,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
     "compendiumSource": null,
     "duplicateSource": null
   },
