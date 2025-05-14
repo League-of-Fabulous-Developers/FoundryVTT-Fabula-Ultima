@@ -3,7 +3,7 @@
   "name": "Bolt Weakness",
   "type": "effect",
   "_id": "MRNCMGIcZStGVV9J",
-  "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
     "fuid": "bolt-weakness",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "origin": "Compendium.projectfu.actor-effects.Item.MRNCMGIcZStGVV9J",
       "duration": {
         "rounds": 1,
@@ -30,6 +30,12 @@
       "system": {
         "duration": {
           "event": "none"
+        },
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
         }
       },
       "changes": [
@@ -55,12 +61,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737993735607,
-        "modifiedTime": 1744747355371,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+        "modifiedTime": 1747230929930,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!MRNCMGIcZStGVV9J.8d7eCqdpQlJhgkbn"
     }
@@ -74,12 +80,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.330",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1737993733855,
-    "modifiedTime": 1737993755913,
-    "lastModifiedBy": "esOkelwPNblkbxW3"
+    "modifiedTime": 1747230924233,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_key": "!items!MRNCMGIcZStGVV9J"
 }

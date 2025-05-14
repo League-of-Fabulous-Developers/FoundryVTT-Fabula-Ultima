@@ -3,7 +3,7 @@
   "name": "Air Weakness",
   "type": "effect",
   "_id": "aI4tsuVswH5gfGab",
-  "img": "systems/projectfu/styles/static/affinities/air.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "air-weakness",
     "cost": {
@@ -74,12 +74,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.330",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1737993655429,
-    "modifiedTime": 1737993704688,
-    "lastModifiedBy": "esOkelwPNblkbxW3"
+    "modifiedTime": 1747230845982,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_key": "!items!aI4tsuVswH5gfGab"
 }

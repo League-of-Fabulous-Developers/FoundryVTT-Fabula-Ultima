@@ -2,7 +2,7 @@
   "folder": "KoamGTrOopqqmbxH",
   "name": "Dark Resistance",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/dark.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "dark-resistance"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Dark Resistance",
-      "img": "systems/projectfu/styles/static/affinities/dark.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "_id": "4L1rmcuakZ313zy3",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.dark",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725754450220,
-        "modifiedTime": 1725754471879,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747230964106,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!fBbLvII5LUEqInQQ.4L1rmcuakZ313zy3"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750014969,
-    "modifiedTime": 1725750014969,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747230959976,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "fBbLvII5LUEqInQQ",
   "sort": 0,

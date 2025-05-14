@@ -3,7 +3,7 @@
   "name": "Ice Weakness",
   "type": "effect",
   "_id": "BVOW692emrw4yxR0",
-  "img": "systems/projectfu/styles/static/affinities/ice.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
     "fuid": "ice-weakness",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "systems/projectfu/styles/static/affinities/ice.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "origin": "Compendium.projectfu.actor-effects.Item.BVOW692emrw4yxR0",
       "duration": {
         "rounds": 1,
@@ -27,7 +27,14 @@
       "name": "Ice Weakness",
       "_id": "vZsvuOrG5RsJ0nOZ",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.ice",
@@ -51,12 +58,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737993904536,
-        "modifiedTime": 1737993929310,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1747231102629,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!BVOW692emrw4yxR0.vZsvuOrG5RsJ0nOZ"
     }
@@ -70,12 +77,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.330",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1737993896750,
-    "modifiedTime": 1737993900676,
-    "lastModifiedBy": "esOkelwPNblkbxW3"
+    "modifiedTime": 1747231098158,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_key": "!items!BVOW692emrw4yxR0"
 }

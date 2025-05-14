@@ -2,7 +2,7 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Air Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/air.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/air.png",
   "system": {
     "fuid": "air-immunity"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Air Immunity",
-      "img": "systems/projectfu/styles/static/affinities/air.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/air.png",
       "_id": "94GdTX2nFEVnsVRR",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.air.current",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725752594746,
-        "modifiedTime": 1725753036691,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747230890783,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!ZCe1E7RtKJLMgcn8.94GdTX2nFEVnsVRR"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750163418,
-    "modifiedTime": 1725750163418,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747230884683,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "ZCe1E7RtKJLMgcn8",
   "sort": 0,

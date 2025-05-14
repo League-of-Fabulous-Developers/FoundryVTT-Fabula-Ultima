@@ -2,7 +2,7 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Bolt Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
     "fuid": "bolt-immunity"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Bolt Immunity",
-      "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "_id": "oxBbQkbSWAeOsGei",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.bolt.current",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725754048483,
-        "modifiedTime": 1725754207688,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747230902595,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!51J6SZkx7gIRTosK.oxBbQkbSWAeOsGei"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750163418,
-    "modifiedTime": 1725750163418,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747230897330,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "51J6SZkx7gIRTosK",
   "sort": 0,

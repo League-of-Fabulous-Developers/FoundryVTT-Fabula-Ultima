@@ -2,7 +2,7 @@
   "folder": "KoamGTrOopqqmbxH",
   "name": "Bolt Resistance",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
     "fuid": "bolt-resistance"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Bolt Resistance",
-      "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "_id": "d4PESfqdTTnHDNVR",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.bolt",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725754411622,
-        "modifiedTime": 1725754447551,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747230911733,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!QrEztsujMpK33cpj.d4PESfqdTTnHDNVR"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750014969,
-    "modifiedTime": 1725750014969,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747230905980,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "QrEztsujMpK33cpj",
   "sort": 0,

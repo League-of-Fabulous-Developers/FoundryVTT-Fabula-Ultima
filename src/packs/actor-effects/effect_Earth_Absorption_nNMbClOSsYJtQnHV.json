@@ -2,7 +2,7 @@
   "folder": "rPNBQ4ka3rcyorik",
   "name": "Earth Absorption",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/earth.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-absorption"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Earth Absorption",
-      "img": "systems/projectfu/styles/static/affinities/earth.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "_id": "KTQezfDp5eqi6wG2",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.earth.current",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725750832186,
-        "modifiedTime": 1725750849073,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747230655865,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!nNMbClOSsYJtQnHV.KTQezfDp5eqi6wG2"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750295038,
-    "modifiedTime": 1725750295038,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747230649812,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "nNMbClOSsYJtQnHV",
   "sort": 0,

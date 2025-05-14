@@ -3,7 +3,7 @@
   "name": "Poison Weakness",
   "type": "effect",
   "_id": "2sXIFIXiWxRHt8CP",
-  "img": "systems/projectfu/styles/static/affinities/poison.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "system": {
     "fuid": "poison-weakness",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "systems/projectfu/styles/static/affinities/poison.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
       "origin": "Compendium.projectfu.actor-effects.Item.2sXIFIXiWxRHt8CP",
       "duration": {
         "rounds": 1,
@@ -27,7 +27,14 @@
       "name": "Poison Weakness",
       "_id": "cYu5F6yJb5nlOMfD",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.poison",
@@ -51,12 +58,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737993989740,
-        "modifiedTime": 1737994012373,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1747231204967,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!2sXIFIXiWxRHt8CP.cYu5F6yJb5nlOMfD"
     }
@@ -70,12 +77,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.330",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1737993987763,
-    "modifiedTime": 1737994014810,
-    "lastModifiedBy": "esOkelwPNblkbxW3"
+    "modifiedTime": 1747231199143,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_key": "!items!2sXIFIXiWxRHt8CP"
 }

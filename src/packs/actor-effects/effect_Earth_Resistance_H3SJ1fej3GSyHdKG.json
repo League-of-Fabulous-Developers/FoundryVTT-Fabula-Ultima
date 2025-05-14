@@ -2,7 +2,7 @@
   "folder": "KoamGTrOopqqmbxH",
   "name": "Earth Resistance",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/earth.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-resistance"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Earth Resistance",
-      "img": "systems/projectfu/styles/static/affinities/earth.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "_id": "qtuzit3IPq9yaoJ4",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.earth",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725754474466,
-        "modifiedTime": 1725754511362,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747231227187,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!H3SJ1fej3GSyHdKG.qtuzit3IPq9yaoJ4"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750014969,
-    "modifiedTime": 1725750014969,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747231222773,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "H3SJ1fej3GSyHdKG",
   "sort": 0,
