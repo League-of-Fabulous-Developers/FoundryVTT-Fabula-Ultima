@@ -1,0 +1,30 @@
+<form class="{{ cssClass }} {{ actor.type }} projectfu-actor-sheet h-100" autocomplete="off">
+	<div class="sheet-content-wrapper">
+		{{#if (or (eq system.study.value 1) (eq system.study.value 2) (eq system.study.value 3))}}
+		{{>"systems/projectfu/templates/actor/partials/actor-study.hbs" actor=actor}}
+		{{else}}
+		<header class="sheet-header">
+			{{!-- Name/HP/Level Section --}}
+			<div class="combine-header">
+				<img class="profile-img" src="{{ actor.img }}" data-edit="img" data-tooltip="{{ actor.name }}" />
+				<div class="header-fields">
+					{{!-- Start Header --}}
+					<div class="header-start grid grid-6col">
+						{{>"systems/projectfu/templates/actor/partials/actor-charname.hbs" actor=actor}}
+					</div>
+					<!-- Center Header -->
+					<div class="header-center ">
+						<div class="grid-span-4 desc" style="border-radius: 0;">
+							{{!-- Enriched Description --}}
+								<div class="fit-desc">
+									{{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
+									button=true owner=owner editable=editable }}
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		{{/if}}
+	</div>
+</form>

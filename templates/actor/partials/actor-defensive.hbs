@@ -1,27 +1,24 @@
-{{#if (or (eq actor.type "character")(eq system.study.value 0)(eq system.study.value 2) (eq
- system.study.value 3))}}
-    <div class=" grid grid-3col" style="height: 100%;">
-		{{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs"}}
-        <!-- FU Points -->
-        <div class="header-end flex-group-center resource-content" style="align-self: baseline;">
-            <a class="rollable" data-action="spendMetaCurrency">
-                {{#if (eq actor.type "npc")}}
-                    <span class="resource-label-l">
-                        <i class="fas fa-feather icon"></i>
-                        {{localize 'FU.UltimaPoints'}}
-                    </span>
-                {{/if}}
-                {{#if (eq actor.type "character")}}
-                    <span class="resource-label-l">
-                        <i class="fas fa-feather icon"></i>
-                        {{localize 'FU.FabulaPoints'}}
-                    </span>
-                {{/if}}
-            </a>
-            <div class="buttons-inc">
-                <input type="number" name="system.resources.fp.value" value="{{ system.resources.fp.value }}"
-                    data-dtype="Number" id="fp-input" class="fp-resource-inputs" />
-            </div>
+<div class=" grid grid-3col" style="height: 100%;">
+    {{>"systems/projectfu/templates/actor/partials/actor-derived-stats.hbs"}}
+    <!-- FU Points -->
+    <div class="header-end flex-group-center resource-content" style="align-self: baseline;">
+        <a class="rollable" data-action="spendMetaCurrency">
+            {{#if (eq actor.type "npc")}}
+                <span class="resource-label-l">
+                    <i class="fas fa-feather icon"></i>
+                    {{localize 'FU.UltimaPoints'}}
+                </span>
+            {{/if}}
+            {{#if (eq actor.type "character")}}
+                <span class="resource-label-l">
+                    <i class="fas fa-feather icon"></i>
+                    {{localize 'FU.FabulaPoints'}}
+                </span>
+            {{/if}}
+        </a>
+        <div class="buttons-inc">
+            <input type="number" name="system.resources.fp.value" value="{{ system.resources.fp.value }}"
+                data-dtype="Number" id="fp-input" class="fp-resource-inputs" />
         </div>
     </div>
-{{/if}}
+</div>

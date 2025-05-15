@@ -595,6 +595,7 @@
 		"Multipart": "Wieloczęściowy",
 		"Creature": "Stworzenie",
 		"CreatureType": "Typ Stworzenia",
+		"Species": "Species",
 		"Beast": "Bestia",
 		"Construct": "Konstrukt",
 		"Demon": "Demon",

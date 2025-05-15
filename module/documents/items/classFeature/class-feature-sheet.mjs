@@ -112,18 +112,27 @@ export class FUClassFeatureSheet extends ItemSheet {
 				}
 			});
 
-			async function enrichRecursively(obj) {
+			async function enrichRecursively(obj, { rollData, secrets, actor }) {
 				for (let [key, value] of Object.entries(obj)) {
 					if (typeof value === 'object') {
-						await enrichRecursively(value);
+						await enrichRecursively(value, { rollData, secrets, actor });
 					} else {
-						obj[key] = await TextEditor.enrichHTML(value, { rollData: data.additionalData?.rollData });
+						obj[key] = await TextEditor.enrichHTML(value, {
+							rollData,
+							secrets,
+							relativeTo: actor,
+						});
 					}
 				}
 			}
 
-			await enrichRecursively(data.enrichedHtml);
+			await enrichRecursively(data.enrichedHtml, {
+				rollData: data.additionalData?.rollData,
+				secrets: this.item.isOwner,
+				actor: this.item.parent,
+			});
 		}
+
 		data.features = Object.entries(CONFIG.FU.classFeatureRegistry.features()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
 		data.effects = prepareActiveEffectCategories(this.item.effects);
 

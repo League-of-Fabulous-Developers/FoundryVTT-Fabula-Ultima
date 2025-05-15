@@ -302,6 +302,14 @@
 	margin: 0px 5px 0;
 }
 
+/* Fit Description */
+.fit-desc {
+	.editor {
+		height: 100%;
+		min-height: fit-content;
+	}
+}
+
 /* Tiny Description */
 .tiny-desc {
 	.editor {
