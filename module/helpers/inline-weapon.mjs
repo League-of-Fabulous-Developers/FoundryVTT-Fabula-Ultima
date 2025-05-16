@@ -153,6 +153,7 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 				const effectData = createAlterDamageTypeEffect(weapon, choice, config.name);
 				// The name is modified
 				config.name = effectData.name;
+
 				Effects.onApplyEffect(weapon, effectData, sourceInfo, config).then((effect) => {
 					console.info(`Created effect: ${effect.uuid} on weapon uuid: ${weapon.uuid}`);
 				});

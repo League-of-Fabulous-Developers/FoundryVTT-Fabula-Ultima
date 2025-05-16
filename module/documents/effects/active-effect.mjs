@@ -86,6 +86,7 @@ export class FUActiveEffect extends ActiveEffect {
 			[`system.duration.remaining`]: this.system.duration.interval,
 		};
 		// TODO: Verify this is okay
+
 		if (this.parent instanceof Item && this.img === FUActiveEffect.#defaultImage) {
 			changes.img = this.parent.img;
 		}
@@ -162,7 +163,7 @@ export class FUActiveEffect extends ActiveEffect {
 	 * @override
 	 */
 	get isTemporary() {
-		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY) || this.system.duration.event !== 'none';
+		return (super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY)) && this.system.duration.event !== 'none';
 	}
 
 	/**
