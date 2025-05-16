@@ -4,3 +4,11 @@
                     value=(concat '<u>' reroll.value '</u>')}}}
     </div>
 </div>
+
+{{#if (includes reroll.selection "ignore-fp")}}
+<div class="detail-desc flexrow flex-group-center desc" style="padding: 0 2px;">
+    <div>
+        {{localize 'FU.DialogIgnoreFPCost'}}
+    </div>
+</div>
+{{/if}}
