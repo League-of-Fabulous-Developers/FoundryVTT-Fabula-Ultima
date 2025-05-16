@@ -3,11 +3,11 @@
 	{{!-- Sheet Tab Navigation --}}
 	<div class="side sidebar flex-group-center">
 		<nav class="sheet-tabs tabs menu" data-group="primary">
-			<a class="button button-style" data-tab="overview"><i class="icon ra ra-double-team"></i>Overview</a>
-			<a class="button button-style" data-tab="inventory"><i class="icon ra ra-hand"></i>Inventory</a>
+			<a class="button button-style" data-tab="overview"><i class="icon ra ra-double-team"></i>{{localize 'FU.Overview'}}</a>
+			<a class="button button-style" data-tab="inventory"><i class="icon ra ra-hand"></i>{{localize 'FU.Inventory'}}</a>
 			<a class="button button-style" data-tab="adversaries"><i class="icon ra ra-monster-skull "></i>{{localize 'FU.Adversaries'}}</a>
 			{{#if isGM}}
-				<a class="button button-style" data-tab="settings"><i class="icon ra ra-wrench"></i>Settings</a>
+				<a class="button button-style" data-tab="settings"><i class="icon ra ra-wrench"></i>{{localize 'FU.Settings'}}</a>
 			{{/if}}
 		</nav>
 

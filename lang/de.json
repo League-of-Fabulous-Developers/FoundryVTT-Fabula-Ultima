@@ -1398,6 +1398,7 @@
 		"Notes": "Notizen",
 		"PartySheetEmpty": "Du musst die Charaktere per Drag & Drop aus den Akteuren hierher bewegen. Denk daran es als aktive Gruppe in den Einstellungen zu setzen. Es gibt auch eine Tastenbelegung für den Gruppenbogen (Standard ist P)",
 		"PartyCompanionIdentity": "<strong>{actor}s</strong> Begleiter",
+		"Overview": "Overview",
 		"Adversaries": "Gegner",
 		"AdversariesEmpty": "Du musst einen NSC aus dem Akteur Tab oder aus Kompendien per Drag & Drop hier ablegen.",
 		"AdversaryNotStudied": "Dieser Gegner wurde noch nicht studiert.",

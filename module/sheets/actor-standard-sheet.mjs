@@ -53,7 +53,7 @@ export class FUStandardActorSheet extends ActorSheet {
 	get template() {
 		const type = this.actor.type;
 		const wl = ['character', 'npc'];
-		if (!game.user.isGM && !this.actor.owner && wl.includes(type)) {
+		if (!game.user.isGM && !this.actor.testUserPermission(game.user, 'OBSERVER') && wl.includes(type)) {
 			return `systems/projectfu/templates/actor/actor-${type}-limited-sheet.hbs`;
 		}
 		return `systems/projectfu/templates/actor/actor-${type}-sheet.hbs`;
