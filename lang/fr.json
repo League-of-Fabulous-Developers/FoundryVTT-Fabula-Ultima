@@ -1398,6 +1398,7 @@
 		"Notes": "Notes",
 		"PartySheetEmpty": "Vous devez glisser-déposer les personnages de la section Acteurs sur cette page. N'oubliez pas de le définir comme groupe actif dans les paramètres. Il existe également un raccourci clavier pour la feuille (par défaut P).",
 		"PartyCompanionIdentity": "Compagnon de <strong>{actor}</strong>",
+		"Overview": "Overview",
 		"Adversaries": "Adversaire",
 		"AdversariesEmpty": "Vous devez glisser-déposer le PNJ depuis les onglets Acteurs ou Compendiums ici.",
 		"AdversaryNotStudied": "L'adversaire n'a pas encore été analysé.",

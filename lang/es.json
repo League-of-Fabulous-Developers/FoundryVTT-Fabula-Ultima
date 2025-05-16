@@ -1398,6 +1398,7 @@
 		"Notes": "Notas",
 		"PartySheetEmpty": "Debes arrastrar y soltar los personajes desde la pestaña Actores hasta acá. Recuerda marcarla como el grupo activo en las configuraciones. Además, hay un acceso rápido para la hoja (por defecto P).",
 		"PartyCompanionIdentity": "El Compañero de <strong>{actor}</strong>",
+		"Overview": "Overview",
 		"Adversaries": "Adversarios",
 		"AdversariesEmpty": "Debes arrastrar y soltar hasta acá los PNJs de la pestaña de Actores o de los compendios",
 		"AdversaryNotStudied": "Este adversario no ha sido estudiado aún",

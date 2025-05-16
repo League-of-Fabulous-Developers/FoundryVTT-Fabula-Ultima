@@ -1398,6 +1398,7 @@
 		"Notes": "Note",
 		"PartySheetEmpty": "Devi trascinare e rilasciare i personaggi dagli Attori qui. Ricorda di impostarlo come gruppo attivo nelle impostazioni. Inoltre, c'è una scorciatoia da tastiera per la scheda (di default P).",
 		"PartyCompanionIdentity": "<strong>{actor}'s</strong> Companion",
+		"Overview": "Overview",
 		"Adversaries": "Adversaries",
 		"AdversariesEmpty": "You must drag-n-drop the NPCs from the Actors tab or compendiums onto here.",
 		"AdversaryNotStudied": "This adversary has not yet been studied",
