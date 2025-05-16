@@ -3,7 +3,7 @@
   "name": "Elemental Weapon",
   "type": "spell",
   "_id": "AIqyQ1m2hpX27rsd",
-  "img": "icons/magic/fire/dagger-rune-enchant-flame-purple-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_weapon.png",
   "system": {
     "subtype": {
       "value": ""
@@ -138,8 +138,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706564486966,
-    "modifiedTime": 1744476254612,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1746640898302,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },

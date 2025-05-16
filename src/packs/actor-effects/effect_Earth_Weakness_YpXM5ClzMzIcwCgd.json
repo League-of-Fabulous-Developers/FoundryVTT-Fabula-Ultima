@@ -3,7 +3,7 @@
   "name": "Earth Weakness",
   "type": "effect",
   "_id": "YpXM5ClzMzIcwCgd",
-  "img": "systems/projectfu/styles/static/affinities/earth.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-weakness",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "systems/projectfu/styles/static/affinities/earth.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "origin": "Compendium.projectfu.actor-effects.Item.YpXM5ClzMzIcwCgd",
       "duration": {
         "rounds": 1,
@@ -30,6 +30,12 @@
       "system": {
         "duration": {
           "event": "none"
+        },
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
         }
       },
       "changes": [
@@ -55,12 +61,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737993851533,
-        "modifiedTime": 1744747345093,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+        "modifiedTime": 1747231032816,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!YpXM5ClzMzIcwCgd.zOVD1WzW4Dn6JbeX"
     }
@@ -74,12 +80,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.330",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1737993849524,
-    "modifiedTime": 1737993886702,
-    "lastModifiedBy": "esOkelwPNblkbxW3"
+    "modifiedTime": 1747231028554,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_key": "!items!YpXM5ClzMzIcwCgd"
 }

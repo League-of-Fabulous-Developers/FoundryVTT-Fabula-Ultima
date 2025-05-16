@@ -72,7 +72,7 @@ export class FUActiveEffect extends ActiveEffect {
 		return TEMPORARY;
 	}
 
-	static defaultImg = 'icons/svg/aura.svg';
+	static #defaultImage = 'icons/svg/aura.svg';
 
 	/**
 	 * @private
@@ -86,11 +86,9 @@ export class FUActiveEffect extends ActiveEffect {
 			[`system.duration.remaining`]: this.system.duration.interval,
 		};
 		// TODO: Verify this is okay
-		if (this.parent instanceof Item) {
-			// If no img is set, then apply the parent's
-			if (this.img === FUActiveEffect.defaultImg) {
-				changes.img = this.parent.img;
-			}
+
+		if (this.parent instanceof Item && this.img === FUActiveEffect.#defaultImage) {
+			changes.img = this.parent.img;
 		}
 		this.updateSource(changes);
 		return super._preCreate(data, options, user);
@@ -205,6 +203,32 @@ export class FUActiveEffect extends ActiveEffect {
 		}
 	}
 
+	// TODO: REMOVE ONCE UPGRADED TO V13, WHERE THIS WAS FIXED
+	/**
+	 * Apply an ActiveEffect that uses an UPGRADE, or DOWNGRADE application mode.
+	 * Changes which UPGRADE or DOWNGRADE must be numeric to allow for comparison.
+	 * @param {Actor} actor                   The Actor to whom this effect should be applied
+	 * @param {EffectChangeData} change       The change data being applied
+	 * @param {*} current                     The current value being modified
+	 * @param {*} delta                       The parsed value of the change object
+	 * @param {object} changes                An object which accumulates changes to be applied
+	 * @override
+	 */
+	_applyUpgrade(actor, change, current, delta, changes) {
+		let update;
+		const ct = foundry.utils.getType(current);
+		switch (ct) {
+			case 'boolean':
+			case 'number':
+				if (change.mode === CONST.ACTIVE_EFFECT_MODES.UPGRADE && delta > current) update = delta;
+				else if (change.mode === CONST.ACTIVE_EFFECT_MODES.DOWNGRADE && delta < current) update = delta;
+				break;
+		}
+		if (update !== current && update !== undefined) {
+			changes[change.key] = update;
+		}
+	}
+
 	/**
 	 * @param {FUActor|FUItem} target
 	 * @param {EffectChangeData} change
@@ -313,3 +337,38 @@ function onApplyActiveEffect(actor, change, current) {
 	}
 }
 Hooks.on('applyActiveEffect', onApplyActiveEffect);
+
+Hooks.on('preCreateActiveEffect', (effect, options, userId) => {
+	const actor = effect.parent;
+	if (!actor || !actor.system || !actor.system.immunities) return true;
+
+	// Prevent creation on non-character actor types
+	if (!actor.isCharacterType) {
+		ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+		return false;
+	}
+
+	// Check if the effect is a status effect
+	const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
+
+	// Check for immunity using statusEffectId
+	if (statusEffectId) {
+		const immunityData = actor.system.immunities[statusEffectId];
+
+		// If immune, block effect creation
+		if (immunityData?.base) {
+			const message = game.i18n.format('FU.ImmunityDescription', {
+				status: statusEffectId,
+			});
+
+			ChatMessage.create({
+				content: message,
+				speaker: ChatMessage.getSpeaker({ actor: actor }),
+			});
+
+			return false; // Prevent the effect from being created
+		}
+	}
+
+	return true; // Allow the effect to be created
+});

@@ -391,10 +391,9 @@ export class FUCombat extends Combat {
 		};
 
 		//console.debug(`Combat started? ${data.hasCombatStarted}, round: ${this.round}, currentTurn: ${data.currentTurn}, turnsLeft: ${JSON.stringify(data.turnsLeft)}`);
-		// for (const combatant of this.combatants) {
-		// 	const canStartTurn = data.currentTurn === combatant.faction;
-		// 	console.debug(`- Combatant name: ${combatant.name}, id: ${combatant.id}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}, canStartTurn: ${canStartTurn}`);
-		// }
+		for (const combatant of this.combatants) {
+			console.debug(`- Combatant name: ${combatant.name}, id: ${combatant.id}, faction: ${combatant.faction}, isOwner: ${combatant.isOwner}, canStartTurn:}`);
+		}
 	}
 
 	/**
@@ -642,5 +641,27 @@ export class FUCombat extends Combat {
 	 */
 	hasActor(actor) {
 		return this.actors.includes(actor);
+	}
+
+	/**
+	 * @param {String} uuid
+	 * @returns True if the actor is present in the combat
+	 */
+	hasInstancedActor(uuid) {
+		return this.actors.find((a) => a.resolveUuid() === uuid);
+	}
+
+	/**
+	 * @returns {Boolean}
+	 */
+	static get hasActiveEncounter() {
+		return !!game.combat;
+	}
+
+	/**
+	 * @returns {FUCombat}
+	 */
+	static get activeEncounter() {
+		return game.combat;
 	}
 }

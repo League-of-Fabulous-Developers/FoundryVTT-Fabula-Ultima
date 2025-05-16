@@ -128,19 +128,25 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 		return this.parent;
 	}
 
+	/**
+	 * @override
+	 */
 	prepareBaseData() {
 		this.resources.hp.attribute = 'mig';
 		this.resources.mp.attribute = 'wlp';
+		this.derived.prepareData();
+	}
+
+	/**
+	 * @override
+	 */
+	prepareDerivedData() {
+		this.tlTracker = new CharacterSkillTracker(this);
 	}
 
 	prepareEmbeddedData() {
 		this.#prepareBasicResources();
 		this.vehicle.prepareData();
-		this.derived.prepareData();
-	}
-
-	prepareDerivedData() {
-		this.tlTracker = new CharacterSkillTracker(this);
 	}
 
 	#prepareBasicResources() {

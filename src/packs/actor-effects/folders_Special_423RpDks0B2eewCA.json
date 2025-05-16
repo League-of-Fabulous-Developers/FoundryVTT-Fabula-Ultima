@@ -1,5 +1,5 @@
 {
-  "name": "Variants",
+  "name": "Special",
   "sorting": "a",
   "folder": null,
   "type": "Item",
@@ -11,12 +11,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1740170689592,
-    "modifiedTime": 1740170689592,
-    "lastModifiedBy": "esOkelwPNblkbxW3"
+    "modifiedTime": 1746365609067,
+    "lastModifiedBy": "JXPd932s9DHQRD0w"
   },
   "_key": "!folders!423RpDks0B2eewCA"
 }

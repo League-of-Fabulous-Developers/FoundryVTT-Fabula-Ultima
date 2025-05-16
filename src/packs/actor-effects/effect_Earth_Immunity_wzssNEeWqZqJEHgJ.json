@@ -2,7 +2,7 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Earth Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/earth.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
   "system": {
     "fuid": "earth-immunity"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Earth Immunity",
-      "img": "systems/projectfu/styles/static/affinities/earth.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/earth.png",
       "_id": "snfg06uZBDhmV7sq",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.earth.current",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725754115823,
-        "modifiedTime": 1725754220423,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747231217805,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!wzssNEeWqZqJEHgJ.snfg06uZBDhmV7sq"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750163418,
-    "modifiedTime": 1725750163418,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747231214355,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "wzssNEeWqZqJEHgJ",
   "sort": 0,

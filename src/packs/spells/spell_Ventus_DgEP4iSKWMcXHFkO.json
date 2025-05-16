@@ -3,7 +3,7 @@
   "name": "Ventus",
   "type": "spell",
   "_id": "DgEP4iSKWMcXHFkO",
-  "img": "icons/magic/air/air-wave-gust-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/ventus.png",
   "system": {
     "subtype": {
       "value": ""
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706567294178,
-    "modifiedTime": 1737918285163,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1746641033697,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },

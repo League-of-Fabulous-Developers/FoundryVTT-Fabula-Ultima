@@ -68,7 +68,8 @@
 
 .items-main {
 	height: inherit;
-	width: 174px;
+	width: fit-content;
+	min-width: 174px;
 	font-weight: bold;
 	text-align: left;
 	text-shadow: 1px 1px 1px $color-black;

@@ -1,11 +1,20 @@
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { SystemControls } from '../helpers/system-controls.mjs';
-import { SYSTEM } from '../helpers/config.mjs';
+import { FU, SYSTEM } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { MetaCurrencyTrackerApplication } from '../ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 import { MathHelper } from '../helpers/math-helper.mjs';
+import { FUHooks } from '../hooks.mjs';
+import { NpcProfileWindow } from '../ui/npc-profile.mjs';
+import { StudyRollHandler } from '../pipelines/study-roll.mjs';
+import { Pipeline } from '../pipelines/pipeline.mjs';
+import { ObjectUtils } from '../helpers/object-utils.mjs';
+import { FUCombat } from '../ui/combat.mjs';
+import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -47,8 +56,11 @@ export class FUPartySheet extends ActorSheet {
 		const context = super.getData();
 		context.actionHooks = FUPartySheet.prepareActionHooks();
 		await ActorSheetUtils.prepareData(context, this);
-		context.characters = this.party.characterData;
-		context.characterCount = this.party.characters.size;
+		context.characters = await this.party.getCharacterData();
+		context.companions = await this.party.getCompanionData();
+		context.characterCount = this.party.characters.size + this.party.companions.size;
+		const adversaries = await this.party.getAdversaryData();
+		context.adversaries = FUPartySheet.sortAdversaryData(adversaries);
 		const experience = this.party.calculateExperience();
 		context.stats = {
 			fp: experience.fp,
@@ -56,8 +68,29 @@ export class FUPartySheet extends ActorSheet {
 			xp: experience.total,
 			zenit: this.party.resources.zenit.value,
 		};
-		// TODO: Set expanded data
 		return context;
+	}
+
+	/**
+	 * @param {NpcProfileData[]} data
+	 * @returns {NpcProfileData[]}
+	 */
+	static sortAdversaryData(data) {
+		// In
+		let result = data.reverse();
+		if (FUCombat.hasActiveEncounter) {
+			const combat = FUCombat.activeEncounter;
+			result = result.sort((a, b) => {
+				const aInSet = combat.hasInstancedActor(a.uuid);
+				a.active = aInSet;
+				const bInSet = combat.hasInstancedActor(b.uuid);
+				b.active = bInSet;
+				if (aInSet && !bInSet) return -1;
+				if (!aInSet && bInSet) return 1;
+				return 0;
+			});
+		}
+		return result;
 	}
 
 	/** @override */
@@ -79,8 +112,23 @@ export class FUPartySheet extends ActorSheet {
 			if (actor) {
 				actor.sheet.render(true);
 			} else {
-				this.removeCharacterById(uuid);
+				const type = ev.currentTarget.dataset.type;
+				switch (type) {
+					case 'character':
+						this.party.removeCharacter(uuid);
+						break;
+					case 'npc':
+						this.party.removeAdversary(uuid);
+						break;
+					case 'companion':
+						this.party.removeCompanion(uuid);
+						break;
+				}
 			}
+		});
+		html.find('[data-action=revealNpc]').on('click', async (ev) => {
+			const uuid = ev.currentTarget.dataset.actor;
+			await this.revealNpc(uuid);
 		});
 		// Right click on character
 		this.setupCharacterContextMenu(html);
@@ -96,10 +144,11 @@ export class FUPartySheet extends ActorSheet {
 		});
 		// Rest whole party
 		html.find('[data-action=restParty]').on('click', async (ev) => {
-			for (const actor of this.party.characterActors) {
-				await actor.sheet.onRest(actor);
-				this.render(true);
-			}
+			await this.restParty();
+		});
+		// Reward resources
+		html.find('[data-action=rewardResource]').on('click', async (ev) => {
+			this.promptAwardResources();
 		});
 		// Refresh Sheet
 		html.find('[data-action=refreshSheet]').on('click', (ev) => {
@@ -130,7 +179,10 @@ export class FUPartySheet extends ActorSheet {
 		});
 	}
 
-	/** @override */
+	/**
+	 * @description Handles a drop event
+	 * @override
+	 */
 	async _onDrop(ev) {
 		ev.preventDefault();
 
@@ -149,29 +201,123 @@ export class FUPartySheet extends ActorSheet {
 				case 'Actor': {
 					const actor = await Actor.implementation.fromDropData(data);
 					console.debug(`${actor.name} was dropped onto party sheet`);
-					await this.addCharacter(actor);
+					if (actor.type === 'character') {
+						await this.party.addCharacter(actor);
+					} else if (actor.type === 'npc') {
+						if (actor.system.rank.value === 'companion') {
+							await this.party.addCompanion(actor);
+						} else {
+							await this.party.addOrUpdateAdversary(actor, 0);
+						}
+					}
 					return true;
 				}
 			}
 		}
-
 		return false;
 	}
 
 	/**
-	 * @param {FUActor} actor
 	 * @returns {Promise<void>}
 	 */
-	async addCharacter(actor) {
-		if (actor.type !== 'character') {
-			console.warn(`${actor.name} is not a player character!`);
-			return;
+	async restParty() {
+		const actors = await this.party.getCharacterActors();
+		for (const actor of actors) {
+			await actor.sheet.onRest(actor);
+			this.render(true);
 		}
+	}
 
-		const characters = this.party.characters;
-		characters.add(actor.uuid);
-		this.actor.update({ ['system.characters']: characters });
-		console.debug(`${actor.name} was added to the party ${this.actor.name}`);
+	/**
+	 * @param uuid
+	 * @returns {Promise<void>}
+	 */
+	async revealNpc(uuid) {
+		const data = await this.party.getAdversary(uuid);
+		if (data) {
+			new NpcProfileWindow(data, {
+				title: data.name,
+			}).render(true);
+		} else {
+			ui.notifications.warn(`Did not find an NPC profile for ${uuid}`);
+		}
+	}
+
+	/**
+	 * Prompts the GM to award resources to the party
+	 */
+	async promptAwardResources() {
+		const characters = await this.party.getCharacterActors();
+		const defaultSource = StringUtils.localize('USER.RoleGamemaster');
+
+		// TODO: Use HBS
+		const content = `
+  <form>
+    <div class="form-group">
+      <label for="resource">Resource</label>
+      <select name="resource" id="resource">
+        <option value="fp">FP</option>
+        <option value="ip">IP</option>
+        <option value="zenit">Zenit</option>
+        <option value="hp">HP</option>
+        <option value="mp">MP</option>
+      </select>
+    </div>
+        
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" name="amount" id="amount" value="1"/>
+    </div>
+    
+    <div class="form-group">
+      <label for="resource-source">Source</label>
+        <input type="text" name="source" id="resource-source" value="${defaultSource}" />
+     </div>
+
+    <div class="form-group">
+      <label>Characters</label>
+      <div class="character-list">
+        ${characters
+			.map(
+				(c) => `
+          <label>
+            <input type="checkbox" name="recipients" value="${c.uuid}" checked> ${c.name}
+          </label>
+        `,
+			)
+			.join('<br>')}
+      </div>
+    </div>
+  </form>`;
+
+		new Dialog({
+			title: StringUtils.localize('FU.AwardResources'),
+			content,
+			buttons: {
+				confirm: {
+					label: 'Confirm',
+					callback: async (html) => {
+						const resource = html.find('[name="resource"]').val();
+						const source = html.find('[name="source"]').val();
+						const amount = Number(html.find('[name="amount"]').val());
+						const selectedIds = [...html[0].querySelectorAll('input[name="recipients"]:checked')].map((input) => input.value);
+						console.log('Giving', resource, 'to:', selectedIds);
+						const selectedActors = characters.filter((c) => selectedIds.includes(c.uuid));
+						const request = new ResourceRequest(new InlineSourceInfo(source), selectedActors, resource, amount);
+						if (amount > 0) {
+							await ResourcePipeline.processRecovery(request);
+						} else {
+							await ResourcePipeline.processLoss(request);
+						}
+						return this.render(true);
+					},
+				},
+				cancel: {
+					label: 'Cancel',
+				},
+			},
+			default: 'confirm',
+		}).render(true);
 	}
 
 	/**
@@ -268,15 +414,40 @@ export class FUPartySheet extends ActorSheet {
 	 * @param html
 	 */
 	setupCharacterContextMenu(html) {
+		// Don't provide this context menu to players
+		if (!game.user.isGM) {
+			return;
+		}
+
 		// Initialize the context menu options
-		const contextMenuOptions = [
+		let contextMenuOptions = [
 			{
 				name: game.i18n.localize('FU.Delete'),
 				icon: '<i class="fas fa-trash"></i>',
 				callback: (jq) => {
 					const id = jq.data('uuid');
-					this.removeCharacterById(id);
+					const type = jq.data('type');
+					switch (type) {
+						case 'character':
+							this.party.removeCharacter(id);
+							break;
+						case 'npc':
+							this.party.removeAdversary(id);
+							break;
+						case 'companion':
+							this.party.removeCompanion(id);
+							break;
+					}
 				},
+			},
+			{
+				name: game.i18n.localize('FU.Edit'),
+				icon: '<i class="fa fa-pencil"></i>',
+				callback: (jq) => {
+					const id = jq.data('uuid');
+					NpcProfileWindow.updateNpcProfile(this.party, id);
+				},
+				condition: (jq) => jq.data('type') === 'npc',
 			},
 		];
 
@@ -284,13 +455,6 @@ export class FUPartySheet extends ActorSheet {
 		new ContextMenu(html, '.character-option', contextMenuOptions, {
 			fixed: true,
 		});
-	}
-
-	removeCharacterById(id) {
-		const characters = this.party.characters;
-		characters.delete(id);
-		this.actor.update({ ['system.characters']: characters });
-		console.debug(`${id} was removed from the party ${this.actor.name}`);
 	}
 
 	/**
@@ -309,9 +473,7 @@ export class FUPartySheet extends ActorSheet {
 				hook: 'lookfarShowTravelCheckDialog',
 			});
 		}
-
-		// Callback here...
-
+		// TODO: Callback here...
 		return hooks;
 	}
 
@@ -356,6 +518,17 @@ export class FUPartySheet extends ActorSheet {
 		}
 		return null;
 	}
+
+	/**
+	 * @param {String} uuid
+	 * @returns {Promise<void>}
+	 */
+	static async inspectAdversary(uuid) {
+		const party = await FUPartySheet.getActive();
+		if (party) {
+			await party.sheet.revealNpc(uuid);
+		}
+	}
 }
 
 /**
@@ -377,3 +550,94 @@ Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
 		},
 	});
 });
+
+/**
+ * @param {StudyEvent} ev
+ * @returns {Promise<void>}
+ */
+async function onStudyEvent(ev) {
+	const activeParty = await FUPartySheet.getActiveModel();
+	if (activeParty && ev.targets.length === 1) {
+		const target = ev.targets[0].actor;
+		console.debug(`Registering ${target.name} as an adversary`);
+		const entry = await activeParty.addOrUpdateAdversary(target, ev.result);
+		Hooks.call(FUHooks.PARTY_ADVERSARY_EVENT, entry);
+
+		// Render a chat message
+		const flags = Pipeline.initializedFlags(Flags.ChatMessage.Party, true);
+		const studyResult = StudyRollHandler.resolveStudyResult(entry.study);
+		ChatMessage.create({
+			speaker: ChatMessage.getSpeakerActor(ev.actor),
+			content: await renderTemplate('systems/projectfu/templates/chat/chat-study-event.hbs', {
+				actor: ev.actor.name,
+				target: entry.name,
+				result: game.i18n.localize(FU.studyResult[studyResult]),
+				uuid: entry.uuid,
+			}),
+			flags: flags,
+		});
+	}
+}
+Hooks.on(FUHooks.STUDY_EVENT, onStudyEvent);
+
+/**
+ * @param {Document} message
+ * @param {jQuery} jQuery
+ */
+async function onRenderChatMessage(message, jQuery) {
+	if (!message.getFlag(Flags.Scope, Flags.ChatMessage.Party)) {
+		return;
+	}
+
+	Pipeline.handleClick(message, jQuery, 'revealNpc', async (dataset) => {
+		const uuid = dataset.uuid;
+		const party = await FUPartySheet.getActive();
+		return party.sheet.revealNpc(uuid);
+	});
+}
+Hooks.on('renderChatMessage', onRenderChatMessage);
+
+/**
+ * @param {CombatEvent} event
+ * @returns {Promise<void>}
+ */
+async function onCombatEvent(event) {
+	const party = await FUPartySheet.getActiveModel();
+	if (party) {
+		switch (event.type) {
+			case FU.combatEvent.startOfCombat:
+				for (const actor of event.actors) {
+					if (actor.type === 'npc') {
+						await party.addOrUpdateAdversary(actor, 0);
+					}
+				}
+				break;
+		}
+	}
+}
+Hooks.on(FUHooks.COMBAT_EVENT, onCombatEvent);
+
+/**
+ * @param {RevealEvent} event
+ * @returns {Promise<void>}
+ */
+async function onRevealEvent(event) {
+	const party = await FUPartySheet.getActiveModel();
+	if (party) {
+		console.info(`Revealing information on ${event.actor.name}: ${JSON.stringify(event.revealed)}`);
+		const adversary = await party.getAdversary(event.actor.resolveUuid());
+		// Not added if it was outside of combat, for example
+		if (!adversary) {
+			return;
+		}
+		if (!adversary.revealed) {
+			adversary.revealed = {};
+		}
+		const [merged, changed] = ObjectUtils.mergeRecursive(adversary.revealed, event.revealed);
+		if (changed) {
+			adversary.revealed = merged;
+			await party.updateAdversary(adversary);
+		}
+	}
+}
+Hooks.on(FUHooks.REVEAL_EVENT, onRevealEvent);

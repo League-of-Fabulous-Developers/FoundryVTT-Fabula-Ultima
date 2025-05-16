@@ -32,6 +32,7 @@ export const Flags = Object.freeze({
 		RevertedAction: 'RevertedAction',
 		Effects: 'Effects',
 		Inventory: 'Inventory',
+		Party: 'Party',
 	}),
 	Scope: 'projectfu',
 	Toggle: Object.freeze({

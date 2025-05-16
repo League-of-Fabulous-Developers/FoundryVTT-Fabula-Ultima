@@ -18,6 +18,8 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/sections/actor-section-settings.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-inventory.hbs',
 		'systems/projectfu/templates/actor/sections/actor-party-section-settings.hbs',
+		'systems/projectfu/templates/actor/sections/actor-spell-list.hbs',
+		'systems/projectfu/templates/actor/sections/actor-attack-list.hbs',
 
 		// Actor Component partials.
 		'systems/projectfu/templates/actor/partials/actor-charname.hbs',
@@ -29,10 +31,12 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-study.hbs',
 		'systems/projectfu/templates/actor/partials/actor-affinities.hbs',
 		'systems/projectfu/templates/actor/partials/actor-attributes.hbs',
+		'systems/projectfu/templates/actor/partials/actor-attributes-readonly.hbs',
 		'systems/projectfu/templates/actor/partials/actor-defensive.hbs',
 		'systems/projectfu/templates/actor/partials/actor-header.hbs',
 		'systems/projectfu/templates/actor/partials/actor-resources.hbs',
 		'systems/projectfu/templates/actor/partials/actor-traits.hbs',
+		'systems/projectfu/templates/actor/partials/actor-derived-stats.hbs',
 
 		'systems/projectfu/templates/actor/partials/actor-item-name.hbs',
 		'systems/projectfu/templates/actor/partials/actor-actions.hbs',
@@ -235,5 +239,8 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// Common
 		'systems/projectfu/templates/common/resource-button-large.hbs',
+
+		// UI
+		'systems/projectfu/templates/ui/study/npc-profile.hbs',
 	]);
 };

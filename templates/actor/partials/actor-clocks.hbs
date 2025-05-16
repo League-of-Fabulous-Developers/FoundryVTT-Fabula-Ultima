@@ -3,7 +3,7 @@
     <legend class="resource-label-m" aria-describedby="tooltip">
         <a class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.ClockAdd'}}"
            style="width: fit-content;" data-type="newClock">
-            <i class="fas fa-plus icon"></i>{{localize 'FU.Clocks'}}
+            {{#if isOwner}}<i class="fas fa-plus icon"></i>{{/if}}{{localize 'FU.Clocks'}}
         </a>
     </legend>
     {{#each items as |item id|}}

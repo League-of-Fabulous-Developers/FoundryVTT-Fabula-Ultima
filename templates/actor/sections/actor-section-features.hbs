@@ -181,7 +181,7 @@
                                 <div class="bar bar-progress">
                                     <div class="bar-progress-bar bar-project"
                                          style="width: {{calculatePercentage item.system.progress.current
-                                                                             item.system.progress.max}};">
+                                                                             item.progressMax}};">
                                     </div>
                                     <span class="bar-value"></span>
                                 </div>
@@ -195,7 +195,7 @@
                                         'FU.DecreaseTooltip'}} ({{item.system.progress.step}})">-</a>
                                     <span data-resource="item.rp">{{ item.system.progress.current }}</span>
                                     <span>/</span>
-                                    <span>{{ item.system.progress.max }}</span>
+                                    <span>{{ item.progressMax }}</span>
                                     <a class="increment-button" data-type="projectCounter" data-item-id="{{ item._id }}"
                                        data-tooltip="{{localize
                                         'FU.IncreaseTooltip'}} ({{item.system.progress.step}})">+</a>

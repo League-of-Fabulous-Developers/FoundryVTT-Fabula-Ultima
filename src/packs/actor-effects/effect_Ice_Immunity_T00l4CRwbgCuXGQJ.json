@@ -2,7 +2,7 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Ice Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/ice.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
   "system": {
     "fuid": "ice-immunity"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Ice Immunity",
-      "img": "systems/projectfu/styles/static/affinities/ice.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/ice.png",
       "_id": "UcvwlEqnHMfszeHv",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.ice.current",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725754310477,
-        "modifiedTime": 1725754326094,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747231080455,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!T00l4CRwbgCuXGQJ.UcvwlEqnHMfszeHv"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750163418,
-    "modifiedTime": 1725750163418,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747231074913,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "T00l4CRwbgCuXGQJ",
   "sort": 0,

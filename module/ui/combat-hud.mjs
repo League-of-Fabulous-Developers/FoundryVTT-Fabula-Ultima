@@ -4,6 +4,7 @@ import { SystemControls } from '../helpers/system-controls.mjs';
 import { SYSTEM, FU } from '../helpers/config.mjs';
 import { FUHooks } from '../hooks.mjs';
 import { FUCombat } from './combat.mjs';
+import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 
 Hooks.once('setup', () => {
 	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
@@ -665,10 +666,8 @@ export class CombatHUD extends Application {
 				actorSheet.render(true);
 			}
 		} else {
-			const studyJournal = game.journal.getName(token.actor?.name);
-			if (studyJournal) {
-				studyJournal.sheet.render(true);
-			}
+			const uuid = token.actor.resolveUuid();
+			FUPartySheet.inspectAdversary(uuid);
 		}
 	}
 

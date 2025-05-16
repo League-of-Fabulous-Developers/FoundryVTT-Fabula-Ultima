@@ -88,6 +88,17 @@ export class CookbookDataModel extends RollableClassFeatureDataModel {
 		});
 	}
 
+	static getTabConfigurations() {
+		return [
+			{
+				group: 'cookbookTabs',
+				navSelector: '.cookbook-tabs',
+				contentSelector: '.cookbook-content',
+				initial: 'summaryTab',
+			},
+		];
+	}
+
 	/**
 	 * @param {Taste} taste1
 	 * @param {Taste} taste2

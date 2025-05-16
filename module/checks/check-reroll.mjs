@@ -10,6 +10,7 @@ import { CheckConfiguration } from './check-configuration.mjs';
  * @property {"identity" | "theme" | "origin" | "trait"} trait
  * @property {string} value
  * @property {("attr1"| "attr2")[] } selection
+ * @property {boolean} ignoreFp
  */
 
 function addRerollEntry(html, options) {
@@ -136,10 +137,13 @@ const getRerollParams = async (check, actor) => {
 
 			selection = Array.isArray(selection) ? selection : [selection];
 
+			const ignoreFp = html.find('input[name="results"][value="ignore-fp"]').is(':checked');
+
 			return {
 				trait: trait.val(),
 				value: trait.data('value'),
 				selection: selection,
+				ignoreFp: ignoreFp,
 			};
 		},
 		rejectClose: false,
@@ -204,7 +208,9 @@ const handleReroll = async (result, actor, item) => {
 		roll.terms[0] = getReplacementTerm(reroll.selection.includes('attr1'), oldTerms[0]);
 		roll.terms[2] = getReplacementTerm(reroll.selection.includes('attr2'), oldTerms[2]);
 
-		CheckConfiguration.registerMetaCurrencyExpenditure(result, actor);
+		if (!reroll.ignoreFp) {
+			CheckConfiguration.registerMetaCurrencyExpenditure(result, actor);
+		}
 
 		return { roll };
 	} else {

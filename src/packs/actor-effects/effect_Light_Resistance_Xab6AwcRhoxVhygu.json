@@ -2,7 +2,7 @@
   "folder": "KoamGTrOopqqmbxH",
   "name": "Light Resistance",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/light.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "light-resistance"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Light Resistance",
-      "img": "systems/projectfu/styles/static/affinities/light.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "_id": "TlCLlu54RBjlIDPN",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.light",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725754568102,
-        "modifiedTime": 1725754587524,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747231122767,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!Xab6AwcRhoxVhygu.TlCLlu54RBjlIDPN"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750014969,
-    "modifiedTime": 1725750014969,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747231118310,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "Xab6AwcRhoxVhygu",
   "sort": 0,

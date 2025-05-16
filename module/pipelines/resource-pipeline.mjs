@@ -17,7 +17,7 @@ export class ResourceRequest extends PipelineRequest {
 	constructor(sourceInfo, targets, resourceType, amount, uncapped = false) {
 		super(sourceInfo, targets);
 		this.resourceType = resourceType;
-		this.amount = amount;
+		this.amount = Math.abs(amount);
 		this.uncapped = uncapped;
 	}
 
@@ -109,8 +109,8 @@ function calculateMissingResource(actor, resourcePath) {
  */
 async function processRecovery(request) {
 	const flavor = game.i18n.localize(recoveryFlavor[request.resourceType]);
-	const outgoingRecoveryBonus = request.sourceActor.system.bonuses.outgoingRecovery[request.resourceType] || 0;
-	const outgoingRecoveryMultiplier = request.sourceActor.system.multipliers.outgoingRecovery[request.resourceType] || 1;
+	const outgoingRecoveryBonus = request.sourceActor?.system.bonuses.outgoingRecovery[request.resourceType] || 0;
+	const outgoingRecoveryMultiplier = request.sourceActor?.system.multipliers.outgoingRecovery[request.resourceType] || 1;
 
 	const updates = [];
 	console.debug(`Applying recovery from request with traits: ${[...request.traits].join(', ')}`);

@@ -3,7 +3,7 @@
   "name": "Light Weakness",
   "type": "effect",
   "_id": "aPBdnNy1hA8aRctl",
-  "img": "systems/projectfu/styles/static/affinities/light.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "light-weakness",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "systems/projectfu/styles/static/affinities/light.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "origin": "Compendium.projectfu.actor-effects.Item.aPBdnNy1hA8aRctl",
       "duration": {
         "rounds": 1,
@@ -27,7 +27,14 @@
       "name": "Light Weakness",
       "_id": "SoRR5Nk4iDGg7xtW",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.light",
@@ -51,12 +58,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737993942307,
-        "modifiedTime": 1737993965603,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1747231137710,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!aPBdnNy1hA8aRctl.SoRR5Nk4iDGg7xtW"
     }
@@ -70,12 +77,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.330",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1737993940324,
-    "modifiedTime": 1737993971100,
-    "lastModifiedBy": "esOkelwPNblkbxW3"
+    "modifiedTime": 1747231133875,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_key": "!items!aPBdnNy1hA8aRctl"
 }

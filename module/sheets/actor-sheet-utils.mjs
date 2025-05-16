@@ -28,6 +28,7 @@ async function prepareData(context, sheet) {
 	context.flags = sheet.actor.flags;
 	context.itemCount = context.actor.items.size;
 	context.isGM = game.user.isGM;
+	context.isOwner = sheet.actor.isOwner;
 
 	// Add support for formInput,formGroup
 	// https://foundryvtt.wiki/en/development/api/helpers#forminput-and-formgroup
@@ -206,6 +207,15 @@ async function prepareItems(context) {
 			item.quality = itemData.qualityString;
 			treasures.push(item);
 		} else if (item.type === 'project') {
+			const itemObj = context.actor.items.get(item._id);
+			item.cost = itemObj.system.cost?.value;
+			item.discount = itemObj.system.discount?.value;
+			item.progressMax = itemObj.system.progress?.max;
+			item.progressPerDay = itemObj.system.progressPerDay?.value;
+			item.days = itemObj.system.days?.value;
+			item.progressCurr = itemObj.system.progress?.current;
+			item.progressStep = itemObj.system.progress?.step;
+			projects.push(item);
 			projects.push(item);
 		} else if (item.type === 'ritual') {
 			const itemObj = context.actor.items.get(item._id);
@@ -589,25 +599,7 @@ function activateDefaultListeners(html, sheet) {
 	});
 
 	// Toggle Expandable Item Description
-	html.find('.click-item').click((ev) => {
-		const el = $(ev.currentTarget);
-		const parentEl = el.closest('li');
-		const itemId = parentEl.data('itemId');
-		const desc = parentEl.find('.individual-description');
-
-		if (sheet._expanded.has(itemId)) {
-			desc.slideUp(200, () => desc.css('display', 'none'));
-			sheet._expanded.delete(itemId);
-		} else {
-			desc.slideDown(200, () => {
-				desc.css('display', 'block');
-				desc.css('height', 'auto');
-			});
-			sheet._expanded.add(itemId);
-		}
-
-		_saveExpandedState(sheet);
-	});
+	activateExpandedItemListener(html, sheet._expanded, () => _saveExpandedState(sheet));
 
 	// Drag events
 	if (sheet.actor.isOwner) {
@@ -624,6 +616,30 @@ function activateDefaultListeners(html, sheet) {
 		const desc = html.find(`li[data-item-id="${itemId}"] .individual-description`);
 		if (desc.length) {
 			desc.removeClass('hidden').css({ display: 'block', height: 'auto' });
+		}
+	});
+}
+
+function activateExpandedItemListener(html, expanded, onExpand) {
+	html.find('.click-item').click((ev) => {
+		const el = $(ev.currentTarget);
+		const parentEl = el.closest('li');
+		const itemId = parentEl.data('itemId');
+		const desc = parentEl.find('.individual-description');
+
+		if (expanded.has(itemId)) {
+			desc.slideUp(200, () => desc.css('display', 'none'));
+			expanded.delete(itemId);
+		} else {
+			desc.slideDown(200, () => {
+				desc.css('display', 'block');
+				desc.css('height', 'auto');
+			});
+			expanded.add(itemId);
+		}
+
+		if (onExpand) {
+			onExpand();
 		}
 	});
 }
@@ -1043,11 +1059,13 @@ const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(
  */
 export const ActorSheetUtils = Object.freeze({
 	prepareData,
+	prepareItems,
 	findItemConfig,
 	activateDefaultListeners,
 	activateInventoryListeners,
 	activateStashListeners,
 	handleInventoryItemDrop,
+	activateExpandedItemListener,
 	// Used by modules
 	getWeaponDisplayData,
 	getSkillDisplayData,

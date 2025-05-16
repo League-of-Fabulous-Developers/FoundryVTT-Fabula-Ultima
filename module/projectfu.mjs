@@ -61,7 +61,7 @@ import { ChecksV2 } from './checks/checks-v2.mjs';
 import { CheckConfiguration } from './checks/check-configuration.mjs';
 import { slugify } from './util.mjs';
 import { ActionHandler } from './helpers/action-handler.mjs';
-import { StudyRollHandler } from './helpers/study-roll.mjs';
+import { StudyRollHandler } from './pipelines/study-roll.mjs';
 import { ItemCustomizer } from './helpers/item-customizer.mjs';
 import { FUHooks } from './hooks.mjs';
 import { DamagePipeline } from './pipelines/damage-pipeline.mjs';
@@ -551,6 +551,12 @@ Handlebars.registerHelper('math', function (left, operator, right) {
 	}[operator];
 });
 
+Handlebars.registerHelper('includes', function (array, value) {
+	return Array.isArray(array) && array.includes(value);
+});
+
+Handlebars.registerHelper('get', (map, key) => map?.[key]);
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
@@ -595,62 +601,6 @@ Hooks.once('ready', async function () {
 		if (handleNoActor(actor)) return;
 		let isShift = true;
 		GroupCheck.promptCheck(actor, isShift);
-	});
-
-	Hooks.on('preCreateItem', (itemData, options, userId) => {
-		if (!itemData.system.fuid && itemData.name) {
-			// Generate FUID using the slugify utility
-			const fuid = game.projectfu.util.slugify(itemData.name);
-
-			// Check if slugify returned a valid FUID
-			if (fuid) {
-				itemData.updateSource({ 'system.fuid': fuid });
-			} else {
-				console.error('FUID generation failed for Item:', itemData.name, 'using slugify.');
-			}
-		}
-		if (itemData.type === 'effect') {
-			const parent = itemData.parent;
-			if (parent instanceof FUActor && !parent.isCharacterType) {
-				ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
-				return false;
-			}
-		}
-	});
-
-	Hooks.on('preCreateActiveEffect', (effect, options, userId) => {
-		const actor = effect.parent;
-		if (!actor || !actor.system || !actor.system.immunities) return true;
-
-		// Prevent creation on non-character actor types
-		if (!actor.isCharacterType) {
-			ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
-			return false;
-		}
-
-		// Check if the effect is a status effect
-		const statusEffectId = CONFIG.statusEffects.find((e) => effect.statuses?.has(e.id))?.id;
-
-		// Check for immunity using statusEffectId
-		if (statusEffectId) {
-			const immunityData = actor.system.immunities[statusEffectId];
-
-			// If immune, block effect creation
-			if (immunityData?.base) {
-				const message = game.i18n.format('FU.ImmunityDescription', {
-					status: statusEffectId,
-				});
-
-				ChatMessage.create({
-					content: message,
-					speaker: ChatMessage.getSpeaker({ actor: actor }),
-				});
-
-				return false; // Prevent the effect from being created
-			}
-		}
-
-		return true; // Allow the effect to be created
 	});
 
 	Hooks.on(FUHooks.DATA_PREPARED_ACTOR, (actor) => {

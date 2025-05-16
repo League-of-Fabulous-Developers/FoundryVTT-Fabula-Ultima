@@ -91,6 +91,13 @@ export class ClassDataModel extends foundry.abstract.TypeDataModel {
 		};
 	}
 
+	/**
+	 * @returns {Boolean}
+	 */
+	get mastered() {
+		return this.level.value === this.level.max;
+	}
+
 	static migrateData(source) {
 		ClassMigrations.run(source);
 		return source;

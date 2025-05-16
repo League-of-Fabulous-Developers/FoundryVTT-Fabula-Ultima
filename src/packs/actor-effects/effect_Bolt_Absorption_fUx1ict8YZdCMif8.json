@@ -2,7 +2,7 @@
   "folder": "rPNBQ4ka3rcyorik",
   "name": "Bolt Absorption",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
   "system": {
     "fuid": "bolt-absorption"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Bolt Absorption",
-      "img": "systems/projectfu/styles/static/affinities/bolt.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/bolt.png",
       "_id": "GWQinHHAs7AZkc6G",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.bolt.current",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725750509095,
-        "modifiedTime": 1725750540483,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747230616247,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!fUx1ict8YZdCMif8.GWQinHHAs7AZkc6G"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750295038,
-    "modifiedTime": 1725750295038,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747230610855,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "fUx1ict8YZdCMif8",
   "sort": 0,

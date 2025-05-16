@@ -2,7 +2,7 @@
   "folder": "rPNBQ4ka3rcyorik",
   "name": "Dark Absorption",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/dark.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "dark-absorption"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Dark Absorption",
-      "img": "systems/projectfu/styles/static/affinities/dark.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "_id": "U41T9GMUyzqAHnvP",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.dark.current",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725750783093,
-        "modifiedTime": 1725750814958,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747230638145,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!VFfFrNxSyFsBz4jP.U41T9GMUyzqAHnvP"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750295038,
-    "modifiedTime": 1725750295038,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747230633017,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "VFfFrNxSyFsBz4jP",
   "sort": 0,

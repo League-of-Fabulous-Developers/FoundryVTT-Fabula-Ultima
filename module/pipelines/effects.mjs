@@ -244,6 +244,10 @@ async function renderEffect(effect, owner) {
  * @returns {Promise<boolean>} Whether the ActiveEffect is now on or off
  */
 export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = undefined, config = undefined) {
+	if (!actor.isCharacterType) {
+		ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+		return false;
+	}
 	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
 	if (existing.length > 0) {
 		await Promise.all(
@@ -279,6 +283,10 @@ export async function toggleStatusEffect(actor, statusEffectId, sourceInfo = und
  * @returns {Promise<boolean>} - Whether the effect was removed.
  */
 export async function disableStatusEffect(actor, statusEffectId) {
+	if (!actor.isCharacterType) {
+		ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+		return false;
+	}
 	const existing = actor.effects.filter((effect) => isActiveEffectForStatusEffectId(effect, statusEffectId));
 	if (existing.length > 0) {
 		await Promise.all(
@@ -295,31 +303,38 @@ export async function disableStatusEffect(actor, statusEffectId) {
 
 function sendToChatEffectRemoved(effect, actor) {
 	console.log(`Removing effect: ${effect.name}`);
-	ChatMessage.create({
-		content: game.i18n.format('FU.EffectRemoveMessage', {
-			effect: effect.name,
-			actor: actor.name,
-		}),
-		speaker: ChatMessage.getSpeaker({ actor }),
-	});
+	// TODO: Implement alongside message window
+	if (game.combat) {
+		ChatMessage.create({
+			content: game.i18n.format('FU.EffectRemoveMessage', {
+				effect: effect.name,
+				actor: actor.name,
+			}),
+			speaker: ChatMessage.getSpeaker({ actor }),
+		});
+	}
 }
 
 /**
- * @param {FUActor|FUItem} actor
+ * @param {FUActor|FUItem} target
  * @param {ActiveEffectData} effect
  * @param {InlineSourceInfo} sourceInfo
  * @param {InlineEffectConfiguration} config
  * @returns {FUActiveEffect}
  */
-async function onApplyEffectToActor(actor, effect, sourceInfo, config = undefined) {
-	if (actor) {
+async function onApplyEffect(target, effect, sourceInfo, config = undefined) {
+	if (target) {
+		if (target instanceof FUActor && !target.isCharacterType) {
+			ui.notifications.error(`FU.ActorSheetEffectNotSupported`, { localize: true });
+			return;
+		}
 		const flags = createEffectFlags(effect, sourceInfo);
 		const instance = await ActiveEffect.create(
 			{
 				...effect,
 				flags: flags,
 			},
-			{ parent: actor },
+			{ parent: target },
 		);
 		await applyConfiguration(instance, config);
 		return instance;
@@ -652,7 +667,8 @@ function initialize() {
 export const Effects = Object.freeze({
 	initialize,
 	onRemoveEffectFromActor,
-	onApplyEffectToActor,
+	onApplyEffect,
+	onApplyEffectToActor: onApplyEffect,
 	canBeRemoved,
 	toggleStatusEffect,
 	BOONS_AND_BANES,

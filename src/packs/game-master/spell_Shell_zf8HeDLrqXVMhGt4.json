@@ -115,7 +115,10 @@
     "maxTargets": {
       "value": 1
     },
-    "fuid": "shell"
+    "fuid": "shell",
+    "targeting": {
+      "rule": "self"
+    }
   },
   "effects": [],
   "flags": {
@@ -127,8 +130,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1745176115013,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1746194340800,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -81,7 +81,13 @@ export class FUItemSheet extends ItemSheet {
 
 		// Enrich each effect's description
 		for (const effect of context.allEffects) {
-			effect.enrichedDescription = effect.description ? await TextEditor.enrichHTML(effect.description) : '';
+			effect.enrichedDescription = effect.description
+				? await TextEditor.enrichHTML(effect.description, {
+						secrets: actor?.isOwner ?? false,
+						rollData: actor ? actor.getRollData() : {},
+						relativeTo: actor,
+					})
+				: '';
 		}
 
 		// Add CONFIG data required
@@ -108,7 +114,11 @@ export class FUItemSheet extends ItemSheet {
 
 		// Enriches description fields within the context object
 		context.enrichedHtml = {
-			description: await TextEditor.enrichHTML(context.system.description ?? ''),
+			description: await TextEditor.enrichHTML(context.system.description ?? '', {
+				secrets: actor?.isOwner ?? false,
+				rollData: actor ? actor.getRollData() : {},
+				relativeTo: actor,
+			}),
 		};
 
 		context.FU = FU;

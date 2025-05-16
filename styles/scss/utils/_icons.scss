@@ -1,41 +1,48 @@
-$ful-sl-star: url('/systems/projectfu/styles/static/icons/ful-sl-star.svg');
-$fus-sl-star: url('/systems/projectfu/styles/static/icons/fus-sl-star.svg');
-$fus-star: url('/systems/projectfu/styles/static/icons/fus-star.svg');
-$fus-star2: url('/systems/projectfu/styles/static/icons/fus-star2.svg');
-$fus-star2-border: url('/systems/projectfu/styles/static/icons/fus-star2-border.svg');
+$ful-sl-star: url('../static/icons/ful-sl-star.svg');
+$fus-sl-star: url('../static/icons/fus-sl-star.svg');
+$fus-star: url('../static/icons/fus-star.svg');
+$fus-star2: url('../static/icons/fus-star2.svg');
+$fus-star2-border: url('../static/icons/fus-star2-border.svg');
 
-$fus-offensive: url('/systems/projectfu/styles/static/icons/fus-offensive.svg');
-$fus-martial: url('/systems/projectfu/styles/static/icons/fus-martial.svg');
-$ful-offensive: url('/systems/projectfu/styles/static/icons/ful-offensive.svg');
-$ful-martial: url('/systems/projectfu/styles/static/icons/ful-martial.svg');
-$fu-zenit: url('/systems/projectfu/styles/static/compendium/ui/coins_5.png');
-$fu-fp: url('/systems/projectfu/styles/static/compendium/ui/fp.png');
-$fu-up: url('/systems/projectfu/styles/static/compendium/ui/up.png');
-$fu-xp: url('/systems/projectfu/styles/static/compendium/ui/xp.png');
+$fus-offensive: url('../static/icons/fus-offensive.svg');
+$fus-martial: url('../static/icons/fus-martial.svg');
+$ful-offensive: url('../static/icons/ful-offensive.svg');
+$ful-martial: url('../static/icons/ful-martial.svg');
+$fu-zenit: url('../static/compendium/ui/coins_5.png');
+$fu-fp: url('../static/compendium/ui/fp.png');
+$fu-up: url('../static/compendium/ui/up.png');
+$fu-xp: url('../static/compendium/ui/xp.png');
 
-$fu-shaken: url('/systems/projectfu/styles/static/statuses/Shaken.webp');
-$fu-dazed: url('/systems/projectfu/styles/static/statuses/Dazed.webp');
-$fu-slow: url('/systems/projectfu/styles/static/statuses/Slow.webp');
-$fu-weak: url('/systems/projectfu/styles/static/statuses/Weak.webp');
-$fu-enraged: url('/systems/projectfu/styles/static/statuses/Enraged.webp');
-$fu-poisoned: url('/systems/projectfu/styles/static/statuses/Poisoned.webp');
+$fu-shaken: url('../static/statuses/Shaken.webp');
+$fu-dazed: url('../static/statuses/Dazed.webp');
+$fu-slow: url('../static/statuses/Slow.webp');
+$fu-weak: url('../static/statuses/Weak.webp');
+$fu-enraged: url('../static/statuses/Enraged.webp');
+$fu-poisoned: url('../static/statuses/Poisoned.webp');
 
-$fu-flying: url('/systems/projectfu/styles/static/statuses/Flying.webp');
-$fu-guard: url('/systems/projectfu/styles/static/statuses/Guard.webp');
-$fu-cover: url('/systems/projectfu/styles/static/statuses/Cover.webp');
-$fu-aura: url('/systems/projectfu/styles/static/statuses/Aura.webp');
-$fu-barrier: url('/systems/projectfu/styles/static/statuses/Barrier.webp');
+$fu-flying: url('../static/statuses/Flying.webp');
+$fu-guard: url('../static/statuses/Guard.webp');
+$fu-cover: url('../static/statuses/Cover.webp');
+$fu-aura: url('../static/statuses/Aura.webp');
+$fu-barrier: url('../static/statuses/Barrier.webp');
 
-$fu-ins-up: url('/systems/projectfu/styles/static/statuses/InsUp.webp');
-$fu-ins-down: url('/systems/projectfu/styles/static/statuses/InsDown.webp');
-$fu-dex-up: url('/systems/projectfu/styles/static/statuses/DexUp.webp');
-$fu-dex-down: url('/systems/projectfu/styles/static/statuses/DexDown.webp');
-$fu-mig-up: url('/systems/projectfu/styles/static/statuses/MigUp.webp');
-$fu-mig-down: url('/systems/projectfu/styles/static/statuses/MigDown.webp');
-$fu-wlp-up: url('/systems/projectfu/styles/static/statuses/WlpUp.webp');
-$fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
+$fu-ins-up: url('../static/statuses/InsUp.webp');
+$fu-ins-down: url('../static/statuses/InsDown.webp');
+$fu-dex-up: url('../static/statuses/DexUp.webp');
+$fu-dex-down: url('../static/statuses/DexDown.webp');
+$fu-mig-up: url('../static/statuses/MigUp.webp');
+$fu-mig-down: url('../static/statuses/MigDown.webp');
+$fu-wlp-up: url('../static/statuses/WlpUp.webp');
+$fu-wlp-down: url('../static/statuses/WlpDown.webp');
 
-$fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
+$fu-beast: url('../static/icons/beast.svg');
+$fu-construct: url('../static/icons/construct.svg');
+$fu-demon: url('../static/icons/demon.svg');
+$fu-elemental: url('../static/icons/elemental.svg');
+$fu-humanoid: url('../static/icons/humanoid.svg');
+$fu-monster: url('../static/icons/monster.svg');
+$fu-plant: url('../static/icons/plant.svg');
+$fu-undead: url('../static/icons/undead.svg');
 
 .fu-fp {
 	background-image: $fu-fp;
@@ -145,12 +152,44 @@ $fu-wlp-down: url('/systems/projectfu/styles/static/statuses/WlpDown.webp');
 	background-image: $ful-martial;
 }
 
+.fu-beast {
+	background-image: $fu-beast;
+}
+
+.fu-demon {
+	background-image: $fu-demon;
+}
+
+.fu-construct {
+	background-image: $fu-construct;
+}
+
+.fu-elemental {
+	background-image: $fu-elemental;
+}
+
+.fu-humanoid {
+	background-image: $fu-humanoid;
+}
+
+.fu-monster {
+	background-image: $fu-monster;
+}
+
+.fu-plant {
+	background-image: $fu-plant;
+}
+
+.fu-undead {
+	background-image: $fu-undead;
+}
+
 .fu-effect-placeholder {
 	background-image: url('/icons/svg/aura.svg');
 }
 
 .fu-weapon-enchant {
-	background-image: url('/systems/projectfu/styles/static/icons/fus-weapon-enchant.svg');
+	background-image: url('../static/icons/fus-weapon-enchant.svg');
 }
 
 /* Icon in inline element */

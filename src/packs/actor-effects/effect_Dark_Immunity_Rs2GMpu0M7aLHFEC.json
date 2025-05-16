@@ -2,7 +2,7 @@
   "folder": "jJ6nd24qtwNQXVDs",
   "name": "Dark Immunity",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/dark.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
   "system": {
     "fuid": "dark-immunity"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Dark Immunity",
-      "img": "systems/projectfu/styles/static/affinities/dark.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/dark.png",
       "_id": "mJuxzT56bsMUggsd",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.dark.current",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725754080019,
-        "modifiedTime": 1725754109510,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747230975414,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!Rs2GMpu0M7aLHFEC.mJuxzT56bsMUggsd"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750163418,
-    "modifiedTime": 1725750163418,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747230970721,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "Rs2GMpu0M7aLHFEC",
   "sort": 0,

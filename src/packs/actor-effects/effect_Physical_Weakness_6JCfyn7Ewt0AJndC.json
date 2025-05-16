@@ -3,7 +3,7 @@
   "name": "Physical Weakness",
   "type": "effect",
   "_id": "6JCfyn7Ewt0AJndC",
-  "img": "systems/projectfu/styles/static/affinities/physical.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "physical-weakness",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "systems/projectfu/styles/static/affinities/physical.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "origin": "Compendium.projectfu.actor-effects.Item.6JCfyn7Ewt0AJndC",
       "duration": {
         "rounds": 1,
@@ -27,7 +27,14 @@
       "name": "Physical Weakness",
       "_id": "LqERg9tlv5DopWCc",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.physical",
@@ -51,12 +58,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737994028415,
-        "modifiedTime": 1737994069785,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1747231171413,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!6JCfyn7Ewt0AJndC.LqERg9tlv5DopWCc"
     }
@@ -70,12 +77,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.330",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1737994025564,
-    "modifiedTime": 1737994072708,
-    "lastModifiedBy": "esOkelwPNblkbxW3"
+    "modifiedTime": 1747231167215,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_key": "!items!6JCfyn7Ewt0AJndC"
 }

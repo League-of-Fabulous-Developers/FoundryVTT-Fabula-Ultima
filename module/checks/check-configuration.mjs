@@ -38,13 +38,34 @@ const initHrZero = (hrZero) => (check) => {
  */
 
 /**
- * @typedef DamageData
+ * @class DamageData
+ * @property {Number} hr The high roll
  * @property {DamageType} type
  * @property {BonusDamage[]} modifiers
- * @property {number} modifierTotal
- * @property {number} [total]
+ * @property {Number} modifierTotal
  * @property {String} extra An expression to evaluate to add extra damage
  */
+export class DamageData {
+	constructor(data = {}) {
+		// eslint-disable-next-line no-unused-vars
+		const { modifierTotal, ..._data } = data;
+		Object.assign(this, _data);
+	}
+
+	/**
+	 * @returns {Number}
+	 */
+	get modifierTotal() {
+		return this.modifiers.reduce((agg, curr) => agg + curr.value, 0);
+	}
+
+	/**
+	 * @returns {Number}
+	 */
+	get total() {
+		return this.modifierTotal + this.hr;
+	}
+}
 
 /**
  * @typedef TemplateDamageData
@@ -104,10 +125,10 @@ class CheckConfigurer {
 	 * @return {CheckConfigurer}
 	 */
 	setDamage(type, baseDamage) {
-		this.#check.additionalData[DAMAGE] = {
+		this.#check.additionalData[DAMAGE] = new DamageData({
 			modifiers: [{ label: 'FU.BaseDamage', value: baseDamage }],
 			type,
-		};
+		});
 		return this;
 	}
 
@@ -175,7 +196,7 @@ class CheckConfigurer {
 	 * @return {CheckConfigurer}
 	 */
 	modifyDamage(callback) {
-		const damage = this.#check.additionalData[DAMAGE] ?? null;
+		const damage = this.#check.additionalData[DAMAGE] ?? new DamageData();
 		this.#check.additionalData[DAMAGE] = callback(damage);
 		return this;
 	}
@@ -266,11 +287,17 @@ class CheckConfigurer {
 		return this.setTargets(
 			[...game.user.targets]
 				.filter((token) => !!token.actor)
-				.map((token) => ({
-					name: token.name,
-					uuid: token.actor.uuid,
-					link: token.actor.link,
-				})),
+				.map((token) => {
+					if (!token.actor.isCharacterType) {
+						ui.notifications.error('FU.DialogInvalidTarget', { localize: true });
+						throw Error('Only character types can be targeted');
+					}
+					return {
+						name: token.name,
+						uuid: token.actor.uuid,
+						link: token.actor.link,
+					};
+				}),
 		);
 	}
 
@@ -374,9 +401,12 @@ class CheckInspector {
 
 	/**
 	 * @return {DamageData|null}
+	 * @remarks Embeds the high roll into the data
 	 */
 	getDamage() {
-		return this.#check.additionalData[DAMAGE] != null ? foundry.utils.duplicate(this.#check.additionalData[DAMAGE]) : null;
+		const raw = this.#check.additionalData[DAMAGE];
+		raw.hr = this.getHighRoll();
+		return raw != null ? new DamageData(foundry.utils.duplicate(raw)) : null;
 	}
 
 	/**
@@ -384,6 +414,13 @@ class CheckInspector {
 	 */
 	getHrZero() {
 		return this.#check.additionalData[HR_ZERO] ?? null;
+	}
+
+	/**
+	 * @return {Number}
+	 */
+	getHighRoll() {
+		return Math.max(this.#check.primary.result, this.#check.secondary.result);
 	}
 
 	/**
@@ -490,18 +527,22 @@ class CheckInspector {
 		const isBase = traits.includes(Traits.Base);
 		const damage = this.getDamage();
 		const hrZero = this.getHrZero();
+		const modifierTotal = damage.modifierTotal;
+		const primary = _check.primary.result;
+		const secondary = _check.secondary.result;
+		const total = hrZero ? modifierTotal : Math.max(primary, secondary) + modifierTotal;
 
 		let damageData = null;
 		if (damage) {
 			damageData = {
 				result: {
-					attr1: _check.primary.result,
-					attr2: _check.secondary.result,
+					attr1: primary,
+					attr2: secondary,
 				},
 				damage: {
 					hrZero: hrZero,
-					bonus: damage.modifierTotal,
-					total: damage.total,
+					bonus: modifierTotal,
+					total: total,
 					type: damage.type,
 					extra: damage.extra,
 					traits: traits,

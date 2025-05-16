@@ -3,7 +3,7 @@
   "name": "Fulgur",
   "type": "spell",
   "_id": "YV1OL72oIzseoLbd",
-  "img": "icons/magic/lightning/bolts-forked-large-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/fulgur.png",
   "system": {
     "subtype": {
       "value": ""
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706565033495,
-    "modifiedTime": 1737919050313,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1746640911611,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },

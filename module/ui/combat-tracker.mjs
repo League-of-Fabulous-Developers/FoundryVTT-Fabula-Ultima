@@ -1,4 +1,5 @@
 import { FUCombat } from './combat.mjs';
+import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 
 /**
  * @class
@@ -128,6 +129,30 @@ export class FUCombatTracker extends CombatTracker {
 			},
 			{ friendly: [], hostile: [] },
 		);
+	}
+
+	/**
+	 * Handle a Combatant control toggle
+	 * @private
+	 * @param {Event} event   The originating mousedown event
+	 * @override
+	 */
+	async _onCombatantControl(event) {
+		await super._onCombatantControl(event);
+
+		const btn = event.currentTarget;
+		const li = btn.closest('.combatant');
+		const combat = this.viewed;
+		const c = combat.combatants.get(li.dataset.combatantId);
+
+		// Switch control action
+		switch (btn.dataset.control) {
+			case 'inspectCombatant': {
+				const uuid = `Actor.${c.actorId}`;
+				await FUPartySheet.inspectAdversary(uuid);
+				break;
+			}
+		}
 	}
 
 	async handleStartTurn(event) {

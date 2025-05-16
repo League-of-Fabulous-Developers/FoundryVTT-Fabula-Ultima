@@ -3,7 +3,7 @@
   "name": "Elemental Shroud",
   "type": "spell",
   "_id": "jyakaYH34Wp0AlVZ",
-  "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-purple-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_shroud.png",
   "system": {
     "subtype": {
       "value": ""
@@ -198,8 +198,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706564403943,
-    "modifiedTime": 1744476523007,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1746640959029,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },

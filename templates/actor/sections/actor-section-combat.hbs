@@ -1,33 +1,6 @@
 <section class="desc">
 
-    <ol class="items-list">
-        <li class="item flexrow items-header">
-            <div class="item-name">{{localize "FU.BasicAttacks"}}</div>
-            <div class="item-lg">{{localize "FU.Attack"}}</div>
-            <div class="item-lg">{{localize "FU.Damage"}}</div>
-            <div class="item-m end">
-                <a class="item-control item-create" data-tooltip="{{localize 'FU.BasicCreate'}}" data-type="basic"><i
-                 class="fas fa-plus icon"></i>{{localize "FU.Add"}}</a>
-            </div>
-        </li>
-        {{#each basics as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
-                <div class="flexrow">
-                    {{!-- Item Name--}}
-                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                    <div class="item-lg">{{ item.attackString }}</div>
-                    <div class="item-lg">{{ item.damageString }}</div>
-                    {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-                </div>
-                <span class="item-quality">{{ item.quality }}</span>
-                <div class="individual-description">
-                    {{#if item.system.description}}
-                        {{{item.enrichedHtml.description}}}
-                    {{/if}}
-                </div>
-            </li>
-        {{/each}}
-    </ol>
+	{{> "systems/projectfu/templates/actor/sections/actor-attack-list.hbs"}}
 
     <!-- Skill Item Section only shown if the actor has skill items -->
     {{#if skills.length}}
@@ -98,37 +71,7 @@
     </ol>
     {{/if}}
 
-    <ol class="items-list">
-        <li class="item flexrow items-header">
-            <div class="item-name">{{localize 'FU.Spells'}}</div>
-            <div class="item-m">{{localize 'FU.Duration'}}</div>
-            <div class="item-lg">{{localize 'FU.Target'}}</div>
-            <div class="item-m">{{localize 'FU.MindPointCost'}}</div>
-            <div class="item-m end">
-                <a class="item-control item-create" title="Create Spell" data-type="spell"> <i
-                 class="fas fa-plus icon"></i>{{localize 'FU.Add'}} </a>
-            </div>
-        </li>
-        {{#each spells as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
-                <div class="flexrow">
-                    {{!-- Item Name--}}
-                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                    <div class="item-m">{{capitalize item.duration }}</div>
-                    <div class="item-lg">{{capitalize item.target }}</div>
-                    <div class="item-m">
-                        <span>{{ item.mpCost }}</span>
-                    </div>
-                    {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-                </div>
-                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
-                    {{#if item.system.description}}
-                        {{{item.enrichedHtml.description}}}
-                    {{/if}}
-                </div>
-            </li>
-        {{/each}}
-    </ol>
+	{{> "systems/projectfu/templates/actor/sections/actor-spell-list.hbs"}}
 
     <ol class="items-list">
         <li class="item flexrow items-header">

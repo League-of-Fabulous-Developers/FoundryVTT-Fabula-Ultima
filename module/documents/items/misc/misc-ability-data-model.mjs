@@ -24,6 +24,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 				CommonSections.opportunity(sections, item.system.opportunity, CHECK_DETAILS);
 			}
 		}
+		CommonSections.traits(sections, item.system.traits, CHECK_DETAILS);
 		CommonSections.description(sections, item.system.description, item.system.summary.value, CHECK_DETAILS);
 		if (item.system.hasClock.value) {
 			CommonSections.clock(sections, item.system.progress, CHECK_DETAILS);
@@ -96,6 +97,7 @@ const ABILITY_USED_WEAPON = 'AbilityUsedWeapon';
  * @property {boolean} hasRoll.value
  * @property {ActionCostDataModel} cost
  * @property {TargetingDataModel} targeting
+ * @property {Set<String>} traits
  */
 export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 	static {
@@ -115,7 +117,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 	}
 
 	static defineSchema() {
-		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
+		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField, SetField } = foundry.data.fields;
 		return {
 			fuid: new StringField(),
 			subtype: new SchemaField({ value: new StringField() }),
@@ -144,6 +146,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			hasRoll: new SchemaField({ value: new BooleanField() }),
 			cost: new EmbeddedDataField(ActionCostDataModel, {}),
 			targeting: new EmbeddedDataField(TargetingDataModel, {}),
+			traits: new SetField(new StringField()),
 		};
 	}
 
@@ -218,6 +221,7 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			const inspect = CheckConfiguration.inspect(weaponCheck);
 			const configure = CheckConfiguration.configure(check);
 			configure.addTraits('skill');
+			configure.addTraitsFromItemModel(this.traits);
 
 			if (this.accuracy) {
 				check.modifiers.push({

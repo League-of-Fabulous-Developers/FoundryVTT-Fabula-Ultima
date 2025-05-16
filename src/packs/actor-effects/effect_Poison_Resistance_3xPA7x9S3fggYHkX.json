@@ -2,7 +2,7 @@
   "folder": "KoamGTrOopqqmbxH",
   "name": "Poison Resistance",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/poison.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "system": {
     "fuid": "poison-resistance"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Poison Resistance",
-      "img": "systems/projectfu/styles/static/affinities/poison.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
       "_id": "Uco3eDAyfe7ySmUB",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.poison",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725754614588,
-        "modifiedTime": 1725754640462,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747231188428,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!3xPA7x9S3fggYHkX.Uco3eDAyfe7ySmUB"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750014969,
-    "modifiedTime": 1725750014969,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747231184608,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "3xPA7x9S3fggYHkX",
   "sort": 0,

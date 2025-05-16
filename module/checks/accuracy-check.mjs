@@ -65,7 +65,7 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
  * @param {FUItem} [item]
  */
 const onProcessCheck = (check, actor, item) => {
-	const { type, result, critical, fumble, primary, secondary } = check;
+	const { type, result, critical, fumble } = check;
 	if (type === 'accuracy') {
 		const configurer = CheckConfiguration.configure(check);
 		configurer.modifyTargetedDefense((value) => value ?? 'def');
@@ -120,13 +120,6 @@ const onProcessCheck = (check, actor, item) => {
 				const damageTypeBonus = actor.system.bonuses.damage[damage.type];
 				if (damageTypeBonus) {
 					damage.modifiers.push({ label: `FU.DamageBonus${damage.type.capitalize()}`, value: damageTypeBonus });
-				}
-
-				damage.modifierTotal = damage.modifiers.reduce((agg, curr) => agg + curr.value, 0);
-				if (CheckConfiguration.inspect(check).getHrZero()) {
-					damage.total = damage.modifierTotal;
-				} else {
-					damage.total = Math.max(primary.result, secondary.result) + damage.modifierTotal;
 				}
 			}
 			return damage;

@@ -1,5 +1,6 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { createCheckMessage, rollCheck } from '../../../../helpers/checks.mjs';
+import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
 
@@ -61,22 +62,46 @@ export class MagitechDataModel extends RollableClassFeatureDataModel {
 	 */
 	static async roll(model, item, isShift) {
 		const currentIns = model.actor.system.attributes.ins.current;
-		/** @type CheckParameters */
-		const check = {
-			check: {
-				title: game.i18n.localize('FU.ClassFeatureMagitechOverride'),
-				attr1: {
-					attribute: 'ins',
-					dice: currentIns,
-				},
-				attr2: {
-					attribute: 'ins',
-					dice: currentIns,
-				},
-				modifier: 0,
-				bonus: 0,
-			},
-		};
-		rollCheck(check).then((value) => createCheckMessage(value, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } }));
+
+		switch (model.rank) {
+			case 'basic': {
+				/** @type CheckParameters */
+				const check = {
+					check: {
+						title: game.i18n.localize('FU.ClassFeatureMagitechOverride'),
+						attr1: {
+							attribute: 'ins',
+							dice: currentIns,
+						},
+						attr2: {
+							attribute: 'ins',
+							dice: currentIns,
+						},
+						modifier: 0,
+						bonus: 0,
+					},
+				};
+				rollCheck(check).then((value) => createCheckMessage(value, { [SYSTEM]: { [Flags.ChatMessage.Item]: this } }));
+				break;
+			}
+			case 'advanced':
+			case 'superior': {
+				const rankField = model.rank;
+				const description = await TextEditor.enrichHTML(model[rankField] || '');
+
+				// Inject a renderCheck hook to display the enriched description
+				Hooks.once('projectfu.renderCheck', (sections, check, actor, item) => {
+					sections.push({
+						content: `<div class="chat-desc">${description}</div>`,
+						order: -1000,
+					});
+				});
+
+				return ChecksV2.display(item.actor, item);
+			}
+
+			default:
+				ui.notifications.warn(`Unknown rank: ${model.rank}`);
+		}
 	}
 }

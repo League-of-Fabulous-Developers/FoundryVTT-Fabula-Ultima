@@ -3,7 +3,7 @@
   "name": "Vortex",
   "type": "spell",
   "_id": "e8zOkUsnSVLHBFLZ",
-  "img": "icons/magic/air/wind-tornado-cyclone-white.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/vortex.png",
   "system": {
     "subtype": {
       "value": ""
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706567400781,
-    "modifiedTime": 1737918219344,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1746641053007,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -1,0 +1,96 @@
+{
+  "folder": "423RpDks0B2eewCA",
+  "name": "Zero Shield",
+  "type": "effect",
+  "_id": "64onPfJ9EH45XVgW",
+  "img": "icons/magic/defensive/barrier-shield-dome-deflect-blue.webp",
+  "system": {
+    "fuid": "zero-shield",
+    "cost": {
+      "value": 0
+    }
+  },
+  "effects": [
+    {
+      "img": "icons/magic/defensive/barrier-shield-dome-deflect-blue.webp",
+      "system": {
+        "duration": {
+          "event": "startOfTurn",
+          "interval": 1,
+          "tracking": "self",
+          "remaining": 1
+        },
+        "type": "default",
+        "predicate": {
+          "crisisInteraction": "none"
+        },
+        "rules": {
+          "progress": {
+            "current": 0,
+            "step": 1,
+            "max": 6,
+            "enabled": false,
+            "id": "",
+            "name": ""
+          }
+        }
+      },
+      "duration": {
+        "rounds": null,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Zero Shield",
+      "_id": "eQuLX93g7C1kKqk6",
+      "type": "base",
+      "changes": [
+        {
+          "key": "flags.projectfu.scaleIncomingDamage",
+          "mode": 5,
+          "value": "0.5",
+          "priority": null
+        }
+      ],
+      "description": "<p>Until the <strong>start of your next turn</strong>, you <strong>reduce all damage taken by half.</strong> This is applied <strong>before affinities</strong>.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "projectfu",
+        "systemVersion": "#{VERSION}#",
+        "createdTime": 1746365670284,
+        "modifiedTime": 1746366085349,
+        "lastModifiedBy": "JXPd932s9DHQRD0w"
+      },
+      "_key": "!items.effects!64onPfJ9EH45XVgW.eQuLX93g7C1kKqk6"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "JXPd932s9DHQRD0w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1746365622928,
+    "modifiedTime": 1746365654227,
+    "lastModifiedBy": "JXPd932s9DHQRD0w"
+  },
+  "_key": "!items!64onPfJ9EH45XVgW"
+}

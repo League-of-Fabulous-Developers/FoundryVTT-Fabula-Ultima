@@ -3,7 +3,7 @@
   "name": "Effect: Divination",
   "type": "effect",
   "_id": "7Lt7jZqWTtyWXzYR",
-  "img": "icons/magic/perception/orb-crystal-ball-scrying.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_divination.png",
   "system": {
     "fuid": "effect-divination",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "icons/magic/perception/orb-crystal-ball-scrying.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_divination.png",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -37,7 +37,13 @@
           "tracking": "source",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
       },
       "changes": [],
       "description": "<p>You glimpse briefly into the future. Until this spell ends, after a creature you can see performs a Check, if it was not a <strong>fumble</strong> nor a <strong>critical success</strong>, you may force that creature to reroll both dice. Once you have forced <strong>two</strong> rerolls this way, this spell ends.</p>",
@@ -50,12 +56,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744503925677,
-        "modifiedTime": 1744503964372,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+        "modifiedTime": 1747173689638,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!7Lt7jZqWTtyWXzYR.jjylFI3HoTrd25kY"
     }
@@ -69,12 +75,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744503923688,
-    "modifiedTime": 1744503955535,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+    "modifiedTime": 1747173682846,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_key": "!items!7Lt7jZqWTtyWXzYR"
 }

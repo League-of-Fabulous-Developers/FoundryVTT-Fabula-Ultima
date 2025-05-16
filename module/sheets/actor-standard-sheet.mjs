@@ -3,7 +3,7 @@ import { createChatMessage, promptCheck, promptOpenCheck } from '../helpers/chec
 import { ItemCustomizer } from '../helpers/item-customizer.mjs';
 import { ActionHandler } from '../helpers/action-handler.mjs';
 import { EquipmentHandler } from '../helpers/equipment-handler.mjs';
-import { StudyRollHandler } from '../helpers/study-roll.mjs';
+import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
@@ -51,7 +51,12 @@ export class FUStandardActorSheet extends ActorSheet {
 
 	/** @override */
 	get template() {
-		return `systems/projectfu/templates/actor/actor-${this.actor.type}-sheet.hbs`;
+		const type = this.actor.type;
+		const wl = ['character', 'npc'];
+		if (!game.user.isGM && !this.actor.owner && wl.includes(type)) {
+			return `systems/projectfu/templates/actor/actor-${type}-limited-sheet.hbs`;
+		}
+		return `systems/projectfu/templates/actor/actor-${type}-sheet.hbs`;
 	}
 
 	/* -------------------------------------------- */
@@ -125,11 +130,22 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Enrich each effect's description
 		for (const effect of context.allEffects) {
-			effect.enrichedDescription = effect.description ? await TextEditor.enrichHTML(effect.description) : '';
+			effect.enrichedDescription = effect.description
+				? await TextEditor.enrichHTML(effect.description, {
+						secrets: this.actor.isOwner,
+						rollData: context.actor.getRollData(),
+						relativeTo: context.actor,
+					})
+				: '';
 		}
 
+		// Enriches description fields within the context object
 		context.enrichedHtml = {
-			description: await TextEditor.enrichHTML(context.system.description ?? ''),
+			description: await TextEditor.enrichHTML(context.system.description ?? '', {
+				secrets: this.actor.isOwner,
+				rollData: context.actor.getRollData(),
+				relativeTo: context.actor,
+			}),
 		};
 
 		const studyRollTiers = game.settings.get(SYSTEM, SETTINGS.useRevisedStudyRule) ? FU.studyRoll.revised : FU.studyRoll.core;

@@ -36,7 +36,7 @@ export const FUHooks = {
 	 */
 	DATA_PREPARED_ITEM: 'projectfu.item.dataPrepared',
 	/**
-	 * @description Invoked when a study roll is made
+	 * @description Invoked when a study roll has been resolved
 	 * @example callback(actor, journalEntry) { ... }
 	 */
 	ROLL_STUDY: 'studyRoll',
@@ -123,4 +123,16 @@ export const FUHooks = {
 	 * @remarks Uses {@link RestEvent}
 	 */
 	REST_EVENT: 'projectfu.events.rest',
+	/**
+	 * @description Dispatched after information is revealed about an actor
+	 * @example callback(event)
+	 * @remarks Uses {@link RevealEvent}
+	 */
+	REVEAL_EVENT: 'projectfu.events.reveal',
+	/**
+	 * @description Dispatched after an adversary entry has been added to the active party sheet
+	 * @example callback(entry)
+	 * @remarks Uses {@link NpcProfileData}
+	 */
+	PARTY_ADVERSARY_EVENT: 'projectfu.events.party.adversary',
 };

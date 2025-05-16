@@ -38,8 +38,8 @@ $color-levelup: #ffd166;
 $color-levelup-gradient: #6ee36e;
 $color-zeropower: #9400d3;
 
-$background-core: url('/systems/projectfu/styles/static/ui/HojitasDouble_highres.png'), linear-gradient(270deg, rgba(17, 41, 41, 0.9) 0%, rgba(38, 88, 83, 0.9) 100%);
-$background-card: url('/systems/projectfu/styles/static/ui/Bkg_highres.png');
+$background-core: url('../static/ui/HojitasDouble_highres.png'), linear-gradient(270deg, rgba(17, 41, 41, 0.9) 0%, rgba(38, 88, 83, 0.9) 100%);
+$background-card: url('../static/ui/Bkg_highres.png');
 
 $color-background: $color-secondary;
 $color-background-inverted: $color-secondary-inverted;
@@ -156,8 +156,27 @@ $background-untyped: linear-gradient(to right, #c0c0c0, #a8a8a8);
 $border-untyped: #a8a8a8;
 
 // Party
+$party-name: #b34700;
+$party-identity: #228b22;
 $party-menu-button: linear-gradient(to right, #1d2b3a, $color-background);
 $character-plate: linear-gradient(to bottom, #1d2b3a, #2e3d4f);
+$companion-plate: linear-gradient(to bottom, #2c3e50, #3b5870);
+$adversary-plate: linear-gradient(to bottom, #6a3986, #1e0f2a);
+
+// Ranks
+$rank-soldier: #8a7300;
+$rank-elite: #b34700;
+$rank-champion: #801e1f;
+
+// Species
+$species-beast: #3e2900;
+$species-demon: #ff4444;
+$species-construct: #cccccc;
+$species-elemental: #1ec8e7;
+$species-humanoid: #444444;
+$species-monster: #6e0f9c;
+$species-plant: #228b22;
+$species-undead: #bbbbbb;
 
 :root {
 	--color-shadow-primary: #{$color-box-shadow};

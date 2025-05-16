@@ -40,6 +40,7 @@ import { MiscAbilityDataModel } from '../items/misc/misc-ability-data-model.mjs'
  * @extends {Actor}
  * @property {CharacterDataModel | NpcDataModel | PartyDataModel | SheetDataModel} system
  * @property {EffectCategories} effectCategories
+ * @property {String} type
  * @property {Boolean} isCharacterType
  * @property {FUStandardActorSheet | FUPartySheet} sheet
  * @remarks {@link https://foundryvtt.com/api/classes/client.Actor.html}
@@ -240,6 +241,15 @@ export class FUActor extends Actor {
 		super._onUpdate(changed, options, userId);
 	}
 
+	/**
+	 * Get all ActiveEffects that may apply to this Actor.
+	 * If CONFIG.ActiveEffect.legacyTransferral is true, this is equivalent to actor.effects.contents.
+	 * If CONFIG.ActiveEffect.legacyTransferral is false, this will also return all the transferred ActiveEffects on any
+	 * of the Actor's owned Items.
+	 * @yields {ActiveEffect}
+	 * @returns {Generator<ActiveEffect, void, void>}
+	 * @override
+	 */
 	*allApplicableEffects() {
 		for (const effect of super.allApplicableEffects()) {
 			const item = effect.parent;
@@ -303,13 +313,16 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @description Apply any transformations to the Actor data which are caused by ActiveEffects.
 	 * @override
 	 */
 	applyActiveEffects() {
-		if (this.system.prepareEmbeddedData instanceof Function) {
+		// Evaluate all AEs on self
+		super.applyActiveEffects();
+		// For character types, add new properties
+		if (this.isCharacterType) {
 			this.system.prepareEmbeddedData();
 		}
-		return super.applyActiveEffects();
 	}
 
 	/**
@@ -330,6 +343,17 @@ export class FUActor extends Actor {
 	}
 
 	/**
+	 * @returns {String}
+	 */
+	resolveUuid() {
+		let uuid = this.uuid;
+		if (this.token && this.token.baseActor) {
+			uuid = this.token.baseActor.uuid;
+		}
+		return uuid;
+	}
+
+	/**
 	 * Returns an array of items that match a given FUID and optionally an item type
 	 * @param {string} fuid - The FUID of the item(s) which you want to retrieve
 	 * @param {string} [type] - Optionally, a type name to restrict the search
@@ -343,6 +367,14 @@ export class FUActor extends Actor {
 			throw new Error(`Type ${type} is invalid!`);
 		}
 		return itemTypes[type].filter(fuidFilter);
+	}
+
+	/**
+	 * @param {FU.itemTypes} type
+	 * @returns {FUItem[]}
+	 */
+	getItemsByType(type) {
+		return this.items.filter((i) => i.type === type);
 	}
 
 	/**

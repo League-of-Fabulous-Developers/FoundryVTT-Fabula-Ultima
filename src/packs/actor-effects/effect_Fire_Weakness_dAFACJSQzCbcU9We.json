@@ -3,7 +3,7 @@
   "name": "Fire Weakness",
   "type": "effect",
   "_id": "dAFACJSQzCbcU9We",
-  "img": "systems/projectfu/styles/static/affinities/fire.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
   "system": {
     "fuid": "fire-weakness",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "systems/projectfu/styles/static/affinities/fire.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/fire.png",
       "origin": "Compendium.projectfu.actor-effects.Item.dAFACJSQzCbcU9We",
       "duration": {
         "rounds": 1,
@@ -27,7 +27,14 @@
       "name": "Fire Weakness",
       "_id": "O4InDqGIoqBQrSLF",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.bonuses.incomingDamage.fire",
@@ -51,12 +58,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.330",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1737993532227,
-        "modifiedTime": 1737993726569,
-        "lastModifiedBy": "esOkelwPNblkbxW3"
+        "modifiedTime": 1747231044124,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!dAFACJSQzCbcU9We.O4InDqGIoqBQrSLF"
     }
@@ -70,12 +77,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.330",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1737993520936,
-    "modifiedTime": 1737993602920,
-    "lastModifiedBy": "esOkelwPNblkbxW3"
+    "modifiedTime": 1747231039890,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_key": "!items!dAFACJSQzCbcU9We"
 }

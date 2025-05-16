@@ -2,7 +2,7 @@
   "folder": "rPNBQ4ka3rcyorik",
   "name": "Poison Absorption",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/poison.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
   "system": {
     "fuid": "poison-absorption"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Poison Absorption",
-      "img": "systems/projectfu/styles/static/affinities/poison.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/poison.png",
       "_id": "bRKKizv7MP6Yg5x4",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.poison.current",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725752500460,
-        "modifiedTime": 1725752564051,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747230716563,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!qDOeYhLhY3YX9ro2.bRKKizv7MP6Yg5x4"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750295038,
-    "modifiedTime": 1725750295038,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747230712474,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "qDOeYhLhY3YX9ro2",
   "sort": 0,

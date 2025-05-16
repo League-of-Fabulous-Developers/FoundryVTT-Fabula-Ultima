@@ -79,9 +79,8 @@
         {{#each factions as |combatants faction| }}
             <h2 class="faction">{{localize (concat 'FU.CombatFaction' (capitalize faction))}} {{combatants.length}}</h2>
             {{#each combatants}}
-                <li class="combatant actor directory-item flexrow {{faction}} {{this.css}} {{#if (eq @root.combatant.id this.id)}}started-turn{{/if}}"
-                    data-combatant-id="{{this.id}}">
-                    <img class="token-image" data-src="{{this.img}}" alt="{{this.name}}" />
+                <li class="combatant actor directory-item flexrow {{faction}} {{this.css}} {{#if (eq @root.combatant.id this.id)}}started-turn{{/if}}" data-combatant-id="{{this.id}}">
+                    <img data-action="inspectCombatant" class="token-image" data-src="{{this.img}}" alt="{{this.name}}" />
                     <div class="token-name flexcol">
                         <h4>{{this.name}}</h4>
                         <div class="combatant-controls flexrow">
@@ -106,6 +105,15 @@
                                     <i class="fas fa-bullseye"></i>
                                 </a>
                             {{/if}}
+							{{#unless (eq this.faction 'friendly')}}
+								<a class="combatant-control" role="button"
+								   style="color: white;"
+								   data-tooltip="{{localize 'FU.Inspect'}}"
+								   data-control="inspectCombatant">
+									<i class="ra ra-monster-skull"></i>
+								</a>
+							{{/unless}}
+
                             <div class="token-effects">
                                 {{#each this.statusEffects}}
                                     <img class="token-effect" src="{{this.img}}" alt="{{this.name}}"

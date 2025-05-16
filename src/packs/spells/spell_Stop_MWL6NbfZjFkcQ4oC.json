@@ -3,7 +3,7 @@
   "name": "Stop",
   "type": "spell",
   "_id": "MWL6NbfZjFkcQ4oC",
-  "img": "icons/magic/time/clock-stopwatch-white-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/stop.png",
   "system": {
     "subtype": {
       "value": ""
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.343",
     "createdTime": 1706571789055,
-    "modifiedTime": 1737918158917,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1747173822302,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1",
     "compendiumSource": null,
     "duplicateSource": null
   },

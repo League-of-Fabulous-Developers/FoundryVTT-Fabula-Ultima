@@ -3,7 +3,7 @@
   "name": "Terra",
   "type": "spell",
   "_id": "HBpuuefQTab6pE7R",
-  "img": "icons/magic/earth/barrier-stone-explosion-debris.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/terra.png",
   "system": {
     "subtype": {
       "value": ""
@@ -133,10 +133,10 @@
   "_stats": {
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
-    "coreVersion": "12.330",
+    "coreVersion": "12.331",
     "createdTime": 1706567040241,
-    "modifiedTime": 1737919129097,
-    "lastModifiedBy": "esOkelwPNblkbxW3",
+    "modifiedTime": 1746640975703,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },

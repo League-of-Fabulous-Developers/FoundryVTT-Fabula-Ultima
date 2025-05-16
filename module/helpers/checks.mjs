@@ -1,5 +1,5 @@
 import { getTargeted } from './target-handler.mjs';
-import { StudyRollHandler } from './study-roll.mjs';
+import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 
 /**
  * @typedef {"dex","ins","mig","wpl"} Attribute
@@ -151,7 +151,6 @@ import { Flags } from './flags.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
-import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from './token-utils.mjs';
 import { PlayerListEnhancements } from './player-list-enhancements.mjs';
 
@@ -912,10 +911,8 @@ export async function promptOpenCheck(actor, title, action) {
 		const handleResults = async (checkResult) => {
 			if (action === 'study') {
 				try {
-					const studyRollHandler = new StudyRollHandler(actor, checkResult.result);
+					const studyRollHandler = new StudyRollHandler(actor, checkResult);
 					await studyRollHandler.handleStudyRoll();
-					const targets = CheckConfiguration.inspect(checkResult).getTargetsOrDefault();
-					CommonEvents.study(actor, targets);
 					return { rollResult: checkResult.result, message: null };
 				} catch (error) {
 					console.error('Error processing study roll:', error);

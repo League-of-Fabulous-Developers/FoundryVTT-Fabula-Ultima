@@ -2,7 +2,7 @@
   "folder": "rPNBQ4ka3rcyorik",
   "name": "Light Absorption",
   "type": "effect",
-  "img": "systems/projectfu/styles/static/affinities/light.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/light.png",
   "system": {
     "fuid": "light-absorption"
   },
@@ -20,10 +20,17 @@
       },
       "disabled": false,
       "name": "Light Absorption",
-      "img": "systems/projectfu/styles/static/affinities/light.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/light.png",
       "_id": "nGaN77pSNYs8pzp8",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.light.current",
@@ -45,12 +52,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725752448418,
-        "modifiedTime": 1725752469880,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747230694329,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!4uRdxtsvkZvEA3yC.nGaN77pSNYs8pzp8"
     }
@@ -59,12 +66,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750295038,
-    "modifiedTime": 1725750295038,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747230689796,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_id": "4uRdxtsvkZvEA3yC",
   "sort": 0,

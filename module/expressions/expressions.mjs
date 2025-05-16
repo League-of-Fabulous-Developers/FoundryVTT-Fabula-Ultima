@@ -345,6 +345,18 @@ function evaluateVariables(expression, context) {
 			case 'bc': {
 				return countBonds(context.actor);
 			}
+			// Maximum bond strength
+			case 'mbs': {
+				return maximumBondStrength(context.actor);
+			}
+			// Number of classes
+			case 'cc': {
+				return countClasses(context.actor);
+			}
+			// Number of mastered classes
+			case 'mcc': {
+				return countMasteredClasses(context.actor);
+			}
 			default:
 				throw new Error(`Unsupported symbol ${symbol}`);
 		}
@@ -386,12 +398,18 @@ function evaluateMacros(expression, context) {
 				}
 				return skill.system.level.value;
 			}
-			// Clock section
+			// Attribute size
+			case 'ats': {
+				const actor = context.resolveActorOrSource(match, redirect);
+				const attribute = parseIdentifier(splitArgs[0]);
+				return getAttributeSize(actor, attribute);
+			}
+			// Progress track
 			case 'pg':
 			case 'cs': {
-				context.assertActor();
+				const actor = context.resolveActorOrSource(match, redirect);
 				const id = parseIdentifier(splitArgs[0]);
-				const clock = context.actor.resolveProgress(id);
+				const clock = actor.resolveProgress(id);
 				if (!clock) {
 					ui.notifications.warn(`${game.i18n.localize('FU.ChatEvaluateNoProgress')}: '${id}'`, { localize: true });
 					throw new Error(`The progress track with id ${id} was not found`);
@@ -456,6 +474,31 @@ function countStatusEffects(actor) {
 function countBonds(actor) {
 	if (!actor || !Array.isArray(actor.system?.bonds)) return 0;
 	return actor.system.bonds.length;
+}
+
+/**
+ * @param {FUActor} actor
+ * @return {Number}
+ */
+function maximumBondStrength(actor) {
+	if (!actor || !Array.isArray(actor.system?.bonds)) return 0;
+	return Math.max(...actor.system.bonds.map((b) => b.strength));
+}
+
+/**
+ * @param {FUActor} actor
+ * @returns {Number}
+ */
+function countClasses(actor) {
+	return actor.getItemsByType('class')?.length ?? 0;
+}
+
+/**
+ * @param {FUActor} actor
+ * @returns {Number}
+ */
+function countMasteredClasses(actor) {
+	return actor.getItemsByType('class').filter((c) => c.system.mastered)?.length ?? 0;
 }
 
 // Used for referencing

@@ -80,7 +80,8 @@ Supplied game rules in the system compendium adhere to and are published under t
 
   - ❌ Repackage, redistribute, or resell the assets in any way, even if you’ve heavily modified them.
 
-[projectfu\styles\static\compendium\classes\ *]
+[projectfu\styles\static\compendium\classes\*]
+[projectfu\styles\static\compendium\technospheres\*]
 
 **Javier Aumente (Tarot)** (**Email:** <jaauvel@gmail.com>) - A majority of the pixel art found in this folder was provided by Tarot with explicit permission to use for the ProjectFU/Fultimator project.
 

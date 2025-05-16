@@ -3,7 +3,7 @@
   "name": "Effect: Mirror",
   "type": "effect",
   "_id": "cyA5qMihPTXCsCyD",
-  "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_mirror.png",
   "system": {
     "fuid": "effect-mirror",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/entropist/spells/effects/effect_mirror.png",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -37,7 +37,13 @@
           "tracking": "source",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
       },
       "changes": [],
       "description": "<p>You twist the laws of magic. Until this spell ends, if an offensive ( @ICON[offensive] ) spell is cast on the target, the creature who cast that offensive spell will be targeted in their stead (any other targets of the offensive spell will be targeted as normal). Once that happens, this spell ends.</p>",
@@ -50,12 +56,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744504147205,
-        "modifiedTime": 1744504186548,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+        "modifiedTime": 1747173765308,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!cyA5qMihPTXCsCyD.5AM5DRlt9st1DfDo"
     }
@@ -69,12 +75,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744504140119,
-    "modifiedTime": 1744504160975,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+    "modifiedTime": 1747173757440,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "_key": "!items!cyA5qMihPTXCsCyD"
 }

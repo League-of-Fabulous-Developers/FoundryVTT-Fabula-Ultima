@@ -13,7 +13,7 @@
       ],
       "drawn": false,
       "_id": "N9DlB2tFVZr3lukP",
-      "text": "You lose half of your current Hit Points (@LOSS[(@actor.resources.hp.value/2)) and half of your current Mind Points (@LOSS[(@actor.resources.mp.value/2) mp]).",
+      "text": "You lose half of your current Hit Points (@LOSS[(@actor.resources.hp.value/2){Half Current HP}) and half of your current Mind Points (@LOSS[(@actor.resources.mp.value/2) mp]).",
       "img": "icons/svg/d20-black.svg",
       "documentId": null,
       "flags": {},
@@ -92,12 +92,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744494259294,
-    "modifiedTime": 1744495375150,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+    "modifiedTime": 1747177729091,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "formula": "1d10",
   "_key": "!tables!ZAY11CArn1cYCyqP"

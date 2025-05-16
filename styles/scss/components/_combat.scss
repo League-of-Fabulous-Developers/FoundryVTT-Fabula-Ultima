@@ -453,7 +453,7 @@
 	--combat-info-image-size: calc(8.5em - var(--combat-info-content-padding) * 2);
 	--combat-info-image-size-npcs: calc(7em - var(--combat-info-content-padding) * 2);
 	--combat-info-image-size-compact: calc(2em - var(--combat-info-content-padding) * 2);
-	--combat-info-pc-background: url('/systems/projectfu/styles/static/ui/combat-hud/pc_bg.svg');
+	--combat-info-pc-background: url('../static/ui/combat-hud/pc_bg.svg');
 	--combat-info-clip-path: polygon(50% 100%, 100% 50%, 100% 0%, 0% 0%, 0% 50%);
 	--combat-image-size: var(--combat-info-image-size);
 	--combat-bars-width-three: auto;
@@ -467,7 +467,7 @@
 	--combat-ip-label-color: #ffdfbb;
 	--combat-xp-label-color: #ffd166;
 	--combat-zeropower-label-color: #f0ccff;
-	--combat-bars-background: url('/systems/projectfu/styles/static/ui/combat-hud/bar_bg.svg');
+	--combat-bars-background: url('../static/ui/combat-hud/bar_bg.svg');
 	--combat-effects-background: rgba(25, 25, 25, 0.6);
 
 	max-height: 355px;

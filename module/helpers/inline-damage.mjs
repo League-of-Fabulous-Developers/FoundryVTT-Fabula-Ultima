@@ -73,13 +73,14 @@ function activateListeners(document, html) {
 			let targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
-				sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
+				// TODO: Verify
+				//sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
 				const type = this.dataset.type;
 				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);
 
-				const baseDamageInfo = { type, total: amount, modifierTotal: 0 };
-				const request = new DamageRequest(sourceInfo, targets, baseDamageInfo);
+				const damageData = { type, total: amount, modifierTotal: 0 };
+				const request = new DamageRequest(sourceInfo, targets, damageData);
 				if (this.dataset.traits) {
 					request.addTraits(...this.dataset.traits.split(','));
 				}
@@ -114,9 +115,9 @@ async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo
 		const sourceInfo = InlineSourceInfo.fromObject(_sourceInfo);
 		const context = ExpressionContext.sourceInfo(sourceInfo, [actor]);
 		const _amount = await Expressions.evaluateAsync(amount, context);
-		const baseDamageInfo = { type: damageType, total: _amount, modifierTotal: 0 };
+		const damageData = { type: damageType, total: _amount, modifierTotal: 0 };
 
-		const request = new DamageRequest(sourceInfo, [actor], baseDamageInfo);
+		const request = new DamageRequest(sourceInfo, [actor], damageData);
 		if (traits) {
 			request.addTraits(...traits.split(','));
 		}

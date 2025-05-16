@@ -65,40 +65,6 @@
 			<label class="items-label">{{localize "FU.Spells"}}</label>
 		</span>
     </header>
-    <ol class="items-list">
-        <li class="item flexrow items-header">
-            <div class="item-name">{{localize 'FU.Spells'}}</div>
-            <div class="item-m">{{localize 'FU.Duration'}}</div>
-            <div class="item-lg">{{localize 'FU.Target'}}</div>
-            <div class="item-m">{{localize 'FU.MindPointCost'}}</div>
-            <div class="item-m end">
-                <a class="item-control item-create" aria-describedby="tooltip"
-                   data-tooltip="{{localize 'FU.SpellCreate'}}" data-type="spell"> <i
-                 class="fas fa-plus icon"></i>{{localize 'FU.Add'}} </a>
-            </div>
-        </li>
-        {{#each spells as |item id|}}
-            <li class="item" data-item-id="{{ item._id }}">
-                <div class="flexrow">
-                    {{!-- Item Name--}}
-                    {{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
-                    <div class="item-m">{{ capitalize item.duration }}</div>
-                    <div class="item-lg">{{ capitalize item.target}}</div>
-                    <div class="item-m">{{ item.mpCost }}</div>
-                    {{!-- Item Control--}}
-                    {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
-                </div>
-                <div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
-                    {{#if item.detail}}
-                        <div class="item-quality align-left">
-                            <strong>{{item.detail}}</strong>
-                        </div>
-                    {{/if}}
-                    {{#if item.enrichedHtml.description}}
-                        {{{item.enrichedHtml.description}}}
-                    {{/if}}
-                </div>
-            </li>
-        {{/each}}
-    </ol>
+	{{> "systems/projectfu/templates/actor/sections/actor-spell-list.hbs"}}
+
 </section>

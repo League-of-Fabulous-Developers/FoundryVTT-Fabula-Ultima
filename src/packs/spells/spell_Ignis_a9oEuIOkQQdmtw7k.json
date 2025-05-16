@@ -3,7 +3,7 @@
   "name": "Ignis",
   "type": "spell",
   "_id": "a9oEuIOkQQdmtw7k",
-  "img": "icons/magic/fire/projectile-fireball-sparks-orange.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/elementalist/spells/ignis.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706565586057,
-    "modifiedTime": 1744477252555,
-    "lastModifiedBy": "WNNELbIcUepK9pGq",
+    "modifiedTime": 1746640939896,
+    "lastModifiedBy": "9aR18wpxqiStEQ8U",
     "compendiumSource": null,
     "duplicateSource": null
   },

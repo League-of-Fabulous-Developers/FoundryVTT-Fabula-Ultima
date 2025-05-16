@@ -3,7 +3,7 @@
   "name": "Physical Resistance",
   "type": "effect",
   "_id": "6yf1uUJP4vxmU3eW",
-  "img": "systems/projectfu/styles/static/affinities/physical.svg",
+  "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
   "system": {
     "fuid": "physical-resistance"
   },
@@ -21,10 +21,17 @@
       },
       "disabled": false,
       "name": "Physical Resistance",
-      "img": "systems/projectfu/styles/static/affinities/physical.svg",
+      "img": "systems/projectfu/styles/static/affinities/icons/physical.png",
       "_id": "PL4467NyM6rVy2p1",
       "type": "base",
-      "system": {},
+      "system": {
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
+      },
       "changes": [
         {
           "key": "system.affinities.physical",
@@ -46,12 +53,12 @@
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
-        "coreVersion": "12.331",
+        "coreVersion": "12.343",
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1725754592979,
-        "modifiedTime": 1725754612367,
-        "lastModifiedBy": "dobQfkKFj2NK96cc"
+        "modifiedTime": 1747231156196,
+        "lastModifiedBy": "0rGg2qMpfjSi3eN1"
       },
       "_key": "!items.effects!6yf1uUJP4vxmU3eW.PL4467NyM6rVy2p1"
     }
@@ -60,12 +67,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "12.343",
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1725750014969,
-    "modifiedTime": 1725750014969,
-    "lastModifiedBy": "dobQfkKFj2NK96cc"
+    "modifiedTime": 1747231152055,
+    "lastModifiedBy": "0rGg2qMpfjSi3eN1"
   },
   "sort": 0,
   "ownership": {
