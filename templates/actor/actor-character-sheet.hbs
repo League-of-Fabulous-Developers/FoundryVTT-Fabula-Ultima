@@ -27,11 +27,11 @@
 				</a>
 				<!-- Deposit/Withdraw Zenit -->
 				<div class="item-control" style="gap: 4px;">
-					<a class="item-control zenit-deposit" data-tooltip="{{ localize 'FU.InventoryDepositZenit' }}"
+					<a class="item-control zenit-deposit" data-tooltip="{{ localize 'FU.InventoryDepositZenit' currency=(getGameSetting 'optionRenameCurrency') }}"
 						aria-describedby="tooltip">
 						<i class="fa fa-paper-plane button-style"></i>
 					</a>
-					<a class="item-control zenit-withdraw" data-tooltip="{{ localize 'FU.InventoryWithdrawZenit' }}"
+					<a class="item-control zenit-withdraw" data-tooltip="{{ localize 'FU.InventoryWithdrawZenit' currency=(getGameSetting 'optionRenameCurrency') }}"
 						aria-describedby="tooltip">
 						<i class="fa fa-university button-style"></i>
 					</a>

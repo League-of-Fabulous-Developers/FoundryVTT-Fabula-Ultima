@@ -216,7 +216,6 @@ async function prepareItems(context) {
 			item.progressCurr = itemObj.system.progress?.current;
 			item.progressStep = itemObj.system.progress?.step;
 			projects.push(item);
-			projects.push(item);
 		} else if (item.type === 'ritual') {
 			const itemObj = context.actor.items.get(item._id);
 			item.mpCost = itemObj.system.mpCost?.value;
