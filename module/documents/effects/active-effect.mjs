@@ -163,7 +163,7 @@ export class FUActiveEffect extends ActiveEffect {
 	 * @override
 	 */
 	get isTemporary() {
-		return (super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY)) && this.system.duration.event !== 'none';
+		return super.isTemporary || !!this.getFlag(SYSTEM, TEMPORARY) || this.system.duration.event !== 'none';
 	}
 
 	/**
