@@ -10,6 +10,17 @@ const lootAction = 'inventoryLoot';
 const rechargeAction = 'inventoryRecharge';
 const costPerIP = 10;
 
+function getCurrencyLocalizationKey() {
+	return game.settings.get('projectfu', 'optionRenameCurrency') || 'FU.Zenit';
+}
+
+/**
+ * @returns {String}
+ */
+function getCurrencyString() {
+	return game.i18n.localize(getCurrencyLocalizationKey());
+}
+
 /**
  * @param {FUActor} actor
  * @param {FUItem} item
@@ -48,7 +59,7 @@ async function tradeItem(actor, item, sale) {
 			itemId: item.uuid,
 			itemImg: item.img,
 			itemDescription: item.system.description,
-			currency: game.i18n.localize('FU.Zenit'),
+			currency: getCurrencyString(),
 			sale: sale,
 			cost: cost,
 			action: action,
@@ -56,13 +67,6 @@ async function tradeItem(actor, item, sale) {
 			tooltip: 'Boop',
 		}),
 	});
-}
-
-/**
- * @returns {String}
- */
-function getCurrencyString() {
-	return game.i18n.localize('FU.Zenit');
 }
 
 /**
@@ -113,7 +117,7 @@ async function distributeZenit(actor, targets) {
 			zenit: distributed,
 			share: share,
 			targets: targetString,
-			currency: game.i18n.localize('FU.Zenit'),
+			currency: getCurrencyString(),
 		}),
 		buttons: [
 			{
@@ -207,7 +211,7 @@ async function rechargeIP(actor) {
 		content: game.i18n.format('FU.ChatInventoryRechargePrompt', {
 			cost: cost,
 			ip: missingIP,
-			currency: game.i18n.localize('FU.Zenit'),
+			currency: getCurrencyString(),
 		}),
 		buttons: [
 			{
@@ -222,7 +226,7 @@ async function rechargeIP(actor) {
 						content: game.i18n.format('FU.ChatInventoryRechargeCompleted', {
 							target: target.name,
 							ip: missingIP,
-							currency: game.i18n.localize('FU.Zenit'),
+							currency: getCurrencyString(),
 						}),
 					});
 				},
@@ -259,7 +263,7 @@ async function requestZenitTransfer(sourceActorId, targetActorId, amount) {
 					source: sourceActor.name,
 					target: targetActor.name,
 					amount: amount,
-					currency: game.i18n.localize('FU.Zenit'),
+					currency: getCurrencyString(),
 				}),
 			});
 		}
@@ -275,6 +279,7 @@ async function requestZenitTransfer(sourceActorId, targetActorId, amount) {
  */
 async function promptPartyZenitTransfer(actor, mode) {
 	console.debug(`Prompt party zenit ${mode} for actor: ${actor.name}`);
+	const currency = getCurrencyString();
 	let label;
 	switch (mode) {
 		case 'deposit':
@@ -286,7 +291,7 @@ async function promptPartyZenitTransfer(actor, mode) {
 	}
 
 	new Dialog({
-		title: game.i18n.localize(label),
+		title: game.i18n.format(label, { currency: currency }),
 		content: `<form>
       <div class="form-group">        
         <label for="amount"">Amount</label>
@@ -419,7 +424,7 @@ async function onHandleTrade(actor, item, sale, target) {
 			actorName: actor.name,
 			itemName: item.name,
 			targetName: target.name,
-			currency: game.i18n.localize('FU.Zenit'),
+			currency: getCurrencyString(),
 			sale: sale,
 			cost: cost,
 		}),
@@ -433,7 +438,7 @@ function validateFunds(target, cost) {
 		ChatMessage.create({
 			content: game.i18n.format('FU.ChatInventoryTransactionFailed', {
 				actor: target.name,
-				currency: game.i18n.localize('FU.Zenit'),
+				currency: getCurrencyString(),
 			}),
 		});
 		return false;
