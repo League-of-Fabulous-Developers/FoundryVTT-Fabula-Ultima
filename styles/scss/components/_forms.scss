@@ -229,6 +229,27 @@
 	}
 }
 
+.fit-desc-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 1rem;
+	height: 100%;
+}
+
+.fit-desc {
+	flex: 1;
+	overflow: hidden;
+}
+
+.token-profile-img {
+	height: 100%;
+	width: 5rem;
+	object-fit: contain;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+}
+
 /* Wrapper for Sheet Body */
 .sheet-wrapper {
 	display: flex;

@@ -14,13 +14,16 @@
 					</div>
 					<!-- Center Header -->
 					<div class="header-center ">
-						<div class="grid-span-4 desc" style="border-radius: 0;">
-							{{!-- Enriched Description --}}
-								<div class="fit-desc">
-									{{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-									button=true owner=owner editable=editable }}
-								</div>
+					<div class="grid-span-4 desc" style="border-radius: 0; height: 145px">
+						<div class="fit-desc-row">
+							<div class="fit-desc">
+								<p>{{localize "FU.AdversaryNotStudied"}}</p>
+							</div>
+							{{#if actor.prototypeToken.texture.src}}
+								<img class="token-profile-img" src="{{actor.prototypeToken.texture.src}}" alt="{{actor.name}} token" />
+							{{/if}}
 						</div>
+					</div>
 					</div>
 				</div>
 			</div>

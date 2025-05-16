@@ -126,12 +126,35 @@
     </div>
     {{/if}}
 
-    {{#if (or (eq system.study.value 2) (eq system.study.value 3))}}
     {{!-- Attributes Section --}}
-    {{>"systems/projectfu/templates/actor/partials/actor-resources.hbs" actor=actor}}
+        <div class="header-fields flexrow">
+            <!-- Status Toggle Section -->
+            <div id="status-section" class="desc">
+                {{!-- Key Statuses --}}
+                <div class="grid grid-8col">
+                    {{#each statusEffectToggles as |statusEffect|}}
+                        <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}} {{#if statusEffect.immune}}immune{{/if}}"
+                        data-status-id="{{statusEffect.id}}">
+                            <img src="{{statusEffect.img}}" data-tooltip="{{statusEffect.tooltip}}">
+                        </a>
+                    {{/each}}
+                </div>
+            </div>
+            {{#if (or (eq system.study.value 2) (eq system.study.value 3))}}
+                <!-- Attribute Section -->
+                <div id="attribute-section" class="resource-content flex-group-center desc">
+                    {{>"systems/projectfu/templates/actor/partials/actor-attributes.hbs"}}
+                </div>
+            {{/if}}
+            <div id="roll-section" class="resource-content flex-group-center desc">
+            {{#if actor.prototypeToken.texture.src}}
+				<img class="token-profile-img" src="{{actor.prototypeToken.texture.src}}" alt="{{actor.name}} token" />
+			{{/if}}
+            </div>
+
+        </div>
     {{!-- Affinity Section --}}
     {{>"systems/projectfu/templates/actor/partials/actor-affinities.hbs" actor=actor}}
-    {{/if}}
 </header>
 
 <main>
@@ -148,11 +171,13 @@
     {{/if}}
 
     <section class="desc">
-        {{!-- Enriched Description --}}
-        <div class="fit-desc">
-            {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-            button=true owner=owner editable=editable }}
-        </div>
+        {{!-- Enriched Description --}}	
+		<div class="fit-desc-row">
+			<div class="fit-desc">
+                {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
+                button=true owner=owner editable=editable }}
+			</div>
+		</div>
     </section>
 
     {{#if (eq system.study.value 3)}}
