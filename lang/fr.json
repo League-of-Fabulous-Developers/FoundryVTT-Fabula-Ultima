@@ -669,6 +669,7 @@
 		"DialogRerollLabel": "Invoquer",
 		"DialogRerollMissingTrait": "Aucun trait séléctionné",
 		"DialogRerollMissingDice": "Aucun dé séléctionné",
+		"DialogIgnoreFPCost": "Ignore Fabula Point cost",
 		"ChatContextRetarget": "Modifier les cibles",
 		"ChatContextRerollFabula": "Invoquer un trait pour relancer",
 		"ChatContextPush": "Invoquer un lien pour ajouter son intensité",

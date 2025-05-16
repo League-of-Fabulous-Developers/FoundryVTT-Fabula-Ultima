@@ -669,6 +669,7 @@
 		"DialogRerollLabel": "Вызвать",
 		"DialogRerollMissingTrait": "Черта не выбрана",
 		"DialogRerollMissingDice": "Кости не выбраны",
+		"DialogIgnoreFPCost": "Ignore Fabula Point cost",
 		"ChatContextRetarget": "Перенацелить токен(ы)",
 		"ChatContextRerollFabula": "Вызвать черту для переброса",
 		"ChatContextPush": "Вызвать связь для натиска",

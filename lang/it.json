@@ -669,6 +669,7 @@
 		"DialogRerollLabel": "Invocare",
 		"DialogRerollMissingTrait": "Nessun tratto scelto",
 		"DialogRerollMissingDice": "Nessun dado scelto",
+		"DialogIgnoreFPCost": "Ignore Fabula Point cost",
 		"ChatContextRetarget": "Bersaglia di nuovo i Token",
 		"ChatContextRerollFabula": "Invocare un Tratto per Ritirare",
 		"ChatContextPush": "Invocare un Legame per Migliorare ",

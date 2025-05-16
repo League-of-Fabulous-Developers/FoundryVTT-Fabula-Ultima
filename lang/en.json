@@ -669,6 +669,7 @@
 		"DialogRerollLabel": "Invoke",
 		"DialogRerollMissingTrait": "No Trait selected",
 		"DialogRerollMissingDice": "No dice selected",
+		"DialogIgnoreFPCost": "Ignore Fabula Point cost",
 		"ChatContextRetarget": "Retarget Token(s)",
 		"ChatContextRerollFabula": "Invoke Trait to Reroll",
 		"ChatContextPush": "Invoke Bond to Push",

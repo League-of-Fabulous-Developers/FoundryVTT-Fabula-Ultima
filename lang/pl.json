@@ -669,6 +669,7 @@
 		"DialogRerollLabel": "Wywołanie",
 		"DialogRerollMissingTrait": "Nie wybrano Przymiotu",
 		"DialogRerollMissingDice": "Nie wybrano Kości",
+		"DialogIgnoreFPCost": "Ignore Fabula Point cost",
 		"ChatContextRetarget": "Oznacz Token(y)",
 		"ChatContextRerollFabula": "Wywołanie Przymiotu do Przerzutu",
 		"ChatContextPush": "Wywołanie Więzi do Przerzutu",

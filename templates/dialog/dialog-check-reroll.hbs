@@ -13,7 +13,7 @@
     {{/each}}
 </section>
 <hr>
-<section class="traits desc title-fieldsetflex-group-left">
+<section class="traits desc title-fieldset flex-group-left">
     <input type="checkbox" id="attr1-result" name="results" value="attr1">
     <label class="dice-container" for="attr1-result">
         <span class="roll-container">
@@ -27,6 +27,13 @@
             <span class="roll">{{attr2.result}}</span>
         </span>
         <span>{{localize (concat 'FU.Attribute' (capitalize attr2.attribute))}}</span>
+    </label>
+</section>
+<hr>
+<section class="traits desc title-fieldset flex-group-left">
+    <input type="checkbox" id="ignore-fp" name="results" value="ignore-fp">
+    <label class="dice-container" for="ignore-fp">
+        <span>{{localize 'FU.DialogIgnoreFPCost'}}</span>
     </label>
 </section>
 <hr>

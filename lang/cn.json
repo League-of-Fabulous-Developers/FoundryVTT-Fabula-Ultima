@@ -669,6 +669,7 @@
 		"DialogRerollLabel": "调用",
 		"DialogRerollMissingTrait": "未选择特质",
 		"DialogRerollMissingDice": "未选择骰子",
+		"DialogIgnoreFPCost": "Ignore Fabula Point cost",
 		"ChatContextRetarget": "重新选择目标",
 		"ChatContextRerollFabula": "调用特质以重掷",
 		"ChatContextPush": "调用羁绊以推动",

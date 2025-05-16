@@ -669,6 +669,7 @@
 		"DialogRerollLabel": "Neu würfeln",
 		"DialogRerollMissingTrait": "Kein Charakterzug ausgewählt",
 		"DialogRerollMissingDice": "Keine Würfel ausgewählt",
+		"DialogIgnoreFPCost": "Ignore Fabula Point cost",
 		"ChatContextRetarget": "Ziel(e) ändern",
 		"ChatContextRerollFabula": "Auf Charakterzug berufen und neu würfeln",
 		"ChatContextPush": "Auf Bindung berufen und sich anstrengen",
