@@ -24,6 +24,7 @@ async function prepareData(context, sheet) {
 
 	// Add the actor's data to context.data for easier access, as well as flags.
 	context.actor = sheet.actor;
+	context.items = sheet.actor.items;
 	context.system = sheet.actor.system;
 	context.flags = sheet.actor.flags;
 	context.itemCount = context.actor.items.size;

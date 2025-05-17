@@ -1,40 +1,35 @@
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
+import { FUActorSheet } from './actor-sheet.mjs';
 
 /**
  * @property {FUActor} actor
  * @extends {ActorSheet}
  */
-export class FUStashSheet extends foundry.appv1.sheets.ActorSheet {
-	static get defaultOptions() {
-		const defaultOptions = super.defaultOptions;
-		return foundry.utils.mergeObject(defaultOptions, {
-			classes: ['projectfu', 'sheet', 'actor', 'stash', 'backgroundstyle'],
+export class FUStashSheet extends FUActorSheet {
+	/**
+	 * @inheritDoc
+	 * @override
+	 */
+	static DEFAULT_OPTIONS = {
+		classes: ['stash', 'projectfu-actor-sheet', 'h-100'],
+		position: { width: 600, height: 768 },
+		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
+	};
+
+	/**
+	 * @override
+	 */
+	static PARTS = {
+		main: {
 			template: 'systems/projectfu/templates/actor/actor-stash-sheet.hbs',
-			width: 600,
-			height: 768,
-			tabs: [
-				{
-					navSelector: '.sheet-tabs',
-					contentSelector: '.sheet-body',
-					initial: 'overview',
-				},
-			],
-			scrollY: ['.sheet-body'],
-			dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
-		});
-	}
+		},
+	};
 
 	/** @override */
-	async getData() {
-		// Enrich or transform data here
-		const context = super.getData();
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
 		await ActorSheetUtils.prepareData(context, this);
 		return context;
-	}
-
-	/** @override */
-	get template() {
-		return `systems/projectfu/templates/actor/actor-stash-sheet.hbs`;
 	}
 
 	/** @override */
