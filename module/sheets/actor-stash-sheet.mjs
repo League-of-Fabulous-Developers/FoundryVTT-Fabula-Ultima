@@ -11,7 +11,8 @@ export class FUStashSheet extends FUActorSheet {
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: ['stash', 'projectfu-actor-sheet', 'h-100'],
+		classes: ['stash'],
+		resizable: true,
 		position: { width: 600, height: 768 },
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 	};
@@ -22,22 +23,27 @@ export class FUStashSheet extends FUActorSheet {
 	static PARTS = {
 		main: {
 			template: 'systems/projectfu/templates/actor/actor-stash-sheet.hbs',
+			root: true,
 		},
 	};
+
+	/**
+	 * @inheritDoc
+	 * @override
+	 */
+	_attachFrameListeners() {
+		super._attachFrameListeners();
+		const html = this.element;
+		ActorSheetUtils.activateDefaultListeners(html, this);
+		ActorSheetUtils.activateStashListeners(html, this);
+		ActorSheetUtils.activateInventoryListeners(html, this);
+	}
 
 	/** @override */
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		await ActorSheetUtils.prepareData(context, this);
 		return context;
-	}
-
-	/** @override */
-	activateListeners(html) {
-		super.activateListeners(html);
-		ActorSheetUtils.activateDefaultListeners(html, this);
-		ActorSheetUtils.activateStashListeners(html, this);
-		ActorSheetUtils.activateInventoryListeners(html, this);
 	}
 
 	/** @override */

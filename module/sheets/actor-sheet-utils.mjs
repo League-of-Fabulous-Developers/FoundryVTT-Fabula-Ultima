@@ -24,7 +24,9 @@ async function prepareData(context, sheet) {
 
 	// Add the actor's data to context.data for easier access, as well as flags.
 	context.actor = sheet.actor;
-	context.items = sheet.actor.items;
+	if (!context.items) {
+		context.items = sheet.actor.items;
+	}
 	context.system = sheet.actor.system;
 	context.flags = sheet.actor.flags;
 	context.itemCount = context.actor.items.size;
@@ -1059,23 +1061,26 @@ async function handleInventoryItemDrop(actor, data, onNewItem) {
 }
 
 /**
- * @param html
+ * @param {HTMLElement} html
  * @param {ActorSheet} sheet
- * @returns
  */
-async function activateStashListeners(html, sheet) {
-	html.find('.rollable').click((ev) => {
-		const element = ev.currentTarget;
-		const dataset = element.dataset;
-		if (dataset.rollType) {
+function activateStashListeners(html, sheet) {
+	const rollables = html.querySelectorAll('.rollable');
+	rollables.forEach((el) => {
+		el.addEventListener('click', (ev) => {
+			const element = ev.currentTarget;
+			const dataset = element.dataset;
 			if (dataset.rollType === 'item') {
-				const itemId = element.closest('.item').dataset.itemId;
+				const parentItem = element.closest('.item');
+				if (!parentItem) return;
+
+				const itemId = parentItem.dataset.itemId;
 				const item = sheet.actor.items.get(itemId);
 				if (item) {
 					item.sheet._onSendToChat(ev);
 				}
 			}
-		}
+		});
 	});
 }
 
