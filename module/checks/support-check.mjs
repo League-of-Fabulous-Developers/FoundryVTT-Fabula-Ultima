@@ -46,7 +46,7 @@ async function handleSupportCheck(groupCheck) {
 			title: game.i18n.localize('FU.GroupCheckBondDialogTitle'),
 			label: game.i18n.localize('FU.GroupCheckBondDialogLabel'),
 			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-			content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
 				leader: game.actors.get(groupCheck.leader).name,
 				bonds,
 			}),
@@ -80,11 +80,11 @@ async function handleSupportCheck(groupCheck) {
 
 /**
  * @param {ChatLog} chatLog
- * @param {jQuery} jQuery
+ * @param {Document} html
  */
-function attachSupportCheckListener(chatLog, jQuery) {
+function attachSupportCheckListener(chatLog, html) {
 	// Reapply event listeners for each chat message
-	jQuery.on('click', async function (event) {
+	html.querySelector('.some-class')?.addEventListener('click', async function (event) {
 		const groupCheckId = event.target.dataset.support;
 		if (groupCheckId) {
 			const messageId = $(event.target).parents('[data-message-id]').data('messageId');
