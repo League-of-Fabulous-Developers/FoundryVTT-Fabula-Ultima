@@ -11,5 +11,8 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 		window: {
 			resizable: true,
 		},
+		form: {
+			submitOnChange: true,
+		},
 	};
 }

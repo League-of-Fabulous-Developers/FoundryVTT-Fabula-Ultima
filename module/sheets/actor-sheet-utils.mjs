@@ -745,20 +745,24 @@ async function _onItemDuplicate(element, sheet) {
 }
 
 /**
- * @param  html
+ * @param {HTMLElement} html
  * @param {ActorSheet} sheet
  */
 function activateInventoryListeners(html, sheet) {
-	// Clear inventory
-	html.querySelector('a[data-action="clearInventory"]')?.addEventListener('click', (ev) => {
-		ev.preventDefault();
-		console.debug(`Clearing all items from actor ${sheet.actor}`);
-		sheet.actor.clearEmbeddedItems();
-	});
-
 	// General click handler for delegated events
 	html.addEventListener('click', (ev) => {
 		const target = ev.target;
+
+		// Check for a data action
+		const dataAction = ev.target.parentElement.dataset.action;
+		switch (dataAction) {
+			case 'clearInventory':
+				console.debug(`Clearing all items from actor ${sheet.actor}`);
+				sheet.actor.clearEmbeddedItems();
+				return;
+		}
+
+		// Check for classes
 		if (target.closest('.item-create')) {
 			_onItemCreate(ev, sheet);
 		} else if (target.closest('.item-create-dialog')) {
@@ -779,32 +783,30 @@ function activateInventoryListeners(html, sheet) {
 
 /**
  * Handles the selling of items
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * @param {HTMLElement} el - The element that the ContextMenu was attached to
  * @param {ActorSheet} sheet
  * @param {Boolean} sell
  */
-function onLootItem(jq, sheet, sell) {
-	const dataItemId = jq.data('itemId');
+function onLootItem(el, sheet, sell) {
+	const dataItemId = el.dataset.itemId;
 	const sourceActor = sheet.actor;
 	const item = sourceActor.items.get(dataItemId);
-	if (!item) {
-		return;
-	}
+	if (!item) return;
+
 	const targetActor = getPrioritizedUserTargeted();
-	if (!targetActor) {
-		return;
-	}
+	if (!targetActor) return;
+
 	InventoryPipeline.requestTrade(sourceActor.uuid, item.uuid, false, targetActor.uuid);
 }
 
 /**
- * @description Handles looting item directly from a sheet
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * Handles looting item directly from a sheet
+ * @param {HTMLElement} el - The element that the ContextMenu was attached to
  * @param {ActorSheet} sheet
  * @param {Boolean} sell
  */
-function onTradeItem(jq, sheet, sell) {
-	const dataItemId = jq.data('itemId');
+function onTradeItem(el, sheet, sell) {
+	const dataItemId = el.dataset.itemId;
 	const item = sheet.actor.items.get(dataItemId);
 	if (item) {
 		InventoryPipeline.tradeItem(sheet.actor, item, sell);

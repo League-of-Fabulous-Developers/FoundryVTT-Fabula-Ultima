@@ -76,6 +76,7 @@ async function tradeItem(actor, item, sale) {
  */
 async function distributeZenit(actor, targets) {
 	if (!actor.isOwner) {
+		console.error(`The actor is not owned by the user`);
 		return;
 	}
 	if (!targets) {
@@ -84,11 +85,16 @@ async function distributeZenit(actor, targets) {
 		if (party) {
 			targets = await party.getCharacterActors();
 		}
+		if (!targets) {
+			console.warn(`Could not find any characters or party`);
+			return;
+		}
 	}
 
 	// Prompt confirmation
 	const zenit = actor.system.resources.zenit.value;
 	if (zenit <= 0) {
+		console.warn(`No zenit available to distribute`);
 		return;
 	}
 
