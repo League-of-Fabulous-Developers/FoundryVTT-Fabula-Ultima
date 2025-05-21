@@ -45,7 +45,7 @@ Fabula Ultima is a roleplaying game created by Emanuele Galletto and published b
 If you have any questions or concerns, feel free to reach out to us through the following channels:
 
 - Discord: [Rooster Games Discord](https://discord.gg/G9qGbn2) - `#bot-and-tool-discussion` channel
-- Discord: [Project FU Discord](https://discord.gg/SNuxpzCgVB) - `#support` channel
+- Discord: [Project FU Discord](https://discord.gg/uEc3wj9G7c) - `#support` channel
 
 ## Submitting Issues
 
