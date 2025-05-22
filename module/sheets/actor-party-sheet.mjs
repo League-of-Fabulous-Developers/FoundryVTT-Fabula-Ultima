@@ -23,7 +23,7 @@ import { StringUtils } from '../helpers/string-utils.mjs';
  * @property {PartySheetActionHook[]} actionHooks
  * @extends {ActorSheet}
  */
-export class FUPartySheet extends ActorSheet {
+export class FUPartySheet extends foundry.appv1.sheets.ActorSheet {
 	static get defaultOptions() {
 		const defaultOptions = super.defaultOptions;
 		return foundry.utils.mergeObject(defaultOptions, {

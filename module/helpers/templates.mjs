@@ -4,7 +4,7 @@
  * @return {Promise}
  */
 export const preloadHandlebarsTemplates = async function () {
-	return loadTemplates([
+	return foundry.applications.handlebars.loadTemplates([
 		// Actor Section partials.
 		'systems/projectfu/templates/actor/sections/actor-section-classes.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-features.hbs',

@@ -24,6 +24,9 @@ async function prepareData(context, sheet) {
 
 	// Add the actor's data to context.data for easier access, as well as flags.
 	context.actor = sheet.actor;
+	if (!context.items) {
+		context.items = sheet.actor.items;
+	}
 	context.system = sheet.actor.system;
 	context.flags = sheet.actor.flags;
 	context.itemCount = context.actor.items.size;
@@ -138,7 +141,7 @@ async function prepareItems(context) {
 		}
 
 		item.enrichedHtml = {
-			description: await TextEditor.enrichHTML(item.system?.description ?? ''),
+			description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system?.description ?? ''),
 		};
 
 		if (item.type === 'basic') {
@@ -529,68 +532,79 @@ function getSpellDisplayData(actor, item) {
 }
 
 /**
- * @param html
+ * @param {HTMLElement} html
  * @param {ActorSheet} sheet
  */
 function activateDefaultListeners(html, sheet) {
-	html.on('click', '.item-edit', (ev) => _onItemEdit($(ev.currentTarget), sheet));
-	html.on('mouseup', '.item', (ev) => _onMiddleClickEditItem(ev)); // Middle-click to edit item
+	// Click to edit item
+	html.addEventListener('click', (ev) => {
+		const target = ev.target.closest('.item-edit');
+		if (target) {
+			_onItemEdit(target, sheet);
+		}
+	});
 
 	// Initialize the context menu options
 	const contextMenuOptions = [
 		{
 			name: game.i18n.localize('FU.Edit'),
 			icon: '<i class="fas fa-edit"></i>',
-			callback: (jq) => _onItemEdit(jq, sheet),
-			condition: (jq) => !!jq.data('itemId'),
+			callback: (html) => _onItemEdit(html, sheet),
+			condition: (html) => !!html.dataset.itemId,
 		},
 		{
 			name: game.i18n.localize('FU.Duplicate'),
 			icon: '<i class="fas fa-clone"></i>',
-			callback: (jq) => _onItemDuplicate(jq, sheet),
-			condition: (jq) => !!jq.data('itemId'),
+			callback: (html) => _onItemDuplicate(html, sheet),
+			condition: (html) => !!html.dataset.itemId,
 		},
 		{
 			name: game.i18n.localize('FU.Delete'),
 			icon: '<i class="fas fa-trash"></i>',
-			callback: (jq) => _onItemDelete(jq, sheet),
-			condition: (jq) => !!jq.data('itemId'),
+			callback: (html) => _onItemDelete(html, sheet),
+			condition: (html) => !!html.dataset.itemId,
 		},
 	];
+
 	if (sheet.actor.isCharacterType) {
 		contextMenuOptions.push({
 			name: game.i18n.localize('FU.StashItem'),
 			icon: '<i class="fa fa-paper-plane"></i>',
-			callback: (jq) => onSendItemToPartyStash(jq, sheet),
-			condition: (jq) => {
-				const item = sheet.actor.items.get(jq.data('itemId'));
-				return item.canStash;
+			callback: (html) => onSendItemToPartyStash(html, sheet),
+			condition: (html) => {
+				const item = sheet.actor.items.get(html.dataset.itemId);
+				return item?.canStash;
 			},
 		});
 	}
-	html.on('click', '.item-option', (jq) => {
-		const itemId = jq.currentTarget.dataset.itemId;
 
-		// Check for the Behavior option before adding it
-		const behaviorOptionExists = contextMenuOptions.some((option) => option.name === game.i18n.localize('FU.Behavior'));
-		if (sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll') && !behaviorOptionExists) {
-			const item = sheet.actor.items.get(itemId);
+	html.addEventListener('click', (event) => {
+		// Ensure the target is an item-option
+		if (event.target.closest('.item-option')) {
+			const itemId = event.target.closest('.item-option').dataset.itemId;
 
-			if (item?.system?.isBehavior) {
-				const behaviorClass = item.system.isBehavior.value ? 'fas active' : 'far';
+			// Check for the Behavior option before adding it
+			const behaviorOptionExists = contextMenuOptions.some((option) => option.name === game.i18n.localize('FU.Behavior'));
+			if (sheet.actor.type === 'npc' && game.settings.get('projectfu', 'optionBehaviorRoll') && !behaviorOptionExists) {
+				const item = sheet.actor.items.get(itemId);
 
-				contextMenuOptions.push({
-					name: game.i18n.localize('FU.Behavior'),
-					icon: `<i class="${behaviorClass} fa-address-book"></i>`,
-					callback: (jq) => _onItemBehavior(jq, sheet),
-					condition: (jq) => !!jq.data('itemId'),
-				});
+				if (item?.system?.isBehavior) {
+					const behaviorClass = item.system.isBehavior.value ? 'fas active' : 'far';
+
+					contextMenuOptions.push({
+						name: game.i18n.localize('FU.Behavior'),
+						icon: `<i class="${behaviorClass} fa-address-book"></i>`,
+						callback: (html) => _onItemBehavior(html, sheet),
+						condition: (html) => !!html.dataset.itemid,
+					});
+				}
 			}
 		}
 	});
-	// eslint-disable-next-line no-undef
-	new ContextMenu(html, '.item-option', contextMenuOptions, {
+
+	new foundry.applications.ux.ContextMenu.implementation(html, '.item-option', contextMenuOptions, {
 		eventName: 'click',
+		jQuery: false,
 		onOpen: (menu) => {
 			setTimeout(() => menu.querySelector('nav#context-menu')?.classList.add('item-options'), 1);
 		},
@@ -603,7 +617,8 @@ function activateDefaultListeners(html, sheet) {
 	// Drag events
 	if (sheet.actor.isOwner) {
 		let handler = (ev) => sheet._onDragStart(ev);
-		html.find('li.item').each((i, li) => {
+		const items = html.querySelectorAll('li.item');
+		items.forEach((li) => {
 			if (li.classList.contains('inventory-header')) return;
 			li.setAttribute('draggable', true);
 			li.addEventListener('dragstart', handler, false);
@@ -620,20 +635,31 @@ function activateDefaultListeners(html, sheet) {
 }
 
 function activateExpandedItemListener(html, expanded, onExpand) {
-	html.find('.click-item').click((ev) => {
-		const el = $(ev.currentTarget);
+	html.addEventListener('click', (ev) => {
+		const el = ev.target.closest('.click-item');
+		if (!el) return; // Ensures we only proceed if the target is .click-item
+
 		const parentEl = el.closest('li');
-		const itemId = parentEl.data('itemId');
-		const desc = parentEl.find('.individual-description');
+		const itemId = parentEl.dataset.itemId;
+		const desc = parentEl.querySelector('.individual-description');
 
 		if (expanded.has(itemId)) {
-			desc.slideUp(200, () => desc.css('display', 'none'));
-			expanded.delete(itemId);
+			// Slide up effect
+			desc.style.transition = 'height 0.2s ease';
+			desc.style.height = '0';
+			setTimeout(() => {
+				desc.style.display = 'none';
+				expanded.delete(itemId);
+			}, 200); // After transition completes, hide it
 		} else {
-			desc.slideDown(200, () => {
-				desc.css('display', 'block');
-				desc.css('height', 'auto');
-			});
+			// Slide down effect
+			desc.style.display = 'block';
+			const initialHeight = desc.scrollHeight + 'px'; // Get the natural height
+			desc.style.height = '0';
+			setTimeout(() => {
+				desc.style.transition = 'height 0.2s ease';
+				desc.style.height = initialHeight; // Slide to the full height
+			}, 10); // Small delay to apply height animation
 			expanded.add(itemId);
 		}
 
@@ -657,36 +683,38 @@ async function onSendItemToPartyStash(jq, sheet) {
 
 /**
  * Handles the editing of an item.
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * @param {HTMLElement} element - The element the ContextMenu was attached to
  * @param {ActorSheet} sheet
  */
-function _onItemEdit(jq, sheet) {
-	const dataItemId = jq.data('itemId');
-	const item = sheet.actor.items.get(dataItemId);
+function _onItemEdit(element, sheet) {
+	const itemId = element.dataset.itemId;
+	const item = sheet.actor.items.get(itemId);
 	if (item) item.sheet.render(true);
 }
 
 /**
  * Toggles the behavior state of the specified item.
- * @param {jQuery} jq - The element that the ContextMenu was attached to.
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
  * @param {ActorSheet} sheet
- * @returns {Promise<void>} - A promise that resolves when the item's behavior state has been updated.
+ * @returns {Promise<void>}
  */
-async function _onItemBehavior(jq, sheet) {
-	const itemId = jq.data('itemId');
+async function _onItemBehavior(element, sheet) {
+	const itemId = element.dataset.itemId;
 	const item = sheet.actor.items.get(itemId);
 	const isBehaviorBool = item.system.isBehavior.value;
-	sheet.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
+	await sheet.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isBehavior.value': !isBehaviorBool }]);
 }
 
 /**
  * Deletes the specified item after confirming with the user.
- * @param {jQuery} jq - The element that the ContextMenu was attached to.
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
  * @param {ActorSheet} sheet
- * @returns {Promise<void>} - A promise that resolves when the item has been deleted.
+ * @returns {Promise<void>}
  */
-async function _onItemDelete(jq, sheet) {
-	const item = sheet.actor.items.get(jq.data('itemId'));
+async function _onItemDelete(element, sheet) {
+	const itemId = element.dataset.itemId;
+	const item = sheet.actor.items.get(itemId);
+
 	if (
 		await Dialog.confirm({
 			title: game.i18n.format('FU.DialogDeleteItemTitle', { item: item.name }),
@@ -695,18 +723,19 @@ async function _onItemDelete(jq, sheet) {
 		})
 	) {
 		await item.delete();
-		jq.slideUp(200, () => sheet.render(false));
+		sheet.render(false); // Removed `jq.slideUp` since it's jQuery-specific
 	}
 }
 
 /**
  * Duplicates the specified item and adds it to the actor's item list.
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * @param {HTMLElement} element - The element that the ContextMenu was attached to.
  * @param {ActorSheet} sheet
- * @returns {Promise<void>} - A promise that resolves when the item has been duplicated.
+ * @returns {Promise<void>}
  */
-async function _onItemDuplicate(jq, sheet) {
-	const item = sheet.actor.items.get(jq.data('itemId'));
+async function _onItemDuplicate(element, sheet) {
+	const itemId = element.dataset.itemId;
+	const item = sheet.actor.items.get(itemId);
 	if (item) {
 		const dupData = foundry.utils.duplicate(item);
 		dupData.name += ` (${game.i18n.localize('FU.Copy')})`;
@@ -715,65 +744,69 @@ async function _onItemDuplicate(jq, sheet) {
 	}
 }
 
-// Handle middle-click editing of an item sheet
-function _onMiddleClickEditItem(ev) {
-	if (ev.button === 1 && !$(ev.target).hasClass('item-edit')) {
-		ev.preventDefault();
-		_onItemEdit($(ev.currentTarget));
-	}
-}
-
 /**
- * @param html
+ * @param {HTMLElement} html
  * @param {ActorSheet} sheet
  */
 function activateInventoryListeners(html, sheet) {
-	html.find('a[data-action="clearInventory"]').click((ev) => {
-		ev.preventDefault();
-		console.debug(`Clearing all items from actor ${sheet.actor}`);
-		sheet.actor.clearEmbeddedItems();
-	});
-	html.on('click', '.item-create', (ev) => _onItemCreate(ev, sheet));
-	html.on('click', '.item-create-dialog', (ev) => _onItemCreateDialog(ev, sheet));
-	html.on('click', '.item-sell', (ev) => onTradeItem($(ev.currentTarget), sheet, true));
-	html.on('click', '.item-share', (ev) => onTradeItem($(ev.currentTarget), sheet, false));
-	html.on('click', '.item-loot', (ev) => onLootItem($(ev.currentTarget), sheet, false));
-	html.on('click', '.zenit-distribute', async (ev) => {
-		return InventoryPipeline.distributeZenit(sheet.actor);
-	});
-	html.on('click', '.recharge-ip', async (ev) => {
-		return InventoryPipeline.requestRecharge(sheet.actor);
+	// General click handler for delegated events
+	html.addEventListener('click', (ev) => {
+		const target = ev.target;
+
+		// Check for a data action
+		const dataAction = ev.target.parentElement.dataset.action;
+		switch (dataAction) {
+			case 'clearInventory':
+				console.debug(`Clearing all items from actor ${sheet.actor}`);
+				sheet.actor.clearEmbeddedItems();
+				return;
+		}
+
+		// Check for classes
+		if (target.closest('.item-create')) {
+			_onItemCreate(ev, sheet);
+		} else if (target.closest('.item-create-dialog')) {
+			_onItemCreateDialog(ev, sheet);
+		} else if (target.closest('.item-sell')) {
+			onTradeItem(target.closest('.item-sell'), sheet, true);
+		} else if (target.closest('.item-share')) {
+			onTradeItem(target.closest('.item-share'), sheet, false);
+		} else if (target.closest('.item-loot')) {
+			onLootItem(target.closest('.item-loot'), sheet, false);
+		} else if (target.closest('.zenit-distribute')) {
+			InventoryPipeline.distributeZenit(sheet.actor);
+		} else if (target.closest('.recharge-ip')) {
+			InventoryPipeline.requestRecharge(sheet.actor);
+		}
 	});
 }
 
 /**
  * Handles the selling of items
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * @param {HTMLElement} el - The element that the ContextMenu was attached to
  * @param {ActorSheet} sheet
  * @param {Boolean} sell
  */
-function onLootItem(jq, sheet, sell) {
-	const dataItemId = jq.data('itemId');
+function onLootItem(el, sheet, sell) {
+	const dataItemId = el.dataset.itemId;
 	const sourceActor = sheet.actor;
 	const item = sourceActor.items.get(dataItemId);
-	if (!item) {
-		return;
-	}
+	if (!item) return;
+
 	const targetActor = getPrioritizedUserTargeted();
-	if (!targetActor) {
-		return;
-	}
+	if (!targetActor) return;
+
 	InventoryPipeline.requestTrade(sourceActor.uuid, item.uuid, false, targetActor.uuid);
 }
 
 /**
- * @description Handles looting item directly from a sheet
- * @param {jQuery} jq - The element that the ContextMenu was attached to
+ * Handles looting item directly from a sheet
+ * @param {HTMLElement} el - The element that the ContextMenu was attached to
  * @param {ActorSheet} sheet
  * @param {Boolean} sell
  */
-function onTradeItem(jq, sheet, sell) {
-	const dataItemId = jq.data('itemId');
+function onTradeItem(el, sheet, sell) {
+	const dataItemId = el.dataset.itemId;
 	const item = sheet.actor.items.get(dataItemId);
 	if (item) {
 		InventoryPipeline.tradeItem(sheet.actor, item, sell);
@@ -788,7 +821,7 @@ function onTradeItem(jq, sheet, sell) {
  */
 async function _onItemCreate(ev, sheet) {
 	ev.preventDefault();
-	const header = ev.currentTarget;
+	const header = ev.target;
 	// Get the type of item to create.
 	const type = header.dataset.type;
 	// Grab any data associated with this control.
@@ -1030,23 +1063,26 @@ async function handleInventoryItemDrop(actor, data, onNewItem) {
 }
 
 /**
- * @param html
+ * @param {HTMLElement} html
  * @param {ActorSheet} sheet
- * @returns
  */
-async function activateStashListeners(html, sheet) {
-	html.find('.rollable').click((ev) => {
-		const element = ev.currentTarget;
-		const dataset = element.dataset;
-		if (dataset.rollType) {
+function activateStashListeners(html, sheet) {
+	const rollables = html.querySelectorAll('.rollable');
+	rollables.forEach((el) => {
+		el.addEventListener('click', (ev) => {
+			const element = ev.currentTarget;
+			const dataset = element.dataset;
 			if (dataset.rollType === 'item') {
-				const itemId = element.closest('.item').dataset.itemId;
+				const parentItem = element.closest('.item');
+				if (!parentItem) return;
+
+				const itemId = parentItem.dataset.itemId;
 				const item = sheet.actor.items.get(itemId);
 				if (item) {
 					item.sheet._onSendToChat(ev);
 				}
 			}
-		}
+		});
 	});
 }
 
