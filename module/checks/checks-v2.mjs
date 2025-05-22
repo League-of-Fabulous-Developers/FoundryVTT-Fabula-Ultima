@@ -167,8 +167,13 @@ const modifyCheck = async (checkId, callback) => {
 		}
 		if (callbackResult) {
 			const { check = checkFromCheckResult(oldResult), roll = Roll.fromData(oldResult.roll) } = (typeof callbackResult === 'object' && callbackResult) ?? {};
-			// Do not invoke the hook when modifying a check
+			// Do not invoke the hooks when modifying a check
 			const result = await processResult(check, roll, actor, item, false);
+			// Update target results now that the result changed
+			const configure = CheckConfiguration.configure(result);
+			configure.updateTargetResults();
+			// Re-render the check
+			// TODO: Update the original?
 			return renderCheck(result, actor, item, message.flags);
 		}
 	} else {
@@ -324,7 +329,6 @@ const processResult = async (check, roll, actor, item, callHook = true) => {
 	}
 
 	const primary = extractDieResults(roll.terms[0], actor);
-
 	const secondary = extractDieResults(roll.terms[2], actor);
 
 	/**

@@ -2,11 +2,17 @@
     <div style="clear: both"></div>
     <header class="title-desc chat-header flexrow">
         <h2>
+			<a data-action="retarget" data-tooltip="{{localize 'FU.ChatContextRetarget'}}">
+				<span class="fu-tag button flex-group-center" style="font-size:1rem">
+					<i class="icon fa fa-refresh"></i>
+				</span>
+			</a>
             {{localize "FU.Target"}}
             {{#if (gt targets.length 1)}}
                 <span>: {{localize rule}}({{targets.length}})</span>
             {{/if}}
         </h2>
+
     </header>
     <section class="targets">
         {{#each targets as |target|}}
@@ -15,11 +21,17 @@
                     <!-- Label -->
                     <div style="padding: 2px;">{{target.name}}</div>
                     <!-- Accuracy Information -->
-                    {{#if (eq target.result "hit")}}
-                        <div class="endcap gap-5" style="flex: 0 1 auto;">
-                        <span class="{{target.result}}">{{localize 'FU.Hit'}}</span>
-                    </div>
-                    {{/if}}
+					{{#if (or (eq target.result "hit") (eq target.result "miss"))}}
+						<div class="endcap gap-5" style="flex: 0 1 auto;">
+							<span class="{{target.result}}">
+								{{#if (eq target.result "hit")}}
+									{{localize 'FU.Hit'}}
+								{{else}}
+									{{localize 'FU.Miss'}}
+								{{/if}}
+							</span>
+					  </div>
+					{{/if}}
                 </span>
                 <!-- Actions -->
                 {{#each ../actions as |action|}}
