@@ -600,26 +600,6 @@ async function onRenderChatMessage(message, jQuery) {
 Hooks.on('renderChatMessage', onRenderChatMessage);
 
 /**
- * @param {CombatEvent} event
- * @returns {Promise<void>}
- */
-async function onCombatEvent(event) {
-	const party = await FUPartySheet.getActiveModel();
-	if (party) {
-		switch (event.type) {
-			case FU.combatEvent.startOfCombat:
-				for (const actor of event.actors) {
-					if (actor.type === 'npc') {
-						await party.addOrUpdateAdversary(actor, 0);
-					}
-				}
-				break;
-		}
-	}
-}
-Hooks.on(FUHooks.COMBAT_EVENT, onCombatEvent);
-
-/**
  * @param {RevealEvent} event
  * @returns {Promise<void>}
  */
