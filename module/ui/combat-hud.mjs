@@ -43,6 +43,7 @@ export class CombatHUD extends Application {
 
 		this.#hooks.push({ hook: 'updateActor', func: this._onUpdateActor.bind(this) });
 		this.#hooks.push({ hook: 'updateToken', func: this._onUpdateToken.bind(this) });
+		this.#hooks.push({ hook: 'updateCombatant', func: this._onUpdateCombatant.bind(this) });
 
 		this.#hooks.push({ hook: 'updateItem', func: this._onUpdateItem.bind(this) });
 		this.#hooks.push({ hook: 'createItem', func: this._onCreateDeleteItem.bind(this) });
@@ -190,6 +191,7 @@ export class CombatHUD extends Application {
 		// TODO: Much of this data is also required by the Combat Tracker, but populated in an entirely different way!
 		for (const combatant of game.combat.combatants) {
 			if (!combatant.actor || !combatant.token) continue;
+			if (combatant.hidden) continue;
 
 			const activeEffects = (game.release.generation >= 11 ? Array.from(combatant.actor.temporaryEffects) : combatant.actor.effects.filter((e) => e.isTemporary)).filter((e) => !e.disabled && !e.isSuppressed);
 			const actorData = {
@@ -788,6 +790,10 @@ export class CombatHUD extends Application {
 		if (!game.combat.isActive) return;
 
 		this.render(true);
+	}
+
+	_onUpdateCombatant(combatant, changes) {
+		this._onUpdateHUD();
 	}
 
 	_onUpdateToken(token, changes) {
