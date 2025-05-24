@@ -457,6 +457,9 @@ async function process(request) {
 
 		// Handle post-damage traits
 		if (damageTaken > 0) {
+			if (request.traits.has(Traits.MindPointAbsorption)) {
+				resource = 'mp';
+			}
 			if (request.traits.has(Traits.Absorb)) {
 				await absorbDamage(resource, damageTaken, context.sourceInfo, [context.sourceActor]);
 			} else if (request.traits.has(Traits.AbsorbHalf)) {

@@ -162,5 +162,4 @@ const initialize = () => {
 
 export const MagicCheck = Object.freeze({
 	initialize,
-	configure: CheckConfiguration.configure,
 });
