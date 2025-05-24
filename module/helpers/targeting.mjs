@@ -11,8 +11,10 @@ import { getTargeted } from './target-handler.mjs';
  * @property {string} name The name of the actor
  * @property {string} uuid The uuid of the actor
  * @property {string} link An html link to the actor
+ * @property {Number} def
+ * @property {Number} mdef
+ * @property {number} difficulty
  * @property {"none", "hit", "miss"} result
- * @property {number} difficulty Additional information
  */
 
 // TODO: Make an option for GM
@@ -162,6 +164,21 @@ async function panToCombatant(token) {
 	await canvas.animatePan({ x, y, scale: Math.max(canvas.stage.scale.x, 0.5) });
 }
 
+/**
+ * @param {FUActor} actor
+ * @returns {TargetData}
+ */
+function constructData(actor) {
+	/** @type TargetData **/
+	return {
+		name: actor.name,
+		uuid: actor.uuid,
+		link: actor.link,
+		def: actor.system.derived.def.value,
+		mdef: actor.system.derived.mdef.value,
+	};
+}
+
 export const Targeting = Object.freeze({
 	rule: {
 		self: 'self',
@@ -175,6 +192,7 @@ export const Targeting = Object.freeze({
 	serializeTargetData,
 	deserializeTargetData,
 	onRenderChatMessage,
+	constructData,
 	STRICT_TARGETING,
 	defaultAction,
 });

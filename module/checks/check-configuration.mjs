@@ -6,6 +6,7 @@ import { StringUtils } from '../helpers/string-utils.mjs';
 import { Traits } from '../pipelines/traits.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
+import { Targeting } from '../helpers/targeting.mjs';
 
 const TARGETS = 'targets';
 const TARGETED_DEFENSE = 'targetedDefense';
@@ -44,6 +45,7 @@ const initHrZero = (hrZero) => (check) => {
  * @property {BonusDamage[]} modifiers
  * @property {Number} modifierTotal
  * @property {String} extra An expression to evaluate to add extra damage
+ * @property {Boolean} hrZero Whether to treat the high roll as zero
  */
 export class DamageData {
 	constructor(data = {}) {
@@ -257,6 +259,7 @@ class CheckConfigurer {
 	 */
 	setTargetedDefense(targetedDefense) {
 		this.#check.additionalData[TARGETED_DEFENSE] = targetedDefense;
+		this.updateTargetResults();
 		return this;
 	}
 
@@ -266,8 +269,14 @@ class CheckConfigurer {
 	 */
 	modifyTargetedDefense(callback) {
 		const targetedDefense = this.#check.additionalData[TARGETED_DEFENSE] ?? null;
-		this.#check.additionalData[TARGETED_DEFENSE] = callback(targetedDefense);
-		return this;
+		return this.setTargetedDefense(callback(targetedDefense));
+	}
+
+	/**
+	 * @return {Defense|null}
+	 */
+	getTargetedDefense() {
+		return this.#check.additionalData[TARGETED_DEFENSE] ?? null;
 	}
 
 	/**
@@ -276,7 +285,30 @@ class CheckConfigurer {
 	 */
 	setTargets(targets) {
 		this.#check.additionalData[TARGETS] = [...targets];
+		this.updateTargetResults();
 		return this;
+	}
+
+	/**
+	 * @remarks Invoked whenever targets or targeted defense change
+	 */
+	updateTargetResults() {
+		const targets = this.#check.additionalData[TARGETS];
+		if (targets?.length) {
+			const targetedDefense = this.getTargetedDefense();
+			targets.forEach((target) => {
+				const difficulty = target[targetedDefense];
+				let targetResult;
+				if (this.#check.critical) {
+					targetResult = 'hit';
+				} else if (this.#check.fumble) {
+					targetResult = 'miss';
+				} else {
+					targetResult = this.#check.result >= difficulty ? 'hit' : 'miss';
+				}
+				target.result = targetResult;
+			});
+		}
 	}
 
 	/**
@@ -292,11 +324,7 @@ class CheckConfigurer {
 						ui.notifications.error('FU.DialogInvalidTarget', { localize: true });
 						throw Error('Only character types can be targeted');
 					}
-					return {
-						name: token.name,
-						uuid: token.actor.uuid,
-						link: token.actor.link,
-					};
+					return Targeting.constructData(token.actor);
 				}),
 		);
 	}
@@ -307,8 +335,7 @@ class CheckConfigurer {
 	 */
 	modifyTargets(callback) {
 		const targets = this.#check.additionalData[TARGETS] ?? null;
-		this.#check.additionalData[TARGETS] = callback(targets);
-		return this;
+		return this.setTargets(callback(targets));
 	}
 
 	/**
@@ -405,8 +432,12 @@ class CheckInspector {
 	 */
 	getDamage() {
 		const raw = this.#check.additionalData[DAMAGE];
-		raw.hr = this.getHighRoll();
-		return raw != null ? new DamageData(foundry.utils.duplicate(raw)) : null;
+		if (raw) {
+			raw.hr = this.getHighRoll();
+			raw.hrZero = this.getHrZero();
+			return new DamageData(foundry.utils.duplicate(raw));
+		}
+		return null;
 	}
 
 	/**
@@ -532,9 +563,9 @@ class CheckInspector {
 		const secondary = _check.secondary.result;
 		const total = hrZero ? modifierTotal : Math.max(primary, secondary) + modifierTotal;
 
-		let damageData = null;
+		let result = null;
 		if (damage) {
-			damageData = {
+			result = {
 				result: {
 					attr1: primary,
 					attr2: secondary,
@@ -555,7 +586,7 @@ class CheckInspector {
 			};
 		}
 
-		return damageData;
+		return result;
 	}
 }
 

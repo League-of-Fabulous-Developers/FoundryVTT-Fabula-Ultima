@@ -2,12 +2,10 @@ import { FUHooks } from '../hooks.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { Pipeline, PipelineContext, PipelineRequest } from './pipeline.mjs';
 import { Flags } from '../helpers/flags.mjs';
-import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { DamageCustomizer } from './damage-customizer.mjs';
 import { getSelected, getTargeted } from '../helpers/target-handler.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
-import { ApplyTargetHookData } from './legacy-hook-data.mjs';
 import { ResourcePipeline, ResourceRequest } from './resource-pipeline.mjs';
 import { ChatMessageHelper } from '../helpers/chat-message-helper.mjs';
 import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
@@ -15,6 +13,8 @@ import { Traits } from './traits.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
+import { CheckRetarget } from '../checks/check-retarget.mjs';
+import { ChecksV2 } from '../checks/checks-v2.mjs';
 
 /**
  * @typedef {"incomingDamage.all", "incomingDamage.air", "incomingDamage.bolt", "incomingDamage.dark", "incomingDamage.earth", "incomingDamage.fire", "incomingDamage.ice", "incomingDamage.light", "incomingDamage.poison"} DamagePipelineStepIncomingDamage
@@ -72,16 +72,16 @@ const PIPELINE_STEP_LOCALIZATION_KEYS = {
 /**
  * @property {DamageData} damageData
  * @property {FU.damageTypes} damageType
- * @property {ExtraDamageInfo} extraDamageInfo
+ * @property {DamageOverrideInfo} damageOverride
  * @property {ApplyTargetOverrides} overrides *
  * @extends PipelineRequest
  */
 export class DamageRequest extends PipelineRequest {
-	constructor(sourceInfo, targets, damageData, extraDamageInfo = {}) {
+	constructor(sourceInfo, targets, damageData, damageOverride = {}) {
 		super(sourceInfo, targets);
 		this.damageData = damageData;
-		this.extraDamageInfo = extraDamageInfo;
-		this.damageType = this.extraDamageInfo.damageType || this.damageData.type;
+		this.damageOverride = damageOverride;
+		this.damageType = this.damageOverride.damageType || this.damageData.type;
 		this.overrides = {};
 	}
 
@@ -89,7 +89,7 @@ export class DamageRequest extends PipelineRequest {
 	 * @returns {FUActor[]}
 	 */
 	get allTargets() {
-		return this.extraDamageInfo.targets || this.targets;
+		return this.damageOverride.targets || this.targets;
 	}
 
 	/**
@@ -122,7 +122,7 @@ export class DamageRequest extends PipelineRequest {
  * @property {String} affinityMessage The localized affinity message to use
  * @property {FU.damageTypes} damageType
  * @property {DamageData} damageData
- * @property {ExtraDamageInfo} extraDamageInfo
+ * @property {DamageOverrideInfo} damageOverride
  * @property {String} extra An optional expression to evaluate for onApply damage
  * @property {Number} amount The base amount before bonuses or modifiers are applied
  * @property {Map<String, Number>} bonuses Increments
@@ -131,6 +131,10 @@ export class DamageRequest extends PipelineRequest {
  * @extends PipelineContext
  */
 export class DamagePipelineContext extends PipelineContext {
+	/**
+	 * @param {DamageRequest} request
+	 * @param {FUActor} actor
+	 */
 	constructor(request, actor) {
 		super(request, actor);
 		this.bonuses = new Map();
@@ -141,9 +145,9 @@ export class DamagePipelineContext extends PipelineContext {
 	}
 
 	calculateAmount() {
-		this.amount = this.extraDamageInfo.hrZero
-			? this.extraDamageInfo.damageBonus + this.damageData.modifierTotal + (this.extraDamageInfo.extraDamage || 0)
-			: this.damageData.total + (this.extraDamageInfo.damageBonus || 0) + (this.extraDamageInfo.extraDamage || 0);
+		let result = this.damageData.hrZero ? this.damageData.modifierTotal : this.damageData.total;
+		result += this.damageOverride.extraDamage || 0;
+		this.amount = result;
 	}
 
 	addBonus(key, value) {
@@ -217,12 +221,12 @@ function resolveAffinity(context) {
 	// Check if affinity should be ignored
 	if (affinity === FU.affValue.vulnerability) {
 		affinityMessage = 'FU.ChatApplyDamageVulnerable';
-		if (context.extraDamageInfo.ignoreVulnerable) {
+		if (context.damageOverride.ignoreVulnerable) {
 			affinity = FU.affValue.none;
 		}
 	}
 	if (affinity === FU.affValue.resistance) {
-		if (context.extraDamageInfo.ignoreResistance || context.traits.has(Traits.IgnoreResistances)) {
+		if (context.damageOverride.ignoreResistance || context.traits.has(Traits.IgnoreResistances)) {
 			affinity = FU.affValue.none;
 			affinityMessage = 'FU.ChatApplyDamageResistantIgnored';
 		} else {
@@ -230,7 +234,7 @@ function resolveAffinity(context) {
 		}
 	}
 	if (affinity === FU.affValue.immunity) {
-		if (context.extraDamageInfo.ignoreImmunities || context.traits.has(Traits.IgnoreImmunities)) {
+		if (context.damageOverride.ignoreImmunities || context.traits.has(Traits.IgnoreImmunities)) {
 			affinity = FU.affValue.none;
 			affinityMessage = `FU.ChatApplyDamageImmuneIgnored`;
 		} else {
@@ -238,7 +242,7 @@ function resolveAffinity(context) {
 		}
 	}
 	if (affinity === FU.affValue.absorption) {
-		if (context.extraDamageInfo.ignoreAbsorption) {
+		if (context.damageOverride.ignoreAbsorption) {
 			affinity = FU.affValue.none;
 		} else {
 			affinityMessage = 'FU.ChatApplyDamageAbsorb';
@@ -393,11 +397,6 @@ async function process(request) {
 			throw new Error('Failed to generate result during pipeline');
 		}
 
-		// TODO: Remove once users have migrated from legacy hooks
-		const applyTargetHookData = new ApplyTargetHookData(request, actor, context.result);
-		Hooks.call(FUHooks.DAMAGE_APPLY_TARGET, applyTargetHookData);
-		context.result = applyTargetHookData.total;
-
 		// Damage application
 		let damageTaken = context.result;
 		const difference = context.actor.system.resources.hp.value - damageTaken;
@@ -485,100 +484,98 @@ function onRenderChatMessage(message, jQuery) {
 		return;
 	}
 
+	// Initialize chat message data
 	let disabled = false;
 
-	/** @type DamageData **/
-	let damageData;
-	/** @type InlineSourceInfo **/
-	let sourceInfo = null;
-	let traits = [];
-
-	// Always true now
+	// Damage prompt application message
 	if (ChecksV2.isCheck(message)) {
 		const inspector = CheckConfiguration.inspect(message);
-		const damage = inspector.getDamage();
-		traits = inspector.getTraits();
+		const damageData = inspector.getDamage();
+		const traits = inspector.getTraits();
 
-		if (damage) {
-			sourceInfo = getSourceInfoFromChatMessage(message);
-			damageData = damage;
-		}
-	}
+		const sourceInfo = getSourceInfoFromChatMessage(message);
 
-	const customizeDamage = async (event, targets) => {
-		DamageCustomizer(
-			damageData,
-			targets,
-			async (extraDamageInfo) => {
-				await handleDamageApplication(event, targets, sourceInfo, damageData, extraDamageInfo, traits);
-				disabled = false;
-			},
-			() => {
-				disabled = false;
-			},
-		);
-	};
-
-	const applyDefaultDamage = async (event, targets) => {
-		return handleDamageApplication(event, targets, sourceInfo, damageData, {}, traits);
-	};
-
-	const handleClick = async (event, getTargetsFunction, action, alternateAction) => {
-		event.preventDefault();
-		if (!disabled) {
-			disabled = true;
-			const targets = await getTargetsFunction(event);
-			if (event.ctrlKey || event.metaKey) {
-				await alternateAction(event, targets);
-				disabled = false;
-			} else {
-				await action(event, targets);
-				disabled = false;
-			}
-		}
-	};
-
-	jQuery.find(`a[data-action=applyDamage]`).click((event) => handleClick(event, Pipeline.getSingleTarget, applyDefaultDamage, customizeDamage));
-	jQuery.find(`a[data-action=applyDamageSelected]`).click((event) => handleClick(event, getSelected, applyDefaultDamage, customizeDamage));
-
-	jQuery.find(`a[data-action=selectDamageCustomizer]`).click(async (event) => {
-		if (!disabled) {
-			disabled = true;
-			const targets = await getTargeted();
+		const customizeDamage = async (event, targets) => {
 			DamageCustomizer(
 				damageData,
 				targets,
-				(extraDamageInfo) => {
-					handleDamageApplication(event, targets, sourceInfo, damageData, extraDamageInfo, traits);
+				async (damageOverride) => {
+					await handleDamageApplication(event, targets, sourceInfo, damageData, damageOverride, traits);
 					disabled = false;
 				},
 				() => {
 					disabled = false;
 				},
 			);
-		}
-	});
+		};
 
-	Pipeline.handleClick(message, jQuery, 'inspectActor', async (dataset) => {
-		const uuid = dataset.uuid;
-		return FUPartySheet.inspectAdversary(uuid);
-	});
+		const applyDefaultDamage = async (event, targets) => {
+			return handleDamageApplication(event, targets, sourceInfo, damageData, {}, traits);
+		};
 
-	Pipeline.handleClickRevert(message, jQuery, 'revertDamage', async (dataset) => {
-		const uuid = dataset.uuid;
-		const actor = fromUuidSync(uuid);
-		const updates = [];
-		const amountRecovered = dataset.amount;
-		const resource = dataset.resource.toLowerCase();
-		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountRecovered, true));
-		TokenUtils.showFloatyText(actor, `${amountRecovered} ${resource}`, `lightgreen`);
-		return Promise.all(updates);
-	});
+		const handleClick = async (event, getTargetsFunction, action, alternateAction) => {
+			event.preventDefault();
+			if (!disabled) {
+				disabled = true;
+				const targets = await getTargetsFunction(event);
+				if (event.ctrlKey || event.metaKey) {
+					await alternateAction(event, targets);
+					disabled = false;
+				} else {
+					await action(event, targets);
+					disabled = false;
+				}
+			}
+		};
 
-	jQuery.find(`a[data-action=toggleBreakdown]`).click(function (event) {
-		event.preventDefault();
-		jQuery.find('#breakdown').toggleClass('hidden');
-	});
+		jQuery.find(`a[data-action=applyDamage]`).click((event) => handleClick(event, Pipeline.getSingleTarget, applyDefaultDamage, customizeDamage));
+		jQuery.find(`a[data-action=applyDamageSelected]`).click((event) => handleClick(event, getSelected, applyDefaultDamage, customizeDamage));
+		jQuery.find(`a[data-action=selectDamageCustomizer]`).click(async (event) => {
+			if (!disabled) {
+				disabled = true;
+				const targets = await getTargeted();
+				DamageCustomizer(
+					damageData,
+					targets,
+					(damageOverride) => {
+						handleDamageApplication(event, targets, sourceInfo, damageData, damageOverride, traits);
+						disabled = false;
+					},
+					() => {
+						disabled = false;
+					},
+				);
+			}
+		});
+
+		Pipeline.handleClick(message, jQuery, 'retarget', async (dataset) => {
+			console.debug(`Retargeting for message id ${message.id}`);
+			CheckRetarget.retarget(message.id);
+		});
+	}
+	// Damage applied message
+	else {
+		Pipeline.handleClick(message, jQuery, 'inspectActor', async (dataset) => {
+			const uuid = dataset.uuid;
+			return FUPartySheet.inspectAdversary(uuid);
+		});
+
+		Pipeline.handleClickRevert(message, jQuery, 'revertDamage', async (dataset) => {
+			const uuid = dataset.uuid;
+			const actor = fromUuidSync(uuid);
+			const updates = [];
+			const amountRecovered = dataset.amount;
+			const resource = dataset.resource.toLowerCase();
+			updates.push(actor.modifyTokenAttribute(`resources.${resource}`, amountRecovered, true));
+			TokenUtils.showFloatyText(actor, `${amountRecovered} ${resource}`, `lightgreen`);
+			return Promise.all(updates);
+		});
+
+		jQuery.find(`a[data-action=toggleBreakdown]`).click(function (event) {
+			event.preventDefault();
+			jQuery.find('#breakdown').toggleClass('hidden');
+		});
+	}
 }
 
 /**
@@ -587,12 +584,12 @@ function onRenderChatMessage(message, jQuery) {
  * @param {FUActor[]} targets
  * @param {InlineSourceInfo} sourceInfo
  * @param {DamageData} damageData
- * @param {import('./damage-customizer.mjs').ExtraDamageInfo} extraDamageInfo
+ * @param {DamageOverrideInfo} damageOverride
  * @param {String[]} traits
  * @returns {void}
  */
-async function handleDamageApplication(event, targets, sourceInfo, damageData, extraDamageInfo, traits) {
-	const request = new DamageRequest(sourceInfo, targets, damageData, extraDamageInfo);
+async function handleDamageApplication(event, targets, sourceInfo, damageData, damageOverride, traits) {
+	const request = new DamageRequest(sourceInfo, targets, damageData, damageOverride);
 	request.event = event;
 	traits.forEach((t) => request.traits.add(t));
 	if (event.shiftKey) {
