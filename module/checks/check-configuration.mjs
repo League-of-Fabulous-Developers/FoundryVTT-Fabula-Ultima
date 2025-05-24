@@ -164,6 +164,18 @@ class CheckConfigurer {
 	}
 
 	/**
+	 * @param {WeaponDataModel} weapon
+	 * @returns {CheckConfigurer}
+	 */
+	addWeaponAccuracy(weapon) {
+		const baseAccuracy = weapon.accuracy.value;
+		if (baseAccuracy) {
+			this.addModifier('FU.AccuracyCheckBaseAccuracy', baseAccuracy);
+		}
+		return this;
+	}
+
+	/**
 	 * @param {WeaponTraits} traits
 	 * @return {CheckConfigurer}
 	 */

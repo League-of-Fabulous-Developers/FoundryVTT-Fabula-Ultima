@@ -3,7 +3,6 @@ import { ItemAttributesDataModel } from '../common/item-attributes-data-model.mj
 import { DamageDataModel } from '../common/damage-data-model.mjs';
 import { ImprovisedDamageDataModel } from '../common/improvised-damage-data-model.mjs';
 import { SpellMigrations } from './spell-migrations.mjs';
-import { MagicCheck } from '../../../checks/magic-check.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
@@ -13,55 +12,7 @@ import { TargetingDataModel } from '../common/targeting-data-model.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { Flags } from '../../../helpers/flags.mjs';
-
-/**
- * @param {CheckV2} check
- * @param {FUActor} actor
- * @param {FUItem} [item]
- * @param {CheckCallbackRegistration} registerCallback
- */
-const prepareCheck = (check, actor, item, registerCallback) => {
-	if (check.type === 'magic' && item.system instanceof SpellDataModel) {
-		let attributeOverride = false;
-		if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
-			// TODO: Replace with ChooseWeaponDialog once this has been refactored like `SkillDataModel`
-			const equippedWeapons = actor.items.filter((singleItem) => singleItem.type === 'weapon' || (singleItem.type === 'basic' && singleItem.system.isEquipped?.value));
-			if (equippedWeapons.length > 0) {
-				const weapon = equippedWeapons[0];
-				if (weapon) {
-					check.primary = weapon.system.attributes.primary.value;
-					check.secondary = weapon.system.attributes.secondary.value;
-					attributeOverride = true;
-				}
-			}
-		}
-
-		if (!attributeOverride) {
-			check.primary = item.system.rollInfo.attributes.primary.value;
-			check.secondary = item.system.rollInfo.attributes.secondary.value;
-		}
-
-		check.modifiers.push({
-			label: 'FU.MagicCheckBaseAccuracy',
-			value: item.system.rollInfo.accuracy.value,
-		});
-
-		check.additionalData.hasDamage = item.system.rollInfo.damage.hasDamage.value;
-
-		// Add typical bonuses
-		const inspector = MagicCheck.configure(check);
-		inspector
-			.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
-			.addTraits(item.system.rollInfo.damage.type.value, 'spell')
-			.addTraitsFromItemModel(item.system.traits)
-			.setTargetedDefense('mdef')
-			.setDamageOverride(actor, 'spell')
-			.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
-			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
-	}
-};
-
-Hooks.on(CheckHooks.prepareCheck, prepareCheck);
+import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
 
 /**
  * @param {CheckRenderData} data
@@ -183,10 +134,55 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	async roll(modifiers) {
 		if (this.hasRoll.value) {
-			return ChecksV2.magicCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+			return ChecksV2.magicCheck(this.parent.actor, this.parent, this.#initializeMagicCheck(modifiers));
 		} else {
 			CommonEvents.spell(this.parent.actor, this.parent);
 			return ChecksV2.display(this.parent.actor, this.parent);
 		}
+	}
+
+	/**
+	 * @param {KeyboardModifiers} modifiers
+	 * @return {CheckCallback}
+	 */
+	#initializeMagicCheck(modifiers) {
+		return async (check, actor, item) => {
+			const configure = CheckConfiguration.configure(check);
+			configure.setHrZero(modifiers.shift);
+
+			let attributeOverride = false;
+			if (actor.getFlag(Flags.Scope, Flags.Toggle.WeaponMagicCheck)) {
+				// TODO: Replace with ChooseWeaponDialog once this has been refactored like `SkillDataModel`
+				const weapon = await ChooseWeaponDialog.prompt(actor, true);
+				if (weapon) {
+					check.primary = weapon.system.attributes.primary.value;
+					check.secondary = weapon.system.attributes.secondary.value;
+					attributeOverride = true;
+					configure.addWeaponAccuracy(weapon.system);
+				}
+			}
+
+			if (!attributeOverride) {
+				check.primary = item.system.rollInfo.attributes.primary.value;
+				check.secondary = item.system.rollInfo.attributes.secondary.value;
+			}
+
+			check.modifiers.push({
+				label: 'FU.MagicCheckBaseAccuracy',
+				value: item.system.rollInfo.accuracy.value,
+			});
+
+			check.additionalData.hasDamage = item.system.rollInfo.damage.hasDamage.value;
+
+			// Add typical bonuses
+			configure
+				.setDamage(item.system.rollInfo.damage.type.value, item.system.rollInfo.damage.value)
+				.addTraits(item.system.rollInfo.damage.type.value, 'spell')
+				.addTraitsFromItemModel(item.system.traits)
+				.setTargetedDefense('mdef')
+				.setDamageOverride(actor, 'spell')
+				.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
+				.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
+		};
 	}
 }

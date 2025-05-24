@@ -955,6 +955,7 @@
 		"ChatResourceLoss": "<strong>{actor}</strong> lost <strong>{amount} {resource}</strong> from <strong>{from}</strong>",
 		"HealthPointLoss": "HP Loss",
 		"MindPointLoss": "MP Loss",
+		"MindPointAbsorption": "MP Absorption",
 		"InventoryPointLoss": "IP Loss",
 		"DragAndDropHowTo": "To apply, Drag & Drop this element onto an Actor Sheet or Token you control.",
 		"TextEditorTextCommands": "ProjectFU Text Commands",
