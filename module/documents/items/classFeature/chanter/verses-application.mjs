@@ -105,8 +105,8 @@ export class VersesApplication extends FormApplication {
 		verse.app = this;
 
 		// Set predefined key and tone if provided in options
-		this.#defaultKey = options.predefinedKey ? verse.actor.items.get(options.predefinedKey) : this.keys[0];
-		this.#defaultTone = options.predefinedTone ? verse.actor.items.get(options.predefinedTone) : this.tones[0];
+		this.#defaultKey = options.predefinedKey ? verse.actor.items.get(options.predefinedKey) : this.keys[Object.keys(this.keys)[0]];
+		this.#defaultTone = options.predefinedTone ? verse.actor.items.get(options.predefinedTone) : this.tones[Object.keys(this.tones)[0]];
 	}
 
 	/**
