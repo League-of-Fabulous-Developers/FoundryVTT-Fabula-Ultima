@@ -397,9 +397,15 @@ async function process(request) {
 			throw new Error('Failed to generate result during pipeline');
 		}
 
+		// Provide support for targeting MP instead
+		let resource = 'hp';
+		if (request.traits.has(Traits.MindPointLoss)) {
+			resource = 'mp';
+		}
+
 		// Damage application
 		let damageTaken = context.result;
-		const difference = context.actor.system.resources.hp.value - damageTaken;
+		const difference = context.actor.system.resources[resource].value - damageTaken;
 		if (difference < 0) {
 			damageTaken -= Math.abs(difference);
 		}
@@ -410,10 +416,6 @@ async function process(request) {
 			continue;
 		}
 
-		let resource = 'hp';
-		if (request.traits.has(Traits.MindPointLoss)) {
-			resource = 'mp';
-		}
 		updates.push(actor.modifyTokenAttribute(`resources.${resource}`, -damageTaken, true));
 		TokenUtils.showFloatyText(actor, `${-damageTaken} ${resource.toUpperCase()}`, `red`);
 
