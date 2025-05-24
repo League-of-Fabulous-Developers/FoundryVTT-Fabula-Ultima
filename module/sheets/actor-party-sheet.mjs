@@ -566,10 +566,12 @@ async function onStudyEvent(ev) {
 		// Render a chat message
 		const flags = Pipeline.initializedFlags(Flags.ChatMessage.Party, true);
 		const studyResult = StudyRollHandler.resolveStudyResult(entry.study);
+		// If the GM studied the NPC themselves, this will be equal
+		const actorName = ev.actor.name === entry.name ? StringUtils.localize('USER.RoleGamemaster') : ev.actor.name;
 		ChatMessage.create({
 			speaker: ChatMessage.getSpeakerActor(ev.actor),
 			content: await renderTemplate('systems/projectfu/templates/chat/chat-study-event.hbs', {
-				actor: ev.actor.name,
+				actor: actorName,
 				target: entry.name,
 				result: game.i18n.localize(FU.studyResult[studyResult]),
 				uuid: entry.uuid,
