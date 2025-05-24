@@ -264,11 +264,11 @@ export class VersesApplication extends FormApplication {
 	activateListeners(html) {
 		super.activateListeners(html);
 
-		const updateDescription = async () => {
+		const updateDescription = async (key = this.#verse.key, tone = this.#verse.tone) => {
 			// Ensure that the #verse object is updated with the selected key and tone
 			await this.#verse.updateSource({
-				key: this.#verse.key,
-				tone: this.#verse.tone,
+				key: key,
+				tone: tone,
 			});
 
 			const effects = await getDescription(this.#verse, true);
@@ -277,21 +277,19 @@ export class VersesApplication extends FormApplication {
 
 		html.find('select[name="performance.tone"]').change(async (event) => {
 			const selectedToneId = $(event.target).val();
-			this.#verse.tone = this.#verse.actor.items.get(selectedToneId);
 
 			// Update the description after setting the tone
 			if (this.#verse.tone) {
-				await updateDescription();
+				await updateDescription(undefined, this.#verse.actor.items.get(selectedToneId));
 			}
 		});
 
 		html.find('select[name="performance.key"]').change(async (event) => {
 			const selectedKeyId = $(event.target).val();
-			this.#verse.key = this.#verse.actor.items.get(selectedKeyId);
 
 			// Update the description after setting the key
 			if (this.#verse.key) {
-				await updateDescription();
+				await updateDescription(this.#verse.actor.items.get(selectedKeyId));
 			}
 		});
 
