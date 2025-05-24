@@ -665,7 +665,7 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 
 	Hooks.on('diceSoNiceRollStart', (_messageId, context) => {
 		/* eslint-disable no-undef */
-		dice = context.roll.dice;
+		const dice = context.roll.dice;
 		if (dice.reduce((agg, curr) => agg + curr.number, 0) === 2) {
 			const dieValue = dice[0].results[0].result;
 			if (dieValue === (dice[0].results[1] ?? dice[1].results[0]).result) {
