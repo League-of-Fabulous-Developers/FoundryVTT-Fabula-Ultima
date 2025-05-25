@@ -113,7 +113,7 @@
       "_id": "bwyUMyTx9BWQX9pQ",
       "changes": [
         {
-          "key": "system.derived.def.value",
+          "key": "system.derived.def.bonus",
           "mode": 2,
           "value": "@system.rp.current",
           "priority": null

@@ -16,7 +16,7 @@
       "type": "base",
       "changes": [
         {
-          "key": "system.derived.mdef.value",
+          "key": "system.derived.mdef.bonus",
           "mode": 2,
           "value": "2",
           "priority": null

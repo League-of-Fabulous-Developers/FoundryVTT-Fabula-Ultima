@@ -117,13 +117,13 @@
       "system": {},
       "changes": [
         {
-          "key": "system.derived.def.value",
+          "key": "system.derived.def.bonus",
           "mode": 2,
           "value": "1",
           "priority": null
         },
         {
-          "key": "system.derived.mdef.value",
+          "key": "system.derived.mdef.bonus",
           "mode": 2,
           "value": "1",
           "priority": null
