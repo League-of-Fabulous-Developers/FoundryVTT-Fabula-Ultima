@@ -434,19 +434,6 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 			}
 		});
 
-		// Equip item handling (click, right-click, ctrl+click)
-		// html.querySelectorAll('.item-equip').forEach((el) => {
-		// 	el.addEventListener('click', (ev) => eh.handleItemClick(ev, 'left'));
-		// 	el.addEventListener('contextmenu', (ev) => eh.handleItemClick(ev, 'right'));
-		// 	el.addEventListener('mousedown', (ev) => {
-		// 		if (ev.ctrlKey && ev.button === 0) {
-		// 			// Left mouse button with Ctrl
-		// 			eh.handleItemClick(ev, 'ctrl');
-		// 			ev.preventDefault();
-		// 		}
-		// 	});
-		// });
-
 		// Toggle status effects
 		html.querySelectorAll('.status-effect-toggle').forEach((el) => {
 			el.addEventListener('click', (ev) => {

@@ -15,6 +15,7 @@ import { FUCombat } from '../ui/combat.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { FUActorSheet } from './actor-sheet.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -23,25 +24,40 @@ import { StringUtils } from '../helpers/string-utils.mjs';
  * @property {PartySheetActionHook[]} actionHooks
  * @extends {ActorSheet}
  */
-export class FUPartySheet extends foundry.appv1.sheets.ActorSheet {
-	static get defaultOptions() {
-		const defaultOptions = super.defaultOptions;
-		return foundry.utils.mergeObject(defaultOptions, {
-			classes: ['projectfu', 'sheet', 'actor', 'party', 'backgroundstyle'],
-			template: 'systems/projectfu/templates/actor/actor-party-sheet.hbs',
-			width: 920,
-			height: 1000,
+export class FUPartySheet extends FUActorSheet {
+	/**
+	 * @inheritDoc
+	 * @override
+	 */
+	static DEFAULT_OPTIONS = {
+		classes: ['party', 'blur'],
+		resizable: true,
+		position: { width: 920, height: 1000 },
+		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
+	};
+
+	/** @override */
+	static TABS = {
+		primary: {
 			tabs: [
-				{
-					navSelector: '.sheet-tabs',
-					contentSelector: '.sheet-body',
-					initial: 'overview',
-				},
+				{ id: 'overview', icon: 'ra ra-double-team' },
+				{ id: 'inventory', icon: 'ra ra-hand' },
+				{ id: 'adversaries', icon: 'ra ra-monster-skull' },
+				{ id: 'settings', icon: 'ra ra-wrench' },
 			],
-			scrollY: ['.sheet-body'],
-			dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
-		});
-	}
+			initial: 'overview',
+		},
+	};
+
+	/**
+	 * @override
+	 */
+	static PARTS = {
+		main: {
+			template: 'systems/projectfu/templates/actor/actor-party-sheet.hbs',
+			root: true,
+		},
+	};
 
 	/**
 	 * @returns {PartyDataModel}
@@ -51,9 +67,8 @@ export class FUPartySheet extends foundry.appv1.sheets.ActorSheet {
 	}
 
 	/** @override */
-	async getData() {
-		// Enrich or transform data here
-		const context = super.getData();
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
 		context.actionHooks = FUPartySheet.prepareActionHooks();
 		await ActorSheetUtils.prepareData(context, this);
 		context.characters = await this.party.getCharacterData();
@@ -93,90 +108,113 @@ export class FUPartySheet extends foundry.appv1.sheets.ActorSheet {
 		return result;
 	}
 
-	/** @override */
-	get template() {
-		return `systems/projectfu/templates/actor/actor-party-sheet.hbs`;
-	}
-
-	/** @override */
-	activateListeners(html) {
-		super.activateListeners(html);
+	/**
+	 * @inheritDoc
+	 * @override
+	 */
+	_attachFrameListeners() {
+		super._attachFrameListeners();
+		const html = this.element;
 		ActorSheetUtils.activateDefaultListeners(html, this);
 		ActorSheetUtils.activateInventoryListeners(html, this);
 		ActorSheetUtils.activateStashListeners(html, this);
 
-		// Left click on character
-		html.find('[data-action=revealActor]').on('click', (ev) => {
-			const uuid = ev.currentTarget.dataset.actor;
-			const actor = fromUuidSync(uuid);
-			if (actor) {
-				actor.sheet.render(true);
-			} else {
-				const type = ev.currentTarget.dataset.type;
-				switch (type) {
-					case 'character':
-						this.party.removeCharacter(uuid);
-						break;
-					case 'npc':
-						this.party.removeAdversary(uuid);
-						break;
-					case 'companion':
-						this.party.removeCompanion(uuid);
-						break;
+		html.addEventListener('click', async (ev) => {
+			const dataset = ev.target.parentElement.dataset;
+
+			// Check for a data action
+			const dataAction = dataset.action;
+			switch (dataAction) {
+				case 'revealActor':
+					{
+						const uuid = dataset.actor;
+						const actor = fromUuidSync(uuid);
+						if (actor) {
+							actor.sheet.render(true);
+						} else {
+							const type = dataset.type;
+							switch (type) {
+								case 'character':
+									this.party.removeCharacter(uuid);
+									break;
+								case 'npc':
+									this.party.removeAdversary(uuid);
+									break;
+								case 'companion':
+									this.party.removeCompanion(uuid);
+									break;
+							}
+						}
+					}
+					break;
+
+				case 'revealNpc':
+					{
+						const uuid = dataset.actor;
+						await this.revealNpc(uuid);
+					}
+					break;
+
+				case 'revealMetaCurrency':
+					MetaCurrencyTrackerApplication.renderApp();
+					break;
+
+				case 'restParty':
+					await this.restParty();
+					break;
+
+				case 'rewardResource':
+					await this.promptAwardResources();
+					break;
+
+				case 'refreshSheet':
+					this.render(true);
+					break;
+
+				case 'callHook': {
+					const hook = dataset.option;
+					Hooks.call(hook);
+					break;
+				}
+
+				// Progress Tracks
+				case 'addTrack': {
+					this.promptAddProgressTrack();
+					break;
+				}
+
+				case 'removeTrack': {
+					const name = dataset.name;
+					this.removeProgressTrack(name);
+					break;
+				}
+
+				case 'incrementProgress': {
+					const name = dataset.name;
+					const increment = dataset.increment;
+					this.updateProgressTrack(name, Number.parseInt(increment));
+					break;
+				}
+
+				case 'revealTrack': {
+					const name = dataset.name;
+					this.revealProgressTrack(name);
+					break;
 				}
 			}
 		});
-		html.find('[data-action=revealNpc]').on('click', async (ev) => {
-			const uuid = ev.currentTarget.dataset.actor;
-			await this.revealNpc(uuid);
-		});
+
 		// Right click on character
 		this.setupCharacterContextMenu(html);
 
 		// Set party as active
-		html.find('.set-active-button').click(() => {
-			console.debug(`Setting ${this.actor.name} as the active party`);
-			game.settings.set(Flags.Scope, SETTINGS.activeParty, this.actor._id);
-		});
-		// Reveal meta currency tracker
-		html.find('[data-action=revealMetaCurrency]').on('click', (ev) => {
-			MetaCurrencyTrackerApplication.renderApp();
-		});
-		// Rest whole party
-		html.find('[data-action=restParty]').on('click', async (ev) => {
-			await this.restParty();
-		});
-		// Reward resources
-		html.find('[data-action=rewardResource]').on('click', async (ev) => {
-			this.promptAwardResources();
-		});
-		// Refresh Sheet
-		html.find('[data-action=refreshSheet]').on('click', (ev) => {
-			this.render(true);
-		});
-		// Custom Hook
-		html.find('[data-action=callHook]').on('click', (ev) => {
-			const hook = ev.currentTarget.dataset.option;
-			Hooks.call(hook);
-		});
-
-		// Progress Tracks
-		html.find('[data-action=addTrack]').on('click', (ev) => {
-			this.promptAddProgressTrack();
-		});
-		html.find('[data-action=removeTrack]').on('click', (ev) => {
-			const name = ev.currentTarget.dataset.name;
-			this.removeProgressTrack(name);
-		});
-		html.find('[data-action=incrementProgress]').on('click', (ev) => {
-			const name = ev.currentTarget.dataset.name;
-			const increment = ev.currentTarget.dataset.increment;
-			this.updateProgressTrack(name, Number.parseInt(increment));
-		});
-		html.find('[data-action=revealTrack]').on('click', (ev) => {
-			const name = ev.currentTarget.dataset.name;
-			this.revealProgressTrack(name);
-		});
+		const button = html.querySelector('.set-active-button');
+		if (button) {
+			button.addEventListener('click', () => {
+				console.debug(`Setting ${this.actor.name} as the active party`);
+				game.settings.set(Flags.Scope, SETTINGS.activeParty, this.actor._id);
+			});
+		}
 	}
 
 	/**

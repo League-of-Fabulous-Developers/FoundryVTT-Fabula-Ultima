@@ -1,5 +1,8 @@
 const { api, sheets } = foundry.applications;
 
+/**
+ * @property {HTMLElement} element
+ */
 export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
 	/**
 	 * @inheritDoc
