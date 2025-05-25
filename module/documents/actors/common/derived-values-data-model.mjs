@@ -82,7 +82,7 @@ export class DerivedValuesDataModel extends foundry.abstract.DataModel {
 				.filter((w) => w.system.data.isShield)
 				.forEach((shield) => {
 					const path = isMagic ? 'data.shield.magicDefense' : 'data.shield.defense';
-					total += getValue(shield.system, path);
+					total += getValue(shield, path);
 				});
 		} else {
 			// Hand slots
