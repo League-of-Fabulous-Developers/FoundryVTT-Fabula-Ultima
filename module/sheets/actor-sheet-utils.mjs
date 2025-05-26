@@ -534,7 +534,7 @@ function getSpellDisplayData(actor, item) {
  */
 function activateDefaultListeners(html, sheet) {
 	html.on('click', '.item-edit', (ev) => _onItemEdit($(ev.currentTarget), sheet));
-	html.on('mouseup', '.item', (ev) => _onMiddleClickEditItem(ev)); // Middle-click to edit item
+	html.on('mouseup', '.item', (ev) => _onMiddleClickEditItem(ev, sheet)); // Middle-click to edit item
 
 	// Initialize the context menu options
 	const contextMenuOptions = [
@@ -716,10 +716,10 @@ async function _onItemDuplicate(jq, sheet) {
 }
 
 // Handle middle-click editing of an item sheet
-function _onMiddleClickEditItem(ev) {
+function _onMiddleClickEditItem(ev, sheet) {
 	if (ev.button === 1 && !$(ev.target).hasClass('item-edit')) {
 		ev.preventDefault();
-		_onItemEdit($(ev.currentTarget));
+		_onItemEdit($(ev.currentTarget), sheet);
 	}
 }
 
