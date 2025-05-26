@@ -59,19 +59,13 @@ export class FUPartySheet extends FUActorSheet {
 	 * @type Record<HandlebarsTemplatePart>
 	 */
 	static PARTS = {
-		main: {
-			template: systemPath('templates/actor/actor-party-sheet.hbs'),
-			classes: ['sheet-body'],
-			id: 'main',
-			root: true,
-		},
 		// Custom
 		tabs: {
 			template: systemPath('templates/actor/party/actor-party-section-nav.hbs'),
 		},
 		// Tabs
 		overview: {
-			template: systemPath('templates/actor/party/actor-party-section-inventory.hbs'),
+			template: systemPath('templates/actor/party/actor-party-section-overview.hbs'),
 		},
 		inventory: {
 			template: systemPath('templates/actor/party/actor-party-section-inventory.hbs'),
@@ -114,6 +108,8 @@ export class FUPartySheet extends FUActorSheet {
 	/** @inheritdoc */
 	async _preparePartContext(partId, context, options) {
 		await super._preparePartContext(partId, context, options);
+		// IMPORTANT: Set the active tab
+		if (partId in context.tabs) context.tab = context.tabs[partId];
 		switch (partId) {
 			case 'overview':
 				console.debug(`Set context`);
