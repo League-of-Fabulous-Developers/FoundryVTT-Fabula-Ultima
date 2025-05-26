@@ -1,13 +1,25 @@
 <div class="side sidebar flex-group-center">
 
-	<nav class="sheet-tabs tabs menu">
-		<a data-action="tab" class="button button-style" data-tab="overview"><i class="icon ra ra-double-team"></i>{{localize 'FU.Overview'}}</a>
-		<a data-action="tab" class="button button-style" data-tab="inventory"><i class="icon ra ra-hand"></i>{{localize 'FU.Inventory'}}</a>
-		<a data-action="tab" class="button button-style" data-tab="adversaries"><i class="icon ra ra-monster-skull "></i>{{localize 'FU.Adversaries'}}</a>
-		{{#if isGM}}
-			<a class="button button-style" data-tab="settings"><i class="icon ra ra-wrench"></i>{{localize 'FU.Settings'}}</a>
-		{{/if}}
+	<nav class="sheet-tabs tabs menu"
+		 aria-roledescription="{{localize "SHEETS.FormNavLabel"}}">
+		{{#each tabs as |tab|}}
+			<a data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
+			   {{#if tab.cssClass}}class="{{tab.cssClass}} button button-style"{{/if}}
+				{{#if tab.tooltip}}data-tooltip="{{tab.tooltip}}"{{/if}}>
+				{{#if tab.icon}}<i class="{{tab.icon}}" inert></i>{{/if}}
+				{{#if tab.label}}<span>{{localize tab.label}}</span>{{/if}}
+			</a>
+		{{/each}}
 	</nav>
+
+<!--	<nav class="sheet-tabs tabs menu">-->
+<!--		<a data-action="tab" class="{{tab.cssClass}} button button-style" data-group='primary' data-tab="overview"><i class="icon ra ra-double-team"></i>{{localize 'FU.Overview'}}</a>-->
+<!--		<a data-action="tab" class="{{tab.cssClass}} button button-style" data-group='primary' data-tab="inventory"><i class="icon ra ra-hand"></i>{{localize 'FU.Inventory'}}</a>-->
+<!--		<a data-action="tab" class="{{tab.cssClass}} button button-style" data-group='primary' data-tab="adversaries"><i class="icon ra ra-monster-skull "></i>{{localize 'FU.Adversaries'}}</a>-->
+<!--		{{#if isGM}}-->
+<!--			<a data-action="tab" class="{{tab.cssClass}} button button-style" data-tab="settings"><i class="icon ra ra-wrench"></i>{{localize 'FU.Settings'}}</a>-->
+<!--		{{/if}}-->
+<!--	</nav>-->
 
 	<div style="width: 100%;">
 		<!-- CLOCKS -->

@@ -89,6 +89,7 @@ export class FUPartySheet extends FUActorSheet {
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		context.actionHooks = FUPartySheet.prepareActionHooks();
+		context.isGM = game.user.isGM;
 		await ActorSheetUtils.prepareData(context, this);
 		context.characters = await this.party.getCharacterData();
 		context.companions = await this.party.getCompanionData();
@@ -102,6 +103,7 @@ export class FUPartySheet extends FUActorSheet {
 			xp: experience.total,
 			zenit: this.party.resources.zenit.value,
 		};
+
 		return context;
 	}
 
@@ -111,8 +113,20 @@ export class FUPartySheet extends FUActorSheet {
 		// IMPORTANT: Set the active tab
 		if (partId in context.tabs) context.tab = context.tabs[partId];
 		switch (partId) {
+			case 'tabs':
+				context.tabs = this._prepareTabs('primary');
+				break;
+
 			case 'overview':
-				console.debug(`Set context`);
+				break;
+
+			case 'inventory':
+				break;
+
+			case 'adversaries':
+				break;
+
+			case 'settings':
 				break;
 		}
 	}
