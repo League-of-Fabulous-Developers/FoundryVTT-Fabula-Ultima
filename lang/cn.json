@@ -1396,6 +1396,7 @@
 		"ChatProgressAtMinimum": "The given progress track is already at its minimum value!",
 		"Reference": "Reference",
 		"All": "全部",
+		"Adventurer": "Adventurer",
 		"Party": "Party",
 		"Notes": "Notes",
 		"PartySheetEmpty": "You must drag-n-drop the characters from the Actors onto here. Remember to set it as the active party in the settings. Also, there is a keybinding for the sheet (by default P).",
