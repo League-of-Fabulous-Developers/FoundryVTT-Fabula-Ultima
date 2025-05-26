@@ -1413,6 +1413,7 @@
 		"Identifier": "Identifier",
 		"Sell": "Sell",
 		"Loot": "Loot",
+		"LootDelete": "[Shift + Click] Loot & Delete",
 		"Share": "Share Item",
 		"Merchant": "Merchant",
 		"ClearItems": "Clear Items",

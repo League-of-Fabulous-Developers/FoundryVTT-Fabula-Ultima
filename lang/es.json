@@ -1413,6 +1413,7 @@
 		"Identifier": "Identificador",
 		"Sell": "Vender",
 		"Loot": "Botín",
+		"LootDelete": "[Shift + Click] Loot & Delete",
 		"Share": "Compartir objeto",
 		"Merchant": "Mercante",
 		"ClearItems": "Eliminar objetos",

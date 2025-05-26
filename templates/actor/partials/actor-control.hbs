@@ -21,7 +21,7 @@
 				</a>
 			{{/if}}
 		{{else}}
-			<a class="item-control item-loot" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Loot' }}" aria-describedby="tooltip">
+			<a class="item-control item-loot" data-item-id="{{item._id}}" data-tooltip="{{ localize 'FU.Loot' }}<br>{{ localize 'FU.LootDelete' }}" aria-describedby="tooltip">
 				<i class="fa fa-hand button-style"></i>
 			</a>
 		{{/if}}

@@ -1413,6 +1413,7 @@
 		"Identifier": "Идентификатор",
 		"Sell": "Продать",
 		"Loot": "Добыча",
+		"LootDelete": "[Shift + Click] Loot & Delete",
 		"Share": "Поделиться предметом",
 		"Merchant": "Торговец",
 		"ClearItems": "Убрать предметы",

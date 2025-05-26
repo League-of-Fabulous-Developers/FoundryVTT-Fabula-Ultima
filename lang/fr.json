@@ -1413,6 +1413,7 @@
 		"Identifier": "Identifier",
 		"Sell": "Vendre",
 		"Loot": "Butin",
+		"LootDelete": "[Shift + Click] Loot & Delete",
 		"Share": "Partager le butin",
 		"Merchant": "Marchand",
 		"ClearItems": "Effacer les objets",
