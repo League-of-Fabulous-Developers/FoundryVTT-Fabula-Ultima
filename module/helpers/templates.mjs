@@ -21,6 +21,9 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/sections/actor-spell-list.hbs',
 		'systems/projectfu/templates/actor/sections/actor-attack-list.hbs',
 
+		// Actor Party Partials
+		'systems/projectfu/templates/actor/sections/actor-party-section-nav.hbs',
+
 		// Actor Component partials.
 		'systems/projectfu/templates/actor/partials/actor-charname.hbs',
 		'systems/projectfu/templates/actor/partials/actor-point-bars.hbs',

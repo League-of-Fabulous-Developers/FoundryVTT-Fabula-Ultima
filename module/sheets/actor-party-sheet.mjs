@@ -1,6 +1,6 @@
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { SystemControls } from '../helpers/system-controls.mjs';
-import { FU, SYSTEM } from '../helpers/config.mjs';
+import { FU, SYSTEM, systemPath } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { MetaCurrencyTrackerApplication } from '../ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
@@ -30,20 +30,25 @@ export class FUPartySheet extends FUActorSheet {
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: ['party', 'blur'],
+		classes: [],
 		resizable: true,
 		position: { width: 920, height: 1000 },
+		window: {
+			contentClasses: ['party', 'blur'],
+		},
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 	};
 
-	/** @override */
+	/** @override
+	 * @type Record<ApplicationTab>
+	 * */
 	static TABS = {
 		primary: {
 			tabs: [
-				{ id: 'overview', icon: 'ra ra-double-team' },
-				{ id: 'inventory', icon: 'ra ra-hand' },
-				{ id: 'adversaries', icon: 'ra ra-monster-skull' },
-				{ id: 'settings', icon: 'ra ra-wrench' },
+				{ id: 'overview', label: 'FU.Overview', icon: 'ra ra-double-team' },
+				{ id: 'inventory', label: 'FU.Inventory', icon: 'ra ra-hand' },
+				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
+				{ id: 'settings', label: 'FU.Settings', icon: 'ra ra-wrench' },
 			],
 			initial: 'overview',
 		},
@@ -51,11 +56,31 @@ export class FUPartySheet extends FUActorSheet {
 
 	/**
 	 * @override
+	 * @type Record<HandlebarsTemplatePart>
 	 */
 	static PARTS = {
 		main: {
-			template: 'systems/projectfu/templates/actor/actor-party-sheet.hbs',
+			template: systemPath('templates/actor/actor-party-sheet.hbs'),
+			classes: ['sheet-body'],
+			id: 'main',
 			root: true,
+		},
+		// Custom
+		tabs: {
+			template: systemPath('templates/actor/party/actor-party-section-nav.hbs'),
+		},
+		// Tabs
+		overview: {
+			template: systemPath('templates/actor/party/actor-party-section-inventory.hbs'),
+		},
+		inventory: {
+			template: systemPath('templates/actor/party/actor-party-section-inventory.hbs'),
+		},
+		adversaries: {
+			template: systemPath('templates/actor/party/actor-party-section-adversaries.hbs'),
+		},
+		settings: {
+			template: systemPath('templates/actor/party/actor-party-section-settings.hbs'),
 		},
 	};
 
@@ -84,6 +109,16 @@ export class FUPartySheet extends FUActorSheet {
 			zenit: this.party.resources.zenit.value,
 		};
 		return context;
+	}
+
+	/** @inheritdoc */
+	async _preparePartContext(partId, context, options) {
+		await super._preparePartContext(partId, context, options);
+		switch (partId) {
+			case 'overview':
+				console.debug(`Set context`);
+				break;
+		}
 	}
 
 	/**
