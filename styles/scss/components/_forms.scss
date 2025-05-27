@@ -484,6 +484,7 @@
 .party {
 	display: flex;
 	color: $color-primary;
+	flex-direction: row;
 
 	.editor-menu {
 		color: var(--pfu-color-app-control-content) !important;
@@ -496,6 +497,11 @@
 		display: flex;
 		justify-content: space-between;
 		flex-direction: column;
+		margin-right: 16px;
+
+		.menu {
+			margin-left: -16px;
+		}
 
 		.resources {
 			display: flex;
