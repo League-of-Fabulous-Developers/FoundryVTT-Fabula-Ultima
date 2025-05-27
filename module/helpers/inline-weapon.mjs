@@ -27,9 +27,7 @@ const editorEnricher = {
 			anchor.dataset.choices = match.groups.choices;
 
 			// ICON
-			const icon = document.createElement('i');
-			icon.classList.add(`fui`, FU.allIcon.weaponEnchant);
-			anchor.append(icon);
+			InlineHelper.appendImageToAnchor(anchor, 'systems/projectfu/styles/static/compendium/classes/elementalist/spells/elemental_weapon.png');
 
 			// TOOLTIP
 			anchor.setAttribute('data-tooltip', `${game.i18n.localize('FU.InlineWeapon')} (${choices})`);

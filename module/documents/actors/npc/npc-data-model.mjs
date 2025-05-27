@@ -121,7 +121,6 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 
 	static migrateData(source) {
 		NpcMigrations.run(source);
-
 		return source;
 	}
 
@@ -132,8 +131,23 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 		return this.parent;
 	}
 
+	/**
+	 * @override
+	 */
 	prepareBaseData() {
 		this.#prepareReplacedSoldiers();
+		this.derived.prepareData();
+	}
+
+	/**
+	 * @override
+	 */
+	prepareDerivedData() {
+		this.spTracker = new NpcSkillTracker(this);
+	}
+
+	prepareEmbeddedData() {
+		this.#prepareBasicResource();
 	}
 
 	#prepareReplacedSoldiers() {
@@ -149,15 +163,6 @@ export class NpcDataModel extends foundry.abstract.TypeDataModel {
 		if (this.rank.value === 'custom') {
 			this.rank.replacedSoldiers = 0;
 		}
-	}
-
-	prepareDerivedData() {
-		this.spTracker = new NpcSkillTracker(this);
-	}
-
-	prepareEmbeddedData() {
-		this.#prepareBasicResource();
-		this.derived.prepareData();
 	}
 
 	#prepareBasicResource() {

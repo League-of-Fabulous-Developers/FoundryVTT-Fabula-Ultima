@@ -24,6 +24,7 @@ import { FUActor } from '../actors/actor.mjs';
 /**
  * @description Extend the basic Item document with some very simple modifications.
  * @property {foundry.abstract.TypeDataModel} system
+ * @property {FUActor} actor
  * @extends {Item}
  * @inheritDoc
  */
@@ -195,7 +196,7 @@ export class FUItem extends Item {
 	}
 
 	get isEquipped() {
-		if (this.actor && this.actor.type !== 'party') {
+		if (this.actor && this.actor.isCharacterType) {
 			return this.actor.system.equipped.isEquipped(this);
 		}
 		return false;

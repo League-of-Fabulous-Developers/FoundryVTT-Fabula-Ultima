@@ -340,7 +340,7 @@ async function promptPartyZenitTransfer(actor, mode) {
  * @param {String} targetId
  * @returns {Promise<boolean|undefined>}
  */
-async function requestTrade(actorId, itemId, sale, targetId = undefined) {
+async function requestTrade(actorId, itemId, sale, targetId = undefined, modifiers = {}) {
 	// Verify the item is still there
 	const item = fromUuidSync(itemId);
 	if (!item) {
@@ -360,18 +360,18 @@ async function requestTrade(actorId, itemId, sale, targetId = undefined) {
 
 	// Now execute directly on GM or request as user
 	if (game.user?.isGM) {
-		return handleTrade(actorId, itemId, sale, targetId);
+		return handleTrade(actorId, itemId, sale, targetId, modifiers);
 	} else {
-		await SOCKET.executeAsGM(MESSAGES.RequestTrade, actorId, itemId, sale, targetId);
+		await SOCKET.executeAsGM(MESSAGES.RequestTrade, actorId, itemId, sale, targetId, modifiers);
 		return false;
 	}
 }
 
-async function handleTrade(actorId, itemId, sale, targetId) {
+async function handleTrade(actorId, itemId, sale, targetId, modifiers = {}) {
 	const actor = fromUuidSync(actorId);
 	const item = fromUuidSync(itemId);
 	const target = fromUuidSync(targetId);
-	return onHandleTrade(actor, item, sale, target);
+	return onHandleTrade(actor, item, sale, target, modifiers);
 }
 
 /**
@@ -380,7 +380,7 @@ async function handleTrade(actorId, itemId, sale, targetId) {
  * @param {Boolean} sale
  * @param {FUActor} target
  */
-async function onHandleTrade(actor, item, sale, target) {
+async function onHandleTrade(actor, item, sale, target, modifiers = {}) {
 	// Don't execute on self
 	if (actor.uuid === target.uuid) {
 		return false;
@@ -409,8 +409,8 @@ async function onHandleTrade(actor, item, sale, target) {
 	// Transfer item
 	await target.createEmbeddedDocuments('Item', [item.toObject()]);
 
-	// Don't delete consumables from the source
-	if (item.type !== 'consumable') {
+	// Don't delete consumables from the source unless shift click
+	if (item.type !== 'consumable' || (item.type === 'consumable' && modifiers?.shift)) {
 		await item.delete();
 	}
 	let message = sale ? 'FU.ChatItemPurchased' : 'FU.ChatItemLooted';
@@ -455,16 +455,25 @@ async function onRenderChatMessage(message, jQuery) {
 		return;
 	}
 
-	Pipeline.handleClick(message, jQuery, sellAction, async (dataset) => {
-		const actor = dataset.actor;
-		const item = dataset.item;
-		return requestTrade(actor, item, true);
+	const getModifiers = (ev) => ({
+		shift: ev?.shiftKey ?? false,
+		ctrl: ev?.ctrlKey ?? false,
+		alt: ev?.altKey ?? false,
+		meta: ev?.metaKey ?? false,
 	});
 
-	Pipeline.handleClick(message, jQuery, lootAction, async (dataset) => {
+	Pipeline.handleClick(message, jQuery, sellAction, async (dataset, ev) => {
 		const actor = dataset.actor;
 		const item = dataset.item;
-		return requestTrade(actor, item, false);
+		const modifiers = getModifiers(ev);
+		return requestTrade(actor, item, true, modifiers);
+	});
+
+	Pipeline.handleClick(message, jQuery, lootAction, async (dataset, ev) => {
+		const actor = dataset.actor;
+		const item = dataset.item;
+		const modifiers = getModifiers(ev);
+		return requestTrade(actor, item, false, modifiers);
 	});
 
 	Pipeline.handleClick(message, jQuery, rechargeAction, async (dataset) => {

@@ -65,33 +65,16 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
  * @param {FUItem} [item]
  */
 const onProcessCheck = (check, actor, item) => {
-	const { type, result, critical, fumble } = check;
+	const { type, critical, fumble } = check;
 	if (type === 'accuracy') {
 		const configurer = CheckConfiguration.configure(check);
 		configurer.modifyTargetedDefense((value) => value ?? 'def');
+		// TODO: Refactor alongside magic-checks
 		if (critical) {
 			configurer.addTraits('critical');
 		} else if (fumble) {
 			configurer.addTraits('fumble');
 		}
-		configurer.modifyTargets((targets) => {
-			if (targets?.length) {
-				const targetedDefense = CheckConfiguration.inspect(check).getTargetedDefense();
-				for (const target of targets) {
-					target.difficulty = fromUuidSync(target.uuid).system.derived[targetedDefense].value;
-					let targetResult;
-					if (critical) {
-						targetResult = 'hit';
-					} else if (fumble) {
-						targetResult = 'miss';
-					} else {
-						targetResult = result >= target.difficulty ? 'hit' : 'miss';
-					}
-					target.result = targetResult;
-				}
-			}
-			return targets;
-		});
 		configurer.modifyDamage((damage) => {
 			if (damage) {
 				const weaponTraits = CheckConfiguration.inspect(check).getWeaponTraits();

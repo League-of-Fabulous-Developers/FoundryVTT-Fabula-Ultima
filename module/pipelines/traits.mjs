@@ -11,6 +11,7 @@ export const Traits = Object.freeze({
 	AbsorbHalf: 'absorb-half',
 	Absorb: 'absorb',
 	MindPointLoss: 'mind-point-loss',
+	MindPointAbsorption: 'mind-point-absorption',
 	NonLethal: 'non-lethal',
 	Base: 'base',
 });

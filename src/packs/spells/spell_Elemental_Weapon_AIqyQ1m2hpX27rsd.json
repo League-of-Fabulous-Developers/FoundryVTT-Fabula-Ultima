@@ -11,7 +11,7 @@
     "summary": {
       "value": ""
     },
-    "description": "<p>You imbue a weapon with elemental energy. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, all damage dealt by the weapon becomes of the chosen damage type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a weapon equipped by a willing creature.</p><hr /><ul><li><p><strong>Targets Receive:</strong> @WEAPON[air], @WEAPON[bolt], @WEAPON[earth], @WEAPON[fire], or @WEAPON[ice]</p></li></ul>",
+    "description": "<p>You imbue a weapon with elemental energy. Choose a damage type: <strong>air</strong>, <strong>bolt</strong>, <strong>earth</strong>, <strong>fire</strong>, or <strong>ice</strong>. Until this spell ends, all damage dealt by the weapon becomes of the chosen damage type. If you have that weapon equipped while you cast this spell, you may perform a <strong>free attack</strong> with it as part of the same action.</p><p>This spell can only be cast on a weapon equipped by a willing creature.</p><hr><ul><li><p><strong>Targets Receive:</strong> @WEAPON[air bolt earth fire ice]{Elemental Weapon}</p></li></ul>",
     "isFavored": {
       "value": false
     },
@@ -138,8 +138,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706564486966,
-    "modifiedTime": 1746640898302,
-    "lastModifiedBy": "9aR18wpxqiStEQ8U",
+    "modifiedTime": 1748083071029,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },

@@ -15,27 +15,23 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
  */
 const prepareCheck = (check, actor, item, registerCallback) => {
 	if (check.type === 'accuracy' && item.system instanceof WeaponDataModel) {
-		check.primary = item.system.attributes.primary.value;
-		check.secondary = item.system.attributes.secondary.value;
-		const baseAccuracy = item.system.accuracy.value;
-		if (baseAccuracy) {
-			check.modifiers.push({
-				label: 'FU.AccuracyCheckBaseAccuracy',
-				value: baseAccuracy,
-			});
-		}
+		/** @type WeaponDataModel **/
+		const weapon = item.system;
+		check.primary = weapon.attributes.primary.value;
+		check.secondary = weapon.attributes.secondary.value;
 
 		CheckConfiguration.configure(check)
-			.setDamage(item.system.damageType.value, item.system.damage.value)
+			.addWeaponAccuracy(weapon)
+			.setDamage(weapon.damageType.value, weapon.damage.value)
 			.setWeaponTraits({
-				weaponType: item.system.type.value,
-				weaponCategory: item.system.category.value,
-				handedness: item.system.hands.value,
+				weaponType: weapon.type.value,
+				weaponCategory: weapon.category.value,
+				handedness: weapon.hands.value,
 			})
-			.addTraits(item.system.damageType.value)
-			.setTargetedDefense(item.system.defense)
+			.addTraits(weapon.damageType.value)
+			.setTargetedDefense(weapon.defense)
 			.setDamageOverride(actor, 'attack')
-			.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
+			.modifyHrZero((hrZero) => hrZero || weapon.rollInfo.useWeapon.hrZero.value);
 	}
 };
 

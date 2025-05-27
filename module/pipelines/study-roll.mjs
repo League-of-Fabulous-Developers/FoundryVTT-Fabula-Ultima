@@ -4,12 +4,16 @@ import { getTargeted } from '../helpers/target-handler.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { MESSAGES, SOCKET } from '../socket.mjs';
 
+/**
+ * @property {FUActor} actor The actor who started the study roll
+ * @property {FUActor[]} targets The targets of the study roll.
+ */
 export class StudyRollHandler {
 	/**
 	 * @type {Number}
 	 * @private
 	 */
-	studyValueOverride;
+	#studyValueOverride;
 
 	constructor(actor, checkResult, targets) {
 		this.actor = actor;
@@ -19,32 +23,29 @@ export class StudyRollHandler {
 
 	get studyValue() {
 		// If there's an override
-		if (this.studyValueOverride) {
-			return this.studyValueOverride;
+		if (this.#studyValueOverride) {
+			return this.#studyValueOverride;
 		}
-		return this.checkResult.result;
+		if (this.checkResult) {
+			return this.checkResult.result;
+		}
+		return 0;
 	}
 
 	/**
 	 * Handle the study roll interaction with targeted actors
-	 * @param {Actor} setActor - The specific actor to study (optional)
 	 */
-	async handleStudyTarget(setActor) {
+	async handleStudyTarget() {
 		/** @type {FUActor[]} **/
-		let targets = setActor ? [setActor] : this.targets;
-
-		if (!targets.length) {
-			// If no targets and no setActor, get all currently targeted actors
-			targets = await getTargeted();
-			if (targets.length === 0) {
-				ui.notifications.error('You must target at least one actor to study.');
-				return;
-			}
+		let targets = this.targets;
+		if (targets.length < 1) {
+			console.debug('No targets to study have been given');
+			return;
 		}
 
 		// Now execute directly on GM or request as user
 		if (game.user?.isGM) {
-			CommonEvents.study(this.actor, targets, this.checkResult);
+			CommonEvents.study(this.actor, targets, this.studyValue);
 		} else {
 			await SOCKET.executeAsGM(MESSAGES.StudyEvent, {
 				actorUuid: this.actor.uuid,
@@ -66,21 +67,18 @@ export class StudyRollHandler {
 				return fromUuid(target);
 			}),
 		);
-		CommonEvents.study(actor, targets, data.checkResult);
+		CommonEvents.study(actor, targets, data.checkResult.result);
 	}
 
 	/**
 	 * Handle the study roll interaction
-	 * @param {DocumentSheet} app - The rendered NPC sheet
 	 */
-	async handleStudyRoll(setActor) {
+	async handleStudyRoll() {
 		const useRevisedStudyRule = game.settings.get('projectfu', 'useRevisedStudyRule');
 		const difficultyThresholds = useRevisedStudyRule ? FU.studyRoll.revised : FU.studyRoll.core;
-
 		const localizedStrings = this._getLocalizedStrings();
 
-		let targets = setActor ? [setActor] : await getTargeted();
-		this.targets = targets;
+		this.targets = this.actor.type === 'character' ? getTargeted() : [this.actor];
 		const tokenInfo = this._generateTokenInfo(this.targets);
 
 		const contentRows = this._generateContentRows(difficultyThresholds, localizedStrings);
@@ -195,7 +193,7 @@ export class StudyRollHandler {
 	async _handleDialogSubmit(html) {
 		const studyValue = parseInt(html.find('#study-input').val(), 10);
 		if (!isNaN(studyValue)) {
-			this.studyValueOverride = studyValue;
+			this.#studyValueOverride = studyValue;
 			await this.handleStudyTarget();
 		} else {
 			ui.notifications.error('Invalid study value entered.');

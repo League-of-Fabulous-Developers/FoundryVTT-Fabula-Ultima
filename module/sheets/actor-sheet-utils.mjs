@@ -534,7 +534,7 @@ function getSpellDisplayData(actor, item) {
  */
 function activateDefaultListeners(html, sheet) {
 	html.on('click', '.item-edit', (ev) => _onItemEdit($(ev.currentTarget), sheet));
-	html.on('mouseup', '.item', (ev) => _onMiddleClickEditItem(ev)); // Middle-click to edit item
+	html.on('mouseup', '.item', (ev) => _onMiddleClickEditItem(ev, sheet)); // Middle-click to edit item
 
 	// Initialize the context menu options
 	const contextMenuOptions = [
@@ -716,10 +716,10 @@ async function _onItemDuplicate(jq, sheet) {
 }
 
 // Handle middle-click editing of an item sheet
-function _onMiddleClickEditItem(ev) {
+function _onMiddleClickEditItem(ev, sheet) {
 	if (ev.button === 1 && !$(ev.target).hasClass('item-edit')) {
 		ev.preventDefault();
-		_onItemEdit($(ev.currentTarget));
+		_onItemEdit($(ev.currentTarget), sheet);
 	}
 }
 
@@ -737,7 +737,7 @@ function activateInventoryListeners(html, sheet) {
 	html.on('click', '.item-create-dialog', (ev) => _onItemCreateDialog(ev, sheet));
 	html.on('click', '.item-sell', (ev) => onTradeItem($(ev.currentTarget), sheet, true));
 	html.on('click', '.item-share', (ev) => onTradeItem($(ev.currentTarget), sheet, false));
-	html.on('click', '.item-loot', (ev) => onLootItem($(ev.currentTarget), sheet, false));
+	html.on('click', '.item-loot', (ev) => onLootItem($(ev.currentTarget), sheet, false, ev));
 	html.on('click', '.zenit-distribute', async (ev) => {
 		return InventoryPipeline.distributeZenit(sheet.actor);
 	});
@@ -746,13 +746,20 @@ function activateInventoryListeners(html, sheet) {
 	});
 }
 
+const getModifiers = (event) => ({
+	shift: event?.shiftKey ?? false,
+	ctrl: event?.ctrlKey ?? false,
+	alt: event?.altKey ?? false,
+	meta: event?.metaKey ?? false,
+});
+
 /**
  * Handles the selling of items
  * @param {jQuery} jq - The element that the ContextMenu was attached to
  * @param {ActorSheet} sheet
  * @param {Boolean} sell
  */
-function onLootItem(jq, sheet, sell) {
+function onLootItem(jq, sheet, sell, event) {
 	const dataItemId = jq.data('itemId');
 	const sourceActor = sheet.actor;
 	const item = sourceActor.items.get(dataItemId);
@@ -763,7 +770,9 @@ function onLootItem(jq, sheet, sell) {
 	if (!targetActor) {
 		return;
 	}
-	InventoryPipeline.requestTrade(sourceActor.uuid, item.uuid, false, targetActor.uuid);
+
+	const modifiers = getModifiers(event);
+	InventoryPipeline.requestTrade(sourceActor.uuid, item.uuid, false, targetActor.uuid, modifiers);
 }
 
 /**

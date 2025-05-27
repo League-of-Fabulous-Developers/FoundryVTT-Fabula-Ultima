@@ -647,6 +647,15 @@ Hooks.once('ready', async function () {
 			await actor.update(updates);
 		}
 	});
+
+	Hooks.on('createItem', (item, options, userId) => {
+		if (!item.parent) return; // Make sure the item belongs to an actor or entity
+		if (!game.settings.get('projectfu', 'optionAlwaysFavorite')) return;
+		if (item.system?.isFavored?.value === true) return; // Already favored
+		if (Object.prototype.hasOwnProperty.call(item.system.isFavored, 'value')) {
+			item.update({ 'system.isFavored.value': true });
+		}
+	});
 });
 
 Hooks.once('socketlib.ready', onSocketLibReady);
@@ -664,8 +673,7 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 	);
 
 	Hooks.on('diceSoNiceRollStart', (_messageId, context) => {
-		/* eslint-disable no-undef */
-		dice = context.roll.dice;
+		const dice = context.roll.dice;
 		if (dice.reduce((agg, curr) => agg + curr.number, 0) === 2) {
 			const dieValue = dice[0].results[0].result;
 			if (dieValue === (dice[0].results[1] ?? dice[1].results[0]).result) {

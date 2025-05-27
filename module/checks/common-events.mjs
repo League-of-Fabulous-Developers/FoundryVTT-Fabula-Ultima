@@ -300,15 +300,14 @@ function item(actor, item) {
  * @property {Token} token
  * @property {EventTarget[]} targets
  * @property {Number} result
- * @property {Boolean} critical
  */
 
 /**
  * @param {FUActor }actor
  * @param {FUActor[]} targets
- * @param {Number} checkResult
+ * @param {Number} studyValue
  */
-function study(actor, targets, checkResult) {
+function study(actor, targets, studyValue) {
 	const targetData = Targeting.serializeTargetData(targets);
 	const eventTargets = getEventTargets(targetData);
 
@@ -317,8 +316,7 @@ function study(actor, targets, checkResult) {
 		actor: actor,
 		token: actor.resolveToken(),
 		targets: eventTargets,
-		result: checkResult.result,
-		critical: checkResult.critical,
+		result: studyValue,
 	};
 	Hooks.call(FUHooks.STUDY_EVENT, event);
 }

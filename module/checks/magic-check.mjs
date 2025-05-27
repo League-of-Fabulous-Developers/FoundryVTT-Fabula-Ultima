@@ -16,18 +16,7 @@ import { Traits } from '../pipelines/traits.mjs';
 const onPrepareCheck = (check, actor, item, registerCallback) => {
 	const { type, modifiers } = check;
 	if (type === 'magic') {
-		CheckConfiguration.configure(check)
-			.setTargetedDefense('mdef')
-			.setTargets(
-				[...game.user.targets]
-					.filter((token) => !!token.actor)
-					.map((token) => ({
-						name: token.name,
-						uuid: token.actor.uuid,
-						link: token.actor.link,
-						difficulty: token.actor.system.derived.mdef.value,
-					})),
-			);
+		CheckConfiguration.configure(check).setTargetedDefense('mdef');
 
 		if (actor.system.bonuses.accuracy.magicCheck) {
 			modifiers.push({
@@ -45,46 +34,38 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
  * @param {FUItem} [item]
  */
 const onProcessCheck = (check, actor, item) => {
-	const { type, result, critical, fumble } = check;
+	const { type, critical, fumble } = check;
 	if (type === 'magic') {
-		CheckConfiguration.configure(check)
-			.modifyTargets((targets) =>
-				(targets ?? []).map((target) => {
-					let targetResult;
-					if (critical) {
-						targetResult = 'hit';
-					} else if (fumble) {
-						targetResult = 'miss';
-					} else {
-						targetResult = result >= target.difficulty ? 'hit' : 'miss';
-					}
-					target.result = targetResult;
-					return target;
-				}),
-			)
-			.modifyDamage((damage) => {
-				if (damage) {
-					// All Damage
-					const globalBonus = actor.system.bonuses.damage.all;
-					if (globalBonus) {
-						damage.modifiers.push({ label: `FU.DamageBonusAll`, value: globalBonus });
-					}
-
-					// Damage Type
-					const damageTypeBonus = actor.system.bonuses.damage[damage.type];
-					if (damageTypeBonus) {
-						damage.modifiers.push({ label: `FU.DamageBonus${damage.type.capitalize()}`, value: damageTypeBonus });
-					}
-
-					// TODO: Refactor this and others all the way to the end
-					// Calculate the total damage
-					const inspector = CheckConfiguration.inspect(check);
-					if (inspector.hasTrait(Traits.Base)) {
-						damage.modifiers = damage.modifiers.slice(0, 1);
-					}
+		const configurer = CheckConfiguration.configure(check);
+		// TODO: Refactor alongside accuracy-checks
+		if (critical) {
+			configurer.addTraits('critical');
+		} else if (fumble) {
+			configurer.addTraits('fumble');
+		}
+		configurer.modifyDamage((damage) => {
+			if (damage) {
+				// All Damage
+				const globalBonus = actor.system.bonuses.damage.all;
+				if (globalBonus) {
+					damage.modifiers.push({ label: `FU.DamageBonusAll`, value: globalBonus });
 				}
-				return damage;
-			});
+
+				// Damage Type
+				const damageTypeBonus = actor.system.bonuses.damage[damage.type];
+				if (damageTypeBonus) {
+					damage.modifiers.push({ label: `FU.DamageBonus${damage.type.capitalize()}`, value: damageTypeBonus });
+				}
+
+				// TODO: Refactor this and others all the way to the end
+				// Calculate the total damage
+				const inspector = CheckConfiguration.inspect(check);
+				if (inspector.hasTrait(Traits.Base)) {
+					damage.modifiers = damage.modifiers.slice(0, 1);
+				}
+			}
+			return damage;
+		});
 	}
 };
 
@@ -181,5 +162,4 @@ const initialize = () => {
 
 export const MagicCheck = Object.freeze({
 	initialize,
-	configure: CheckConfiguration.configure,
 });

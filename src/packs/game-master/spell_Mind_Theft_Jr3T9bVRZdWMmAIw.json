@@ -118,7 +118,7 @@
     "fuid": "mind-theft",
     "traits": [
       "AbsorbHalf",
-      "MindPointLoss",
+      "MindPointAbsorption",
       "Base"
     ]
   },
@@ -132,8 +132,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1690417015023,
-    "modifiedTime": 1744755588429,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1748083124365,
+    "lastModifiedBy": "JXPd932s9DHQRD0w",
     "compendiumSource": null,
     "duplicateSource": null
   },
