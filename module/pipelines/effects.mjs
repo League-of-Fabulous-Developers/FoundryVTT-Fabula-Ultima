@@ -9,6 +9,7 @@ import { Targeting } from '../helpers/targeting.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { SETTINGS } from '../settings.js';
 import { MathHelper } from '../helpers/math-helper.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 /**
  * @typedef EffectChangeData
@@ -72,12 +73,12 @@ function createTemporaryEffect(owner, effectType, name) {
 
 /**
  * Manage Active Effect instances through the Actor Sheet via effect control buttons.
- * @param {MouseEvent} event      The left-click event on the effect control
+ * @param {PointerEvent} event     The left-click event on the effect control
  * @param {Actor|Item} owner      The owning document which manages this effect
  */
 export async function onManageActiveEffect(event, owner) {
 	event.preventDefault();
-	const anchor = event.target.dataset.action ? event.target : event.currentTarget;
+	const anchor = HTMLUtils.findWithDataset(event.target);
 	const listItem = anchor.closest('li');
 
 	/**

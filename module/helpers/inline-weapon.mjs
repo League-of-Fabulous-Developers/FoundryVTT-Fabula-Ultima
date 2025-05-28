@@ -64,7 +64,7 @@ function activateListeners(document, html) {
 	const root = html instanceof HTMLElement ? html : html[0];
 
 	root.querySelectorAll('a.inline.inline-weapon[draggable]')?.forEach((el) => {
-		el.addEventListener('click', async () => {
+		el.addEventListener('click', async function (event) {
 			const targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
