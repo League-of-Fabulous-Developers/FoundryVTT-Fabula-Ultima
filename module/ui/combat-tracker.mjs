@@ -86,48 +86,6 @@ export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTra
 		});
 	}
 
-	// /**
-	//  * Custom method for handling combatant click
-	//  * @param {Event} event
-	//  */
-	// customOnCombatantClick(event) {
-	// 	event.preventDefault();
-	//
-	// 	if (game.settings.get('projectfu', 'optionCombatMouseDown')) {
-	// 		// Call the custom function
-	// 		this._onCustomCombatantMouseDown(event);
-	// 	} else {
-	// 		this._onCombatantMouseDown(event);
-	// 	}
-	// }
-
-	//
-	// /**
-	//  * Handle custom combatant mouse down
-	//  * @param {Event} event
-	//  */
-	// async _onCustomCombatantMouseDown(event) {
-	// 	event.preventDefault();
-	//
-	// 	const li = event.currentTarget;
-	// 	const combatant = this.viewed.combatants.get(li.dataset.combatantId);
-	// 	const token = combatant.token;
-	// 	if (!combatant.actor?.testUserPermission(game.user, 'OBSERVER')) return;
-	//
-	// 	// Handle double-left click to open sheet
-	// 	const now = Date.now();
-	// 	const dt = now - this._clickTime;
-	// 	this._clickTime = now;
-	// 	if (dt <= 250) {
-	// 		return combatant.actor?.sheet.render(true);
-	// 	}
-	//
-	// 	// Control Token object (no panning)
-	// 	if (token?.object) {
-	// 		token.object?.control({ releaseOthers: true });
-	// 	}
-	// }
-
 	/**
 	 * @param turns
 	 * @param {FUCombat} combat
