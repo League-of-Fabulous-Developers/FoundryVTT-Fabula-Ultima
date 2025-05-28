@@ -1,6 +1,7 @@
 import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 import { FU } from '../helpers/config.mjs';
 import { ActorSheetUtils } from '../sheets/actor-sheet-utils.mjs';
+import FUApplication from './application.mjs';
 
 /**
  * @typedef NpcProfileRevealData
@@ -26,8 +27,9 @@ import { ActorSheetUtils } from '../sheets/actor-sheet-utils.mjs';
 
 /**
  * @property {NpcProfileData} data
+ * @inheritDoc
  */
-export class NpcProfileWindow extends Application {
+export class NpcProfileWindow extends FUApplication {
 	constructor(data = {}, options = {}) {
 		options.title = data.name;
 		super(data, options);
@@ -35,19 +37,40 @@ export class NpcProfileWindow extends Application {
 		this._expanded = new Set();
 	}
 
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			id: 'npc-profile',
-			classes: ['projectfu', 'sheet', 'actor', 'npc-profile', 'backgroundstyle'],
-			template: 'systems/projectfu/templates/ui/study/npc-profile.hbs',
-			width: 730,
-			height: 'auto',
-			resizable: true,
-			title: 'NPC Profile',
-		});
+	/** @inheritdoc
+	 * @override
+	 * */
+	_initializeApplicationOptions(options) {
+		return super._initializeApplicationOptions(options);
 	}
 
-	async getData() {
+	/**
+	 * @inheritDoc
+	 * @override
+	 */
+	static DEFAULT_OPTIONS = {
+		classes: ['projectfu', 'sheet', 'actor', 'npc-profile', 'backgroundstyle'],
+		resizable: true,
+		title: 'NPC Profile',
+		position: { width: 750, height: 'auto' },
+		actions: {
+			revealActor: this.#revealActor,
+		},
+	};
+
+	/**
+	 * @override
+	 */
+	static PARTS = {
+		main: {
+			template: 'systems/projectfu/templates/ui/study/npc-profile.hbs',
+		},
+	};
+
+	/** @override */
+	async _prepareContext(options) {
+		let context = await super._prepareContext(options);
+
 		/** @type FUActor **/
 		const actor = await fromUuid(this.data.uuid);
 		/** @type NpcDataModel  **/
@@ -90,43 +113,45 @@ export class NpcProfileWindow extends Application {
 			};
 		});
 
-		let context = {
-			...this.data,
-			actor: actor,
-			system: system,
-			items: actor.items,
-			basic: basic,
-			complete: complete,
-			detailed: detailed,
-			affinities: affinities,
-			revealStats: revealStats,
-			revealAffinities: revealAffinities,
-			level: system.level.value,
-			hp: system.resources.hp.max,
-			mp: system.resources.hp.max,
-			localizedSpecies: FU.species[this.data.species],
-		};
+		context.actor = actor;
+		context.name = actor.name;
+		context.img = actor.img;
+		context.system = system;
+		context.items = actor.items;
+		context.basic = basic;
+		context.complete = complete;
+		context.detailed = detailed;
+		context.affinities = affinities;
+		context.revealStats = revealStats;
+		context.revealAffinities = revealAffinities;
+		context.level = system.level.value;
+		context.hp = system.resources.hp.max;
+		context.mp = system.resources.hp.max;
+		context.localizedSpecies = FU.species[this.data.species];
 
 		// Ensure expanded state is initialized
 		context._expandedIds = Array.from(this._expanded);
 		await ActorSheetUtils.prepareItems(context);
-
 		return context;
 	}
 
-	activateListeners(html) {
-		super.activateListeners(html);
-		html.find('[data-action=revealActor]').on('click', (ev) => {
-			const uuid = this.data.uuid;
-			const actor = fromUuidSync(uuid);
-			if (actor) {
-				actor.sheet.render(true);
-			} else {
-				ui.notifications.error('The referenced actor is no longer present');
-			}
-		});
-		// Toggle Expandable Item Description
-		ActorSheetUtils.activateExpandedItemListener(html, this._expanded);
+	/**
+	 * @inheritDoc
+	 * @override
+	 */
+	_attachFrameListeners() {
+		super._attachFrameListeners();
+		ActorSheetUtils.activateExpandedItemListener(this.element, this._expanded);
+	}
+
+	static async #revealActor() {
+		const uuid = this.data.uuid;
+		const actor = fromUuidSync(uuid);
+		if (actor) {
+			actor.sheet.render(true);
+		} else {
+			ui.notifications.error('The referenced actor is no longer present');
+		}
 	}
 
 	/**

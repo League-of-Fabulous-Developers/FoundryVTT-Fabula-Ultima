@@ -42,3 +42,28 @@ export {};
  *                                           null.
  * @throws If the uuid resolves to a Document that cannot be retrieved synchronously, and the strict option is true.
  **/
+
+/**
+ * @typedef {Object} HandlebarsTemplatePart
+ * @property {string} template                      The template entry-point for the part
+ * @property {string} [id]                          A CSS id to assign to the top-level element of the rendered part.
+ *                                                  This id string is automatically prefixed by the application id.
+ * @property {string[]} [classes]                   An array of CSS classes to apply to the top-level element of the
+ *                                                  rendered part.
+ * @property {string[]} [templates]                 An array of templates that are required to render the part.
+ *                                                  If omitted, only the entry-point is inferred as required.
+ * @property {string[]} [scrollable]                An array of selectors within this part whose scroll positions should
+ *                                                  be persisted during a re-render operation. A blank string is used
+ *                                                  to denote that the root level of the part is scrollable.
+ * @property {Record<string, ApplicationFormConfiguration>} [forms]  A registry of forms selectors and submission handlers.
+ */
+
+/**
+ * @typedef ApplicationTab
+ * @property {string} id         The ID of the tab. Unique per group.
+ * @property {string} group      The group this tab belongs to.
+ * @property {string} icon       An icon to prepend to the tab
+ * @property {string} label      Display text, will be run through `game.i18n.localize`
+ * @property {boolean} active    If this is the active tab, set with `this.tabGroups[group] === id`
+ * @property {string} cssClass   "active" or "" based on the above boolean
+ */

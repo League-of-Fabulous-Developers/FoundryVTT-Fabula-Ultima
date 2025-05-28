@@ -76,6 +76,7 @@ async function tradeItem(actor, item, sale) {
  */
 async function distributeZenit(actor, targets) {
 	if (!actor.isOwner) {
+		console.error(`The actor is not owned by the user`);
 		return;
 	}
 	if (!targets) {
@@ -84,11 +85,16 @@ async function distributeZenit(actor, targets) {
 		if (party) {
 			targets = await party.getCharacterActors();
 		}
+		if (!targets) {
+			console.warn(`Could not find any characters or party`);
+			return;
+		}
 	}
 
 	// Prompt confirmation
 	const zenit = actor.system.resources.zenit.value;
 	if (zenit <= 0) {
+		console.warn(`No zenit available to distribute`);
 		return;
 	}
 
@@ -448,9 +454,9 @@ function validateFunds(target, cost) {
 
 /**
  * @param {Document} message
- * @param {jQuery} jQuery
+ * @param {HTMLElement} html
  */
-async function onRenderChatMessage(message, jQuery) {
+async function onRenderChatMessage(message, html) {
 	if (!message.getFlag(Flags.Scope, Flags.ChatMessage.Inventory) && !message.getFlag(Flags.Scope, Flags.ChatMessage.ResourceGain)) {
 		return;
 	}
@@ -462,21 +468,14 @@ async function onRenderChatMessage(message, jQuery) {
 		meta: ev?.metaKey ?? false,
 	});
 
-	Pipeline.handleClick(message, jQuery, sellAction, async (dataset, ev) => {
+	Pipeline.handleClick(message, html, sellAction, async (dataset, ev) => {
 		const actor = dataset.actor;
 		const item = dataset.item;
 		const modifiers = getModifiers(ev);
 		return requestTrade(actor, item, true, modifiers);
 	});
 
-	Pipeline.handleClick(message, jQuery, lootAction, async (dataset, ev) => {
-		const actor = dataset.actor;
-		const item = dataset.item;
-		const modifiers = getModifiers(ev);
-		return requestTrade(actor, item, false, modifiers);
-	});
-
-	Pipeline.handleClick(message, jQuery, rechargeAction, async (dataset) => {
+	Pipeline.handleClick(message, html, rechargeAction, async (dataset) => {
 		const actor = fromUuidSync(dataset.actor);
 		return rechargeIP(actor);
 	});
@@ -486,7 +485,7 @@ async function onRenderChatMessage(message, jQuery) {
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
-	Hooks.on('renderChatMessage', onRenderChatMessage);
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 }
 
 export const InventoryPipeline = {

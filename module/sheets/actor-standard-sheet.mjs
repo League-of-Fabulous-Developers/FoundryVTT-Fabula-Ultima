@@ -21,7 +21,7 @@ const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex
  * @description Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class FUStandardActorSheet extends ActorSheet {
+export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 	constructor(...args) {
 		super(...args);
 
@@ -141,7 +141,7 @@ export class FUStandardActorSheet extends ActorSheet {
 
 		// Enriches description fields within the context object
 		context.enrichedHtml = {
-			description: await TextEditor.enrichHTML(context.system.description ?? '', {
+			description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.description ?? '', {
 				secrets: this.actor.isOwner,
 				rollData: context.actor.getRollData(),
 				relativeTo: context.actor,
@@ -228,7 +228,7 @@ export class FUStandardActorSheet extends ActorSheet {
 		ev.preventDefault();
 
 		// Retrieve drag data using TextEditor
-		const data = TextEditor.getDragEventData(ev);
+		const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(ev);
 		if (!data || data.type !== 'Item') return await super._onDrop(ev);
 
 		// Check if the item is embedded within an actor (reordering within the sheet) and uses default behavior
@@ -337,72 +337,122 @@ export class FUStandardActorSheet extends ActorSheet {
 	/* -------------------------------------------- */
 
 	/** @override */
+	/**
+	 * @param {HTMLElement} html
+	 */
 	activateListeners(html) {
 		super.activateListeners(html);
+		html = html[0];
 		ActorSheetUtils.activateDefaultListeners(html, this);
 
-		html.on('mouseup', '.effect', this._onMiddleClickEditEffect.bind(this)); // Middle-click to edit effect
-		html.on('click', '.effect-roll', (ev) => onManageActiveEffect(ev, this.actor)); // Send active effect to chat
-		html.on('click', '.study-button', async () => await new StudyRollHandler(this.actor).handleStudyRoll());
-		html.find('.effect-control').click((ev) => onManageActiveEffect(ev, this.actor)); // Active Effect management
+		html.addEventListener('mouseup', (ev) => {
+			if (ev.target.closest('.effect') && ev.button === 1) {
+				// Check for middle-click (button 1)
+				this._onMiddleClickEditEffect(ev);
+			}
+		});
+
+		html.addEventListener('click', async (ev) => {
+			// Send active effect to chat
+			if (ev.target.closest('.effect-roll')) {
+				onManageActiveEffect(ev, this.actor);
+			}
+
+			// Handle study roll
+			if (ev.target.closest('.study-button')) {
+				await new StudyRollHandler(this.actor).handleStudyRoll();
+			}
+
+			// Active Effect management
+			if (ev.target.closest('.effect-control')) {
+				onManageActiveEffect(ev, this.actor);
+			}
+		});
 
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
 
-		// Editable item actions
-		ActorSheetUtils.activateInventoryListeners(html, this);
-		html.on('click', '.use-equipment', this._onUseEquipment.bind(this)); // Toggle use equipment setting for npcs
-		html.on('click', '.item-favored', this._onItemFavorite.bind(this)); // Add item to favorites
-		html.on('click', '.item-behavior', (ev) => this._onItemBehavior($(ev.currentTarget))); // Add item to behavior roll
-		html.on('click', '.zenit-deposit', async (ev) => {
-			return InventoryPipeline.promptPartyZenitTransfer(this.actor, 'deposit');
-		});
-		html.on('click', '.zenit-withdraw', async (ev) => {
-			return InventoryPipeline.promptPartyZenitTransfer(this.actor, 'withdraw');
-		});
-		html.on('click contextmenu', '.increment-button', (ev) => this._onIncrementButtonClick(ev)); // Increment value
-		html.on('click contextmenu', '.decrement-button', (ev) => this._onDecrementButtonClick(ev)); // Decrement value
-		html.on('click', '.is-levelup', (ev) => this._onLevelUp(ev)); // Handle level up
-		html.on('click', '.skillLevel input', (ev) => this._onSkillLevelUpdate(ev)); // Update skill level
-		html.on('contextmenu', '.skillLevel', (ev) => this._onSkillLevelReset(ev)); // Reset skill level
-
-		// Update Progress Increase
-		html.find('.progress input').click((ev) => {
-			const dataType = $(ev.currentTarget).closest('.progress').data('type');
-			const dataPath = $(ev.currentTarget).closest('.progress').data('dataPath');
-			this._onProgressUpdate(ev, dataType, dataPath);
-		});
-
-		// Update Progress Reset
-		html.find('.progress input').contextmenu((ev) => {
-			const dataType = $(ev.currentTarget).closest('.progress').data('type');
-			const dataPath = $(ev.currentTarget).closest('.progress').data('dataPath');
-			this._onProgressReset(ev, dataType, dataPath);
-		});
-
 		// Create an instance of EquipmentHandler
 		const eh = new EquipmentHandler(this.actor);
 
-		// Add event listeners for handling equipping items
-		html.find('.item-equip').on({
-			click: (ev) => eh.handleItemClick(ev, 'left'),
-			contextmenu: (ev) => eh.handleItemClick(ev, 'right'),
-			mousedown: (ev) => ev.ctrlKey && ev.which === 1 && (eh.handleItemClick(ev, 'ctrl'), ev.preventDefault()),
+		// Editable item actions
+		ActorSheetUtils.activateInventoryListeners(html, this);
+		html.addEventListener('click', (ev) => {
+			const target = ev.target;
+
+			if (target.closest('.use-equipment')) {
+				this._onUseEquipment(ev);
+			} else if (target.closest('.item-favored')) {
+				this._onItemFavorite(ev);
+			} else if (target.closest('.zenit-deposit')) {
+				InventoryPipeline.promptPartyZenitTransfer(this.actor, 'deposit');
+			} else if (target.closest('.zenit-withdraw')) {
+				InventoryPipeline.promptPartyZenitTransfer(this.actor, 'withdraw');
+			} else if (target.closest('.increment-button')) {
+				this._onIncrementButtonClick(ev);
+			} else if (target.closest('.decrement-button')) {
+				this._onDecrementButtonClick(ev);
+			} else if (target.closest('.is-levelup')) {
+				this._onLevelUp(ev);
+			} else if (target.closest('.skillLevel input')) {
+				this._onSkillLevelUpdate(ev);
+			} else if (target.closest('.progress input')) {
+				const progress = target.closest('.progress');
+				const dataType = progress?.dataset.type;
+				const dataPath = progress?.dataset.dataPath;
+				this._onProgressUpdate(ev, dataType, dataPath);
+			} else if (target.closest('.item-equip')) {
+				eh.handleItemClick(ev, 'left');
+			}
+		});
+
+		html.addEventListener('contextmenu', (ev) => {
+			const target = ev.target;
+
+			if (target.closest('.increment-button')) {
+				this._onIncrementButtonClick(ev);
+			} else if (target.closest('.decrement-button')) {
+				this._onDecrementButtonClick(ev);
+			} else if (target.closest('.skillLevel')) {
+				this._onSkillLevelReset(ev);
+			} else if (target.closest('.progress input')) {
+				const progress = target.closest('.progress');
+				const dataType = progress?.dataset.type;
+				const dataPath = progress?.dataset.dataPath;
+				this._onProgressReset(ev, dataType, dataPath);
+			} else if (target.closest('.item-equip')) {
+				eh.handleItemClick(ev, 'right');
+			}
+		});
+
+		html.addEventListener('mousedown', (ev) => {
+			if (ev.ctrlKey && ev.button === 0) {
+				// Left mouse button with Ctrl
+				eh.handleItemClick(ev, 'ctrl');
+				ev.preventDefault();
+			}
 		});
 
 		// Toggle status effects
-		html.find('.status-effect-toggle').click((ev) => {
-			ev.preventDefault();
-			const a = ev.currentTarget;
-			Effects.toggleStatusEffect(this.actor, a.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
+		html.querySelectorAll('.status-effect-toggle').forEach((el) => {
+			el.addEventListener('click', (ev) => {
+				ev.preventDefault();
+				const a = ev.currentTarget;
+				Effects.toggleStatusEffect(this.actor, a.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
+			});
 		});
 
-		// Rollable abilities.
-		html.find('.rollable').click(this._onRoll.bind(this));
+		// Rollable abilities
+		html.querySelectorAll('.rollable').forEach((el) => {
+			el.addEventListener('click', this._onRoll.bind(this));
+		});
 
-		// Rest on left-click, different behavior on right-click
-		html.find('.rest').on('click contextmenu', (ev) => this.handleRestClick(ev));
+		// Rest handling (click and contextmenu)
+		html.querySelectorAll('.rest').forEach((el) => {
+			el.addEventListener('click', this.handleRestClick.bind(this));
+			el.addEventListener('contextmenu', this.handleRestClick.bind(this));
+		});
 
 		// Event listener for setting hp to crisis
 		async function hpCrisis(actor) {
@@ -418,50 +468,54 @@ export class FUStandardActorSheet extends ActorSheet {
 			actor.sheet.render(true);
 		}
 
-		html.find('.crisisHP').on('click', async (ev) => {
-			await hpCrisis(this.actor);
-		});
-
-		// Event listener for adding a new bonds
-		html.find('.bond-add').click(async (ev) => {
-			ev.preventDefault();
-			const bonds = this.actor.system.bonds;
-			const maxBondLength = game.settings.get('projectfu', 'optionBondMaxLength');
-			if (bonds.length >= maxBondLength) {
-				ui.notifications.warn(`Maximum number of bonds (${maxBondLength}) reached.`);
-				return;
-			}
-			const newBonds = [...bonds];
-			newBonds.push({
-				name: '',
-				admInf: '',
-				loyMis: '',
-				affHat: '',
+		// Crisis HP click
+		html.querySelectorAll('.crisisHP').forEach((el) => {
+			el.addEventListener('click', async () => {
+				await hpCrisis(this.actor);
 			});
-			await this.actor.update({ 'system.bonds': newBonds });
 		});
 
-		// Event listener for deleting a bond
-		html.find('.bond-delete').click(async (ev) => {
-			ev.preventDefault();
-			const bondIndex = $(ev.currentTarget).data('bond-index');
-			const newBonds = [...this.actor.system.bonds];
-			newBonds.splice(bondIndex, 1);
-			await this.actor.update({ 'system.bonds': newBonds });
+		// Add a new bond
+		html.querySelectorAll('.bond-add').forEach((el) => {
+			el.addEventListener('click', async (ev) => {
+				ev.preventDefault();
+				const bonds = this.actor.system.bonds;
+				const maxBondLength = game.settings.get('projectfu', 'optionBondMaxLength');
+				if (bonds.length >= maxBondLength) {
+					ui.notifications.warn(`Maximum number of bonds (${maxBondLength}) reached.`);
+					return;
+				}
+				const newBonds = [...bonds];
+				newBonds.push({ name: '', admInf: '', loyMis: '', affHat: '' });
+				await this.actor.update({ 'system.bonds': newBonds });
+			});
 		});
 
-		const sortButton = html.find('#sortButton');
-
-		sortButton.mousedown((ev) => {
-			// Right click changes the sort type
-			if (ev.button === 2) {
-				this.changeSortType();
-			} else {
-				// Left click switches between ascending and descending order
-				this.sortOrder *= -1;
-				this.render();
-			}
+		// Delete a bond
+		html.querySelectorAll('.bond-delete').forEach((el) => {
+			el.addEventListener('click', async (ev) => {
+				ev.preventDefault();
+				const bondIndex = Number(ev.currentTarget.dataset.bondIndex);
+				const newBonds = [...this.actor.system.bonds];
+				newBonds.splice(bondIndex, 1);
+				await this.actor.update({ 'system.bonds': newBonds });
+			});
 		});
+
+		const sortButton = html.querySelector('#sortButton');
+
+		if (sortButton) {
+			sortButton.addEventListener('mousedown', (ev) => {
+				if (ev.button === 2) {
+					// Right-click: change sort type
+					this.changeSortType();
+				} else {
+					// Left-click: toggle ascending/descending
+					this.sortOrder *= -1;
+					this.render();
+				}
+			});
+		}
 
 		// Load sorting method from actor flags
 		if (this.actor) {
@@ -490,26 +544,46 @@ export class FUStandardActorSheet extends ActorSheet {
 			};
 		};
 
-		html.find('.vehicle-section [data-action=toggleVehicleEmbarked]').on('click', updatePilotVehicle('updateEmbarked').bind(this));
-		html.find('[data-action=toggleActiveVehicle][data-item-id]').on('click', updatePilotVehicle('updateActiveVehicle').bind(this));
-		html.find('[data-action=toggleArmorModule][data-item-id]').on('click', updatePilotVehicle('updateActiveArmorModule').bind(this));
-		html.find('[data-action=toggleWeaponModule][data-item-id]').on('click', updatePilotVehicle('updateActiveWeaponModules').bind(this));
-		html.find('[data-action=toggleSupportModule][data-item-id]').on('click', updatePilotVehicle('updateActiveSupportModules').bind(this));
+		// Toggle embarked state
+		html.querySelectorAll('.vehicle-section [data-action="toggleVehicleEmbarked"]').forEach((el) => {
+			el.addEventListener('click', updatePilotVehicle('updateEmbarked').bind(this));
+		});
+
+		// Toggle active vehicle
+		html.querySelectorAll('[data-action="toggleActiveVehicle"][data-item-id]').forEach((el) => {
+			el.addEventListener('click', updatePilotVehicle('updateActiveVehicle').bind(this));
+		});
+
+		// Toggle armor module
+		html.querySelectorAll('[data-action="toggleArmorModule"][data-item-id]').forEach((el) => {
+			el.addEventListener('click', updatePilotVehicle('updateActiveArmorModule').bind(this));
+		});
+
+		// Toggle weapon module
+		html.querySelectorAll('[data-action="toggleWeaponModule"][data-item-id]').forEach((el) => {
+			el.addEventListener('click', updatePilotVehicle('updateActiveWeaponModules').bind(this));
+		});
+
+		// Toggle support module
+		html.querySelectorAll('[data-action="toggleSupportModule"][data-item-id]').forEach((el) => {
+			el.addEventListener('click', updatePilotVehicle('updateActiveSupportModules').bind(this));
+		});
 
 		const updateArcanistArcanum = (ev) => {
 			const itemId = ev.currentTarget.dataset.itemId;
 			const currentArcanumId = this.actor.system.equipped.arcanum;
 
-			// Check if the clicked item is already the active arcanum
+			// Toggle arcanum slot
 			const newArcanumId = currentArcanumId === itemId ? null : itemId;
 
-			// Update the arcanum slot
 			this.actor.update({
 				'system.equipped.arcanum': newArcanumId,
 			});
 		};
 
-		html.find('[data-action=toggleActiveArcanum][data-item-id]').on('click', updateArcanistArcanum.bind(this));
+		html.querySelectorAll('[data-action="toggleActiveArcanum"][data-item-id]').forEach((el) => {
+			el.addEventListener('click', updateArcanistArcanum.bind(this));
+		});
 
 		const toggleActiveGarden = (ev) => {
 			const itemId = ev.currentTarget.dataset.itemId;
@@ -517,7 +591,10 @@ export class FUStandardActorSheet extends ActorSheet {
 
 			return this.actor.system.floralist.toggleActiveGarden(item);
 		};
-		html.find('[data-action=toggleActiveGarden][data-item-id]').on('click', toggleActiveGarden.bind(this));
+
+		html.querySelectorAll('[data-action="toggleActiveGarden"][data-item-id]').forEach((el) => {
+			el.addEventListener('click', toggleActiveGarden.bind(this));
+		});
 
 		const togglePlantedMagiseed = (ev) => {
 			const itemId = ev.currentTarget.dataset.itemId;
@@ -525,25 +602,42 @@ export class FUStandardActorSheet extends ActorSheet {
 
 			return this.actor.system.floralist.togglePlantedMagiseed(item);
 		};
-		html.find('[data-action=togglePlantedMagiseed][data-item-id]').on('click', togglePlantedMagiseed.bind(this));
-		html.find('a[data-action=spendMetaCurrency]').on('click', () => PlayerListEnhancements.spendMetaCurrency(this.actor));
-		html.find('span[data-action="clearTempEffects"]').click(this._onClearTempEffects.bind(this));
+
+		html.querySelectorAll('[data-action="togglePlantedMagiseed"][data-item-id]').forEach((el) => {
+			el.addEventListener('click', togglePlantedMagiseed.bind(this));
+		});
+
+		// Spend meta currency
+		html.querySelectorAll('a[data-action="spendMetaCurrency"]').forEach((el) => {
+			el.addEventListener('click', () => PlayerListEnhancements.spendMetaCurrency(this.actor));
+		});
+
+		// Clear temporary effects
+		html.querySelectorAll('span[data-action="clearTempEffects"]').forEach((el) => {
+			el.addEventListener('click', this._onClearTempEffects.bind(this));
+		});
 
 		// Dropzone event listeners
-		const dropZone = html.find('.desc.drop-zone');
-		dropZone.on('dragenter', this._onDragEnter.bind(this));
-		dropZone.on('dragleave', this._onDragLeave.bind(this));
-		dropZone.on('drop', this._onDropReset.bind(this));
+		const dropZone = html.querySelector('.desc.drop-zone');
+		if (dropZone) {
+			dropZone.addEventListener('dragenter', this._onDragEnter.bind(this));
+			dropZone.addEventListener('dragleave', this._onDragLeave.bind(this));
+			dropZone.addEventListener('drop', this._onDropReset.bind(this));
+		}
 	}
 
 	// Handle adding item to favorite
 	async _onItemFavorite(ev) {
-		const li = $(ev.currentTarget).parents('.item');
-		const itemId = li.data('itemId');
+		const itemEl = ev.target.closest('.item');
+		if (!itemEl) return;
+
+		const itemId = itemEl.dataset.itemId;
 		const item = this.actor.items.get(itemId);
-		const isFavoredBool = item.system.isFavored.value;
-		item.update();
-		this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
+		if (!item) return;
+
+		const isFavoredBool = item.system.isFavored?.value ?? false;
+
+		await this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
 	}
 
 	// Handle middle-click to open active effect dialog

@@ -28,7 +28,7 @@ Hooks.on('preCreateCombatant', function (document, data, options, userId) {
  * @property {FUActor} actor
  * @inheritDoc
  */
-export class FUCombatant extends Combatant {
+export class FUCombatant extends foundry.documents.Combatant {
 	/**
 	 * @override
 	 */

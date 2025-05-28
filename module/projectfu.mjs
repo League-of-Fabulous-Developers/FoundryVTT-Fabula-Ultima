@@ -205,8 +205,8 @@ Hooks.once('init', async () => {
 	CONFIG.ActiveEffect.dataModels.base = FUActiveEffectModel;
 
 	// Register system settings
-	registerSystemSettings();
-	registerKeyBindings();
+	await registerSystemSettings();
+	await registerKeyBindings();
 
 	// Set combat tracker
 	console.log(`${SYSTEM} | Initializing combat tracker`);
@@ -216,7 +216,11 @@ Hooks.once('init', async () => {
 		formula: '1',
 		decimals: 0,
 	};
-	CONFIG.ui.combat = FUCombatTracker;
+
+	//CONFIG.ui.combat = FUCombatTracker;
+	Object.assign(CONFIG.ui, {
+		combat: FUCombatTracker,
+	});
 
 	// Register status effects
 	CONFIG.ActiveEffect.legacyTransferral = false;
@@ -224,33 +228,33 @@ Hooks.once('init', async () => {
 	CONFIG.specialStatusEffects.DEFEATED = 'ko';
 
 	// Register sheet application classes
-	Actors.unregisterSheet('core', ActorSheet);
-	Actors.registerSheet('projectfu', FUStandardActorSheet, {
+	foundry.documents.collections.Actors.unregisterSheet('core', ActorSheet);
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUStandardActorSheet, {
 		types: ['character', 'npc'],
 		makeDefault: true,
 		label: 'Standard Actor Sheet',
 	});
-	Actors.registerSheet('projectfu', FUPartySheet, {
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUPartySheet, {
 		types: ['party'],
 		makeDefault: true,
 		label: 'Standard Party Sheet',
 	});
-	Actors.registerSheet('projectfu', FUStashSheet, {
+	foundry.documents.collections.Actors.registerSheet('projectfu', FUStashSheet, {
 		types: ['stash'],
 		makeDefault: true,
 		label: 'Standard Stash Sheet',
 	});
-	Items.unregisterSheet('core', ItemSheet);
-	Items.registerSheet('projectfu', FUItemSheet, {
+	foundry.documents.collections.Items.unregisterSheet('core', ItemSheet);
+	foundry.documents.collections.Items.registerSheet('projectfu', FUItemSheet, {
 		makeDefault: true,
 		label: 'Standard Item Sheet',
 	});
-	Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
+	foundry.documents.collections.Items.registerSheet(SYSTEM, FUClassFeatureSheet, {
 		types: ['classFeature'],
 		makeDefault: true,
 		label: 'Class Feature Sheet',
 	});
-	Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
+	foundry.documents.collections.Items.registerSheet(SYSTEM, FUOptionalFeatureSheet, {
 		types: ['optionalFeature'],
 		makeDefault: true,
 		label: 'Optional Feature Sheet',
@@ -258,9 +262,9 @@ Hooks.once('init', async () => {
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	DamagePipeline.initialize();
+	ResourcePipeline.initialize();
 	Effects.initialize();
 	InventoryPipeline.initialize();
-	Hooks.on(`renderChatMessage`, ResourcePipeline.onRenderChatMessage);
 	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
@@ -270,35 +274,12 @@ Hooks.once('init', async () => {
 
 	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
 
-	CONFIG.TextEditor.enrichers.push(InlineDamage.enricher);
-	Hooks.on('renderChatMessage', InlineDamage.activateListeners);
-	Hooks.on('renderApplication', InlineDamage.activateListeners);
-	Hooks.on('renderActorSheet', InlineDamage.activateListeners);
-	Hooks.on('renderItemSheet', InlineDamage.activateListeners);
-	Hooks.on('dropActorSheetData', InlineDamage.onDropActor);
-
-	CONFIG.TextEditor.enrichers.push(...InlineResources.enrichers);
-	Hooks.on('renderChatMessage', InlineResources.activateListeners);
-	Hooks.on('renderApplication', InlineResources.activateListeners);
-	Hooks.on('renderActorSheet', InlineResources.activateListeners);
-	Hooks.on('renderItemSheet', InlineResources.activateListeners);
-	Hooks.on('dropActorSheetData', InlineResources.onDropActor);
-
-	CONFIG.TextEditor.enrichers.push(InlineChecks.enricher);
-	Hooks.on('renderChatMessage', InlineChecks.activateListeners);
-	Hooks.on('renderApplication', InlineChecks.activateListeners);
-	Hooks.on('renderActorSheet', InlineChecks.activateListeners);
-	Hooks.on('renderItemSheet', InlineChecks.activateListeners);
-
-	CONFIG.TextEditor.enrichers.push(InlineWeapon.enricher);
-	Hooks.on('renderChatMessage', InlineWeapon.activateListeners);
-	Hooks.on('renderApplication', InlineWeapon.activateListeners);
-	Hooks.on('renderActorSheet', InlineWeapon.activateListeners);
-	Hooks.on('renderItemSheet', InlineWeapon.activateListeners);
-	Hooks.on('dropActorSheetData', InlineWeapon.onDropActor);
-
 	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
+	InlineHelper.registerEnricher(InlineDamage.enricher, InlineDamage.activateListeners, InlineDamage.onDropActor);
+	InlineHelper.registerEnricher(InlineResources.enrichers, InlineResources.activateListeners, InlineResources.onDropActor);
+	InlineHelper.registerEnricher(InlineChecks.enricher, InlineChecks.activateListeners);
+	InlineHelper.registerEnricher(InlineWeapon.enricher, InlineWeapon.activateListeners, InlineWeapon.onDropActor);
 	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
 	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
 	InlineHelper.registerEnricher(InlineClocks.enricher, InlineClocks.activateListeners);
@@ -419,66 +400,15 @@ Handlebars.registerHelper('isItemEquipped', function (item, equippedItems) {
 		console.error('Item or equippedItems is missing.');
 		return false;
 	}
-
-	// Ensure equippedItems is an object and includes the item ID
-	if (typeof equippedItems === 'object' && Object.values(equippedItems).includes(item._id)) {
-		return true;
-	}
-
-	return false;
+	return equippedItems.isEquipped(item);
 });
 
 // Define a Handlebars helper to get the icon class based on item properties
 Handlebars.registerHelper('getIconClass', function (item, equippedItems) {
-	if (!item || !item._id || !equippedItems) {
+	if (!equippedItems) {
 		return '';
 	}
-
-	const itemId = item._id;
-
-	// Check if item is equipped in any slot
-	const isEquipped = Object.values(equippedItems).includes(itemId);
-
-	// Default icon if the item is not equipped
-	if (!isEquipped) {
-		return 'fas fa-circle ra-1xh';
-	}
-
-	// Special case: if item is equipped in both mainHand and offHand
-	if (itemId === equippedItems.mainHand && itemId === equippedItems.offHand) {
-		return 'is-two-weapon equip ra-1xh';
-	}
-	// Special case: if shield is equipped in mainHand
-	if (itemId === equippedItems.mainHand && item.type === 'shield') {
-		return 'ra ra-heavy-shield ra-1xh';
-	}
-	// Special case: if item is in the phantom slot
-	if (item.type === 'weapon' && itemId === equippedItems.phantom) {
-		return 'ra ra-daggers ra-1xh';
-	}
-	if (item.type === 'weapon') {
-		if (itemId === equippedItems.mainHand) {
-			return 'ra ra-sword ra-1xh ra-flip-horizontal';
-		} else if (itemId === equippedItems.offHand) {
-			return 'ra ra-plain-dagger ra-1xh ra-rotate-180';
-		}
-	} else if (item.type === 'shield') {
-		if (itemId === equippedItems.offHand) {
-			return 'ra ra-shield ra-1xh';
-		} else if (itemId === equippedItems.mainHand) {
-			return 'ra ra-heavy-shield ra-1xh';
-		}
-	} else if (item.type === 'armor') {
-		if (itemId === equippedItems.armor) {
-			return 'ra ra-helmet ra-1xh';
-		}
-	} else if (item.type === 'accessory') {
-		if (itemId === equippedItems.accessory) {
-			return 'fas fa-leaf ra-1xh';
-		}
-	}
-
-	return 'fas fa-circle ra-1xh';
+	return equippedItems.getClass(item);
 });
 
 Handlebars.registerHelper('getSlot', function (item) {

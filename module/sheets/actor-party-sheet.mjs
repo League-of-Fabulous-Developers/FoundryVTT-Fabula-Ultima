@@ -1,6 +1,6 @@
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { SystemControls } from '../helpers/system-controls.mjs';
-import { FU, SYSTEM } from '../helpers/config.mjs';
+import { FU, SYSTEM, systemPath } from '../helpers/config.mjs';
 import { SETTINGS } from '../settings.js';
 import { Flags } from '../helpers/flags.mjs';
 import { MetaCurrencyTrackerApplication } from '../ui/metacurrency/MetaCurrencyTrackerApplication.mjs';
@@ -15,6 +15,7 @@ import { FUCombat } from '../ui/combat.mjs';
 import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipeline.mjs';
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
+import { FUActorSheet } from './actor-sheet.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -23,25 +24,77 @@ import { StringUtils } from '../helpers/string-utils.mjs';
  * @property {PartySheetActionHook[]} actionHooks
  * @extends {ActorSheet}
  */
-export class FUPartySheet extends ActorSheet {
-	static get defaultOptions() {
-		const defaultOptions = super.defaultOptions;
-		return foundry.utils.mergeObject(defaultOptions, {
-			classes: ['projectfu', 'sheet', 'actor', 'party', 'backgroundstyle'],
-			template: 'systems/projectfu/templates/actor/actor-party-sheet.hbs',
-			width: 920,
-			height: 1000,
+export class FUPartySheet extends FUActorSheet {
+	/**
+	 * @inheritDoc
+	 * @override
+	 */
+	static DEFAULT_OPTIONS = {
+		classes: [],
+		resizable: true,
+		actions: {
+			revealMetaCurrency: this.#revealMetaCurrency,
+			revealActor: this.#revealActor,
+			revealNpc: this.#onRevealNpc,
+			restParty: this.#restParty,
+			rewardResource: this.promptAwardResources,
+			refreshSheet: this.#refreshSheet,
+			addTrack: this.promptAddProgressTrack,
+			removeTrack: this.#onRemoveProgressTrack,
+			incrementProgress: this.#onIncrementProgressTrack,
+			revealTrack: this.#onRevealProgressTrack,
+			callHook: this.#callHook,
+			activate: this.#activate,
+		},
+		position: { width: 920, height: 1000 },
+		window: {
+			contentClasses: ['party'],
+		},
+		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
+	};
+
+	/** @override
+	 * @type Record<ApplicationTab>
+	 * */
+	static TABS = {
+		primary: {
 			tabs: [
-				{
-					navSelector: '.sheet-tabs',
-					contentSelector: '.sheet-body',
-					initial: 'overview',
-				},
+				{ id: 'overview', label: 'FU.Overview', icon: 'ra ra-double-team' },
+				{ id: 'inventory', label: 'FU.Inventory', icon: 'ra ra-hand' },
+				{ id: 'adversaries', label: 'FU.Adversaries', icon: 'ra ra-monster-skull' },
+				{ id: 'settings', label: 'FU.Settings', icon: 'ra ra-wrench' },
 			],
-			scrollY: ['.sheet-body'],
-			dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
-		});
-	}
+			initial: 'overview',
+		},
+	};
+
+	/**
+	 * @override
+	 * @type Record<HandlebarsTemplatePart>
+	 */
+	static PARTS = {
+		// Used to inject an HTML element to provide the blurred backdrop background element
+		blur: {
+			template: systemPath(`templates/actor/party/actor-party-blur-background.hbs`),
+		},
+		// Custom
+		tabs: {
+			template: systemPath('templates/actor/party/actor-party-section-nav.hbs'),
+		},
+		// Tabs
+		overview: {
+			template: systemPath('templates/actor/party/actor-party-section-overview.hbs'),
+		},
+		inventory: {
+			template: systemPath('templates/actor/party/actor-party-section-inventory.hbs'),
+		},
+		adversaries: {
+			template: systemPath('templates/actor/party/actor-party-section-adversaries.hbs'),
+		},
+		settings: {
+			template: systemPath('templates/actor/party/actor-party-section-settings.hbs'),
+		},
+	};
 
 	/**
 	 * @returns {PartyDataModel}
@@ -51,10 +104,10 @@ export class FUPartySheet extends ActorSheet {
 	}
 
 	/** @override */
-	async getData() {
-		// Enrich or transform data here
-		const context = super.getData();
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
 		context.actionHooks = FUPartySheet.prepareActionHooks();
+		context.isGM = game.user.isGM;
 		await ActorSheetUtils.prepareData(context, this);
 		context.characters = await this.party.getCharacterData();
 		context.companions = await this.party.getCompanionData();
@@ -68,6 +121,37 @@ export class FUPartySheet extends ActorSheet {
 			xp: experience.total,
 			zenit: this.party.resources.zenit.value,
 		};
+
+		return context;
+	}
+
+	/** @inheritdoc */
+	_prepareTabs(group) {
+		const tabs = super._prepareTabs(group);
+
+		// This could probably do with better logic than "are they a GM?".
+		if (!game.user.isGM) delete tabs.settings;
+		return tabs;
+	}
+
+	/** @inheritdoc */
+	async _preparePartContext(partId, ctx, options) {
+		const context = await super._preparePartContext(partId, ctx, options);
+		// IMPORTANT: Set the active tab
+		if (partId in context.tabs) context.tab = context.tabs[partId];
+		switch (partId) {
+			case 'tabs':
+				context.tabs = this._prepareTabs('primary');
+				break;
+			case 'overview':
+				break;
+			case 'inventory':
+				break;
+			case 'adversaries':
+				break;
+			case 'settings':
+				break;
+		}
 		return context;
 	}
 
@@ -93,90 +177,111 @@ export class FUPartySheet extends ActorSheet {
 		return result;
 	}
 
-	/** @override */
-	get template() {
-		return `systems/projectfu/templates/actor/actor-party-sheet.hbs`;
-	}
-
-	/** @override */
-	activateListeners(html) {
-		super.activateListeners(html);
+	/**
+	 * @inheritDoc
+	 * @override
+	 */
+	_attachFrameListeners() {
+		super._attachFrameListeners();
+		const html = this.element;
 		ActorSheetUtils.activateDefaultListeners(html, this);
 		ActorSheetUtils.activateInventoryListeners(html, this);
 		ActorSheetUtils.activateStashListeners(html, this);
 
-		// Left click on character
-		html.find('[data-action=revealActor]').on('click', (ev) => {
-			const uuid = ev.currentTarget.dataset.actor;
-			const actor = fromUuidSync(uuid);
-			if (actor) {
-				actor.sheet.render(true);
-			} else {
-				const type = ev.currentTarget.dataset.type;
-				switch (type) {
-					case 'character':
-						this.party.removeCharacter(uuid);
-						break;
-					case 'npc':
-						this.party.removeAdversary(uuid);
-						break;
-					case 'companion':
-						this.party.removeCompanion(uuid);
-						break;
-				}
-			}
-		});
-		html.find('[data-action=revealNpc]').on('click', async (ev) => {
-			const uuid = ev.currentTarget.dataset.actor;
-			await this.revealNpc(uuid);
-		});
 		// Right click on character
 		this.setupCharacterContextMenu(html);
+	}
 
-		// Set party as active
-		html.find('.set-active-button').click(() => {
-			console.debug(`Setting ${this.actor.name} as the active party`);
-			game.settings.set(Flags.Scope, SETTINGS.activeParty, this.actor._id);
-		});
-		// Reveal meta currency tracker
-		html.find('[data-action=revealMetaCurrency]').on('click', (ev) => {
-			MetaCurrencyTrackerApplication.renderApp();
-		});
-		// Rest whole party
-		html.find('[data-action=restParty]').on('click', async (ev) => {
-			await this.restParty();
-		});
-		// Reward resources
-		html.find('[data-action=rewardResource]').on('click', async (ev) => {
-			this.promptAwardResources();
-		});
-		// Refresh Sheet
-		html.find('[data-action=refreshSheet]').on('click', (ev) => {
-			this.render(true);
-		});
-		// Custom Hook
-		html.find('[data-action=callHook]').on('click', (ev) => {
-			const hook = ev.currentTarget.dataset.option;
-			Hooks.call(hook);
-		});
+	/**
+	 * @this FUPartySheet
+	 * @returns {Promise<void>}
+	 */
+	static async #activate() {
+		console.debug(`Setting ${this.actor.name} as the active party`);
+		game.settings.set(Flags.Scope, SETTINGS.activeParty, this.actor._id);
+	}
 
-		// Progress Tracks
-		html.find('[data-action=addTrack]').on('click', (ev) => {
-			this.promptAddProgressTrack();
-		});
-		html.find('[data-action=removeTrack]').on('click', (ev) => {
-			const name = ev.currentTarget.dataset.name;
-			this.removeProgressTrack(name);
-		});
-		html.find('[data-action=incrementProgress]').on('click', (ev) => {
-			const name = ev.currentTarget.dataset.name;
-			const increment = ev.currentTarget.dataset.increment;
-			this.updateProgressTrack(name, Number.parseInt(increment));
-		});
-		html.find('[data-action=revealTrack]').on('click', (ev) => {
-			const name = ev.currentTarget.dataset.name;
-			this.revealProgressTrack(name);
-		});
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #revealActor(event, target) {
+		const uuid = target.dataset.actor;
+		const actor = fromUuidSync(uuid);
+		if (actor) {
+			actor.sheet.render(true);
+		} else {
+			const type = target.dataset.type;
+			switch (type) {
+				case 'character':
+					this.party.removeCharacter(uuid);
+					break;
+				case 'npc':
+					this.party.removeAdversary(uuid);
+					break;
+				case 'companion':
+					this.party.removeCompanion(uuid);
+					break;
+			}
+		}
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onRevealNpc(event, target) {
+		const uuid = target.dataset.actor;
+		await this.revealNpc(uuid);
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #callHook(event, target) {
+		const hook = target.dataset.option;
+		Hooks.call(hook);
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onIncrementProgressTrack(event, target) {
+		const name = target.dataset.name;
+		const increment = target.dataset.increment;
+		this.updateProgressTrack(name, Number.parseInt(increment));
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onRevealProgressTrack(event, target) {
+		const name = target.dataset.name;
+		this.revealProgressTrack(name);
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #onRemoveProgressTrack(event, target) {
+		const name = target.dataset.name;
+		this.removeProgressTrack(name);
 	}
 
 	/**
@@ -218,9 +323,28 @@ export class FUPartySheet extends ActorSheet {
 	}
 
 	/**
+	 * @this FUPartySheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	async restParty() {
+	static async #revealMetaCurrency(event, target) {
+		MetaCurrencyTrackerApplication.renderApp();
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @returns {Promise<void>}
+	 */
+	static async #refreshSheet() {
+		this.render(true);
+	}
+
+	/**
+	 * @this FUPartySheet
+	 * @returns {Promise<void>}
+	 */
+	static async #restParty() {
 		const actors = await this.party.getCharacterActors();
 		for (const actor of actors) {
 			await actor.sheet.onRest(actor);
@@ -246,7 +370,7 @@ export class FUPartySheet extends ActorSheet {
 	/**
 	 * Prompts the GM to award resources to the party
 	 */
-	async promptAwardResources() {
+	static async promptAwardResources() {
 		const characters = await this.party.getCharacterActors();
 		const defaultSource = StringUtils.localize('USER.RoleGamemaster');
 
@@ -323,7 +447,7 @@ export class FUPartySheet extends ActorSheet {
 	/**
 	 * @description Adds a new progress track
 	 */
-	promptAddProgressTrack() {
+	static async promptAddProgressTrack() {
 		console.debug('Adding a progress track');
 		new Dialog({
 			title: 'Progress Track',

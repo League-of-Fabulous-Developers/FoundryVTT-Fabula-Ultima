@@ -88,19 +88,21 @@ function lossEnricher(text, options) {
 
 /**
  * @param {ClientDocument} document
- * @param {jQuery} html
+ * @param {HTMLElement} html
  */
 function activateListeners(document, html) {
 	if (document instanceof DocumentSheet) {
 		document = document.document;
 	}
 
-	html.find('a.inline.inline-recovery[draggable], a.inline.inline-loss[draggable]')
-		.on('click', async function () {
-			let targets = await targetHandler();
+	// Select all relevant inline recovery and loss anchors
+	const elements = html.querySelectorAll('a.inline.inline-recovery[draggable], a.inline.inline-loss[draggable]');
+	elements.forEach((el) => {
+		el.addEventListener('click', async function () {
+			const targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
-				sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
+				sourceInfo.name = this.dataset.label || sourceInfo.name;
 				const type = this.dataset.type;
 				const uncapped = this.dataset.uncapped === 'true';
 				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
@@ -112,27 +114,26 @@ function activateListeners(document, html) {
 					await applyLoss(sourceInfo, targets, type, amount);
 				}
 			}
-		})
-		.on('dragstart', async function (event) {
-			/** @type DragEvent */
-			event = event.originalEvent;
-			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
-				return;
-			}
+		});
+
+		el.addEventListener('dragstart', function (event) {
+			if (!(this instanceof HTMLElement) || !event.dataTransfer) return;
 
 			const sourceInfo = InlineHelper.determineSource(document, this);
-			sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
+			sourceInfo.name = this.dataset.label || sourceInfo.name;
 
 			const data = {
 				type: this.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
-				sourceInfo: sourceInfo,
+				sourceInfo,
 				recoveryType: this.dataset.type,
 				amount: this.dataset.amount,
 				uncapped: this.dataset.uncapped === 'true',
 			};
+
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		});
+	});
 }
 
 async function onDropActor(actor, sheet, { type, recoveryType, amount, sourceInfo, uncapped }) {

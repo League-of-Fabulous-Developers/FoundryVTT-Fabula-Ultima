@@ -200,14 +200,15 @@ export const registerSystemSettings = async function () {
 
 	// Party
 	game.settings.register(SYSTEM, SETTINGS.activeParty, {
-		name: game.i18n.localize('FU.ActiveParty'),
-		hint: game.i18n.localize('FU.ActivePartyHint'),
+		name: 'FU.ActiveParty',
+		hint: 'FU.ActivePartyHint',
 		icon: 'fas fa fa-users',
 		config: true,
 		scope: 'world',
 		type: new foundry.data.fields.ForeignDocumentField(Actor, {
 			nullable: true,
 			blank: true,
+			idOnly: true,
 		}),
 		restricted: true,
 	});

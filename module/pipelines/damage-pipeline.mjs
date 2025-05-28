@@ -13,7 +13,6 @@ import { Traits } from './traits.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
 import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
-import { CheckRetarget } from '../checks/check-retarget.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 
 /**
@@ -479,12 +478,11 @@ function getSourceInfoFromChatMessage(message) {
 	return new InlineSourceInfo(sourceName, sourceActorUuid, sourceItemUuid);
 }
 
-// TODO: Move elsewhere
-/**tt
- * @param {Document} message
- * @param {jQuery} jQuery
+/**
+ * @param {ChatMessage} message
+ * @param {HTMLElement} html
  */
-function onRenderChatMessage(message, jQuery) {
+function onRenderChatMessage(message, html) {
 	if (!message.getFlag(SYSTEM, Flags.ChatMessage.Damage)) {
 		return;
 	}
@@ -504,8 +502,8 @@ function onRenderChatMessage(message, jQuery) {
 			DamageCustomizer(
 				damageData,
 				targets,
-				async (damageOverride) => {
-					await handleDamageApplication(event, targets, sourceInfo, damageData, damageOverride, traits);
+				async (extraDamageInfo) => {
+					await handleDamageApplication(event, targets, sourceInfo, damageData, extraDamageInfo, traits);
 					disabled = false;
 				},
 				() => {
@@ -525,25 +523,25 @@ function onRenderChatMessage(message, jQuery) {
 				const targets = await getTargetsFunction(event);
 				if (event.ctrlKey || event.metaKey) {
 					await alternateAction(event, targets);
-					disabled = false;
 				} else {
 					await action(event, targets);
-					disabled = false;
 				}
+				disabled = false;
 			}
 		};
 
-		jQuery.find(`a[data-action=applyDamage]`).click((event) => handleClick(event, Pipeline.getSingleTarget, applyDefaultDamage, customizeDamage));
-		jQuery.find(`a[data-action=applyDamageSelected]`).click((event) => handleClick(event, getSelected, applyDefaultDamage, customizeDamage));
-		jQuery.find(`a[data-action=selectDamageCustomizer]`).click(async (event) => {
+		html.querySelector(`a[data-action="applyDamage"]`)?.addEventListener('click', (event) => handleClick(event, Pipeline.getSingleTarget, applyDefaultDamage, customizeDamage));
+		html.querySelector(`a[data-action="applyDamageSelected"]`)?.addEventListener('click', (event) => handleClick(event, getSelected, applyDefaultDamage, customizeDamage));
+		html.querySelector(`a[data-action="selectDamageCustomizer"]`)?.addEventListener('click', async (event) => {
+			event.preventDefault();
 			if (!disabled) {
 				disabled = true;
 				const targets = await getTargeted();
 				DamageCustomizer(
 					damageData,
 					targets,
-					(damageOverride) => {
-						handleDamageApplication(event, targets, sourceInfo, damageData, damageOverride, traits);
+					async (damageOverride) => {
+						await handleDamageApplication(event, targets, sourceInfo, damageData, damageOverride, traits);
 						disabled = false;
 					},
 					() => {
@@ -553,19 +551,12 @@ function onRenderChatMessage(message, jQuery) {
 			}
 		});
 
-		Pipeline.handleClick(message, jQuery, 'retarget', async (dataset) => {
-			console.debug(`Retargeting for message id ${message.id}`);
-			CheckRetarget.retarget(message.id);
-		});
-	}
-	// Damage applied message
-	else {
-		Pipeline.handleClick(message, jQuery, 'inspectActor', async (dataset) => {
+		Pipeline.handleClick(message, html, 'inspectActor', async (dataset) => {
 			const uuid = dataset.uuid;
 			return FUPartySheet.inspectAdversary(uuid);
 		});
 
-		Pipeline.handleClickRevert(message, jQuery, 'revertDamage', async (dataset) => {
+		Pipeline.handleClickRevert(message, html, 'revertDamage', async (dataset) => {
 			const uuid = dataset.uuid;
 			const actor = fromUuidSync(uuid);
 			const updates = [];
@@ -576,9 +567,10 @@ function onRenderChatMessage(message, jQuery) {
 			return Promise.all(updates);
 		});
 
-		jQuery.find(`a[data-action=toggleBreakdown]`).click(function (event) {
+		html.querySelector(`a[data-action="toggleBreakdown"]`)?.addEventListener('click', (event) => {
 			event.preventDefault();
-			jQuery.find('#breakdown').toggleClass('hidden');
+			const breakdown = html.querySelector('#breakdown');
+			if (breakdown) breakdown.classList.toggle('hidden');
 		});
 	}
 }
@@ -621,7 +613,7 @@ async function absorbDamage(resource, amount, sourceInfo, targets) {
  * @description Initialize the pipeline's hooks
  */
 function initialize() {
-	Hooks.on('renderChatMessage', onRenderChatMessage);
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 
 	const onAbsorbDamage = async (message, resource) => {
 		const targets = await getSelected();
