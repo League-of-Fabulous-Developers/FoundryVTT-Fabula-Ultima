@@ -145,7 +145,7 @@ export class DamagePipelineContext extends PipelineContext {
 	}
 
 	calculateAmount() {
-		let result = this.damageOverride.hrZero ? this.damageData.modifierTotal : this.damageData.total;
+		let result = this.damageOverride.hrZero || this.damageData.hrZero ? this.damageData.modifierTotal : this.damageData.total;
 		result += this.damageOverride.extraDamage || 0;
 		this.amount = result;
 	}
