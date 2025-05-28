@@ -34,7 +34,7 @@ export class FUPartySheet extends FUActorSheet {
 		resizable: true,
 		position: { width: 920, height: 1000 },
 		window: {
-			contentClasses: ['party', 'blur'],
+			contentClasses: ['party'],
 		},
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 	};
@@ -59,6 +59,10 @@ export class FUPartySheet extends FUActorSheet {
 	 * @type Record<HandlebarsTemplatePart>
 	 */
 	static PARTS = {
+		// Used to inject an HTML element to provide the blurred backdrop background element
+		blur: {
+			template: systemPath(`templates/actor/party/actor-party-blur-background.hbs`),
+		},
 		// Custom
 		tabs: {
 			template: systemPath('templates/actor/party/actor-party-section-nav.hbs'),
@@ -108,8 +112,17 @@ export class FUPartySheet extends FUActorSheet {
 	}
 
 	/** @inheritdoc */
-	async _preparePartContext(partId, context, options) {
-		await super._preparePartContext(partId, context, options);
+	_prepareTabs(group) {
+		const tabs = super._prepareTabs(group);
+
+		// This could probably do with better logic than "are they a GM?".
+		if (!game.user.isGM) delete tabs.settings;
+		return tabs;
+	}
+
+	/** @inheritdoc */
+	async _preparePartContext(partId, ctx, options) {
+		const context = await super._preparePartContext(partId, ctx, options);
 		// IMPORTANT: Set the active tab
 		if (partId in context.tabs) context.tab = context.tabs[partId];
 		switch (partId) {
@@ -129,6 +142,7 @@ export class FUPartySheet extends FUActorSheet {
 			case 'settings':
 				break;
 		}
+		return context;
 	}
 
 	/**
