@@ -16,8 +16,6 @@ import { Traits } from '../pipelines/traits.mjs';
 const onPrepareCheck = (check, actor, item, registerCallback) => {
 	const { type, modifiers } = check;
 	if (type === 'magic') {
-		CheckConfiguration.configure(check).setTargetedDefense('mdef');
-
 		if (actor.system.bonuses.accuracy.magicCheck) {
 			modifiers.push({
 				label: 'FU.MagicCheckBonusGeneric',
@@ -37,6 +35,7 @@ const onProcessCheck = (check, actor, item) => {
 	const { type, critical, fumble } = check;
 	if (type === 'magic') {
 		const configurer = CheckConfiguration.configure(check);
+		configurer.setTargetedDefense('mdef');
 		// TODO: Refactor alongside accuracy-checks
 		if (critical) {
 			configurer.addTraits('critical');
