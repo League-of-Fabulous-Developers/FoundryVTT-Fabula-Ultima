@@ -47,7 +47,6 @@ function attack(inspector, actor, item) {
 	const traits = inspector.getTraits();
 	const targets = inspector.getTargets();
 	const eventTargets = getEventTargets(targets);
-
 	/** @type AttackEvent  **/
 	const event = {
 		item: toItemReference(item),

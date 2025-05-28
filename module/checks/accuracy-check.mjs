@@ -66,7 +66,7 @@ const onPrepareCheck = (check, actor, item, registerCallback) => {
  */
 const onProcessCheck = (check, actor, item) => {
 	const { type, critical, fumble } = check;
-	if (type === 'accuracy') {
+	if (type === 'accuracy' || type === 'magic') {
 		const configurer = CheckConfiguration.configure(check);
 		configurer.modifyTargetedDefense((value) => value ?? 'def');
 		// TODO: Refactor alongside magic-checks

@@ -111,7 +111,9 @@
         },
         "value": 25
       }
-    },
+	},
+	"defense": "mdef",
+	"fuid": "DESUFCKINGDE",
     "hasRoll": {
       "value": true
     },
