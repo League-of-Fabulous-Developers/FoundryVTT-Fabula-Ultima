@@ -307,6 +307,9 @@ class CheckConfigurer {
 	updateTargetResults() {
 		const targets = this.#check.additionalData[TARGETS];
 		if (targets?.length) {
+			if (!this.#check.result) {
+				return;
+			}
 			const targetedDefense = this.getTargetedDefense();
 			targets.forEach((target) => {
 				const difficulty = target[targetedDefense];
