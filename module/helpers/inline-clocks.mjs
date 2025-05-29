@@ -66,7 +66,7 @@ function activateListeners(document, html) {
 					}
 
 					// Evaluate the given value
-					const targets = await targetHandler();
+					const targets = await targetHandler(false);
 					const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 					const value = await Expressions.evaluateAsync(this.dataset.value, context);
 
