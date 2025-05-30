@@ -6,6 +6,20 @@ import { CommonSections } from './common-sections.mjs';
 import { CommonEvents } from './common-events.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 
+/**
+ * @param {CheckV2} check
+ * @param {FUActor} actor
+ * @param {FUItem} [item]
+ * @param {CheckCallbackRegistration} registerCallback
+ */
+const onPrepareCheck = (check, actor, item, registerCallback) => {
+	const { type, modifiers } = check;
+	if (type === 'accuracy') {
+		handleGenericBonus(actor, modifiers);
+		registerCallback(handleWeaponTraitAccuracyBonuses, Number.MAX_VALUE);
+	}
+};
+
 function handleGenericBonus(actor, modifiers) {
 	if (actor.system.bonuses.accuracy.accuracyCheck) {
 		modifiers.push({
@@ -41,20 +55,6 @@ const handleWeaponTraitAccuracyBonuses = (check, actor, item) => {
 			label: 'FU.AccuracyCheckBonusRanged',
 			value: actor.system.bonuses.accuracy.accuracyRanged,
 		});
-	}
-};
-
-/**
- * @param {CheckV2} check
- * @param {FUActor} actor
- * @param {FUItem} [item]
- * @param {CheckCallbackRegistration} registerCallback
- */
-const onPrepareCheck = (check, actor, item, registerCallback) => {
-	const { type, modifiers } = check;
-	if (type === 'accuracy') {
-		handleGenericBonus(actor, modifiers);
-		registerCallback(handleWeaponTraitAccuracyBonuses, Number.MAX_VALUE);
 	}
 };
 

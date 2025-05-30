@@ -6,6 +6,7 @@ import { FUActiveEffectModel } from '../effects/active-effect-model.mjs';
 import { SkillDataModel } from '../items/skill/skill-data-model.mjs';
 import { MathHelper } from '../../helpers/math-helper.mjs';
 import { MiscAbilityDataModel } from '../items/misc/misc-ability-data-model.mjs';
+import { ZeroPowerDataModel } from '../items/optionalFeature/zeropower/zeropower-data-model.mjs';
 
 /**
  * @typedef Actor
@@ -477,6 +478,10 @@ export class FUActor extends Actor {
 
 		const current = MathHelper.clamp(progress.current + increment * progress.step, 0, progress.max);
 
+		// ZeroPower
+		if (progress.parent instanceof ZeroPowerDataModel) {
+			await progress.parent.parent.parent.update({ 'system.data.progress.current': current });
+		}
 		// Skill
 		if (progress.parent instanceof SkillDataModel) {
 			await progress.parent.parent.update({ 'system.rp.current': current });
