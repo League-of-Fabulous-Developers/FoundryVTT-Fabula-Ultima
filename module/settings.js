@@ -668,7 +668,6 @@ export const registerSystemSettings = async function () {
 		config: false,
 		requiresReload: false,
 		type: WellspringDataModel,
-		default: false,
 		onChange: (newValue) =>
 			Hooks.callAll(FUHooks.HOOK_WELLSPRING_CHANGED, [
 				{

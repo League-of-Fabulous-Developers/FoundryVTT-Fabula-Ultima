@@ -65,7 +65,7 @@ function onChatMessage(chatLog, message, data) {
 }
 
 function initialize() {
-	const name = 'Playtest' + GameWellspringManager.name;
+	const name = GameWellspringManager.name;
 	Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
 		tools[name] = {
 			name: name,
@@ -73,7 +73,7 @@ function initialize() {
 			icon: 'fas fa-earth-asia',
 			button: true,
 			visible: game.user.isGM,
-			onChange: (event, active) => renderApp(),
+			onChange: () => renderApp(),
 		};
 	});
 
