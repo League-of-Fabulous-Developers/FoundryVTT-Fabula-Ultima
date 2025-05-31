@@ -202,7 +202,7 @@ export const registerSystemSettings = async function () {
 	game.settings.register(SYSTEM, SETTINGS.activeParty, {
 		name: 'FU.ActiveParty',
 		hint: 'FU.ActivePartyHint',
-		icon: 'fas fa fa-users',
+		icon: 'fa-solid fa-users',
 		config: true,
 		scope: 'world',
 		type: new foundry.data.fields.ForeignDocumentField(Actor, {

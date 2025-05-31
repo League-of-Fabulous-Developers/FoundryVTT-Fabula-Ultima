@@ -68,7 +68,7 @@ async function filterTargetsByRule(actor, item, targets) {
 }
 
 /**
- * @property {String} name The name of the action to be used by jQuery
+ * @property {String} name The name of the action to be used
  * @property {String} icon The font awesome icon
  * @property {String} tooltip The localized tooltip to use
  * @property {Object} fields The fields to use for the action's dataset

@@ -55,17 +55,6 @@ let gameWellspringManager;
 
 const renderApp = () => (gameWellspringManager ??= new GameWellspringManager()).render(true);
 
-function onGetSystemTools(tools) {
-	tools.push({
-		name: 'Playtest' + GameWellspringManager.name,
-		title: 'FU.ClassFeatureInvocationsWellspringManagerTitle',
-		icon: 'fas fa-earth-asia',
-		button: true,
-		visible: game.user.isGM,
-		onClick: renderApp,
-	});
-}
-
 const regExp = /^\/(ws|wellsprings?)$/i;
 
 function onChatMessage(chatLog, message, data) {
@@ -76,7 +65,17 @@ function onChatMessage(chatLog, message, data) {
 }
 
 function initialize() {
-	Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, onGetSystemTools);
+	const name = 'Playtest' + GameWellspringManager.name;
+	Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
+		tools[name] = {
+			name: name,
+			title: 'FU.ClassFeatureInvocationsWellspringManagerTitle',
+			icon: 'fas fa-earth-asia',
+			button: true,
+			visible: game.user.isGM,
+			onChange: (event, active) => renderApp(),
+		};
+	});
 
 	Hooks.on('projectfu.actor.dataPrepared', ActorWellspringManager.onActorPrepared);
 
