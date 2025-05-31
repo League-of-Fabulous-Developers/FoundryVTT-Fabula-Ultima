@@ -577,14 +577,14 @@ async function promptEffectRemoval(event) {
 
 /**
  * @param {Document} message
- * @param {jQuery} jQuery
+ * @param {HTMLElement} element
  */
-function onRenderChatMessage(message, jQuery) {
+function onRenderChatMessage(message, element) {
 	if (!message.getFlag(SYSTEM, Flags.ChatMessage.Effects)) {
 		return;
 	}
 
-	Pipeline.handleClick(message, jQuery, 'removeEffect', (dataset) => {
+	Pipeline.handleClick(message, element, 'removeEffect', (dataset) => {
 		const effectId = dataset.id;
 		const actorId = dataset.actorId;
 		console.debug(`Removing effect ${effectId} on ${actorId}`);
@@ -597,7 +597,7 @@ function onRenderChatMessage(message, jQuery) {
 		}
 	});
 
-	Pipeline.handleClick(message, jQuery, 'display', async (dataset) => {
+	Pipeline.handleClick(message, element, 'display', async (dataset) => {
 		const description = dataset.description;
 		const actorId = dataset.actorId;
 		const actor = fromUuidSync(actorId);
@@ -607,7 +607,7 @@ function onRenderChatMessage(message, jQuery) {
 		});
 	});
 
-	Pipeline.handleClick(message, jQuery, 'clearEffects', (dataset) => {
+	Pipeline.handleClick(message, element, 'clearEffects', (dataset) => {
 		const actors = Targeting.deserializeTargetData(dataset.actors);
 		actors.forEach((actor) => {
 			actor.clearTemporaryEffects();
@@ -659,7 +659,7 @@ const STATUS_EFFECTS = Object.freeze({ ...FU.temporaryEffects });
 function initialize() {
 	Hooks.on(FUHooks.COMBAT_EVENT, onCombatEvent);
 	Hooks.on(FUHooks.REST_EVENT, onRestEvent);
-	Hooks.on('renderChatMessage', onRenderChatMessage);
+	Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 }
 
 /**

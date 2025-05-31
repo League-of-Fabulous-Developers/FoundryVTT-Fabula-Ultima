@@ -9,9 +9,9 @@ import { FUPartySheet } from '../sheets/actor-party-sheet.mjs';
 Hooks.once('setup', () => {
 	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
 		Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
-			tools.push(CombatHUD.getToggleControlButton());
-			tools.push(CombatHUD.getSavedControlButton());
-			tools.push(CombatHUD.getResetControlButton());
+			tools['HUDToggle'] = CombatHUD.getToggleControlButton();
+			tools['hudSave'] = CombatHUD.getSavedControlButton();
+			tools['hudReset'] = CombatHUD.getResetControlButton();
 		});
 	}
 });
@@ -1042,7 +1042,7 @@ export class CombatHUD extends Application {
 			toggle: true,
 			visible: game.combat ? game.combat.isActive : false,
 			active: !game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized),
-			onClick: () => {
+			onChange: () => {
 				if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
 					CombatHUD.restore();
 				} else {
@@ -1061,7 +1061,7 @@ export class CombatHUD extends Application {
 			toggle: true,
 			visible: game.combat ? game.combat.isActive : false,
 			active: game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved),
-			onClick: () => {
+			onChange: () => {
 				const isSaved = game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved);
 				game.settings.set(SYSTEM, SETTINGS.optionCombatHudSaved, !isSaved);
 			},
@@ -1075,7 +1075,7 @@ export class CombatHUD extends Application {
 			icon: 'fas fa-undo',
 			button: true,
 			visible: game.combat ? game.combat.isActive : false,
-			onClick: () => {
+			onChange: () => {
 				CombatHUD.reset();
 			},
 		};

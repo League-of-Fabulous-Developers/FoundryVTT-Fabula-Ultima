@@ -664,15 +664,20 @@ export class FUPartySheet extends FUActorSheet {
 
 // Set up sidebar menu option
 Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
-	tools.push({
-		name: 'FU.Party',
+	const name = 'FU.Party';
+	tools[name] = {
+		name: name,
 		title: 'FU.Party',
 		icon: 'fa-solid fa fa-users',
 		button: true,
-		onClick: () => {
-			return FUPartySheet.toggleActive();
+		active: false,
+		toggle: false,
+		onChange: (event, active) => {
+			if (active) {
+				FUPartySheet.toggleActive();
+			}
 		},
-	});
+	};
 });
 
 /**
