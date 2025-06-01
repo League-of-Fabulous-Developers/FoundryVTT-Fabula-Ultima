@@ -6,20 +6,20 @@ import { Flags } from '../../helpers/flags.mjs';
 import { CharacterDataModel } from '../../documents/actors/character/character-data-model.mjs';
 import { NpcDataModel } from '../../documents/actors/npc/npc-data-model.mjs';
 
-Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, getTool);
-
-let app;
-const renderApp = () => (app ??= new MetaCurrencyTrackerApplication()).render(true);
-
-function getTool(tools) {
-	tools.push({
+Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
+	tools[MetaCurrencyTrackerApplication.name] = {
 		name: MetaCurrencyTrackerApplication.name,
 		title: 'FU.AppMetaCurrencyTrackerTitle',
 		icon: 'fa-solid fa-chart-line',
 		button: true,
-		onClick: renderApp,
-	});
-}
+		active: false,
+		toggle: false,
+		onChange: (event, active) => renderApp(),
+	};
+});
+
+let app;
+const renderApp = () => (app ??= new MetaCurrencyTrackerApplication()).render(true);
 
 Hooks.on('chatMessage', handleChatCommand);
 
