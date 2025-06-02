@@ -3,7 +3,7 @@
   "name": "Torpor",
   "type": "spell",
   "_id": "9ENpDMvIOH9FJAka",
-  "img": "icons/magic/control/debuff-energy-hold-pink.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/torpor.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706573295761,
-    "modifiedTime": 1744722889315,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1748877610559,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi",
     "compendiumSource": null,
     "duplicateSource": null
   },

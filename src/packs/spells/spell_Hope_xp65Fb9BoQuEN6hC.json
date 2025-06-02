@@ -3,7 +3,7 @@
   "name": "Hope",
   "type": "spell",
   "_id": "xp65Fb9BoQuEN6hC",
-  "img": "icons/magic/life/heart-cross-strong-flame-blue.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/hope.png",
   "system": {
     "subtype": {},
     "summary": {
@@ -134,8 +134,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1710549080835,
-    "modifiedTime": 1744722342071,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1748877546831,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi",
     "compendiumSource": null,
     "duplicateSource": null
   },
