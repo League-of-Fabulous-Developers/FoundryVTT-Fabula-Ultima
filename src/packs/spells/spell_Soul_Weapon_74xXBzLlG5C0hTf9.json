@@ -3,7 +3,7 @@
   "name": "Soul Weapon",
   "type": "spell",
   "_id": "74xXBzLlG5C0hTf9",
-  "img": "icons/weapons/bows/shortbow-recurve-yellow.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/soul_weapon.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706573120165,
-    "modifiedTime": 1744722876999,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1748877600856,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi",
     "compendiumSource": null,
     "duplicateSource": null
   },

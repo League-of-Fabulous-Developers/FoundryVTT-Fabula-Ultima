@@ -3,7 +3,7 @@
   "name": "Effect: Mercy",
   "type": "effect",
   "_id": "87su2PuI6rSMblmN",
-  "img": "icons/magic/life/ankh-shadow-green.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/effects/effect_mercy.png",
   "system": {
     "fuid": "effect-mercy",
     "cost": {
@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "img": "icons/magic/life/ankh-shadow-green.webp",
+      "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/effects/effect_mercy.png",
       "duration": {
         "rounds": 1,
         "startTime": null,
@@ -37,7 +37,13 @@
           "tracking": "self",
           "remaining": 1
         },
-        "stack": 1
+        "stack": 1,
+        "rules": {
+          "progress": {
+            "id": "",
+            "name": ""
+          }
+        }
       },
       "changes": [],
       "description": "<p>You strengthen the heart of a creature against suffering and despair. Until this spell ends, if the target would be reduced to 0 Hit Points, they are instead left standing with exactly @GAIN[1 hp]. Once that happens, this spell ends.</p>",
@@ -54,8 +60,8 @@
         "systemId": "projectfu",
         "systemVersion": "#{VERSION}#",
         "createdTime": 1744722453780,
-        "modifiedTime": 1744722557295,
-        "lastModifiedBy": "LokWlpJRX2uVxtGn"
+        "modifiedTime": 1748877469848,
+        "lastModifiedBy": "2sIzoqmFNykqXyPi"
       },
       "_key": "!items.effects!87su2PuI6rSMblmN.C6pRUA9cFTWSGauX"
     }
@@ -73,8 +79,8 @@
     "systemId": "projectfu",
     "systemVersion": "#{VERSION}#",
     "createdTime": 1744722451665,
-    "modifiedTime": 1744722567497,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn"
+    "modifiedTime": 1748877462576,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi"
   },
   "_key": "!items!87su2PuI6rSMblmN"
 }

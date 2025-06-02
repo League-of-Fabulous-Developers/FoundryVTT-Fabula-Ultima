@@ -3,7 +3,7 @@
   "name": "Hallucination",
   "type": "spell",
   "_id": "JTyMViMTOUrc7bms",
-  "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp",
+  "img": "systems/projectfu/styles/static/compendium/classes/spiritist/spells/hallucination.png",
   "system": {
     "subtype": {
       "value": ""
@@ -135,8 +135,8 @@
     "systemVersion": "#{VERSION}#",
     "coreVersion": "12.331",
     "createdTime": 1706572612784,
-    "modifiedTime": 1744722191659,
-    "lastModifiedBy": "LokWlpJRX2uVxtGn",
+    "modifiedTime": 1748877529007,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi",
     "compendiumSource": null,
     "duplicateSource": null
   },
