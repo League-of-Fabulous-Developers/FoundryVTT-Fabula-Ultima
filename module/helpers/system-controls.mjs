@@ -47,6 +47,8 @@ function initializeSystemControl(controls) {
 		title: 'FU.UiControlTitle',
 		icon: 'fus-star2',
 		tools: tools,
+		activeTool: '',
+		onChange: (event, active) => {},
 		layer: SYSTEM,
 	};
 }

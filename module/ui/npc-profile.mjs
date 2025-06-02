@@ -49,7 +49,7 @@ export class NpcProfileWindow extends FUApplication {
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: ['projectfu', 'sheet', 'actor', 'npc-profile', 'backgroundstyle'],
+		classes: ['actor', 'npc-profile'],
 		resizable: true,
 		title: 'NPC Profile',
 		position: { width: 750, height: 'auto' },

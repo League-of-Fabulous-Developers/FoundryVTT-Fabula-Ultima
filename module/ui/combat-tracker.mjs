@@ -11,7 +11,11 @@ import { systemPath } from '../helpers/config.mjs';
  * @remarks {@link https://foundryvtt.com/api/classes/client.CombatTracker.html}
  */
 export class FUCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
-	/** @inheritdoc */
+	/**
+	 * @inheritDoc
+	 * @type ApplicationConfiguration
+	 * @override
+	 */
 	static DEFAULT_OPTIONS = {
 		classes: ['projectfu'],
 	};
