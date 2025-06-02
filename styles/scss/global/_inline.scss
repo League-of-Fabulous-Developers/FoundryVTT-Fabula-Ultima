@@ -81,7 +81,13 @@ a.inline-roll {
 }
 
 .inline {
-	display: inline-block;
+	display: inline-flex;
+	gap: 0.025em;
+	align-items: center;
+
+	img {
+		border: none;
+	}
 
 	&.broken {
 		font-size: var(--font-size-14);
