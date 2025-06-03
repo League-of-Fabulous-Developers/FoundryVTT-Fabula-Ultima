@@ -3,6 +3,7 @@ import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { Expressions } from '../expressions/expressions.mjs';
+import { ChatMessageHelper } from './chat-message-helper.mjs';
 
 /**
  * @description Information about a lookup for the source of an inline element
@@ -256,15 +257,58 @@ function capitalize(word) {
 }
 
 /**
+ * @typedef InlineEventListener
+ * @param {ChatMessage|Document} document  The ChatMessage document being rendered.
+ * @param {HTMLElement} html     The pending HTML.
+ */
+
+/**
+ * @type {InlineEventListener[]}
+ */
+let chatMessageEventListeners = [];
+
+/**
+ * @typedef FUTextEditorEnricher
+ * @property {TextEditorEnricherConfig} enricher
+ * @property onClick
+ * @property {InlineEventListener} activateListeners
+ * @property onDropActor
+ */
+
+/**
+ * @description Initialize the setup for text editor enrichers in the system
+ */
+function initializeEnrichers() {
+	Hooks.once('ready', () => {
+		ui.chat.element?.addEventListener('click', (event) => {
+			const chatMessage = event.target.closest('li.chat-message');
+			const messageId = chatMessage.dataset.messageId;
+			console.debug(`Handling click for chat message ${messageId}`);
+		});
+		for (const listener of chatMessageEventListeners) {
+			ui.chat.element?.addEventListener('click', async (event) => {
+				const chatMessage = event.target.closest('li.chat-message');
+				const messageId = chatMessage.dataset.messageId;
+
+				const message = ChatMessageHelper.fromId(messageId);
+				const html = event.target;
+				await listener.call(this, message, html);
+			});
+		}
+	});
+}
+
+/**
  * @param {TextEditorEnricherConfig[]|TextEditorEnricherConfig} enrichers
- * @param {*} activateListeners
+ * @param {InlineEventListener} activateListeners
  * @param {*} onDropActor
  */
 function registerEnricher(enrichers, activateListeners = undefined, onDropActor = undefined) {
 	enrichers = Array.isArray(enrichers) ? enrichers : [enrichers];
 	CONFIG.TextEditor.enrichers.push(...enrichers);
 	if (activateListeners) {
-		Hooks.on('renderChatMessageHTML', activateListeners);
+		chatMessageEventListeners.push(activateListeners);
+		//Hooks.on('renderChatMessageHTML', activateListeners);
 		Hooks.on('renderActorSheetV2', activateListeners);
 		Hooks.on('renderItemSheetV2', activateListeners);
 	}
@@ -324,6 +368,7 @@ export const InlineHelper = {
 	toBase64,
 	fromBase64,
 	capitalize,
+	initializeEnrichers,
 	registerEnricher,
 	compose,
 	propertyPattern,

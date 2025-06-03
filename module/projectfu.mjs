@@ -275,6 +275,7 @@ Hooks.once('init', async () => {
 	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
 	// System Text Editor Enrichers
+	InlineHelper.initializeEnrichers();
 	InlineHelper.registerEnricher(InlineDamage.enricher, InlineDamage.activateListeners, InlineDamage.onDropActor);
 	InlineHelper.registerEnricher(InlineEffects.enricher, InlineEffects.activateListeners, InlineEffects.onDropActor);
 	InlineHelper.registerEnricher(InlineResources.enrichers, InlineResources.activateListeners, InlineResources.onDropActor);

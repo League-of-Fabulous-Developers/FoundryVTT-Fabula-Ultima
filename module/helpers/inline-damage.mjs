@@ -75,22 +75,7 @@ function activateListeners(document, html) {
 
 	for (const el of elements) {
 		el.addEventListener('click', async function (event) {
-			const target = event.currentTarget;
-			const dataset = target.dataset;
-			let targets = await targetHandler();
-			if (targets.length > 0) {
-				const sourceInfo = InlineHelper.determineSource(document, this);
-				const type = dataset.type;
-				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-				const amount = await Expressions.evaluateAsync(dataset.amount, context);
-
-				const damageData = { type, total: amount, modifierTotal: 0 };
-				const request = new DamageRequest(sourceInfo, targets, damageData);
-				if (dataset.traits) {
-					request.addTraits(...dataset.traits.split(','));
-				}
-				await DamagePipeline.process(request);
-			}
+			await onClick.call(this, event, document);
 		});
 
 		// Handle dragstart
@@ -115,6 +100,25 @@ function activateListeners(document, html) {
 	}
 }
 
+async function onClick(event, document) {
+	const target = event.currentTarget;
+	const dataset = target.dataset;
+	let targets = await targetHandler();
+	if (targets.length > 0) {
+		const sourceInfo = InlineHelper.determineSource(document, this);
+		const type = dataset.type;
+		const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
+		const amount = await Expressions.evaluateAsync(dataset.amount, context);
+
+		const damageData = { type, total: amount, modifierTotal: 0 };
+		const request = new DamageRequest(sourceInfo, targets, damageData);
+		if (dataset.traits) {
+			request.addTraits(...dataset.traits.split(','));
+		}
+		await DamagePipeline.process(request);
+	}
+}
+
 async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo, traits, ignore }) {
 	if (type === INLINE_DAMAGE) {
 		// Need to rebuild the class after it was deserialized
@@ -133,8 +137,12 @@ async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo
 	}
 }
 
-export const InlineDamage = {
+/**
+ * @type {FUTextEditorEnricher}
+ */
+export const InlineDamage = Object.freeze({
 	enricher: inlineDamageEnricher,
 	activateListeners,
 	onDropActor,
-};
+	onClick,
+});
