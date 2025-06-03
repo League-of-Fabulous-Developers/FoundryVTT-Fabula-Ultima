@@ -20,6 +20,8 @@ const inlineDamageEnricher = {
 	enricher: enricher,
 };
 
+// TODO: Add onRender, but need to pass sourceInfo onto the dataset
+
 function enricher(text, options) {
 	const amount = text[1];
 	const type = text[2].toLowerCase();
@@ -69,46 +71,50 @@ function activateListeners(document, html) {
 
 	// Select all inline damage links that are draggable
 	const elements = html.querySelectorAll('a.inline.inline-damage[draggable]');
+	if (elements.length === 0) return;
 
 	for (const el of elements) {
-		// Handle click
-		el.addEventListener('click', async function () {
+		el.addEventListener('click', async function (event) {
+			const target = event.currentTarget;
+			const dataset = target.dataset;
 			let targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
-				const type = this.dataset.type;
+				const type = dataset.type;
 				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);
+				const amount = await Expressions.evaluateAsync(dataset.amount, context);
 
 				const damageData = { type, total: amount, modifierTotal: 0 };
 				const request = new DamageRequest(sourceInfo, targets, damageData);
-				if (this.dataset.traits) {
-					request.addTraits(...this.dataset.traits.split(','));
+				if (dataset.traits) {
+					request.addTraits(...dataset.traits.split(','));
 				}
 				await DamagePipeline.process(request);
 			}
 		});
 
 		// Handle dragstart
-		el.addEventListener('dragstart', function (event) {
-			if (!(this instanceof HTMLElement) || !event.dataTransfer) return;
+		el.addEventListener('dragstart', async function (event) {
+			const target = event.currentTarget;
+			if (!(target instanceof HTMLElement) || !event.dataTransfer) return;
 
-			const sourceInfo = InlineHelper.determineSource(document, this);
-			sourceInfo.name = this.dataset.label ? this.dataset.label : sourceInfo.name;
+			const sourceInfo = InlineHelper.determineSource(document, target);
+			//sourceInfo.name = target.dataset.label ? target.dataset.label : sourceInfo.name;
+
 			const data = {
 				type: INLINE_DAMAGE,
 				_sourceInfo: sourceInfo,
-				damageType: this.dataset.type,
-				amount: this.dataset.amount,
-				traits: this.dataset.traits,
+				damageType: target.dataset.type,
+				amount: target.dataset.amount,
+				traits: target.dataset.traits,
 			};
+
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
 		});
 	}
 }
 
-// TODO: Implement
 async function onDropActor(actor, sheet, { type, damageType, amount, _sourceInfo, traits, ignore }) {
 	if (type === INLINE_DAMAGE) {
 		// Need to rebuild the class after it was deserialized

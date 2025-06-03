@@ -17,6 +17,9 @@ const INLINE_EFFECT_CLASS = 'inline-effect';
 
 const configurationPropertyGroups = [InlineHelper.propertyPattern('event', 'e', '\\w+'), InlineHelper.propertyPattern('interval', 'i', '\\d'), InlineHelper.propertyPattern('tracking', 't', '\\w+')];
 
+/**
+ * @type {TextEditorEnricherConfig}
+ */
 const enricher = {
 	// ID|UUID|Base64String
 	pattern: InlineHelper.compose('EFFECT', '(?<id>[a-zA-Z0-9+/.-]+={0,3})', configurationPropertyGroups),
@@ -147,15 +150,17 @@ async function inlineEffectEnricher(match, options) {
 
 /**
  * @param {ChatMessage} document
- * @param {jQuery} html
+ * @param {HTMLElement} html
  */
 function activateListeners(document, html) {
 	if (document instanceof DocumentSheet) {
 		document = document.document;
 	}
 
-	html.find('a.inline.inline-effect[draggable]')
-		.on('click', async function (event) {
+	const elements = html.querySelectorAll('a.inline.inline-effect[draggable]');
+	elements.forEach((el) => {
+		// Click handler
+		el.addEventListener('click', async function (event) {
 			const sourceInfo = InlineHelper.determineSource(document, this);
 			const effectData = InlineHelper.fromBase64(this.dataset.effect);
 			const status = this.dataset.status;
@@ -164,34 +169,47 @@ function activateListeners(document, html) {
 
 			const targets = await targetHandler();
 			if (!targets.length) return;
+
 			targets.forEach((actor) => {
 				if (effectData) {
-					isCtrlClick ? Effects.onRemoveEffectFromActor(actor, sourceInfo, effectData) : Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config);
+					if (isCtrlClick) {
+						Effects.onRemoveEffectFromActor(actor, sourceInfo, effectData);
+					} else {
+						Effects.onApplyEffectToActor(actor, effectData, sourceInfo, config);
+					}
 				} else if (status) {
-					isCtrlClick ? disableStatusEffect(actor, status) : !actor.statuses.has(status) && Effects.toggleStatusEffect(actor, status, sourceInfo, config);
+					if (isCtrlClick) {
+						disableStatusEffect(actor, status);
+					} else if (!actor.statuses.has(status)) {
+						Effects.toggleStatusEffect(actor, status, sourceInfo, config);
+					}
 				}
 			});
-		})
-		.on('dragstart', function (event) {
-			/** @type DragEvent */
-			event = event.originalEvent;
-			if (!(event.target instanceof HTMLElement) || !event.dataTransfer) {
-				return;
-			}
-			const sourceInfo = InlineHelper.determineSource(document, this);
+		});
+
+		// Dragstart handler
+		el.addEventListener('dragstart', function (event) {
+			const target = event.currentTarget;
+			if (!(target instanceof HTMLElement) || !event.dataTransfer) return;
+
+			const sourceInfo = InlineHelper.determineSource(document, target);
 			const data = {
 				type: INLINE_EFFECT,
 				sourceInfo: sourceInfo,
-				config: InlineHelper.fromBase64(this.dataset.config),
-				effect: InlineHelper.fromBase64(this.dataset.effect),
-				status: this.dataset.status,
+				config: InlineHelper.fromBase64(target.dataset.config),
+				effect: InlineHelper.fromBase64(target.dataset.effect),
+				status: target.dataset.status,
 			};
+
 			event.dataTransfer.setData('text/plain', JSON.stringify(data));
 			event.stopPropagation();
-		})
-		.on('contextmenu', function (event) {
+		});
+
+		// Contextmenu handler
+		el.addEventListener('contextmenu', function (event) {
 			event.preventDefault();
 			event.stopPropagation();
+
 			let effectData;
 			if (this.dataset.status) {
 				const status = this.dataset.status;
@@ -202,26 +220,29 @@ function activateListeners(document, html) {
 			} else {
 				effectData = InlineHelper.fromBase64(this.dataset.effect);
 			}
+
 			if (effectData) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
 				effectData.sourceInfo = sourceInfo;
+
 				const cls = getDocumentClass('ActiveEffect');
 				delete effectData.id;
+
 				cls.migrateDataSafe(effectData);
 				cls.cleanData(effectData);
+
 				Actor.create({ name: 'Temp Actor', type: 'character' }, { temporary: true })
-					.then((value) => {
-						return cls.create(effectData, { temporary: true, render: true, parent: value });
-					})
+					.then((value) => cls.create(effectData, { temporary: true, render: true, parent: value }))
 					.then((value) => {
 						const activeEffectConfig = new ActiveEffectConfig(value);
 						activeEffectConfig.render(true, { editable: false });
 					});
 			}
 		});
+	});
 }
 
-function onDropActor(actor, sheet, { type, sourceInfo, config, effect, status }) {
+async function onDropActor(actor, sheet, { type, sourceInfo, config, effect, status }) {
 	if (type === INLINE_EFFECT) {
 		if (status) {
 			if (!actor.statuses.has(status)) {
@@ -238,18 +259,11 @@ function showEffectConfiguration(state, dispatch, view, ...rest) {
 	new InlineEffectConfiguration(state, dispatch).render(true);
 }
 
-function initialize() {
-	CONFIG.TextEditor.enrichers.push(enricher);
-	Hooks.on('renderChatMessage', activateListeners);
-	Hooks.on('renderApplication', activateListeners);
-	Hooks.on('renderActorSheet', activateListeners);
-	Hooks.on('renderItemSheet', activateListeners);
-	Hooks.on('dropActorSheetData', onDropActor);
-}
-
 export const InlineEffects = {
 	showEffectConfiguration,
 	parseConfigData,
+	enricher,
+	activateListeners,
+	onDropActor,
 	configurationPropertyGroups,
-	initialize,
 };

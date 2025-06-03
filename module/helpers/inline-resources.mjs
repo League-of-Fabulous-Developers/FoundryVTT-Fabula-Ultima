@@ -87,7 +87,7 @@ function lossEnricher(text, options) {
 }
 
 /**
- * @param {ClientDocument} document
+ * @param {Document} document
  * @param {HTMLElement} html
  */
 function activateListeners(document, html) {
@@ -102,7 +102,7 @@ function activateListeners(document, html) {
 			const targets = await targetHandler();
 			if (targets.length > 0) {
 				const sourceInfo = InlineHelper.determineSource(document, this);
-				sourceInfo.name = this.dataset.label || sourceInfo.name;
+				//sourceInfo.name = this.dataset.label || sourceInfo.name;
 				const type = this.dataset.type;
 				const uncapped = this.dataset.uncapped === 'true';
 				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
@@ -120,7 +120,7 @@ function activateListeners(document, html) {
 			if (!(this instanceof HTMLElement) || !event.dataTransfer) return;
 
 			const sourceInfo = InlineHelper.determineSource(document, this);
-			sourceInfo.name = this.dataset.label || sourceInfo.name;
+			//sourceInfo.name = this.dataset.label || sourceInfo.name;
 
 			const data = {
 				type: this.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,

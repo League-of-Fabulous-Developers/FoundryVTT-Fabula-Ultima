@@ -258,15 +258,16 @@ function capitalize(word) {
 /**
  * @param {TextEditorEnricherConfig[]|TextEditorEnricherConfig} enrichers
  * @param {*} activateListeners
- * @param onDropActor
+ * @param {*} onDropActor
  */
-function registerEnricher(enrichers, activateListeners, onDropActor = undefined) {
+function registerEnricher(enrichers, activateListeners = undefined, onDropActor = undefined) {
 	enrichers = Array.isArray(enrichers) ? enrichers : [enrichers];
 	CONFIG.TextEditor.enrichers.push(...enrichers);
-	Hooks.on('renderChatMessageHTML', activateListeners);
-	Hooks.on('renderApplicationV2', activateListeners);
-	Hooks.on('renderActorSheetV2', activateListeners);
-	Hooks.on('renderItemSheetV2', activateListeners);
+	if (activateListeners) {
+		Hooks.on('renderChatMessageHTML', activateListeners);
+		Hooks.on('renderActorSheetV2', activateListeners);
+		Hooks.on('renderItemSheetV2', activateListeners);
+	}
 	if (onDropActor) {
 		Hooks.on('dropActorSheetData', onDropActor);
 	}

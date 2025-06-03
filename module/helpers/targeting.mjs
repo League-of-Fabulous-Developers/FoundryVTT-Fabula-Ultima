@@ -123,23 +123,26 @@ function deserializeTargetData(targetData) {
 
 /**
  * @param {Document} document
- * @param {jQuery} jQuery
+ * @param {HTMLElement} html
  */
-function onRenderChatMessage(document, jQuery) {
+function onRenderChatMessage(document, html) {
 	if (!document.getFlag(Flags.Scope, Flags.ChatMessage.Targets)) {
 		return;
 	}
 
-	jQuery.find(`a[data-action=${defaultAction.name}]`).click(function (event) {
-		console.debug(`Targeting ${this.dataset.id}`);
-		const actor = fromUuidSync(this.dataset.id);
-		const token = actor.token.object;
-		if (!validateCombatant(token)) {
-			return;
-		}
-		return pingCombatant(token);
+	const links = html.querySelectorAll(`a[data-action="${defaultAction.name}"]`);
+	links.forEach((link) => {
+		link.addEventListener('click', function (event) {
+			console.debug(`Targeting ${this.dataset.id}`);
+			const actor = fromUuidSync(this.dataset.id);
+			const token = actor.token?.object;
+			if (!validateCombatant(token)) return;
+			return pingCombatant(token);
+		});
 	});
 }
+
+Hooks.on(`renderChatMessageHTML`, onRenderChatMessage);
 
 function validateCombatant(token) {
 	const canvas = game.canvas;
