@@ -62,18 +62,16 @@ function damageEnricher(text, options) {
  */
 async function onRender(element) {
 	const document = InlineHelper.resolveDocument(element);
+	const target = element.firstElementChild;
+	const sourceInfo = InlineHelper.determineSource(document, target);
+	const dataset = target.dataset;
+	const type = dataset.type;
 
 	element.addEventListener('click', async function (event) {
-		const target = element.firstElementChild;
-		const dataset = target.dataset;
-
 		let targets = await targetHandler();
 		if (targets.length > 0) {
-			const sourceInfo = InlineHelper.determineSource(document, target);
-			const type = dataset.type;
 			const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
 			const amount = await Expressions.evaluateAsync(dataset.amount, context);
-
 			const damageData = { type, total: amount, modifierTotal: 0 };
 			const request = new DamageRequest(sourceInfo, targets, damageData);
 			if (dataset.traits) {
@@ -85,9 +83,6 @@ async function onRender(element) {
 
 	// Handle dragstart
 	element.addEventListener('dragstart', async function (event) {
-		const target = event.currentTarget;
-		if (!(target instanceof HTMLElement) || !event.dataTransfer) return;
-
 		const sourceInfo = InlineHelper.determineSource(document, target);
 
 		const data = {
