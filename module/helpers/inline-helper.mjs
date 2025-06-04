@@ -263,16 +263,24 @@ function capitalize(word) {
  */
 
 /**
- * @type {InlineEventListener[]}
+ * @type {FUInlineCommand[]}
  */
-let chatMessageEventListeners = [];
+let inlineCommands = [];
 
 /**
- * @typedef FUTextEditorEnricher
- * @property {TextEditorEnricherConfig} enricher
- * @property onClick
+ * @typedef FUInlineCommand
+ * @property {TextEditorEnricherConfig[]} enrichers
+ * @property {FUClickEventHandler} onClick
  * @property {InlineEventListener} activateListeners
  * @property onDropActor
+ */
+
+/**
+ * @function FUClickEventHandler
+ * @async
+ * @param {PointerEvent} event
+ * @param {Document} document
+ * @returns {Boolean} True if the event was handled
  */
 
 /**
@@ -280,24 +288,47 @@ let chatMessageEventListeners = [];
  */
 function initializeEnrichers() {
 	Hooks.once('ready', () => {
-		ui.chat.element?.addEventListener('click', (event) => {
+		ui.chat.element?.addEventListener('click', async (event) => {
 			const chatMessage = event.target.closest('li.chat-message');
 			const messageId = chatMessage.dataset.messageId;
-			console.debug(`Handling click for chat message ${messageId}`);
-		});
-		for (const listener of chatMessageEventListeners) {
-			ui.chat.element?.addEventListener('click', async (event) => {
-				const chatMessage = event.target.closest('li.chat-message');
-				const messageId = chatMessage.dataset.messageId;
+			const message = ChatMessageHelper.fromId(messageId);
 
-				const message = ChatMessageHelper.fromId(messageId);
-				const html = event.target;
-				await listener.call(this, message, html);
-			});
-		}
+			if (!(event.target instanceof HTMLElement)) {
+				return;
+			}
+
+			console.debug(`Handling click for chat message ${messageId}`);
+			for (const command of inlineCommands) {
+				const handled = await command.onClick(event, message);
+				if (handled) {
+					return;
+				}
+			}
+		});
 	});
 }
 
+/**
+ * @param {FUInlineCommand} command
+ */
+function registerCommand(command) {
+	CONFIG.TextEditor.enrichers.push(...command.enrichers);
+	//inlineCommands.push(command);
+}
+
+// TODO: Get sheet as well?
+/**
+ * @param {HTMLElement} element
+ * @returns {Document|ChatMessage}
+ */
+function resolveDocument(element) {
+	const chatMessage = element.closest('li.chat-message');
+	const messageId = chatMessage.dataset.messageId;
+	const message = ChatMessageHelper.fromId(messageId);
+	return message;
+}
+
+// TODO: Deprecate
 /**
  * @param {TextEditorEnricherConfig[]|TextEditorEnricherConfig} enrichers
  * @param {InlineEventListener} activateListeners
@@ -307,8 +338,6 @@ function registerEnricher(enrichers, activateListeners = undefined, onDropActor 
 	enrichers = Array.isArray(enrichers) ? enrichers : [enrichers];
 	CONFIG.TextEditor.enrichers.push(...enrichers);
 	if (activateListeners) {
-		chatMessageEventListeners.push(activateListeners);
-		//Hooks.on('renderChatMessageHTML', activateListeners);
 		Hooks.on('renderActorSheetV2', activateListeners);
 		Hooks.on('renderItemSheetV2', activateListeners);
 	}
@@ -369,7 +398,9 @@ export const InlineHelper = {
 	fromBase64,
 	capitalize,
 	initializeEnrichers,
+	registerCommand,
 	registerEnricher,
 	compose,
 	propertyPattern,
+	resolveDocument,
 };

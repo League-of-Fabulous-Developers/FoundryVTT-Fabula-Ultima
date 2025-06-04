@@ -276,7 +276,8 @@ Hooks.once('init', async () => {
 
 	// System Text Editor Enrichers
 	InlineHelper.initializeEnrichers();
-	InlineHelper.registerEnricher(InlineDamage.enricher, InlineDamage.activateListeners, InlineDamage.onDropActor);
+	InlineHelper.registerCommand(InlineDamage);
+	//InlineHelper.registerEnricher(InlineDamage.enricher, InlineDamage.activateListeners, InlineDamage.onDropActor);
 	InlineHelper.registerEnricher(InlineEffects.enricher, InlineEffects.activateListeners, InlineEffects.onDropActor);
 	InlineHelper.registerEnricher(InlineResources.enrichers, InlineResources.activateListeners, InlineResources.onDropActor);
 	InlineHelper.registerEnricher(InlineChecks.enricher, InlineChecks.activateListeners);
