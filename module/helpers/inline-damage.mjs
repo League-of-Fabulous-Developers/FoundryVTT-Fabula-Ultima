@@ -61,21 +61,18 @@ function damageEnricher(text, options) {
  * @returns {Promise<void>}
  */
 async function onRender(element) {
-	const document = InlineHelper.resolveDocument(element);
-	const target = element.firstElementChild;
-	const sourceInfo = InlineHelper.determineSource(document, target);
-	const dataset = target.dataset;
-	const type = dataset.type;
+	const renderContext = await InlineHelper.getRenderContext(element);
+	const type = renderContext.dataset.type;
 
 	element.addEventListener('click', async function (event) {
 		let targets = await targetHandler();
 		if (targets.length > 0) {
-			const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-			const amount = await Expressions.evaluateAsync(dataset.amount, context);
+			const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+			const amount = await Expressions.evaluateAsync(renderContext.dataset.amount, context);
 			const damageData = { type, total: amount, modifierTotal: 0 };
-			const request = new DamageRequest(sourceInfo, targets, damageData);
-			if (dataset.traits) {
-				request.addTraits(...dataset.traits.split(','));
+			const request = new DamageRequest(renderContext.sourceInfo, targets, damageData);
+			if (renderContext.dataset.traits) {
+				request.addTraits(...renderContext.dataset.traits.split(','));
 			}
 			await DamagePipeline.process(request);
 		}
@@ -83,14 +80,14 @@ async function onRender(element) {
 
 	// Handle dragstart
 	element.addEventListener('dragstart', async function (event) {
-		const sourceInfo = InlineHelper.determineSource(document, target);
+		const sourceInfo = InlineHelper.determineSource(document, renderContext.target);
 
 		const data = {
 			type: INLINE_DAMAGE,
 			_sourceInfo: sourceInfo,
-			damageType: target.dataset.type,
-			amount: target.dataset.amount,
-			traits: target.dataset.traits,
+			damageType: renderContext.dataset.type,
+			amount: renderContext.dataset.amount,
+			traits: renderContext.dataset.traits,
 		};
 
 		event.dataTransfer.setData('text/plain', JSON.stringify(data));

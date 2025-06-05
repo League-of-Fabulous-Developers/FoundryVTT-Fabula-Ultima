@@ -280,10 +280,11 @@ Hooks.once('init', async () => {
 	InlineHelper.registerCommand(InlineResources);
 	InlineHelper.registerCommand(InlineChecks);
 	InlineHelper.registerCommand(InlineWeapon);
+	InlineHelper.registerCommand(InlineType);
 
-	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
-	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
 	InlineHelper.registerEnricher(InlineClocks.enricher, InlineClocks.activateListeners);
+	// Deprecated
+	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
 	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
 
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
