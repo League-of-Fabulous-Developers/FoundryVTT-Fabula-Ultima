@@ -1,6 +1,6 @@
 {{!-- Bond Template --}}
 <fieldset class="section-container title-fieldset desc resource-content">
-    <legend class="bond-add resource-label-m" data-tooltip="{{localize 'FU.BondAdd'}}">
+    <legend class="bond-add resource-label-m" data-tooltip="{{localize 'FU.BondAdd'}}" data-action="addBond">
         <a class="flex-group-center resource-inputs resource-label-m select-dropdown-m"
            data-tooltip="{{localize 'FU.BondAdd'}}">
             <i class="fas fa-plus icon"></i>{{localize 'FU.Bonds'}}
@@ -24,7 +24,7 @@
             </select>
             <div class="resource-content flexrow" style="gap: 2px;">
                 <input class="resource-inputs" data-tooltip="{{localize 'FU.BondStrength'}}" readonly value="{{ bond.strength }}" />
-                <a class="bond-delete" data-tooltip="{{localize 'FU.BondDelete'}}" data-bond-index="{{ bondIndex }}">
+                <a class="bond-delete" data-tooltip="{{localize 'FU.BondDelete'}}" data-bond-index="{{ bondIndex }}" data-action="deleteBond">
                     <button type="button" class="resource-inputs">
                         <i class="fas fa-xmark"></i>
                     </button>

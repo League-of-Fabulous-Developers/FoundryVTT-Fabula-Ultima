@@ -1,0 +1,64 @@
+<div class="tab features {{tab.cssClass}}{{#if tab.active}} active{{/if}}" data-group="primary" data-tab="attributes">
+  <section class="body-section grid grid-4col">
+    <aside class="sidebar flex-group-center">
+      {{!-- Action Buttons --}}
+      {{>"systems/projectfu/templates/actor/partials/actor-actions.hbs" actor=actor}}
+
+      <fieldset class="section-container title-fieldset desc resource-content">
+        <legend class="resource-label-m">
+          {{localize 'FU.Villain'}}
+        </legend>
+        <div class="flex-group-center">
+          <div class="resource-content">
+            <label class="resource-label-sm">{{localize 'FU.Phase'}}</label>
+            <input type="number" name="system.phases.value" value="{{ system.phases.value }}"
+              data-dtype="Number" class="resource-inputs bonus" />
+          </div>
+          <div class="resource-content">
+            <label class="resource-label-sm">{{localize 'FU.Multipart'}}</label>
+            <input type="text" name="system.multipart.value" value="{{ system.multipart.value }}"
+              data-dtype="String" class="resource-inputs bonus" />
+          </div>
+        </div>
+      </fieldset>
+      {{!-- Clock Section --}}
+      {{> "systems/projectfu/templates/actor/partials/actor-clocks.hbs" actor=actor}}
+    </aside>
+    <main class="stats-container grid-span-3">
+      <section class="section-container npc-border-col desc">
+        <li class="flexrow flex-group-center desc-header resource-content">
+          <label class="resource-label-l">{{localize 'FU.Traits'}}</label>
+          <input class="traitdesc flex3" type="text" name="system.traits.value"
+            value="{{ system.traits.value }}" placeholder="{{localize 'FU.Traits'}}" data-dtype="String" />
+        </li>
+        <section class="flex2 npc-desc">
+          {{#if (eq (getGameSetting 'optionNPCNotesTab') true)}}
+          {{editor enrichedHtml.description target="system.description"
+          engine="prosemirror"
+          rollData=rollData button=false owner=owner editable=false }}
+          {{else}}
+          {{editor enrichedHtml.description target="system.description"
+          engine="prosemirror"
+          rollData=rollData button=true owner=owner editable=editable }}
+          {{/if}}
+        </section>
+      </section>
+
+      {{#if (getGameSetting 'showAssociatedTherioforms')}}
+      <fieldset class="desc resource-content title-fieldset associated-therioforms">
+        <legend class="resource-label-m">
+          <label>{{localize 'FU.ClassFeatureTherioformAssociatedTherioforms'}}</label>
+        </legend>
+        <div>
+          <input type="text" name="system.associatedTherioforms" value="{{system.associatedTherioforms}}"
+            class="resource-inputs select-dropdown-full resource-text-m">
+        </div>
+      </fieldset>
+      {{/if}}
+
+      <!-- Favorite Section -->
+      {{> "systems/projectfu/templates/actor/partials/actor-favorite.hbs" groups=systemData.bond
+      dtypes=dtypes actor=actor}}
+    </main>
+  </section>
+</div>
