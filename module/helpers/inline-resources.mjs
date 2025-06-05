@@ -14,16 +14,20 @@ const classInlineLoss = 'inline-loss';
  * @type {TextEditorEnricherConfig}
  */
 const inlineRecoveryEnricher = {
+	id: 'InlineRecovery',
 	pattern: InlineHelper.compose('(?:HEAL|GAIN)', '\\s*(?<amount>\\(?.*?\\)*?)\\s(?<type>\\w+?)'),
 	enricher: recoveryEnricher,
+	onRender: onRender,
 };
 
 /**
  * @type {TextEditorEnricherConfig}
  */
 const inlineLossEnricher = {
+	id: 'InlineLoss',
 	pattern: InlineHelper.compose('LOSS', '\\s*(?<amount>\\(?.*?\\)*?)\\s(?<type>\\w+?)'),
 	enricher: lossEnricher,
+	onRender: onRender,
 };
 
 function createReplacementElement(amount, type, elementClass, uncapped, tooltip, label) {
@@ -87,52 +91,42 @@ function lossEnricher(text, options) {
 }
 
 /**
- * @param {ClientDocument} document
- * @param {HTMLElement} html
+ * @param {HTMLElement} element
+ * @returns {Promise<void>}
  */
-function activateListeners(document, html) {
-	if (document instanceof DocumentSheet) {
-		document = document.document;
-	}
+async function onRender(element) {
+	const document = InlineHelper.resolveDocument(element);
+	const target = element.firstElementChild;
+	const sourceInfo = InlineHelper.determineSource(document, target);
+	const dataset = target.dataset;
+	const type = dataset.type;
+	const uncapped = dataset.uncapped === 'true';
 
-	// Select all relevant inline recovery and loss anchors
-	const elements = html.querySelectorAll('a.inline.inline-recovery[draggable], a.inline.inline-loss[draggable]');
-	elements.forEach((el) => {
-		el.addEventListener('click', async function () {
-			const targets = await targetHandler();
-			if (targets.length > 0) {
-				const sourceInfo = InlineHelper.determineSource(document, this);
-				sourceInfo.name = this.dataset.label || sourceInfo.name;
-				const type = this.dataset.type;
-				const uncapped = this.dataset.uncapped === 'true';
-				const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-				const amount = await Expressions.evaluateAsync(this.dataset.amount, context);
+	element.addEventListener('click', async function () {
+		const targets = await targetHandler();
+		if (targets.length > 0) {
+			const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
+			const amount = await Expressions.evaluateAsync(dataset.amount, context);
 
-				if (this.classList.contains(classInlineRecovery)) {
-					await applyRecovery(sourceInfo, targets, type, amount, uncapped);
-				} else if (this.classList.contains(classInlineLoss)) {
-					await applyLoss(sourceInfo, targets, type, amount);
-				}
+			if (target.classList.contains(classInlineRecovery)) {
+				await applyRecovery(sourceInfo, targets, type, amount, uncapped);
+			} else if (target.classList.contains(classInlineLoss)) {
+				await applyLoss(sourceInfo, targets, type, amount);
 			}
-		});
+		}
+	});
 
-		el.addEventListener('dragstart', function (event) {
-			if (!(this instanceof HTMLElement) || !event.dataTransfer) return;
+	element.addEventListener('dragstart', function (event) {
+		const data = {
+			type: target.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
+			sourceInfo,
+			recoveryType: dataset.type,
+			amount: dataset.amount,
+			uncapped: dataset.uncapped === 'true',
+		};
 
-			const sourceInfo = InlineHelper.determineSource(document, this);
-			sourceInfo.name = this.dataset.label || sourceInfo.name;
-
-			const data = {
-				type: this.classList.contains(classInlineRecovery) ? INLINE_RECOVERY : INLINE_LOSS,
-				sourceInfo,
-				recoveryType: this.dataset.type,
-				amount: this.dataset.amount,
-				uncapped: this.dataset.uncapped === 'true',
-			};
-
-			event.dataTransfer.setData('text/plain', JSON.stringify(data));
-			event.stopPropagation();
-		});
+		event.dataTransfer.setData('text/plain', JSON.stringify(data));
+		event.stopPropagation();
 	});
 }
 
@@ -164,8 +158,10 @@ async function applyLoss(sourceInfo, targets, resourceType, amount) {
 	return ResourcePipeline.processLoss(request);
 }
 
+/**
+ * @type {FUInlineCommand}
+ */
 export const InlineResources = {
 	enrichers: [inlineRecoveryEnricher, inlineLossEnricher],
-	activateListeners,
 	onDropActor,
 };

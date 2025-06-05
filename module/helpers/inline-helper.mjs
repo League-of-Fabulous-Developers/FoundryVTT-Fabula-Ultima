@@ -3,6 +3,7 @@ import { Flags } from './flags.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { FUItem } from '../documents/items/item.mjs';
 import { Expressions } from '../expressions/expressions.mjs';
+import { ChatMessageHelper } from './chat-message-helper.mjs';
 
 /**
  * @description Information about a lookup for the source of an inline element
@@ -251,25 +252,86 @@ function fromBase64(base64) {
 	}
 }
 
-function capitalize(word) {
-	return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+/**
+ * @typedef InlineEventListener
+ * @param {ChatMessage|Document} document  The ChatMessage document being rendered.
+ * @param {HTMLElement} html     The pending HTML.
+ */
+
+/**
+ * @type {FUInlineCommand[]}
+ */
+let inlineCommands = [];
+
+/**
+ * @typedef FUInlineCommand
+ * @property {TextEditorEnricherConfig[]} enrichers
+ * @property onDropActor
+ */
+
+/**
+ * @typedef InlineRenderContext
+ * @property {Document} document
+ * @property {HTMLElement} target
+ * @property {InlineSourceInfo} sourceInfo
+ * @property {Object} dataset
+ */
+
+/**
+ * @param {HTMLEnrichedContentElement} element
+ * @returns InlineRenderContext
+ */
+function getRenderContext(element) {
+	const document = InlineHelper.resolveDocument(element);
+	const target = element.firstElementChild;
+	const sourceInfo = InlineHelper.determineSource(document, target);
+	const dataset = target.dataset;
+	return {
+		document,
+		target,
+		sourceInfo,
+		dataset,
+	};
 }
 
 /**
- * @param {TextEditorEnricherConfig[]|TextEditorEnricherConfig} enrichers
- * @param {*} activateListeners
- * @param onDropActor
+ * @param {FUInlineCommand} command
  */
-function registerEnricher(enrichers, activateListeners, onDropActor = undefined) {
-	enrichers = Array.isArray(enrichers) ? enrichers : [enrichers];
-	CONFIG.TextEditor.enrichers.push(...enrichers);
-	Hooks.on('renderChatMessageHTML', activateListeners);
-	Hooks.on('renderApplicationV2', activateListeners);
-	Hooks.on('renderActorSheetV2', activateListeners);
-	Hooks.on('renderItemSheetV2', activateListeners);
-	if (onDropActor) {
-		Hooks.on('dropActorSheetData', onDropActor);
+function registerCommand(command) {
+	inlineCommands.push(command);
+	if (command.onDropActor) {
+		Hooks.on('dropActorSheetData', command.onDropActor);
 	}
+	CONFIG.TextEditor.enrichers.push(...command.enrichers);
+}
+
+/**
+ * @description Resolves the parent document from where an enriched html element came from
+ * @param {HTMLEnrichedContentElement} element
+ * @returns {Document|ChatMessage}
+ */
+function resolveDocument(element) {
+	const chatMessage = element.closest('li.chat-message');
+	if (chatMessage) {
+		const messageId = chatMessage.dataset.messageId;
+		const message = ChatMessageHelper.fromId(messageId);
+		return message;
+	} else {
+		let sheet;
+		const framev2 = element.closest('.application');
+		if (framev2) {
+			sheet = foundry.applications.instances.get(framev2.id);
+		} else {
+			const framev1 = element.closest('.app');
+			if (framev1) {
+				sheet = ui.windows[framev1.dataset.appid];
+			}
+		}
+		if (sheet) {
+			return sheet.document;
+		}
+	}
+	console.debug(`Failed to resolve the document from ${element.toString()}`);
 }
 
 function appendImageToAnchor(anchor, path) {
@@ -322,8 +384,9 @@ export const InlineHelper = {
 	appendVariableToAnchor,
 	toBase64,
 	fromBase64,
-	capitalize,
-	registerEnricher,
+	registerCommand,
 	compose,
 	propertyPattern,
+	resolveDocument,
+	getRenderContext,
 };

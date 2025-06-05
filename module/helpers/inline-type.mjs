@@ -22,6 +22,7 @@ const supportedTypes = {
  * @type {TextEditorEnricherConfig}
  */
 const editorEnricher = {
+	id: 'InlineTypeEnricher',
 	pattern: InlineHelper.compose('TYPE', `(?<type>\\w+)(?<args>(\\s+([a-zA-Z0]+))+)s*`, InlineEffects.configurationPropertyGroups),
 	enricher: (match, options) => {
 		const type = match.groups.type.toLowerCase();
@@ -88,52 +89,46 @@ const editorEnricher = {
 
 		return null;
 	},
+	onRender: onRender,
 };
 
 /**
- * @param {ChatMessage} document
- * @param {HTMLElement} html
+ * @param {HTMLElement} element
+ * @returns {Promise<void>}
  */
-function activateListeners(document, html) {
-	if (document instanceof DocumentSheet) {
-		document = document.document;
-	}
+async function onRender(element) {
+	const renderContext = await InlineHelper.getRenderContext(element);
 
-	const typeLinks = html.querySelectorAll('a.inline.inline-type[draggable]');
-	for (const el of typeLinks) {
-		// Click handler
-		el.addEventListener('click', async function () {
-			const targets = await targetHandler();
-			if (targets.length > 0) {
-				const sourceInfo = InlineHelper.determineSource(document, this);
-				const type = this.dataset.type;
-				const args = this.dataset.args;
-				const config = InlineHelper.fromBase64(this.dataset.config);
+	// Click handler
+	element.addEventListener('click', async function () {
+		const targets = await targetHandler();
+		if (targets.length > 0) {
+			const type = renderContext.dataset.type;
+			const args = renderContext.dataset.args;
+			const config = InlineHelper.fromBase64(renderContext.dataset.config);
 
-				for (const target of targets) {
-					await applyEffect(target, sourceInfo, type, args, config);
-				}
+			for (const target of targets) {
+				await applyEffect(target, renderContext.sourceInfo, type, args, config);
 			}
-		});
+		}
+	});
 
-		// Drag handler
-		el.addEventListener('dragstart', function (event) {
-			if (!(this instanceof HTMLElement) || !event.dataTransfer) {
-				return;
-			}
+	// Drag handler
+	element.addEventListener('dragstart', function (event) {
+		if (!event.dataTransfer) {
+			return;
+		}
 
-			const sourceInfo = InlineHelper.determineSource(document, this);
-			const data = {
-				dataType: INLINE_TYPE,
-				sourceInfo: sourceInfo,
-				config: InlineHelper.fromBase64(this.dataset.config),
-				type: this.dataset.type,
-				args: this.dataset.args,
-			};
-			event.dataTransfer.setData('text/plain', JSON.stringify(data));
-			event.stopPropagation();
-		});
-	}
+		const data = {
+			dataType: INLINE_TYPE,
+			sourceInfo: renderContext.sourceInfo,
+			config: InlineHelper.fromBase64(renderContext.dataset.config),
+			type: renderContext.dataset.type,
+			args: renderContext.dataset.args,
+		};
+		event.dataTransfer.setData('text/plain', JSON.stringify(data));
+		event.stopPropagation();
+	});
 }
 
 async function onDropActor(actor, sheet, { dataType, sourceInfo, type, args, config, ignore }) {
@@ -263,8 +258,10 @@ async function applyEffect(actor, sourceInfo, type, args, config) {
 	}
 }
 
+/**
+ * @type {FUInlineCommand}
+ */
 export const InlineType = {
-	enricher: editorEnricher,
-	activateListeners,
+	enrichers: [editorEnricher],
 	onDropActor,
 };

@@ -67,9 +67,7 @@ import { FUHooks } from './hooks.mjs';
 import { DamagePipeline } from './pipelines/damage-pipeline.mjs';
 import { ResourcePipeline } from './pipelines/resource-pipeline.mjs';
 import { InlineWeapon } from './helpers/inline-weapon.mjs';
-import { Targeting } from './helpers/targeting.mjs';
 import { InlineHelper } from './helpers/inline-helper.mjs';
-import { InlineAffinity } from './helpers/inline-affinity.mjs';
 import { Effects } from './pipelines/effects.mjs';
 import { InlineType } from './helpers/inline-type.mjs';
 import { InvokerIntegration } from './documents/items/classFeature/invoker/invoker-integration.mjs';
@@ -265,7 +263,6 @@ Hooks.once('init', async () => {
 	ResourcePipeline.initialize();
 	Effects.initialize();
 	InventoryPipeline.initialize();
-	Hooks.on(`renderChatMessage`, Targeting.onRenderChatMessage);
 
 	registerClassFeatures(CONFIG.FU.classFeatureRegistry);
 	InvokerIntegration.initialize();
@@ -276,24 +273,20 @@ Hooks.once('init', async () => {
 
 	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
-	InlineHelper.registerEnricher(InlineDamage.enricher, InlineDamage.activateListeners, InlineDamage.onDropActor);
-	InlineHelper.registerEnricher(InlineResources.enrichers, InlineResources.activateListeners, InlineResources.onDropActor);
-	InlineHelper.registerEnricher(InlineChecks.enricher, InlineChecks.activateListeners);
-	InlineHelper.registerEnricher(InlineWeapon.enricher, InlineWeapon.activateListeners, InlineWeapon.onDropActor);
-	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
-	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);
-	InlineHelper.registerEnricher(InlineClocks.enricher, InlineClocks.activateListeners);
-
-	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
-
-	InlineEffects.initialize();
+	// System Text Editor Enrichers
+	InlineHelper.registerCommand(InlineDamage);
+	InlineHelper.registerCommand(InlineEffects);
+	InlineHelper.registerCommand(InlineResources);
+	InlineHelper.registerCommand(InlineChecks);
+	InlineHelper.registerCommand(InlineWeapon);
+	InlineHelper.registerCommand(InlineType);
+	InlineHelper.registerCommand(InlineClocks);
+	InlineHelper.registerCommand(InlineIcon);
 
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
 
 	TextEditorCommandDropdown.initialize();
-
 	SystemControls.initialize();
-
 	PlayerListEnhancements.initialize();
 
 	// Preload Handlebars templates.

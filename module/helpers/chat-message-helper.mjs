@@ -16,13 +16,13 @@ function registerContextMenuItem(flag, name, iconClass, callback) {
 			condition: (li) => {
 				const messageId = li.data('messageId');
 				/** @type ChatMessage | undefined */
-				const message = game.messages.get(messageId);
+				const message = fromId(messageId);
 				return message.getFlag(SYSTEM, flag);
 			},
 			callback: async (li) => {
 				const messageId = li.data('messageId');
 				/** @type ChatMessage | undefined */
-				const message = game.messages.get(messageId);
+				const message = fromId(messageId);
 				if (message) {
 					const damage = message.getFlag(SYSTEM, flag);
 					if (damage) {
@@ -36,6 +36,11 @@ function registerContextMenuItem(flag, name, iconClass, callback) {
 	Hooks.on('getChatLogEntryContext', hook);
 }
 
+function fromId(messageId) {
+	return game.messages.get(messageId);
+}
+
 export const ChatMessageHelper = Object.freeze({
 	registerContextMenuItem,
+	fromId,
 });

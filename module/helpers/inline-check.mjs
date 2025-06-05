@@ -10,8 +10,10 @@ import { ExpressionContext, Expressions } from '../expressions/expressions.mjs';
  * @type {TextEditorEnricherConfig}
  */
 const inlineCheckEnricher = {
+	id: 'InlineCheckEnricher',
 	pattern: InlineHelper.compose('CHECK', '\\s*(?<first>\\w+)\\s*(?<second>\\w+)\\s*(?<modifier>\\(.*?\\))*\\s*(?<level>\\w+)?'),
 	enricher: checkEnricher,
+	onRender: onRender,
 };
 
 /**
@@ -106,73 +108,64 @@ function appendDifficulty(level, anchor, show) {
 }
 
 /**
- * @param {ChatMessage} document
- * @param {HTMLElement | jQuery} html
+ * @param {HTMLElement} element
+ * @returns {Promise<void>}
  */
-function activateListeners(document, html) {
-	if (document instanceof DocumentSheet) {
-		document = document.document;
-	}
+async function onRender(element) {
+	const renderContext = await InlineHelper.getRenderContext(element);
 
-	const root = html instanceof HTMLElement ? html : html[0];
+	element.addEventListener('click', async (event) => {
+		const first = renderContext.dataset.first;
+		const second = renderContext.dataset.second;
+		let difficulty = renderContext.dataset.difficulty;
+		const prompt = event.shiftKey;
 
-	root.querySelectorAll('a.inline.inline-check')?.forEach((el) => {
-		el.addEventListener('click', async (event) => {
-			const first = el.dataset.first;
-			const second = el.dataset.second;
-			let difficulty = el.dataset.difficulty;
-			const prompt = event.shiftKey;
+		const attributes = { primary: first, secondary: second };
+		const targets = await targetHandler();
 
-			const attributes = { primary: first, secondary: second };
-			const targets = await targetHandler();
+		if (targets.length === 0) return;
 
-			if (targets.length === 0) return;
+		for (const actor of targets) {
+			await ChecksV2.attributeCheck(actor, attributes, renderContext.sourceInfo.resolveItem(), async (check) => {
+				let config = CheckConfiguration.configure(check);
+				let modifier = 0;
 
-			const sourceInfo = InlineHelper.determineSource(document, el);
+				if (element.dataset.modifier !== undefined) {
+					const context = ExpressionContext.fromSourceInfo(renderContext.sourceInfo, targets);
+					modifier = await Expressions.evaluateAsync(renderContext.dataset.modifier, context);
+				}
 
-			for (const actor of targets) {
-				await ChecksV2.attributeCheck(actor, attributes, sourceInfo.resolveItem(), async (check) => {
-					let config = CheckConfiguration.configure(check);
-					let modifier = 0;
+				if (prompt) {
+					const promptResult = await ChecksV2.promptConfiguration(
+						actor,
+						{
+							primary: check.primary,
+							secondary: check.secondary,
+							modifier,
+							difficulty,
+						},
+						null,
+					);
+					config.setAttributes(promptResult.primary, promptResult.secondary);
+					modifier = promptResult.modifier;
+					difficulty = promptResult.difficulty;
+				}
 
-					if (el.dataset.modifier !== undefined) {
-						const context = ExpressionContext.fromSourceInfo(sourceInfo, targets);
-						modifier = await Expressions.evaluateAsync(el.dataset.modifier, context);
-					}
+				if (difficulty > 0) {
+					config.setDifficulty(difficulty);
+				}
 
-					if (prompt) {
-						const promptResult = await ChecksV2.promptConfiguration(
-							actor,
-							{
-								primary: check.primary,
-								secondary: check.secondary,
-								modifier,
-								difficulty,
-							},
-							null,
-						);
-						config.setAttributes(promptResult.primary, promptResult.secondary);
-						modifier = promptResult.modifier;
-						difficulty = promptResult.difficulty;
-					}
-
-					if (difficulty > 0) {
-						config.setDifficulty(difficulty);
-					}
-
-					if (modifier !== 0) {
-						config.addModifier('Inline Modifier', modifier);
-					}
-				});
-			}
-		});
+				if (modifier !== 0) {
+					config.addModifier('Inline Modifier', modifier);
+				}
+			});
+		}
 	});
 }
 
 /**
- * Used by the CONFIG.TextEditor to hook into Foundry's text editor templating system
+ * @type {FUInlineCommand}
  */
-export const InlineChecks = {
-	enricher: inlineCheckEnricher,
-	activateListeners,
-};
+export const InlineChecks = Object.freeze({
+	enrichers: [inlineCheckEnricher],
+});
