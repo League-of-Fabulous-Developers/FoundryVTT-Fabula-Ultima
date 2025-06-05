@@ -68,7 +68,6 @@ import { DamagePipeline } from './pipelines/damage-pipeline.mjs';
 import { ResourcePipeline } from './pipelines/resource-pipeline.mjs';
 import { InlineWeapon } from './helpers/inline-weapon.mjs';
 import { InlineHelper } from './helpers/inline-helper.mjs';
-import { InlineAffinity } from './helpers/inline-affinity.mjs';
 import { Effects } from './pipelines/effects.mjs';
 import { InlineType } from './helpers/inline-type.mjs';
 import { InvokerIntegration } from './documents/items/classFeature/invoker/invoker-integration.mjs';
@@ -281,11 +280,8 @@ Hooks.once('init', async () => {
 	InlineHelper.registerCommand(InlineChecks);
 	InlineHelper.registerCommand(InlineWeapon);
 	InlineHelper.registerCommand(InlineType);
-
-	InlineHelper.registerEnricher(InlineClocks.enricher, InlineClocks.activateListeners);
-	// Deprecated
-	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
-	CONFIG.TextEditor.enrichers.push(InlineIcon.enricher);
+	InlineHelper.registerCommand(InlineClocks);
+	InlineHelper.registerCommand(InlineIcon);
 
 	Hooks.on('dropCanvasData', CanvasDragDrop.onDropCanvasData);
 

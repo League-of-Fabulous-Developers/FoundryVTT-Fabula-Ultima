@@ -1,6 +1,7 @@
 import { FU } from './config.mjs';
 
 const inlineIconEnricher = {
+	id: 'inlineIconEnricher',
 	pattern: /@ICON\[(\w+?)]/g,
 	enricher: enricher,
 };
@@ -20,6 +21,9 @@ function enricher(text, options) {
 	return null;
 }
 
+/**
+ * @type {FUInlineCommand}
+ */
 export const InlineIcon = {
-	enricher: inlineIconEnricher,
+	enrichers: [inlineIconEnricher],
 };
