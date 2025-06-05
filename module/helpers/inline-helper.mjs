@@ -316,6 +316,7 @@ function registerCommand(command) {
 }
 
 /**
+ * @description Resolves the parent document from where an enriched html element came from
  * @param {HTMLElement} element
  * @returns {Document|ChatMessage}
  */
@@ -326,8 +327,21 @@ function resolveDocument(element) {
 		const message = ChatMessageHelper.fromId(messageId);
 		return message;
 	} else {
-		console.debug(`Failed to resolve the document from ${element.nodeName}`);
+		let sheet;
+		const framev2 = element.closest('.application');
+		if (framev2) {
+			sheet = foundry.applications.instances.get(framev2.id);
+		} else {
+			const framev1 = element.closest('.app');
+			if (framev1) {
+				sheet = ui.windows[framev1.dataset.appid];
+			}
+		}
+		if (sheet) {
+			return sheet.document;
+		}
 	}
+	console.debug(`Failed to resolve the document from ${element.toString()}`);
 }
 
 // TODO: Deprecate
