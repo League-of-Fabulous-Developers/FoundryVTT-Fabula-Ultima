@@ -278,7 +278,7 @@ Hooks.once('init', async () => {
 	InlineHelper.initializeEnrichers();
 	InlineHelper.registerCommand(InlineDamage);
 	InlineHelper.registerCommand(InlineEffects);
-	InlineHelper.registerEnricher(InlineResources.enrichers, InlineResources.activateListeners, InlineResources.onDropActor);
+	InlineHelper.registerCommand(InlineResources);
 	InlineHelper.registerEnricher(InlineChecks.enricher, InlineChecks.activateListeners);
 	InlineHelper.registerEnricher(InlineWeapon.enricher, InlineWeapon.activateListeners, InlineWeapon.onDropActor);
 	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);

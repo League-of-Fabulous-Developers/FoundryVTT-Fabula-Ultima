@@ -313,19 +313,21 @@ function initializeEnrichers() {
  */
 function registerCommand(command) {
 	CONFIG.TextEditor.enrichers.push(...command.enrichers);
-	//inlineCommands.push(command);
 }
 
-// TODO: Get sheet as well?
 /**
  * @param {HTMLElement} element
  * @returns {Document|ChatMessage}
  */
 function resolveDocument(element) {
 	const chatMessage = element.closest('li.chat-message');
-	const messageId = chatMessage.dataset.messageId;
-	const message = ChatMessageHelper.fromId(messageId);
-	return message;
+	if (chatMessage) {
+		const messageId = chatMessage.dataset.messageId;
+		const message = ChatMessageHelper.fromId(messageId);
+		return message;
+	} else {
+		console.debug(`Failed to resolve the document from ${element.nodeName}`);
+	}
 }
 
 // TODO: Deprecate
