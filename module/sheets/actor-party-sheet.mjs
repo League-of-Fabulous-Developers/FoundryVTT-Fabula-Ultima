@@ -27,11 +27,11 @@ import { FUActorSheet } from './actor-sheet.mjs';
 export class FUPartySheet extends FUActorSheet {
 	/**
 	 * @inheritDoc
+	 * @type ApplicationConfiguration
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
 		classes: [],
-		resizable: true,
 		actions: {
 			revealMetaCurrency: this.#revealMetaCurrency,
 			revealActor: this.#revealActor,
@@ -49,6 +49,7 @@ export class FUPartySheet extends FUActorSheet {
 		position: { width: 920, height: 1000 },
 		window: {
 			contentClasses: ['party'],
+			resizable: true,
 		},
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 	};
@@ -713,20 +714,29 @@ Hooks.on(FUHooks.STUDY_EVENT, onStudyEvent);
 
 /**
  * @param {Document} message
- * @param {jQuery} jQuery
+ * @param {HTMLElement} html
  */
-async function onRenderChatMessage(message, jQuery) {
+async function onRenderChatMessage(message, html) {
 	if (!message.getFlag(Flags.Scope, Flags.ChatMessage.Party)) {
 		return;
 	}
 
-	Pipeline.handleClick(message, jQuery, 'revealNpc', async (dataset) => {
-		const uuid = dataset.uuid;
-		const party = await FUPartySheet.getActive();
-		return party.sheet.revealNpc(uuid);
-	});
+	// Find all elements with data-action="revealNpc"
+	const elements = html.querySelectorAll('[data-action="revealNpc"]');
+	for (const el of elements) {
+		el.addEventListener(
+			'click',
+			async (event) => {
+				const uuid = el.dataset.uuid;
+				const party = await FUPartySheet.getActive();
+				return party.sheet.revealNpc(uuid);
+			},
+			{ once: true },
+		); // Optionally ensure it only attaches once
+	}
 }
-Hooks.on('renderChatMessage', onRenderChatMessage);
+
+Hooks.on('renderChatMessageHTML', onRenderChatMessage);
 
 /**
  * @param {RevealEvent} event

@@ -61,7 +61,7 @@ function createTemporaryEffect(owner, effectType, name) {
 	};
 	return owner.createEmbeddedDocuments('ActiveEffect', [
 		{
-			label: name ?? game.i18n.localize('FU.NewEffect'),
+			name: name ?? game.i18n.localize('FU.NewEffect'),
 			img: 'icons/svg/aura.svg',
 			source: owner.uuid,
 			system: system,
@@ -74,9 +74,10 @@ function createTemporaryEffect(owner, effectType, name) {
 /**
  * Manage Active Effect instances through the Actor Sheet via effect control buttons.
  * @param {PointerEvent} event     The left-click event on the effect control
- * @param {Actor|Item} owner      The owning document which manages this effect
+ * @param {Actor|Item} owner       The owning document which manages this effect
+ * @param {string} action          The action to be performed, where data-action might differ
  */
-export async function onManageActiveEffect(event, owner) {
+export async function onManageActiveEffect(event, owner, action) {
 	event.preventDefault();
 	const anchor = HTMLUtils.findWithDataset(event.target);
 	const listItem = anchor.closest('li');
@@ -96,7 +97,7 @@ export async function onManageActiveEffect(event, owner) {
 		return effect;
 	};
 
-	switch (anchor.dataset.action) {
+	switch (action ?? anchor.dataset.action) {
 		case 'create':
 			return createTemporaryEffect(owner, listItem.dataset.effectType);
 		case 'edit':

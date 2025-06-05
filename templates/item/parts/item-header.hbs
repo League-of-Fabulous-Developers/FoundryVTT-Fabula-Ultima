@@ -70,52 +70,8 @@
         </div>
     </div>
 
+	{{!-- Optional Traits --}}
 	<div class="w-100">
 		{{> 'systems/projectfu/templates/item/partials/item-traits.hbs' }}
 	</div>
-
-    <div class="grid grid-3col w-100">
-        {{!-- Sub Type --}}
-        <span id="subtype-section" class="resource-content flexrow flex-group-center desc">
-            <label class="resource-label-sm" for="item.type"> <i class="fas fa-chart-simple icon"></i>{{localize
-             'FU.SubType'}}</label>
-            {{#if (eq item.type "heroic")}}
-                <span>
-                <select name="system.subtype.value" data-dtype="String"
-                        class="resource-inputs select-dropdown-l">
-                    {{selectOptions heroicType selected=system.subtype.value sort=true localize=true}}
-                </select>
-            </span>
-            {{else if (eq item.type "miscAbility")}}
-                <span>
-                <select name="system.subtype.value" data-dtype="String"
-                        class="resource-inputs select-dropdown-l">
-                    {{selectOptions miscCategories selected=system.subtype.value sort=true localize=true}}
-                </select>
-            </span>
-            {{else if (eq item.type "consumable")}}
-                <span>
-                <select name="system.subtype.value" data-dtype="String"
-                        class="resource-inputs select-dropdown-l">
-                    {{selectOptions consumableType selected=system.subtype.value sort=true localize=true}}
-                </select>
-            </span>
-            {{else if (eq item.type "treasure")}}
-                <span>
-                <select name="system.subtype.value" data-dtype="String"
-                        class="resource-inputs select-dropdown-l">
-                    {{selectOptions treasureType selected=system.subtype.value sort=true localize=true}}
-                </select>
-            </span>
-            {{/if}}
-        </span>
-
-        {{!-- Sheet Tab Navigation --}}
-        <nav id="item-navbar" class="sheet-tabs tabs desc flexrow grid-span-2 gap-5" data-group="primary"
-             style="align-self: stretch;">
-            <a class="item rollable tab button-style" data-tab="description">{{localize 'FU.Description'}}</a>
-            <a class="item rollable tab button-style" data-tab="attributes">{{localize 'FU.Attributes'}}</a>
-            <a class="item rollable tab button-style" data-tab="effects">{{localize 'FU.Effects'}}</a>
-        </nav>
-    </div>
 </header>

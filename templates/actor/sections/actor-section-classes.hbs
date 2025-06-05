@@ -30,7 +30,7 @@
                         <span data-resource="item.level">{{ item.level }}</span>
                         <span>/</span>
                         <span>{{ item.system.level.max }}</span>
-                        <a class="increment-button" data-type="levelCounter" data-item-id="{{ item._id }}">+</a>
+                        <a class="increment-button" data-type="levelCounter" data-item-id="{{ item._id }}" data-action="incrementButton">+</a>
                     </div>
                     {{!-- Item Control--}}
                     {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
@@ -91,6 +91,7 @@
                                 {{/if}}
 
                                 <a class="increment-button" data-type="resourceCounter"
+                                data-action="incrementButton"
                                    data-item-id="{{ item._id }}">+</a>
                             </div>
                         </div>
@@ -163,6 +164,7 @@
                                 {{/if}}
 
                                 <a class="increment-button" data-type="resourceCounter"
+                                data-action="incrementButton"
                                    data-item-id="{{ item._id }}">+</a>
                             </div>
                         </div>

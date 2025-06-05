@@ -13,6 +13,8 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
 import { Flags } from '../../../helpers/flags.mjs';
 import { ChooseWeaponDialog } from '../skill/choose-weapon-dialog.mjs';
+import { FUItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 /**
  * @param {CheckRenderData} data
@@ -86,7 +88,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
  */
-export class SpellDataModel extends foundry.abstract.TypeDataModel {
+export class SpellDataModel extends FUItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, SetField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
@@ -184,5 +186,19 @@ export class SpellDataModel extends foundry.abstract.TypeDataModel {
 				.addDamageBonusIfDefined('FU.DamageBonusTypeSpell', actor.system.bonuses.damage.spell)
 				.modifyHrZero((hrZero) => hrZero || item.system.rollInfo.useWeapon.hrZero.value);
 		};
+	}
+
+	get attributePartials() {
+		return [
+			ItemPartialTemplates.controls,
+			ItemPartialTemplates.classField,
+			ItemPartialTemplates.opportunityField,
+			ItemPartialTemplates.durationField,
+			ItemPartialTemplates.actionCost,
+			ItemPartialTemplates.targeting,
+			ItemPartialTemplates.legacyAccuracy,
+			ItemPartialTemplates.legacyDamage,
+			ItemPartialTemplates.behaviorField,
+		];
 	}
 }

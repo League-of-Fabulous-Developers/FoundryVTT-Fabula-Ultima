@@ -15,6 +15,8 @@ import { DamageDataModelV2 } from '../common/damage-data-model-v2.mjs';
 import { SkillMigrations } from './skill-migrations.mjs';
 import { ExpressionContext, Expressions } from '../../../expressions/expressions.mjs';
 import { CommonEvents } from '../../../checks/common-events.mjs';
+import { FUItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 const weaponUsedBySkill = 'weaponUsedBySkill';
 const skillForAttributeCheck = 'skillForAttributeCheck';
@@ -138,7 +140,7 @@ function getTags(skill) {
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
  */
-export class SkillDataModel extends foundry.abstract.TypeDataModel {
+export class SkillDataModel extends FUItemDataModel {
 	static {
 		deprecationNotice(this, 'rollInfo.useWeapon.accuracy.value', 'useWeapon.accuracy');
 		deprecationNotice(this, 'rollInfo.useWeapon.damage.value', 'useWeapon.damage');
@@ -323,5 +325,18 @@ export class SkillDataModel extends foundry.abstract.TypeDataModel {
 			});
 			check.additionalData[skillForAttributeCheck] = this.parent.uuid;
 		};
+	}
+
+	get attributePartials() {
+		return [
+			ItemPartialTemplates.controls,
+			ItemPartialTemplates.classField,
+			ItemPartialTemplates.actionCost,
+			ItemPartialTemplates.skillAttributes,
+			ItemPartialTemplates.accuracy,
+			ItemPartialTemplates.damage,
+			ItemPartialTemplates.targeting,
+			ItemPartialTemplates.resourcePoints,
+		];
 	}
 }

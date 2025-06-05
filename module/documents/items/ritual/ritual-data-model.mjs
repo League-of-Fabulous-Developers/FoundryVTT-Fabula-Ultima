@@ -8,6 +8,8 @@ import { ItemAttributesDataModelV2 } from '../common/item-attributes-data-model-
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { FUItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 /**
  * @type {PrepareCheckHook}
@@ -100,7 +102,7 @@ const POTENCIES = {
  * @property {string} source.value
  * @property {boolean} hasRoll.value
  */
-export class RitualDataModel extends foundry.abstract.TypeDataModel {
+export class RitualDataModel extends FUItemDataModel {
 	static {
 		deprecationNotice(this, 'class.value');
 		deprecationNotice(this, 'useWeapon.accuracy.value');
@@ -171,5 +173,9 @@ export class RitualDataModel extends foundry.abstract.TypeDataModel {
 		} else {
 			return ChecksV2.display(this.parent.actor, this.parent);
 		}
+	}
+
+	get attributePartials() {
+		return [ItemPartialTemplates.controls, ItemPartialTemplates.ritual, ItemPartialTemplates.progressField];
 	}
 }

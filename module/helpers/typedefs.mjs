@@ -61,6 +61,11 @@ export {};
  */
 
 /**
+ * @typedef HandlebarsRenderOptions
+ * @property {string[]} parts                       An array of named template parts to render
+ */
+
+/**
  * @typedef ApplicationTab
  * @property {string} id         The ID of the tab. Unique per group.
  * @property {string} group      The group this tab belongs to.
@@ -121,6 +126,20 @@ export {};
  * @property {ApplicationFormConfiguration} [form] Configuration used if the application top-level element is a form or
  *                                                 dialog
  * @property {Partial<ApplicationPosition>} position  Default positioning data for the application
+ */
+
+/**
+ * @typedef ApplicationRenderOptions
+ * @property {boolean} [force=false]            Force application rendering. If true, an application which does not
+ *                                              yet exist in the DOM is added. If false, only applications which
+ *                                              already exist are rendered.
+ * @property {ApplicationPosition} [position]   A specific position at which to render the Application
+ * @property {ApplicationWindowRenderOptions} [window]  Updates to the Application window frame
+ * @property {string[]} [parts]                 Some Application classes, for example the HandlebarsApplication,
+ *                                              support re-rendering a subset of application parts instead of the full
+ *                                              Application HTML.
+ * @property {boolean} [isFirstRender]          Is this render the first one for the application? This property is
+ *                                              populated automatically.
  */
 
 // [TEXT EDITOR ENRICHERS]

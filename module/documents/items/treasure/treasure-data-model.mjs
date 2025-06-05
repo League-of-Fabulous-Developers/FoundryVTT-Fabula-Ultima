@@ -2,6 +2,8 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { FU, SYSTEM } from '../../../helpers/config.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { SETTINGS } from '../../../settings.js';
+import { FUItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof TreasureDataModel) {
@@ -41,7 +43,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {string} origin.value
  * @property {string} source.value
  */
-export class TreasureDataModel extends foundry.abstract.TypeDataModel {
+export class TreasureDataModel extends FUItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
 		return {
@@ -56,5 +58,9 @@ export class TreasureDataModel extends foundry.abstract.TypeDataModel {
 			origin: new SchemaField({ value: new StringField() }),
 			source: new SchemaField({ value: new StringField() }),
 		};
+	}
+
+	get attributePartials() {
+		return [ItemPartialTemplates.controls, ItemPartialTemplates.treasure];
 	}
 }

@@ -1,0 +1,11 @@
+<nav class="sheet-tabs tabs desc flexrow gap-5" data-group="primary">
+  {{!-- Default tab is specified in actor-sheet.mjs --}}
+  {{#each tabs as |tab|}}
+    <a data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
+      class="item button-style{{#if tab.cssClass}} {{tab.cssClass}}{{/if}}{{#if tab.active}} active{{/if}}"
+      {{#if tab.tooltip}}data-tooltip="{{tab.tooltip}}"{{/if}}>
+      {{#if tab.icon}}<i class="{{tab.icon}}" inert></i>{{/if}}
+      {{#if tab.label}}{{localize tab.label}}{{/if}}
+    </a>
+  {{/each}}
+</nav>

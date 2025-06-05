@@ -1,8 +1,10 @@
+import { FUItemDataModel } from '../item-data-model.mjs';
+
 /**
  * @property {string} fuid
  * @property {string} summary.value
  */
-export class EffectDataModel extends foundry.abstract.TypeDataModel {
+export class EffectDataModel extends FUItemDataModel {
 	static defineSchema() {
 		const { StringField, SchemaField, NumberField } = foundry.data.fields;
 		return {

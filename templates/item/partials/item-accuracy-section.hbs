@@ -1,50 +1,50 @@
-<fieldset class="title-fieldset desc ">
-    <legend>
-        <label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize
-         'FU.Accuracy'}}</label>
-    </legend>
-    <div class="item-settings  flex-group-center">
-        <label class="checkbox resource-label-sm">
-            <span>{{localize 'FU.HasAccuracy'}}</span>
-            <input type="checkbox" name="system.hasRoll.value" {{ checked system.hasRoll.value }} />
-        </label>
-        |
-        <label class="checkbox resource-label-sm">
-            <span>{{localize 'FU.UseWeaponAccuracy'}}</span>
-            <input type="checkbox" name="system.useWeapon.accuracy" {{ checked system.useWeapon.accuracy }} {{disabled (not system.hasRoll.value)}} />
-        </label>
-    </div>
+<fieldset class="title-fieldset desc resource-content">
+	<legend>
+		<label class="resource-label-m">
+			<i class="fas fa-dice icon"></i>
+			{{localize 'FU.Accuracy'}}
+		</label>
+	</legend>
+	<div class="item-settings grid grid2-col">
+		<label class="checkbox resource-label-sm">
+			<span>{{localize 'FU.UseWeaponAccuracy'}}</span>
+			<input type="checkbox" name="system.useWeapon.accuracy" {{ checked system.useWeapon.accuracy }} {{disabled (not system.hasRoll.value)}} />
+		</label>
+	</div>
 
-    <div class="grid grid-3col">
-        <div class=" flexcol flex-group-center">
-            <label for="system.attributes.primary" class="resource-label-m">{{localize 'FU.Primary'}}</label>
-            <select name="system.attributes.primary" class="resource-inputs select-dropdown" {{disabled (or (not system.hasRoll.value) system.useWeapon.accuracy) }}>
-                {{#if system.useWeapon.accuracy}}
-                    {{selectOptions attrAbbr selected='' blank='-' sort=true localize=true}}
-                {{else}}
-                    {{selectOptions attrAbbr selected=system.attributes.primary sort=true localize=true}}
-                {{/if}}
-            </select>
-        </div>
-        <div class=" flexcol flex-group-center">
-            <label for="system.attributes.secondary" class="resource-label-m">{{localize 'FU.Secondary'}}</label>
-            <select name="system.attributes.secondary" class="resource-inputs select-dropdown" {{disabled (or (not system.hasRoll.value) system.useWeapon.accuracy) }}>
-                {{#if system.useWeapon.accuracy}}
-                    {{selectOptions attrAbbr selected='' blank='-' sort=true localize=true}}
-                {{else}}
-                    {{selectOptions attrAbbr selected=system.attributes.secondary sort=true localize=true}}
-                {{/if}}
-            </select>
-        </div>
-        <div class=" flexcol flex-group-center">
-            <label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
-            <input type="number" name="system.accuracy" value="{{ system.accuracy }}" class="resource-inputs" {{disabled (not system.hasRoll.value)}}/>
-        </div>
-        <div class="resource-content flexcol flex-group-center">
-            <label for="system.defense" class="resource-label-m flexlarge align-left">{{localize 'FU.Defense'}}</label>
-            <select name="system.defense" class="resource-inputs select-dropdown-m" {{disabled (not system.useWeapon.accuracy)}}>
-                {{selectOptions defenses selected=system.defense sort=true localize=true labelAttr="abbr" blank="-"}}
-            </select>
-        </div>
-    </div>
+	<div class="grid grid-3col">
+		<div class=" flexcol flex-group-center">
+			<label for="system.attributes.primary" class="resource-label-m">{{localize 'FU.Primary'}}</label>
+			<select name="system.attributes.primary" class="resource-inputs select-dropdown" {{disabled (or (not system.hasRoll.value) system.useWeapon.accuracy) }}>
+				{{#if system.useWeapon.accuracy}}
+					{{selectOptions attrAbbr selected='' blank='-' sort=true localize=true}}
+				{{else}}
+					{{selectOptions attrAbbr selected=system.attributes.primary sort=true localize=true}}
+				{{/if}}
+			</select>
+		</div>
+		<div class=" flexcol flex-group-center">
+			<label for="system.attributes.secondary" class="resource-label-m">{{localize 'FU.Secondary'}}</label>
+			<select name="system.attributes.secondary" class="resource-inputs select-dropdown" {{disabled
+			 (or (not system.hasRoll.value) system.useWeapon.accuracy) }}>
+				{{#if system.useWeapon.accuracy}}
+					{{selectOptions attrAbbr selected='' blank='-' sort=true localize=true}}
+				{{else}}
+					{{selectOptions attrAbbr selected=system.attributes.secondary sort=true localize=true}}
+				{{/if}}
+			</select>
+		</div>
+		<div class=" flexcol flex-group-center">
+			<label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
+			<input type="number" name="system.accuracy" value="{{ system.accuracy }}" class="resource-inputs" {{disabled
+			 (not system.hasRoll.value)}}/>
+		</div>
+		<div class="resource-content flexcol flex-group-center">
+			<label for="system.defense" class="resource-label-m flexlarge align-left">{{localize 'FU.Defense'}}</label>
+			<select name="system.defense" class="resource-inputs select-dropdown-m" {{disabled
+			 (not system.useWeapon.accuracy)}}>
+				{{selectOptions defenses selected=system.defense sort=true localize=true labelAttr="abbr" blank="-"}}
+			</select>
+		</div>
+	</div>
 </fieldset>
