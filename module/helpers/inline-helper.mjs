@@ -252,10 +252,6 @@ function fromBase64(base64) {
 	}
 }
 
-function capitalize(word) {
-	return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-}
-
 /**
  * @typedef InlineEventListener
  * @param {ChatMessage|Document} document  The ChatMessage document being rendered.
@@ -338,24 +334,6 @@ function resolveDocument(element) {
 	console.debug(`Failed to resolve the document from ${element.toString()}`);
 }
 
-// TODO: Deprecate
-/**
- * @param {TextEditorEnricherConfig[]|TextEditorEnricherConfig} enrichers
- * @param {InlineEventListener} activateListeners
- * @param {*} onDropActor
- */
-function registerEnricher(enrichers, activateListeners = undefined, onDropActor = undefined) {
-	enrichers = Array.isArray(enrichers) ? enrichers : [enrichers];
-	CONFIG.TextEditor.enrichers.push(...enrichers);
-	if (activateListeners) {
-		Hooks.on('renderActorSheetV2', activateListeners);
-		Hooks.on('renderItemSheetV2', activateListeners);
-	}
-	if (onDropActor) {
-		Hooks.on('dropActorSheetData', onDropActor);
-	}
-}
-
 function appendImageToAnchor(anchor, path) {
 	const img = document.createElement('img');
 	img.src = path;
@@ -406,9 +384,7 @@ export const InlineHelper = {
 	appendVariableToAnchor,
 	toBase64,
 	fromBase64,
-	capitalize,
 	registerCommand,
-	registerEnricher,
 	compose,
 	propertyPattern,
 	resolveDocument,

@@ -8,6 +8,7 @@ import { WeaponDataModel } from '../documents/items/weapon/weapon-data-model.mjs
 import { ClassFeatureTypeDataModel } from '../documents/items/classFeature/class-feature-type-data-model.mjs';
 import { WeaponModuleDataModel } from '../documents/items/classFeature/pilot/weapon-module-data-model.mjs';
 import { InlineEffects } from './inline-effects.mjs';
+import { StringUtils } from './string-utils.mjs';
 
 const INLINE_WEAPON = 'InlineWeapon';
 const className = `inline-weapon`;
@@ -39,7 +40,7 @@ const editorEnricher = {
 				anchor.dataset.label = label;
 				anchor.append(label);
 			} else {
-				anchor.append(choices.map(InlineHelper.capitalize).join(' '));
+				anchor.append(choices.map(StringUtils.capitalize).join(' '));
 			}
 
 			// CONFIG
@@ -106,7 +107,7 @@ function createAlterDamageTypeEffect(weapon, type, label) {
 	} else if (weapon.system instanceof ClassFeatureTypeDataModel && weapon.system.data instanceof WeaponModuleDataModel) {
 		key = 'system.data.damage.type';
 	}
-	const localizedDamageType = game.i18n.localize(`FU.Damage${InlineHelper.capitalize(type)}`);
+	const localizedDamageType = game.i18n.localize(`FU.Damage${StringUtils.capitalize(type)}`);
 
 	return {
 		fuid: `alter-damage-type-${type}`,
