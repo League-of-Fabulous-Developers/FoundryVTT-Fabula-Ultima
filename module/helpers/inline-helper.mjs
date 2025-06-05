@@ -303,6 +303,9 @@ function getRenderContext(element) {
  */
 function registerCommand(command) {
 	inlineCommands.push(command);
+	if (command.onDropActor) {
+		Hooks.on('dropActorSheetData', command.onDropActor);
+	}
 	CONFIG.TextEditor.enrichers.push(...command.enrichers);
 }
 

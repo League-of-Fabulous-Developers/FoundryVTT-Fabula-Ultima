@@ -16,6 +16,7 @@ const className = `inline-weapon`;
  * @type {TextEditorEnricherConfig}
  */
 const editorEnricher = {
+	id: 'InlineWeaponEnricher',
 	pattern: InlineHelper.compose('WEAPON', '(?<choices>(\\s*([a-zA-Z0]+))+)+', InlineEffects.configurationPropertyGroups),
 	enricher: (match, options) => {
 		const choices = match.groups.choices.split(' ');
@@ -49,45 +50,38 @@ const editorEnricher = {
 
 		return null;
 	},
+	onRender: onRender,
 };
 
 /**
- * @param {ChatMessage} document
- * @param {HTMLElement} html
+ * @param {HTMLElement} element
+ * @returns {Promise<void>}
  */
-function activateListeners(document, html) {
-	if (document instanceof DocumentSheet) {
-		document = document.document;
-	}
+async function onRender(element) {
+	const renderContext = await InlineHelper.getRenderContext(element);
 
-	// Ensure html is a native HTMLElement
-	const root = html instanceof HTMLElement ? html : html[0];
-
-	root.querySelectorAll('a.inline.inline-weapon[draggable]')?.forEach((el) => {
-		el.addEventListener('click', async function (event) {
-			const targets = await targetHandler();
-			if (targets.length > 0) {
-				const sourceInfo = InlineHelper.determineSource(document, this);
-				const choices = this.dataset.choices.split(' ');
-				const config = InlineHelper.fromBase64(this.dataset.config);
-				targets.forEach(async (target) => {
-					await applyEffectToWeapon(target, sourceInfo, choices, config);
-				});
+	element.addEventListener('click', async function (event) {
+		const targets = await targetHandler();
+		if (targets.length > 0) {
+			const choices = renderContext.dataset.choices.split(' ');
+			const config = InlineHelper.fromBase64(renderContext.dataset.config);
+			for (const target of targets) {
+				await applyEffectToWeapon(target, renderContext.sourceInfo, choices, config);
 			}
-		});
-		el.addEventListener('dragstart', (event) => {
-			if (!(el instanceof HTMLElement) || !event.dataTransfer) return;
+		}
+	});
+	element.addEventListener('dragstart', (event) => {
+		if (!event.dataTransfer) return;
 
-			const data = {
-				type: INLINE_WEAPON,
-				sourceInfo: InlineHelper.determineSource(document, this),
-				config: InlineHelper.fromBase64(this.dataset.config),
-				traits: this.dataset.choices,
-			};
+		const data = {
+			type: INLINE_WEAPON,
+			sourceInfo: renderContext.sourceInfo,
+			config: InlineHelper.fromBase64(renderContext.dataset.config),
+			traits: renderContext.dataset.choices,
+		};
 
-			event.dataTransfer.setData('text/plain', JSON.stringify(data));
-			event.stopPropagation();
-		});
+		event.dataTransfer.setData('text/plain', JSON.stringify(data));
+		event.stopPropagation();
 	});
 }
 
@@ -183,8 +177,10 @@ async function applyEffectToWeapon(actor, sourceInfo, choices, config) {
 	}
 }
 
+/**
+ * @type {FUInlineCommand}
+ */
 export const InlineWeapon = {
-	enricher: editorEnricher,
-	activateListeners,
+	enrichers: [editorEnricher],
 	onDropActor,
 };
