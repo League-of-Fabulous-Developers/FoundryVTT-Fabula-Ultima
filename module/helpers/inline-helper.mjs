@@ -270,54 +270,45 @@ let inlineCommands = [];
 /**
  * @typedef FUInlineCommand
  * @property {TextEditorEnricherConfig[]} enrichers
- * @property {FUClickEventHandler} onClick
- * @property {InlineEventListener} activateListeners
  * @property onDropActor
  */
 
 /**
- * @function FUClickEventHandler
- * @async
- * @param {PointerEvent} event
- * @param {Document} document
- * @returns {Boolean} True if the event was handled
+ * @typedef InlineRenderContext
+ * @property {Document} document
+ * @property {HTMLElement} target
+ * @property {InlineSourceInfo} sourceInfo
+ * @property {Object} dataset
  */
 
 /**
- * @description Initialize the setup for text editor enrichers in the system
+ * @param {HTMLEnrichedContentElement} element
+ * @returns InlineRenderContext
  */
-function initializeEnrichers() {
-	Hooks.once('ready', () => {
-		ui.chat.element?.addEventListener('click', async (event) => {
-			const chatMessage = event.target.closest('li.chat-message');
-			const messageId = chatMessage.dataset.messageId;
-			const message = ChatMessageHelper.fromId(messageId);
-
-			if (!(event.target instanceof HTMLElement)) {
-				return;
-			}
-
-			console.debug(`Handling click for chat message ${messageId}`);
-			for (const command of inlineCommands) {
-				const handled = await command.onClick(event, message);
-				if (handled) {
-					return;
-				}
-			}
-		});
-	});
+function getRenderContext(element) {
+	const document = InlineHelper.resolveDocument(element);
+	const target = element.firstElementChild;
+	const sourceInfo = InlineHelper.determineSource(document, target);
+	const dataset = target.dataset;
+	return {
+		document,
+		target,
+		sourceInfo,
+		dataset,
+	};
 }
 
 /**
  * @param {FUInlineCommand} command
  */
 function registerCommand(command) {
+	inlineCommands.push(command);
 	CONFIG.TextEditor.enrichers.push(...command.enrichers);
 }
 
 /**
  * @description Resolves the parent document from where an enriched html element came from
- * @param {HTMLElement} element
+ * @param {HTMLEnrichedContentElement} element
  * @returns {Document|ChatMessage}
  */
 function resolveDocument(element) {
@@ -413,10 +404,10 @@ export const InlineHelper = {
 	toBase64,
 	fromBase64,
 	capitalize,
-	initializeEnrichers,
 	registerCommand,
 	registerEnricher,
 	compose,
 	propertyPattern,
 	resolveDocument,
+	getRenderContext,
 };

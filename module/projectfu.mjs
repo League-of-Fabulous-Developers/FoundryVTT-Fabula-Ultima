@@ -275,11 +275,11 @@ Hooks.once('init', async () => {
 	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
 	// System Text Editor Enrichers
-	InlineHelper.initializeEnrichers();
 	InlineHelper.registerCommand(InlineDamage);
 	InlineHelper.registerCommand(InlineEffects);
 	InlineHelper.registerCommand(InlineResources);
-	InlineHelper.registerEnricher(InlineChecks.enricher, InlineChecks.activateListeners);
+	InlineHelper.registerCommand(InlineChecks);
+
 	InlineHelper.registerEnricher(InlineWeapon.enricher, InlineWeapon.activateListeners, InlineWeapon.onDropActor);
 	InlineHelper.registerEnricher(InlineAffinity.enricher, InlineAffinity.activateListeners, InlineAffinity.onDropActor);
 	InlineHelper.registerEnricher(InlineType.enricher, InlineType.activateListeners, InlineType.onDropActor);

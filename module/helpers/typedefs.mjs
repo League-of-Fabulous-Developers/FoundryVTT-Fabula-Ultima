@@ -159,3 +159,8 @@ export {};
  * @property {function(HTMLEnrichedContentElement)} [onRender]  An optional callback that is invoked when the
  *                                          enriched content is added to the DOM.
  */
+
+/**
+ * @typedef HTMLEnrichedContentElement
+ * @extends HTMLElement
+ */
