@@ -30,7 +30,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 			height: 1000,
 		},
 		actions: {
-			roll: FUStandardActorSheet.Roll,
 			spendMetaCurrency: FUStandardActorSheet.SpendMetaCurrency,
 			studyAction: FUStandardActorSheet.StudyAction,
 			guardAction: FUStandardActorSheet.PerformAction,
@@ -1437,6 +1436,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	/** Action handlers  */
 
 	static Roll(e, elem) {
+		console.log('Rolling:', e);
 		this._onRoll(e);
 	}
 
