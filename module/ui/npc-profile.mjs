@@ -113,6 +113,7 @@ export class NpcProfileWindow extends FUApplication {
 			};
 		});
 
+		Object.assign(context, this.data);
 		context.actor = actor;
 		context.name = actor.name;
 		context.img = actor.img;
