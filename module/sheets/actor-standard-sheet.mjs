@@ -30,7 +30,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 			height: 1000,
 		},
 		actions: {
-			roll: FUStandardActorSheet.Roll,
 			spendMetaCurrency: FUStandardActorSheet.SpendMetaCurrency,
 			studyAction: FUStandardActorSheet.StudyAction,
 			guardAction: FUStandardActorSheet.PerformAction,
@@ -45,6 +44,15 @@ export class FUStandardActorSheet extends FUActorSheet {
 			addBond: FUStandardActorSheet.AddBond,
 			deleteBond: FUStandardActorSheet.DeleteBond,
 			updateClock: FUStandardActorSheet.UpdateClock,
+
+			// Active effects
+			createEffect: FUStandardActorSheet.CreateEffect,
+			editEffect: FUStandardActorSheet.EditEffect,
+			deleteEffect: FUStandardActorSheet.DeleteEffect,
+			toggleEffect: FUStandardActorSheet.ToggleEffect,
+			copyInline: FUStandardActorSheet.CopyInline,
+			clearTempEffects: FUStandardActorSheet.ClearTempEffects,
+			rollEffect: FUStandardActorSheet.RollEffect,
 		},
 	};
 
@@ -476,7 +484,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @param {HTMLElement} html
 	 */
 	// activateListeners(html) {
-	_onRender(context, options) {
+	block_onRender(context, options) {
 		const html = this.element;
 		super._onRender(context, options);
 		// super.activateListeners(html);
@@ -490,17 +498,17 @@ export class FUStandardActorSheet extends FUActorSheet {
 			}
 		});
 
-		html.addEventListener('click', async (ev) => {
-			// Send active effect to chat
-			if (ev.target.closest('.effect-roll')) {
-				onManageActiveEffect(ev, this.actor);
-			}
+		// html.addEventListener('click', async (ev) => {
+		// 	// Send active effect to chat
+		// 	if (ev.target.closest('.effect-roll')) {
+		// 		onManageActiveEffect(ev, this.actor);
+		// 	}
 
-			// Active Effect management
-			if (ev.target.closest('.effect-control')) {
-				onManageActiveEffect(ev, this.actor);
-			}
-		});
+		// 	// Active Effect management
+		// 	if (ev.target.closest('.effect-control')) {
+		// 		onManageActiveEffect(ev, this.actor);
+		// 	}
+		// });
 
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
@@ -677,11 +685,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 		html.querySelectorAll('[data-action="togglePlantedMagiseed"][data-item-id]').forEach((el) => {
 			el.addEventListener('click', togglePlantedMagiseed.bind(this));
-		});
-
-		// Clear temporary effects
-		html.querySelectorAll('span[data-action="clearTempEffects"]').forEach((el) => {
-			el.addEventListener('click', this._onClearTempEffects.bind(this));
 		});
 
 		// Dropzone event listeners
@@ -1434,6 +1437,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 	/** Action handlers  */
 
 	static Roll(e, elem) {
+		console.log('Rolling:', e);
 		this._onRoll(e);
 	}
 
@@ -1504,5 +1508,33 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 		const clock = this.actor.items.get(itemId);
 		await this._updateClockProgress(clock, parseFloat(updateAmount), rightClick, dataPath);
+	}
+
+	static CreateEffect(e, elem) {
+		onManageActiveEffect(e, this.actor, 'create');
+	}
+
+	static EditEffect(e, elem) {
+		onManageActiveEffect(e, this.actor, 'edit');
+	}
+
+	static DeleteEffect(e, elem) {
+		onManageActiveEffect(e, this.actor, 'delete');
+	}
+
+	static ClearTempEffects(e, elem) {
+		this._onClearTempEffects(e);
+	}
+
+	static CopyInline(e, elem) {
+		onManageActiveEffect(e, this.actor, 'copy-inline');
+	}
+
+	static ToggleEffect(e, elem) {
+		onManageActiveEffect(e, this.actor, 'toggle');
+	}
+
+	static RollEffect(e, elem) {
+		onManageActiveEffect(e, this.actor, 'roll');
 	}
 }
