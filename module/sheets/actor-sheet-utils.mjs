@@ -879,7 +879,7 @@ async function _onItemCreate(ev, sheet) {
 async function _onItemCreateDialog(ev, sheet) {
 	ev.preventDefault();
 
-	const dataType = ev.currentTarget.dataset.type;
+	const dataType = ev.currentTarget.dataset.type ?? ev.srcElement.dataset.type;
 	let types;
 	let clock = false;
 

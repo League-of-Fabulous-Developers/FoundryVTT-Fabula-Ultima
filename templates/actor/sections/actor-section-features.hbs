@@ -117,6 +117,7 @@
                                         {{/if}}
                                         <a class="increment-button" data-type="resourceCounter"
                                            data-item-id="{{ item._id }}"
+                                           data-action="incrementButton"
                                            data-tooltip="{{localize
                                             'FU.IncreaseTooltip'}} ({{item.system.rp.step}})">+</a>
                                     </div>
@@ -137,6 +138,7 @@
                                     </div>
                                     <a class="increment-button align-right" data-type="clockCounter"
                                        data-item-id="{{ item._id }}"
+                                       data-action="incrementButton"
                                        data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progress.step}})">
                                         <i
                                          class="fas fa-plus"></i></a>
@@ -197,6 +199,7 @@
                                     <span>/</span>
                                     <span>{{ item.progressMax }}</span>
                                     <a class="increment-button" data-type="projectCounter" data-item-id="{{ item._id }}"
+                                    data-action="incrementButton"
                                        data-tooltip="{{localize
                                         'FU.IncreaseTooltip'}} ({{item.system.progress.step}})">+</a>
                                 </div>
@@ -253,6 +256,7 @@
                                          data=item.system.progress}}
                                     </div>
                                     <a class="increment-button align-right" data-type="clockCounter"
+                                    data-action="incrementButton"
                                        data-item-id="{{ item._id }}"> <i
                                      class="fas fa-plus"></i></a>
                                 </div>
