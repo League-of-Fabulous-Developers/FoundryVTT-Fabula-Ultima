@@ -1,0 +1,51 @@
+{{!-- General Info Section --}}
+<fieldset class="title-fieldset desc resource-content grid-span-2">
+
+	<div class="grid grid-3col">
+		<div class="resource-content flexcol flex-group-center">
+			<label for="system.attributes.primary" class="resource-label-sm">
+				{{localize 'FU.Primary'}}
+			</label>
+			<select name="system.attributes.primary" class="resource-inputs select-dropdown">
+				{{selectOptions attrAbbr selected=system.attributes.primary sort=true localize=true}}
+			</select>
+		</div>
+		<div class="resource-content flexcol flex-group-center">
+			<label for="system.attributes.secondary" class="resource-label-sm">
+				{{localize 'FU.Secondary'}}
+			</label>
+			<select name="system.attributes.secondary" class="resource-inputs select-dropdown">
+				{{selectOptions attrAbbr selected=system.attributes.secondary sort=true localize=true}}
+			</select>
+		</div>
+		<div class="resource-content flexcol flex-group-center">
+			<label class="resource-label-sm">{{localize 'FU.MagicCheckBonus'}}</label>
+			<input type="number" name="system.modifier" value="{{ system.modifier }}" class="resource-inputs" />
+		</div>
+	</div>
+
+	<div class="grid grid-2col">
+		<div class="resource-content flexcol flex-group-center">
+			<label class="resource-label-sm">{{localize 'FU.Potency'}}</label>
+			<select class="resource-inputs select-dropdown-m" name="system.potency.value">
+				{{selectOptions FU.potency selected=system.potency.value localize=true}}
+			</select>
+		</div>
+		<div class="resource-content flexcol flex-group-center">
+			<label class="resource-label-sm">{{localize 'FU.Area'}}</label>
+			<select class="resource-inputs select-dropdown-m" name="system.area.value">
+				{{selectOptions FU.area selected=system.area.value localize=true}}
+			</select>
+		</div>
+	</div>
+	<div class="grid grid-2col">
+		<div class="resource-content flexcol flex-group-center">
+			<label class="resource-label-sm">{{localize 'FU.MindPointCost'}}</label>
+			<input type="text" value="{{ system.mpCost.value }}" disabled />
+		</div>
+		<div class="resource-content flexcol flex-group-center">
+			<label class="resource-label-sm">{{localize 'FU.DL'}}</label>
+			<input type="text" value="{{ system.dLevel.value }}" disabled />
+		</div>
+	</div>
+</fieldset>

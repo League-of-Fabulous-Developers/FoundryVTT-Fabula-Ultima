@@ -1,6 +1,8 @@
 import { ProgressDataModel } from '../common/progress-data-model.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { FUItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof RuleDataModel) {
@@ -24,7 +26,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {ProgressDataModel} progress
  * @property {string} source
  */
-export class RuleDataModel extends foundry.abstract.TypeDataModel {
+export class RuleDataModel extends FUItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
@@ -40,5 +42,9 @@ export class RuleDataModel extends foundry.abstract.TypeDataModel {
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			source: new SchemaField({ value: new StringField() }),
 		};
+	}
+
+	get attributePartials() {
+		return [ItemPartialTemplates.controls, ItemPartialTemplates.progressField];
 	}
 }

@@ -1,0 +1,37 @@
+<fieldset class="title-fieldset desc resource-content">
+	<legend class="resource-label-full">
+		<label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize
+		 'FU.Accuracy'}}</label>
+	</legend>
+
+	<div class="grid grid-3col">
+		<div class="resource-content flexcol flex-group-center">
+			<label for="system.rollInfo.attributes.primary.value" class="resource-label-m">{{localize
+			 'FU.Primary'}}
+			</label>
+			<select name="system.rollInfo.attributes.primary.value"
+					class="resource-inputs select-dropdown" {{disabled (not system.hasRoll.value)}}>
+				{{selectOptions attrAbbr selected=system.rollInfo.attributes.primary.value sort=true
+								localize=true}}
+			</select>
+		</div>
+		<div class="resource-content flexcol flex-group-center">
+			<label for="system.rollInfo.attributes.secondary.value" class="resource-label-m">
+				{{localize 'FU.Secondary'}} </label>
+			<select name="system.rollInfo.attributes.secondary.value"
+					class="resource-inputs select-dropdown"
+					{{disabled (not system.hasRoll.value)}}>
+				{{selectOptions attrAbbr selected=system.rollInfo.attributes.secondary.value sort=true
+								localize=true}}
+			</select>
+		</div>
+		<div class="resource-content flexcol flex-group-center">
+			<label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
+			<input type="number" name="system.rollInfo.accuracy.value"
+				   value="{{ system.rollInfo.accuracy.value }}"
+				   class="resource-inputs"
+					{{disabled (not system.hasRoll.value)}}
+				   data-dtype="Number" />
+		</div>
+	</div>
+</fieldset>

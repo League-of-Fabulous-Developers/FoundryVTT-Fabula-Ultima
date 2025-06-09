@@ -1,6 +1,8 @@
 import { ClassMigrations } from './class-migrations.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { FUItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 const tagProperties = {
 	'benefits.resources.hp.value': 'FU.BenefitHp',
@@ -51,7 +53,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {boolean} benefits.rituals.spiritism.value
  * @property {string} source.value
  */
-export class ClassDataModel extends foundry.abstract.TypeDataModel {
+export class ClassDataModel extends FUItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
 		return {
@@ -96,6 +98,10 @@ export class ClassDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	get mastered() {
 		return this.level.value === this.level.max;
+	}
+
+	get attributePartials() {
+		return [ItemPartialTemplates.controls, ItemPartialTemplates.classBenefits];
 	}
 
 	static migrateData(source) {

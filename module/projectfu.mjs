@@ -36,12 +36,12 @@ import { onSocketLibReady } from './socket.mjs';
 import { statusEffects } from './documents/effects/statuses.mjs';
 
 import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-feature-type-data-model.mjs';
-import { FUClassFeatureSheet } from './documents/items/classFeature/class-feature-sheet.mjs';
+import { FUClassFeatureSheet } from './sheets/class-feature-sheet.mjs';
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
 
 import { OptionalFeatureTypeDataModel } from './documents/items/optionalFeature/optional-feature-type-data-model.mjs';
-import { FUOptionalFeatureSheet } from './documents/items/optionalFeature/optional-feature-sheet.mjs';
+import { FUOptionalFeatureSheet } from './sheets/optional-feature-sheet.mjs';
 import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './documents/items/optionalFeature/optional-feature-data-model.mjs';
 import { registerOptionalFeatures } from './documents/items/optionalFeature/optional-features.mjs';
 

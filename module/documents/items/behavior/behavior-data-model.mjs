@@ -1,5 +1,7 @@
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { FUItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof BehaviorDataModel) {
@@ -17,7 +19,7 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
  * @property {number} weight.value
  * @property {string} source.value
  */
-export class BehaviorDataModel extends foundry.abstract.TypeDataModel {
+export class BehaviorDataModel extends FUItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField } = foundry.data.fields;
 		return {
@@ -31,5 +33,9 @@ export class BehaviorDataModel extends foundry.abstract.TypeDataModel {
 			weight: new SchemaField({ value: new NumberField({ initial: 1, min: 1, integer: true, nullable: false }) }),
 			source: new SchemaField({ value: new StringField() }),
 		};
+	}
+
+	get attributePartials() {
+		return [ItemPartialTemplates.controls, ItemPartialTemplates.behavior];
 	}
 }

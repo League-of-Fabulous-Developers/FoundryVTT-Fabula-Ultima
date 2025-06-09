@@ -61,7 +61,7 @@ function createTemporaryEffect(owner, effectType, name) {
 	};
 	return owner.createEmbeddedDocuments('ActiveEffect', [
 		{
-			label: name ?? game.i18n.localize('FU.NewEffect'),
+			name: name ?? game.i18n.localize('FU.NewEffect'),
 			img: 'icons/svg/aura.svg',
 			source: owner.uuid,
 			system: system,
