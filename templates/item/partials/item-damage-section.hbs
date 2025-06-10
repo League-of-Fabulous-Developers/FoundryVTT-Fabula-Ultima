@@ -1,8 +1,8 @@
-<fieldset class="title-fieldset desc ">
+<fieldset class="title-fieldset desc resource-content">
     <legend>
         <label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize 'FU.Damage'}}</label>
     </legend>
-    <div class="item-settings  flex-group-center">
+    <div class="item-settings grid grid2-col">
         <label class="checkbox resource-label-sm">
             <span>{{localize 'FU.HasDamage'}}</span>
             <input type="checkbox" name="system.damage.hasDamage" {{ checked system.damage.hasDamage }} {{disabled (not system.useWeapon.accuracy)}} />

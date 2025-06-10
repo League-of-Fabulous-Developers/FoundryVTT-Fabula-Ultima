@@ -4,6 +4,8 @@ import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { deprecationNotice } from '../../../helpers/deprecation-helper.mjs';
 import { SETTINGS } from '../../../settings.js';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { FUItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ProjectDataModel) {
@@ -61,7 +63,7 @@ const usesCosts = { consumable: 1, permanent: 5 };
  * @property {number} clock.value
  * @property {string} clock.value
  */
-export class ProjectDataModel extends foundry.abstract.TypeDataModel {
+export class ProjectDataModel extends FUItemDataModel {
 	static {
 		deprecationNotice(this, 'clock.value');
 		deprecationNotice(this, 'hasClock.value');
@@ -139,5 +141,9 @@ export class ProjectDataModel extends foundry.abstract.TypeDataModel {
 			const params = dailyProgressRelevantKeys.map((key) => (foundry.utils.hasProperty(changes, key) ? foundry.utils.getProperty(changes, key) : foundry.utils.getProperty(this.parent, key)));
 			foundry.utils.setProperty(changes, 'system.progress.step', this.#calculateDailyProgress(...params));
 		}
+	}
+
+	get attributePartials() {
+		return [ItemPartialTemplates.controls, ItemPartialTemplates.flawedField, ItemPartialTemplates.project];
 	}
 }

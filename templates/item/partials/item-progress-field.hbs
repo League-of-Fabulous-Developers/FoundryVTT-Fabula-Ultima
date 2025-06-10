@@ -1,0 +1,25 @@
+{{#if system.hasClock.value}}
+	<fieldset class="title-fieldset desc resource-content">
+		<legend>
+			<i class="fas fa-clock"></i>
+			<label class="resource-label-m">{{localize 'FU.Clock'}}</label>
+		</legend>
+		<div class="grid grid-3col">
+			<div class="resource-content flexcol flex-group-center">
+				<label class="resource-label-m">{{localize 'FU.Current'}}</label>
+				<input type="number" name="system.progress.current" value="{{ system.progress.current }}"
+					   max="{{ system.progress.max }}" class="resource-inputs select-dropdown-m" />
+			</div>
+			<div class="resource-content flexcol flex-group-center">
+				<label class="resource-label-m">{{localize 'FU.Step'}}</label>
+				<input type="number" name="system.progress.step" value="{{ system.progress.step }}"
+					   class="resource-inputs select-dropdown-m" />
+			</div>
+			<div class="resource-content flexcol flex-group-center">
+				<label class="resource-label-m">{{localize 'FU.Max'}}</label>
+				<input type="number" value="{{ system.progress.max }}" class="resource-inputs select-dropdown-m"
+					   disabled>
+			</div>
+		</div>
+	</fieldset>
+{{/if}}

@@ -13,6 +13,8 @@ import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { ActionCostDataModel } from '../common/action-cost-data-model.mjs';
 import { TargetingDataModel } from '../common/targeting-data-model.mjs';
+import { FUItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item, flags) => {
 	if (item?.system instanceof MiscAbilityDataModel) {
@@ -99,7 +101,7 @@ const ABILITY_USED_WEAPON = 'AbilityUsedWeapon';
  * @property {TargetingDataModel} targeting
  * @property {Set<String>} traits
  */
-export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
+export class MiscAbilityDataModel extends FUItemDataModel {
 	static {
 		deprecationNotice(this, 'rollInfo.useWeapon.accuracy.value', 'useWeapon.accuracy');
 		deprecationNotice(this, 'rollInfo.useWeapon.damage.value', 'useWeapon.damage');
@@ -270,5 +272,19 @@ export class MiscAbilityDataModel extends foundry.abstract.TypeDataModel {
 			});
 			check.additionalData[ABILITY_USED_WEAPON] = this.parent.uuid;
 		};
+	}
+
+	get attributePartials() {
+		return [
+			ItemPartialTemplates.controls,
+			ItemPartialTemplates.opportunityField,
+			ItemPartialTemplates.actionCost,
+			ItemPartialTemplates.accuracy,
+			ItemPartialTemplates.damage,
+			ItemPartialTemplates.targeting,
+			ItemPartialTemplates.resourcePoints,
+			ItemPartialTemplates.behaviorField,
+			ItemPartialTemplates.progressClock,
+		];
 	}
 }
