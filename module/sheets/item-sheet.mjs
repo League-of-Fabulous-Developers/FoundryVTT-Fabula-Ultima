@@ -1,140 +1,312 @@
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../pipelines/effects.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
-import { FU } from '../helpers/config.mjs';
-import { InlineHelper } from '../helpers/inline-helper.mjs';
 import * as CONFIG from '../helpers/config.mjs';
+import { FU, systemPath } from '../helpers/config.mjs';
+import { InlineHelper } from '../helpers/inline-helper.mjs';
 import { Traits } from '../pipelines/traits.mjs';
+import { SheetUtils } from './sheet-utils.mjs';
+
+import { ItemPartialTemplates } from '../documents/items/item-partial-templates.mjs';
+
+const { api, sheets } = foundry.applications;
 
 /**
  * @description Extend the basic ItemSheet with some very simple modifications
  * @property {FUItem} item
+ * @property {FUItemDataModel} system
  * @extends {ItemSheet}
  */
-export class FUItemSheet extends foundry.appv1.sheets.ItemSheet {
+export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
+	/**
+	 * @returns {FUItemDataModel}
+	 */
+	get system() {
+		return this.item.system;
+	}
+
 	// Initialize drag counter
 	dragCounter = 0;
 
-	/** @override */
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['projectfu', 'sheet', 'item', 'backgroundstyle'],
-			width: 700,
+	/**
+	 * @inheritDoc
+	 * @type ApplicationConfiguration
+	 * @override
+	 */
+	static DEFAULT_OPTIONS = {
+		classes: ['projectfu', 'sheet', 'item', 'backgroundstyle'],
+		actions: {
+			regenerateFuid: this.#regenerateFuid,
+		},
+		scrollY: ['.sheet-body'],
+		position: { width: 700, height: 'auto' },
+		window: {
+			resizable: true,
+		},
+		form: {
+			submitOnChange: true,
+		},
+		// TODO: Probably doesn't do anything
+		dragDrop: [
+			{
+				dragSelector: '.directory-item.document.item, .effects-list .effect', // Selector for draggable items
+				dropSelector: '.desc.drop-zone', // Selector for item sheet
+			},
+		],
+	};
+
+	/** @override
+	 * @type Record<ApplicationTab>
+	 * */
+	static TABS = {
+		primary: {
 			tabs: [
-				{
-					navSelector: '.sheet-tabs',
-					contentSelector: '.sheet-body',
-					initial: 'description',
-				},
+				{ id: 'description', label: 'FU.Description', icon: 'ra ra-double-team' },
+				{ id: 'attributes', label: 'FU.Attributes', icon: 'ra ra-hand' },
+				{ id: 'effects', label: 'FU.Effects', icon: 'ra ra-hand' },
 			],
-			dragDrop: [
-				{
-					dragSelector: '.directory-item.document.item, .effects-list .effect', // Selector for draggable items
-					dropSelector: '.desc.drop-zone', // Selector for item sheet
-				},
-			],
-		});
+			initial: 'description',
+		},
+	};
+
+	/** @inheritdoc */
+	_prepareTabs(group) {
+		const tabs = super._prepareTabs(group);
+
+		switch (this.item.type) {
+			case 'effect':
+				delete tabs.attributes;
+				delete tabs.description;
+				this.tabGroups.primary = 'effects';
+				break;
+
+			default:
+				break;
+		}
+
+		return tabs;
 	}
-
-	/** @override */
-	get template() {
-		const path = 'systems/projectfu/templates/item';
-		// Return a single sheet for all item types.
-		// return `${path}/item-sheet.hbs`;
-
-		// Alternatively, you could use the following return statement to do a
-		// unique item sheet by type, like `weapon-sheet.hbs`.
-		return `${path}/item-${this.item.type}-sheet.hbs`;
-	}
-
-	/* -------------------------------------------- */
 
 	/**
-	 * @remarks Used for rendering the sheets
+	 * @description The default template parts
+	 * @override
+	 * @type Record<HandlebarsTemplatePart>
 	 */
+	static PARTS = {
+		header: { template: systemPath('templates/item/parts/item-header.hbs') },
+		tabs: { template: systemPath(`templates/item/parts/item-tabs.hbs`) },
+		description: { template: systemPath(`templates/item/parts/item-description.hbs`) },
+		attributes: {
+			template: systemPath(`templates/item/parts/item-attributes.hbs`),
+			templates: Object.values(ItemPartialTemplates).map((pt) => pt.template),
+		},
+		effects: { template: systemPath(`templates/item/parts/item-effects.hbs`) },
+	};
+
+	/** @inheritdoc */
+	async _preparePartContext(partId, ctx, options) {
+		const context = await super._preparePartContext(partId, ctx, options);
+		// IMPORTANT: Set the active tab
+		if (partId in context.tabs) {
+			context.tab = context.tabs[partId];
+		}
+		switch (partId) {
+			case 'header':
+				context.traits = Object.keys(Traits);
+				context.traitOptions = context.traits.map((key) => ({
+					label: key,
+					value: key,
+				}));
+				break;
+
+			case 'tabs':
+				context.tabs = this._prepareTabs('primary');
+				context.consumableType = CONFIG.FU.consumableType;
+				context.heroicType = CONFIG.FU.heroicType;
+				context.miscCategories = CONFIG.FU.miscCategories;
+				context.treasureType = CONFIG.FU.treasureType;
+				break;
+
+			case 'description':
+				context.enriched = await SheetUtils.prepareEnrichedTextEditor(this, 'system.description');
+				break;
+
+			case 'attributes':
+				{
+					context.attrAbbr = CONFIG.FU.attributeAbbreviations;
+					context.damageTypes = CONFIG.FU.damageTypes;
+					context.wpnType = CONFIG.FU.weaponTypes;
+					context.handedness = CONFIG.FU.handedness;
+					context.weaponCategoriesWithoutCustom = CONFIG.FU.weaponCategoriesWithoutCustom;
+					context.defenses = CONFIG.FU.defenses;
+					context.resAbbr = CONFIG.FU.resourcesAbbr;
+					context.targetingRules = CONFIG.FU.targetingRules;
+					context.attributePartials = this.generateAttributePartials();
+				}
+				break;
+
+			case 'effects':
+				{
+					// Prepare active effects for easier access
+					context.effects = prepareActiveEffectCategories(this.item.effects);
+
+					// Combine all effects into a single array
+					context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];
+
+					// Enrich each effect's description
+					const actor = this.object?.parent ?? null;
+					for (const effect of context.allEffects) {
+						effect.enrichedDescription = effect.description
+							? await TextEditor.enrichHTML(effect.description, {
+									secrets: actor?.isOwner ?? false,
+									rollData: actor ? actor.getRollData() : {},
+									relativeTo: actor,
+								})
+							: '';
+					}
+				}
+				break;
+		}
+		return context;
+	}
+
+	generateAttributePartials() {
+		let attributePartials = {
+			flex: [],
+			settings: [],
+			section: [],
+			grid: [],
+		};
+		for (const tp of this.system.attributePartials) {
+			if (tp.group) {
+				attributePartials[tp.group].push(tp.template);
+			} else {
+				attributePartials.flex.push(tp.template);
+			}
+		}
+		return attributePartials;
+	}
+
+	/**
+	 * @description Allow subclasses to dynamically configure render parts.
+	 * @param {HandlebarsRenderOptions} options
+	 * @returns {Record<string, HandlebarsTemplatePart>}
+	 * @protected
+	 */
+	_configureRenderParts(options) {
+		const parts = super._configureRenderParts(options);
+		//parts.main.template = systemPath(`item-${this.item.type}-sheet.hbs`);
+		return parts;
+	}
+
+	/**
+	 * Modify the provided options passed to a render request.
+	 * @param {RenderOptions} options                 Options which configure application rendering behavior
+	 * @protected
+	 */
+	_configureRenderOptions(options) {
+		super._configureRenderOptions(options);
+	}
+
 	/** @override */
-	async getData() {
-		// Retrieve base data structure.
-		const context = super.getData();
+	async _prepareContext(options) {
+		const context = await super._prepareContext(options);
 
 		// Use a safe clone of the actor data for further operations.
 		const actor = this.object?.parent ?? null;
-		const actorData = actor ? actor.toObject(false) : null;
-
-		// Use a safe clone of the item data for further operations.
-		const itemData = context.item;
-
-		// Retrieve the roll data for TinyMCE editors.
-		context.rollData = {};
 		if (actor) {
 			context.rollData = actor.getRollData();
+		} else {
+			// ?? Retrieve the roll data for TinyMCE editors.
+			context.rollData = {};
 		}
+		context.actor = actor ? actor.toObject(false) : null;
 
-		// Add the actor's data to context.data for easier access, as well as flags.
-		context.system = itemData.system;
-		context.flags = itemData.flags;
-
-		// Prepare active effects for easier access
-		context.effects = prepareActiveEffectCategories(this.item.effects);
-
-		// Combine all effects into a single array
-		context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];
-
-		// Enrich each effect's description
-		for (const effect of context.allEffects) {
-			effect.enrichedDescription = effect.description
-				? await TextEditor.enrichHTML(effect.description, {
-						secrets: actor?.isOwner ?? false,
-						rollData: actor ? actor.getRollData() : {},
-						relativeTo: actor,
-					})
-				: '';
-		}
-
-		// Add CONFIG data required
-		context.attrAbbr = CONFIG.FU.attributeAbbreviations;
-		context.damageTypes = CONFIG.FU.damageTypes;
-		context.wpnType = CONFIG.FU.weaponTypes;
-		context.handedness = CONFIG.FU.handedness;
-		context.weaponCategoriesWithoutCustom = CONFIG.FU.weaponCategoriesWithoutCustom;
-		context.heroicType = CONFIG.FU.heroicType;
-		context.miscCategories = CONFIG.FU.miscCategories;
-		context.consumableType = CONFIG.FU.consumableType;
-		context.treasureType = CONFIG.FU.treasureType;
-		context.defenses = CONFIG.FU.defenses;
-		context.resAbbr = CONFIG.FU.resourcesAbbr;
-		context.targetingRules = CONFIG.FU.targetingRules;
-		context.traits = Object.keys(Traits);
-		context.traitOptions = context.traits.map((key) => ({
-			label: key,
-			value: key,
-		}));
-
-		// Add the actor object to context for easier access
-		context.actor = actorData;
-
-		// Enriches description fields within the context object
-		context.enrichedHtml = {
-			description: await TextEditor.enrichHTML(context.system.description ?? '', {
-				secrets: actor?.isOwner ?? false,
-				rollData: actor ? actor.getRollData() : {},
-				relativeTo: actor,
-			}),
-		};
-
+		// Use a safe clone of the item data for further operations.
+		context.item = this.item;
+		context.system = context.item.system;
+		context.flags = context.item.flags;
 		context.FU = FU;
 
 		return context;
 	}
 
 	/* -------------------------------------------- */
+	/**
+	 * Attach event listeners to rendered template parts.
+	 * @param {string} partId The id of the part being rendered
+	 * @param {HTMLElement} html The rendered HTML element for the part
+	 * @param {ApplicationRenderOptions} options Rendering options passed to the render method
+	 * @protected
+	 */
+	_attachPartListeners(partId, html, options) {
+		super._attachPartListeners(partId, html, options);
+		switch (partId) {
+			case 'attributes':
+				{
+					// Martial/Offensive Toggle
+					const offensiveHeader = html.querySelector('#offensive-header');
+					const martialHeader = html.querySelector('#martial-header');
+					offensiveHeader?.addEventListener('click', () => this._toggleMartial('offensive'));
+					martialHeader?.addEventListener('click', () => this._toggleMartial('martial'));
+				}
+				break;
 
-	/** @override */
-	activateListeners(html) {
-		super.activateListeners(html);
+			case 'effects':
+				{
+					// Render the active effect sheet for viewing/editing when middle-clicking
+					html.querySelectorAll('.effect').forEach((el) => {
+						el.addEventListener('mouseup', (ev) => {
+							if (ev.button === 1 && !ev.target.classList.contains('effect-control')) {
+								const simulatedEvent = {
+									preventDefault: () => {},
+									currentTarget: {
+										dataset: { action: 'edit' },
+										closest: () => el,
+										classList: {
+											contains: (cls) => el.classList.contains(cls),
+										},
+									},
+								};
+								onManageActiveEffect(simulatedEvent, this.item);
+							}
+						});
+					});
+
+					// Active Effect Roll
+					html.querySelectorAll('.effect-roll').forEach((el) => {
+						el.addEventListener('click', (ev) => {
+							return onManageActiveEffect(ev, this.item);
+						});
+					});
+
+					// Everything below here is only needed if the sheet is editable
+					if (!this.isEditable) {
+						return;
+					}
+
+					// Active Effect management
+					html.querySelectorAll('.effect-control').forEach((el) => {
+						el.addEventListener('click', (ev) => {
+							return onManageActiveEffect(ev, this.item);
+						});
+					});
+				}
+				break;
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 * @override
+	 */
+	_attachFrameListeners() {
+		super._attachFrameListeners();
+		const html = this.element;
 
 		// [PDFPager Support] Opening Journal PDF pages from PDF Code
-		$('#pdfLink').click(function () {
-			const inputValue = $('input[name="system.source.value"]').val();
+		document.getElementById('pdfLink')?.addEventListener('click', () => {
+			const input = document.querySelector('input[name="system.source.value"]');
+			const inputValue = input?.value || '';
 			const match = inputValue.match(/([A-Za-z]+)\s*(\d+)/);
 
 			if (match) {
@@ -152,78 +324,42 @@ export class FUItemSheet extends foundry.appv1.sheets.ItemSheet {
 			}
 		});
 
-		// Render the active effect sheet for viewing/editing when middle-clicking
-		html.find('.effect').mouseup((ev) => {
-			if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
-				const li = $(ev.currentTarget);
-				const simulatedEvent = {
-					preventDefault: () => {},
-					currentTarget: {
-						dataset: { action: 'edit' },
-						closest: () => li[0],
-						classList: {
-							contains: (cls) => li.hasClass(cls),
-						},
-					},
-				};
-
-				onManageActiveEffect(simulatedEvent, this.item);
-			}
-		});
-
-		// Active Effect Roll management
-		html.on('click', '.effect-roll', (ev) => onManageActiveEffect(ev, this.item));
-
-		// -------------------------------------------------------------
-		// Everything below here is only needed if the sheet is editable
-		if (!this.isEditable) return;
-
-		// Roll handlers, click handlers, etc. would go here.
-
-		// Cast Spell Button
-
-		html.find('.regenerate-fuid-button').click(async (event) => {
-			event.preventDefault();
-
-			// Call the regenerateFUID method on the item
-			const newFUID = await this.item.regenerateFUID();
-
-			if (newFUID) {
-				this.render();
-			}
-		});
-
-		// Active Effect management
-		html.on('click', '.effect-control', (ev) => onManageActiveEffect(ev, this.item));
-
-		// Martial/Offensive Toggle
-		html.find('#offensive-header').click(this._toggleMartial.bind(this, 'offensive'));
-		html.find('#martial-header').click(this._toggleMartial.bind(this, 'martial'));
-
 		// dropzone event listeners
-		const dropZone = html.find('.desc.drop-zone');
-		dropZone.on('dragenter', this._onDragEnter.bind(this));
-		dropZone.on('dragleave', this._onDragLeave.bind(this));
-		dropZone.on('drop', this._onDropReset.bind(this));
+		const dropZone = html.querySelector('.desc.drop-zone');
+		dropZone?.addEventListener('dragenter', this._onDragEnter.bind(this));
+		dropZone?.addEventListener('dragleave', this._onDragLeave.bind(this));
+		dropZone?.addEventListener('drop', this._onDropReset.bind(this));
 
+		// TODO: Move to header part?
 		// Render traits
-		//const traits = html.find('#traits');
-		//traits.tags = this.item.system.traits;
-		const traitsSelector = html.find('#traits-selector');
-		traitsSelector.on('change', (event) => {
-			const selectedIndex = traitsSelector.val();
+		const traitsSelector = html.querySelector('#traits-selector');
+		traitsSelector?.addEventListener('change', (event) => {
+			const selectedIndex = traitsSelector.selectedIndex;
 			const selectedValue = Object.keys(Traits)[selectedIndex];
 			const currentTraits = this.item.system.traits;
 			if (selectedValue && !currentTraits.includes(selectedValue)) {
 				console.debug(`Adding trait '${selectedValue}' to ${this.item.name}`);
-				const updatedTraits = currentTraits.push(selectedValue);
-				this.item.update({ ['system.traits']: updatedTraits });
+				currentTraits.push(selectedValue);
+				this.item.update({ ['system.traits']: currentTraits });
 			}
-			traitsSelector.val('');
+			traitsSelector.value = '';
 		});
 	}
 
 	/* -------------------------------------------- */
+
+	/**
+	 * @this FUItemSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async #regenerateFuid(event, target) {
+		const newFUID = await this.item.regenerateFUID();
+		if (newFUID) {
+			this.render();
+		}
+	}
 
 	_onDragEnter(event) {
 		event.preventDefault();
@@ -249,7 +385,9 @@ export class FUItemSheet extends foundry.appv1.sheets.ItemSheet {
 
 	_onDragStart(event) {
 		const li = event.currentTarget;
-		if ('link' in event.target.dataset) return;
+		if ('link' in event.target.dataset) {
+			return;
+		}
 
 		// Create drag data
 		let dragData;
@@ -260,7 +398,9 @@ export class FUItemSheet extends foundry.appv1.sheets.ItemSheet {
 			dragData = effect.toDragData();
 		}
 
-		if (!dragData) return;
+		if (!dragData) {
+			return;
+		}
 
 		// Set data transfer
 		event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
@@ -280,8 +420,12 @@ export class FUItemSheet extends foundry.appv1.sheets.ItemSheet {
 		}
 		if (data.type === 'ActiveEffect') {
 			const effect = await ActiveEffect.implementation.fromDropData(data);
-			if (!this.item.isOwner || !effect) return false;
-			if (effect.target === this.item) return false;
+			if (!this.item.isOwner || !effect) {
+				return false;
+			}
+			if (effect.target === this.item) {
+				return false;
+			}
 			return ActiveEffect.create(effect.toObject(), { parent: this.item });
 		}
 	}

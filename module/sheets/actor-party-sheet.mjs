@@ -27,11 +27,11 @@ import { FUActorSheet } from './actor-sheet.mjs';
 export class FUPartySheet extends FUActorSheet {
 	/**
 	 * @inheritDoc
+	 * @type ApplicationConfiguration
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
 		classes: [],
-		resizable: true,
 		actions: {
 			revealMetaCurrency: this.#revealMetaCurrency,
 			revealActor: this.#revealActor,
@@ -49,6 +49,7 @@ export class FUPartySheet extends FUActorSheet {
 		position: { width: 920, height: 1000 },
 		window: {
 			contentClasses: ['party'],
+			resizable: true,
 		},
 		dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
 	};

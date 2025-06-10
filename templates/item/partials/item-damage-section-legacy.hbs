@@ -1,0 +1,29 @@
+<fieldset class="title-fieldset desc resource-content">
+	<legend class="resource-label-full">
+		<label class="resource-label-m"><i class="fas fa-dice icon"></i>{{localize
+		 'FU.Damage'}}</label>
+	</legend>
+
+	<div class="item-settings">
+		<label class="checkbox resource-label-m"> <span>{{localize 'FU.HasDamage'}}</span><input
+		 type="checkbox" name="system.rollInfo.damage.hasDamage.value" {{ checked
+			 system.rollInfo.damage.hasDamage.value }} /> </label>
+	</div>
+
+	<div class="grid grid-2col">
+		<div class="resource-content flexcol flex-group-center">
+			<label for="system.rollInfo.damage.type.value" class="resource-label-m flexlarge">{{localize
+			 'FU.DamageType'}} </label>
+			<select name="system.rollInfo.damage.type.value" class="resource-inputs select-dropdown-m">
+				{{selectOptions damageTypes selected=system.rollInfo.damage.type.value sort=true
+								localize=true}}
+			</select>
+		</div>
+		<div class="resource-content flexcol flex-group-center">
+			<label class="resource-label-m">{{localize 'FU.Bonus'}}</label>
+			<input type="number" name="system.rollInfo.damage.value"
+				   value="{{ system.rollInfo.damage.value }}" class="resource-inputs"
+				   data-dtype="Number" />
+		</div>
+	</div>
+</fieldset>

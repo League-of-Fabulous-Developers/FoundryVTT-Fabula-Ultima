@@ -6,6 +6,8 @@ import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { FUItemDataModel } from '../item-data-model.mjs';
+import { ItemPartialTemplates } from '../item-partial-templates.mjs';
 
 /**
  * @param {CheckV2} check
@@ -87,7 +89,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {string} source.value
  * @property {boolean} rollInfo.useWeapon.hrZero.value
  */
-export class WeaponDataModel extends foundry.abstract.TypeDataModel {
+export class WeaponDataModel extends FUItemDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, BooleanField, NumberField, EmbeddedDataField } = foundry.data.fields;
 		return {
@@ -146,5 +148,17 @@ export class WeaponDataModel extends foundry.abstract.TypeDataModel {
 	 */
 	async roll(modifiers) {
 		return ChecksV2.accuracyCheck(this.parent.actor, this.parent, CheckConfiguration.initHrZero(modifiers.shift));
+	}
+
+	get attributePartials() {
+		return [
+			ItemPartialTemplates.controls,
+			ItemPartialTemplates.weaponSettings,
+			ItemPartialTemplates.qualityCost,
+			ItemPartialTemplates.weapon,
+			ItemPartialTemplates.attackAccuracy,
+			ItemPartialTemplates.attackDamage,
+			ItemPartialTemplates.behaviorField,
+		];
 	}
 }

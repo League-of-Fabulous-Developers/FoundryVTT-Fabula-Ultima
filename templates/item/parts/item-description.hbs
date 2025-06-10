@@ -1,0 +1,15 @@
+<div class="tab description {{tab.cssClass}}"  data-group="primary" data-tab="description">
+	<fieldset class="desc title-fieldset resource-content">
+		<label class='resource-label-m' data-tooltip="{{localize 'FU.RecoveryDescriptionTooltip'}}">
+			{{localize 'FU.Description'}}
+			<i class="fas fa-info-circle"></i>
+		</label>
+
+		{{#if system.schema.fields.description}}
+			{{formInput system.schema.fields.description
+						toggled=true
+						value=system.description
+						enriched=enriched.description}}
+		{{/if}}
+	</fieldset>
+</div>
