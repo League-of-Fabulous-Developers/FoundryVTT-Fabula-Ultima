@@ -5,7 +5,7 @@
         <div class="grid grid-8col">
             {{#each statusEffectToggles as |statusEffect|}}
                 <a class="status-effect-toggle {{#if statusEffect.active}}active{{/if}} {{#if statusEffect.immune}}immune{{/if}}"
-                   data-status-id="{{statusEffect.id}}">
+                   data-status-id="{{statusEffect.id}}" data-action="toggleStatusEffect">
                     <img src="{{statusEffect.img}}" data-tooltip="{{statusEffect.tooltip}}">
                 </a>
             {{/each}}
@@ -20,17 +20,17 @@
     <div id="roll-section" class="resource-content flex-group-center desc grid grid-3col">
         {{!-- Group Check --}}
         <div class="flexcol rollable spin2win" data-roll-type="group-check"
-             data-tooltip="{{localize 'FU.GroupCheckTooltip'}}">
+             data-tooltip="{{localize 'FU.GroupCheckTooltip'}}" data-action="roll">
             <i class="fas fa-dice-d20 spin2win ra-2x"></i>
             <label class="resource-label-sm">{{localize 'FU.GroupCheck'}}</label>
         </div>
         {{!-- Roll Check --}}
-        <div class="flexcol rollable spin2win" data-roll-type="roll-check">
+        <div class="flexcol rollable spin2win" data-roll-type="roll-check" data-action="roll">
             <i class="fas fa-dice-d20 spin2win ra-2x"></i>
             <label class="resource-label-sm">{{localize 'FU.RollCheck'}}</label>
         </div>
         {{!-- Open Check --}}
-        <div class="flexcol rollable spin2win" data-roll-type="open-check">
+        <div class="flexcol rollable spin2win" data-roll-type="open-check" data-action="roll">
             <i class="fas fa-dice-d20 spin2win ra-2x"></i>
             <label class="resource-label-sm">{{localize 'FU.OpenCheck'}}</label>
         </div>

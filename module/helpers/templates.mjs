@@ -6,16 +6,8 @@
 export const preloadHandlebarsTemplates = async function () {
 	return foundry.applications.handlebars.loadTemplates([
 		// Actor Section partials.
-		'systems/projectfu/templates/actor/sections/actor-section-classes.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-features.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-spells.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-items.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-items-treasure.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-items-consumable.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-combat.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-notes.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-behavior.hbs',
-		'systems/projectfu/templates/actor/sections/actor-section-settings.hbs',
 		'systems/projectfu/templates/actor/sections/actor-section-inventory.hbs',
 		'systems/projectfu/templates/actor/sections/actor-spell-list.hbs',
 		'systems/projectfu/templates/actor/sections/actor-attack-list.hbs',
@@ -32,7 +24,6 @@ export const preloadHandlebarsTemplates = async function () {
 		'systems/projectfu/templates/actor/partials/actor-attributes.hbs',
 		'systems/projectfu/templates/actor/partials/actor-attributes-readonly.hbs',
 		'systems/projectfu/templates/actor/partials/actor-defensive.hbs',
-		'systems/projectfu/templates/actor/partials/actor-header.hbs',
 		'systems/projectfu/templates/actor/partials/actor-resources.hbs',
 		'systems/projectfu/templates/actor/partials/actor-traits.hbs',
 		'systems/projectfu/templates/actor/partials/actor-derived-stats.hbs',

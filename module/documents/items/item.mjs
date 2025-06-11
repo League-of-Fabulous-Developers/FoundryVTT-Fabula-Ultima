@@ -5,14 +5,6 @@ import { FUHooks } from '../../hooks.mjs';
 import { FUActor } from '../actors/actor.mjs';
 
 /**
- * @typedef KeyboardModifiers
- * @property {boolean} shift
- * @property {boolean} alt
- * @property {boolean} ctrl
- * @property {boolean} meta
- */
-
-/**
  * @typedef Item
  * @property {Actor} actor
  * @property {String} uuid

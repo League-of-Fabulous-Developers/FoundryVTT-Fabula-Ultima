@@ -33,11 +33,11 @@ function localize(key, data = undefined) {
 }
 
 /**
- * @param {String} word
+ * @param {String|*} input
  * @returns {String}
  */
-function capitalize(word) {
-	return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+function capitalize(input) {
+	return input === typeof String ? input.charAt(0).toUpperCase() + input.slice(1).toLowerCase() : input;
 }
 
 export const StringUtils = Object.freeze({

@@ -13,11 +13,13 @@
                     arr=item.progressArr
                     data=item.system.progress}}
                 <a class="increment-button" data-type="clockCounter" data-item-id="{{ item._id }}"
-                    data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progress.step}})">
+                    data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progress.step}})" data-action="updateClock" data-update-amount="1">
                     <i class="fas fa-plus"></i></a>
                 <a class="decrement-button" data-type="clockCounter" data-item-id="{{ item._id }}"
+                    data-action="updateClock" data-update-amount="-1"
+                    
                     data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})"> <i
-                    class="fas fa-minus"></i></a>
+                    class="fas fa-minus"></></a>
                 <h4 class="item-name rollable resource-content" data-item-id="{{item._id}}" data-roll-type="item">
                     <span class="resource-label-m">{{ item.system.progress.name }}</span>     
                 </h4>
@@ -36,7 +38,7 @@
                     data=item.system.data.progress
                     dataPath="system.data.progress"}}
                 <a class="increment-button" data-type="featureCounter" data-item-id="{{ item._id }}"
-                    data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.progress.step}})">
+                    data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.progress.step}})" data-action="incrementButton">
                     <i class="fas fa-plus"></i></a>
                 <a class="decrement-button" data-type="featureCounter" data-item-id="{{ item._id }}"
                     data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})"> <i
