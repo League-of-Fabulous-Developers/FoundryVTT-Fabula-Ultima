@@ -10,7 +10,7 @@ export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorShe
 	 * @override
 	 */
 	static DEFAULT_OPTIONS = {
-		classes: ['projectfu', 'sheet', 'actor', 'projectfu-actor-sheet', 'h-100', 'backgroundstyle'],
+		classes: ['projectfu', 'sheet', 'actor', 'projectfu-actor-sheet', 'sheet-content-wrapper', 'h-100', 'backgroundstyle'],
 		scrollY: ['.sheet-body'],
 		window: {
 			resizable: true,

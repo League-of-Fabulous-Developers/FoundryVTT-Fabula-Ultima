@@ -14,14 +14,135 @@ import { CollectionUtils } from '../helpers/collection-utils.mjs';
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
+import { FUActorSheet } from './actor-sheet.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
 /**
- * @description Extend the basic ActorSheet with some very simple modifications
- * @extends {ActorSheet}
+ * @description Standard actor sheet, now v2
+ * @extends {FUActorSheet}
  */
-export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
+export class FUStandardActorSheet extends FUActorSheet {
+	static DEFAULT_OPTIONS = {
+		classes: ['sheet-header'],
+		position: {
+			width: 750,
+			height: 1000,
+		},
+		actions: {
+			spendMetaCurrency: FUStandardActorSheet.SpendMetaCurrency,
+			studyAction: FUStandardActorSheet.StudyAction,
+			guardAction: FUStandardActorSheet.PerformAction,
+			hinderAction: FUStandardActorSheet.PerformAction,
+			objectiveAction: FUStandardActorSheet.PerformAction,
+			skillAction: FUStandardActorSheet.PerformAction,
+			toggleStatusEffect: FUStandardActorSheet.ToggleStatusEffect,
+			useEquipment: FUStandardActorSheet.ToggleUseEquipment,
+			itemFavored: FUStandardActorSheet.ToggleItemFavored,
+			zenitTransfer: FUStandardActorSheet.ZenitTransfer,
+			crisisHP: FUStandardActorSheet.CrisisHP,
+			addBond: FUStandardActorSheet.AddBond,
+			deleteBond: FUStandardActorSheet.DeleteBond,
+			updateClock: FUStandardActorSheet.UpdateClock,
+
+			// Active effects
+			createEffect: FUStandardActorSheet.CreateEffect,
+			editEffect: FUStandardActorSheet.EditEffect,
+			deleteEffect: FUStandardActorSheet.DeleteEffect,
+			toggleEffect: FUStandardActorSheet.ToggleEffect,
+			copyInline: FUStandardActorSheet.CopyInline,
+			clearTempEffects: FUStandardActorSheet.ClearTempEffects,
+			rollEffect: FUStandardActorSheet.RollEffect,
+		},
+	};
+
+	// These will be filtered in _configureRenderOptions
+	static PARTS = {
+		// character: { template: `systems/projectfu/templates/actor/actor-character-sheet.hbs` },
+		header: { template: `systems/projectfu/templates/actor/partials/actor-header.hbs` },
+		resources: { template: `systems/projectfu/templates/actor/partials/actor-resources.hbs` },
+		affinities: { template: `systems/projectfu/templates/actor/partials/actor-affinities.hbs` },
+		tabs: { template: `systems/projectfu/templates/actor/partials/actor-tabs.hbs` },
+		attributes: { template: `systems/projectfu/templates/actor/sections/actor-section-attributes.hbs` },
+		combat: { template: `systems/projectfu/templates/actor/sections/actor-section-combat.hbs` },
+		spells: { template: `systems/projectfu/templates/actor/sections/actor-section-spells.hbs` },
+		notes: { template: `systems/projectfu/templates/actor/sections/actor-section-notes.hbs` },
+		behavior: { template: `systems/projectfu/templates/actor/sections/actor-section-behavior.hbs` },
+		// npc: { template: `systems/projectfu/templates/actor/actor-npc-sheet.hbs` },
+		'character-limited': { template: `systems/projectfu/templates/actor/actor-character-limited-sheet.hbs` },
+		'npc-limited': { template: `systems/projectfu/templates/actor/actor-npc-limited-sheet.hbs` },
+
+		effects: { template: `systems/projectfu/templates/actor/sections/actor-section-effects.hbs` },
+		settings: { template: `systems/projectfu/templates/actor/sections/actor-section-settings.hbs` },
+	};
+
+	/**
+	 * These arrays are used in _configureRenderOptions later to filter out template parts
+	 * used for the actual type of actor (character, npc, limited character, limited npc)
+	 * being displayed
+	 */
+
+	// Parts actually used for a character type actor
+	static CHARACTER_PARTS = ['character'];
+	// Parts used for NPC type actor
+	static NPC_PARTS = ['header', 'resources', 'affinities', 'tabs', 'attributes', 'combat', 'notes', 'behavior', 'effects', 'settings'];
+	// Parts used for limited view of a character type actor
+	static CHARACTER_LIMITED_PARTS = ['character-limited'];
+	// Parts used for limited view of an NPC type actor
+	static NPC_LIMITED_PARTS = ['npc-limited'];
+
+	static TABS = {
+		character: {
+			stats: {},
+			classes: {},
+			features: {},
+			spells: {},
+			items: {},
+			notes: {},
+			effects: {},
+			settings: {},
+		},
+		npc: {
+			attributes: {
+				label: 'FU.Stats',
+				group: 'primary',
+				cssClass: '',
+				active: true,
+			},
+			combat: {
+				label: 'FU.Combat',
+				group: 'primary',
+				cssClass: '',
+			},
+			behavior: {
+				label: 'FU.Behavior',
+				group: 'primary',
+				cssClass: '',
+			},
+			notes: {
+				tooltip: 'FU.BiographyInfo',
+				icon: 'fa-solid fa-file-pen',
+				group: 'primary',
+				cssClass: '',
+			},
+			effects: {
+				tooltip: 'FU.Effects',
+				icon: 'fa-solid fa-wand-magic-sparkles',
+				group: 'primary',
+				cssClass: '',
+			},
+			settings: {
+				tooltip: 'FU.Settings',
+				icon: 'fa-solid fa-sliders',
+				group: 'primary',
+				cssClass: '',
+			},
+		},
+		// Limited sheets don't actually have any tabs currently, but are included here to make adding them in the future a little more convenient.
+		'character-limited': {},
+		'npc-limited': {},
+	};
+
 	constructor(...args) {
 		super(...args);
 
@@ -29,46 +150,61 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 		this.sortOrder = 1;
 	}
 
-	/** @override */
-	static get defaultOptions() {
-		const defaultOptions = super.defaultOptions;
-		return foundry.utils.mergeObject(defaultOptions, {
-			classes: ['projectfu', 'sheet', 'actor', 'backgroundstyle'],
-			template: 'systems/projectfu/templates/actor/actor-character-sheet.hbs',
-			width: 750,
-			height: 1000,
-			tabs: [
-				{
-					navSelector: '.sheet-tabs',
-					contentSelector: '.sheet-body',
-					initial: 'stats',
-				},
-			],
-			scrollY: ['.sheet-body'],
-			dragDrop: [{ dragSelector: '.item-list .item, .effects-list .effect', dropSelector: null }],
-		});
-	}
-
-	/** @override */
-	get template() {
-		const type = this.actor.type;
-		const wl = ['character', 'npc'];
-		if (!game.user.isGM && !this.actor.testUserPermission(game.user, 'OBSERVER') && wl.includes(type)) {
-			return `systems/projectfu/templates/actor/actor-${type}-limited-sheet.hbs`;
-		}
-		return `systems/projectfu/templates/actor/actor-${type}-sheet.hbs`;
-	}
-
 	/* -------------------------------------------- */
 
 	/** @override */
-	async getData() {
+	_configureRenderOptions(options) {
+		super._configureRenderOptions(options);
+
+		// Select just which parts to display for the sheet, based on actor type and visibility
+		const wl = ['character', 'npc'];
+		if (!game.user.isGM && !this.actor.testUserPermission(game.user, 'OBSERVER') && wl.includes(this.actor.type)) {
+			options.parts = [...FUStandardActorSheet[`${this.actor.type.toUpperCase()}_LIMITED_PARTS`]];
+		} else {
+			options.parts = [...FUStandardActorSheet[`${this.actor.type.toUpperCase()}_PARTS`]];
+		}
+	}
+
+	_prepareTabs() {
+		// Deep clone so we don't affect the original reference
+		const tabs = {};
+		foundry.utils.mergeObject(tabs, FUStandardActorSheet.TABS[this.actor.type]);
+
+		// Remove some optional tabs, maybe
+		if (this.actor.type === 'npc') {
+			// Behavior roll
+			if (!game.settings.get('projectfu', 'optionBehaviorRoll')) delete tabs.behavior;
+			// NPC notes
+			if (!game.settings.get('projectfu', 'optionNPCNotesTab')) delete tabs.notes;
+		}
+
+		// Make sure the tab includes its id and active or not
+		Object.entries(tabs).forEach(([id, tab], i) => {
+			tab.id = id;
+			tab.active = this.tabGroups.primary === id || (!this.tabGroups.primary && i === 0);
+		});
+
+		return tabs;
+	}
+
+	async _preparePartContext(partId, ctx) {
+		const context = await super._preparePartContext(partId, ctx);
+		if (Array.isArray(context.tabs)) context.tab = context.tabs.find((tab) => tab.id === partId);
+		else context.tab = context.tabs[partId];
+
+		return context;
+	}
+
+	/** @override */
+	async _prepareContext(options) {
 		// Retrieve the data structure from the base sheet. You can inspect or log
 		// the context variable to see the structure, but some key properties for
 		// sheets are the actor object, the data object, whether or not it's
 		// editable, the items array, and the effects array.
-		const context = super.getData();
+		const context = await super._prepareContext(options);
+		context.tabs = this._prepareTabs();
 
+		// this.prepareTabs(context);
 		// Use a safe clone of the actor data for further operations.
 		const actorData = this.actor;
 
@@ -115,7 +251,11 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 			sortFn = this.sortByType;
 		}
 		sortFn = sortFn.bind(this);
-		context.items.sort(sortFn);
+
+		context.items = context.items.contents.sort(sortFn);
+		// context.items is an EmbeddedCollection, rather than the array directly.
+		// context.items.sort(sortFn);
+
 		Object.keys(context.classFeatures).forEach((k) => (context.classFeatures[k].items = Object.fromEntries(Object.entries(context.classFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
 		Object.keys(context.optionalFeatures).forEach((k) => (context.optionalFeatures[k].items = Object.fromEntries(Object.entries(context.optionalFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
 
@@ -183,6 +323,8 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 				}
 			}
 		}
+
+		context.showMetaCurrency = this.actor.type === 'character' || this.actor.system.villain.value;
 
 		return context;
 	}
@@ -340,9 +482,12 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 	/**
 	 * @param {HTMLElement} html
 	 */
-	activateListeners(html) {
-		super.activateListeners(html);
-		html = html[0];
+	// activateListeners(html) {
+	block_onRender(context, options) {
+		const html = this.element;
+		super._onRender(context, options);
+		// super.activateListeners(html);
+		// html = html[0];
 		ActorSheetUtils.activateDefaultListeners(html, this);
 
 		html.addEventListener('mouseup', (ev) => {
@@ -352,22 +497,17 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 			}
 		});
 
-		html.addEventListener('click', async (ev) => {
-			// Send active effect to chat
-			if (ev.target.closest('.effect-roll')) {
-				onManageActiveEffect(ev, this.actor);
-			}
+		// html.addEventListener('click', async (ev) => {
+		// 	// Send active effect to chat
+		// 	if (ev.target.closest('.effect-roll')) {
+		// 		onManageActiveEffect(ev, this.actor);
+		// 	}
 
-			// Handle study roll
-			if (ev.target.closest('.study-button')) {
-				await new StudyRollHandler(this.actor).handleStudyRoll();
-			}
-
-			// Active Effect management
-			if (ev.target.closest('.effect-control')) {
-				onManageActiveEffect(ev, this.actor);
-			}
-		});
+		// 	// Active Effect management
+		// 	if (ev.target.closest('.effect-control')) {
+		// 		onManageActiveEffect(ev, this.actor);
+		// 	}
+		// });
 
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
@@ -378,34 +518,34 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 
 		// Editable item actions
 		ActorSheetUtils.activateInventoryListeners(html, this);
-		html.addEventListener('click', (ev) => {
-			const target = ev.target;
+		// html.addEventListener('click', (ev) => {
+		// 	const target = ev.target;
 
-			if (target.closest('.use-equipment')) {
-				this._onUseEquipment(ev);
-			} else if (target.closest('.item-favored')) {
-				this._onItemFavorite(ev);
-			} else if (target.closest('.zenit-deposit')) {
-				InventoryPipeline.promptPartyZenitTransfer(this.actor, 'deposit');
-			} else if (target.closest('.zenit-withdraw')) {
-				InventoryPipeline.promptPartyZenitTransfer(this.actor, 'withdraw');
-			} else if (target.closest('.increment-button')) {
-				this._onIncrementButtonClick(ev);
-			} else if (target.closest('.decrement-button')) {
-				this._onDecrementButtonClick(ev);
-			} else if (target.closest('.is-levelup')) {
-				this._onLevelUp(ev);
-			} else if (target.closest('.skillLevel input')) {
-				this._onSkillLevelUpdate(ev);
-			} else if (target.closest('.progress input')) {
-				const progress = target.closest('.progress');
-				const dataType = progress?.dataset.type;
-				const dataPath = progress?.dataset.dataPath;
-				this._onProgressUpdate(ev, dataType, dataPath);
-			} else if (target.closest('.item-equip')) {
-				eh.handleItemClick(ev, 'left');
-			}
-		});
+		// 	if (target.closest('.use-equipment')) {
+		// 		this._onUseEquipment(ev);
+		// 	} else if (target.closest('.item-favored')) {
+		// 		this._onItemFavorite(ev);
+		// 	} else if (target.closest('.zenit-deposit')) {
+		// 		InventoryPipeline.promptPartyZenitTransfer(this.actor, 'deposit');
+		// 	} else if (target.closest('.zenit-withdraw')) {
+		// 		InventoryPipeline.promptPartyZenitTransfer(this.actor, 'withdraw');
+		// 	} else if (target.closest('.increment-button')) {
+		// 		this._onIncrementButtonClick(ev);
+		// 	} else if (target.closest('.decrement-button')) {
+		// 		this._onDecrementButtonClick(ev);
+		// 	} else if (target.closest('.is-levelup')) {
+		// 		this._onLevelUp(ev);
+		// 	} else if (target.closest('.skillLevel input')) {
+		// 		this._onSkillLevelUpdate(ev);
+		// 	} else if (target.closest('.progress input')) {
+		// 		const progress = target.closest('.progress');
+		// 		const dataType = progress?.dataset.type;
+		// 		const dataPath = progress?.dataset.dataPath;
+		// 		this._onProgressUpdate(ev, dataType, dataPath);
+		// 	} else if (target.closest('.item-equip')) {
+		// 		eh.handleItemClick(ev, 'left');
+		// 	}
+		// });
 
 		html.addEventListener('contextmenu', (ev) => {
 			const target = ev.target;
@@ -434,72 +574,11 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 			}
 		});
 
-		// Toggle status effects
-		html.querySelectorAll('.status-effect-toggle').forEach((el) => {
-			el.addEventListener('click', (ev) => {
-				ev.preventDefault();
-				const a = ev.currentTarget;
-				Effects.toggleStatusEffect(this.actor, a.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
-			});
-		});
-
-		// Rollable abilities
-		html.querySelectorAll('.rollable').forEach((el) => {
-			el.addEventListener('click', this._onRoll.bind(this));
-		});
-
 		// Rest handling (click and contextmenu)
+		// Note:  This one is NOT pulled to an action because that does not handle right clicking
 		html.querySelectorAll('.rest').forEach((el) => {
 			el.addEventListener('click', this.handleRestClick.bind(this));
 			el.addEventListener('contextmenu', this.handleRestClick.bind(this));
-		});
-
-		// Event listener for setting hp to crisis
-		async function hpCrisis(actor) {
-			const maxHP = actor.system.resources.hp.max;
-			// It's supposed to round down. EG: 51 -> 25, not 26.
-			const crisisHP = Math.floor(maxHP / 2);
-
-			const updateData = {
-				'system.resources.hp.value': crisisHP,
-			};
-
-			await actor.update(updateData);
-			actor.sheet.render(true);
-		}
-
-		// Crisis HP click
-		html.querySelectorAll('.crisisHP').forEach((el) => {
-			el.addEventListener('click', async () => {
-				await hpCrisis(this.actor);
-			});
-		});
-
-		// Add a new bond
-		html.querySelectorAll('.bond-add').forEach((el) => {
-			el.addEventListener('click', async (ev) => {
-				ev.preventDefault();
-				const bonds = this.actor.system.bonds;
-				const maxBondLength = game.settings.get('projectfu', 'optionBondMaxLength');
-				if (bonds.length >= maxBondLength) {
-					ui.notifications.warn(`Maximum number of bonds (${maxBondLength}) reached.`);
-					return;
-				}
-				const newBonds = [...bonds];
-				newBonds.push({ name: '', admInf: '', loyMis: '', affHat: '' });
-				await this.actor.update({ 'system.bonds': newBonds });
-			});
-		});
-
-		// Delete a bond
-		html.querySelectorAll('.bond-delete').forEach((el) => {
-			el.addEventListener('click', async (ev) => {
-				ev.preventDefault();
-				const bondIndex = Number(ev.currentTarget.dataset.bondIndex);
-				const newBonds = [...this.actor.system.bonds];
-				newBonds.splice(bondIndex, 1);
-				await this.actor.update({ 'system.bonds': newBonds });
-			});
 		});
 
 		const sortButton = html.querySelector('#sortButton');
@@ -605,16 +684,6 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 
 		html.querySelectorAll('[data-action="togglePlantedMagiseed"][data-item-id]').forEach((el) => {
 			el.addEventListener('click', togglePlantedMagiseed.bind(this));
-		});
-
-		// Spend meta currency
-		html.querySelectorAll('a[data-action="spendMetaCurrency"]').forEach((el) => {
-			el.addEventListener('click', () => PlayerListEnhancements.spendMetaCurrency(this.actor));
-		});
-
-		// Clear temporary effects
-		html.querySelectorAll('span[data-action="clearTempEffects"]').forEach((el) => {
-			el.addEventListener('click', this._onClearTempEffects.bind(this));
 		});
 
 		// Dropzone event listeners
@@ -933,6 +1002,7 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 	 * @param {Event} ev - The input change event.
 	 */
 	_onSkillLevelUpdate(ev) {
+		console.log('Skill level update;', ev);
 		const input = ev.currentTarget;
 		const segment = input.value;
 
@@ -1139,12 +1209,13 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 
 	/**
 	 * Handles increment button click events for both level and resource progress.
-	 * @param {Event} ev - The button click event.
+	 * @param {Event | PointerEvent} ev - The button click event.
 	 * @private
 	 */
 	_onIncrementButtonClick(ev) {
 		ev.preventDefault();
-		const dataType = $(ev.currentTarget).data('type');
+
+		const dataType = ev.currentTarget.dataset.type ?? ev.srcElement.closest(`[data-type]`).dataset.type;
 		const rightClick = ev.which === 3 || ev.button === 2;
 		this._onButtonClick(ev, 1, dataType, rightClick);
 	}
@@ -1226,7 +1297,7 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 	 */
 	async _onRoll(ev) {
 		ev.preventDefault();
-		const element = ev.currentTarget;
+		const element = ev.srcElement.closest('.rollable');
 		const dataset = element.dataset;
 
 		const isShift = ev.shiftKey;
@@ -1309,7 +1380,8 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 		// Handle affinity-type rolls
 		if (dataset.rollType === 'affinity-type') {
 			const actor = this.actor;
-			const affinity = JSON.parse(dataset.action);
+			// const affinity = JSON.parse(dataset.action);
+			const affinity = JSON.parse(dataset.affinity);
 
 			const affinityName = affinity.label;
 			const affinityValue = affinity.affTypeCurr;
@@ -1329,14 +1401,14 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 			return;
 		}
 
-		// Handle action-type rolls.
-		if (dataset.rollType === 'action-type') {
-			const actor = this.actor;
-			const actionHandlerInstance = new ActionHandler(actor); // Create an instance of ActionHandler
+		// // Handle action-type rolls.
+		// if (dataset.rollType === 'action-type') {
+		// 	const actor = this.actor;
+		// 	const actionHandlerInstance = new ActionHandler(actor); // Create an instance of ActionHandler
 
-			// Call the handleAction method with the action type and shift key status
-			await actionHandlerInstance.handleAction(dataset.action, isShift);
-		}
+		// 	// Call the handleAction method with the action type and shift key status
+		// 	await actionHandlerInstance.handleAction(dataset.action, isShift);
+		// }
 
 		// Handle rolls that supply the formula directly.
 		if (dataset.roll) {
@@ -1359,5 +1431,109 @@ export class FUStandardActorSheet extends foundry.appv1.sheets.ActorSheet {
 			data.system.bonds = Array.from(Object.values(bonds));
 		}
 		super._updateObject(ev, data);
+	}
+
+	/** Action handlers  */
+
+	static Roll(e, elem) {
+		console.log('Rolling:', e);
+		this._onRoll(e);
+	}
+
+	static SpendMetaCurrency(e, elem) {
+		PlayerListEnhancements.spendMetaCurrency(this.actor);
+	}
+
+	static async StudyAction(e, elem) {
+		await new StudyRollHandler(this.actor).handleStudyRoll();
+	}
+
+	static async PerformAction(e, elem) {
+		const isShift = e.shiftKey;
+		const actionHandler = new ActionHandler(this.actor);
+		await actionHandler.handleAction(elem.dataset.action, isShift);
+	}
+
+	static ToggleStatusEffect(e, elem) {
+		Effects.toggleStatusEffect(this.actor, elem.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
+	}
+
+	static ToggleUseEquipment(e, elem) {
+		this._onUseEquipment(e);
+	}
+
+	static ToggleItemFavored(e, elem) {
+		this._onItemFavorite(e);
+	}
+
+	static ZenitTransfer(e, elem) {
+		InventoryPipeline.promptPartyZenitTransfer(this.actor, elem.dataset.zenitAction);
+	}
+
+	static async CrisisHP(e, elem) {
+		const maxHP = this.actor.system.resources.hp.max;
+		const crisisHP = Math.floor(maxHP / 2);
+		const updateData = {
+			'system.resources.hp.value': crisisHP,
+		};
+		await this.actor.update(updateData);
+		this.actor.sheet.render(true);
+	}
+
+	static async AddBond(e, elem) {
+		const bonds = this.actor.system.bonds;
+		const maxBondLength = game.settings.get('projectfu', 'optionBondMaxLength');
+		if (bonds.length >= maxBondLength) {
+			// TODO Probably add this to i18n
+			ui.notifications.warn(`Maximum number of bonds (${maxBondLength}) reached.`);
+			return;
+		}
+
+		const newBonds = [...bonds];
+		newBonds.push({ name: '', admInf: '', loyMis: '', affHat: '' });
+		await this.actor.update({ 'system.bonds': newBonds });
+	}
+
+	static async DeleteBond(e, elem) {
+		const bondIndex = Number(e.currentTarget.dataset.bondIndex);
+		const newBonds = [...this.actor.system.bonds];
+		newBonds.splice(bondIndex, 1);
+		await this.actor.update({ 'system.bonds': newBonds });
+	}
+
+	static async UpdateClock(e, elem) {
+		const rightClick = e.which === 3 || e.button === 2;
+		const { itemId, updateAmount, dataPath } = elem.dataset;
+
+		const clock = this.actor.items.get(itemId);
+		await this._updateClockProgress(clock, parseFloat(updateAmount), rightClick, dataPath);
+	}
+
+	static CreateEffect(e, elem) {
+		onManageActiveEffect(e, this.actor, 'create');
+	}
+
+	static EditEffect(e, elem) {
+		onManageActiveEffect(e, this.actor, 'edit');
+	}
+
+	static DeleteEffect(e, elem) {
+		onManageActiveEffect(e, this.actor, 'delete');
+	}
+
+	static ClearTempEffects(e, elem) {
+		this._onClearTempEffects(e);
+	}
+
+	static CopyInline(e, elem) {
+		onManageActiveEffect(e, this.actor, 'copy-inline');
+	}
+
+	static ToggleEffect(e, elem) {
+		onManageActiveEffect(e, this.actor, 'toggle');
+	}
+
+	static RollEffect(e, elem) {
+		onManageActiveEffect(e, this.actor, 'roll');
 	}
 }

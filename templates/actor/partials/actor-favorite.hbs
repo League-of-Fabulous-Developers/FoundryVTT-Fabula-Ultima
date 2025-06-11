@@ -2,9 +2,7 @@
 <fieldset class="section-container title-fieldset desc resource-content">
     <legend class="resource-label-m" aria-describedby="tooltip">
         <a class="item-create-dialog resource-inputs resource-label-m" data-tooltip="{{localize 'FU.FavoriteAdd'}}"
-           data-type="newFavorite">
-            <i class="fas fa-plus icon"></i>{{localize 'FU.Favorite'}}
-        </a>
+           data-type="newFavorite"><i class="fas fa-plus icon"></i>{{localize 'FU.Favorite'}}</a>
     </legend>
 
     {{!-- Equipped Item Header--}}
@@ -67,6 +65,7 @@
                                     {{/if}}
                                     <a class="increment-button" data-type="optionalRPCounter"
                                        data-item-id="{{ item._id }}"
+                                       data-action="incrementButton"
                                        data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.rp.step}})">+</a>
                                 </div>
                             </div>
@@ -87,6 +86,7 @@
                                     {{/if}}
                                     <a class="increment-button" data-type="resourceCounter"
                                        data-item-id="{{ item._id }}"
+                                       data-action="incrementButton"
                                        data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.rp.step}})">+</a>
                                 </div>
                             </div>
@@ -114,6 +114,7 @@
                                     <span>/</span>
                                     <span>{{ item.progressMax }}</span>
                                     <a class="increment-button" data-type="projectCounter" data-item-id="{{ item._id }}"
+                                    data-action="incrementButton"
                                        data-tooltip="{{localize
                                         'FU.IncreaseTooltip'}} ({{item.progressPerDay}})">+</a>
                                 </div>

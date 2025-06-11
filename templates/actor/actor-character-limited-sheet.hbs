@@ -125,7 +125,7 @@
 									<span data-resource="item.level">{{ item.level }}</span>
 									<span>/</span>
 									<span>{{ item.system.level.max }}</span>
-									<a class="increment-button" data-type="levelCounter" data-item-id="{{ item._id }}">+</a>
+									<a class="increment-button" data-type="levelCounter" data-item-id="{{ item._id }}" data-action="incrementButton">+</a>
 								</div>
 							</div>
 							<div class="individual-description align-left {{#unless (inArray _id _expandedIds)}}hidden{{/unless}}">
