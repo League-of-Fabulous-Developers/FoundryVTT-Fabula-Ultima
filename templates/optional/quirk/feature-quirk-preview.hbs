@@ -18,6 +18,7 @@
             {{/if}}
             <a class="increment-button" data-type="optionalRPCounter"
                 data-item-id="{{item.id}}"
+                data-action="incrementButton"
                 data-tooltip="{{localize
                 'FU.IncreaseTooltip'}} ({{system.data.rp.step}})">+</a>
         </div>
@@ -34,7 +35,7 @@
             arr=item.progressArr
                 data=item.system.data.progress}}
         </div>
-        <a class="increment-button align-right" data-type="featureCounter" data-item-id="{{item.id}}" data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})"> <i
+        <a class="increment-button align-right" data-type="featureCounter" data-item-id="{{item.id}}" data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})" data-action="incrementButton"> <i
                 class="fas fa-plus"></i></a>
     </div>
 {{/if}}
