@@ -173,6 +173,14 @@ export class FUStandardActorSheet extends FUActorSheet {
 		return tabs;
 	}
 
+	get isNPC() {
+		return this.actor.type === 'npc';
+	}
+
+	get isCharacter() {
+		return this.actor.type === 'character';
+	}
+
 	async _preparePartContext(partId, ctx) {
 		const context = await super._preparePartContext(partId, ctx);
 		// if (Array.isArray(context.tabs)) context.tab = context.tabs.find((tab) => tab.id === partId);
@@ -180,10 +188,108 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 		switch (partId) {
 			case 'header':
+				{
+					context.showMetaCurrency = this.isCharacter || this.actor.system.villain.value;
+					// Setup status effect toggle data
+					context.statusEffectToggles = [];
+					for (const id of TOGGLEABLE_STATUS_EFFECT_IDS) {
+						const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
+						if (statusEffect) {
+							const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
+							const immune = this.actor.system.immunities?.[statusEffect.id]?.base || false;
+							const ruleKey = FU.statusEffectRule[statusEffect.id] || '';
+							const rule = game.i18n.localize(ruleKey);
+							const tooltip = `${game.i18n.localize(statusEffect.name)}<br>${rule}`;
+							context.statusEffectToggles.push({
+								...statusEffect,
+								active: existing,
+								immune: immune,
+								tooltip: tooltip,
+							});
+						}
+					}
+				}
+				break;
+
+			case 'stats':
+				{
+					if (this.isNPC) {
+						const studyRollTiers = game.settings.get(SYSTEM, SETTINGS.useRevisedStudyRule) ? FU.studyRoll.revised : FU.studyRoll.core;
+						let studyRoll;
+						studyRoll = studyRollTiers.map((value) => value + '+');
+						studyRoll.unshift('-');
+						studyRoll = studyRoll.reduce((agg, curr, idx) => (agg[idx] = curr) && agg, {});
+						context.studyRoll = studyRoll;
+					}
+				}
 				break;
 
 			case 'tabs':
 				context.tabs = this._prepareTabs('primary');
+				break;
+
+			case 'feature':
+				break;
+
+			case 'items':
+				{
+					// Sort the items array in-place based on the current sorting method
+					let sortFn = this.sortByOrder;
+					if (this.sortMethod === 'name') {
+						sortFn = this.sortByName;
+					} else if (this.sortMethod === 'type') {
+						sortFn = this.sortByType;
+					}
+					sortFn = sortFn.bind(this);
+					context.items = context.items.contents.sort(sortFn);
+					Object.keys(context.classFeatures).forEach((k) => (context.classFeatures[k].items = Object.fromEntries(Object.entries(context.classFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
+					Object.keys(context.optionalFeatures).forEach((k) => (context.optionalFeatures[k].items = Object.fromEntries(Object.entries(context.optionalFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
+				}
+				break;
+
+			case 'effects':
+				// Prepare active effects
+				context.effects = this.actor.effectCategories;
+				// Combine all effects into a single array
+				context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];
+				// Enrich each effect's description
+				for (const effect of context.allEffects) {
+					effect.enrichedDescription = effect.description
+						? await TextEditor.enrichHTML(effect.description, {
+								secrets: this.actor.isOwner,
+								rollData: context.actor.getRollData(),
+								relativeTo: context.actor,
+							})
+						: '';
+				}
+				break;
+
+			case 'settings':
+				// Prepare NPC Companion Data
+				if (this.isNPC) {
+					if (this.actor.system.rank.value === 'companion' || this.actor.system.rank.value === 'custom') {
+						// Populate the dropdown with owned actors
+						context.ownedActors = game.actors.filter((a) => a.type === 'character' && a.testUserPermission(game.user, 'OWNER'));
+
+						// Check if a refActor is selected
+						const refActor = context.system.references.actor;
+						context.refActorLevel = refActor ? refActor.system.level.value : 0;
+
+						if (refActor) {
+							// Filter skills associated with the refActor
+							context.availableSkills = refActor.items.filter((item) => item.type === 'skill');
+
+							// Retrieve the selected referenceSkill by UUID
+							context.refSkill = context.system.references.skill ? context.availableSkills.find((skill) => skill.uuid === context.system.references.skill) : null;
+							context.refSkillLevel = context.refSkill ? context.refSkill.system.level.value || 0 : 0;
+						} else {
+							// No referencePlayer selected, clear skills and selected skill
+							context.availableSkills = [];
+							context.refSkill = null;
+							context.refSkillLevel = 0;
+						}
+					}
+				}
 				break;
 		}
 
@@ -194,9 +300,11 @@ export class FUStandardActorSheet extends FUActorSheet {
 	async _prepareContext(options) {
 		// Retrieve the data structure from the base sheet. You can inspect or log
 		// the context variable to see the structure, but some key properties for
-		// sheets are the actor object, the data object, whether or not it's
+		// sheets are the actor object, the data object, whether it's
 		// editable, the items array, and the effects array.
 		const context = await super._prepareContext(options);
+		context.isNPC = this.isNPC;
+		context.isCharacter = this.isCharacter;
 
 		// Use a safe clone of the actor data for further operations.
 		const actorData = this.actor;
@@ -217,60 +325,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 			context.spTracker = this.actor.spTracker;
 		}
 
-		// Setup status effect toggle data
-		context.statusEffectToggles = [];
-		for (const id of TOGGLEABLE_STATUS_EFFECT_IDS) {
-			const statusEffect = CONFIG.statusEffects.find((e) => e.id === id);
-			if (statusEffect) {
-				const existing = this.actor.effects.some((e) => isActiveEffectForStatusEffectId(e, statusEffect.id));
-				const immune = this.actor.system.immunities?.[statusEffect.id]?.base || false;
-				const ruleKey = FU.statusEffectRule[statusEffect.id] || '';
-				const rule = game.i18n.localize(ruleKey);
-				const tooltip = `${game.i18n.localize(statusEffect.name)}<br>${rule}`;
-				context.statusEffectToggles.push({
-					...statusEffect,
-					active: existing,
-					immune: immune,
-					tooltip: tooltip,
-				});
-			}
-		}
-
-		// Sort the items array in-place based on the current sorting method
-		let sortFn = this.sortByOrder;
-		if (this.sortMethod === 'name') {
-			sortFn = this.sortByName;
-		} else if (this.sortMethod === 'type') {
-			sortFn = this.sortByType;
-		}
-		sortFn = sortFn.bind(this);
-
-		context.items = context.items.contents.sort(sortFn);
-		// context.items is an EmbeddedCollection, rather than the array directly.
-		// context.items.sort(sortFn);
-
-		Object.keys(context.classFeatures).forEach((k) => (context.classFeatures[k].items = Object.fromEntries(Object.entries(context.classFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
-		Object.keys(context.optionalFeatures).forEach((k) => (context.optionalFeatures[k].items = Object.fromEntries(Object.entries(context.optionalFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
-
 		// Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
-
-		// Prepare active effects
-		context.effects = this.actor.effectCategories;
-
-		// Combine all effects into a single array
-		context.allEffects = [...context.effects.temporary.effects, ...context.effects.passive.effects, ...context.effects.inactive.effects];
-
-		// Enrich each effect's description
-		for (const effect of context.allEffects) {
-			effect.enrichedDescription = effect.description
-				? await TextEditor.enrichHTML(effect.description, {
-						secrets: this.actor.isOwner,
-						rollData: context.actor.getRollData(),
-						relativeTo: context.actor,
-					})
-				: '';
-		}
 
 		// Enriches description fields within the context object
 		context.enrichedHtml = {
@@ -281,43 +337,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			}),
 		};
 
-		const studyRollTiers = game.settings.get(SYSTEM, SETTINGS.useRevisedStudyRule) ? FU.studyRoll.revised : FU.studyRoll.core;
-		let studyRoll;
-		studyRoll = studyRollTiers.map((value) => value + '+');
-		studyRoll.unshift('-');
-		studyRoll = studyRoll.reduce((agg, curr, idx) => (agg[idx] = curr) && agg, {});
-
-		context.studyRoll = studyRoll;
-
 		context.FU = FU;
-
-		// Prepare NPC Companion Data
-		if (actorData.type === 'npc') {
-			if (actorData.system.rank.value === 'companion' || actorData.system.rank.value === 'custom') {
-				// Populate the dropdown with owned actors
-				context.ownedActors = game.actors.filter((a) => a.type === 'character' && a.testUserPermission(game.user, 'OWNER'));
-
-				// Check if a refActor is selected
-				const refActor = context.system.references.actor;
-				context.refActorLevel = refActor ? refActor.system.level.value : 0;
-
-				if (refActor) {
-					// Filter skills associated with the refActor
-					context.availableSkills = refActor.items.filter((item) => item.type === 'skill');
-
-					// Retrieve the selected referenceSkill by UUID
-					context.refSkill = context.system.references.skill ? context.availableSkills.find((skill) => skill.uuid === context.system.references.skill) : null;
-					context.refSkillLevel = context.refSkill ? context.refSkill.system.level.value || 0 : 0;
-				} else {
-					// No referencePlayer selected, clear skills and selected skill
-					context.availableSkills = [];
-					context.refSkill = null;
-					context.refSkillLevel = 0;
-				}
-			}
-		}
-
-		context.showMetaCurrency = this.actor.type === 'character' || this.actor.system.villain.value;
 
 		return context;
 	}
