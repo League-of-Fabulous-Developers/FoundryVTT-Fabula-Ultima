@@ -15,6 +15,7 @@ import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 import { FUActorSheet } from './actor-sheet.mjs';
+import { systemTemplatePath } from '../helpers/system-utils.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -58,22 +59,26 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 	// These will be filtered in _configureRenderOptions
 	static PARTS = {
-		// character: { template: `systems/projectfu/templates/actor/actor-character-sheet.hbs` },
-		header: { template: `systems/projectfu/templates/actor/partials/actor-header.hbs` },
-		resources: { template: `systems/projectfu/templates/actor/partials/actor-resources.hbs` },
-		affinities: { template: `systems/projectfu/templates/actor/partials/actor-affinities.hbs` },
-		tabs: { template: `systems/projectfu/templates/actor/partials/actor-tabs.hbs` },
-		attributes: { template: `systems/projectfu/templates/actor/sections/actor-section-attributes.hbs` },
-		combat: { template: `systems/projectfu/templates/actor/sections/actor-section-combat.hbs` },
-		spells: { template: `systems/projectfu/templates/actor/sections/actor-section-spells.hbs` },
-		notes: { template: `systems/projectfu/templates/actor/sections/actor-section-notes.hbs` },
-		behavior: { template: `systems/projectfu/templates/actor/sections/actor-section-behavior.hbs` },
-		// npc: { template: `systems/projectfu/templates/actor/actor-npc-sheet.hbs` },
-		'character-limited': { template: `systems/projectfu/templates/actor/actor-character-limited-sheet.hbs` },
-		'npc-limited': { template: `systems/projectfu/templates/actor/actor-npc-limited-sheet.hbs` },
-
-		effects: { template: `systems/projectfu/templates/actor/sections/actor-section-effects.hbs` },
-		settings: { template: `systems/projectfu/templates/actor/sections/actor-section-settings.hbs` },
+		header: { template: systemTemplatePath('actor/character/parts/actor-header') },
+		tabs: { template: systemTemplatePath(`actor/character/parts/actor-tabs`) },
+		stats: { template: systemTemplatePath(`actor/character/parts/actor-section-stats`) },
+		feature: { template: systemTemplatePath(`actor/character/parts/actor-section-feature`) },
+		// NPC
+		combat: { template: systemTemplatePath(`actor/character/parts/actor-section-combat`) },
+		behavior: { template: systemTemplatePath(`actor/character/parts/actor-section-behavior`) },
+		// Character
+		classes: { template: systemTemplatePath(`actor/character/parts/actor-section-classes`) },
+		items: { template: systemTemplatePath(`actor/character/parts/actor-section-items`) },
+		spells: { template: systemTemplatePath(`actor/character/parts/actor-section-spells`) },
+		// resources: { template: systemTemplatePath(`actor/partials/actor-resources`) },
+		// affinities: { template: systemTemplatePath(`actor/partials/actor-affinities`) },
+		// attributes: { template: systemTemplatePath(`actor/sections/actor-section-attributes`) },
+		notes: { template: systemTemplatePath(`actor/character/parts/actor-section-notes`) },
+		// 'character-limited': { template: `systems/projectfu/templates/actor/actor-character-limited-sheet.hbs` },
+		// 'npc-limited': { template: `systems/projectfu/templates/actor/actor-npc-limited-sheet.hbs` },
+		//
+		effects: { template: systemTemplatePath('actor/character/parts/actor-section-effects') },
+		settings: { template: systemTemplatePath(`actor/character/parts/actor-section-settings`) },
 	};
 
 	/**
@@ -83,114 +88,104 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 */
 
 	// Parts actually used for a character type actor
-	static CHARACTER_PARTS = ['character'];
-	// Parts used for NPC type actor
-	static NPC_PARTS = ['header', 'resources', 'affinities', 'tabs', 'attributes', 'combat', 'notes', 'behavior', 'effects', 'settings'];
-	// Parts used for limited view of a character type actor
-	static CHARACTER_LIMITED_PARTS = ['character-limited'];
-	// Parts used for limited view of an NPC type actor
-	static NPC_LIMITED_PARTS = ['npc-limited'];
+	// static CHARACTER_PARTS = ['character'];
+	// // Parts used for NPC type actor
+	// static NPC_PARTS = ['header', 'resources', 'affinities', 'tabs', 'attributes', 'combat', 'notes', 'behavior', 'effects', 'settings'];
+	// // Parts used for limited view of a character type actor
+	// static CHARACTER_LIMITED_PARTS = ['character-limited'];
+	// // Parts used for limited view of an NPC type actor
+	// static NPC_LIMITED_PARTS = ['npc-limited'];
 
+	/** @override
+	 * @type Record<ApplicationTab>
+	 **/
 	static TABS = {
-		character: {
-			stats: {},
-			classes: {},
-			features: {},
-			spells: {},
-			items: {},
-			notes: {},
-			effects: {},
-			settings: {},
+		primary: {
+			tabs: [
+				{ id: 'stats', label: 'FU.Stats' },
+				{ id: 'classes', label: 'FU.Classes' },
+				{ id: 'features', label: 'FU.Features' },
+				{ id: 'spells', label: 'FU.Spell' },
+				{ id: 'items', label: 'FU.Items' },
+				{ id: 'combat', label: 'FU.Combat' },
+				{ id: 'behavior', label: 'FU.Behavior' },
+
+				{ id: 'notes', label: '', icon: 'fa-solid fa-file-pen' },
+				{ id: 'effects', label: '', icon: 'fa-solid fa-wand-magic-sparkles' },
+				{ id: 'settings', label: '', icon: 'fa-solid fa-sliders' },
+			],
+			initial: 'stats',
 		},
-		npc: {
-			attributes: {
-				label: 'FU.Stats',
-				group: 'primary',
-				cssClass: '',
-				active: true,
-			},
-			combat: {
-				label: 'FU.Combat',
-				group: 'primary',
-				cssClass: '',
-			},
-			behavior: {
-				label: 'FU.Behavior',
-				group: 'primary',
-				cssClass: '',
-			},
-			notes: {
-				tooltip: 'FU.BiographyInfo',
-				icon: 'fa-solid fa-file-pen',
-				group: 'primary',
-				cssClass: '',
-			},
-			effects: {
-				tooltip: 'FU.Effects',
-				icon: 'fa-solid fa-wand-magic-sparkles',
-				group: 'primary',
-				cssClass: '',
-			},
-			settings: {
-				tooltip: 'FU.Settings',
-				icon: 'fa-solid fa-sliders',
-				group: 'primary',
-				cssClass: '',
-			},
-		},
-		// Limited sheets don't actually have any tabs currently, but are included here to make adding them in the future a little more convenient.
-		'character-limited': {},
-		'npc-limited': {},
 	};
 
-	constructor(...args) {
-		super(...args);
-
-		// Initialize sortOrder
-		this.sortOrder = 1;
-	}
+	// Initialize sortOrder
+	sortOrder = 1;
 
 	/* -------------------------------------------- */
 
 	/** @override */
 	_configureRenderOptions(options) {
 		super._configureRenderOptions(options);
-
-		// Select just which parts to display for the sheet, based on actor type and visibility
-		const wl = ['character', 'npc'];
-		if (!game.user.isGM && !this.actor.testUserPermission(game.user, 'OBSERVER') && wl.includes(this.actor.type)) {
-			options.parts = [...FUStandardActorSheet[`${this.actor.type.toUpperCase()}_LIMITED_PARTS`]];
-		} else {
-			options.parts = [...FUStandardActorSheet[`${this.actor.type.toUpperCase()}_PARTS`]];
-		}
+		// // Select just which parts to display for the sheet, based on actor type and visibility
+		// const wl = ['character', 'npc'];
+		// if (!game.user.isGM && !this.actor.testUserPermission(game.user, 'OBSERVER') && wl.includes(this.actor.type)) {
+		// 	options.parts = [...FUStandardActorSheet[`${this.actor.type.toUpperCase()}_LIMITED_PARTS`]];
+		// } else {
+		// 	options.parts = [...FUStandardActorSheet[`${this.actor.type.toUpperCase()}_PARTS`]];
+		// }
 	}
 
-	_prepareTabs() {
+	/** @inheritdoc */
+	_prepareTabs(group) {
 		// Deep clone so we don't affect the original reference
-		const tabs = {};
-		foundry.utils.mergeObject(tabs, FUStandardActorSheet.TABS[this.actor.type]);
+		// const tabs = {};
+		// foundry.utils.mergeObject(tabs, FUStandardActorSheet.TABS[this.actor.type]);
 
-		// Remove some optional tabs, maybe
-		if (this.actor.type === 'npc') {
-			// Behavior roll
-			if (!game.settings.get('projectfu', 'optionBehaviorRoll')) delete tabs.behavior;
-			// NPC notes
-			if (!game.settings.get('projectfu', 'optionNPCNotesTab')) delete tabs.notes;
+		const tabs = super._prepareTabs(group);
+
+		switch (this.actor.type) {
+			case 'character':
+				delete tabs.behavior;
+				delete tabs.combat;
+				break;
+
+			case 'npc':
+				{
+					delete tabs.classes;
+					delete tabs.spells;
+					delete tabs.items;
+					delete tabs.features;
+
+					// Behavior roll
+					if (!game.settings.get('projectfu', 'optionBehaviorRoll')) delete tabs.behavior;
+					// NPC notes
+					if (!game.settings.get('projectfu', 'optionNPCNotesTab')) delete tabs.notes;
+				}
+				break;
 		}
 
 		// Make sure the tab includes its id and active or not
-		Object.entries(tabs).forEach(([id, tab], i) => {
-			tab.id = id;
-			tab.active = this.tabGroups.primary === id || (!this.tabGroups.primary && i === 0);
-		});
+		// Object.entries(tabs).forEach(([id, tab], i) => {
+		// 	tab.id = id;
+		// 	tab.active = this.tabGroups.primary === id || (!this.tabGroups.primary && i === 0);
+		// });
 
 		return tabs;
 	}
 
 	async _preparePartContext(partId, ctx) {
 		const context = await super._preparePartContext(partId, ctx);
-		if (Array.isArray(context.tabs)) context.tab = context.tabs.find((tab) => tab.id === partId);
-		else context.tab = context.tabs[partId];
+		// if (Array.isArray(context.tabs)) context.tab = context.tabs.find((tab) => tab.id === partId);
+		// else context.tab = context.tabs[partId];
+
+		switch (partId) {
+			case 'header':
+				break;
+
+			case 'tabs':
+				context.tabs = this._prepareTabs('primary');
+				break;
+		}
 
 		return context;
 	}
@@ -202,9 +197,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		// sheets are the actor object, the data object, whether or not it's
 		// editable, the items array, and the effects array.
 		const context = await super._prepareContext(options);
-		context.tabs = this._prepareTabs();
 
-		// this.prepareTabs(context);
 		// Use a safe clone of the actor data for further operations.
 		const actorData = this.actor;
 
