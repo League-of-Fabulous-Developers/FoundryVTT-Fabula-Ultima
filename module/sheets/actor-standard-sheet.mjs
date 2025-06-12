@@ -45,6 +45,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			addBond: FUStandardActorSheet.AddBond,
 			deleteBond: FUStandardActorSheet.DeleteBond,
 			updateClock: FUStandardActorSheet.UpdateClock,
+			rest: FUStandardActorSheet.handleRestClick,
 
 			// Active effects
 			createEffect: FUStandardActorSheet.CreateEffect,
@@ -62,7 +63,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		header: { template: systemTemplatePath('actor/character/parts/actor-header') },
 		tabs: { template: systemTemplatePath(`actor/character/parts/actor-tabs`) },
 		stats: { template: systemTemplatePath(`actor/character/parts/actor-section-stats`) },
-		feature: { template: systemTemplatePath(`actor/character/parts/actor-section-feature`) },
+		features: { template: systemTemplatePath(`actor/character/parts/actor-section-features`) },
 		// NPC
 		combat: { template: systemTemplatePath(`actor/character/parts/actor-section-combat`) },
 		behavior: { template: systemTemplatePath(`actor/character/parts/actor-section-behavior`) },
@@ -212,7 +213,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 				context.tabs = this._prepareTabs('primary');
 				break;
 
-			case 'feature':
+			case 'features':
 				break;
 
 			case 'items':
@@ -567,13 +568,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 			}
 		});
 
-		// Rest handling (click and contextmenu)
-		// Note:  This one is NOT pulled to an action because that does not handle right clicking
-		html.querySelectorAll('.rest').forEach((el) => {
-			el.addEventListener('click', this.handleRestClick.bind(this));
-			el.addEventListener('contextmenu', this.handleRestClick.bind(this));
-		});
-
 		const sortButton = html.querySelector('#sortButton');
 
 		if (sortButton) {
@@ -822,9 +816,15 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	// Handle the rest action click events
-	async handleRestClick(ev) {
-		ev.preventDefault();
-		const isRightClick = ev.type === 'contextmenu';
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async handleRestClick(event, target) {
+		event.preventDefault();
+		const isRightClick = event.type === 'contextmenu';
 		await this.onRest(this.actor, isRightClick);
 	}
 
