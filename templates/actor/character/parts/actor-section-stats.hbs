@@ -1,6 +1,5 @@
 <div class="tab stats {{tab.cssClass}}" data-group="primary" data-tab="stats">
-
-	{{#if (eq actor.type "character")}}
+	{{#if isCharacter}}
 		<!-- Traits Section -->
 		<section class="section-container desc grid-span-3 gap-5">
 			<div class="grid grid-3col flex-group-center" style="display: flex;">
@@ -78,7 +77,7 @@
 		</section>
 	{{/if}}
 
-	{{#if (eq actor.type "npc")}}
+	{{#if isNPC}}
 		<section class="body-section grid grid-4col">
 			<aside class="sidebar flex-group-center">
 				{{!-- Action Buttons --}}

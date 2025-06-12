@@ -147,6 +147,7 @@ export class FUPartySheet extends FUActorSheet {
 			case 'overview':
 				break;
 			case 'inventory':
+				await ActorSheetUtils.prepareItems(context);
 				break;
 			case 'adversaries':
 				break;

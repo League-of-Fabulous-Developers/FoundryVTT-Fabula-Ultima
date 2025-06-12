@@ -74,9 +74,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 		// affinities: { template: systemTemplatePath(`actor/partials/actor-affinities`) },
 		// attributes: { template: systemTemplatePath(`actor/sections/actor-section-attributes`) },
 		notes: { template: systemTemplatePath(`actor/character/parts/actor-section-notes`) },
-		// 'character-limited': { template: `systems/projectfu/templates/actor/actor-character-limited-sheet.hbs` },
-		// 'npc-limited': { template: `systems/projectfu/templates/actor/actor-npc-limited-sheet.hbs` },
-		//
 		effects: { template: systemTemplatePath('actor/character/parts/actor-section-effects') },
 		settings: { template: systemTemplatePath(`actor/character/parts/actor-section-settings`) },
 	};
@@ -86,15 +83,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * used for the actual type of actor (character, npc, limited character, limited npc)
 	 * being displayed
 	 */
-
-	// Parts actually used for a character type actor
-	// static CHARACTER_PARTS = ['character'];
-	// // Parts used for NPC type actor
-	// static NPC_PARTS = ['header', 'resources', 'affinities', 'tabs', 'attributes', 'combat', 'notes', 'behavior', 'effects', 'settings'];
-	// // Parts used for limited view of a character type actor
-	// static CHARACTER_LIMITED_PARTS = ['character-limited'];
-	// // Parts used for limited view of an NPC type actor
-	// static NPC_LIMITED_PARTS = ['npc-limited'];
 
 	/** @override
 	 * @type Record<ApplicationTab>
@@ -121,26 +109,31 @@ export class FUStandardActorSheet extends FUActorSheet {
 	// Initialize sortOrder
 	sortOrder = 1;
 
+	/**
+	 * @returns {Boolean}
+	 */
+	get isLimited() {
+		const wl = ['character', 'npc'];
+		return !game.user.isGM && !this.actor.testUserPermission(game.user, 'OBSERVER') && wl.includes(this.actor.type);
+	}
+
+	get isNPC() {
+		return this.actor.type === 'npc';
+	}
+
+	get isCharacter() {
+		return this.actor.type === 'character';
+	}
+
 	/* -------------------------------------------- */
 
 	/** @override */
 	_configureRenderOptions(options) {
 		super._configureRenderOptions(options);
-		// // Select just which parts to display for the sheet, based on actor type and visibility
-		// const wl = ['character', 'npc'];
-		// if (!game.user.isGM && !this.actor.testUserPermission(game.user, 'OBSERVER') && wl.includes(this.actor.type)) {
-		// 	options.parts = [...FUStandardActorSheet[`${this.actor.type.toUpperCase()}_LIMITED_PARTS`]];
-		// } else {
-		// 	options.parts = [...FUStandardActorSheet[`${this.actor.type.toUpperCase()}_PARTS`]];
-		// }
 	}
 
 	/** @inheritdoc */
 	_prepareTabs(group) {
-		// Deep clone so we don't affect the original reference
-		// const tabs = {};
-		// foundry.utils.mergeObject(tabs, FUStandardActorSheet.TABS[this.actor.type]);
-
 		const tabs = super._prepareTabs(group);
 
 		switch (this.actor.type) {
@@ -157,35 +150,26 @@ export class FUStandardActorSheet extends FUActorSheet {
 					delete tabs.features;
 
 					// Behavior roll
-					if (!game.settings.get('projectfu', 'optionBehaviorRoll')) delete tabs.behavior;
+					if (!game.settings.get('projectfu', 'optionBehaviorRoll')) {
+						delete tabs.behavior;
+					}
 					// NPC notes
-					if (!game.settings.get('projectfu', 'optionNPCNotesTab')) delete tabs.notes;
+					if (!game.settings.get('projectfu', 'optionNPCNotesTab')) {
+						delete tabs.notes;
+					}
 				}
 				break;
 		}
 
-		// Make sure the tab includes its id and active or not
-		// Object.entries(tabs).forEach(([id, tab], i) => {
-		// 	tab.id = id;
-		// 	tab.active = this.tabGroups.primary === id || (!this.tabGroups.primary && i === 0);
-		// });
-
 		return tabs;
 	}
 
-	get isNPC() {
-		return this.actor.type === 'npc';
-	}
-
-	get isCharacter() {
-		return this.actor.type === 'character';
-	}
-
-	async _preparePartContext(partId, ctx) {
-		const context = await super._preparePartContext(partId, ctx);
-		// if (Array.isArray(context.tabs)) context.tab = context.tabs.find((tab) => tab.id === partId);
-		// else context.tab = context.tabs[partId];
-
+	async _preparePartContext(partId, ctx, options) {
+		const context = await super._preparePartContext(partId, ctx, options);
+		// IMPORTANT: Set the active tab
+		if (partId in context.tabs) {
+			context.tab = context.tabs[partId];
+		}
 		switch (partId) {
 			case 'header':
 				{
@@ -233,6 +217,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 			case 'items':
 				{
+					// Set up item data
+					await ActorSheetUtils.prepareItems(context);
+
 					// Sort the items array in-place based on the current sorting method
 					let sortFn = this.sortByOrder;
 					if (this.sortMethod === 'name') {
@@ -290,6 +277,16 @@ export class FUStandardActorSheet extends FUActorSheet {
 						}
 					}
 				}
+
+				// Enriches description fields within the context object
+				context.enrichedHtml = {
+					description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.description ?? '', {
+						secrets: this.actor.isOwner,
+						rollData: context.actor.getRollData(),
+						relativeTo: context.actor,
+					}),
+				};
+
 				break;
 		}
 
@@ -298,53 +295,32 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 	/** @override */
 	async _prepareContext(options) {
-		// Retrieve the data structure from the base sheet. You can inspect or log
-		// the context variable to see the structure, but some key properties for
-		// sheets are the actor object, the data object, whether it's
-		// editable, the items array, and the effects array.
 		const context = await super._prepareContext(options);
 		context.isNPC = this.isNPC;
 		context.isCharacter = this.isCharacter;
-
-		// Use a safe clone of the actor data for further operations.
-		const actorData = this.actor;
-
+		context.FU = FU;
 		// Model agnostic
 		await ActorSheetUtils.prepareData(context, this);
-
 		// For characters/npcs
 		this._prepareCharacterData(context);
 
 		// Prepare character data and items.
-		if (actorData.type === 'character') {
+		if (this.isCharacter) {
 			context.tlTracker = this.actor.tlTracker;
 		}
-
 		// Prepare NPC data and items.
-		if (actorData.type === 'npc') {
+		else if (this.isNPC) {
 			context.spTracker = this.actor.spTracker;
 		}
 
 		// Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
 
-		// Enriches description fields within the context object
-		context.enrichedHtml = {
-			description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.description ?? '', {
-				secrets: this.actor.isOwner,
-				rollData: context.actor.getRollData(),
-				relativeTo: context.actor,
-			}),
-		};
-
-		context.FU = FU;
-
 		return context;
 	}
 
 	/**
 	 * Organize and classify Items for Character sheets.
-	 *
 	 * @param {Object} actorData The actor to prepare.
 	 *
 	 * @return {undefined}
@@ -384,7 +360,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 		// Retrieve drag data using TextEditor
 		const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(ev);
-		if (!data || data.type !== 'Item') return await super._onDrop(ev);
+		if (!data || data.type !== 'Item') {
+			return await super._onDrop(ev);
+		}
 
 		// Check if the item is embedded within an actor (reordering within the sheet) and uses default behavior
 		if (data.uuid.startsWith('Actor')) {
@@ -524,7 +502,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
-		if (!this.isEditable) return;
+		if (!this.isEditable) {
+			return;
+		}
 
 		// Create an instance of EquipmentHandler
 		const eh = new EquipmentHandler(this.actor);
@@ -711,11 +691,15 @@ export class FUStandardActorSheet extends FUActorSheet {
 	// Handle adding item to favorite
 	async _onItemFavorite(ev) {
 		const itemEl = ev.target.closest('.item');
-		if (!itemEl) return;
+		if (!itemEl) {
+			return;
+		}
 
 		const itemId = itemEl.dataset.itemId;
 		const item = this.actor.items.get(itemId);
-		if (!item) return;
+		if (!item) {
+			return;
+		}
 
 		const isFavoredBool = item.system.isFavored?.value ?? false;
 
@@ -772,7 +756,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 		ev.preventDefault();
 		const actor = this.actor;
 
-		if (!actor || !actor.system || !actor.system.immunities) return;
+		if (!actor || !actor.system || !actor.system.immunities) {
+			return;
+		}
 
 		actor.clearTemporaryEffects();
 	}
@@ -993,10 +979,14 @@ export class FUStandardActorSheet extends FUActorSheet {
 	_onLevelUp(ev) {
 		const input = ev.currentTarget;
 		const actor = this.actor;
-		if (!actor) return;
+		if (!actor) {
+			return;
+		}
 
 		const exp = actor.system.resources.exp.value;
-		if (exp < 10) return;
+		if (exp < 10) {
+			return;
+		}
 
 		const { level } = actor.system;
 		const $icon = $(input).css('position', 'relative');

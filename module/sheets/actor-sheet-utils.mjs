@@ -29,7 +29,6 @@ async function prepareData(context, sheet) {
 	}
 	context.system = sheet.actor.system;
 	context.flags = sheet.actor.flags;
-	context.itemCount = context.actor.items.size;
 	context.isGM = game.user.isGM;
 	context.isOwner = sheet.actor.isOwner;
 
@@ -39,8 +38,6 @@ async function prepareData(context, sheet) {
 	context.fields = sheet.document.schema.fields;
 	context.system = sheet.document.system;
 	context.systemFields = sheet.document.system.schema.fields;
-
-	await prepareItems(context);
 }
 
 /**
@@ -48,6 +45,8 @@ async function prepareData(context, sheet) {
  * @param {Object} context The actor to prepare.
  */
 async function prepareItems(context) {
+	context.itemCount = context.actor.items.size;
+
 	// Initialize containers.
 	const basics = [];
 	const weapons = [];
@@ -249,6 +248,7 @@ async function prepareItems(context) {
 	context.projects = projects;
 	context.rituals = rituals;
 	context.effects = effects;
+
 	context.classFeatures = {};
 	for (const item of context.actor.itemTypes.classFeature) {
 		const featureType = (context.classFeatures[item.system.featureType] ??= {
