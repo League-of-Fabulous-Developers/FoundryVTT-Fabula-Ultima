@@ -5,7 +5,6 @@ import { FUPartySheet } from './actor-party-sheet.mjs';
 import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
 
 const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
-const SKILL_TYPES = ['skill'];
 const RESOURCE_POINT_TYPES = ['miscAbility', 'skill', 'heroic'];
 const WEARABLE_TYPES = ['armor', 'shield', 'accessory'];
 
@@ -48,20 +47,7 @@ async function prepareItems(context) {
 	context.itemCount = context.actor.items.size;
 
 	// Initialize containers.
-	const basics = [];
-	const weapons = [];
-	const armor = [];
-	const shields = [];
-	const accessories = [];
-
-	const spells = [];
-	const abilities = [];
-	const rules = [];
 	const behaviors = [];
-	const consumables = [];
-	const treasures = [];
-	const projects = [];
-	const rituals = [];
 	const effects = [];
 
 	// Iterate through items, allocating to containers
@@ -82,15 +68,8 @@ async function prepareItems(context) {
 		item.mpCost = item.system.cost?.amount;
 		item.target = item.system.targeting?.rule;
 		item.duration = item.system.duration?.value;
-		item.dLevel = item.system.dLevel?.value;
 		item.clock = item.system.clock?.value;
-		item.progressPerDay = item.system.progressPerDay?.value;
-		item.days = item.system.days?.value;
 		item.cost = item.system.cost?.value;
-		item.discount = item.system.discount?.value;
-		item.potency = item.system.potency?.value;
-		item.area = item.system.area?.value;
-		item.use = item.system.use?.value;
 
 		item.progressCurr = item.system.progress?.current;
 		item.progressStep = item.system.progress?.step;
@@ -118,17 +97,6 @@ async function prepareItems(context) {
 			}
 			item.rpArr = rpArr.reverse();
 		}
-		if (SKILL_TYPES.includes(item.type)) {
-			const skillArr = [];
-			const level = item.system.level || { value: 0, max: 8 };
-			for (let i = 0; i < level.max; i++) {
-				skillArr.push({
-					id: i + 1,
-					checked: parseInt(level.value) === i + 1,
-				});
-			}
-			item.skillArr = skillArr;
-		}
 		if (WEARABLE_TYPES.includes(item.type)) {
 			item.def = item.isMartial && item.type === 'armor' ? item.system.def.value : `+${item.system.def.value}`;
 			item.mdef = `+${item.system.mdef.value}`;
@@ -139,63 +107,143 @@ async function prepareItems(context) {
 			description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system?.description ?? ''),
 		};
 
-		if (item.type === 'basic') {
-			const itemObj = context.actor.items.get(item._id);
-			const weapData = getWeaponDisplayData(context.actor, itemObj);
-			item.quality = weapData.qualityString;
-			item.detail = weapData.detailString;
-			item.attackString = weapData.attackString;
-			item.damageString = weapData.damageString;
-			basics.push(item);
-		} else if (item.type === 'weapon') {
-			item.unarmedStrike = context.actor.getSingleItemByFuid('unarmed-strike');
-			const itemObj = context.actor.items.get(item._id);
-			const weapData = getWeaponDisplayData(context.actor, itemObj);
-			item.quality = weapData.qualityString;
-			item.detail = weapData.detailString;
-			item.attackString = weapData.attackString;
-			item.damageString = weapData.damageString;
-			weapons.push(item);
-		} else if (item.type === 'armor') {
-			armor.push(item);
-		} else if (item.type === 'shield') {
-			const itemObj = context.actor.items.get(item._id);
-			const weapData = getWeaponDisplayData(context.actor, itemObj);
-			item.quality = weapData.qualityString;
-			item.detail = weapData.detailString;
-			item.attackString = weapData.attackString;
-			item.damageString = weapData.damageString;
-			shields.push(item);
-		} else if (item.type === 'accessory') {
-			accessories.push(item);
-		} else if (item.type === 'spell') {
-			const itemObj = context.actor.items.get(item._id);
-			const spellData = getSpellDisplayData(context.actor, itemObj);
-			item.quality = spellData.qualityString;
-			item.detail = spellData.detailString;
-			item.attackString = spellData.attackString;
-			item.damageString = spellData.damageString;
-			spells.push(item);
-		} else if (item.type === 'miscAbility') {
-			const itemObj = context.actor.items.get(item._id);
-			const skillData = getSkillDisplayData(itemObj);
-			item.quality = skillData.qualityString;
-			abilities.push(item);
-		} else if (item.type === 'rule') {
-			rules.push(item);
-		} else if (item.type === 'behavior') {
+		if (item.type === 'behavior') {
 			behaviors.push(item);
-		} else if (item.type === 'consumable') {
-			const itemObj = context.actor.items.get(item._id);
-			const itemData = getItemDisplayData(itemObj);
-			item.quality = itemData.qualityString;
-			consumables.push(item);
-		} else if (item.type === 'treasure') {
-			const itemObj = context.actor.items.get(item._id);
-			const itemData = getItemDisplayData(itemObj);
-			item.quality = itemData.qualityString;
-			treasures.push(item);
-		} else if (item.type === 'project') {
+		} else if (item.type === 'effect') {
+			effects.push(item);
+		}
+	}
+
+	// Assign and return
+
+	context.behaviors = behaviors;
+	context.effects = effects;
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
+function prepareNpcCombat(context) {
+	const basics = [];
+	const abilities = [];
+	const rules = [];
+
+	for (let item of context.items) {
+		switch (item.type) {
+			case 'basic':
+				{
+					const itemObj = context.actor.items.get(item._id);
+					const weapData = getWeaponDisplayData(context.actor, itemObj);
+					item.quality = weapData.qualityString;
+					item.detail = weapData.detailString;
+					item.attackString = weapData.attackString;
+					item.damageString = weapData.damageString;
+					basics.push(item);
+				}
+				break;
+
+			case 'miscAbility':
+				{
+					const itemObj = context.actor.items.get(item._id);
+					const skillData = getSkillDisplayData(itemObj);
+					item.quality = skillData.qualityString;
+					abilities.push(item);
+				}
+				break;
+
+			case 'rule':
+				rules.push(item);
+				break;
+		}
+	}
+
+	context.basics = basics;
+	context.abilities = abilities;
+	context.rules = rules;
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
+function prepareInventory(context) {
+	const weapons = [];
+	const armor = [];
+	const shields = [];
+	const accessories = [];
+	const consumables = [];
+	const treasures = [];
+
+	for (let item of context.items) {
+		switch (item.type) {
+			case 'armor':
+				armor.push(item);
+				break;
+
+			case 'shield':
+				{
+					const itemObj = context.actor.items.get(item._id);
+					const weapData = getWeaponDisplayData(context.actor, itemObj);
+					item.quality = weapData.qualityString;
+					item.detail = weapData.detailString;
+					item.attackString = weapData.attackString;
+					item.damageString = weapData.damageString;
+					shields.push(item);
+				}
+				break;
+
+			case 'accessory':
+				accessories.push(item);
+				break;
+
+			case 'weapon':
+				{
+					item.unarmedStrike = context.actor.getSingleItemByFuid('unarmed-strike');
+					const itemObj = context.actor.items.get(item._id);
+					const weapData = getWeaponDisplayData(context.actor, itemObj);
+					item.quality = weapData.qualityString;
+					item.detail = weapData.detailString;
+					item.attackString = weapData.attackString;
+					item.damageString = weapData.damageString;
+					weapons.push(item);
+				}
+				break;
+
+			case 'treasure':
+				{
+					const itemObj = context.actor.items.get(item._id);
+					const itemData = getItemDisplayData(itemObj);
+					item.quality = itemData.qualityString;
+					treasures.push(item);
+				}
+				break;
+
+			case 'consumable':
+				{
+					const itemObj = context.actor.items.get(item._id);
+					const itemData = getItemDisplayData(itemObj);
+					item.quality = itemData.qualityString;
+					consumables.push(item);
+				}
+				break;
+		}
+	}
+
+	context.weapons = weapons;
+	context.armor = armor;
+	context.shields = shields;
+	context.accessories = accessories;
+	context.consumables = consumables;
+	context.treasures = treasures;
+	context.equipment = [...weapons, ...armor, ...shields, ...accessories];
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
+function prepareProjects(context) {
+	const projects = [];
+	for (let item of context.items) {
+		if (item.type === 'project') {
 			const itemObj = context.actor.items.get(item._id);
 			item.cost = itemObj.system.cost?.value;
 			item.discount = itemObj.system.discount?.value;
@@ -206,36 +254,17 @@ async function prepareItems(context) {
 			item.progressStep = itemObj.system.progress?.step;
 			item.defect = !!item.system.isDefect?.value;
 			item.defectMod = item.system.use?.value;
+			item.use = item.system.use?.value;
 			projects.push(item);
-		} else if (item.type === 'ritual') {
-			const itemObj = context.actor.items.get(item._id);
-			item.mpCost = itemObj.system.mpCost?.value;
-			item.dLevel = itemObj.system.dLevel?.value;
-			item.clock = itemObj.system.clock?.value;
-			rituals.push(item);
-		} else if (item.type === 'effect') {
-			effects.push(item);
 		}
 	}
-
-	// Assign and return
-	context.basics = basics;
-	context.weapons = weapons;
-	context.armor = armor;
-	context.shields = shields;
-	context.accessories = accessories;
-	context.equipment = [...weapons, ...armor, ...shields, ...accessories];
-
-	context.spells = spells;
-	context.abilities = abilities;
-	context.rules = rules;
-	context.behaviors = behaviors;
-	context.consumables = consumables;
-	context.treasures = treasures;
 	context.projects = projects;
-	context.rituals = rituals;
-	context.effects = effects;
+}
 
+/**
+ * @param {ApplicationRenderContext} context
+ */
+async function prepareFeatures(context) {
 	context.classFeatures = {};
 	for (const item of context.actor.itemTypes.classFeature) {
 		const featureType = (context.classFeatures[item.system.featureType] ??= {
@@ -272,16 +301,48 @@ async function prepareItems(context) {
 	}
 }
 
-// /**
-//  * @param {ApplicationRenderContext} context      Shared context provided by _prepareContext
-//  * @protected
-//  */
-// function prepareSpells(context) {
-// }
+/**
+ * @param {ApplicationRenderContext} context
+ */
+function prepareSpells(context) {
+	const spells = [];
+	const rituals = [];
+
+	// Iterate through items, allocating to containers
+	for (let item of context.items) {
+		switch (item.type) {
+			case 'spell':
+				{
+					const itemObj = context.actor.items.get(item._id);
+					const spellData = getSpellDisplayData(context.actor, itemObj);
+					item.quality = spellData.qualityString;
+					item.detail = spellData.detailString;
+					item.attackString = spellData.attackString;
+					item.damageString = spellData.damageString;
+					spells.push(item);
+				}
+				break;
+
+			case 'ritual':
+				{
+					const itemObj = context.actor.items.get(item._id);
+					item.mpCost = itemObj.system.mpCost?.value;
+					item.dLevel = itemObj.system.dLevel?.value;
+					item.clock = itemObj.system.clock?.value;
+					item.potency = item.system.potency?.value;
+					item.area = item.system.area?.value;
+					rituals.push(item);
+				}
+				break;
+		}
+	}
+
+	context.spells = spells;
+	context.rituals = rituals;
+}
 
 /**
- * @param {ApplicationRenderContext} context      Shared context provided by _prepareContext
- * @protected
+ * @param {ApplicationRenderContext} context
  */
 function prepareClasses(context) {
 	const classes = [];
@@ -297,11 +358,20 @@ function prepareClasses(context) {
 
 			case 'skill':
 				{
-					// TODO: Check if..
 					const itemObj = context.actor.items.get(item._id);
 					const skillData = getSkillDisplayData(itemObj);
 					item.quality = skillData.qualityString;
 					skills.push(item);
+
+					const skillArr = [];
+					const level = item.system.level || { value: 0, max: 8 };
+					for (let i = 0; i < level.max; i++) {
+						skillArr.push({
+							id: i + 1,
+							checked: parseInt(level.value) === i + 1,
+						});
+					}
+					item.skillArr = skillArr;
 				}
 				break;
 
@@ -1179,6 +1249,11 @@ export const ActorSheetUtils = Object.freeze({
 	prepareCharacterData,
 	activateDefaultListeners,
 	prepareClasses,
+	prepareNpcCombat,
+	prepareInventory,
+	prepareSpells,
+	prepareProjects,
+	prepareFeatures,
 	activateInventoryListeners,
 	activateStashListeners,
 	handleInventoryItemDrop,

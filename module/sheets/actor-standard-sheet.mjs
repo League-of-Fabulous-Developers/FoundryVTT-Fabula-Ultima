@@ -246,15 +246,28 @@ export class FUStandardActorSheet extends FUActorSheet {
 				break;
 
 			case 'features':
+				await ActorSheetUtils.prepareProjects(context);
+				await ActorSheetUtils.prepareFeatures(context);
 				break;
 
 			case 'classes':
 				await ActorSheetUtils.prepareClasses(context);
 				break;
 
+			case 'spells':
+				await ActorSheetUtils.prepareSpells(context);
+				break;
+
+			// NPCS
+			case 'combat':
+				await ActorSheetUtils.prepareNpcCombat(context);
+				await ActorSheetUtils.prepareSpells(context);
+				break;
+
 			case 'items':
 				{
 					// Set up item data
+					await ActorSheetUtils.prepareInventory(context);
 					await ActorSheetUtils.prepareItems(context);
 
 					if (this.isEditable) {
