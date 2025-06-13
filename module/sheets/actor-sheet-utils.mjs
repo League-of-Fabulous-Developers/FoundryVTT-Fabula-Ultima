@@ -4,10 +4,6 @@ import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { FUPartySheet } from './actor-party-sheet.mjs';
 import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
 
-const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
-const RESOURCE_POINT_TYPES = ['miscAbility', 'skill', 'heroic'];
-const WEARABLE_TYPES = ['armor', 'shield', 'accessory'];
-
 /**
  * @description Prepares model-agnostic data for the actor
  * @param context
@@ -39,6 +35,10 @@ async function prepareData(context, sheet) {
 	context.systemFields = sheet.document.system.schema.fields;
 }
 
+const CLOCK_TYPES = ['zeroPower', 'ritual', 'miscAbility', 'rule'];
+const RESOURCE_POINT_TYPES = ['miscAbility', 'skill', 'heroic'];
+const WEARABLE_TYPES = ['armor', 'shield', 'accessory'];
+
 /**
  * @description Organize and classify Items for Character sheets.
  * @param {Object} context The actor to prepare.
@@ -46,35 +46,10 @@ async function prepareData(context, sheet) {
 async function prepareItems(context) {
 	context.itemCount = context.actor.items.size;
 
-	// Initialize containers.
-	const behaviors = [];
-	const effects = [];
-
+	// TODO: Handle elsewhere
 	// Iterate through items, allocating to containers
 	for (let item of context.items) {
-		item.img = item.img || CONST.DEFAULT_TOKEN;
-
-		if (item.system.quality?.value) {
-			item.quality = item.system.quality.value;
-		}
-
-		item.isMartial = item.system.isMartial?.value;
-		item.isOffensive = item.system.isOffensive?.value;
-		item.isBehavior = item.system.isBehavior?.value;
-		item.equipped = !!item.system.isEquipped?.value;
-		item.equippedSlot = !!(item.system.isEquipped && item.system.isEquipped.slot);
-		item.level = item.system.level?.value;
-		item.class = item.system.class?.value;
-		item.mpCost = item.system.cost?.amount;
-		item.target = item.system.targeting?.rule;
-		item.duration = item.system.duration?.value;
-		item.clock = item.system.clock?.value;
-		item.cost = item.system.cost?.value;
-
-		item.progressCurr = item.system.progress?.current;
-		item.progressStep = item.system.progress?.step;
-		item.progressMax = item.system.progress?.max;
-
+		//item.img = item.img || CONST.DEFAULT_TOKEN;
 		if (CLOCK_TYPES.includes(item.type)) {
 			const progressArr = [];
 			const progress = item.system.progress || { current: 0, max: 6 };
@@ -106,18 +81,7 @@ async function prepareItems(context) {
 		item.enrichedHtml = {
 			description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system?.description ?? ''),
 		};
-
-		if (item.type === 'behavior') {
-			behaviors.push(item);
-		} else if (item.type === 'effect') {
-			effects.push(item);
-		}
 	}
-
-	// Assign and return
-
-	context.behaviors = behaviors;
-	context.effects = effects;
 }
 
 /**

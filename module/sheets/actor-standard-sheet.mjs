@@ -21,6 +21,7 @@ const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex
 
 /**
  * @description Standard actor sheet, now v2
+ * @property [FUActor] actor
  * @extends {FUActorSheet}
  */
 export class FUStandardActorSheet extends FUActorSheet {
@@ -258,10 +259,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 				await ActorSheetUtils.prepareSpells(context);
 				break;
 
-			// NPCS
 			case 'combat':
 				await ActorSheetUtils.prepareNpcCombat(context);
 				await ActorSheetUtils.prepareSpells(context);
+				break;
+
+			case 'behavior':
+				context.behaviors = this.actor.getItemsByType('behavior');
 				break;
 
 			case 'items':
@@ -269,10 +273,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 					// Set up item data
 					await ActorSheetUtils.prepareInventory(context);
 					await ActorSheetUtils.prepareItems(context);
-
-					if (this.isEditable) {
-						ActorSheetUtils.activateInventoryListeners(this.element, this);
-					}
 
 					// Sort the items array in-place based on the current sorting method
 					let sortFn = this.sortByOrder;
@@ -503,6 +503,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 		if (!this.isEditable) {
 			return;
 		}
+
+		ActorSheetUtils.activateInventoryListeners(this.element, this);
 
 		// Create an instance of EquipmentHandler
 		const eh = new EquipmentHandler(this.actor);
