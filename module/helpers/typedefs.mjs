@@ -76,6 +76,12 @@ export {};
  */
 
 /**
+ * @typedef ApplicationRenderContext   Context data provided to the renderer
+ * @property {Record<string, ApplicationTab>} [tabs]    Tab data prepared from an entry in
+ *   {@link foundry.applications.api.ApplicationV2.TABS}
+ */
+
+/**
  * @typedef ApplicationWindowConfiguration
  * @property {boolean} [frame=true]             Is this Application rendered inside a window frame?
  * @property {boolean} [positioned=true]        Can this Application be positioned via JavaScript or only by CSS

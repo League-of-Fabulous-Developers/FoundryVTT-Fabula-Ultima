@@ -54,9 +54,6 @@ async function prepareItems(context) {
 	const shields = [];
 	const accessories = [];
 
-	const classes = [];
-	const skills = [];
-	const heroics = [];
 	const spells = [];
 	const abilities = [];
 	const rules = [];
@@ -75,11 +72,11 @@ async function prepareItems(context) {
 			item.quality = item.system.quality.value;
 		}
 
-		item.isMartial = item.system.isMartial?.value ? true : false;
-		item.isOffensive = item.system.isOffensive?.value ? true : false;
-		item.isBehavior = item.system.isBehavior?.value ? true : false;
-		item.equipped = item.system.isEquipped?.value ? true : false;
-		item.equippedSlot = item.system.isEquipped && item.system.isEquipped.slot ? true : false;
+		item.isMartial = item.system.isMartial?.value;
+		item.isOffensive = item.system.isOffensive?.value;
+		item.isBehavior = item.system.isBehavior?.value;
+		item.equipped = !!item.system.isEquipped?.value;
+		item.equippedSlot = !!(item.system.isEquipped && item.system.isEquipped.slot);
 		item.level = item.system.level?.value;
 		item.class = item.system.class?.value;
 		item.mpCost = item.system.cost?.amount;
@@ -94,8 +91,7 @@ async function prepareItems(context) {
 		item.potency = item.system.potency?.value;
 		item.area = item.system.area?.value;
 		item.use = item.system.use?.value;
-		item.defect = item.system.isDefect?.value ? true : false;
-		item.defectMod = item.system.use?.value;
+
 		item.progressCurr = item.system.progress?.current;
 		item.progressStep = item.system.progress?.step;
 		item.progressMax = item.system.progress?.max;
@@ -172,15 +168,6 @@ async function prepareItems(context) {
 			shields.push(item);
 		} else if (item.type === 'accessory') {
 			accessories.push(item);
-		} else if (item.type === 'class') {
-			classes.push(item);
-		} else if (item.type === 'skill') {
-			const itemObj = context.actor.items.get(item._id);
-			const skillData = getSkillDisplayData(itemObj);
-			item.quality = skillData.qualityString;
-			skills.push(item);
-		} else if (item.type === 'heroic') {
-			heroics.push(item);
 		} else if (item.type === 'spell') {
 			const itemObj = context.actor.items.get(item._id);
 			const spellData = getSpellDisplayData(context.actor, itemObj);
@@ -217,6 +204,8 @@ async function prepareItems(context) {
 			item.days = itemObj.system.days?.value;
 			item.progressCurr = itemObj.system.progress?.current;
 			item.progressStep = itemObj.system.progress?.step;
+			item.defect = !!item.system.isDefect?.value;
+			item.defectMod = item.system.use?.value;
 			projects.push(item);
 		} else if (item.type === 'ritual') {
 			const itemObj = context.actor.items.get(item._id);
@@ -236,9 +225,7 @@ async function prepareItems(context) {
 	context.shields = shields;
 	context.accessories = accessories;
 	context.equipment = [...weapons, ...armor, ...shields, ...accessories];
-	context.classes = classes;
-	context.skills = skills;
-	context.heroics = heroics;
+
 	context.spells = spells;
 	context.abilities = abilities;
 	context.rules = rules;
@@ -283,6 +270,50 @@ async function prepareItems(context) {
 			item.progressArr = progressArr.reverse();
 		}
 	}
+}
+
+// /**
+//  * @param {ApplicationRenderContext} context      Shared context provided by _prepareContext
+//  * @protected
+//  */
+// function prepareSpells(context) {
+// }
+
+/**
+ * @param {ApplicationRenderContext} context      Shared context provided by _prepareContext
+ * @protected
+ */
+function prepareClasses(context) {
+	const classes = [];
+	const skills = [];
+	const heroics = [];
+
+	// Iterate through items, allocating to containers
+	for (let item of context.items) {
+		switch (item.type) {
+			case 'class':
+				classes.push(item);
+				break;
+
+			case 'skill':
+				{
+					// TODO: Check if..
+					const itemObj = context.actor.items.get(item._id);
+					const skillData = getSkillDisplayData(itemObj);
+					item.quality = skillData.qualityString;
+					skills.push(item);
+				}
+				break;
+
+			case 'heroic':
+				heroics.push(item);
+				break;
+		}
+	}
+
+	context.classes = classes;
+	context.skills = skills;
+	context.heroics = heroics;
 }
 
 /**
@@ -1147,6 +1178,7 @@ export const ActorSheetUtils = Object.freeze({
 	findItemConfig,
 	prepareCharacterData,
 	activateDefaultListeners,
+	prepareClasses,
 	activateInventoryListeners,
 	activateStashListeners,
 	handleInventoryItemDrop,

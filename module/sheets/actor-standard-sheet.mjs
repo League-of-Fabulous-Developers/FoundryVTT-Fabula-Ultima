@@ -190,8 +190,15 @@ export class FUStandardActorSheet extends FUActorSheet {
 		return parts;
 	}
 
-	async _preparePartContext(partId, ctx, options) {
-		const context = await super._preparePartContext(partId, ctx, options);
+	/**
+	 * @param {string} partId                         The part being rendered
+	 * @param {ApplicationRenderContext} context      Shared context provided by _prepareContext
+	 * @param {HandlebarsRenderOptions} options       Options which configure application rendering behavior
+	 * @returns {Promise<ApplicationRenderContext>}   Context data for a specific part
+	 * @protected
+	 */
+	async _preparePartContext(partId, context, options) {
+		context = await super._preparePartContext(partId, context, options);
 		// IMPORTANT: Set the active tab
 		if (partId in context.tabs) {
 			context.tab = context.tabs[partId];
@@ -242,6 +249,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 				break;
 
 			case 'classes':
+				await ActorSheetUtils.prepareClasses(context);
 				break;
 
 			case 'items':
