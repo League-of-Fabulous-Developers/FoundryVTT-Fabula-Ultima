@@ -46,6 +46,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			deleteBond: FUStandardActorSheet.DeleteBond,
 			updateClock: FUStandardActorSheet.UpdateClock,
 			rest: FUStandardActorSheet.handleRestClick,
+			sortFavorites: FUStandardActorSheet.sortFavorites,
 
 			// Active effects
 			createEffect: FUStandardActorSheet.CreateEffect,
@@ -240,10 +241,17 @@ export class FUStandardActorSheet extends FUActorSheet {
 			case 'features':
 				break;
 
+			case 'classes':
+				break;
+
 			case 'items':
 				{
 					// Set up item data
 					await ActorSheetUtils.prepareItems(context);
+
+					if (this.isEditable) {
+						ActorSheetUtils.activateInventoryListeners(this.element, this);
+					}
 
 					// Sort the items array in-place based on the current sorting method
 					let sortFn = this.sortByOrder;
@@ -327,7 +335,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		// Model agnostic
 		await ActorSheetUtils.prepareData(context, this);
 		// For characters/npcs
-		this._prepareCharacterData(context);
+		ActorSheetUtils.prepareCharacterData(context);
 
 		// Prepare character data and items.
 		if (this.isCharacter) {
@@ -342,40 +350,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 		context.rollData = context.actor.getRollData();
 
 		return context;
-	}
-
-	/**
-	 * Organize and classify Items for Character sheets.
-	 * @param {Object} actorData The actor to prepare.
-	 *
-	 * @return {undefined}
-	 */
-	_prepareCharacterData(context) {
-		if (!context || !context.system || !context.system.attributes || !context.system.affinities) {
-			console.error('Invalid context or context.system');
-			return;
-		}
-
-		// Handle ability scores.
-		for (let [k, v] of Object.entries(context.system.attributes)) {
-			v.label = game.i18n.localize(CONFIG.FU.attributes[k]) ?? k;
-			v.abbr = game.i18n.localize(CONFIG.FU.attributeAbbreviations[k]) ?? k;
-		}
-
-		// Handle affinity
-		for (let [k, v] of Object.entries(context.system.affinities)) {
-			v.label = game.i18n.localize(CONFIG.FU.damageTypes[k]) ?? k;
-			v.affTypeBase = game.i18n.localize(CONFIG.FU.affType[v.base]) ?? v.base;
-			v.affTypeBaseAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.base]) ?? v.base;
-			v.affTypeCurr = game.i18n.localize(CONFIG.FU.affType[v.current]) ?? v.current;
-			v.affTypeCurrAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.current]) ?? v.current;
-			v.icon = CONFIG.FU.affIcon[k];
-		}
-
-		// Handle immunity
-		for (let [k, v] of Object.entries(context.system.immunities)) {
-			v.label = game.i18n.localize(CONFIG.FU.temporaryEffects[k]) ?? k;
-		}
 	}
 
 	/* -------------------------------------------- */
@@ -494,36 +468,14 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 	/* -------------------------------------------- */
 
-	/** @override */
 	/**
-	 * @param {HTMLElement} html
+	 * @inheritDoc
+	 * @override
 	 */
-	// activateListeners(html) {
-	block_onRender(context, options) {
+	_attachFrameListeners() {
+		super._attachFrameListeners();
 		const html = this.element;
-		super._onRender(context, options);
-		// super.activateListeners(html);
-		// html = html[0];
 		ActorSheetUtils.activateDefaultListeners(html, this);
-
-		html.addEventListener('mouseup', (ev) => {
-			if (ev.target.closest('.effect') && ev.button === 1) {
-				// Check for middle-click (button 1)
-				this._onMiddleClickEditEffect(ev);
-			}
-		});
-
-		// html.addEventListener('click', async (ev) => {
-		// 	// Send active effect to chat
-		// 	if (ev.target.closest('.effect-roll')) {
-		// 		onManageActiveEffect(ev, this.actor);
-		// 	}
-
-		// 	// Active Effect management
-		// 	if (ev.target.closest('.effect-control')) {
-		// 		onManageActiveEffect(ev, this.actor);
-		// 	}
-		// });
 
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
@@ -535,35 +487,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const eh = new EquipmentHandler(this.actor);
 
 		// Editable item actions
-		ActorSheetUtils.activateInventoryListeners(html, this);
-		// html.addEventListener('click', (ev) => {
-		// 	const target = ev.target;
-
-		// 	if (target.closest('.use-equipment')) {
-		// 		this._onUseEquipment(ev);
-		// 	} else if (target.closest('.item-favored')) {
-		// 		this._onItemFavorite(ev);
-		// 	} else if (target.closest('.zenit-deposit')) {
-		// 		InventoryPipeline.promptPartyZenitTransfer(this.actor, 'deposit');
-		// 	} else if (target.closest('.zenit-withdraw')) {
-		// 		InventoryPipeline.promptPartyZenitTransfer(this.actor, 'withdraw');
-		// 	} else if (target.closest('.increment-button')) {
-		// 		this._onIncrementButtonClick(ev);
-		// 	} else if (target.closest('.decrement-button')) {
-		// 		this._onDecrementButtonClick(ev);
-		// 	} else if (target.closest('.is-levelup')) {
-		// 		this._onLevelUp(ev);
-		// 	} else if (target.closest('.skillLevel input')) {
-		// 		this._onSkillLevelUpdate(ev);
-		// 	} else if (target.closest('.progress input')) {
-		// 		const progress = target.closest('.progress');
-		// 		const dataType = progress?.dataset.type;
-		// 		const dataPath = progress?.dataset.dataPath;
-		// 		this._onProgressUpdate(ev, dataType, dataPath);
-		// 	} else if (target.closest('.item-equip')) {
-		// 		eh.handleItemClick(ev, 'left');
-		// 	}
-		// });
 
 		html.addEventListener('contextmenu', (ev) => {
 			const target = ev.target;
@@ -591,21 +514,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 				ev.preventDefault();
 			}
 		});
-
-		const sortButton = html.querySelector('#sortButton');
-
-		if (sortButton) {
-			sortButton.addEventListener('mousedown', (ev) => {
-				if (ev.button === 2) {
-					// Right-click: change sort type
-					this.changeSortType();
-				} else {
-					// Left-click: toggle ascending/descending
-					this.sortOrder *= -1;
-					this.render();
-				}
-			});
-		}
 
 		// Load sorting method from actor flags
 		if (this.actor) {
@@ -722,26 +630,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const isFavoredBool = item.system.isFavored?.value ?? false;
 
 		await this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
-	}
-
-	// Handle middle-click to open active effect dialog
-	_onMiddleClickEditEffect(ev) {
-		const owner = this.actor;
-		if (ev.button === 1 && !$(ev.target).hasClass('effect-control')) {
-			const li = $(ev.currentTarget);
-			const simulatedEvent = {
-				preventDefault: () => {},
-				currentTarget: {
-					dataset: { action: 'edit' },
-					closest: () => li[0],
-					classList: {
-						contains: (cls) => li.hasClass(cls),
-					},
-				},
-			};
-
-			onManageActiveEffect(simulatedEvent, owner);
-		}
 	}
 
 	/* -------------------------------------------- */
@@ -1260,35 +1148,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/**
-	 * Updates the progress clock value based on the clicked segment.
-	 * @param {Event} ev - The input change event.
-	 * @param {"feature"} [dataType] is the item a feature
-	 * @param {string} [dataPath] path to clock data
-	 * @private
-	 */
-	_onProgressUpdate(ev, dataType, dataPath) {
-		const input = ev.currentTarget;
-		const segment = input.value;
-		const li = $(input).closest('.item');
-
-		if (li.length) {
-			// If the clock is from an item
-			const itemId = li.data('itemId');
-			const item = this.actor.items.get(itemId);
-
-			if (dataPath) {
-				item.update({ [dataPath + '.current']: segment });
-			} else if (dataType === 'feature') {
-				item.update({ 'system.data.progress.current': segment });
-			} else {
-				item.update({ 'system.progress.current': segment });
-			}
-		} else {
-			this.actor.update({ 'system.progress.current': segment });
-		}
-	}
-
-	/**
 	 * Resets the progress clock.
 	 * @param {Event} ev - The input change event.
 	 * @param {"feature"} [dataType] is the item a feature
@@ -1428,15 +1287,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 			return;
 		}
 
-		// // Handle action-type rolls.
-		// if (dataset.rollType === 'action-type') {
-		// 	const actor = this.actor;
-		// 	const actionHandlerInstance = new ActionHandler(actor); // Create an instance of ActionHandler
-
-		// 	// Call the handleAction method with the action type and shift key status
-		// 	await actionHandlerInstance.handleAction(dataset.action, isShift);
-		// }
-
 		// Handle rolls that supply the formula directly.
 		if (dataset.roll) {
 			const label = dataset.label ? `${dataset.label}` : '';
@@ -1562,5 +1412,22 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 	static RollEffect(e, elem) {
 		onManageActiveEffect(e, this.actor, 'roll');
+	}
+
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static sortFavorites(event, target) {
+		if (event.button === 2) {
+			// Right-click: change sort type
+			this.changeSortType();
+		} else {
+			// Left-click: toggle ascending/descending
+			this.sortOrder *= -1;
+			this.render();
+		}
 	}
 }

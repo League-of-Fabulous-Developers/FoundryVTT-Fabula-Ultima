@@ -1103,6 +1103,38 @@ function activateStashListeners(html, sheet) {
 	});
 }
 
+/**
+ * Organize and classify Items for Character sheets.
+ * @param {Object} context
+ */
+function prepareCharacterData(context) {
+	if (!context || !context.system || !context.system.attributes || !context.system.affinities) {
+		console.error('Invalid context or context.system');
+		return;
+	}
+
+	// Handle ability scores.
+	for (let [k, v] of Object.entries(context.system.attributes)) {
+		v.label = game.i18n.localize(CONFIG.FU.attributes[k]) ?? k;
+		v.abbr = game.i18n.localize(CONFIG.FU.attributeAbbreviations[k]) ?? k;
+	}
+
+	// Handle affinity
+	for (let [k, v] of Object.entries(context.system.affinities)) {
+		v.label = game.i18n.localize(CONFIG.FU.damageTypes[k]) ?? k;
+		v.affTypeBase = game.i18n.localize(CONFIG.FU.affType[v.base]) ?? v.base;
+		v.affTypeBaseAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.base]) ?? v.base;
+		v.affTypeCurr = game.i18n.localize(CONFIG.FU.affType[v.current]) ?? v.current;
+		v.affTypeCurrAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.current]) ?? v.current;
+		v.icon = CONFIG.FU.affIcon[k];
+	}
+
+	// Handle immunity
+	for (let [k, v] of Object.entries(context.system.immunities)) {
+		v.label = game.i18n.localize(CONFIG.FU.temporaryEffects[k]) ?? k;
+	}
+}
+
 const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(0).toUpperCase() + string.slice(1) : string);
 
 /**
@@ -1113,6 +1145,7 @@ export const ActorSheetUtils = Object.freeze({
 	prepareData,
 	prepareItems,
 	findItemConfig,
+	prepareCharacterData,
 	activateDefaultListeners,
 	activateInventoryListeners,
 	activateStashListeners,
