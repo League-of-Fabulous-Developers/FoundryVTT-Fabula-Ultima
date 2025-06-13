@@ -1,0 +1,59 @@
+{
+  "folder": "lTFAsRseiLeS0NPa",
+  "name": "Witchvoice",
+  "type": "heroic",
+  "img": "icons/tools/instruments/harp-yellow-teal.webp",
+  "system": {
+    "fuid": "witchvoice",
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Draw enemy attacks using Condemn or verses."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered the <strong>Necromancer</strong> Class.</p></blockquote><p>After one or more enemies suffer one or more status effects due to a <strong>verse</strong> you sung or due to your <strong>Condemn</strong> Skill, each of those enemies becomes <strong>bewitched</strong> (this effect does not apply to creatures that are immune or already suffering from <strong>all</strong> status effects inflicted this way). A creature you <strong>bewitched</strong> must include you among the targets of their attacks and offensive spells ( @ICON[offensive] ), if able, and stops being <strong>bewitched</strong> at the start of your next turn or as soon as it recovers from one or more status effects.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": {
+      "value": "FUHS7"
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "2sIzoqmFNykqXyPi": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Item.lKh5BiLwOUZ74kpS",
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1749776840471,
+    "modifiedTime": 1749778691206,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi"
+  },
+  "_id": "6lm7JyJkH7VTRHsB",
+  "_key": "!items!6lm7JyJkH7VTRHsB"
+}

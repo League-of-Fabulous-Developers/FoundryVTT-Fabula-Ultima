@@ -1,0 +1,59 @@
+{
+  "folder": "lTFAsRseiLeS0NPa",
+  "name": "Nether Slash",
+  "type": "heroic",
+  "img": "icons/weapons/daggers/dagger-ritual-crooked-crystal.webp",
+  "system": {
+    "fuid": "nether-slash",
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Converts Shadow Strike into fire or ice."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Darkblade</strong>, <strong>Elementalist</strong> and <strong>Pilot</strong>, and have acquired the <strong>Shadow Strike</strong> Skill.</p></blockquote><p>When you use the <strong>Shadow Strike</strong> Skill, you may choose <strong>fire</strong> or <strong>ice</strong>. If you do, all damage dealt by this attack becomes of the chosen type instead of <strong>dark</strong> (its damage type cannot change, as usual), and you gain Resistance to the damage type you did not choose until the start of your next turn.</p><p>When you perform a <strong>free attack</strong> with a <strong>melee</strong> weapon as part of the <strong>Shadow Strike </strong>Skill, the attack may target enemies that can only be targeted by a <strong>ranged</strong> attack.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": {
+      "value": "FUHS6"
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "2sIzoqmFNykqXyPi": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Item.lKh5BiLwOUZ74kpS",
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1749776840471,
+    "modifiedTime": 1749778675064,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi"
+  },
+  "_id": "DlJa4F10uOwKCOg1",
+  "_key": "!items!DlJa4F10uOwKCOg1"
+}
