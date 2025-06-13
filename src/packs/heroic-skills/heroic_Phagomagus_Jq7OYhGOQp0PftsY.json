@@ -1,0 +1,59 @@
+{
+  "folder": "lTFAsRseiLeS0NPa",
+  "name": "Phagomagus",
+  "type": "heroic",
+  "img": "icons/creatures/abilities/paw-print-yellow.webp",
+  "system": {
+    "fuid": "phagomagus",
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Devour the magic present on your foes."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Chimerist</strong>, <strong>Entropist</strong>, <strong>Gourmet</strong> and <strong>Mutant</strong>.</p></blockquote><p>When you cast the <strong>Dispel</strong> spell, its MP cost becomes \"10 × T\" and its <strong>target</strong> becomes \"Up to three creatures\".</p><p>When you cause one or more enemies to no longer be affected by one or more spells with a <strong>duration</strong> of \"Scene\", choose <strong>one</strong> option: you recover 20 Mind Points for each spell whose effects ended on at least one of those enemies this way; <strong>or</strong> for each spell whose effects ended on at least one of those enemies this way, apply a copy of that spell on yourself (if a spell allowed for choices upon casting it, you must retain the same choices that were made for this casting of the spell). This copying effect does not require actions, Mind Points, or Checks, and is not treated as \"casting a spell\".</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": {
+      "value": "FUHS7"
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "2sIzoqmFNykqXyPi": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Item.lKh5BiLwOUZ74kpS",
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1749776840471,
+    "modifiedTime": 1749778682486,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi"
+  },
+  "_id": "Jq7OYhGOQp0PftsY",
+  "_key": "!items!Jq7OYhGOQp0PftsY"
+}

@@ -1,0 +1,59 @@
+{
+  "folder": "lTFAsRseiLeS0NPa",
+  "name": "It Lives!",
+  "type": "heroic",
+  "img": "icons/magic/symbols/cog-orange-red.webp",
+  "system": {
+    "fuid": "it-lives",
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Improve construct-Species Faithful Companions"
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Tinkerer</strong> and <strong>Wayfarer</strong>, and have acquired the <strong>Faithful Companion</strong> (<strong>construct</strong> Species) and <strong>Visionary</strong> Skills.</p></blockquote><p>Your companion's Affinity towards <strong>bolt</strong> damage becomes <strong>Absorption</strong>, and their maximum Hit Point score is increased by an amount equal to <strong>【twice your Skill Level in Visionary】</strong>.</p><p>When your companion deals damage, if they have no weapons equipped, they deal extra damage equal to <strong>【your Skill Level in Visionary】</strong>.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": {
+      "value": "FUHS5"
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "2sIzoqmFNykqXyPi": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Item.lKh5BiLwOUZ74kpS",
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1749776840471,
+    "modifiedTime": 1749778665828,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi"
+  },
+  "_id": "ont75JHAfUfWSUU5",
+  "_key": "!items!ont75JHAfUfWSUU5"
+}

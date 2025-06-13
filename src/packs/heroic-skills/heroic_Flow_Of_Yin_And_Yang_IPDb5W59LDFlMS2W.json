@@ -1,0 +1,59 @@
+{
+  "folder": "lTFAsRseiLeS0NPa",
+  "name": "Flow Of Yin And Yang",
+  "type": "heroic",
+  "img": "icons/magic/control/control-influence-crown-yellow.webp",
+  "system": {
+    "fuid": "flow-of-yin-and-yang",
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Swap between damage of different elements to charge yin and yang energy."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Dancer</strong>, <strong>Elementalist</strong>, <strong>Esper</strong>, and <strong>Invoker</strong>.</p></blockquote><p>When you deal <strong>dark</strong>, <strong>earth</strong>, <strong>ice</strong>, or <strong>physical</strong> damage for the first time during a turn, you gain <strong>1 Yin Point</strong> and, if you have <strong>at least 1 Yang Point</strong>, you deal 5 extra damage.</p><p>When you deal <strong>air</strong>, <strong>bolt</strong>, <strong>fire</strong>, or <strong>light</strong> damage for the first time during a turn, you gain <strong>1 Yang Point</strong> and, if you have <strong>at least 1 Yin Point</strong>, you deal 5 extra damage.</p><p>At the end of your turn, if you have <strong>3 or more Yin and/or Yang points</strong> and have <strong>at least 1 point of each type</strong>, you lose all Yin and Yang Points and perform one of the following effects based on the points you lost (perform <strong>both</strong> in case of a tie):</p><ul><li><p><strong>Yin majority</strong>: every enemy present on the scene loses an amount of Mind Points equal to <strong>【half your level】</strong>.</p></li><li><p><strong>Yang majority</strong>: one creature you can see that is present on the scene recovers an amount of Mind Points equal to <strong>【your level】</strong>.</p></li></ul><p>You may gain and use <strong>Yin and Yang Points</strong> only during conflicts, and you lose all your <strong>Yin and Yang Points</strong> at the end of each scene.</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": {
+      "value": "FUHS4"
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "2sIzoqmFNykqXyPi": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Item.lKh5BiLwOUZ74kpS",
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1749776840471,
+    "modifiedTime": 1749778648804,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi"
+  },
+  "_id": "IPDb5W59LDFlMS2W",
+  "_key": "!items!IPDb5W59LDFlMS2W"
+}

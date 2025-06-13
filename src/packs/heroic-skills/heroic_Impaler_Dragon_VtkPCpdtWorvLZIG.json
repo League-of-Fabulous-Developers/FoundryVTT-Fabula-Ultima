@@ -1,0 +1,59 @@
+{
+  "folder": "lTFAsRseiLeS0NPa",
+  "name": "Impaler Dragon",
+  "type": "heroic",
+  "img": "icons/sundries/gaming/chess-knight-white-glass.webp",
+  "system": {
+    "fuid": "impaler-dragon",
+    "subtype": {
+      "value": "skill"
+    },
+    "summary": {
+      "value": "Use Charging Cavalry after Shadow Strike."
+    },
+    "description": "<blockquote><p><strong>Requirements:</strong> you must have mastered one or more Classes among <strong>Commander</strong> and <strong>Darkblade</strong>, and have acquired the <strong>Charging Cavalry</strong> and <strong>Shadow Strike</strong> Skills.</p></blockquote><p>When you use the <strong>Shadow Strike</strong> Skill, you may treat your <strong>High Roll</strong> as being equal to 0 when determining damage dealt by this attack. If you do, after the attack from <strong>Shadow Strike</strong> is resolved, you may immediately perform the <strong>Charging Cavalry</strong> Skill for free (paying the appropriate MP cost).</p>",
+    "isFavored": {
+      "value": false
+    },
+    "showTitleCard": {
+      "value": false
+    },
+    "class": {
+      "value": ""
+    },
+    "hasResource": {
+      "value": false
+    },
+    "rp": {
+      "current": 0,
+      "step": 1,
+      "max": 6,
+      "enabled": false
+    },
+    "requirement": {
+      "value": ""
+    },
+    "source": {
+      "value": "FUHS5"
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "2sIzoqmFNykqXyPi": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Item.lKh5BiLwOUZ74kpS",
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1749776840471,
+    "modifiedTime": 1749778662010,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi"
+  },
+  "_id": "VtkPCpdtWorvLZIG",
+  "_key": "!items!VtkPCpdtWorvLZIG"
+}

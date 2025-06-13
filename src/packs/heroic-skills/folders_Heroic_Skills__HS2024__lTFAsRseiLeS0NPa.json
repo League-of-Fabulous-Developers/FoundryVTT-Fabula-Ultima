@@ -1,0 +1,22 @@
+{
+  "name": "Heroic Skills [HS2024]",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "lTFAsRseiLeS0NPa",
+  "description": "",
+  "sort": 100000,
+  "color": "#505a78",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "projectfu",
+    "systemVersion": "#{VERSION}#",
+    "createdTime": 1749776840458,
+    "modifiedTime": 1749776840458,
+    "lastModifiedBy": "2sIzoqmFNykqXyPi"
+  },
+  "_key": "!folders!lTFAsRseiLeS0NPa"
+}
