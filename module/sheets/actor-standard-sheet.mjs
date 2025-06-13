@@ -145,10 +145,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 			case 'npc':
 				{
+					delete tabs.features;
 					delete tabs.classes;
 					delete tabs.spells;
 					delete tabs.items;
-					delete tabs.features;
 
 					// Behavior roll
 					if (!game.settings.get('projectfu', 'optionBehaviorRoll')) {
@@ -163,6 +163,30 @@ export class FUStandardActorSheet extends FUActorSheet {
 		}
 
 		return tabs;
+	}
+
+	/**
+	 * @description Allow subclasses to dynamically configure render parts.
+	 * @param {HandlebarsRenderOptions} options
+	 * @returns {Record<string, HandlebarsTemplatePart>}
+	 * @protected
+	 */
+	_configureRenderParts(options) {
+		const parts = super._configureRenderParts(options);
+		switch (this.actor.type) {
+			case 'character':
+				delete parts.behavior;
+				delete parts.combat;
+				break;
+
+			case 'npc':
+				delete parts.features;
+				delete parts.classes;
+				delete parts.spells;
+				delete parts.items;
+				break;
+		}
+		return parts;
 	}
 
 	async _preparePartContext(partId, ctx, options) {
