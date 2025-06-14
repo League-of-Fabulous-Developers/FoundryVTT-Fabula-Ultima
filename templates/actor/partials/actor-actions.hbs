@@ -49,10 +49,10 @@
     {{/if}}
     <div class="action-container grid grid-2col gap-5">
         {{#if (eq @root.actor.type "npc")}}
-        <span class="action-style button-style study-style grid-span-2 grid-2col" data-tooltip="{{localize 'FU.StudyRoll'}}">
-            <span class="study-button" style="cursor: pointer;">
+        <span class="action-style button-style study-style grid-span-2 grid-2col flexrow" data-tooltip="{{localize 'FU.StudyRoll'}}">
+            <span class="study-button" style="cursor: pointer;" data-action="studyAction">
                 <i class="fas fa-magnifying-glass icon"></i>
-                <label for="studySelect">{{localize 'FU.Study'}}</label>
+                <label for="studySelect" >{{localize 'FU.Study'}}</label>
             </span>
 
             <select name="system.study.value" id="studySelect" data-dtype="Number" class="resource-label-l">
@@ -80,7 +80,7 @@
         </span>
 
         {{#if (eq (getGameSetting 'optionBehaviorRoll') true)}}
-        <span id="behavior-action" class="action-style button-style spin2win rollable grid-span-2" data-roll-type="behavior">
+        <span id="behavior-action" class="action-style button-style spin2win rollable grid-span-2" data-roll-type="behavior" data-action="roll">
             <i class="fas fa-dice-d20 ra-1x icon"></i>
             <label class="items-label">{{ localize "FU.Behavior" }}</label>
         </span>
