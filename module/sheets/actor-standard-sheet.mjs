@@ -51,6 +51,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 			rest: FUStandardActorSheet.handleRestClick,
 			sortFavorites: FUStandardActorSheet.sortFavorites,
 			levelUp: FUStandardActorSheet.levelUp,
+			toggleActiveArcanum: FUStandardActorSheet.updateArcanistArcanum,
+			toggleActiveGarden: FUStandardActorSheet.toggleActiveGarden,
+			togglePlantedMagiseed: FUStandardActorSheet.togglePlantedMagiseed,
 
 			// Active effects
 			createEffect: FUStandardActorSheet.CreateEffect,
@@ -601,44 +604,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 			el.addEventListener('click', updatePilotVehicle('updateActiveSupportModules').bind(this));
 		});
 
-		const updateArcanistArcanum = (ev) => {
-			const itemId = ev.currentTarget.dataset.itemId;
-			const currentArcanumId = this.actor.system.equipped.arcanum;
-
-			// Toggle arcanum slot
-			const newArcanumId = currentArcanumId === itemId ? null : itemId;
-
-			this.actor.update({
-				'system.equipped.arcanum': newArcanumId,
-			});
-		};
-
-		html.querySelectorAll('[data-action="toggleActiveArcanum"][data-item-id]').forEach((el) => {
-			el.addEventListener('click', updateArcanistArcanum.bind(this));
-		});
-
-		const toggleActiveGarden = (ev) => {
-			const itemId = ev.currentTarget.dataset.itemId;
-			const item = this.actor.items.get(itemId);
-
-			return this.actor.system.floralist.toggleActiveGarden(item);
-		};
-
-		html.querySelectorAll('[data-action="toggleActiveGarden"][data-item-id]').forEach((el) => {
-			el.addEventListener('click', toggleActiveGarden.bind(this));
-		});
-
-		const togglePlantedMagiseed = (ev) => {
-			const itemId = ev.currentTarget.dataset.itemId;
-			const item = this.actor.items.get(itemId);
-
-			return this.actor.system.floralist.togglePlantedMagiseed(item);
-		};
-
-		html.querySelectorAll('[data-action="togglePlantedMagiseed"][data-item-id]').forEach((el) => {
-			el.addEventListener('click', togglePlantedMagiseed.bind(this));
-		});
-
 		// Dropzone event listeners
 		const dropZone = html.querySelector('.desc.drop-zone');
 		if (dropZone) {
@@ -731,9 +696,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/**
-	 * Handles the event when the "Use Equipment" checkbox is clicked.
+	 * @description Handles the event when the "Use Equipment" checkbox is clicked.
 	 * If the checkbox is unchecked, it unequips all equipped items in the actor's inventory.
-	 *
 	 * @param {Event} ev - The click ev triggering the "Use Equipment" checkbox.
 	 * @returns {void} The function does not return a promise.
 	 */
@@ -1165,5 +1129,45 @@ export class FUStandardActorSheet extends FUActorSheet {
 			});
 			$icon.remove();
 		});
+	}
+
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static updateArcanistArcanum(event, target) {
+		const itemId = target.dataset.itemId;
+		const currentArcanumId = this.actor.system.equipped.arcanum;
+		// Toggle arcanum slot
+		const newArcanumId = currentArcanumId === itemId ? null : itemId;
+		this.actor.update({
+			'system.equipped.arcanum': newArcanumId,
+		});
+	}
+
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static toggleActiveGarden(event, target) {
+		const itemId = target.dataset.itemId;
+		const item = this.actor.items.get(itemId);
+		return this.actor.system.floralist.toggleActiveGarden(item);
+	}
+
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static togglePlantedMagiseed(event, target) {
+		const itemId = target.dataset.itemId;
+		const item = this.actor.items.get(itemId);
+		return this.actor.system.floralist.togglePlantedMagiseed(item);
 	}
 }

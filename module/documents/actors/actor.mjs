@@ -436,10 +436,10 @@ export class FUActor extends Actor {
 
 	/**
 	 * @description Handle resting actions for the actor, restoring health and possibly other resources.
-	 * @param {boolean} isRightClick - Indicates if the rest action is triggered by a right-click.
+	 * @param {boolean} recoverInventoryPoints
 	 * @returns {Promise<void>} A promise that resolves when the rest action is complete.
 	 */
-	async rest(isRightClick) {
+	async rest(recoverInventoryPoints) {
 		const maxHP = this.system.resources.hp?.max;
 		const maxMP = this.system.resources.mp?.max;
 		const maxIP = this.system.resources.ip?.max;
@@ -450,7 +450,7 @@ export class FUActor extends Actor {
 			'system.resources.mp.value': maxMP,
 		});
 
-		if (isRightClick) {
+		if (recoverInventoryPoints) {
 			updateData = foundry.utils.mergeObject(updateData, {
 				'system.resources.ip.value': maxIP,
 			});
@@ -463,7 +463,7 @@ export class FUActor extends Actor {
 		CommonEvents.rest(this);
 
 		// Rerender the actor's sheet if necessary
-		if (isRightClick || updateData['system.resources.ip.value']) {
+		if (recoverInventoryPoints || updateData['system.resources.ip.value']) {
 			this.sheet.render(true);
 		}
 	}
