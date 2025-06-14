@@ -8,8 +8,7 @@ import { SETTINGS } from '../settings.js';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { GroupCheck as GroupCheckV2 } from '../checks/group-check.mjs';
-import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
-import { CommonEvents } from '../checks/common-events.mjs';
+import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
@@ -17,6 +16,7 @@ import { FUActorSheet } from './actor-sheet.mjs';
 import { systemTemplatePath } from '../helpers/system-utils.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 import { BehaviorRoll } from '../documents/items/behavior/behavior-roll.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -33,6 +33,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			height: 1000,
 		},
 		actions: {
+			roll: FUStandardActorSheet.Roll,
 			spendMetaCurrency: FUStandardActorSheet.SpendMetaCurrency,
 			studyAction: FUStandardActorSheet.StudyAction,
 			guardAction: FUStandardActorSheet.PerformAction,
@@ -49,6 +50,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			updateClock: FUStandardActorSheet.UpdateClock,
 			rest: FUStandardActorSheet.handleRestClick,
 			sortFavorites: FUStandardActorSheet.sortFavorites,
+			levelUp: FUStandardActorSheet.levelUp,
 
 			// Active effects
 			createEffect: FUStandardActorSheet.CreateEffect,
@@ -205,6 +207,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		if (partId in context.tabs) {
 			context.tab = context.tabs[partId];
 		}
+
 		switch (partId) {
 			case 'header':
 				{
@@ -375,6 +378,19 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/* -------------------------------------------- */
+	/**
+	 * @override
+	 * @private
+	 */
+	async _updateObject(event, formData) {
+		// Foundry's form update handlers send back bond information as an object {0: ..., 1: ....}
+		// So correct an update in that form and create an updated bond array to properly represent the changes
+		const bonds = formData.system?.resources?.bonds;
+		if (bonds && !Array.isArray(bonds)) {
+			formData.system.bonds = Array.from(Object.values(bonds));
+		}
+		super._updateObject(event, formData);
+	}
 
 	async _onDrop(ev) {
 		ev.preventDefault();
@@ -466,7 +482,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const activeEditor = document.querySelector('.editor-content.ProseMirror');
 		if (activeEditor) {
 			const effects = itemData.effects || [];
-			const formattedEffects = effects.map((effect) => this._formatEffect(effect)).join(' ');
+			const formattedEffects = effects.map((effect) => Effects.formatEffect(effect)).join(' ');
 
 			ev.preventDefault();
 			ev.stopPropagation();
@@ -480,12 +496,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 		} else {
 			console.log('No active ProseMirror editor found.');
 		}
-	}
-
-	// Helper function to generate the @EFFECT format string
-	_formatEffect(effect) {
-		const encodedEffect = InlineHelper.toBase64(effect);
-		return `@EFFECT[${encodedEffect}]`;
 	}
 
 	/* -------------------------------------------- */
@@ -761,102 +771,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 	static async handleRestClick(event, target) {
 		event.preventDefault();
 		const isRightClick = event.type === 'contextmenu';
-		await this.onRest(this.actor, isRightClick);
+		await this.actor.rest(isRightClick);
 	}
 
 	// TODO: Move out of here
-	/**
-	 * @description Handle resting actions for the actor, restoring health and possibly other resources.
-	 * @param {Actor} actor - The actor performing the rest action.
-	 * @param {boolean} isRightClick - Indicates if the rest action is triggered by a right-click.
-	 * @returns {Promise<void>} A promise that resolves when the rest action is complete.
-	 */
-	async onRest(actor, isRightClick) {
-		const maxHP = actor.system.resources.hp?.max;
-		const maxMP = actor.system.resources.mp?.max;
-		const maxIP = actor.system.resources.ip?.max;
-
-		// Prepare the update data using mergeObject to avoid overwriting other fields
-		let updateData = foundry.utils.mergeObject(actor.toObject(false), {
-			'system.resources.hp.value': maxHP,
-			'system.resources.mp.value': maxMP,
-		});
-
-		if (isRightClick) {
-			updateData = foundry.utils.mergeObject(updateData, {
-				'system.resources.ip.value': maxIP,
-			});
-		}
-
-		// Update the actor
-		await actor.update(updateData);
-
-		// Dispatch the event
-		CommonEvents.rest(actor);
-
-		// Rerender the actor's sheet if necessary
-		if (isRightClick || updateData['system.resources.ip.value']) {
-			actor.sheet.render(true);
-		}
-	}
 
 	/**
-	 * Handles the level up action when clicked.
-	 *
-	 * @param {Event} ev - The input change event.
-	 */
-	_onLevelUp(ev) {
-		const input = ev.currentTarget;
-		const actor = this.actor;
-		if (!actor) {
-			return;
-		}
-
-		const exp = actor.system.resources.exp.value;
-		if (exp < 10) {
-			return;
-		}
-
-		const { level } = actor.system;
-		const $icon = $(input).css('position', 'relative');
-		$icon.animate({ top: '-100%', opacity: 0 }, 500, function () {
-			actor.update({
-				'system.resources.exp.value': exp - 10,
-				'system.level.value': level.value + 1,
-			});
-			$icon.remove();
-		});
-	}
-
-	/**
-	 * Sets the skill level value to the segment clicked.
-	 *
-	 * @param {Event} ev - The input change event.
-	 */
-	_onSkillLevelUpdate(ev) {
-		console.log('Skill level update;', ev);
-		const input = ev.currentTarget;
-		const segment = input.value;
-
-		const li = $(input).closest('.item');
-
-		if (li.length) {
-			const itemId = li.find('input').data('item-id');
-			const item = this.actor.items.get(itemId);
-
-			if (item) {
-				item.update({ 'system.level.value': segment });
-			} else {
-				console.error(`Item with ID ${itemId} not found.`);
-			}
-		} else {
-			console.error('Parent item not found.');
-		}
-	}
-
-	/**
-	 * Resets the skill level value to 0 on right-click.
-	 *
+	 * @description Resets the skill level value to 0 on right-click.
 	 * @param {Event} ev - The context menu event.
 	 */
 	_onSkillLevelReset(ev) {
@@ -992,39 +913,36 @@ export class FUStandardActorSheet extends FUActorSheet {
 		}
 	}
 
-	/**
-	 * Handles clickable rolls based on different roll types.
-	 * @param {MouseEvent} event   The originating click event
-	 * @private
-	 */
-	async _onRoll(ev) {
-		ev.preventDefault();
-		const element = ev.srcElement.closest('.rollable');
-		const dataset = element.dataset;
+	/////////////////////
+	// ACTION HANDLERS //
+	/////////////////////
 
-		const isShift = ev.shiftKey;
-		const isCtrl = ev.ctrlKey;
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async Roll(event, target) {
+		event.preventDefault();
+		const dataset = target.dataset;
+		const modifiers = HTMLUtils.getKeyboardModifiers(event);
 		// Get the value of optionTargetPriorityRules from game settings
 		const settingPriority = game.settings.get('projectfu', 'optionTargetPriorityRules');
 
 		// Handle item rolls.
 		if (dataset.rollType) {
 			if (dataset.rollType === 'item') {
-				const itemId = element.closest('.item').dataset.itemId;
+				const itemId = target.closest('.item').dataset.itemId;
 				const item = this.actor.items.get(itemId);
 				if (item) {
-					if (isCtrl) {
+					if (modifiers.ctrl) {
 						return new ItemCustomizer(this.actor, item).render(true);
 					} else {
 						if (settingPriority && this.actor?.type === 'npc') {
 							BehaviorRoll.targetPriority(this.actor);
 						}
-						return item.roll({
-							shift: isShift,
-							alt: ev.altKey,
-							ctrl: ev.ctrlKey,
-							meta: ev.metaKey,
-						});
+						return item.roll(modifiers);
 					}
 				}
 			}
@@ -1045,7 +963,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			}
 
 			if (dataset.rollType === 'group-check') {
-				return ChecksV2.groupCheck(this.actor, isShift ? GroupCheckV2.initInitiativeCheck : GroupCheckV2.initGroupCheck);
+				return ChecksV2.groupCheck(this.actor, modifiers.shift ? GroupCheckV2.initInitiativeCheck : GroupCheckV2.initGroupCheck);
 			}
 		}
 
@@ -1063,19 +981,14 @@ export class FUStandardActorSheet extends FUActorSheet {
 			};
 
 			// Find the first matching slot class or default to 'default'
-			const slot = Object.keys(slotMap).find((className) => element.classList.contains(className)) || 'default';
+			const slot = Object.keys(slotMap).find((className) => target.classList.contains(className)) || 'default';
 			const itemId = equippedData[slotMap[slot]]; // Use the mapped slot
 
 			const item = this.actor.items.get(itemId);
 
 			// Check if the item exists and call its roll method
 			if (item) {
-				return item.roll({
-					shift: isShift,
-					alt: ev.altKey,
-					ctrl: ev.ctrlKey,
-					meta: ev.metaKey,
-				});
+				return item.roll(modifiers);
 			}
 		}
 
@@ -1114,23 +1027,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 			});
 			return roll;
 		}
-	}
-
-	async _updateObject(ev, data) {
-		// Foundry's form update handlers send back bond information as an object {0: ..., 1: ....}
-		// So correct an update in that form and create an updated bond array to properly represent the changes
-		const bonds = data.system?.resources?.bonds;
-		if (bonds && !Array.isArray(bonds)) {
-			data.system.bonds = Array.from(Object.values(bonds));
-		}
-		super._updateObject(ev, data);
-	}
-
-	/** Action handlers  */
-
-	static Roll(e, elem) {
-		console.log('Rolling:', e);
-		this._onRoll(e);
 	}
 
 	static SpendMetaCurrency(e, elem) {
@@ -1246,5 +1142,28 @@ export class FUStandardActorSheet extends FUActorSheet {
 			this.sortOrder *= -1;
 			this.render();
 		}
+	}
+
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static levelUp(event, target) {
+		const exp = this.actor.system.resources.exp.value;
+		if (exp < 10) {
+			return;
+		}
+
+		const { level } = this.actor.system;
+		const $icon = $(target).css('position', 'relative');
+		$icon.animate({ top: '-100%', opacity: 0 }, 500, function () {
+			this.actor.update({
+				'system.resources.exp.value': exp - 10,
+				'system.level.value': level.value + 1,
+			});
+			$icon.remove();
+		});
 	}
 }

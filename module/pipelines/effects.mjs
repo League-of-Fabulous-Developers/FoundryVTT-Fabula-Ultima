@@ -188,7 +188,7 @@ function canBeRemoved(effect) {
 }
 
 // Helper function to generate the @EFFECT format string
-export function formatEffect(effect) {
+function formatEffect(effect) {
 	const encodedEffect = InlineHelper.toBase64(effect.toJSON());
 	return `@EFFECT[${encodedEffect}]`;
 }
@@ -673,6 +673,7 @@ export const Effects = Object.freeze({
 	onApplyEffectToActor: onApplyEffect,
 	canBeRemoved,
 	toggleStatusEffect,
+	formatEffect,
 	BOONS_AND_BANES,
 	DAMAGE_TYPES,
 	STATUS_EFFECTS,
