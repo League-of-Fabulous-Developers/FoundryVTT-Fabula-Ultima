@@ -2,6 +2,7 @@ const { api, sheets } = foundry.applications;
 
 /**
  * @property {HTMLElement} element
+ * @property {FUActor} actor
  */
 export class FUActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
 	/**

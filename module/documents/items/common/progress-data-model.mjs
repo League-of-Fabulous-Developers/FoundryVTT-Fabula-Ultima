@@ -69,4 +69,33 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 			}),
 		});
 	}
+
+	/**
+	 * @param {Document} document
+	 * @param {String} propertyPath
+	 * @param {Number} increment
+	 * @param {Boolean} useMultiplier
+	 * @returns {Promise<void>}
+	 */
+	static async updateForDocument(document, propertyPath, increment, useMultiplier) {
+		/** @type ProgressDataModel **/
+		const progress = foundry.utils.getProperty(document, propertyPath);
+		const maxProgress = progress.max;
+
+		let newProgress;
+
+		if (useMultiplier) {
+			const stepMultiplier = progress.step || 1;
+			newProgress = progress.current + increment * stepMultiplier;
+		} else {
+			newProgress = progress.current + increment;
+		}
+
+		if (maxProgress !== 0) {
+			newProgress = Math.min(newProgress, maxProgress);
+		}
+
+		const currentPropertyPath = `${propertyPath}.current`;
+		await document.update({ [currentPropertyPath]: newProgress });
+	}
 }

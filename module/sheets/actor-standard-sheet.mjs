@@ -10,12 +10,13 @@ import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { GroupCheck as GroupCheckV2 } from '../checks/group-check.mjs';
 import { InlineHelper, InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { CommonEvents } from '../checks/common-events.mjs';
-import { CollectionUtils } from '../helpers/collection-utils.mjs';
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { PlayerListEnhancements } from '../helpers/player-list-enhancements.mjs';
 import { FUActorSheet } from './actor-sheet.mjs';
 import { systemTemplatePath } from '../helpers/system-utils.mjs';
+import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
+import { BehaviorRoll } from '../documents/items/behavior/behavior-roll.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -800,113 +801,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/**
-	 * Rolls a random behavior for the given actor and displays the result in a chat message.
-	 *
-	 * @returns {void}
-	 */
-	_rollBehavior() {
-		// Filter items in the actor's inventory to find behaviors
-		const behaviors = this.actor.items.filter((item) => ['basic', 'weapon', 'shield', 'armor', 'accessory', 'spell', 'miscAbility', 'behavior'].includes(item.type) && item.system.isBehavior?.value);
-
-		// Prepare an array to map behaviors with their weights
-		const behaviorMap = [];
-
-		// Populate the behaviorMap based on behavior weights
-		behaviors.forEach((behavior) => {
-			const weight = behavior.system.weight.value;
-			const nameVal = behavior.name;
-			const descVal = behavior.system.description;
-			const idVal = behavior.id;
-
-			for (let i = 0; i < weight; i++) {
-				behaviorMap.push({
-					name: nameVal,
-					desc: descVal,
-					id: idVal,
-				});
-			}
-		});
-
-		// Check if there are behaviors to choose from
-		if (behaviorMap.length === 0) {
-			console.error('No behavior selected.');
-			return;
-		}
-
-		// Randomly select a behavior from the behaviorMap
-		const randVal = Math.floor(Math.random() * behaviorMap.length);
-		const selected = behaviorMap[randVal];
-
-		// Get the item from the actor's items by id
-		const item = this.actor.items.get(selected.id); // Use "this.actor" to access the actor's items
-
-		if (item) {
-			// Call the item's roll method
-			item.roll();
-		}
-
-		// Call _targetPriority method passing the selected behavior
-		this._targetPriority(selected);
-
-		// Check if the selected behavior's type is "item"
-		if (selected.type === 'item') {
-			// Get the item from the actor's items by id
-
-			const item = this.actor.items.get(selected.id);
-			// Check if the item exists
-			if (item) {
-				// Return the result of item.roll()
-				item._onRoll.bind(this);
-			}
-		}
-	}
-
-	_targetPriority(selected) {
-		// Get the array of targeted tokens
-		let targetedTokens = Array.from(game.user.targets);
-
-		// Define the content variable
-		let content;
-
-		// Extract the name of the selected behavior
-		const behaviorName = selected ? selected.name : '';
-
-		if (targetedTokens.length > 0) {
-			// Map targeted tokens to numbered tokens with actor names
-			const numberedTokens = targetedTokens.map((token, index) => `${index + 1} (${token.actor.name})`);
-
-			// Shuffle the array of numbered tokens
-			CollectionUtils.shuffleArray(numberedTokens);
-
-			// Prepare the content for the chat message
-			content = `<b>Actor:</b> ${this.actor.name}${behaviorName ? `<br /><b>Selected behavior:</b> ${behaviorName}` : ''}<br /><b>Target priority:</b> ${numberedTokens.join(' -> ')}`;
-		} else {
-			// Get the value of optionTargetPriority from game settings
-			const settingValue = game.settings.get('projectfu', 'optionTargetPriority');
-
-			// Prepare an array for target priority with a length equal to settingValue
-			const targetArray = Array.from({ length: settingValue }, (_, index) => index + 1);
-
-			// Shuffle the array of numbered tokens
-			CollectionUtils.shuffleArray(targetArray);
-
-			// Prepare the content for the chat message
-			content = `<b>Actor:</b> ${this.actor.name}${behaviorName ? `<br /><b>Selected behavior:</b> ${behaviorName}` : ''}<br /><b>Target priority:</b> ${targetArray.join(' -> ')}`;
-		}
-
-		// Prepare chat data for displaying the message
-		const chatData = {
-			user: game.user._id,
-			speaker: ChatMessage.getSpeaker(),
-			whisper: game.user._id,
-			content,
-		};
-
-		// Create a chat message with the chat data
-		ChatMessage.create(chatData);
-	}
-
-	/**
 	 * Handles the level up action when clicked.
 	 *
 	 * @param {Event} ev - The input change event.
@@ -1010,20 +904,20 @@ export class FUStandardActorSheet extends FUActorSheet {
 							break;
 
 						case 'resourceCounter':
-							await this._updateResourceProgress(item, increment, rightClick);
+							await ProgressDataModel.updateForDocument(item, 'system.rp', increment, rightClick);
 							break;
 
 						case 'clockCounter':
-							await this._updateClockProgress(item, increment, rightClick, dataPath);
+							await ProgressDataModel.updateForDocument(item, dataPath, increment, rightClick);
 							break;
 						case 'optionalRPCounter':
-							await this._updateOptionalRPProgress(item, increment, rightClick);
+							await ProgressDataModel.updateForDocument(item, `system.data.rp`, increment, rightClick);
 							break;
 						case 'featureCounter':
-							await this._updateFeatureProgress(item, increment, rightClick);
+							await ProgressDataModel.updateForDocument(item, `system.data.progress`, increment, rightClick);
 							break;
 						case 'projectCounter':
-							await this._updateProjectProgress(item, increment, rightClick);
+							await ProgressDataModel.updateForDocument(item, `system.progress`, increment, false);
 							break;
 
 						default:
@@ -1042,107 +936,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 	async _updateLevel(item, increment) {
 		const newLevel = item.system.level.value + increment;
 		await item.update({ 'system.level.value': newLevel });
-	}
-
-	async _updateResourceProgress(item, increment, rightClick) {
-		const stepMultiplier = item.system.rp.step || 1;
-		const maxProgress = item.system.rp.max;
-		let newProgress;
-
-		if (rightClick) {
-			newProgress = item.system.rp.current + increment * stepMultiplier;
-		} else {
-			newProgress = item.system.rp.current + increment;
-		}
-
-		if (maxProgress !== 0) {
-			newProgress = Math.min(newProgress, maxProgress);
-		}
-
-		await item.update({ 'system.rp.current': newProgress });
-	}
-
-	/**
-	 * @param {FUItem} item
-	 * @param {number} increment
-	 * @param {boolean} rightClick
-	 * @param {string} [dataPath]
-	 * @returns {Promise<void>}
-	 * @private
-	 */
-	async _updateClockProgress(item, increment, rightClick, dataPath = 'system.progress') {
-		/** @type ProgressDataModel */
-		const progress = foundry.utils.getProperty(item, dataPath);
-
-		const stepMultiplier = progress.step || 1;
-		const maxProgress = progress.max;
-		let newProgress;
-
-		if (rightClick) {
-			newProgress = progress.current + increment * stepMultiplier;
-		} else {
-			newProgress = progress.current + increment;
-		}
-
-		if (maxProgress !== 0) {
-			newProgress = Math.min(newProgress, maxProgress);
-		}
-
-		await item.update({ [dataPath + '.current']: newProgress });
-	}
-
-	async _updateOptionalRPProgress(item, increment, rightClick) {
-		const stepMultiplier = item.system.data.rp.step || 1;
-		const maxProgress = item.system.data.rp.max;
-		let newProgress;
-
-		if (rightClick) {
-			newProgress = item.system.data.rp.current + increment * stepMultiplier;
-		} else {
-			newProgress = item.system.data.rp.current + increment;
-		}
-
-		if (maxProgress !== 0) {
-			newProgress = Math.min(newProgress, maxProgress);
-		}
-
-		await item.update({ 'system.data.rp.current': newProgress });
-	}
-
-	async _updateFeatureProgress(item, increment, rightClick) {
-		const stepMultiplier = item.system.data.progress.step || 1;
-		const maxProgress = item.system.data.progress.max;
-		let newProgress;
-
-		if (rightClick) {
-			newProgress = item.system.data.progress.current + increment * stepMultiplier;
-		} else {
-			newProgress = item.system.data.progress.current + increment;
-		}
-
-		if (maxProgress !== 0) {
-			newProgress = Math.min(newProgress, maxProgress);
-		}
-
-		await item.update({ 'system.data.progress.current': newProgress });
-	}
-
-	async _updateProjectProgress(item, increment, rightClick) {
-		const progressPerDay = item.system.progressPerDay.value || 1;
-		const maxProjectProgress = item.system.progress.max;
-		let currentProgress;
-
-		if (rightClick) {
-			currentProgress = item.system.progress.current + increment * progressPerDay;
-		} else {
-			currentProgress = item.system.progress.current + increment;
-		}
-
-		if (maxProjectProgress !== 0) {
-			currentProgress = Math.min(currentProgress, maxProjectProgress);
-		}
-
-		await item.update({ 'system.progress.current': currentProgress });
 	}
 
 	/**
@@ -1224,7 +1017,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 						return new ItemCustomizer(this.actor, item).render(true);
 					} else {
 						if (settingPriority && this.actor?.type === 'npc') {
-							this._targetPriority();
+							BehaviorRoll.targetPriority(this.actor);
 						}
 						return item.roll({
 							shift: isShift,
@@ -1236,7 +1029,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 				}
 			}
 			if (dataset.rollType === 'behavior') {
-				return this._rollBehavior();
+				return BehaviorRoll.rollBehavior(this);
 			}
 
 			if (dataset.rollType === 'roll-check') {
@@ -1406,7 +1199,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const { itemId, updateAmount, dataPath } = elem.dataset;
 
 		const clock = this.actor.items.get(itemId);
-		await this._updateClockProgress(clock, parseFloat(updateAmount), rightClick, dataPath);
+		const increment = parseFloat(updateAmount);
+		await ProgressDataModel.updateForDocument(clock, dataPath, increment, rightClick);
 	}
 
 	static CreateEffect(e, elem) {
