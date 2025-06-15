@@ -201,6 +201,7 @@
 								<div class="resource-text-t buttons-inc">
 									<a class="decrement-button" data-type="projectCounter"
 									   data-item-id="{{ item._id }}"
+									   data-action="decrementItem"
 									   data-tooltip="{{localize
 										'FU.DecreaseTooltip'}} ({{item.system.progress.step}})">-</a>
 									<span data-resource="item.rp">{{ item.system.progress.current }}</span>
@@ -208,7 +209,7 @@
 									<span>{{ item.progressMax }}</span>
 									<a class="increment-button" data-type="projectCounter"
 									   data-item-id="{{ item._id }}"
-									   data-action="incrementButton"
+									   data-action="incrementItem"
 									   data-tooltip="{{localize
 										'FU.IncreaseTooltip'}} ({{item.system.progress.step}})">+</a>
 								</div>

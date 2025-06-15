@@ -523,7 +523,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 		// Editable item actions
 		html.addEventListener('contextmenu', (ev) => {
 			const target = ev.target;
-
 			if (target.closest('.skillLevel')) {
 				this._onSkillLevelReset(ev);
 			} else if (target.closest('.progress input')) {
@@ -536,11 +535,17 @@ export class FUStandardActorSheet extends FUActorSheet {
 			}
 		});
 
+		// TODO: FIx up
 		html.addEventListener('mousedown', (ev) => {
-			if (ev.ctrlKey && ev.button === 0) {
-				// Left mouse button with Ctrl
-				eh.handleItemClick(ev, 'ctrl');
-				ev.preventDefault();
+			const target = ev.target;
+			if (target.closest('.item-equip')) {
+				if (ev.button === 0) {
+					// Left mouse button with Ctrl
+					eh.handleItemClick(ev, ev.ctrlKey ? 'ctrl' : '');
+					ev.preventDefault();
+				} else {
+					eh.handleItemClick(ev, 'right');
+				}
 			}
 		});
 		this.loadSortingMethod();
