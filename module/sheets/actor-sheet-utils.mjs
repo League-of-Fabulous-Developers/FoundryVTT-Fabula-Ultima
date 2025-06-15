@@ -279,8 +279,7 @@ function prepareSpells(context) {
 		switch (item.type) {
 			case 'spell':
 				{
-					const itemObj = context.actor.items.get(item._id);
-					const spellData = getSpellDisplayData(context.actor, itemObj);
+					const spellData = getSpellDisplayData(context.actor, item);
 					item.quality = spellData.qualityString;
 					item.detail = spellData.detailString;
 					item.attackString = spellData.attackString;
@@ -291,10 +290,9 @@ function prepareSpells(context) {
 
 			case 'ritual':
 				{
-					const itemObj = context.actor.items.get(item._id);
-					item.mpCost = itemObj.system.mpCost?.value;
-					item.dLevel = itemObj.system.dLevel?.value;
-					item.clock = itemObj.system.clock?.value;
+					item.mpCost = item.system.mpCost?.value;
+					item.dLevel = item.system.dLevel?.value;
+					item.clock = item.system.clock?.value;
 					item.potency = item.system.potency?.value;
 					item.area = item.system.area?.value;
 					rituals.push(item);
@@ -324,8 +322,7 @@ function prepareClasses(context) {
 
 			case 'skill':
 				{
-					const itemObj = context.actor.items.get(item._id);
-					const skillData = getSkillDisplayData(itemObj);
+					const skillData = getSkillDisplayData(item);
 					item.quality = skillData.qualityString;
 					skills.push(item);
 
