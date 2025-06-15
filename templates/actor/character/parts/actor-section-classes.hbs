@@ -1,4 +1,5 @@
 <div class="tab desc {{tab.cssClass}}" data-group="primary" data-tab="classes">
+	<!-- Classes Section -->
 	<header class="items-main-header">
 		<span class="items-main">
 			<label class="items-label">{{localize "FU.Classes"}}</label>
@@ -25,12 +26,12 @@
 					{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 					{{!-- Class Level --}}
 					<div class="item-m inline-desc buttons-inc" style="padding:0">
-						<a class="decrement-button" data-type="levelCounter" data-item-id="{{ item._id }}">-</a>
-						<span data-resource="item.level">{{ item.level }}</span>
+						<a class="decrement-button" data-action="decrementItem" data-type="levelCounter" data-item-id="{{ item._id }}">-</a>
+						<span data-resource="item.level">{{ item.system.level.value }}</span>
 						<span>/</span>
 						<span>{{ item.system.level.max }}</span>
-						<a class="increment-button" data-type="levelCounter" data-item-id="{{ item._id }}"
-						   data-action="incrementButton">+</a>
+						<a class="increment-button" data-action="incrementItem" data-type="levelCounter" data-item-id="{{ item._id }}"
+						   >+</a>
 					</div>
 					{{!-- Item Control--}}
 					{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}

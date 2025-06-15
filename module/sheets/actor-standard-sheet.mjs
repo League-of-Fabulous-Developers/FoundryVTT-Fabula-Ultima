@@ -52,6 +52,10 @@ export class FUStandardActorSheet extends FUActorSheet {
 			sortFavorites: FUStandardActorSheet.sortFavorites,
 			levelUp: FUStandardActorSheet.levelUp,
 
+			// Buttons
+			incrementItem: FUStandardActorSheet.incrementItem,
+			decrementItem: FUStandardActorSheet.decrementItem,
+
 			// Features
 			toggleActiveArcanum: FUStandardActorSheet.updateArcanistArcanum,
 			toggleActiveGarden: FUStandardActorSheet.toggleActiveGarden,
@@ -520,11 +524,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		html.addEventListener('contextmenu', (ev) => {
 			const target = ev.target;
 
-			if (target.closest('.increment-button')) {
-				this._onIncrementButtonClick(ev);
-			} else if (target.closest('.decrement-button')) {
-				this._onDecrementButtonClick(ev);
-			} else if (target.closest('.skillLevel')) {
+			if (target.closest('.skillLevel')) {
 				this._onSkillLevelReset(ev);
 			} else if (target.closest('.progress input')) {
 				const progress = target.closest('.progress');
@@ -653,88 +653,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 		}
 	}
 
-	/**
-	 * Handles button click events to update item level or resource progress.
-	 * @param {Event} ev - The button click event.
-	 * @param {number|string} increment - The value by which to increment or decrement the item level or resource progress.
-	 * @param {string} dataType - The type of data ('levelCounter', 'resourceCounter', 'clockCounter', or 'projectCounter').
-	 * @param {boolean} rightClick - Indicates whether the click is a right click.
-	 * @private
-	 */
-	async _onButtonClick(ev, increment, dataType, rightClick) {
-		const button = ev.currentTarget;
-		const li = $(button).closest('.item');
-
-		try {
-			if (li.length) {
-				const itemId = li.find('[data-item-id]').data('item-id');
-				const item = this.actor.items.get(itemId);
-				const dataPath = ev.currentTarget.dataset.dataPath;
-
-				if (item) {
-					switch (dataType) {
-						case 'levelCounter':
-							await this._updateLevel(item, increment);
-							break;
-
-						case 'resourceCounter':
-							await ProgressDataModel.updateForDocument(item, 'system.rp', increment, rightClick);
-							break;
-
-						case 'clockCounter':
-							await ProgressDataModel.updateForDocument(item, dataPath, increment, rightClick);
-							break;
-						case 'optionalRPCounter':
-							await ProgressDataModel.updateForDocument(item, `system.data.rp`, increment, rightClick);
-							break;
-						case 'featureCounter':
-							await ProgressDataModel.updateForDocument(item, `system.data.progress`, increment, rightClick);
-							break;
-						case 'projectCounter':
-							await ProgressDataModel.updateForDocument(item, `system.progress`, increment, false);
-							break;
-
-						default:
-							console.error('Invalid data-type:', dataType);
-							break;
-					}
-				} else {
-					console.error(`Item with ID ${itemId} not found.`);
-				}
-			}
-		} catch (error) {
-			console.error(`Error updating item ${dataType === 'levelCounter' ? 'level' : 'rp progress'}:`, error);
-		}
-	}
-
 	async _updateLevel(item, increment) {
 		const newLevel = item.system.level.value + increment;
 		await item.update({ 'system.level.value': newLevel });
-	}
-
-	/**
-	 * Handles increment button click events for both level and resource progress.
-	 * @param {Event | PointerEvent} ev - The button click event.
-	 * @private
-	 */
-	_onIncrementButtonClick(ev) {
-		ev.preventDefault();
-
-		const dataType = ev.currentTarget.dataset.type ?? ev.srcElement.closest(`[data-type]`).dataset.type;
-		const rightClick = ev.which === 3 || ev.button === 2;
-		this._onButtonClick(ev, 1, dataType, rightClick);
-	}
-
-	/**
-	 * Handles decrement button click events for both level and resource progress.
-	 * @param {Event} ev - The button click event.
-	 * @private
-	 */
-	_onDecrementButtonClick(ev) {
-		ev.preventDefault();
-		const dataType = $(ev.currentTarget).data('type');
-		const rightClick = ev.which === 3 || ev.button === 2;
-		this._onButtonClick(ev, -1, dataType, rightClick);
 	}
 
 	/**
@@ -1147,5 +1068,66 @@ export class FUStandardActorSheet extends FUActorSheet {
 		this.actor.update({
 			'system.vehicle': this.actor.system.vehicle[func](item),
 		});
+	}
+
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async incrementItem(event, target) {
+		return FUStandardActorSheet.adjustItem(event, target, 1, this);
+	}
+
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async decrementItem(event, target) {
+		return FUStandardActorSheet.adjustItem(event, target, -1, this);
+	}
+
+	static async adjustItem(event, target, increment, sheet) {
+		const itemId = target.dataset.itemId;
+		const item = sheet.actor.items.get(itemId);
+		const type = target.dataset.type;
+		const rightClick = event.button === 2;
+
+		if (item) {
+			switch (type) {
+				case 'levelCounter':
+					await sheet._updateLevel(item, increment);
+					break;
+
+				case 'resourceCounter':
+					await ProgressDataModel.updateForDocument(item, 'system.rp', increment, rightClick);
+					break;
+
+				case 'clockCounter':
+					{
+						const dataPath = target.dataset.dataPath;
+						await ProgressDataModel.updateForDocument(item, dataPath, increment, rightClick);
+					}
+					break;
+				case 'optionalRPCounter':
+					await ProgressDataModel.updateForDocument(item, `system.data.rp`, increment, rightClick);
+					break;
+				case 'featureCounter':
+					await ProgressDataModel.updateForDocument(item, `system.data.progress`, increment, rightClick);
+					break;
+				case 'projectCounter':
+					await ProgressDataModel.updateForDocument(item, `system.progress`, increment, false);
+					break;
+
+				default:
+					console.error('Invalid item data type:', type);
+					break;
+			}
+		} else {
+			console.error(`Item with ID ${itemId} not found.`);
+		}
 	}
 }
