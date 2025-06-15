@@ -259,6 +259,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			case 'features':
 				await ActorSheetUtils.prepareProjects(context);
 				await ActorSheetUtils.prepareFeatures(context);
+				await ActorSheetUtils.prepareAbilities(context);
 				break;
 
 			case 'classes':
@@ -270,6 +271,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 				break;
 
 			case 'combat':
+				await ActorSheetUtils.prepareAbilities(context);
 				await ActorSheetUtils.prepareNpcCombat(context);
 				await ActorSheetUtils.prepareSpells(context);
 				break;
@@ -283,18 +285,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 					// Set up item data
 					await ActorSheetUtils.prepareInventory(context);
 					await ActorSheetUtils.prepareItems(context);
-
-					// Sort the items array in-place based on the current sorting method
-					let sortFn = this.sortByOrder;
-					if (this.sortMethod === 'name') {
-						sortFn = this.sortByName;
-					} else if (this.sortMethod === 'type') {
-						sortFn = this.sortByType;
-					}
-					sortFn = sortFn.bind(this);
-					context.items = context.items.contents.sort(sortFn);
-					Object.keys(context.classFeatures).forEach((k) => (context.classFeatures[k].items = Object.fromEntries(Object.entries(context.classFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
-					Object.keys(context.optionalFeatures).forEach((k) => (context.optionalFeatures[k].items = Object.fromEntries(Object.entries(context.optionalFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
+					ActorSheetUtils.prepareSorting(context);
 				}
 				break;
 
@@ -505,7 +496,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/* -------------------------------------------- */
-
 	/**
 	 * @inheritDoc
 	 * @override
@@ -527,7 +517,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const eh = new EquipmentHandler(this.actor);
 
 		// Editable item actions
-
 		html.addEventListener('contextmenu', (ev) => {
 			const target = ev.target;
 
@@ -554,8 +543,18 @@ export class FUStandardActorSheet extends FUActorSheet {
 				ev.preventDefault();
 			}
 		});
+		this.loadSortingMethod();
 
-		// Load sorting method from actor flags
+		// Dropzone event listeners
+		const dropZone = html.querySelector('.desc.drop-zone');
+		if (dropZone) {
+			dropZone.addEventListener('dragenter', this._onDragEnter.bind(this));
+			dropZone.addEventListener('dragleave', this._onDragLeave.bind(this));
+			dropZone.addEventListener('drop', this._onDropReset.bind(this));
+		}
+	}
+
+	loadSortingMethod() {
 		if (this.actor) {
 			const flags = this.actor.getFlag('projectfu', 'sortMethod');
 
@@ -572,36 +571,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 					});
 			}
 		}
-
-		// Dropzone event listeners
-		const dropZone = html.querySelector('.desc.drop-zone');
-		if (dropZone) {
-			dropZone.addEventListener('dragenter', this._onDragEnter.bind(this));
-			dropZone.addEventListener('dragleave', this._onDragLeave.bind(this));
-			dropZone.addEventListener('drop', this._onDropReset.bind(this));
-		}
-	}
-
-	// Handle adding item to favorite
-	async _onItemFavorite(ev) {
-		const itemEl = ev.target.closest('.item');
-		if (!itemEl) {
-			return;
-		}
-
-		const itemId = itemEl.dataset.itemId;
-		const item = this.actor.items.get(itemId);
-		if (!item) {
-			return;
-		}
-
-		const isFavoredBool = item.system.isFavored?.value ?? false;
-
-		await this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
 	}
 
 	/* -------------------------------------------- */
-
 	_onDragEnter(ev) {
 		ev.preventDefault();
 		this.dragCounter++;
@@ -625,32 +597,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/* -------------------------------------------- */
-
 	_onClearTempEffects(ev) {
 		ev.preventDefault();
 		const actor = this.actor;
-
 		if (!actor || !actor.system || !actor.system.immunities) {
 			return;
 		}
-
 		actor.clearTemporaryEffects();
-	}
-
-	sortByOrder(a, b) {
-		return this.sortOrder * (a.sort || 0) - this.sortOrder * (b.sort || 0);
-	}
-
-	sortByName(a, b) {
-		const nameA = a.name.toUpperCase();
-		const nameB = b.name.toUpperCase();
-		return this.sortOrder * nameA.localeCompare(nameB);
-	}
-
-	sortByType(a, b) {
-		const typeA = a.type.toUpperCase();
-		const typeB = b.type.toUpperCase();
-		return this.sortOrder * typeA.localeCompare(typeB);
 	}
 
 	// Method to change the sort type
@@ -665,37 +618,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/**
-	 * @description Handles the event when the "Use Equipment" checkbox is clicked.
-	 * If the checkbox is unchecked, it unequips all equipped items in the actor's inventory.
-	 * @param {Event} ev - The click ev triggering the "Use Equipment" checkbox.
-	 * @returns {void} The function does not return a promise.
-	 */
-	async _onUseEquipment(ev) {
-		const checkbox = ev.currentTarget;
-		const isChecked = checkbox.checked;
-
-		if (!isChecked) {
-			// Get the actor's item collection
-			const itemCollection = this.actor.items;
-
-			// Iterate over each item in the collection
-			itemCollection.forEach((item) => {
-				if (item.system && item.system.isEquipped && item.system.isEquipped.value === true) {
-					// Update the item to set 'system.isEquipped.value' to false
-					item.update({
-						'system.isEquipped.value': false,
-						'system.isEquipped.slot': 'default',
-					});
-				}
-			});
-			// Log a message or perform other actions if needed
-		} else {
-			// Checkbox is checked
-		}
-	}
-
-	// Handle the rest action click events
-	/**
 	 * @this FUStandardActorSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
@@ -706,8 +628,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const isRightClick = event.type === 'contextmenu';
 		await this.actor.rest(isRightClick);
 	}
-
-	// TODO: Move out of here
 
 	/**
 	 * @description Resets the skill level value to 0 on right-click.
@@ -980,19 +900,76 @@ export class FUStandardActorSheet extends FUActorSheet {
 		Effects.toggleStatusEffect(this.actor, elem.dataset.statusId, InlineSourceInfo.fromInstance(this.actor));
 	}
 
-	static ToggleUseEquipment(e, elem) {
-		this._onUseEquipment(e);
+	/**
+	 * @description Handles the event when the "Use Equipment" checkbox is clicked.
+	 * If the checkbox is unchecked, it unequips all equipped items in the actor's inventory.
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} ev   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static ToggleUseEquipment(ev, target) {
+		const isChecked = target.checked;
+
+		if (!isChecked) {
+			// Get the actor's item collection
+			const itemCollection = this.actor.items;
+
+			// Iterate over each item in the collection
+			itemCollection.forEach((item) => {
+				if (item.system && item.system.isEquipped && item.system.isEquipped.value === true) {
+					// Update the item to set 'system.isEquipped.value' to false
+					item.update({
+						'system.isEquipped.value': false,
+						'system.isEquipped.slot': 'default',
+					});
+				}
+			});
+			// Log a message or perform other actions if needed
+		} else {
+			// Checkbox is checked
+		}
 	}
 
-	static ToggleItemFavored(e, elem) {
-		this._onItemFavorite(e);
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async ToggleItemFavored(event, target) {
+		const itemEl = target.closest('.item');
+		if (!itemEl) {
+			return;
+		}
+
+		const itemId = itemEl.dataset.itemId;
+		const item = this.actor.items.get(itemId);
+		if (!item) {
+			return;
+		}
+
+		const isFavoredBool = item.system.isFavored?.value ?? false;
+		await this.actor.updateEmbeddedDocuments('Item', [{ _id: itemId, 'system.isFavored.value': !isFavoredBool }]);
 	}
 
-	static ZenitTransfer(e, elem) {
-		InventoryPipeline.promptPartyZenitTransfer(this.actor, elem.dataset.zenitAction);
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static ZenitTransfer(event, target) {
+		InventoryPipeline.promptPartyZenitTransfer(this.actor, target.dataset.zenitAction);
 	}
 
-	static async CrisisHP(e, elem) {
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async CrisisHP(event, target) {
 		const maxHP = this.actor.system.resources.hp.max;
 		const crisisHP = Math.floor(maxHP / 2);
 		const updateData = {
@@ -1002,7 +979,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 		this.actor.sheet.render(true);
 	}
 
-	static async AddBond(e, elem) {
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async AddBond(event, target) {
 		const bonds = this.actor.system.bonds;
 		const maxBondLength = game.settings.get('projectfu', 'optionBondMaxLength');
 		if (bonds.length >= maxBondLength) {
@@ -1016,16 +999,28 @@ export class FUStandardActorSheet extends FUActorSheet {
 		await this.actor.update({ 'system.bonds': newBonds });
 	}
 
-	static async DeleteBond(e, elem) {
-		const bondIndex = Number(e.currentTarget.dataset.bondIndex);
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async DeleteBond(event, target) {
+		const bondIndex = Number(target.dataset.bondIndex);
 		const newBonds = [...this.actor.system.bonds];
 		newBonds.splice(bondIndex, 1);
 		await this.actor.update({ 'system.bonds': newBonds });
 	}
 
-	static async UpdateClock(e, elem) {
-		const rightClick = e.which === 3 || e.button === 2;
-		const { itemId, updateAmount, dataPath } = elem.dataset;
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static async UpdateClock(event, target) {
+		const rightClick = event.which === 3 || event.button === 2;
+		const { itemId, updateAmount, dataPath } = target.dataset;
 
 		const clock = this.actor.items.get(itemId);
 		const increment = parseFloat(updateAmount);

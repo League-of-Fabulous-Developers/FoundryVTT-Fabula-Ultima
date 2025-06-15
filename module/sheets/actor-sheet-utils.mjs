@@ -3,6 +3,8 @@ import { SETTINGS } from '../settings.js';
 import { InventoryPipeline } from '../pipelines/inventory-pipeline.mjs';
 import { FUPartySheet } from './actor-party-sheet.mjs';
 import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
+import { StringUtils } from '../helpers/string-utils.mjs';
+import { HTMLUtils } from '../helpers/html-utils.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
@@ -87,31 +89,36 @@ async function prepareItems(context) {
 /**
  * @param {ApplicationRenderContext} context
  */
+function prepareAbilities(context) {
+	const abilities = [];
+	for (let item of context.items) {
+		if (item.type === 'miscAbility') {
+			const skillData = getSkillDisplayData(item);
+			item.quality = skillData.qualityString;
+			abilities.push(item);
+		}
+	}
+	context.abilities = abilities;
+}
+
+/**
+ * @param {ApplicationRenderContext} context
+ */
 function prepareNpcCombat(context) {
 	const basics = [];
-	const abilities = [];
+
 	const rules = [];
 
 	for (let item of context.items) {
 		switch (item.type) {
 			case 'basic':
 				{
-					const itemObj = context.actor.items.get(item._id);
-					const weapData = getWeaponDisplayData(context.actor, itemObj);
+					const weapData = getWeaponDisplayData(context.actor, item);
 					item.quality = weapData.qualityString;
 					item.detail = weapData.detailString;
 					item.attackString = weapData.attackString;
 					item.damageString = weapData.damageString;
 					basics.push(item);
-				}
-				break;
-
-			case 'miscAbility':
-				{
-					const itemObj = context.actor.items.get(item._id);
-					const skillData = getSkillDisplayData(itemObj);
-					item.quality = skillData.qualityString;
-					abilities.push(item);
 				}
 				break;
 
@@ -122,7 +129,7 @@ function prepareNpcCombat(context) {
 	}
 
 	context.basics = basics;
-	context.abilities = abilities;
+
 	context.rules = rules;
 }
 
@@ -145,12 +152,11 @@ function prepareInventory(context) {
 
 			case 'shield':
 				{
-					const itemObj = context.actor.items.get(item._id);
-					const weapData = getWeaponDisplayData(context.actor, itemObj);
-					item.quality = weapData.qualityString;
-					item.detail = weapData.detailString;
-					item.attackString = weapData.attackString;
-					item.damageString = weapData.damageString;
+					const weaponData = getWeaponDisplayData(context.actor, item);
+					item.quality = weaponData.qualityString;
+					item.detail = weaponData.detailString;
+					item.attackString = weaponData.attackString;
+					item.damageString = weaponData.damageString;
 					shields.push(item);
 				}
 				break;
@@ -162,20 +168,18 @@ function prepareInventory(context) {
 			case 'weapon':
 				{
 					item.unarmedStrike = context.actor.getSingleItemByFuid('unarmed-strike');
-					const itemObj = context.actor.items.get(item._id);
-					const weapData = getWeaponDisplayData(context.actor, itemObj);
-					item.quality = weapData.qualityString;
-					item.detail = weapData.detailString;
-					item.attackString = weapData.attackString;
-					item.damageString = weapData.damageString;
+					const weaponData = getWeaponDisplayData(context.actor, item);
+					item.quality = weaponData.qualityString;
+					item.detail = weaponData.detailString;
+					item.attackString = weaponData.attackString;
+					item.damageString = weaponData.damageString;
 					weapons.push(item);
 				}
 				break;
 
 			case 'treasure':
 				{
-					const itemObj = context.actor.items.get(item._id);
-					const itemData = getItemDisplayData(itemObj);
+					const itemData = getItemDisplayData(item);
 					item.quality = itemData.qualityString;
 					treasures.push(item);
 				}
@@ -183,8 +187,7 @@ function prepareInventory(context) {
 
 			case 'consumable':
 				{
-					const itemObj = context.actor.items.get(item._id);
-					const itemData = getItemDisplayData(itemObj);
+					const itemData = getItemDisplayData(item);
 					item.quality = itemData.qualityString;
 					consumables.push(item);
 				}
@@ -208,14 +211,13 @@ function prepareProjects(context) {
 	const projects = [];
 	for (let item of context.items) {
 		if (item.type === 'project') {
-			const itemObj = context.actor.items.get(item._id);
-			item.cost = itemObj.system.cost?.value;
-			item.discount = itemObj.system.discount?.value;
-			item.progressMax = itemObj.system.progress?.max;
-			item.progressPerDay = itemObj.system.progressPerDay?.value;
-			item.days = itemObj.system.days?.value;
-			item.progressCurr = itemObj.system.progress?.current;
-			item.progressStep = itemObj.system.progress?.step;
+			item.cost = item.system.cost?.value;
+			item.discount = item.system.discount?.value;
+			item.progressMax = item.system.progress?.max;
+			item.progressPerDay = item.system.progressPerDay?.value;
+			item.days = item.system.days?.value;
+			item.progressCurr = item.system.progress?.current;
+			item.progressStep = item.system.progress?.step;
 			item.defect = !!item.system.isDefect?.value;
 			item.defectMod = item.system.use?.value;
 			item.use = item.system.use?.value;
@@ -546,7 +548,7 @@ function getSkillDisplayData(item) {
 			: `【${hrZeroText} ${item.system?.rollInfo?.damage?.value > 0 ? ` ${item.system?.rollInfo?.damage?.value}` : '0'} 】${translate(item.system?.rollInfo?.damage.type.value)}`;
 	}
 
-	const qualityString = [capitalizeFirst(item.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬥ ');
+	const qualityString = [StringUtils.capitalize(item.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬥ ');
 
 	const starCurrent = item.system?.level?.value;
 	const starMax = item.system?.level?.max;
@@ -586,7 +588,7 @@ function getSpellDisplayData(actor, item) {
 
 	const qualText = item.system.quality?.value || '';
 	const detailString = [attackString, damageString].filter(Boolean).join('⬥');
-	const qualityString = [capitalizeFirst(item.system.cost.amount), capitalizeFirst(item.system.targeting.rule), capitalizeFirst(item.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
+	const qualityString = [StringUtils.capitalize(item.system.cost.amount), StringUtils.capitalize(item.system.targeting.rule), StringUtils.capitalize(item.system.duration.value), qualText].filter(Boolean).join(' ⬥ ');
 
 	return {
 		attackString,
@@ -944,7 +946,9 @@ async function _onItemCreate(ev, sheet) {
 async function _onItemCreateDialog(ev, sheet) {
 	ev.preventDefault();
 
-	const dataType = ev.currentTarget.dataset.type ?? ev.srcElement.dataset.type;
+	const target = HTMLUtils.findWithDataset(ev.target);
+	const dataset = target.dataset;
+	const dataType = dataset.type; // ?? ev.srcElement.dataset.type;
 	let types;
 	let clock = false;
 
@@ -1200,7 +1204,39 @@ function prepareCharacterData(context) {
 	}
 }
 
-const capitalizeFirst = (string) => (typeof string === 'string' ? string.charAt(0).toUpperCase() + string.slice(1) : string);
+function sortByOrder(a, b) {
+	return this.sortOrder * (a.sort || 0) - this.sortOrder * (b.sort || 0);
+}
+
+function sortByName(a, b) {
+	const nameA = a.name.toUpperCase();
+	const nameB = b.name.toUpperCase();
+	return this.sortOrder * nameA.localeCompare(nameB);
+}
+
+function sortByType(a, b) {
+	const typeA = a.type.toUpperCase();
+	const typeB = b.type.toUpperCase();
+	return this.sortOrder * typeA.localeCompare(typeB);
+}
+
+function prepareSorting(context) {
+	// Sort the items array in-place based on the current sorting method
+	let sortFn = sortByOrder;
+	if (this.sortMethod === 'name') {
+		sortFn = sortByName;
+	} else if (this.sortMethod === 'type') {
+		sortFn = sortByType;
+	}
+	sortFn = sortFn.bind(this);
+	context.items = context.items.contents.sort(sortFn);
+	if (context.classFeatures) {
+		Object.keys(context.classFeatures).forEach((k) => (context.classFeatures[k].items = Object.fromEntries(Object.entries(context.classFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
+	}
+	if (context.optionalFeatures) {
+		Object.keys(context.optionalFeatures).forEach((k) => (context.optionalFeatures[k].items = Object.fromEntries(Object.entries(context.optionalFeatures[k].items).sort((a, b) => sortFn(a[1].item, b[1].item)))));
+	}
+}
 
 /**
  * @description Provides utility functions for rendering the actor sheet
@@ -1218,10 +1254,12 @@ export const ActorSheetUtils = Object.freeze({
 	prepareSpells,
 	prepareProjects,
 	prepareFeatures,
+	prepareAbilities,
 	activateInventoryListeners,
 	activateStashListeners,
 	handleInventoryItemDrop,
 	activateExpandedItemListener,
+	prepareSorting,
 	// Used by modules
 	getWeaponDisplayData,
 	getSkillDisplayData,
