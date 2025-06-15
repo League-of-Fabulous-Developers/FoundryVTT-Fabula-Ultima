@@ -11,9 +11,23 @@
 export {};
 
 /**
+ * An extension of the base DataModel which defines a Document.
+ * Documents are special in that they are persisted to the database and referenced by _id.
  * @abstract
- * @typedef Document An extension of the base DataModel which defines a Document. Documents are special in that
- * they are persisted to the database and referenced by _id.
+ * @typedef Document
+ * @template {object} [DocumentData=object] Initial data from which to construct the Document
+ * @template {DocumentConstructionContext} [DocumentContext=DocumentConstructionContext] Construction context options
+ *
+ * @property {string|null} _id                    The document identifier, unique within its Collection, or null if the
+ *                                                Document has not yet been assigned an identifier
+ * @property {string} [name]                      Documents typically have a human-readable name
+ * @property {DataModel} [system]                 Certain document types may have a system data model which contains
+ *                                                subtype-specific data defined by the game system or a module
+ * @property {DocumentStats} [_stats]             Primary document types have a _stats object which provides metadata
+ *                                                about their status
+ * @property {DocumentFlags} flags                Documents each have an object of arbitrary flags which are used by
+ *                                                systems or modules to store additional Document-specific data
+ * @extends {DataModel<DocumentData, DocumentContext>}
  */
 
 // TODO: Figure out how to remove warnings
@@ -73,6 +87,12 @@ export {};
  * @property {string} label      Display text, will be run through `game.i18n.localize`
  * @property {boolean} active    If this is the active tab, set with `this.tabGroups[group] === id`
  * @property {string} cssClass   "active" or "" based on the above boolean
+ */
+
+/**
+ * @typedef ApplicationRenderContext   Context data provided to the renderer
+ * @property {Record<string, ApplicationTab>} [tabs]    Tab data prepared from an entry in
+ *   {@link foundry.applications.api.ApplicationV2.TABS}
  */
 
 /**
