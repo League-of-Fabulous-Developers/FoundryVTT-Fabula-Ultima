@@ -51,9 +51,12 @@ export class FUStandardActorSheet extends FUActorSheet {
 			rest: FUStandardActorSheet.handleRestClick,
 			sortFavorites: FUStandardActorSheet.sortFavorites,
 			levelUp: FUStandardActorSheet.levelUp,
+
+			// Features
 			toggleActiveArcanum: FUStandardActorSheet.updateArcanistArcanum,
 			toggleActiveGarden: FUStandardActorSheet.toggleActiveGarden,
 			togglePlantedMagiseed: FUStandardActorSheet.togglePlantedMagiseed,
+			updatePilotVehicle: FUStandardActorSheet.updatePilotVehicle,
 
 			// Active effects
 			createEffect: FUStandardActorSheet.CreateEffect,
@@ -569,40 +572,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 					});
 			}
 		}
-
-		const updatePilotVehicle = (func) => {
-			return (ev) => {
-				const item = this.actor.items.get(ev.currentTarget.dataset.itemId);
-				this.actor.update({
-					'system.vehicle': this.actor.system.vehicle[func](item),
-				});
-			};
-		};
-
-		// Toggle embarked state
-		html.querySelectorAll('.vehicle-section [data-action="toggleVehicleEmbarked"]').forEach((el) => {
-			el.addEventListener('click', updatePilotVehicle('updateEmbarked').bind(this));
-		});
-
-		// Toggle active vehicle
-		html.querySelectorAll('[data-action="toggleActiveVehicle"][data-item-id]').forEach((el) => {
-			el.addEventListener('click', updatePilotVehicle('updateActiveVehicle').bind(this));
-		});
-
-		// Toggle armor module
-		html.querySelectorAll('[data-action="toggleArmorModule"][data-item-id]').forEach((el) => {
-			el.addEventListener('click', updatePilotVehicle('updateActiveArmorModule').bind(this));
-		});
-
-		// Toggle weapon module
-		html.querySelectorAll('[data-action="toggleWeaponModule"][data-item-id]').forEach((el) => {
-			el.addEventListener('click', updatePilotVehicle('updateActiveWeaponModules').bind(this));
-		});
-
-		// Toggle support module
-		html.querySelectorAll('[data-action="toggleSupportModule"][data-item-id]').forEach((el) => {
-			el.addEventListener('click', updatePilotVehicle('updateActiveSupportModules').bind(this));
-		});
 
 		// Dropzone event listeners
 		const dropZone = html.querySelector('.desc.drop-zone');
@@ -1169,5 +1138,19 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const itemId = target.dataset.itemId;
 		const item = this.actor.items.get(itemId);
 		return this.actor.system.floralist.togglePlantedMagiseed(item);
+	}
+
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static updatePilotVehicle(event, target) {
+		const item = this.actor.items.get(target.dataset.itemId);
+		const func = target.dataset.func;
+		this.actor.update({
+			'system.vehicle': this.actor.system.vehicle[func](item),
+		});
 	}
 }
