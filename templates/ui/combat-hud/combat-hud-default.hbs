@@ -63,7 +63,7 @@
                                     {{/each}}
                                 </div>
                             {{else}}
-                                <div>
+                                <div class="marquee">
                                     {{#each this.effects as |effect|}}
                                         <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
@@ -108,7 +108,7 @@
                                     {{/each}}
                                 </div>
                             {{else}}
-                                <div>
+                                <div class="marquee">
                                     {{#each this.effects as |effect|}}
                                         <img src="{{ effect.img }}" data-tooltip="{{ effect.name }}<br>{{ effect.description }}" class="combat-effect-img" data-action="clickEffect" data-effect-id="{{effect.id}}" data-actor-id="{{../actor.id}}"
                                              style="animation-duration: {{this.effectsMarqueeDuration}}s;" />
