@@ -379,30 +379,82 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 
 		this._setStartStopButtonVisibility();
 
-		const effectImages = this.element.querySelectorAll(`.combat-effect-img`);
-		for (const image of effectImages) {
-			if (image instanceof HTMLElement) {
-				image.addEventListener('contextmenu', async (event) => {
-					event.preventDefault();
-					const effectImg = event.currentTarget;
-					const effectId = effectImg.dataset.effectId;
-					const actorId = effectImg.dataset.actorId;
-					const actor = game.actors.get(actorId);
-					if (!actor) return;
-
-					const effect = actor.effects.get(effectId);
-					if (effect) {
-						new ActiveEffectConfig(effect).render(true);
-					}
-				});
-			}
-		}
-
 		if (game.settings.get(SYSTEM, SETTINGS.optionCombatHudMinimized)) {
 			this.close();
 			return;
 		}
 		this._setSizeAndPosition();
+		this._setEffectContextMenus();
+	}
+
+	_setEffectContextMenus() {
+		new foundry.applications.ux.ContextMenu(
+			this.element,
+			'.combat-effects [data-effect-id][data-actor-id]',
+			[
+				{
+					name: 'FU.EffectDelete',
+					icon: `<i class="fas fa-trash"></i>`,
+					callback: async (elem) => {
+						const effect = this._getEffectFromElement(elem);
+						if (!effect || !effect.canUserModify(game.user, 'delete')) return;
+						await effect.delete();
+					},
+					condition: (elem) => this._canModifyEffectContextMenu(elem, 'delete'),
+				},
+				{
+					name: 'FU.EffectToggle',
+					icon: `<i class="fas fa-circle-check"></i>`,
+					callback: async (elem) => {
+						const effect = this._getEffectFromElement(elem);
+						if (!effect || !effect.canUserModify(game.user, 'update')) return;
+						await effect.update({ disabled: !effect.disabled });
+					},
+					condition: (elem) => this._canModifyEffectContextMenu(elem, 'update'),
+				},
+				{
+					name: 'FU.EffectEdit',
+					icon: `<i class="fas fa-edit"></i>`,
+					callback: (elem) => {
+						const effect = this._getEffectFromElement(elem);
+						if (!effect) return;
+						new ActiveEffectConfig(effect).render(true);
+					},
+					condition: (elem) => this._canModifyEffectContextMenu(elem),
+				},
+			],
+			{
+				fixed: true,
+			},
+		);
+	}
+
+	/**
+	 * Determine whether or not the current user has sufficient permission to edit
+	 * @param {HTMLElement | JQuery<HTMLElement>} elem - The HTMLElement (or jQuery wrapper) for the ActiveEffect in question
+	 * @param {"update" | "delete"} op - The operation to check -- either "update" or "delete"
+	 * @returns
+	 */
+	_canModifyEffectContextMenu(elem, op = 'update') {
+		const effect = this._getEffectFromElement(elem);
+		if (!effect) return false;
+		return effect.canUserModify(game.user, op);
+	}
+
+	/**
+	 * Retrieves an ActiveEffect from an HTML element
+	 * @param {HTMLElement | JQuery<HTMLElement>} elem - The HTMLElement (or jQuery wrapper) for the ActiveEffect in question
+	 * @returns ActiveEffect or undefined
+	 */
+	_getEffectFromElement(elem) {
+		// Make sure we have an HTMLElement and not a jQuery wrapper object
+		const element = elem instanceof HTMLElement ? elem : elem[0];
+
+		const effectId = element.dataset.effectId;
+		const actorId = element.dataset.actorId;
+		const actor = game.actors.get(actorId);
+		if (!actor) return;
+		return actor.effects.get(effectId);
 	}
 
 	_setStartStopButtonVisibility() {
