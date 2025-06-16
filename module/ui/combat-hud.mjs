@@ -375,9 +375,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		dragButton.addEventListener('drag', this._doHudDrag.bind(this));
 		dragButton.addEventListener('dragend', this._doHudDrop.bind(this));
 
-		if (this.isFirefox) {
-			window.document.addEventListener('dragover', this._fireFoxDragWorkaround.bind(this));
-		}
+		if (this.isFirefox) window.document.addEventListener('dragover', this._fireFoxDragWorkaround.bind(this));
 
 		this._setStartStopButtonVisibility();
 
@@ -404,8 +402,6 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			this.close();
 			return;
 		}
-
-		await super._onRender(context, options);
 		this._setSizeAndPosition();
 	}
 
@@ -474,86 +470,90 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 	}
 
 	_doHudDragStart(event) {
-		event.dataTransfer.setDragImage(this._emptyImage, 0, 0);
+		if (event instanceof DragEvent) {
+			event.dataTransfer.setDragImage(this._emptyImage, 0, 0);
+			event.dataTransfer.effectAllowed = 'move';
+			event.dataTransfer.dropEffect = 'move';
+			const elem = this.element.querySelector(`#combat-hud`);
+			this.dragInitialLeft = event.clientX - elem.offsetLeft;
+			this.dragInitialTop = event.clientY - elem.offsetTop;
 
-		// Set drag tracking vars
-		const elementPos = $(this.element).position();
-		this.dragInitialLeft = elementPos.left;
-		this.dragInitialTop = elementPos.top;
-		this.dragInitialX = event.clientX;
-		this.dragInitialY = event.clientY;
-		this.firefoxDragX = 0;
-		this.firefoxDragY = 0;
+			this.firefoxDragX = 0;
+			this.firefoxDragY = 0;
+		}
 	}
 
-	// FireFox does not populate event.clientX or event.clientY
-	// during drag events. A workaround is to bind a seperate handler
-	// to the dragover event instead, which gets processed directly
-	// before any drag event and allows us to record the current drag position.
 	_fireFoxDragWorkaround(event) {
-		// Keep this check; drag events can trigger with (0,0) when outside the window or target
-		// and they should be treated as invalid
-		if (event.clientX <= 0 || event.clientY <= 0) return;
+		if (event instanceof DragEvent) {
+			// Keep this check; drag events can trigger with (0,0) when outside the window or target
+			// and they should be treated as invalid
+			if (event.clientX <= 0 || event.clientY <= 0) return;
 
-		// These need to be tracked separately
-		// The listener is listening to *any* drag on window, and may not be relevant to the combatHUD
-		// So the actual update should be deferred to _doHudDrag which is bound specifically to combatHUD
-		this.firefoxDragX = event.clientX;
-		this.firefoxDragY = event.clientY;
+			// These need to be tracked separately
+			// The listener is listening to *any* drag on window, and may not be relevant to the combatHUD
+			// So the actual update should be deferred to _doHudDrag which is bound specifically to combatHUD
+			this.firefoxDragX = event.clientX;
+			this.firefoxDragY = event.clientY;
+		}
 	}
 
 	_doHudDrag(event) {
-		event.dataTransfer.dropEffect = 'move';
+		if (event instanceof DragEvent) {
+			const elem = this.element.querySelector(`#combat-hud`);
 
-		// Firefox doesn't handle drag events the same as other browsers
-		// We use the 'dragOver' event for that
-		let dragPosition;
-		if (this.isFirefox) {
-			dragPosition = { x: this.firefoxDragX, y: this.firefoxDragY };
-		} else {
-			dragPosition = { x: event.clientX, y: event.clientY };
+			const dragPosition = this.isFirefox
+				? {
+						x: this.firefoxDragX,
+						y: this.firefoxDragY,
+					}
+				: {
+						x: event.clientX,
+						y: event.clientY,
+					};
+
+			// Keep this check; drag events can trigger with (0,0) when outside the window or target
+			// and they should be treated as invalid
+			if (dragPosition.x <= 0 || dragPosition.y <= 0) return;
+
+			// Delay the actual drag animation by a frame to ensure that it's handled after
+			// the firefox workaround drag handler
+			if (this._dragAnimationFrame) cancelAnimationFrame(this._dragAnimationFrame);
+
+			this._dragAnimationFrame = requestAnimationFrame(() => {
+				const dragButton = elem.querySelector(`.window-drag`);
+
+				const deltaX = dragPosition.x - this.dragInitialX - dragButton.clientWidth;
+				const deltaY = dragPosition.y - this.dragInitialY + dragButton.clientHeight;
+
+				const newLeft = this.dragInitialLeft + deltaX;
+				const newTop = this.dragInitialTop + deltaY;
+
+				elem.style.left = `${newLeft}px`;
+				elem.style.top = `${newTop}px`;
+				if (elem.style.bottom !== 'initial') elem.style.bottom = 'initial';
+				cancelAnimationFrame(this._dragAnimationFrame);
+				this._dragAnimationFrame = null;
+			});
 		}
-
-		// Keep this check; drag events can trigger with (0,0) when outside the window or target
-		// and they should be treated as invalid
-		if (dragPosition.x <= 0 || dragPosition.y <= 0) return;
-
-		// Update
-		if (this._dragAnimationFrame) {
-			cancelAnimationFrame(this._dragAnimationFrame);
-		}
-		this._dragAnimationFrame = requestAnimationFrame(() => {
-			// Calculate deltas
-			const deltaX = dragPosition.x - this.dragInitialX;
-			const deltaY = dragPosition.y - this.dragInitialY;
-
-			// Calculate final values
-			const newLeft = this.dragInitialLeft + deltaX;
-			const newTop = this.dragInitialTop + deltaY;
-
-			// Apply
-			const elem = $(this.element);
-			elem.css('left', newLeft);
-			elem.css('top', newTop);
-			if (elem.css('bottom') !== 'initial') {
-				elem.css('bottom', 'initial');
-			}
-		});
 	}
 
-	_doHudDrop() {
-		const elem = $(this.element);
-		const offset = elem.offset();
-		const height = elem.outerHeight();
+	_doHudDrop(event) {
+		if (event instanceof DragEvent) {
+			const elem = this.element.querySelector(`#combat-hud`);
+			const offset = {
+				x: elem.offsetLeft,
+				y: elem.offsetTop,
+			};
+			const height = elem.clientHeight;
 
-		const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
+			const positionFromTop = game.settings.get(SYSTEM, SETTINGS.optionCombatHudPosition) === 'top';
+			const draggedPosition = {
+				x: offset.x,
+				y: positionFromTop ? offset.y : window.innerHeight - offset.y - height,
+			};
 
-		const draggedPosition = {
-			x: offset.left,
-			y: positionFromTop ? offset.top : $(window).height() - offset.top - height,
-		};
-
-		game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
+			game.settings.set(SYSTEM, SETTINGS.optionCombatHudDraggedPosition, draggedPosition);
+		}
 	}
 
 	static StartCombat() {
