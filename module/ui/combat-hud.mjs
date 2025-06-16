@@ -180,11 +180,11 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		const tokenButton = ui.controls.controls[SYSTEM];
 
 		if (tokenButton) {
-			let tool = tokenButton.tools.HUDToggle;
+			let tool = tokenButton.tools['projectfu-combathud-toggle'];
 			tool.active = false;
 			tool.visible = false;
 
-			tool = tokenButton.tools.hudReset;
+			tool = tokenButton.tools['projectfu-combathud-reset'];
 			tool.visible = false;
 
 			ui.controls.render(true);
@@ -744,7 +744,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 		const tokenButton = ui.controls.controls[SYSTEM];
 
 		if (tokenButton) {
-			const tool = tokenButton.tools.HUDToggle;
+			const tool = tokenButton.tools['projectfu-combathud-toggle'];
 			if (tool) tool.active = false;
 			ui.controls.render(true);
 		}
