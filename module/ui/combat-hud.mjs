@@ -9,9 +9,9 @@ import { systemTemplatePath } from '../helpers/system-utils.mjs';
 Hooks.once('setup', () => {
 	if (game.settings.get(SYSTEM, SETTINGS.experimentalCombatHud)) {
 		Hooks.on(SystemControls.HOOK_GET_SYSTEM_TOOLS, (tools) => {
-			tools['HUDToggle'] = CombatHUD.getToggleControlButton();
-			tools['hudSave'] = CombatHUD.getSavedControlButton();
-			tools['hudReset'] = CombatHUD.getResetControlButton();
+			tools['projectfu-combathud-toggle'] = CombatHUD.getToggleControlButton();
+			tools['projectfu-combathud-saved-toggle'] = CombatHUD.getSavedControlButton();
+			tools['projectfu-combathud-reset'] = CombatHUD.getResetControlButton();
 		});
 	}
 });
@@ -393,14 +393,14 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			'.combat-effects [data-effect-id][data-actor-id]',
 			[
 				{
-					name: 'FU.EffectDelete',
-					icon: `<i class="fas fa-trash"></i>`,
-					callback: async (elem) => {
+					name: 'FU.EffectEdit',
+					icon: `<i class="fas fa-edit"></i>`,
+					callback: (elem) => {
 						const effect = this._getEffectFromElement(elem);
-						if (!effect || !effect.canUserModify(game.user, 'delete')) return;
-						await effect.delete();
+						if (!effect) return;
+						new foundry.applications.sheets.ActiveEffectConfig({ document: effect }).render({ force: true });
 					},
-					condition: (elem) => this._canModifyEffectContextMenu(elem, 'delete'),
+					condition: (elem) => this._canModifyEffectContextMenu(elem),
 				},
 				{
 					name: 'FU.EffectToggle',
@@ -413,14 +413,14 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 					condition: (elem) => this._canModifyEffectContextMenu(elem, 'update'),
 				},
 				{
-					name: 'FU.EffectEdit',
-					icon: `<i class="fas fa-edit"></i>`,
-					callback: (elem) => {
+					name: 'FU.EffectDelete',
+					icon: `<i class="fas fa-trash"></i>`,
+					callback: async (elem) => {
 						const effect = this._getEffectFromElement(elem);
-						if (!effect) return;
-						new ActiveEffectConfig(effect).render(true);
+						if (!effect || !effect.canUserModify(game.user, 'delete')) return;
+						await effect.delete();
 					},
-					condition: (elem) => this._canModifyEffectContextMenu(elem),
+					condition: (elem) => this._canModifyEffectContextMenu(elem, 'delete'),
 				},
 			],
 			{
@@ -1194,6 +1194,7 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			visible: game.combat ? game.combat.isActive : false,
 			active: game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved),
 			onChange: () => {
+				console.log('Click save');
 				const isSaved = game.settings.get(SYSTEM, SETTINGS.optionCombatHudSaved);
 				game.settings.set(SYSTEM, SETTINGS.optionCombatHudSaved, !isSaved);
 			},
@@ -1206,8 +1207,10 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 			title: game.i18n.localize('FU.CombatHudResetButtonTitle'),
 			icon: 'fas fa-undo',
 			button: true,
-			visible: game.combat ? game.combat.isActive : false,
+			// visible: game.combat ? game.combat.isActive : false,
+			visible: true,
 			onChange: () => {
+				console.log('Click reset');
 				CombatHUD.reset();
 			},
 		};
@@ -1253,9 +1256,11 @@ export class CombatHUD extends foundry.applications.api.HandlebarsApplicationMix
 	static async ClickEffect(e, elem) {
 		const actor = game.actors.get(elem.dataset.actorId);
 		if (!(actor instanceof Actor)) return;
-		if (event.button === 0) {
+		if (e.button === 0) {
 			const effect = actor.effects.get(elem.dataset.effectId);
-			if (effect) await effect.update({ disabled: !effect.disabled });
+			// Currently, the HUD will actually only show temporary effects
+			if (effect?.isTemporary) await effect.delete();
+			else await effect.update({ disabled: !effect.disabled });
 		}
 	}
 }
