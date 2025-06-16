@@ -1,17 +1,17 @@
 <div class="{{cssClasses}} modern" id="{{cssId}}">
     <div class="window-button window-compact">
-        <a class="compact" title="Toggle compact mode">
+        <a class="compact" title="Toggle compact mode" data-action="toggleCompact">
             <i class="fas fa-caret-down {{#if isCompact }}hidden{{/if}}"></i>
             <i class="fas fa-caret-up {{#unless isCompact }}hidden{{/unless}}"></i>
         </a>
     </div>
     <div class="window-button window-popout">
-        <a class="popout" title="Popout Combat HUD" data-target="combat-hud">
+        <a class="popout" title="Popout Combat HUD" data-target="combat-hud" data-action="popout">
             <i class="fas fa-up-right-from-square"></i>
         </a>
     </div>
     <div class="window-button window-minimize">
-        <a class="minimize" title="Minimize Combat HUD">
+        <a class="minimize" title="Minimize Combat HUD" data-action="minimize">
             <i class="fas fa-minus"></i>
         </a>
     </div>
@@ -22,12 +22,12 @@
     </div>
     {{#if isGM}}
     <div class="window-button window-start">
-        <a class="start" title="Start Combat">
+        <a class="start" title="Start Combat" data-action="start">
             <i class="fas fa-play"></i>
         </a>
     </div>
     <div class="window-button window-stop hidden">
-        <a class="stop" title="Stop Combat">
+        <a class="stop" title="Stop Combat" data-action="stop">
             <i class="fas fa-stop"></i>
         </a>
     </div>
@@ -41,7 +41,7 @@
                 
                 <div class="combat-image">
                     <div class="combat-image-bg" style="opacity: {{ this.opacity }};"></div>
-                    <img class="token-image" src="{{this.img}}" alt="{{name}}" />
+                    <img class="token-image" src="{{this.img}}" alt="{{name}}" data-action="clickCombatant" data-token-id="{{this.token.id}}" />
                 </div>
 
                 <div class="combat-info">
@@ -77,7 +77,7 @@
                 {{#if (getGameSetting "optionCombatHudReordering") }}draggable="true"{{/if}}>
                 <div class="combat-image">
                     <div class="combat-image-bg" style="opacity: {{ this.opacity }};"></div>
-                    <img class="token-image" src="{{this.img}}" alt="{{name}}" />
+                    <img class="token-image" src="{{this.img}}" alt="{{name}}" data-action="clickCombatant" data-token-id="{{this.token.id}}" />
                 </div>
                 
                 <div class="combat-info">
