@@ -4,7 +4,7 @@
             {{localize 'FU.HealthAbbr'}}: {{this.actor.system.resources.hp.value}} / {{this.actor.system.resources.hp.max}}<br>
             {{localize 'FU.Crisis'}}: {{half this.actor.system.resources.hp.max}}
         ">
-            {{{ formatResource this.actor.system.resources.hp.value this.actor.system.resources.hp.max "HP" }}}
+            {{{ formatResource (clamp this.actor.system.resources.hp.value 0 999) this.actor.system.resources.hp.max "HP" }}}
         </div>
     </div>
 </div>

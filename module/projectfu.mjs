@@ -480,6 +480,10 @@ Handlebars.registerHelper('includes', function (array, value) {
 
 Handlebars.registerHelper('get', (map, key) => map?.[key]);
 
+Handlebars.registerHelper('clamp', (val, min, max) => {
+	return Math.max(Math.min(val, max), min);
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
