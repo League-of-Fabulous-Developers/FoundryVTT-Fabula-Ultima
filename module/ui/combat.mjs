@@ -4,6 +4,7 @@ import { MESSAGES, SOCKET } from '../socket.mjs';
 import { CombatHUD } from './combat-hud.mjs';
 import { FU, SYSTEM } from '../helpers/config.mjs';
 import { FUHooks } from '../hooks.mjs';
+import { systemTemplatePath } from '../helpers/system-utils.mjs';
 
 export const FRIENDLY = 'friendly';
 export const HOSTILE = 'hostile';
@@ -177,17 +178,22 @@ export class FUCombat extends foundry.documents.Combat {
 			},
 		];
 
-		const firstTurnFaction = await Dialog.prompt({
-			title: game.i18n.localize('FU.DialogFirstTurnTitle'),
-			label: game.i18n.localize('FU.DialogFirstTurnLabel'),
-			content: await renderTemplate('systems/projectfu/templates/dialog/dialog_first_turn.hbs', {
+		const firstTurnFaction = await foundry.applications.api.DialogV2.prompt({
+			window: { title: game.i18n.localize(`FU.DialogFirstTurnTitle`) },
+			content: await foundry.applications.handlebars.renderTemplate(systemTemplatePath(`dialog/dialog_first_turn`), {
 				factions,
 				selected: FRIENDLY,
 			}),
-			options: { classes: ['dialog-first-turn'] },
 			rejectClose: false,
-			/** @type {(jQuery) => "friendly"|"hostile"} */
-			callback: (html) => html.find('select[name=faction]').val(),
+			classes: ['dialog-first-turn'],
+			ok: {
+				label: game.i18n.localize(`FU.DialogFirstTurnLabel`),
+				callback: (event, button, dialog) => {
+					const select = dialog.element.querySelector(`select[name="faction"]`);
+					if (select instanceof HTMLSelectElement) return select.value;
+					return undefined;
+				},
+			},
 		});
 
 		if (!firstTurnFaction) {
