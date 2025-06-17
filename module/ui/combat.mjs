@@ -189,8 +189,9 @@ export class FUCombat extends foundry.documents.Combat {
 			ok: {
 				label: game.i18n.localize(`FU.DialogFirstTurnLabel`),
 				callback: (event, button, dialog) => {
-					console.log(event, button, dialog);
-					return FRIENDLY;
+					const select = dialog.element.querySelector(`select[name="faction"]`);
+					if (select instanceof HTMLSelectElement) return select.value;
+					return undefined;
 				},
 			},
 		});
