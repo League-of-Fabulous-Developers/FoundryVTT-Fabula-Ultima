@@ -1,6 +1,9 @@
 {{#if (getSlot item)}}
   <div class="item-xs equipped-icon-container">
-    <a class="item-control item-equip" data-slot="{{ getSlot item }}" 
+    <a class="item-control item-equip"
+	   data-action="equipItem"
+	   data-id="{{item.id}}"
+	   data-slot="{{ getSlot item }}"
        data-tooltip="{{#if (isItemEquipped item @root.actor.system.equipped)}} 
                       {{#if (eq item.type "weapon")}} 
                         {{localize 'FU.UnequipWeapon'}}

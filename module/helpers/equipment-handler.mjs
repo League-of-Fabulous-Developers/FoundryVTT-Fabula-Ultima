@@ -1,3 +1,5 @@
+import { HTMLUtils } from './html-utils.mjs';
+
 export class EquipmentHandler {
 	constructor(actor) {
 		this.actor = actor;
@@ -6,16 +8,17 @@ export class EquipmentHandler {
 	/**
 	 * Handles item click events, equipping or unequipping items based on the click type.
 	 *
-	 * @param {Event} ev - The click event triggering the item click.
-	 * @param {string} clickType - Indicates the type of click event: 'left', 'right', or 'ctrl'.
+	 * @param {PointerEvent} ev - The click event triggering the item click.
+	 * @param {HTMLElement} target
 	 * @returns {void}
 	 */
-	async handleItemClick(ev, clickType) {
-		const li = ev.target.closest('.item');
+	async handleItemClick(ev, target) {
+		const li = HTMLUtils.findWithDataset(target);
 
 		if (!li) return;
 
-		const itemId = li.dataset.itemId;
+		const clickType = event.button === 2 ? 'right' : '';
+		const itemId = li.dataset.id;
 		const item = this.actor.items.get(itemId);
 
 		if (!item) return;

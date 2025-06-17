@@ -4,7 +4,7 @@
         <span class="description-effect">{{system.summary.value}}</span>
     </div>
     <div class="flex0" style="align-self: center;">
-        <a class="item-control item-option" data-action="toggleActiveVehicle" data-item-id="{{item.id}}" data-tooltip="{{ localize 'FU.Activate' }}" aria-describedby="tooltip">
+        <a class="item-control item-option" data-action="updatePilotVehicle" data-func="updateActiveVehicle" data-item-id="{{item.id}}" data-tooltip="{{ localize 'FU.Activate' }}" aria-describedby="tooltip">
             <i class="button-style mats-s mats-icon {{#if additionalData.active}}mats-fill active{{/if}}" style="--mats-icon: '{{#if additionalData.active}}task_alt{{else}}radio_button_unchecked{{/if}}'; font-size: 18px;"></i>
         </a>
     </div>

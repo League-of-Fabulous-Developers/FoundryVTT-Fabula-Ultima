@@ -39,12 +39,14 @@
                         </div>
                         <div class="flex0 embark-button">
                             {{#if embarked}}
-                                <a data-action="toggleVehicleEmbarked"
+                                <a data-action="updatePilotVehicle"
+								   data-func="updateEmbarked"
                                    data-tooltip="{{localize 'FU.ClassFeatureVehicleDisembark'}}">
                                     <i class="fas fa-square-chevron-up"></i>
                                 </a>
                             {{else}}
-                                <a data-action="toggleVehicleEmbarked"
+                                <a data-action="updatePilotVehicle"
+								   data-func="updateEmbarked"
                                    data-tooltip="{{localize 'FU.ClassFeatureVehicleEmbark'}}">
                                     <i class="fas fa-square-chevron-down fa-thin"></i>
                                 </a>

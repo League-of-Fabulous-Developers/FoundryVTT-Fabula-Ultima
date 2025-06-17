@@ -17,4 +17,24 @@ export const HTMLUtils = Object.freeze({
 		}
 		return null;
 	},
+	/**
+	 * @param {PointerEvent} event
+	 * @returns {KeyboardModifiers}
+	 */
+	getKeyboardModifiers: (event) => {
+		return {
+			shift: event.shiftKey,
+			alt: event.altKey,
+			ctrl: event.ctrlKey,
+			meta: event.metaKey,
+		};
+	},
 });
+
+/**
+ * @typedef KeyboardModifiers
+ * @property {boolean} shift
+ * @property {boolean} alt
+ * @property {boolean} ctrl
+ * @property {boolean} meta
+ */
