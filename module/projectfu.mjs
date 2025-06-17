@@ -72,7 +72,7 @@ import { Effects } from './pipelines/effects.mjs';
 import { InlineType } from './helpers/inline-type.mjs';
 import { InvokerIntegration } from './documents/items/classFeature/invoker/invoker-integration.mjs';
 import { FUActiveEffectModel } from './documents/effects/active-effect-model.mjs';
-import { onRenderActiveEffectConfig } from './documents/effects/active-effect-config.mjs';
+import { FUActiveEffectConfig } from './documents/effects/active-effect-config.mjs';
 import { InlineClocks } from './helpers/inline-clocks.mjs';
 import { PartyDataModel } from './documents/actors/party/party-data-model.mjs';
 import { FUPartySheet } from './sheets/actor-party-sheet.mjs';
@@ -257,6 +257,11 @@ Hooks.once('init', async () => {
 		makeDefault: true,
 		label: 'Optional Feature Sheet',
 	});
+	const { DocumentSheetConfig } = foundry.applications.apps;
+	DocumentSheetConfig.unregisterSheet(ActiveEffect, 'core', foundry.applications.sheets.ActiveEffectConfig);
+	DocumentSheetConfig.registerSheet(ActiveEffect, SYSTEM, FUActiveEffectConfig, {
+		makeDefault: true,
+	});
 
 	Hooks.on('getChatLogEntryContext', addRollContextMenuEntries);
 	DamagePipeline.initialize();
@@ -270,8 +275,6 @@ Hooks.once('init', async () => {
 	registerOptionalFeatures(CONFIG.FU.optionalFeatureRegistry);
 
 	CONFIG.TextEditor.enrichers.push(rolldataHtmlEnricher);
-
-	Hooks.on('renderActiveEffectConfig', onRenderActiveEffectConfig);
 
 	// System Text Editor Enrichers
 	InlineHelper.registerCommand(InlineDamage);

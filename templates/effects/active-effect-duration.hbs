@@ -1,16 +1,20 @@
-<div class="form-group">
-        <label class="resource-label-m flexlarge">{{localize 'FU.Event'}}</label>
-        <select name="system.duration.event" class="resource-inputs select-dropdown-m">
-            {{selectOptions effectDuration selected=system.duration.event localize=true}}
-        </select>
+<section class="tab {{tab.cssClass}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+	<div class="form-group">
+		<label class="resource-label-m flexlarge">{{localize 'FU.Event'}}</label>
+		<select name="system.duration.event" class="resource-inputs select-dropdown-m">
+			{{selectOptions effectDuration selected=system.duration.event localize=true}}
+		</select>
 
-        <label class="resource-label-m">{{localize 'FU.Interval'}}</label>
-        <input type="number" name="system.duration.interval" value="{{ system.duration.interval }}" class="resource-inputs" {{disabled (eq system.duration.event FU.EndOfScene)}}/>
-</div>
+		<label class="resource-label-m">{{localize 'FU.Interval'}}</label>
+		<input type="number" name="system.duration.interval" value="{{ system.duration.interval }}"
+			   class="resource-inputs" {{disabled (eq system.duration.event FU.EndOfScene)}}/>
+	</div>
 
-<div class="form-group">
-    <label class="resource-label-m flexlarge">{{localize 'FU.Tracking'}}</label>
-    <select name="system.duration.tracking" class="resource-inputs select-dropdown-m">
-        {{selectOptions effectTracking selected=system.duration.tracking localize=true}}
-    </select>
-</div>
+	<div class="form-group">
+		<label class="resource-label-m flexlarge">{{localize 'FU.Tracking'}}</label>
+		<select name="system.duration.tracking" class="resource-inputs select-dropdown-m">
+			{{selectOptions effectTracking selected=system.duration.tracking localize=true}}
+		</select>
+	</div>
+</section>
+

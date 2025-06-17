@@ -10,6 +10,8 @@ import { ItemPartialTemplates } from '../documents/items/item-partial-templates.
 
 const { api, sheets } = foundry.applications;
 
+// TODO: Refactor to FUStandardItemSheet and so on..
+
 /**
  * @description Extend the basic ItemSheet with some very simple modifications
  * @property {FUItem} item
@@ -36,6 +38,13 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		classes: ['projectfu', 'sheet', 'item', 'backgroundstyle'],
 		actions: {
 			regenerateFuid: this.#regenerateFuid,
+			// Active effects
+			createEffect: FUItemSheet.CreateEffect,
+			editEffect: FUItemSheet.EditEffect,
+			deleteEffect: FUItemSheet.DeleteEffect,
+			toggleEffect: FUItemSheet.ToggleEffect,
+			copyInline: FUItemSheet.CopyInline,
+			rollEffect: FUItemSheet.RollEffect,
 		},
 		scrollY: ['.sheet-body'],
 		position: { width: 700, height: 'auto' },
@@ -578,4 +587,32 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		// Call the display method
 		ChecksV2.display(this, item);
 	}
+
+	// TODO: Re-use with the ones from actor sheet?
+	/* -------------------------------------------- */
+	// ACTIVE EFFECTS
+	static CreateEffect(event, target) {
+		onManageActiveEffect(event, this.item, 'create');
+	}
+
+	static EditEffect(event, target) {
+		onManageActiveEffect(event, this.item, 'edit');
+	}
+
+	static DeleteEffect(event, target) {
+		onManageActiveEffect(event, this.item, 'delete');
+	}
+
+	static CopyInline(event, target) {
+		onManageActiveEffect(event, this.item, 'copy-inline');
+	}
+
+	static ToggleEffect(event, target) {
+		onManageActiveEffect(event, this.item, 'toggle');
+	}
+
+	static RollEffect(event, target) {
+		onManageActiveEffect(event, this.item, 'roll');
+	}
+	/* -------------------------------------------- */
 }
