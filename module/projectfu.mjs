@@ -3,7 +3,7 @@ import { FUActor } from './documents/actors/actor.mjs';
 import { FUItem } from './documents/items/item.mjs';
 // Import sheet classes.
 import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
-import { FUItemSheet } from './sheets/item-sheet.mjs';
+import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
@@ -243,7 +243,7 @@ Hooks.once('init', async () => {
 		label: 'Standard Stash Sheet',
 	});
 	foundry.documents.collections.Items.unregisterSheet('core', ItemSheet);
-	foundry.documents.collections.Items.registerSheet('projectfu', FUItemSheet, {
+	foundry.documents.collections.Items.registerSheet('projectfu', FUStandardItemSheet, {
 		makeDefault: true,
 		label: 'Standard Item Sheet',
 	});
