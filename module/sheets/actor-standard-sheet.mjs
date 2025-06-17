@@ -74,8 +74,8 @@ export class FUStandardActorSheet extends FUActorSheet {
 			deleteEffect: FUStandardActorSheet.DeleteEffect,
 			toggleEffect: FUStandardActorSheet.ToggleEffect,
 			copyInline: FUStandardActorSheet.CopyInline,
-			clearTempEffects: FUStandardActorSheet.ClearTempEffects,
 			rollEffect: FUStandardActorSheet.RollEffect,
+			clearTempEffects: FUStandardActorSheet.ClearTempEffects,
 		},
 	};
 
@@ -593,15 +593,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 	}
 
 	/* -------------------------------------------- */
-	_onClearTempEffects(ev) {
-		ev.preventDefault();
-		const actor = this.actor;
-		if (!actor || !actor.system || !actor.system.immunities) {
-			return;
-		}
-		actor.clearTemporaryEffects();
-	}
-
 	// Method to change the sort type
 	changeSortType() {
 		if (this.sortMethod === 'name') {
@@ -944,34 +935,6 @@ export class FUStandardActorSheet extends FUActorSheet {
 		await ProgressDataModel.updateForDocument(clock, dataPath, increment, rightClick);
 	}
 
-	static CreateEffect(e, elem) {
-		onManageActiveEffect(e, this.actor, 'create');
-	}
-
-	static EditEffect(e, elem) {
-		onManageActiveEffect(e, this.actor, 'edit');
-	}
-
-	static DeleteEffect(e, elem) {
-		onManageActiveEffect(e, this.actor, 'delete');
-	}
-
-	static ClearTempEffects(e, elem) {
-		this._onClearTempEffects(e);
-	}
-
-	static CopyInline(e, elem) {
-		onManageActiveEffect(e, this.actor, 'copy-inline');
-	}
-
-	static ToggleEffect(e, elem) {
-		onManageActiveEffect(e, this.actor, 'toggle');
-	}
-
-	static RollEffect(e, elem) {
-		onManageActiveEffect(e, this.actor, 'roll');
-	}
-
 	/**
 	 * @this FUStandardActorSheet
 	 * @param {PointerEvent} event   The originating click event
@@ -1137,4 +1100,47 @@ export class FUStandardActorSheet extends FUActorSheet {
 			console.error(`Item with ID ${itemId} not found.`);
 		}
 	}
+
+	/**
+	 * @this FUStandardActorSheet
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise<void>}
+	 */
+	static ClearTempEffects(event, target) {
+		event.preventDefault();
+		const actor = this.actor;
+		if (!actor || !actor.system || !actor.system.immunities) {
+			return;
+		}
+		actor.clearTemporaryEffects();
+	}
+
+	// TODO: Re-use with the ones from item sheet?
+	/* -------------------------------------------- */
+	// ACTIVE EFFECTS
+	static CreateEffect(event, target) {
+		onManageActiveEffect(event, this.actor, 'create');
+	}
+
+	static EditEffect(event, target) {
+		onManageActiveEffect(event, this.actor, 'edit');
+	}
+
+	static DeleteEffect(event, target) {
+		onManageActiveEffect(event, this.actor, 'delete');
+	}
+
+	static CopyInline(event, target) {
+		onManageActiveEffect(event, this.actor, 'copy-inline');
+	}
+
+	static ToggleEffect(event, target) {
+		onManageActiveEffect(event, this.actor, 'toggle');
+	}
+
+	static RollEffect(event, target) {
+		onManageActiveEffect(event, this.actor, 'roll');
+	}
+	/* -------------------------------------------- */
 }
