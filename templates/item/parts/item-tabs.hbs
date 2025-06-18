@@ -24,6 +24,12 @@
 					{{selectOptions consumableType selected=system.subtype.value sort=true localize=true}}
 				</select>
             </span>
+		{{else if (eq item.type "classFeature")}}
+			<span>
+				<select name="system.featureType" class="resource-inputs select-dropdown-l">
+					{{selectOptions features selected=system.featureType localize=true}}
+				</select>
+			</span>
 		{{else if (eq item.type "treasure")}}
 			<span>
                 <select name="system.subtype.value" data-dtype="String"
