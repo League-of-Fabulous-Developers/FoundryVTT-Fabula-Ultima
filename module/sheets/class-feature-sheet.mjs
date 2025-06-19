@@ -10,12 +10,21 @@ export class FUClassFeatureSheet extends FUItemSheet {
 	static TABS = {
 		primary: {
 			tabs: [
-				{ id: 'details', label: 'FU.Details', icon: 'ra ra-double-team' },
+				{ id: 'details', label: 'FU.ClassFeatureDetails', icon: 'ra ra-double-team' },
 				{ id: 'effects', label: 'FU.Effects', icon: 'ra ra-hand' },
-			],
+			].concat(FUClassFeatureSheet.getFeatureTabs()),
 			initial: 'details',
 		},
 	};
+
+	// TODO: Add these tabs
+	static getFeatureTabs() {
+		const featureTabConfigs = [];
+		for (let value of Object.values(CONFIG.FU.classFeatureRegistry.features())) {
+			featureTabConfigs.push(...value.getTabConfigurations());
+		}
+		return featureTabConfigs;
+	}
 
 	/**
 	 * @description The default template parts
@@ -82,15 +91,6 @@ export class FUClassFeatureSheet extends FUItemSheet {
 				break;
 		}
 		return context;
-	}
-
-	// TODO: Add these tabs
-	static getClasFeatureTabs() {
-		const featureTabConfigs = [];
-		for (let value of Object.values(CONFIG.FU.classFeatureRegistry.features())) {
-			featureTabConfigs.push(...value.getTabConfigurations());
-		}
-		return featureTabConfigs;
 	}
 
 	/**

@@ -92,6 +92,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 				context.miscCategories = CONFIG.FU.miscCategories;
 				context.treasureType = CONFIG.FU.treasureType;
 				context.features = Object.entries(CONFIG.FU.classFeatureRegistry.features()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
+				context.optionals = Object.entries(CONFIG.FU.optionalFeatureRegistry.optionals()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
 				break;
 
 			case 'effects':
@@ -290,7 +291,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 	}
 
 	async _onDrop(event) {
-		console.log('Drop event detected');
+		console.debug('Drop event detected');
 		event.preventDefault();
 
 		// Retrieve drag data using TextEditor
@@ -335,16 +336,6 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 	_canDragDrop() {
 		console.log('Checking drag drop capability');
 		return this.isEditable;
-	}
-
-	// Helper function to get item data from drop data
-	async _getItemDataFromDropData(data) {
-		try {
-			return await Item.implementation.fromDropData(data);
-		} catch (error) {
-			console.error('Failed to get item data from drop data:', error);
-			return null;
-		}
 	}
 
 	// Helper function to find the appropriate update configuration
