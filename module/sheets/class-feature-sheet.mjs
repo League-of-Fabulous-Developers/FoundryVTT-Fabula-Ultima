@@ -142,15 +142,18 @@ export class FUClassFeatureSheet extends FUItemSheet {
 	}
 
 	/**
-	 * @inheritDoc
-	 * @override
+	 * Attach event listeners to rendered template parts.
+	 * @param {string} partId The id of the part being rendered
+	 * @param {HTMLElement} html The rendered HTML element for the part
+	 * @param {ApplicationRenderOptions} options Rendering options passed to the render method
+	 * @protected
 	 */
-	_attachFrameListeners() {
-		super._attachFrameListeners();
-		if (this.item.system.data instanceof ClassFeatureDataModel) {
-			const html = this.element;
-			const featureContentElement = html.querySelector('[data-feature-content]');
-			this.item.system.data.constructor.activateListeners(featureContentElement, this.item, this);
+	_attachPartListeners(partId, html, options) {
+		super._attachPartListeners(partId, html, options);
+		switch (partId) {
+			case 'details':
+				this.item.system.data.constructor.activateListeners(html, this.item, this);
+				break;
 		}
 	}
 }

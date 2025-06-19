@@ -83,11 +83,11 @@ export class ClassFeatureDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
-	 * Callback for custom HTML event handlers.
-	 * For convenience the jQuery instance is scoped to the element immediately containing the rendered template.
-	 * @param {jQuery} html
+	 * @description Callback for custom HTML event handlers.
+	 * @param {HTMLHtmlElement} html
 	 * @param {FUItem} item
 	 * @param {FUClassFeatureSheet} sheet
+	 * @virtual
 	 */
 	static activateListeners(html, item, sheet) {}
 
