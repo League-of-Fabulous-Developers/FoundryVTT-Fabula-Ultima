@@ -106,45 +106,15 @@ export class FUOptionalFeatureSheet extends FUItemSheet {
 	}
 
 	async _updateObject(event, formData) {
-		if (!this.object.id) return;
+		if (!this.object?.id) return;
 
-		// On change of feature type ask user to confirm user
-		if (this.item.system.optionalType !== formData['system.optionalType']) {
-			const shouldChangeType = await Dialog.confirm({
-				title: game.i18n.localize('FU.OptionalFeatureDialogChangeTypeTitle'),
-				content: game.i18n.localize('FU.OptionalFeatureDialogChangeTypeContent'),
-				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-				rejectClose: false,
-			});
+		formData = await super._prepareFormDataWithTypeCheck(formData, this.item, {
+			typeField: 'optionalType',
+			titleKey: 'FU.OptionalFeatureDialogChangeTypeTitle',
+			contentKey: 'FU.OptionalFeatureDialogChangeTypeContent',
+		});
 
-			if (!shouldChangeType) {
-				return this.render();
-			}
-
-			// remove all the formData referencing the old data model
-			for (const key of Object.keys(formData)) {
-				if (key.startsWith('system.data.')) {
-					delete formData[key];
-				}
-			}
-
-			// recursively add delete instructions for every field in the old data model
-			const schema = this.item.system.data.constructor.schema;
-			schema.apply(function () {
-				const path = this.fieldPath.split('.');
-				if (!game.release.isNewer(12)) {
-					path.shift(); // remove data model name
-				}
-				path.unshift('system', 'data');
-				const field = path.pop();
-				path.push(`-=${field}`);
-				formData[path.join('.')] = null;
-			});
-		} else {
-			formData = foundry.utils.expandObject(formData);
-			formData.system.data = this.item.system.data.constructor.processUpdateData(formData.system.data) ?? formData.system.data;
-		}
-
-		this.object.update(formData);
+		if (!formData) return this.render();
+		await this.object.update(formData);
 	}
 }

@@ -492,4 +492,51 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 		onManageActiveEffect(event, this.item, 'roll');
 	}
 	/* -------------------------------------------- */
+
+	/**
+	 * @description Handle type change confirmation and formData cleanup.
+	 * @protected
+	 * @param {object} formData
+	 * @param {Item} item
+	 * @param {object} config
+	 * @param {string} config.typeField - The path in formData for the type selector.
+	 * @param {string} config.titleKey - i18n key for dialog title.
+	 * @param {string} config.contentKey - i18n key for dialog content.
+	 * @returns {object|null}
+	 */
+	async _prepareFormDataWithTypeCheck(formData, item, { typeField, titleKey, contentKey }) {
+		if (item.system[typeField] !== formData[`system.${typeField}`]) {
+			const shouldChangeType = await Dialog.confirm({
+				title: game.i18n.localize(titleKey),
+				content: game.i18n.localize(contentKey),
+				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
+				rejectClose: false,
+			});
+
+			if (!shouldChangeType) return null;
+
+			// Remove old model data
+			for (const key of Object.keys(formData)) {
+				if (key.startsWith('system.data.')) {
+					delete formData[key];
+				}
+			}
+
+			// Recursively delete schema fields
+			const schema = item.system.data.constructor.schema;
+			schema.apply(function () {
+				const path = this.fieldPath.split('.');
+				if (!game.release.isNewer(12)) path.shift();
+				path.unshift('system', 'data');
+				const field = path.pop();
+				path.push(`-=${field}`);
+				formData[path.join('.')] = null;
+			});
+		} else {
+			formData = foundry.utils.expandObject(formData);
+			formData.system.data = item.system.data.constructor.processUpdateData(formData.system.data, item.system.data) ?? formData.system.data;
+		}
+
+		return formData;
+	}
 }

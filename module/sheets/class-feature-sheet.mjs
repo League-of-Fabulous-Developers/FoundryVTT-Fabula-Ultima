@@ -94,54 +94,6 @@ export class FUClassFeatureSheet extends FUItemSheet {
 	}
 
 	/**
-	 * @override
-	 */
-	async _updateObject(event, formData) {
-		if (!this.object.id) return;
-
-		// On change of feature type ask user to confirm user
-		if (this.item.system.featureType !== formData['system.featureType']) {
-			const shouldChangeType = await Dialog.confirm({
-				title: game.i18n.localize('FU.ClassFeatureDialogChangeTypeTitle'),
-				content: game.i18n.localize('FU.ClassFeatureDialogChangeTypeContent'),
-				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-				rejectClose: false,
-			});
-
-			console.debug('Updating type');
-
-			if (!shouldChangeType) {
-				return this.render();
-			}
-
-			// remove all the formData referencing the old data model
-			for (const key of Object.keys(formData)) {
-				if (key.startsWith('system.data.')) {
-					delete formData[key];
-				}
-			}
-
-			// recursively add delete instructions for every field in the old data model
-			const schema = this.item.system.data.constructor.schema;
-			schema.apply(function () {
-				const path = this.fieldPath.split('.');
-				if (!game.release.isNewer(12)) {
-					path.shift(); // remove data model name
-				}
-				path.unshift('system', 'data');
-				const field = path.pop();
-				path.push(`-=${field}`);
-				formData[path.join('.')] = null;
-			});
-		} else {
-			formData = foundry.utils.expandObject(formData);
-			formData.system.data = this.item.system.data.constructor.processUpdateData(formData.system.data, this.item.system.data) ?? formData.system.data;
-		}
-
-		this.object.update(formData);
-	}
-
-	/**
 	 * Attach event listeners to rendered template parts.
 	 * @param {string} partId The id of the part being rendered
 	 * @param {HTMLElement} html The rendered HTML element for the part
@@ -155,5 +107,18 @@ export class FUClassFeatureSheet extends FUItemSheet {
 				this.item.system.data.constructor.activateListeners(html, this.item, this);
 				break;
 		}
+	}
+
+	async _updateObject(event, formData) {
+		if (!this.object?.id) return;
+
+		formData = await super._prepareFormDataWithTypeCheck(formData, this.item, {
+			typeField: 'featureType',
+			titleKey: 'FU.ClassFeatureDialogChangeTypeTitle',
+			contentKey: 'FU.ClassFeatureDialogChangeTypeContent',
+		});
+
+		if (!formData) return this.render();
+		await this.object.update(formData);
 	}
 }
