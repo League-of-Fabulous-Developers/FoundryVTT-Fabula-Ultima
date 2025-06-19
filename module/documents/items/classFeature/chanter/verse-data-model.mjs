@@ -2,11 +2,11 @@ import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { FUItem } from '../../item.mjs';
 import { KeyDataModel } from './key-data-model.mjs';
 import { ToneDataModel } from './tone-data-model.mjs';
-import { LocallyEmbeddedDocumentField } from '../locally-embedded-document-field.mjs';
 import { FUActor } from '../../../actors/actor.mjs';
 import { FU } from '../../../../helpers/config.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
 import { VersesApplication } from './verses-application.mjs';
+import { LocallyEmbeddedDocumentField } from '../../../../fields/locally-embedded-document-field.mjs';
 
 const volumes = {
 	low: 'FU.ClassFeatureVerseVolumeLow',
