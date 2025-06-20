@@ -12,7 +12,7 @@ export class FUOptionalFeatureSheet extends FUFeatureSheet {
 	 */
 	static getFeatureTabs() {
 		const featureTabConfigs = [];
-		for (let value of Object.values(CONFIG.FU.optionalFeatureRegistry.optionals())) {
+		for (let value of Object.values(CONFIG.FU.optionalFeatureRegistry.map)) {
 			featureTabConfigs.push(...value.getTabConfigurations());
 		}
 		return featureTabConfigs;

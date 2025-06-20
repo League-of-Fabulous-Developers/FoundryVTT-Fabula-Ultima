@@ -1,9 +1,10 @@
-import { OptionalDataField } from './optional-data-field.mjs';
-import { RollableOptionalFeatureDataModel } from './optional-feature-data-model.mjs';
+//import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './optional-feature-data-model.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { slugify } from '../../../util.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { OptionalDataField } from '../../../fields/optional-data-field.mjs';
+import { RollableOptionalFeatureDataModel } from './optional-feature-data-model.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof OptionalFeatureTypeDataModel) {
@@ -26,9 +27,10 @@ export class OptionalFeatureTypeDataModel extends foundry.abstract.TypeDataModel
 			quantity: new SchemaField({ value: new NumberField({ intial: 1, min: 0, integer: true, nullable: true }) }),
 			optionalType: new StringField({
 				nullable: false,
-				initial: () => Object.keys(CONFIG.FU.optionalFeatureRegistry?.optionals() ?? {})[0],
-				choices: () => Object.keys(CONFIG.FU.optionalFeatureRegistry?.optionals() ?? {}),
+				initial: () => Object.keys(CONFIG.FU.optionalFeatureRegistry?.map ?? {})[0],
+				//choices: () => Object.keys(CONFIG.FU.optionalFeatureRegistry?.map ?? {}),
 			}),
+			//data: new TypedSchemaField(FU.optionalFeatureRegistry.record),
 			data: new OptionalDataField('optionalType'),
 		};
 	}

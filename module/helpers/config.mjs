@@ -410,7 +410,7 @@ FU.handedness = {
 };
 
 FU.classFeatureRegistry = new ClassFeatureRegistry();
-FU.optionalFeatureRegistry = new OptionalFeatureRegistry();
+FU.optionalFeatureRegistry = OptionalFeatureRegistry.instance;
 
 FU.resources = {
 	hp: 'FU.HealthPoints',

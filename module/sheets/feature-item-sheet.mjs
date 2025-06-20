@@ -65,6 +65,18 @@ export class FUFeatureSheet extends FUItemSheet {
 	}
 
 	/**
+	 * @returns {String}
+	 */
+	get subType() {
+		if (this.item.type === 'optionalFeature') {
+			return this.item.system.optionalType;
+		} else if (this.item.type === 'classFeature') {
+			return this.item.system.featureType;
+		}
+		return null;
+	}
+
+	/**
 	 * @this FUFeatureSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
@@ -76,15 +88,18 @@ export class FUFeatureSheet extends FUItemSheet {
 		const options = FoundryUtils.generateConfigOptions(subTypes);
 		const selectedType = await FoundryUtils.selectOptionDialog('Change Type', options);
 
-		let typeField;
 		if (this.item.type === 'optionalFeature') {
-			typeField = 'optionalType';
-		} else if (this.item.type === 'classFeature') {
-			typeField = 'featureType';
-		}
-		const currentType = this.item.system[typeField];
-		if (selectedType !== currentType) {
-			console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
+			//typeField = 'optionalType';
+			/** @type OptionalFeatureTypeDataModel **/
+			const system = this.item.system;
+			const currentType = system.optionalType;
+			if (selectedType !== currentType) {
+				const newModel = CONFIG.FU.optionalFeatureRegistry.byKey(selectedType);
+				console.debug(`Changing subtype to ${selectedType} from ${currentType}, ${newModel}`);
+				const updates = {};
+				updates['system.optionalType'] = selectedType;
+				await this.item.update(updates);
+			}
 		}
 	}
 
@@ -102,7 +117,7 @@ export class FUFeatureSheet extends FUItemSheet {
 			case 'classFeature':
 				return Object.entries(CONFIG.FU.classFeatureRegistry.features()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
 			case 'optionalFeature':
-				return Object.entries(CONFIG.FU.optionalFeatureRegistry.optionals()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
+				return CONFIG.FU.optionalFeatureRegistry.entries;
 			case 'treasure':
 				return CONFIG.FU.treasureType;
 		}
