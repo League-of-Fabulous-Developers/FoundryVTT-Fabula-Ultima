@@ -1,36 +1,11 @@
 import { OptionalFeatureDataModel } from '../documents/items/optionalFeature/optional-feature-data-model.mjs';
-import { FUItemSheet } from './item-sheet.mjs';
 import * as CONFIG from '../helpers/config.mjs';
-import { systemPath } from '../helpers/config.mjs';
+import { FUFeatureSheet } from './feature-item-sheet.mjs';
 
 /**
  * @description Uses {@link OptionalFeatureTypeDataModel}
  */
-export class FUOptionalFeatureSheet extends FUItemSheet {
-	/**
-	 * @inheritDoc
-	 * @type ApplicationConfiguration
-	 * @override
-	 */
-	static DEFAULT_OPTIONS = {
-		form: {
-			submitOnChange: true,
-		},
-	};
-
-	/** @override
-	 * @type Record<ApplicationTab>
-	 * */
-	static TABS = {
-		primary: {
-			tabs: [
-				{ id: 'details', label: 'FU.ClassFeatureDetails', icon: 'ra ra-double-team' },
-				{ id: 'effects', label: 'FU.Effects', icon: 'ra ra-hand' },
-			].concat(this.getFeatureTabs()),
-			initial: 'details',
-		},
-	};
-
+export class FUOptionalFeatureSheet extends FUFeatureSheet {
 	// TODO: Add these tabs
 	/**
 	 * @returns {ApplicationTab[]}
@@ -41,32 +16,6 @@ export class FUOptionalFeatureSheet extends FUItemSheet {
 			featureTabConfigs.push(...value.getTabConfigurations());
 		}
 		return featureTabConfigs;
-	}
-
-	/**
-	 * @description The default template parts
-	 * @override
-	 * @type Record<HandlebarsTemplatePart>
-	 */
-	static PARTS = {
-		...super.PARTS,
-		details: { template: systemPath(`templates/item/parts/item-details.hbs`) },
-	};
-
-	/**
-	 * Attach event listeners to rendered template parts.
-	 * @param {string} partId The id of the part being rendered
-	 * @param {HTMLElement} html The rendered HTML element for the part
-	 * @param {ApplicationRenderOptions} options Rendering options passed to the render method
-	 * @protected
-	 */
-	_attachPartListeners(partId, html, options) {
-		super._attachPartListeners(partId, html, options);
-		switch (partId) {
-			case 'details':
-				this.item.system.data.constructor.activateListeners(html, this.item, this);
-				break;
-		}
 	}
 
 	/** @inheritdoc */

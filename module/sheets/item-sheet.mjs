@@ -3,7 +3,6 @@ import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { FU, systemPath } from '../helpers/config.mjs';
 import { Traits } from '../pipelines/traits.mjs';
 import * as CONFIG from '../helpers/config.mjs';
-import { FoundryUtils } from '../helpers/foundry-utils.mjs';
 
 const { api, sheets } = foundry.applications;
 
@@ -40,7 +39,6 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 			toggleEffect: FUItemSheet.ToggleEffect,
 			copyInline: FUItemSheet.CopyInline,
 			rollEffect: FUItemSheet.RollEffect,
-			changeSubtype: FUItemSheet.#changeSubtype,
 		},
 		scrollY: ['.sheet-body'],
 		position: { width: 700, height: 'auto' },
@@ -485,101 +483,5 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 
 	static async RollEffect(event, target) {
 		return onManageActiveEffect(event, this.item, 'roll');
-	}
-
-	/* -------------------------------------------- */
-	static renderRadioOptions(options, selectedValue, name = 'choice') {
-		return Object.entries(options)
-			.map(([value, label]) => {
-				const checked = value === selectedValue ? ' checked' : '';
-				return `<label><input type="radio" name="${name}" value="${value}"${checked}> ${label}</label>`;
-			})
-			.join('\n');
-	}
-
-	/**
-	 * @this FUItemSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @returns {Promise<void>}
-	 */
-	static async #changeSubtype(event, target) {
-		const subTypes = this.getSubTypes();
-		console.debug('Prompting to change subtypes...');
-
-		const options = FoundryUtils.generateConfigOptions(subTypes);
-		const selectedType = await FoundryUtils.selectOptionDialog('Change Type', options);
-		console.debug(`Changing subtype to ${selectedType}`);
-	}
-
-	/**
-	 * @returns {Record}
-	 */
-	getSubTypes() {
-		switch (this.item.type) {
-			case 'heroic':
-				return CONFIG.FU.heroicType;
-			case 'miscAbility':
-				return CONFIG.FU.miscCategories;
-			case 'consumable':
-				return CONFIG.FU.consumableType;
-			case 'classFeature':
-				return Object.entries(CONFIG.FU.classFeatureRegistry.features()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
-			case 'optionalFeature':
-				return Object.entries(CONFIG.FU.optionalFeatureRegistry.optionals()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
-			case 'treasure':
-				return CONFIG.FU.treasureType;
-		}
-		return null;
-	}
-
-	/**
-	 * @description Handle type change confirmation and formData cleanup.
-	 * @protected
-	 * @param {FormData} formData
-	 * @param {FUItem} item
-	 * @param {object} config
-	 * @param {string} config.typeField - The path in formData for the type selector.
-	 * @param {string} config.titleKey - i18n key for dialog title.
-	 * @param {string} config.contentKey - i18n key for dialog content.
-	 * @returns {Promise<Boolean>} True if the data was changed
-	 */
-	async promptChangeDataType(formData, item, { typeField, titleKey, contentKey }) {
-		const currentType = item.system[typeField];
-		const selectedType = formData.object[`system.${typeField}`];
-		// If the data type should be changed
-		if (currentType !== selectedType) {
-			const shouldChangeType = await foundry.applications.api.DialogV2.confirm({
-				window: { title: game.i18n.localize(titleKey) },
-				content: game.i18n.localize(contentKey),
-				classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
-				rejectClose: false,
-			});
-
-			if (!shouldChangeType) return false;
-
-			// // Remove old model data
-			// for (const key of Object.keys(formData)) {
-			// 	if (key.startsWith('system.data.')) {
-			// 		delete formData[key];
-			// 	}
-			// }
-			//
-			// // Recursively delete schema fields
-			// const schema = item.system.data.constructor.schema;
-			// schema.apply(function () {
-			// 	const path = this.fieldPath.split('.');
-			// 	if (!game.release.isNewer(12)) path.shift();
-			// 	path.unshift('system', 'data');
-			// 	const field = path.pop();
-			// 	path.push(`-=${field}`);
-			// 	formData[path.join('.')] = null;
-			// });
-			//
-			// this.item.update(formData);
-			return true;
-		}
-
-		return true;
 	}
 }

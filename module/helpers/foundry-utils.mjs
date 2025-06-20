@@ -17,7 +17,7 @@ export const FoundryUtils = Object.freeze({
 	/**
 	 * @param {String} title
 	 * @param {FormSelectOption[]} options
-	 * @returns {String} The single selected option
+	 * @returns {Promise<String>} The single selected option
 	 */
 	selectOptionDialog: async (title, options) => {
 		const selectInput = fields.createSelectInput({

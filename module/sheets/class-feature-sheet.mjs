@@ -1,22 +1,8 @@
 import { ClassFeatureDataModel } from '../documents/items/classFeature/class-feature-data-model.mjs';
-import { systemPath } from '../helpers/config.mjs';
-import { FUItemSheet } from './item-sheet.mjs';
 import * as CONFIG from '../helpers/config.mjs';
+import { FUFeatureSheet } from './feature-item-sheet.mjs';
 
-export class FUClassFeatureSheet extends FUItemSheet {
-	/** @override
-	 * @type Record<ApplicationTab>
-	 * */
-	static TABS = {
-		primary: {
-			tabs: [
-				{ id: 'details', label: 'FU.ClassFeatureDetails', icon: 'ra ra-double-team' },
-				{ id: 'effects', label: 'FU.Effects', icon: 'ra ra-hand' },
-			].concat(FUClassFeatureSheet.getFeatureTabs()),
-			initial: 'details',
-		},
-	};
-
+export class FUClassFeatureSheet extends FUFeatureSheet {
 	// TODO: Add these tabs
 	static getFeatureTabs() {
 		const featureTabConfigs = [];
@@ -25,16 +11,6 @@ export class FUClassFeatureSheet extends FUItemSheet {
 		}
 		return featureTabConfigs;
 	}
-
-	/**
-	 * @description The default template parts
-	 * @override
-	 * @type Record<HandlebarsTemplatePart>
-	 */
-	static PARTS = {
-		...super.PARTS,
-		details: { template: systemPath(`templates/item/parts/item-details.hbs`) },
-	};
 
 	/** @inheritdoc */
 	async _preparePartContext(partId, ctx, options) {
@@ -91,22 +67,6 @@ export class FUClassFeatureSheet extends FUItemSheet {
 				break;
 		}
 		return context;
-	}
-
-	/**
-	 * Attach event listeners to rendered template parts.
-	 * @param {string} partId The id of the part being rendered
-	 * @param {HTMLElement} html The rendered HTML element for the part
-	 * @param {ApplicationRenderOptions} options Rendering options passed to the render method
-	 * @protected
-	 */
-	_attachPartListeners(partId, html, options) {
-		super._attachPartListeners(partId, html, options);
-		switch (partId) {
-			case 'details':
-				this.item.system.data.constructor.activateListeners(html, this.item, this);
-				break;
-		}
 	}
 
 	// async _updateObject(event, formData) {
