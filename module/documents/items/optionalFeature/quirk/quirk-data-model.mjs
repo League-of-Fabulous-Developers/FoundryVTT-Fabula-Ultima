@@ -56,7 +56,7 @@ export class QuirkDataModel extends OptionalFeatureDataModel {
 		const clockDataString = await this.getClockDataString(model);
 		const resourceDataString = await this.getResourceDataString(model);
 		return {
-			enrichedDescription: await TextEditor.enrichHTML(model.description),
+			enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(model.description),
 			clockDataString,
 			resourceDataString,
 		};

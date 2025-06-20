@@ -11,6 +11,9 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	}
 });
 
+/**
+ * @description
+ */
 export class OptionalFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
 		const { StringField, SchemaField, BooleanField, NumberField } = foundry.data.fields;

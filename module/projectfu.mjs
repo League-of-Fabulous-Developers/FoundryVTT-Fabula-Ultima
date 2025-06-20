@@ -225,7 +225,7 @@ Hooks.once('init', async () => {
 	CONFIG.statusEffects = statusEffects;
 	CONFIG.specialStatusEffects.DEFEATED = 'ko';
 
-	// Register sheet application classes
+	// Register sheet application classes. The 'types' fields associates the data model for each document.
 	foundry.documents.collections.Actors.unregisterSheet('core', ActorSheet);
 	foundry.documents.collections.Actors.registerSheet('projectfu', FUStandardActorSheet, {
 		types: ['character', 'npc'],

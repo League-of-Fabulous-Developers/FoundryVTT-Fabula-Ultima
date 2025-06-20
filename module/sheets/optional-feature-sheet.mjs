@@ -3,7 +3,21 @@ import { FUItemSheet } from './item-sheet.mjs';
 import * as CONFIG from '../helpers/config.mjs';
 import { systemPath } from '../helpers/config.mjs';
 
+/**
+ * @description Uses {@link OptionalFeatureTypeDataModel}
+ */
 export class FUOptionalFeatureSheet extends FUItemSheet {
+	/**
+	 * @inheritDoc
+	 * @type ApplicationConfiguration
+	 * @override
+	 */
+	static DEFAULT_OPTIONS = {
+		form: {
+			submitOnChange: true,
+		},
+	};
+
 	/** @override
 	 * @type Record<ApplicationTab>
 	 * */
@@ -92,7 +106,7 @@ export class FUOptionalFeatureSheet extends FUItemSheet {
 								if (typeof value === 'object') {
 									await enrichRecursively(value);
 								} else {
-									obj[key] = await TextEditor.enrichHTML(value, { rollData: context.additionalData?.rollData });
+									obj[key] = await foundry.applications.ux.TextEditor.implementation.enrichHTML(value, { rollData: context.additionalData?.rollData });
 								}
 							}
 						}
@@ -105,16 +119,22 @@ export class FUOptionalFeatureSheet extends FUItemSheet {
 		return context;
 	}
 
-	async _updateObject(event, formData) {
-		if (!this.object?.id) return;
-
-		formData = await super._prepareFormDataWithTypeCheck(formData, this.item, {
-			typeField: 'optionalType',
-			titleKey: 'FU.OptionalFeatureDialogChangeTypeTitle',
-			contentKey: 'FU.OptionalFeatureDialogChangeTypeContent',
-		});
-
-		if (!formData) return this.render();
-		await this.object.update(formData);
-	}
+	// async _onChangeForm(formConfig, event) {
+	// 	switch (event.target.name) {
+	// 		case 'system.optionalType':
+	// 			{
+	// 				const formData = new foundry.applications.ux.FormDataExtended(this.element);
+	// 				const submit = await super.promptChangeDataType(formData, this.item, {
+	// 					typeField: 'optionalType',
+	// 					titleKey: 'FU.OptionalFeatureDialogChangeTypeTitle',
+	// 					contentKey: 'FU.OptionalFeatureDialogChangeTypeContent',
+	// 				});
+	// 				if (!submit) {
+	// 					return;
+	// 				}
+	// 			}
+	// 			break;
+	// 	}
+	// 	super._onChangeForm(formConfig, event);
+	// }
 }

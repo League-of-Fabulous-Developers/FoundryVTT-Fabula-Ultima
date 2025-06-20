@@ -109,16 +109,16 @@ export class FUClassFeatureSheet extends FUItemSheet {
 		}
 	}
 
-	async _updateObject(event, formData) {
-		if (!this.object?.id) return;
-
-		formData = await super._prepareFormDataWithTypeCheck(formData, this.item, {
-			typeField: 'featureType',
-			titleKey: 'FU.ClassFeatureDialogChangeTypeTitle',
-			contentKey: 'FU.ClassFeatureDialogChangeTypeContent',
-		});
-
-		if (!formData) return this.render();
-		await this.object.update(formData);
-	}
+	// async _updateObject(event, formData) {
+	// 	if (!this.object?.id) return;
+	//
+	// 	formData = await super.promptChangeDataType(formData, this.item, {
+	// 		typeField: 'featureType',
+	// 		titleKey: 'FU.ClassFeatureDialogChangeTypeTitle',
+	// 		contentKey: 'FU.ClassFeatureDialogChangeTypeContent',
+	// 	});
+	//
+	// 	if (!formData) return this.render();
+	// 	await this.object.update(formData);
+	// }
 }

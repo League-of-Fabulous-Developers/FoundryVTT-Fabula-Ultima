@@ -203,3 +203,23 @@ export {};
  * @typedef HTMLEnrichedContentElement
  * @extends HTMLElement
  */
+
+/**
+ * An extension of the native FormData implementation.
+ *
+ * This class functions the same way that the default FormData does, but it is more opinionated about how
+ * input fields of certain types should be evaluated and handled.
+ *
+ * It also adds support for certain Foundry VTT specific concepts including:
+ *  Support for defined data types and type conversion
+ *  Support for TinyMCE editors
+ *  Support for editable HTML elements
+ *
+ * @typedef FormDataExtended
+ * @param {HTMLFormElement} form          The form being processed
+ * @param {object} options                Options which configure form processing
+ * @param {Record<string, object>} [options.editors]      A record of TinyMCE editor metadata objects, indexed by their update key
+ * @param {Record<string, string>} [options.dtypes]       A mapping of data types for form fields
+ * @param {boolean} [options.disabled=false]      Include disabled fields?
+ * @param {boolean} [options.readonly=false]      Include readonly fields?
+ */
