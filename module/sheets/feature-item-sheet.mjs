@@ -94,10 +94,19 @@ export class FUFeatureSheet extends FUItemSheet {
 			const system = this.item.system;
 			const currentType = system.optionalType;
 			if (selectedType !== currentType) {
-				const newModel = CONFIG.FU.optionalFeatureRegistry.byKey(selectedType);
-				console.debug(`Changing subtype to ${selectedType} from ${currentType}, ${newModel}`);
+				console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
 				const updates = {};
 				updates['system.optionalType'] = selectedType;
+				await this.item.update(updates);
+			}
+		} else if (this.item.type === 'classFeature') {
+			/** @type ClassFeatureDataModel **/
+			const system = this.item.system;
+			const currentType = system.featureType;
+			if (selectedType !== currentType) {
+				console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
+				const updates = {};
+				updates['system.featureType'] = selectedType;
 				await this.item.update(updates);
 			}
 		}
@@ -122,55 +131,5 @@ export class FUFeatureSheet extends FUItemSheet {
 				return CONFIG.FU.treasureType;
 		}
 		return null;
-	}
-
-	/**
-	 * @description Handle type change confirmation and formData cleanup.
-	 * @protected
-	 * @param {FormData} formData
-	 * @param {FUItem} item
-	 * @param {object} config
-	 * @param {string} config.typeField - The path in formData for the type selector.
-	 * @param {string} config.titleKey - i18n key for dialog title.
-	 * @param {string} config.contentKey - i18n key for dialog content.
-	 * @returns {Promise<Boolean>} True if the data was changed
-	 */
-	async promptChangeDataType(formData, item, { typeField, titleKey, contentKey }) {
-		const currentType = item.system[typeField];
-		const selectedType = formData.object[`system.${typeField}`];
-		// If the data type should be changed
-		if (currentType !== selectedType) {
-			const shouldChangeType = await foundry.applications.api.DialogV2.confirm({
-				window: { title: game.i18n.localize(titleKey) },
-				content: game.i18n.localize(contentKey),
-				classes: ['projectfu', 'unique-dialog', 'backgroundstyle'],
-				rejectClose: false,
-			});
-
-			if (!shouldChangeType) return false;
-
-			// // Remove old model data
-			// for (const key of Object.keys(formData)) {
-			// 	if (key.startsWith('system.data.')) {
-			// 		delete formData[key];
-			// 	}
-			// }
-			//
-			// // Recursively delete schema fields
-			// const schema = item.system.data.constructor.schema;
-			// schema.apply(function () {
-			// 	const path = this.fieldPath.split('.');
-			// 	if (!game.release.isNewer(12)) path.shift();
-			// 	path.unshift('system', 'data');
-			// 	const field = path.pop();
-			// 	path.push(`-=${field}`);
-			// 	formData[path.join('.')] = null;
-			// });
-			//
-			// this.item.update(formData);
-			return true;
-		}
-
-		return true;
 	}
 }

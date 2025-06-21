@@ -1,7 +1,5 @@
-//import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './optional-feature-data-model.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
-import { slugify } from '../../../util.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
 import { OptionalDataField } from '../../../fields/optional-data-field.mjs';
 import { RollableOptionalFeatureDataModel } from './optional-feature-data-model.mjs';
@@ -27,10 +25,9 @@ export class OptionalFeatureTypeDataModel extends foundry.abstract.TypeDataModel
 			quantity: new SchemaField({ value: new NumberField({ intial: 1, min: 0, integer: true, nullable: true }) }),
 			optionalType: new StringField({
 				nullable: false,
-				initial: () => Object.keys(CONFIG.FU.optionalFeatureRegistry?.map ?? {})[0],
-				//choices: () => Object.keys(CONFIG.FU.optionalFeatureRegistry?.map ?? {}),
+				initial: () => Object.keys(CONFIG.FU.optionalFeatureRegistry?.asObject ?? {})[0],
+				choices: () => Object.keys(CONFIG.FU.optionalFeatureRegistry?.asObject ?? {}),
 			}),
-			//data: new TypedSchemaField(FU.optionalFeatureRegistry.record),
 			data: new OptionalDataField('optionalType'),
 		};
 	}
@@ -59,30 +56,30 @@ export class OptionalFeatureTypeDataModel extends foundry.abstract.TypeDataModel
 		}
 	}
 
-	/**
-	 * Renders a dialog to confirm the FUID change and if accepted updates the FUID on the item.
-	 * @returns {Promise<string|undefined>} The generated FUID or undefined if no change was made.
-	 */
-	async regenerateFUID() {
-		const html = `
-				<div class="warning-message">
-				<p>${game.i18n.localize('FU.FUID.ChangeWarning2')}</p>
-				<p>${game.i18n.localize('FU.FUID.ChangeWarning3')}</p>
-				</div>
-				`;
-
-		const confirmation = await Dialog.confirm({
-			title: game.i18n.localize('FU.FUID.Regenerate'),
-			content: html,
-			defaultYes: false,
-			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-		});
-
-		if (!confirmation) return;
-
-		const fuid = slugify(this.data.name);
-		await this.update({ 'system.fuid': fuid });
-
-		return fuid;
-	}
+	// /**
+	//  * Renders a dialog to confirm the FUID change and if accepted updates the FUID on the item.
+	//  * @returns {Promise<string|undefined>} The generated FUID or undefined if no change was made.
+	//  */
+	// async regenerateFUID() {
+	// 	const html = `
+	// 			<div class="warning-message">
+	// 			<p>${game.i18n.localize('FU.FUID.ChangeWarning2')}</p>
+	// 			<p>${game.i18n.localize('FU.FUID.ChangeWarning3')}</p>
+	// 			</div>
+	// 			`;
+	//
+	// 	const confirmation = await Dialog.confirm({
+	// 		title: game.i18n.localize('FU.FUID.Regenerate'),
+	// 		content: html,
+	// 		defaultYes: false,
+	// 		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
+	// 	});
+	//
+	// 	if (!confirmation) return;
+	//
+	// 	const fuid = slugify(this.data.name);
+	// 	await this.update({ 'system.fuid': fuid });
+	//
+	// 	return fuid;
+	// }
 }

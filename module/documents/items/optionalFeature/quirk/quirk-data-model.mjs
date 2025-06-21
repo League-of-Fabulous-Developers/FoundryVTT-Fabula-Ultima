@@ -29,15 +29,19 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {ProgressDataModel} rp
  */
 export class QuirkDataModel extends OptionalFeatureDataModel {
+	static {
+		Object.defineProperty(this, 'TYPE', { value: 'quirk' });
+	}
+
 	static defineSchema() {
 		const { HTMLField, SchemaField, BooleanField, EmbeddedDataField } = foundry.data.fields;
-		return {
+		return Object.assign(super.defineSchema(), {
 			description: new HTMLField(),
 			hasClock: new SchemaField({ value: new BooleanField() }),
 			hasResource: new SchemaField({ value: new BooleanField() }),
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			rp: new EmbeddedDataField(ProgressDataModel, {}),
-		};
+		});
 	}
 
 	static get template() {

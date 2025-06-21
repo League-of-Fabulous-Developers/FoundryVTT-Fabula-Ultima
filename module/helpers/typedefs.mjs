@@ -223,3 +223,18 @@ export {};
  * @param {boolean} [options.disabled=false]      Include disabled fields?
  * @param {boolean} [options.readonly=false]      Include readonly fields?
  */
+
+/**
+ * @typedef DataFieldOptions
+ * @property {boolean} [required=false]   Is this field required to be populated?
+ * @property {boolean} [nullable=false]   Can this field have null values?
+ * @property {boolean} [gmOnly=false]     Can this field only be modified by a gamemaster or assistant gamemaster?
+ * @property {Function|*} [initial]       The initial value of a field, or a function which assigns that initial value.
+ * @property {string} [label]             A localizable label displayed on forms which render this field.
+ * @property {string} [hint]              Localizable help text displayed on forms which render this field.
+ * @property {DataFieldValidator} [validate] A custom data field validation function.
+ * @property {string} [validationError]   A custom validation error string. When displayed will be prepended with the
+ *                                        document name, field name, and candidate value. This error string is only
+ *                                        used when the return type of the validate function is a boolean. If an Error
+ *                                        is thrown in the validate function, the string message of that Error is used.
+ */

@@ -7,6 +7,6 @@ import { ZeroPowerDataModel } from './zeropower/zeropower-data-model.mjs';
  * @param registry
  */
 export function registerOptionalFeatures(registry) {
-	registry.register(SYSTEM, 'quirk', QuirkDataModel);
-	registry.register(SYSTEM, 'zeroPower', ZeroPowerDataModel);
+	registry.register(SYSTEM, QuirkDataModel.TYPE, QuirkDataModel);
+	registry.register(SYSTEM, ZeroPowerDataModel.TYPE, ZeroPowerDataModel);
 }

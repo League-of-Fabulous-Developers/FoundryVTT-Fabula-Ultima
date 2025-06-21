@@ -67,4 +67,14 @@ export const FoundryUtils = Object.freeze({
 		}));
 		return options;
 	},
+	/**
+	 * @param obj1
+	 * @param obj2
+	 * @returns {boolean} If they have the same keys
+	 */
+	haveSameKeys: (obj1, obj2) => {
+		const keys1 = Object.keys(obj1).sort();
+		const keys2 = Object.keys(obj2).sort();
+		return JSON.stringify(keys1) === JSON.stringify(keys2);
+	},
 });

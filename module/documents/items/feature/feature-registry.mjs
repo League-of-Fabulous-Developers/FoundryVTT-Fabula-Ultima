@@ -23,7 +23,8 @@ export class FeatureRegistry {
 		if (!module) throw new Error(`The originating module must be specified`);
 		if (!type) throw new Error(`The ${this.kind.toLowerCase()} type must be specified`);
 
-		const key = `${module}.${type}`;
+		//const key = `${module}.${type}`;
+		const key = type;
 
 		if (!foundry.utils.isSubclass(model, this.baseClass)) {
 			throw new Error(`${this.kind} ${key} must be a subclass of ${this.baseClass.name}`);
@@ -80,6 +81,7 @@ export class FeatureRegistry {
 	 * @returns {any}
 	 */
 	byKey(key) {
+		//key = key.replace('fu.', '');
 		return this.#map.get(key);
 	}
 
@@ -94,8 +96,8 @@ export class FeatureRegistry {
 	 * @returns {{[p: string]: DataModel}}
 	 */
 	get asObject() {
-		// Object.entries(CONFIG.FU.optionalFeatureRegistry.optionals()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
-		return Object.fromEntries(this.map);
+		const obj = Object.fromEntries(this.map);
+		return obj;
 	}
 
 	/**

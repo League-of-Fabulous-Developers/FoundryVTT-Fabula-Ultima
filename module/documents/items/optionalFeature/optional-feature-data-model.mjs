@@ -14,6 +14,21 @@
  */
 export class OptionalFeatureDataModel extends foundry.abstract.DataModel {
 	/**
+	 * The type of this shape.
+	 * @virtual
+	 * @type {string}
+	 */
+	static TYPE = '';
+
+	/** @override */
+	static defineSchema() {
+		const { StringField } = foundry.data.fields;
+		return {
+			type: new StringField({ required: true, blank: false, initial: this.TYPE, validate: (value) => value === this.TYPE, validationError: `must be equal to "${this.TYPE}"` }),
+		};
+	}
+
+	/**
 	 * Partial to be embedded in the optional Feature sheet.
 	 *
 	 * The template receives the complete Application data as context.

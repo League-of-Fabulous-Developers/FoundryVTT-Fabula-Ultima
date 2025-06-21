@@ -1,3 +1,5 @@
+import { FoundryUtils } from '../helpers/foundry-utils.mjs';
+
 /**
  * Subclass of {@link foundry.data.fields.ObjectField} that can embed a {@link OptionalFeatureDataModel}
  * while allowing the actual implementation of {@link OptionalFeatureDataModel} to be chosen at runtime.
@@ -9,7 +11,16 @@ export class OptionalDataField extends foundry.data.fields.ObjectField {
 	#typeField;
 
 	/**
-	 * @param {string} [typeField = 'type'] name of the field that stores the type key in the containing DataModel
+	 * Does this field type contain other fields in a recursive structure?
+	 * Examples of recursive fields are SchemaField, ArrayField, or TypeDataField
+	 * Examples of non-recursive fields are StringField, NumberField, or ObjectField
+	 * @type {boolean}
+	 * @override
+	 *  */
+	static recursive = true;
+
+	/**
+	 * @param {string} [typeField = 'type'] Name of the field that stores the type key in the containing DataModel
 	 * @param {DataFieldOptions} [options = {}]
 	 */
 	constructor(typeField = 'type', options = {}) {
@@ -17,20 +28,33 @@ export class OptionalDataField extends foundry.data.fields.ObjectField {
 		this.#typeField = typeField;
 	}
 
-	/** @override */
+	/**
+	 * Initialize the original source data into a mutable copy for the DataModel instance.
+	 * @param {*} value                   The source value of the field
+	 * @param {Object} model              The DataModel instance that this field belongs to
+	 * @param {object} [options]          Initialization options
+	 * @returns {*}                       An initialized copy of the source data
+	 * @override
+	 *  */
 	initialize(value, model, options = {}) {
 		if (!value) return value;
 
-		const type = model[this.#typeField];
-		const optionalType = CONFIG.FU.optionalFeatureRegistry.byKey(type);
-		if (optionalType) {
-			return new optionalType(value, { parent: model, ...options });
+		const schema = this.#getTypeSchema(model);
+		const fields = schema._schema.fields;
+		const changed = !FoundryUtils.haveSameKeys(value, fields);
+		if (changed) {
+			return new schema({ parent: model, ...options });
 		} else {
 			return value;
 		}
 	}
 
-	/** @override */
+	/**
+	 * Export the current value of the field into a serializable object.
+	 * @param {*} value                   The initialized value of the field
+	 * @returns {*}                       An exported representation of the field
+	 * @override
+	 * */
 	toObject(value) {
 		if (!value) return value;
 		if (value instanceof foundry.abstract.DataModel) {
@@ -41,27 +65,17 @@ export class OptionalDataField extends foundry.data.fields.ObjectField {
 	}
 
 	/**
-	 * Apply any cleaning logic specific to this DataField type.
-	 * @param {*} value           The appropriately coerced value.
-	 * @param {object} [options]  Additional options for how the field is cleaned.
-	 * @returns {*}               The cleaned value.
-	 * @protected
+	 * Get the schema for the given type.
+	 * @param {DataModel} model
+	 * @returns {SchemaField|void}
 	 */
-	_cleanType(value, options) {
-		options.source = options.source || value;
-		if (value[this.#typeField]) {
-			const type = value[this.#typeField];
-			const model = CONFIG.FU.optionalFeatureRegistry.byKey(type);
-
-			if (model) {
-				value = model.cleanData(value, options);
-			}
-		}
-		return value;
+	#getTypeSchema(model) {
+		const type = model[this.#typeField];
+		return CONFIG.FU.optionalFeatureRegistry.byKey(type);
 	}
 
 	/**
-	 * Migrate this field's candidate source data.f
+	 * Migrate this field's candidate source data.
 	 * @param {object} sourceData   Candidate source data of the root model
 	 * @param {any} fieldData       The value of this field within the source data
 	 */
@@ -69,7 +83,6 @@ export class OptionalDataField extends foundry.data.fields.ObjectField {
 		if (sourceData[this.#typeField] && fieldData) {
 			const type = sourceData[this.#typeField];
 			const model = CONFIG.FU.optionalFeatureRegistry.byKey(type);
-
 			model.migrateDataSafe(fieldData);
 		}
 	}
