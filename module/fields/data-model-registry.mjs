@@ -1,4 +1,7 @@
-export class FeatureRegistry {
+/**
+ * @description Associates string identifiers with DataModel
+ */
+export class DataModelRegistry {
 	/** @type {Map<string, DataModel>} */
 	#map = new Map();
 

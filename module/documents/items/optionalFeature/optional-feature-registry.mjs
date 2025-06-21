@@ -1,7 +1,7 @@
 import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './optional-feature-data-model.mjs';
-import { FeatureRegistry } from '../feature/feature-registry.mjs';
+import { DataModelRegistry } from '../../../fields/data-model-registry.mjs';
 
-export class OptionalFeatureRegistry extends FeatureRegistry {
+export class OptionalFeatureRegistry extends DataModelRegistry {
 	constructor() {
 		super({
 			kind: 'Optional Feature',

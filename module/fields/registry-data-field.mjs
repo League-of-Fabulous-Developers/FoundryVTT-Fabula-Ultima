@@ -1,10 +1,10 @@
 import { FoundryUtils } from '../helpers/foundry-utils.mjs';
 
 /**
- * Subclass of {@link foundry.data.fields.ObjectField} that can embed a {@link OptionalFeatureDataModel}
- * while allowing the actual implementation of {@link OptionalFeatureDataModel} to be chosen at runtime.
+ * Subclass of {@link foundry.data.fields.ObjectField} that can embed a {@link DataModel}
+ * while allowing the actual implementation found in a {@link DataModelRegistry} to be chosen at runtime.
  */
-export class OptionalDataField extends foundry.data.fields.ObjectField {
+export class RegistryDataField extends foundry.data.fields.ObjectField {
 	/**
 	 * @type {string} name of the field that stores the type key in the containing DataModel
 	 */
@@ -20,10 +20,11 @@ export class OptionalDataField extends foundry.data.fields.ObjectField {
 	static recursive = true;
 
 	/**
+	 * @param {DataModelRegistry} registry
 	 * @param {string} [typeField = 'type'] Name of the field that stores the type key in the containing DataModel
 	 * @param {DataFieldOptions} [options = {}]
 	 */
-	constructor(typeField = 'type', options = {}) {
+	constructor(registry, typeField = 'type', options = {}) {
 		super(options);
 		this.#typeField = typeField;
 	}

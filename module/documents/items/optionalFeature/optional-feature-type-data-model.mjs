@@ -1,8 +1,9 @@
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
-import { OptionalDataField } from '../../../fields/optional-data-field.mjs';
+import { RegistryDataField } from '../../../fields/registry-data-field.mjs';
 import { RollableOptionalFeatureDataModel } from './optional-feature-data-model.mjs';
+import { OptionalFeatureRegistry } from './optional-feature-registry.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof OptionalFeatureTypeDataModel) {
@@ -28,7 +29,7 @@ export class OptionalFeatureTypeDataModel extends foundry.abstract.TypeDataModel
 				initial: () => Object.keys(CONFIG.FU.optionalFeatureRegistry?.asObject ?? {})[0],
 				choices: () => Object.keys(CONFIG.FU.optionalFeatureRegistry?.asObject ?? {}),
 			}),
-			data: new OptionalDataField('optionalType'),
+			data: new RegistryDataField(OptionalFeatureRegistry.instance, 'optionalType'),
 		};
 	}
 
