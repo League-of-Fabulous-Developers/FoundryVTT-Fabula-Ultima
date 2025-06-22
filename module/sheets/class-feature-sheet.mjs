@@ -6,7 +6,7 @@ export class FUClassFeatureSheet extends FUFeatureSheet {
 	// TODO: Add these tabs
 	static getFeatureTabs() {
 		const featureTabConfigs = [];
-		for (let value of Object.values(CONFIG.FU.classFeatureRegistry.features())) {
+		for (let value of Object.values(CONFIG.FU.classFeatureRegistry.asObject)) {
 			featureTabConfigs.push(...value.getTabConfigurations());
 		}
 		return featureTabConfigs;

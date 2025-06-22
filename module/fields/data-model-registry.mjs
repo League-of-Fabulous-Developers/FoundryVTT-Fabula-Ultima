@@ -2,7 +2,7 @@
  * @description Associates string identifiers with DataModel
  */
 export class DataModelRegistry {
-	/** @type {Map<string, DataModel>} */
+	/** @type {Map<String, DataModel>} */
 	#map = new Map();
 
 	/**
@@ -26,8 +26,8 @@ export class DataModelRegistry {
 		if (!module) throw new Error(`The originating module must be specified`);
 		if (!type) throw new Error(`The ${this.kind.toLowerCase()} type must be specified`);
 
-		//const key = `${module}.${type}`;
-		const key = type;
+		const key = `${module}.${type}`;
+		//const key = type;
 
 		if (!foundry.utils.isSubclass(model, this.baseClass)) {
 			throw new Error(`${this.kind} ${key} must be a subclass of ${this.baseClass.name}`);
@@ -84,8 +84,24 @@ export class DataModelRegistry {
 	 * @returns {any}
 	 */
 	byKey(key) {
-		//key = key.replace('fu.', '');
+		//key = key.replace('projectfu.', '');
 		return this.#map.get(key);
+	}
+
+	/**
+	 * @param {string} key
+	 * @returns {String}
+	 */
+	localize(key) {
+		const schema = this.byKey(key);
+		return schema.translation;
+	}
+
+	/**
+	 * @returns {String[]}
+	 */
+	get choices() {
+		return this.#map.keys().toArray();
 	}
 
 	/**

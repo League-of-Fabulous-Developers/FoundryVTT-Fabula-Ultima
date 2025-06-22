@@ -26,15 +26,13 @@
             </span>
 		{{else if (eq item.type "classFeature")}}
 			<span>
-				<select name="system.featureType" class="resource-inputs select-dropdown-l">
-					{{selectOptions features selected=system.featureType localize=true}}
-				</select>
+				<label class="resource-label-sm">{{localize system.featureType}}</label>
+				<a data-action="changeSubtype">
+					<i class="fa fa-pencil-square"></i>
+				</a>
 			</span>
 		{{else if (eq item.type "optionalFeature")}}
 			<span>
-<!--				<select name="system.optionalType" class="resource-inputs select-dropdown-l">-->
-<!--					{{selectOptions optionals selected=system.optionalType localize=true}}-->
-<!--				</select>-->
 				<label class="resource-label-sm">{{localize system.optionalType}}</label>
 				<a data-action="changeSubtype">
 					<i class="fa fa-pencil-square"></i>

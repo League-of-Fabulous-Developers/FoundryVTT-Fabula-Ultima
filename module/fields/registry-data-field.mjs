@@ -11,6 +11,11 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	#typeField;
 
 	/**
+	 * @type DataModelRegistry
+	 */
+	#registry;
+
+	/**
 	 * Does this field type contain other fields in a recursive structure?
 	 * Examples of recursive fields are SchemaField, ArrayField, or TypeDataField
 	 * Examples of non-recursive fields are StringField, NumberField, or ObjectField
@@ -26,6 +31,7 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	 */
 	constructor(registry, typeField = 'type', options = {}) {
 		super(options);
+		this.#registry = registry;
 		this.#typeField = typeField;
 	}
 
@@ -44,9 +50,11 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 		const fields = schema._schema.fields;
 		const changed = !FoundryUtils.haveSameKeys(value, fields);
 		if (changed) {
+			// Instantiate the data model without the data (since the type differs)
 			return new schema({ parent: model, ...options });
 		} else {
-			return value;
+			// Instantiate the data model and pass in the raw data
+			return new schema(value, { parent: model, ...options });
 		}
 	}
 
@@ -72,7 +80,7 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	 */
 	#getTypeSchema(model) {
 		const type = model[this.#typeField];
-		return CONFIG.FU.optionalFeatureRegistry.byKey(type);
+		return this.#registry.byKey(type);
 	}
 
 	/**
@@ -83,7 +91,7 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	migrateSource(sourceData, fieldData) {
 		if (sourceData[this.#typeField] && fieldData) {
 			const type = sourceData[this.#typeField];
-			const model = CONFIG.FU.optionalFeatureRegistry.byKey(type);
+			const model = this.#registry.byKey(type);
 			model.migrateDataSafe(fieldData);
 		}
 	}

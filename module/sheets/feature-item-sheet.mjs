@@ -2,6 +2,8 @@ import { FUItemSheet } from './item-sheet.mjs';
 import { systemPath } from '../helpers/config.mjs';
 import { FoundryUtils } from '../helpers/foundry-utils.mjs';
 import * as CONFIG from '../helpers/config.mjs';
+import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
+import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
 
 export class FUFeatureSheet extends FUItemSheet {
 	/**
@@ -67,11 +69,13 @@ export class FUFeatureSheet extends FUItemSheet {
 	/**
 	 * @returns {String}
 	 */
-	get subType() {
+	get localizedSubtype() {
 		if (this.item.type === 'optionalFeature') {
-			return this.item.system.optionalType;
+			const type = this.item.system.optionalType;
+			return OptionalFeatureRegistry.instance.localize(type);
 		} else if (this.item.type === 'classFeature') {
-			return this.item.system.featureType;
+			const type = this.item.system.featureType;
+			return ClassFeatureRegistry.instance.localize(type);
 		}
 		return null;
 	}
@@ -87,27 +91,28 @@ export class FUFeatureSheet extends FUItemSheet {
 
 		const options = FoundryUtils.generateConfigOptions(subTypes);
 		const selectedType = await FoundryUtils.selectOptionDialog('Change Type', options);
-
-		if (this.item.type === 'optionalFeature') {
-			//typeField = 'optionalType';
-			/** @type OptionalFeatureTypeDataModel **/
-			const system = this.item.system;
-			const currentType = system.optionalType;
-			if (selectedType !== currentType) {
-				console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
-				const updates = {};
-				updates['system.optionalType'] = selectedType;
-				await this.item.update(updates);
-			}
-		} else if (this.item.type === 'classFeature') {
-			/** @type ClassFeatureDataModel **/
-			const system = this.item.system;
-			const currentType = system.featureType;
-			if (selectedType !== currentType) {
-				console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
-				const updates = {};
-				updates['system.featureType'] = selectedType;
-				await this.item.update(updates);
+		if (selectedType != null) {
+			if (this.item.type === 'optionalFeature') {
+				//typeField = 'optionalType';
+				/** @type OptionalFeatureTypeDataModel **/
+				const system = this.item.system;
+				const currentType = system.optionalType;
+				if (selectedType !== currentType) {
+					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
+					const updates = {};
+					updates['system.optionalType'] = selectedType;
+					await this.item.update(updates);
+				}
+			} else if (this.item.type === 'classFeature') {
+				/** @type ClassFeatureDataModel **/
+				const system = this.item.system;
+				const currentType = system.featureType;
+				if (selectedType !== currentType) {
+					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
+					const updates = {};
+					updates['system.featureType'] = selectedType;
+					await this.item.update(updates);
+				}
 			}
 		}
 	}
@@ -124,7 +129,7 @@ export class FUFeatureSheet extends FUItemSheet {
 			case 'consumable':
 				return CONFIG.FU.consumableType;
 			case 'classFeature':
-				return Object.entries(CONFIG.FU.classFeatureRegistry.features()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
+				return CONFIG.FU.classFeatureRegistry.entries;
 			case 'optionalFeature':
 				return CONFIG.FU.optionalFeatureRegistry.entries;
 			case 'treasure':

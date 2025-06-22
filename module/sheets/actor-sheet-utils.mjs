@@ -1017,7 +1017,7 @@ async function _onItemCreateDialog(ev, sheet) {
 			}
 			break;
 		case 'newClassFeatures': {
-			const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.features());
+			const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.asObject);
 			types = ['miscAbility', 'project'];
 			// Filter out item type
 			types = types.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));

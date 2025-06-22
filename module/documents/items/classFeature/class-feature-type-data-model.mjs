@@ -1,9 +1,10 @@
-import { FeatureDataField } from './feature-data-field.mjs';
 import { RollableClassFeatureDataModel } from './class-feature-data-model.mjs';
 import { ChecksV2 } from '../../../checks/checks-v2.mjs';
 import { CheckHooks } from '../../../checks/check-hooks.mjs';
 import { slugify } from '../../../util.mjs';
 import { CommonSections } from '../../../checks/common-sections.mjs';
+import { RegistryDataField } from '../../../fields/registry-data-field.mjs';
+import { ClassFeatureRegistry } from './class-feature-registry.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof ClassFeatureTypeDataModel && !(item.system.data instanceof RollableClassFeatureDataModel)) {
@@ -21,10 +22,10 @@ export class ClassFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 			isFavored: new SchemaField({ value: new BooleanField() }),
 			featureType: new StringField({
 				nullable: false,
-				initial: () => Object.keys(CONFIG.FU.classFeatureRegistry?.features() ?? {})[0],
-				choices: () => Object.keys(CONFIG.FU.classFeatureRegistry?.features() ?? {}),
+				initial: () => CONFIG.FU.classFeatureRegistry.choices[0],
+				choices: () => CONFIG.FU.classFeatureRegistry.choices,
 			}),
-			data: new FeatureDataField('featureType'),
+			data: new RegistryDataField(ClassFeatureRegistry.instance, 'featureType'), //  new FeatureDataField('featureType'),
 		};
 	}
 

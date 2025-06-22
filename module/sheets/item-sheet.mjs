@@ -90,7 +90,7 @@ export class FUItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheet
 				context.heroicType = CONFIG.FU.heroicType;
 				context.miscCategories = CONFIG.FU.miscCategories;
 				context.treasureType = CONFIG.FU.treasureType;
-				context.features = Object.entries(CONFIG.FU.classFeatureRegistry.features()).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
+				context.features = Object.entries(CONFIG.FU.classFeatureRegistry.map).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
 				context.optionals = Object.entries(CONFIG.FU.optionalFeatureRegistry.map).reduce((agg, [key, value]) => (agg[key] = value.translation) && agg, {});
 				break;
 
