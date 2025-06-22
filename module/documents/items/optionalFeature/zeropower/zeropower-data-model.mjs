@@ -36,10 +36,6 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {string} source.value
  */
 export class ZeroPowerDataModel extends OptionalFeatureDataModel {
-	static {
-		Object.defineProperty(this, 'TYPE', { value: 'zeroPower' });
-	}
-
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, EmbeddedDataField, BooleanField } = foundry.data.fields;
 		return Object.assign(super.defineSchema(), {

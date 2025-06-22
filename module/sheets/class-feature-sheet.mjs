@@ -68,17 +68,4 @@ export class FUClassFeatureSheet extends FUFeatureSheet {
 		}
 		return context;
 	}
-
-	// async _updateObject(event, formData) {
-	// 	if (!this.object?.id) return;
-	//
-	// 	formData = await super.promptChangeDataType(formData, this.item, {
-	// 		typeField: 'featureType',
-	// 		titleKey: 'FU.ClassFeatureDialogChangeTypeTitle',
-	// 		contentKey: 'FU.ClassFeatureDialogChangeTypeContent',
-	// 	});
-	//
-	// 	if (!formData) return this.render();
-	// 	await this.object.update(formData);
-	// }
 }

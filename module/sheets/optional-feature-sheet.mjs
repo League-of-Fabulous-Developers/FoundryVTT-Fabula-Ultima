@@ -67,23 +67,4 @@ export class FUOptionalFeatureSheet extends FUFeatureSheet {
 		}
 		return context;
 	}
-
-	// async _onChangeForm(formConfig, event) {
-	// 	switch (event.target.name) {
-	// 		case 'system.optionalType':
-	// 			{
-	// 				const formData = new foundry.applications.ux.FormDataExtended(this.element);
-	// 				const submit = await super.promptChangeDataType(formData, this.item, {
-	// 					typeField: 'optionalType',
-	// 					titleKey: 'FU.OptionalFeatureDialogChangeTypeTitle',
-	// 					contentKey: 'FU.OptionalFeatureDialogChangeTypeContent',
-	// 				});
-	// 				if (!submit) {
-	// 					return;
-	// 				}
-	// 			}
-	// 			break;
-	// 	}
-	// 	super._onChangeForm(formConfig, event);
-	// }
 }

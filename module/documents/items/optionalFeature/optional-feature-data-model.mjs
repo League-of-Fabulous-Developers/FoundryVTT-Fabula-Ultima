@@ -1,19 +1,8 @@
 import { FeatureDataModel } from '../feature-data-model.mjs';
 
 export class OptionalFeatureDataModel extends FeatureDataModel {
-	static TYPE = '';
-
 	static defineSchema() {
-		const { StringField } = foundry.data.fields;
-		return {
-			type: new StringField({
-				required: true,
-				blank: false,
-				initial: this.TYPE,
-				validate: (value) => value === this.TYPE,
-				validationError: `must be equal to "${this.TYPE}"`,
-			}),
-		};
+		return {};
 	}
 
 	static get previewTemplate() {
