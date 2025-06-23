@@ -14,7 +14,7 @@ export class InvocationSelectionApplication extends foundry.applications.api.Han
 			resizable: true,
 		},
 		position: {
-			width: 700,
+			width: 350,
 			height: 'auto',
 		},
 		tag: 'form',
@@ -77,6 +77,18 @@ export class InvocationSelectionApplication extends foundry.applications.api.Han
 				invocation: elem.dataset.invocation,
 			},
 		});
+	}
+
+	_onRender(context, options) {
+		// Set width
+		const activeWellsprings = Object.values(this.#model.actor.wellspringManager.activeWellsprings).filter((value) => value).length;
+		foundry.utils.mergeObject(options, {
+			position: {
+				width: activeWellsprings * InvocationSelectionApplication.DEFAULT_OPTIONS.position.width,
+			},
+		});
+
+		return super._onRender(context, options);
 	}
 
 	useInvocation(event) {
