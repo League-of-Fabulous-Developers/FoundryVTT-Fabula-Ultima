@@ -4,6 +4,7 @@ import { CommonSections } from '../../../checks/common-sections.mjs';
 import { RegistryDataField } from '../../../fields/registry-data-field.mjs';
 import { RollableOptionalFeatureDataModel } from './optional-feature-data-model.mjs';
 import { OptionalFeatureRegistry } from './optional-feature-registry.mjs';
+import { EmbeddedFeatureDataModel } from '../embedded-feature-data-model.mjs';
 
 Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 	if (item?.system instanceof OptionalFeatureTypeDataModel) {
@@ -14,15 +15,10 @@ Hooks.on(CheckHooks.renderCheck, (sections, check, actor, item) => {
 /**
  * @description
  */
-export class OptionalFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
+export class OptionalFeatureTypeDataModel extends EmbeddedFeatureDataModel {
 	static defineSchema() {
-		const { StringField, SchemaField, BooleanField, NumberField } = foundry.data.fields;
-		return {
-			fuid: new StringField(),
-			summary: new SchemaField({ value: new StringField() }),
-			source: new StringField(),
-			isFavored: new SchemaField({ value: new BooleanField() }),
-
+		const { StringField, SchemaField, NumberField } = foundry.data.fields;
+		return Object.assign(super.defineSchema(), {
 			cost: new SchemaField({ value: new NumberField({ intial: 0, min: 0, integer: true, nullable: true }) }),
 			quantity: new SchemaField({ value: new NumberField({ intial: 1, min: 0, integer: true, nullable: true }) }),
 			optionalType: new StringField({
@@ -31,19 +27,7 @@ export class OptionalFeatureTypeDataModel extends foundry.abstract.TypeDataModel
 				choices: () => OptionalFeatureRegistry.instance?.choices,
 			}),
 			data: new RegistryDataField(OptionalFeatureRegistry.instance, 'optionalType'),
-		};
-	}
-
-	prepareDerivedData() {
-		this.data?.prepareData();
-	}
-
-	/**
-	 * For default item chat messages to pick up description.
-	 * @return {*}
-	 */
-	get description() {
-		return this.data.description;
+		});
 	}
 
 	/**
