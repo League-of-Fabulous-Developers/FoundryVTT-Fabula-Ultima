@@ -1,12 +1,18 @@
-import { ClassFeatureDataModel } from '../documents/items/classFeature/class-feature-data-model.mjs';
+import { OptionalFeatureDataModel } from '../documents/items/optionalFeature/optional-feature-data-model.mjs';
 import * as CONFIG from '../helpers/config.mjs';
-import { FUFeatureSheet } from './feature-item-sheet.mjs';
+import { FUFeatureSheet } from './item-feature-sheet.mjs';
 
-export class FUClassFeatureSheet extends FUFeatureSheet {
+/**
+ * @description Uses {@link OptionalFeatureTypeDataModel}
+ */
+export class FUOptionalFeatureSheet extends FUFeatureSheet {
 	// TODO: Add these tabs
+	/**
+	 * @returns {ApplicationTab[]}
+	 */
 	static getFeatureTabs() {
 		const featureTabConfigs = [];
-		for (let value of Object.values(CONFIG.FU.classFeatureRegistry.asObject)) {
+		for (let value of Object.values(CONFIG.FU.optionalFeatureRegistry.map)) {
 			featureTabConfigs.push(...value.getTabConfigurations());
 		}
 		return featureTabConfigs;
@@ -18,12 +24,12 @@ export class FUClassFeatureSheet extends FUFeatureSheet {
 		switch (partId) {
 			case 'details':
 				{
-					context.system = this.system;
-					if (context.system.data instanceof ClassFeatureDataModel) {
-						context.feature = context.system.data.constructor;
-						context.featureTemplate = context.feature.template;
-						context.additionalData = await context.feature.getAdditionalData(context.system.data);
-						const schema = context.feature.schema;
+					context.system = this.item.system;
+					if (context.system.data instanceof OptionalFeatureDataModel) {
+						context.optional = context.system.data.constructor;
+						context.optionalTemplate = context.optional.template;
+						context.additionalData = await context.optional.getAdditionalData(context.system.data);
+						const schema = context.optional.schema;
 
 						context.enrichedHtml = {};
 						schema.apply(function () {
@@ -44,24 +50,17 @@ export class FUClassFeatureSheet extends FUFeatureSheet {
 							}
 						});
 
-						async function enrichRecursively(obj, { rollData, secrets, actor }) {
+						async function enrichRecursively(obj) {
 							for (let [key, value] of Object.entries(obj)) {
 								if (typeof value === 'object') {
-									await enrichRecursively(value, { rollData, secrets, actor });
+									await enrichRecursively(value);
 								} else {
-									obj[key] = await TextEditor.enrichHTML(value, {
-										rollData,
-										secrets,
-										relativeTo: actor,
-									});
+									obj[key] = await foundry.applications.ux.TextEditor.implementation.enrichHTML(value, { rollData: context.additionalData?.rollData });
 								}
 							}
 						}
-						await enrichRecursively(context.enrichedHtml, {
-							rollData: context.additionalData?.rollData,
-							secrets: this.item.isOwner,
-							actor: this.item.parent,
-						});
+
+						await enrichRecursively(context.enrichedHtml);
 					}
 				}
 				break;

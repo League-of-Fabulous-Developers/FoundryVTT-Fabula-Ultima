@@ -20,6 +20,7 @@ export class ClassFeatureTypeDataModel extends foundry.abstract.TypeDataModel {
 			summary: new SchemaField({ value: new StringField() }),
 			source: new StringField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
+
 			featureType: new StringField({
 				nullable: false,
 				initial: () => CONFIG.FU.classFeatureRegistry.choices[0],

@@ -38,7 +38,7 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	/**
 	 * Initialize the original source data into a mutable copy for the DataModel instance.
 	 * @param {*} value                   The source value of the field
-	 * @param {Object} model              The DataModel instance that this field belongs to
+	 * @param {DataModel} model           The DataModel instance that this field belongs to
 	 * @param {object} [options]          Initialization options
 	 * @returns {*}                       An initialized copy of the source data
 	 * @override
@@ -81,6 +81,27 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	#getTypeSchema(model) {
 		const type = model[this.#typeField];
 		return this.#registry.byKey(type);
+	}
+
+	/**
+	 * Apply any cleaning logic specific to this DataField type.
+	 * @param {*} value           The appropriately coerced value.
+	 * @param {object} [options]  Additional options for how the field is cleaned.
+	 * @returns {*}               The cleaned value.
+	 * @protected
+	 */
+	_cleanType(value, options) {
+		options.source = options.source || value;
+		if (value[this.#typeField]) {
+			const schema = this.#getTypeSchema(value);
+			//const type = value[this.#typeField];
+			//const model = CONFIG.FU.optionalFeatureRegistry.byKey(type);
+
+			if (schema) {
+				value = schema.cleanData(value, options);
+			}
+		}
+		return value;
 	}
 
 	/**

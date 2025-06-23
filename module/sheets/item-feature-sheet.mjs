@@ -60,6 +60,20 @@ export class FUFeatureSheet extends FUItemSheet {
 	};
 
 	/**
+	 * Handle submission for an Application which uses the form element.
+	 * @param {ApplicationFormConfiguration} formConfig     The form configuration for which this handler is bound
+	 * @param {Event|SubmitEvent} event                     The form submission event
+	 * @returns {Promise<void>}
+	 * @protected
+	 */
+	async _onSubmitForm(formConfig, event) {
+		//const form = event.currentTarget;
+
+		//const formData = new FormDataExtended(form);
+		return super._onSubmitForm(formConfig, event);
+	}
+
+	/**
 	 * @virtual
 	 */
 	static getFeatureTabs() {

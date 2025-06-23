@@ -22,6 +22,7 @@ export class OptionalFeatureTypeDataModel extends foundry.abstract.TypeDataModel
 			summary: new SchemaField({ value: new StringField() }),
 			source: new StringField(),
 			isFavored: new SchemaField({ value: new BooleanField() }),
+
 			cost: new SchemaField({ value: new NumberField({ intial: 0, min: 0, integer: true, nullable: true }) }),
 			quantity: new SchemaField({ value: new NumberField({ intial: 1, min: 0, integer: true, nullable: true }) }),
 			optionalType: new StringField({
