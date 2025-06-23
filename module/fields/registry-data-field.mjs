@@ -46,16 +46,24 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	initialize(value, model, options = {}) {
 		if (!value) return value;
 
-		const schema = this.#getTypeSchema(model);
-		const fields = schema._schema.fields;
+		const registryModel = this.#getRegistryModel(model);
+		const fields = registryModel._schema.fields;
+		let instance;
+
 		const changed = !FoundryUtils.haveSameKeys(value, fields);
 		if (changed) {
 			// Instantiate the data model without the data (since the type differs)
-			return new schema({ parent: model, ...options });
+			instance = new registryModel({}, { parent: model, ...options });
 		} else {
 			// Instantiate the data model and pass in the raw data
-			return new schema(value, { parent: model, ...options });
+			instance = new registryModel(value, { parent: model, ...options });
 		}
+		return instance;
+	}
+
+	/** @inheritdoc */
+	clean(value, options) {
+		return super.clean(value, { ...options, source: value });
 	}
 
 	/**
@@ -66,42 +74,17 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	 * */
 	toObject(value) {
 		if (!value) return value;
-		if (value instanceof foundry.abstract.DataModel) {
-			return value.toObject(false);
-		} else {
-			return foundry.utils.deepClone(value);
-		}
+		return value.toObject(false);
 	}
 
 	/**
 	 * Get the schema for the given type.
 	 * @param {DataModel} model
-	 * @returns {SchemaField|void}
+	 * @returns {DataModel}
 	 */
-	#getTypeSchema(model) {
+	#getRegistryModel(model) {
 		const type = model[this.#typeField];
 		return this.#registry.byKey(type);
-	}
-
-	/**
-	 * Apply any cleaning logic specific to this DataField type.
-	 * @param {*} value           The appropriately coerced value.
-	 * @param {object} [options]  Additional options for how the field is cleaned.
-	 * @returns {*}               The cleaned value.
-	 * @protected
-	 */
-	_cleanType(value, options) {
-		options.source = options.source || value;
-		if (value[this.#typeField]) {
-			const schema = this.#getTypeSchema(value);
-			//const type = value[this.#typeField];
-			//const model = CONFIG.FU.optionalFeatureRegistry.byKey(type);
-
-			if (schema) {
-				value = schema.cleanData(value, options);
-			}
-		}
-		return value;
 	}
 
 	/**
