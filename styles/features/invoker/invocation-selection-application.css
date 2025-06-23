@@ -10,4 +10,8 @@
 	.fun {
 		display: inline-block;
 	}
+
+	.window-content {
+		background-color: #dad8cc;
+	}
 }

@@ -1,20 +1,33 @@
+import { systemTemplatePath } from '../../../../helpers/system-utils.mjs';
 import { WELLSPRINGS } from './invoker-integration.mjs';
 
-export class InvocationSelectionApplication extends Application {
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['form', 'projectfu', 'invocations-selection-app'],
-			width: 350,
-			height: 'auto',
+export class InvocationSelectionApplication extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+	static DEFAULT_OPTIONS = {
+		form: {
 			closeOnSubmit: false,
-			editable: true,
-			sheetConfig: false,
 			submitOnChange: true,
 			submitOnClose: true,
-			minimizable: false,
+		},
+		classes: ['form', 'projectfu', 'invocations-selection'],
+		window: {
 			title: 'FU.ClassFeatureInvocationsSelectDialogTitle',
-		});
-	}
+			resizable: true,
+		},
+		position: {
+			width: 700,
+			height: 'auto',
+		},
+		tag: 'form',
+		actions: {
+			useInvocation: InvocationSelectionApplication.UseInvocation,
+		},
+	};
+
+	static PARTS = {
+		app: {
+			template: systemTemplatePath('feature/invoker/invocations-selection-application'),
+		},
+	};
 
 	#model;
 
@@ -25,11 +38,7 @@ export class InvocationSelectionApplication extends Application {
 		return this.#model.app;
 	}
 
-	get template() {
-		return 'systems/projectfu/templates/feature/invoker/invocations-selection-application.hbs';
-	}
-
-	async getData(options = {}) {
+	async _prepareContext(options = {}) {
 		const activeWellsprings = Object.entries(this.#model.actor.wellspringManager.activeWellsprings)
 			.filter(([, value]) => value)
 			.reduce((agg, [key, value]) => (agg[key] = value) && agg, {});
@@ -48,7 +57,7 @@ export class InvocationSelectionApplication extends Application {
 				const modelInvocation = modelElement[invocation];
 				invocations[invocation] = {
 					name: modelInvocation.name,
-					description: await TextEditor.enrichHTML(modelInvocation.description),
+					description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(modelInvocation.description),
 				};
 			}
 			data[element] = {
@@ -61,15 +70,13 @@ export class InvocationSelectionApplication extends Application {
 		return { wellsprings: data };
 	}
 
-	render(force = false, options = {}) {
-		const activeWellsprings = Object.values(this.#model.actor.wellspringManager.activeWellsprings).filter((value) => value).length;
-		return super.render(force, { width: InvocationSelectionApplication.defaultOptions.width * activeWellsprings, ...options });
-	}
-
-	activateListeners(html) {
-		super.activateListeners(html);
-
-		html.find('[data-element] [data-invocation]').click(this.useInvocation.bind(this));
+	static UseInvocation(event, elem) {
+		this.close({
+			use: {
+				element: elem.dataset.element,
+				invocation: elem.dataset.invocation,
+			},
+		});
 	}
 
 	useInvocation(event) {
