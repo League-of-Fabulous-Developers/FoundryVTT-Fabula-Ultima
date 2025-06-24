@@ -1,23 +1,17 @@
 import { systemTemplatePath } from '../../../../helpers/system-utils.mjs';
+import FUApplication from '../../../../ui/application.mjs';
 import { WELLSPRINGS } from './invoker-integration.mjs';
 
-export class InvocationSelectionApplication extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export class InvocationSelectionApplication extends FUApplication {
 	static DEFAULT_OPTIONS = {
-		form: {
-			closeOnSubmit: false,
-			submitOnChange: true,
-			submitOnClose: true,
-		},
-		classes: ['form', 'projectfu', 'invocations-selection'],
+		classes: ['form', 'invocations-selection'],
 		window: {
 			title: 'FU.ClassFeatureInvocationsSelectDialogTitle',
-			resizable: true,
 		},
 		position: {
 			width: 350,
 			height: 'auto',
 		},
-		tag: 'form',
 		actions: {
 			useInvocation: InvocationSelectionApplication.UseInvocation,
 		},
