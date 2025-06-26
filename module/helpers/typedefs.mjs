@@ -80,6 +80,14 @@ export {};
  */
 
 /**
+ * @typedef ApplicationTabsConfiguration
+ * @property {{id: string; icon?: string; label?: string; tooltip?: string}[]} tabs An array of tab configuration data
+ * @property {string} [initial]     The tab in this group that will be active on first render
+ * @property {string} [labelPrefix] A localization path prefix for all tabs in the group: if set, a label is generated
+ *                                  for each tab using a full path of `${labelPrefix}.${tabId}`.
+ */
+
+/**
  * @typedef ApplicationTab
  * @property {string} id         The ID of the tab. Unique per group.
  * @property {string} group      The group this tab belongs to.

@@ -27,8 +27,39 @@ export class FUFeatureSheet extends FUItemSheet {
 	 */
 	static PARTS = {
 		...super.PARTS,
-		details: { template: systemPath(`templates/item/parts/item-details.hbs`) },
+		details: {
+			template: systemPath(`templates/item/parts/item-details.hbs`),
+		},
 	};
+
+	/** @inheritdoc */
+	async _preparePartContext(partId, ctx, options) {
+		const context = await super._preparePartContext(partId, ctx, options);
+		switch (partId) {
+			case 'details': {
+				const extraTabs = this.embeddedFeature.getTabConfigurations();
+				if (extraTabs) {
+					for (const tab of extraTabs) {
+						context.tabs = this._prepareTabs(tab.group);
+					}
+				}
+				break;
+			}
+		}
+		return context;
+	}
+
+	/**
+	 * @description Allow subclasses to dynamically configure render parts.
+	 * @param {HandlebarsRenderOptions} options
+	 * @returns {Record<string, HandlebarsTemplatePart>}
+	 * @protected
+	 */
+	_configureRenderParts(options) {
+		const parts = super._configureRenderParts(options);
+
+		return parts;
+	}
 
 	/**
 	 * Attach event listeners to rendered template parts.
@@ -46,31 +77,37 @@ export class FUFeatureSheet extends FUItemSheet {
 		}
 	}
 
-	/** @override
-	 * @type Record<ApplicationTab>
-	 * */
+	/**
+	 * @returns {FeatureDataModel}
+	 */
+	get embeddedFeature() {
+		return this.item.system.data.constructor;
+	}
+
+	/**
+	 * Configuration of application tabs, with an entry per tab group.
+	 * @type {Record<string, ApplicationTabsConfiguration>}
+	 * @override
+	 */
 	static TABS = {
 		primary: {
 			tabs: [
 				{ id: 'details', label: 'FU.ClassFeatureDetails', icon: 'ra ra-double-team' },
 				{ id: 'effects', label: 'FU.Effects', icon: 'ra ra-hand' },
-			].concat(this.getFeatureTabs()),
+			],
 			initial: 'details',
 		},
 	};
 
 	/**
-	 * Handle submission for an Application which uses the form element.
-	 * @param {ApplicationFormConfiguration} formConfig     The form configuration for which this handler is bound
-	 * @param {Event|SubmitEvent} event                     The form submission event
-	 * @returns {Promise<void>}
+	 * Prepare application tab data for a single tab group.
+	 * @param {string} group The ID of the tab group to prepare
+	 * @returns {Record<string, ApplicationTab>}
 	 * @protected
 	 */
-	async _onSubmitForm(formConfig, event) {
-		//const form = event.currentTarget;
-
-		//const formData = new FormDataExtended(form);
-		return super._onSubmitForm(formConfig, event);
+	_prepareTabs(group) {
+		const tabs = super._prepareTabs(group);
+		return tabs;
 	}
 
 	/**

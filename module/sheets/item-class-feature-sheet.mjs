@@ -1,17 +1,7 @@
 import { ClassFeatureDataModel } from '../documents/items/classFeature/class-feature-data-model.mjs';
-import * as CONFIG from '../helpers/config.mjs';
 import { FUFeatureSheet } from './item-feature-sheet.mjs';
 
 export class FUClassFeatureSheet extends FUFeatureSheet {
-	// TODO: Add these tabs
-	static getFeatureTabs() {
-		const featureTabConfigs = [];
-		for (let value of Object.values(CONFIG.FU.classFeatureRegistry.asObject)) {
-			featureTabConfigs.push(...value.getTabConfigurations());
-		}
-		return featureTabConfigs;
-	}
-
 	/** @inheritdoc */
 	async _preparePartContext(partId, ctx, options) {
 		const context = await super._preparePartContext(partId, ctx, options);
