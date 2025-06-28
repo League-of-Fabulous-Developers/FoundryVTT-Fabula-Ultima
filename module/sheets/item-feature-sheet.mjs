@@ -45,9 +45,12 @@ export class FUFeatureSheet extends FUItemSheet {
 		switch (partId) {
 			case 'details': {
 				context.system = this.system;
+				context.fields = this.system.schema.fields;
+				context.dataFields = this.embeddedFeature.schema.fields;
 				context.additionalData = await this.embeddedFeature.getAdditionalData(context.system.data);
 
-				// Recursively enrich every HTMLField present in the schema
+				// Recursively enrich every HTMLField present in the schema, storing the enriched content in the object;
+				// It will be referenced by the templates that use it.
 				context.enrichedHtml = {};
 				const schema = this.embeddedFeature.schema;
 				schema.apply(function () {
