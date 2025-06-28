@@ -157,6 +157,29 @@ export class FUFeatureSheet extends FUItemSheet {
 		return tabs;
 	}
 
+	/** @inheritDoc */
+	async _onSubmitForm(formConfig, event) {
+		// eslint-disable-next-line no-undef
+		const formData = new FormDataExtended(this.element);
+		const embeddedData = FUFeatureSheet.collectSystemData(formData.object);
+		if (Object.keys(embeddedData).length > 0) {
+			this.item.update(embeddedData);
+		}
+		await super._onSubmitForm(formConfig, event);
+	}
+
+	static collectSystemData(obj) {
+		const result = {};
+
+		for (const [key, value] of Object.entries(obj)) {
+			if (key.startsWith('system.data')) {
+				result[key] = value;
+			}
+		}
+
+		return result;
+	}
+
 	/**
 	 * @returns {String}
 	 */
