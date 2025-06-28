@@ -28,13 +28,13 @@ const { api, fields } = foundry.applications;
  * @property {"single"|"multi"|"checkboxes"} [type] Customize the type of select that is created
  */
 
-export const FoundryUtils = Object.freeze({
+export default class FoundryUtils {
 	/**
 	 * @param {String} title
 	 * @param {FormSelectOption[]} options
 	 * @returns {Promise<String|null>} The single selected option
 	 */
-	selectOptionDialog: async (title, options) => {
+	static async selectOptionDialog(title, options) {
 		const selectInput = fields.createSelectInput({
 			options: options,
 			name: 'option',
@@ -53,28 +53,39 @@ export const FoundryUtils = Object.freeze({
 			content: content,
 		});
 		return data?.option ?? null;
-	},
+	}
+
 	/**
 	 *
 	 * @param {Object} typeObject
 	 * @returns {FormSelectOption[]}
 	 * @remarks This follows the 'key:value' format used in the system's CONFIG file
 	 */
-	generateConfigOptions: (typeObject) => {
+	static async generateConfigOptions(typeObject) {
 		const options = Object.entries(typeObject).map(([key, value]) => ({
 			label: StringUtils.localize(value),
 			value: key,
 		}));
 		return options;
-	},
+	}
+
 	/**
 	 * @param obj1
 	 * @param obj2
 	 * @returns {boolean} If they have the same keys
 	 */
-	haveSameKeys: (obj1, obj2) => {
+	static async haveSameKeys(obj1, obj2) {
 		const keys1 = Object.keys(obj1).sort();
 		const keys2 = Object.keys(obj2).sort();
 		return JSON.stringify(keys1) === JSON.stringify(keys2);
-	},
-});
+	}
+
+	/**
+	 * @param {TabsConfiguration} tab
+	 * @param {HTMLElement} html
+	 */
+	static bindTabs(tab, html) {
+		const controller = new foundry.applications.ux.Tabs(tab);
+		controller.bind(html);
+	}
+}

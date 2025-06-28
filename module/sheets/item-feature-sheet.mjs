@@ -1,9 +1,9 @@
 import { FUItemSheet } from './item-sheet.mjs';
 import { systemPath } from '../helpers/config.mjs';
-import { FoundryUtils } from '../helpers/foundry-utils.mjs';
 import * as CONFIG from '../helpers/config.mjs';
 import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
 import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 export class FUFeatureSheet extends FUItemSheet {
 	/**
@@ -19,6 +19,13 @@ export class FUFeatureSheet extends FUItemSheet {
 			changeSubtype: FUFeatureSheet.#changeSubtype,
 		},
 	};
+
+	/**
+	 * @returns {FeatureDataModel}
+	 */
+	get embeddedFeature() {
+		return this.item.system.data.constructor;
+	}
 
 	/**
 	 * @description The default template parts
@@ -37,12 +44,6 @@ export class FUFeatureSheet extends FUItemSheet {
 		const context = await super._preparePartContext(partId, ctx, options);
 		switch (partId) {
 			case 'details': {
-				const extraTabs = this.embeddedFeature.getTabConfigurations();
-				if (extraTabs) {
-					for (const tab of extraTabs) {
-						context.tabs = this._prepareTabs(tab.group);
-					}
-				}
 				break;
 			}
 		}
@@ -57,7 +58,6 @@ export class FUFeatureSheet extends FUItemSheet {
 	 */
 	_configureRenderParts(options) {
 		const parts = super._configureRenderParts(options);
-
 		return parts;
 	}
 
@@ -72,16 +72,17 @@ export class FUFeatureSheet extends FUItemSheet {
 		super._attachPartListeners(partId, html, options);
 		switch (partId) {
 			case 'details':
-				this.item.system.data.constructor.activateListeners(html, this.item, this);
+				{
+					this.embeddedFeature.activateListeners(html, this.item, this);
+					const secondaryTabs = this.embeddedFeature.getTabConfigurations();
+					if (secondaryTabs) {
+						for (const tab of secondaryTabs) {
+							FoundryUtils.bindTabs(tab, html);
+						}
+					}
+				}
 				break;
 		}
-	}
-
-	/**
-	 * @returns {FeatureDataModel}
-	 */
-	get embeddedFeature() {
-		return this.item.system.data.constructor;
 	}
 
 	/**

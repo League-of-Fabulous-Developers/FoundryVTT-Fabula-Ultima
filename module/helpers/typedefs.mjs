@@ -98,6 +98,18 @@ export {};
  */
 
 /**
+ * @typedef TabsConfiguration
+ * @property {string} [group]            The name of the tabs group
+ * @property {string} navSelector        The CSS selector used to target the navigation element for these tabs
+ * @property {string} contentSelector    The CSS selector used to target the content container for these tabs
+ * @property {string} initial            The tab name of the initially active tab
+ * @property {Function|null} [callback]  An optional callback function that executes when the active tab is changed
+ * @example
+ * const tabs = new foundry.applications.ux.Tabs(...);
+ * tabs.bind(html);
+ */
+
+/**
  * @typedef ApplicationRenderContext   Context data provided to the renderer
  * @property {Record<string, ApplicationTab>} [tabs]    Tab data prepared from an entry in
  *   {@link foundry.applications.api.ApplicationV2.TABS}

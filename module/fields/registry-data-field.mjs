@@ -1,4 +1,4 @@
-import { FoundryUtils } from '../helpers/foundry-utils.mjs';
+import FoundryUtils from '../helpers/foundry-utils.mjs';
 
 /**
  * Subclass of {@link foundry.data.fields.ObjectField} that can embed a {@link DataModel}
