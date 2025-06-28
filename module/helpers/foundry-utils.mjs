@@ -61,7 +61,7 @@ export default class FoundryUtils {
 	 * @returns {FormSelectOption[]}
 	 * @remarks This follows the 'key:value' format used in the system's CONFIG file
 	 */
-	static async generateConfigOptions(typeObject) {
+	static generateConfigOptions(typeObject) {
 		const options = Object.entries(typeObject).map(([key, value]) => ({
 			label: StringUtils.localize(value),
 			value: key,
@@ -74,7 +74,7 @@ export default class FoundryUtils {
 	 * @param obj2
 	 * @returns {boolean} If they have the same keys
 	 */
-	static async haveSameKeys(obj1, obj2) {
+	static haveSameKeys(obj1, obj2) {
 		const keys1 = Object.keys(obj1).sort();
 		const keys2 = Object.keys(obj2).sort();
 		return JSON.stringify(keys1) === JSON.stringify(keys2);
@@ -83,6 +83,7 @@ export default class FoundryUtils {
 	/**
 	 * @param {TabsConfiguration} tab
 	 * @param {HTMLElement} html
+	 * @remarks Useful for binding secondary tabs that are not assigned by {@link ApplicationV2}
 	 */
 	static bindTabs(tab, html) {
 		const controller = new foundry.applications.ux.Tabs(tab);

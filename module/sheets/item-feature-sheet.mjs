@@ -44,6 +44,49 @@ export class FUFeatureSheet extends FUItemSheet {
 		const context = await super._preparePartContext(partId, ctx, options);
 		switch (partId) {
 			case 'details': {
+				context.system = this.system;
+				context.additionalData = await this.embeddedFeature.getAdditionalData(context.system.data);
+
+				// Recursively enrich every HTMLField present in the schema
+				context.enrichedHtml = {};
+				const schema = this.embeddedFeature.schema;
+				schema.apply(function () {
+					if (this instanceof foundry.data.fields.HTMLField) {
+						const path = this.fieldPath.split('.');
+						if (!game.release.isNewer(12)) {
+							path.shift(); // remove data model name
+						}
+						path.pop(); // remove actual field name
+						let enrichedHtml = context.enrichedHtml;
+						let modelData = context.system.data;
+						for (let pathFragment of path) {
+							enrichedHtml[pathFragment] ??= {};
+							enrichedHtml = enrichedHtml[pathFragment];
+							modelData = modelData[pathFragment];
+						}
+						enrichedHtml[this.name] = modelData[this.name];
+					}
+				});
+
+				async function enrichRecursively(obj, { rollData, secrets, actor }) {
+					for (let [key, value] of Object.entries(obj)) {
+						if (typeof value === 'object') {
+							await enrichRecursively(value, { rollData, secrets, actor });
+						} else {
+							obj[key] = await foundry.applications.ux.TextEditor.implementation.enrichHTML(value, {
+								rollData,
+								secrets,
+								relativeTo: actor,
+							});
+						}
+					}
+				}
+
+				await enrichRecursively(context.enrichedHtml, {
+					rollData: context.additionalData?.rollData,
+					secrets: this.item.isOwner,
+					actor: this.item.parent,
+				});
 				break;
 			}
 		}
@@ -109,13 +152,6 @@ export class FUFeatureSheet extends FUItemSheet {
 	_prepareTabs(group) {
 		const tabs = super._prepareTabs(group);
 		return tabs;
-	}
-
-	/**
-	 * @virtual
-	 */
-	static getFeatureTabs() {
-		return [];
 	}
 
 	/**
