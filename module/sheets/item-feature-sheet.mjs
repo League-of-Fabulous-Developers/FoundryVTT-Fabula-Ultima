@@ -160,10 +160,12 @@ export class FUFeatureSheet extends FUItemSheet {
 	/** @inheritDoc */
 	async _onSubmitForm(formConfig, event) {
 		// eslint-disable-next-line no-undef
-		const formData = new FormDataExtended(this.element);
+		let formData = new FormDataExtended(this.element);
 		const embeddedData = FUFeatureSheet.collectSystemData(formData.object);
 		if (Object.keys(embeddedData).length > 0) {
-			this.item.update(embeddedData);
+			const expandedFormData = foundry.utils.expandObject(formData.object);
+			expandedFormData.system.data = this.embeddedFeature.processUpdateData(expandedFormData.system.data, this.item.system.data) ?? expandedFormData.system.data;
+			await this.item.update(expandedFormData);
 		}
 		await super._onSubmitForm(formConfig, event);
 	}
