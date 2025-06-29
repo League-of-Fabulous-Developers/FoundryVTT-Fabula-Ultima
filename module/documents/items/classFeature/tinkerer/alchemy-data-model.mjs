@@ -102,14 +102,23 @@ export class AlchemyDataModel extends RollableClassFeatureDataModel {
 	}
 
 	static activateListeners(html, item) {
-		html.find('[data-action=addEffect]').click(() =>
-			item.update({
-				'system.data.config.alwaysAvailableEffects': [...item.system.data.config.alwaysAvailableEffects, game.i18n.localize('FU.ClassFeatureAlchemyAlwaysAvailableEffectNew')],
-			}),
-		);
-		html.find('[data-action=deleteEffect][data-index]').click((event) => {
-			const idx = event.currentTarget.dataset.index;
-			item.update({ 'system.data.config.alwaysAvailableEffects': item.system.data.config.alwaysAvailableEffects.toSpliced(idx, 1) });
+		const addEffectEl = html.querySelector('[data-action=addEffect]');
+		if (addEffectEl) {
+			addEffectEl.addEventListener('click', () => {
+				item.update({
+					'system.data.config.alwaysAvailableEffects': [...item.system.data.config.alwaysAvailableEffects, game.i18n.localize('FU.ClassFeatureAlchemyAlwaysAvailableEffectNew')],
+				});
+			});
+		}
+
+		const deleteEffectEls = html.querySelectorAll('[data-action=deleteEffect][data-index]');
+		deleteEffectEls.forEach((el) => {
+			el.addEventListener('click', (event) => {
+				const idx = Number(event.currentTarget.dataset.index);
+				item.update({
+					'system.data.config.alwaysAvailableEffects': item.system.data.config.alwaysAvailableEffects.toSpliced(idx, 1),
+				});
+			});
 		});
 	}
 

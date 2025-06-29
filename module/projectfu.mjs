@@ -3,7 +3,7 @@ import { FUActor } from './documents/actors/actor.mjs';
 import { FUItem } from './documents/items/item.mjs';
 // Import sheet classes.
 import { FUStandardActorSheet } from './sheets/actor-standard-sheet.mjs';
-import { FUItemSheet } from './sheets/item-sheet.mjs';
+import { FUStandardItemSheet } from './sheets/item-standard-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { FU, SYSTEM } from './helpers/config.mjs';
@@ -36,12 +36,12 @@ import { onSocketLibReady } from './socket.mjs';
 import { statusEffects } from './documents/effects/statuses.mjs';
 
 import { ClassFeatureTypeDataModel } from './documents/items/classFeature/class-feature-type-data-model.mjs';
-import { FUClassFeatureSheet } from './sheets/class-feature-sheet.mjs';
+import { FUClassFeatureSheet } from './sheets/item-class-feature-sheet.mjs';
 import { ClassFeatureDataModel, RollableClassFeatureDataModel } from './documents/items/classFeature/class-feature-data-model.mjs';
 import { registerClassFeatures } from './documents/items/classFeature/class-features.mjs';
 
 import { OptionalFeatureTypeDataModel } from './documents/items/optionalFeature/optional-feature-type-data-model.mjs';
-import { FUOptionalFeatureSheet } from './sheets/optional-feature-sheet.mjs';
+import { FUOptionalFeatureSheet } from './sheets/item-optional-feature-sheet.mjs';
 import { OptionalFeatureDataModel, RollableOptionalFeatureDataModel } from './documents/items/optionalFeature/optional-feature-data-model.mjs';
 import { registerOptionalFeatures } from './documents/items/optionalFeature/optional-features.mjs';
 
@@ -225,7 +225,7 @@ Hooks.once('init', async () => {
 	CONFIG.statusEffects = statusEffects;
 	CONFIG.specialStatusEffects.DEFEATED = 'ko';
 
-	// Register sheet application classes
+	// Register sheet application classes. The 'types' fields associates the data model for each document.
 	foundry.documents.collections.Actors.unregisterSheet('core', ActorSheet);
 	foundry.documents.collections.Actors.registerSheet('projectfu', FUStandardActorSheet, {
 		types: ['character', 'npc'],
@@ -243,7 +243,7 @@ Hooks.once('init', async () => {
 		label: 'Standard Stash Sheet',
 	});
 	foundry.documents.collections.Items.unregisterSheet('core', ItemSheet);
-	foundry.documents.collections.Items.registerSheet('projectfu', FUItemSheet, {
+	foundry.documents.collections.Items.registerSheet('projectfu', FUStandardItemSheet, {
 		makeDefault: true,
 		label: 'Standard Item Sheet',
 	});

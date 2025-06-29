@@ -18,7 +18,10 @@
     <div class='alchemy-content'>
         <div class='tab' data-group='alchemyTabs' data-tab='description'>
             <label class='resource-label-m'>{{localize 'FU.Description'}}</label>
-            {{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
+			{{formInput dataFields.description
+						value=system.data.description
+						toggled=true
+						enriched=enrichedHtml.description}}
         </div>
         <div class='tab' data-group='alchemyTabs' data-tab='basic'>
             <label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</label>

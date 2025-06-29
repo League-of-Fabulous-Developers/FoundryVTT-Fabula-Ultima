@@ -80,6 +80,14 @@ export {};
  */
 
 /**
+ * @typedef ApplicationTabsConfiguration
+ * @property {{id: string; icon?: string; label?: string; tooltip?: string}[]} tabs An array of tab configuration data
+ * @property {string} [initial]     The tab in this group that will be active on first render
+ * @property {string} [labelPrefix] A localization path prefix for all tabs in the group: if set, a label is generated
+ *                                  for each tab using a full path of `${labelPrefix}.${tabId}`.
+ */
+
+/**
  * @typedef ApplicationTab
  * @property {string} id         The ID of the tab. Unique per group.
  * @property {string} group      The group this tab belongs to.
@@ -87,6 +95,18 @@ export {};
  * @property {string} label      Display text, will be run through `game.i18n.localize`
  * @property {boolean} active    If this is the active tab, set with `this.tabGroups[group] === id`
  * @property {string} cssClass   "active" or "" based on the above boolean
+ */
+
+/**
+ * @typedef TabsConfiguration
+ * @property {string} [group]            The name of the tabs group
+ * @property {string} navSelector        The CSS selector used to target the navigation element for these tabs
+ * @property {string} contentSelector    The CSS selector used to target the content container for these tabs
+ * @property {string} initial            The tab name of the initially active tab
+ * @property {Function|null} [callback]  An optional callback function that executes when the active tab is changed
+ * @example
+ * const tabs = new foundry.applications.ux.Tabs(...);
+ * tabs.bind(html);
  */
 
 /**
@@ -202,4 +222,45 @@ export {};
 /**
  * @typedef HTMLEnrichedContentElement
  * @extends HTMLElement
+ */
+
+/**
+ * An extension of the native FormData implementation.
+ *
+ * This class functions the same way that the default FormData does, but it is more opinionated about how
+ * input fields of certain types should be evaluated and handled.
+ *
+ * It also adds support for certain Foundry VTT specific concepts including:
+ *  Support for defined data types and type conversion
+ *  Support for TinyMCE editors
+ *  Support for editable HTML elements
+ *
+ * @typedef FormDataExtended
+ * @param {HTMLFormElement} form          The form being processed
+ * @param {object} options                Options which configure form processing
+ * @param {Record<string, object>} [options.editors]      A record of TinyMCE editor metadata objects, indexed by their update key
+ * @param {Record<string, string>} [options.dtypes]       A mapping of data types for form fields
+ * @param {boolean} [options.disabled=false]      Include disabled fields?
+ * @param {boolean} [options.readonly=false]      Include readonly fields?
+ */
+
+/**
+ * The abstract base class which defines the data schema contained within a Document.
+ * @typedef DataModel
+ *
+ */
+
+/**
+ * @typedef DataFieldOptions
+ * @property {boolean} [required=false]   Is this field required to be populated?
+ * @property {boolean} [nullable=false]   Can this field have null values?
+ * @property {boolean} [gmOnly=false]     Can this field only be modified by a gamemaster or assistant gamemaster?
+ * @property {Function|*} [initial]       The initial value of a field, or a function which assigns that initial value.
+ * @property {string} [label]             A localizable label displayed on forms which render this field.
+ * @property {string} [hint]              Localizable help text displayed on forms which render this field.
+ * @property {DataFieldValidator} [validate] A custom data field validation function.
+ * @property {string} [validationError]   A custom validation error string. When displayed will be prepended with the
+ *                                        document name, field name, and candidate value. This error string is only
+ *                                        used when the return type of the validate function is a boolean. If an Error
+ *                                        is thrown in the validate function, the string message of that Error is used.
  */
