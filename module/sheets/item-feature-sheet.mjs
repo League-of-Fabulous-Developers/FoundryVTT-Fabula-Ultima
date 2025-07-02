@@ -130,7 +130,7 @@ export class FUFeatureSheet extends FUItemSheet {
 	}
 
 	#handleNestedTabs(html) {
-		this.embeddedFeature.activateListeners($(html), this.item, this);
+		this.embeddedFeature.activateListeners(html, this.item, this);
 		if (!this.#nestedTabControllers) {
 			const secondaryTabs = this.embeddedFeature.getTabConfigurations();
 			if (secondaryTabs) {
