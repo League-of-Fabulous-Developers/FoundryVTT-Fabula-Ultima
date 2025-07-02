@@ -1,6 +1,6 @@
 import { FUItemSheet } from './item-sheet.mjs';
-import { systemPath } from '../helpers/config.mjs';
 import * as CONFIG from '../helpers/config.mjs';
+import { systemPath } from '../helpers/config.mjs';
 import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
 import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
@@ -19,6 +19,11 @@ export class FUFeatureSheet extends FUItemSheet {
 			changeSubtype: FUFeatureSheet.#changeSubtype,
 		},
 	};
+
+	/**
+	 * @type {foundry.applications.ux.Tabs[] | null}
+	 */
+	#nestedTabControllers = null;
 
 	/**
 	 * @returns {FeatureDataModel}
@@ -117,17 +122,29 @@ export class FUFeatureSheet extends FUItemSheet {
 	_attachPartListeners(partId, html, options) {
 		super._attachPartListeners(partId, html, options);
 		switch (partId) {
-			case 'details':
-				{
-					this.embeddedFeature.activateListeners(html, this.item, this);
-					const secondaryTabs = this.embeddedFeature.getTabConfigurations();
-					if (secondaryTabs) {
-						for (const tab of secondaryTabs) {
-							FoundryUtils.bindTabs(tab, html);
-						}
-					}
-				}
+			case 'details': {
+				this.#handleNestedTabs(html);
 				break;
+			}
+		}
+	}
+
+	#handleNestedTabs(html) {
+		this.embeddedFeature.activateListeners($(html), this.item, this);
+		if (!this.#nestedTabControllers) {
+			const secondaryTabs = this.embeddedFeature.getTabConfigurations();
+			if (secondaryTabs) {
+				this.#nestedTabControllers = [];
+				for (const tab of secondaryTabs) {
+					const nestedTabController = new foundry.applications.ux.Tabs(tab);
+					nestedTabController.bind(html);
+					this.#nestedTabControllers.push(nestedTabController);
+				}
+			}
+		} else {
+			for (const nestedTabController of this.#nestedTabControllers) {
+				nestedTabController.bind(html);
+			}
 		}
 	}
 
@@ -218,6 +235,8 @@ export class FUFeatureSheet extends FUItemSheet {
 					await this.item.update(updates);
 				}
 			}
+
+			this.#nestedTabControllers = null;
 		}
 	}
 

@@ -79,14 +79,4 @@ export default class FoundryUtils {
 		const keys2 = Object.keys(obj2).sort();
 		return JSON.stringify(keys1) === JSON.stringify(keys2);
 	}
-
-	/**
-	 * @param {TabsConfiguration} tab
-	 * @param {HTMLElement} html
-	 * @remarks Useful for binding secondary tabs that are not assigned by {@link ApplicationV2}
-	 */
-	static bindTabs(tab, html) {
-		const controller = new foundry.applications.ux.Tabs(tab);
-		controller.bind(html);
-	}
 }
