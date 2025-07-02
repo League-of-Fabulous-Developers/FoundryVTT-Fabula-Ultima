@@ -158,28 +158,12 @@ export class FUFeatureSheet extends FUItemSheet {
 	}
 
 	/** @inheritDoc */
-	async _onSubmitForm(formConfig, event) {
-		// eslint-disable-next-line no-undef
-		let formData = new FormDataExtended(this.element);
-		const embeddedData = FUFeatureSheet.collectSystemData(formData.object);
-		if (Object.keys(embeddedData).length > 0) {
-			const expandedFormData = foundry.utils.expandObject(formData.object);
-			expandedFormData.system.data = this.embeddedFeature.processUpdateData(expandedFormData.system.data, this.item.system.data) ?? expandedFormData.system.data;
-			await this.item.update(expandedFormData);
+	async _processSubmitData(event, form, submitData, options = {}) {
+		if (foundry.utils.hasProperty(submitData, 'system.data')) {
+			const data = submitData.system.data;
+			submitData.system.data = this.embeddedFeature.processUpdateData(data, this.item.system.data) ?? data;
 		}
-		await super._onSubmitForm(formConfig, event);
-	}
-
-	static collectSystemData(obj) {
-		const result = {};
-
-		for (const [key, value] of Object.entries(obj)) {
-			if (key.startsWith('system.data')) {
-				result[key] = value;
-			}
-		}
-
-		return result;
+		return super._processSubmitData(event, form, submitData, options);
 	}
 
 	/**
@@ -215,8 +199,10 @@ export class FUFeatureSheet extends FUItemSheet {
 				const currentType = system.optionalType;
 				if (selectedType !== currentType) {
 					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
-					const updates = {};
-					updates['system.optionalType'] = selectedType;
+					const updates = {
+						'system.-=data': null,
+						'system.optionalType': selectedType,
+					};
 					await this.item.update(updates);
 				}
 			} else if (this.item.type === 'classFeature') {
@@ -225,8 +211,10 @@ export class FUFeatureSheet extends FUItemSheet {
 				const currentType = system.featureType;
 				if (selectedType !== currentType) {
 					console.debug(`Changing subtype to ${selectedType} from ${currentType}`);
-					const updates = {};
-					updates['system.featureType'] = selectedType;
+					const updates = {
+						'system.-=data': null,
+						'system.featureType': selectedType,
+					};
 					await this.item.update(updates);
 				}
 			}

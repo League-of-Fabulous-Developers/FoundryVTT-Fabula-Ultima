@@ -1,5 +1,3 @@
-import FoundryUtils from '../helpers/foundry-utils.mjs';
-
 /**
  * Subclass of {@link foundry.data.fields.ObjectField} that can embed a {@link DataModel}
  * while allowing the actual implementation found in a {@link DataModelRegistry} to be chosen at runtime.
@@ -30,6 +28,8 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	 * @param {DataFieldOptions} [options = {}]
 	 */
 	constructor(registry, typeField = 'type', options = {}) {
+		options.nullable = true;
+		options.required = false;
 		super(options);
 		this.#registry = registry;
 		this.#typeField = typeField;
@@ -46,24 +46,15 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 	initialize(value, model, options = {}) {
 		if (!value) return value;
 
-		const registryModel = this.#getRegistryModel(model);
-		const fields = registryModel._schema.fields;
-		let instance;
+		const RegistryModel = this.#getRegistryModel(model);
 
-		const changed = !FoundryUtils.haveSameKeys(value, fields);
-		if (changed) {
-			// Instantiate the data model without the data (since the type differs)
-			instance = new registryModel({}, { parent: model, ...options });
-		} else {
-			// Instantiate the data model and pass in the raw data
-			instance = new registryModel(value, { parent: model, ...options });
-		}
-		return instance;
+		return new RegistryModel(value, { parent: model, ...options });
 	}
 
-	/** @inheritdoc */
-	clean(value, options) {
-		return super.clean(value, { ...options, source: value });
+	getInitialValue(data) {
+		const DataModel = this.#getRegistryModel(data);
+
+		return DataModel.schema.getInitialValue({});
 	}
 
 	/**
