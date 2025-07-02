@@ -17,19 +17,35 @@
     <div class='magitech-content'>
         <div class='tab' data-group='magitechTabs' data-tab='description'>
             <label class='resource-label-m'>{{localize 'FU.Description'}}</label>
-            {{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true}}
+			{{formInput dataFields.description
+						name="system.data.description"
+						value=system.data.description
+						toggled=true
+						enriched=enrichedHtml.description}}
         </div>
         <div class='tab' data-group='magitechTabs' data-tab='basic'>
             <label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsBasic'}}</label>
-            {{editor enrichedHtml.basic target='system.data.basic' engine='prosemirror' button=true}}
+			{{formInput dataFields.basic
+						name="system.data.basic"
+						value=system.data.basic
+						toggled=true
+						enriched=enrichedHtml.basic}}
         </div>
         <div class='tab' data-group='magitechTabs' data-tab='advanced'>
             <label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsAdvanced'}}</label>
-            {{editor enrichedHtml.advanced target='system.data.advanced' engine='prosemirror' button=true}}
+			{{formInput dataFields.advanced
+						name="system.data.advanced"
+						value=system.data.advanced
+						toggled=true
+						enriched=enrichedHtml.advanced}}
         </div>
         <div class='tab' data-group='magitechTabs' data-tab='superior'>
             <label class='resource-label-m'>{{localize 'FU.ClassFeatureGadgetsBenefitsSuperior'}}</label>
-            {{editor enrichedHtml.superior target='system.data.superior' engine='prosemirror' button=true}}
+			{{formInput dataFields.superior
+						name="system.data.superior"
+						value=system.data.superior
+						toggled=true
+						enriched=enrichedHtml.superior}}
         </div>
     </div>
 </div>

@@ -10,11 +10,19 @@
         <div class="grid grid-2col gap-5 border-rc">
             <div>
                 <label class="resource-label-m">{{localize 'FU.ClassFeatureArcanumMerge'}}</label>
-                {{editor enrichedHtml.merge target="system.data.merge" engine="prosemirror" button=true}}
+				{{formInput dataFields.merge
+							name="system.data.merge"
+							value=system.data.merge
+							toggled=true
+							enriched=enrichedHtml.merge}}
             </div>
             <div>
                 <label class="resource-label-m">{{localize 'FU.ClassFeatureArcanumDismiss'}}</label>
-                {{editor enrichedHtml.dismiss target="system.data.dismiss" engine="prosemirror" button=true}}
+				{{formInput dataFields.dismiss
+							name="system.data.dismiss"
+							value=system.data.dismiss
+							toggled=true
+							enriched=enrichedHtml.dismiss}}
             </div>
         </div>
     </fieldset>

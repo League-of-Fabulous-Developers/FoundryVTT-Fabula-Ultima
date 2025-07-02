@@ -1,9 +1,9 @@
-import { LocallyEmbeddedDocumentField } from '../../items/classFeature/locally-embedded-document-field.mjs';
 import { FUItem } from '../../items/item.mjs';
 import { FUActor } from '../actor.mjs';
 import { ClassFeatureTypeDataModel } from '../../items/classFeature/class-feature-type-data-model.mjs';
 import { MagiseedDataModel } from '../../items/classFeature/floralist/magiseed-data-model.mjs';
 import { GardenDataModel } from '../../items/classFeature/floralist/garden-data-model.mjs';
+import { LocallyEmbeddedDocumentField } from '../../../fields/locally-embedded-document-field.mjs';
 
 /**
  * @property {FUItem} planted

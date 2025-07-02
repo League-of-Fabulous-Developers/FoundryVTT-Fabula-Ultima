@@ -24,6 +24,20 @@
 					{{selectOptions consumableType selected=system.subtype.value sort=true localize=true}}
 				</select>
             </span>
+		{{else if (eq item.type "classFeature")}}
+			<span>
+				<label class="resource-label-sm">{{localize system.featureType}}</label>
+				<a data-action="changeSubtype">
+					<i class="fa fa-pencil-square"></i>
+				</a>
+			</span>
+		{{else if (eq item.type "optionalFeature")}}
+			<span>
+				<label class="resource-label-sm">{{localize system.optionalType}}</label>
+				<a data-action="changeSubtype">
+					<i class="fa fa-pencil-square"></i>
+				</a>
+			</span>
 		{{else if (eq item.type "treasure")}}
 			<span>
                 <select name="system.subtype.value" data-dtype="String"
@@ -35,7 +49,7 @@
         </span>
 
 	{{!-- Sheet Tab Navigation --}}
-	<nav id="item-navbar" class="sheet-tabs tabs desc flexrow grid-span-2 gap-5"
+	<nav class="sheet-tabs tabs desc flexrow grid-span-2 gap-5"
 		 style="align-self: stretch;"
 		 aria-roledescription="{{localize "SHEETS.FormNavLabel"}}">
 		{{#each tabs as |tab|}}

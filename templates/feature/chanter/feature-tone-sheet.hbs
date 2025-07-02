@@ -3,6 +3,10 @@
         {{localize 'FU.Description'}}
         <i class="fas fa-info-circle"></i>
     </label>
-    {{editor enrichedHtml.description target='system.data.description' engine='prosemirror' button=true
-             rollData=additionalData.rollData}}
+	{{formInput dataFields.description
+				name="system.data.description"
+				value=system.data.description
+				toggled=true
+				rollData=additionalData.rollData
+				enriched=enrichedHtml.description}}
 </div>

@@ -91,8 +91,12 @@
 								</a>
 							</legend>
 							<div class="fit-desc">
-								{{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-								button=true owner=owner editable=editable }}
+								{{formInput dataFields.description
+											name="system.data.description"
+											value=system.data.description
+											toggled=true
+											rollData=rollData
+											enriched=enrichedHtml.description}}
 							</div>
 						</fieldset>
 					</main>

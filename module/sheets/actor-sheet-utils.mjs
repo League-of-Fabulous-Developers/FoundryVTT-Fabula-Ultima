@@ -944,7 +944,7 @@ async function _onItemCreateDialog(ev, sheet) {
 	const allItemTypes = Object.keys(CONFIG.Item.dataModels);
 	const isCharacter = sheet.actor.type === 'character';
 	const isNPC = sheet.actor.type === 'npc';
-	const optionalFeatureTypes = Object.entries(CONFIG.FU.optionalFeatureRegistry.optionals());
+	const optionalFeatureTypes = Object.entries(CONFIG.FU.optionalFeatureRegistry.map);
 	switch (dataType) {
 		case 'newClock':
 			types = allItemTypes.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));
@@ -1017,7 +1017,7 @@ async function _onItemCreateDialog(ev, sheet) {
 			}
 			break;
 		case 'newClassFeatures': {
-			const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.features());
+			const classFeatureTypes = Object.entries(CONFIG.FU.classFeatureRegistry.asObject);
 			types = ['miscAbility', 'project'];
 			// Filter out item type
 			types = types.map((type) => ({ type, label: game.i18n.localize(`TYPES.Item.${type}`) }));

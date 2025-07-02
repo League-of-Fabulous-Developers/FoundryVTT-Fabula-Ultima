@@ -38,7 +38,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
 export class ZeroPowerDataModel extends OptionalFeatureDataModel {
 	static defineSchema() {
 		const { SchemaField, StringField, HTMLField, EmbeddedDataField, BooleanField } = foundry.data.fields;
-		return {
+		return Object.assign(super.defineSchema(), {
 			progress: new EmbeddedDataField(ProgressDataModel, {}),
 			hasClock: new SchemaField({ value: new BooleanField({ initial: true }) }),
 			zeroTrigger: new SchemaField({
@@ -49,7 +49,7 @@ export class ZeroPowerDataModel extends OptionalFeatureDataModel {
 				value: new StringField(),
 				description: new HTMLField(),
 			}),
-		};
+		});
 	}
 
 	static get template() {

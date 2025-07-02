@@ -15,15 +15,19 @@
                               {{localize 'FU.BiographyInfo'}}
                           </a>
                       </legend>
-                      {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-                      button=true owner=owner editable=editable }}
+					  {{formInput system.schema.fields.description
+								  toggled=true
+								  value=system.description
+								  enriched=enrichedHtml.description}}
                   </fieldset>
               </main>
               {{else}}
               <main class="grid-span-4">
                   {{!-- Enriched Description --}}
-                  {{editor enrichedHtml.description target="system.description" engine="prosemirror" rollData=rollData
-                  button=false owner=owner editable=false }}
+				  {{formInput system.schema.fields.description
+							  toggled=true
+							  value=system.description
+							  enriched=enrichedHtml.description}}
               </main>
               {{/if}}
           </section>
