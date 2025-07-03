@@ -91,7 +91,7 @@ Hooks.on(CheckHooks.renderCheck, onRenderCheck);
  * @property {string} name
  * @property {string} description
  * @property {number} extraDamage
- * @property {"",DamageType} changedDamageType
+ * @property {'',DamageType} changedDamageType
  */
 class InfusionDataModel extends foundry.abstract.DataModel {
 	static defineSchema() {
@@ -107,7 +107,7 @@ class InfusionDataModel extends foundry.abstract.DataModel {
 
 /**
  * @extends ClassFeatureDataModel
- * @property {"basic","advanced","superior"} rank
+ * @property {'basic','advanced','superior'} rank
  * @property {number} ipCost
  * @property {string} description
  * @property {InfusionDataModel[]} basicInfusions
@@ -168,16 +168,20 @@ export class InfusionsDataModel extends ClassFeatureDataModel {
 	}
 
 	static activateListeners(html, item) {
-		html.find('[data-action=addInfusion][data-rank]').click(() => {
-			const rank = event.currentTarget.dataset.rank;
-			item.update({
-				[`system.data.${rank}`]: [...item.system.data[rank], {}],
+		html.querySelectorAll('[data-action=addInfusion][data-rank]').forEach((el) => {
+			el.addEventListener('click', (e) => {
+				const rank = event.currentTarget.dataset.rank;
+				item.update({
+					[`system.data.${rank}`]: [...item.system.data[rank], {}],
+				});
 			});
 		});
-		html.find('[data-action=deleteInfusion][data-rank][data-index]').click((event) => {
-			const rank = event.currentTarget.dataset.rank;
-			const idx = event.currentTarget.dataset.index;
-			item.update({ [`system.data.${rank}`]: item.system.data[rank].toSpliced(idx, 1) });
+		html.querySelectorAll('[data-action=deleteInfusion][data-rank][data-index]').forEach((el) => {
+			el.addEventListener('click', (event) => {
+				const rank = event.currentTarget.dataset.rank;
+				const idx = event.currentTarget.dataset.index;
+				item.update({ [`system.data.${rank}`]: item.system.data[rank].toSpliced(idx, 1) });
+			});
 		});
 	}
 

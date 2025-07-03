@@ -43,7 +43,7 @@ export class FeatureDataModel extends foundry.abstract.DataModel {
 	}
 
 	/**
-	 * @param {HTMLElement|jQuery} html
+	 * @param {HTMLElement} html
 	 * @param {FUItem} item
 	 * @param {*} sheet
 	 */

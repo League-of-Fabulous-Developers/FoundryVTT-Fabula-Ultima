@@ -57,6 +57,10 @@ export class RegistryDataField extends foundry.data.fields.ObjectField {
 		return DataModel.schema.getInitialValue({});
 	}
 
+	_cast(value) {
+		return { ...super._cast(value) };
+	}
+
 	/**
 	 * Export the current value of the field into a serializable object.
 	 * @param {*} value                   The initialized value of the field
