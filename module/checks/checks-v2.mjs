@@ -423,19 +423,19 @@ async function renderCheck(result, actor, item, flags = {}) {
 			if (flavorSection.content) {
 				flavor = flavor + flavorSection.content;
 			} else {
-				flavor = await renderTemplate(flavorSection.partial, flavorSection.data);
+				flavor = await foundry.applications.handlebars.renderTemplate(flavorSection.partial, flavorSection.data);
 			}
 		}
 	}
 	if (!flavor?.trim()) {
 		flavor = item
-			? await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
+			? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
 					name: item.name,
 					img: item.img,
 					id: item.id,
 					uuid: item.uuid,
 				})
-			: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
+			: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
 					title: FU.checkTypes[result.type] || 'FU.RollCheck',
 				});
 	}
@@ -451,7 +451,7 @@ async function renderCheck(result, actor, item, flags = {}) {
 	}
 	const chatMessage = {
 		flavor: flavor,
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections: bodySections }),
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-checkV2.hbs', { sections: bodySections }),
 		rolls: rolls,
 		type: foundry.utils.isNewerVersion(game.version, '12.0.0') ? undefined : CONST.CHAT_MESSAGE_TYPES.ROLL,
 		speaker: speaker,
@@ -588,7 +588,7 @@ async function promptConfiguration(actor, check, title) {
 	return await Dialog.wait(
 		{
 			title: game.i18n.localize(title),
-			content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check.hbs', {
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check.hbs', {
 				attributes: FU.attributes,
 				attributeAbbr: FU.attributeAbbreviations,
 				attributeValues: Object.entries(attributes).reduce(

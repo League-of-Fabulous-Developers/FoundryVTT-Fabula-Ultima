@@ -598,7 +598,7 @@ async function getPushParams(actor) {
 	const push = await Dialog.prompt({
 		title: game.i18n.localize('FU.DialogPushTitle'),
 		label: game.i18n.localize('FU.DialogPushLabel'),
-		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check-push.hbs', { bonds }),
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-push.hbs', { bonds }),
 		options: { classes: ['projectfu', 'unique-dialog', 'dialog-reroll', 'backgroundstyle'] },
 		/** @type {(jQuery) => CheckPush} */
 		callback: (html) => {
@@ -657,7 +657,7 @@ async function getRerollParams(params, actor) {
 	const reroll = await Dialog.prompt({
 		title: game.i18n.localize('FU.DialogRerollTitle'),
 		label: game.i18n.localize('FU.DialogRerollLabel'),
-		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check-reroll.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-reroll.hbs', {
 			traits,
 			attr1,
 			attr2,
@@ -710,7 +710,7 @@ async function EnrichHTML(htmlContent) {
  */
 export async function createChatMessage(checkParams, additionalFlags = {}) {
 	const content = checkParams.description
-		? await renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
+		? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
 				flavor: checkParams.details?.name || '',
 				description: await EnrichHTML(checkParams.description),
 			})
@@ -744,12 +744,12 @@ export async function createChatMessage(checkParams, additionalFlags = {}) {
 export async function createCheckMessage(checkParams, additionalFlags = {}) {
 	const flavor = await (async () => {
 		if (checkParams.details) {
-			return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
+			return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', {
 				name: checkParams.details.name,
 				img: checkParams.details.img,
 			});
 		} else {
-			return renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
+			return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', {
 				title: checkParams.check.title || 'FU.RollCheck',
 			});
 		}
@@ -758,7 +758,7 @@ export async function createCheckMessage(checkParams, additionalFlags = {}) {
 	/** @type Partial<ChatMessageData> */
 	const chatMessage = {
 		flavor: flavor,
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-check.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check.hbs', {
 			...checkParams,
 			translation: { damageTypes: FU.damageTypes, damageIcon: FU.affIcon },
 		}),
@@ -859,7 +859,7 @@ export async function promptOpenCheck(actor, title, action) {
 		const { attr1, attr2, modifier } = await Dialog.wait(
 			{
 				title: game.i18n.localize(titleMain),
-				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-opencheck.hbs', {
+				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-opencheck.hbs', {
 					attributes: FU.attributes,
 					attributeAbbr: FU.attributeAbbreviations,
 					attributeValues: Object.entries(attributes).reduce(

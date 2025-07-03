@@ -28,7 +28,7 @@ async function prompt(infusions) {
 		FU,
 	};
 
-	const content = await renderTemplate('/systems/projectfu/templates/dialog/dialog-choose-infusion.hbs', data);
+	const content = await foundry.applications.handlebars.renderTemplate('/systems/projectfu/templates/dialog/dialog-choose-infusion.hbs', data);
 
 	const selectedInfusion = await new Promise((resolve) => {
 		const dialog = new Dialog({

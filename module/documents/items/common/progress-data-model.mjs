@@ -63,7 +63,7 @@ export class ProgressDataModel extends foundry.abstract.DataModel {
 	static async sendToChat(actor, track) {
 		await ChatMessage.create({
 			speaker: ChatMessage.getSpeaker({ actor: actor }),
-			content: await renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
 				arr: track.progressArray,
 				data: track,
 			}),

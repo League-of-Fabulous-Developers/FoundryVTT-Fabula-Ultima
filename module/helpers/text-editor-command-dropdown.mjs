@@ -5,7 +5,7 @@ async function promptDamageDialog(state, dispatch, view) {
 	const result = await Dialog.prompt({
 		title: game.i18n.localize('FU.TextEditorDialogDamageTitle'),
 		label: game.i18n.localize('FU.TextEditorDialogButtonInsert'),
-		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-damage.hbs', { damageTypes: FU.damageTypes }),
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-command-damage.hbs', { damageTypes: FU.damageTypes }),
 		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 		callback: (jQuery) => {
 			const type = jQuery.find('select[name=type]').val();
@@ -29,7 +29,7 @@ async function promptResourceGainDialog(state, dispatch, view) {
 	const result = await Dialog.prompt({
 		title: game.i18n.localize('FU.TextEditorDialogResourceGainTitle'),
 		label: game.i18n.localize('FU.TextEditorDialogButtonInsert'),
-		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-resource.hbs', { resources: FU.resources }),
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-command-resource.hbs', { resources: FU.resources }),
 		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 		callback: (jQuery) => {
 			const resource = jQuery.find('select[name=resource]').val();
@@ -53,7 +53,7 @@ async function promptResourceLossDialog(state, dispatch, view) {
 	const result = await Dialog.prompt({
 		title: game.i18n.localize('FU.TextEditorDialogResourceLossTitle'),
 		label: game.i18n.localize('FU.TextEditorDialogButtonInsert'),
-		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-resource.hbs', { resources: FU.resources }),
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-command-resource.hbs', { resources: FU.resources }),
 		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 		callback: (jQuery) => {
 			const resource = jQuery.find('select[name=resource]').val();
@@ -77,7 +77,7 @@ async function promptIconSelectionDialog(state, dispatch, view) {
 	const result = await Dialog.prompt({
 		title: game.i18n.localize('FU.TextEditorDialogSelectIconTitle'),
 		label: game.i18n.localize('FU.TextEditorDialogButtonInsert'),
-		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-icon.hbs', { allIcon: FU.allIcon }),
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-command-icon.hbs', { allIcon: FU.allIcon }),
 		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
 		callback: (html) => {
 			const icon = html.find('.icon-radio:checked').val();
@@ -96,7 +96,7 @@ async function promptCheckDialog(state, dispatch, view) {
 	const result = await Dialog.prompt({
 		title: game.i18n.localize('FU.TextEditorDialogCheckTitle'),
 		label: game.i18n.localize('FU.TextEditorDialogButtonInsert'),
-		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-check.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-command-check.hbs', {
 			difficultyLevels: FU.difficultyLevel,
 			attributes: FU.attributes,
 		}),
@@ -119,7 +119,7 @@ async function promptWeaponEnchantmentDialog(state, dispatch, view) {
 	const result = await Dialog.prompt({
 		title: game.i18n.localize('FU.TextEditorDialogWeaponEnchantmentTitle'),
 		label: game.i18n.localize('FU.TextEditorDialogButtonInsert'),
-		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-command-weapon-enchantment.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-command-weapon-enchantment.hbs', {
 			damageTypes: FU.damageTypes,
 		}),
 		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },

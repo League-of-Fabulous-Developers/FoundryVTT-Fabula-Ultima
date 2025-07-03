@@ -120,7 +120,7 @@ const getRerollParams = async (check, actor) => {
 	const reroll = await Dialog.prompt({
 		title: game.i18n.localize('FU.DialogRerollTitle'),
 		label: game.i18n.localize('FU.DialogRerollLabel'),
-		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-check-reroll.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-check-reroll.hbs', {
 			traits,
 			attr1,
 			attr2,

@@ -422,7 +422,7 @@ async function process(request) {
 		CommonEvents.damage(request.damageType, damageTaken, context.traits, actor, context.sourceActor);
 
 		// Chat message
-		const affinityString = await renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
+		const affinityString = await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/inline-damage-icon.hbs', {
 			damage: damageTaken,
 			damageType: game.i18n.localize(FU.damageTypes[request.damageType]),
 			affinityIcon: FU.affIcon[context.damageType],
@@ -437,7 +437,7 @@ async function process(request) {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				flavor: game.i18n.localize(FU.affType[context.affinity]),
 				flags: flags,
-				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
+				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-apply-damage.hbs', {
 					message: context.affinityMessage,
 					actor: actor.name,
 					uuid: actor.uuid,

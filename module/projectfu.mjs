@@ -226,7 +226,7 @@ Hooks.once('init', async () => {
 	CONFIG.specialStatusEffects.DEFEATED = 'ko';
 
 	// Register sheet application classes. The 'types' fields associates the data model for each document.
-	foundry.documents.collections.Actors.unregisterSheet('core', ActorSheet);
+	foundry.documents.collections.Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);
 	foundry.documents.collections.Actors.registerSheet('projectfu', FUStandardActorSheet, {
 		types: ['character', 'npc'],
 		makeDefault: true,
@@ -242,8 +242,11 @@ Hooks.once('init', async () => {
 		makeDefault: true,
 		label: 'Standard Stash Sheet',
 	});
-	foundry.documents.collections.Items.unregisterSheet('core', ItemSheet);
+
+	const itemTypesWithSpecialSheets = ['classFeature', 'optionalFeature'];
+	foundry.documents.collections.Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
 	foundry.documents.collections.Items.registerSheet('projectfu', FUStandardItemSheet, {
+		types: Object.keys(game.system.documentTypes.Item).filter((itemType) => !itemTypesWithSpecialSheets.includes(itemType)),
 		makeDefault: true,
 		label: 'Standard Item Sheet',
 	});

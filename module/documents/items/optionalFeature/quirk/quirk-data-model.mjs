@@ -72,7 +72,7 @@ export class QuirkDataModel extends OptionalFeatureDataModel {
 		// Determine resource display status
 		const resourceDisplay =
 			hasResource?.value ?? true
-				? await renderTemplate('systems/projectfu/templates/chat/partials/chat-resource-details.hbs', {
+				? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/chat-resource-details.hbs', {
 						data: rp,
 					})
 				: '';
@@ -94,7 +94,7 @@ export class QuirkDataModel extends OptionalFeatureDataModel {
 		// Determine clock display status
 		const clockDisplay =
 			hasClock?.value ?? true
-				? await renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
+				? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
 						arr: progressArr,
 						data: progress,
 					})

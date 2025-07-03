@@ -51,7 +51,7 @@ async function tradeItem(actor, item, sale) {
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-trade-item.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-trade-item.hbs', {
 			message: message,
 			actorName: actor.name,
 			actorId: actor.uuid,
@@ -138,7 +138,7 @@ async function distributeZenit(actor, targets) {
 					ChatMessage.create({
 						speaker: ChatMessage.getSpeaker({ actor }),
 						flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
-						content: await renderTemplate('systems/projectfu/templates/chat/chat-distribute-zenit.hbs', {
+						content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-distribute-zenit.hbs', {
 							message: 'FU.ChatDistributeZenit',
 							targets: targetString,
 							zenit: distributed,
@@ -182,7 +182,7 @@ async function requestRecharge(actor) {
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-recharge-ip.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-recharge-ip.hbs', {
 			actorName: actor.name,
 			actorId: actor.uuid,
 		}),
@@ -425,7 +425,7 @@ async function onHandleTrade(actor, item, sale, target, modifiers = {}) {
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Inventory, true),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-item-acquired.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-item-acquired.hbs', {
 			message: message,
 			actorName: actor.name,
 			itemName: item.name,

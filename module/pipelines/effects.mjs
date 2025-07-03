@@ -518,7 +518,7 @@ async function manageEffectDuration(event) {
 	ChatMessage.create({
 		//speaker: ChatMessage.getSpeaker({ actor }),
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-manage-effects.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-manage-effects.hbs', {
 			message: 'FU.ChatManageEffects',
 			effects: managedEffects,
 			round: event.round,
@@ -567,7 +567,7 @@ async function promptEffectRemoval(event) {
 	const serializedActors = Targeting.serializeTargetData(event.actors);
 	ChatMessage.create({
 		flags: Pipeline.initializedFlags(Flags.ChatMessage.Effects, true),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-combat-end.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-combat-end.hbs', {
 			message: message,
 			actors: JSON.stringify(serializedActors),
 			round: event.round,

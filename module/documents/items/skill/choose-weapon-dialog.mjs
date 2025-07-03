@@ -66,7 +66,7 @@ async function prompt(actor, includeWeaponModules = false) {
 		FU,
 	};
 
-	const content = await renderTemplate('/systems/projectfu/templates/dialog/dialog-choose-weapon.hbs', data);
+	const content = await foundry.applications.handlebars.renderTemplate('/systems/projectfu/templates/dialog/dialog-choose-weapon.hbs', data);
 
 	const selectedWeapon = await new Promise((resolve) => {
 		const dialog = new Dialog({

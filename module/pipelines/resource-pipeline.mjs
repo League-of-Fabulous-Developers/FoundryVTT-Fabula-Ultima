@@ -160,7 +160,7 @@ async function processRecovery(request) {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				flavor: flavor,
 				flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceGain, true),
-				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-recovery.hbs', {
+				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-apply-recovery.hbs', {
 					message: recoveryMessages[request.resourceType],
 					actor: actor.name,
 					uuid: actor.uuid,
@@ -219,7 +219,7 @@ async function processLoss(request) {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				flavor: flavor,
 				flags: Pipeline.initializedFlags(Flags.ChatMessage.ResourceLoss, true),
-				content: await renderTemplate('systems/projectfu/templates/chat/chat-apply-loss.hbs', {
+				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-apply-loss.hbs', {
 					message: 'FU.ChatResourceLoss',
 					actor: actor.name,
 					amount: Math.abs(amountLost),

@@ -174,7 +174,7 @@ export class NpcProfileWindow extends FUApplication {
 		console.debug(`Editing profile of ${JSON.stringify(existing)}`);
 		new Dialog({
 			title: game.i18n.localize('FU.NpcProfileUpdate'),
-			content: await renderTemplate('systems/projectfu/templates/ui/study/npc-profile-edit.hbs', {
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/ui/study/npc-profile-edit.hbs', {
 				existing: existing,
 				maxStudyValue: maxStudyValue,
 				affinities: affinities,

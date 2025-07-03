@@ -81,8 +81,8 @@ export class KeyDataModel extends RollableClassFeatureDataModel {
 		const speaker = ChatMessage.implementation.getSpeaker({ actor: actor });
 		const chatMessage = {
 			speaker,
-			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
-			content: await renderTemplate('systems/projectfu/templates/feature/chanter/feature-key-chat-message.hbs', data),
+			flavor: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', model.parent.parent),
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/chanter/feature-key-chat-message.hbs', data),
 			flags: { [SYSTEM]: { [Flags.ChatMessage.Item]: item } },
 		};
 

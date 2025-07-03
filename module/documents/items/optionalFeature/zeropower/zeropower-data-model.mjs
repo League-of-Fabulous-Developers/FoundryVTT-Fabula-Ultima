@@ -90,7 +90,7 @@ export class ZeroPowerDataModel extends OptionalFeatureDataModel {
 		// Determine clock display status
 		const clockDisplay =
 			hasClock?.value ?? true
-				? await renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
+				? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/partials/chat-clock-details.hbs', {
 						arr: progressArr,
 						data: progress,
 					})

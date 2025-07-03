@@ -49,8 +49,8 @@ export class DanceDataModel extends RollableClassFeatureDataModel {
 		const speaker = ChatMessage.implementation.getSpeaker({ actor: item.actor });
 		const chatMessage = {
 			speaker,
-			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', item),
-			content: await renderTemplate('systems/projectfu/templates/feature/dancer/feature-dance-chat-message.hbs', data),
+			flavor: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', item),
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/dancer/feature-dance-chat-message.hbs', data),
 			flags: {
 				[SYSTEM]: { [Flags.ChatMessage.Item]: item },
 			},

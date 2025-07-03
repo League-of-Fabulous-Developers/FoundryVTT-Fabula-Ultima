@@ -701,7 +701,7 @@ async function onStudyEvent(ev) {
 		const actorName = ev.actor.name === entry.name ? StringUtils.localize('USER.RoleGamemaster') : ev.actor.name;
 		ChatMessage.create({
 			speaker: ChatMessage.getSpeakerActor(ev.actor),
-			content: await renderTemplate('systems/projectfu/templates/chat/chat-study-event.hbs', {
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-study-event.hbs', {
 				actor: actorName,
 				target: entry.name,
 				result: game.i18n.localize(FU.studyResult[studyResult]),

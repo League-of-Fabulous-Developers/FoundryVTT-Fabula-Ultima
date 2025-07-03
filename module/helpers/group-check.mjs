@@ -74,7 +74,7 @@ async function handleSupportCheck(groupCheck) {
 			title: game.i18n.localize('FU.GroupCheckBondDialogTitle'),
 			label: game.i18n.localize('FU.GroupCheckBondDialogLabel'),
 			options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-			content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-support-bond.hbs', {
 				leader: game.actors.get(groupCheck.leader).name,
 				bonds,
 			}),
@@ -217,7 +217,7 @@ export class GroupCheck extends Application {
 				title: game.i18n.localize('FU.DialogGroupCheckTitle'),
 				label: game.i18n.localize('FU.DialogGroupCheckLabel'),
 				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check.hbs', {
+				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check.hbs', {
 					attributes: FU.attributes,
 					difficulty: {
 						check: 10,
@@ -269,7 +269,7 @@ export class GroupCheck extends Application {
 
 		await ChatMessage.create({
 			speaker: ChatMessage.implementation.getSpeaker({ actor: leader }),
-			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', { title: groupCheck.initiative ? 'FU.InitiativeCheck' : 'FU.GroupRollCheck' }),
+			flavor: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', { title: groupCheck.initiative ? 'FU.InitiativeCheck' : 'FU.GroupRollCheck' }),
 			content: await GroupCheck.#renderChatMessage(groupCheck),
 			flags: {
 				[SYSTEM]: {
@@ -286,7 +286,7 @@ export class GroupCheck extends Application {
 	 * @return {Promise<string>}
 	 */
 	static async #renderChatMessage(groupCheck) {
-		return renderTemplate('systems/projectfu/templates/chat/chat-group-check-initiated.hbs', {
+		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-group-check-initiated.hbs', {
 			groupCheckId: groupCheck.id,
 			leader: game.actors.get(groupCheck.leader),
 			attributes: groupCheck.attributes,
@@ -389,7 +389,7 @@ export class GroupCheck extends Application {
 			const cancel = await Dialog.confirm({
 				title: game.i18n.localize('FU.GroupCheckCancelDialogTitle'),
 				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs'),
+				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs'),
 				rejectClose: false,
 			});
 			if (!cancel) {

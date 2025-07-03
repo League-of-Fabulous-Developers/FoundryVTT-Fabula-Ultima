@@ -113,7 +113,7 @@ async function renderStep(progress, step, actor, source) {
 	const progressArr = progress.progressArray;
 	ChatMessage.create({
 		speaker: ChatMessage.getSpeaker({ actor }),
-		content: await renderTemplate('systems/projectfu/templates/chat/chat-advance-clock.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-advance-clock.hbs', {
 			message: step > 0 ? 'FU.ChatIncrementClock' : 'FU.ChatDecrementClock',
 			step: step,
 			clock: progress.name ?? progress.parent.parent.name,

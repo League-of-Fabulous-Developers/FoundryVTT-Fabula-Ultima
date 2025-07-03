@@ -252,8 +252,8 @@ export class VersesApplication extends FormApplication {
 		// Prepare the chat message data
 		const chatMessage = {
 			speaker: ChatMessage.implementation.getSpeaker({ actor }),
-			flavor: await renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', this.#verse.parent.parent),
-			content: await renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
+			flavor: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-item.hbs', this.#verse.parent.parent),
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/feature/chanter/feature-verse-chat-message.hbs', data),
 			flags: flags,
 		};
 

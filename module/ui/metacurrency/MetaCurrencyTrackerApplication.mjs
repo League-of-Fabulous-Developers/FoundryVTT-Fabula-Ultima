@@ -157,7 +157,7 @@ export class MetaCurrencyTrackerApplication extends FormApplication {
 		/** @type ChatMessageData */
 		const messageData = {
 			flavor: game.i18n.localize('FU.ChatExpAwardFlavor'),
-			content: await renderTemplate('systems/projectfu/templates/chat/chat-exp-award.hbs', data),
+			content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-exp-award.hbs', data),
 		};
 
 		ChatMessage.create(messageData);

@@ -81,7 +81,7 @@ const initGroupCheck = async (check, actor) => {
 		title: game.i18n.localize('FU.DialogGroupCheckTitle'),
 		label: game.i18n.localize('FU.DialogGroupCheckLabel'),
 		options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-		content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check.hbs', {
+		content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check.hbs', {
 			attributes: FU.attributes,
 			difficulty: {
 				check: 10,
@@ -237,7 +237,7 @@ class GroupCheckApp extends Application {
 				supporters: [],
 				status: 'open',
 			};
-			const flavorPromise = renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', { title: groupCheckData.initiative ? 'FU.InitiativeCheck' : 'FU.GroupRollCheck' });
+			const flavorPromise = foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-check-flavor-check.hbs', { title: groupCheckData.initiative ? 'FU.InitiativeCheck' : 'FU.GroupRollCheck' });
 			const contentPromise = this.#renderChatMessage(groupCheckData);
 			Promise.all([flavorPromise, contentPromise])
 				.then(([flavor, content]) =>
@@ -265,7 +265,7 @@ class GroupCheckApp extends Application {
 	 * @return {Promise<string>}
 	 */
 	async #renderChatMessage(groupCheck) {
-		return renderTemplate('systems/projectfu/templates/chat/chat-group-check-initiated.hbs', {
+		return foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-group-check-initiated.hbs', {
 			groupCheckId: groupCheck.id,
 			leader: game.actors.get(groupCheck.leader),
 			attributes: { attr1: groupCheck.primary, attr2: groupCheck.secondary },
@@ -331,7 +331,7 @@ class GroupCheckApp extends Application {
 			const cancel = await Dialog.confirm({
 				title: game.i18n.localize('FU.GroupCheckCancelDialogTitle'),
 				options: { classes: ['projectfu', 'unique-dialog', 'backgroundstyle'] },
-				content: await renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs'),
+				content: await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/dialog/dialog-group-check-cancel.hbs'),
 				rejectClose: false,
 			});
 			if (!cancel) {
