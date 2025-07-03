@@ -1,6 +1,7 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 /**
  * @typedef {"effect", "planted", "removed"} MagiseedAction

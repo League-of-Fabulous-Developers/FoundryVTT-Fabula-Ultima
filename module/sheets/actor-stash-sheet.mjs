@@ -1,5 +1,6 @@
 import { ActorSheetUtils } from './actor-sheet-utils.mjs';
 import { FUActorSheet } from './actor-sheet.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
 
 /**
  * @property {FUActor} actor

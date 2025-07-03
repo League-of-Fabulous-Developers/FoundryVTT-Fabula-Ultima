@@ -2,6 +2,7 @@ import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
 import { CommonEvents } from '../../../../checks/common-events.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const durations = {
 	instant: 'FU.ClassFeatureDanceDurationInstant',

@@ -1,4 +1,5 @@
 import { ClassFeatureDataModel } from '../class-feature-data-model.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 /**
  * @extends ClassFeatureDataModel

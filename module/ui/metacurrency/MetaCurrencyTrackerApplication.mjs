@@ -65,7 +65,7 @@ function increment(setting) {
 	game.settings.set(SYSTEM, setting, oldValue + 1);
 }
 
-export class MetaCurrencyTrackerApplication extends FormApplication {
+export class MetaCurrencyTrackerApplication extends foundry.appv1.api.FormApplication {
 	static get HOOK_UPDATE_META_CURRENCY() {
 		return `${SYSTEM}.updateMetaCurrency`;
 	}

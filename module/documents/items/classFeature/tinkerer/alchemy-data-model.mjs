@@ -1,6 +1,7 @@
 import { RollableClassFeatureDataModel } from '../class-feature-data-model.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const alchemyFlavors = {
 	basic: 'FU.ClassFeatureAlchemyBasic',

@@ -1,6 +1,7 @@
 import { systemTemplatePath } from '../../../../helpers/system-utils.mjs';
 import FUApplication from '../../../../ui/application.mjs';
 import { WELLSPRINGS } from './invoker-integration.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 export class InvocationSelectionApplication extends FUApplication {
 	static DEFAULT_OPTIONS = {
@@ -51,7 +52,7 @@ export class InvocationSelectionApplication extends FUApplication {
 				const modelInvocation = modelElement[invocation];
 				invocations[invocation] = {
 					name: modelInvocation.name,
-					description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(modelInvocation.description),
+					description: await TextEditor.enrichHTML(modelInvocation.description),
 				};
 			}
 			data[element] = {

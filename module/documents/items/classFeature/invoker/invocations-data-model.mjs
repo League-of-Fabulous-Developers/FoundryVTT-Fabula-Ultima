@@ -5,6 +5,7 @@ import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CHECK_FLAVOR } from '../../../../checks/default-section-order.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const BASIC = 'FU.ClassFeatureInvocationsBasicName';
 

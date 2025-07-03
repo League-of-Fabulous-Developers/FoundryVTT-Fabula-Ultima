@@ -229,7 +229,7 @@ async function onRender(element) {
 			Actor.create({ name: 'Temp Actor', type: 'character' }, { temporary: true })
 				.then((value) => cls.create(effectData, { temporary: true, render: true, parent: value }))
 				.then((value) => {
-					const activeEffectConfig = new ActiveEffectConfig(value);
+					const activeEffectConfig = new foundry.applications.sheets.ActiveEffectConfig(value);
 					activeEffectConfig.render(true, { editable: false });
 				});
 		}

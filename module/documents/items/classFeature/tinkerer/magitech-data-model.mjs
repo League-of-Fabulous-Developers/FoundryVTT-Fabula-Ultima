@@ -3,6 +3,7 @@ import { createCheckMessage, rollCheck } from '../../../../helpers/checks.mjs';
 import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
 import { Flags } from '../../../../helpers/flags.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 export class MagitechDataModel extends RollableClassFeatureDataModel {
 	static defineSchema() {

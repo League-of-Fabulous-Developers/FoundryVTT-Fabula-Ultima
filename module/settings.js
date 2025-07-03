@@ -705,7 +705,7 @@ export const registerSystemSettings = async function () {
 	});
 };
 
-class OptionalRules extends FormApplication {
+class OptionalRules extends foundry.appv1.api.FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			template: 'systems/projectfu/templates/system/settings/optional-rules.hbs',
@@ -728,7 +728,7 @@ class OptionalRules extends FormApplication {
 	}
 }
 
-class ChatMessageOptions extends FormApplication {
+class ChatMessageOptions extends foundry.appv1.api.FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			template: 'systems/projectfu/templates/system/settings/chat-messages.hbs',
@@ -760,7 +760,7 @@ class ChatMessageOptions extends FormApplication {
 	}
 }
 
-class BehaviorRollsConfig extends FormApplication {
+class BehaviorRollsConfig extends foundry.appv1.api.FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			template: 'systems/projectfu/templates/system/settings/behavior-rolls.hbs',
@@ -783,7 +783,7 @@ class BehaviorRollsConfig extends FormApplication {
 	}
 }
 
-class CombatHudSettings extends FormApplication {
+class CombatHudSettings extends foundry.appv1.api.FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['projectfu'],
@@ -913,11 +913,11 @@ class CombatHudSettings extends FormApplication {
 			game.settings.set(SYSTEM, SETTINGS.optionCombatHudShowOrderNumbers, optionCombatHudShowOrderNumbers);
 		}
 
-		await SettingsConfig.reloadConfirm({ world: game.user.isGM });
+		await foundry.applications.settings.SettingsConfig.reloadConfirm({ world: game.user.isGM });
 	}
 }
 
-class MetaCurrencyTrackerOptions extends FormApplication {
+class MetaCurrencyTrackerOptions extends foundry.appv1.api.FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			title: game.i18n.localize('FU.ConfigMetaCurrencySettings'),

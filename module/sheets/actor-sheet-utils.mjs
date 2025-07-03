@@ -5,6 +5,7 @@ import { FUPartySheet } from './actor-party-sheet.mjs';
 import { getPrioritizedUserTargeted } from '../helpers/target-handler.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
 
 /**
  * @description Prepares model-agnostic data for the actor
@@ -81,7 +82,7 @@ async function prepareItems(context) {
 		}
 
 		item.enrichedHtml = {
-			description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system?.description ?? ''),
+			description: await TextEditor.enrichHTML(item.system?.description ?? ''),
 		};
 	}
 }

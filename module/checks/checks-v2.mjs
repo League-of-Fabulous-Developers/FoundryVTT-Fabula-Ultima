@@ -15,6 +15,8 @@ import { CheckRetarget } from './check-retarget.mjs';
 import { GroupCheck } from './group-check.mjs';
 import { SupportCheck } from './support-check.mjs';
 
+const { DiceTerm, NumericTerm } = foundry.dice.terms;
+
 /**
  * @typedef CheckAttributes
  * @property {Attribute} primary
@@ -298,14 +300,12 @@ async function rollCheck(check, actor, item) {
  * @return {{result: number, dice: number}}
  */
 const extractDieResults = (term, actor) => {
-	const DiceTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.DiceTerm : DiceTerm;
-	const NumericTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.NumericTerm : NumericTerm;
-	if (term instanceof DiceTermClass) {
+	if (term instanceof DiceTerm) {
 		return {
 			dice: term.faces,
 			result: term.total,
 		};
-	} else if (term instanceof NumericTermClass) {
+	} else if (term instanceof NumericTerm) {
 		return {
 			dice: term.options.faces ?? actor.system.attributes[term.flavor].current,
 			result: term.total,

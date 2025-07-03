@@ -17,6 +17,7 @@ import { systemTemplatePath } from '../helpers/system-utils.mjs';
 import { ProgressDataModel } from '../documents/items/common/progress-data-model.mjs';
 import { BehaviorRoll } from '../documents/items/behavior/behavior-roll.mjs';
 import { HTMLUtils } from '../helpers/html-utils.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
 
 const TOGGLEABLE_STATUS_EFFECT_IDS = ['crisis', 'slow', 'dazed', 'enraged', 'dex-up', 'mig-up', 'ins-up', 'wlp-up', 'guard', 'weak', 'shaken', 'poisoned', 'dex-down', 'mig-down', 'ins-down', 'wlp-down'];
 
@@ -348,7 +349,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 				// Enriches description fields within the context object
 				context.enrichedHtml = {
-					description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.description ?? '', {
+					description: await TextEditor.enrichHTML(context.system.description ?? '', {
 						secrets: this.actor.isOwner,
 						rollData: context.actor.getRollData(),
 						relativeTo: context.actor,
@@ -406,7 +407,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 		ev.preventDefault();
 
 		// Retrieve drag data using TextEditor
-		const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(ev);
+		const data = TextEditor.getDragEventData(ev);
 		if (!data || data.type !== 'Item') {
 			return await super._onDrop(ev);
 		}

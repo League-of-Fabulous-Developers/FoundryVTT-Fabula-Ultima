@@ -3,6 +3,7 @@ import { ChecksV2 } from '../checks/checks-v2.mjs';
 import { FU, systemPath } from '../helpers/config.mjs';
 import { Traits } from '../pipelines/traits.mjs';
 import * as CONFIG from '../helpers/config.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
 
 const { api, sheets } = foundry.applications;
 

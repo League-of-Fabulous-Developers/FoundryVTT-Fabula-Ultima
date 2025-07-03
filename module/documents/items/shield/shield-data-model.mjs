@@ -5,6 +5,7 @@ import { CHECK_DETAILS } from '../../../checks/default-section-order.mjs';
 import { CheckConfiguration } from '../../../checks/check-configuration.mjs';
 import { FUItemDataModel } from '../item-data-model.mjs';
 import { ItemPartialTemplates } from '../item-partial-templates.mjs';
+import { TextEditor } from '../../../helpers/text-editor.mjs';
 
 /**
  * @param {CheckV2} check

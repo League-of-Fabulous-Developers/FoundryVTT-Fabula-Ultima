@@ -5,6 +5,8 @@ import { CHECK_REROLL } from './default-section-order.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 
+const { Die, DiceTerm, NumericTerm } = foundry.dice.terms;
+
 /**
  * @typedef RerollParams
  * @property {"identity" | "theme" | "origin" | "trait"} trait
@@ -170,25 +172,19 @@ const getRerollParams = async (check, actor) => {
  * @return {RollTerm} the replacement
  */
 function getReplacementTerm(reroll, term) {
-	const DiceTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.DiceTerm : DiceTerm;
-
-	const NumericTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.NumericTerm : NumericTerm;
-
-	const DieClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.Die : Die;
-
 	if (reroll) {
-		if (term instanceof DiceTermClass) {
-			return new DieClass({ faces: term.faces, options: term.options });
-		} else if (term instanceof NumericTermClass) {
-			return new DieClass({ faces: term.options.faces, options: term.options });
+		if (term instanceof DiceTerm) {
+			return new Die({ faces: term.faces, options: term.options });
+		} else if (term instanceof NumericTerm) {
+			return new Die({ faces: term.options.faces, options: term.options });
 		} else {
 			throw new Error('Unexpected term');
 		}
 	} else {
-		if (term instanceof DiceTermClass) {
-			return new NumericTermClass({ number: term.total, options: { ...term.options, faces: term.faces } });
-		} else if (term instanceof NumericTermClass) {
-			return new NumericTermClass({ number: term.number, options: term.options });
+		if (term instanceof DiceTerm) {
+			return new NumericTerm({ number: term.total, options: { ...term.options, faces: term.faces } });
+		} else if (term instanceof NumericTerm) {
+			return new NumericTerm({ number: term.number, options: term.options });
 		} else {
 			throw new Error('Unexpected term');
 		}

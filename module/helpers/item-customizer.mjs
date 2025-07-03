@@ -19,7 +19,7 @@ const ITEM_SUBTYPE_CONFIG = {
 	'projectfu.weaponModule': { template: 'systems/projectfu/templates/app/partials/customizer-weapon-module.hbs' },
 };
 
-export class ItemCustomizer extends FormApplication {
+export class ItemCustomizer extends foundry.appv1.api.FormApplication {
 	constructor(actor, item = null, itemType = null, options = {}) {
 		super(options);
 		this.actor = actor;

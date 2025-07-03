@@ -7,6 +7,7 @@ import { Flags } from '../helpers/flags.mjs';
 import { Pipeline } from '../pipelines/pipeline.mjs';
 import { ConsumableDataModel } from '../documents/items/consumable/consumable-data-model.mjs';
 import { TokenUtils } from '../helpers/token-utils.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
 
 /**
  * @param {CheckRenderData} sections

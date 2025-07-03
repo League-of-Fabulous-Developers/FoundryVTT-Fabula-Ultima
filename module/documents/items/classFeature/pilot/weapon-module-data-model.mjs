@@ -6,6 +6,7 @@ import { CheckConfiguration } from '../../../../checks/check-configuration.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs';
 import { CHECK_DETAILS } from '../../../../checks/default-section-order.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const weaponModuleTypes = {
 	...FU.weaponTypes,

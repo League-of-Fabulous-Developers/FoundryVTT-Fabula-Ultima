@@ -7,6 +7,7 @@ import { CharacterDataModel } from '../../../actors/character/character-data-mod
 import { ChooseInfusionDialog } from './choose-infusion-dialog.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
 import { CHECK_DETAILS } from '../../../../checks/default-section-order.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const infusionKey = 'infusion';
 

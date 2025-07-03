@@ -1,6 +1,7 @@
 import { getTasteAliasFlag, IngredientDataModel, tasteComparator, TASTES } from './ingredient-data-model.mjs';
 import { SYSTEM } from '../../../../helpers/config.mjs';
 import { ChecksV2 } from '../../../../checks/checks-v2.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const FLAG_ALL_YOU_CAN_EAT = 'allYouCanEat';
 
@@ -12,7 +13,7 @@ const FLAG_ALL_YOU_CAN_EAT = 'allYouCanEat';
 /**
  * @property {Recipe} object
  */
-export class CookingApplication extends FormApplication {
+export class CookingApplication extends foundry.appv1.api.FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['form', 'projectfu', 'cooking-app'],

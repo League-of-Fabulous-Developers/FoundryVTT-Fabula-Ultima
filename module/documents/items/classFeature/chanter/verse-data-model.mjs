@@ -8,6 +8,7 @@ import { ClassFeatureTypeDataModel } from '../class-feature-type-data-model.mjs'
 import { VersesApplication } from './verses-application.mjs';
 import { LocallyEmbeddedDocumentField } from '../../../../fields/locally-embedded-document-field.mjs';
 import { systemTemplatePath } from '../../../../helpers/system-utils.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 const volumes = {
 	low: 'FU.ClassFeatureVerseVolumeLow',

@@ -16,6 +16,7 @@ import { ResourcePipeline, ResourceRequest } from '../pipelines/resource-pipelin
 import { InlineSourceInfo } from '../helpers/inline-helper.mjs';
 import { StringUtils } from '../helpers/string-utils.mjs';
 import { FUActorSheet } from './actor-sheet.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
 
 /**
  * @description Creates a sheet that contains the details of a party composed of {@linkcode FUActor}
@@ -550,9 +551,9 @@ export class FUPartySheet extends FUActorSheet {
 			{
 				name: game.i18n.localize('FU.Delete'),
 				icon: '<i class="fas fa-trash"></i>',
-				callback: (jq) => {
-					const id = jq.data('uuid');
-					const type = jq.data('type');
+				callback: (el) => {
+					const id = el.dataset.uuid;
+					const type = el.dataset.type;
 					switch (type) {
 						case 'character':
 							this.party.removeCharacter(id);
@@ -569,17 +570,17 @@ export class FUPartySheet extends FUActorSheet {
 			{
 				name: game.i18n.localize('FU.Edit'),
 				icon: '<i class="fa fa-pencil"></i>',
-				callback: (jq) => {
-					const id = jq.data('uuid');
+				callback: (el) => {
+					const id = el.dataset.uuid;
 					NpcProfileWindow.updateNpcProfile(this.party, id);
 				},
-				condition: (jq) => jq.data('type') === 'npc',
+				condition: (el) => el.dataset.type === 'npc',
 			},
 		];
 
-		// eslint-disable-next-line no-undef
-		new ContextMenu(html, '.character-option', contextMenuOptions, {
+		new foundry.applications.ux.ContextMenu(html, '.character-option', contextMenuOptions, {
 			fixed: true,
+			jQuery: false,
 		});
 	}
 

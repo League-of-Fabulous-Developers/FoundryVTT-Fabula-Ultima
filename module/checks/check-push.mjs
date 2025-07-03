@@ -5,6 +5,8 @@ import { CHECK_PUSH } from './default-section-order.mjs';
 import { CheckHooks } from './check-hooks.mjs';
 import { CheckConfiguration } from './check-configuration.mjs';
 
+const { DiceTerm, OperatorTerm, NumericTerm } = foundry.dice.terms;
+
 function addRollContextMenuEntries(html, options) {
 	// Character push
 	options.unshift({
@@ -89,14 +91,10 @@ const getPushParams = async (actor) => {
  * @return {RollTerm} the replacement
  */
 function getReplacementTerm(term) {
-	const DiceTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.DiceTerm : DiceTerm;
-
-	const NumericTermClass = foundry.utils.isNewerVersion(game.version, '12.0.0') ? foundry.dice.terms.NumericTerm : NumericTerm;
-
-	if (term instanceof DiceTermClass) {
-		return new NumericTermClass({ number: term.total, options: { ...term.options, faces: term.faces } });
-	} else if (term instanceof NumericTermClass) {
-		return new NumericTermClass({ number: term.number, options: term.options });
+	if (term instanceof DiceTerm) {
+		return new NumericTerm({ number: term.total, options: { ...term.options, faces: term.faces } });
+	} else if (term instanceof NumericTerm) {
+		return new NumericTerm({ number: term.number, options: term.options });
 	} else {
 		throw new Error(`Unexpected term: ${term.constructor.name}`);
 	}

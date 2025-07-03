@@ -5,6 +5,7 @@ import { Flags } from '../../../../helpers/flags.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { Targeting } from '../../../../helpers/targeting.mjs';
 import { CommonEvents } from '../../../../checks/common-events.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 async function getDescription(model, useAttributes = false) {
 	const key = model.key;
@@ -64,7 +65,7 @@ async function getDescription(model, useAttributes = false) {
 	});
 }
 
-export class VersesApplication extends FormApplication {
+export class VersesApplication extends foundry.appv1.api.FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['form', 'projectfu', 'verses-app'],

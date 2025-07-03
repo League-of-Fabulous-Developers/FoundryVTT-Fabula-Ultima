@@ -189,7 +189,7 @@ class TempActiveEffectConfig extends foundry.applications.sheets.ActiveEffectCon
 	}
 }
 
-export class InlineEffectConfiguration extends FormApplication {
+export class InlineEffectConfiguration extends foundry.appv1.api.FormApplication {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['form', 'sheet', 'projectfu', 'unique-dialog'],

@@ -2,7 +2,7 @@ import { getTargeted } from './target-handler.mjs';
 import { StudyRollHandler } from '../pipelines/study-roll.mjs';
 
 /**
- * @typedef {"dex","ins","mig","wpl"} Attribute
+ * @typedef {'dex','ins','mig','wpl'} Attribute
  */
 /**
  * @typedef CheckAttribute
@@ -17,7 +17,6 @@ import { StudyRollHandler } from '../pipelines/study-roll.mjs';
  * @property {number} bonus
  * @property {string} [title]
  */
-
 /**
  * @typedef CheckResult
  * @property {number} attr1
@@ -30,21 +29,18 @@ import { StudyRollHandler } from '../pipelines/study-roll.mjs';
  * @property {boolean} crit
  * @property {Roll} roll
  */
-
 /**
  * @typedef CheckReroll
- * @property {"identity" | "theme" | "origin" | "trait"} trait
+ * @property {'identity' | 'theme' | 'origin' | 'trait'} trait
  * @property {string} value
- * @property {"attr1" | "attr2" | ("attr1"| "attr2")[] } selection
+ * @property {'attr1' | 'attr2' | ('attr1'| 'attr2')[] } selection
  */
-
 /**
  * @typedef CheckPush
  * @property {string} name
- * @property {("Admiration"|"Inferiority"|"Loyalty"|"Mistrust"|"Affection"|"Hatred")[]} feelings
+ * @property {('Admiration'|'Inferiority'|'Loyalty'|'Mistrust'|'Affection'|'Hatred')[]} feelings
  * @property {number} strength
  */
-
 /**
  * @typedef CheckDetails
  * @extends CheckWeapon
@@ -52,10 +48,9 @@ import { StudyRollHandler } from '../pipelines/study-roll.mjs';
  * @extends CheckBasic
  * @extends CheckAbility
  */
-
 /**
  * @typedef CheckWeapon
- * @property {"weapon"} _type
+ * @property {'weapon'} _type
  * @property {string} name
  * @property {string} img
  * @property {string} id
@@ -67,25 +62,23 @@ import { StudyRollHandler } from '../pipelines/study-roll.mjs';
  * @property {string} summary
  * @property {string} description
  */
-
 /**
  * @typedef CheckSpell
- * @property {"spell"} _type
+ * @property {'spell'} _type
  * @property {string} name
  * @property {string} img
  * @property {string} id
  * @property {string} mpCost
  * @property {string} target
  * @property {string} duration
- * @property {"mdef"} defense
+ * @property {'mdef'} defense
  * @property {string} opportunity
  * @property {string} summary
  * @property {string} description
  */
-
 /**
  * @typedef CheckBasic
- * @property {"basic"} _type
+ * @property {'basic'} _type
  * @property {string} name
  * @property {string} img
  * @property {string} id
@@ -95,16 +88,14 @@ import { StudyRollHandler } from '../pipelines/study-roll.mjs';
  * @property {string} summary
  * @property {string} description
  */
-
 /**
  * @typedef AbilityWeapon
  * @property {string} name
  * @property {string} slot
  */
-
 /**
  * @typedef CheckAbility
- * @property {"ability"} _type
+ * @property {'ability'} _type
  * @property {string} name
  * @property {string} img
  * @property {string} id
@@ -114,7 +105,6 @@ import { StudyRollHandler } from '../pipelines/study-roll.mjs';
  * @property {string} description
  * @property {AbilityWeapon} [weapon]
  */
-
 /**
  * @typedef CheckDamage
  * @property {boolean} hrZero
@@ -122,15 +112,13 @@ import { StudyRollHandler } from '../pipelines/study-roll.mjs';
  * @property {DamageType} type
  * @property {number} [total]
  */
-
 /**
  * @typedef CheckTarget
  * @property {string} target
  * @property {string} link
  * @property {number} difficulty
- * @property {"hit", "miss"} [result]
+ * @property {'hit', 'miss'} [result]
  */
-
 /**
  * @typedef CheckParameters
  * @property {CheckData} check
@@ -144,7 +132,6 @@ import { StudyRollHandler } from '../pipelines/study-roll.mjs';
  * @property {number} [difficulty]
  * @property {CheckTarget[]} [targets]
  */
-
 import { FU, SYSTEM } from './config.mjs';
 import { FUActor } from '../documents/actors/actor.mjs';
 import { Flags } from './flags.mjs';
@@ -153,6 +140,7 @@ import { CheckHooks } from '../checks/check-hooks.mjs';
 import { CheckConfiguration } from '../checks/check-configuration.mjs';
 import { TokenUtils } from './token-utils.mjs';
 import { PlayerListEnhancements } from './player-list-enhancements.mjs';
+import { TextEditor } from './text-editor.mjs';
 
 /**
  *
@@ -694,15 +682,6 @@ async function getRerollParams(params, actor) {
 }
 
 /**
- * Enrich HTML content.
- * @param {string} htmlContent - The HTML content to enrich.
- * @returns {string} - The enriched content.
- */
-async function EnrichHTML(htmlContent) {
-	return TextEditor.enrichHTML(htmlContent);
-}
-
-/**
  * Create a chat message with enriched content.
  * @param {CheckParameters} checkParams
  * @param {Object} [additionalFlags]
@@ -712,7 +691,7 @@ export async function createChatMessage(checkParams, additionalFlags = {}) {
 	const content = checkParams.description
 		? await foundry.applications.handlebars.renderTemplate('systems/projectfu/templates/chat/chat-description.hbs', {
 				flavor: checkParams.details?.name || '',
-				description: await EnrichHTML(checkParams.description),
+				description: await TextEditor.enrichHTML(checkParams.description),
 			})
 		: '';
 

@@ -3,6 +3,7 @@ import { ProgressDataModel } from '../../common/progress-data-model.mjs';
 import { OptionalFeatureTypeDataModel } from '../optional-feature-type-data-model.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 /** @type RenderCheckHook */
 const onRenderCheck = (sections, check, actor, item) => {

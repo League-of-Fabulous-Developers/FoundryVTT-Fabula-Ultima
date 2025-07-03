@@ -3,6 +3,7 @@ import { ProgressDataModel } from '../../common/progress-data-model.mjs';
 import { OptionalFeatureTypeDataModel } from '../optional-feature-type-data-model.mjs';
 import { CommonSections } from '../../../../checks/common-sections.mjs';
 import { CheckHooks } from '../../../../checks/check-hooks.mjs';
+import { TextEditor } from '../../../../helpers/text-editor.mjs';
 
 /** @type RenderCheckHook */
 const onRenderCheck = (sections, check, actor, item) => {
@@ -60,7 +61,7 @@ export class QuirkDataModel extends OptionalFeatureDataModel {
 		const clockDataString = await this.getClockDataString(model);
 		const resourceDataString = await this.getResourceDataString(model);
 		return {
-			enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(model.description),
+			enrichedDescription: await TextEditor.implementation.enrichHTML(model.description),
 			clockDataString,
 			resourceDataString,
 		};

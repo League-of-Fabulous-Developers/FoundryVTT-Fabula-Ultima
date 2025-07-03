@@ -4,6 +4,7 @@ import { systemPath } from '../helpers/config.mjs';
 import { OptionalFeatureRegistry } from '../documents/items/optionalFeature/optional-feature-registry.mjs';
 import { ClassFeatureRegistry } from '../documents/items/classFeature/class-feature-registry.mjs';
 import FoundryUtils from '../helpers/foundry-utils.mjs';
+import { TextEditor } from '../helpers/text-editor.mjs';
 
 export class FUFeatureSheet extends FUItemSheet {
 	/**
@@ -81,7 +82,7 @@ export class FUFeatureSheet extends FUItemSheet {
 						if (typeof value === 'object') {
 							await enrichRecursively(value, { rollData, secrets, actor });
 						} else {
-							obj[key] = await foundry.applications.ux.TextEditor.implementation.enrichHTML(value, {
+							obj[key] = await TextEditor.implementation.enrichHTML(value, {
 								rollData,
 								secrets,
 								relativeTo: actor,
