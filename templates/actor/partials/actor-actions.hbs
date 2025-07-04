@@ -47,8 +47,8 @@
         </span>
     </div>
     {{/if}}
+	{{#if (eq @root.actor.type "npc")}}
     <div class="action-container grid grid-2col gap-5">
-        {{#if (eq @root.actor.type "npc")}}
         <span class="action-style button-style study-style grid-span-2 grid-2col flexrow" data-tooltip="{{localize 'FU.StudyRoll'}}">
             <span class="study-button" style="cursor: pointer;" data-action="studyAction">
                 <i class="fas fa-magnifying-glass icon"></i>
