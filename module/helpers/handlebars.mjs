@@ -216,6 +216,7 @@ function progress(document, path, options) {
 	const data = options.hash;
 	const type = data.type;
 	const style = data.style ?? 'clock';
+	const action = data.action ?? 'updateProgress';
 
 	// Render the partial directly using Handlebars
 	const template = Handlebars.partials[progressStyleTemplates[style]];
@@ -225,8 +226,9 @@ function progress(document, path, options) {
 					arr: progress.progressArray,
 					id: id,
 					data: progress,
-					type: type,
 					dataPath: path,
+					type: type,
+					action: action,
 					displayName: data.displayName,
 				})
 			: '';

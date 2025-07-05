@@ -1,19 +1,26 @@
 <div class="item-m inline-desc" style="text-align: center; padding: 1px;">
-	<label class="item-quality resource-text-sm" style="flex-grow: 2;">{{ system.data.rp.name }}</label>
+	{{#if displayName}}
+		<label class="item-quality resource-text-sm" style="flex-grow: 2;">{{ data.name }}</label>
+	{{/if}}
 	<div class="resource-text-t buttons-inc" style="padding: 0 4px;">
-		<a class="decrement-button" data-type="optionalRPCounter"
+		<a class="decrement-button" data-type="{{type}}"
 		   data-item-id="{{id}}"
+		   data-action="{{action}}"
+		   data-data-path="{{dataPath}}"
+		   data-update-amount="-1"
 		   data-tooltip="{{localize
-			'FU.DecreaseTooltip'}} ({{system.data.rp.step}})">-</a>
-		<span data-resource="item.rp">{{ system.data.rp.current }}</span>
-		{{#if (gt system.data.rp.max 0)}}
+			'FU.DecreaseTooltip'}} ({{data.step}})">-</a>
+		<span data-resource="item.rp">{{ data.current }}</span>
+		{{#if (gt data.max 0)}}
 			<span>/</span>
-			<span>{{ system.data.rp.max }}</span>
+			<span>{{ data.max }}</span>
 		{{/if}}
-		<a class="increment-button" data-type="optionalRPCounter"
+		<a class="increment-button" data-type="{{type}}"
 		   data-item-id="{{id}}"
-		   data-action="incrementButton"
+		   data-action="{{action}}"
+		   data-data-path="{{dataPath}}"
+		   data-update-amount="1"
 		   data-tooltip="{{localize
-			'FU.IncreaseTooltip'}} ({{system.data.rp.step}})">+</a>
+			'FU.IncreaseTooltip'}} ({{data.step}})">+</a>
 	</div>
 </div>

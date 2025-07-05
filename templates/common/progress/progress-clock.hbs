@@ -1,7 +1,7 @@
 <div class="item-m inline-desc clock-m" data-item-id="{{id}}" style="grid-column-gap: 2px;">
 
 	<a class="increment-button" data-type="{{type}}" data-item-id="{{id}}"
-	   data-tooltip="{{localize "FU.IncreaseTooltip"}}" data-action="updateClock"
+	   data-tooltip="{{localize "FU.IncreaseTooltip"}}" data-action="{{action}}"
 	   data-data-path="{{dataPath}}" data-update-amount="1">
 		<i class="fas fa-plus"></i>
 	</a>
@@ -26,8 +26,8 @@
 		{{/if}}
 	</div>
 
-	<a class="decrement-button" data-type="${type}" data-item-id="{{id}}"
-	   data-action="updateClock" data-data-path="{{dataPath}}" data-update-amount="-1"
+	<a class="decrement-button" data-type="{{type}}" data-item-id="{{id}}"
+	   data-action="{{action}}" data-data-path="{{dataPath}}" data-update-amount="-1"
 	   data-tooltip="{{localize "FU.DecreaseTooltip"}}">
 		<i class="fas fa-minus"></i>
 	</a>
