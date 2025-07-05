@@ -226,5 +226,10 @@ export const preloadHandlebarsTemplates = async function () {
 
 		// UI
 		'systems/projectfu/templates/ui/study/npc-profile.hbs',
+
+		// Progress,
+		'systems/projectfu/templates/common/progress/progress-clock.hbs',
+		'systems/projectfu/templates/common/progress/progress-basic.hbs',
+		'systems/projectfu/templates/common/progress/progress-bar.hbs',
 	]);
 };
