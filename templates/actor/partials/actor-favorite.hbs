@@ -113,38 +113,8 @@
 
 						{{#if (eq item.type "project")}}
 						{{!-- Progress Bar --}}
-							<div class="item-progressbar">
-								<div class="bar bar-progress">
-									<div class="bar-progress-bar bar-project"
-										 style="width: {{calculatePercentage item.system.progress.current
-																			 item.progressMax}};">
-									</div>
-									<span class="bar-value"></span>
-								</div>
-							</div>
 							{{!-- Progress Counter --}}
-							<div class="item-m inline-desc flexcol flex-group-center resource-content"
-								 style="padding: 0; border-radius: 6px 12px 12px 6px;">
-								<div class="resource-text-t buttons-inc">
-									<a class="decrement-button"
-									   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progressPerDay.value}})"
-									   data-action="modifyResource"
-									   data-data-path="system.progress"
-									   data-resource-action="decrement">
-										-
-									</a>
-									<span data-resource="item.rp">{{ item.system.progress.current }}</span>
-									<span>/</span>
-									<span>{{ item.progressMax }}</span>
-									<a class="increment-button"
-									   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progressPerDay.value}})"
-									   data-action="modifyResource"
-									   data-data-path="system.progress"
-									   data-resource-action="increment">
-										+
-									</a>
-								</div>
-							</div>
+							{{progress item 'system.progress' style='bar' type='projectCounter' }}
 						{{/if}}
 
 						{{!-- Item Control--}}

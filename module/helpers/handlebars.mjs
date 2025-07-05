@@ -202,6 +202,7 @@ export const FUHandlebars = Object.freeze({
 const progressStyleTemplates = Object.freeze({
 	clock: systemTemplatePath('common/progress/progress-clock'),
 	basic: systemTemplatePath('common/progress/progress-basic'),
+	bar: systemTemplatePath('common/progress/progress-bar'),
 });
 
 /**

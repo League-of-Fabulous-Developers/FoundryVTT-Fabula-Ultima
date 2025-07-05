@@ -148,17 +148,8 @@
 							{{!-- Item Name--}}
 							{{> "systems/projectfu/templates/actor/partials/actor-item-name.hbs" item=item}}
 							{{!-- Progress Bar --}}
-							<div class="item-progressbar">
-								<div class="bar bar-progress">
-									<div class="bar-progress-bar bar-project"
-										 style="width: {{calculatePercentage item.system.progress.current
-																			 item.progressMax}};">
-									</div>
-									<span class="bar-value"></span>
-								</div>
-							</div>
 							{{!-- Progress Counter --}}
-							{{progress item 'system.progress' displayName=true type='projectCounter' }}
+							{{progress item 'system.progress' style='bar' type='projectCounter' }}
 							{{!-- Item Control--}}
 							{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 						</div>
