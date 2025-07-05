@@ -8,38 +8,8 @@
 	</legend>
 	{{#each items as |item|}}
 		{{#if (and item.system.isFavored.value item.system.hasClock.value)}}
-			{{#if (not @first)}}
-				<hr>
-			{{/if}}
-
-			<div class="item clock-m" data-item-id="{{ item._id }}" style="grid-column-gap: 2px;">
-				{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
-				 arr=item.system.progress.progressArray
-				 data=item.system.progress
-				 dataPath='system.progress'
-				}}
-				<a class="increment-button"
-				   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progress.step}})"
-				   data-action="modifyResource"
-				   data-data-path="system.progress"
-				   data-resource-action="increment">
-					<i class="fas fa-plus"></i>
-				</a>
-				<a class="decrement-button"
-				   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress.step}})"
-				   data-action="modifyResource"
-				   data-data-path="system.progress"
-				   data-resource-action="decrement">
-					<i class="fas fa-minus"></i>
-				</a>
-				<h4 class="item-name rollable resource-content" data-item-id="{{item._id}}" data-roll-type="item">
-					{{#if item.system.data.progress.name }}
-						<span class="resource-label-m">{{ item.system.progress.name }}</span>
-					{{else}}
-						<span class="resource-label-m">{{ item.name }}</span>
-					{{/if}}
-				</h4>
-			</div>
+			{{progress item displayName=true }}
+			<hr>
 		{{/if}}
 
 		{{#if (and item.system.isFavored.value item.system.data.hasClock.value)}}
