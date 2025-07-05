@@ -1,3 +1,5 @@
+import { systemTemplatePath } from './system-utils.mjs';
+
 export const FUHandlebars = Object.freeze({
 	registerHelpers: () => {
 		Handlebars.registerHelper('concat', function () {
@@ -194,7 +196,13 @@ export const FUHandlebars = Object.freeze({
  * @typedef ProgressHandlebarOptions
  * @property {Boolean} displayName
  * @property {String} type
+ * @property {"clock"|"basic"} style
  */
+
+const progressStyleTemplates = Object.freeze({
+	clock: systemTemplatePath('common/progress/progress-clock'),
+	basic: systemTemplatePath('common/progress/progress-basic'),
+});
 
 /**
  * @param {FUActor|FUItem} document
@@ -204,52 +212,25 @@ export const FUHandlebars = Object.freeze({
 function progress(document, path, options) {
 	const id = document._id;
 	const progress = foundry.utils.getProperty(document, path);
-	const tooltipInc = `${game.i18n.localize('FU.IncreaseTooltip')} (${progress.step})`;
-	const tooltipDec = `${game.i18n.localize('FU.DecreaseTooltip')} (${progress.step})`;
+
 	const data = options.hash;
+	const type = data.type;
+	const style = data.style ?? 'clock';
 
 	// Render the partial directly using Handlebars
-	const partial = Handlebars.partials['systems/projectfu/templates/actor/partials/actor-progress-clock.hbs'];
-	const clockHTML =
-		typeof partial === 'function'
-			? partial({
+	const template = Handlebars.partials[progressStyleTemplates[style]];
+	const html =
+		typeof template === 'function'
+			? template({
 					arr: progress.progressArray,
+					id: id,
 					data: progress,
+					type: type,
 					dataPath: path,
 					displayName: data.displayName,
 				})
 			: '';
 
 	// Begin constructing HTML
-	const html = [];
-
-	html.push(`<div class="item-m inline-desc clock-m" data-item-id="${id}" style="grid-column-gap: 2px;">`);
-
-	// Optional increment button
-	html.push(`
-			<a class="increment-button" data-type="${data.type}" data-item-id="${id}"
-			   data-tooltip="${tooltipInc}" data-action="updateClock" 
-			   data-data-path="${path}" data-update-amount="1">
-				<i class="fas fa-plus"></i>
-			</a>
-		`);
-
-	// Optional clock display
-	html.push(`
-			<div class="progress-container">
-				${clockHTML}
-			</div>
-		`);
-
-	// Optional decrement button
-	html.push(`
-			<a class="decrement-button" data-type="${data.type}" data-item-id="${id}"
-			   data-action="updateClock" data-data-path="${path}" data-update-amount="-1"
-			   data-tooltip="${tooltipDec}">
-				<i class="fas fa-minus"></i>
-			</a>
-		`);
-
-	html.push(`</div>`);
-	return new Handlebars.SafeString(html.join('\n'));
+	return new Handlebars.SafeString(html);
 }
