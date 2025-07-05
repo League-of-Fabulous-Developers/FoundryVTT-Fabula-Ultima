@@ -113,13 +113,20 @@
 					</li>
 					<section class="flex2 npc-desc">
 						{{#if (eq (getGameSetting 'optionNPCNotesTab') true)}}
-							{{editor enrichedHtml.description target="system.description"
-									 engine="prosemirror"
-									 rollData=rollData button=false owner=owner editable=false }}
+							{{formInput system.schema.fields.description
+										toggled=true
+										value=system.description
+										rollData=rollData
+										owner=owner
+										editable=false
+										enriched=enrichedHtml.description}}
 						{{else}}
-							{{editor enrichedHtml.description target="system.description"
-									 engine="prosemirror"
-									 rollData=rollData button=true owner=owner editable=editable }}
+							{{formInput system.schema.fields.description
+										toggled=true
+										value=system.description
+										rollData=rollData
+										owner=owner
+										enriched=enrichedHtml.description}}
 						{{/if}}
 					</section>
 				</section>
