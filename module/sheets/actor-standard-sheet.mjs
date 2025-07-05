@@ -53,7 +53,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			crisisHP: FUStandardActorSheet.CrisisHP,
 			addBond: FUStandardActorSheet.AddBond,
 			deleteBond: FUStandardActorSheet.DeleteBond,
-			updateClock: FUStandardActorSheet.UpdateClock,
+			updateClock: { handler: FUStandardActorSheet.UpdateClock, buttons: [0, 2] },
 			rest: FUStandardActorSheet.handleRestClick,
 			sortFavorites: FUStandardActorSheet.sortFavorites,
 			levelUp: FUStandardActorSheet.levelUp,
@@ -379,6 +379,12 @@ export class FUStandardActorSheet extends FUActorSheet {
 						this._onSkillLevelUpdate(target);
 					}
 				});
+				element.addEventListener('contextmenu', (ev) => {
+					if (ev.target.matches('.skillLevel input')) {
+						ev.preventDefault();
+						this._onSkillLevelReset(ev.target);
+					}
+				});
 				break;
 			}
 		}
@@ -550,15 +556,22 @@ export class FUStandardActorSheet extends FUActorSheet {
 		ActorSheetUtils.activateInventoryListeners(this.element, this);
 
 		// Editable item actions
+		html.addEventListener('click', (ev) => {
+			if (ev.target.closest('.progress input')) {
+				const progress = ev.target.closest('.progress');
+				const dataType = progress?.dataset.type;
+				const dataPath = progress?.dataset.dataPath;
+				const input = ev.target;
+				this._onProgressUpdate(input, dataType, dataPath);
+			}
+		});
 		html.addEventListener('contextmenu', (ev) => {
 			const target = ev.target;
-			if (target.closest('.skillLevel')) {
-				this._onSkillLevelReset(ev);
-			} else if (target.closest('.progress input')) {
+			if (target.closest('.progress input')) {
 				const progress = target.closest('.progress');
 				const dataType = progress?.dataset.type;
 				const dataPath = progress?.dataset.dataPath;
-				this._onProgressReset(ev, dataType, dataPath);
+				this._onProgressReset(ev.target, dataType, dataPath);
 			}
 		});
 
@@ -641,7 +654,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 	/**
 	 * @description Sets the skill level value to the segment clicked.
-	 * @param {HTMLElement} input - The input change event.
+	 * @param {HTMLInputElement} input - The input change event.
 	 */
 	_onSkillLevelUpdate(input) {
 		const segment = input.value;
@@ -664,12 +677,9 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 	/**
 	 * @description Resets the skill level value to 0 on right-click.
-	 * @param {Event} ev - The context menu event.
+	 * @param {HTMLElement} input - The context menu event.
 	 */
-	_onSkillLevelReset(ev) {
-		ev.preventDefault();
-
-		const input = ev.currentTarget;
+	_onSkillLevelReset(input) {
 		const li = $(input).closest('.item');
 
 		if (li.length) {
@@ -693,13 +703,12 @@ export class FUStandardActorSheet extends FUActorSheet {
 
 	/**
 	 * Resets the progress clock.
-	 * @param {Event} ev - The input change event.
+	 * @param {HTMLInputElement} input - The input change event.
 	 * @param {"feature"} [dataType] is the item a feature
 	 * @param {string} [dataPath] path to clock data
 	 * @private
 	 */
-	_onProgressReset(ev, dataType, dataPath) {
-		const input = ev.currentTarget;
+	_onProgressReset(input, dataType, dataPath) {
 		const li = $(input).closest('.item');
 
 		if (li.length) {
@@ -979,6 +988,37 @@ export class FUStandardActorSheet extends FUActorSheet {
 		const clock = this.actor.items.get(itemId);
 		const increment = parseFloat(updateAmount);
 		await ProgressDataModel.updateForDocument(clock, dataPath, increment, rightClick);
+	}
+
+	/**
+	 * Updates the progress clock value based on the clicked segment.
+	 * @param {HTMLElement} input - The input element
+	 * @param {"feature"} [dataType] Is the item a feature
+	 * @param {string} [dataPath] path to clock data
+	 * @private
+	 */
+	_onProgressUpdate(input, dataType, dataPath) {
+		const segment = input.value;
+		if (!segment) {
+			throw Error('Segment element not properly retrieved from input event');
+		}
+		const li = $(input).closest('.item');
+
+		if (li.length) {
+			// If the clock is from an item
+			const itemId = li.data('itemId');
+			const item = this.actor.items.get(itemId);
+
+			if (dataPath) {
+				item.update({ [dataPath + '.current']: segment });
+			} else if (dataType === 'feature') {
+				item.update({ 'system.data.progress.current': segment });
+			} else {
+				item.update({ 'system.progress.current': segment });
+			}
+		} else {
+			this.actor.update({ 'system.progress.current': segment });
+		}
 	}
 
 	/**
