@@ -53,7 +53,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 			crisisHP: FUStandardActorSheet.CrisisHP,
 			addBond: FUStandardActorSheet.AddBond,
 			deleteBond: FUStandardActorSheet.DeleteBond,
-			updateClock: { handler: FUStandardActorSheet.UpdateClock, buttons: [0, 2] },
+			updateProgress: { handler: FUStandardActorSheet.UpdateProgress, buttons: [0, 2] },
 			rest: FUStandardActorSheet.handleRestClick,
 			sortFavorites: FUStandardActorSheet.sortFavorites,
 			levelUp: FUStandardActorSheet.levelUp,
@@ -989,13 +989,13 @@ export class FUStandardActorSheet extends FUActorSheet {
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise<void>}
 	 */
-	static async UpdateClock(event, target) {
+	static async UpdateProgress(event, target) {
 		const rightClick = event.which === 3 || event.button === 2;
 		const { itemId, updateAmount, dataPath } = target.dataset;
 
-		const clock = this.actor.items.get(itemId);
+		const item = this.actor.items.get(itemId);
 		const increment = parseFloat(updateAmount);
-		await ProgressDataModel.updateForDocument(clock, dataPath, increment, rightClick);
+		await ProgressDataModel.updateForDocument(item, dataPath, increment, rightClick);
 	}
 
 	/**
