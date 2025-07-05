@@ -380,7 +380,7 @@ export class FUStandardActorSheet extends FUActorSheet {
 					}
 				});
 				element.addEventListener('contextmenu', (ev) => {
-					if (ev.target.matches('.skillLevel input')) {
+					if (ev.target.closest('.skillLevel')) {
 						ev.preventDefault();
 						this._onSkillLevelReset(ev.target);
 					}
