@@ -362,6 +362,28 @@ export class FUStandardActorSheet extends FUActorSheet {
 		return context;
 	}
 
+	/**
+	 * @override
+	 * @param partId
+	 * @param element
+	 * @param options
+	 * @private
+	 */
+	_attachPartListeners(partId, element, options) {
+		super._attachPartListeners(partId, element, options);
+		switch (partId) {
+			case 'classes': {
+				element.addEventListener('click', (ev) => {
+					const target = ev.target;
+					if (target.matches('.skillLevel input')) {
+						this._onSkillLevelUpdate(target);
+					}
+				});
+				break;
+			}
+		}
+	}
+
 	/** @override */
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
@@ -615,6 +637,29 @@ export class FUStandardActorSheet extends FUActorSheet {
 		event.preventDefault();
 		const isRightClick = event.type === 'contextmenu';
 		await this.actor.rest(isRightClick);
+	}
+
+	/**
+	 * @description Sets the skill level value to the segment clicked.
+	 * @param {HTMLElement} input - The input change event.
+	 */
+	_onSkillLevelUpdate(input) {
+		const segment = input.value;
+
+		const li = $(input).closest('.item');
+
+		if (li.length) {
+			const itemId = li.find('input').data('item-id');
+			const item = this.actor.items.get(itemId);
+
+			if (item) {
+				item.update({ 'system.level.value': segment });
+			} else {
+				console.error(`Item with ID ${itemId} not found.`);
+			}
+		} else {
+			console.error('Parent item not found.');
+		}
 	}
 
 	/**
