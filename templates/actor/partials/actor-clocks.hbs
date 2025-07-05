@@ -8,7 +8,7 @@
 	</legend>
 	{{#each items as |item id|}}
 		{{#if (and item.system.isFavored.value item.system.hasClock.value)}}
-			{{progress item displayName=true }}
+			{{progress item 'system.progress' displayName=true type='clockCounter' }}
 			<hr>
 		{{/if}}
 	{{/each}}
@@ -17,22 +17,7 @@
 	{{#each optionalFeatures}}
 		{{#each items }}
 			{{#if (and item.system.isFavored.value item.system.data.hasClock.value)}}
-				<div class="item clock-m" data-item-id="{{ item._id }}" style="grid-column-gap: 2px;">
-					{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
-					 arr=item.progressArr
-					 data=item.system.data.progress
-					 dataPath="system.data.progress"}}
-					<a class="increment-button" data-type="featureCounter" data-item-id="{{ item._id }}"
-					   data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.data.progress.step}})"
-					   data-action="incrementButton">
-						<i class="fas fa-plus"></i></a>
-					<a class="decrement-button" data-type="featureCounter" data-item-id="{{ item._id }}"
-					   data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.data.progress.step}})"> <i
-					 class="fas fa-minus"></i></a>
-					<h4 class="item-name rollable resource-content" data-item-id="{{item._id}}" data-roll-type="item">
-						<span class="resource-label-m">{{ item.system.data.progress.name }}</span>
-					</h4>
-				</div>
+				{{progress item 'system.data.progress' displayName=true type='featureCounter' }}
 				<hr>
 			{{/if}}
 		{{/each}}

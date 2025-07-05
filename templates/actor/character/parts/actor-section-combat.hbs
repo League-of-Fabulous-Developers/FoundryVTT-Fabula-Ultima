@@ -122,20 +122,7 @@
                       {{/if}}
                       {{!-- Clocks --}}
                       {{#if item.system.hasClock.value}}
-                          <div class="item-m inline-desc" style="text-align: initial; padding: 2px;">
-                              <a class="decrement-button align-left" data-type="clockCounter"
-                                data-item-id="{{ item._id }}"> <i
-                              class="fas fa-minus"></i></a>
-                              <div class="progress-container">
-                                  {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
-                                  arr=item.progressArr
-                                  data=item.system.progress}}
-                              </div>
-                              <a class="increment-button align-right" data-type="clockCounter"
-                              data-action="incrementButton"
-                                data-item-id="{{ item._id }}"> <i
-                              class="fas fa-plus"></i></a>
-                          </div>
+						  {{progress item 'system.progress' type='clockCounter'}}
                       {{/if}}
                       {{!-- Item Control--}}
                       {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
@@ -177,20 +164,7 @@
                       </div>
                       {{!-- Clocks --}}
                       {{#if item.system.hasClock.value}}
-                          <div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
-                              <a class="decrement-button align-left" data-type="clockCounter"
-                                data-item-id="{{ item._id }}"> <i
-                              class="fas fa-minus"></i></a>
-                              <div class="progress-container">
-                                  {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
-                                  arr=item.progressArr
-                                  data=item.system.progress}}
-                              </div>
-                              <a class="increment-button align-right" data-type="clockCounter"
-                              data-action="incrementButton"
-                                data-item-id="{{ item._id }}"> <i
-                              class="fas fa-plus"></i></a>
-                          </div>
+						  {{progress item 'system.progress' type='clockCounter'}}
                       {{/if}}
                       {{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
                   </div>

@@ -105,31 +105,12 @@
 							</div>
 							{{!-- Resource Points --}}
 							{{#if item.system.hasResource.value}}
-								<div class="item-m inline-desc" style="text-align: center; padding: 1px;">
-									<label class="item-quality resource-text-sm"
-										   style="flex-grow: 2;">{{ item.system.rp.name }}</label>
-									<div class="resource-text-t buttons-inc" style="padding: 0 4px;">
-										<a class="decrement-button"
-										   data-type="resourceCounter"
-										   data-item-id="{{ item._id }}"
-										   data-tooltip="{{localize
-											'FU.DecreaseTooltip'}} ({{item.system.rp.step}})">-</a>
-										<span data-resource="item.rp">{{ item.system.rp.current }}</span>
-										{{#if (gt item.system.rp.max 0)}}
-											<span>/</span>
-											<span>{{ item.system.rp.max }}</span>
-										{{/if}}
-										<a class="increment-button" data-type="resourceCounter"
-										   data-item-id="{{ item._id }}"
-										   data-action="incrementButton"
-										   data-tooltip="{{localize
-											'FU.IncreaseTooltip'}} ({{item.system.rp.step}})">+</a>
-									</div>
-								</div>
+								{{progress item 'system.rp' type='resourceCounter'}}
+
 							{{/if}}
 							{{!-- Clocks --}}
 							{{#if item.system.hasClock.value}}
-								{{progress item}}
+								{{progress item 'system.progress' type='clockCounter'}}
 							{{/if}}
 							{{!-- Item Control--}}
 							{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
@@ -177,24 +158,7 @@
 								</div>
 							</div>
 							{{!-- Progress Counter --}}
-							<div class="item-m inline-desc flexcol flex-group-center resource-content"
-								 style="padding: 0; border-radius: 6px 12px 12px 6px;">
-								<div class="resource-text-t buttons-inc">
-									<a class="decrement-button" data-type="projectCounter"
-									   data-item-id="{{ item._id }}"
-									   data-action="decrementItem"
-									   data-tooltip="{{localize
-										'FU.DecreaseTooltip'}} ({{item.system.progress.step}})">-</a>
-									<span data-resource="item.rp">{{ item.system.progress.current }}</span>
-									<span>/</span>
-									<span>{{ item.progressMax }}</span>
-									<a class="increment-button" data-type="projectCounter"
-									   data-item-id="{{ item._id }}"
-									   data-action="incrementItem"
-									   data-tooltip="{{localize
-										'FU.IncreaseTooltip'}} ({{item.system.progress.step}})">+</a>
-								</div>
-							</div>
+							{{progress item 'system.progress' displayName=true type='projectCounter' }}
 							{{!-- Item Control--}}
 							{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 						</div>
@@ -238,20 +202,7 @@
 							</div>
 							{{!-- Clocks --}}
 							{{#if item.system.hasClock.value}}
-								<div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
-									<a class="decrement-button align-left" data-type="clockCounter"
-									   data-item-id="{{ item._id }}"> <i
-									 class="fas fa-minus"></i></a>
-									<div class="progress-container">
-										{{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
-										 arr=item.progressArr
-										 data=item.system.progress}}
-									</div>
-									<a class="increment-button align-right" data-type="clockCounter"
-									   data-action="incrementButton"
-									   data-item-id="{{ item._id }}"> <i
-									 class="fas fa-plus"></i></a>
-								</div>
+								{{progress item 'system.progress' type='clockCounter' }}
 							{{/if}}
 							{{> "systems/projectfu/templates/actor/partials/actor-control.hbs" item=item}}
 						</div>
