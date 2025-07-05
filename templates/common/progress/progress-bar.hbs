@@ -1,0 +1,34 @@
+<div class="item-progressbar">
+	<div class="bar bar-progress">
+		<div class="bar-progress-bar bar-project"
+			 style="width: {{calculatePercentage data.current
+												 data.max}};">
+		</div>
+		<span class="bar-value"></span>
+	</div>
+</div>
+
+<div class="item-m inline-desc flexcol flex-group-center resource-content"
+	 style="padding: 0; border-radius: 6px 12px 12px 6px;">
+	<div class="resource-text-t buttons-inc">
+		<a class="decrement-button"
+		   data-type="{{type}}"
+		   data-item-id="{{id}}"
+		   data-action="{{action}}"
+		   data-data-path="{{dataPath}}"
+		   data-update-amount="-1"
+		   data-tooltip="{{localize
+			'FU.DecreaseTooltip'}}">-</a>
+		<span data-resource="item.rp">{{ data.current }}</span>
+		<span>/</span>
+		<span>{{ data.max }}</span>
+		<a class="increment-button"
+		   data-type="{{type}}"
+		   data-item-id="{{id}}"
+		   data-action="{{action}}"
+		   data-data-path="{{dataPath}}"
+		   data-update-amount="1"
+		   data-tooltip="{{localize
+			'FU.IncreaseTooltip'}}">+</a>
+	</div>
+</div>
