@@ -31,28 +31,7 @@
                           <div class="item-m">{{ item.clock }}</div>
                       {{/if}}
                       {{#if item.system.hasClock.value}}
-                          <div class="item-m inline-desc" style="text-align: initial; padding: 1px;">
-							  <a class="decrement-button align-left" data-type="clockCounter"
-								 data-tooltip="{{localize 'FU.DecreaseTooltip'}} ({{item.system.progress}})"
-								 data-action="modifyResource"
-								 data-data-path="system.progress"
-								 data-resource-action="decrement">
-								  <i class="fas fa-minus"></i>
-							  </a>
-                              <div class="progress-container">
-                                  {{> "systems/projectfu/templates/actor/partials/actor-progress-clock.hbs"
-                                  arr=item.system.progress.progressArray
-                                  data=item.system.progress
-								  dataPath="system.progress" }}
-                              </div>
-							  <a class="increment-button align-right"
-								 data-tooltip="{{localize 'FU.IncreaseTooltip'}} ({{item.system.progress}})"
-								 data-action="modifyResource"
-								 data-data-path="system.progress"
-								 data-resource-action="increment">
-								  <i class="fas fa-plus"></i>
-							  </a>
-                          </div>
+						  {{progress item 'system.progress' type='clockCounter'}}
                       {{/if}}
 
                       {{!-- Item Control--}}

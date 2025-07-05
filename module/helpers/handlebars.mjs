@@ -191,12 +191,19 @@ export const FUHandlebars = Object.freeze({
 });
 
 /**
- * @param document
- * @param {Object} options
+ * @typedef ProgressHandlebarOptions
+ * @property {Boolean} displayName
+ * @property {String} type
  */
-function progress(document, options) {
+
+/**
+ * @param {FUActor|FUItem} document
+ * @param {String} path
+ * @param {ProgressHandlebarOptions} options
+ */
+function progress(document, path, options) {
 	const id = document._id;
-	const progress = document.system.progress;
+	const progress = foundry.utils.getProperty(document, path);
 	const tooltipInc = `${game.i18n.localize('FU.IncreaseTooltip')} (${progress.step})`;
 	const tooltipDec = `${game.i18n.localize('FU.DecreaseTooltip')} (${progress.step})`;
 	const data = options.hash;
@@ -208,7 +215,7 @@ function progress(document, options) {
 			? partial({
 					arr: progress.progressArray,
 					data: progress,
-					dataPath: 'system.progress',
+					dataPath: path,
 					displayName: data.displayName,
 				})
 			: '';
@@ -220,9 +227,9 @@ function progress(document, options) {
 
 	// Optional increment button
 	html.push(`
-			<a class="increment-button" data-type="clockCounter" data-item-id="${id}"
+			<a class="increment-button" data-type="${data.type}" data-item-id="${id}"
 			   data-tooltip="${tooltipInc}" data-action="updateClock" 
-			   data-data-path="system.progress" data-update-amount="1">
+			   data-data-path="${path}" data-update-amount="1">
 				<i class="fas fa-plus"></i>
 			</a>
 		`);
@@ -236,8 +243,8 @@ function progress(document, options) {
 
 	// Optional decrement button
 	html.push(`
-			<a class="decrement-button" data-type="clockCounter" data-item-id="${id}"
-			   data-action="updateClock" data-data-path="system.progress" data-update-amount="-1"
+			<a class="decrement-button" data-type="${data.type}" data-item-id="${id}"
+			   data-action="updateClock" data-data-path="${path}" data-update-amount="-1"
 			   data-tooltip="${tooltipDec}">
 				<i class="fas fa-minus"></i>
 			</a>
